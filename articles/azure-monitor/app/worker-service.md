@@ -583,8 +583,9 @@ For the latest updates and bug fixes, [see the Release Notes](./release-notes.md
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Worker Service applications FAQ](application-insights-faq.yml#worker-service-applications).
 * [Use the API](./api-custom-events-metrics.md) to send your own events and metrics for a detailed view of your app's performance and usage.
 * [Track more dependencies not automatically tracked](asp-net-dependencies.md#dependency-autocollection).
 * [Enrich or filter autocollected telemetry](./api-filtering-sampling.md).
 * [Dependency Injection in ASP.NET Core](/aspnet/core/fundamentals/dependency-injection).
-* To review frequently asked questions (FAQ), see [Worker Service applications FAQ](application-insights-faq.yml#worker-service-applications).
+

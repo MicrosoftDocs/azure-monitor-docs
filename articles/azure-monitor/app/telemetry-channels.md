@@ -139,6 +139,7 @@ Like every SDK for Application Insights, channels are open source. Read and cont
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Telemetry channels FAQ](application-insights-faq.yml#telemetry-channels)
 * [Sampling](./sampling.md)
 * [SDK troubleshooting](./asp-net-troubleshoot-no-data.md)
-* To review frequently asked questions (FAQ), see [Telemetry channels FAQ](application-insights-faq.yml#telemetry-channels)
+

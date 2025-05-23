@@ -81,9 +81,10 @@ To prevent service interruptions, resolve these issues and [manually migrate cla
 
 ## Next steps
 
+- To review frequently asked questions (FAQ), see [Managed workspaces FAQ](application-insights-faq.yml#managed-workspaces)
 - [Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)
 - [Create and configure Application Insights resources](./create-workspace-resource.md)
 - [Manage connection strings in Application Insights](./connection-strings.md)
 - [Understand data collection basics](./opentelemetry-overview.md)
 - [Explore the Application Insights overview](./app-insights-overview.md)
-- To review frequently asked questions (FAQ), see [Managed workspaces FAQ](application-insights-faq.yml#managed-workspaces)
+

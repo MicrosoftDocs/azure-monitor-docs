@@ -190,6 +190,7 @@ If you want to use the extra features provided by plugins for specific framework
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [JavaScript SDK FAQ](application-insights-faq.yml#javascript-sdk)
 * [Explore Application Insights usage experiences](usage.md)
 * [Track page views](api-custom-events-metrics.md#page-views)
 * [Track custom events and metrics](api-custom-events-metrics.md)
@@ -197,4 +198,3 @@ If you want to use the extra features provided by plugins for specific framework
 * [Add JavaScript SDK configuration](javascript-sdk-configuration.md)
 * See the detailed [release notes](https://github.com/microsoft/ApplicationInsights-JS/releases) on GitHub for updates and bug fixes.
 * [Query data in Log Analytics](../../azure-monitor/logs/log-query-overview.md).
-* To review frequently asked questions (FAQ), see [JavaScript SDK FAQ](application-insights-faq.yml#javascript-sdk)

@@ -690,7 +690,7 @@ Set up a custom task by using the following parameters.
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Usage analysis FAQ](application-insights-faq.yml#usage-analysis)
 * Check out the [GitHub repository](https://github.com/microsoft/ApplicationInsights-JS/tree/master/extensions/applicationinsights-clickanalytics-js) and [npm Package](https://www.npmjs.com/package/@microsoft/applicationinsights-clickanalytics-js) for the Click Analytics Autocollection plug-in.
 * Learn more about the [Google HEART framework](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36299.pdf).
 * To learn more about workbooks, see the [Workbooks overview](../visualize/workbooks-overview.md).
-* To review frequently asked questions (FAQ), see [Usage analysis FAQ](application-insights-faq.yml#usage-analysis)

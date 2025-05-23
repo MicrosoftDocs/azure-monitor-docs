@@ -302,6 +302,6 @@ The following steps can help to resolve problems when no data appears in your Ap
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Autoinstrumentation for Azure Kubernetes Service FAQ](application-insights-faq.yml#autoinstrumentation-for-azure-kubernetes-service)
 * Learn more about [Azure Monitor](../overview.md) and [Application Insights](./app-insights-overview.md).
 * See what [Application Map](./app-map.md?tabs=net) can do for your business.
-* To review frequently asked questions (FAQ), see [Autoinstrumentation for Azure Kubernetes Service FAQ](application-insights-faq.yml#autoinstrumentation-for-azure-kubernetes-service)

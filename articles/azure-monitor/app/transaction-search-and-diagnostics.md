@@ -208,7 +208,7 @@ If you can't get Snapshot Debugger working, contact snapshothelp\@microsoft.com.
 
 ## See also
 
+* To review frequently asked questions (FAQ), see [Transaction Search FAQ](application-insights-faq.yml#transaction-search) and [Transaction Diagnostics FAQ](application-insights-faq.yml#transaction-diagnostics) 
 * [Write complex queries in Analytics](../logs/log-analytics-tutorial.md)
 * [Send logs and custom telemetry to Application Insights](./asp-net-trace-logs.md)
 * [Availability overview](availability-overview.md)
-* To review frequently asked questions (FAQ), see [Transaction Search FAQ](application-insights-faq.yml#transaction-search) and [Transaction Diagnostics FAQ](application-insights-faq.yml#transaction-diagnostics) 

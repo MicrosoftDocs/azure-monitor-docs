@@ -79,10 +79,11 @@ Use this cap as a last-resort control, not a replacement for sampling. A sudden 
 
 To configure the cap, see [Set a daily cap for Azure Monitor](../logs/daily-cap.md).
 
-## Next Steps
+## Next steps
 
+- To review frequently asked questions (FAQ), see [OpenTelemetry sampling FAQ](application-insights-faq.yml#opentelemetry-sampling)
 - [OpenTelemetry Sampling Concepts](https://opentelemetry.io/docs/concepts/sampling/).
 - [Enable Sampling in Application Insights](./opentelemetry-configuration.md#enable-sampling)
 - [Application Insights Overview](./app-insights-overview.md)
 - [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion)
-- To review frequently asked questions (FAQ), see [OpenTelemetry sampling FAQ](application-insights-faq.yml#opentelemetry-sampling)
+

@@ -1039,23 +1039,24 @@ The following scenarios are optional and apply to advanced users.
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
+* To review frequently asked questions (FAQ), see [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry FAQ](application-insights-faq.yml#migrate-from--net-application-insights-sdks-to-azure-monitor-opentelemetry)
 * [Azure Monitor Distro Demo project](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/tests/Azure.Monitor.OpenTelemetry.AspNetCore.Demo)
 * [OpenTelemetry SDK's getting started guide](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry)
 * [OpenTelemetry's example ASP.NET Core project](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/examples/AspNetCore)
 * [C# and .NET Logging](/dotnet/core/extensions/logging)
 * [Azure Monitor OpenTelemetry getting started with ASP.NET Core](./opentelemetry-enable.md?tabs=aspnetcore)
-* To review frequently asked questions (FAQ), see [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry FAQ](application-insights-faq.yml#migrate-from--net-application-insights-sdks-to-azure-monitor-opentelemetry)
 
 ### [ASP.NET](#tab/net)
 
+* To review frequently asked questions (FAQ), see [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry FAQ](application-insights-faq.yml#migrate-from--net-application-insights-sdks-to-azure-monitor-opentelemetry)
 * [OpenTelemetry SDK's getting started guide](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry)
 * [OpenTelemetry's example ASP.NET project](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/main/examples/AspNet/Global.asax.cs)
 * [C# and .NET Logging](/dotnet/core/extensions/logging)
 * [Azure Monitor OpenTelemetry getting started with .NET](./opentelemetry-enable.md?tabs=net)
-* To review frequently asked questions (FAQ), see [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry FAQ](application-insights-faq.yml#migrate-from--net-application-insights-sdks-to-azure-monitor-opentelemetry)
 
 ### [Console](#tab/console)
 
+* To review frequently asked questions (FAQ), see [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry FAQ](application-insights-faq.yml#migrate-from--net-application-insights-sdks-to-azure-monitor-opentelemetry)
 * [OpenTelemetry SDK's getting started guide](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry)
 * OpenTelemetry's example projects:
   * [Getting Started with Traces](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/trace/getting-started-console)
@@ -1063,14 +1064,15 @@ The following scenarios are optional and apply to advanced users.
   * [Getting Started with Logs](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs/getting-started-console)
 * [C# and .NET Logging](/dotnet/core/extensions/logging)
 * [Azure Monitor OpenTelemetry getting started with .NET](./opentelemetry-enable.md?tabs=net)
-* To review frequently asked questions (FAQ), see [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry FAQ](application-insights-faq.yml#migrate-from--net-application-insights-sdks-to-azure-monitor-opentelemetry)
+
 
 ### [WorkerService](#tab/workerservice)
 
+* To review frequently asked questions (FAQ), see [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry FAQ](application-insights-faq.yml#migrate-from--net-application-insights-sdks-to-azure-monitor-opentelemetry)
 * [OpenTelemetry SDK's getting started guide](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry)
 * [Logging in C# and .NET](/dotnet/core/extensions/logging)
 * [Azure Monitor OpenTelemetry getting started with .NET](./opentelemetry-enable.md?tabs=net)
-* To review frequently asked questions (FAQ), see [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry FAQ](application-insights-faq.yml#migrate-from--net-application-insights-sdks-to-azure-monitor-opentelemetry)
+
 ---
 
 > [!Tip]
