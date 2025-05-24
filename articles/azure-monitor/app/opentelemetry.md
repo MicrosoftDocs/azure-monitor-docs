@@ -2,8 +2,8 @@
 title: OpenTelemetry on Azure 
 description: This article provides an overview of OpenTelemetry on Azure.
 ms.topic: overview
-ms.date: 06/21/2024
-ms.reviewer: quying
+ms.date: 06/22/2025
+ms.reviewer: mmcc
 ---
 
 # OpenTelemetry on Azure
@@ -63,6 +63,8 @@ The **.NET** OpenTelemetry implementation uses logging, metrics, and activity AP
 
 - [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto)
 - [Monitor Azure Functions](/azure/azure-functions/monitor-functions)
+
+The **Azure Container Apps** OpenTelemetry agent automatically collects and exports data to any OTLP-supported endpoint. It's enabled via environment variable and doesn't require manual configuration. For more information, see [Collect and read OpenTelemetry data in Azure Container Apps](https://learn.microsoft.com/azure/container-apps/opentelemetry-agents).
 
 ## Data platform and consumption
 
