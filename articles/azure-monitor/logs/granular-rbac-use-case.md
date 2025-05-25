@@ -171,25 +171,25 @@ Here's how the permissive condition looks when completed - notice the **Add expr
 Here's how the permissive condition looks in code form:
 ```
 (
-   (
-   !(ActionMatches{'Microsoft.OperationalInsights/workspaces/tables/data/read'})
-   )
-   OR 
-   (
-   @Resource[Microsoft.OperationalInsights/workspaces/tables:name] ForAnyOfAllValues:StringNotEquals {'SigninLogs', 'DnsEvents'}
-   OR
-   (
+ (
+  !(ActionMatches{'Microsoft.OperationalInsights/workspaces/tables/data/read'})
+ )
+ OR 
+ (
+  @Resource[Microsoft.OperationalInsights/workspaces/tables:name] ForAnyOfAllValues:StringNotEquals {'SigninLogs', 'DnsEvents'}
+  OR
+  (
    @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'SigninLogs'
    AND
    @Resource[Microsoft.OperationalInsights/workspaces/tables/record:UserPrincipalName<$key_case_sensitive$>] StringNotEquals 'CEO@contoso.com'
-   )
-   OR
-   (
+  )
+  OR
+  (
    @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'DnsEvents'
    AND
    @Resource[Microsoft.OperationalInsights/workspaces/tables/record:Computer<$key_case_sensitive$>] StringNotEquals 'CEOlaptop1'
-   )
-   )
+  )
+ )
 )
 ```
 Allow up to 15 minutes for effective permissions to take effect.
