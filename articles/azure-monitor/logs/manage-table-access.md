@@ -125,8 +125,8 @@ This method of table-level access control also uses Azure custom roles to grant 
 
        This opens the **Members** tab of the **Add custom role assignment** screen.   
 
-    1. Click **+ Select members** to open the **Select members** screen.
-    1. Search for and select a user and click **Select**.
+    1. **+ Select members** to open the **Select members** screen.
+    1. Search for a user > **Select**.
     1. Select **Review and assign**.
  
 The user can now read workspace details and run a query, but can't read data from any tables. 
@@ -140,8 +140,8 @@ The user can now read workspace details and run a query, but can't read data fro
 
 1. On the **Access control (IAM)** screen, select **Add** > **Add role assignment**. 
 1. Select the **Reader** role and select **Next**.    
-1. Click **+ Select members** to open the **Select members** screen.
-1. Search for and select the user and click **Select**.
+1. **+ Select members** to open the **Select members** screen.
+1. Search for the user > **Select**.
 1. Select **Review and assign**.
 
 The user can now read data from this specific table. Grant the user read access to other tables in the workspace, as needed. 
