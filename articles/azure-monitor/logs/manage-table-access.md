@@ -24,9 +24,15 @@ Granular RBAC lets you finely tune access at the table or row level. Users with 
 
 ## Configure granular RBAC for table-level access
 
-Table-level access configuration in granular RBAC is less complex than earlier methods and offers the flexibility to implement row-level conditions. These steps just focus on the table-level access. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
+Table-level access configuration in granular RBAC is less complex than earlier methods and offers the flexibility to implement row-level conditions. These steps just focus on configuring table-level access though. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
 
-1. Create a granular RBAC custom role. The control plane "data action" is one of the things that sets granular RBAC apart from earlier methods of configuring table-level access. For more information, see [Create granular RBAC custom role](granular-rbac-use-case.md#create-custom-roles).
+Configuring granular RBAC for table-level access requires these steps:
+1. Create granular RBAC custom role
+1. Build condition for the assigned role (permissive or restrictive)
+
+#### Create granular RBAC custom role 
+
+The control plane "data action" is one of the things that sets granular RBAC apart from earlier methods of configuring table-level access. For more information, see [Create granular RBAC custom role](granular-rbac-use-case.md#create-custom-roles).
 
 Here's the JSON for an example custom role:
 
@@ -45,7 +51,7 @@ Here's the JSON for an example custom role:
                 ],
                 "notActions": [],
                 "dataActions": [
-                     "Microsoft.OperationalInsights/workspaces/tables/data/read"
+                    "Microsoft.OperationalInsights/workspaces/tables/data/read"
                 ],
                 "notDataActions": []
             }
@@ -55,19 +61,22 @@ Here's the JSON for an example custom role:
 ```
 
 1. Assign the custom role to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#conditions-and-expressions). 
-   1. From the Log Analytics workspace, select **Access control (IAM)**.
-   1. Select **Add role assignment**.
-   1. Select the `Log Analytics Standard Table Access` example custom role you created, then select **Next**.
-   1. Select the user or group you want to assign the role to, then select **Next**. This example assigns the role to the network team security group.
-   1. Select **Conditions** > **Add condition** > **Add action**.
-   1. Choose the **Read workspace data** data action > **Select**.
+1. From the Log Analytics workspace, select **Access control (IAM)**.
+1. Select **Add role assignment**.
+1. Select the `Log Analytics Standard Table Access` example custom role you created, then select **Next**.
+1. Select the user or group you want to assign the role to, then select **Next**. This example assigns the role to the network team security group.
+1. Select **Conditions** > **Add condition** > **Add action**.
+1. Choose the **Read workspace data** data action > **Select**.
 
-1. Build a permissive condition using the *Access to all data, except what isn't allowed* strategy. In this example, access is restricted to the `SigninLogs` and `SecurityEvent` tables but access is allowed to all other tables.
-   1. In the **Build expression** section, select **Add expression**
-   1. Select *Resource* from the **Attribute source** dropdown.
-   1. Select *Table Name* from the **Attribute** dropdown.
-   1. Select *ForAnyOfAllValues:StringNotEquals* from the **Operator** dropdown.
-   1. Type `SigninLogs` and `SecurityEvent` in the **Value** fields.
+#### Build permissive condition 
+
+This example builds a permissive condition using the *Access to all data, except what isn't allowed* strategy. Access is restricted to the `SigninLogs` and `SecurityEvent` tables but access is permitted to all other tables. To see an example of a restrictive condition, see [Granular RBAC use cases](granular-rbac-use-case.md#build-restrictive-condition).
+   
+1. In the **Build expression** section, select **Add expression**
+1. Select *Resource* from the **Attribute source** dropdown.
+1. Select *Table Name* from the **Attribute** dropdown.
+1. Select *ForAnyOfAllValues:StringNotEquals* from the **Operator** dropdown.
+1. Type `SigninLogs` and `SecurityEvent` in the **Value** fields.
 
 Here's how the permissive table-level access condition looks when completed.
 
@@ -81,57 +90,59 @@ The best practice is to use the granular RBAC method instead of this method. For
 
 This method of table-level access control also uses Azure custom roles to grant users or groups access to specific tables in a workspace, but requires assigning two roles for each user or group.
 
-- At the workspace level - a custom role that provides limited permissions to read workspace details and run a query in the workspace, but not to read data from any tables.        
-- At the table level - a **Reader** role, scoped to the specific table. 
+| Scope | Role Description |
+|---|---|
+| Workspace | A custom role that provides limited permissions to read workspace details and run a query in the workspace, but not to read data from any tables|      
+| Table | A **Reader** role, scoped to the specific table|
 
-**Grant a user or group limited permissions to the Log Analytics workspace:**
+#### Build workspace role
 
-1. Create a [custom role](/azure/role-based-access-control/custom-roles) at the workspace level to let users read workspace details and run a query in the workspace, without providing read access to data in any tables:
+Create a [custom role](/azure/role-based-access-control/custom-roles) at the workspace level to let users read workspace details and run a query in the workspace, without providing read access to data in any tables:
 
-    1. Navigate to your workspace and select **Access control (IAM)** > **Roles**.
+1. Navigate to your workspace and select **Access control (IAM)** > **Roles**.
 
-    1. Right-click the **Reader** role and select **Clone**.
+1. Right-click the **Reader** role and select **Clone**.
 
-       :::image type="content" source="media/manage-access/access-control-clone-role.png" alt-text="Screenshot that shows the Roles tab of the Access control screen with the clone button highlighted for the Reader role." lightbox="media/manage-access/access-control-clone-role.png":::        
+    :::image type="content" source="media/manage-access/access-control-clone-role.png" alt-text="Screenshot that shows the Roles tab of the Access control screen with the clone button highlighted for the Reader role." lightbox="media/manage-access/access-control-clone-role.png":::        
 
-       This opens the **Create a custom role** screen.
+    This opens the **Create a custom role** screen.
 
-    1. On the **Basics** tab of the screen: 
-        1. Enter a **Custom role name** value and, optionally, provide a description.
-        1. Set **Baseline permissions** to **Start from scratch**. 
+1. On the **Basics** tab of the screen: 
+    1. Enter a **Custom role name** value and, optionally, provide a description.
+    1. Set **Baseline permissions** to **Start from scratch**. 
 
-        :::image type="content" source="media/manage-access/manage-access-create-custom-role.png" alt-text="Screenshot that shows the Basics tab of the Create a custom role screen with the Custom role name and Description fields highlighted." lightbox="media/manage-access/manage-access-create-custom-role.png":::
+    :::image type="content" source="media/manage-access/manage-access-create-custom-role.png" alt-text="Screenshot that shows the Basics tab of the Create a custom role screen with the Custom role name and Description fields highlighted." lightbox="media/manage-access/manage-access-create-custom-role.png":::
 
-    1. Select the **JSON** tab > **Edit**:
+1. Select the **JSON** tab > **Edit**:
 
-        1. In the `"actions"` section, add these actions:
+    1. In the `"actions"` section, add these actions:
 
-            ```json
-            "Microsoft.OperationalInsights/workspaces/read",
-            "Microsoft.OperationalInsights/workspaces/query/read" 
-            ```
+        ```json
+        "Microsoft.OperationalInsights/workspaces/read",
+        "Microsoft.OperationalInsights/workspaces/query/read" 
+        ```
 
-        1. In the `"not actions"` section, add: 
+    1. In the `"not actions"` section, add: 
         
-            ```json
-            "Microsoft.OperationalInsights/workspaces/sharedKeys/read"
-            ```
+        ```json
+        "Microsoft.OperationalInsights/workspaces/sharedKeys/read"
+        ```
 
-    1. Select **Save** > **Review + Create** at the bottom of the screen, and then **Create** on the next page.   
+1. Select **Save** > **Review + Create** > **Create**.   
 
 1. Assign your custom role to the relevant user:
-    1. Select **Access control (AIM)** > **Add** > **Add role assignment**.
-    1. Select the custom role you created and select **Next**.
+1. Select **Access control (AIM)** > **Add** > **Add role assignment**.
+1. Select the custom role you created and select **Next**.
 
-       This opens the **Members** tab of the **Add custom role assignment** screen.   
+    This opens the **Members** tab of the **Add custom role assignment** screen.   
 
-    1. **+ Select members** to open the **Select members** screen.
-    1. Search for a user > **Select**.
-    1. Select **Review and assign**.
+1. **+ Select members** to open the **Select members** screen.
+1. Search for a user > **Select**.
+1. Select **Review and assign**.
  
 The user can now read workspace details and run a query, but can't read data from any tables. 
 
-**Grant the user read access to a specific table:**
+#### Assign table access role
 
 1. From the **Log Analytics workspaces** menu, select **Tables**.  
 1. Select the ellipsis ( **...** ) to the right of your table and select **Access control (IAM)**.
@@ -150,7 +161,7 @@ The user can now read data from this specific table. Grant the user read access 
 
 The legacy method of table-level access control is no longer recommended. It doesn't support row-level conditions and is more complex than the granular RBAC method. The best practice is to use the granular RBAC method instead of this method. For reference, this section outlines the steps on how the legacy method was configured.
 
-The legacy method of table-level also uses [Azure custom roles](/azure/role-based-access-control/custom-roles) to let you grant specific users or groups access to specific tables in the workspace. Azure custom roles apply to workspaces with either workspace-context or resource-context [access control modes](manage-access.md#access-control-mode) regardless of the user's [access mode](manage-access.md#access-mode).
+The legacy method of table-level also uses [Azure custom roles](/azure/role-based-access-control/custom-roles) to let you grant users or groups access to specific tables in the workspace. Azure custom roles apply to workspaces with either workspace-context or resource-context [access control modes](manage-access.md#access-control-mode) regardless of the user's [access mode](manage-access.md#access-mode).
 
 To define access to a particular table, create a [custom role](/azure/role-based-access-control/custom-roles):
 
