@@ -18,7 +18,7 @@ There are three ways to manage table-level access in a Log Analytics workspace u
 
 - [Granular RBAC (Recommended)](#configure-granular-rbac-for-table-level-access)
 - [Table-level RBAC (dual role)](#configure-table-level-access-dual-role-method)
-- [Table-level RBAC (legacy)](#legacy-method-of-setting-table-level-read-access)
+- [Table-level RBAC (legacy)](#configure-table-level-access-legacy-method)
 
 Granular RBAC lets you finely tune access at the table or row level. Users with table-level access can read data and query from the specified table in both the workspace and the resource context. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
 
@@ -62,7 +62,7 @@ Here's the JSON for an example custom role:
    1. Select **Conditions** > **Add condition** > **Add action**.
    1. Choose the **Read workspace data** data action > **Select**.
 
-1. Build a permissive condition using the *Access to all data, except what isn't allowed* strategy. In this case, we'll restrict access to the `SigninLogs` and `SecurityEvent` tables but allow access to all other tables.
+1. Build a permissive condition using the *Access to all data, except what isn't allowed* strategy. In this example, access is restricted to the `SigninLogs` and `SecurityEvent` tables but access is allowed to all other tables.
    1. In the **Build expression** section, select **Add expression**
    1. Select *Resource* from the **Attribute source** dropdown.
    1. Select *Table Name* from the **Attribute** dropdown.
@@ -216,7 +216,7 @@ Using the legacy method of table-level access, you can't grant access to individ
 - A user with table-level access but no workspace-level permissions can access log data from the API but not from the Azure portal. 
 - Administrators and owners of the subscription have access to all data types regardless of any other permission settings.
 - Workspace owners are treated like any other user for per-table access control.
-- Assign roles to security groups instead of individual users to reduce the number of assignments. This practice will also help you use existing group management tools to configure and verify access.
+- Assign roles to security groups instead of individual users to reduce the number of assignments. This best practice helps you use existing group management tools to configure and verify access.
 
 ## Related content
 
