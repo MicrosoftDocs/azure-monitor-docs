@@ -100,59 +100,42 @@ This method of table-level access control also uses Azure custom roles to grant 
 Create a [custom role](/azure/role-based-access-control/custom-roles) at the workspace level to let users read workspace details and run a query in the workspace, without providing read access to data in any tables:
 
 1. Navigate to your workspace and select **Access control (IAM)** > **Roles**.
-
 1. Right-click the **Reader** role and select **Clone**.
-
-    :::image type="content" source="media/manage-access/access-control-clone-role.png" alt-text="Screenshot that shows the Roles tab of the Access control screen with the clone button highlighted for the Reader role." lightbox="media/manage-access/access-control-clone-role.png":::        
-
+    :::image type="content" source="media/manage-access/access-control-clone-role.png" alt-text="Screenshot that shows the Roles tab of the Access control screen with the clone button highlighted for the Reader role." lightbox="media/manage-access/access-control-clone-role.png":::
     This opens the **Create a custom role** screen.
-
 1. On the **Basics** tab of the screen: 
     1. Enter a **Custom role name** value and, optionally, provide a description.
     1. Set **Baseline permissions** to **Start from scratch**. 
-
     :::image type="content" source="media/manage-access/manage-access-create-custom-role.png" alt-text="Screenshot that shows the Basics tab of the Create a custom role screen with the Custom role name and Description fields highlighted." lightbox="media/manage-access/manage-access-create-custom-role.png":::
-
 1. Select the **JSON** tab > **Edit**:
-
-    1. In the `"actions"` section, add these actions:
-
-        ```json
-        "Microsoft.OperationalInsights/workspaces/read",
-        "Microsoft.OperationalInsights/workspaces/query/read" 
-        ```
-
-    1. In the `"not actions"` section, add: 
-        
-        ```json
-        "Microsoft.OperationalInsights/workspaces/sharedKeys/read"
-        ```
-
-1. Select **Save** > **Review + Create** > **Create**.   
-
-1. Assign your custom role to the relevant user:
+   1. In the `"actions"` section, add these actions:
+       ```json
+       "Microsoft.OperationalInsights/workspaces/read",
+       "Microsoft.OperationalInsights/workspaces/query/read" 
+       ```
+    1. In the `"not actions"` section, add:
+       ```json
+       "Microsoft.OperationalInsights/workspaces/sharedKeys/read"
+       ```
+1. Select **Save** > **Review + Create** > **Create**.
 1. Select **Access control (AIM)** > **Add** > **Add role assignment**.
 1. Select the custom role you created and select **Next**.
-
-    This opens the **Members** tab of the **Add custom role assignment** screen.   
-
+   This opens the **Members** tab of the **Add custom role assignment** screen.
 1. **+ Select members** to open the **Select members** screen.
 1. Search for a user > **Select**.
 1. Select **Review and assign**.
- 
-The user can now read workspace details and run a query, but can't read data from any tables. 
+
+The user can now read workspace details and run a query, but can't read data from any tables.
 
 #### Assign table access role
 
-1. From the **Log Analytics workspaces** menu, select **Tables**.  
+1. From the **Log Analytics workspaces** menu, select **Tables**.
 1. Select the ellipsis ( **...** ) to the right of your table and select **Access control (IAM)**.
-    
-   :::image type="content" source="media/manage-access/table-level-access-control.png" alt-text="Screenshot that shows the Log Analytics workspace table management screen with the table-level access control button highlighted." lightbox="media/manage-access/table-level-access-control.png":::      
-
-1. On the **Access control (IAM)** screen, select **Add** > **Add role assignment**. 
-1. Select the **Reader** role and select **Next**.    
+   :::image type="content" source="media/manage-access/table-level-access-control.png" alt-text="Screenshot that shows the Log Analytics workspace table management screen with the table-level access control button highlighted." lightbox="media/manage-access/table-level-access-control.png":::
+1. On the **Access control (IAM)** screen, select **Add** > **Add role assignment**.
+1. Select the **Reader** role and select **Next**.
 1. **+ Select members** to open the **Select members** screen.
-1. Search for the user > **Select**.
+1. 1. Search for the user > **Select**.
 1. Select **Review and assign**.
 
 The user can now read data from this specific table. Grant the user read access to other tables in the workspace, as needed. 
