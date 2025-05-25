@@ -50,7 +50,6 @@ Log Analytics workspace data export continuously exports data that's sent to you
 - Supported table plans are Analytics and Basic. Auxiliary plan isn't supported.
 - Destinations must be in the same region as the Log Analytics workspace.
 - Export to Premium Storage Account isn't supported.
-- Export to destinations in [Network Security Perimeter](/azure/private-link/network-security-perimeter-concepts), or [Private Link](/azure/private-link/private-link-overview) isn't supported.
 
 ## Data completeness
 
