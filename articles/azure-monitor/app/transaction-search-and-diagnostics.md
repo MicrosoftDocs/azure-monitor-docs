@@ -138,22 +138,6 @@ In addition to the out-of-the-box telemetry sent by Application Insights SDK, yo
 
 Learn how to [send logs and custom telemetry to Application Insights](./asp-net-trace-logs.md).
 
-## <a name="questions"></a>Frequently asked questions
-
-Find answers to common questions.
-
-### <a name="limits"></a>How much data is retained?
-
-See the [Limits summary](../service-limits.md#application-insights).
-
-### How can I see POST data in my server requests?
-
-We don't log the POST data automatically, but you can use [TrackTrace or log calls](./asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
-
-### Why does my Azure Function search return no results?
-
-Azure Functions doesn't log URL query strings.
-
 ## [Transaction Diagnostics](#tab/transaction-diagnostics)
 
 The unified diagnostics experience automatically correlates server-side telemetry from across all your Application Insights monitored components into a single view. It doesn't matter if you have multiple resources. Application Insights detects the underlying relationship and allows you to easily diagnose the application component, dependency, or exception that caused a transaction slowdown or failure.
@@ -220,51 +204,11 @@ If you can't get Snapshot Debugger working, contact snapshothelp\@microsoft.com.
 
 :::image type="content" source="media/search-and-transaction-diagnostics/profiler-traces.png" lightbox="media/search-and-transaction-diagnostics/profiler-traces.png" alt-text="Screenshot that shows .NET Profiler integration.":::
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Why do I see a single component on the chart and the other components only show as external dependencies without any details?
-
-Potential reasons:
-
-* Are the other components instrumented with Application Insights?
-* Are they using the latest stable Application Insights SDK?
-* If these components are separate Application Insights resources, validate you have [access](../roles-permissions-security.md).
-If you do have access and the components are instrumented with the latest Application Insights SDKs, let us know via the feedback channel in the upper-right corner.
-
-### I see duplicate rows for the dependencies. Is this behavior expected?
-
-Currently, we're showing the outbound dependency call separate from the inbound request. Typically, the two calls look identical with only the duration value being different because of the network round trip. The leading icon and distinct styling of the duration bars help differentiate between them. Is this presentation of the data confusing? Give us your feedback!
-
-### What about clock skews across different component instances?
-
-Timelines are adjusted for clock skews in the transaction chart. You can see the exact timestamps in the details pane or by using Log Analytics.
-
-### Why is the new experience missing most of the related items queries?
-
-This behavior is by design. All the related items, across all components, are already available on the left side in the top and bottom sections. The new experience has two related items that the left side doesn't cover: all telemetry from five minutes before and after this event and the user timeline.
-
-### Is there a way to see fewer events per transaction when I use the Application Insights JavaScript SDK?
-
-The transaction diagnostics experience shows all telemetry in a [single operation](distributed-trace-data.md#data-model-for-telemetry-correlation) that shares an [Operation ID](data-model-complete.md#context). By default, the Application Insights SDK for JavaScript creates a new operation for each unique page view. In a single-page application (SPA), only one page view event is generated and a single Operation ID is used for all telemetry generated. As a result, many events might be correlated to the same operation.
-
-In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript.md#single-page-applications) so that a page view is generated every time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
-
-### Why do transaction detail durations not add up to the top-request duration?
-
-Time not explained in the Gantt chart is time that isn't covered by a tracked dependency. This issue can occur because external calls weren't instrumented, either automatically or manually. It can also occur because the time taken was in process rather than because of an external call.
-
-If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [.NET Profiler](./profiler-overview.md).
-
-### What if I see the message ***Error retrieving data*** while navigating Application Insights in the Azure portal? 
-
-This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate DNS or other network related issues from the client machine where the API calls are failing. If the portal error continues and needs more investigation, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior, then open a support case from the Azure portal.
-
 ---
 
 ## See also
 
+* To review frequently asked questions (FAQ), see [Transaction Search FAQ](application-insights-faq.yml#transaction-search) and [Transaction Diagnostics FAQ](application-insights-faq.yml#transaction-diagnostics) 
 * [Write complex queries in Analytics](../logs/log-analytics-tutorial.md)
 * [Send logs and custom telemetry to Application Insights](./asp-net-trace-logs.md)
 * [Availability overview](availability-overview.md)

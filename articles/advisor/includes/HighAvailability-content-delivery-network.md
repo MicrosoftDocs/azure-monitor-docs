@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/22/2025
+ms.date: 05/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network
@@ -12,24 +12,6 @@ ms.custom: HighAvailability Content Delivery Network
   
 ## Content Delivery Network  
   
-<!--ceecfd41-89b3-4c64-afe6-984c9cc03126_begin-->
-
-#### Azure CDN From Edgio, Managed Certificate Renewal Unsuccessful. Additional Validation Required.  
-  
-Azure CDN from Edgio employs CNAME delegation to renew certificates with DigiCert for managed certificate renewals. It's essential that Custom Domains resolve to an azureedge.net endpoint for the automatic renewal process with DigiCert to be successful. Ensure your Custom Domain's CNAME and CAA records are configured correctly. Should you require further assistance, please submit a support case to Azure to re-attempt the renewal request.  
-  
-**Potential benefits**: Ensure service availability.  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.cdn/profiles  
-Recommendation ID: ceecfd41-89b3-4c64-afe6-984c9cc03126  
-Subcategory: Other
-
-<!--ceecfd41-89b3-4c64-afe6-984c9cc03126_end-->
-
 <!--4e1c2077-7c73-4ace-b4aa-f11b36c28290_begin-->
 
 #### Renew the expired Azure Front Door customer certificate to avoid service disruption  

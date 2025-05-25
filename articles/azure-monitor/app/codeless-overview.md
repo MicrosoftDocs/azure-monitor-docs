@@ -60,16 +60,9 @@ Links are provided to more information for each supported scenario.
 > [!NOTE]
 > Autoinstrumentation was known as "codeless attach" before October 2021.
 
-## Frequently asked questions
-
-#### Should the term "autoinstrumentation" be hyphenated?
-
-We follow the [Microsoft Style Guide](/style-guide/punctuation/dashes-hyphens/hyphens#prefixes) for product documentation published to the [Microsoft Learn](/) platform.
-
-In general, we don't include a hyphen after the "auto" prefix.
-
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Autoinstrumentation FAQ](application-insights-faq.yml#autoinstrumentation)
 * [Application Insights overview](app-insights-overview.md)
 * [Application Insights overview dashboard](overview-dashboard.md)
 * [Application map](app-map.md)

@@ -134,50 +134,12 @@ If you use this channel in scenarios where the application is about to shut down
 
 If you need to do a synchronous flush, use `InMemoryChannel`.
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Does the Application Insights channel guarantee telemetry delivery? If not, what are the scenarios in which telemetry can be lost?
-
-The short answer is that none of the built-in channels offer a transaction-type guarantee of telemetry delivery to the back end. `ServerTelemetryChannel` is more advanced compared with `InMemoryChannel` for reliable delivery, but it also makes only a best-effort attempt to send telemetry. Telemetry can still be lost in several situations, including these common scenarios:
-
-- Items in memory are lost when the application crashes.
-- Telemetry is lost during extended periods of network problems. Telemetry is stored to local disk during network outages or when problems occur with the Application Insights back end. However, items older than 48 hours are discarded.
-- The default disk locations for storing telemetry in Windows are %LOCALAPPDATA% or %TEMP%. These locations are typically local to the machine. If the application migrates physically from one location to another, any telemetry stored in the original location is lost.
-- In Azure Web Apps on Windows, the default disk-storage location is D:\local\LocalAppData. This location isn't persisted. It's wiped out in app restarts, scale-outs, and other such operations, which leads to loss of any telemetry stored there. You can override the default and specify storage to a persisted location like D:\home. However, such persisted locations are served by remote storage and so can be slow.
-
-Although less likely, it's also possible that the channel can cause duplicate telemetry items. This behavior occurs when `ServerTelemetryChannel` retries because of network failure or timeout, when the telemetry was delivered to the back end, but the response was lost because of network issues or there was a timeout.
-
-### Does ServerTelemetryChannel work on systems other than Windows?
-
-Although the name of its package and namespace includes "WindowsServer," this channel is supported on systems other than Windows, with the following exception. On systems other than Windows, the channel doesn't create a local storage folder by default. You must create a local storage folder and configure the channel to use it. After local storage has been configured, the channel works the same way on all systems.
-
-> [!NOTE]
-> With the release 2.15.0-beta3 and greater, local storage is now automatically created for Linux, Mac, and Windows. For non-Windows systems, the SDK will automatically create a local storage folder based on the following logic:
->
-> - `${TMPDIR}`: If the `${TMPDIR}` environment variable is set, this location is used.
-> - `/var/tmp`: If the previous location doesn't exist, we try `/var/tmp`.
-> - `/tmp`: If both the previous locations don't exist, we try `tmp`.
-> - If none of those locations exist, local storage isn't created and manual configuration is still required. For full implementation details, see [this GitHub repo](https://github.com/microsoft/ApplicationInsights-dotnet/pull/1860).
-
-### Does the SDK create temporary local storage? Is the data encrypted at storage?
-
-The SDK stores telemetry items in local storage during network problems or during throttling. This data isn't encrypted locally.
-
-For Windows systems, the SDK automatically creates a temporary local folder in the %TEMP% or %LOCALAPPDATA% directory and restricts access to administrators and the current user only.
-
-For systems other than Windows, no local storage is created automatically by the SDK, so no data is stored locally by default.
-
-> [!NOTE]
-> With the release 2.15.0-beta3 and greater, local storage is now automatically created for Linux, Mac, and Windows.
-
- You can create a storage directory yourself and configure the channel to use it. In this case, you're responsible for ensuring that the directory is secured. Read more about [data protection and privacy](/previous-versions/azure/azure-monitor/app/data-retention-privacy#does-the-sdk-create-temporary-local-storage).
-
 ## Open-source SDK
 Like every SDK for Application Insights, channels are open source. Read and contribute to the code or report problems at [the official GitHub repo](https://github.com/Microsoft/ApplicationInsights-dotnet).
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Telemetry channels FAQ](application-insights-faq.yml#telemetry-channels)
 * [Sampling](./sampling.md)
 * [SDK troubleshooting](./asp-net-troubleshoot-no-data.md)
+
