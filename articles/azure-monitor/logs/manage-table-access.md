@@ -209,7 +209,7 @@ Using the legacy method of table-level access, you can't grant access to individ
 ],
 ```
 
-## Table-level access considerations and limitations
+## Considerations
 
 - In the Log Analytics UI, users with table-level can see the list of all tables in the workspace, but can only retrieve data from tables to which they have access.
 - The standard Reader or Contributor roles, which include the _\*/read_ action, override table-level access control and give users access to all log data.
@@ -220,4 +220,6 @@ Using the legacy method of table-level access, you can't grant access to individ
 
 ## Related content
 
-- [Managing access to Log Analytics workspaces](manage-access.md).
+- [Managing access to Log Analytics workspaces](manage-access.md)
+- [Granular RBAC](granular-rbac-log-analytics.md)
+- [Granular RBAC use cases](granular-rbac-use-case.md)
