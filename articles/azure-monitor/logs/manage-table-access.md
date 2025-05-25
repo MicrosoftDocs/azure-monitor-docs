@@ -20,11 +20,11 @@ There are three ways to manage table-level access in a Log Analytics workspace u
 - [Table-level RBAC (dual role)](#configure-table-level-access-dual-role-method)
 - [Table-level RBAC (legacy)](#configure-table-level-access-legacy-method)
 
-Granular RBAC lets you finely tune access at the table or row level. Users with table-level access can read data and query from the specified table in both the workspace and the resource context. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
+Granular RBAC lets you finely tune access at the table or row level. Users with table-level access can read data and query from specified tables in both the workspace and the resource context. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
 
 ## Configure granular RBAC for table-level access
 
-Table-level access configuration in granular RBAC is less complex than earlier methods and offers the flexibility to implement row-level conditions. These steps just focus on configuring table-level access though. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
+Table-level access configuration using granular RBAC is less complex than earlier methods and offers the flexibility to implement row-level conditions. These steps just focus on configuring table-level access though. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
 
 Configuring granular RBAC for table-level access requires these steps:
 1. Create granular RBAC custom role
@@ -60,7 +60,8 @@ Here's the JSON for an example custom role:
 }
 ```
 
-1. Assign the custom role to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#conditions-and-expressions). 
+Assign the custom role to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#conditions-and-expressions).
+ 
 1. From the Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add role assignment**.
 1. Select the `Log Analytics Standard Table Access` example custom role you created, then select **Next**.
@@ -80,9 +81,9 @@ This example builds a permissive condition using the *Access to all data, except
 
 Here's how the permissive table-level access condition looks when completed.
 
-:::image type="content" source="media/manage-access/granular-table-access-condition.png" alt-text="Screenshot of granular RBAC table-level permissive access condition.":::
+:::image type="content" source="media/manage-access/granular-table-access-condition.png" lightbox="media/manage-access/granular-table-access-condition.png" alt-text="Screenshot of granular RBAC table-level permissive access condition.":::
 
-For more information, see [granular RBAC considerations](granular-rbac-log-analytics.md#considerations) and [troubleshooting granular RBAC](granular-rbac-use-case.md#troubleshoot-and-monitor). 
+With a single role assignment, table-level access is configured separating restricted tables from standard tables. For more information, see [granular RBAC considerations](granular-rbac-log-analytics.md#considerations) and [troubleshooting granular RBAC](granular-rbac-use-case.md#troubleshoot-and-monitor). 
 
 ## Configure table-level access (dual role method)
 
