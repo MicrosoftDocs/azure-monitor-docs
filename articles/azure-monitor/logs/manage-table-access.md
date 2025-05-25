@@ -17,8 +17,8 @@ ms.custom: devx-track-azurepowershell
 There are three ways to manage table-level access in a Log Analytics workspace using role-based access control (RBAC). This article references all the methods, even though only granular RBAC is recommended.
 
 - [Granular RBAC (Recommended)](#configure-granular-rbac-for-table-level-access)
-- Table-level RBAC (Limited) 
-- Table-level RBAC (Legacy)
+- [Table-level RBAC (dual role)](#configure-table-level-access-dual-role-method)
+- [Table-level RBAC (legacy)](#legacy-method-of-setting-table-level-read-access)
 
 Granular RBAC lets you finely tune access at the table or row level. Users with table-level access can read data and query from the specified table in both the workspace and the resource context. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
 
@@ -75,11 +75,11 @@ Here's how the permissive table-level access condition looks when completed.
 
 For more information, see [granular RBAC considerations](granular-rbac-log-analytics.md#considerations) and [troubleshooting granular RBAC](granular-rbac-use-case.md#troubleshoot-and-monitor). 
 
-## Configure table-level read access using limited method of RBAC
+## Configure table-level access (dual role method)
 
-The best practice is to use the granular RBAC method instead of this method. For reference, this section outlines the steps on how the limited access method was configured. 
+The best practice is to use the granular RBAC method instead of this method. For reference, this section outlines the steps on how the dual role method is configured. 
 
-The limited method of table-level access control uses Azure custom roles to grant users or groups access to specific tables in a workspace. It also requires assigning two roles for each user or group:
+This method of table-level access control also uses Azure custom roles to grant users or groups access to specific tables in a workspace, but requires assigning two roles for each user or group.
 
 - At the workspace level - a custom role that provides limited permissions to read workspace details and run a query in the workspace, but not to read data from any tables.        
 - At the table level - a **Reader** role, scoped to the specific table. 
@@ -131,7 +131,7 @@ The limited method of table-level access control uses Azure custom roles to gran
  
 The user can now read workspace details and run a query, but can't read data from any tables. 
 
-**To grant the user read access to a specific table:**
+**Grant the user read access to a specific table:**
 
 1. From the **Log Analytics workspaces** menu, select **Tables**.  
 1. Select the ellipsis ( **...** ) to the right of your table and select **Access control (IAM)**.
@@ -146,17 +146,17 @@ The user can now read workspace details and run a query, but can't read data fro
 
 The user can now read data from this specific table. Grant the user read access to other tables in the workspace, as needed. 
     
-## Legacy method of setting table-level read access
+## Configure table-level access (legacy method)
 
-The best practice is to use the granular RBAC method instead of this method. For reference, this section outlines the steps on how the legacy method was configured.
+The legacy method of table-level access control is no longer recommended. It doesn't support row-level conditions and is more complex than the granular RBAC method. The best practice is to use the granular RBAC method instead of this method. For reference, this section outlines the steps on how the legacy method was configured.
 
 The legacy method of table-level also uses [Azure custom roles](/azure/role-based-access-control/custom-roles) to let you grant specific users or groups access to specific tables in the workspace. Azure custom roles apply to workspaces with either workspace-context or resource-context [access control modes](manage-access.md#access-control-mode) regardless of the user's [access mode](manage-access.md#access-mode).
 
 To define access to a particular table, create a [custom role](/azure/role-based-access-control/custom-roles):
 
-* Set the user permissions in the **Actions** section of the role definition. 
-* Use `Microsoft.OperationalInsights/workspaces/query/*` to grant access to all tables.
-* To exclude access to specific tables when you use a wildcard in **Actions**, list the tables excluded tables in the **NotActions** section of the role definition.
+1. Set the user permissions in the **Actions** section of the role definition. 
+1. Use `Microsoft.OperationalInsights/workspaces/query/*` to grant access to all tables.
+1. To exclude access to specific tables when you use a wildcard in **Actions**, list the tables excluded tables in the **NotActions** section of the role definition.
 
 Here are examples of custom role actions to grant and deny access to specific tables.
 
