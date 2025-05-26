@@ -2,7 +2,7 @@
 title: 'Monitor virtual machines with Azure Monitor: Deploy agent'
 description: Learn how to deploy the Azure Monitor agent to your virtual machines for monitoring in Azure Monitor. Monitor virtual machines and their workloads with an Azure Monitor guide.
 ms.topic: conceptual
-ms.date: 02/15/2024
+ms.date: 05/21/2025
 ms.reviewer: Xema Pathak
 
 ---

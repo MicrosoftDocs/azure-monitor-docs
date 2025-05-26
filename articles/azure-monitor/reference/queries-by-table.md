@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 05/12/2025
+ms.date: 05/19/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -183,6 +183,15 @@ ms.reviewer: lualderm
 - [Play to participant success rate](./queries/ACSCallAutomationMediaSummary.md#play-to-participant-success-rate)
 - [Recognize success rate](./queries/ACSCallAutomationMediaSummary.md#recognize-success-rate)
 - [Success rate by sub operation name](./queries/ACSCallAutomationMediaSummary.md#success-rate-by-sub-operation-name)
+
+## [ACSCallAutomationStreamingUsage](./queries/ACSCallAutomationStreamingUsage.md)
+
+- [Media Streaming minutes](./queries/ACSCallAutomationStreamingUsage.md#media-streaming-minutes)
+- [Media Streaming minutes per call](./queries/ACSCallAutomationStreamingUsage.md#media-streaming-minutes-per-call)
+- [Media Streaming minutes per call per participant](./queries/ACSCallAutomationStreamingUsage.md#media-streaming-minutes-per-call-per-participant)
+- [Transcription streaming minutes](./queries/ACSCallAutomationStreamingUsage.md#transcription-streaming-minutes)
+- [Transcription streaming minutes per call](./queries/ACSCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call)
+- [Transcription streaming minutes per call per participant](./queries/ACSCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call-per-participant)
 
 ## [ACSCallClientMediaStatsTimeSeries](./queries/ACSCallClientMediaStatsTimeSeries.md)
 
@@ -689,15 +698,6 @@ ms.reviewer: lualderm
 - [Publish virtual network events by namespace](./queries/AZMSVnetConnectionEvents.md#publish-virtual-network-events-by-namespace)
 - [Publish deny connection by namespace](./queries/AZMSVnetConnectionEvents.md#publish-deny-connection-by-namespace)
 - [Publish virtual network events by namespace](./queries/AZMSVnetConnectionEvents.md#publish-virtual-network-events-by-namespace)
-
-## [AcsCallAutomationStreamingUsage](./queries/AcsCallAutomationStreamingUsage.md)
-
-- [Media Streaming minutes](./queries/AcsCallAutomationStreamingUsage.md#media-streaming-minutes)
-- [Media Streaming minutes per call](./queries/AcsCallAutomationStreamingUsage.md#media-streaming-minutes-per-call)
-- [Media Streaming minutes per call per participant](./queries/AcsCallAutomationStreamingUsage.md#media-streaming-minutes-per-call-per-participant)
-- [Transcription streaming minutes](./queries/AcsCallAutomationStreamingUsage.md#transcription-streaming-minutes)
-- [Transcription streaming minutes per call](./queries/AcsCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call)
-- [Transcription streaming minutes per call per participant](./queries/AcsCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call-per-participant)
 
 ## [AddonAzureBackupJobs](./queries/AddonAzureBackupJobs.md)
 
@@ -1243,6 +1243,10 @@ ms.reviewer: lualderm
 ## [DataverseActivity](./queries/DataverseActivity.md)
 
 - [Dataverse events filtered by operation type](./queries/DataverseActivity.md#dataverse-events-filtered-by-operation-type)
+
+## [DevCenterAgentHealthLogs](./queries/DevCenterAgentHealthLogs.md)
+
+- [DevCenter - DevBoxAgent Health Status Summary](./queries/DevCenterAgentHealthLogs.md#devcenter---devboxagent-health-status-summary)
 
 ## [DevCenterBillingEventLogs](./queries/DevCenterBillingEventLogs.md)
 

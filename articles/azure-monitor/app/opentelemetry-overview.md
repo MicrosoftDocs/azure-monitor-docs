@@ -34,7 +34,7 @@ There are two methods to instrument your application:
 - [Application Insights SDKs](asp-net-core.md)
 - [Azure Monitor OpenTelemetry Distros](opentelemetry-enable.md).
 
-While we see OpenTelemetry as our future direction, we have no plans to stop collecting data from older SDKs. We still have a way to go before our Azure OpenTelemetry Distros [reach feature parity with our Application Insights SDKs](./opentelemetry-help-support-feedback.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro). In many cases, customers continue to choose to use Application Insights SDKs for quite some time.
+While we see OpenTelemetry as our future direction, we have no plans to stop collecting data from older SDKs. We still have a way to go before our Azure OpenTelemetry Distros [reach feature parity with our Application Insights SDKs](./application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro). In many cases, customers continue to choose to use Application Insights SDKs for quite some time.
 
 > [!IMPORTANT]
 > "Manual" doesn't mean you'll be required to write complex code to define spans for distributed traces, although it remains an option. Instrumentation Libraries packaged into our Distros enable you to effortlessly capture telemetry signals across common frameworks and libraries. We're actively working to [instrument the most popular Azure Service SDKs using OpenTelemetry](https://devblogs.microsoft.com/azure-sdk/introducing-experimental-opentelemetry-support-in-the-azure-sdk-for-net/) so these signals are available to customers who use the Azure Monitor OpenTelemetry Distro.
@@ -67,7 +67,7 @@ A direct exporter sends telemetry in-process (from the application's code) direc
 *The currently available Application Insights SDKs and Azure Monitor OpenTelemetry Distros rely on a direct exporter*.
 
 > [!NOTE]
-> For Azure Monitor's position on the OpenTelemetry-Collector, see the [OpenTelemetry FAQ](./opentelemetry-help-support-feedback.md#can-i-use-the-opentelemetry-collector).
+> For Azure Monitor's position on the OpenTelemetry-Collector, see the [OpenTelemetry FAQ](./application-insights-faq.yml#can-i-use-the-opentelemetry-collector).
 
 > [!TIP]
 > If you are planning to use OpenTelemetry-Collector for sampling or additional data processing, you may be able to get these same capabilities built-in to Azure Monitor. [Workspace-based Application Insights resources](create-workspace-resource.md) benefit from [Ingestion-time Transformations](../essentials/data-collection-transformations.md). To enable, follow the details in the [tutorial](../logs/tutorial-workspace-transformations-portal.md), skipping the step that shows how to set up a diagnostic setting since with Workspace-centric Application Insights this is already configured. If you're filtering less than 50% of the overall volume, it's no additional cost. After 50%, there is a cost but much less than the standard per GB charge.
@@ -93,13 +93,9 @@ Dependencies | Other Span Types (Client, Internal, etc.)
 Operation ID | Trace ID
 ID or Operation Parent ID | Span ID
 
-## Frequently asked questions
-
-#### Where can I find a list of Application Insights SDK versions and their names?
-
-A list of SDK versions and names is hosted on GitHub. For more information, see [SDK Version](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/docs/versions_and_names.md).
-
 ## Next steps
+
+Check out the [Azure Monitor Application Insights FAQ](./application-insights-faq.yml#overview) and [OpenTelemetry FAQ](application-insights-faq.yml#azure-monitor-opentelemetry) for more information.
 
 Select your enablement approach:
 
@@ -112,4 +108,4 @@ Select your enablement approach:
     - [JavaScript: Web](./javascript.md)
 - [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
 
-Check out the [Azure Monitor Application Insights FAQ](./app-insights-overview.md#frequently-asked-questions) and [OpenTelemetry FAQ](./opentelemetry-help-support-feedback.md#frequently-asked-questions) for more information.
+

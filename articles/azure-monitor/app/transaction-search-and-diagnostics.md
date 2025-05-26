@@ -265,6 +265,7 @@ This error indicates that the browser was unable to call into a required API or 
 
 ## See also
 
+* To review frequently asked questions (FAQ), see [Transaction Search FAQ](application-insights-faq.yml#transaction-search) and [Transaction Diagnostics FAQ](application-insights-faq.yml#transaction-diagnostics) 
 * [Write complex queries in Analytics](../logs/log-analytics-tutorial.md)
 * [Send logs and custom telemetry to Application Insights](./asp-net-trace-logs.md)
 * [Availability overview](availability-overview.md)

@@ -2,7 +2,7 @@
 title: Getting started with Azure Monitor
 description: Guidance and recommendations for deploying Azure Monitor.
 ms.topic: conceptual
-ms.date: 02/11/2024
+ms.date: 05/21/2025
 ms.reviewer: bwren
 ---
 

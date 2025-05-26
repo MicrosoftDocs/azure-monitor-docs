@@ -2,7 +2,7 @@
 title: Analyze metrics for an Azure resource
 description: Learn how to analyze metrics for an Azure resource by using metrics explorer in Azure Monitor.
 ms.topic: tutorial
-ms.date: 08/08/2023
+ms.date: 05/21/2025
 ms.reviewer: priyamishra
 ---
 

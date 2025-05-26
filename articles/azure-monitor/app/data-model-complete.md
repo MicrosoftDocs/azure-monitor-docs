@@ -338,28 +338,12 @@ Every telemetry item might have a strongly typed context field. Every field enab
 | `user_Id` | `UserId` | The anonymous user ID represents the user of the application. When telemetry is sent from a service, the user context is about the user who initiated the operation in the service.<br><br>[Sampling](sampling.md) is one of the techniques to minimize the amount of collected telemetry. A sampling algorithm attempts to either sample in or out all the correlated telemetry. An anonymous user ID is used for sampling score generation, so an anonymous user ID should be a random-enough value.<br><br>*The count of anonymous user IDs isn't the same as the number of unique application users. The count of anonymous user IDs is typically higher because each time the user opens your app on a different device or browser, or cleans up browser cookies, a new unique anonymous user ID is allocated. This calculation might result in counting the same physical users multiple times.*<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration.<br><br>Using an anonymous user ID to store a username is a misuse of the field. Use an authenticated user ID. |
 | `_ResourceId` | `_ResourceId` | The full Azure Resource ID of the Application Insights component, which includes the subscription, resource group, and resource name. |
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-#### How can I report data model or schema problems and suggestions?
-
-To report data model or schema problems and suggestions, use our [GitHub repository](https://github.com/microsoft/ApplicationInsights-dotnet/issues/new/choose).
-
-#### How would I measure the impact of a monitoring campaign?
-
-PageView Telemetry includes URL and you could parse the UTM parameter using a regex function in Kusto.
-
-Occasionally, this data might be missing or inaccurate if the user or enterprise disables sending User Agent in browser settings. The [UA Parser regexes](https://github.com/ua-parser/uap-core/blob/master/regexes.yaml) might not include all device information. Or Application Insights might not have adopted the latest updates.
-
-#### Why would a custom measurement succeed without error but the log doesn't show up?
-
-This can occur if you're using string values. Only numeric values work with custom measurements.
-
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Telemetry data model FAQ](application-insights-faq.yml#telemetry-data-model)
 * Check out [platforms](app-insights-overview.md#supported-languages) supported by Application Insights.
 * Learn how to [collect custom telemetry using the Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#collect-custom-telemetry).
 * Learn how to use the [Application Insights API for custom events and metrics](api-custom-events-metrics.md).
 * Learn how to [extend and filter telemetry](api-filtering-sampling.md).
 * Learn how to use [sampling](sampling.md) to minimize the amount of telemetry based on data model.
+

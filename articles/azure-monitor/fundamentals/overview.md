@@ -11,10 +11,6 @@ Azure Monitor is a comprehensive monitoring solution for collecting, analyzing, 
 
 Azure Monitor collects and aggregates the data from every layer and component of your system across multiple Azure and non-Azure subscriptions and tenants. It stores it in a common data platform for consumption by a common set of tools that can correlate, analyze, visualize, and/or respond to the data. You can also integrate other Microsoft and non-Microsoft tools.
 
-:::image type="content" source="media/overview/azure-monitor-high-level-abstraction-opt.svg" alt-text="Diagram that shows an abstracted view of what Azure monitor does as described in the previous paragraph." border="false" lightbox="media/overview/azure-monitor-high-level-abstraction-opt.svg":::
-
-This diagram shows an abstracted view of the monitoring process. A more detailed breakdown of the Azure Monitor architecture is shown in the following [High level architecture](#high-level-architecture) section.
-
 ## High-level architecture
 
 Azure Monitor can monitor these types of resources in Azure, other clouds, or on-premises:
@@ -32,8 +28,6 @@ You can also export monitoring data from Azure Monitor into other systems so you
 
 * Integrate with other third-party and open-source monitoring and visualization tools
 * Integrate with ticketing and other ITSM systems
-
-If you're a System Center Operations Manager (SCOM) user, Azure Monitor now includes Azure Monitor [SCOM Managed Instance (SCOM MI)](../vm/scom-managed-instance-overview.md). Operations Manager MI is a cloud-hosted version of Operations Manager and allows you to move your on-premises Operations Manager installation to Azure.
 
 The following diagram shows a high-level architecture view of Azure Monitor.
 
@@ -55,9 +49,7 @@ The diagram depicts the Azure Monitor system components:
     * Azure Monitor's core consumption methods include tools to provide **insights**, **visualize**, and **analyze** data. The visualization tools build on the analysis tools and the insights build on top of both the visualization and analysis tools.
     * There are additional mechanisms to help you **respond** to incoming monitoring data.
 
-* The **SCOM MI** path uses the traditional Operations Manager console that System Center Operations Manager customers are already familiar with.
-
-* Interoperability options are shown in the **integrate** section. Not all services integrate at all levels. SCOM MI only integrates with Power BI.
+* Interoperability options are shown in the **integrate** section. Not all services integrate at all levels.
 
 ## Data sources
 
@@ -83,7 +75,6 @@ Azure Monitor collects these types of data:
 
 For detailed information about each of the data sources, see [data sources](data-sources.md).
 
-SCOM MI (like on premises SCOM) collects only IaaS Workload and Operating System sources.
 
 ## Data collection and routing
 
@@ -96,7 +87,7 @@ Azure Monitor collects and routes monitoring data using a few different mechanis
 
 | Collection method | Description |
 |-------------------|-------------|
-| [Application instrumentation](../app/app-insights-overview.md) | Application Insights is enabled through either [Auto-Instrumentation (agent)](../app/codeless-overview.md) or by adding the Application Insights SDK to your application code. In addition, Application Insights is in process of implementing [Open Telemetry](../app/opentelemetry-overview.md). For more information, reference [How do I instrument an application?](../app/app-insights-overview.md#how-do-i-instrument-an-application). |
+| [Application instrumentation](../app/app-insights-overview.md) | Application Insights is enabled through either [Auto-Instrumentation (agent)](../app/codeless-overview.md) or by adding the Application Insights SDK to your application code. In addition, Application Insights is in process of implementing [Open Telemetry](../app/opentelemetry-overview.md). For more information, reference [How do I instrument an application?](../app/application-insights-faq.yml#how-do-i-instrument-an-application). |
 | [Agents](../agents/agents-overview.md) | Agents can collect monitoring data from the guest operating system of Azure and hybrid virtual machines. |
 | [Data collection rules](../essentials/data-collection-rule-overview.md) | Use data collection rules to specify what data should be collected, how to transform it, and where to send it. |
 | Zero Config | Data is automatically sent to a destination without user configuration. Platform metrics are the most common example. |
@@ -104,8 +95,6 @@ Azure Monitor collects and routes monitoring data using a few different mechanis
 | [Azure Monitor REST API](../logs/logs-ingestion-api-overview.md) | The Logs Ingestion API in Azure Monitor lets you send data to a Log Analytics workspace in Azure Monitor Logs. You can also send metrics into the Azure Monitor Metrics store using the custom metrics API. |
 
 A common way to route monitoring data to other non-Microsoft tools is using *Event hubs*. See more in the [Integrate](#integrate) section.
-
-SCOM MI (like on-premises SCOM) uses an agent to collect data, which it sends to a management server running in a SCOM MI on Azure.
 
 For detailed information about data collection, see [data collection](best-practices-data-collection.md).
 
@@ -129,14 +118,12 @@ Each store is optimized for specific types of data and monitoring scenarios.
 |----------------------------------------|-------------|
 | [Azure Monitor Metrics](../essentials/data-platform-metrics.md) | Metrics are numerical values that describe an aspect of a system at a particular point in time. [Azure Monitor Metrics](../essentials/data-platform-metrics.md) is a time-series database, optimized for analyzing time-stamped data. Azure Monitor collects metrics at regular intervals. Metrics are identified with a timestamp, a name, a value, and one or more defining labels. They can be aggregated using algorithms, compared to other metrics, and analyzed for trends over time. It supports native Azure Monitor metrics and [Prometheus metrics](../essentials/prometheus-metrics-overview.md). |
 | [Azure Monitor Logs](../logs/data-platform-logs.md) | Logs are recorded system events. Logs can contain different types of data, be structured or free-form text, and they contain a timestamp. Azure Monitor stores structured and unstructured log data of all types in [Azure Monitor Logs](../logs/data-platform-logs.md). You can route data to [Log Analytics workspaces](../logs/log-analytics-overview.md) for querying and analysis. |
-| Traces | [Distributed tracing](../app/distributed-tracing.md) allows you to see the path of a request as it travels through different services and components. Azure Monitor gets distributed trace data from [instrumented applications](../app/app-insights-overview.md#how-do-i-instrument-an-application). The trace data is stored in a separate workspace in Azure Monitor Logs. |
+| Traces | [Distributed tracing](../app/distributed-tracing.md) allows you to see the path of a request as it travels through different services and components. Azure Monitor gets distributed trace data from [instrumented applications](../app/application-insights-faq.yml#how-do-i-instrument-an-application). The trace data is stored in a separate workspace in Azure Monitor Logs. |
 | Changes | Changes are a series of events in your application and resources. They're tracked and stored when you use the [Change Analysis (classic)](../change/change-analysis.md) service, which uses [Azure Resource Graph](/azure/governance/resource-graph/overview) as its store. Change Analysis (classic) helps you understand which changes, such as deploying updated code, may have caused issues in your systems. |
 
 Distributed tracing is a technique used to trace requests as they travel through a distributed system. It allows you to see the path of a request as it travels through different services and components. It helps you to identify performance bottlenecks and troubleshoot issues in a distributed system.
 
 For less expensive, long-term archival of monitoring data for auditing or compliance purposes, you can export to [Azure Storage](/azure/storage/).
-
-SCOM MI is similar to SCOM on-premises. It stores its information in an SQL Database, but uses SQL Managed Instance because it's in Azure.
 
 ## Consumption
 
@@ -144,7 +131,6 @@ The following sections outline methods and services that consume monitoring data
 
 All areas in the *consumption* section of the diagram have a user interface that appears in the Azure portal.
 
-The top part of the consumption section applies to Azure Monitor core only. SCOM MI uses the traditional Ops Console running in the cloud. It can also send monitoring data to Power BI for visualization.
 
 ### The Azure portal
 
@@ -202,7 +188,7 @@ An effective monitoring solution proactively responds to critical events, withou
 
 :::image type="content" source="media/overview/respond-box-opt.svg" alt-text="Diagram that shows the 'respond' part of the consumption section of the Azure Monitor system." border="false" lightbox="media/overview/respond-blowup-type-2-opt.svg":::
 
-[**Artificial Intelligence for IT Operations (AIOps)**](../logs/aiops-machine-learning.md) can improve service quality and reliability by using machine learning to process and automatically act on data you collect from applications, services, and IT resources into Azure Monitor. It automates data-driven tasks, predicts capacity usage, identifies performance issues, and detects anomalies across applications, services, and IT resources. These features simplify IT monitoring and operations without requiring machine learning expertise. 
+[**Artificial Intelligence for IT Operations (AIOps)**](../aiops/aiops-machine-learning.md) can improve service quality and reliability by using machine learning to process and automatically act on data you collect from applications, services, and IT resources into Azure Monitor. It automates data-driven tasks, predicts capacity usage, identifies performance issues, and detects anomalies across applications, services, and IT resources. These features simplify IT monitoring and operations without requiring machine learning expertise. 
 
 **[Azure Monitor Alerts](../alerts/alerts-overview.md)** notify you of critical conditions and can take corrective action. Alert rules can be based on metric or log data.
 
@@ -212,8 +198,6 @@ An effective monitoring solution proactively responds to critical events, withou
 Alert rules use [action groups](../alerts/action-groups.md), which can perform actions such as sending email or SMS notifications. Action groups can send notifications using webhooks to trigger external processes or to integrate with your IT service management tools. Action groups, actions, and sets of recipients can be shared across multiple rules.
 
 :::image type="content" source="media/overview/alerts.png" alt-text="Screenshot that shows the Azure Monitor alerts UI in the Azure portal." lightbox="media/overview/alerts.png":::
-
-SCOM MI currently uses its own separate traditional System Center Operations Manager alerting mechanism in the Ops Console.
 
 **[Autoscale](../autoscale/autoscale-overview.md)** allows you to dynamically control the number of resources running to handle the load on your application. You can create rules that use Azure Monitor metrics to determine when to automatically add resources when the load increases or remove resources that are sitting idle. You can specify a minimum and maximum number of instances, and the logic for when to increase or decrease resources to save money and to increase performance.
 
@@ -268,11 +252,6 @@ The cost of Azure Monitor is based on your usage of different features and is pr
 
 No. Azure Monitor is a scalable cloud service that processes and stores large amounts of data, although Azure Monitor can monitor resources that are on-premises and in other clouds.
 
-### Does Azure Monitor integrate with System Center Operations Manager?
-
-You can connect your existing System Center Operations Manager management group to Azure Monitor to collect data from agents into Azure Monitor Logs. This capability allows you to use log queries and solutions to analyze data collected from agents. You can also configure existing System Center Operations Manager agents to send data directly to Azure Monitor. See [Connect Operations Manager to Azure Monitor](../agents/om-agents.md).
-
-Microsoft also offers System Center Operations Manager Managed Instance (SCOM MI) as an option to migrate a traditional System Center Operations Manager setup into the cloud with minimal changes. For more information, see [About Azure Monitor SCOM Managed Instance](/system-center/scom/operations-manager-managed-instance-overview).
 
 ## Next steps
 

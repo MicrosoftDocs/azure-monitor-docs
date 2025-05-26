@@ -36,18 +36,6 @@ You can keep the default view if you like it. Or you can also add and delete fro
 > [!NOTE]
 > All users with access to the Application Insights resource share the same **Application Dashboard** experience. Changes made by one user will modify the view for all users.
 
-## Frequently asked questions
-
-### Can I display more than 30 days of data?
-
-No, there's a limit of 30 days of data displayed in a dashboard.
-
-### I'm seeing a "resource not found" error on the dashboard
-
-A "resource not found" error can occur if you move or rename your Application Insights instance.
-
-To work around this behavior, delete the default dashboard and select **Application Dashboard** again to re-create a new one.
-
 ## Create custom KPI dashboards using Application Insights
 
 You can create multiple dashboards in the Azure portal that include tiles visualizing data from multiple Azure resources across different resource groups and subscriptions. You can pin different charts and views from Application Insights to create custom dashboards that provide you with a complete picture of the health and performance of your application. This tutorial walks you through the creation of a custom dashboard that includes multiple types of data and visualizations from Application Insights.
@@ -172,6 +160,7 @@ Application Insights Logs provides a rich query language that you can use to ana
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Overview dashboard FAQ](application-insights-faq.yml#overview-dashboard)
 * [Funnels](./usage.md#funnels)
 * [Retention](./usage.md#user-retention-analysis)
 * [User flows](./usage.md#user-flows)

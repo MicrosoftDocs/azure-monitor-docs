@@ -346,6 +346,9 @@ It's important to note that the following example doesn't cause the Application 
 }
 ```
 
+> [!NOTE]
+> Application Insights respects the log levels configured via ConfigureLogging(...) in code. If only appsettings.json is used, and ConfigureLogging isn't overridden explicitly, the default log level is **Warning**.
+
 For more information, follow [ILogger docs](/dotnet/core/extensions/logging#configure-logging) to customize which log levels are captured by Application Insights.
 
 ### Dependencies
@@ -561,57 +564,6 @@ If you want to disable telemetry conditionally and dynamically, you can resolve 
     }
 ```
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Which package should I use?
-
-| .NET Core app scenario | Package  |
-|---------|---------|
-| Without HostedServices                              | WorkerService                     |
-| With HostedServices                                 | AspNetCore (not WorkerService) |
-| With HostedServices, monitoring only HostedServices | WorkerService (rare scenario)  |
-
-### Can HostedServices inside a .NET Core app using the AspNetCore package have TelemetryClient injected to it?
-
-Yes, the configuration is shared with the rest of the web application.
-
-### How can I track telemetry that's not automatically collected?
-
-Get an instance of `TelemetryClient` by using constructor injection and call the required `TrackXXX()` method on it. We don't recommend creating new `TelemetryClient` instances. A singleton instance of `TelemetryClient` is already registered in the `DependencyInjection` container, which shares `TelemetryConfiguration` with the rest of the telemetry. Creating a new `TelemetryClient` instance is recommended only if it needs a configuration that's separate from the rest of the telemetry.
-
-### Can I use Visual Studio IDE to onboard Application Insights to a Worker Service project?
-
-Visual Studio IDE onboarding is currently supported only for ASP.NET/ASP.NET Core applications. This document is updated when Visual Studio ships support for onboarding Worker Service applications.
-
-### Can I enable Application Insights monitoring by using tools like Azure Monitor Application Insights Agent (formerly Status Monitor v2)?
-
-No. [Azure Monitor Application Insights Agent](./application-insights-asp-net-agent.md) currently supports [.NET](/dotnet/fundamentals/) only.
-
-### Are all features supported if I run my application in Linux?
-
-Yes. Feature support for this SDK is the same in all platforms, with the following exceptions:
-
-* Performance counters are supported only in Windows except for Process CPU/Memory shown in live metrics.
-* Even though `ServerTelemetryChannel` is enabled by default, if the application is running in Linux or macOS, the channel doesn't automatically create a local storage folder to keep telemetry temporarily if there are network issues. Because of this limitation, telemetry is lost when there are temporary network or server issues. To work around this issue, configure a local folder for the channel:
-
-  ```csharp
-  using Microsoft.ApplicationInsights.Channel;
-  using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
-
-      public void ConfigureServices(IServiceCollection services)
-      {
-          // The following will configure the channel to use the given folder to temporarily
-          // store telemetry items during network or Application Insights server issues.
-          // User should ensure that the given folder already exists
-          // and that the application has read/write permissions.
-          services.AddSingleton(typeof(ITelemetryChannel),
-                                  new ServerTelemetryChannel () {StorageFolder = "/tmp/myfolder"});
-          services.AddApplicationInsightsTelemetryWorkerService();
-      }
-  ```
-
 ## Sample applications
 
 [.NET Core console application](https://github.com/microsoft/ApplicationInsights-dotnet/tree/develop/examples/ConsoleApp):
@@ -631,7 +583,9 @@ For the latest updates and bug fixes, [see the Release Notes](./release-notes.md
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Worker Service applications FAQ](application-insights-faq.yml#worker-service-applications).
 * [Use the API](./api-custom-events-metrics.md) to send your own events and metrics for a detailed view of your app's performance and usage.
 * [Track more dependencies not automatically tracked](asp-net-dependencies.md#dependency-autocollection).
 * [Enrich or filter autocollected telemetry](./api-filtering-sampling.md).
 * [Dependency Injection in ASP.NET Core](/aspnet/core/fundamentals/dependency-injection).
+
