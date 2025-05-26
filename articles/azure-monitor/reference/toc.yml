@@ -2662,10 +2662,6 @@ items:
             href: tables/microsoftdatasharesentsnapshotlog.md
           - name: MicrosoftDataShareShareLog
             href: tables/microsoftdatasharesharelog.md
-          - name: MicrosoftDynamicsTelemetryPerformanceLogs
-            href: tables/microsoftdynamicstelemetryperformancelogs.md
-          - name: MicrosoftDynamicsTelemetrySystemMetricsLogs
-            href: tables/microsoftdynamicstelemetrysystemmetricslogs.md
           - name: MicrosoftGraphActivityLogs
             href: tables/microsoftgraphactivitylogs.md
           - name: MicrosoftHealthcareApisAuditLogs
@@ -2770,20 +2766,10 @@ items:
             href: tables/powerautomateactivity.md
           - name: PowerBIActivity
             href: tables/powerbiactivity.md
-          - name: PowerBIAuditTenant
-            href: tables/powerbiaudittenant.md
           - name: PowerBIDatasetsTenant
             href: tables/powerbidatasetstenant.md
-          - name: PowerBIDatasetsTenantPreview
-            href: tables/powerbidatasetstenantpreview.md
           - name: PowerBIDatasetsWorkspace
             href: tables/powerbidatasetsworkspace.md
-          - name: PowerBIDatasetsWorkspacePreview
-            href: tables/powerbidatasetsworkspacepreview.md
-          - name: PowerBIReportUsageTenant
-            href: tables/powerbireportusagetenant.md
-          - name: PowerBIReportUsageWorkspace
-            href: tables/powerbireportusageworkspace.md
           - name: PowerPlatformAdminActivity
             href: tables/powerplatformadminactivity.md
           - name: PowerPlatformConnectorActivity
@@ -2872,8 +2858,6 @@ items:
             href: tables/signinlogs.md
           - name: SqlAtpStatus
             href: tables/sqlatpstatus.md
-          - name: SqlDataClassification
-            href: tables/sqldataclassification.md
           - name: SqlVulnerabilityAssessmentResult
             href: tables/sqlvulnerabilityassessmentresult.md
           - name: SqlVulnerabilityAssessmentScanStatus
@@ -2922,8 +2906,6 @@ items:
             href: tables/synapsedxtableusagestatistics.md
           - name: SynapseGatewayApiRequests
             href: tables/synapsegatewayapirequests.md
-          - name: SynapseGatewayEvents
-            href: tables/synapsegatewayevents.md
           - name: SynapseIntegrationActivityRuns
             href: tables/synapseintegrationactivityruns.md
           - name: SynapseIntegrationPipelineRuns
@@ -2932,8 +2914,6 @@ items:
             href: tables/synapseintegrationtriggerruns.md
           - name: SynapseLinkEvent
             href: tables/synapselinkevent.md
-          - name: SynapseRBACEvents
-            href: tables/synapserbacevents.md
           - name: SynapseRbacOperations
             href: tables/synapserbacoperations.md
           - name: SynapseScopePoolScopeJobsEnded
