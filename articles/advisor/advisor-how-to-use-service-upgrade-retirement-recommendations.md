@@ -18,7 +18,7 @@ Azure services periodically undergo a retirement and upgrade journey, necessitat
 
 ## Access recommendations
 
-The **Service Upgrade and Retirement** subcategory of recommendations under **Reliability** category, includes both upgrade and retirement recommendations. The upgrade and retirement recommendations are a superset of the [retirement updates provided using customer communication](https://azure.microsoft.com/updates "Azure Updates | Microsoft Azure").
+The **Service Upgrade and Retirement** subcategory of recommendations under **Reliability** category, includes both upgrade and retirement recommendations. The upgrade and retirement recommendations are a superset of the [retirement updates provided using customer communication](https://azure.microsoft.com/updates "Azure Updates | Microsoft Azure"). The recommendations intended for upgrades but not associated with any retirements will have 'Retirement Date' and 'Retiring Feature' values marked as N/A or null.
 
 Previously, [retirement recommendations were only available through Advisor workbooks](./advisor-workbook-service-retirement.md "Service Retirement workbook | Azure Advisor | Microsoft Learn") that are in preview mode. Now, you also have access to the information using the native user experience in Azure Advisor and Azure Advisor REST API requests. Based on your requirements and comfort, choose your route. <br>
 NOTE - Only recommendations with available impacted resources information will be displayed in the portal UI, and the API response will reflect the same. For more information about impacted Resources, see [Coverage of Services](#coverage-of-services).
@@ -112,6 +112,13 @@ advisorresources
 | where type == "microsoft.advisor/recommendations"
 | where properties.category == "HighAvailability"
 | where properties.extendedProperties.recommendationControl == "ServiceUpgradeAndRetirement"
+| extend retirementFeatureName = properties.extendedProperties.retirementFeatureName
+| extend retirementDate = properties.extendedProperties.retirementDate
+| extend resourceId = properties.resourceMetadata.resourceId
+| extend shortDescription = properties.shortDescription.problem
+// To exclude upgrade recommendations that aren't linked to any retirement
+| where retirementFeatureName != ''
+| project retirementFeatureName, retirementDate, resourceId, shortDescription
 ```
 
 ---
