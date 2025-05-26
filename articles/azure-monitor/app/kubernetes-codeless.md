@@ -260,48 +260,8 @@ AKS Clusters can be prepared for this feature during cluster creation. Run the f
 az aks create --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --generate-ssh-keys
 ```
 
-## Troubleshooting
-
-#### Missing telemetry
-
-The following steps can help to resolve problems when no data appears in your Application Insights workspace-based resource.
-
-1. Confirm the pod is in the running state.
-
-2. Verify the deployment is instrumented.
-    
-    Check the `monitor.azure.com/instrumentation` annotation on the deployment itself and the latest replica set that belongs to it.
-    
-    The annotation should be present with proper JSON in the following pattern: `{"crName": "crName1","crResourceVersion": "20177993","platforms":["Java"]}`
-
-    If the annotation **isn't present**, then the deployment isn't instrumented and the following steps need to be completed.
-    
-    1. Prepare the cluster. For more information, see [Prepare the cluster](#prepare-a-cluster).
-    2. Confirm your _Instrumentation_ custom resource is in the correct namespace as the deployment.
-    3. Confirm your _Instrumentation_ custom resource contains the correct connection string and instrumentation platform.
-    4. Restart the deployment. For more information, see [Restart deployment](#restart-deployment).
-    
-    If the annotation **is present**, then the deployment is instrumented and you should proceed to the next step.
-
-3. Check for networking errors in the SDK log located in the pod's logs volume, `/var/log/applicationinsights`.
-    
-    As an example, the following errors indicate a connectivity problem.
-    
-    - `Ingestion endpoint could not be reached.`
-    - `Error: getaddrinfo ENOTFOUND eastus2-3.in.applicationinsights.azure.com`
-    - `getaddrinfo ENOTFOUND eastus2-3.in.applicationinsights.azure.com`
-    
-    If this type of error exists, sign into the container and test connectivity to the endpoint.
-    
-    `kubectl exec -ti customer-java-1-1234567890-abcde -- /bin/bash`
-    
-    If connectivity can't be established, then troubleshoot the network connectivity problem such as a firewall or name resolution issue.
-
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
-
 ## Next steps
-
-* To review frequently asked questions (FAQ), see [Autoinstrumentation for Azure Kubernetes Service FAQ](application-insights-faq.yml#autoinstrumentation-for-azure-kubernetes-service)
-* Learn more about [Azure Monitor](../overview.md) and [Application Insights](./app-insights-overview.md).
-* See what [Application Map](./app-map.md?tabs=net) can do for your business.
+- To review frequently asked questions (FAQ), see [Autoinstrumentation for Azure Kubernetes Service FAQ](application-insights-faq.yml#autoinstrumentation-for-azure-kubernetes-service)
+- To review our dedicated troubleshooting guide, see [Troubleshooting autoinstrumentation for Azure Kubernetes Service](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-aks-autoinstrumentation).
+- Learn more about [Azure Monitor](../overview.md) and [Application Insights](./app-insights-overview.md).
+- See what [Application Map](./app-map.md?tabs=net) can do for your business.
