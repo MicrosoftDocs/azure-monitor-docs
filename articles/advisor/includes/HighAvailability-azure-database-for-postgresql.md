@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/17/2025
+ms.date: 05/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -83,5 +83,23 @@ Recommendation ID: 7d2149f5-94f7-458d-8171-92cf66832cb2
 Subcategory: DisasterRecovery
 
 <!--7d2149f5-94f7-458d-8171-92cf66832cb2_end-->
+
+<!--80b4e93c-4500-4fbd-bd6f-3ec245f72be9_begin-->
+
+#### Enable high availability with zone redundancy  
+  
+Enable high availability with zone redundancy on flexible server instances to deploy a standby replica in a different zone, offering automatic failover capability for improved reliability and disaster recovery.  
+  
+**Potential benefits**: Enhanced uptime and data protection  
+
+**Impact:** High
+  
+For more information, see [Reliability and high availability in PostgreSQL - Flexible Server - Azure Database for PostgreSQL - Flexible Server](https://aka.ms/learnmore_dbforpostgresql_flexibleservers)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 80b4e93c-4500-4fbd-bd6f-3ec245f72be9  
+Subcategory: HighAvailability
+
+<!--80b4e93c-4500-4fbd-bd6f-3ec245f72be9_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2025
+ms.date: 05/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -485,5 +485,41 @@ Recommendation ID: 1afa00b3-bb4c-496d-99e5-b7bda59a057c
 Subcategory: HighAvailability
 
 <!--1afa00b3-bb4c-496d-99e5-b7bda59a057c_end-->
+
+<!--e82f5b61-b0f8-48e7-8e18-5aa1f57bff81_begin-->
+
+#### Deploy Azure Firewall across multiple availability zones  
+  
+Azure Firewall SLAs vary by deployment type such as single or multiple availability zones to improve reliability and performance.  
+  
+**Potential benefits**: Enhanced SLA and reliability  
+
+**Impact:** High
+  
+For more information, see [Deploy Azure Firewall with Availability Zones using PowerShell](https://aka.ms/learnmore_firewalls)  
+
+ResourceType: microsoft.network/azurefirewalls  
+Recommendation ID: e82f5b61-b0f8-48e7-8e18-5aa1f57bff81  
+Subcategory: HighAvailability
+
+<!--e82f5b61-b0f8-48e7-8e18-5aa1f57bff81_end-->
+
+<!--796b9be0-487d-4daa-8771-f08e4d7c9c0c_begin-->
+
+#### Configure and deploy load balancers and related resources to use availability zones  
+  
+Standard Load Balancers and related resources configured to use availability zones offer resilience to zone faults. Assigning a zone-redundant frontend IP to a Standard Load Balancer ensures continuous traffic distribution even if one availability zone fails.  
+  
+**Potential benefits**: Improved availability and reliability  
+
+**Impact:** High
+  
+For more information, see [Reliability in Azure Load Balancer](https://aka.ms/learnmore_loadbalancers)  
+
+ResourceType: microsoft.network/loadbalancers  
+Recommendation ID: 796b9be0-487d-4daa-8771-f08e4d7c9c0c  
+Subcategory: HighAvailability
+
+<!--796b9be0-487d-4daa-8771-f08e4d7c9c0c_end-->
 
 <!--articleBody-->
