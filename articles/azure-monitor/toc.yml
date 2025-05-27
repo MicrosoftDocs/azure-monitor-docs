@@ -1141,9 +1141,8 @@ items:
             displayName: Basic, Analytics, Auxiliary, cost optimization
             href: logs/logs-table-plans.md
           - name: Manage data retention
-            displayName: archive, cost optimization
             href: logs/data-retention-configure.md
-            displayName: Log retention, log archive, cost optimization
+            displayName: Log retention, log archive, archive, cost optimization
           - name: Add or delete tables and columns
             href: logs/create-custom-table.md
           - name: Delete data from a log table
