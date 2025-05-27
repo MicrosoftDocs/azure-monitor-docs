@@ -1097,7 +1097,7 @@ items:
   - name: Logs
     items:
     - name: Overview
-      displayName: Platform logs, Resource logs, Activity log
+      displayName: Platform logs, Resource logs, Activity log, Auxiliary, Analytics, Basic
       href: logs/data-platform-logs.md
     - name: Best practices
       displayName: Logs, WAF, well architected framework, Azure Customer Lockbox, Customer Lockbox, Lockbox
@@ -1141,6 +1141,7 @@ items:
             displayName: Basic, Analytics, Auxiliary, cost optimization
             href: logs/logs-table-plans.md
           - name: Manage data retention
+            displayName: archive, cost optimization
             href: logs/data-retention-configure.md
             displayName: Log retention, log archive, cost optimization
           - name: Add or delete tables and columns
