@@ -50,18 +50,18 @@
       href: resource-health-alert-arm-template-guide.md
     - name: Resource Health status for Virtual Machines
       href: resource-health-vm-annotation.md
-  - name: In-Portal Billing communications
+  - name: How to view In-Portal Billing communications
     href: billing-elevated-access.md
+  - name: Tenant Roles with Admin access
+    href: admin-access-reference.md
+  - name: Subscription and Tenant access
+    href: subscription-vs-tenant.md
 - name: Frequently Asked Questions
   items:
   - name: Resource Health FAQ
     href: resource-health-faq.yml    
 - name: Reference
-  items:
-  - name: Tenant Roles with Admin access
-    href: admin-access-reference.md
-  - name: Subscription and Tenant access
-    href: subscription-vs-tenant.md
+  items:  
   - name: Azure Resource Graph queries
     href: ./resource-graph-samples.md
   - name: Elevated access for viewing Security Advisories
