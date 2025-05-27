@@ -58,7 +58,9 @@ This article provides onboarding guidance for the following types of clusters. A
 > [!NOTE]
 > The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations:
 > * Red Hat Openshift distributions, including Azure Red Hat OpenShift (ARO)
-> * Windows nodes
+> * Windows nodes*
+>
+> *For ARC-enabled clusters with Windows nodes, you can setup Azure Managed Prometheus on a Linux node within the cluster, and configure scraping metrics from metrics endpoints running on the Windows nodes.
 
 
 ## Workspaces
@@ -639,8 +641,39 @@ As of version 6.4.0-main-02-22-2023-3ee44b9e of the Managed Prometheus addon con
    * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
    * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This will add the required recording rules and is not an ARM operation on the cluster and does not impact current monitoring state of the cluster.
 
+1. [Only for Windows nodes in ARC-enabled clusters] If you are enabling Managed Prometheus for an ARC-enabled cluster, you can configure Managed Prometheus that is running on a Linux node within the cluster to scrape metrics from endpoints running on the Windows nodes. Add the following scrape job to [ama-metrics-prometheus-config-configmap.yaml](https://aka.ms/ama-metrics-prometheus-config-configmap) and apply the configmap to your cluster.
 
+```yaml
+  scrape_configs:
+    - job_name: windows-exporter
+      scheme: http
+      scrape_interval: 30s
+      label_limit: 63
+      label_name_length_limit: 511
+      label_value_length_limit: 1023
+      tls_config:
+        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        insecure_skip_verify: true
+      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+      kubernetes_sd_configs:
+      - role: node
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_node_name]
+        target_label: instance
+      - action: keep
+        source_labels: [__meta_kubernetes_node_label_kubernetes_io_os]
+        regex: windows
+      - source_labels:
+        - __address__
+        action: replace
+        target_label: __address__
+        regex: (.+?)(\:\d+)?
+        replacement: $$1:9182
+```
 
+```AzureCLI
+kubectl apply -f ama-metrics-prometheus-config-configmap.yaml
+```
 
 ## Verify deployment
 Use the [kubectl command line tool](/azure/aks/learn/quick-kubernetes-deploy-cli#connect-to-the-cluster) to verify that the agent is deployed properly.
