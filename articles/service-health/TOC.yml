@@ -40,8 +40,6 @@
         href: service-health-alert-webhook-pagerduty.md
       - name: Send alerts using OpsGenie
         href: service-health-alert-webhook-opsgenie.md
-  - name: How to view In-Portal Billing communications
-    href: billing-elevated-access.md
   - name: Resource Health
     items:
     - name: Resource health types and checks
@@ -52,6 +50,8 @@
       href: resource-health-alert-arm-template-guide.md
     - name: Resource Health status for Virtual Machines
       href: resource-health-vm-annotation.md
+  - name: In-Portal Billing communications
+    href: billing-elevated-access.md
 - name: Frequently Asked Questions
   items:
   - name: Resource Health FAQ
