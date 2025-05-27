@@ -147,7 +147,7 @@ New-AzResourceGroupDeployment -Name CreateServiceHealthAlert -ResourceGroupName 
 
 ---
 
-### 3.  Validate the deployment
+### 3. Validate the deployment
 
 Verify that the workspace is created using one of the following commands. Replace the sample values for **Resource Group** with the values you used.
 
@@ -165,7 +165,7 @@ Get-AzActivityLogAlert -ResourceGroupName my-resource-group -Name ServiceHealthA
 
 ---
 
-### 4.  Clean up resources
+### 4. Clean up resources
 
 If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When no longer needed, delete the resource group, which deletes the alert rule and the related resources. To delete the resource group by using Azure CLI or Azure PowerShell
 
