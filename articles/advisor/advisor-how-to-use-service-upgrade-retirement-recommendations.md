@@ -116,7 +116,7 @@ advisorresources
 | extend retirementDate = properties.extendedProperties.retirementDate
 | extend resourceId = properties.resourceMetadata.resourceId
 | extend shortDescription = properties.shortDescription.problem
-// To exclude upgrade recommendations that aren't linked to any retirement
+// To exclude upgrade recommendations that are not linked to any retirement
 | where retirementFeatureName != ''
 | project retirementFeatureName, retirementDate, resourceId, shortDescription
 ```
