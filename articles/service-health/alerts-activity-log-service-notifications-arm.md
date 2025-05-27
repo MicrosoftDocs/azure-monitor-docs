@@ -167,7 +167,7 @@ Get-AzActivityLogAlert -ResourceGroupName my-resource-group -Name ServiceHealthA
 
 **4. Clean up resources**
 
-If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When no longer needed, delete the resource group, which deletes the alert rule and the related resources. To delete the resource group by using Azure CLI or Azure PowerShell
+If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. You can delete the resource group when it's no longer needed, which deletes the alert rule and the related resources. To delete the resource group by using Azure CLI or Azure PowerShell commands shown here.
 
 # [CLI](#tab/CLI)
 
