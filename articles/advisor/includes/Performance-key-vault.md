@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2025
+ms.date: 05/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Key Vault
@@ -32,7 +32,7 @@ Recommendation ID: 47e36ece-24bb-4d3e-8172-af28c9df172d
 
 <!--9017e82f-b7ac-4a06-8b9b-5858cb3d5113_begin-->
 
-#### Update Azure Key Vault SDK to latest version  
+#### Upgrade the Azure Key Vault SDK to the latest version  
   
 New Key Vault libraries split keys, secrets, and certificates into separate SDKs with Azure Identity integration for seamless auth and performance improvements. DISMISS: If using Key Vault with Azure Storage, Disk, or other services, and all custom apps that use .NET SDK 4.0+.  
   
@@ -47,6 +47,7 @@ Recommendation ID: 9017e82f-b7ac-4a06-8b9b-5858cb3d5113
 
 
 <!--9017e82f-b7ac-4a06-8b9b-5858cb3d5113_end-->
+
 
 
 <!--articleBody-->
