@@ -26,7 +26,7 @@ You can receive an alert when Azure sends service health notifications to your A
 - The regions affected.
 
 > [!NOTE]
-> Service health notifications don't send an alert regarding resource health events.
+> Service health notifications don't send alerts regarding resource health events.
 
 You also can configure who the alert should be sent to:
 
