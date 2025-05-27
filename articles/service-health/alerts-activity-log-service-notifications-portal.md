@@ -2,7 +2,7 @@
 title: Create Service Health alerts for Azure service notifications in Azure portal
 description: Learn how to use the Azure portal to set up Service Health alerts.
 ms.topic: quickstart
-ms.date: 05/23/2025
+ms.date: 05/27/2025
 
 ---
 
@@ -35,7 +35,9 @@ You also can configure who the alert should be sent to:
 - Select an existing action group.
 - Create a new action group (that can be used for future alerts).
 > [!NOTE]
-> Service Health Alerts are only supported in public clouds within the global region. For Action Groups to properly function in response to a Service Health Alert, the region of the action group must be set as "Global."
+> Service Health Alerts are only supported in public clouds within the global region.
+> 
+>For Action Groups to properly function in response to a Service Health Alert, the region of the action group must be set as "Global."
 
 To learn more about action groups, see [Create and manage action groups](../azure-monitor/alerts/action-groups.md).
 
