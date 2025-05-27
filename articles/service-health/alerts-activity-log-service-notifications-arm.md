@@ -33,12 +33,12 @@ You also can configure who the alert should be sent to:
 
 To learn more about action groups, see [Create and manage action groups](../azure-monitor/alerts/action-groups.md).
 
-## Prerequisites
+### Prerequisites
 
 - If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 - To run the commands from your local computer, install Azure CLI or the Azure PowerShell modules. For more information, see [Install the Azure CLI](/cli/azure/install-azure-cli) and [Install Azure PowerShell](/powershell/azure/install-azure-powershell).
 
-### 1. Review the template
+**1. Review the template**
 
 The following template creates an action group with an email target and enables all service health notifications for the target subscription. 
 <br> Save this template as *CreateServiceHealthAlert.json*.
@@ -126,7 +126,7 @@ The template defines two resources:
 - [Microsoft.Insights/actionGroups](/azure/templates/microsoft.insights/actiongroups)
 - [Microsoft.Insights/activityLogAlerts](/azure/templates/microsoft.insights/activityLogAlerts)
 
-### 2. Deploy the template
+**2. Deploy the template**
 
 Deploy the template using any standard method for [deploying an ARM template](/azure/azure-resource-manager/templates/deploy-portal). You can use the following examples for using CLI and PowerShell. Replace the sample values for **Resource Group** and **emailAddress** with appropriate values for your environment.
 
@@ -147,7 +147,7 @@ New-AzResourceGroupDeployment -Name CreateServiceHealthAlert -ResourceGroupName 
 
 ---
 
-### 3. Validate the deployment
+**3. Validate the deployment**
 
 Verify that the workspace is created using one of the following commands. Replace the sample values for **Resource Group** with the values you used.
 
@@ -165,7 +165,7 @@ Get-AzActivityLogAlert -ResourceGroupName my-resource-group -Name ServiceHealthA
 
 ---
 
-### 4. Clean up resources
+**4. Clean up resources**
 
 If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When no longer needed, delete the resource group, which deletes the alert rule and the related resources. To delete the resource group by using Azure CLI or Azure PowerShell
 
