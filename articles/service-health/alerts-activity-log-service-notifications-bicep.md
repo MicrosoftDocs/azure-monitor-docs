@@ -1,7 +1,7 @@
 ---
 title: Receive activity log alerts on Azure service notifications using Bicep
 description: Get notified via SMS, email, or webhook when Azure service occurs using a Bicep file.
-ms.date: 05/23/2025
+ms.date: 05/27/2025
 ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-bicep
 ---
@@ -10,7 +10,7 @@ ms.custom: subject-armqs, mode-arm, devx-track-bicep
 
 ## Overview
 
-This article provides a step-by-step guide on how to use a Bicep file to create activity log alerts for Azure Service Health notifications. The purpose is to automate the creation of alerts that notify you when Azure posts service health events (like incidents, planned maintenance, or health advisories) to your subscription’s activity log.
+This article provides a step-by-step guide on how to use a Bicep file to create activity log alerts for Azure Service Health notifications. The purpose is to automate the creation of alerts to notify you when Azure posts service health events (like incidents, planned maintenance, or health advisories) to your subscription’s activity log.
 
 
 
@@ -149,7 +149,7 @@ Get-AzActivityLogAlert -ResourceGroupName my-resource-group -Name ServiceHealthA
 
 **4. Clean up the resources**
 
-If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When no longer needed, delete the resource group, which deletes the alert rule and the related resources. To delete the resource group by using Azure CLI or Azure PowerShell use these:
+If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When no longer needed, delete the resource group, which deletes the alert rule and the related resources. If you need to delete the resource group by using Azure CLI or Azure PowerShell use the following commands:
 
 # [CLI](#tab/CLI)
 
