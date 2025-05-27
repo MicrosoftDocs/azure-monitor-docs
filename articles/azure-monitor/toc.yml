@@ -1577,7 +1577,7 @@ items:
         - name: Query alerts using ARG
           href: alerts/migrate-from-alerts-summary-api.md
         - name: Customize alert email subjects
-          href: alerts-customize-email-subject-how-to.md
+          href: alerts/alerts-customize-email-subject-how-to.md
     - name: Tutorials
       items:
       - name: Create a metric alert
