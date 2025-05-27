@@ -8,7 +8,6 @@ ms.date: 05/27/2025
 
 # Create Service Health alerts in the Azure portal
 
-## Overview
 
 This article provides a step-by-step guide on how to configure alerts for Azure Service Health notifications through the Azure portal.  
 
