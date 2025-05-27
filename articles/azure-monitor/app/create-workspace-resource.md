@@ -1489,37 +1489,9 @@ Available properties for [Application Insights](/azure/templates/microsoft.insig
 > [!TIP]
 > You can also use quickstart templates, available towards the bottom of each Azure resource reference documentation page linked in this section. To learn how to use templates, visit [Tutorial: Use Azure Quickstart Templates](/azure/azure-resource-manager/templates/template-tutorial-quickstart-template).
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### How do I move an Application Insights resource to a new region?
-
-Transferring existing Application Insights resources between regions isn't supported, and you can't migrate historical data to a new region. The workaround involves:
-
-* Creating a new Application Insights resource in the desired region.
-* Re-creating any unique customizations from the original resource in the new one.
-* Updating your application with the new region resource's [connection string](./connection-strings.md).
-* Testing to ensure everything works as expected with the new Application Insights resource.
-* Decide to either keep or delete the original Application Insights resource. Deleting a classic resource means to lose all historical data. If the resource is workspace-based, the data remains in Log Analytics, enabling access to historical data until the retention period expires.
-
-Unique customizations that commonly need to be manually re-created or updated for the resource in the new region include but aren't limited to:
-
-* Re-create custom dashboards and workbooks.
-* Re-create or update the scope of any custom log/metric alerts.
-* Re-create availability alerts.
-* Re-create any custom Azure role-based access control settings that are required for your users to access the new resource.
-* Replicate settings involving ingestion sampling, data retention, daily cap, and custom metrics enablement. These settings are controlled via the **Usage and estimated costs** pane.
-* Any integration that relies on API keys, such as [release annotations](./release-and-work-item-insights.md?tabs=release-annotations) and [live metrics secure control channel](./live-stream.md#secure-the-control-channel). You need to generate new API keys and update the associated integration.
-* Continuous export in classic resources must be configured again.
-* Diagnostic settings in workspace-based resources must be configured again.
-
-### Can I use providers('Microsoft.Insights', 'components').apiVersions[0] in my Azure Resource Manager deployments?
-
-We don't recommend using this method of populating the API version. The newest version can represent preview releases, which might contain breaking changes. Even with newer non-preview releases, the API versions aren't always backward compatible with existing templates. In some cases, the API version might not be available to all subscriptions.
-
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Creating and configuring Application Insights resources FAQ](application-insights-faq.yml#creating-and-configuring-application-insights-resources)
 * [Explore metrics](../essentials/metrics-charts.md)
 * [Write Log Analytics queries](../logs/log-query-overview.md)
 * [Shared resources for multiple roles](./app-map.md)

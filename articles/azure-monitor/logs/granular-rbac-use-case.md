@@ -8,7 +8,6 @@ ms.reviewer: rofrenke
 ms.topic: how-to
 ms.date: 05/12/2025
 
-
 # Customer intent: As an Azure administrator, I want to understand how to use granular RBAC in Log Analytics for the use case scenario of separating custom log table access at the row level.
 ---
 
@@ -42,19 +41,18 @@ Set up custom roles for the defined scenario. Create one for the network team an
 
 1. From the resource group containing the prerequisite Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add custom role**.
-1. Create the general data access role with the following actions and data action at the resource group level:  
+1. Create the general data access role with the following actions and data action at the resource group level:
 
-   | Custom role definition | Detail |
-   |---|---|
-   | Actions | `Microsoft.OperationalInsights/workspaces/read`</br>`Microsoft.OperationalInsights/workspaces/query/read` |
-   | Data actions | `Microsoft.OperationalInsights/workspaces/tables/data/read` |
+| Custom role definition | Detail |
+|---|---|
+| Actions | `Microsoft.OperationalInsights/workspaces/read`</br>`Microsoft.OperationalInsights/workspaces/query/read` |
+| Data actions | `Microsoft.OperationalInsights/workspaces/tables/data/read` |
 
-   This image shows how the custom role actions and data actions appear in the **Add custom role** page.
+This image shows how the custom role actions and data actions appear in the **Add custom role** page.
+:::image type="content" source="media/configure-granular-rbac/custom-role-example.png" lightbox="media/configure-granular-rbac/custom-role-example.png" alt-text="Screenshot showing how the custom role actions and data actions appear.":::
 
-   :::image type="content" source="media/configure-granular-rbac/custom-role-example.png" lightbox="media/configure-granular-rbac/custom-role-example.png" alt-text="Screenshot showing how the custom role actions and data actions appear.":::
-
-1. Enter a name for the custom role, such as `Log Analytics Network Device team`
-1. Repeat steps 2-4 for the `Log Analytics Security Analysts tier 1` custom role. Use the **Clone a role** option and choose the `Log Analytics Network Device team` role as a base.
+4. Enter a name for the custom role, such as `Log Analytics Network Device team`
+5. Repeat steps 2-4 for the `Log Analytics Security Analysts tier 1` custom role. Use the **Clone a role** option and choose the `Log Analytics Network Device team` role as a base.
 
 ## Assign custom roles
 
@@ -67,8 +65,9 @@ Assign the custom roles to a user or group. For more information, see [Assign gr
 1. Select **Conditions** > **Add condition** > **Add action**.
 1. Choose the **Read workspace data** data action > **Select**.
 
-   Here's how the action portion looks when completed:
-   :::image type="content" source="media/configure-granular-rbac/add-action.png" lightbox="media/configure-granular-rbac/add-action.png" alt-text="A screenshot showing the add action part of the add conditions page.":::
+Here's how the action portion looks when completed:
+
+:::image type="content" source="media/configure-granular-rbac/add-action.png" lightbox="media/configure-granular-rbac/add-action.png" alt-text="A screenshot showing the add action part of the add conditions page.":::
 
 ## Build restrictive condition
 
@@ -79,7 +78,6 @@ The first custom role uses the *No access to data, except what is allowed* strat
 1. Select *Table Name* from the **Attribute** dropdown.
 1. Select *StringEquals* from the **Operator** dropdown.
 1. Type `CommonSecurityLog` in the **Value** field.
-
 1. Select **Add expression**, then select **And** to add another expression.
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Column value* from the **Attribute** dropdown.
@@ -87,32 +85,32 @@ The first custom role uses the *No access to data, except what is allowed* strat
 1. Select *ForAnyOfAnyValues:StringLikeIgnoreCase* from the **Operator** dropdown.
 1. In the **Value** fields, enter `Check Point` and `SonicWall`.
 1. Select expression **1** and **2** > select **Group** with the **And** radio button selected.
-   
-   Here's how the restrictive condition looks when completed:
-
-   :::image type="content" source="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" lightbox="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" alt-text="A screenshot showing the expressions for the restrictive condition.":::
-
-   Here's how the restrictive condition looks in code form:
-   ```
-   (
-    (
-     !(ActionMatches{'Microsoft.OperationalInsights/workspaces/tables/data/read'})
-    )
-    OR 
-    (
-     (
-      @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'CommonSecurityLog'
-      AND
-      @Resource[Microsoft.OperationalInsights/workspaces/tables/record:DeviceVendor<$key_case_sensitive$>] ForAnyOfAnyValues:StringLikeIgnoreCase {'Check Point', 'SonicWall'}
-     )
-    )
-   )
-   ```
-   For more information on programmatic ways to assign roles with conditions, see [Add or edit ABAC conditions](/azure/role-based-access-control/conditions-role-assignments-rest).
-
 1. Select **Save**.
 
-   Allow up to 15 minutes for effective permissions to take effect.
+Here's how the restrictive condition looks when completed:
+
+:::image type="content" source="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" lightbox="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" alt-text="A screenshot showing the expressions for the restrictive condition.":::
+
+Here's how the restrictive condition looks in code form:
+```
+(
+ (
+  !(ActionMatches{'Microsoft.OperationalInsights/workspaces/tables/data/read'})
+ )
+ OR 
+(
+  (
+   @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'CommonSecurityLog'
+   AND
+   @Resource[Microsoft.OperationalInsights/workspaces/tables/record:DeviceVendor<$key_case_sensitive$>] ForAnyOfAnyValues:StringLikeIgnoreCase {'Check Point', 'SonicWall'}
+  )
+ )
+)
+```
+
+For more information on programmatic ways to assign roles with conditions, see [Add or edit ABAC conditions](/azure/role-based-access-control/conditions-role-assignments-rest).
+
+Allow up to 15 minutes for effective permissions to take effect.
 
 ## Build permissive condition
 
@@ -125,7 +123,7 @@ The second custom role uses the *Access to all data, except what isn't allowed* 
 1. Select **Conditions** > **Add condition** > **Add action**.
 1. Choose the **Read workspace data** data action > **Select**.
 
-   **Expression 1**
+**Expression 1**
 1. In the **Build expression** section, select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Table Name* from the **Attribute** dropdown.
@@ -133,14 +131,14 @@ The second custom role uses the *Access to all data, except what isn't allowed* 
 1. Type `SigninLogs` and `DnsEvents` in the **Value** fields.
 1. Ensure the **Or** operator is selected after expression 1. 
 
-   **Expression 2**
+**Expression 2**
 1. Select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Table Name* from the **Attribute** dropdown.
 1. Select *StringEquals* from the **Operator** dropdown.
 1. In the **Value** field, enter `SigninLogs`.
 
-   **Expression 3**
+**Expression 3**
 1. Select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Column value* from the **Attribute** dropdown.
@@ -149,14 +147,14 @@ The second custom role uses the *Access to all data, except what isn't allowed* 
 1. Type `CEO@contoso.com` in the **Value** field.
 1. Select expression **2** and **3** > select **Group** with the **And** radio button selected.
 
-   **Expression 4**
+**Expression 4**
 1. Select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Table Name* from the **Attribute** dropdown.
 1. Select *StringEquals* from the **Operator** dropdown.
 1. In the **Value** field, enter `DnsEvents`.
 
-   **Expression 5** - The limit in the visual editor is five, but more expressions can be added in the code editor.
+**Expression 5** - The limit in the visual editor is five, but more expressions can be added in the code editor.
 1. Select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Column value* from the **Attribute** dropdown.
@@ -164,38 +162,37 @@ The second custom role uses the *Access to all data, except what isn't allowed* 
 1. Select *StringNotEquals* from the **Operator** dropdown.
 1. Type `CEOlaptop` in the **Value** field.
 1. Select expression **4** and **5** > select **Group** with the **And** radio button selected.
-
-   Here's how the permissive condition looks when completed - notice the **Add expression** button is disabled. This behavior is due to the maximum number of expressions reached.
-
-   :::image type="content" source="media/configure-granular-rbac/access-data-except-not-allowed-condition.png" lightbox="media/configure-granular-rbac/access-data-except-not-allowed-condition.png" alt-text="A screenshot showing the permissive  second expression.":::
-
-   Here's how the permissive condition looks in code form:
-   ```
-   (
-    (
-     !(ActionMatches{'Microsoft.OperationalInsights/workspaces/tables/data/read'})
-    )
-    OR 
-    (
-     @Resource[Microsoft.OperationalInsights/workspaces/tables:name] ForAnyOfAllValues:StringNotEquals {'SigninLogs', 'DnsEvents'}
-     OR
-     (
-      @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'SigninLogs'
-      AND
-      @Resource[Microsoft.OperationalInsights/workspaces/tables/record:UserPrincipalName<$key_case_sensitive$>] StringNotEquals 'CEO@contoso.com'
-     )
-     OR
-     (
-      @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'DnsEvents'
-      AND
-      @Resource[Microsoft.OperationalInsights/workspaces/tables/record:Computer<$key_case_sensitive$>] StringNotEquals 'CEOlaptop1'
-     )
-    )
-   )
-
 1. Select **Save**.
 
-   Allow up to 15 minutes for effective permissions to take effect.
+Here's how the permissive condition looks when completed - notice the **Add expression** button is disabled. This behavior is due to the maximum number of expressions reached.
+
+:::image type="content" source="media/configure-granular-rbac/access-data-except-not-allowed-condition.png" lightbox="media/configure-granular-rbac/access-data-except-not-allowed-condition.png" alt-text="A screenshot showing the permissive  second expression.":::
+
+Here's how the permissive condition looks in code form:
+```
+(
+ (
+  !(ActionMatches{'Microsoft.OperationalInsights/workspaces/tables/data/read'})
+ )
+ OR 
+ (
+  @Resource[Microsoft.OperationalInsights/workspaces/tables:name] ForAnyOfAllValues:StringNotEquals {'SigninLogs', 'DnsEvents'}
+  OR
+  (
+   @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'SigninLogs'
+   AND
+   @Resource[Microsoft.OperationalInsights/workspaces/tables/record:UserPrincipalName<$key_case_sensitive$>] StringNotEquals 'CEO@contoso.com'
+  )
+  OR
+  (
+   @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'DnsEvents'
+   AND
+   @Resource[Microsoft.OperationalInsights/workspaces/tables/record:Computer<$key_case_sensitive$>] StringNotEquals 'CEOlaptop1'
+  )
+ )
+)
+```
+Allow up to 15 minutes for effective permissions to take effect.
 
 ## Troubleshoot and monitor
 
