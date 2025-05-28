@@ -24,7 +24,7 @@ Together, these tools ensure the ongoing health and efficiency of web applicatio
 
 To get to the **Failures** view in Application Insights, select either the **Failed requests** graph on the **Overview** pane, or **Failures** under the **Investigate** category in the resource menu.
 
-:::image type="content" source="media/failures-and-performance-views/failures-view-go-to.png" lightbox="media/failures-and-performance-views/failures-view-go-to.png" alt-text="Screenshot showing how to reach the 'Failures' view in Application Insights.":::
+:::image type="content" source="media/failures-performance-transactions/failures-view-go-to.png" lightbox="media/failures-performance-transactions/failures-view-go-to.png" alt-text="Screenshot showing how to reach the 'Failures' view in Application Insights.":::
 
 You can also get to the failures view from the [Application Map](app-map.md) by selecting a resource, then **Investigate failures** from the triage section.
 
@@ -32,7 +32,7 @@ You can also get to the failures view from the [Application Map](app-map.md) by 
 
 To get to the **Performance** view in Application Insights, select either the **Server response time** or **Server requests** graph on the **Overview** pane, or **Performance** under the **Investigate** category in the resource menu.
 
-:::image type="content" source="media/failures-and-performance-views/performance-view-go-to.png" lightbox="media/failures-and-performance-views/performance-view-go-to.png" alt-text="Screenshot showing how to reach the 'Performance' view in Application Insights.":::
+:::image type="content" source="media/failures-performance-transactions/performance-view-go-to.png" lightbox="media/failures-performance-transactions/performance-view-go-to.png" alt-text="Screenshot showing how to reach the 'Performance' view in Application Insights.":::
 
 You can also get to the performance view from the [Application Map](app-map.md) by selecting a resource, then **Investigate performance** from the triage section.
 
@@ -40,9 +40,7 @@ You can also get to the performance view from the [Application Map](app-map.md) 
 
 To get to the **Transaction search** view in Application Insights, select either **Search** from the command bar on the **Overview** pane, or **Transaction search** under the **Investigate** category in the resource menu.
 
-<!-- Add screenshot
-:::image type="content" source="media/failures-and-performance-views/transaction-search-go-to.png" lightbox="media/failures-and-performance-views/transaction-search-go-to.png" alt-text="Screenshot showing how to reach the 'Transaction search' view in Application Insights.":::
--->
+:::image type="content" source="media/failures-performance-transactions/transaction-search-go-to.png" lightbox="media/failures-performance-transactions/transaction-search-go-to.png" alt-text="Screenshot showing how to reach the 'Transaction search' view in Application Insights.":::
 
 ---
 
@@ -52,17 +50,21 @@ To get to the **Transaction search** view in Application Insights, select either
 
 The **Failures** view shows a list of all failed operations collected for your application with the option to drill into each one. It lets you view their frequency and the number of users affected, to help you focus your efforts on the issues with the highest impact.
 
-:::image type="content" source="media/failures-and-performance-views/failures-view.png" lightbox="media/failures-and-performance-views/failures-view.png" alt-text="Screenshot showing the 'Failures' view in Application Insights.":::
+:::image type="content" source="media/failures-performance-transactions/failures-view.png" lightbox="media/failures-performance-transactions/failures-view.png" alt-text="Screenshot showing the 'Failures' view in Application Insights.":::
 
 ### [Performance view](#tab/performance-view)
 
 The **Performance** view shows a list of all operations collected for your application with the option to drill into each one. It lets you view their count and average duration, to help you focus your efforts on the issues with the highest impact.
 
-:::image type="content" source="media/failures-and-performance-views/performance-view.png" lightbox="media/failures-and-performance-views/performance-view.png" alt-text="Screenshot showing the 'Performance' view in Application Insights.":::
+:::image type="content" source="media/failures-performance-transactions/performance-view.png" lightbox="media/failures-performance-transactions/performance-view.png" alt-text="Screenshot showing the 'Performance' view in Application Insights.":::
 
 ### [Transaction search](#tab/transaction-search)
 
-...
+Transaction search is a feature of [Application Insights](./app-insights-overview.md) that you use to find and explore individual telemetry items, such as page views, exceptions, or web requests. You can also view log traces and events that you code.
+
+:::image type="content" source="media/failures-performance-transactions/transaction-search.png" lightbox="media/failures-performance-transactions/transaction-search.png" alt-text="Screenshot showing the 'Transaction search' view in Application Insights.":::
+
+For more complex queries over your data, use [Log Analytics](../logs/log-analytics-tutorial.md).
 
 ---
 
@@ -78,7 +80,7 @@ To investigate the root cause of an error or exception, you can drill into the p
 
 1. Select a sample operation to open the **End-to-end transaction details** view.
 
-	:::image type="content" source="media/failures-and-performance-views/failures-view-drill-into.png" lightbox="media/failures-and-performance-views/failures-view-drill-into.png" alt-text="Screenshot showing the 'Failures' view with the 'Drill into' button highlighted.":::
+	:::image type="content" source="media/failures-performance-transactions/failures-view-drill-into.png" lightbox="media/failures-performance-transactions/failures-view-drill-into.png" alt-text="Screenshot showing the 'Failures' view with the 'Drill into' button highlighted.":::
 
 	> [!NOTE]
 	> The **Suggested** samples have related telemetry from all components, even if sampling was in effect in any of them.
@@ -93,14 +95,81 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 1. Select a sample operation to open the **End-to-end transaction details** view.
 
-	:::image type="content" source="media/failures-and-performance-views/performance-view-drill-into.png" lightbox="media/failures-and-performance-views/performance-view-drill-into.png" alt-text="Screenshot showing the 'Performance' view with the 'Drill into' button highlighted.":::
+	:::image type="content" source="media/failures-performance-transactions/performance-view-drill-into.png" lightbox="media/failures-performance-transactions/performance-view-drill-into.png" alt-text="Screenshot showing the 'Performance' view with the 'Drill into' button highlighted.":::
 
 	> [!NOTE]
 	> The **Suggested** samples have related telemetry from all components, even if sampling was in effect in any of them.
 
 ### [Transaction search](#tab/transaction-search)
 
-...
+### Get started
+
+Go to the **Event types** dropdown menu to see a list of telemetry items such as server requests, page views, and custom events you coded. The top of the **Results** list has a summary chart showing counts of events over time.
+
+Back out of the dropdown menu or select **Refresh** to get new events.
+
+### Inspect individual items
+
+Select any telemetry item to see key fields and related items to open the end-to-end transaction details view.
+
+:::image type="content" source="media/failures-performance-transactions/transaction-search-telemetry-item.png" lightbox="media/failures-performance-transactions/transaction-search-telemetry-item.png" alt-text="Screenshot that shows an individual dependency request.":::
+
+### Filter event types
+
+Open the **Event types** dropdown menu and choose the event types you want to see. If you want to restore the filters later, select **Reset**.
+
+The event types are:
+
+* **Trace**: [Diagnostic logs](./asp-net-trace-logs.md) including TrackTrace, log4Net, NLog, and System.Diagnostic.Trace calls.
+* **Request**: HTTP requests received by your server application including pages, scripts, images, style files, and data. These events are used to create the request and response overview charts.
+* **Page View**: [Telemetry sent by the web client](./javascript.md) used to create page view reports.
+* **Custom Event**: If you inserted calls to `TrackEvent()` to [monitor usage](./api-custom-events-metrics.md), you can search them here.
+* **Exception**: Uncaught [exceptions in the server](./asp-net-exceptions.md), and the exceptions that you log by using `TrackException()`.
+* **Dependency**: [Calls from your server application](./asp-net-dependencies.md) to other services such as REST APIs or databases, and AJAX calls from your [client code](./javascript.md).
+* **Availability**: Results of [availability tests](availability-overview.md)
+
+### Filter on property values
+
+You can filter events on the values of their properties. The available properties depend on the event types you selected. Select **Filter** :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon"::: to start.
+
+Choosing no values of a particular property has the same effect as choosing all values. It switches off filtering on that property.
+
+Notice that the counts to the right of the filter values show how many occurrences there are in the current filtered set.
+
+### Find events with the same property
+
+To find all the items with the same property value, either enter it in the **Search** box or select the checkbox when you look through properties on the **Filter** tab.
+
+:::image type="content" source="media/failures-performance-transactions/transaction-search-filter.png" lightbox="media/failures-performance-transactions/transaction-search-filter.png" alt-text="Screenshot that shows the dropdown list for filters.":::
+
+### Search the data
+
+> [!NOTE]
+> To write more complex queries, open [Logs (Analytics)](../logs/log-analytics-tutorial.md) at the top of the **Search** pane.
+>
+
+You can search for terms in any of the property values. This capability is useful if you write [custom events](./api-custom-events-metrics.md) with property values.
+
+You might want to set a time range because searches over a shorter range are faster.
+
+:::image type="content" source="media/failures-performance-transactions/transaction-search-property.png" lightbox="media/failures-performance-transactions/transaction-search-property.png" alt-text="Screenshot that shows opening a diagnostic search.":::
+
+Search for complete words, not substrings. Use quotation marks to enclose special characters.
+
+| String               | *Not* found                       | Found                                                               |
+|----------------------|-----------------------------------|---------------------------------------------------------------------|
+| HomeController.About | `home`<br/>`controller`<br/>`out` | `homecontroller`<br/>`about`<br/>`"homecontroller.about"`           |
+| United States        | `Uni`<br/>`ted`                   | `united`<br/>`states`<br/>`united AND states`<br/>`"united states"` |
+
+You can use the following search expressions:
+
+| Sample query                           | Effect                                                                              |
+|----------------------------------------|-------------------------------------------------------------------------------------|
+| `apple`                                | Find all events in the time range whose fields include the word `apple`.            |
+| `apple AND banana` <br/>`apple banana` | Find events that contain both words. Use capital `AND`, not `and`. <br/>Short form. |
+| `apple OR banana`                      | Find events that contain either word. Use `OR`, not `or`.                           |
+| `apple NOT banana`                     | Find events that contain one word but not the other.                                |
+
 
 ---
 
@@ -112,13 +181,13 @@ This view has four key parts:
 
 #### [Results list](#tab/results-list)
 
-:::image type="content" source="media/search-and-transaction-diagnostics/transaction-view-results-list.png" lightbox="media/search-and-transaction-diagnostics/transaction-view-results-list.png" alt-text="Screenshot that shows the the transaction view with the results list highlighted.":::
+:::image type="content" source="media/failures-performance-transactions/transaction-view-results-list.png" lightbox="media/failures-performance-transactions/transaction-view-results-list.png" alt-text="Screenshot that shows the the transaction view with the results list highlighted.":::
 
 This collapsible pane shows the other results that meet the filter criteria. Select any result to update the respective details of the preceding three sections. We try to find samples that are most likely to have the details available from all components, even if sampling is in effect in any of them. These samples are shown as suggestions.
 
 #### [Transaction chart](#tab/transaction-chart)
 
-:::image type="content" source="media/search-and-transaction-diagnostics/transaction-view-transaction-chart.png" lightbox="media/search-and-transaction-diagnostics/transaction-view-transaction-chart.png" alt-text="Screenshot that shows the the transaction view with the cross-component transaction chart highlighted.":::
+:::image type="content" source="media/failures-performance-transactions/transaction-view-transaction-chart.png" lightbox="media/failures-performance-transactions/transaction-view-transaction-chart.png" alt-text="Screenshot that shows the the transaction view with the cross-component transaction chart highlighted.":::
 
 This chart provides a timeline with horizontal bars during requests and dependencies across components. Any exceptions that are collected are also marked on the timeline.
 
@@ -132,17 +201,17 @@ This chart provides a timeline with horizontal bars during requests and dependen
 
 #### [Time-sequence list](#tab/time-sequence)
 
-:::image type="content" source="media/search-and-transaction-diagnostics/transaction-view-time-sequence-collapsed.png" lightbox="media/search-and-transaction-diagnostics/transaction-view-time-sequence-collapsed.png" alt-text="Screenshot that shows the the transaction view with the collapsed time sequence section highlighted.":::
+:::image type="content" source="media/failures-performance-transactions/transaction-view-time-sequence-collapsed.png" lightbox="media/failures-performance-transactions/transaction-view-time-sequence-collapsed.png" alt-text="Screenshot that shows the the transaction view with the collapsed time sequence section highlighted.":::
 
 This section shows a flat list view in a time sequence of all the telemetry related to this transaction. It also shows the custom events and traces that aren't displayed in the transaction chart. You can filter this list to telemetry generated by a specific component or call. You can select any telemetry item in this list to see corresponding [details on the side](/azure/azure-monitor/app/failures--performance-transactions?tabs=details#transaction-diagnostics-experience).
 
 **Expanded:**
 
-:::image type="content" source="media/search-and-transaction-diagnostics/transaction-view-time-sequence-expanded.png" lightbox="media/search-and-transaction-diagnostics/transaction-view-time-sequence-expanded.png" alt-text="Screenshot that shows the the transaction view with the expanded time sequence section highlighted.":::
+:::image type="content" source="media/failures-performance-transactions/transaction-view-time-sequence-expanded.png" lightbox="media/failures-performance-transactions/transaction-view-time-sequence-expanded.png" alt-text="Screenshot that shows the the transaction view with the expanded time sequence section highlighted.":::
 
 #### [Details](#tab/details)
 
-:::image type="content" source="media/search-and-transaction-diagnostics/transaction-view-details.png" lightbox="media/search-and-transaction-diagnostics/transaction-view-details.png" alt-text="Screenshot that shows the the transaction view with the details section highlighted.":::
+:::image type="content" source="media/failures-performance-transactions/transaction-view-details.png" lightbox="media/failures-performance-transactions/transaction-view-details.png" alt-text="Screenshot that shows the the transaction view with the details section highlighted.":::
 
 This collapsible pane shows the detail of any selected item from the transaction chart or the list. **Show all** lists all the standard attributes that are collected. Any custom attributes are listed separately under the standard set. Select the ellipsis button (...) under the **Call Stack** trace window to get an option to copy the trace. **Open profiler traces** and **Open debug snapshot** show code-level diagnostics in corresponding detail panes.
 
@@ -158,11 +227,11 @@ The [.NET Profiler](../insights/code-optimizations-profiler-overview.md#enabling
 
 1. To start .NET Profiler, select an operation on the **Performance** view, then go to **Profiler traces**.
 
-    :::image type="content" source="media/failures-and-performance-views/performance-view-profiler.png" lightbox="media/failures-and-performance-views/performance-view-profiler.png" alt-text="Screenshot of the 'Performance' view with the 'Profiler traces' button highlighted.":::
+    :::image type="content" source="media/failures-performance-transactions/performance-view-profiler.png" lightbox="media/failures-performance-transactions/performance-view-profiler.png" alt-text="Screenshot of the 'Performance' view with the 'Profiler traces' button highlighted.":::
 
     Alternatively, you can do so on the [end-to-end transaction details](#end-to-end-transaction-details)  view.
 
-    :::image type="content" source="media/failures-and-performance-views/transaction-view-profiler.png" lightbox="media/failures-and-performance-views/transaction-view-profiler.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Profiler traces' button highlighted.":::
+    :::image type="content" source="media/failures-performance-transactions/transaction-view-profiler.png" lightbox="media/failures-performance-transactions/transaction-view-profiler.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Profiler traces' button highlighted.":::
 
 1. The trace shows the individual events for each operation so that you can diagnose the root cause for the duration of the overall operation. Select one of the top examples that has the longest duration.
 
@@ -170,7 +239,7 @@ The [.NET Profiler](../insights/code-optimizations-profiler-overview.md#enabling
 
 1. For further analysis, select **Download Trace** to download the trace. You can view this data by using [PerfView](https://github.com/Microsoft/perfview#perfview-overview).
 
-    :::image type="content" source="media/failures-and-performance-views/profiler-traces.png" lightbox="media/failures-and-performance-views/profiler-traces.png" alt-text="Screenshot showing .NET Profiler.":::
+    :::image type="content" source="media/failures-performance-transactions/profiler-traces.png" lightbox="media/failures-performance-transactions/profiler-traces.png" alt-text="Screenshot showing .NET Profiler.":::
 
     > [!NOTE]
     > **Hot path** is selected by default. It highlights the specific path of events that contribute to the issue you're investigating, indicated by the flame icon next the event name.
@@ -183,13 +252,13 @@ To see code-level debug information of an exception:
 
 1. Select the exception in the Gantt chart, then **Open debug snapshot**.
 
-    :::image type="content" source="media/failures-and-performance-views/transaction-view-open-debugger.png" lightbox="media/failures-and-performance-views/transaction-view-open-debugger.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Open debug snapshot' button highlighted.":::
+    :::image type="content" source="media/failures-performance-transactions/transaction-view-open-debugger.png" lightbox="media/failures-performance-transactions/transaction-view-open-debugger.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Open debug snapshot' button highlighted.":::
 
 1. [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) shows the call stack and allows you to inspect variables at each call stack frame. By selecting a method, you can view the values of all local variables at the time of the request.
 
 1. Afterwards, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
 
-    :::image type="content" source="media/failures-and-performance-views/debug-snapshot.png" lightbox="media/failures-and-performance-views/debug-snapshot.png" alt-text="Screenshot showing Snapshot Debugger with the 'Download Snapshot' button highlighted.":::
+    :::image type="content" source="media/failures-performance-transactions/debug-snapshot.png" lightbox="media/failures-performance-transactions/debug-snapshot.png" alt-text="Screenshot showing Snapshot Debugger with the 'Download Snapshot' button highlighted.":::
 
 If you can't get Snapshot Debugger working, contact [snapshothelp@microsoft.com](mailto:snapshothelp@microsoft.com).
 
@@ -199,7 +268,7 @@ If you connect Application Insights to a tracking system such as Azure DevOps or
 
 1. Select **Create work item** and create a new template or pick an existing one.
 
-    :::image type="content" source="media/failures-and-performance-views/transaction-view-create-work-item.png" lightbox="media/failures-and-performance-views/transaction-view-create-work-item.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Create work item' button highlighted.":::
+    :::image type="content" source="media/failures-performance-transactions/transaction-view-create-work-item.png" lightbox="media/failures-performance-transactions/transaction-view-create-work-item.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Create work item' button highlighted.":::
 
 1. The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
 
@@ -212,11 +281,11 @@ All data collected by Application Insights is stored in [Log Analytics](../logs/
 
 1. On either the performance or failures view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
 
-    :::image type="content" source="media/failures-and-performance-views/logs-view-go-to.png" lightbox="media/failures-and-performance-views/logs-view-go-to.png" alt-text="Screenshot of the top action bar with the 'View in logs' button highlighted.":::
+    :::image type="content" source="media/failures-performance-transactions/logs-view-go-to.png" lightbox="media/failures-performance-transactions/logs-view-go-to.png" alt-text="Screenshot of the top action bar with the 'View in logs' button highlighted.":::
 
 1. This takes you to the **Logs** view, where you can further modify the query or select a different one from the sidebar.
 
-    :::image type="content" source="media/failures-and-performance-views/logs-view.png" lightbox="media/failures-and-performance-views/logs-view.png" alt-text="Screenshot showing the 'Logs' view.":::
+    :::image type="content" source="media/failures-performance-transactions/logs-view.png" lightbox="media/failures-performance-transactions/logs-view.png" alt-text="Screenshot showing the 'Logs' view.":::
 
 ## Analyze client-side performance and failures
 
@@ -224,13 +293,13 @@ If you instrument your web pages with Application Insights, you can gain visibil
 
 1. After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle on the **Performance** or **Failures** view.
 
-    :::image type="content" source="media/failures-and-performance-views/server-browser-toggle.png" lightbox="media/failures-and-performance-views/server-browser-toggle.png" alt-text="Screenshot highlighting the 'Server / Browser' toggle below the top action bar.":::
+    :::image type="content" source="media/failures-performance-transactions/server-browser-toggle.png" lightbox="media/failures-performance-transactions/server-browser-toggle.png" alt-text="Screenshot highlighting the 'Server / Browser' toggle below the top action bar.":::
 
     This view provides a visual summary of various telemetries of your application from the perspective of the browser.
 
 1. For browser operations, the [end-to-end transaction details](#end-to-end-transaction-details) view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can assist in determining whether there are performance issues related to particular types of clients.
 
-    :::image type="content" source="media/failures-and-performance-views/transaction-view-page-view-properties.png" lightbox="media/failures-and-performance-views/transaction-view-page-view-properties.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Page View Properties' section highlighted.":::
+    :::image type="content" source="media/failures-performance-transactions/transaction-view-page-view-properties.png" lightbox="media/failures-performance-transactions/transaction-view-page-view-properties.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Page View Properties' section highlighted.":::
 
 > [!NOTE]
 > Like the data collected for server performance, Application Insights makes all client data available for deep analysis by using logs.
