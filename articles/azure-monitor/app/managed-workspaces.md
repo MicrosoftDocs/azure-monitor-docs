@@ -79,6 +79,89 @@ Some classic Application Insights resources can't be migrated until you take oth
 
 To prevent service interruptions, resolve these issues and [manually migrate classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
+## AMPLS considerations
+
+If your Application Insights resource uses Azure Monitor Private Link Scope (AMPLS), review this guidance to avoid data access issues after migration to Log Analytics workspaces.
+
+### What changes during migration
+
+Classic Application Insights resources support Public Network Access (PNA) settings for both ingestion and query. Some AMPLS users disable public query to restrict telemetry access to private networks only.
+
+The migration process transfers the PNA settings from the classic Application Insights resource to the new Log Analytics workspace. The process does not automatically add the workspace to AMPLS. This ensures that only the resource owner controls the scope of private access.
+
+If public network access is disabled for queries and the workspace is not associated with AMPLS, telemetry queries from a private network fail after migration. To restore access, the resource owner must either add the workspace to AMPLS or enable PNA for queries.
+
+Telemetry ingestion is not affected by either PNA settings or AMPLS scope. The ingestion pipeline between the Application Insights ingestion endpoint and the Log Analytics workspace stays active through Microsoft’s internal network. Migration does not interrupt data collection.
+
+### Common configurations
+
+#### Before migration (working state)
+
+- Application Insights is part of AMPLS.
+- PNA (Query): disabled
+- PNA (Ingestion): disabled
+- Queries and ingestion work from the private network.
+
+#### After migration (problematic state)
+
+- The Log Analytics workspace keeps the same PNA settings.
+- The workspace is not associated with AMPLS.
+- Queries from the private network fail. The workspace blocks access because it doesn't trust the network.
+
+#### After manual update (working state)
+
+- The workspace is added to AMPLS.
+- Private query access is restored.
+- Queries and ingestion work from the private network.
+
+### Required actions
+
+If you're using AMPLS, take the following steps:
+
+- **Add the Log Analytics workspace to your AMPLS** to maintain private query access.
+- **Alternatively, enable PNA for queries** if private access isn't required.
+- **Validate telemetry query access** from your virtual network after migration.
+
+### How to add a workspace to AMPLS
+
+1. Navigate to your Azure Monitor Private Link Scope.
+2. Select your AMPLS resource.
+3. Open **Resource associations**.
+4. Select **Add**.
+5. Choose the Log Analytics workspace created during migration.
+6. Save the configuration.
+
+> [!TIP]
+> To identify the new workspace, open your Application Insights resource in the Azure portal and review the value under **Workspace**.
+
+## Migration blocked due to policy restrictions
+
+Some Application Insights resources can't be migrated automatically due to Azure policy restrictions in the subscription. These restrictions prevent the migration process from creating the necessary Log Analytics workspace or resource group.
+
+Common policy restrictions include:
+
+- Requiring specific naming conventions
+- Enforcing required tags on resources or resource groups
+- Restricting allowed regions for resource deployment
+- Blocking the creation of new resource groups
+
+These policies are defined and enforced at the management group, subscription, or resource group level. The migration process respects these policies and does not override them. If a policy blocks migration, the process stops and does not attempt migration again for that resource.
+
+### Required actions
+
+To complete the migration:
+
+- [**Manually migrate each Application Insights resource**](#migrate-your-resource) that was not migrated automatically.
+- **Use a Log Analytics workspace that complies with your organization's policy requirements**, including resource group, tags, location, and naming standards.
+
+### What to expect
+
+- Microsoft will not retry automatic migration for these resources.
+- Telemetry ingestion continues for now, but Microsoft will stop accepting data for classic resources on a future enforcement date.
+- After ingestion stops, existing data remains available for query, but no new telemetry is collected.
+
+If you need help updating your Azure policies, contact your organization's policy administrator.
+
 ## Next steps
 
 - To review frequently asked questions (FAQ), see [Managed workspaces FAQ](application-insights-faq.yml#managed-workspaces)
