@@ -8398,6 +8398,16 @@
    "source_path": "articles/azure-monitor/reference/tables/synapserbacevents.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/failures-and-performance-views.md",
+   "redirect_url": "/azure/azure-monitor/app/failures-performance-transactions",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/transaction-search-and-diagnostics.md",
+   "redirect_url": "/azure/azure-monitor/app/failures-performance-transactions",
+   "redirect_document_id": false
   }
  ]
 }
