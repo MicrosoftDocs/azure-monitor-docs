@@ -30,7 +30,7 @@ Managed workspaces have the following limitations:
 
 - Support only the Application Insights resource that created them. A managed workspace can't be used for diagnostic settings, custom logs, or another Application Insights instance.
 - Changes to workspace settings, such as quotas, are allowed, but the workspace can't be repurposed for other uses.
-- Tags cannot be added to a managed workspace.
+- Tags can't be added to a managed workspace.
 - Deletion of the connected Application Insights resource is required to remove managed workspaces. To keep the Application Insights resource, connect it to a different workspace and then delete the managed workspaces.
 
 ## Identify managed workspaces
@@ -48,8 +48,8 @@ You can identify the managing resource by checking the **Managed By** property i
 
 ## Removing managed workspaces
 
-Removing a managed workspace requires that it is not longer connected to any other resources or resource groups.  If you want to delete a manage workspace, you must do the following:
-1. **Remove the connected workspace-based Application Insights resource**: This can be done by connecting the Application Insights resource to a different Log Analytics workspace or deleting the Application Insights resource.
+Removing a managed workspace requires that it isn't longer connected to any other resources or resource groups. If you want to delete a manage workspace, you must complete the following steps:
+1. **Remove the connected workspace-based Application Insights resource**: This step can be done by connecting the Application Insights resource to a different Log Analytics workspace or deleting the Application Insights resource.
 1. **Delete the resource group**
 
 Once both actions are completed, the managed workspace can be deleted.
@@ -60,22 +60,24 @@ Beginning in April 2025, classic Application Insights resources are automaticall
 
 - The classic Application Insights resource is converted to a workspace-based resource.
 - A managed Log Analytics workspace is created and linked to the migrated resource.
-- The workspace is placed in a new resource group. This new group doesn't inherit access permissions from the Application Insights resource group. However, users with appropriate permissions can still query telemetry data through the Application Insights resource, due to resource-centric access control.
+- The workspace is placed in a new resource group. The new group doesn't inherit access permissions from the Application Insights resource group. However, users with appropriate permissions can still query telemetry data through the Application Insights resource, due to resource-centric access control.
 
 > [!IMPORTANT]  
-> Each migrated classic resource receives its own managed workspace and resource group.  Due to an Azure limit on the number of resource groups allowed in a subscription, the auto-migration process may cause your subscription to reach or come close to that limit and prevent additional resource groups from being created. To prevent this scenario, [migrate your classic resources manually](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
+> Each migrated classic Application Insights resource gets its own managed workspace and resource group. Azure sets a limit on the number of resource groups allowed in a subscription. Automatic migration can use up this limit and block the creation of new resource groups. To avoid hitting this limit, manually migrate your classic Application Insights resources by following the steps at [Convert classic Application Insights resources](https://learn.microsoft.com/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
 ### Limitations of automatic migration
 
 > [!WARNING]
 > Classic Application Insights resources that aren't migrated by April 24, 2025, will be disabled, and can't ingest new data. To reenable a resource, convert it to a workspace-based Application Insights resource.
 
-Some classic Application Insights resources can't be migrated until you take other actions. Examples scenarios that will affect your ability to migrate include but are not limited to:
+Some classic Application Insights resources can't be migrated until you take extra steps. Migration is blocked in the following scenarios:
 
-- Using Unicode or non-UTF-8 characters in the Application Insights resource name or resource group name.
-- Restricting Log Analytics workspace creation in the subscription.
+- Using Unicode or non-UTF-8 characters in the resource name or resource group name.
+- Blocking Log Analytics workspace creation in the subscription.
 - Enforcing policies that prevent new resource creation in the subscription.
-- If your subscription has a high number of resource groups and/or classic Application Insights resources, there might not be enough remaining resource group quota to fully migrate your subscription. Azure subscriptions are [limited to 980 total resource groups](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-subscription-limits). 
+- Approaching the resource group limit in the subscription. Each migrated resource gets its own workspace and resource group. If your subscription already has many resource groups or classic Application Insights resources, you might not have enough remaining quota. Azure subscriptions support up to [980 total resource groups](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-subscription-limits).
+
+To complete the migration, update your subscription or resource configuration to remove the blockers mentioned earlier.
 
 To prevent service interruptions, resolve these issues and [manually migrate classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
@@ -85,13 +87,13 @@ If your Application Insights resource uses Azure Monitor Private Link Scope (AMP
 
 ### What changes during migration
 
-Classic Application Insights resources support Public Network Access (PNA) settings for both ingestion and query. Some AMPLS users disable public query to restrict telemetry access to private networks only.
+Classic Application Insights resources support Public Network Access (PNA) settings for both ingestion and query. Some AMPLS users disable public query to limit telemetry access to private networks.
 
-The migration process transfers the PNA settings from the classic Application Insights resource to the new Log Analytics workspace. The process does not automatically add the workspace to AMPLS. This ensures that only the resource owner controls the scope of private access.
+During migration, the process copies the PNA settings from the classic resource to the new Log Analytics workspace. It doesn’t add the workspace to AMPLS. This design gives the resource owner full control over private network access.
 
-If public network access is disabled for queries and the workspace is not associated with AMPLS, telemetry queries from a private network fail after migration. To restore access, the resource owner must either add the workspace to AMPLS or enable PNA for queries.
+If public query access is disabled and the workspace isn't associated with AMPLS, telemetry queries from a private network fail after migration. To restore access, either add the workspace to AMPLS or enable public query access.
 
-Telemetry ingestion is not affected by either PNA settings or AMPLS scope. The ingestion pipeline between the Application Insights ingestion endpoint and the Log Analytics workspace stays active through Microsoft’s internal network. Migration does not interrupt data collection.
+Telemetry ingestion continues regardless of PNA settings or AMPLS scope. The ingestion path from the Application Insights endpoint to the Log Analytics workspace uses Microsoft’s internal network. Migration doesn’t interrupt data collection.
 
 ### Common configurations
 
@@ -105,7 +107,7 @@ Telemetry ingestion is not affected by either PNA settings or AMPLS scope. The i
 #### After migration (problematic state)
 
 - The Log Analytics workspace keeps the same PNA settings.
-- The workspace is not associated with AMPLS.
+- The workspace isn't associated with AMPLS.
 - Queries from the private network fail. The workspace blocks access because it doesn't trust the network.
 
 #### After manual update (working state)
@@ -145,29 +147,28 @@ Common policy restrictions include:
 - Restricting allowed regions for resource deployment
 - Blocking the creation of new resource groups
 
-These policies are defined and enforced at the management group, subscription, or resource group level. The migration process respects these policies and does not override them. If a policy blocks migration, the process stops and does not attempt migration again for that resource.
+These policies are defined and enforced at the management group, subscription, or resource group level. The migration process respects these policies and doesn't override them. If a policy blocks migration, the process stops and doesn't attempt migration again for that resource.
 
 ### Required actions
 
 To complete the migration:
 
-- [**Manually migrate each Application Insights resource**](#migrate-your-resource) that was not migrated automatically.
+- [**Manually migrate each Application Insights resource**](#migrate-your-resource) that wasn't migrated automatically.
 - **Use a Log Analytics workspace that complies with your organization's policy requirements**, including resource group, tags, location, and naming standards.
 
 ### What to expect
 
-- Microsoft will not retry automatic migration for these resources.
-- Telemetry ingestion continues for now, but Microsoft will stop accepting data for classic resources on a future enforcement date.
-- After ingestion stops, existing data remains available for query, but no new telemetry is collected.
+- Microsoft doesn't retry automatic migration for resources blocked by policy.
+- Microsoft continues telemetry ingestion until it retires classic resources.
+- Microsoft keeps existing data available for query after ingestion stops but doesn't collect new telemetry.
 
-If you need help updating your Azure policies, contact your organization's policy administrator.
+If you need help with updating Azure policies, contact your organization's policy administrator.
 
 ## Next steps
 
-- To review frequently asked questions (FAQ), see [Managed workspaces FAQ](application-insights-faq.yml#managed-workspaces)
-- [Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)
-- [Create and configure Application Insights resources](./create-workspace-resource.md)
-- [Manage connection strings in Application Insights](./connection-strings.md)
-- [Understand data collection basics](./opentelemetry-overview.md)
-- [Explore the Application Insights overview](./app-insights-overview.md)
-
+- Review common questions in the [Managed workspaces FAQ](application-insights-faq.yml#managed-workspaces).
+- [Migrate classic resources to workspace-based Application Insights](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
+- [Create and configure Application Insights resources](./create-workspace-resource.md).
+- [Manage connection strings in Application Insights](./connection-strings.md).
+- [Learn how data collection works](./opentelemetry-overview.md).
+- [Read the Application Insights overview](./app-insights-overview.md).
