@@ -63,7 +63,7 @@ Beginning in April 2025, classic Application Insights resources are automaticall
 - The workspace is placed in a new resource group. The new group doesn't inherit access permissions from the Application Insights resource group. However, users with appropriate permissions can still query telemetry data through the Application Insights resource, due to resource-centric access control.
 
 > [!IMPORTANT]  
-> Each migrated classic Application Insights resource gets its own managed workspace and resource group. Azure sets a limit on the number of resource groups allowed in a subscription. Automatic migration can use up this limit and block the creation of new resource groups. To avoid hitting this limit, manually migrate your classic Application Insights resources by following the steps at [Convert classic Application Insights resources](https://learn.microsoft.com/previous-versions/azure/azure-monitor/app/convert-classic-resource).
+> Each migrated classic Application Insights resource gets its own managed workspace and resource group. Azure sets a limit on the number of resource groups allowed in a subscription. Automatic migration can use up this limit and block the creation of new resource groups. To avoid hitting this limit, manually migrate your classic Application Insights resources by following the steps at [Convert classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
 ### Limitations of automatic migration
 
@@ -153,7 +153,7 @@ These policies are defined and enforced at the management group, subscription, o
 
 To complete the migration:
 
-- [**Manually migrate each Application Insights resource**](#migrate-your-resource) that wasn't migrated automatically.
+- [**Manually migrate each Application Insights resource**](/previous-versions/azure/azure-monitor/app/convert-classic-resource) that wasn't migrated automatically.
 - **Use a Log Analytics workspace that complies with your organization's policy requirements**, including resource group, tags, location, and naming standards.
 
 ### What to expect
