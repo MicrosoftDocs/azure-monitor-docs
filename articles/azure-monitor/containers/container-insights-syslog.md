@@ -10,13 +10,14 @@ ms.reviewer: damendo
 
 Container Insights offers the ability to collect Syslog events from Linux nodes in your [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) clusters. This includes the ability to collect logs from control plane components like kubelet. Customers can also use Syslog for monitoring security and health events, typically by ingesting syslog into a SIEM system like [Microsoft Sentinel](https://azure.microsoft.com/products/microsoft-sentinel/#overview).  
 
+
+
 ## Prerequisites 
 
 - Syslog collection needs to be enabled for your cluster using the guidance in [Configure and filter log collection in Container insights](./container-insights-data-collection-configure.md#configure-data-collection-using-dcr).
 - Port 28330 should be available on the host node.
-
-
 - Ensure hostPort functionality is enabled in the cluster. For example, Cilium Enterprise does not have hostPort functionality enabled by default and prevents the syslog feature from working.
+- Target cluster should be an [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) cluster. Arc and other cluster types are not supported
 
 ## Built-in workbooks
 
