@@ -10,7 +10,7 @@ ms.custom: subject-resourcegraph-sample, devx-track-azurepowershell, devx-track-
 
 This page is a collection of [Azure Resource Graph](/azure/governance/resource-graph/overview) sample queries for Azure Service Health.
 >[!NOTE]
->After each query you should see the updated results within 5 minutes in general.
+>After each query, you should see the updated results within 5 minutes in general.
 
 ## Overview
 This page helps you monitor and understand the health of your Azure services and resources using Kusto Query Language (KQL) through Azure Resource Graph. 
