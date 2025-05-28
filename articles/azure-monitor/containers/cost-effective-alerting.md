@@ -16,12 +16,12 @@ This article describes multiple strategies for alerting on AKS workloads being m
 
 The following table summarizes the strategies discussed in this article, including when to use them and which tables they're most applicable to:
 
-| Strategy | When to use | Applicable tables |
-|:---|:---|:---|
-| [Managed Prometheus alerts](#managed-prometheus-alerts) | When metrics are available, especially for pod, node, or container status. Metrics should be your first choice for alerting whenever possible. Only use log alerts when metrics aren't available.  |Replace alerts from the following tables:<br> [Perf](/azure/azure-monitor/reference/tables/perf)<br>[InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)<br>[KubePodInventory](/azure/azure-monitor/reference/tables/KubePodInventory)<br>[KubeNodeInventory](/azure/azure-monitor/reference/tables/KubeNodeInventory)<br>[ContainerInventory](/azure/azure-monitor/reference/tables/ContainerInventory) |
-| [Simple log search alert rules (preview)](#simple-log-search-alert-rules-preview) | When you need to monitor specific messages or patterns that aren't available with metrics. These are quick, per-occurrence log-based alerts with low complexity, such as alerting on unauthorized access errors or agent errors. | [Syslog](/azure/azure-monitor/reference/tables/syslog)<br>[AKSAudit](/azure/azure-monitor/reference/tables/aksaudit)<br>[AKSAuditAdmin](/azure/azure-monitor/reference/tables/aksauditadmin)<br>[AKSControlPlane](/azure/azure-monitor/reference/tables/akscontrolplane)<br>[ContainerLog](/azure/azure-monitor/reference/tables/containerlog)<br>[ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2) |
-| [Summary rules](#summary-rules) | When you need to perform aggregations over time, such as counting error events or grouping by dimensions like container ID. Use summary rules when simple alerts aren't sufficient for your requirements. This may be alerting on specific patterns, on rates such as number of failures per minute, or on trend direction of a particular measure. | [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)<br>[KubeHealth](/azure/azure-monitor/reference/tables/KubeHealth) |
-| [Analytics tier with transformations](#analytics-tier-with-transformations) | When you need near-real time alerting on critical log data, and other strategies aren't responsive or granular enough.  | [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)<br>[KubeHealth](/azure/azure-monitor/reference/tables/KubeHealth) |
+| Strategy | When to use | 
+|:---|:---|
+| [Managed Prometheus alerts](#managed-prometheus-alerts) | When metrics are available, especially for pod, node, or container status. Metrics should be your first choice for alerting whenever possible. These alerts are real-time, scalable, and cost-effective. Only use log alerts when metrics aren't available.  |
+| [Simple log search alert rules (preview)](#simple-log-search-alert-rules-preview) | When you need to monitor specific messages or patterns that aren't available with metrics. These are quick, per-occurrence log-based alerts with low complexity, such as alerting on unauthorized access errors or agent errors. They're most effective when log content carries clear critical context for a failure. | 
+| [Summary rules](#summary-rules) | When you need to perform aggregations over time, such as counting error events or grouping by dimensions like container ID. Use summary rules when simple alerts aren't sufficient for your requirements. This may be alerting on specific patterns, on rates such as number of failures per minute, or on trend direction of a particular measure. | 
+| [Analytics tier with transformations](#analytics-tier-with-transformations) | When you need near-real time alerting on critical log data, and other strategies aren't responsive or granular enough.  |
 
 
 ## Managed Prometheus alerts
@@ -32,6 +32,13 @@ Whenever possible, you should prioritize alerting on metrics rather than logs, a
 
 Start by enabling [recommended alert rules](./kubernetes-metric-alerts.md#enable-recommended-alert-rules). This includes platform metric alerts such as firing when CPU of a node exceeds a threshold. You can also enable different levels of Prometheus alerts for a variety of scenarios. In addition to the built-in alert rules, [create your own custom alert rules](../alerts/prometheus-alerts.md) using Prometheus metrics.
 
+Managed Prometheus alerts can commonly be used to replace alerts from the following tables:
+
+- [Perf](/azure/azure-monitor/reference/tables/perf)
+- [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)
+- [KubePodInventory](/azure/azure-monitor/reference/tables/KubePodInventory)
+- [KubeNodeInventory](/azure/azure-monitor/reference/tables/KubeNodeInventory)
+- [ContainerInventory](/azure/azure-monitor/reference/tables/ContainerInventory)
 
 ## Simple log search alert rules (preview)
 
@@ -43,6 +50,14 @@ For example, you may set a rule to fire on every occurrence of a specific error 
 
 In addition to firing on every occurrence of a message, you can also set a threshold for the number of occurrences within a specified time window. For example, you may have a message indicating a failed login and want to be alerted when the number of failed login attempts in their application in a minute exceeds a threshold. Once identified, you can use a log query on the table itself to identify the failed login attempts
 
+Simple log search alerts are commonly used for alerting from the following tables:
+
+- [Syslog](/azure/azure-monitor/reference/tables/syslog)
+- [AKSAudit](/azure/azure-monitor/reference/tables/aksaudit)
+- [AKSAuditAdmin](/azure/azure-monitor/reference/tables/aksauditadmin)
+- [AKSControlPlane](/azure/azure-monitor/reference/tables/akscontrolplane)
+- [ContainerLog](/azure/azure-monitor/reference/tables/containerlog)
+- [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)
 
 ## Summary rules
 [Summary rules](../logs/summary-rules.md) are scheduled queries that run at defined intervals to perform aggregations or transformations and store the results in a custom Analytics-tier tables. This allows you to ingest your container logs into a Basic Logs table and then perform advanced analysis and alerting on an aggregated version of the data. 
@@ -65,6 +80,11 @@ Create log query alerts with a window greater than the bin size on the new Analy
 > [!NOTE]
 > Summary rules currently support a minimum bin size of 20 minutes. If you need alerting with lower latency, consider using Analytics tier with transformations as described below. 
 
+Alerts from summary rules are commonly used for alerting from the following tables:
+
+- [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)
+- [KubeEvents](/azure/azure-monitor/reference/tables/kubevents) |
+
 ## Analytics tier with transformations
 
 Summary rules may not be responsive enough if you need near-real time alerting on container logs. In operationally sensitive scenarios where near real-time log alerting is required, use a [transformation](../data-collection/data-collection-transformations-create.md) to route high-value logs (such as error and critical events) to an Analytics Logs table while sending other logs to a Basic Logs or Auxiliary Logs table. Using this strategy, you can perform advanced alerting on the table in the Analytics tier while routing other data to a lower cost tier for cost-effective storage and occasional analysis.
@@ -72,6 +92,11 @@ Summary rules may not be responsive enough if you need near-real time alerting o
 Detailed configuration for this transformation is provided in [Data transformations in Container insights](./container-insights-transformations.md#send-data-to-different-tables).
 
 :::image type="content" source="media/cost-effective-alerts/transformation.png" lightbox="media/cost-effective-alerts/transformation.png" alt-text="Diagram that shows a transformation that sends some data to analytics table and other data to basic logs." border="false":::
+
+This strategy is commonly used for alerting from the following tables:
+
+- [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)
+- [KubeHealth](/azure/azure-monitor/reference/tables/kubehealth) |
 
 ## Next steps
 
