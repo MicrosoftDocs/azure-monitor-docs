@@ -83,7 +83,7 @@ Create log query alerts with a window greater than the bin size on the new Analy
 Alerts from summary rules are commonly used for alerting from the following tables:
 
 - [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)
-- [KubeEvents](/azure/azure-monitor/reference/tables/kubeevents) |
+- [KubeEvents](/azure/azure-monitor/reference/tables/kubeevents)
 
 ## Analytics tier with transformations
 
@@ -96,7 +96,7 @@ Detailed configuration for this transformation is provided in [Data transformati
 This strategy is commonly used for alerting from the following tables:
 
 - [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)
-- [KubeHealth](/azure/azure-monitor/reference/tables/kubehealth) |
+- [KubeHealth](/azure/azure-monitor/reference/tables/kubehealth)
 
 ## Next steps
 
