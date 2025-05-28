@@ -2,7 +2,7 @@
 title: Plan your Azure Monitor implementation
 description: Guidance and recommendations for planning and design before deploying Azure Monitor.
 ms.topic: conceptual
-ms.date: 02/11/2024
+ms.date: 05/21/2025
 ms.reviewer: bwren
 ---
 

@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 09/17/2021
+ms.date: 05/21/2025
 ---
 
 Azure Monitor stores log data in a Log Analytics workspace. If you already created a workspace in your subscription, you can use that one. You can also choose to use the default workspace in each Azure subscription.

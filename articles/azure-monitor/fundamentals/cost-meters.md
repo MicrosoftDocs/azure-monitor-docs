@@ -3,7 +3,7 @@ title: Azure Monitor billing meter names
 description: Reference of Azure Monitor billing meter names.
 ms.topic: reference
 ms.reviewer: Dale.Koetke
-ms.date: 09/20/2023
+ms.date: 05/21/2025
 ---
 
 # Azure Monitor billing meter names

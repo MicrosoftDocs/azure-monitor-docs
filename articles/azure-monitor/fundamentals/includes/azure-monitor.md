@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 08/04/2022
+ms.date: 05/21/2025
 ---
 
 ### View recent Azure Monitor alerts

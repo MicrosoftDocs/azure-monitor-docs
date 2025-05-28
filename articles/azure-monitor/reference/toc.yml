@@ -1582,8 +1582,6 @@ items:
             href: tables/aaddomainservicespolicychange.md
           - name: AADDomainServicesPrivilegeUse
             href: tables/aaddomainservicesprivilegeuse.md
-          - name: AADFirstPartyToFirstPartySignInLogs
-            href: tables/aadfirstpartytofirstpartysigninlogs.md
           - name: AADGraphActivityLogs
             href: tables/aadgraphactivitylogs.md
           - name: AADManagedIdentitySignInLogs
@@ -1630,6 +1628,8 @@ items:
             href: tables/acscallautomationincomingoperations.md
           - name: ACSCallAutomationMediaSummary
             href: tables/acscallautomationmediasummary.md
+          - name: ACSCallAutomationStreamingUsage
+            href: tables/acscallautomationstreamingusage.md
           - name: ACSCallClientMediaStatsTimeSeries
             href: tables/acscallclientmediastatstimeseries.md
           - name: ACSCallClientOperations
@@ -1864,6 +1864,10 @@ items:
             href: tables/awscloudwatch.md
           - name: AWSGuardDuty
             href: tables/awsguardduty.md
+          - name: AWSRoute53Resolver
+            href: tables/awsroute53resolver.md
+          - name: AWSSecurityHubFindings
+            href: tables/awssecurityhubfindings.md
           - name: AWSVPCFlow
             href: tables/awsvpcflow.md
           - name: AWSWAF
@@ -1918,8 +1922,6 @@ items:
             href: tables/azmsruntimeauditlogs.md
           - name: AZMSVnetConnectionEvents
             href: tables/azmsvnetconnectionevents.md
-          - name: AcsCallAutomationStreamingUsage
-            href: tables/acscallautomationstreamingusage.md
           - name: AddonAzureBackupAlerts
             href: tables/addonazurebackupalerts.md
           - name: AddonAzureBackupJobs
@@ -2634,6 +2636,10 @@ items:
             href: tables/mdcdetectionfimevents.md
           - name: MDCDetectionGatingValidationEvents
             href: tables/mdcdetectiongatingvalidationevents.md
+          - name: MDCDetectionK8SApiEvents
+            href: tables/mdcdetectionk8sapievents.md
+          - name: MDCDetectionProcessV2Events
+            href: tables/mdcdetectionprocessv2events.md
           - name: MDCFileIntegrityMonitoringEvents
             href: tables/mdcfileintegritymonitoringevents.md
           - name: MDECustomCollectionDeviceFileEvents
@@ -2656,16 +2662,14 @@ items:
             href: tables/microsoftdatasharesentsnapshotlog.md
           - name: MicrosoftDataShareShareLog
             href: tables/microsoftdatasharesharelog.md
-          - name: MicrosoftDynamicsTelemetryPerformanceLogs
-            href: tables/microsoftdynamicstelemetryperformancelogs.md
-          - name: MicrosoftDynamicsTelemetrySystemMetricsLogs
-            href: tables/microsoftdynamicstelemetrysystemmetricslogs.md
           - name: MicrosoftGraphActivityLogs
             href: tables/microsoftgraphactivitylogs.md
           - name: MicrosoftHealthcareApisAuditLogs
             href: tables/microsofthealthcareapisauditlogs.md
           - name: MicrosoftPurviewInformationProtection
             href: tables/microsoftpurviewinformationprotection.md
+          - name: MicrosoftServicePrincipalSignInLogs
+            href: tables/microsoftserviceprincipalsigninlogs.md
           - name: NCBMBreakGlassAuditLogs
             href: tables/ncbmbreakglassauditlogs.md
           - name: NCBMSecurityDefenderLogs
@@ -2762,20 +2766,10 @@ items:
             href: tables/powerautomateactivity.md
           - name: PowerBIActivity
             href: tables/powerbiactivity.md
-          - name: PowerBIAuditTenant
-            href: tables/powerbiaudittenant.md
           - name: PowerBIDatasetsTenant
             href: tables/powerbidatasetstenant.md
-          - name: PowerBIDatasetsTenantPreview
-            href: tables/powerbidatasetstenantpreview.md
           - name: PowerBIDatasetsWorkspace
             href: tables/powerbidatasetsworkspace.md
-          - name: PowerBIDatasetsWorkspacePreview
-            href: tables/powerbidatasetsworkspacepreview.md
-          - name: PowerBIReportUsageTenant
-            href: tables/powerbireportusagetenant.md
-          - name: PowerBIReportUsageWorkspace
-            href: tables/powerbireportusageworkspace.md
           - name: PowerPlatformAdminActivity
             href: tables/powerplatformadminactivity.md
           - name: PowerPlatformConnectorActivity
@@ -2864,8 +2858,6 @@ items:
             href: tables/signinlogs.md
           - name: SqlAtpStatus
             href: tables/sqlatpstatus.md
-          - name: SqlDataClassification
-            href: tables/sqldataclassification.md
           - name: SqlVulnerabilityAssessmentResult
             href: tables/sqlvulnerabilityassessmentresult.md
           - name: SqlVulnerabilityAssessmentScanStatus
@@ -2914,8 +2906,6 @@ items:
             href: tables/synapsedxtableusagestatistics.md
           - name: SynapseGatewayApiRequests
             href: tables/synapsegatewayapirequests.md
-          - name: SynapseGatewayEvents
-            href: tables/synapsegatewayevents.md
           - name: SynapseIntegrationActivityRuns
             href: tables/synapseintegrationactivityruns.md
           - name: SynapseIntegrationPipelineRuns
@@ -2924,8 +2914,6 @@ items:
             href: tables/synapseintegrationtriggerruns.md
           - name: SynapseLinkEvent
             href: tables/synapselinkevent.md
-          - name: SynapseRBACEvents
-            href: tables/synapserbacevents.md
           - name: SynapseRbacOperations
             href: tables/synapserbacoperations.md
           - name: SynapseScopePoolScopeJobsEnded
@@ -3150,6 +3138,8 @@ items:
             href: queries/ACSCallAutomationIncomingOperations.md
           - name: ACSCallAutomationMediaSummary
             href: queries/ACSCallAutomationMediaSummary.md
+          - name: ACSCallAutomationStreamingUsage
+            href: queries/ACSCallAutomationStreamingUsage.md
           - name: ACSCallClientMediaStatsTimeSeries
             href: queries/ACSCallClientMediaStatsTimeSeries.md
           - name: ACSCallClientOperations
@@ -3302,8 +3292,6 @@ items:
             href: queries/AZMSRunTimeAuditLogs.md
           - name: AZMSVnetConnectionEvents
             href: queries/AZMSVnetConnectionEvents.md
-          - name: AcsCallAutomationStreamingUsage
-            href: queries/AcsCallAutomationStreamingUsage.md
           - name: AddonAzureBackupJobs
             href: queries/AddonAzureBackupJobs.md
           - name: AddonAzureBackupStorage
@@ -3442,6 +3430,8 @@ items:
             href: queries/DatabricksBudgetPolicyCentral.md
           - name: DataverseActivity
             href: queries/DataverseActivity.md
+          - name: DevCenterAgentHealthLogs
+            href: queries/DevCenterAgentHealthLogs.md
           - name: DevCenterBillingEventLogs
             href: queries/DevCenterBillingEventLogs.md
           - name: DevCenterDiagnosticLogs
