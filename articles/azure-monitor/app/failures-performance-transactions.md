@@ -60,11 +60,14 @@ The **Performance** view shows a list of all operations collected for your appli
 
 ### [Transaction search](#tab/transaction-search)
 
-Transaction search is a feature of [Application Insights](./app-insights-overview.md) that you use to find and explore individual telemetry items, such as page views, exceptions, or web requests. You can also view log traces and events that you code.
+**Transaction search** allows you to find and explore individual telemetry items, such as page views, exceptions, or web requests. You can also view log traces and custom events. Below the chart is a summary showing the number of events per type over the selected time period.
 
 :::image type="content" source="media/failures-performance-transactions/transaction-search.png" lightbox="media/failures-performance-transactions/transaction-search.png" alt-text="Screenshot showing the 'Transaction search' view in Application Insights.":::
 
 For more complex queries, see [Use analytics data](#use-analytics-data).
+
+> [!NOTE]
+> Select **Refresh** from the top navigation bar to get new events.
 
 ---
 
@@ -79,10 +82,6 @@ For more complex queries, see [Use analytics data](#use-analytics-data).
 ...
 
 ### [Transaction search](#tab/transaction-search)
-
-Go to the **Event types** dropdown menu to see a list of telemetry items such as server requests, page views, and custom events you coded. The top of the **Results** list has a summary chart showing counts of events over time.
-
-Back out of the dropdown menu or select **Refresh** to get new events.
 
 ### Filter event types
 
@@ -217,7 +216,7 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 ### [Transaction search](#tab/transaction-search)
 
-To investigate an event further, select any telemetry item to see key fields and related items to open the end-to-end transaction details view.
+To investigate an event further, select any telemetry item to open the **End-to-end transaction details** view.
 
 :::image type="content" source="media/failures-performance-transactions/transaction-search-telemetry-item.png" lightbox="media/failures-performance-transactions/transaction-search-telemetry-item.png" alt-text="Screenshot that shows an individual dependency request.":::
 
