@@ -112,9 +112,9 @@ Search-AzGraph -Query "Resources | where type =~ 'microsoft.compute/virtualmachi
 
 ### List of virtual machines that aren't available by resource IDs
 
-This query lists the most recent virtual machines (VM) (`Microsoft.Compute/virtualMachines`) that are not in an *Available* state, and grouped by their availability status. It also includes each VM’s Resource ID (from properties.targetResourceId) to help with troubleshooting.
+This query lists the most recent virtual machines (VM) (`Microsoft.Compute/virtualMachines`) that aren't in an *Available* state, and grouped by their availability status. It also includes each VM’s Resource ID (from properties.targetResourceId) to help with troubleshooting.
 
-If all your virtual machines are in the *Available state*, the query will return no results.
+If all your virtual machines are in the *Available state*, the query returns no results.
 
 ```kusto
 HealthResources
