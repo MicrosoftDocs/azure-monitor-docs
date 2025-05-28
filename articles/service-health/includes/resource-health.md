@@ -1,12 +1,12 @@
 ---
 ms.service: azure-service-health
 ms.topic: include
-ms.date: 07/07/2022
+ms.date: 05/28/2025
 ---
 
 ### Count of virtual machines by availability state and subscription ID
 
-Returns the count of virtual machines (type `Microsoft.Compute/virtualMachines`) aggregated by their availability state across each of your subscriptions.
+This query shows how many virtual machines (type `Microsoft.Compute/virtualMachines`) are in each availability state, grouped by each of your subscriptions.
 
 ```kusto
 HealthResources
@@ -38,7 +38,9 @@ Search-AzGraph -Query "HealthResources | where type =~ 'microsoft.resourcehealth
 
 ### List of virtual machines and associated availability states by resource IDs
 
-Returns the latest list of virtual machines (type `Microsoft.Compute/virtualMachines`) aggregated by availability state. The query also provides the associated Resource ID based on `properties.targetResourceId`, for easy debugging and mitigation. Availability states can be one of four values: Available, Unavailable, Degraded, and Unknown. For more details on what each of the availability states mean, go to [Azure Resource Health overview](../resource-health-overview.md#health-status).
+This query lists the most recent list of virtual machines (VM) (`Microsoft.Compute/virtualMachines`) grouped by their availability state. The query also includes each VM’s Resource ID (from `properties.targetResourceId`) to help with debugging and troubleshooting. 
+
+Availability states can be one of four values: **Available**, **Unavailable**, **Degraded**, or **Unknown**. For more information on what each state means, see [Azure Resource Health overview](../resource-health-overview.md#health-status).
 
 ```kusto
 HealthResources
