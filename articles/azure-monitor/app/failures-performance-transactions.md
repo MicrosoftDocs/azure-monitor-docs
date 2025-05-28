@@ -68,7 +68,107 @@ For more complex queries, see [Use analytics data](#use-analytics-data).
 
 ---
 
-## Investigate
+## Filter telemetry data
+
+### [Failures view](#tab/failures-view)
+
+...
+
+### [Performance view](#tab/performance-view)
+
+...
+
+### [Transaction search](#tab/transaction-search)
+
+Go to the **Event types** dropdown menu to see a list of telemetry items such as server requests, page views, and custom events you coded. The top of the **Results** list has a summary chart showing counts of events over time.
+
+Back out of the dropdown menu or select **Refresh** to get new events.
+
+### Filter event types
+
+Open the **Event types** dropdown menu and choose the event types you want to see. If you want to restore the filters later, select **Reset**.
+
+The event types are:
+
+* **Trace**: [Diagnostic logs](./asp-net-trace-logs.md) including TrackTrace, log4Net, NLog, and System.Diagnostic.Trace calls.
+* **Request**: HTTP requests received by your server application including pages, scripts, images, style files, and data. These events are used to create the request and response overview charts.
+* **Page View**: [Telemetry sent by the web client](./javascript.md) used to create page view reports.
+* **Custom Event**: If you inserted calls to `TrackEvent()` to [monitor usage](./api-custom-events-metrics.md), you can search them here.
+* **Exception**: Uncaught [exceptions in the server](./asp-net-exceptions.md), and the exceptions that you log by using `TrackException()`.
+* **Dependency**: [Calls from your server application](./asp-net-dependencies.md) to other services such as REST APIs or databases, and AJAX calls from your [client code](./javascript.md).
+* **Availability**: Results of [availability tests](availability-overview.md)
+
+### Filter on property values
+
+You can filter events on the values of their properties. The available properties depend on the event types you selected. Select **Filter** :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon"::: to start.
+
+Choosing no values of a particular property has the same effect as choosing all values. It switches off filtering on that property.
+
+Notice that the counts to the right of the filter values show how many occurrences there are in the current filtered set.
+
+### Find events with the same property
+
+To find all the items with the same property value, either enter it in the **Search** box or select the checkbox when you look through properties on the **Filter** tab.
+
+:::image type="content" source="media/failures-performance-transactions/transaction-search-filter.png" lightbox="media/failures-performance-transactions/transaction-search-filter.png" alt-text="Screenshot that shows the dropdown list for filters.":::
+
+### Send more telemetry data to Application Insights
+
+In addition to the out-of-the-box telemetry sent by Application Insights SDK, you can:
+
+* Capture log traces from your favorite logging framework in [.NET](asp-net-trace-logs.md) or [Java](opentelemetry-add-modify.md?tabs=java). This means you can search through your log traces and correlate them with page views, exceptions, and other events.
+
+* [Write code](api-custom-events-metrics.md) to send custom events, page views, and exceptions.
+
+Learn how to [send logs and custom telemetry to Application Insights](asp-net-trace-logs.md).
+
+---
+
+## Search telemetry data
+
+### [Failures view](#tab/failures-view)
+
+...
+
+### [Performance view](#tab/performance-view)
+
+...
+
+### [Transaction search](#tab/transaction-search)
+
+> [!NOTE]
+> To write more complex queries, open [Logs (Analytics)](../logs/log-analytics-tutorial.md) at the top of the **Search** pane.
+
+You can search for terms in any of the property values. This capability is useful if you write [custom events](./api-custom-events-metrics.md) with property values.
+
+You might want to set a time range because searches over a shorter range are faster.
+
+:::image type="content" source="media/failures-performance-transactions/transaction-search-property.png" lightbox="media/failures-performance-transactions/transaction-search-property.png" alt-text="Screenshot that shows opening a diagnostic search.":::
+
+Search for complete words, not substrings. Use quotation marks to enclose special characters.
+
+| String               | *Not* found                       | Found                                                               |
+|----------------------|-----------------------------------|---------------------------------------------------------------------|
+| HomeController.About | `home`<br/>`controller`<br/>`out` | `homecontroller`<br/>`about`<br/>`"homecontroller.about"`           |
+| United States        | `Uni`<br/>`ted`                   | `united`<br/>`states`<br/>`united AND states`<br/>`"united states"` |
+
+You can use the following search expressions:
+
+| Sample query                           | Effect                                                                              |
+|----------------------------------------|-------------------------------------------------------------------------------------|
+| `apple`                                | Find all events in the time range whose fields include the word `apple`.            |
+| `apple AND banana` <br/>`apple banana` | Find events that contain both words. Use capital `AND`, not `and`. <br/>Short form. |
+| `apple OR banana`                      | Find events that contain either word. Use `OR`, not `or`.                           |
+| `apple NOT banana`                     | Find events that contain one word but not the other.                                |
+
+> [!NOTE]
+> If your app generates significant telemetry and uses ASP.NET SDK version 2.0.0-beta3 or later, it automatically reduces the volume sent to the portal through adaptive sampling. This module sends only a representative fraction of events. It selects or deselects events related to the same request as a group, allowing you to navigate between related events.
+>
+> Learn about [sampling](sampling.md).
+
+---
+
+## Investigate telemetry data
 
 ### [Failures view](#tab/failures-view)
 
@@ -102,89 +202,9 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 ### [Transaction search](#tab/transaction-search)
 
-### Get started
-
-Go to the **Event types** dropdown menu to see a list of telemetry items such as server requests, page views, and custom events you coded. The top of the **Results** list has a summary chart showing counts of events over time.
-
-Back out of the dropdown menu or select **Refresh** to get new events.
-
-### Inspect individual items
-
-Select any telemetry item to see key fields and related items to open the end-to-end transaction details view.
+To investigate an event further, select any telemetry item to see key fields and related items to open the end-to-end transaction details view.
 
 :::image type="content" source="media/failures-performance-transactions/transaction-search-telemetry-item.png" lightbox="media/failures-performance-transactions/transaction-search-telemetry-item.png" alt-text="Screenshot that shows an individual dependency request.":::
-
-### Filter event types
-
-Open the **Event types** dropdown menu and choose the event types you want to see. If you want to restore the filters later, select **Reset**.
-
-The event types are:
-
-* **Trace**: [Diagnostic logs](./asp-net-trace-logs.md) including TrackTrace, log4Net, NLog, and System.Diagnostic.Trace calls.
-* **Request**: HTTP requests received by your server application including pages, scripts, images, style files, and data. These events are used to create the request and response overview charts.
-* **Page View**: [Telemetry sent by the web client](./javascript.md) used to create page view reports.
-* **Custom Event**: If you inserted calls to `TrackEvent()` to [monitor usage](./api-custom-events-metrics.md), you can search them here.
-* **Exception**: Uncaught [exceptions in the server](./asp-net-exceptions.md), and the exceptions that you log by using `TrackException()`.
-* **Dependency**: [Calls from your server application](./asp-net-dependencies.md) to other services such as REST APIs or databases, and AJAX calls from your [client code](./javascript.md).
-* **Availability**: Results of [availability tests](availability-overview.md)
-
-### Filter on property values
-
-You can filter events on the values of their properties. The available properties depend on the event types you selected. Select **Filter** :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon"::: to start.
-
-Choosing no values of a particular property has the same effect as choosing all values. It switches off filtering on that property.
-
-Notice that the counts to the right of the filter values show how many occurrences there are in the current filtered set.
-
-### Find events with the same property
-
-To find all the items with the same property value, either enter it in the **Search** box or select the checkbox when you look through properties on the **Filter** tab.
-
-:::image type="content" source="media/failures-performance-transactions/transaction-search-filter.png" lightbox="media/failures-performance-transactions/transaction-search-filter.png" alt-text="Screenshot that shows the dropdown list for filters.":::
-
-### Search the data
-
-> [!NOTE]
-> To write more complex queries, open [Logs (Analytics)](../logs/log-analytics-tutorial.md) at the top of the **Search** pane.
->
-
-You can search for terms in any of the property values. This capability is useful if you write [custom events](./api-custom-events-metrics.md) with property values.
-
-You might want to set a time range because searches over a shorter range are faster.
-
-:::image type="content" source="media/failures-performance-transactions/transaction-search-property.png" lightbox="media/failures-performance-transactions/transaction-search-property.png" alt-text="Screenshot that shows opening a diagnostic search.":::
-
-Search for complete words, not substrings. Use quotation marks to enclose special characters.
-
-| String               | *Not* found                       | Found                                                               |
-|----------------------|-----------------------------------|---------------------------------------------------------------------|
-| HomeController.About | `home`<br/>`controller`<br/>`out` | `homecontroller`<br/>`about`<br/>`"homecontroller.about"`           |
-| United States        | `Uni`<br/>`ted`                   | `united`<br/>`states`<br/>`united AND states`<br/>`"united states"` |
-
-You can use the following search expressions:
-
-| Sample query                           | Effect                                                                              |
-|----------------------------------------|-------------------------------------------------------------------------------------|
-| `apple`                                | Find all events in the time range whose fields include the word `apple`.            |
-| `apple AND banana` <br/>`apple banana` | Find events that contain both words. Use capital `AND`, not `and`. <br/>Short form. |
-| `apple OR banana`                      | Find events that contain either word. Use `OR`, not `or`.                           |
-| `apple NOT banana`                     | Find events that contain one word but not the other.                                |
-
-
-> [!NOTE]
-> If your app generates significant telemetry and uses ASP.NET SDK version 2.0.0-beta3 or later, it automatically reduces the volume sent to the portal through adaptive sampling. This module sends only a representative fraction of events. It selects or deselects events related to the same request as a group, allowing you to navigate between related events.
->
-> Learn about [sampling](./sampling.md).
-
-### Send more telemetry data to Application Insights
-
-In addition to the out-of-the-box telemetry sent by Application Insights SDK, you can:
-
-* Capture log traces from your favorite logging framework in [.NET](./asp-net-trace-logs.md) or [Java](./opentelemetry-add-modify.md?tabs=java). This means you can search through your log traces and correlate them with page views, exceptions, and other events.
-
-* [Write code](./api-custom-events-metrics.md) to send custom events, page views, and exceptions.
-
-Learn how to [send logs and custom telemetry to Application Insights](./asp-net-trace-logs.md).
 
 ---
 

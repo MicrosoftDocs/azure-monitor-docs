@@ -218,7 +218,7 @@ items:
       - name: Application Map
         displayName: appmap, app map, dependency map, dependencies, hotspots, cloud role name, cloudrolename, cloud_rolename, cloud.rolename, cloud role instance, node
         href: app/app-map.md
-      - name: Investigate failures, performance, and transactions
+      - name: Failures, performance, and transactions
         href: app/failures-performance-transactions.md
       - name: Availability
         href: app/availability.md
