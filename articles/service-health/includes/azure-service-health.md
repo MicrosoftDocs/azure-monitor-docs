@@ -126,7 +126,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ### All active Service Health events
 
-Use this query to list all active Service Health events—like service issues, planned maintenance, health advisories, and security advisories—across all the subscriptions you can access.
+Use this query to list all active Service Health events—like service issues, planned maintenance, health advisories, and security advisories—across all your subscriptions.
 
 ```kusto
 ServiceHealthResources
@@ -157,7 +157,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ### All active service issue events
 
-This query finds and lists all active service issues (outages) and Service Health events across all subscriptions where you have access.
+This query finds and lists all active service issues (outages) and Service Health events across all subscriptions.
 
 ```kusto
 ServiceHealthResources
