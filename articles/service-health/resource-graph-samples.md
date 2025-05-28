@@ -13,7 +13,9 @@ This page is a collection of [Azure Resource Graph](/azure/governance/resource-g
 >You should see the updated results of each query within 5 minutes in general.
 
 ## Overview
-The page is designed to help you monitor and analyze the health of your Azure services and resources using Kusto Query Language (KQL) via Azure Resource Graph. These are Azure Resource Graph sample queries specifically for Azure Service Health.
+This page helps you monitor and understand the health of your Azure services and resources using Kusto Query Language (KQL) through Azure Resource Graph. 
+
+It includes sample queries specifically for Azure Service Health.
 
 [!INCLUDE [azure-resource-graph-samples-cat-servicehealth](./includes/azure-service-health.md)]
 
