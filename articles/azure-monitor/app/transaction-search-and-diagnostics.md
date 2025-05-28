@@ -10,6 +10,10 @@ ms.reviewer: cogoodson
 
 Azure Monitor Application Insights offers Transaction Search for pinpointing specific telemetry items and Transaction Diagnostics for comprehensive end-to-end transaction analysis.
 
+
+
+
+
 ## Transaction Search
 
 Transaction search is a feature of [Application Insights](./app-insights-overview.md) that you use to find and explore individual telemetry items, such as page views, exceptions, or web requests. You can also view log traces and events that you code.
@@ -114,21 +118,9 @@ In addition to the out-of-the-box telemetry sent by Application Insights SDK, yo
 
 Learn how to [send logs and custom telemetry to Application Insights](./asp-net-trace-logs.md).
 
-### <a name="questions"></a>Frequently asked questions
 
-Find answers to common questions.
 
-#### <a name="limits"></a>How much data is retained?
 
-See the [Limits summary](../service-limits.md#application-insights).
-
-#### How can I see POST data in my server requests?
-
-We don't log the POST data automatically, but you can use [TrackTrace or log calls](./asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
-
-#### Why does my Azure Function search return no results?
-
-Azure Functions doesn't log URL query strings.
 
 ## Transaction Diagnostics
 
@@ -144,6 +136,9 @@ Components are independently deployable parts of your distributed or microservic
 
 > [!NOTE]
 > Are you missing the related item links? All the related telemetry is on the left side in the [top](#cross-component-transaction-chart) and [bottom](#all-telemetry-with-this-operation-id) sections.
+
+
+
 
 
 ## See also

@@ -14,12 +14,11 @@ ms.reviewer: cogoodson
 
 * The **Performance** experience, which quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
 
-**Transaction Search**: This experience enables users to locate and examine individual telemetry items such as page views, exceptions, and web requests. Additionally, it offers the capability to view log traces and events coded into the application. It identifies performance issues and errors within the application.
+* The **Transaction search** experience enables users to locate and examine individual telemetry items such as page views, exceptions, and web requests. Additionally, it offers the capability to view log traces and events coded into the application. It identifies performance issues and errors within the application.
 
-**Transaction Diagnostics**: Quickly identify issues in components through comprehensive insight into end-to-end transaction details, including dependencies and exceptions. Access this feature via the Search interface by choosing an item from the search results.
+* The **Transaction Diagnostics** helps to quickly identify issues in components through comprehensive insight into end-to-end transaction details, including dependencies and exceptions. Access this feature via the Search interface by choosing an item from the search results.
 
 Together, these tools ensure the ongoing health and efficiency of web applications. You can use them to pinpoint issues or enhancements that would have the most impact on users.
-
 
 ### [Failures view](#tab/failures-view)
 
@@ -63,7 +62,7 @@ The **Performance** view shows a list of all operations collected for your appli
 
 ### [Transaction search](#tab/transaction-search)
 
-
+...
 
 ---
 
@@ -98,6 +97,10 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 	> [!NOTE]
 	> The **Suggested** samples have related telemetry from all components, even if sampling was in effect in any of them.
+
+### [Transaction search](#tab/transaction-search)
+
+...
 
 ---
 
@@ -236,7 +239,21 @@ If you instrument your web pages with Application Insights, you can gain visibil
 
 This section provides answers to common questions.
 
-### Transaction diagnostics experience
+### Transaction search
+
+#### How much data is retained?
+
+See the [Limits summary](../service-limits.md#application-insights).
+
+#### How can I see POST data in my server requests?
+
+We don't log the POST data automatically, but you can use [TrackTrace or log calls](./asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
+
+#### Why does my Azure Function search return no results?
+
+Azure Functions doesn't log URL query strings.
+
+### Transaction diagnostics
 
 #### Why do I see a single component on the chart and the other components only show as external dependencies without any details?
 
