@@ -168,6 +168,21 @@ You can use the following search expressions:
 
 ---
 
+## Use analytics data
+
+All data collected by Application Insights is stored in [Log Analytics](../logs/log-analytics-overview.md), which provides a rich query language to analyze the requests that generated the exception you're investigating.
+
+> [!TIP]
+> [Simple mode](../logs/log-analytics-simple-mode.md) in Log Analytics offers an intuitive point-and-click interface for analyzing and visualizing log data.
+
+1. On either the performance, failures, or transaction search view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
+
+    :::image type="content" source="media/failures-performance-transactions/logs-view-go-to.png" lightbox="media/failures-performance-transactions/logs-view-go-to.png" alt-text="Screenshot of the top action bar with the 'View in logs' button highlighted.":::
+
+1. This takes you to the **Logs** view, where you can further modify the query or select a different one from the sidebar.
+
+    :::image type="content" source="media/failures-performance-transactions/logs-view.png" lightbox="media/failures-performance-transactions/logs-view.png" alt-text="Screenshot showing the 'Logs' view.":::
+
 ## Investigate telemetry data
 
 ### [Failures view](#tab/failures-view)
@@ -326,21 +341,6 @@ If you connect Application Insights to a tracking system such as Azure DevOps or
     :::image type="content" source="media/failures-performance-transactions/transaction-view-create-work-item.png" lightbox="media/failures-performance-transactions/transaction-view-create-work-item.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Create work item' button highlighted.":::
 
 1. The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
-
-## Use analytics data
-
-All data collected by Application Insights is stored in [Log Analytics](../logs/log-analytics-overview.md), which provides a rich query language to analyze the requests that generated the exception you're investigating.
-
-> [!TIP]
-> [Simple mode](../logs/log-analytics-simple-mode.md) in Log Analytics offers an intuitive point-and-click interface for analyzing and visualizing log data.
-
-1. On either the performance, failures, or transaction search view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
-
-    :::image type="content" source="media/failures-performance-transactions/logs-view-go-to.png" lightbox="media/failures-performance-transactions/logs-view-go-to.png" alt-text="Screenshot of the top action bar with the 'View in logs' button highlighted.":::
-
-1. This takes you to the **Logs** view, where you can further modify the query or select a different one from the sidebar.
-
-    :::image type="content" source="media/failures-performance-transactions/logs-view.png" lightbox="media/failures-performance-transactions/logs-view.png" alt-text="Screenshot showing the 'Logs' view.":::
 
 ## Analyze client-side performance and failures
 
