@@ -15,7 +15,7 @@ Monitors the Performance, health, and utilization of managed and self-managed Ku
 
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
 - Allow the traffic if IP based rule specified and match the source resource's IP address.
-- Allow if Subscription Id based rule specified and match the source subscription Id.
+- Allow if Subscription ID based rule specified and match the source subscription Id.
 - Allowed for resource in the transition mode.
 - Deny if source resource doesn't match any rules (IP address, Subscription ID).
 
@@ -24,7 +24,7 @@ Monitors your Azure VMs and Virtual Machine Scale Sets at scale. It analyzes the
 
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
 - Allow the traffic if IP based rule specified and match the source resource's IP address.
-- Allow if Subscription Id based rule specified and match the source subscription Id.
+- Allow if Subscription ID based rule specified and match the source subscription Id.
 - Allowed for resource in the transition mode.
 - Deny if source resource doesn't match any rules (IP address, Subscription ID).
 
@@ -39,14 +39,14 @@ Export logs from Log Analytics workspace to the storage account destination.
 
 - Associate Log Analytics Workspace and storage account to Network Security Perimeter with inbound rules defined.
 - Allow if the storage account is within same perimeter as Log Analytics Workspace.
-- Exporting tables from Log Analytics to a storage account is only supported when both the Log Analytics workspace(s) and storage account(s) are within the same perimeter. If they are not, the export table traffic will be denied.
+- Exporting tables from Log Analytics to a storage account is only supported when both the Log Analytics workspace(s) and storage account(s) are within the same perimeter. If they're not, the export table traffic will be denied.
 
 ### Data Collector API
 The Azure Monitor Data Collector API (DCA) allows you to send custom data to Log Analytics workspaces using a REST API. Authentication is done using a Log Analytics workspace key.
 
 - Allow the traffic if IP based rule specified and match the source resource's IP addressAllowed for resource in the transition mode.
 - Deny if source resource doesn't match any rules (IP address)
-- Ignore NSP/Resource Id claims in header
+- Ignore NSP/Resource ID claims in header
 
 ### Azure Monitor Agent (AMA)
 Azure Monitor Agent (AMA) is a versatile and lightweight agent designed to collect telemetry from virtual machines (VMs) across Azure, on-premises, or other cloud environments.
@@ -54,7 +54,8 @@ Azure Monitor Agent (AMA) is a versatile and lightweight agent designed to colle
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
 - Allow the traffic if IP based rule specified and match the source resource's IP address.
 - Allowed for resource in the transition mode.
-- Deny if source resource doesn't match any rules (IP address)Ignore NSP/Resource Id claims in header.
+- Deny if source resource doesn't match any rules (IP address)
+- Ignore NSP/Resource ID claims in header.
 
 ### Diagnostic Settings
 Send resource logs and metrics for Azure resources to Log Analytics workspace, Event Hubs, or Storage Account.
@@ -70,7 +71,8 @@ The Log Analytics agent has been officially retired and replaced with Azure Moni
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
 - Allow the traffic if IP based rule specified and match the source resource's IP address.
 - Allowed for resource in the transition mode.
-- Deny if source resource doesn't match any rules (IP address)Ignore NSP/Resource Id claims in header.
+- Deny if source resource doesn't match any rules (IP address)
+- Ignore NSP/Resource ID claims in header.
 
 
 ## Log Analytics workspace query scenarios
@@ -80,8 +82,9 @@ Retrieve log data from a Log analytics workspace
 
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
 - Allow the traffic if IP based rule specified and match the source resource's IP address
-- Allow if Subscription Id based rule specified and match the source subscription Id
-- Allowed for resource in the transition mode.Allowed within the same perimeter
+- Allow if Subscription ID based rule specified and match the source subscription Id
+- Allowed for resource in the transition mode.
+- Allowed within the same perimeter.
 - Deny if source resource doesn't match any rules (IP address, Subscription ID)
 
 
@@ -89,13 +92,13 @@ Retrieve log data from a Log analytics workspace
 Retrieve log data from a Log analytics workspace from a log search alert rule.
 
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
-- Allow if Subscription Id based rule specified and match the source subscription Id
+- Allow if Subscription ID based rule specified and match the source subscription Id
 - Allowed for resource in the transition mode.
 - Allowed within the same perimeter
 - Deny if source resource doesn't match any rules (IP address, Subscription ID)
 
 ### External Operator Enabled and Explicit cross-resource referencesResource-centric queries
-External operator are disabled, but cross resources queries are enabled. 
+External operators are disabled, but cross resources queries are enabled. 
 
 - Denied by default. The Network Security Perimeter is in place to prevent data exfiltration risks.
   
@@ -122,7 +125,8 @@ Log search alert rules for a single Log Analytics Workspaces with Action Groups 
 Log Search alert rules with multiple Log Analytics Workspaces with Action Groups configured within the same network security perimeter. Allow traffic only for resources within the same perimeter; otherwise, deny the traffic. 
 
 - Log Analytics Workspace, Log Search Alerts and Action Groups are associated to Network Security Perimeter with the perimeter rules defined.
-- Allowed for resource in the transition mode.Allowed within the same perimeter
+- Allowed for resource in the transition mode.
+- Allowed within the same perimeter.
 - Deny if source resource doesn't match any rules (IP address, Subscription ID)
 
 ## Action Groups
@@ -131,7 +135,7 @@ Log Search alert rules with multiple Log Analytics Workspaces with Action Groups
 Action groups are a collection of notification preferences and actions. 
 
 - Log Analytics Workspace, Log Search Alerts and Action Groups are associated to Network Security Perimeter with the perimeter rules defined.
-- Allow if Subscription Id based rule specified and match the source subscription Id.
+- Allow if Subscription ID based rule specified and match the source subscription Id.
 - Allowed when all resources are within the same perimeterDeny if source resource doesn't match any rules (IP address, Subscription ID).
 
 ### Send notification to SMS/E-Mail 
