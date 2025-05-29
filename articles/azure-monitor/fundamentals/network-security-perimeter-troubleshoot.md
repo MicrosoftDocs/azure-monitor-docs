@@ -1,11 +1,11 @@
 ---
-title: Configure Azure Monitor with Network Security Perimeter
-description: Details on adding Azure Monitor resources to your network security perimeter.
+title: Azure Monitor with Network Security Perimeter scenarios (Preview)
+description: Scenarios for configuration Network Security Perimeter with Azure Monitor.
 ms.topic: conceptual
 ms.date: 5/28/2025
 ---
 
-# Troubleshoot Azure Monitor with Network Security Perimeter (Preview)
+# Azure Monitor with Network Security Perimeter scenarios (Preview)
 
 | Scenario | Description | Network Security Perimeter with defined Inbound Rules - Supported Scenarios & Expected Behavior |
 |:---|:---|:---|
