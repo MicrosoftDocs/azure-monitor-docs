@@ -1243,9 +1243,11 @@ items:
     - name: Network security perimeter
       items:
       - name: Configuration
+        displayName: Network security perimeter, NSP
         href: fundamentals/network-security-perimeter.md
       - name: Scenarios
-        href: fundamentals/network-security-perimiter-scenarios.md
+        displayName: Network security perimeter, NSP
+        href: fundamentals/network-security-perimeter-scenarios.md
   - name: Security baseline
     href: /security/benchmark/azure/baselines/azure-monitor-security-baseline?toc=/azure/azure-monitor/toc.json
   - name: Security controls by Azure Policy
