@@ -565,7 +565,7 @@ The following sections describe how to resolve installation and uninstallation i
 
 **Error message**: "Tenant and device IDs retrieval failed"
 
-**Resolution**: Run the command `dsregcmd /status`. The expected output is `AzureAdJoined : YES` in the `Device State` section. If this output doesn't appear, join the device with a Microsoft Entra tenant and try installation again.
+**Resolution**: Run the command `dsregcmd /status`. The expected output is `AzureAdJoined : YES` in the `Device State` section and `DeviceAuthStatus : SUCCESS` in the `Device Details` section. If this output doesn't appear, join the device with a Microsoft Entra tenant and try installation again.
 
 #### Silent install from the command prompt fails
 
