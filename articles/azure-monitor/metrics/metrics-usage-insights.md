@@ -223,7 +223,7 @@ Parameter File:
 > [!NOTE]
 >
 > You will need to wait approximately 24 hours to allow data to flow into LAW.
->Once you have created the Diagnostic Settings and waited for 24 hours, please verify that the "Active Time Series (Max)" value is not zero. A value of zero indicates that no data is being ingested into AMW, resulting in no available insights.
+>Once you have created the Diagnostic Settings and waited for 24 hours, verify that the "Active Time Series (Max)" value is not zero. A value of zero indicates that no data is being ingested into AMW, resulting in no available insights.
 
 ## Open metrics usage insights
 You can open metrics usage insights either for a single Azure Monitor workspace or for all Azure Monitor workspaces in your subscription.
