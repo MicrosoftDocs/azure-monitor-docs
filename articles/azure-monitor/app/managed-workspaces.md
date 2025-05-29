@@ -89,11 +89,11 @@ If your Application Insights resource uses Azure Monitor Private Link Scope (AMP
 
 Classic Application Insights resources support Public Network Access (PNA) settings for both ingestion and query. Some AMPLS users disable public query to limit telemetry access to private networks.
 
-During migration, the process copies the PNA settings from the classic resource to the new Log Analytics workspace. It doesn’t add the workspace to AMPLS. This design gives the resource owner full control over private network access.
+During migration, the process copies the PNA settings from the classic resource to the new Log Analytics workspace. In the interest of security, it doesn’t add the workspace to AMPLS. This design gives the resource owner full control over private network access.
 
 If public query access is disabled and the workspace isn't associated with AMPLS, telemetry queries from a private network fail after migration. To restore access, either add the workspace to AMPLS or enable public query access.
 
-Telemetry ingestion continues regardless of PNA settings or AMPLS scope. The ingestion path from the Application Insights endpoint to the Log Analytics workspace uses Microsoft’s internal network. Migration doesn’t interrupt data collection.
+Telemetry ingestion continues regardless of PNA settings or AMPLS scope. The ingestion path from the Application Insights endpoint to the Log Analytics workspace uses Microsoft’s Azure backbone network. Migration doesn’t interrupt data collection.
 
 ### Common configurations
 
@@ -159,7 +159,7 @@ To complete the migration:
 ### What to expect
 
 - Microsoft doesn't retry automatic migration for resources blocked by policy.
-- Microsoft continues telemetry ingestion until it retires classic resources.
+- Microsoft continues telemetry ingestion into classic resources temporarily.
 - Microsoft keeps existing data available for query after ingestion stops but doesn't collect new telemetry.
 
 If you need help with updating Azure policies, contact your organization's policy administrator.
