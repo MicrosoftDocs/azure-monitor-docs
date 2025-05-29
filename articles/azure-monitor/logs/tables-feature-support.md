@@ -71,6 +71,9 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [ADXTableUsageStatistics](/azure/azure-monitor/reference/tables/adxtableusagestatistics) | |
 | [AegDeliveryFailureLogs](/azure/azure-monitor/reference/tables/aegdeliveryfailurelogs) | |
 | [AegPublishFailureLogs](/azure/azure-monitor/reference/tables/aegpublishfailurelogs) | |
+| [AGWAccessLogs](/azure/azure-monitor/reference/tables/agwaccesslogs) | |
+| [AGWPerformanceLogs](/azure/azure-monitor/reference/tables/agwperformancelogs) | |
+| [AGWFirewallLogs](/azure/azure-monitor/reference/tables/agwfirewalllogs) | |
 | [AirflowDagProcessingLogs](/azure/azure-monitor/reference/tables/airflowdagprocessinglogs) | |
 | [Alert](/azure/azure-monitor/reference/tables/alert) | |
 | [AlertEvidence](/azure/azure-monitor/reference/tables/alertevidence) | |
