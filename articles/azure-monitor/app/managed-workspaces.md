@@ -149,18 +149,18 @@ Common policy restrictions include:
 
 These policies are defined and enforced at the management group, subscription, or resource group level. The migration process respects these policies and doesn't override them. If a policy blocks migration, the process stops and doesn't attempt migration again for that resource.
 
+### What to expect
+
+- Microsoft doesn't retry automatic migration for resources blocked by policy.
+- Microsoft continues telemetry ingestion into classic resources temporarily.
+- Microsoft keeps existing data available for query after ingestion stops but doesn't collect new telemetry.
+
 ### Required actions
 
 To complete the migration:
 
 - [**Manually migrate each Application Insights resource**](/previous-versions/azure/azure-monitor/app/convert-classic-resource) that wasn't migrated automatically.
 - **Use a Log Analytics workspace that complies with your organization's policy requirements**, including resource group, tags, location, and naming standards.
-
-### What to expect
-
-- Microsoft doesn't retry automatic migration for resources blocked by policy.
-- Microsoft continues telemetry ingestion into classic resources temporarily.
-- Microsoft keeps existing data available for query after ingestion stops but doesn't collect new telemetry.
 
 If you need help with updating Azure policies, contact your organization's policy administrator.
 
