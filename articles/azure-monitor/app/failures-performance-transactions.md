@@ -63,7 +63,29 @@ The **Performance** view shows a list of all operations collected for your appli
 
 ### [Transaction search](#tab/transaction-search)
 
-**Transaction search** allows you to find and explore individual telemetry items. You can select which event types to view from the **Event types** dropdown menu, including:
+**Transaction search** allows you to find and explore individual telemetry items.
+
+:::image type="content" source="media/failures-performance-transactions/transaction-search.png" lightbox="media/failures-performance-transactions/transaction-search.png" alt-text="Screenshot showing the 'Transaction search' view in Application Insights.":::
+
+---
+
+## Filter telemetry
+
+### Default filters
+
+All experiences allow you to filter telemetry by time range. In addition, each experience comes with its own default filter:
+
+### [Failures view](#tab/failures-view)
+
+You can select which service (role) or machine/container (instance) to view from the **Roles** filter menu. This allows you to isolate issues or performance trends within specific parts of your application.
+
+### [Performance view](#tab/performance-view)
+
+You can select which service (role) or machine/container (instance) to view from the **Roles** filter menu. This allows you to isolate issues or performance trends within specific parts of your application.
+
+### [Transaction search](#tab/transaction-search)
+
+You can select which event types to view from the **Event types** dropdown menu, including:
 
 * **Availability**: Results of [availability tests](availability-overview.md).
 * **Custom Event**: If you inserted calls to `TrackEvent()` to [monitor usage](api-custom-events-metrics.md), you can search them here.
@@ -73,28 +95,28 @@ The **Performance** view shows a list of all operations collected for your appli
 * **Request**: HTTP requests received by your server application including pages, scripts, images, style files, and data. These events are used to create the request and response overview charts.
 * **Trace**: [Diagnostic logs](asp-net-trace-logs.md) including TrackTrace, log4Net, NLog, and System.Diagnostic.Trace calls.
 
-If you want to restore the filters later, select **Reset**.
-
-:::image type="content" source="media/failures-performance-transactions/transaction-search.png" lightbox="media/failures-performance-transactions/transaction-search.png" alt-text="Screenshot showing the 'Transaction search' view in Application Insights.":::
+If you want to restore the filters later, select **Reset** from the top navigation bar.
 
 ---
 
-## Filter telemetry
+### Add filters
 
 You can filter events on the values of their properties. The available properties depend on the event or telemetry types you selected. To add a filter:
 
-1. Select **Filter** :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: to start.
+1. Select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: to add a filter.
 
-1. From the left dropdown list :::image type="content" source="media/failures-performance-transactions/filter-left-drop-down.png" lightbox="media/failures-performance-transactions/filter-left-drop-down.png" alt-text="Added filter with left field highlighted." border="false":::, select a property.
+    :::image type="content" source="media/failures-performance-transactions/filter-selection.png" lightbox="media/failures-performance-transactions/filter-selection.png" alt-text="Filter pill" border="false":::
 
-1. From the center dropdown list :::image type="content" source="media/failures-performance-transactions/filter-center-drop-down.png" lightbox="media/failures-performance-transactions/filter-center-drop-down.png" alt-text="Added filter with center field highlighted." border="false":::, select one of the following operators: `=`, `!=`, `contains`, or `not contains`.
+1. From the left dropdown list, select a property.
 
-1. From the right dropdown list :::image type="content" source="media/failures-performance-transactions/filter-right-drop-down.png" lightbox="media/failures-performance-transactions/filter-right-drop-down.png" alt-text="Added filter with right field highlighted." border="false":::, select all property values you want to filter on.
+1. From the center dropdown list, select one of the following operators: `=`, `!=`, `contains`, or `not contains`.
+
+1. From the right dropdown list, select all property values you want to filter on.
 
     > [!NOTE]
     > Notice that the counts to the right of the filter values show how many occurrences there are in the current filtered set.
 
-1. To add additional filters, select **Filter** :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: again.
+1. To add another filter, select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: again.
 
 ## Send more telemetry data to Application Insights
 
