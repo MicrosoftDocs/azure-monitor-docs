@@ -7,6 +7,45 @@ ms.date: 5/28/2025
 
 # Azure Monitor with Network Security Perimeter scenarios (Preview)
 
+## General scenarios
+
+### Container Insights 
+Monitors the Performance, health, and utilization of managed and self-managed Kubernetes clusters including AKS.
+
+- Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
+- Allow the traffic if IP based rule specified and match the source resource's IP address.
+- Allow if Subscription Id based rule specified and match the source subscription Id.
+- Allowed for resource in the transition mode.
+- Deny if source resource doesn't match any rules (IP address, Subscription ID).
+
+### VM Insights
+Monitors your Azure VMs and Virtual Machine Scale Sets at scale. It analyzes the performance and health of your Windows and Linux VMs and monitors their processes and dependencies on other resources and external processes. 
+
+- Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
+- Allow the traffic if IP based rule specified and match the source resource's IP address.
+- Allow if Subscription Id based rule specified and match the source subscription Id.
+- Allowed for resource in the transition mode.
+- Deny if source resource doesn't match any rules (IP address, Subscription ID).
+
+### Logs Ingestion API in Azure Monitor 
+The Logs Ingestion API in Azure Monitor lets you send data to a Log Analytics workspace using either a REST API call or client libraries.
+
+- Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
+- Allow the traffic if IP based rule specified and match the source resource's IP addressDeny if source resource doesn't match any rules (IP address)
+
+### Log Analytics Workspace Export to Storage Account
+Export logs from Log Analytics workspace to the storage account destination. 
+
+Associate Log Analytics Workspace and storage account to Network Security Perimeter with inbound rules defined.
+Allow if the storage account is within same perimeter as Log Analytics Workspace.
+Exporting tables from Log Analytics to a storage account is only supported when both the Log Analytics workspace(s) and storage account(s) are within the same perimeter. If they are not, the export table traffic will be denied.
+
+### Platform logs for DCR resource
+Platform Logs for the Data Collection Rules resource 
+
+- Allow if the destination resource is within the same perimeter as DCE. If they are not, the logs traffic will be denied.
+
+
 | Scenario | Description | Network Security Perimeter with defined Inbound Rules - Supported Scenarios & Expected Behavior |
 |:---|:---|:---|
 | Azure Monitor - Container Insights | Monitors the Performance, health, and utilization of managed and self-managed Kubernetes clusters including AKS. | Log Analytics Workspace is associated to Network Security Perimeter with inbound rules defined.<br><br>Allow the traffic if IP based rule specified and match the source resource's IP address<br>Allow if Subscription Id based rule specified and match the source subscription Id<br>Allowed for resource in the transition mode.<br>Deny if source resource doesn't match any rules (IP address, Subscription ID) |
