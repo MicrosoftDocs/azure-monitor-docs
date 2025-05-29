@@ -14,9 +14,9 @@ ms.reviewer: cogoodson
 
 * The **Performance** experience, which quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
 
-* The **Transaction search** experience enables users to locate and examine individual telemetry items such as page views, exceptions, and web requests. Additionally, it offers the capability to view log traces and events coded into the application. It identifies performance issues and errors within the application.
+* The **Transaction search** experience, which enables users to locate and examine individual telemetry items such as page views, exceptions, and custom events.
 
-* The **Transaction Diagnostics** helps to quickly identify issues in components through comprehensive insight into end-to-end transaction details, including dependencies and exceptions. Access this feature via the Search interface by choosing an item from the search results.
+* The **Transaction diagnostics** experience, which helps to quickly identify issues in components through comprehensive insight into end-to-end transaction details.
 
 Together, these tools ensure the ongoing health and efficiency of web applications. You can use them to pinpoint issues or enhancements that would have the most impact on users.
 
@@ -44,6 +44,9 @@ To get to the **Transaction search** view in Application Insights, select either
 
 ---
 
+> [!NOTE]
+> You can access **Transaction diagnostics** through any of the other three experiences. For more information, see [Investigate telemetry](#investigate-telemetry).
+
 ## Overview
 
 ### [Failures view](#tab/failures-view)
@@ -60,58 +63,40 @@ The **Performance** view shows a list of all operations collected for your appli
 
 ### [Transaction search](#tab/transaction-search)
 
-**Transaction search** allows you to find and explore individual telemetry items, such as page views, exceptions, or web requests. You can also view log traces and custom events. Below the chart is a summary showing the number of events per type over the selected time period.
+**Transaction search** allows you to find and explore individual telemetry items. You can select which event types to view from the **Event types** dropdown menu, including:
+
+* **Availability**: Results of [availability tests](availability-overview.md).
+* **Custom Event**: If you inserted calls to `TrackEvent()` to [monitor usage](api-custom-events-metrics.md), you can search them here.
+* **Dependency**: [Calls from your server application](asp-net-dependencies.md) to other services such as REST APIs or databases, and AJAX calls from your [client code](javascript.md).
+* **Exception**: Uncaught [exceptions in the server](asp-net-exceptions.md), and the exceptions that you log by using `TrackException()`.
+* **Page View**: [Telemetry sent by the web client](javascript.md) used to create page view reports.
+* **Request**: HTTP requests received by your server application including pages, scripts, images, style files, and data. These events are used to create the request and response overview charts.
+* **Trace**: [Diagnostic logs](asp-net-trace-logs.md) including TrackTrace, log4Net, NLog, and System.Diagnostic.Trace calls.
+
+If you want to restore the filters later, select **Reset**.
 
 :::image type="content" source="media/failures-performance-transactions/transaction-search.png" lightbox="media/failures-performance-transactions/transaction-search.png" alt-text="Screenshot showing the 'Transaction search' view in Application Insights.":::
 
-For more complex queries, see [Use analytics data](#use-analytics-data).
-
-> [!NOTE]
-> Select **Refresh** from the top navigation bar to get new events.
-
 ---
 
-## Filter telemetry data
+## Filter telemetry
 
-### [Failures view](#tab/failures-view)
+You can filter events on the values of their properties. The available properties depend on the event or telemetry types you selected. To add a filter:
 
-...
+1. Select **Filter** :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: to start.
 
-### [Performance view](#tab/performance-view)
+1. From the left dropdown list :::image type="content" source="media/failures-performance-transactions/filter-left-drop-down.png" lightbox="media/failures-performance-transactions/filter-left-drop-down.png" alt-text="Added filter with left field highlighted." border="false":::, select a property.
 
-...
+1. From the center dropdown list :::image type="content" source="media/failures-performance-transactions/filter-center-drop-down.png" lightbox="media/failures-performance-transactions/filter-center-drop-down.png" alt-text="Added filter with center field highlighted." border="false":::, select one of the following operators: `=`, `!=`, `contains`, or `not contains`.
 
-### [Transaction search](#tab/transaction-search)
+1. From the right dropdown list :::image type="content" source="media/failures-performance-transactions/filter-right-drop-down.png" lightbox="media/failures-performance-transactions/filter-right-drop-down.png" alt-text="Added filter with right field highlighted." border="false":::, select all property values you want to filter on.
 
-### Filter event types
+    > [!NOTE]
+    > Notice that the counts to the right of the filter values show how many occurrences there are in the current filtered set.
 
-Open the **Event types** dropdown menu and choose the event types you want to see. If you want to restore the filters later, select **Reset**.
+1. To add additional filters, select **Filter** :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: again.
 
-The event types are:
-
-* **Trace**: [Diagnostic logs](./asp-net-trace-logs.md) including TrackTrace, log4Net, NLog, and System.Diagnostic.Trace calls.
-* **Request**: HTTP requests received by your server application including pages, scripts, images, style files, and data. These events are used to create the request and response overview charts.
-* **Page View**: [Telemetry sent by the web client](./javascript.md) used to create page view reports.
-* **Custom Event**: If you inserted calls to `TrackEvent()` to [monitor usage](./api-custom-events-metrics.md), you can search them here.
-* **Exception**: Uncaught [exceptions in the server](./asp-net-exceptions.md), and the exceptions that you log by using `TrackException()`.
-* **Dependency**: [Calls from your server application](./asp-net-dependencies.md) to other services such as REST APIs or databases, and AJAX calls from your [client code](./javascript.md).
-* **Availability**: Results of [availability tests](availability-overview.md)
-
-### Filter on property values
-
-You can filter events on the values of their properties. The available properties depend on the event types you selected. Select **Filter** :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon"::: to start.
-
-Choosing no values of a particular property has the same effect as choosing all values. It switches off filtering on that property.
-
-Notice that the counts to the right of the filter values show how many occurrences there are in the current filtered set.
-
-### Find events with the same property
-
-To find all the items with the same property value, either enter it in the **Search** box or select the checkbox when you look through properties on the **Filter** tab.
-
-:::image type="content" source="media/failures-performance-transactions/transaction-search-filter.png" lightbox="media/failures-performance-transactions/transaction-search-filter.png" alt-text="Screenshot that shows the dropdown list for filters.":::
-
-### Send more telemetry data to Application Insights
+## Send more telemetry data to Application Insights
 
 In addition to the out-of-the-box telemetry sent by Application Insights SDK, you can:
 
@@ -121,26 +106,29 @@ In addition to the out-of-the-box telemetry sent by Application Insights SDK, yo
 
 Learn how to [send logs and custom telemetry to Application Insights](asp-net-trace-logs.md).
 
----
+## Search telemetry
 
-## Search telemetry data
+> [!NOTE]
+> To write more complex queries, see [Use analytics data](#use-analytics-data).
 
 ### [Failures view](#tab/failures-view)
 
-...
+You can search for specific operations using the **Search to filter items...** field above the operations list.
+
+:::image type="content" source="media/failures-performance-transactions/failures-view-search.png" lightbox="media/failures-performance-transactions/failures-view-search.png" alt-text="Screenshot that shows the 'Search' field.":::
 
 ### [Performance view](#tab/performance-view)
 
-...
+You can search for specific operations using the **Search to filter items...** field above the operations list.
+
+:::image type="content" source="media/failures-performance-transactions/performance-view-search.png" lightbox="media/failures-performance-transactions/performance-view-search.png" alt-text="Screenshot that shows the 'Search' field.":::
 
 ### [Transaction search](#tab/transaction-search)
 
-> [!NOTE]
-> To write more complex queries, open [Logs (Analytics)](../logs/log-analytics-tutorial.md) at the top of the **Search** pane.
+You can search for terms in any of the property values. This capability is useful if you write [custom events](api-custom-events-metrics.md) with property values.
 
-You can search for terms in any of the property values. This capability is useful if you write [custom events](./api-custom-events-metrics.md) with property values.
-
-You might want to set a time range because searches over a shorter range are faster.
+> [!TIP]
+> You might want to set a time range because searches over a shorter range are faster.
 
 :::image type="content" source="media/failures-performance-transactions/transaction-search-property.png" lightbox="media/failures-performance-transactions/transaction-search-property.png" alt-text="Screenshot that shows opening a diagnostic search.":::
 
@@ -182,7 +170,7 @@ All data collected by Application Insights is stored in [Log Analytics](../logs/
 
     :::image type="content" source="media/failures-performance-transactions/logs-view.png" lightbox="media/failures-performance-transactions/logs-view.png" alt-text="Screenshot showing the 'Logs' view.":::
 
-## Investigate telemetry data
+## Investigate telemetry
 
 ### [Failures view](#tab/failures-view)
 
@@ -270,17 +258,6 @@ This collapsible pane shows the detail of any selected item from the transaction
 
 ---
 
-### What is a component?
-
-Components are independently deployable parts of your distributed or microservice application. Developers and operations teams have code-level visibility or access to telemetry generated by these application components.
-
-* Components are different from "observed" external dependencies, such as SQL and event hubs, which your team or organization might not have access to (code or telemetry).
-* Components run on any number of server, role, or container instances.
-* Components can be separate Application Insights instrumentation keys, even if subscriptions are different. Components also can be different roles that report to a single Application Insights instrumentation key. The new experience shows details across all components, regardless of how they were set up.
-
-> [!NOTE]
-> Are you missing the related item links? All the related telemetry is on the left side in the [Transaction chart](/azure/azure-monitor/app/failures-performance-transactions?tabs=transaction-chart#transaction-diagnostics-experience) and [Time-sequence list](/azure/azure-monitor/app/failures-performance-transactions?tabs=time-sequence-list#transaction-diagnostics-experience) sections.
-
 ## .NET Profiler and Snapshot Debugger
 
 [.NET Profiler](./profiler-overview.md) or [Snapshot Debugger](snapshot-debugger.md) help with code-level diagnostics of performance and failure issues. With this experience, you can see .NET Profiler traces or snapshots from any component with a single selection.
@@ -363,6 +340,14 @@ If you instrument your web pages with Application Insights, you can gain visibil
 This section provides answers to common questions.
 
 ### Transaction search
+
+### What is a component?
+
+Components are independently deployable parts of your distributed or microservice application. Developers and operations teams have code-level visibility or access to telemetry generated by these application components.
+
+* Components are different from "observed" external dependencies, such as SQL and event hubs, which your team or organization might not have access to (code or telemetry).
+* Components run on any number of server, role, or container instances.
+* Components can be separate Application Insights instrumentation keys, even if subscriptions are different. Components also can be different roles that report to a single Application Insights instrumentation key. The new experience shows details across all components, regardless of how they were set up.
 
 #### How much data is retained?
 
