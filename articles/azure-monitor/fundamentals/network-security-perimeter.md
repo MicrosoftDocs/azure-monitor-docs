@@ -2,7 +2,7 @@
 title: Configure Azure Monitor with Network Security Perimeter
 description: Details on adding Azure Monitor resources to your network security perimeter.
 ms.topic: conceptual
-ms.date: 01/30/2025
+ms.date: 5/28/2025
 ---
 
 # Configure Azure Monitor with Network Security Perimeter (Preview)
@@ -17,14 +17,7 @@ Network Security Perimeter allows you to control network access using network is
 
 ## Regions
 
-Azure Network Security Perimeter is currently in public preview. Network Security Perimeter features in Azure Monitor are currently available in the following 6 regions:
-
-* East US
-* East US 2
-* North Central US
-* South Central US
-* West US
-* West US 2
+Azure Network Security Perimeter is currently in public preview and available in all regions where Azure Monitor is supported.
 
 ## Current limitations
 
@@ -124,7 +117,7 @@ Use the following process to add an NSP inbound access rule using the Azure port
 
 [Data export in a Log Analytics workspace](../logs/logs-data-export.md) lets you continuously export data for particular tables in your workspace. You can export to an Azure Storage Account or Azure Event Hubs as the data arrives to an Azure Monitor pipeline.
 
-A Log analytics workspace within a security perimeter can only connect to storage and event hubs in the same perimeter. Other destinations require an outbound access rule based on the Fully Qualified Domain Name (FQDN) of the destination.
+A Log analytics workspace within a security perimeter can only export to to storage and event hubs in the same perimeter. Other destinations require an outbound access rule based on the Fully Qualified Domain Name (FQDN) of the destination.
 
 Use the following process to add an NSP outbound access rule using the Azure portal:
 
