@@ -20,7 +20,7 @@ This article provides instructions for deploying Azure Monitor securely and expl
 
 [!INCLUDE [application-insights-tls-requirements](../app/includes/application-insights-tls-requirements-deprecating.md)]
 
-For more information, see [TLS support in Application Insights FAQ](application-insights-faq.yml#tls-support).
+For more information, see [TLS support in Application Insights FAQ](../app/application-insights-faq.yml#tls-support).
 
 ## Alerts
 
