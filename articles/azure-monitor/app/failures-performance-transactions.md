@@ -236,6 +236,23 @@ To investigate an event further, select any telemetry item to open the **End-to-
 
 ---
 
+### Analyze client-side performance and failures
+
+If you instrument your web pages with Application Insights, you can gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires [adding a script to your web pages](javascript-sdk.md#add-the-javascript-code).
+
+1. After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle on the **Performance** or **Failures** view.
+
+    :::image type="content" source="media/failures-performance-transactions/server-browser-toggle.png" lightbox="media/failures-performance-transactions/server-browser-toggle.png" alt-text="Screenshot highlighting the 'Server / Browser' toggle below the top action bar.":::
+
+    This view provides a visual summary of various telemetries of your application from the perspective of the browser.
+
+1. For browser operations, the [end-to-end transaction details](#transaction-diagnostics) view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can help determining whether there are performance issues related to particular types of clients.
+
+    :::image type="content" source="media/failures-performance-transactions/transaction-view-page-view-properties.png" lightbox="media/failures-performance-transactions/transaction-view-page-view-properties.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Page View Properties' section highlighted.":::
+
+> [!NOTE]
+> Like the data collected for server performance, Application Insights makes all client data available for deep analysis by using logs.
+
 ## Transaction diagnostics experience
 
 The **Transaction diagnostics** experience, also called **End-to-end transaction details** view, shows a Gantt chart of the transaction, which lists all events with their duration and response code. 
@@ -286,7 +303,7 @@ This collapsible pane shows the detail of any selected item from the transaction
 
 ## .NET Profiler and Snapshot Debugger
 
-[.NET Profiler](./profiler-overview.md) or [Snapshot Debugger](snapshot-debugger.md) help with code-level diagnostics of performance and failure issues. With this experience, you can see .NET Profiler traces or snapshots from any component with a single selection.
+[.NET Profiler](profiler-overview.md) or [Snapshot Debugger](snapshot-debugger.md) help with code-level diagnostics of performance and failure issues. With this experience, you can see .NET Profiler traces or snapshots from any component with a single selection.
 
 ### Profiler traces
 
@@ -344,23 +361,6 @@ If you connect Application Insights to a tracking system such as Azure DevOps or
 
 1. The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
 
-## Analyze client-side performance and failures
-
-If you instrument your web pages with Application Insights, you can gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires [adding a script to your web pages](javascript-sdk.md#add-the-javascript-code).
-
-1. After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle on the **Performance** or **Failures** view.
-
-    :::image type="content" source="media/failures-performance-transactions/server-browser-toggle.png" lightbox="media/failures-performance-transactions/server-browser-toggle.png" alt-text="Screenshot highlighting the 'Server / Browser' toggle below the top action bar.":::
-
-    This view provides a visual summary of various telemetries of your application from the perspective of the browser.
-
-1. For browser operations, the [end-to-end transaction details](#transaction-diagnostics) view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can help determining whether there are performance issues related to particular types of clients.
-
-    :::image type="content" source="media/failures-performance-transactions/transaction-view-page-view-properties.png" lightbox="media/failures-performance-transactions/transaction-view-page-view-properties.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Page View Properties' section highlighted.":::
-
-> [!NOTE]
-> Like the data collected for server performance, Application Insights makes all client data available for deep analysis by using logs.
-
 ## Frequently asked questions
 
 This section provides answers to common questions.
@@ -390,7 +390,7 @@ See the [Limits summary](../service-limits.md#application-insights).
 <details>
 <summary><b>How can I see POST data in my server requests?</b></summary>
 
-We don't log the POST data automatically, but you can use [TrackTrace or log calls](./asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
+We don't log the POST data automatically, but you can use [TrackTrace or log calls](asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
 </details>
 
 <br>
@@ -416,7 +416,7 @@ See the [Limits summary](../service-limits.md#application-insights).
 
 #### How can I see POST data in my server requests?
 
-We don't log the POST data automatically, but you can use [TrackTrace or log calls](./asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
+We don't log the POST data automatically, but you can use [TrackTrace or log calls](asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
 
 #### Why does my Azure Function search return no results?
 
@@ -477,7 +477,7 @@ In these scenarios, you can use Automatic Route Tracking to automatically create
 
 Time not explained in the Gantt chart is time that isn't covered by a tracked dependency. This issue can occur because external calls weren't instrumented, either automatically or manually. It can also occur because the time taken was in process rather than because of an external call.
 
-If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [.NET Profiler](./profiler-overview.md).
+If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [.NET Profiler](profiler-overview.md).
 </details>
 
 <br>
@@ -520,7 +520,7 @@ In these scenarios, you can use Automatic Route Tracking to automatically create
 
 Time not explained in the Gantt chart is time that isn't covered by a tracked dependency. This issue can occur because external calls weren't instrumented, either automatically or manually. It can also occur because the time taken was in process rather than because of an external call.
 
-If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [.NET Profiler](./profiler-overview.md).
+If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [.NET Profiler](profiler-overview.md).
 
 #### What if I see the message ***Error retrieving data*** while navigating Application Insights in the Azure portal? 
 
@@ -532,5 +532,5 @@ This error indicates that the browser was unable to call into a required API or 
 * Learn more about using [Application Map](app-map.md) to spot performance bottlenecks and failure hotspots across all components of your application.
 * Learn more about using the [Availability view](availability-overview.md) to set up recurring tests to monitor availability and responsiveness for your application.
 * Learn how to [write complex queries in Analytics](../logs/log-analytics-tutorial.md) to gain deeper insights from your telemetry data.
-* Learn how to [send logs and custom telemetry to Application Insights](./asp-net-trace-logs.md) for more comprehensive monitoring.
+* Learn how to [send logs and custom telemetry to Application Insights](asp-net-trace-logs.md) for more comprehensive monitoring.
 * For an introduction to monitoring uptime and responsiveness, see the [Availability overview](availability-overview.md).
