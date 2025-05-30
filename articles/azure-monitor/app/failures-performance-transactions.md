@@ -1,11 +1,11 @@
 ---
 title: Investigate failures, performance, and transactions in Application Insights | Microsoft Docs
-description: Monitor application performance, failures, and transactions with Application Insights.
+description: Monitor and investigate application performance, failures, and transactions with Application Insights.
 ms.topic: how-to
 ms.date: 05/30/2025
 ---
 
-# Investigate failures, performance, and transactions
+# Investigate failures, performance, and transactions in Application Insights
 
 [Application Insights](app-insights-overview.md) collects telemetry from your application to help diagnosing failures and investigating slow transactions. It includes four essential tools:
 
