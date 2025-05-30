@@ -22,6 +22,8 @@
       href: service-notifications.md
     - name: Service Health Notifications by Event Level
       href: metadata-filter.md
+    - name: Elevated access for viewing Security Advisories
+      href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
     - name: In-Portal Billing communications
@@ -73,9 +75,7 @@
     - name: Tenant Roles with Admin access
       href: admin-access-reference.md
     - name: Subscription and Tenant access
-      href: subscription-vs-tenant.md
-    - name: Elevated access for viewing Security Advisories
-      href: security-advisories-elevated-access.md
+      href: subscription-vs-tenant.md    
 - name: Frequently Asked Questions
   items:
     - name: Resource Health FAQ
