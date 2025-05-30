@@ -134,9 +134,6 @@ You can filter events on the values of their properties. The available propertie
 
 ## Search telemetry
 
-> [!NOTE]
-> To write more complex queries, see [Use analytics data](#use-analytics-data).
-
 ### [Failures view](#tab/failures-view)
 
 You can search for specific operations using the **Search to filter items...** field above the operations list.
