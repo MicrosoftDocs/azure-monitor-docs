@@ -5,7 +5,7 @@ ms.date: 03/31/2025
 
 #### Supported TLS configurations
 
-To provide best-in-class encryption, Application Insights uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice. In addition, the following Cipher suites and Elliptical curves are also supported within each version.
+Application Insights uses Transport Layer Security (TLS) 1.2 and 1.3. In addition, the following Cipher suites and Elliptical curves are also supported within each version.
 
 | Version | Cipher suites | Elliptical curves |
 |---------|---------|---------|

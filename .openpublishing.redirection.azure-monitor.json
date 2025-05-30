@@ -4846,6 +4846,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path_from_root": "/articles/azure-monitor/app/application-insights-tls.md",
+   "redirect_url": "/previous-versions/azure/azure-monitor/fundamentals/best-practices-security#application-insights-tls",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/app/tutorial-asp-net-core.md",
    "redirect_url": "/previous-versions/azure/azure-monitor/app/tutorial-asp-net-core",
    "redirect_document_id": false
