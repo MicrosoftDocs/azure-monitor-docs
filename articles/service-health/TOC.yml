@@ -50,7 +50,7 @@
       href: resource-health-checks-resource-types.md
     - name: Configure resource health alerts using Azure portal
       href: resource-health-alert-monitor-guide.md
-    - name: Configure resource health alerts using Resource Manager templates
+    - name: Configure resource health alerts with Resource Manager templates
       href: resource-health-alert-arm-template-guide.md
     - name: Resource Health status for Virtual Machines
       href: resource-health-vm-annotation.md
@@ -76,10 +76,10 @@
       href: subscription-vs-tenant.md
     - name: Elevated access for viewing Security Advisories
       href: security-advisories-elevated-access.md
-    - name: Frequently Asked Questions
-      items:
-      - name: Resource Health FAQ
-        href: resource-health-faq.yml
+- name: Frequently Asked Questions
+  items:
+    - name: Resource Health FAQ
+      href: resource-health-faq.yml
 - name: External Resources
   items:
   - name: Azure Roadmap
