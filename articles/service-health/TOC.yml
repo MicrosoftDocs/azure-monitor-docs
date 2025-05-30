@@ -76,7 +76,7 @@
       href: impacted-resources-planned-maintenance.md
     - name: Viewing impacted resources from Azure security incidents
       href: impacted-resources-security.md
-- name: External Resources
+- name: External Resource
   items:
   - name: Azure Roadmap
     href: https://techcommunity.microsoft.com/discussions/microsoft-entra/introducing-the-azure-roadmap/113500
