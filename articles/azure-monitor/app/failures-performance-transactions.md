@@ -1,9 +1,8 @@
 ---
-title: Failures and performance views in Application Insights | Microsoft Docs
-description: Monitor application performance and failures with Application Insights.
+title: Investigate failures, performance, and transactions in Application Insights | Microsoft Docs
+description: Monitor application performance, failures, and transactions with Application Insights.
 ms.topic: how-to
-ms.date: 03/26/2025
-ms.reviewer: cogoodson
+ms.date: 05/30/2025
 ---
 
 # Investigate failures, performance, and transactions
@@ -69,6 +68,11 @@ The **Performance** view shows a list of all operations collected for your appli
 
 ---
 
+> [!NOTE]
+> In addition to the out-of-the-box telemetry sent by the Azure Monitor OpenTelemetry Distro or JavaScript SDK, you can add and modify telemetry (for example, custom events).
+>
+> For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md).
+
 ## Filter telemetry
 
 ### Default filters
@@ -77,23 +81,33 @@ All experiences allow you to filter telemetry by time range. In addition, each e
 
 ### [Failures view](#tab/failures-view)
 
-You can select which service (role) or machine/container (instance) to view from the **Roles** filter menu. This allows you to isolate issues or performance trends within specific parts of your application.
+You can select which service (Cloud Role Name) or machine/container (Cloud Role Instance) to view from the **Roles** filter menu. This allows you to isolate issues or performance trends within specific parts of your application.
+
+To learn how to set the *Cloud Role Name* and the *Cloud Role Instance*, see [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
 
 ### [Performance view](#tab/performance-view)
 
-You can select which service (role) or machine/container (instance) to view from the **Roles** filter menu. This allows you to isolate issues or performance trends within specific parts of your application.
+You can select which service (Cloud Role Name) or machine/container (Cloud Role Instance) to view from the **Roles** filter menu. This allows you to isolate issues or performance trends within specific parts of your application.
+
+To learn how to set the *Cloud Role Name* and the *Cloud Role Instance*, see [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
 
 ### [Transaction search](#tab/transaction-search)
 
 You can select which event types to view from the **Event types** dropdown menu, including:
 
-* **Availability**: Results of [availability tests](availability-overview.md).
-* **Custom Event**: If you inserted calls to `TrackEvent()` to [monitor usage](api-custom-events-metrics.md), you can search them here.
-* **Dependency**: [Calls from your server application](asp-net-dependencies.md) to other services such as REST APIs or databases, and AJAX calls from your [client code](javascript.md).
-* **Exception**: Uncaught [exceptions in the server](asp-net-exceptions.md), and the exceptions that you log by using `TrackException()`.
-* **Page View**: [Telemetry sent by the web client](javascript.md) used to create page view reports.
-* **Request**: HTTP requests received by your server application including pages, scripts, images, style files, and data. These events are used to create the request and response overview charts.
-* **Trace**: [Diagnostic logs](asp-net-trace-logs.md) including TrackTrace, log4Net, NLog, and System.Diagnostic.Trace calls.
+* **Availability** - Results from [availability tests](availability-overview.md), used to monitor uptime and responsiveness from different locations around the globe.
+
+* **Custom Event** - Custom events set up and captured using the [Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#send-custom-events) or the [JavaScript SDK](javascript-sdk.md).
+
+* **Dependency** - Outbound calls from your application to external services such as REST APIs, databases, or message queues.
+
+* **Exception** - Captured exceptions, including server-side errors and exceptions explicitely recorded using `TrackException()`.
+
+* **Page View** - [Telemetry sent by the web client](javascript-sdk.md) to create page view reports.
+
+* **Request** - HTTP requests to your server application, including API calls, web pages, and assets. These events are used to create the request and response overview charts.
+
+* **Trace** - Diagnostic log data captured through logging frameworks included in the [Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#included-instrumentation-libraries).
 
 If you want to restore the filters later, select **Reset** from the top navigation bar.
 
@@ -103,9 +117,9 @@ If you want to restore the filters later, select **Reset** from the top navigati
 
 You can filter events on the values of their properties. The available properties depend on the event or telemetry types you selected. To add a filter:
 
-1. Select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: to add a filter.
+1. Select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: to add a filter.
 
-    :::image type="content" source="media/failures-performance-transactions/filter-selection.png" lightbox="media/failures-performance-transactions/filter-selection.png" alt-text="Filter pill" border="false":::
+    :::image type="content" source="media/failures-performance-transactions/filter-selection.png" alt-text="Filter pill" border="false":::
 
 1. From the left dropdown list, select a property.
 
@@ -116,17 +130,7 @@ You can filter events on the values of their properties. The available propertie
     > [!NOTE]
     > Notice that the counts to the right of the filter values show how many occurrences there are in the current filtered set.
 
-1. To add another filter, select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" lightbox="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: again.
-
-## Send more telemetry data to Application Insights
-
-In addition to the out-of-the-box telemetry sent by Application Insights SDK, you can:
-
-* Capture log traces from your favorite logging framework in [.NET](asp-net-trace-logs.md) or [Java](opentelemetry-add-modify.md?tabs=java). This means you can search through your log traces and correlate them with page views, exceptions, and other events.
-
-* [Write code](api-custom-events-metrics.md) to send custom events, page views, and exceptions.
-
-Learn how to [send logs and custom telemetry to Application Insights](asp-net-trace-logs.md).
+1. To add another filter, select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: again.
 
 ## Search telemetry
 
@@ -177,7 +181,7 @@ You can use the following search expressions:
 
 ---
 
-## Use analytics data
+### Use analytics data
 
 All data collected by Application Insights is stored in [Log Analytics](../logs/log-analytics-overview.md), which provides a rich query language to analyze the requests that generated the exception you're investigating.
 
