@@ -24,6 +24,8 @@
       href: metadata-filter.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
+    - name: In-Portal Billing communications
+      href: billing-elevated-access.md
     - name: How to create alerts
       items:
       - name: Configure alerts for service health events in the Azure portal
@@ -59,11 +61,7 @@
       - name: Viewing Resources impacted by planned maintenance events
         href: impacted-resources-planned-maintenance.md
       - name: Viewing impacted resources from Azure security incidents
-        href: impacted-resources-security.md  
-- name: Frequently Asked Questions
-  items:
-  - name: Resource Health FAQ
-    href: resource-health-faq.yml    
+        href: impacted-resources-security.md     
 - name: Reference
   items:
   - name: Queries
@@ -78,10 +76,10 @@
       href: subscription-vs-tenant.md
     - name: Elevated access for viewing Security Advisories
       href: security-advisories-elevated-access.md
-    
-  - name: In-Portal Billing communications
-    href: billing-elevated-access.md
-  
+    - name: Frequently Asked Questions
+      items:
+      - name: Resource Health FAQ
+        href: resource-health-faq.yml
 - name: External Resources
   items:
   - name: Azure Roadmap
