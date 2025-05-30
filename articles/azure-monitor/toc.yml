@@ -218,8 +218,8 @@ items:
       - name: Application Map
         displayName: appmap, app map, dependency map, dependencies, hotspots, cloud role name, cloudrolename, cloud_rolename, cloud.rolename, cloud role instance, node
         href: app/app-map.md
-      - name: Failures and Performance views
-        href: app/failures-and-performance-views.md
+      - name: Failures, performance, and transactions
+        href: app/failures-performance-transactions.md
       - name: Availability
         href: app/availability.md
       - name: Live Metric stream
@@ -229,8 +229,6 @@ items:
         href: app/usage.md
       - name: Release and work item insights
         href: app/release-and-work-item-insights.md
-      - name: Transaction Search and Diagnostics
-        href: app/transaction-search-and-diagnostics.md
     - name: Code analysis
       items:
       - name: Code Optimizations
