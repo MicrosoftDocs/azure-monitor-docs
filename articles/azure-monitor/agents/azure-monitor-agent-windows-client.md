@@ -349,7 +349,7 @@ DELETE https://management.azure.com/providers/Microsoft.Insights/monitoredObject
 * Authorization: Azure Resource Manager bearer token
 * Content-Type: Application/json
 
-### Option 2: Create a DCR and associate it to a monitored object using Azure PowerShell
+### Option 2: Use Azure PowerShell
 
 The following Azure PowerShell script creates a DCR and associates it to a monitored object, and then lists the associations.
 
