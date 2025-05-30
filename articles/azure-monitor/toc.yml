@@ -341,10 +341,7 @@ items:
       - name: Managed workspaces
         href: app/managed-workspaces.md
       - name: Telemetry data model
-        href: app/data-model-complete.md        
-      - name: Transport Layer Security (TLS) compliance
-        href: app/application-insights-tls.md
-        displayName: TLS, transport layer security, compliance, security
+        href: app/data-model-complete.md
     - name: Help and support
       items:
       - name: Create an Azure support ticket
