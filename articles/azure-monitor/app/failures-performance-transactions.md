@@ -101,7 +101,7 @@ You can select which event types to view from the **Event types** dropdown menu,
 
 * **Dependency** - Outbound calls from your application to external services such as REST APIs, databases, or message queues.
 
-* **Exception** - Captured exceptions, including server-side errors and exceptions explicitely recorded using `TrackException()`.
+* **Exception** - Captured exceptions, including server-side errors and exceptions explicitly recorded using `TrackException()`.
 
 * **Page View** - [Telemetry sent by the web client](javascript-sdk.md) to create page view reports.
 
