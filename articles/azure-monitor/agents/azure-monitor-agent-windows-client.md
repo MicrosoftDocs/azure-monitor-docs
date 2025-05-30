@@ -51,18 +51,18 @@ Here's a comparison between using the client installer and using the virtual mac
 
 * To download the installer, the machine should have [C++ Redistributable version 2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) or later installed.
 
-* The machine must be domain joined to a Microsoft Entra tenant (joined or hybrid joined machines). When the machine is domain joined, the agent can fetch Microsoft Entra device tokens to authenticate and fetch DCRs from Azure.
+* The machine must be domain-joined to a Microsoft Entra tenant (joined or hybrid joined machines). When the machine is domain-joined, the agent can fetch Microsoft Entra device tokens to authenticate and fetch DCRs from Azure.
 
 * Check to see if you need tenant admin permissions on the Microsoft Entra tenant.
 
 * The device must have access to the following HTTPS endpoints:
 
     * `global.handler.control.monitor.azure.com`
+
     * `<virtual-machine-region-name>.handler.control.monitor.azure.com`
-    
     (Example: `westus.handler.control.azure.com`)
+
     * `<log-analytics-workspace-id>.ods.opinsights.azure.com`
-    
     (Example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`)
 
     If you use private links on the agent, you must also add the [data collection endpoints](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce).
@@ -134,7 +134,7 @@ Then, continue in the next section to create and associate DCRs to a monitored o
 
 Because a monitored object is a tenant-level resource, the scope of permissions is greater than the scope of the permissions required for a subscription. An Azure tenant admin might be required to perform this step. Complete the [steps to elevate a Microsoft Entra tenant admin as Azure Tenant Admin](/azure/role-based-access-control/elevate-access-global-admin). It gives the Microsoft Entra admin Owner permissions at the root scope. This scope of permissions is required for all methods described in the following section.
 
-### Use REST APIs
+### Option 1: Use REST APIs
 
 The following sections describe the steps to create a DCR and associate it to a monitored object by using the REST API:
 
@@ -349,7 +349,7 @@ DELETE https://management.azure.com/providers/Microsoft.Insights/monitoredObject
 * Authorization: Azure Resource Manager bearer token
 * Content-Type: Application/json
 
-### Use Azure PowerShell for onboarding
+### Option 2: Create a DCR and associate it to a monitored object using Azure PowerShell
 
 The following Azure PowerShell script creates a DCR and associates it to a monitored object, and then lists the associations.
 
@@ -459,15 +459,7 @@ $requestURL = "https://management.azure.com$RespondId/providers/microsoft.insigh
 
 ```
 
-## Verify successful setup
-
-In the Log Analytics workspace that you specified as a destination in the DCRs, check the **Heartbeat** table and other tables you configured in the rules.
-
-The **SourceComputerId**, **Computer**, and **ComputerIP** columns should all reflect the client device information respectively, and the **Category** column should say **Azure Monitor Agent**.
-
-:::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" alt-text="Screenshot that shows agent heartbeat logs in the Azure portal.":::
-
-### Use PowerShell for offboarding
+#### Disassociate the DCR from the monitored object using PowerShell
 
 The following PowerShell script disassociates a DCR from a monitored object.
 
@@ -504,6 +496,14 @@ $requestURL = "https://management.azure.com/providers/Microsoft.Insights/monitor
 Invoke-AzRestMethod -Uri $requestURL -Method Delete
 
 ```
+
+## Verify successful setup
+
+In the Log Analytics workspace that you specified as a destination in the DCRs, check the **Heartbeat** table and other tables you configured in the rules.
+
+The **SourceComputerId**, **Computer**, and **ComputerIP** columns should all reflect the client device information respectively, and the **Category** column should say **Azure Monitor Agent**.
+
+:::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" alt-text="Screenshot that shows agent heartbeat logs in the Azure portal.":::
 
 ## Manage the agent
 
