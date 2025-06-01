@@ -35,19 +35,21 @@ The following table presents criteria to consider when designing an Azure Monito
 | Azure regions                   | Each Azure Monitor workspace resides in a particular Azure region. Regulatory or compliance requirements might dictate the storage of data in particular locations.              |
 | Data ownership                  | Create separate Azure Monitor workspaces to define data ownership, such as by subsidiaries or affiliated companies.                                                              |
 
+Refer to [Best Practices for scaling Azure Monitor Workspace](./azure-monitor-workspace-scaling-best-practice.md) for more details.
+
 ### Considerations when creating an Azure Monitor workspace
 
 * Azure Monitor workspaces are regional. When you create a new Azure Monitor workspace, you provide a region which sets the location in which the data is stored.
 
 * Start with a single workspace to reduce the complexity of managing and querying data from multiple Azure resources.
 
-* The default Azure Monitor workspace limit is 1 million active times series and 1 million events per minute ingested.
+* The default Azure Monitor workspace limit is 1 million active times series and 1 million events per minute ingested. This limit can be increased by opening a support ticket.
 
 * There's no reduction in performance due to the amount of data in your Azure Monitor workspace. Multiple services can send data to the same account simultaneously. There is, however, a limit on how much an Azure Monitor workspace can scale, as explained below.
 
 ### Growing account capacity
 
-Azure Monitor workspaces have default quotas and limitations for metrics. As your product grows and you need more metrics, you can request an increase to 50 million events or active time series. If your capacity needs to be exceptionally large and your data ingestion needs can no longer be met by a single Azure Monitor workspace, consider creating multiple Azure Monitor workspaces.
+Azure Monitor workspaces have default quotas and limitations for metrics. As your product grows and you need more metrics, you can request an increase in the limits for events or active time series. If your capacity needs to be exceptionally large and your data ingestion needs can no longer be met by a single Azure Monitor workspace, consider creating multiple Azure Monitor workspaces. Refer to [Best Practices for scaling Azure Monitor Workspace](./azure-monitor-workspace-scaling-best-practice.md).
 
 ### Multiple Azure Monitor workspaces
 
