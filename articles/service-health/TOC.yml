@@ -52,14 +52,14 @@
       href: resource-health-checks-resource-types.md
     - name: Resource Health status for Virtual Machines
       href: resource-health-vm-annotation.md
-    - name: Create Resource health alerts
+    - name: Resource health alerts
       items:
       - name: Configure resource health alerts using Azure portal
         href: resource-health-alert-monitor-guide.md
       - name: Configure resource health alerts with Resource Manager templates
         href: resource-health-alert-arm-template-guide.md
-      - name: Impacted Resources
-        items:
+    - name: Impacted Resources
+      items:
       - name: Impacted Resources Support for Outages
         href: impacted-resources-outage.md
       - name: Viewing Resources impacted by planned maintenance events
