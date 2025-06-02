@@ -1,6 +1,6 @@
 - name: Azure Service Health
   href: index.yml
-- name: Overview
+- name: Getting started
   items:
   - name: Azure Service Health Overview
     href: overview.md
