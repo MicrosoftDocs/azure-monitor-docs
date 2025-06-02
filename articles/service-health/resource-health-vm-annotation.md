@@ -43,13 +43,14 @@ This page identifies the key attributes that help explain the annotations you mi
 
 >[!Note]
 > A VMs availability impact start and end time is **only** applicable to degraded annotations, and does not apply to downtime or informational annotations.
+## Table of annotations
 
-This table summarizes all the annotations that the platform emits today:
+This table contains a list of all the annotations and a summary of each one on the platform.
 
 
 | Annotation | Description | Attributes |
 |------------|-------------|-------------|
-| PossiblyDegradedDueToHardwareFailureWithRedeployDeadline | The Physical Host on which your Virtual Machine is running has potentially degraded. Live Migration, if applicable, is performed as the best effort to safely migrate your Virtual Machine. We strongly recommend redeploying your Virtual Machine before the specified redeployment deadline to avoid unexpected disruptions. |  <ul><li>**Context**: Platform Initiated<li>**Category**: Unplanned<li>**ImpactType**: Degraded |
+| PossiblyDegradedDueToHardwareFailureWithRedeployDeadline |The Physical Host on which your Virtual Machine is running has potentially degraded. Live Migration, if applicable, is performed as the best effort to safely migrate your Virtual Machine. We strongly recommend redeploying your Virtual Machine before the specified redeployment deadline to avoid unexpected disruptions.|  <ul><li>**Context**: Platform Initiated<li>**Category**: Unplanned<li>**ImpactType**: Degraded |
 | VirtualMachineRestarted    | The Virtual Machine is undergoing a reboot as requested by a restart action triggered by an authorized user or process from within the Virtual Machine. No other action is required at this time. For more information, see [understanding Virtual Machine reboots in Azure](/troubleshoot/azure/virtual-machines/understand-vm-reboot). | <ul><li>**Context**: Customer Initiated<li>**Category**: Not Applicable<li>**ImpactType**: Informational |
 | VirtualMachineCrashed | The Virtual Machine is undergoing a reboot due to a guest OS crash. The local data remains unaffected during this process. No other action is required at this time. For more information, see [understanding Virtual Machine crashes in Azure](/troubleshoot/azure/virtual-machines/understand-vm-reboot#vm-crashes). | <ul><li>**Context**: VM Initiated<li>**Category**: Not Applicable<li>**ImpactType**: Downtime Reboot |
 | VirtualMachineStorageOffline | The Virtual Machine is either currently undergoing a reboot or experiencing an application freeze due to a temporary loss of access to disk. No other action is required at this time, while the platform is working on re-establishing disk connectivity. | <ul><li>**Context**: Platform Initiated<li>**Category**: Unplanned<li>**ImpactType**: Downtime Reboot |
