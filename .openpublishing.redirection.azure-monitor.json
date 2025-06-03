@@ -8413,6 +8413,46 @@
    "source_path": "articles/azure-monitor/app/transaction-search-and-diagnostics.md",
    "redirect_url": "/azure/azure-monitor/app/failures-performance-transactions",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-media-mediaservices-liveevents-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-media-mediaservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-media-mediaservices-streamingendpoints-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-media-videoanalyzers-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-media-mediaservices-liveevents-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-media-mediaservices-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-media-mediaservices-streamingendpoints-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-media-videoanalyzers-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
   }
  ]
 }

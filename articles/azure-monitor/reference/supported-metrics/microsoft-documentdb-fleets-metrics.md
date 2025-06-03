@@ -1,29 +1,25 @@
 ---
-title: Supported metrics - Microsoft.Media/videoanalyzers
-description: Reference for Microsoft.Media/videoanalyzers metrics in Azure Monitor.
+title: Supported metrics - Microsoft.DocumentDB/fleets
+description: Reference for Microsoft.DocumentDB/fleets metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.Media/videoanalyzers, naam
+ms.date: 06/03/2025
+ms.custom: Microsoft.DocumentDB/fleets, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Microsoft.Media/videoanalyzers
+# Supported metrics for Microsoft.DocumentDB/fleets
   
-The following table lists the metrics available for the Microsoft.Media/videoanalyzers resource type.  
+The following table lists the metrics available for the Microsoft.DocumentDB/fleets resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.Media/videoanalyzers](../supported-logs/microsoft-media-videoanalyzers-logs.md)  
-  
  
 
-[!INCLUDE [Microsoft.Media/videoanalyzers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-media-videoanalyzers-metrics-include.md)]  
+[!INCLUDE [Microsoft.DocumentDB/fleets](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-documentdb-fleets-metrics-include.md)]  
 
 
 

@@ -157,10 +157,14 @@ items:
             href: supported-metrics/microsoft-documentdb-cassandraclusters-metrics.md
           - name: Microsoft.DocumentDB/DatabaseAccounts
             href: supported-metrics/microsoft-documentdb-databaseaccounts-metrics.md
+          - name: Microsoft.DocumentDB/fleets
+            href: supported-metrics/microsoft-documentdb-fleets-metrics.md
           - name: Microsoft.DocumentDB/garnetClusters
             href: supported-metrics/microsoft-documentdb-garnetclusters-metrics.md
           - name: Microsoft.DocumentDB/mongoClusters
             href: supported-metrics/microsoft-documentdb-mongoclusters-metrics.md
+          - name: Microsoft.DurableTask/schedulers
+            href: supported-metrics/microsoft-durabletask-schedulers-metrics.md
           - name: microsoft.edgezones/edgezones
             href: supported-metrics/microsoft-edgezones-edgezones-metrics.md
           - name: Microsoft.ElasticSan/elasticSans
@@ -241,14 +245,6 @@ items:
             href: supported-metrics/microsoft-managednetworkfabric-networkdevices-metrics.md
           - name: Microsoft.Maps/accounts
             href: supported-metrics/microsoft-maps-accounts-metrics.md
-          - name: Microsoft.Media/mediaservices
-            href: supported-metrics/microsoft-media-mediaservices-metrics.md
-          - name: Microsoft.Media/mediaservices/liveEvents
-            href: supported-metrics/microsoft-media-mediaservices-liveevents-metrics.md
-          - name: Microsoft.Media/mediaservices/streamingEndpoints
-            href: supported-metrics/microsoft-media-mediaservices-streamingendpoints-metrics.md
-          - name: Microsoft.Media/videoanalyzers
-            href: supported-metrics/microsoft-media-videoanalyzers-metrics.md
           - name: Microsoft.MessagingConnectors/connectors
             href: supported-metrics/microsoft-messagingconnectors-connectors-metrics.md
           - name: Microsoft.MixedReality/remoteRenderingAccounts
@@ -265,6 +261,8 @@ items:
             href: supported-metrics/microsoft-mobilenetwork-radioaccessnetworks-metrics.md
           - name: Microsoft.Monitor/accounts
             href: supported-metrics/microsoft-monitor-accounts-metrics.md
+          - name: Microsoft.NetApp/netAppAccounts
+            href: supported-metrics/microsoft-netapp-netappaccounts-metrics.md
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-metrics.md
           - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
@@ -347,6 +345,8 @@ items:
             href: supported-metrics/microsoft-operationalinsights-workspaces-metrics.md
           - name: Microsoft.Orbital/contactProfiles
             href: supported-metrics/microsoft-orbital-contactprofiles-metrics.md
+          - name: Microsoft.Orbital/geocatalogs
+            href: supported-metrics/microsoft-orbital-geocatalogs-metrics.md
           - name: Microsoft.Orbital/l2Connections
             href: supported-metrics/microsoft-orbital-l2connections-metrics.md
           - name: Microsoft.Orbital/spacecrafts
@@ -764,7 +764,9 @@ items:
             displayName: CassandraAudit,CassandraLogs
           - name: Microsoft.DocumentDB/DatabaseAccounts
             href: supported-logs/microsoft-documentdb-databaseaccounts-logs.md
-            displayName: CassandraRequests,ControlPlaneRequests,DataPlaneRequests,GremlinRequests,MongoRequests,PartitionKeyRUConsumption,PartitionKeyStatistics,QueryRuntimeStatistics,TableApiRequests
+            displayName: CassandraRequests,ControlPlaneRequests,DataPlaneRequests,DataPlaneRequests
+              - Aggregated 15 Min,DataPlaneRequests - Aggregated 5
+              Min,GremlinRequests,MongoRequests,PartitionKeyRUConsumption,PartitionKeyStatistics,QueryRuntimeStatistics,TableApiRequests
           - name: Microsoft.DocumentDB/mongoClusters
             href: supported-logs/microsoft-documentdb-mongoclusters-logs.md
             displayName: vCoreMongoRequests
@@ -870,18 +872,6 @@ items:
               Updates,Interface State Updates,Interface Vxlan Updates,BGP
               Neighbor Updates,Network Instance Updates,System Session History
               Updates,System State Message Updates
-          - name: Microsoft.Media/mediaservices
-            href: supported-logs/microsoft-media-mediaservices-logs.md
-            displayName: Key Delivery Requests,Media Account Health Status
-          - name: Microsoft.Media/mediaservices/liveEvents
-            href: supported-logs/microsoft-media-mediaservices-liveevents-logs.md
-            displayName: Live Event Operations
-          - name: Microsoft.Media/mediaservices/streamingEndpoints
-            href: supported-logs/microsoft-media-mediaservices-streamingendpoints-logs.md
-            displayName: Streaming Endpoint Requests
-          - name: Microsoft.Media/videoanalyzers
-            href: supported-logs/microsoft-media-videoanalyzers-logs.md
-            displayName: Audit Logs,Diagnostics Logs,Operational Logs
           - name: Microsoft.Monitor/accounts
             href: supported-logs/microsoft-monitor-accounts-logs.md
             displayName: Metrics Usage Details
@@ -1027,6 +1017,9 @@ items:
           - name: Microsoft.OperationalInsights/workspaces
             href: supported-logs/microsoft-operationalinsights-workspaces-logs.md
             displayName: Audit,Summary Logs
+          - name: Microsoft.Orbital/geocatalogs
+            href: supported-logs/microsoft-orbital-geocatalogs-logs.md
+            displayName: Audit Logs,Ingestion Logs
           - name: Microsoft.PlayFab/titles
             href: supported-logs/microsoft-playfab-titles-logs.md
             displayName: AuditLogs
