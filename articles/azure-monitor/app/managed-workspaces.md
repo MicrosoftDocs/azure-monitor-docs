@@ -152,7 +152,7 @@ These policies are defined and enforced at the management group, subscription, o
 ### What to expect
 
 - Microsoft doesn't retry automatic migration for resources blocked by policy.
-- Microsoft continues telemetry ingestion into classic resources temporarily.
+- Microsoft continues telemetry ingestion into classic resources until June 15th, 2025.
 - Microsoft keeps existing data available for query after ingestion stops but doesn't collect new telemetry.
 
 ### Required actions
