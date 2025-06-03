@@ -2,7 +2,7 @@
 title: Azure Monitor best practices - Analysis and visualizations
 description: Guidance and recommendations for customizing visualizations beyond standard analysis features in Azure Monitor.
 ms.topic: conceptual
-ms.date: 10/08/2024
+ms.date: 05/21/2025
 ms.reviewer: bwren
 ---
 
@@ -49,7 +49,7 @@ Grafana has popular plug-ins and dashboard templates for application performance
 
 Grafana allows you to leverage the extensive flexibility included for combining data queries, query results, and performing open-ended client-side data processing, as well as using open-source community dashboards.
 
-All versions of Grafana include the [Azure Monitor datasource plug-in](../visualize/grafana-plugin.md) to visualize your Azure Monitor metrics and logs.
+All versions of Grafana include the [Azure Monitor datasource plug-in](../visualize/visualize-grafana-overview.md) to visualize your Azure Monitor metrics and logs.
 
 [Azure Managed Grafana](/azure/managed-grafana/overview) also optimizes this experience for Azure-native data stores such as Azure Monitor and Azure Data Explorer. In this way, you can easily connect to any resource in your subscription and view all resulting telemetry in a familiar Grafana dashboard. It also supports pinning charts from Azure Monitor metrics and logs to Grafana dashboards. Grafana includes out-of-the-box dashboards for Azure resources. [Create your first Azure Managed Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal) to get started.
 

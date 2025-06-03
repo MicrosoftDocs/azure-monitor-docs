@@ -14,7 +14,7 @@ Whenever the alert query results in one or more time series meeting the conditio
 
 >[!NOTE]
 > To enable recommended metric alert rules that are predefined for your Kubernetes clusters, refer to this [guide](../containers/kubernetes-metric-alerts.md).
->
+
 
 ## Create Prometheus alert rules
 

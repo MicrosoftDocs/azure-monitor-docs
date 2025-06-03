@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor Application Insights Profiler for Java
 description: How to configure the Azure Monitor Application Insights Profiler for Java
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
@@ -202,48 +202,6 @@ This value can be one of:
 
 `periodicRecordingDurationSeconds` Profiling recording duration in seconds when a profiling session is started by using the **Profile now** button. The default value is `120`.
 
-## Frequently asked questions
-
-### What is Azure Monitor Application Insights Java Profiling?
-
-The Java Profiler uses Java Flight Recorder (JFR) to profile your application using  a customized configuration.
-
-### What is Java Flight Recorder?
-
-Java Flight Recorder (JFR) is a tool for collecting profiling data of a running Java application. JFR is integrated into the Java Virtual Machine (JVM) and is used for troubleshooting performance issues. Learn more about [Java SE JFR Runtime](https://docs.oracle.com/javacomponents/jmc-5-4/jfr-runtime-guide/about.htm#JFRUH170).
-
-### What is the price and/or licensing fee implications for enabling App Insights Java Profiling?
-
-Java Profiling is a free feature with Application Insights. [Azure Monitor Application Insights pricing](https://azure.microsoft.com/pricing/details/monitor/) is based on ingestion cost.
-
-### Which Java profiling information is collected? 
-
-Profiling data collected by the JFR includes: method and execution profiling data, garbage collection data, and lock profiles.
-
-### How can I use App Insights Java Profiling and visualize the data?
-
-JFR recording can be viewed and analyzed with your preferred tool, for example [Java Mission Control (JMC)](https://jdk.java.net/jmc/8/).
-
-### Are performance diagnosis and fix recommendations provided with App Insights Java Profiling?
-
-'Performance diagnostics and recommendations' is a new feature that is available soon as Application Insights Java Diagnostics. You can [sign up](https://aka.ms/JavaO11y) to preview this feature. JFR recording can be viewed with Java Mission Control (JMC).
-
-### What's the difference between on-demand and automatic Java Profiling in App Insights?
-
-On-demand is user triggered profiling in real-time whereas automatic profiling is with preconfigured triggers.
-
-Use [Profile Now](../profiler/profiler-settings.md) for the on-demand profiling option. [Profile Now](../profiler/profiler-settings.md) immediately profiles all agents that are attached to the Application Insights instance.
-
-Automated profiling is triggered by reaching a resource threshold.
-
-### Which Java profiling triggers can I configure?
-
-Application Insights Java Agent currently supports monitoring of CPU and memory consumption. CPU threshold is configured as a percentage of all available cores on the machine. Memory is the current Tenured memory region (OldGen) occupancy against the maximum possible size of the region.
-
-### What are the required prerequisites to enable Java Profiling?
-
-Review the [Prerequisites](#prerequisites) at the top of this article.
-
-### Can I use Java Profiling for microservices application?
-
-Yes, you can profile a JVM running microservices using the JFR.
+## Next steps
+ 
+- To review frequently asked questions (FAQ), see [Java Profiler FAQ](application-insights-faq.yml#java-profiler)

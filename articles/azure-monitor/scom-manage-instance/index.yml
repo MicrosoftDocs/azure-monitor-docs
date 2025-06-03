@@ -5,11 +5,11 @@ summary: Learn how to manage Hybrid environment with Azure Monitor SCOM Managed 
 metadata:
   title: Azure Monitor SCOM Managed Instance
   description: Learn about how to manage Hybrid environment with Azure Monitor SCOM Managed Instance
-  author: PriskeyJeronika-MS
+  author: jyothisuri
   ms.service: azure-monitor
   ms.topic: landing-page
   ms.date: 05/24/2024
-  ms.author: v-gjeronika
+  ms.author: jsuri
 
 landingContent:
   - title: About Azure Monitor SCOM Managed Instance

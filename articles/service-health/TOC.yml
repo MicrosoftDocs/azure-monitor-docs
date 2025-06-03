@@ -74,10 +74,12 @@
     href: resource-health-vm-annotation.md
   - name: Admin roles for tenant scope view
     href: admin-access-reference.md
+  - name: Subscription and Tenant roles
+    href: subscription-vs-tenant.md
 - name: Resources
   items:
   - name: Azure Roadmap
-    href: https://azure.microsoft.com/roadmap/
+    href: https://techcommunity.microsoft.com/discussions/microsoft-entra/introducing-the-azure-roadmap/113500
   - name: Pricing calculator
     href: https://azure.microsoft.com/pricing/calculator/
   - name: Notification Pricing

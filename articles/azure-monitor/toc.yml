@@ -9,8 +9,20 @@ items:
       href: visualize/insights-overview.md
     - name: Multicloud monitoring
       href: fundamentals/best-practices-multicloud.md
-    - name: AIOps and machine learning
-      href: logs/aiops-machine-learning.md
+    - name: Azure Monitor AIOPs
+      items:
+      - name: AIOps and machine learning
+        href: aiops/aiops-machine-learning.md
+      - name: Issues and investigations
+        items:
+        - name: Issues and investigations overview
+          href: aiops/aiops-issue-and-investigation-overview.md
+        - name: Use issues and investigations
+          href: aiops/aiops-issue-and-investigation-how-to.md
+        - name: Issues and investigations responsible use
+          href: aiops/aiops-issue-and-investigation-responsible-use.md
+        - name: Issues and investigations troubleshooting guide
+          href: aiops/aiops-issue-and-investigation-troubleshooting.md
     - name: What's new?
       href: fundamentals/whats-new.md
 - name: Getting started
@@ -206,8 +218,8 @@ items:
       - name: Application Map
         displayName: appmap, app map, dependency map, dependencies, hotspots, cloud role name, cloudrolename, cloud_rolename, cloud.rolename, cloud role instance, node
         href: app/app-map.md
-      - name: Failures and Performance views
-        href: app/failures-and-performance-views.md
+      - name: Failures, performance, and transactions
+        href: app/failures-performance-transactions.md
       - name: Availability
         href: app/availability.md
       - name: Live Metric stream
@@ -217,8 +229,6 @@ items:
         href: app/usage.md
       - name: Release and work item insights
         href: app/release-and-work-item-insights.md
-      - name: Transaction Search and Diagnostics
-        href: app/transaction-search-and-diagnostics.md
     - name: Code analysis
       items:
       - name: Code Optimizations
@@ -265,6 +275,8 @@ items:
             href: optimization-insights/code-optimizations-vs-extension.md
           - name: Visual Studio Code
             href: optimization-insights/code-optimizations-vscode-extension.md
+          - name: Assign to GitHub Copilot
+            href: optimization-insights/code-optimizations-github-copilot.md
         - name: Troubleshooting
           items:
           - name: Code Optimizations
@@ -329,10 +341,7 @@ items:
       - name: Managed workspaces
         href: app/managed-workspaces.md
       - name: Telemetry data model
-        href: app/data-model-complete.md        
-      - name: Transport Layer Security (TLS) compliance
-        href: app/application-insights-tls.md
-        displayName: TLS, transport layer security, compliance, security
+        href: app/data-model-complete.md
     - name: Help and support
       items:
       - name: Create an Azure support ticket
@@ -341,6 +350,8 @@ items:
         href: /answers/tags/20/azure-monitor
       - name: Stack Overflow (coding questions)
         href: https://stackoverflow.com/questions/tagged/azure-application-insights
+      - name: Application Insights FAQ
+        href: app/application-insights-faq.yml  
       - name: Application Insights product feedback
         href: https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0
       - name: Troubleshooting articles
@@ -611,6 +622,8 @@ items:
       - name: Log alert rules
         displayName: Container insights
         href: containers/container-insights-log-alerts.md
+      - name: Cost-effective Alerts
+        href: containers/cost-effective-alerting.md
     - name: Disable monitoring
       href: containers/kubernetes-monitoring-disable.md      
     - name: Troubleshooting
@@ -1079,7 +1092,7 @@ items:
   - name: Logs
     items:
     - name: Overview
-      displayName: Platform logs, Resource logs, Activity log
+      displayName: Platform logs, Resource logs, Activity log, Auxiliary, Analytics, Basic
       href: logs/data-platform-logs.md
     - name: Best practices
       displayName: Logs, WAF, well architected framework, Azure Customer Lockbox, Customer Lockbox, Lockbox
@@ -1124,7 +1137,7 @@ items:
             href: logs/logs-table-plans.md
           - name: Manage data retention
             href: logs/data-retention-configure.md
-            displayName: Log retention, log archive, cost optimization
+            displayName: Log retention, log archive, archive, cost optimization
           - name: Add or delete tables and columns
             href: logs/create-custom-table.md
           - name: Delete data from a log table
@@ -1166,6 +1179,10 @@ items:
       items:
         - name: Roles permissions and security
           href: fundamentals/roles-permissions-security.md
+        - name: Granular RBAC
+          href: logs/granular-rbac-log-analytics.md
+        - name: Configure granular RBAC
+          href: logs/granular-rbac-use-case.md
         - name: Customer-managed keys
           href: logs/customer-managed-keys.md
         - name: Private storage
@@ -1314,13 +1331,19 @@ items:
     - name: Troubleshoot insights
       href: visualize/troubleshoot-workbooks.md
     - name: Dashboard Preview
-      href: visualize/workbooks-dashboard-preview.md
-  - name: Grafana
-    href: visualize/grafana-plugin.md
-  - name: Dashboards
+      href: visualize/workbooks-dashboard-preview.md 
+  - name: Azure Monitor Dashboards
     items:
      - name: Dashboard using log data
        href: visualize/tutorial-logs-dashboards.md
+  - name: Grafana
+    items:
+    - name: Grafana overview
+      href: visualize/visualize-grafana-overview.md
+    - name: Use Grafana dashboards
+      href: visualize/visualize-use-grafana-dashboards.md
+    - name: Use managed Grafana
+      href: visualize/visualize-use-managed-grafana-how-to.md
   - name: Power BI
     href: logs/log-powerbi.md
 - name: Analyze
@@ -1467,6 +1490,8 @@ items:
             href: alerts/alerts-create-metric-alert-rule.md
           - name: Set up a log search alert
             href: alerts/alerts-create-log-alert-rule.md
+          - name: Set up a simple log search alert
+            href: alerts/alerts-create-simple-alert.md
           - name: Set up an activity log, service health or resource health alert
             href: alerts/alerts-create-activity-log-alert-rule.md
           - name: Set up a Prometheus alert
@@ -1611,6 +1636,8 @@ items:
       items:
       - name: Log search alert rules
         href: alerts/resource-manager-alerts-log.md
+      - name: Simple log search alert rules
+        href: alerts/resource-manager-alerts-simple-log-search-alerts.md
       - name: Metric alert rules
         href: alerts/resource-manager-alerts-metric.md
       - name: Activity log alert rules

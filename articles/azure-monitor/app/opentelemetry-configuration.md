@@ -1,7 +1,7 @@
 ---
 title: Configuring OpenTelemetry in Application Insights
 description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/23/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
@@ -15,6 +15,9 @@ ms.reviewer: mmcc
 # Configure Azure Monitor OpenTelemetry
 
 This guide explains how to configure OpenTelemetry (OTel) in [Azure Monitor Application Insights](app-insights-overview.md) using the Azure Monitor OpenTelemetry distro. Proper configuration ensures consistent telemetry data collection across .NET, Java, Node.js, and Python applications, allowing for more reliable monitoring and diagnostics.
+
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
 
 ## Connection string
 
@@ -183,7 +186,7 @@ configure_azure_monitor(
 
 ## Set the Cloud Role Name and the Cloud Role Instance
 
-For [supported languages](opentelemetry-help-support-feedback.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro), the Azure Monitor OpenTelemetry Distro automatically detects the resource context and provides default values for the [Cloud Role Name](app-map.md#understand-the-cloud-role-name-within-the-context-of-an-application-map) and the Cloud Role Instance properties of your component. However, you might want to override the default values to something that makes sense to your team. The cloud role name value appears on the Application Map as the name underneath a node.
+For [supported languages](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro), the Azure Monitor OpenTelemetry Distro automatically detects the resource context and provides default values for the [Cloud Role Name](app-map.md#understand-the-cloud-role-name-within-the-context-of-an-application-map) and the Cloud Role Instance properties of your component. However, you might want to override the default values to something that makes sense to your team. The cloud role name value appears on the Application Map as the name underneath a node.
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
@@ -207,7 +210,7 @@ builder.Services.AddOpenTelemetry()
     .UseAzureMonitor()
     // Configure the ResourceBuilder to add the custom resource attributes to all signals.
     // Custom resource attributes should be added AFTER AzureMonitor to override the default ResourceDetectors.
-    .ConfigureResource(resourceBuilder => resourceBuilder.AddAttributes(_testResourceAttributes));
+    .ConfigureResource(resourceBuilder => resourceBuilder.AddAttributes(resourceAttributes));
 
 // Build the ASP.NET Core web application.
 var app = builder.Build();

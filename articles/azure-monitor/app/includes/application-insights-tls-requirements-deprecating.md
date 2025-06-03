@@ -3,8 +3,7 @@ ms.topic: include
 ms.date: 05/01/2025
 ---
 
-
-### Deprecating Transport Layer Security (TLS) configurations
+#### Deprecating Transport Layer Security (TLS) configurations
 
 > [!IMPORTANT]
 > To improve security, Azure retires the following TLS configurations for Application Insights on May 1, 2025. This change is part of the [Azure-wide legacy TLS retirement](https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/):

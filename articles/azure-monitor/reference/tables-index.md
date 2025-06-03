@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 04/28/2025
+ms.date: 05/19/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -18,6 +18,14 @@ ms.reviewer: lualderm
 
 ## Resource log / log analytics tables
 
+
+### AAD Graph Logs  
+
+Microsoft.AzureADGraph/tenants  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [AuditLogs](./tables/auditlogs.md)
+- [AADGraphActivityLogs](./tables/aadgraphactivitylogs.md)
 
 ### Analysis Services  
 
@@ -109,6 +117,11 @@ Microsoft.Automation/AutomationAccounts
 
 microsoft.avs/privateClouds  
 
+- [AVSVcSyslog](./tables/avsvcsyslog.md)
+- [AVSEsxiFirewallSyslog](./tables/avsesxifirewallsyslog.md)
+- [AVSEsxiSyslog](./tables/avsesxisyslog.md)
+- [AVSNsxManagerSyslog](./tables/avsnsxmanagersyslog.md)
+- [AVSNsxEdgeSyslog](./tables/avsnsxedgesyslog.md)
 - [AVSSyslog](./tables/avssyslog.md)
 
 ### Azure Active Directory Logs  
@@ -690,6 +703,7 @@ Microsoft.Communication/CommunicationServices
 - [ACSRoomsIncomingOperations](./tables/acsroomsincomingoperations.md)
 - [ACSCallAutomationIncomingOperations](./tables/acscallautomationincomingoperations.md)
 - [ACSCallAutomationMediaSummary](./tables/acscallautomationmediasummary.md)
+- [ACSCallAutomationStreamingUsage](./tables/acscallautomationstreamingusage.md)
 - [ACSAdvancedMessagingOperations](./tables/acsadvancedmessagingoperations.md)
 
 ### Container Apps  
@@ -1206,6 +1220,12 @@ Microsoft.Graph/tenants
 - [SigninLogs](./tables/signinlogs.md)
 - [AuditLogs](./tables/auditlogs.md)
 
+### Microsoft Planetary Computer Pro  
+
+Microsoft.Orbital/geocatalogs  
+
+- [OGOAuditLogs](./tables/ogoauditlogs.md)
+
 ### Microsoft Playwright Testing  
 
 Microsoft.AzurePlaywrightService/accounts  
@@ -1357,6 +1377,7 @@ NGINX.NGINXPLUS/nginxDeployments
 Microsoft.OnlineExperimentation/workspaces  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [OEWAuditLogs](./tables/oewauditlogs.md)
 - [OEWExperimentAssignmentSummary](./tables/oewexperimentassignmentsummary.md)
 - [OEWExperimentScorecards](./tables/oewexperimentscorecards.md)
 - [OEWExperimentScorecardMetricPairs](./tables/oewexperimentscorecardmetricpairs.md)

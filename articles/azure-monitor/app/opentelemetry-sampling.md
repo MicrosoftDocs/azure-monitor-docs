@@ -1,7 +1,7 @@
 ---
 title: Sampling in Azure Application Insights with OpenTelemetry
 description: Learn how OpenTelemetry sampling in Application Insights reduces telemetry volume, controls costs, and preserves key diagnostic data.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/26/2025
 ms.reviewer: mmcc
 ---
@@ -53,7 +53,7 @@ The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
 
 To configure the sampling percentage, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
 
-For more detailed information and sampling edge cases, see [Frequently Asked Questions](#frequently-asked-questions).
+For more detailed information and sampling edge cases, see [Frequently Asked Questions](application-insights-faq.yml#opentelemetry-sampling).
 
 ## Ingestion sampling (not recommended)
 
@@ -79,50 +79,11 @@ Use this cap as a last-resort control, not a replacement for sampling. A sudden 
 
 To configure the cap, see [Set a daily cap for Azure Monitor](../logs/daily-cap.md).
 
-## Frequently Asked Questions
+## Next steps
 
-### Is the Application Insights custom sampler tail-based?
-
-The Application Insights custom sampler makes sampling decisions after span creation, rather than before, so it doesn't follow a traditional head-based approach. Instead, it applies sampling decisions at the end of span generation—after the span is complete but before export.
-
-Although this behavior resembles tail-based sampling in some ways, the sampler doesn't wait to collect multiple spans from the same trace before deciding. Instead, it uses a hash of the Trace ID to help ensure trace completeness.
-
-This approach balances trace completeness and efficiency, and avoids the higher cost associated with full tail-based sampling.
-
-To make sampling decisions based on the outcome of an entire trace (for example, determining if any span within the trace failed), full tail-based sampling is required in a downstream Agent or Collector. This capability isn't currently supported, but you can request it as a new feature through the [Feedback Hub](https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0).
-
-### How does the Application Insights custom sampler compare to OpenTelemetry head-based or tail-based sampling?
-
-| Sampling Method             | Point of decision              | Strengths                                   | Weaknesses                                                               |
-|-----------------------------|--------------------------------|---------------------------------------------|--------------------------------------------------------------------------|
-| Head-based                  | Before a span starts           | Low latency, minimal overhead               | May sample out desired traces including failures                         |
-| Tail-based                  | After spans are buffered based on time or volume thresholds | Allows highly selective trace sampling criteria | Higher cost and added processing delay  |
-| App Insights custom sampler | End of span generation         | Balances trace completeness with efficiency | Required for Live Metrics and Classic API compatibility                  |
-
-### Can I sample dependencies, requests, or other telemetry types at different rates?
-
-No, the sampler applies a fixed rate across all telemetry types in a trace. Requests, dependencies, and other spans follow the same sampling percentage. To apply different rates per telemetry type, consider using OpenTelemetry span processors or (ingestion-time transformations)[opentelemetry-overview.md#telemetry-routing].
-
-### How does the Application Insights custom sampler propagate sampling decisions?
-
-The Application Insights custom sampler propagates sampling decisions using the W3C Trace Context standard by default. This standard enables sampling decisions to flow between services. However, because the sampler makes sampling decisions at the end of span generation—after the call to downstream services—the propagation carries incomplete sampling information. This limitation complies with the [W3C Trace Context specification](https://www.w3.org/TR/trace-context/#sampled-flag), but downstream services can't reliably use this propagated sampling decision.
-
-### Does the Application Insights custom sampler respect sampling decisions from upstream services?
-
-No, the Application Insights custom sampler always makes an independent sampling decision, even if the upstream service uses the same sampling algorithm. Sampling decisions from upstream services, including those using W3C Trace Context headers, don't influence the downstream service's decision. However, it does sample based on a hash of the Trace ID to ensure trace completeness. To improve consistency and reduce the chance of broken traces, configure all components in the system to use the same sampler and sampling rate.
-
-### Why do some traces appear incomplete even when using the Application Insights custom sampler?
-
-There are several reasons traces can appear incomplete:
-- Different nodes in a distributed system use different sampling approaches that don't coordinate decisions. For example, one node applies OpenTelemetry head-based sampling, and another node applies sampling via the Azure Monitor Custom Sampler.
-- Different nodes are set to different sampling rates, even if they both use the same sampling approach.
-- You set filtering, sampling, or rate caps in the service-side pipeline, and this configuration randomly samples out spans without considering trace completeness.
-
-If one component applies head-based sampling without propagating the sampling decision (via W3C Trace Context headers), downstream services sample the trace independently, which can result in discarded spans. As a result, some parts of the trace aren't always available when viewed in Application Insights.
-
-## Next Steps
-
+- To review frequently asked questions (FAQ), see [OpenTelemetry sampling FAQ](application-insights-faq.yml#opentelemetry-sampling)
 - [OpenTelemetry Sampling Concepts](https://opentelemetry.io/docs/concepts/sampling/).
 - [Enable Sampling in Application Insights](./opentelemetry-configuration.md#enable-sampling)
 - [Application Insights Overview](./app-insights-overview.md)
 - [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion)
+

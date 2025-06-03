@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 05/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Kubernetes Service (AKS)
@@ -14,21 +14,22 @@ ms.custom: Performance Azure Kubernetes Service (AKS)
   
 <!--835e829e-9af6-4758-80d2-98df565d1524_begin-->
 
-#### Update Fleet API to the latest Version  
+#### Update the Fleet API to the latest version  
   
-We identified SDK requests from outdated Fleet API for resources under this subscription. We recommend switching to the latest SDK versions. This ensures you receive the latest features and performance improvements.  
+We identified SDK requests from outdated Fleet API for resources in this subscription. We recommend upgrade to the latest SDK version. This ensures you receive the latest features and performance improvements.  
   
 **Potential benefits**: Latest Fleet API contains fixes for known issues and other improvements.  
 
 **Impact:** Medium
   
-  
+For more information, see [Azure Kubernetes Fleet Manager Preview API lifecycle](https://aka.ms/kubernetes-fleet/arm-api-updates)  
 
 ResourceType: microsoft.containerservice/fleets  
 Recommendation ID: 835e829e-9af6-4758-80d2-98df565d1524  
 
 
 <!--835e829e-9af6-4758-80d2-98df565d1524_end-->
+
 
 <!--492c8468-bb25-4a03-b8e5-9ae99723a017_begin-->
 

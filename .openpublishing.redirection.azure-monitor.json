@@ -3686,11 +3686,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path_from_root": "/articles/azure-monitor/platform/grafana-plugin.md",
-   "redirect_url": "/azure/azure-monitor/visualize/grafana-plugin",
-   "redirect_document_id": false
-  },
-  {
    "source_path_from_root": "/articles/azure-monitor/platform/metrics-aggregation-explained.md",
    "redirect_url": "/azure/azure-monitor/essentials/metrics-aggregation-explained",
    "redirect_document_id": false
@@ -4848,6 +4843,11 @@
   {
    "source_path_from_root": "/articles/azure-monitor/app/sampling.md",
    "redirect_url": "/previous-versions/azure/azure-monitor/app/sampling",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/app/application-insights-tls.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-security#application-insights-tls-ingestion",
    "redirect_document_id": false
   },
   {
@@ -7990,11 +7990,6 @@
    "redirect_document_id": false
   },
   {
-    "source_path": "articles/azure-monitor/alerts/alerts-create-simple-alert.md",
-    "redirect_url": "/azure/azure-monitor/alerts/alerts-overview",
-    "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/essentials/collect-custom-metrics-guestos-resource-manager-vm.md",
    "redirect_url": "/azure/azure-monitor/agents/collect-custom-metrics-guestos-resource-manager-vm",
    "redirect_document_id": false
@@ -8340,9 +8335,84 @@
    "redirect_document_id": false
   },
   {
-    "source_path": "articles/azure-monitor/essentials/metrics-usage-insights.md",
-    "redirect_url": "/azure/azure-monitor/metrics/metrics-usage-insights",
-    "redirect_document_id": false
+   "source_path": "articles/azure-monitor/essentials/metrics-usage-insights.md",
+   "redirect_url": "/azure/azure-monitor/metrics/metrics-usage-insights",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/visualize/grafana-plugin.md",
+   "redirect_url": "/azure/azure-monitor/visualize/visualize-grafana-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/aadfirstpartytofirstpartysigninlogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/logs/aiops-machine-learning.md",
+   "redirect_url": "/azure/azure-monitor/aiops/aiops-machine-learning",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoftdynamicstelemetryperformancelogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoftdynamicstelemetrysystemmetricslogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/powerbiaudittenant.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/powerbidatasetstenantpreview.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/powerbidatasetsworkspacepreview.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/powerbireportusagetenant.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/powerbireportusageworkspace.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/sqldataclassification.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/synapsegatewayevents.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/synapserbacevents.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/failures-and-performance-views.md",
+   "redirect_url": "/azure/azure-monitor/app/failures-performance-transactions",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/transaction-search-and-diagnostics.md",
+   "redirect_url": "/azure/azure-monitor/app/failures-performance-transactions",
+   "redirect_document_id": false
   }
  ]
 }

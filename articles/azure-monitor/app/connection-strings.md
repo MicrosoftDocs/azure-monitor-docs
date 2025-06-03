@@ -1,7 +1,7 @@
 ---
 title: Connection strings in Application Insights
 description: This article explains the components of connection strings and how to use them.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 10/10/2024
 ms.reviewer: cogoodson
 ---
@@ -47,7 +47,7 @@ A connection string consists of a list of settings represented as key-value pair
 `key1=value1;key2=value2;key3=value3`
 
 > [!TIP]
-> Configurable key-value pairs are covered in this document. Some key-value pairs are not configurable and are set automatically, such as `ApplicationId`. These can be safely ignored if they're observed in your environment.
+> Configurable key-value pairs are covered in this document. Some key-value pairs aren't configurable and are set automatically, such as `ApplicationId`. These pairs can be safely ignored if they're observed in your environment.
 
 ### Syntax
 
@@ -154,27 +154,15 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 | ASP.NET Core | [Application Insights SDK](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
 | .NET Framework | [Application Insights SDK](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |
 | Java | [N/A](java-standalone-upgrade-from-2x.md) | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
-| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) | [N/A](opentelemetry-help-support-feedback.md?tabs=aspnetcore#can-opentelemetry-be-used-for-web-browsers) |
+| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) | [N/A](application-insights-faq.yml#can-opentelemetry-be-used-for-web-browsers) |
 | Node.js | [Application Insights SDK](nodejs.md#basic-usage) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=nodejs#connection-string) |
 | Python | [OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Do new Azure regions require the use of connection strings?
-
-New Azure regions *require* the use of connection strings instead of instrumentation keys. Connection string identifies the resource that you want to associate with your telemetry data. It also allows you to modify the endpoints your resource uses as a destination for your telemetry. Copy the connection string and add it to your application's code or to an environment variable.
-
-### Should I use connection strings or instrumentation keys?
-
-We recommend that you use connection strings instead of instrumentation keys.
-
-#### When do I need to set the environment variable?
-
-Manually set the `APPLICATIONINSIGHTS_CONNECTION_STRING` in all scenarios where it's not automatically provided. These scenarios include, but are not limited to: local development and .NET Isolated Functions using ASP.NET Core integration. In these cases, the environment variable ensures the OpenTelemetry pipeline can send telemetry to Application Insights. For more information on configuring connection strings with an environment variable, see [Configuring OpenTelemetry in Application Insights](./opentelemetry-configuration.md#connection-string).
-
 ## Next steps
+
+To review frequently asked questions (FAQ): 
+
+* [Connection strings in Application Insights FAQ](application-insights-faq.yml#connection-strings)
 
 Get started at runtime with:
 
@@ -189,3 +177,4 @@ Get started at development time with:
 * [Java](./opentelemetry-enable.md?tabs=java)
 * [Node.js](./nodejs.md)
 * [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
+
