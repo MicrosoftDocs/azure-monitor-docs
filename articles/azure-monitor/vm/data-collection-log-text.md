@@ -26,11 +26,11 @@ The options available in the **Custom Text Logs** configuration are described in
 
 | Setting | Description |
 |:---|:---|
-| File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
-| Table name | Name of the destination table in your Log Analytics Workspace. This table must already exist. |     
+| File pattern     | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
+| Table name       | Name of the destination table in your Log Analytics Workspace. This table must already exist. |     
 | Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat` to identify the start of a new record. If no date in the specified format is found then end of line is used. See [Time formats](#time-formats) for more details. | 
-| Timestamp Format| The time format used in the log file as described in [Time formats](#time-formats) below. |
-| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. See [Delimited log files](#delimited-log-files) for an example of using a transformation. |
+| TimeStamp Format | The time format used in the log file as described in [Time formats](#time-formats) below. |
+| Transform        | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. See [Delimited log files](#delimited-log-files) for an example of using a transformation. |
 
 ## Add destinations
 Custom text logs can only be sent to a Log Analytics workspace where it's stored in the [custom table](#log-analytics-workspace-table) that you create. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. You can only add a single workspace to a DCR for a custom text log data source. If you need multiple destinations, create multiple DCRs. Be aware though that this will send duplicate data to each which will result in additional cost.
@@ -42,7 +42,7 @@ The following table describes the time formats that are supported in the `timeFo
 
 | Time format | Example |
 |:---|:---|
-| `ISO 8601`                | 2024-10-29T18:28:34Z |
+| `ISO 8601` <sup>1</sup>   | 2024-10-29T18:28:34Z |
 | `yyyy-MM-ddTHH:mm:ssk`    | 2024-10-29T18:28:34Z<br>2024-10-29T18:28:34+01:11 |
 | `YYYY-MM-DD HH:MM:SS`     | 2024-10-29 18:28:34 |
 | `M/D/YYYY HH:MM:SS AM/PM` | 10/29/2024 06:28:34 PM |
@@ -52,6 +52,7 @@ The following table describes the time formats that are supported in the `timeFo
 | `MMM d HH:mm:ss`          | Oct 29 18:28:34           |
 | `dd/MMM/yyyy:HH:mm:ss zzz`| 14/Oct/2024:18:28:34 -00  |
 
+<sup>1</sup> ISO 8601 timestamps with decimal fraction / subsecond precision are not supported. 
 
 ## Text file requirements and best practices
 The file that Azure Monitor collects must meet the following requirements:
@@ -79,14 +80,14 @@ Adhere to the following recommendations to ensure that you don't experience data
 ## Log Analytics workspace table
 Each entry in the log file is collected as it's created and sent to the specified table in a Log Analytics workspace. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
 
- The following table describes the required and optional columns in the workspace table. The table can include other columns, but they won't be populated unless you parse the data with a transformation as described in [Delimited log files](#delimited-log-files).
+The following table describes the required and optional columns in the workspace table. The table can include other columns, but they won't be populated unless you parse the data with a transformation as described in [Delimited log files](#delimited-log-files).
 
 | Column | Type | Required? | Description |
 |:---|:---|:---|:---|
-| `TimeGenerated` | datetime | Yes | This column contains the time the record was generated and is required in all tables. This value will be automatically populated with the time the record is added to the Log Analytics workspace. You can override this value using a transformation to set `TimeGenerated` to a value from the log entry. |
-| `RawData` | string | Yes<sup>1</sup> | The entire log entry in a single column. You can use a transformation if you want to break down this data into multiple columns before sending to the table. |
-| `Computer` | string | No | If the table includes this column, it will be populated with the name of the computer the log entry was collected from. |
-| `FilePath` | string | No | If the table includes this column, it will be populated with the path to the log file the log entry was collected from. |
+| `TimeGenerated` | datetime | Yes              | This column contains the time the record was generated and is required in all tables. This value will be automatically populated with the time the record is added to the Log Analytics workspace. You can override this value using a transformation to set `TimeGenerated` to a value from the log entry. |
+| `RawData`       | string   | Yes <sup>1</sup> | The entire log entry in a single column. You can use a transformation if you want to break down this data into multiple columns before sending to the table. |
+| `Computer`      | string   | No               | If the table includes this column, it will be populated with the name of the computer the log entry was collected from. |
+| `FilePath`      | string   | No               | If the table includes this column, it will be populated with the path to the log file the log entry was collected from. |
 
 <sup>1</sup> The table doesn't have to include a `RawData` column if you use a transformation to parse the data into multiple columns. 
 
