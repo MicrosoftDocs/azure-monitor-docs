@@ -43,7 +43,7 @@ If you're calling the Change Analysis REST API directly (without CLI or PowerShe
 
 - **Resource Graph Change Analysis SDK**: [`ResourceGraphExtensions` Class (`Azure.ResourceManager.ResourceGraph`)](/dotnet/api/azure.resourcemanager.resourcegraph.resourcegraphextensions)
 
-    Here are some code samples for the resources table: [`azure-sdk-for-net/sdk/resourcegraph/Azure.ResourceManager.ResourceGraph/samples/Generated/Samples/Sample_TenantResourceExtensions.cs`](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/resourcegraph/Azure.ResourceManager.ResourceGraph/samples/Generated/Samples/Sample_TenantResourceExtensions.cs)
+    Here are some code samples for the resources table: [`azure-sdk-for-net/sdk/resourcegraph/Azure.ResourceManager.ResourceGraph/tests/Generated/Samples/Sample_TenantResourceExtensions.cs`](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/resourcegraph/Azure.ResourceManager.ResourceGraph/tests/Generated/Samples/Sample_TenantResourceExtensions.cs)
 
 - **Classic SDK**: [`ChangeAnalysisExtensions` Class](/dotnet/api/azure.resourcemanager.changeanalysis.changeanalysisextensions)
 
