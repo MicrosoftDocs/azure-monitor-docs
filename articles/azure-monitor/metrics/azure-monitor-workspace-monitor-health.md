@@ -1,11 +1,11 @@
 ---
 title: Monitor issues with ingestion and query in Azure Monitor Workspace
-description: Monitor issues with ingestion and query in Azure Monitor Workspace
+description: Monitor issues with ingestion and query in Azure Monitor workspace.
 ms.topic: conceptual
 ms.date: 04/09/2025
 ---
 
-# Monitor metrics ingestion in Azure Monitor Workspace (Preview)
+# Monitor metrics ingestion in Azure Monitor workspace (preview)
 
 Ingestion errors are issues that occurred during data ingestion. Error conditions in this category might suggest data loss, so they are important to monitor. These errors may include indications of reaching the Azure Monitor workspace ingestion limits. For service limits for Azure Monitor workspaces, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics).
 
