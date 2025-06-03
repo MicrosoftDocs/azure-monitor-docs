@@ -11,7 +11,7 @@ ms.date: 5/28/2025
 ## Azure Monitor data collection scenarios
 
 ### Azure Monitor Agent (AMA)
-[Azure Monitor Agent (AMA)](../agents/azure-monitor-agent-overview.md) is a versatile and lightweight agent designed to collect telemetry from virtual machines across Azure, on-premises, or other cloud environments.
+[Azure Monitor Agent (AMA)](../agents/azure-monitor-agent-overview.md) is a feature of Azure Monitor that collects performance telemetry from virtual machines across Azure, on-premises, or other cloud environments.
 
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
 - Allow the traffic if IP based rule specified and match the source resource's IP address.
@@ -20,7 +20,7 @@ ms.date: 5/28/2025
 - Ignore NSP/Resource ID claims in header.
 
 ### Container Insights 
-[Container insights](../containers/container-insights-overview.md) monitors the performance, health, and utilization of managed and self-managed Kubernetes clusters including AKS.
+[Container insights](../containers/container-insights-overview.md) is a feature of Azure Monitor that collects and analyzes container logs from [Azure Kubernetes clusters](/azure/aks/what-is-aks) or [Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/overview) and their components.
 
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
 - Allow the traffic if IP based rule specified and match the source resource's IP address.
