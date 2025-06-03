@@ -2542,6 +2542,8 @@ items:
             href: tables/identitylogonevents.md
           - name: IdentityQueryEvents
             href: tables/identityqueryevents.md
+          - name: IlumioInsights
+            href: tables/ilumioinsights.md
           - name: InsightsMetrics
             href: tables/insightsmetrics.md
           - name: IntuneAuditLogs
@@ -3490,6 +3492,8 @@ items:
             href: queries/IdentityLogonEvents.md
           - name: IdentityQueryEvents
             href: queries/IdentityQueryEvents.md
+          - name: IlumioInsights
+            href: queries/IlumioInsights.md
           - name: InsightsMetrics
             href: queries/InsightsMetrics.md
           - name: KubeEvents
