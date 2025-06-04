@@ -183,7 +183,7 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
 * **Subscription scoping limitation for virtual network injection**  
   When using Chaos Studio with private networking (virtual network injection), the virtual network (VNet) that contains the target resource (e.g., an AKS cluster) **must reside in the same Azure subscription** as the Chaos Studio experiment.
 
-  While Chaos Studio generally supports targeting resources across subscriptions, this capability **does not apply** when private networking is enabled. This is because the private endpoint and other supporting resources required for VNet injection are deployed by Chaos Studio into the **same subscription as the experiment**. If the target VNet resides in a different subscription, private endpoint creation will fail due to [cross-subscription restrictions](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview#limitations).
+  While Chaos Studio generally supports targeting resources across subscriptions, this capability **does not apply** when private networking is enabled. This is because the private endpoint and other supporting resources required for VNet injection are deployed by Chaos Studio into the **same subscription as the experiment**. If the target VNet resides in a different subscription, private endpoint creation will fail due to cross-subscription restrictions.
 
   **Workaround:** To use private networking successfully, ensure that the target VNet and the Chaos Studio experiment are created within the same Azure subscription.
 
