@@ -789,7 +789,7 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
 
 ### [Java](#tab/java)
 
-The Application Insights Java Agent does not yet fully support OTLP.
+The Application Insights Java Agent does not support OTLP.
 For more information about supported configurations, see the [Java supplemental documentation](java-standalone-config.md).
 
 ### [Java native](#tab/java-native)
