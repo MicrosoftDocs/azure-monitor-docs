@@ -2,7 +2,7 @@
 title: Configure Azure Monitor with Network Security Perimeter
 description: Details on adding Azure Monitor resources to your network security perimeter.
 ms.topic: conceptual
-ms.date: 5/28/2025
+ms.date: 06/04/2025
 ---
 
 # Configure Azure Monitor with Network Security Perimeter (Preview)
@@ -17,17 +17,20 @@ Network Security Perimeter allows you to control network access using network is
 
 ## Regions
 
-Azure Network Security Perimeter is currently in public preview and available in all regions where Azure Monitor is supported.
+Azure Network Security Perimeter is available in all regions where Azure Monitor is supported.
 
 ## Current limitations
 
-* For Log Analytics export scenarios to function correctly with storage accounts, both the Log Analytics workspace and the storage accounts must be part of the same perimeter.
+* For Log Analytics export scenarios to function correctly with storage accounts/event hubs, both the Log Analytics workspace and the storage account/event hub must be part of the same perimeter.
 * Global action groups resources don't support NSP. You must create regional action groups resources that will support NSP.
 * Cross-resource queries are blocked for Log Analytics Workspaces associated with NSP. This includes accessing the workspace through an ADX cluster.
 * NSP access logs are sampled every 30 minutes.
+* [Log Analytics workspace replication](../logs/workspace-replication.md) isn't supported.
+* [Ingesting events from Azure Event Hubs](../logs/ingest-logs-event-hub.md) isn't supported.
+* Collecting data into or querying data from [Azure Monitor workspaces](../metrics/azure-monitor-workspace-overview.md) isn't supported.
 
 ## Supported components
-The components of Azure Monitor that are supported with a network security perimeter are listed in the following table with their minimum API version.
+The components of Azure Monitor that are supported with a network security perimeter are listed in the following table with their minimum API version. See [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources) for a list of the other Azure services that are supported with NSP.
 
 | Resource                                | Resource type                              | API version        |
 |:----------------------------------------|:-------------------------------------------|:-------------------|
@@ -35,11 +38,13 @@ The components of Azure Monitor that are supported with a network security perim
 | Log Analytics workspace                 | Microsoft.OperationalInsights/workspaces   | 2023-09-01         |
 | Log query alerts                        | Microsoft.Insights/ScheduledQueryRules     | 2022-08-01-preview |
 | Action groups <sup>1</sup> <sup>2</sup> | Microsoft.Insights/actionGroups            | 2023-05-01         |
+| Diagnostic settings                     | Microsoft.Insights/diagnosticSettings      | 2021-05-01-preview |
 
 <sup>1</sup> NSP only operates with [regional action groups](../alerts/action-groups.md#create-an-action-group-in-the-azure-portal). Global action groups default to public network access.
 
 <sup>2</sup> Today, Event Hub is the only supported action type for NSP. All other actions default to public network access.
 
+### Unsupported components
 The following components of Azure Monitor are **not** supported with a network security perimeter:
 
 * [Application Insights Profiler for .NET](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)
@@ -140,6 +145,9 @@ Use the following process to add an NSP outbound access rule using the Azure por
 1.	Select **Add** to create the outbound access rule.
  
     :::image type="content" source="media/network-security-perimeter/outbound-access-rule-new.png" lightbox="media/network-security-perimeter/outbound-access-rule-new.png" alt-text="Screenshot of network security perimeter profile new outbound access rule in the Azure portal.":::
+
+## Collect resource logs
+Resource logs for provide insights into the operation of NSP and help to diagnose any issues. See [Resource logs for Network Security Perimeter](/azure/private-link/network-security-perimeter-diagnostic-logs#logging-destination-options-for-access-logs) for details on creating a diagnostic setting to collect resource logs for NSP.
 
 ## Next steps
 

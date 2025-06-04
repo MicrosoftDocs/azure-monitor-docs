@@ -44,10 +44,10 @@ The [Logs Ingestion API](../logs/logs-ingestion-api-overview.md) in Azure Monito
 - Allow the traffic if IP based rule specified and match the source resource's IP address.
 - Deny if source resource doesn't match any rules (IP address).
 
-### Log Analytics Workspace Export to storage account
+### Log Analytics Workspace Export to storage account or event hub
 [Data export](../logs/logs-data-export.md) allows you to export logs from Log Analytics workspace to the storage account destination. 
 
-- Associate Log Analytics Workspace and storage account to Network Security Perimeter with inbound rules defined.
+- Associate Log Analytics Workspace and storage account/event hub to Network Security Perimeter with inbound rules defined.
 - Allow if the storage account is within same perimeter as Log Analytics Workspace.
 - Exporting tables from Log Analytics to a storage account is only supported when both the Log Analytics workspace and storage account are within the same perimeter. If they're not, the export table traffic will be denied.
 
@@ -55,25 +55,14 @@ The [Logs Ingestion API](../logs/logs-ingestion-api-overview.md) in Azure Monito
 Use [diagnostic settings](../platform/diagnostic-settings.md) to collect resource logs and metrics for Azure resources to Log Analytics workspace, Event Hubs, or Storage Account.
 
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
-- Allow the traffic if IP based rule specified and match the source resource's IP address.
 - Allow the traffic if both the primary PaaS resource where diagnostic settings are configured and the Log Analytics Workspace are within the same perimeter.
 - Deny if source resource doesn't match any rules.
 
 ### Log Analytics agent
-The [Log Analytics agent](../agents/log-analytics-agent.md) has been deprecated and replaced with [Azure Monitor Agent (AMA)](#azure-monitor-agent-ama), but it may be in use in some environments. 
-
-- Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
-- Allow the traffic if IP based rule specified and match the source resource's IP address.
-- Allowed for resource in the transition mode.
-- Deny if source resource doesn't match any rules (IP address)
-- Ignore NSP/Resource ID claims in header.
+The [Log Analytics agent](../agents/log-analytics-agent.md) has been deprecated and replaced with [Azure Monitor Agent (AMA)](#azure-monitor-agent-ama). If you're still using the Log Analytics agent, you should migrate to the new agent.
 
 ### Data Collector API
-[Data Collector API](/previous-versions/azure/azure-monitor/logs/data-collector-api) has been deprecated and replaced with [Logs ingestion API](#logs-ingestion-api-in-azure-monitor) but may still be in use in some environments. It allows you to send custom data to Log Analytics workspaces using a REST API. Authentication is done using a Log Analytics workspace key.
-
-- Allow the traffic if IP based rule specified and match the source resource's IP addressAllowed for resource in the transition mode.
-- Deny if source resource doesn't match any rules (IP address).
-- Ignore NSP/Resource ID claims in header.
+[Data Collector API](/previous-versions/azure/azure-monitor/logs/data-collector-api) has been deprecated and replaced with [Logs ingestion API](#logs-ingestion-api-in-azure-monitor). If you're still using the Data Collector API, you should migrate to the new API.
 
 ## Log Analytics workspace query scenarios
 
@@ -87,10 +76,7 @@ The [Log Analytics agent](../agents/log-analytics-agent.md) has been deprecated 
 - Allowed within the same perimeter.
 - Deny if source resource doesn't match any rules (IP address, Subscription ID).
 
-### Cross-resource queries
-[Cross resource queries](../logs/cross-workspace-query.md) allow you to query data across multiple Log Analytics workspaces.
-
-### Queries with external operators
+### Queries with external operators and cross-workspace queries
 
 - Denied by default. The Network Security Perimeter is in place to prevent data exfiltration risks.
   
@@ -133,13 +119,6 @@ Retrieve log data from a Log analytics workspace from a [log search alert rule](
 
 - Log Analytics Workspace, Log Search Alerts and Action Groups are associated to Network Security Perimeter with the perimeter rules defined.
 - Allow if Subscription ID based rule specified and match the source subscription  ID.
-- Allowed when all resources are within the same perimeterDeny if source resource doesn't match any rules (IP address, Subscription ID).
-
-### Send notification to SMS/E-Mail 
-[Action groups](../alerts/action-groups.md) are a collection of notification preferences and actions to send notifications to SMS/E-mail.
-
-- Log Analytics Workspace, Log Search Alerts and Action Groups are associated to Network Security Perimeter with the perimeter rules defined.
-- Allow if destination allowed per Outbound rules - SMS/E-Mail.
 - Allowed when all resources are within the same perimeterDeny if source resource doesn't match any rules (IP address, Subscription ID).
 
 
