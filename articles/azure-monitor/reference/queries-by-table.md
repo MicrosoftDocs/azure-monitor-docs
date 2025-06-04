@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 05/19/2025
+ms.date: 06/03/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1408,6 +1408,10 @@ ms.reviewer: lualderm
 ## [IdentityQueryEvents](./queries/IdentityQueryEvents.md)
 
 - [SAMR queries to Active Directory](./queries/IdentityQueryEvents.md#samr-queries-to-active-directory)
+
+## [IlumioInsights](./queries/IlumioInsights.md)
+
+- [Ilumio Insights multiple deny events](./queries/IlumioInsights.md#ilumio-insights-multiple-deny-events)
 
 ## [InsightsMetrics](./queries/InsightsMetrics.md)
 
