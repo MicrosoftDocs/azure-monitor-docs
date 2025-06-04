@@ -1,29 +1,25 @@
 ---
-title: Supported metrics - Microsoft.Media/mediaservices
-description: Reference for Microsoft.Media/mediaservices metrics in Azure Monitor.
+title: Supported metrics - Microsoft.NetApp/netAppAccounts
+description: Reference for Microsoft.NetApp/netAppAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.Media/mediaservices, naam
+ms.date: 06/03/2025
+ms.custom: Microsoft.NetApp/netAppAccounts, arm
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Microsoft.Media/mediaservices
+# Supported metrics for Microsoft.NetApp/netAppAccounts
   
-The following table lists the metrics available for the Microsoft.Media/mediaservices resource type.  
+The following table lists the metrics available for the Microsoft.NetApp/netAppAccounts resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.Media/mediaservices](../supported-logs/microsoft-media-mediaservices-logs.md)  
-  
  
 
-[!INCLUDE [Microsoft.Media/mediaservices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-media-mediaservices-metrics-include.md)]  
+[!INCLUDE [Microsoft.NetApp/netAppAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-netapp-netappaccounts-metrics-include.md)]  
 
 
 

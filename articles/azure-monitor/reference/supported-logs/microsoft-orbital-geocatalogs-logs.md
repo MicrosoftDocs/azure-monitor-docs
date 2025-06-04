@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.Media/mediaservices/streamingEndpoints
-description: Reference for Microsoft.Media/mediaservices/streamingEndpoints in Azure Monitor Logs.
+title: Supported log categories - Microsoft.Orbital/geocatalogs
+description: Reference for Microsoft.Orbital/geocatalogs in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.Media/mediaservices/streamingEndpoints, naam
+ms.date: 06/03/2025
+ms.custom: Microsoft.Orbital/geocatalogs, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,16 +12,16 @@ ms.custom: Microsoft.Media/mediaservices/streamingEndpoints, naam
 
 
 
-# Supported logs for Microsoft.Media/mediaservices/streamingEndpoints  
-The following table lists the types of logs available for the Microsoft.Media/mediaservices/streamingEndpoints resource type.
+# Supported logs for Microsoft.Orbital/geocatalogs  
+The following table lists the types of logs available for the Microsoft.Orbital/geocatalogs resource type.
   
   
   
-For a list of supported metrics, see [Supported metrics - Microsoft.Media/mediaservices/streamingEndpoints](../supported-metrics/microsoft-media-mediaservices-streamingendpoints-metrics.md)  
+For a list of supported metrics, see [Supported metrics - Microsoft.Orbital/geocatalogs](../supported-metrics/microsoft-orbital-geocatalogs-metrics.md)  
   
 
   
-[!INCLUDE [Microsoft.Media/mediaservices/streamingEndpoints](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-media-mediaservices-streamingendpoints-logs-include.md)]  
+[!INCLUDE [Microsoft.Orbital/geocatalogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-orbital-geocatalogs-logs-include.md)]  
   
 
 ## Next Steps
