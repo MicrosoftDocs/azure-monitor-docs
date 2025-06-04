@@ -12,7 +12,7 @@ ms.custom: subject-policy-compliancecontrols
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-monitor](~/azure-docs-pr/includes/policy/standards/byrp/microsoft.insights.md)]
+[!INCLUDE [azure-policy-compliancecontrols-monitor](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.insights.md)]
 
 ## Next steps
 
