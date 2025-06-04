@@ -175,8 +175,18 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
 ---
 
 ## Limitations
+
 * Virtual network injection is currently only possible in subscriptions/regions where Azure Container Instances and Azure Relay are available.
-* When you create a Target resource that you enable with virtual network injection, you need `Microsoft.Network/virtualNetworks/subnets/write` access to the virtual network. For example, if the AKS cluster is deployed to virtual network_A, then you must have permissions to create subnets in virtual network_A to enable virtual network injection for the AKS cluster.
+
+* When you create a Target resource that you enable with virtual network injection, you need `Microsoft.Network/virtualNetworks/subnets/write` access to the virtual network. For example, if the AKS cluster is deployed to `virtualNetwork_A`, then you must have permissions to create subnets in `virtualNetwork_A` to enable virtual network injection for the AKS cluster.
+
+* **Subscription scoping limitation for virtual network injection**  
+  When using Chaos Studio with private networking (virtual network injection), the virtual network (VNet) that contains the target resource (e.g., an AKS cluster) **must reside in the same Azure subscription** as the Chaos Studio experiment.
+
+  While Chaos Studio generally supports targeting resources across subscriptions, this capability **does not apply** when private networking is enabled. This is because the private endpoint and other supporting resources required for VNet injection are deployed by Chaos Studio into the **same subscription as the experiment**. If the target VNet resides in a different subscription, private endpoint creation will fail due to [cross-subscription restrictions](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview#limitations).
+
+  **Workaround:** To use private networking successfully, ensure that the target VNet and the Chaos Studio experiment are created within the same Azure subscription.
+
 <!--
 ![Target resource with virtual network injection](images/chaos-studio-rp-vnet-injection.png)
 -->
