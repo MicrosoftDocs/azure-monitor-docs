@@ -7,12 +7,12 @@ ms.date: 05/21/2025
 
 #  Monitor your AKS cluster network with Azure Monitor 
 
-This article explains features avaialble to customers for monitoring their AKS cluster network using Azure Monitor. 
+This article describes Azure Monitor features that customers can use for monitoring their AKS cluster network. 
 
 
-## Collecting metrics
+## Collecting network metrics
 
-[Azure Monitor managed service for Prometheus](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus) is Azure's recommended solution to collect metrics from your Azure Kubernetes Service (AKS) clusters. When metrics collection using managed Prometheus is enabled for a cluster, network monitoring metrics are collected by default. By default the metrics collected are at the node level. To collect pod level and other advanced metrics, customers need to enable the _Container Network Observability_ feature.
+[Azure Monitor managed service for Prometheus](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus) is Azure's recommended solution to collect metrics from your Azure Kubernetes Service (AKS) clusters. When metrics collection using managed Prometheus is enabled for a cluster, network monitoring metrics are collected by default. By default the metrics collected are at the node level. To collect pod level and other advanced metrics, customers need to enable the _Container Network Observability_ feature. Use the links below to explore more. 
 
 **Managed Prometheus and default networking metrics**
 * [Enable Managed Prometheus on your cluster](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana)
@@ -24,12 +24,12 @@ This article explains features avaialble to customers for monitoring their AKS c
 
 
 
-## Collecting logs
+## Collecting network logs
 
 
 ### Intra-cluster logs
 
-To collect logs for network flows within your AKS cluster, customers can use the [Container Network Logs](https://aka.ms/ContainerNetworkLogsDoc) feature of [Advanced Container Networking Services]([azure/aks/advanced-container-networking-services-overview](https://learn.microsoft.com/azure/aks/advanced-container-networking-services-overview)). 
+To collect logs for network flows within your AKS cluster, customers can use the [Container Network Logs](https://aka.ms/ContainerNetworkLogsDoc) feature of [Advanced Container Networking Services](https://learn.microsoft.com/azure/aks/advanced-container-networking-services-overview). 
 
 To get started with enabling Container Flow Logs, visit: [https://aka.ms/ContainerNetworkLogsDoc](https://aka.ms/ContainerNetworkLogsDoc) 
 
@@ -72,10 +72,10 @@ Once you apply the configmap via kubectl apply command, the pods shall get resta
 
 The Logs add-on that collects Container Network logs publishes QoS metrics that can be used to monitor for throttling and log loss. In this section, we cover how can customers can use Azure Monitor managed service for Prometheus to collect these metrics and then visualize them with Grafana.   
 
-**Pre-requisite** 
+**Pre-requisites** 
 
-* Azure Monitor managed service for Prometheus. Enable by following the [these instructions](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana)
-* Grafana instance to import the dashboard. Can be [Azure managed Grafana]([azure/managed-grafana/overview](https://learn.microsoft.com/azure/managed-grafana/overview)), [Azure Monitor Dashboards with Grafana]([azure/azure-monitor/visualize/visualize-use-grafana-dashboards](https://learn.microsoft.com/azure/azure-monitor/visualize/visualize-use-grafana-dashboards)) or any Grafana instance linked with the Prometheus instance mentioned above.  
+* [Azure Monitor managed service for Prometheus](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus): This serves as the destination for the QoS metrics. Enable by following the [these instructions](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana)
+* A Grafana instance to import the dashboard. This can be an instance [Azure managed Grafana](https://learn.microsoft.com/azure/managed-grafana/overview), [Azure Monitor Dashboards with Grafana](https://learn.microsoft.com/azure/azure-monitor/visualize/visualize-use-grafana-dashboards) or any other Grafana instance linked with the Prometheus instance mentioned previously.  
 
 **Configuration steps** 
 
