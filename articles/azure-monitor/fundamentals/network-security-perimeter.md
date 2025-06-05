@@ -15,6 +15,9 @@ Network Security Perimeter allows you to control network access using network is
 * Log all network access to your supported Azure Monitor resources.
 * Block any data exfiltration to services not in the NSP.
 
+> [!TIP]
+> For guidance on transitioning you Azure Monitor resources to a network security perimeter, see [Transition to a network security perimeter in Azure](/azure/private-link/network-security-perimeter-transition).
+
 ## Regions
 
 Azure Network Security Perimeter is available in all regions where Azure Monitor is supported.
@@ -152,3 +155,4 @@ Resource logs for provide insights into the operation of NSP and help to diagnos
 ## Next steps
 
 * Read more about [Network Security Perimeter](/azure/private-link/network-security-perimeter-concepts) in Azure.
+* 
