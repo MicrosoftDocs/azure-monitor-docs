@@ -155,4 +155,4 @@ Resource logs for provide insights into the operation of NSP and help to diagnos
 ## Next steps
 
 * Read more about [Network Security Perimeter](/azure/private-link/network-security-perimeter-concepts) in Azure.
-* 
+* Follow guidance to transition your resources at [Transition to a network security perimeter in Azure](/azure/private-link/network-security-perimeter-transition).
