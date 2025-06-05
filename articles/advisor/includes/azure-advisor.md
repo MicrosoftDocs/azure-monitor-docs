@@ -8,7 +8,7 @@ ms.author: ikhapova
 
 ### Get cost savings summary from Azure Advisor
 
-This query summarizes the cost savings of each [Azure Advisor](../advisor-overview.md) recommendation.
+This query summarizes the monthly cost savings of each [Azure Advisor](../advisor-overview.md) recommendation.
 
 ```kusto
 AdvisorResources
