@@ -41,3 +41,13 @@ Everyone with access to the subscription can view and filter by **Event Level**.
 
 
 :::image type="content" source="media/metadata/metadata-health-advisory-screen.png" alt-text="Screenshot of the health advisory metadata filter screen." lightbox="media/metadata/metadata-health-advisory-screen.png":::
+
+## Security advisories event level alert definitions
+
+|Alert type|Definition|
+|-----|-----|
+|**Critical**|Immediate attention recommended. A security of privacy event with significant risk where action is needed.|
+|**Warning**|Security or privacy event with recommended actions that can be taken if desired.|
+|**Informational**| Awareness only for security of privacy-related matter as part of our commitment to transparency. No action is required.|
+
+:::image type="content" source="media/metadata/metadata-security-screen.png" alt-text="Screenshot of the security advisory metadata filter screen." lightbox="media/metadata/metadata-security-screen.png":::
