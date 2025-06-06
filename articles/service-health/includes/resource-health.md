@@ -40,7 +40,8 @@ Search-AzGraph -Query "HealthResources | where type =~ 'microsoft.resourcehealth
 
 This query lists the most recent list of virtual machines (VM) (`Microsoft.Compute/virtualMachines`) grouped by their availability state. The query also includes each VM’s Resource ID (`properties.targetResourceId`) to help with debugging and troubleshooting. 
 
-Availability states can be one of four values: **Available**, **Unavailable**, **Degraded**, or **Unknown**. For more information on what each state means, see [Azure Resource Health overview](../resource-health-overview.md#health-status).
+Availability states can be one of four values: **Available**, **Unavailable**, **Degraded**, or **Unknown**. <br>
+For more information on what each state means, see [Azure Resource Health overview](../resource-health-overview.md#health-status).
 
 ```kusto
 HealthResources
@@ -72,7 +73,8 @@ Search-AzGraph -Query "HealthResources | where type =~ 'microsoft.resourcehealth
 
 #### Lists of virtual machines by availability and power states with resource IDs and resource groups
 
-Returns list of virtual machines (`Microsoft.Compute/virtualMachines`) aggregated on their power state and availability state to provide a cohesive state of health for your virtual machines. The query also provides details on the resource group and resource ID associated with each entry for detailed visibility into your resources.
+Returns list of virtual machines (`Microsoft.Compute/virtualMachines`) aggregated on their power state and availability state to provide a cohesive state of health for your virtual machines. <br>
+The query also provides details on the resource group and resource ID associated with each entry for detailed visibility into your resources.
 
 ```kusto
 Resources
@@ -112,7 +114,7 @@ Search-AzGraph -Query "Resources | where type =~ 'microsoft.compute/virtualmachi
 
 #### Lists of virtual machines that aren't available by resource IDs
 
-This query lists the most recent virtual machines (VM) (`Microsoft.Compute/virtualMachines`) that aren't in an *Available* state and grouped by their availability status. It also includes each VM’s Resource ID (from properties.targetResourceId) to help with troubleshooting.
+This query lists the most recent virtual machines (VM) (`Microsoft.Compute/virtualMachines`) that aren't in an *Available* state and grouped by their availability status. <br>It also includes the Resource ID (from properties.targetResourceId) of each VM to help with troubleshooting.
 
 If all your virtual machines are in the *Available state*, the query returns no results.
 
