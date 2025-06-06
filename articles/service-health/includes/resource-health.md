@@ -1,10 +1,10 @@
 ---
 ms.service: azure-service-health
 ms.topic: include
-ms.date: 05/28/2025
+ms.date: 06/06/2025
 ---
 
-### Count of virtual machines by availability state and subscription ID
+### Count of virtual machines by state of availability and subscription ID
 
 This query shows how many virtual machines (`Microsoft.Compute/virtualMachines`) are in each availability state, grouped by each of your subscriptions.
 

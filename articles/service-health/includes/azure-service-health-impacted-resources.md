@@ -1,7 +1,7 @@
 ---
 ms.service: azure-service-health
 ms.topic: include
-ms.date: 5/28/2025
+ms.date: 6/06/2025
 ---
 
 ### Confirmed impacted resources
