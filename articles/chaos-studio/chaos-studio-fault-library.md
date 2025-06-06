@@ -4,8 +4,8 @@ description: Understand the available actions you can use with Azure Chaos Studi
 services: chaos-studio
 author: rsgel
 ms.topic: article
-ms.date: 01/02/2024
-ms.reviewer: prashabora
+ms.date: 07/06/2025
+ms.reviewer: vikramraju
 ms.custom: linux-related-content
 ---
 
