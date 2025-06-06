@@ -21,7 +21,9 @@ The following table lists the metrics available for the Microsoft.Compute/virtua
   
 For a list of supported logs, see [Supported log categories - Microsoft.Compute/virtualMachines](../supported-logs/microsoft-compute-virtualmachines-logs.md)  
   
- 
+> [!IMPORTANT]
+> The metrics "Available Memory Bytes" and "Available Memory Percentage" are not available to Confidential Virtual Machines, but are accessible through [Azure VM Insights](/articles/azure-monitor/vm/vminsights-overview.md)
+
 
 [!INCLUDE [Microsoft.Compute/virtualMachines](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-compute-virtualmachines-metrics-include.md)]  
 
