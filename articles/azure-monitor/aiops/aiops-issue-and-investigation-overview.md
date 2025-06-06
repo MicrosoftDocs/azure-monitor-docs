@@ -117,7 +117,6 @@ These are the supported Azure regions for issues and investigation services:
 | eastus2euap                            |
 | uksouth                                |
 | westeurope                             |
-| westus                                 |
 
 ## Next steps
 
