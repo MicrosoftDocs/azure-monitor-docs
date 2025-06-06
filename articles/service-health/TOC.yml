@@ -2,11 +2,11 @@
   href: index.yml
 - name: Getting started
   items:
-  - name: Azure Service Health Overview
+  - name: Azure Service Health overview
     href: overview.md
-  - name: Azure Status page Overview
+  - name: Azure Status page overview
     href: azure-status-overview.md
-  - name: Resource Health Overview
+  - name: Resource Health overview
     href: resource-health-overview.md
   - name: Azure Service Health Portal
     href: service-health-portal-update.md
@@ -14,7 +14,7 @@
     href: service-health-overview.md
   - name: What's New
     href: whats-new.md
-- name: How to Guides
+- name: How to guides
   items:
   - name: Azure Service Health
     items:
@@ -78,7 +78,7 @@
       href: admin-access-reference.md
     - name: Subscription and Tenant access
       href: subscription-vs-tenant.md    
-- name: Frequently Asked Questions
+- name: Frequently asked questions
   items:
     - name: Resource Health FAQ
       href: resource-health-faq.yml
