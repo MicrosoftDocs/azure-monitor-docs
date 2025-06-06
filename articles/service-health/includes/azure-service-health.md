@@ -5,7 +5,7 @@ ms.topic: include
 ms.date: 06/06/2025
 ---
 
-### Active Service Health event by subscription 
+#### Active Service Health event by subscription 
 
 This query shows all active Service Health events—such as service issues, planned maintenance, health advisories, and security advisories—grouped by event type and includes a count of the impacted services.
 
@@ -43,7 +43,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ---
 
-### All active health advisory events
+#### All active health advisory events
 
 This query lists all active health advisory events from Service Health across every subscription you have access to.
 
@@ -73,7 +73,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 - Azure operated by 21Vianet portal: <a href="https://portal.azure.cn/#blade/HubsExtension/ArgQueryBlade/query/ServiceHealthResources%0D%0A%7C%20where%20type%20%3D~%20%27Microsoft.ResourceHealth%2Fevents%27%0D%0A%7C%20extend%20eventType%20%3D%20properties.EventType%2C%20status%20%3D%20properties.Status%2C%20description%20%3D%20properties.Title%2C%20trackingId%20%3D%20properties.TrackingId%2C%20summary%20%3D%20properties.Summary%2C%20priority%20%3D%20properties.Priority%2C%20impactStartTime%20%3D%20properties.ImpactStartTime%2C%20impactMitigationTime%20%3D%20todatetime%28tolong%28properties.ImpactMitigationTime%29%29%0D%0A%7C%20where%20eventType%20%3D%3D%20%27HealthAdvisory%27%20and%20impactMitigationTime%20%3E%20now%28%29" target="_blank">portal.azure.cn</a>
 
 ---
-### All upcoming service retirement events
+#### All upcoming service retirement events
 
 This query returns all upcoming Service Health events for Retirements across all your subscriptions.
 
@@ -93,7 +93,7 @@ where type =~ 'Microsoft.ResourceHealth/events'
 |project trackingId, subscriptionId, status, eventType, eventSubType, summary, description, priority, impactStartTime, impactMitigationTime, impact
 ```
 ---
-### All active planned maintenance events
+#### All active planned maintenance events
 
 This query finds and returns a list of all active planned maintenance Service Health events across all the subscriptions you have access to.
 
@@ -124,7 +124,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ---
 
-### All active Service Health events
+#### All active Service Health events
 
 Use this query to list all active Service Health events—like service issues, planned maintenance, health advisories, and security advisories—across all your subscriptions.
 
@@ -155,7 +155,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ---
 
-### All active service issue events
+#### All active service issue events
 
 This query finds and lists all active service issues (outages) and Service Health events across all subscriptions.
 
