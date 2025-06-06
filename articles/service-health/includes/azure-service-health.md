@@ -9,7 +9,7 @@ ms.date: 06/06/2025
 
 This query shows all active Service Health events—such as service issues, planned maintenance, health advisories, and security advisories—grouped by event type and includes a count of the impacted services.
 
-An example would each event type including a count showing how many subscriptions affected by it.
+An example would show each event type including a count showing how many subscriptions affected by it.
 
 >[!NOTE]
 >This event subscription doesn't include emerging issues. For more information, open [this page](/rest/api/resourcehealth/emerging-issues).
