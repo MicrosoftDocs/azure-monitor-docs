@@ -4,7 +4,7 @@ ms.topic: include
 ms.date: 06/06/2025
 ---
 
-### Count of virtual machines by state of availability and subscription ID
+#### Count of virtual machines by state of availability and subscription ID
 
 This query shows how many virtual machines (`Microsoft.Compute/virtualMachines`) are in each availability state, grouped by each of your subscriptions.
 
@@ -36,7 +36,7 @@ Search-AzGraph -Query "HealthResources | where type =~ 'microsoft.resourcehealth
 
 ---
 
-### List of virtual machines and associated availability states by resource IDs
+#### Lists of virtual machines and associated availability states by resource IDs
 
 This query lists the most recent list of virtual machines (VM) (`Microsoft.Compute/virtualMachines`) grouped by their availability state. The query also includes each VM’s Resource ID (`properties.targetResourceId`) to help with debugging and troubleshooting. 
 
@@ -70,7 +70,7 @@ Search-AzGraph -Query "HealthResources | where type =~ 'microsoft.resourcehealth
 
 ---
 
-### List of virtual machines by availability state and power state with resource IDs and resource groups
+#### Lists of virtual machines by availability and power states with resource IDs and resource groups
 
 Returns list of virtual machines (`Microsoft.Compute/virtualMachines`) aggregated on their power state and availability state to provide a cohesive state of health for your virtual machines. The query also provides details on the resource group and resource ID associated with each entry for detailed visibility into your resources.
 
@@ -110,7 +110,7 @@ Search-AzGraph -Query "Resources | where type =~ 'microsoft.compute/virtualmachi
 
 ---
 
-### List of virtual machines that aren't available by resource IDs
+#### Lists of virtual machines that aren't available by resource IDs
 
 This query lists the most recent virtual machines (VM) (`Microsoft.Compute/virtualMachines`) that aren't in an *Available* state and grouped by their availability status. It also includes each VM’s Resource ID (from properties.targetResourceId) to help with troubleshooting.
 

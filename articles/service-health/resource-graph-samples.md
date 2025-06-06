@@ -17,14 +17,14 @@ This page helps you monitor and understand the health of your Azure services and
 
 It includes sample queries specifically for Azure Service Health.
 
-## Service health sample queries
+## Service Health sample queries
 [!INCLUDE [azure-resource-graph-samples-cat-servicehealth](./includes/azure-service-health.md)]
 
 ## Impacted resource sample queries
 
 [!INCLUDE [azure-service-health-impacted-resources](includes/azure-service-health-impacted-resources.md)]
 
-## Resource health sample queries
+## Resource Health sample queries
 
 [!INCLUDE [azure-resource-graph-samples-cat-resourcehealth](./includes/resource-health.md)]
 

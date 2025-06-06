@@ -5,7 +5,7 @@ ms.topic: include
 ms.date: 06/06/2025
 ---
 
-#### Active Service Health event by subscription 
+#### Active Service Health events by subscription 
 
 This query shows all active Service Health events—such as service issues, planned maintenance, health advisories, and security advisories—grouped by event type and includes a count of the impacted services.
 
