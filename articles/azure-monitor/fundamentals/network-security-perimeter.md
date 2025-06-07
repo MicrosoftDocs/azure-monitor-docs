@@ -24,13 +24,18 @@ Azure Network Security Perimeter is available in all regions where Azure Monitor
 
 ## Current limitations
 
-* For Log Analytics export scenarios to function correctly with storage accounts/event hubs, both the Log Analytics workspace and the storage account/event hub must be part of the same perimeter.
+* For Log Analytics export scenarios with storage accounts/event hubs, both the Log Analytics workspace and the storage account/event hub must be part of the same perimeter.
+* Only Azure resources that support NSP can use a diagnostic setting with a destination in an NSP perimeter. The resource being monitored also must be in the same NSP perimeter as the destination.
 * Global action groups resources don't support NSP. You must create regional action groups resources that will support NSP.
 * Cross-resource queries are blocked for Log Analytics Workspaces associated with NSP. This includes accessing the workspace through an ADX cluster.
 * NSP access logs are sampled every 30 minutes.
 * [Log Analytics workspace replication](../logs/workspace-replication.md) isn't supported.
 * [Ingesting events from Azure Event Hubs](../logs/ingest-logs-event-hub.md) isn't supported.
 * Collecting data into or querying data from [Azure Monitor workspaces](../metrics/azure-monitor-workspace-overview.md) isn't supported.
+
+
+> [!NOTE]
+> The same limitations and configuration requirements apply to Microsoft Sentinel workloads if the Log Analytics workspace is associated with a Network Security Perimeter. 
 
 ## Supported components
 The components of Azure Monitor that are supported with a network security perimeter are listed in the following table with their minimum API version. See [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources) for a list of the other Azure services that are supported with NSP.

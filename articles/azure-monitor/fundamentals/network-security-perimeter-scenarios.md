@@ -48,14 +48,14 @@ The [Logs Ingestion API](../logs/logs-ingestion-api-overview.md) in Azure Monito
 [Data export](../logs/logs-data-export.md) allows you to export logs from Log Analytics workspace to the storage account destination. 
 
 - Associate Log Analytics Workspace and storage account/event hub to Network Security Perimeter with inbound rules defined.
-- Allow if the storage account is within same perimeter as Log Analytics Workspace.
+- Allow if the storage account/event hub is within same perimeter as Log Analytics Workspace.
 - Exporting tables from Log Analytics to a storage account is only supported when both the Log Analytics workspace and storage account are within the same perimeter. If they're not, the export table traffic will be denied.
 
 ### Diagnostic Settings
 Use [diagnostic settings](../platform/diagnostic-settings.md) to collect resource logs and metrics for Azure resources to Log Analytics workspace, Event Hubs, or Storage Account.
 
 - Associate Log Analytics Workspace to Network Security Perimeter with inbound rules defined.
-- Allow the traffic if both the primary PaaS resource where diagnostic settings are configured and the Log Analytics Workspace are within the same perimeter.
+- Allow the traffic if both the primary PaaS resource where diagnostic settings are configured and the destination are within the same perimeter.
 - Deny if source resource doesn't match any rules.
 
 ### Log Analytics agent
