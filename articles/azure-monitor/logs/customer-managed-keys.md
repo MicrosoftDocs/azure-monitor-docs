@@ -310,12 +310,12 @@ When linking your Storage Account for saved queries, the service stores saved qu
 
 **Considerations before setting Customer-managed key for queries**
 * You need to have "write" permissions on your workspace and Storage Account.
-* Make sure to create your Storage Account in the same region as your Log Analytics workspace is located, with Customer-managed key encryption. This detail is important since saved queries are stored in table storage and it can only be encrypted at Storage Account creation.
-* Queries saved in [query pack](./query-packs.md) aren't encrypted with Customer-managed key. Select **Save as Legacy query** when saving queries instead, to protect them with Customer-managed key.
-* Saves queries in storage are considered service artifacts and their format might change.
-* Linking a Storage Account for queries removes existing saves queries from your workspace. Copy saves queries that you need before this configuration. You can view your saved queries using [PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch).
+* The Storage Account must be StorageV2 and in the same region as your Log Analytics workspace.
+Linking a Storage Account for queries removes existing saves queries and Functions from your workspace for privacy. Copy existing saved queries and functions before configuration. You can view your saved queries using [PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch).
+* Queries saved in [query pack](./query-packs.md) aren't stored on linked Storage Account and can't be encrypted with Customer-managed key. It's recommended to **Save as Legacy query** to protect queries with Customer-managed key.
+* Saves queries and functions in storage are considered service artifacts and their format might change.
 * Query 'history' and 'pin to dashboard' aren't supported when linking Storage Account for queries.
-* You can link a single Storage Account to a workspace for both saved queries and log search alert queries.
+* You can link a single or separate Storage Account for saved queries and log search alert queries.
 * Log search alerts are saved in blob storage and Customer-managed key encryption can be configured at Storage Account creation, or later.
 * Triggered log search alerts don't contain search results or the alert query. Use [alert dimensions](../alerts/alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions-1) to get context for the fired alerts.
 
