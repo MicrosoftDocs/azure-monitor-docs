@@ -75,10 +75,10 @@ The storage account and the key vault must be in the same region. They don't nee
 
 | Special case | Remediation |
 |---|---|
-| When a storage account is linked for queries with CMK, existing saved queries in the workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
+| When a storage account is linked for queries with CMK, existing saved queries and functions in the workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
 | Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK. |
 | Saved queries and log search alerts aren't encrypted in customer-managed storage by default. | Encrypt your storage account with CMK at storage account creation even though CMK is configurable after. |
-| A single storage account can be used for all purposes - queries, alerts, custom logs, and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.|
+| A single StorageV2 storage account can be used for all purposes - queries, alerts, custom logs, and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.|
 
 ## Link storage accounts to your Log Analytics workspace
 
