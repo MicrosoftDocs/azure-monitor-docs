@@ -1,20 +1,18 @@
 ---
 title: Configure throttling for Container Insights
-description: Configiure throttling paramaters and monitor for log loss in Container Insights
+description: Configure throttling parameters and monitor for log loss in Container Insights
 ms.topic: conceptual
 ms.date: 06/09/2025
 ---
 
 #  Configure throttling for Container Insights
 
-Azure Monitor - Container Insights allow customers to collect logs generated in their AKS cluster. Depending on workload and logging configuration, the volume of logs generated can be very high leading to throttling and log loss. 
-
-This article discuss the default values after which logs are throttled in Container Insights. We discuss how customers can modify these values. The final section covers how you can monitor for potential throttling issues with our Quality-of-Service (QoS) Grafana dashboard.
+Azure Monitor - Container Insights allow customers to collect logs generated in their Azure Kuberenetes Service (AKS) cluster. Depending on workload and logging configuration, the volume of logs generated can be substantial, leading to throttling and log loss. This article discusses the default values after which logs are throttled in Container Insights. We discuss how customers can modify these values. The final section covers how you can monitor for potential throttling issues with our Quality-of-Service (QoS) Grafana dashboard.
 
 
 ## Default Throttling values
 
-Throttling is enabled by default with the values below: 
+Throttling is enabled by default with the following values: 
 
 | ConfigMap setting | Default value | Description |
 | --- | --- | --- |
