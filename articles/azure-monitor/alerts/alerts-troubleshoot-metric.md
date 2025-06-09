@@ -41,16 +41,16 @@ If you believe a metric alert should have fired but it didn't, and it isn't list
 
     If you're using [metrics charts](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/metrics), ensure that:
 
-        * The selected **Aggregation** in the metric chart is the same as **Aggregation type** in your alert rule.
-        * The selected **Time granularity** is the same as **Aggregation granularity (Period)** in your alert rule, and isn't set to **Automatic**.
+    * The selected **Aggregation** in the metric chart is the same as **Aggregation type** in your alert rule.
+    * The selected **Time granularity** is the same as **Aggregation granularity (Period)** in your alert rule, and isn't set to **Automatic**.
 
 1. **Check if the alert rule is missing the first evaluation period in a time series.**
 
     You can reduce the likelihood of missing the first evaluation of added time series by making sure that you choose an **Aggregation granularity (Period)** that's larger than the **Frequency of evaluation** in the following cases:
 
-        * When a new dimension value combination is added to a metric alert rule that monitors multiple dimensions.
-        * When a new resource is added to the scope to a metric alert rule that monitors multiple resources.
-        * When the metric is emitted after a period longer than 24 hours in which it wasn't emitted for metric alert rule that monitors a metric that isn't emitted continuously (sparse metric).
+    * When a new dimension value combination is added to a metric alert rule that monitors multiple dimensions.
+    * When a new resource is added to the scope to a metric alert rule that monitors multiple resources.
+    * When the metric is emitted after a period longer than 24 hours in which it wasn't emitted for metric alert rule that monitors a metric that isn't emitted continuously (sparse metric).
 
 ## The metric alert is not triggered every time the condition is met
 
@@ -100,9 +100,11 @@ If you believe your metric alert shouldn't have fired but it did, the following 
     * The selected **Time granularity** is the same as the **Aggregation granularity (Period)** in your alert rule, and that it isn't set to **Automatic**.
 
 1. If the alert fired while there are already fired alerts that monitor the same criteria that aren't resolved, check if the alert rule has been configured not to automatically resolve alerts. This means the alert rule is stateless, and doesn't auto-resolve fired alerts and doesn't require a fired alert to be resolved before firing again on the same time series.
+
     To check if the alert rule is configured not to auto-resolve:
-    - Edit the alert rule in the Azure portal. See if the **Automatically resolve alerts** checkbox under the **Alert rule details** section is cleared.
-    - Review the script used to deploy the alert rule or retrieve the alert rule definition. Check if the `autoMitigate` property is set to `false`.
+
+    * Edit the alert rule in the Azure portal. See if the **Automatically resolve alerts** checkbox under the **Alert rule details** section is cleared.
+    * Review the script used to deploy the alert rule or retrieve the alert rule definition. Check if the `autoMitigate` property is set to `false`.
 
 ## A metric alert rule with dynamic thresholds fires too much or is too noisy
 
@@ -127,6 +129,7 @@ When a metric value exhibits large fluctuations, dynamic thresholds may build a 
 If you want to alert on a specific metric but you can't see it when you create an alert rule, check to determine:
 
 * If you can see some metrics for the resource but can't find a specific metric, [check if that metric is supported](/azure/azure-monitor/reference/supported-metrics/metrics-index). If so, see the metric description to check if it's only available in specific versions or editions of the resource.
+
 * If the metric isn't available for the resource, it might be available in the resource logs and can be monitored by using log alerts. For more information, see how to [collect and analyze resource logs from an Azure resource](../essentials/tutorial-resource-logs.md).
 
 ### Can't find the metric to alert on: Virtual machines guest metrics
