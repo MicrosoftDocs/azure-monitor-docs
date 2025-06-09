@@ -284,5 +284,14 @@
     "overwrite": [],
     "externalReference": [],
     "template": []
+  },
+"dest": "azure monitor",
+"rules": {
+      "sensitive-language-ma": {
+        "exclude": [
+          "articles/azure-monitor/reference/tables/dnsauditevents.md"
+        ]
+      }
+    }
   }
-}
+}  
