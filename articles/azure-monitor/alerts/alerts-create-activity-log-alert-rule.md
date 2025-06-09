@@ -2,7 +2,7 @@
 title: Create an activity log, service health, or resource health alert rule
 description: This article shows you how to create or edit an activity log, service health, or resource health alert rule in Azure Monitor.
 ms.topic: how-to
-ms.date: 11/27/2023
+ms.date: 07/09/2025
 ms.reviewer: harelbr
 
 # Customer intent: As an Azure cloud administrator, I want to create a new log search alert rule so that I can use a log search query to monitor the performance and availability of my resources.
@@ -92,7 +92,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
         | **Regions**     | Select the Azure regions.                                                                                                                             |
         | **Event types** | Select the types of service health events. Values are **Service issue**, **Planned maintenance**, **Health advisories**, and **Security advisories**. |
 
-    ---
+---
 
 [!INCLUDE [alerts-wizard-actions](includes/alerts-wizard-actions.md)]
 
@@ -106,7 +106,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     > [!NOTE]
     > Service Health alert rules can only be located in the Global region.
-    
+
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-activity-log-rule-details-tab.png" alt-text="Screenshot that shows the Details tab for creating a new activity log alert rule.":::
 
 1. [!INCLUDE [alerts-wizard-custom=properties](includes/alerts-wizard-custom-properties.md)]
@@ -115,4 +115,4 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
 ## Related content
 
-* [View and manage your alert instances](alerts-manage-alert-instances.md)
+* [View and manage your alert instances](alerts-manage-alert-instances.md).

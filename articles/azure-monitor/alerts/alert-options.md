@@ -2,7 +2,7 @@
 title: Create alert rules for an Azure resource
 description: Describes the different options for creating alert rules in Azure Monitor and where you can find more information about each option.
 ms.topic: conceptual
-ms.date: 02/16/2024
+ms.date: 07/09/2025
 
 ---
 
@@ -18,14 +18,14 @@ Recommended alerts is a feature in Azure Monitor for some services that allows y
 
 AMBA is a central repository that combines product group and field experience driven alert definitions that allow customers and partners to improve their observability experience through the adoption of Azure Monitor. It's organized by resource type so you can quickly identify alert definitions that fit your requirements. AMBA leverages Azure Monitor alerts and helps you detect and address issues consistently and at scale indicating problems with monitored resource in your infrastructure. AMBA includes definitions for both metric and log alerts for resources including:
 
-- Service Health
-- Compute resources
-- Networking resources
-- Many more
+* Service Health
+* Compute resources
+* Networking resources
+* Many more
 
-AMBA also includes example snippets of alert definitions to be directly used in an ARM or BICEP deployments in addition to policy definitions. Read more about on Azure Landing Zone monitoring at [Monitor Azure platform landing zone components](/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-monitor#azure-landing-zone-monitoring-guidance) .
+AMBA also includes example snippets of alert definitions to be directly used in an ARM or BICEP deployments in addition to policy definitions. Read more about on Azure Landing Zone monitoring at [Monitor Azure platform landing zone components](/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-monitor#azure-landing-zone-monitoring-guidance).
 
-AMBA has patterns that group alerts from different resource types to address specific scenarios. Azure landing zone (ALZ), which is also suitable for non-ALZ aligned customers, is a pattern of AMBA that collates platform alerts into a deployable at-scale solution. Other patterns are under development including SAP and Azure Virtual Desktop, which are intended to minimize friction in adopting observability into your environment. 
+AMBA has patterns that group alerts from different resource types to address specific scenarios. Azure landing zone (ALZ), which is also suitable for non-ALZ aligned customers, is a pattern of AMBA that collates platform alerts into a deployable at-scale solution. Other patterns are under development including SAP and Azure Virtual Desktop, which are intended to minimize friction in adopting observability into your environment.
 
 See [Azure Monitor Baseline Alerts](https://aka.ms/amba) for details.
 
@@ -43,4 +43,4 @@ See [Resource Manager template samples for metric alert rules in Azure Monitor](
 
 ## Next steps
 
-- [Read more about alerts in Azure Monitor](./alerts-overview.md)
+* [Read more about alerts in Azure Monitor](./alerts-overview.md).
