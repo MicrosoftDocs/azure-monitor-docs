@@ -35,13 +35,15 @@ To get started with enabling Container Flow Logs, visit: [https://aka.ms/Contain
 
 #### High level data flow
 
-To be added. Roughly: CRD -> NetObs add-on -> Log files on node -> Container Insights add-on aka ama-logs pods -> LA endpoint -> Log Analytics backend 
+To be added. Roughly: The 
+
+Container Network Logs requires a Customer Resource Definition (CRD) to be applied on the cluster for enabling logging. Once enabled, logs are written by the Cilium operator to the node file system. Theese log files are ingested by the Logs add-on from Container Insights. The Logs-add-on then transmits these logs to a dedicated ingestion endpoint, from where they are processed and stored in the Log Analytics. Once the logs are in Log Analytics, they can accessed and queried as needed.  
 
 :::image type="content" source="./media/container-insights-network-monitoring/container-insights-container-network-logs-data-flow.png" alt-text="Diagram of how container network logs are ingested" lightbox="./media/container-insights-network-monitoring/container-insights-container-network-logs-data-flow.png":::
 
 #### Throttling  
 
-As Container Network Logs captures every flow inside your AKS cluster, the volume of logs generated can be very high leading to throttling and log loss. Please see the *[Configure throttling for Container Insights](https://learn.microsoft.com/azure/aks/container-network-observability-concepts?tabs=cilium)* article for guidance on configuring throttling parameters and monitoring for log loss. 
+As Container Network Logs captures every flow inside your AKS cluster, the volume of logs generated can be substantial leading to throttling and log loss. See the *[Configure throttling for Container Insights](https://learn.microsoft.com/azure/aks/container-network-observability-concepts?tabs=cilium)* article for guidance on configuring throttling parameters and monitoring for log loss. 
 
 
 ### Cluster egress logs / Outbound flow logs 
