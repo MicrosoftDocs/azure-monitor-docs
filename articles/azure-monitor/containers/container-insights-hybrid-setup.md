@@ -12,7 +12,7 @@ Container insights provides a rich monitoring experience for the Azure Kubernete
 
 > [!WARNING]
 > Starting October 1, 2025, the HELM chart-based onboarding workflow for the Container Insights agent will be retired. To ensure your clusters are secure and running smoothly, please migrate to Azure Arc Kubernetes Container Insights Extension. You’ll need to connect your cluster to [Azure Arc for Kubernetes ](/azure/azure-arc/kubernetes/overview)and then enable Container Insights through the [Azure Arc Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release).  
-> [Learn more about the retirement](https://azure.microsoft.com/en-us/updates?id=488759).  
+> [Learn more about the retirement](https://azure.microsoft.com/updates?id=488759).  
 > 
 ## Supported configurations
 
