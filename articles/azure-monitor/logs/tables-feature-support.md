@@ -297,7 +297,6 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [SecurityRecommendation](/azure/azure-monitor/reference/tables/securityrecommendation) | |
 | [SecurityRegulatoryCompliance](/azure/azure-monitor/reference/tables/securityregulatorycompliance) | |
 | [SentinelHealth](/azure/azure-monitor/reference/tables/sentinelhealth) | |
-| ServiceMap | |
 | [SfBAssessmentRecommendation](/azure/azure-monitor/reference/tables/sfbassessmentrecommendation) | |
 | [SfBOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/sfbonlineassessmentrecommendation) | |
 | [SharePointOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/sharepointonlineassessmentrecommendation) | |

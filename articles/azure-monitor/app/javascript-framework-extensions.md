@@ -261,7 +261,7 @@ appInsights.loadAppInsights();
 Set up an instance of Application Insights in the entry component in your app:
 
 > [!IMPORTANT]
-> When using the ErrorService, there is an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. you MUST include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service will not be sent.
+> When using the ErrorService, there is an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. You must include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service will not be sent.
 
 ```js
 import { Component } from '@angular/core';
@@ -762,16 +762,9 @@ Check out the [Application Insights Angular demo](https://github.com/microsoft/a
 
 ---
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### How does Application Insights generate device information like browser, OS, language, and model?
-
-The browser passes the User Agent string in the HTTP header of the request. The Application Insights ingestion service uses [UA Parser](https://github.com/ua-parser/uap-core) to generate the fields you see in the data tables and experiences. As a result, Application Insights users are unable to change these fields.
-          
-Occasionally, this data might be missing or inaccurate if the user or enterprise disables sending User Agent in browser settings. The [UA Parser regexes](https://github.com/ua-parser/uap-core/blob/master/regexes.yaml) might not include all device information. Or Application Insights might not have adopted the latest updates.
-
 ## Next steps
 
-- [Confirm data is flowing](javascript-sdk.md#confirm-data-is-flowing).
+
+- To review frequently asked questions (FAQ), see [JavaScript framework extensions FAQ](application-insights-faq.yml#javascript-framework-extensions) 
+- [Confirm data is flowing](javascript-sdk.md#confirm-data-is-flowing)
+

@@ -218,8 +218,8 @@ items:
       - name: Application Map
         displayName: appmap, app map, dependency map, dependencies, hotspots, cloud role name, cloudrolename, cloud_rolename, cloud.rolename, cloud role instance, node
         href: app/app-map.md
-      - name: Failures and Performance views
-        href: app/failures-and-performance-views.md
+      - name: Failures, performance, and transactions
+        href: app/failures-performance-transactions.md
       - name: Availability
         href: app/availability.md
       - name: Live Metric stream
@@ -229,8 +229,6 @@ items:
         href: app/usage.md
       - name: Release and work item insights
         href: app/release-and-work-item-insights.md
-      - name: Transaction Search and Diagnostics
-        href: app/transaction-search-and-diagnostics.md
     - name: Code analysis
       items:
       - name: Code Optimizations
@@ -343,10 +341,7 @@ items:
       - name: Managed workspaces
         href: app/managed-workspaces.md
       - name: Telemetry data model
-        href: app/data-model-complete.md        
-      - name: Transport Layer Security (TLS) compliance
-        href: app/application-insights-tls.md
-        displayName: TLS, transport layer security, compliance, security
+        href: app/data-model-complete.md
     - name: Help and support
       items:
       - name: Create an Azure support ticket
@@ -355,6 +350,8 @@ items:
         href: /answers/tags/20/azure-monitor
       - name: Stack Overflow (coding questions)
         href: https://stackoverflow.com/questions/tagged/azure-application-insights
+      - name: Application Insights FAQ
+        href: app/application-insights-faq.yml  
       - name: Application Insights product feedback
         href: https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0
       - name: Troubleshooting articles
@@ -1071,9 +1068,14 @@ items:
           href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
         - name: Best practices for scaling
           href: metrics/azure-monitor-workspace-scaling-best-practice.md
-        - name: Metrics usage insights
-          displayName: Azure Monitor workspace
-          href: metrics/metrics-usage-insights.md    
+        - name: Monitor Performance
+          items:
+          - name: Metrics usage insights
+            displayName: Azure Monitor workspace
+            href: metrics/metrics-usage-insights.md
+          - name: Monitor metrics ingestion errors
+            displayName: Azure Monitor workspace
+            href: metrics/azure-monitor-workspace-monitor-health.md    
         - name: Private endpoints
           displayName: Azure Monitor workspace
           href: metrics/azure-monitor-workspace-private-endpoint.md
@@ -1095,7 +1097,7 @@ items:
   - name: Logs
     items:
     - name: Overview
-      displayName: Platform logs, Resource logs, Activity log
+      displayName: Platform logs, Resource logs, Activity log, Auxiliary, Analytics, Basic
       href: logs/data-platform-logs.md
     - name: Best practices
       displayName: Logs, WAF, well architected framework, Azure Customer Lockbox, Customer Lockbox, Lockbox
@@ -1140,7 +1142,7 @@ items:
             href: logs/logs-table-plans.md
           - name: Manage data retention
             href: logs/data-retention-configure.md
-            displayName: Log retention, log archive, cost optimization
+            displayName: Log retention, log archive, archive, cost optimization
           - name: Add or delete tables and columns
             href: logs/create-custom-table.md
           - name: Delete data from a log table

@@ -448,112 +448,6 @@ namespace LiveMetricsDemo
 }
 ```
 
-The preceding sample is for a console app, but the same code can be used in any .NET applications. If any other telemetry modules are enabled to autocollect telemetry, it's important to ensure that the same configuration used for initializing those modules is used for the live metrics module.
-
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### How can I uninstall the SDK?
-
-To remove Application Insights, you need to remove the NuGet packages and references from the API in your application. You can uninstall NuGet packages by using the NuGet Package Manager in Visual Studio.
-
-1. If trace collection is enabled, first uninstall the Microsoft.ApplicationInsights.TraceListener package by using the [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-a-package) but don't remove any dependencies.
-1. Uninstall the Microsoft.ApplicationInsights.Web package and remove its dependencies by using the [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-a-package) and its [Uninstall options](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-options) within the [NuGet Package Manager Options control](/nuget/consume-packages/install-use-packages-visual-studio#nuget-package-manager-options-control).
-1. To fully remove Application Insights, check and manually delete the added code or files along with any API calls you added in your project. For more information, see [What is automatically created when you add the Application Insights SDK?](#what-is-automatically-created-when-you-add-the-application-insights-sdk).
-
-### What is automatically created when you add the Application Insights SDK?
-
-When you add Application Insights to your project, it automatically creates files and adds code to some of your files. Solely uninstalling the NuGet Packages doesn't always discard the files and code. To fully remove Application Insights, you should check and manually delete the added code or files along with any API calls you added in your project.
-
-When you add Application Insights Telemetry to a Visual Studio ASP.NET project, it adds the following files:
-
-* *ApplicationInsights.config*
-* *AiHandleErrorAttribute.cs*
-
-The following pieces of code are automatically added:
-
-
-
-* *[Your project's name].csproj*
-
-    ```C#
-     <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
-    ```
-
-* *Packages.config*
-
-    ```xml
-    <packages>
-    ...
-    
-      <package id="Microsoft.ApplicationInsights" version="2.12.0" targetFramework="net472" />
-      <package id="Microsoft.ApplicationInsights.Agent.Intercept" version="2.4.0" targetFramework="net472" />
-      <package id="Microsoft.ApplicationInsights.DependencyCollector" version="2.12.0" targetFramework="net472" />
-      <package id="Microsoft.ApplicationInsights.PerfCounterCollector" version="2.12.0" targetFramework="net472" />
-      <package id="Microsoft.ApplicationInsights.Web" version="2.12.0" targetFramework="net472" />
-      <package id="Microsoft.ApplicationInsights.WindowsServer" version="2.12.0" targetFramework="net472" />
-      <package id="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel" version="2.12.0" targetFramework="net472" />
-    
-      <package id="Microsoft.AspNet.TelemetryCorrelation" version="1.0.7" targetFramework="net472" />
-    
-      <package id="System.Buffers" version="4.4.0" targetFramework="net472" />
-      <package id="System.Diagnostics.DiagnosticSource" version="4.6.0" targetFramework="net472" />
-      <package id="System.Memory" version="4.5.3" targetFramework="net472" />
-      <package id="System.Numerics.Vectors" version="4.4.0" targetFramework="net472" />
-      <package id="System.Runtime.CompilerServices.Unsafe" version="4.5.2" targetFramework="net472" />
-    ...
-    </packages>
-    ```
-
-* *Layout.cshtml*
-
-    If your project has a *Layout.cshtml* file, the following code is added.
-    
-    ```html
-    <head>
-    ...
-        <script type = 'text/javascript' >
-            var appInsights=window.appInsights||function(config)
-            {
-                function r(config){ t[config] = function(){ var i = arguments; t.queue.push(function(){ t[config].apply(t, i)})} }
-                var t = { config:config},u=document,e=window,o='script',s=u.createElement(o),i,f;for(s.src=config.url||'//az416426.vo.msecnd.net/scripts/a/ai.0.js',u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=['Event','Exception','Metric','PageView','Trace','Ajax'];i.length;)r('track'+i.pop());return r('setAuthenticatedUserContext'),r('clearAuthenticatedUserContext'),config.disableExceptionTracking||(i='onerror',r('_'+i),f=e[i],e[i]=function(config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o),s}),t
-            }({
-                instrumentationKey:'00000000-0000-0000-0000-000000000000'
-            });
-            
-            window.appInsights=appInsights;
-            appInsights.trackPageView();
-        </script>
-    ...
-    </head>
-    ```
-
-* *ConnectedService.json*
-
-    ```json
-    {
-      "ProviderId": "Microsoft.ApplicationInsights.ConnectedService.ConnectedServiceProvider",
-      "Version": "16.0.0.0",
-      "GettingStartedDocument": {
-        "Uri": "https://go.microsoft.com/fwlink/?LinkID=613413"
-      }
-    }
-    ```
-
-* *FilterConfig.cs*
-
-    ```csharp
-            public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-            {
-                filters.Add(new ErrorHandler.AiHandleErrorAttribute());// This line was added
-            }
-    ```
-
-### How can I disable telemetry correlation?
-
-To disable telemetry correlation in configuration, see `<ExcludeComponentCorrelationHttpHeadersOnDomains>` in [Application Insights for console applications](/previous-versions/azure/azure-monitor/app/console).
-
 ## Troubleshooting
 
 See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
@@ -576,5 +470,7 @@ Our [Service Updates](https://azure.microsoft.com/updates/?service=application-i
 
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Applications Insights for ASP.NET FAQ](application-insights-faq.yml#asp-net) 
 * Add synthetic transactions to test that your website is available from all over the world with [availability monitoring](availability-overview.md).
 * [Configure sampling](sampling.md) to help reduce telemetry traffic and data storage costs.
+

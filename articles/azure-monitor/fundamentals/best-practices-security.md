@@ -14,6 +14,14 @@ This article provides instructions for deploying Azure Monitor securely and expl
 
 [!INCLUDE [waf-logs-security](../logs/includes/waf-logs-security.md)]
 
+### Application Insights TLS ingestion
+
+[!INCLUDE [application-insights-tls-requirements](../app/includes/application-insights-tls-requirements.md)]
+
+[!INCLUDE [application-insights-tls-requirements](../app/includes/application-insights-tls-requirements-deprecating.md)]
+
+For more information, see [TLS support in Application Insights FAQ](../app/application-insights-faq.yml#tls-support).
+
 ## Alerts
 
 [!INCLUDE [waf-alerts-security](../alerts/includes/waf-alerts-security.md)]

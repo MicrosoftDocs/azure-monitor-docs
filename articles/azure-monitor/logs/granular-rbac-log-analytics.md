@@ -20,7 +20,12 @@ Granular role-based access control (RBAC) in Azure Monitor Log Analytics allows 
 
 If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy, or compliance, granular RBAC helps simplify by reducing the number of workspaces required.
 
+## Introduction video
+
+> [!VIDEO 661dc5e1-bbe4-4f41-8a3d-05a008becfe7]
+
 ### Prerequisites
+
 
 | Action | Permission required |
 |---|---|
@@ -141,7 +146,7 @@ ABAC conditions aren't set on functions directly. If you set the condition on a 
 Several considerations apply when using granular RBAC in Log Analytics. The following sections provide specifics.
 - Granular RBAC is only available in the public cloud.
 
-### Log Analytics 
+### Azure Monitor
 
 - Search Jobs and Summary Rules are planned for granular RBAC support, but not Data Export. For all of these experiences, if full access doesn't exist to the queried tables, the user isn't able to configure the search job or rule and receives an error.
 - Alerts: Only managed identity based log alerts are supported.
@@ -149,7 +154,7 @@ Several considerations apply when using granular RBAC in Log Analytics. The foll
 
 ### Microsoft Sentinel
 
-When data is replicated from original tables using hunting, bookmarks, and incidents, the replicated data isn't protected by the ABAC conditions.
+When data is replicated from original tables using hunting, bookmarks, analytics rule, and incidents, the replicated data isn't protected by the ABAC conditions.
 
 ### Azure ABAC and RBAC
 

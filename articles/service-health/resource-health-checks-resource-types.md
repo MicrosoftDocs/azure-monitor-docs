@@ -6,7 +6,8 @@ ms.date: 05/05/2025
 ---
 
 # Resource types and health checks in Azure resource health
-This page contains a complete list of all the checks executed through resource health by resource types.
+This page contains a comprehensive reference guide for Azure Resource Health, specifically detailing the executed health checks across a wide range of Azure resource types.
+These checks help determine the availability, performance, and operational status of Azure resources.
 
 ## Microsoft.AlertsManagement/prometheusRuleGroups
 

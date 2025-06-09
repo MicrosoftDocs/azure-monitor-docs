@@ -200,32 +200,6 @@ You can track dependencies in the [Kusto query language](/azure/kusto/query/). H
           on operation_Id
     ```
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### How does the automatic dependency collector report failed calls to dependencies?
-
-Failed dependency calls have the `success` field set to False. The module `DependencyTrackingTelemetryModule` doesn't report `ExceptionTelemetry`. The full data model for dependency is described in [Application Insights telemetry data model](data-model-complete.md#dependency-telemetry).
-
-### How do I calculate ingestion latency for my dependency telemetry?
-
-Use this code:
-
-```kusto
-dependencies
-| extend E2EIngestionLatency = ingestion_time() - timestamp 
-| extend TimeIngested = ingestion_time()
-```
-
-### How do I determine the time the dependency call was initiated?
-
-In the Log Analytics query view, `timestamp` represents the moment the TrackDependency() call was initiated, which occurs immediately after the dependency call response is received. To calculate the time when the dependency call began, you would take `timestamp` and subtract the recorded `duration` of the dependency call.
-
-### Does dependency tracking in Application Insights include logging response bodies?
-
-Dependency tracking in Application Insights doesn't include logging response bodies as it would generate too much telemetry for most applications.
-
 ## Open-source SDK
 
 Like every Application Insights SDK, the dependency collection module is also open source. Read and contribute to the code or report issues at [the official GitHub repo](https://github.com/Microsoft/ApplicationInsights-dotnet).
@@ -272,11 +246,13 @@ A list of the latest [currently supported modules](https://github.com/microsoft/
 
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Dependency tracking FAQ](application-insights-faq.yml#dependency-tracking)
 * [Exceptions](./asp-net-exceptions.md)
 * [User and page data](./javascript.md)
 * [Availability](./availability-overview.md)
-* Set up custom dependency tracking for [Java](opentelemetry-add-modify.md?tabs=java#add-custom-spans).
-* Set up custom dependency tracking for [OpenCensus Python](/previous-versions/azure/azure-monitor/app/opencensus-python-dependency).
+* Set up custom dependency tracking for [Java](opentelemetry-add-modify.md?tabs=java#add-custom-spans)
+* Set up custom dependency tracking for [OpenCensus Python](/previous-versions/azure/azure-monitor/app/opencensus-python-dependency)
 * [Write custom dependency telemetry](./api-custom-events-metrics.md#trackdependency)
-* See [data model](./data-model-complete.md) for Application Insights types and data model.
-* Check out [platforms](./app-insights-overview.md#supported-languages) supported by Application Insights.
+* See [data model](./data-model-complete.md) for Application Insights types and data model
+* Check out [platforms](./app-insights-overview.md#supported-languages) supported by Application Insights
+

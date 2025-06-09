@@ -41,7 +41,7 @@ Custom JSON logs can only be sent to a Log Analytics workspace where it's stored
 The file that the Azure Monitor agent is collecting must meet the following requirements:
 
 - The file must be stored on the local drive of the agent machine in the directory that is being monitored.
-- Each entry must be contained in a single row and delineated with an end of line. The JSON body format is not supported. See sample below.
+- Each entry must be JSON Line (aka JSONL or NDJSON) which is a single row of JSON and delineated with an end of line. The JSON body format is not supported. See sample below.
 - The file must use ASCII or UTF-8 encoding. Other formats such as UTF-16 aren't supported.
 - New records should be appended to the end of the file and not overwrite old records. Overwriting will cause data loss.
 
