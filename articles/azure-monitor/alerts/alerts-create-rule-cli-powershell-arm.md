@@ -1,6 +1,6 @@
 ---
-title: Create Azure Monitor alert rules using the CLI, PowerShell or an ARM template
-description: This article shows you how to create a new alert rule using the CLI, PowerShell or an ARM template.
+title: Create Azure Monitor alert rules using the CLI, PowerShell, or an ARM template
+description: This article shows you how to create a new alert rule using the CLI, PowerShell, or an ARM template.
 ms.topic: how-to
 ms.custom: devx-track-arm-template
 ms.date: 07/09/2025
@@ -29,7 +29,7 @@ You can create a new alert rule using the [Azure CLI](/cli/azure/get-started-wit
     * To create a log search alert rule, use the [az monitor scheduled-query create](/cli/azure/monitor/scheduled-query) command.
     * To create an activity log alert rule, use the [az monitor activity-log alert create](/cli/azure/monitor/activity-log/alert) command.
 
-    For example, to create a metric alert rule that monitors if average Percentage CPU on a VM is greater than 90:
+    For example, to create a metric alert rule that monitors if average Percentage CPU on a virtual machine (VM) is greater than 90:
     ```azurecli
      az monitor metrics alert create -n {nameofthealert} -g {ResourceGroup} --scopes {VirtualMachineResourceID} --condition "avg Percentage CPU > 90" --description {descriptionofthealert}
     ```
@@ -56,7 +56,7 @@ You can use an [Azure Resource Manager template (ARM template)](/azure/azure-res
         > [!NOTE]
         > * We recommend that you create the metric alert using the same resource group as your target resource.
         > * Metric alerts for an Azure Log Analytics workspace resource type (`Microsoft.OperationalInsights/workspaces`) are configured differently than other metric alerts. For more information, see [Resource Template for Metric Alerts for Logs](alerts-metric-logs.md#resource-manager-templates).
-        > * If you are creating a metric alert for a single resource, the template uses the `ResourceId` of the target resource. If you are creating a metric alert for multiple resources, the template uses the `scope`, `TargetResourceType`, and `TargetResourceRegion` for the target resources.
+        > * If you're creating a metric alert for a single resource, the template uses the `ResourceId` of the target resource. If you're creating a metric alert for multiple resources, the template uses the `scope`, `TargetResourceType`, and `TargetResourceRegion` for the target resources.
 
     * For log search alerts: `Microsoft.Insights/scheduledQueryRules`
     * For activity log, service health, and resource health alerts: `microsoft.Insights/activityLogAlerts`

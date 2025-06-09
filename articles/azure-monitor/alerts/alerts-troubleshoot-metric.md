@@ -57,7 +57,7 @@ If you believe a metric alert should have fired but it didn't, and it isn't list
 
     * When the metric is emitted after a period longer than 24 hours in which it wasn't emitted for metric alert rule that monitors a metric that isn't emitted continuously (sparse metric).
 
-## The metric alert is not triggered every time the condition is met
+## The metric alert isn't triggered every time the condition is met
 
 Metric alerts are stateful by default, so other alerts aren't fired if there's already a fired alert on a specific time series. To make a specific metric alert rule stateless and get alerted on every evaluation in which the alert condition is met, use one of these options:
 
@@ -109,9 +109,9 @@ If you believe your metric alert shouldn't have fired but it did, the following 
 
     * The selected **Time granularity** is the same as the **Aggregation granularity (Period)** in your alert rule, and that it isn't set to **Automatic**.
 
-1. If the alert fired while there are already fired alerts that monitor the same criteria that aren't resolved, check if the alert rule has been configured not to automatically resolve alerts. This means the alert rule is stateless, and doesn't auto-resolve fired alerts and doesn't require a fired alert to be resolved before firing again on the same time series.
+1. If the alert fired while there are already fired alerts that monitor the same criteria that aren't resolved, check if the alert rule has been configured not to automatically resolve alerts. This means the alert rule is stateless, and doesn't autoresolve fired alerts and doesn't require a fired alert to be resolved before firing again on the same time series.
 
-    To check if the alert rule is configured not to auto-resolve:
+    To check if the alert rule is configured not to autoresolve:
 
     * Edit the alert rule in the Azure portal. See if the **Automatically resolve alerts** checkbox under the **Alert rule details** section is cleared.
 
@@ -215,9 +215,9 @@ For example, in SQL Database resources or Storage file services, there are speci
 
 #### There are no available signals to display. Try changing the scope of this alert rule error
 
-This error indicates an issue with the alert rule scope. This can happen when editing an alert rule scoped to a resource type that supports multi-resource configuration (like Virtual machine or SQL database), and trying to add another resource of the same type, but from a different region. Alerting on multiple resources of the same type from different regions is not supported in Metric alerts.
+This error indicates an issue with the alert rule scope. This can happen when editing an alert rule scoped to a resource type that supports multi-resource configuration (like a virtual machine or SQL database), and trying to add another resource of the same type, but from a different region. Alerting on multiple resources of the same type from different regions isn't supported in Metric alerts.
 
-## The service limits for metric alert rules is too small
+## The service limits for metric alert rules are too small
 
 The allowed number of metric alert rules per subscription is subject to [service limits](../service-limits.md).
 
