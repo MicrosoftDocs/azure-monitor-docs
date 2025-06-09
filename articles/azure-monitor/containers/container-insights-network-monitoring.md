@@ -31,7 +31,10 @@ This article describes Azure Monitor features that customers can use for monitor
 
 To collect logs for network flows within your AKS cluster, customers can use the [Container Network Logs](https://aka.ms/ContainerNetworkLogsDoc) feature of [Advanced Container Networking Services](https://learn.microsoft.com/azure/aks/advanced-container-networking-services-overview). 
 
-To get started with enabling Container Flow Logs, visit: [https://aka.ms/ContainerNetworkLogsDoc](https://aka.ms/ContainerNetworkLogsDoc) 
+#### Onboarding to Container Network Logs
+
+For a tutorial on getting started with **Container Network Logs**, you can use *[Set up Container Network Logs with Advanced Container Networking Services](https://aka.ms/ContainerNetworkLogsDoc)* article. The article covers command-line based onboarding. For other onboarding options, please see the *[Enable Container insights](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights)* article. 
+
 
 #### High level data flow
 
