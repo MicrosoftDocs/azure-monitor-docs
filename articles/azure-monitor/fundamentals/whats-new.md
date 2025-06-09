@@ -13,9 +13,11 @@ This article lists significant changes to Azure Monitor documentation.
 
 ### May 2025
 
+|Subservice | Article | Description |
+|---|---|---|
 |Application-Insights|[Managed workspaces in Application Insights](../app/managed-workspaces.md)|Classic resources have been migrated to LA workspaces. If you're using AMPLS, review our policy considerations section.|
 |Application-Insights|[OpenTelemetry on Azure](../app/opentelemetry.md)|The Azure Container Apps OpenTelemetry agent is available.|
-|Application-Insights|[Application Insights FAQ – Frequently Asked Questions](../app/application-insights-faq.md)|All Application Insights FAQ information has been consolidated into a single YAML pattern article to enhance SEO and AI discoverability.|
+|Application-Insights|[Application Insights FAQ – Frequently Asked Questions](../app/application-insights-faq.yml)|All Application Insights FAQ information has been consolidated into a single YAML pattern article to enhance SEO and AI discoverability.|
 |Application-Insights|[Usage analysis with Application Insights](../app/usage.md)|We fully revamped usage feature documentation for OpenTelemetry.|
 |Application-Insights|[Investigate failures, performance, and transactions with Application Insights](../app/failures-and-performance-views.md)|We combined multiple investigative experiences into a single article to help clearly define the functionality and workflow of each.|
 |Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../app/kubernetes-codeless.md)|More information has been provided on how to verify the installed Azure CLI version meets the AKS automatic instrumentation requirements.|
