@@ -83,7 +83,7 @@ The Logs add-on that collects Container Network logs publishes QoS metrics that 
  1. Download the ama-metrics-prometheus-config-node ConfigMap 
 
 ```console
-     curl -LO https://raw.githubusercontent.com/microsoft/Docker-Provider/refs/heads/ci_prod/Documentation/MultiTenancyLogging/BasicMode/ama-metrics-prometheus-config-node.yaml
+     curl -LO https://aka.ms/ama-metrics-prometheus-config-node
 ```
 
  2. Check if you already have an existing ama-metrics-prometheus-config-node ConfigMap via 
@@ -98,7 +98,7 @@ If there's an existing ConfigMap, then you can add the _ama-logs-daemonset scrap
  kubectl apply -f ama-metrics-prometheus-config-node.yaml 
 ```
 
-3. Import Grafana dashboard JSON file to the Azure Managed Grafana Instance - raw.githubusercontent.com/microsoft/Docker-Provider/refs/heads/ci_prod/Documentation/NetworkFlowLogging/AzureMonitorContainers_NetworkFlow_Grafana.json 
+3. Import (Grafana dashboard JSON file)[https://aka.ms/AzureMonitorContainers_NetworkFlow_Grafana] to the Azure Managed Grafana Instance 
 
 4. Configure the enable_internal_metrics = true in ConfigMap https://github.com/microsoft/Docker-Provider/blob/ci_prod/kubernetes/container-azm-ms-agentconfig.yaml#L220 
 
