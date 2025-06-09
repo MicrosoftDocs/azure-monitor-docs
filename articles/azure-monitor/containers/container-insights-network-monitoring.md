@@ -37,6 +37,8 @@ To get started with enabling Container Flow Logs, visit: [https://aka.ms/Contain
 
 To be added. Roughly: CRD -> NetObs add-on -> Log files on node -> Container Insights add-on aka ama-logs pods -> LA endpoint -> Log Analytics backend 
 
+:::image type="content" source="./media/container-insights-network-monitoring/container-insights-container-network-logs-data-flow.png" alt-text="Diagram of how container network logs are ingested" lightbox="./media/container-insights-network-monitoring/container-insights-container-network-logs-data-flow.png":::
+
 #### Throttling  
 
 As Container Network Logs captures every flow inside your AKS cluster, the volume of logs generated can be very high leading to throttling and log loss. In this section, we cover the default throttling limits and how you can modify them. The next section covers how you can monitor for potential throttling issues with our Quality-of-Service (QoS) Grafana dashboard.
@@ -107,6 +109,11 @@ Apply the configmap with:
 ```console
 kubectl apply -f container-azm-ms-agentconfig.yaml 
 ```
+
+**Final dashboard** 
+
+:::image type="content" source="./media/container-insights-network-monitoring/container-insights-network-qos-grafana-dashboard.png" alt-text="Image showing the final result setting up QoS monitoring for Container Insights" lightbox="./media/container-insights-network-monitoring/container-insights-network-qos-grafana-dashboard.png":::
+
 
 ### Cluster egress logs / Outbound flow logs 
 
