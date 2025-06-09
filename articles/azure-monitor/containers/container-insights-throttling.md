@@ -70,7 +70,7 @@ If there's an existing ConfigMap, then you can add the _ama-logs-daemonset scrap
  kubectl apply -f ama-metrics-prometheus-config-node.yaml 
 ```
 
-3. Import (Grafana dashboard JSON file)[https://aka.ms/AzureMonitorContainers_NetworkFlow_Grafana] to the Azure Managed Grafana Instance 
+3. Import [Grafana dashboard JSON file](https://aka.ms/AzureMonitorContainers_NetworkFlow_Grafana) to the Azure Managed Grafana Instance. 
 
 4. Configure the enable_internal_metrics = true in ConfigMap https://github.com/microsoft/Docker-Provider/blob/ci_prod/kubernetes/container-azm-ms-agentconfig.yaml#L220 
 
@@ -81,5 +81,7 @@ kubectl apply -f container-azm-ms-agentconfig.yaml
 ```
 
 **Final dashboard** 
+
+The final QoS dashboard with data flowing is shown in the following image:
 
 :::image type="content" source="./media/container-insights-network-monitoring/container-insights-network-qos-grafana-dashboard.png" alt-text="Image showing the final result setting up QoS monitoring for Container Insights" lightbox="./media/container-insights-network-monitoring/container-insights-network-qos-grafana-dashboard.png":::
