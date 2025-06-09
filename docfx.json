@@ -284,5 +284,13 @@
     "overwrite": [],
     "externalReference": [],
     "template": []
+  },
+"dest": "azure monitor",
+"rules": {
+      "sensitive-language-ma": {
+        "exclude": [
+          "reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/**/*md"
+        ]
+      }
+    }
   }
-}
