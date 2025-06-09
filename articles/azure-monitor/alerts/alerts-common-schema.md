@@ -14,8 +14,10 @@ Using a standardized schema helps minimize the number of integrations, which sim
 
 The common alert schema provides a consistent structure for:
 
-* **Email templates**: Use the detailed email template to diagnose issues at a glance. Embedded links to the alert instance on the portal and to the affected resource ensure that you can quickly jump into the remediation process. 
+* **Email templates**: Use the detailed email template to diagnose issues at a glance. Embedded links to the alert instance on the portal and to the affected resource ensure that you can quickly jump into the remediation process.
+
 * **JSON structure**: Use the consistent JSON structure to build integrations for all alert types using:
+
     * Azure Logic Apps
     * Azure Functions
     * Azure Automation runbook
@@ -124,7 +126,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
 | Field | Description |
 |-------|-------------|
 | properties | (Optional.) A collection of customer-defined properties. |
-| conditionType | The type of condition selected for the alert rule:<br> - static threshold<br> - dynamic threshold<br> - webtest |
+| conditionType | The type of condition selected for the alert rule:<br><ul><li>static threshold</li><li> dynamic threshold</li><li>webtest</li></ul> |
 | condition | |
 | windowSize | The time period analyzed by the alert rule. |
 | allOf | Indicates that all conditions defined in the alert rule must be met to trigger an alert. |
@@ -245,6 +247,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
 > When you enable the common schema, the fields in the payload are reset to the common schema fields. Therefore, log search alerts have these limitations regarding the common schema:
 >
 > * The common schema is not supported for log search alerts using webhooks with a custom email subject and/or JSON payload, since the common schema overwrites the custom configurations.
+> 
 > * Alerts using the common schema have an upper size limit of 256 KB per alert. If the log search alerts payload includes search results that cause the alert to exceed the maximum size, the search results aren't embedded in the log search alerts payload. You can check if the payload includes the search results with the `IncludedSearchResults` flag. Use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to access query results with the [Log Analytics API](/rest/api/loganalytics/dataaccess/query/get) if the search results are not included.
 
 | Field                          | Description                                                                                                                                         |

@@ -57,40 +57,40 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     Select the signal name, and then select **Apply**.
 
-    #### [Activity log alert](#tab/activity-log)
+#### [Activity log alert](#tab/activity-log)
 
-    1. On the **Conditions** pane, select the **Chart period** value.
+1. On the **Conditions** pane, select the **Chart period** value.
 
-        The **Preview** chart shows the results of your selection.
+    The **Preview** chart shows the results of your selection.
 
-    1. In the **Alert logic** section, select values for each of these fields:
+1. In the **Alert logic** section, select values for each of these fields:
 
-        | Field                  | Description                                                                                                                                       |
-        |------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-        | **Event level**        | Select the level of the events for this alert rule. Values are **Critical**, **Error**, **Warning**, **Informational**, **Verbose**, and **All**. |
-        | **Status**             | Select the status levels for the alert.                                                                                                           |
-        | **Event initiated by** | Select the user principal or service principal that initiated the event.                                                                          |
+    | Field                  | Description                                                                                                                                       |
+    |------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+    | **Event level**        | Select the level of the events for this alert rule. Values are **Critical**, **Error**, **Warning**, **Informational**, **Verbose**, and **All**. |
+    | **Status**             | Select the status levels for the alert.                                                                                                           |
+    | **Event initiated by** | Select the user principal or service principal that initiated the event.                                                                          |
 
-    #### [Resource health alert](#tab/resource-health)
+#### [Resource health alert](#tab/resource-health)
 
-    * On the **Conditions** pane, select values for each of these fields:
+* On the **Conditions** pane, select values for each of these fields:
 
-        | Field                        | Description                                                                                                              |
-        |------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-        | **Event status**             | Select the statuses of resource health events. Values are **Active**, **In Progress**, **Resolved**, and **Updated**.    |
-        | **Current resource status**  | Select the current resource status. Values are **Available**, **Degraded**, and **Unavailable**.                         |
-        | **Previous resource status** | Select the previous resource status. Values are **Available**, **Degraded**, **Unavailable**, and **Unknown**.           |
-        | **Reason type**              | Select the causes of the resource health events. Values are **Platform Initiated**, **Unknown**, and **User Initiated**. |
+    | Field                        | Description                                                                                                              |
+    |------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+    | **Event status**             | Select the statuses of resource health events. Values are **Active**, **In Progress**, **Resolved**, and **Updated**.    |
+    | **Current resource status**  | Select the current resource status. Values are **Available**, **Degraded**, and **Unavailable**.                         |
+    | **Previous resource status** | Select the previous resource status. Values are **Available**, **Degraded**, **Unavailable**, and **Unknown**.           |
+    | **Reason type**              | Select the causes of the resource health events. Values are **Platform Initiated**, **Unknown**, and **User Initiated**. |
   
-    #### [Service health alert](#tab/service-health)
+#### [Service health alert](#tab/service-health)
 
-    * On the **Conditions** pane, select values for each of these fields:
+* On the **Conditions** pane, select values for each of these fields:
 
-        | Field           | Description                                                                                                                                           |
-        |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-        | **Services**    | Select the Azure services.                                                                                                                            |
-        | **Regions**     | Select the Azure regions.                                                                                                                             |
-        | **Event types** | Select the types of service health events. Values are **Service issue**, **Planned maintenance**, **Health advisories**, and **Security advisories**. |
+    | Field           | Description                                                                                                                                           |
+    |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | **Services**    | Select the Azure services.                                                                                                                            |
+    | **Regions**     | Select the Azure regions.                                                                                                                             |
+    | **Event types** | Select the types of service health events. Values are **Service issue**, **Planned maintenance**, **Health advisories**, and **Security advisories**. |
 
 ---
 
