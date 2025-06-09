@@ -705,7 +705,7 @@ Use action groups in the Azure portal or use the REST API to enable the common a
 
 ### Enable the common schema in the Azure portal
 <!-- convertborder later -->
-:::image type="content" source="media/alerts-common-schema/portal-opt-in.png" lightbox="media/alerts-common-schema/portal-opt-in.png" alt-text="Screenshot that shows the common alert schema opt in." border="false":::
+:::image type="content" source="media/alerts-common-schema/portal-opt-in.png" lightbox="media/alerts-common-schema/portal-opt-in.png" alt-text="Screenshot that shows the common alert schema opt-in." border="false":::
 
 1. Open any existing action or a new action in an action group.
 1. Select **Yes** to enable the common alert schema.
