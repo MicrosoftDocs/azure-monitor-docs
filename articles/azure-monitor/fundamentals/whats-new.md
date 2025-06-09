@@ -11,6 +11,26 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
 
+### May 2025
+
+|Application-Insights|[Managed workspaces in Application Insights](../app/managed-workspaces.md)|Classic resources have been migrated to LA workspaces. If you're using AMPLS, review our policy considerations section.|
+|Application-Insights|[OpenTelemetry on Azure](../app/opentelemetry.md)|The Azure Container Apps OpenTelemetry agent is available.|
+|Application-Insights|[Application Insights FAQ – Frequently Asked Questions](../app/application-insights-faq.md)|All Application Insights FAQ information has been consolidated into a single YAML pattern article to enhance SEO and AI discoverability.|
+|Application-Insights|[Usage analysis with Application Insights](../app/usage.md)|We fully revamped usage feature documentation for OpenTelemetry.|
+|Application-Insights|[Investigate failures, performance, and transactions with Application Insights](../app/failures-and-performance-views.md)|We combined multiple investigative experiences into a single article to help clearly define the functionality and workflow of each.|
+|Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../app/kubernetes-codeless.md)|More information has been provided on how to verify the installed Azure CLI version meets the AKS automatic instrumentation requirements.|
+|Containers|[Cost effective alerting strategies for AKS](../containers/cost-effective-alerting.md)|New article describing cost effective strategies in Container insights that support alerting.|
+|Containers|[Multitenant managed logging in Container insights (Preview)](../containers/container-insights-multitenant.md)|New article describing preview feature for analyzing Prometheus metrics in Azure Monitor workspace.|
+|Essentials|[Metrics usage insights (Preview)](../metrics/metrics-usage-insights.md)|Azure Monitor metrics usage insights|
+|Logs|[Manage table-level access in a Log Analytics workspace](../logs/manage-table-access.md)|New articles explaining granular RBAC and usage. This article update focuses on how the new method is better than previous table-level access configuration method.|
+|Logs|[Enhance resilience by replicating your Log Analytics workspace across regions](../logs/workspace-replication.md)|Added instructions on how to tell if replication is enabled.|
+|Logs|[Use customer-managed storage accounts in Azure Monitor Logs](../logs/private-storage.md)|Updated to show UI improvements and customer managed storage considerations.|
+|Logs|[Configure granular RBAC (Preview) in Azure Monitor](../logs/granular-rbac-use-case.md)|New how-to article for granular RBAC demonstrating several use cases.|
+|Logs|[Log Analytics workspace data export in Azure Monitor](../logs/logs-data-export.md)|Clarified data export considerations.|
+|Logs|[Granular RBAC (Preview) in Azure Monitor](../logs/granular-rbac-log-analytics.md)|New article for granular RBAC|
+|Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|Significant refresh of search job article updated with new UI.|
+|Virtual-Machines|[Send virtual machine client data to Event Hubs and Storage (Preview)](../vm/send-event-hubs-storage.md)|General rewrite of article.|
+
 ### April 2025
 
 |Subservice | Article | Description |
