@@ -1,9 +1,9 @@
 ---
 title: Configure a webhook to get activity log alerts
 description: Learn about the schema of the JSON that's posted to a webhook URL when an activity log alert activates.
-ms.reviewer: yagil
 ms.topic: conceptual
-ms.date: 04/01/2024
+ms.date: 07/09/2025
+ms.reviewer: yagil
 ---
 
 # Configure a webhook to get activity log alerts
@@ -37,7 +37,7 @@ The JSON payload contained in the POST operation differs based on the payload's 
 > If your condition in your action rules, webhooks, logic app, or any other configurations is currently based on the `Description` property for activity log alerts, you might need to modify it to be based on the `Activity Log Event Description` property instead.
 >
 > To fill the new `Description` property, you can add a description in the alert rule definition.
-
+>
 > :::image type="content" source="media/activity-log-alerts-webhook/activity-log-alert-fired.png" lightbox="media/activity-log-alerts-webhook/activity-log-alert-fired.png" alt-text="Screenshot that shows fired activity log alerts.":::
 
 ### Common
@@ -267,7 +267,7 @@ For specific schema details on service health notification activity log alerts, 
 ```
 
 | Element name | Description |
-| --- | --- |
+|--------------|-------------|
 | status |Used for metric alerts. Always set to `activated` for activity log alerts. |
 | context |Context of the event. |
 | resourceProviderName |The resource provider of the affected resource. |
