@@ -40,7 +40,7 @@ The error messages in this section are related to these **actions**:
 | HTTP 404: The \<action\> wasn't found.<br>HTTP 404: The \<action\> target workflow wasn't found.<br>HTTP 404: The \<action\> target wasn't found.<br>HTTP 404: The \<action\> endpoint couldn't be found.<br>HTTP 404: The \<action\> was deleted. | 1. Check if the endpoints included in the requests are valid, up and running and accepting the requests.<br>2. For ITSM, check if the ITSM connector is still active. |
 | HTTP 408: The call to the \<action\> timed out.<br>HTTP 408: The call to the Azure App service endpoint timed out. | 1.Check the client network connection, and retry.<br>2. Check if your endpoint is up and running and can process the request successfully.<br>3. Clear the browser cache, and retry. |
 | HTTP 409: The \<action\> returned a `conflict` error. | Check the alert payload received on your endpoint, and make sure the endpoint and its downstream service(s) can process the request successfully. |
-| HTTP 429: The \<action\> couldn't be triggered because it is handling too many requests right now. | Check if your endpoint can handle the requests.<br>2. Wait a few minutes and retry. |
+| HTTP 429: The \<action\> couldn't be triggered because it's handling too many requests right now. | Check if your endpoint can handle the requests.<br>2. Wait a few minutes and retry. |
 | HTTP 500: The \<action\> encountered an internal server error.<br>HTTP 500: Couldn't reach the Azure \<action\> server.<br>HTTP 500: The \<action\> returned an `internal server` error.<br>HTTP 500: The ServiceNow endpoint returned an `Unexpected` response.</li></ul> | Check the alert payload received on your endpoint, and make sure the endpoint and its downstream service(s) can process the request successfully. |
 | HTTP 502: The \<action\> returned a bad gateway error. | Check if your endpoint, and its downstream service(s) are up and running and are accepting requests. |
 | HTTP 503: The \<action\> host isn't running.<br>HTTP 503: The service providing the \<action\> endpoint is temporarily unavailable.<br>HTTP 503: The ServiceNow returned Service Unavailable | Check if your endpoint is up and running and is accepting requests. |
@@ -60,10 +60,10 @@ The error messages in this section are related to these **notifications**:
 | The email was sent but the delivery status couldn't be verified.<br>The email couldn't be sent because of a permanent error. | Wait a few minutes and retry. If the issue persists, file a support ticket. |
 | Invalid destination number.<br>Invalid source address.<br>Invalid phone number. | Verify that the phone number is valid and retry. |
 | The message couldn't be sent because it was blocked by the recipient's provider. | 1. Verify if you can receive SMS from other sources.<br>2. Check with your service provider. |
-| The message couldn't be sent because the delivery timed out.The message couldn't be delivered to the recipient. | Wait a few minutes and retry. If the issue still persists, file a support ticket. | 
+| The message couldn't be sent because the delivery timed out. The message couldn't be delivered to the recipient. | Wait a few minutes and retry. If the issue still persists, file a support ticket. | 
 | The message was sent successfully, but there was no confirmation of delivery from the recipient's device. | 1. Make sure your device is on, and service is available.<br>2. Wait for a few minutes and retry. |
 | The call couldn't go through because the recipient's line was busy. | 1. Make sure your device is on, and service is available, and not busy.<br>2. Wait for a few minutes and retry. |
-| The call went through, but the recipient did not select any response. The call might have been picked up by a voice mail service. | Make sure your device is on, the line isn't busy, your service isn't interrupted, and call doesn't go into voice mail. |
+| The call went through, but the recipient didn't select any response. The call might have been picked up by a voice mail service. | Make sure your device is on, the line isn't busy, your service isn't interrupted, and call doesn't go into voice mail. |
 | HTTP 500: There was a problem connecting the call. Contact Azure support for assistance. | Wait a few minutes and retry. If the issue still persists, file a support ticket. |
 
 > [!NOTE]
