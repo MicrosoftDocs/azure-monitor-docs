@@ -2,7 +2,7 @@
 title: Create an activity log, service health, or resource health alert rule
 description: This article shows you how to create or edit an activity log, service health, or resource health alert rule in Azure Monitor.
 ms.topic: how-to
-ms.date: 11/27/2023
+ms.date: 07/09/2025
 ms.reviewer: harelbr
 
 # Customer intent: As an Azure cloud administrator, I want to create a new log search alert rule so that I can use a log search query to monitor the performance and availability of my resources.
@@ -57,42 +57,42 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     Select the signal name, and then select **Apply**.
 
-    #### [Activity log alert](#tab/activity-log)
+#### [Activity log alert](#tab/activity-log)
 
-    1. On the **Conditions** pane, select the **Chart period** value.
+1. On the **Conditions** pane, select the **Chart period** value.
 
-        The **Preview** chart shows the results of your selection.
+    The **Preview** chart shows the results of your selection.
 
-    1. In the **Alert logic** section, select values for each of these fields:
+1. In the **Alert logic** section, select values for each of these fields:
 
-        | Field                  | Description                                                                                                                                       |
-        |------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-        | **Event level**        | Select the level of the events for this alert rule. Values are **Critical**, **Error**, **Warning**, **Informational**, **Verbose**, and **All**. |
-        | **Status**             | Select the status levels for the alert.                                                                                                           |
-        | **Event initiated by** | Select the user principal or service principal that initiated the event.                                                                          |
+    | Field                  | Description                                                                                                                                       |
+    |------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+    | **Event level**        | Select the level of the events for this alert rule. Values are **Critical**, **Error**, **Warning**, **Informational**, **Verbose**, and **All**. |
+    | **Status**             | Select the status levels for the alert.                                                                                                           |
+    | **Event initiated by** | Select the user principal or service principal that initiated the event.                                                                          |
 
-    #### [Resource health alert](#tab/resource-health)
+#### [Resource health alert](#tab/resource-health)
 
-    * On the **Conditions** pane, select values for each of these fields:
+* On the **Conditions** pane, select values for each of these fields:
 
-        | Field                        | Description                                                                                                              |
-        |------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-        | **Event status**             | Select the statuses of resource health events. Values are **Active**, **In Progress**, **Resolved**, and **Updated**.    |
-        | **Current resource status**  | Select the current resource status. Values are **Available**, **Degraded**, and **Unavailable**.                         |
-        | **Previous resource status** | Select the previous resource status. Values are **Available**, **Degraded**, **Unavailable**, and **Unknown**.           |
-        | **Reason type**              | Select the causes of the resource health events. Values are **Platform Initiated**, **Unknown**, and **User Initiated**. |
+    | Field                        | Description                                                                                                              |
+    |------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+    | **Event status**             | Select the statuses of resource health events. Values are **Active**, **In Progress**, **Resolved**, and **Updated**.    |
+    | **Current resource status**  | Select the current resource status. Values are **Available**, **Degraded**, and **Unavailable**.                         |
+    | **Previous resource status** | Select the previous resource status. Values are **Available**, **Degraded**, **Unavailable**, and **Unknown**.           |
+    | **Reason type**              | Select the causes of the resource health events. Values are **Platform Initiated**, **Unknown**, and **User Initiated**. |
   
-    #### [Service health alert](#tab/service-health)
+#### [Service health alert](#tab/service-health)
 
-    * On the **Conditions** pane, select values for each of these fields:
+* On the **Conditions** pane, select values for each of these fields:
 
-        | Field           | Description                                                                                                                                           |
-        |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-        | **Services**    | Select the Azure services.                                                                                                                            |
-        | **Regions**     | Select the Azure regions.                                                                                                                             |
-        | **Event types** | Select the types of service health events. Values are **Service issue**, **Planned maintenance**, **Health advisories**, and **Security advisories**. |
+    | Field           | Description                                                                                                                                           |
+    |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | **Services**    | Select the Azure services.                                                                                                                            |
+    | **Regions**     | Select the Azure regions.                                                                                                                             |
+    | **Event types** | Select the types of service health events. Values are **Service issue**, **Planned maintenance**, **Health advisories**, and **Security advisories**. |
 
-    ---
+---
 
 [!INCLUDE [alerts-wizard-actions](includes/alerts-wizard-actions.md)]
 
@@ -106,7 +106,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     > [!NOTE]
     > Service Health alert rules can only be located in the Global region.
-    
+
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-activity-log-rule-details-tab.png" alt-text="Screenshot that shows the Details tab for creating a new activity log alert rule.":::
 
 1. [!INCLUDE [alerts-wizard-custom=properties](includes/alerts-wizard-custom-properties.md)]
@@ -115,4 +115,4 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
 ## Related content
 
-* [View and manage your alert instances](alerts-manage-alert-instances.md)
+* [View and manage your alert instances](alerts-manage-alert-instances.md).
