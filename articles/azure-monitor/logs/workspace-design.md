@@ -18,7 +18,7 @@ Here's a video about the fundamentals of Azure Monitor Logs and best practices a
 
 ## Design strategy
 
-Your design should always start with a single workspace to reduce the complexity of managing multiple workspaces and in querying data from them. There are no performance limitations from the amount of data in your workspace. Multiple services and data sources can send data to the same workspace. As you identify criteria to create more workspaces, your design should use the fewest number of workspace to meet your requirements.
+Your design should always start with a single workspace to reduce the complexity of managing multiple workspaces and in querying data from them. There are no performance limitations from the amount of data in your workspace. Multiple services and data sources can send data to the same workspace. As you identify criteria to create more workspaces, your design should use the fewest number of workspaces to meet your requirements.
 
 Designing a workspace configuration includes evaluation of multiple criteria. But some of the criteria might be in conflict. For example, you might be able to reduce egress charges by creating a separate workspace in each Azure region. Consolidating into a single workspace might allow you to reduce charges even more with a commitment tier. Evaluate each of the criteria independently. Consider your requirements and priorities to determine which design is most effective for your environment.
 
@@ -154,7 +154,7 @@ Both Azure Monitor and Microsoft Sentinel include features to assist you in anal
 * [Create a log query across multiple workspaces and apps in Azure Monitor](cross-workspace-query.md)
 * [Extend Microsoft Sentinel across workspaces and tenants](/azure/sentinel/extend-sentinel-across-workspaces-tenants)
 
-When naming each workspace, we recommend including a meaningful indicator in the name so that you can easily identity the purpose of each workspace.
+When naming each workspace, we recommend including a meaningful indicator in the name so that you can easily identify the purpose of each workspace.
 
 ## Multiple tenant strategies
 
