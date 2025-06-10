@@ -12,6 +12,7 @@ The Azure Monitor Activity Log is a platform log that provides insight into subs
 
 > [!TIP]
 > Send Activity Logs to a Log Analytics workspace for the following benefits:
+>
 > * Sending logs to a Log Analytics workspace is free of charge for the default retention period.
 > * Send logs to a Log Analytics workspace for [longer retention of up to 12 years](../logs/data-retention-configure.md).
 > * Logs exported to a Log Analytics workspace can be [shown in Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview)
@@ -32,16 +33,16 @@ The Azure Monitor Activity Log is a platform log that provides insight into subs
     
     For details on how to create a diagnostic setting, see [Create diagnostic settings to send platform logs and metrics to different destinations](./diagnostic-settings.md).
 
-2. Go to **Azure Monitor** > **Activity log** and select **Export Activity Logs**.
+1. Go to **Azure Monitor** > **Activity log** and select **Export Activity Logs**.
     
-       :::image type="content" source="media/activity-log/diagnostic-settings-export.png" lightbox="media/activity-log/diagnostic-settings-export.png" alt-text="Screenshot that shows exporting activity logs.":::
+    :::image type="content" source="media/activity-log/diagnostic-settings-export.png" lightbox="media/activity-log/diagnostic-settings-export.png" alt-text="Screenshot that shows exporting activity logs.":::
     
     > [!NOTE]
     > You can send the activity log from any single subscription to up to five workspaces.
 
 ## Send to Log Analytics workspace
 
- Send the activity log to a Log Analytics workspace to enable the [Azure Monitor Logs](../logs/data-platform-logs.md) feature, where you:
+Send the activity log to a Log Analytics workspace to enable the [Azure Monitor Logs](../logs/data-platform-logs.md) feature, where you:
 
 * Correlate activity log data with other monitoring data collected by Azure Monitor.
 * Consolidate log entries from multiple Azure subscriptions and tenants into one location for analysis together.
@@ -155,6 +156,7 @@ Each event is stored in the PT1H.json file with the following format. This forma
 ```json
 { "time": "2020-06-12T13:07:46.766Z", "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINES/MV-VM-01", "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee", "operationName": "Microsoft.Resourcehealth/healthevent/Updated/action", "level": "Information", "resultType": "Updated", "category": "ResourceHealth", "properties": {"eventCategory":"ResourceHealth","eventProperties":{"title":"This virtual machine is starting as requested by an authorized user or process. It will be online shortly.","details":"VirtualMachineStartInitiatedByControlPlane","currentHealthStatus":"Unknown","previousHealthStatus":"Unknown","type":"Downtime","cause":"UserInitiated"}}}
 ```
+
 ### Other methods to retrieve activity log events
 
 You can also access activity log events by using the following methods:
@@ -210,7 +212,7 @@ If a log profile already exists, you first must remove the existing log profile,
     ```
 
     | Property | Required | Description |
-    | --- | --- | --- |
+    |----------|----------|-------------|
     | Name |Yes |Name of your log profile. |
     | StorageAccountId |No |Resource ID of the storage account where the activity log should be saved. |
     | serviceBusRuleId |No |Service Bus Rule ID for the Service Bus namespace where you want to have event hubs created. This string has the format `{service bus resource ID}/authorizationrules/{key name}`. |
@@ -259,7 +261,7 @@ If a log profile already exists, you first must remove the existing log profile,
     | `storage-account-id` |Yes |Resource ID of the storage account to which activity logs should be saved. |
     | `locations` |Yes |Space-separated list of regions for which you want to collect activity log events. View a list of all regions for your subscription by using `az account list-locations --query [].name`. |
     | `days` |Yes |Number of days for which events should be retained, from 1 through 365. A value of zero stores the logs indefinitely (forever). If zero, then the enabled parameter should be set to False. |
-    |`enabled` | Yes |True or False. Used to enable or disable the retention policy. If True, then the `days` parameter must be a value greater than zero.
+    |`enabled` | Yes |True or False. Used to enable or disable the retention policy. If True, then the `days` parameter must be a value greater than zero. |
     | `categories` |Yes |Space-separated list of event categories that should be collected. Possible values are Write, Delete, and Action. |
 
 ---
@@ -271,7 +273,7 @@ The Export activity logs experience sends the same data as the legacy method use
 The columns in the following table are deprecated in the updated schema. They still exist in `AzureActivity`, but they have no data. The replacements for these columns aren't new, but they contain the same data as the deprecated column. They're in a different format, so you might need to modify log queries that use them.
 
 | Activity log JSON | Log Analytics column name<br>*(older deprecated)* | New Log Analytics column name | Notes |
-|:------------------|:---------------------------------------------------|:------------------------------|:------|
+|-------------------|---------------------------------------------------|-------------------------------|-------|
 | category | Category | CategoryValue | |
 | status<br><br>Values are success, start, accept, failure | ActivityStatus <br><br>Values same as JSON | ActivityStatusValue<br><br>Values change to succeeded, started, accepted, failed | The valid values change as shown. | 
 | subStatus | ActivitySubstatus | ActivitySubstatusValue | |
