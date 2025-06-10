@@ -49,7 +49,7 @@ az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <
 az aks create \ 
         --name <CLUSTER_NAME> \ 
         --resource-group <RESOURCE_GROUP> \ 
-        --location <staging-westus2 || eastus2euap || centraluseuap> \ 
+        --location <eastus || westcentralus || eastus2> \ 
         --network-plugin azure \ 
         --network-plugin-mode overlay \ 
         --pod-cidr 192.168.0.0/16 \ 
