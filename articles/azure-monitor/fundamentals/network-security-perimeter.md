@@ -1,4 +1,4 @@
----
+NSP---
 title: Configure Azure Monitor with Network Security Perimeter
 description: Details on adding Azure Monitor resources to your network security perimeter.
 ms.topic: conceptual
@@ -7,7 +7,7 @@ ms.date: 06/04/2025
 
 # Configure Azure Monitor with Network Security Perimeter (Preview)
 
-This article provides the process for configuring a [Network Security Perimeter (NSP)](/azure/private-link/network-security-perimeter-concepts) for Azure Monitor resources. Network security perimeter is a network isolation feature that provides a secured perimeter for communication between PaaS services deployed outside of a virtual network. These PaaS services can communicate with each other within the perimeter and can also communicate with resources outside the perimeter using public inbound and outbound access rules. 
+This article provides the process for configuring a [Network Security Perimeter](/azure/private-link/network-security-perimeter-concepts) for Azure Monitor resources. Network security perimeter is a network isolation feature that provides a secured perimeter for communication between PaaS services deployed outside of a virtual network. These PaaS services can communicate with each other within the perimeter and can also communicate with resources outside the perimeter using public inbound and outbound access rules. 
 
 Network Security Perimeter allows you to control network access using network isolation settings under supported Azure Monitor resources. Once a Network Security Perimeter is configured, you can perform the following actions:
 
@@ -25,7 +25,7 @@ Azure Network Security Perimeter is available in all regions where Azure Monitor
 ## Current limitations
 
 * For Log Analytics export scenarios with storage accounts/event hubs, both the Log Analytics workspace and the storage account/event hub must be part of the same perimeter.
-* Only Azure resources that support network security perimeter can use a diagnostic setting with a destination in an network security perimeter perimeter. The resource being monitored also must be in the same network security perimeter perimeter as the destination.
+* Only Azure resources that support network security perimeter can use a diagnostic setting with a destination in a network security perimeter perimeter. The resource being monitored also must be in the same network security perimeter perimeter as the destination.
 * Global action groups resources don't support network security perimeter. You must create regional action groups resources that will support network security perimeter.
 * Cross-resource queries are blocked for Log Analytics Workspaces associated with network security perimeter. This includes accessing the workspace through an ADX cluster.
 * network security perimeter access logs are sampled every 30 minutes.
@@ -57,7 +57,7 @@ The following components of Azure Monitor are **not** supported with a network s
 
 * [Application Insights Profiler for .NET](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)
 * Log Analytics customer managed key
-* Cross-resource queries that include any Log Analytics workspaces associated with an network security perimeter
+* Cross-resource queries that include any Log Analytics workspaces associated with a network security perimeter
 * Azure Monitor Workspace (for Managed Prometheus metrics)
 
 > [!NOTE]
@@ -88,7 +88,7 @@ Create a network security perimeter using [Azure portal](/azure/private-link/cre
 
 ## Access rules for Log Analytics Workspace
 
-An network security perimeter profile specifies rules that allow or deny access through the perimeter. Within the perimeter, all resources have mutual access at the network level although still subject to authentication and authorization. For resources outside of the network security perimeter, you must specify inbound and outbound access rules. Inbound rules specify which connections to allow in, and outbound rules specify which requests are allowed out.
+a network security perimeter profile specifies rules that allow or deny access through the perimeter. Within the perimeter, all resources have mutual access at the network level although still subject to authentication and authorization. For resources outside of the network security perimeter, you must specify inbound and outbound access rules. Inbound rules specify which connections to allow in, and outbound rules specify which requests are allowed out.
 
 > [!NOTE]
 > Any service associated with a Network Security Perimeter implicitly allows inbound and outbound access to any other service associated with the same Network Security Perimeter when that access is authenticated using [managed identities and role assignments](/entra/identity/managed-identities-azure-resources/overview). Access rules only need to be created when allowing access outside of the Network Security Perimeter, or for access authenticated using API keys.
@@ -102,7 +102,7 @@ network security perimeter supports two types of inbound access rules:
 * **IP Address Ranges**. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is 8.8.8.0/24, which represents the IPs that range from 8.8.8.0 to 8.8.8.255. This type of rule allows inbound from any IP address in the range is allowed.
 * **Subscriptions**. This type of rule allows inbound access authenticated using any managed identity from the subscription.
 
-Use the following process to add an network security perimeter inbound access rule using the Azure portal:
+Use the following process to add a network security perimeter inbound access rule using the Azure portal:
 
 1.	Navigate to your Network Security Perimeter resource in the Azure portal.
 
@@ -126,13 +126,13 @@ Use the following process to add an network security perimeter inbound access ru
 
     :::image type="content" source="media/network-security-perimeter/inbound-access-rule-new.png" lightbox="media/network-security-perimeter/inbound-access-rule-new.png" alt-text="Screenshot of network security perimeter profile new inbound access rule in the Azure portal."::: 
 
-## Add an network security perimeter Outbound Access Rule
+## Add a network security perimeter Outbound Access Rule
 
 [Data export in a Log Analytics workspace](../logs/logs-data-export.md) lets you continuously export data for particular tables in your workspace. You can export to an Azure Storage Account or Azure Event Hubs as the data arrives to an Azure Monitor pipeline.
 
 A Log analytics workspace within a security perimeter can only export to to storage and event hubs in the same perimeter. Other destinations require an outbound access rule based on the Fully Qualified Domain Name (FQDN) of the destination.
 
-Use the following process to add an network security perimeter outbound access rule using the Azure portal:
+Use the following process to add a network security perimeter outbound access rule using the Azure portal:
 
 1.	Navigate to your Network Security Perimeter resource in the Azure portal.
 
@@ -154,7 +154,7 @@ Use the following process to add an network security perimeter outbound access r
  
     :::image type="content" source="media/network-security-perimeter/outbound-access-rule-new.png" lightbox="media/network-security-perimeter/outbound-access-rule-new.png" alt-text="Screenshot of network security perimeter profile new outbound access rule in the Azure portal.":::
 
-## Collect resource logs
+## Collect access logs
 Resource logs for provide insights into the operation of network security perimeter and help to diagnose any issues. See [Resource logs for Network Security Perimeter](/azure/private-link/network-security-perimeter-diagnostic-logs#logging-destination-options-for-access-logs) for details on creating a diagnostic setting to collect resource logs for network security perimeter.
 
 ## Next steps
