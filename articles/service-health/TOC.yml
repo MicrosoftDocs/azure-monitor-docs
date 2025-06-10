@@ -12,17 +12,17 @@
     href: service-health-portal-update.md
   - name: Azure Service Health Portal (classic)
     href: service-health-overview.md
-  - name: What's New
+  - name: What's new
     href: whats-new.md
 - name: How to guides
   items:
   - name: Azure Service Health
     items:
-    - name: View service health notifications in the Azure portal
+    - name: View Service Health notifications in the Azure portal
       href: service-notifications.md
-    - name: Service Health Notifications by Event Level
+    - name: Filter Service Health notifications by event level
       href: metadata-filter.md
-    - name: Elevated access for viewing Security Advisories
+    - name: How to view and access Security Advisories with elevated access
       href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
