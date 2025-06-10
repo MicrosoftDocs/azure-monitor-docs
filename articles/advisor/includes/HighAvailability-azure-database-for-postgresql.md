@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/27/2025
+ms.date: 06/10/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -101,5 +101,23 @@ Recommendation ID: 80b4e93c-4500-4fbd-bd6f-3ec245f72be9
 Subcategory: HighAvailability
 
 <!--80b4e93c-4500-4fbd-bd6f-3ec245f72be9_end-->
+
+<!--d1f667d3-b945-4c67-98e2-84a1df2c30ca_begin-->
+
+#### Turn on backup for PostgreSQL flexible server  
+  
+Backup helps protect data from accidental or malicious deletion. The platform recommends configuring the PostgreSQL flexible server to turn on backup.  
+  
+**Potential benefits**: Protect data from accidental or malicious deletion.  
+
+**Impact:** Medium
+  
+For more information, see [About Azure Database for PostgreSQL Flexible server backup - Azure Backup](/azure/backup/backup-azure-database-postgresql-flex-overview)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: d1f667d3-b945-4c67-98e2-84a1df2c30ca  
+Subcategory: DisasterRecovery
+
+<!--d1f667d3-b945-4c67-98e2-84a1df2c30ca_end-->
 
 <!--articleBody-->

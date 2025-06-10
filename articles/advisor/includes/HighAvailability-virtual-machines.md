@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/08/2025
+ms.date: 06/10/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -337,13 +337,14 @@ Enabling automatic instance repairs helps achieve high availability by maintaini
 
 **Impact:** High
   
-For more information, see [Automatic instance repairs with Azure Virtual Machine Scale Sets - Azure Virtual Machine Scale Sets ](https://aka.ms/vmss-automatic-repair)  
+For more information, see [Automatic instance repairs with Azure Virtual Machine Scale Sets - Azure Virtual Machine Scale Sets](https://aka.ms/vmss-automatic-repair)  
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: b4d988a9-85e6-4179-b69c-549bdd8a55bb  
-Subcategory: HighAvailability
+Subcategory: BusinessContinuity
 
 <!--b4d988a9-85e6-4179-b69c-549bdd8a55bb_end-->
+
 
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_begin-->
 
