@@ -25,7 +25,7 @@ Azure Network Security Perimeter is available in all regions where Azure Monitor
 ## Current limitations
 
 * For Log Analytics export scenarios with storage accounts/event hubs, both the Log Analytics workspace and the storage account/event hub must be part of the same perimeter.
-* Only Azure resources that support network security perimeter can use a diagnostic setting with a destination in a network security perimeter perimeter. The resource being monitored also must be in the same network security perimeter perimeter as the destination.
+* Only Azure resources that support network security perimeter can use a diagnostic setting with a destination in a network security perimeter. The resource being monitored also must be in the same network security perimeter as the destination.
 * Global action groups resources don't support network security perimeter. You must create regional action groups resources that will support network security perimeter.
 * Cross-resource queries are blocked for Log Analytics Workspaces associated with network security perimeter. This includes accessing the workspace through an ADX cluster.
 * network security perimeter access logs are sampled every 30 minutes.
