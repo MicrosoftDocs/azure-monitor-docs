@@ -146,25 +146,9 @@ If Container Insights is already enabled for your cluster, then you need to disa
 * Since high scale mode uses a different data pipeline, you must ensure that pipeline endpoints aren't blocked by a firewall or other network connections.
 * High scale mode requires a data collection endpoint (DCE) for ingestion in addition to the standard DCR for data collection. If you've created any DCRs that use `Microsoft.ContainerLogV2`, you must replace this with `Microsoft.ContainerLogV2-HighScale` or data will be duplicated. You should also create a DCE for ingestion and link it to the DCR if the DCR isn't already using one. Refer to Container Insights onboarding through Azure Resource Manager for reference for the dependencies. 
 
-## QoS Grafana dashboards
+## Monitor QoS metrics with Prometheus and Grafana 
 
-The QoS Grafana dashboard reports on QoS metrics related to input records/sec, dropped records/sec, and output records/sec. 
-
-1. Ensure that Azure Managed Prometheus and Azure Managed Grafana are enabled for the cluster using the guidance at [Enable Prometheus and Grafana](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana). 
-
-1. Download the [`ama-metrics-prometheus-config-node` ConfigMap](https://raw.githubusercontent.com/microsoft/Docker-Provider/refs/heads/ci_prod/Documentation/MultiTenancyLogging/BasicMode/ama-metrics-prometheus-config-node.yaml).
-
-1. Use the following command to determine if you already have an existing `ama-metrics-prometheus-config-node` ConfigMap.
-
-    `kubectl get cm -n kube-system | grep ama-metrics-prometheus-config-node`
-
-1. If you have an existing ConfigMap, then add the `ama-logs-daemonset` scrape config from the downloaded ConfigMap to the existing one.
-
-1. Apply either the downloaded or updated ConfigMap with the following command:
-
-    `kubectl apply -f ama-metrics-prometheus-config-node.yaml`
-
-1. Download the [Grafana dashboard JSON file](https://raw.githubusercontent.com/microsoft/Docker-Provider/refs/heads/ci_prod/Documentation/MultiTenancyLogging/BasicMode/AzureMonitorContainers_BasicMode_Grafana.json) and import into to the Azure Managed Grafana Instance.
+When the volume of logs generated is substantial, it can lead to throttling and log loss. See the *[Configure throttling for Container Insights](https://learn.microsoft.com/azure/aks/container-network-observability-concepts?tabs=cilium)* article for guidance on configuring throttling parameters and monitoring for log loss. 
 
 ## Next steps
 
