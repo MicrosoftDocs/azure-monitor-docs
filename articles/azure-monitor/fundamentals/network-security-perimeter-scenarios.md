@@ -1,11 +1,11 @@
 ---
-title: Azure Monitor with Network Security Perimeter scenarios (Preview)
+title: Azure Monitor with Network Security Perimeter scenarios
 description: Scenarios for configuration Network Security Perimeter with Azure Monitor.
 ms.topic: conceptual
 ms.date: 5/28/2025
 ---
 
-# Azure Monitor with Network Security Perimeter scenarios (Preview)
+# Azure Monitor with Network Security Perimeter scenarios
 [Network Security Perimeter](/azure/private-link/network-security-perimeter-concepts) allows you to control network access using network isolation settings under supported Azure Monitor resources. This article provides the configuration of Network Security Perimeter for different common scenarios with Azure Monitor.
 
 ## Azure Monitor data collection scenarios

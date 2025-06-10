@@ -1,11 +1,11 @@
-NSP---
+---
 title: Configure Azure Monitor with Network Security Perimeter
 description: Details on adding Azure Monitor resources to your network security perimeter.
 ms.topic: conceptual
 ms.date: 06/04/2025
 ---
 
-# Configure Azure Monitor with Network Security Perimeter (Preview)
+# Configure Azure Monitor with Network Security Perimeter
 
 This article provides the process for configuring a [Network Security Perimeter](/azure/private-link/network-security-perimeter-concepts) for Azure Monitor resources. Network security perimeter is a network isolation feature that provides a secured perimeter for communication between PaaS services deployed outside of a virtual network. These PaaS services can communicate with each other within the perimeter and can also communicate with resources outside the perimeter using public inbound and outbound access rules. 
 
