@@ -111,7 +111,7 @@ Container Network Logs requires a Customer Resource Definition (CRD) to be appli
 
 #### Throttling  
 
-As Container Network Logs captures every flow inside your AKS cluster, the volume of logs generated can be substantial leading to throttling and log loss. See the *[Configure throttling for Container Insights](./container-insights-throttling)* article for guidance on configuring throttling parameters and monitoring for log loss. 
+As Container Network Logs captures every flow inside your AKS cluster, the volume of logs generated can be substantial leading to throttling and log loss. See the *[Configure throttling for Container Insights](azure/azure-monitor//container-insights-throttling)* article for guidance on configuring throttling parameters and monitoring for log loss. 
 
 
 ### Cluster egress logs / Outbound flow logs 
