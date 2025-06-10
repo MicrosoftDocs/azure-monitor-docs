@@ -52,6 +52,9 @@
         ]
       }
     ],
+    "suppress": [
+      "sensitive-language-ma"
+    ],
     "globalMetadata": {
       "contributors_to_exclude": [
         "alexbuckgit",
