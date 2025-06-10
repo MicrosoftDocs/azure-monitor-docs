@@ -17,7 +17,7 @@ ms.date: 5/28/2025
 - Allow the traffic if IP based rule specified and match the source resource's IP address.
 - Allowed for resource in the transition mode.
 - Deny if source resource doesn't match any rules (IP address).
-- Ignore NSP/Resource ID claims in header.
+- Ignore network security perimeter/Resource ID claims in header.
 
 ### Container Insights 
 [Container insights](../containers/container-insights-overview.md) is a feature of Azure Monitor that collects and analyzes container logs from [Azure Kubernetes clusters](/azure/aks/what-is-aks) or [Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/overview) and their components.
