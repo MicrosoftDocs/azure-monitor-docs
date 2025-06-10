@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 06/10/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Virtual Machines
@@ -209,5 +209,23 @@ Recommendation ID: c889b55f-9132-444d-a31f-c9e91f1345c9
 
 
 <!--c889b55f-9132-444d-a31f-c9e91f1345c9_end-->
+
+<!--031dcbd7-479c-4059-a7ba-c5474c94b72e_begin-->
+
+#### Upgrade OS disks approaching the disk limit  
+  
+The OS hard disk drive (HDD) is approaching disk limits, upgrade to SSD. Azure SSDs provide industry-leading performance with high I/O operations per second (IOPS) and low latency. Particularly, Premium SSD supports bursting and performance tiers whereas Standard SSD supports bursting.  
+  
+**Potential benefits**: Improved performance, scalability, and cost-effectiveness.  
+
+**Impact:** Medium
+  
+For more information, see [Select a disk type for Azure IaaS VMs - managed disks - Azure Virtual Machines](/azure/virtual-machines/disks-types#premium-ssds)  
+
+ResourceType: microsoft.compute/disks  
+Recommendation ID: 031dcbd7-479c-4059-a7ba-c5474c94b72e  
+
+
+<!--031dcbd7-479c-4059-a7ba-c5474c94b72e_end-->
 
 <!--articleBody-->
