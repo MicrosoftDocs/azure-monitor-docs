@@ -1243,7 +1243,13 @@ items:
         displayName: Private Link
         href: logs/private-link-configure.md
     - name: Network security perimeter
-      href: fundamentals/network-security-perimeter.md
+      items:
+      - name: Configuration
+        displayName: Network security perimeter, NSP
+        href: fundamentals/network-security-perimeter.md
+      - name: Scenarios
+        displayName: Network security perimeter, NSP
+        href: fundamentals/network-security-perimeter-scenarios.md
   - name: Security baseline
     href: /security/benchmark/azure/baselines/azure-monitor-security-baseline?toc=/azure/azure-monitor/toc.json
   - name: Security controls by Azure Policy
