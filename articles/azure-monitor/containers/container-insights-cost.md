@@ -78,7 +78,7 @@ Configure [ContainerLogV2](container-insights-logs-schema.md) for basic logs to 
 
 Alerting is a critical part of monitoring workloads on Azure Kubernetes Service (AKS). Advanced alerting requires [Analytics-tier logs](/azure/azure-monitor/logs/data-platform-logs) in your Log Analytics workspace, but this can be cost-prohibitive for high-volume environments or certain types of logs such as audit logs.
 
-You can significantly reduce your data ingestion costs by converting tables holding container logs to [Basic logs](/azure/azure-monitor/logs/data-platform-logs) and leveraging other cost effective strategies of the Log Analytics platform. Azure Monitor provides options for event-driven and summary-based alerting on these tables, giving you more control over costs without sacrificing visibility into the health and behavior of your AKS workloads. See [Cost effective alerting strategies for AKS](https://https://learn.microsoft.com/en-us/azure/azure-monitor/containers/cost-effective-alerting) to learn more.
+You can significantly reduce your data ingestion costs by converting tables holding container logs to [Basic logs](/azure/azure-monitor/logs/data-platform-logs) and leveraging other cost effective strategies of the Log Analytics platform. Azure Monitor provides options for event-driven and summary-based alerting on these tables, giving you more control over costs without sacrificing visibility into the health and behavior of your AKS workloads. See [Cost effective alerting strategies for AKS](/azure/azure-monitor/containers/cost-effective-alerting) to learn more.
 
 ## Next steps
 
