@@ -2,22 +2,28 @@
 title: What's new in Azure Advisor
 description: Learn about what's new and what's changed in Azure Advisor with information from release notes, videos, and blog posts.
 ms.topic: reference
-ms.date: 05/03/2024
+ms.date: 06/10/2025
 ---
 
-# What's new in Azure Advisor?
+# New in Azure Advisor
 
-You can learn about what's new in Azure Advisor with the items in this article. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with the service.
+Learn about the latest updates and changes in Azure Advisor with the items in this article. The updates and changes include release notes, videos, blog posts, and other types of information. Bookmark this article to stay up to date with the service.
 
-## April 2024
+## April 2025
 
-### Azure Advisor will no longer display aggregated potential yearly savings beginning September 30, 2024
+### Service retirements 
 
-In the Azure portal, Advisor currently shows potential aggregated cost savings under the label **Potential yearly savings based on retail pricing** on pages where cost recommendations appear. This aggregated savings estimate will be removed from the Azure portal on September 30, 2024. You can still evaluate potential yearly savings tailored to your specific needs by following the steps in [Calculate cost savings](/azure/advisor/advisor-how-to-calculate-total-cost-savings). All individual recommendations and their associated potential savings will remain available.
+Advisor now offers upgrade and retirement recommendations, delivering essential guidance on upcoming service changes. These recommendations empower customers to proactively manage Azure resources, preserving their integrity and ensuring a resilient cloud environment. Customers can access these insights through both the UI and API.
 
-#### Recommended action
+To learn more, see [Use Service Upgrade and Retirement recommendations](./advisor-how-to-use-service-upgrade-retirement-recommendations.md).
 
-If you want to continue calculating aggregated potential yearly savings, follow [these steps](/azure/advisor/advisor-how-to-calculate-total-cost-savings). Individual recommendations might show savings that overlap with the savings shown in other recommendations, although you might not be able to benefit from them concurrently. For example, you can benefit from savings plans or from reservations for virtual machines (VMs), but not typically from both on the same VMs.
+## September 2024
+
+### Aggregated potential yearly savings are no longer displayed in Advisor portal
+
+The aggregated savings estimate is no longer available in Advisor portal. Evaluate potential yearly savings tailored to your specific needs by following the steps in [Calculate cost savings](./advisor-how-to-calculate-total-cost-savings.md). All individual recommendations and the associated potential savings remain available.
+
+To learn more, see [Calculate cost savings](./advisor-how-to-calculate-total-cost-savings.md).
 
 ### Public preview: Resiliency review on Azure Advisor
 
