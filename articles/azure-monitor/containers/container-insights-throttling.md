@@ -7,7 +7,7 @@ ms.date: 06/09/2025
 
 #  Configure throttling for Container Insights
 
-Azure Monitor - Container Insights allow customers to collect logs generated in their Azure Kuberenetes Service (AKS) cluster. Depending on workload and logging configuration, the volume of logs generated can be substantial, leading to throttling and log loss. This article discusses the default values after which logs are throttled in Container Insights. We discuss how customers can modify these values. The final section covers how you can monitor for potential throttling issues with our Quality-of-Service (QoS) Grafana dashboard.
+Azure Monitor - Container Insights allow customers to collect logs generated in their Azure Kubernetes Service (AKS) cluster. Depending on workload and logging configuration, the volume of logs generated can be substantial, leading to throttling and log loss. This article discusses the default values after which logs are throttled in Container Insights. We discuss how customers can modify these values. The final section covers how you can monitor for potential throttling issues with our Quality-of-Service (QoS) Grafana dashboard.
 
 
 ## Default Throttling values
@@ -84,4 +84,4 @@ kubectl apply -f container-azm-ms-agentconfig.yaml
 
 The final QoS dashboard with data flowing is shown in the following image:
 
-:::image type="content" source="./media/container-insights-network-monitoring/container-insights-network-qos-grafana-dashboard.png" alt-text="Image showing the final result setting up QoS monitoring for Container Insights" lightbox="./media/container-insights-network-monitoring/container-insights-network-qos-grafana-dashboard.png":::
+:::image type="content" source="./media/container-insights-network-monitoring/container-insights-network-qos-grafana-dashboard.png" alt-text="Image showing the final result setting up QoS monitoring for Container Insights." lightbox="./media/container-insights-network-monitoring/container-insights-network-qos-grafana-dashboard.png":::
