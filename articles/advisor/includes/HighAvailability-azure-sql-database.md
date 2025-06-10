@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/08/2025
+ms.date: 06/10/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -52,5 +52,23 @@ Recommendation ID: 807e58d0-e385-41ad-987b-4a4b3e3fb563
 Subcategory: HighAvailability
 
 <!--807e58d0-e385-41ad-987b-4a4b3e3fb563_end-->
+
+<!--e1967ca0-c0c3-4ae2-b69b-13d5676a4b18_begin-->
+
+#### Enable cross region disaster recovery for SQL Managed Instance  
+  
+Consider deploying a failover group for the SQL Managed Instance to allow business continuity in different Azure regions to deal with a regional outage.  
+  
+**Potential benefits**: Ensure business continuity through regional redundancy.  
+
+**Impact:** High
+  
+For more information, see [Failover groups overview & best practices - Azure SQL Managed Instance](https://aka.ms/instanceFailoverGroups)  
+
+ResourceType: microsoft.sql/managedinstances  
+Recommendation ID: e1967ca0-c0c3-4ae2-b69b-13d5676a4b18  
+Subcategory: DisasterRecovery
+
+<!--e1967ca0-c0c3-4ae2-b69b-13d5676a4b18_end-->
 
 <!--articleBody-->
