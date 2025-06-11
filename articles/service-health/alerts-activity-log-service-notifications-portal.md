@@ -58,15 +58,17 @@ To add more detailed information for the service health alert, select **Advanced
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png"alt-text="Screenshot of the Create service health alert command."Lightbox="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png":::
 
 ### Create a tenant-level alert
+>[!IMPORTANT]
+>The option to select a tenant directory is currently in preview mode.
 1. To set your alert for a tenant directory select **Directory (preview)** from the scope drop-down menu.
 
-:::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades-1.png"alt-text="A screenshot of the Health alerts tab for tenant-level alerts."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades-1.png":::
+:::image type="content"source="./media/alerts-activity-log-service-notifications/service-health-blades-1.png"alt-text="A screenshot of the Health alerts tab for tenant-level alerts."Lightbox="./media/alerts-activity-log-service-notifications/service-health-blades-1.png":::
 
 To add more detailed information for the service health alert, select **Advanced Options** which opens the page **Create an alert rule**, where you can start entering your data.
 
 Under the **Details** tab, select the subscription and resource group where the alert group is to be saved.
 
-:::image type="content"source="media/alerts-activity-log-service-notifications/service-health-details.png"alt-text="Screenshot of the Details tab in Create service health alert command."Lightbox="media/alerts-activity-log-service-notifications/service-health-details.png":::
+:::image type="content"source="./media/alerts-activity-log-service-notifications/service-health-details.png"alt-text="Screenshot of the Details tab in Create service health alert command."Lightbox="./media/alerts-activity-log-service-notifications/service-health-details.png":::
 
 Learn how to [Configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md). 
 
