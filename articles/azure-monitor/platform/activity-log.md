@@ -1,37 +1,31 @@
 ---
-title: Send Azure activity log data
-description: Send Azure Monitor activity log data to Azure Monitor Logs, Azure Event Hubs, and Azure Storage.
+title: Send Azure Monitor activity log data
+description: Send Azure Monitor activity log data to Log Analytics, Azure Event Hubs, and Azure Storage.
 ms.topic: conceptual
 ms.date: 05/21/2025
 ms.reviewer: orens
 ---
 
-# Send Azure Monitor Activity log data
+# Send Azure Monitor activity log data
 
-The Azure Monitor Activity Log is a platform log that provides insight into subscription-level events. The Activity Log includes information like when a resource is modified or a virtual machine is started. You can view the Activity Log in the Azure portal or retrieve entries with PowerShell and the Azure CLI. This article provides information on how to view the Activity Log and send it to different destinations.
+The Azure Monitor activity log is a platform log that provides insights into subscription-level events. The activity log includes information like when a resource is modified or a virtual machine is started. You can view the **Activity log** in the Azure portal or retrieve entries with PowerShell and the Azure CLI.
+
+This article provides information on how to view the activity log and send it to different destinations.
 
 > [!TIP]
-> Send Activity Logs to a Log Analytics workspace for the following benefits:
+> Send activity log data to a Log Analytics workspace for the following benefits:
 >
 > * Sending logs to a Log Analytics workspace is free of charge for the default retention period.
 > * Send logs to a Log Analytics workspace for [longer retention of up to 12 years](../logs/data-retention-configure.md).
 > * Logs exported to a Log Analytics workspace can be [shown in Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview)
-> * [Insights](./activity-log-insights.md) are provided for Activity Logs exported to Log Analytics.
+> * [Insights](./activity-log-insights.md) are provided for activity logs exported to Log Analytics.
 
 > [!NOTE]
-> * Entries in the Activity Log are system generated and can't be changed or deleted.
-> * Entries in the Activity Log are representing control plane changes like a virtual machine restart, any non related entries should be written into [Azure Resource Logs](resource-logs.md)
-> * Entries in the Activity Log are typically a result of changes (create, update or delete operations) or an action having been initiated.  Operations focused on reading details of a resource are not typically captured.
+> * Entries in the activity log are system generated and can't be changed or deleted.
+> * Entries in the activity log are representing control plane changes like a virtual machine restart, any non related entries should be written into [Azure Resource Logs](resource-logs.md)
+> * Entries in the activity log are typically a result of changes (create, update or delete operations) or an action having been initiated. Operations focused on reading details of a resource are not typically captured.
 
-## Get started
-
-1. Create a diagnostic setting to send the Activity Log to one or more of these locations:
-
-    * [Log Analytics workspace](#send-to-log-analytics-workspace) for more complex querying and alerting.
-    * [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
-    * [Azure Storage](#send-to-azure-storage) for cheaper, long-term archiving.
-    
-    For details on how to create a diagnostic setting, see [Create diagnostic settings to send platform logs and metrics to different destinations](./diagnostic-settings.md).
+## Export activity logs
 
 1. Go to **Azure Monitor** > **Activity log** and select **Export Activity Logs**.
     
@@ -39,6 +33,14 @@ The Azure Monitor Activity Log is a platform log that provides insight into subs
     
     > [!NOTE]
     > You can send the activity log from any single subscription to up to five workspaces.
+
+1. Create a diagnostic setting to send activity logs to one or more of these locations:
+
+    * [Log Analytics workspace](#send-to-log-analytics-workspace) for more complex querying and alerting.
+    * [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
+    * [Azure Storage](#send-to-azure-storage) for cheaper, long-term archiving.
+    
+    For details on how to create a diagnostic setting, see [Create diagnostic settings to send platform logs and metrics to different destinations](./diagnostic-settings.md).
 
 ## Send to Log Analytics workspace
 
@@ -50,7 +52,7 @@ Send the activity log to a Log Analytics workspace to enable the [Azure Monitor 
 * Use log search alerts with Activity entries for more complex alerting logic.
 * Store activity log entries for longer than the activity log retention period.
 * Incur no data ingestion or retention charges for activity log data stored in a Log Analytics workspace.
-* The default retention period in Log Analytics is 90 days
+* The default retention period in Log Analytics is 90 days.
 
 Activity log data in a Log Analytics workspace is stored in a table called `AzureActivity` that you can retrieve with a [log query](../logs/log-query-overview.md) in [Log Analytics](../logs/log-analytics-tutorial.md). The structure of this table varies depending on the [category of the log entry](activity-log-schema.md). For a description of the table properties, see the [Azure Monitor data reference](/azure/azure-monitor/reference/tables/azureactivity).
 
@@ -168,7 +170,7 @@ You can also access activity log events by using the following methods:
 ## Legacy collection methods
 
 > [!NOTE]
-> Azure Activity logs solution was used to forward Activity Logs to Azure Log Analytics. This solution is being retired on the 15th of Sept 2026 and will be automatically converted to Diagnostic settings.
+> The Azure Activity Log solution was used to forward activity logs to Log Analytics. This solution is being retired on the 15th of Sept 2026 and will be automatically converted to Diagnostic settings.
 
 If you're collecting activity logs using the legacy collection method, we recommend you [export activity logs to your Log Analytics workspace](#send-to-log-analytics-workspace) and disable the legacy collection using the [Data Sources - Delete API](/rest/api/loganalytics/data-sources/delete?tabs=HTTP) as follows:
 
@@ -184,10 +186,10 @@ If you're collecting activity logs using the legacy collection method, we recomm
 
     :::image type="content" source="media/activity-log/data-sources-delete-api.png" alt-text="Screenshot of the configuration of the Data Sources - Delete API." lightbox="media/activity-log/data-sources-delete-api.png":::
 
-### Managing legacy Log Profiles - retiring
+### Managing legacy Log Profiles (retiring)
 
 > [!NOTE]
-> * Logs Profiles was used to forward Activity Logs to storage accounts and Event Hubs. This method is being retired on the 15th of Sept 2026. 
+> * Logs Profiles was used to forward activity logs to storage accounts and Event Hubs. This method is being retired on the 15th of Sept 2026.
 > * If you are using this method, transition to Diagnostic Settings before 15th of Sept 2025, when we will stop allowing new creates of Log Profiles.
 
 Log profiles are the legacy method for sending the activity log to storage or event hubs. If you're using this method, transition to Diagnostic Settings, which provide better functionality and consistency with resource logs.
@@ -240,7 +242,7 @@ $serviceBusRuleId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGrou
 # Build the Storage Account Id from the settings above
 $storageAccountId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName"
 
-Add-AzLogProfile -Name $logProfileName -Location $locations -StorageAccountId  $storageAccountId -ServiceBusRuleId $serviceBusRuleId
+Add-AzLogProfile -Name $logProfileName -Location $locations -StorageAccountId $storageAccountId -ServiceBusRuleId $serviceBusRuleId
 ```
 
 #### [CLI](#tab/cli)
@@ -272,8 +274,8 @@ The Export activity logs experience sends the same data as the legacy method use
 
 The columns in the following table are deprecated in the updated schema. They still exist in `AzureActivity`, but they have no data. The replacements for these columns aren't new, but they contain the same data as the deprecated column. They're in a different format, so you might need to modify log queries that use them.
 
-| Activity log JSON | Log Analytics column name<br>*(older deprecated)* | New Log Analytics column name | Notes |
-|-------------------|---------------------------------------------------|-------------------------------|-------|
+| Activity log JSON | Old Log Analytics column name<br>*(deprecated)* | New Log Analytics column name | Notes |
+|-------------------|-------------------------------------------------|-------------------------------|-------|
 | category | Category | CategoryValue | |
 | status<br><br>Values are success, start, accept, failure | ActivityStatus <br><br>Values same as JSON | ActivityStatusValue<br><br>Values change to succeeded, started, accepted, failed | The valid values change as shown. | 
 | subStatus | ActivitySubstatus | ActivitySubstatusValue | |
