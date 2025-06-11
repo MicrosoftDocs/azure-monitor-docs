@@ -97,7 +97,10 @@ A [portfolio of Azure Key Management products](/azure/key-vault/managed-hsm/mhsm
 Create or use an existing Azure Key Vault in the region that the cluster is planed. In your Key vault, generate or import a key to be used for logs encryption. The Azure Key Vault must be configured as recoverable, to protect your key and the access to your data in Azure Monitor. You can verify this configuration under properties in your Key Vault, both **Soft delete** and **Purge protection** should be enabled.
 
 > [!IMPORTANT]
-> The best practice is to set up a notification via [Azure Event Grid](/azure/key-vault/general/event-grid-logicapps) to respond effectively to Azure Key Vault events such as a key nearing expiry. When the key expires, ingestion and queries aren't affected, but you can't perform an update on the key until you contact support.
+> It's recommended to set up notification via [Azure Event Grid](/azure/key-vault/general/event-grid-logicapps) to effectively respond to Azure Key Vault events such as a key nearing expiry. When the key expires, ingestion and queries aren't affected, but you can't update the key in the cluster. Follow these steps to resolve it
+> 1. Identify the key used in cluster's overview page in Azure portal, under **JSON View**
+> 1. Extend the key expiration date in Azure Key Vault
+> 1. [Update the cluster](#update-cluster-with-key-identifier-details) with the active key, preferably with version value "", to always use the latest version automatically 
 
 <!-- convertborder later -->
 :::image type="content" source="media/customer-managed-keys/soft-purge-protection.png" lightbox="media/customer-managed-keys/soft-purge-protection.png" alt-text="Screenshot of soft delete and purge protection settings." border="false":::
