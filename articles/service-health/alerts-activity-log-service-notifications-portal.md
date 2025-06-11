@@ -19,7 +19,7 @@ Alerts are based on the type of notification, affected subscription, tenant dire
 You can choose or create an "action group" to define who receives the alert. Alerts are only supported in public clouds within the global region.
 Advanced options allow for more detailed configurations, including webhook notifications for integration with external systems.
 
- You receive an alert when Azure sends Service Health notifications to your Azure subscription. You can configure the alert based on
+ You receive an alert when Azure sends Service Health notifications to your Azure subscription or tenant directory. You can configure the alert based on:
 
 - The class of service health notification (Service issues, Planned maintenance, Health advisories, Security advisories)
 - The subscription that is affected
