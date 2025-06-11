@@ -14,8 +14,8 @@ This article provides information on how to view the activity log and send it to
 
 > [!NOTE]
 > * Entries in the activity log are system generated and can't be changed or deleted.
-> * Entries in the activity log are representing control plane changes like a virtual machine restart, any non related entries should be written into [Azure Resource Logs](resource-logs.md)
-> * Entries in the activity log are typically a result of changes (create, update or delete operations) or an action having been initiated. Operations focused on reading details of a resource are not typically captured.
+> * Entries in the activity log are representing control plane changes like a virtual machine restart, any nonrelated entries should be written into [Azure Resource Logs](resource-logs.md)
+> * Entries in the activity log are typically a result of changes (create, update, or delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured.
 
 ## Export activity logs
 
@@ -28,7 +28,7 @@ This article provides information on how to view the activity log and send it to
 
 1. Create a diagnostic setting to send activity logs to one or more of these locations:
 
-    * [Log Analytics workspace](#send-to-log-analytics-workspace) for more complex querying and alerting.
+    * [Log Analytics workspace](#send-to-a-log-analytics-workspace) for more complex querying and alerting.
     * [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
     * [Azure Storage](#send-to-azure-storage) for cheaper, long-term archiving.
     
@@ -172,7 +172,7 @@ You can also access activity log events by using the following methods:
 > [!NOTE]
 > The Azure Activity Log solution was used to forward activity logs to Log Analytics. This solution is being retired on the 15th of Sept 2026 and will be automatically converted to Diagnostic settings.
 
-If you're collecting activity logs using the legacy collection method, we recommend you [export activity logs to your Log Analytics workspace](#send-to-log-analytics-workspace) and disable the legacy collection using the [Data Sources - Delete API](/rest/api/loganalytics/data-sources/delete?tabs=HTTP) as follows:
+If you're collecting activity logs using the legacy collection method, we recommend you [export activity logs to your Log Analytics workspace](#send-to-a-log-analytics-workspace) and disable the legacy collection using the [Data Sources - Delete API](/rest/api/loganalytics/data-sources/delete?tabs=HTTP) as follows:
 
 1. List all data sources connected to the workspace using the [Data Sources - List By Workspace API](/rest/api/loganalytics/data-sources/list-by-workspace?tabs=HTTP#code-try-0) and filter for activity logs by setting `kind eq 'AzureActivityLog'`.
 
@@ -190,7 +190,7 @@ If you're collecting activity logs using the legacy collection method, we recomm
 
 > [!NOTE]
 > * Logs Profiles was used to forward activity logs to storage accounts and Event Hubs. This method is being retired on the 15th of Sept 2026.
-> * If you are using this method, transition to Diagnostic Settings before 15th of Sept 2025, when we will stop allowing new creates of Log Profiles.
+> * If you're using this method, transition to Diagnostic Settings before 15th of Sept 2025, when we'll stop allowing new creates of Log Profiles.
 
 Log profiles are the legacy method for sending the activity log to storage or event hubs. If you're using this method, transition to Diagnostic Settings, which provide better functionality and consistency with resource logs.
 
@@ -277,7 +277,7 @@ The columns in the following table are deprecated in the updated schema. They st
 | Activity log JSON | Old Log Analytics column name<br>*(deprecated)* | New Log Analytics column name | Notes |
 |-------------------|-------------------------------------------------|-------------------------------|-------|
 | category | Category | CategoryValue | |
-| status<br><br>Values are success, start, accept, failure | ActivityStatus <br><br>Values same as JSON | ActivityStatusValue<br><br>Values change to succeeded, started, accepted, failed | The valid values change as shown. | 
+| status<br><br>Values are `success`, `start`, `accept`, `failure` | ActivityStatus <br><br>Values same as JSON | ActivityStatusValue<br><br>Values change to `succeeded`, `started`, a`ccepted`, `failed` | The valid values change as shown. | 
 | subStatus | ActivitySubstatus | ActivitySubstatusValue | |
 | operationName	| OperationName | OperationNameValue | REST API localizes the operation name value. Log Analytics UI always shows English. |
 | resourceProviderName | ResourceProvider | ResourceProviderValue | |
