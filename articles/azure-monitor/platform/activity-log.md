@@ -12,14 +12,6 @@ The Azure Monitor activity log is a platform log that provides insights into sub
 
 This article provides information on how to view the activity log and send it to different destinations.
 
-> [!TIP]
-> Send activity log data to a Log Analytics workspace for the following benefits:
->
-> * Sending logs to a Log Analytics workspace is free of charge for the default retention period.
-> * Send logs to a Log Analytics workspace for [longer retention of up to 12 years](../logs/data-retention-configure.md).
-> * Logs exported to a Log Analytics workspace can be [shown in Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview)
-> * [Insights](./activity-log-insights.md) are provided for activity logs exported to Log Analytics.
-
 > [!NOTE]
 > * Entries in the activity log are system generated and can't be changed or deleted.
 > * Entries in the activity log are representing control plane changes like a virtual machine restart, any non related entries should be written into [Azure Resource Logs](resource-logs.md)
@@ -42,7 +34,15 @@ This article provides information on how to view the activity log and send it to
     
     For details on how to create a diagnostic setting, see [Create diagnostic settings to send platform logs and metrics to different destinations](./diagnostic-settings.md).
 
-## Send to Log Analytics workspace
+    > [!TIP]
+    > Send activity log data to a Log Analytics workspace for the following benefits:
+    >
+    > * Sending logs to a Log Analytics workspace is free of charge for the default retention period.
+    > * Send logs to a Log Analytics workspace for [longer retention of up to 12 years](../logs/data-retention-configure.md).
+    > * Logs exported to a Log Analytics workspace can be [shown in Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview)
+    > * [Insights](./activity-log-insights.md) are provided for activity logs exported to Log Analytics.
+
+## Send to a Log Analytics workspace
 
 Send the activity log to a Log Analytics workspace to enable the [Azure Monitor Logs](../logs/data-platform-logs.md) feature, where you:
 
