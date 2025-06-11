@@ -22,6 +22,8 @@
       href: service-notifications.md
     - name: Filter Service Health notifications by event level
       href: metadata-filter.md
+    - name: Service Health notifications
+      href: service-health-notifications-properties.md
     - name: How to view and access Security Advisories with elevated access
       href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
@@ -90,5 +92,3 @@
     href: https://azure.microsoft.com/pricing/calculator/
   - name: Notification Pricing
     href: https://azure.microsoft.com/pricing/details/monitor/
-
-  
