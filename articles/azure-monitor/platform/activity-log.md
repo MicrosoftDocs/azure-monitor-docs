@@ -26,7 +26,7 @@ This article provides information on how to view the activity log and send it to
     > [!NOTE]
     > You can send the activity log from any single subscription to up to five workspaces.
 
-1. Create a diagnostic setting to send activity logs to one or more of these locations:
+1. Select an existing diagnostic setting or **Add diagnostic setting** to create a new one and send activity logs to one or more of these locations:
 
     * [Log Analytics workspace](#send-to-a-log-analytics-workspace) for more complex querying and alerting.
     * [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
