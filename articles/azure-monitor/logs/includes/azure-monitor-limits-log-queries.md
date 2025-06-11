@@ -18,7 +18,8 @@ Azure Monitor has several throttling limits to protect against users sending an 
 
 | Measure | Limit per user | Description |
 |:--------|:---------------|:------------|
-| Concurrent queries | 5 | A user can run up to five concurrent queries. Any other query is added to a queue. When one of the running queries finishes, the first query in the queue is pulled from the queue and starts running. Alert queries aren't part of this limit. |
+| Concurrent Analytics queries | 5 | A user can run up to five concurrent queries against Analytics tables. Additional queries are added to a queue. When one of the concurrent running queries finishes, the first query from the queue is added to the concurrent queries and starts running. Alert queries aren't part of this limit. |
+| Concurrent Basic / Auxiliary queries | 2 | A user can run up to two concurrent [search queries](..//basic-logs-query.md) against Basic or Auxiliary tables. |
 | Time in concurrency queue | 3 minutes | If a query sits in the queue for more than 3 minutes without being started, it's terminated with an HTTP error response with code 429. |
 | Total queries in concurrency queue | 200 | When the number of queries in the queue reaches 200, the next query is rejected with an HTTP error code 429. This number is in addition to the five queries that can be running simultaneously. |
 | Query rate | 200 queries per 30 seconds | Overall rate of queries that can be submitted by a single user to all workspaces. This limit applies to programmatic queries or queries initiated by visualization parts such as Azure dashboards and the Log Analytics workspace summary (deprecated) page. |
