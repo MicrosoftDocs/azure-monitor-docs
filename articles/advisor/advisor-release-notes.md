@@ -17,6 +17,14 @@ Advisor now offers upgrade and retirement recommendations, delivering essential 
 
 To learn more, see [Use Service Upgrade and Retirement recommendations](./advisor-how-to-use-service-upgrade-retirement-recommendations.md).
 
+## March 2025
+
+### Advisor Score update
+
+The scoring logic for Reliability, Performance, and Operational Excellence has been updated to improve accuracy. Scores are now calculated using fixed-weight sub-categories aligned to best practices, making them more transparent and actionable. 
+
+To learn more, see [Advisor Score](./advisor-score.md).
+
 ## September 2024
 
 ### Aggregated potential yearly savings are no longer displayed in Advisor portal
