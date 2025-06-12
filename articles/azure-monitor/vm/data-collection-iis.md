@@ -26,6 +26,9 @@ To verify that data is being collected, check for records in the **W3CIISLog** t
 
 :::image type="content" source="media/data-collection-iis/verify-iis.png" lightbox="media/data-collection-iis/verify-iis.png" alt-text="Screenshot that shows records returned from W3CIISLog table." :::
 
+If you are looking for different examples of log queries that retrieve IIS log records are shown in the mentioned table please follow the article [Queries for the W3CIISLog table](../../../articles/azure-monitor/reference/queries/w3ciislog.md) for additional details. 
+
+
 ## Configure collection of IIS logs on client
 Before you can collect IIS logs from the machine, you must ensure that IIS logging has been enabled and is configured correctly.
 
@@ -40,6 +43,14 @@ The default location for IIS log files is **C:\\inetpub\\logs\\LogFiles\\W3SVC1*
 
 > [!NOTE]
 > The X-Forwarded-For custom field is not currently supported. If this is a critical field, you can collect the IIS logs as a [custom text log](./data-collection-log-text.md).
+
+
+Azure Monitor collects IIS log entries from each agent each time the log timestamp changes. The log is read every 5 minutes. If for any reason IIS doesn't update the timestamp before the rollover time when a new file is created, entries will be collected following creation of the new file.
+
+The frequency of new file creation is controlled by the Log File Rollover Schedule setting for the IIS site. The setting is once a day by default. If the setting is Hourly, Azure Monitor collects the log each hour. If the setting is Daily, Azure Monitor collects the log every 24 hours.
+
+> [!IMPORTANT]
+> We recommend that you set Log File Rollover Schedule to Hourly. If it's set to Daily, you might experience spikes in your data because it will be collected only once per day.
 
 ## Troubleshooting
 Go through the following steps if you aren't collecting data from the IIS log that you're expecting.
