@@ -1,6 +1,6 @@
 ---
 title: Azure Chaos Studio compatibility
-description: Understand the compatibility of Azure Chaos Studio with Chaos Mesh operating systems and tools.
+description: Understand the compatibility of Azure Chaos Studio with specific operating systems and tools.
 services: chaos-studio
 author: rsgel 
 ms.topic: overview
@@ -8,9 +8,9 @@ ms.date: 01/26/2024
 ms.reviewer: carlsonr
 ---
 
-# Azure Chaos Studio Chaos Mesh version compatibility
+# Azure Chaos Studio version compatibility
 
-The following reference shows relevant version support and compatibility for chaos mesh within Chaos Studio.
+The following reference shows relevant version support and compatibility within Chaos Studio.
 
 ## Chaos Mesh compatibility
 
@@ -22,11 +22,16 @@ Chaos Studio currently tests with the following version combinations.
 
 | Chaos Studio fault version | Kubernetes version | Chaos Mesh version | Notes |
 |:---:|:---:|:---:|:---:|
+| 2.2 | 1.27 | 2.6.3 | |
 | 2.1 | 1.27 | 2.6.3 | |
 | 2.1 | 1.25.11 | 2.5.1 | |
 
-The *Chaos Studio fault version* column refers to the individual fault version for each AKS Chaos Mesh fault used in the experiment JSON, for example `urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.1`. If a past version of the corresponding Chaos Studio fault remains available from the Chaos Studio API (for example, `...podChaos/1.0`), it is within support.
+The *Chaos Studio fault version* column refers to the individual fault version for each AKS Chaos Mesh fault used in the experiment JSON, for example `urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.2`. If a past version of the corresponding Chaos Studio fault remains available from the Chaos Studio API (for example, `...podChaos/2.1`), it is within support.
 
 ## Browser compatibility
 
 Review the Azure portal documentation on [Supported devices](/azure/azure-portal/azure-portal-supported-browsers-devices) for more information on browser support.
+
+## Agent compatibility
+
+To learn more about Chaos Studio agent compatibility with Virtual Machine operating systems, review the [Chaos Agent Version Compatibility](chaos-agent-os-support.md) page.
