@@ -544,11 +544,13 @@ Webhook action groups generally follow these rules when called:
 
 * When a webhook is invoked, if the first call fails, it's retried at least 1 more time, and up to 5 times (5 retries) at various delay intervals (5, 20, 40 seconds).
 
-    * The delay between 1st and 2nd attempt is 5 seconds
-    * The delay between 2nd and 3rd attempt is 20 seconds
-    * The delay between 3rd and 4th attempt is 5 seconds
-    * The delay between 4th and 5th attempt is 40 seconds
-    * The delay between 5th and 6th attempt is 5 seconds
+    | Attempts            | Delay      |
+    |---------------------|------------|
+    | Between 1st and 2nd | 5 seconds  |
+    | Between 2nd and 3rd | 20 seconds |
+    | Between 3rd and 4th | 5 seconds  |
+    | Between 4th and 5th | 40 seconds |
+    | Between 5th and 6th | 5 seconds  |
 
 * After retries attempted to call the webhook fail, no action group calls the endpoint for 15 minutes.
 
