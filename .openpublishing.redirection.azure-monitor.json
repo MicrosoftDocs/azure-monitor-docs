@@ -146,11 +146,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/reference/tables/aaddomainservicessystemsecurity.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/reference/tables/anffileaccess.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
@@ -202,11 +197,6 @@
   },
   {
    "source_path": "articles/azure-monitor/reference/tables/custommetrics.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/reference/tables/databrickstables.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   },
@@ -267,11 +257,6 @@
   },
   {
    "source_path": "articles/azure-monitor/reference/tables/maofficeaddinhealth.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/reference/tables/maofficeaddinhealtheventnrt.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   },
