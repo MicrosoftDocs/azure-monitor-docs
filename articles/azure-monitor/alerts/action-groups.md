@@ -544,11 +544,13 @@ Webhook action groups generally follow these rules when called:
 
 * When a webhook is invoked, if the first call fails, it's retried at least 1 more time, and up to 5 times (5 retries) at various delay intervals (5, 20, 40 seconds).
 
-    * The delay between 1st and 2nd attempt is 5 seconds
-    * The delay between 2nd and 3rd attempt is 20 seconds
-    * The delay between 3rd and 4th attempt is 5 seconds
-    * The delay between 4th and 5th attempt is 40 seconds
-    * The delay between 5th and 6th attempt is 5 seconds
+    | Attempts            | Delay      |
+    |---------------------|------------|
+    | Between 1st and 2nd | 5 seconds  |
+    | Between 2nd and 3rd | 20 seconds |
+    | Between 3rd and 4th | 5 seconds  |
+    | Between 4th and 5th | 40 seconds |
+    | Between 5th and 6th | 5 seconds  |
 
 * After retries attempted to call the webhook fail, no action group calls the endpoint for 15 minutes.
 
@@ -575,14 +577,9 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 1. To enable the action group to use your Microsoft Entra application, use the PowerShell script that follows this procedure.
 
     > [!NOTE]
-    > You must be assigned the [Microsoft Entra Application Administrator role](/azure/active-directory/roles/permissions-reference#all-roles) to run this script.
-    
-    1. To use your Microsoft Entra tenant ID, modify the PowerShell script's `Connect-AzureAD` call. 
-    1. To use the object ID of your Microsoft Entra application, modify the PowerShell script's `$myAzureADApplicationObjectId` variable.
-    1. Run the modified script.
- 
-    > [!NOTE]
-    > The service principal must be assigned an **owner role** of the Microsoft Entra application to be able to create, modify, or test the secure webhook action in the action group.
+    > * You must be assigned the [Microsoft Entra Application Administrator role](/azure/active-directory/roles/permissions-reference#all-roles) to run this script.
+    >
+    > * The service principal must be assigned an **owner role** of the Microsoft Entra application to be able to create, modify, or test the secure webhook action in the action group.
    
 1. Configure the secure webhook action.
 
