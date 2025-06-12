@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 05/19/2025
+ms.date: 06/12/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -144,6 +144,7 @@ Microsoft.AAD/domainServices
 - [AADDomainServicesLogonLogoff](./tables/aaddomainserviceslogonlogoff.md)
 - [AADDomainServicesPolicyChange](./tables/aaddomainservicespolicychange.md)
 - [AADDomainServicesPrivilegeUse](./tables/aaddomainservicesprivilegeuse.md)
+- [AADDomainServicesSystemSecurity](./tables/aaddomainservicessystemsecurity.md)
 
 ### Azure API for FHIR  
 
@@ -394,6 +395,7 @@ Microsoft.Databricks/workspaces
 - [DatabricksSQLPermissions](./tables/databrickssqlpermissions.md)
 - [DatabricksSSH](./tables/databricksssh.md)
 - [DatabricksSecrets](./tables/databrickssecrets.md)
+- [DatabricksTables](./tables/databrickstables.md)
 - [DatabricksWorkspace](./tables/databricksworkspace.md)
 - [DatabricksFeatureStore](./tables/databricksfeaturestore.md)
 - [DatabricksGenie](./tables/databricksgenie.md)
@@ -1277,12 +1279,6 @@ microsoft.standbypool/standbyvirtualmachinepools
 
 - [SVMPoolExecutionLog](./tables/svmpoolexecutionlog.md)
 - [SVMPoolRequestLog](./tables/svmpoolrequestlog.md)
-
-### NAT Gateways  
-
-Microsoft.Network/NatGateways  
-
-- [NatGatewayFlowlogsV1](./tables/natgatewayflowlogsv1.md)
 
 ### Network Devices (Operator Nexus)  
 
