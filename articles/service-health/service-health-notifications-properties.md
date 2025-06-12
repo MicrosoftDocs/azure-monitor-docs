@@ -6,7 +6,7 @@ ms.date: 06/12/2025
 
 ---
 
-# Service health notifications in the portal
+# Service health notifications
 
 Service health notifications created through Azure, contain information about the resources under your subscription. These notifications are a subclass of activity log events, and can also be found in the activity log. Service health notifications can be informational or actionable, depending on the class.
 
