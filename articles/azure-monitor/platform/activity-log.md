@@ -21,7 +21,7 @@ This article provides information on how to view the activity log and send it to
 
 1. Go to **Azure Monitor** > **Activity log** and select **Export Activity Logs**.
     
-    :::image type="content" source="media/activity-log/go-to-activity-logs.png" lightbox="media/activity-log/go-to-activity-logs.png" alt-text="Screenshot that shows exporting activity logs.":::
+    :::image type="content" source="media/activity-log/go-to-activity-logs.png" lightbox="media/activity-log/go-to-activity-logs.png" alt-text="Screenshot that shows how to get to activity logs.":::
     
     > [!NOTE]
     > You can send the activity log from any single subscription to up to five workspaces.
@@ -32,7 +32,7 @@ This article provides information on how to view the activity log and send it to
     * [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
     * [Azure Storage](#send-to-azure-storage) for cheaper, long-term archiving.
 
-    :::image type="content" source="media/activity-log/add-diagnostic-setting.png" lightbox="media/activity-log/add-diagnostic-setting.png" alt-text="Screenshot that shows exporting activity logs.":::
+    :::image type="content" source="media/activity-log/add-diagnostic-setting.png" lightbox="media/activity-log/add-diagnostic-setting.png" alt-text="Screenshot that shows adding a diagnostic setting.":::
     
     For details on how to create a diagnostic setting, see [Create diagnostic settings to send platform logs and metrics to different destinations](./diagnostic-settings.md).
 
