@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 06/03/2025
+ms.date: 06/12/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -57,6 +57,10 @@ ms.reviewer: lualderm
 ## [AADDomainServicesPrivilegeUse](./queries/AADDomainServicesPrivilegeUse.md)
 
 - [Show logs from AADDomainServicesPrivilegeUse table](./queries/AADDomainServicesPrivilegeUse.md#show-logs-from-aaddomainservicesprivilegeuse-table)
+
+## [AADDomainServicesSystemSecurity](./queries/AADDomainServicesSystemSecurity.md)
+
+- [Show logs from AADDomainServicesSystemSecurity table](./queries/AADDomainServicesSystemSecurity.md#show-logs-from-aaddomainservicessystemsecurity-table)
 
 ## [AADGraphActivityLogs](./queries/AADGraphActivityLogs.md)
 
@@ -1539,11 +1543,6 @@ ms.reviewer: lualderm
 
 - [Failed tests](./queries/NWConnectionMonitorTestResult.md#failed-tests)
 - [Tests performance](./queries/NWConnectionMonitorTestResult.md#tests-performance)
-
-## [NatGatewayFlowlogsV1](./queries/NatGatewayFlowlogsV1.md)
-
-- [Total allowed packets and bytes sent per NatGateway IP and Destination IP](./queries/NatGatewayFlowlogsV1.md#total-allowed-packets-and-bytes-sent-per-natgateway-ip-and-destination-ip)
-- [Total allowed packets and bytes sent per NatGateway IP and Source IP](./queries/NatGatewayFlowlogsV1.md#total-allowed-packets-and-bytes-sent-per-natgateway-ip-and-source-ip)
 
 ## [NetworkSessions](./queries/NetworkSessions.md)
 

@@ -1416,8 +1416,6 @@ items:
             href: tables/microsoft-network_frontdoors.md
           - name: microsoft.network/loadbalancers
             href: tables/microsoft-network_loadbalancers.md
-          - name: microsoft.network/natgateways
-            href: tables/microsoft-network_natgateways.md
           - name: microsoft.network/networkinterfaces
             href: tables/microsoft-network_networkinterfaces.md
           - name: microsoft.network/networkmanagers
@@ -1575,6 +1573,8 @@ items:
             href: tables/aaddomainservicespolicychange.md
           - name: AADDomainServicesPrivilegeUse
             href: tables/aaddomainservicesprivilegeuse.md
+          - name: AADDomainServicesSystemSecurity
+            href: tables/aaddomainservicessystemsecurity.md
           - name: AADGraphActivityLogs
             href: tables/aadgraphactivitylogs.md
           - name: AADManagedIdentitySignInLogs
@@ -1857,6 +1857,12 @@ items:
             href: tables/awscloudwatch.md
           - name: AWSGuardDuty
             href: tables/awsguardduty.md
+          - name: AWSNetworkFirewallAlert
+            href: tables/awsnetworkfirewallalert.md
+          - name: AWSNetworkFirewallFlow
+            href: tables/awsnetworkfirewallflow.md
+          - name: AWSNetworkFirewallTls
+            href: tables/awsnetworkfirewalltls.md
           - name: AWSRoute53Resolver
             href: tables/awsroute53resolver.md
           - name: AWSSecurityHubFindings
@@ -2311,6 +2317,8 @@ items:
             href: tables/databrickssecrets.md
           - name: DatabricksServerlessRealTimeInference
             href: tables/databricksserverlessrealtimeinference.md
+          - name: DatabricksTables
+            href: tables/databrickstables.md
           - name: DatabricksUnityCatalog
             href: tables/databricksunitycatalog.md
           - name: DatabricksVectorSearch
@@ -2445,14 +2453,20 @@ items:
             href: tables/functionapplogs.md
           - name: GCPAuditLogs
             href: tables/gcpauditlogs.md
+          - name: GCPCDN
+            href: tables/gcpcdn.md
           - name: GCPDNS
             href: tables/gcpdns.md
           - name: GCPFirewallLogs
             href: tables/gcpfirewalllogs.md
           - name: GCPIAM
             href: tables/gcpiam.md
+          - name: GCPIDS
+            href: tables/gcpids.md
           - name: GCPLoadBalancer
             href: tables/gcploadbalancer.md
+          - name: GCPMonitoring
+            href: tables/gcpmonitoring.md
           - name: GCPVPCFlow
             href: tables/gcpvpcflow.md
           - name: GoogleCloudSCC
@@ -2547,6 +2561,8 @@ items:
             href: tables/intunedevices.md
           - name: IntuneOperationalLogs
             href: tables/intuneoperationallogs.md
+          - name: KeyVaults
+            href: tables/keyvaults.md
           - name: KubeEvents
             href: tables/kubeevents.md
           - name: KubeHealth
@@ -2595,6 +2611,8 @@ items:
             href: tables/madriverreadiness.md
           - name: MAOfficeAddin
             href: tables/maofficeaddin.md
+          - name: MAOfficeAddinHealthEventNRT
+            href: tables/maofficeaddinhealtheventnrt.md
           - name: MAOfficeAddinInstance
             href: tables/maofficeaddininstance.md
           - name: MAOfficeAddinReadiness
@@ -2709,8 +2727,6 @@ items:
             href: tables/nwconnectionmonitorpathresult.md
           - name: NWConnectionMonitorTestResult
             href: tables/nwconnectionmonitortestresult.md
-          - name: NatGatewayFlowlogsV1
-            href: tables/natgatewayflowlogsv1.md
           - name: NetworkAccessAlerts
             href: tables/networkaccessalerts.md
           - name: NetworkAccessConnectionEvents
@@ -3097,6 +3113,8 @@ items:
             href: queries/AADDomainServicesPolicyChange.md
           - name: AADDomainServicesPrivilegeUse
             href: queries/AADDomainServicesPrivilegeUse.md
+          - name: AADDomainServicesSystemSecurity
+            href: queries/AADDomainServicesSystemSecurity.md
           - name: AADGraphActivityLogs
             href: queries/AADGraphActivityLogs.md
           - name: AADManagedIdentitySignInLogs
@@ -3533,8 +3551,6 @@ items:
             href: queries/NWConnectionMonitorPathResult.md
           - name: NWConnectionMonitorTestResult
             href: queries/NWConnectionMonitorTestResult.md
-          - name: NatGatewayFlowlogsV1
-            href: queries/NatGatewayFlowlogsV1.md
           - name: NetworkSessions
             href: queries/NetworkSessions.md
           - name: NginxUpstreamUpdateLogs
