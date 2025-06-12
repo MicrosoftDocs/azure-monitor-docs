@@ -575,14 +575,9 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 1. To enable the action group to use your Microsoft Entra application, use the PowerShell script that follows this procedure.
 
     > [!NOTE]
-    > You must be assigned the [Microsoft Entra Application Administrator role](/azure/active-directory/roles/permissions-reference#all-roles) to run this script.
-    
-    1. To use your Microsoft Entra tenant ID, modify the PowerShell script's `Connect-AzureAD` call. 
-    1. To use the object ID of your Microsoft Entra application, modify the PowerShell script's `$myAzureADApplicationObjectId` variable.
-    1. Run the modified script.
- 
-    > [!NOTE]
-    > The service principal must be assigned an **owner role** of the Microsoft Entra application to be able to create, modify, or test the secure webhook action in the action group.
+    > * You must be assigned the [Microsoft Entra Application Administrator role](/azure/active-directory/roles/permissions-reference#all-roles) to run this script.
+    >
+    > * The service principal must be assigned an **owner role** of the Microsoft Entra application to be able to create, modify, or test the secure webhook action in the action group.
    
 1. Configure the secure webhook action.
 
