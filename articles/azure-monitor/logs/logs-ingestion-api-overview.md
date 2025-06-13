@@ -232,7 +232,7 @@ Data sent to the ingestion API can be sent to the following tables:
 * [UCUpdateAlert](/azure/azure-monitor/reference/tables/ucupdatealert)<br>
 * [WindowsClientAssessmentRecommendation](/azure/azure-monitor/reference/tables/windowsclientassessmentrecommendation)<br>
 * [WindowsEvent](/azure/azure-monitor/reference/tables/windowsevent)<br>
-* [WindowsServerAssessmentRecommendation](/azure/azure-monitor/reference/tables/windowsserverassessmentrecommendation)<br> |
+* [WindowsServerAssessmentRecommendation](/azure/azure-monitor/reference/tables/windowsserverassessmentrecommendation)<br>
 
 > [!NOTE]
 > Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. Custom columns you add to an Azure table must have the suffix `_CF`.
