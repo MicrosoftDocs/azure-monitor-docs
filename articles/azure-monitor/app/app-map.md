@@ -75,6 +75,10 @@ The **Performance** view lets you explore telemetry data for operations, depende
 
 :::image type="content" source="media/app-map/view-performance.png" alt-text="Screenshot that shows the Performance view for a selected component." lightbox="media/app-map/view-performance.png":::
 
+### Investigate Virtual Machine
+
+If the component is hosted on a virtual machine (VM), you can view key properties of the VM, including its name, subscription, resource group, and operating system. Performance metrics such as Availability, CPU Usage (average), and Available Memory (GB) are also displayed. To further investigate the VM’s performance and health, select **Go to VM Monitoring** to open the Monitoring page for the VM.
+
 ### Go to details and stack trace
 
 The **Go to details** option in the node details pane displays the end-to-end transaction experience for the component. This pane lets you view details at the call stack level:
