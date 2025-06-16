@@ -222,11 +222,6 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
     
     1. [Grant your application permission to use your DCR](tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
 
-    > [!NOTE]
-    > A data collection rule that sends data to a table with an Auxiliary plan:
-    >
-    > * Can only send data to a single table.
-    > * Can't include a [transformation](../data-collection/data-collection-transformations.md).
 
 
 ## Next steps
