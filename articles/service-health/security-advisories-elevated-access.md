@@ -36,23 +36,23 @@ Due to the sensitive nature of the information, **elevated access roles** are re
 - Users must have appropriate **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
 - Only users with elevated roles can access the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
 - Users with only reader access or tenant-level roles can't view sensitive details unless they're assigned the appropriate elevated permissions.
-- 
-For more information, read [this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources. 
+
+For more information, read [this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.<br>
 Users with tenant roles [listed here](admin-access-reference.md) can also access tenant level security advisory details on the **Summary** and **Issue Updates** tabs.
 
 
 
 
-### Service Health API changes
+### Changes to Service Health API endpoint
 
-API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details. Users with the specified roles can view sensitive event details for a specific event with the new endpoint. The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details. <!--This update will be made to API version 2023-10-01-preview and future versions.-->
+API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details.<br> Users with the specified roles can view sensitive event details for a specific event with the new endpoint. <br>The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details. <!--This update will be made to API version 2023-10-01-preview and future versions.-->
 
 The <!--new and existing--> endpoints listed here <!--will--> return the security notification details for a specific event.
 
 #### New API Endpoint Details
 
-- Users need to be authorized with the above-mentioned roles to access the new endpoint.
-- This endpoint returns the event object with all available properties for a specific event. 
+Users need to be authorized with the roles defined here to access the new endpoint.
+This endpoint returns the event object with all available properties for a specific event. 
 
 <!--- Available since API version 2022-10-01-->
 
