@@ -1,7 +1,7 @@
 ---
 ms.service: azure-service-health
 ms.topic: include
-ms.date: 06/06/2025
+ms.date: 06/16/2025
 ---
 
 #### Count of virtual machines by state of availability and subscription ID
@@ -73,7 +73,7 @@ Search-AzGraph -Query "HealthResources | where type =~ 'microsoft.resourcehealth
 
 #### Lists of virtual machines by availability and power states with resource IDs and resource groups
 
-Returns list of virtual machines (`Microsoft.Compute/virtualMachines`) aggregated on their power state and availability state to provide a cohesive state of health for your virtual machines. <br>
+This query retrieves list of virtual machines (`Microsoft.Compute/virtualMachines`) and summarizes their health by aggregating both their power state and availability state. <br>
 The query also provides details on the resource group and resource ID associated with each entry for detailed visibility into your resources.
 
 ```kusto

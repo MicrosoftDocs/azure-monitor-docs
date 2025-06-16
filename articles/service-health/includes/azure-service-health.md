@@ -2,12 +2,12 @@
 ms.service: azure-service-health
 ms.custom: devx-track-azurepowershell
 ms.topic: include
-ms.date: 06/06/2025
+ms.date: 06/16/2025
 ---
 
 #### Active Service Health events by subscription 
 
-This query shows all active Service Health events—such as service issues, planned maintenance, health advisories, and security advisories—grouped by event type and includes a count of the impacted services.
+This query shows all active Service Health events—such as service issues, planned maintenance, health advisories, and security advisories, grouped by event type and includes a count of the impacted services.
 
 An example would show each event type including a count showing how many subscriptions affected by it.
 
@@ -126,7 +126,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 #### All active Service Health events
 
-Use this query to list all active Service Health events—like service issues, planned maintenance, health advisories, and security advisories—across all your subscriptions.
+Use this query to list all active Service Health events, like service issues, planned maintenance, health advisories, and security advisories across all your subscriptions.
 
 ```kusto
 ServiceHealthResources
