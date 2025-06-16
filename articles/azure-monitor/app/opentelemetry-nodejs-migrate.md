@@ -2,7 +2,7 @@
 title: Migrating Azure Monitor Application Insights Node.js from Application Insights SDK 2.X to OpenTelemetry
 description: This article provides guidance on how to migrate from the Azure Monitor Application Insights Node.js SDK 2.X to OpenTelemetry.
 ms.topic: how-to
-ms.date: 04/16/2024
+ms.date: 07/15/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
 ms.reviewer: mmcc
