@@ -7,6 +7,9 @@ ms.date: 06/09/2025
 
 #  Configure throttling for Container Insights
 
+> [!NOTE]
+> Container Insights logs are only throttled when [Container Network Logs](https://learn.microsoft.com/azure/aks/container-network-observability-logs) are being collected. If you have not enabled the collection of Container Network Logs, throttling is not enabled on your cluster.
+
 Azure Monitor - Container Insights allow customers to collect logs generated in their Azure Kubernetes Service (AKS) cluster. Depending on workload and logging configuration, the volume of logs generated can be substantial, leading to throttling and log loss. This article discusses the default values after which logs are throttled in Container Insights. We discuss how customers can modify these values. The final section covers how you can monitor for potential throttling issues with our Quality-of-Service (QoS) Grafana dashboard.
 
 
@@ -37,7 +40,7 @@ throttle_print = false # By default is false and adjust this value to control wh
 Once you apply the configmap via kubectl apply command, the pods shall get restarted within a few minutes.  
  
  ```console
-     kubectl apply -f agent_settings.networkflow_logs_config.yaml
+kubectl apply -f agent_settings.networkflow_logs_config.yaml
  ```
 
 ## Monitor QoS metrics with Prometheus and Grafana 
@@ -55,7 +58,7 @@ The Logs add-on that collects Container Network logs publishes QoS metrics that 
  1. Download the ama-metrics-prometheus-config-node ConfigMap 
 
 ```console
-     curl -LO https://aka.ms/ama-metrics-prometheus-config-node
+curl -LO https://aka.ms/ama-metrics-prometheus-config-node
 ```
 
  2. Check if you already have an existing ama-metrics-prometheus-config-node ConfigMap via 
@@ -67,7 +70,7 @@ kubectl get cm -n kube-system | grep ama-metrics-prometheus-config-node
 If there's an existing ConfigMap, then you can add the _ama-logs-daemonset scrape_ job to the existing ConfigMap else you can apply this ConfigMap  through 
 
 ```console
- kubectl apply -f ama-metrics-prometheus-config-node.yaml 
+kubectl apply -f ama-metrics-prometheus-config-node.yaml 
 ```
 
 3. Import [Grafana dashboard JSON file](https://aka.ms/AzureMonitorContainers_NetworkFlow_Grafana) to the Azure Managed Grafana Instance. 

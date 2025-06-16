@@ -491,9 +491,20 @@ Both ARM and Bicep templates are provided in this section.
     | Arc: `workspaceRegion` | Region of the Log Analytics workspace. |
     | Arc: `workspaceDomain` | Domain of the Log Analytics workspace.<br>`opinsights.azure.com` for Azure public cloud<br>`opinsights.azure.us` for AzureUSGovernment. |
     | AKS: `resourceTagValues` | Tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will be `MSCI-<clusterName>-<clusterRegion>` and this resource created in an AKS clusters resource group. For first time onboarding, you can set arbitrary tag values. |
+   | enableContainerLogV2                    | Flag to indicate whether to use ContainerLogV2 or not.                                                                 |
+   | enableRetinaNetworkFlowLogs             | Flag to indicate whether to enable Retina Network Flow Logs or not.                                   |
+   | enableSyslog                            | Flag to indicate to enable Syslog collection or not.                                                                   |
+   | syslogLevels                            | Log levels for Syslog collection                                                                                       |
+   | syslogFacilities                        | Facilities for Syslog collection                                                                                       |
+   | dataCollectionInterval                  | Data collection interval for applicable inventory and perf data collection. Default is 1m                              |
+   | namespaceFilteringModeForDataCollection | Data collection namespace filtering mode for applicable inventory and perf data collection. Default is off             |
+   | namespacesForDataCollection             | Namespaces for data collection for applicable for inventory and perf data collection.                                  |
+   | streams                                 | Streams for data collection.  For retina networkflow logs feature, include "Microsoft-RetinaNetworkFlowLogs"           |
+   | useAzureMonitorPrivateLinkScope         | Flag to indicate whether to configure Azure Monitor Private Link Scope or not.                                         |
+   | azureMonitorPrivateLinkScopeResourceId  |  Azure Resource ID of the Azure Monitor Private Link Scope.                                                            |
 
 
-3. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
+4. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
 
 
 
