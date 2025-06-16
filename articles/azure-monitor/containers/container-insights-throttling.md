@@ -7,6 +7,9 @@ ms.date: 06/09/2025
 
 #  Configure throttling for Container Insights
 
+> [!NOTE]
+> Container Insights logs are only throttled when [Container Network Logs](https://learn.microsoft.com/azure/aks/container-network-observability-logs) are being collected. If you have not enabled the collection of Container Network Logs, throttling is not enabled on your cluster.
+
 Azure Monitor - Container Insights allow customers to collect logs generated in their Azure Kubernetes Service (AKS) cluster. Depending on workload and logging configuration, the volume of logs generated can be substantial, leading to throttling and log loss. This article discusses the default values after which logs are throttled in Container Insights. We discuss how customers can modify these values. The final section covers how you can monitor for potential throttling issues with our Quality-of-Service (QoS) Grafana dashboard.
 
 
