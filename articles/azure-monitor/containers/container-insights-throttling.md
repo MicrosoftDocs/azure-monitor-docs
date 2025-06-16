@@ -40,7 +40,7 @@ throttle_print = false # By default is false and adjust this value to control wh
 Once you apply the configmap via kubectl apply command, the pods shall get restarted within a few minutes.  
  
  ```console
-     kubectl apply -f agent_settings.networkflow_logs_config.yaml
+kubectl apply -f agent_settings.networkflow_logs_config.yaml
  ```
 
 ## Monitor QoS metrics with Prometheus and Grafana 
@@ -58,7 +58,7 @@ The Logs add-on that collects Container Network logs publishes QoS metrics that 
  1. Download the ama-metrics-prometheus-config-node ConfigMap 
 
 ```console
-     curl -LO https://aka.ms/ama-metrics-prometheus-config-node
+curl -LO https://aka.ms/ama-metrics-prometheus-config-node
 ```
 
  2. Check if you already have an existing ama-metrics-prometheus-config-node ConfigMap via 
@@ -70,7 +70,7 @@ kubectl get cm -n kube-system | grep ama-metrics-prometheus-config-node
 If there's an existing ConfigMap, then you can add the _ama-logs-daemonset scrape_ job to the existing ConfigMap else you can apply this ConfigMap  through 
 
 ```console
- kubectl apply -f ama-metrics-prometheus-config-node.yaml 
+kubectl apply -f ama-metrics-prometheus-config-node.yaml 
 ```
 
 3. Import [Grafana dashboard JSON file](https://aka.ms/AzureMonitorContainers_NetworkFlow_Grafana) to the Azure Managed Grafana Instance. 
