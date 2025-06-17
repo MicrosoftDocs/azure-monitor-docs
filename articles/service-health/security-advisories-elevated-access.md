@@ -2,7 +2,7 @@
 title: Elevated access for viewing Security Advisories
 description: This article details a change that requires users to obtain elevated access roles in order to view Security Advisory details
 ms.topic: conceptual
-ms.date: 6/16/2025
+ms.date: 6/17/2025
 ---
 
 
@@ -11,7 +11,7 @@ ms.date: 6/16/2025
 Security Advisories are a category of Azure Service Health notifications that inform users about security events—such as vulnerabilities, threats, or policy changes—that could affect their Azure workloads. <br>
 These advisories are distinct from general service issues or maintenance alerts and are displayed in the Security Advisories blade of the Azure Service Health portal.
 
-Azure [Service Health](service-health-overview.md) helps customers stay informed about security events that could affect both critical and non-critical business applications. These notifications appear in the Security Advisories section of the portal.
+Azure [Service Health](service-health-portal-update.md) helps customers stay informed about security events that could affect both critical and non-critical business applications. These notifications appear in the Security Advisories section of the portal.
 
 Each advisory typically includes four key sections:
 
@@ -19,7 +19,6 @@ Each advisory typically includes four key sections:
 - **Impacted Services** – Lists of the Azure services affected by the incident.
 - **Issue Updates** – A timeline of ongoing updates and the remediation steps.
 - **Impacted Resources** – Specific resources in your environment that are affected.
-
 
 
 
