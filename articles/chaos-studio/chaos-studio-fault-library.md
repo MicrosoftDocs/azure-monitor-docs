@@ -1958,7 +1958,7 @@ This fault has two available versions that you can use, Version 1.0 and Version 
 
 | Property | Value |
 |-|-|
-| Capability name | Version 1.0 |
+| Capability name | Shutdown-1.0 |
 | Target type | Microsoft-VirtualMachineScaleSet |
 | Supported OS types | Windows, Linux. |
 | Description | Shuts down or kills a virtual machine scale set instance during the fault and restarts the VM at the end of the fault duration or if the experiment is canceled. |
