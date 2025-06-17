@@ -53,7 +53,7 @@ The following section from [ApplicationInsights.config](configuration-with-appli
                 <!-- Telemetry processors omitted for brevity  -->
             </TelemetryProcessors>
             <TelemetryChannel Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel, Microsoft.AI.ServerTelemetryChannel">
-                <StorageFolder>d:	emp pplicationinsights</StorageFolder>
+                <StorageFolder>d:\temp\applicationinsights</StorageFolder>
             </TelemetryChannel>
         </Add>
     </TelemetrySinks>
@@ -69,7 +69,7 @@ using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
 protected void Application_Start()
 {
     var serverTelemetryChannel = new ServerTelemetryChannel();
-    serverTelemetryChannel.StorageFolder = @"d:	emp pplicationinsights";
+serverTelemetryChannel.StorageFolder = @"d:\temp\applicationinsights";
     serverTelemetryChannel.Initialize(TelemetryConfiguration.Active);
     TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 }
@@ -86,7 +86,7 @@ using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
 public void ConfigureServices(IServiceCollection services)
 {
     // This sets up ServerTelemetryChannel with StorageFolder set to a custom location.
-    services.AddSingleton(typeof(ITelemetryChannel), new ServerTelemetryChannel() {StorageFolder = @"d:	emp pplicationinsights" });
+    services.AddSingleton(typeof(ITelemetryChannel), new ServerTelemetryChannel() {StorageFolder = @"d:\temp\applicationinsights" });
 
     services.AddApplicationInsightsTelemetry();
 }
@@ -101,7 +101,7 @@ For console apps, the code is the same for both .NET and .NET Core:
 
 ```csharp
 var serverTelemetryChannel = new ServerTelemetryChannel();
-serverTelemetryChannel.StorageFolder = @"d:	emp pplicationinsights";
+serverTelemetryChannel.StorageFolder = @"d:\temp\applicationinsights";
 serverTelemetryChannel.Initialize(TelemetryConfiguration.Active);
 TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 ```
