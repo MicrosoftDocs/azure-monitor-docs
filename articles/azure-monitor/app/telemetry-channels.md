@@ -129,13 +129,20 @@ Here are the most commonly used settings for `ServerTelemetryChannel`:
 
 ## Which channel should I use?
 
-We recommend `ServerTelemetryChannel` for most production scenarios that involve long-running applications. The `Flush()` method implemented by `ServerTelemetryChannel` isn't synchronous. It also doesn't guarantee sending all pending items from memory or disk.
+We recommend `ServerTelemetryChannel` for most production scenarios that involve long-running applications. For more about flushing telemetry, [read about using `Flush()`](#when-to-use-flush).
 
-If you use this channel in scenarios where the application is about to shut down, introduce some delay after you call `Flush()`. The amount of delay depends on how many items or `Transmission` instances are in memory, how many are on disk, how many are being transmitted to the back end, and whether the channel is in the middle of exponential back-off scenarios.
 
-If you need to do a synchronous flush, use `InMemoryChannel`. This channel is designed for use in short-lived processes such as background jobs, CLI tools, or exception-handling code paths where immediate delivery is critical.
+## When to use Flush()
 
-Avoid using `Flush()` in ASP.NET Core or other long-running applications. The SDK automatically sends telemetry at regular intervals and manages buffering efficiently.
+The `Flush()` method sends any buffered telemetry immediately. However, it should only be used in specific scenarios.
+
+Use `Flush()` when:
+- The application is about to shut down and you want to ensure telemetry is sent before exit.
+- You're in an exception handler and need to guarantee telemetry is delivered.
+- You're writing a short-lived process like a background job or CLI tool that exits quickly.
+
+Avoid using `Flush()` in long-running applications such as web services. The SDK automatically manages buffering and transmission. Calling `Flush()` unnecessarily can cause performance problems and won't guarantee all data is sent, especially when using `ServerTelemetryChannel`, which doesn't flush synchronously.
+
 
 ## Open-source SDK
 
