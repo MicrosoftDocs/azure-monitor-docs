@@ -2,7 +2,7 @@
 title: Template to create Resource Health alerts
 description: Create alerts programmatically that notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 4/9/2025 
+ms.date: 6/17/2025 
 
 ---
 
@@ -22,9 +22,9 @@ To follow the instructions on this page, you need to set up a few things in adva
 2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
 
 
-## Instructions
+### Instructions for PowerShell
 
-1. Use PowerShell to log in to Azure using your account, and select the subscription you want to interact with.
+1. Use PowerShell to sign-in to Azure using your account, and select the subscription you want to interact with.
 
     ```azurepowershell
     Login-AzAccount
@@ -85,13 +85,14 @@ To follow the instructions on this page, you need to set up a few things in adva
 > If you're planning on fully automating this process, you simply need to edit the Resource Manager template to not prompt for the values in Step 5.
 
 
+
 ## Resource Manager template options for Resource Health alerts
 
 You can use this base template as a starting point for creating Resource Health alerts. This template works as written, and signs you up to receive alerts for all newly activated resource health events across all resources in a subscription.
 
 
 > [!NOTE]
-> At the bottom of this article, we included a more complex alert template which should increase the signal to noise ratio for Resource Health alerts as compared to this template.
+> At the bottom of this article, we included a more complex alert template, which should increase the signal to noise ratio for Resource Health alerts as compared to this template.
 
 ```json
 {
@@ -148,7 +149,8 @@ You can use this base template as a starting point for creating Resource Health 
 }
 ```
 
-However, a broad alert like this one is not recommended. Learn how we can scope down this alert to focus on the events we care about.
+However, a broad alert like this one isn't recommended. Learn how we can scope down this alert to focus on the events we care about.
+### [Alert scope](#tab/alertscope)
 
 ### Adjusting the alert scope
 
@@ -183,9 +185,11 @@ For example: `"/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroup
 > [!NOTE]
 > You can go to the Azure portal and look at the URL when viewing your Azure resource to get this string.
 
+### [Resource types](#tab/resourcetypes)
+
 ### Adjusting the resource types that alert you
 
-Alerts at the subscription or resource group level may have different kinds of resources. If you want to limit alerts to only come from a certain subset of resource types, you can define that in the `condition` section of the template like so:
+Alerts at the subscription or resource group level can have different kinds of resources. If you want to limit alerts to only come from a certain subset of resource types, you can define that in the `condition` section of the template like so:
 
 ```json
 "condition": {
@@ -212,11 +216,13 @@ Alerts at the subscription or resource group level may have different kinds of r
 
 Here we use the `anyOf` wrapper to allow the resource health alert to match any of the conditions we specify, allowing for alerts that target specific resource types.
 
+### [Health events](#tab/healthevents)
+
 ### Adjusting the Resource Health events that alert you
 
 When resources undergo a health event, they can go through a series of stages that represents the state of the health event: `Active`, `In Progress`, `Updated`, and `Resolved`.
 
-You may only want to be notified when a resource becomes unhealthy, in which case you want to configure your alert to only notify when the `status` is `Active`. However if you want to also be notified on the other stages, you can add those details like so:
+You might only want to be notified when a resource becomes unhealthy, in which case you want to configure your alert to only notify when the `status` is `Active`. However if you want to also be notified on the other stages, you can add those details like so:
 
 ```json
 "condition": {
@@ -249,12 +255,14 @@ You may only want to be notified when a resource becomes unhealthy, in which cas
 If you want to be notified for all four stages of health events, you can remove this condition all together, and the alert notifies you irrespective of the `status` property.
 
 > [!NOTE]
-> Each "anyOf" section should contain just one field type values.
+> Each "anyOf" section should contain just one field type value.
+
+### [Unknown events](#tab/unknownhealthevents)
 
 ### Adjusting the Resource Health alerts to avoid "Unknown" events
 
 
-Azure Resource Health can report the latest health of your resources by constantly monitoring them using test runners. The relevant reported health statuses are: "Available," "Unavailable," and "Degraded". However, in situations where the runner and the Azure resource are unable to communicate, an "Unknown" health status is reported for the resource, and that is considered an "Active" health event.
+Azure Resource Health can report the latest health of your resources by constantly monitoring them using test runners. The relevant reported health statuses are: "Available," "Unavailable," and "Degraded." However, in situations where the runner and the Azure resource are unable to communicate, an "Unknown" health status is reported for the resource, and that is considered an "Active" health event.
 
 However, when a resource reports "Unknown," it's likely that its health status is the same since the last accurate report. If you would like to eliminate alerts on "Unknown" events, you can specify that logic in the template:
 
@@ -305,13 +313,15 @@ However, when a resource reports "Unknown," it's likely that its health status i
 },
 ```
 
-In this example, we're only notifying on events where the current and previous health status doesn't have "Unknown." This change may be a useful addition if your alerts are sent directly to your mobile phone or email. 
+In this example, we're only notifying on events where the current and previous health status doesn't have "Unknown." This change could be a useful addition if your alerts are sent directly to your mobile phone or email. 
 
-It's possible for the currentHealthStatus and previousHealthStatus properties to be null in some events. For example, when an Updated event occurs it's likely that the health status of the resource is the same since the last report. Only that other event information is available (for example, the cause). Therefore, using this clause may result in some alerts not being triggered, because the properties.currentHealthStatus and properties.previousHealthStatus values will be set to null.
+It's possible for the currentHealthStatus and previousHealthStatus properties to be null in some events. For example, when an Updated event occurs it's likely that the health status of the resource is the same since the last report. Only that other event information is available (for example, the cause). Therefore, using this clause might result in some alerts not being triggered, because the properties.currentHealthStatus and properties.previousHealthStatus values are set to null.
+
+### [User initiated events](#tab/avoiduserinitiatedevents)
 
 ### Adjusting the alert to avoid user initiated events
 
-Resource Health events are triggered by platform initiated and user initiated events. It may make sense to only send a notification when the Azure platform causes the health event.
+Resource Health events are triggered by platform initiated and user initiated events. It would make sense to only send a notification when the Azure platform causes the health event.
 
 It's easy to configure your alert to filter for only these kinds of events:
 
@@ -328,11 +338,13 @@ It's easy to configure your alert to filter for only these kinds of events:
 }
 ```
 
-t's possible for the cause field to be null in some events. That is, a health transition takes place (for example, available to unavailable) and the event is logged immediately to prevent notification delays. Therefore, using this clause may result in an alert not being triggered, because the properties.cause property value are set to null.
+t's possible for the cause field to be null in some events. That is, a health transition takes place (for example, available to unavailable) and the event is logged immediately to prevent notification delays. Therefore, using this clause could result in an alert not being triggered, because the properties.cause property value is set to null.
+
+### [Resource Health alert template](#tab/completetemplate)
 
 ## Complete Resource Health alert template
 
-When you use the different adjustments described in the previous section, here's a sample template that is configured to maximize the signal to noise ratio. Bear in mind the caveats noted where the currentHealthStatus, previousHealthStatus, and cause property values may be null in some events.
+When you use the different adjustments described in the previous section, here's a sample template that is configured to maximize the signal to noise ratio. Bear in mind the caveats noted where the currentHealthStatus, previousHealthStatus, and cause property values can be null in some events.
 
 
 ```json
@@ -457,7 +469,7 @@ When you use the different adjustments described in the previous section, here's
 }
 ```
 
-However, you know best what configurations are effective for you, so use the tools taught to you in this documentation to make your own customization.
+You know best what configurations are effective for you, so use the tools taught to you in this documentation to make your own customization.
 
 ## Next steps
 
