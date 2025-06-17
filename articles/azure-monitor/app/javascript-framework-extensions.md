@@ -130,6 +130,13 @@ npm install @microsoft/applicationinsights-angularplugin-js
 
 Initialize a connection to Application Insights:
 
+> [!NOTE]
+> If you're using history version 5 or later, the basename option is no longer supported in createBrowserHistory.
+>
+> Instead of `const browserHistory = createBrowserHistory({ basename: '' });`, use `const browserHistory = createBrowserHistory();`.
+>
+> To check which version of history you're using, run `npm list history`.
+
 ```javascript
 import React from 'react';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
