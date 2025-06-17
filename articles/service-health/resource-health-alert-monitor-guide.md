@@ -7,7 +7,7 @@ ms.date: 6/17/2025
 
 # Resource Health alerts 
 
-Resource Health alerts in Azure Service Health are a proactive monitoring feature that notifies you when the health status of individual Azure resources—such as virtual machines, storage accounts, or web apps—changes. 
+Resource Health alerts in Azure Service Health are a proactive monitoring feature that notifies you when the health status of individual Azure resources such as virtual machines, storage accounts, or web apps change.<br>
 These alerts are distinct from general Service Health alerts, which focus on broader platform-level issues. 
 
 
@@ -15,10 +15,10 @@ These alerts are distinct from general Service Health alerts, which focus on bro
 
 Resource Health alerts are created when the health status of a specific Azure resource changes. The statuses include:
 
-**Available** – The resource is healthy and operating normally.
-**Unavailable** – The resource is down or unreachable.
-**Degraded** – The resource is experiencing performance or connectivity issues.
-**Unknown** – Azure is unable to determine the health of the resource 1 2.
+**Available** – The resource is healthy and operating normally.<br>
+**Unavailable** – The resource is down or unreachable.<br>
+**Degraded** – The resource is experiencing performance or connectivity issues.<br>
+**Unknown** – Azure is unable to determine the health of the resource.
 
 Unlike Service Health alerts, which are tied to known platform-wide issues (like regional outages), Resource Health alerts are resource-specific and can detect issues even when no broader Azure incident is occurring. For more information, see [Resource Health overview](resource-health-overview.md)
 

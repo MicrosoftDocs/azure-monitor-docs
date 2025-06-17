@@ -8,11 +8,10 @@ ms.date: 6/17/2025
 
 # Create and configure Resource Health alerts 
 
-This article shows you how to create Resource Health activity Log Alerts in the Service Health portal and using Azure Resource Manager templates and Azure PowerShell.
+This article shows you how to create Resource Health activity Log Alerts in the Service Health portal, using Azure Resource Manager templates, or in Azure PowerShell.
 
-Azure Resource Health keeps you informed about the current and historical health status of your Azure resources. Azure Resource Health alerts can notify you in near real-time when these resources have a change in their health status. Creating Resource Health alerts programmatically allow for users to create and customize alerts in bulk.
+Azure Resource Health keeps you informed about the current and historical health status of your Azure resources. <br>Azure Resource Health alerts can notify you in near real-time when these resources have a change in their health status. Creating Resource Health alerts in the methods described in this article helps users to create and customize alerts in bulk.
 
-[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 ### [Azure portal](#tab/azureportal)
 
@@ -39,6 +38,8 @@ Azure Resource Health keeps you informed about the current and historical health
 ### [PowerShell](#tab/powershell)
 
 ### Using PowerShell
+
+[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 To follow the instructions on this page, you need to set up a few things in advance:
 
@@ -367,7 +368,7 @@ t's possible for the cause field to be null in some events. That is, a health tr
 
 ## Complete Resource Health alert template
 
-When you use the different adjustments described in the previous section, here's a sample template that is configured to maximize the signal to noise ratio. Bear in mind the caveats noted where the currentHealthStatus, previousHealthStatus, and cause property values can be null in some events.
+If you use the different adjustments described in the previous section, here's a sample template that is configured to maximize the signal to noise ratio. Bear in mind the caveats noted where the currentHealthStatus, previousHealthStatus, and cause property values can be null in some events.
 
 
 ```json
