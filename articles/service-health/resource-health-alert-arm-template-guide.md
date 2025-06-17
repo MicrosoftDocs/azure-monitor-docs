@@ -65,7 +65,7 @@ To follow the instructions on this page, you need to set up a few things in adva
     ```
 
 
-3. Create and save a Resource Manager template for Resource Health alerts as `resourcehealthalert.json` ([see details](##Create-Resource-health-alerts-using-template-options))
+3. Create and save a Resource Manager template for Resource Health alerts as `resourcehealthalert.json` ([see details](#create-resource-health-alerts-using-template-options))
 
 
 1. Create a new Azure Resource Manager deployment using this template.
