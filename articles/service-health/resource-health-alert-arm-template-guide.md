@@ -14,7 +14,31 @@ Azure Resource Health keeps you informed about the current and historical health
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
-## Prerequisites
+### [Azure portal](#tab/azureportal)
+
+## Create a Resource Health alert rule in the Azure portal
+
+1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
+
+
+
+    ![Service Health Selection](./media/resource-health-alert-monitor-guide/service-health-selection-1.png)
+
+ 
+1. Select **Resource Health**.
+
+     ![Resource Health Selection](./media/alerts-activity-log-service-notifications/resource-health-select.png)
+   
+1. Select **Add resource health alert**.
+   
+
+1. The **Create an alert rule** wizard opens the **Condition** tab, with the **Scope** tab already populated. 
+
+1. Follow the steps to create Resource Health alerts, starting from the **Condition** tab, in the [Alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
+
+### [PowerShell](#tab/powershell)
+
+### Using PowerShell
 
 To follow the instructions on this page, you need to set up a few things in advance:
 
@@ -83,8 +107,6 @@ To follow the instructions on this page, you need to set up a few things in adva
 
 > [!NOTE]   
 > If you're planning on fully automating this process, you simply need to edit the Resource Manager template to not prompt for the values in Step 5.
-
-
 
 ## Resource Manager template options for Resource Health alerts
 
@@ -471,6 +493,7 @@ When you use the different adjustments described in the previous section, here's
 ```
 
 You know best what configurations are effective for you, so use the tools taught to you in this documentation to make your own customization.
+
 
 ## Next steps
 
