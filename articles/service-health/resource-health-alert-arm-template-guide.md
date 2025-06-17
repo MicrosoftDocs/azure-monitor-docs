@@ -13,7 +13,7 @@ This article shows you how to create Resource Health activity Log Alerts in the 
 Azure Resource Health keeps you informed about the current and historical health status of your Azure resources. <br>Azure Resource Health alerts can notify you in near real-time when these resources have a change in their health status. Creating Resource Health alerts in the methods described in this article helps users to create and customize alerts in bulk.
 
 
-### [Azure portal](#tab/azureportal)
+
 
 ## Create a Resource Health alert rule in the Service Health portal
 
@@ -35,9 +35,11 @@ Azure Resource Health keeps you informed about the current and historical health
 
 1. Follow the steps to create Resource Health alerts, starting from the **Condition** tab, in the [Alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
 
+
+## Create a Resource Health alert using PowerShell
+
 ### [PowerShell](#tab/powershell)
 
-### Using PowerShell
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
@@ -47,7 +49,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
 
 
-### Instructions for PowerShell
+#### Instructions for PowerShell
 
 1. Use PowerShell to sign-in to Azure using your account, and select the subscription you want to use.
 
@@ -109,7 +111,8 @@ To follow the instructions on this page, you need to set up a few things in adva
 > [!NOTE]   
 > If you're planning on fully automating this process, you simply need to edit the Resource Manager template to not prompt for the values in Step 5.
 
-## Resource Manager template options for Resource Health alerts
+
+## Create Resource health alerts using template options
 
 ### [Base template](#tab/basetemplate)
 You can use this base template as a starting point for creating Resource Health alerts. This template works as written, and signs you up to receive alerts for all newly activated resource health events across all resources in a subscription.
@@ -494,7 +497,7 @@ If you use the different adjustments described in the previous section, here's a
 }
 ```
 
-You know best what configurations are effective for you, so use the tools taught to you in this documentation to make your own customization.
+You know best what configurations are effective for you, so use the tools shown to you in this documentation to make your own customization.
 
 
 
