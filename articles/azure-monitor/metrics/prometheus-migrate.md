@@ -103,6 +103,19 @@ If you are using Grafana, [Connect Grafana to Azure Monitor Prometheus metrics](
 If you are using the Azure Managed Grafana or Azure Monitor dashboards with Grafana, default/recommended dashboards are automatically setup and provisioned to enable you to visualize the metrics from the get go. Review the list of automatically provisioned dashboards here.
 
 ## 5. Test and validate
+1. Verify if you are able to query metrics from Azure Monitor Workspace. You can query the metrics directly from the workspace (In the Azure portal, select the AMW instance -> Metrics) or through Azure managed Grafana instance connected to the workspace.
+2. You can access the Prometheus interface for Azure Managed Prometheus to verify jobs/targets scraped: [See Access Prometheus interface for Azure Managed Prometheus](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-troubleshoot#prometheus-interface).
+3. Check alerting workflows and ensure that they trigger appropriately.
+4. For remote-write, [verify remote-write deployment](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-remote-write-virtual-machines?tabs=managed-identity%2Cprom-vm#verify-that-remote-write-data-is-flowing).
+5. For more troubleshooting guidance, see [Troubleshoot collection of Prometheus metrics in Azure Monitor](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-troubleshoot).
 
+## 6. Monitor limits and quotas
+Prometheus metrics are ingested into an Azure Monitor workspace. Azure monitor workspaces have default limits and quotas for ingestion. As you onboard more clusters, you might reach the ingestion limits, and throttling can occur. In order to avoid throttling, [monitor and alert on the workspace ingestion limits](https://learn.microsoft.com/azure/azure-monitor/metrics/azure-monitor-workspace-monitor-ingest-limits).
+
+
+## Next steps
+
+- Review [best practices for scaling Azure Monitor Workspace](https://learn.microsoft.com/azure/azure-monitor/metrics/azure-monitor-workspace-scaling-best-practice).
+- [Enable Managed Prometheus for AKS/ARC-enabled clusters](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli).
 
 
