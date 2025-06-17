@@ -4,7 +4,7 @@ description: Create a custom table with the Auxiliary table plan in your Log Ana
 ms.reviewer: adi.biran
 ms.custom: references_regions
 ms.topic: how-to 
-ms.date: 07/21/2024
+ms.date: 06/16/2025
 # Customer intent: As a Log Analytics workspace administrator, I want to create a custom table with the Auxiliary table plan, so that I can ingest and retain data at a low cost for auditing and compliance.
 ---
 
@@ -76,7 +76,7 @@ Provide this payload as the body of your request. Update the table name and adju
                 },
                  {
                     "name": "GuidProperty",
-                    "type": "real"
+                    "type": "guid"
                 },
                  {
                     "name": "DateTimeProperty",
@@ -222,11 +222,6 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
     
     1. [Grant your application permission to use your DCR](tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
 
-    > [!NOTE]
-    > A data collection rule that sends data to a table with an Auxiliary plan:
-    >
-    > * Can only send data to a single table.
-    > * Can't include a [transformation](../data-collection/data-collection-transformations.md).
 
 
 ## Next steps
