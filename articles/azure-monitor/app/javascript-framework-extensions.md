@@ -54,19 +54,12 @@ The React plug-in for the Application Insights JavaScript SDK enables:
 The React Native plugin for Application Insights JavaScript SDK enables: 
 
 * Track exceptions.
-
-* Collect device information.
-
-    By default, this plugin automatically collects:
-    
+* Collect device information. By default, this plugin automatically collects:
     * **Unique Device ID** (Also known as Installation ID.)
     * **Device Model Name** (Such as iPhone XS, Samsung Galaxy Fold, Huawei P30 Pro etc.)
     * **Device Type** (For example, handset, tablet, etc.)
-
 * Disable automatic device info collection.
-
 * Use your own device info collection class.
-
 * Override the device information.
 
 ### [Angular](#tab/angular)
@@ -273,7 +266,7 @@ appInsights.loadAppInsights();
 Set up an instance of Application Insights in the entry component in your app:
 
 > [!IMPORTANT]
-> When using the ErrorService, there is an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. You must include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service will not be sent.
+> When using the ErrorService, there's an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. You must include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service won't be sent.
 
 ```js
 import { Component } from '@angular/core';
@@ -446,7 +439,7 @@ appInsights.loadAppInsights();
 To track uncaught exceptions, set up ApplicationinsightsAngularpluginErrorService in `app.module.ts`:
 
 > [!IMPORTANT]
-> When using the ErrorService, there is an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. you MUST include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service will not be sent.
+> When using the ErrorService, there's an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. you MUST include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service won't be sent.
 
 ```js
 import { ApplicationinsightsAngularpluginErrorService } from '@microsoft/applicationinsights-angularplugin-js';
@@ -504,6 +497,7 @@ The device information, which includes Browser, OS, version, and language, is al
 #### [React Native](#tab/reactnative)
 
 * **React Native Plugin**: In addition to user agent info from the browser, which is collected by Application Insights web package, React Native also collects device information. Device information is automatically collected when you add the plug-in.
+
 * **React Native Manual Device Plugin**: Depending on how you configured the plugin when you added the extension to your code, this plugin either:
     * Doesn't collect device information.
     * Uses your own device info collection class.
@@ -562,7 +556,7 @@ It can take up to 10 minutes for new custom metrics to appear in the Azure porta
 
 #### Use Application Insights with React Context
 
-We provide general hooks to allow you to customize the change tracking for individual components. Alternatively, you can use [useTrackMetric](#usetrackmetric) or [useTrackEvent](#usetrackevent), which are pre-defined contacts we provide for tracking the changes to components.
+We provide general hooks to allow you to customize the change tracking for individual components. Alternatively, you can use [useTrackMetric](#usetrackmetric) or [useTrackEvent](#usetrackevent), which are predefined contacts we provide for tracking the changes to components.
 
 The React Hooks for Application Insights are designed to use [React Context](https://react.dev/learn/passing-data-deeply-with-context) as a containing aspect for it. To use Context, initialize Application Insights, and then import the Context object:
 
@@ -742,14 +736,14 @@ export interface IDeviceInfoModule {
      * When a promise is returned, the plugin will "wait" for the promise to `resolve` or `reject`
      * before processing any events. This WILL cause telemetry to be BLOCKED until either of these
      * states, so when returning a Promise, it MUST `resolve` or `reject`. Tt can't just never resolve.
-     * There is a default timeout configured via `uniqueIdPromiseTimeout` to automatically unblock
+     * There's a default timeout configured via `uniqueIdPromiseTimeout` to automatically unblock
      * event processing when this issue occurs.
      */
     getUniqueId: () => Promise<string> | string;
 }
 ```
 
-If events are getting "blocked" because the `Promise` returned via `getUniqueId` is never resolved / rejected, you can call `setDeviceId()` on the plugin to "unblock" this waiting state. There is also an automatic timeout configured via `uniqueIdPromiseTimeout` (defaults to 5 seconds), which will internally call `setDeviceId()` with any previously configured value.
+If events are getting "blocked" because the `Promise` returned via `getUniqueId` is never resolved / rejected, you can call `setDeviceId()` on the plugin to "unblock" this waiting state. There's also an automatic timeout configured via `uniqueIdPromiseTimeout` (defaults to 5 seconds), which will internally call `setDeviceId()` with any previously configured value.
 
 #### [Angular](#tab/angular)
 
