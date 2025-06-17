@@ -995,7 +995,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 | --- | --- |
-| Capability name | DisableAutoscale |
+| Capability name | DisableAutoscale-1.0 |
 | Target type | Microsoft-AutoscaleSettings |
 | Description | Disables the [autoscale service](/azure/azure-monitor/autoscale/autoscale-overview). When autoscale is disabled, resources such as virtual machine scale sets, web apps, service bus, and [more](/azure/azure-monitor/autoscale/autoscale-overview#supported-services-for-autoscale) aren't automatically added or removed based on the load of the application. |
 | Prerequisites | The autoScalesetting resource that's enabled on the resource must be onboarded to Chaos Studio. |
@@ -1958,7 +1958,7 @@ This fault has two available versions that you can use, Version 1.0 and Version 
 
 | Property | Value |
 |-|-|
-| Capability name | Version 1.0 |
+| Capability name | Shutdown-1.0 |
 | Target type | Microsoft-VirtualMachineScaleSet |
 | Supported OS types | Windows, Linux. |
 | Description | Shuts down or kills a virtual machine scale set instance during the fault and restarts the VM at the end of the fault duration or if the experiment is canceled. |
