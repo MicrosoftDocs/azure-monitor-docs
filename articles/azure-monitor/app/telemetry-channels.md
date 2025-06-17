@@ -2,7 +2,7 @@
 title: Telemetry channels in Application Insights | Microsoft Docs
 description: How to customize telemetry channels in Application Insights SDKs for .NET and .NET Core.
 ms.topic: how-to
-ms.date: 3/21/2025
+ms.date: 7/17/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
 ms.reviewer: mmcc
@@ -19,6 +19,8 @@ Telemetry channels are an integral part of the [Application Insights SDKs](./app
 Telemetry channels are responsible for buffering telemetry items and sending them to the Application Insights service, where they're stored for querying and analysis. A telemetry channel is any class that implements the [`Microsoft.ApplicationInsights.ITelemetryChannel`](/dotnet/api/microsoft.applicationinsights.channel.itelemetrychannel) interface.
 
 The `Send(ITelemetry item)` method of a telemetry channel is called after all telemetry initializers and telemetry processors are called. So, any items dropped by a telemetry processor won't reach the channel. The `Send()` method doesn't ordinarily send the items to the back end instantly. Typically, it buffers them in memory and sends them in batches for efficient transmission.
+
+Avoid calling `Flush()` unless it's critical to send buffered telemetry immediately. Use it only in scenarios like application shutdown, exception handling, or when using short-lived processes such as background jobs or command-line tools. In web applications or long-running services, the SDK handles telemetry sending automatically. Calling `Flush()` unnecessarily can cause performance problems.
 
 [Live Metrics Stream](live-stream.md) also has a custom channel that powers the live streaming of telemetry. This channel is independent of the regular telemetry channel, and this document doesn't apply to it.
 
@@ -51,7 +53,7 @@ The following section from [ApplicationInsights.config](configuration-with-appli
                 <!-- Telemetry processors omitted for brevity  -->
             </TelemetryProcessors>
             <TelemetryChannel Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel, Microsoft.AI.ServerTelemetryChannel">
-                <StorageFolder>d:\temp\applicationinsights</StorageFolder>
+                <StorageFolder>d:	emp pplicationinsights</StorageFolder>
             </TelemetryChannel>
         </Add>
     </TelemetrySinks>
@@ -67,7 +69,7 @@ using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
 protected void Application_Start()
 {
     var serverTelemetryChannel = new ServerTelemetryChannel();
-    serverTelemetryChannel.StorageFolder = @"d:\temp\applicationinsights";
+    serverTelemetryChannel.StorageFolder = @"d:	emp pplicationinsights";
     serverTelemetryChannel.Initialize(TelemetryConfiguration.Active);
     TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 }
@@ -84,11 +86,10 @@ using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
 public void ConfigureServices(IServiceCollection services)
 {
     // This sets up ServerTelemetryChannel with StorageFolder set to a custom location.
-    services.AddSingleton(typeof(ITelemetryChannel), new ServerTelemetryChannel() {StorageFolder = @"d:\temp\applicationinsights" });
+    services.AddSingleton(typeof(ITelemetryChannel), new ServerTelemetryChannel() {StorageFolder = @"d:	emp pplicationinsights" });
 
     services.AddApplicationInsightsTelemetry();
 }
-
 ```
 
 > [!IMPORTANT]
@@ -100,7 +101,7 @@ For console apps, the code is the same for both .NET and .NET Core:
 
 ```csharp
 var serverTelemetryChannel = new ServerTelemetryChannel();
-serverTelemetryChannel.StorageFolder = @"d:\temp\applicationinsights";
+serverTelemetryChannel.StorageFolder = @"d:	emp pplicationinsights";
 serverTelemetryChannel.Initialize(TelemetryConfiguration.Active);
 TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 ```
@@ -111,7 +112,7 @@ TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 
 By default, a maximum of 10 `Transmission` instances can be sent in parallel. If telemetry is arriving at faster rates, or if the network or the Application Insights back end is slow, `Transmission` instances are stored in memory. The default capacity of this in-memory `Transmission` buffer is 5 MB. When the in-memory capacity has been exceeded, `Transmission` instances are stored on local disk up to a limit of 50 MB.
 
-`Transmission` instances are stored on local disk also when there are network problems. Only those items that are stored on a local disk survive an application crash. They're sent whenever the application starts again. If network issues persist, `ServerTelemetryChannel` will use an exponential backoff logic ranging from 10 seconds to 1 hour before retrying to send telemetry.
+`Transmission` instances are stored on local disk also when there are network problems. Only those items that are stored on a local disk survive an application crash. They're sent whenever the application starts again. If network issues persist, `ServerTelemetryChannel` uses an exponential backoff logic ranging from 10 seconds to 1 hour before retrying to send telemetry.
 
 ## Configurable settings in channels
 
@@ -130,11 +131,14 @@ Here are the most commonly used settings for `ServerTelemetryChannel`:
 
 We recommend `ServerTelemetryChannel` for most production scenarios that involve long-running applications. The `Flush()` method implemented by `ServerTelemetryChannel` isn't synchronous. It also doesn't guarantee sending all pending items from memory or disk.
 
-If you use this channel in scenarios where the application is about to shut down, introduce some delay after you call `Flush()`. The exact amount of delay that you might require isn't predictable. It depends on factors like how many items or `Transmission` instances are in memory, how many are on disk, how many are being transmitted to the back end, and whether the channel is in the middle of exponential back-off scenarios.
+If you use this channel in scenarios where the application is about to shut down, introduce some delay after you call `Flush()`. The amount of delay depends on how many items or `Transmission` instances are in memory, how many are on disk, how many are being transmitted to the back end, and whether the channel is in the middle of exponential back-off scenarios.
 
-If you need to do a synchronous flush, use `InMemoryChannel`.
+If you need to do a synchronous flush, use `InMemoryChannel`. This channel is designed for use in short-lived processes such as background jobs, CLI tools, or exception-handling code paths where immediate delivery is critical.
+
+Avoid using `Flush()` in ASP.NET Core or other long-running applications. The SDK automatically sends telemetry at regular intervals and manages buffering efficiently.
 
 ## Open-source SDK
+
 Like every SDK for Application Insights, channels are open source. Read and contribute to the code or report problems at [the official GitHub repo](https://github.com/Microsoft/ApplicationInsights-dotnet).
 
 ## Next steps
@@ -142,4 +146,3 @@ Like every SDK for Application Insights, channels are open source. Read and cont
 * To review frequently asked questions (FAQ), see [Telemetry channels FAQ](application-insights-faq.yml#telemetry-channels)
 * [Sampling](./sampling.md)
 * [SDK troubleshooting](./asp-net-troubleshoot-no-data.md)
-
