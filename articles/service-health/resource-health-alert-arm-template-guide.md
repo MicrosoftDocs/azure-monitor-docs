@@ -88,6 +88,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 
 ## Resource Manager template options for Resource Health alerts
 
+### [Base template](#tab/basetemplate)
 You can use this base template as a starting point for creating Resource Health alerts. This template works as written, and signs you up to receive alerts for all newly activated resource health events across all resources in a subscription.
 
 
