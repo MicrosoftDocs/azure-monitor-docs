@@ -38,8 +38,6 @@ Azure Resource Health keeps you informed about the current and historical health
 
 ## Create a Resource Health alert using PowerShell
 
-### [PowerShell](#tab/powershell)
-
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
@@ -67,7 +65,7 @@ To follow the instructions on this page, you need to set up a few things in adva
     ```
 
 
-3. Create and save a Resource Manager template for Resource Health alerts as `resourcehealthalert.json` ([see details](#resource-manager-template-options-for-resource-health-alerts))
+3. Create and save a Resource Manager template for Resource Health alerts as `resourcehealthalert.json` ([see details](#Create-Resource-health-alerts-using-template-options))
 
 
 1. Create a new Azure Resource Manager deployment using this template.
@@ -110,6 +108,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 
 > [!NOTE]   
 > If you're planning on fully automating this process, you simply need to edit the Resource Manager template to not prompt for the values in Step 5.
+
 
 
 ## Create Resource health alerts using template options
@@ -370,7 +369,7 @@ It's possible for the cause field to be null in some events. That is if a health
 
 ### [Resource Health alert template](#tab/completetemplate)
 
-## Complete Resource Health alert template
+### Complete Resource Health alert template
 
 If you use the different adjustments described in the previous section, here's a sample template that is configured to maximize the signal to noise ratio. Bear in mind the caveats noted where the `currentHealthStatus`, `previousHealthStatus`, and cause property values can be null in some events.
 
