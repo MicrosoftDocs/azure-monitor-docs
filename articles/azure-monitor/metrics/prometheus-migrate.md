@@ -99,7 +99,7 @@ Note that with the managed add-on, recommended recording rules are automatically
 In addition, Prometheus community recommended alerts are also available and can be created out-of-box.
 
 ### Dashboards
-If you are using Grafana, [Connect Grafana to Azure Monitor Prometheus metrics](prometheus-grafana.md). You can reuse existing dashboards by [importing them to Grafana](/azure/managed-grafana/how-to-create-dashboard.md#import-a-grafana-dashboard).
+If you are using Grafana, [Connect Grafana to Azure Monitor Prometheus metrics](prometheus-grafana.md). You can reuse existing dashboards by [importing them to Grafana](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard).
 If you are using the Azure Managed Grafana or Azure Monitor dashboards with Grafana, default/recommended dashboards are automatically setup and provisioned to enable you to visualize the metrics from the get go. Review the list of automatically provisioned dashboards here.
 
 ## 5. Test and validate
