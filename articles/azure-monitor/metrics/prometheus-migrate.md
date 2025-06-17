@@ -21,7 +21,7 @@ Azure Monitor’s managed service for Prometheus enables users to leverage Prome
 - Out-of-the-box dashboards, alerts, and scrape configurations
 - Native integration with key AKS components viz. Customer Control Plane, ACNS, etc.
 - [Compliance with Azure Trust Center](azure-monitor-workspace-overview.md#data-considerations)
-1. Native integration with other Azure services, such as  [Azure Managed Grafana](/azure/managed-grafana/overview) or [Azure Monitor Dashboards with Grafana](../visualize/visualize-use-grafana-dashboards) for dashboarding
+1. Native integration with other Azure services, such as  [Azure Managed Grafana](/azure/managed-grafana/overview) or [Azure Monitor Dashboards with Grafana](../visualize/visualize-use-grafana-dashboards.md) for dashboarding
 
 ## Introduction to key concepts
 
@@ -29,7 +29,7 @@ Azure Monitor’s managed service for Prometheus enables users to leverage Prome
   - **A fully managed service or drop-in replacement for self-managed Prometheus**: In this case data is collected by a managed add-on within your AKS or ARC-enabled K8S cluster. Data collection can be configured using Custom resources (Pod and service monitors) and/or the add-on ConfigMaps. The format of the pod/service monitors and ConfigMaps are same as open-source Prometheus, enabling you to use existing configs directly with Azure Managed Prometheus.
   - **A remote-write target**: You can use Prometheus remote_write to send metrics from your existing Prometheus server running in Azure or non-Azure environments to send data to Azure Monitor Workspace. This can be ideal for gradual migration from self-hosted to the fully managed add-on.
 
-- [**Metric collection**] **Prometheus Operator and Custom Resource Definitions**: [Enabling Managed Prometheus add-on](../containers/kubernetes-monitoring-enable) in an AKS cluster will deploy the [Pod](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.PodMonitor) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.ServiceMonitor) custom resource definitions to allow you to create your own custom resources. Customers can customize scraping targets using Pod Monitors and Service Monitors, similar to the OSS Prometheus Operator. Note: Currently PrometheusRule CRD is not supported with Azure Managed Prometheus.
+- [**Metric collection**] **Prometheus Operator and Custom Resource Definitions**: [Enabling Managed Prometheus add-on](../containers/kubernetes-monitoring-enable.md) in an AKS cluster will deploy the [Pod](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.PodMonitor) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.ServiceMonitor) custom resource definitions to allow you to create your own custom resources. Customers can customize scraping targets using Pod Monitors and Service Monitors, similar to the OSS Prometheus Operator. Note: Currently PrometheusRule CRD is not supported with Azure Managed Prometheus.
 
 - [**Storage**] **Data is stored in Azure Monitor Workspace**: Prometheus metrics are stored in [Azure Monitor workspace (AMW)](azure-monitor-workspace-overview.md), which is a unique environment for data collected by Azure Monitor. Each workspace has its own data repository, configuration, and permissions. Data is stored for 18 months. *Note: Log Analytics workspaces contain logs and metrics data from multiple Azure resources, whereas Azure Monitor workspaces currently contain only metrics related to Prometheus. Azure Monitor workspaces will eventually contain all metric data collected by Azure Monitor.*
 
@@ -107,7 +107,7 @@ If you are using the Azure Managed Grafana or Azure Monitor dashboards with Graf
 2. You can access the Prometheus interface for Azure Managed Prometheus to verify jobs/targets scraped: [See Access Prometheus interface for Azure Managed Prometheus](../containers/prometheus-metrics-troubleshoot.md#prometheus-interface).
 3. Check alerting workflows and ensure that they trigger appropriately.
 4. For remote-write, [verify remote-write deployment](./prometheus-remote-write-virtual-machines.md#verify-that-remote-write-data-is-flowing).
-5. For more troubleshooting guidance, see [Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot).
+5. For more troubleshooting guidance, see [Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot.md).
 
 ## 6. Monitor limits and quotas
 Prometheus metrics are ingested into an Azure Monitor workspace. Azure monitor workspaces have default limits and quotas for ingestion. As you onboard more clusters, you might reach the ingestion limits, and throttling can occur. In order to avoid throttling, [monitor and alert on the workspace ingestion limits](azure-monitor-workspace-monitor-ingest-limits.md).
