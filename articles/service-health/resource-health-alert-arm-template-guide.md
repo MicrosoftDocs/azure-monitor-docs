@@ -496,7 +496,7 @@ If you use the different adjustments described in the previous section, here's a
 
 You know best what configurations are effective for you, so use the tools taught to you in this documentation to make your own customization.
 
-```
+
 
 ## Next steps
 
