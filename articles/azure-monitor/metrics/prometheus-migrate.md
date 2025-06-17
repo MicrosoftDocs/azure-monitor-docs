@@ -63,8 +63,46 @@ Before migration, review your self-hosted Prometheus stack:
   - Active data sources and exporters
   - Dashboards
  
+This assessment will help identify any customizations requiring attention during migration.
 
+## 2. Setup Azure Monitor environment
 
+### Setting up Azure Managed Prometheus via managed add-on
+[Enable Managed Prometheus for your AKS or ARC-enabled cluster](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli): This will enable the managed Prometheus add-on for your AKS cluster, and provision Azure Monitor Workspace and, you can optionally enable Azure Managed Grafana.
+
+### Setting up Azure Managed Prometheus via remote-write
+
+1. [Create an Azure Monitor Workspace](https://learn.microsoft.com/azure/azure-monitor/metrics/azure-monitor-workspace-manage?tabs=azure-portal): Create an Azure Monitor Workspace as the remote endpoint to send metrics from your Prometheus setup using remote-write.
+2. [Configure remote-write](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-remote-write-virtual-machines?tabs=managed-identity%2Cprom-vm) in your Prometheus setup to send data to Azure Monitor Workspace.
+
+## 3. Configure metrics collection and exporters
+
+### Configuring data collection with managed add-on
+
+1. Review the default data/metrics collected by the managed add-on: [Default Prometheus metrics configuration in Azure Monitor](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-default). Note that the predefined targets that you can enable/disable are the same as those available with the open-source Prometheus operator, the only difference is that by default we collect metrics that are queried by the auto-provisioned dashboards. The default metrics collected are also referred to as “minimal ingestion profile”.
+2. Customize data collection: To customize the targets scraped using the add-on, you can configure the data collection [using the add-on ConfigMap](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-validate) or [using Custom resources (Pod and Service Monitors)](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-crd). 
+  - If you are using Pod Monitor and Service Monitors to monitor your workloads, you can easily migrate them to Azure Managed Prometheus by changing the apiVersion in the Pod/Service Monitors to **azmonitoring.coreos.com/v1**.
+  - The Azure Managed Prometheus add-on ConfigMap follows the same format as open-source Prometheus, so in case you have an existing Prometheus config yaml file, you can convert them into add-on ConfigMap. See [here](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-validate#deploy-config-file-as-configmap) for more details.
+3. Review the list of [commonly used workloads](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-exporters) that have curated configurations and instructions to help you set up metrics collection with Azure Managed Prometheus.
+
+### Configuring data collection with remote-write
+Prometheus remote-write configuration allows you to forward scraped metrics to Azure Monitor Workspace. You can configure filtering or relabeling before sending metrics. See [Prometheus remote-write configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) for more details.
+Also consider [Remote write tuning](https://prometheus.io/docs/practices/remote_write/) to adjust configuration settings for better performance. Consider reducing max_shards and increasing capacity and max_samples_per_send to avoid memory issues. 
+
+## 4. Migrate alerts and dashboards
+
+### Alerting Rules and recording rules
+Azure Managed Prometheus supports Prometheus alerting rules and recording rules via Prometheus Rule Groups. [Convert your existing rules to a Prometheus Rule group ARM template](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-rule-groups#converting-prometheus-rules-file-to-a-prometheus-rule-group-arm-template).
+
+Note that with the managed add-on, recommended recording rules are automatically setup as you enable Managed Prometheus for the AKS / ARC-enabled cluster. Review the list of automatically provisioned recording rules [here](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-default#recording-rules).
+
+In addition, Prometheus community recommended alerts are also available and can be created out-of-box.
+
+### Dashboards
+If you are using Grafana, [Connect Grafana to Azure Monitor Prometheus metrics](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-grafana?tabs=azure-managed-grafana). You can reuse existing dashboards by [importing them to Grafana](https://learn.microsoft.com/azure/managed-grafana/how-to-create-dashboard?tabs=azure-portal#import-a-grafana-dashboard).
+If you are using the Azure Managed Grafana or Azure Monitor dashboards with Grafana, default/recommended dashboards are automatically setup and provisioned to enable you to visualize the metrics from the get go. Review the list of automatically provisioned dashboards here.
+
+## 5. Test and validate
 
 
 
