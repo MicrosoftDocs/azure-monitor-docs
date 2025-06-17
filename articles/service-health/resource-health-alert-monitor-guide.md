@@ -38,6 +38,8 @@ To learn more about action groups, see [Azure Monitor action groups](../azure-mo
 
 For information on how to configure resource health notification alerts by using Azure Resource Manager templates, see [Resource Manager templates](./resource-health-alert-arm-template-guide.md).
 
+### [Azure portal](#tab/azureportal)
+
 ## Create a Resource Health alert rule in the Azure portal
 
 1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
@@ -58,7 +60,77 @@ For information on how to configure resource health notification alerts by using
 
 1. Follow the steps to create Resource Health alerts, starting from the **Condition** tab, in the [Alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
 
+### [PowerShell](#tab/powershell)
 
+### Using PowerShell
+
+To follow the instructions on this page, you need to set up a few things in advance:
+
+1. You need to install the [Azure PowerShell module](/powershell/azure/install-azure-powershell).
+2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
+
+
+### Instructions for PowerShell
+
+1. Use PowerShell to sign-in to Azure using your account, and select the subscription you want to interact with.
+
+    ```azurepowershell
+    Login-AzAccount
+    Select-AzSubscription -Subscription <subscriptionId>
+    ```
+    > [!NOTE]
+    > You can use `Get-AzSubscription` to list the subscriptions you have access to.
+
+1. Find and save the full Azure Resource Manager ID for your Action Group.
+
+    ```azurepowershell
+    (Get-AzActionGroup -ResourceGroupName <resourceGroup> -Name <actionGroup>).Id
+    ```
+
+
+3. Create and save a Resource Manager template for Resource Health alerts as `resourcehealthalert.json` ([see details](#resource-manager-template-options-for-resource-health-alerts))
+
+
+1. Create a new Azure Resource Manager deployment using this template.
+
+    ```azurepowershell
+    New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName <resourceGroup> -TemplateFile <path\to\resourcehealthalert.json>
+    ```
+
+
+5. You're prompted to type in the Alert Name and Action Group Resource ID you copied earlier:
+
+    ```azurepowershell
+    Supply values for the following parameters:
+    (Type !? for Help.)
+    activityLogAlertName: <Alert Name>
+    actionGroupResourceId: /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/microsoft.insights/actionGroups/<actionGroup>
+    ```
+
+6. If everything worked successfully, you get a confirmation in PowerShell
+
+    ```output
+    DeploymentName          : ExampleDeployment
+    ResourceGroupName       : <resourceGroup>
+    ProvisioningState       : Succeeded
+    Timestamp               : 11/8/2017 2:32:00 AM
+    Mode                    : Incremental
+    TemplateLink            :
+    Parameters              :
+                            Name                     Type       Value
+                            ===============          =========  ==========
+                            activityLogAlertName     String     <Alert Name>
+                            activityLogAlertEnabled  Bool       True
+                            actionGroupResourceId    String     /...
+
+    Outputs                 :
+    DeploymentDebugLogLevel :
+    ```
+
+
+
+> [!NOTE]   
+> If you're planning on fully automating this process, you simply need to edit the Resource Manager template to not prompt for the values in Step 5.
 ## Next steps
 
 Learn more about Resource Health:
