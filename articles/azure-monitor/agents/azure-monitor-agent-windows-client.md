@@ -47,29 +47,30 @@ Here's a comparison between using the client installer and using the virtual mac
 
 ## Prerequisites
 
-* The machine must be running Windows client OS version 10 RS4 or later.
-
-* To download the installer, the machine should have [C++ Redistributable version 2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) or later installed.
-
-* The machine must be domain-joined to a Microsoft Entra tenant (joined or hybrid joined machines). When the machine is domain-joined, the agent can fetch Microsoft Entra device tokens to authenticate and fetch DCRs from Azure.
-
-* Check to see if you need tenant admin permissions on the Microsoft Entra tenant.
-
-* The device must have access to the following HTTPS endpoints:
-
-    * `global.handler.control.monitor.azure.com`
-
-    * `<virtual-machine-region-name>.handler.control.monitor.azure.com`<br>
-    Example: `westus.handler.control.azure.com`
-
-    * `<log-analytics-workspace-id>.ods.opinsights.azure.com`<br>
-    Example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`
-
-    If you use private links on the agent, you must also add the [data collection endpoints](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce).
-
-* A DCR that you want to associate with the devices. If it doesn't exist already, [create a data collection rule](../vm/data-collection.md). *Don't associate the rule to any resources yet*.
-
-* Before you use any PowerShell cmdlet, ensure that the cmdlet-related PowerShell module is installed and imported.
+> [!div class="checklist"]
+> * The machine must be running Windows client OS version 10 RS4 or later.
+>
+> * To download the installer, the machine should have [C++ Redistributable version 2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) or later installed.
+>
+> * The machine must be domain-joined to a Microsoft Entra tenant (joined or hybrid joined machines). When the machine is domain-joined, the agent can fetch Microsoft Entra device tokens to authenticate and fetch DCRs from Azure.
+>
+> * Check to see if you need tenant admin permissions on the Microsoft Entra tenant.
+>
+> * The device must have access to the following HTTPS endpoints:
+>
+>    • `global.handler.control.monitor.azure.com`
+>
+>    • `<virtual-machine-region-name>.handler.control.monitor.azure.com`<br>
+>    Example: `westus.handler.control.azure.com`
+>
+>    • `<log-analytics-workspace-id>.ods.opinsights.azure.com`<br>
+>    Example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`
+>
+> * If you use private links on the agent, you must also add the [data collection endpoints](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce).
+>
+> * A DCR that you want to associate with the devices. If it doesn't exist already, [create a data collection rule](../vm/data-collection.md). *Don't associate the rule to any resources yet*.
+>
+> * Before you use any PowerShell cmdlet, ensure that the cmdlet-related PowerShell module is installed and imported.
 
 ## Limitations
 
