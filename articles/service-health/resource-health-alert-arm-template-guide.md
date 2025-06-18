@@ -512,7 +512,7 @@ If you use the different adjustments described in the previous section, here's a
 New-AzResourceGroupDeployment -ResourceGroupName `name`
 -TemplateFile resourcehealthalert.json `
 -TemplateParameterFile parameters.json
-```
+
 
 You know best what configurations are effective for you, so use the tools shown to you in this documentation to make your own customization.
 
