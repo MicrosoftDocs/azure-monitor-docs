@@ -351,7 +351,13 @@ DELETE https://management.azure.com/providers/Microsoft.Insights/monitoredObject
 
 ### Option 2: Use Azure PowerShell
 
-The following Azure PowerShell script creates a DCR and associates it to a monitored object, and then lists the associations.
+The following Azure PowerShell script:
+
+* Assigns the Monitored Object Contributor role to the operator.
+* Creates a monitored object.
+* Associates a DCR to the monitored object.
+* (Optional) Associates another DCR to a monitored object.
+* (Optional) Lists associations to the monitored object.
 
 ```azurepowershell
 $TenantID = "xxxxxxxxx-xxxx-xxx" #Your tenant ID
