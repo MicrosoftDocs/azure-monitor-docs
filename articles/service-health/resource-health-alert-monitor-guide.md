@@ -48,7 +48,7 @@ You can receive an alert when an Azure resource sends resource health notificati
 
 To learn more about action groups, see [Azure Monitor action groups](../azure-monitor/alerts/action-groups.md).
 
-For information on how to configure resource health notification alerts by using Azure Resource Manager templates, see [Resource Manager templates](./resource-health-alert-arm-template-guide.md).
+For information on how to configure resource health notification alerts, see [Create and configure Resource Health alerts](./resource-health-alert-arm-template-guide.md).
 
 
 

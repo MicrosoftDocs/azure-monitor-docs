@@ -348,7 +348,7 @@ It's possible for the `currentHealthStatus` and `previousHealthStatus` propertie
 
 ### Adjusting the alert to avoid user initiated events
 
-Resource Health events are triggered by platform initiated and user initiated events. It would make sense to only send a notification when the Azure platform causes the health event.
+Resource Health events are triggered by platform-initiated and user-initiated events. To reduce noise, it's often best to send notifications only for events caused by the Azure platform.
 
 It's easy to configure your alert to filter for only these kinds of events:
 
@@ -365,7 +365,7 @@ It's easy to configure your alert to filter for only these kinds of events:
 }
 ```
 
-It's possible for the cause field to be null in some events. That is if a health transition takes place (for example, available to unavailable) and the event is logged immediately to prevent notification delays. Therefore, using this clause could result in an alert not being triggered, because the `properties.cause` property value is set to null.
+It's possible for the cause field to be null in some events. For instance, if a health transition takes place (for example, available to unavailable) and the event is logged immediately to prevent notification delays. Therefore, using this clause could result in an alert not being triggered, because the `properties.cause` property value is set to null.
 
 ### [Resource Health alert template](#tab/completetemplate)
 
@@ -497,7 +497,7 @@ If you use the different adjustments described in the previous section, here's a
 ```
 ### [ARM templates](#tab/armtemplates)
 
-### json file parameters sample for ARM templates
+### JSON file parameters sample for ARM templates
 
 
 ```json
