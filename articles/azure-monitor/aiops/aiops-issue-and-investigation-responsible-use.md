@@ -1,7 +1,7 @@
 ---
 title: Responsible AI FAQ for Azure Monitor investigation (preview)
 description: This article explains the responsible use of Azure Monitor issue and investigation.
-ms.topic: conceptual
+ms.topic: faq
 ms.servce: azure-monitor
 ms.reviewer: enauerman
 ms.date: 05/05/2025

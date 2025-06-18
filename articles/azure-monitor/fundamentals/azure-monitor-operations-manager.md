@@ -1,7 +1,7 @@
 ---
 title: Migrate from System Center Operations Manager (SCOM) to Azure Monitor
 description: Guidance for existing users of System Center Operations Manager to transition monitoring of workloads to Azure Monitor as part of a transition to the cloud.
-ms.topic: conceptual
+ms.topic: upgrade-and-migration-article
 ms.date: 07/26/2024
 ms.reviewer: bwren
 
