@@ -1,7 +1,7 @@
 ---
 title: Send Azure service health alerts with ServiceNow
 description: Get personalized notifications about service health events to your ServiceNow instance.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 05/20/2025
 ms.custom:
 ---
