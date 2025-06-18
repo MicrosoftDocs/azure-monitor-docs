@@ -2,16 +2,15 @@
 title: How to create Resource Health alerts
 description: Create alerts in Azure Service Health, or programmatically to notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 6/17/2025 
+ms.date: 6/18/2025 
 
 ---
 
 # Create and configure Resource Health alerts 
 
-This article shows you how to create Resource Health activity Log Alerts in the Service Health portal, using Azure Resource Manager templates, or in Azure PowerShell.
+This article shows how to create and configure Azure Resource Health alerts using the Azure portal, Azure PowerShell, Azure Resource Manager (ARM) templates, and Azure CLI.
 
-Azure Resource Health keeps you informed about the current and historical health status of your Azure resources. <br>Azure Resource Health alerts can notify you in near real-time when these resources have a change in their health status. Creating Resource Health alerts in the methods described in this article helps users to create and customize alerts in bulk.
-
+Resource Health alerts notify you when your Azure resources experience a change in health status, such as becoming unavailable or degraded. These alerts help you stay informed and respond quickly to service issues affecting your workloads.
 
 
 
@@ -65,10 +64,10 @@ To follow the instructions on this page, you need to set up a few things in adva
     ```
 
 
-3. Create and save a Resource Manager template for Resource Health alerts as `resourcehealthalert.json` ([see details](#create-resource-health-alerts-using-template-options))
+3. Create and save an ARM template for Resource Health alerts as `resourcehealthalert.json` ([see details](#create-resource-health-alerts-using-template-options))
 
 
-1. Create a new Azure Resource Manager deployment using this template.
+1. Create a new Azure Resource Manager (ARM) deployment using this template.
 
     ```azurepowershell
     New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName <resourceGroup> -TemplateFile <path\to\resourcehealthalert.json>
@@ -107,7 +106,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 
 
 > [!NOTE]   
-> If you're planning on fully automating this process, you simply need to edit the Resource Manager template to not prompt for the values in Step 5.
+> If you're planning on fully automating this process, you simply need to edit the ARM template to not prompt for the values in Step 5.
 
 
 
@@ -290,7 +289,7 @@ If you want to be notified for all four stages of health events, you can remove 
 ### Adjusting the Resource Health alerts to avoid "Unknown" events
 
 
-Azure Resource Health can report the latest health of your resources by constantly monitoring them using test runners. The relevant reported health statuses are: `Available,` `Unavailable,` and `Degraded.` However, in situations where the runner and the Azure resource are unable to communicate, an `Unknown` health status is reported for the resource, and that is considered an `Active` health event.
+Azure Resource Health can report the latest health of your resources by constantly monitoring them using test runners. The relevant reported health statuses are: `Available,` `Unavailable,` and `Degraded.` However, in situations where the runner and the Azure resource are unable to communicate, an `Unknown` health status is reported for the resource, and that is considered as an `Active` health event.
 
 However, when a resource reports `Unknown,` it's likely that its health status is the same since the last accurate report. If you would like to eliminate alerts on `Unknown` events, you can specify that logic in the template:
 
@@ -496,7 +495,24 @@ If you use the different adjustments described in the previous section, here's a
     ]
 }
 ```
+### [ARM templates](#tab/armtemplates)
 
+### json file parameters sample for ARM templates
+
+
+```json
+"parameters":
+{
+  "activityLogAlertName": { "value": "my-resource-health-alert" },
+  "actionGroupResourceId": { "value": "/subscriptions/.../actionGroups/..." }
+}
+```
+"Command":
+
+New-AzResourceGroupDeployment -ResourceGroupName <name> `
+-TemplateFile resourcehealthalert.json `
+-TemplateParameterFile parameters.json
+```
 
 You know best what configurations are effective for you, so use the tools shown to you in this documentation to make your own customization.
 
