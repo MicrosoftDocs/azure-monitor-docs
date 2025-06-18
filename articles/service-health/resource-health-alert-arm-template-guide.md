@@ -114,6 +114,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 ## Create Resource health alerts using template options
 
 ### [Base template](#tab/basetemplate)
+
 You can use this base template as a starting point for creating Resource Health alerts. This template works as written, and signs you up to receive alerts for all newly activated resource health events across all resources in a subscription.
 
 
@@ -499,6 +500,7 @@ If you use the different adjustments described in the previous section, here's a
 
 You know best what configurations are effective for you, so use the tools shown to you in this documentation to make your own customization.
 
+---
 
 
 ## Next steps
