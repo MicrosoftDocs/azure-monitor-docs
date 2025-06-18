@@ -118,7 +118,7 @@ You can use this base template as a starting point for creating Resource Health 
 
 
 > [!NOTE]
-> At the bottom, we included a more complex alert template, which should increase the signal to noise ratio for Resource Health alerts as compared to this template.
+> The Resource Health alert template is a more complex alert template, which should increase the signal to noise ratio for Resource Health alerts as compared to this template.
 
 ```json
 {
