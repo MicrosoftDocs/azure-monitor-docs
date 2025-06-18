@@ -1,7 +1,7 @@
 ---
 title: Use Azure Managed Grafana
 description: This article explains how to use Azure Managed Grafana. It covers setup, authentication, building dashboards, and advanced features for monitoring data.
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: kayodeprinceMS
 ms.date: 05/06/2025
 ---

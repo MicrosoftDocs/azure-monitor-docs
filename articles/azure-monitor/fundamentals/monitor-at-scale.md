@@ -1,7 +1,7 @@
 ---
 title: Best practices for monitoring at-scale with Azure Monitor
 description: Learn about solutions and recommendations for using Azure Monitor to monitor your environment at-scale.
-ms.topic: conceptual
+ms.topic: best-practice
 ms.date: 10/30/2024
 
 # customer-intent: As an Azure Monitor customer, I want to learn about best practices for using Azure Monitor to monitor my at-scale.

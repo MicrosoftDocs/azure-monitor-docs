@@ -1,7 +1,7 @@
 ---
 title: Analyze usage in a Log Analytics workspace in Azure Monitor
 description: Methods and queries to analyze the data in your Log Analytics workspace to help you understand usage and potential cause for high usage.
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: Dale.Koetke
 ms.date: 08/14/2024
 ---

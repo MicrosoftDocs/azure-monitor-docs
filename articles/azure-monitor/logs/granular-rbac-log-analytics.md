@@ -5,7 +5,7 @@ description: Granular RBAC in Log Analytics enables you to define data access in
 services: azure-monitor
 sub-service: logs
 ms.reviewer: rofrenke
-ms.topic: conceptual 
+ms.topic: concept-article
 ms.date: 05/19/2025
 
 # Customer intent: As an Azure administrator, I want to understand how to use attribute-based access control to granularly define access in Log Analytics workspaces.

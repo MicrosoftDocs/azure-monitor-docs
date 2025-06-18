@@ -2,7 +2,7 @@
 title: Azure Monitor workbook time parameters 
 description: Learn how to set time parameters to allow users to set the time context of analysis. The time parameters are used by almost all reports.
 ms.tgt_pltfrm: ibiza
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/17/2024
 ---
 

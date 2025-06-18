@@ -3,7 +3,7 @@ title: Azure Chaos Studio fault and action library
 description: Understand the available actions you can use with Azure Chaos Studio, including any prerequisites and parameters.
 services: chaos-studio
 author: rsgel
-ms.topic: article
+ms.topic: how-to
 ms.date: 07/06/2025
 ms.reviewer: vikramraju
 ms.custom: linux-related-content
