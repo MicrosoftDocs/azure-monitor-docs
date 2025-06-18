@@ -509,7 +509,7 @@ If you use the different adjustments described in the previous section, here's a
 ```
 "Command":
 
-New-AzResourceGroupDeployment -ResourceGroupName <name> `
+New-AzResourceGroupDeployment -ResourceGroupName `name`
 -TemplateFile resourcehealthalert.json `
 -TemplateParameterFile parameters.json
 ```
