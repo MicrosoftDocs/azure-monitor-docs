@@ -3,7 +3,7 @@ title: Monitor Azure Monitor
 description: Start here to learn how to monitor Azure Monitor.
 ms.date: 10/01/2024
 ms.custom: horz-monitor
-ms.topic: conceptual
+ms.topic: article
 ---
 
 # Monitor Azure Monitor

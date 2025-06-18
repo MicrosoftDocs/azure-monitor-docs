@@ -1,7 +1,7 @@
 ---
 title: Azure Workbooks templates
 description: Learn how to use Azure Workbooks templates.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 09/17/2024
 ms.reviewer: gardnerjr 
 ---

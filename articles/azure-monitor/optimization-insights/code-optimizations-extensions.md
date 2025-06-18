@@ -1,7 +1,7 @@
 ---
 title: Fix code based on Code Optimizations insights using GitHub Copilot (preview)
 description: Learn about the Code Optimizations extensions for Visual Studio and Visual Studio Code.
-ms.topic: conceptual
+ms.topic: how-to
 ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms

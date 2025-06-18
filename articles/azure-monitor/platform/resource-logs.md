@@ -1,7 +1,7 @@
 ---
 title: Send Azure resource logs to Log Analytics workspaces, Event Hubs, or Azure Storage
 description: Learn how to send Azure resource logs to a Log Analytics workspace, event hub, or Azure Storage in Azure Monitor.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/30/2024
 ms.reviewer: lualderm
 ---

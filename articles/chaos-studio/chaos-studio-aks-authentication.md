@@ -3,7 +3,7 @@ title: Use Microsoft Entra authentication with Chaos Studio AKS faults
 description: Learn about the different ways for Chaos Studio to authenticate with your AKS cluster.
 services: chaos-studio
 author: rsgel
-ms.topic: article
+ms.topic: how-to
 ms.date: 2/5/2025
 ms.author: carlsonr
 ---
