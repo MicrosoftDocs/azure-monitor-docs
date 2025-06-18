@@ -1,7 +1,7 @@
 ---
 title: Autoscaling Support for Addon Pods
 description: Documentation regarding addon pod autoscaling support for Azure Managed Prometheus.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 2/28/2024
 ms.reviewer: rashmy
 ---

@@ -1,7 +1,7 @@
 ---
 title:  Use Azure Monitor issues and investigations (preview)
 description: This article helps guide you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provide next steps to mitigate and resolve problems with Azure resources.
-ms.topic: conceptual
+ms.topic: how-to
 ms.servce: azure-monitor
 ms.reviewer: enauerman
 ms.date: 05/05/2025

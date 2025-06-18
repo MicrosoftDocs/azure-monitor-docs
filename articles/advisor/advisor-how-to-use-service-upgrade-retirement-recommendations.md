@@ -1,7 +1,7 @@
 ---
 title: Use Service Upgrade and Retirement recommendations
 description: Use recommendations for retirement and upgrade of a service
-ms.topic: article
+ms.topic: upgrade-and-migration-article
 author: kanika1894
 ms.author: kapasrij
 ms.date: 04/11/2025

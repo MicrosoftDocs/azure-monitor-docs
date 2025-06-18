@@ -1,7 +1,7 @@
 ---
 title: Monitor your AKS cluster network with Azure Monitor 
 description: Collect metrics and logs for network monitoring from your AKS cluster using Azure Monitor
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 05/21/2025
 ---
 

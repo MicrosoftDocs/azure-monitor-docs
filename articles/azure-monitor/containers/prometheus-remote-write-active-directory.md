@@ -1,7 +1,7 @@
 ---
 title: Set up Prometheus remote write by using Microsoft Entra authentication
 description: Learn how to set up remote write in Azure Monitor managed service for Prometheus. Use Microsoft Entra authentication to send data from a self-managed Prometheus server running in your Azure Kubernetes Server (AKS) cluster or Azure Arc-enabled Kubernetes cluster on-premises or in a different cloud.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.date: 4/18/2024
 ---
