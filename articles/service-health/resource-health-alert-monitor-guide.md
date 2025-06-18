@@ -2,7 +2,7 @@
 title: Resource Health Alerts in Azure portal
 description: Resource health alerts notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 6/17/2025
+ms.date: 6/18/2025
 ---
 
 # Resource Health alerts 
@@ -12,6 +12,8 @@ These alerts are distinct from general Service Health alerts, which focus on bro
 
 
 ## Resource Health alert notifications
+
+:::image type="content" source="./media/resource-health/resource-health-alerts.PNG" alt-text="Screenshot of Resource Health alerts." lightbox="./media/resource-health/resource-health-alerts.PNG":::
 
 Resource Health alerts are created when the health status of a specific Azure resource changes. The statuses include:
 
