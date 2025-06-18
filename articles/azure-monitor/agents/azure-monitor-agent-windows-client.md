@@ -59,11 +59,11 @@ Here's a comparison between using the client installer and using the virtual mac
 
     * `global.handler.control.monitor.azure.com`
 
-    * `<virtual-machine-region-name>.handler.control.monitor.azure.com`
-    (Example: `westus.handler.control.azure.com`)
+    * `<virtual-machine-region-name>.handler.control.monitor.azure.com`<br>
+    Example: `westus.handler.control.azure.com`
 
-    * `<log-analytics-workspace-id>.ods.opinsights.azure.com`
-    (Example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`)
+    * `<log-analytics-workspace-id>.ods.opinsights.azure.com`<br>
+    Example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`
 
     If you use private links on the agent, you must also add the [data collection endpoints](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce).
 
