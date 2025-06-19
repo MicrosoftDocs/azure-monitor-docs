@@ -2,7 +2,7 @@
 title: Configure private link for Azure Monitor
 description: This article shows the steps to configure a private link.
 ms.reviewer: mahesh.sundaram
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 10/23/2024
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Overview of Azure Monitor with Prometheus
 description: Get an overview of Azure Monitor with Prometheus, which provides Prometheus-compatible interfaces called Azure Monitor workspaces for storing and retrieving metric data.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/06/2024
 ---
 

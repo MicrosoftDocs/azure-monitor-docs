@@ -1,7 +1,7 @@
 ---
 title: Degradation in trace severity ratio - Azure Application Insights
 description: Monitor application traces with Azure Application Insights for unusual patterns in trace telemetry with smart detection.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 04/01/2024
 ms.reviewer: yagil
 ---

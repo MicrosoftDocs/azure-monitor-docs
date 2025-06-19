@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor metrics aggregation and display explained
 description: Detailed information on how metrics are aggregated in Azure Monitor
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/06/2024
 ms.reviewer: vitalyg
 ---

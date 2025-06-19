@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/07/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo

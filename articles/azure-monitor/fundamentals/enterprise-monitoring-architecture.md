@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor enterprise monitoring architecture
 description: Sample architecture for Azure Monitor in an enterprise environment.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 03/17/2025
 ms.reviewer: bwren
 ---

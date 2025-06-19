@@ -1,7 +1,7 @@
 ---
 title: Monitor issues with ingestion and query in Azure Monitor Workspace
 description: Monitor issues with ingestion and query in Azure Monitor workspace.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 04/09/2025
 ---
 

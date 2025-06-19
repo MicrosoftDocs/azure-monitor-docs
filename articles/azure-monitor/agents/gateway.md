@@ -1,7 +1,7 @@
 ---
 title: Connect computers by using the Log Analytics gateway | Microsoft Docs
 description: Connect your devices and Operations Manager-monitored computers by using the Log Analytics gateway to send data to the Azure Automation and Log Analytics service when they don't have internet access.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/14/2024
 ms.reviewer: luki
 

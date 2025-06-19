@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot collection of Prometheus metrics in Azure Monitor
 description: Steps that you can take if you aren't collecting Prometheus metrics as expected.
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 10/13/2024
 ms.reviewer: aul
 ---

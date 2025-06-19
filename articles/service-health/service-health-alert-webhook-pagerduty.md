@@ -1,7 +1,7 @@
 ---
 title: Send Azure service health alerts with PagerDuty
 description: Get personalized notifications about service health events to your PagerDuty instance.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 05/20/2025
 
 ---

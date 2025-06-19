@@ -1,7 +1,7 @@
 ---
 title: Enable Change Analysis (classic) | Microsoft Docs
 description: Use Change Analysis (classic) in Azure Monitor to track and troubleshoot issues on your live site.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/25/2025
 ---
 

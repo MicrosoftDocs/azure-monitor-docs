@@ -1,7 +1,7 @@
 ---
 title: Review optimization opportunities by workload, environment, or team
 description: Review optimization opportunities by workload, environment, or team
-ms.topic: article
+ms.topic: how-to
 ms.custom: tags
 ms.date: 05/25/2022
 ---

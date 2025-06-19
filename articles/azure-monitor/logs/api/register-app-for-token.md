@@ -2,7 +2,7 @@
 title: Register an App to request authorization tokens and work with APIs
 description: How to register an app and assign a role so it can access request a token and work with APIs
 ms.date: 05/30/2024
-ms.topic: article
+ms.topic: how-to
 ---
 
 # Register an App to request authorization tokens and work with APIs

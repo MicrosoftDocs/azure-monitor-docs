@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot Application Insights Profiler for .NET
 description: Walk through troubleshooting steps and information to enable and use Application Insights Profiler for .NET.
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 03/25/2025
 ms.reviewer: charles.weininger
 ---
