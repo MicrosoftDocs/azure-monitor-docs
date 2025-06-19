@@ -2,7 +2,7 @@
 title: How to create Resource Health alerts
 description: Create alerts in Azure Service Health, or programmatically to notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 6/18/2025 
+ms.date: 6/19/2025 
 
 ---
 
@@ -29,11 +29,15 @@ Resource Health alerts notify you when your Azure resources experience a change 
    
 1. Select **Add resource health alert**.
    
+:::image type="content" source="./media/resource-health/resource-health-create.PNG" alt-text="Screenshot of Resource Health create option." lightbox="./media/resource-health/resource-health-create.PNG":::
 
 1. The **Create an alert rule** wizard opens the **Condition** tab, with the **Scope** tab already populated. 
 
+:::image type="content" source="./media/resource-health/resource-health-create-scope.PNG" alt-text="Screenshot of Resource Health scope tab." lightbox="./media/resource-health/resource-health-create-scope.PNG":::
+
 1. Follow the steps to create Resource Health alerts, starting from the **Condition** tab, in the [Alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
 
+:::image type="content" source="./media/resource-health/resource-health-create-condition.PNG" alt-text="Screenshot of Resource Health condition tab." lightbox="./media/resource-health/resource-health-create-condition.PNG":::
 
 ## Create a Resource Health alert using PowerShell
 
