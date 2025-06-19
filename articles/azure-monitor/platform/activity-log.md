@@ -8,7 +8,7 @@ ms.reviewer: orens
 
 # Send Azure Monitor activity log data
 
-The Azure Monitor activity log is a platform log that provides insights into subscription-level events. The activity log includes information like when a resource is modified or a virtual machine is started. You can view the **Activity log** in the Azure portal or retrieve entries with PowerShell and the Azure CLI.
+The Azure Monitor activity log is a platform log that provides insights into subscription-level events. The activity log includes information like when a resource is modified or when a deployment error occurs. You can view the **Activity log** in the Azure portal or retrieve entries with PowerShell and the Azure CLI.
 
 This article provides information on how to view the activity log and send it to different destinations.
 
@@ -161,7 +161,62 @@ Each event is stored in the PT1H.json file with the following format. This forma
 { "time": "2020-06-12T13:07:46.766Z", "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINES/MV-VM-01", "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee", "operationName": "Microsoft.Resourcehealth/healthevent/Updated/action", "level": "Information", "resultType": "Updated", "category": "ResourceHealth", "properties": {"eventCategory":"ResourceHealth","eventProperties":{"title":"This virtual machine is starting as requested by an authorized user or process. It will be online shortly.","details":"VirtualMachineStartInitiatedByControlPlane","currentHealthStatus":"Unknown","previousHealthStatus":"Unknown","type":"Downtime","cause":"UserInitiated"}}}
 ```
 
-### Other methods to retrieve activity log events
+## Export to CSV
+Select **Download as CSV** to export the activity log to a CSV file using the Azure portal.
+
+:::image type="content" source="media/activity-log/export-csv.png" lightbox="media/activity-log/export-csv.png" alt-text="Screenshot that shows option to export to CSV.":::
+
+> [!IMPORTANT]
+> The export may take an excessive amount of time if you have a large number of log entries. To improve performance, reduce the time range of the export. In the Azure portal, this is set with the **Timespan** setting. 
+
+
+You can also export the activity log to a CSV file using PowerShell or the Azure CLI as in the following examples.
+
+```azurecli
+az monitor activity-log list --start-time "2024-03-01T00:00:00Z" --end-time "2024-03-15T23:59:59Z" --max-items 1000 > activitylog.json
+```
+
+```powershell
+Get-AzActivityLog -StartTime 2021-12-01T10:30 -EndTime 2022-01-14T11:30 | Export-csv operations_logs.csv
+```
+
+The following example PowerShell script exports the activity log to CSV files in 1-hour intervals, each being saved to a separate file. 
+
+
+```powershell
+# Parameters
+$subscriptionId = "Subscription ID here"  # Replace with your subscription ID
+$startTime = [datetime]"2025-05-08T00:00:00" # Adjust as needed
+$endTime = [datetime]"2025-05-08T12:00:00"  # Adjust as needed
+$outputFolder = "\Logs"    # Change path as needed
+ 
+# Ensure output folder exists
+if (-not (Test-Path $outputFolder)) {
+    New-Item -Path $outputFolder -ItemType Directory
+}
+ 
+# Set subscription context
+Set-AzContext -SubscriptionId $subscriptionId
+ 
+# Loop through 1-hour intervals
+$currentStart = $startTime
+while ($currentStart -lt $endTime) {
+    $currentEnd = $currentStart.AddHours(1)
+    $timestamp = $currentStart.ToString("yyyyMMdd-HHmm")
+    $csvFile = Join-Path $outputFolder "ActivityLog_$timestamp.csv"
+ 
+    Write-Host "Fetching logs from $currentStart to $currentEnd..."
+    Get-AzActivityLog -StartTime $currentStart -EndTime $currentEnd |
+        Export-Csv -Path $csvFile -NoTypeInformation
+ 
+    $currentStart = $currentEnd
+}
+ 
+Write-Host "Export completed. Files saved to $outputFolder."
+```
+
+
+## Other methods to retrieve activity log events
 
 You can also access activity log events by using the following methods:
 
