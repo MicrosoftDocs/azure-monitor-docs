@@ -77,7 +77,8 @@ This page watches your resource and tells you if it's running as expected. There
 
 The Health Alerts window allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status. 
 
-<br>An alert is triggered when the specified conditions are met. You can select any alert rule for more information, and details and see the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure portal](alerts-activity-log-service-notifications-portal.md).
+<br>
+An alert is triggered when the specified conditions are met. You can select any alert rule for more information, and details and see the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure portal](alerts-activity-log-service-notifications-portal.md).
 
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts window filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
@@ -86,6 +87,8 @@ The Health Alerts window allows you to search for and sort your alert rules by n
 
 ##### Tenant and Subscription access
 Tenant access refers to the ability to view events that affect the entire organization, requiring tenant admin roles. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, while subscription-level events are limited to the resources in that subscription. 
+<br>
+For more information see [Subscription vs tenant access](subscription-vs-tenant.md).
 
 This distinction ensures that users can manage and monitor Azure services effectively based on their roles and the scope of their responsibilities. 
 
