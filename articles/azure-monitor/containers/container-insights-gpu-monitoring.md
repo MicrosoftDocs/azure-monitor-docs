@@ -18,6 +18,9 @@ Container insights supports monitoring GPU clusters from the following GPU vendo
 
 Container insights automatically starts monitoring GPU usage on nodes and GPU requesting pods and workloads by collecting the following metrics at 60-second intervals and storing them in the **InsightMetrics** table.
 
+>[!CAUTION]
+>This method is no longer recommended for collecting GPU metrics.
+
 >[!NOTE]
 >After you provision clusters with GPU nodes, ensure that the [GPU driver](/azure/aks/gpu-cluster) is installed as required by Azure Kubernetes Service (AKS) to run GPU workloads. Container insights collect GPU metrics through GPU driver pods running in the node.
 
