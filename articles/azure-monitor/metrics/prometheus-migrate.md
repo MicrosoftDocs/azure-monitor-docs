@@ -6,7 +6,7 @@ ms.date: 06/13/2025
 ---
 
 # Migrate from Self-hosted Prometheus to Azure Monitor Managed Service for Prometheus
-Prometheus is a widely adopted open-source monitoring solution known for its powerful capabilities in collecting, storing, and querying time-series data. Many organizations start with self-managed Prometheus set ups, but as systems scale, the operational overhead of managing Prometheus environments can become significant. Azure Monitor managed service for Prometheus offers a compelling alternative, delivering the core benefits of Prometheus along with scalability, and reduced maintenance efforts. 
+Prometheus is a widely adopted open-source monitoring solution known for its powerful capabilities in collecting, storing, and querying time-series data. Many organizations start with self-managed Prometheus setups, but as systems scale, the operational overhead of managing Prometheus environments can become significant. Azure Monitor managed service for Prometheus offers a compelling alternative, delivering the core benefits of Prometheus along with scalability, and reduced maintenance efforts. 
 This document provides guidance for organizations planning to migrate from self-managed Prometheus to Azure Monitor managed service for Prometheus.
 
 ## Why migrate to Azure Monitor Managed Service for Prometheus?
@@ -53,7 +53,7 @@ The following limitations apply to Azure Monitor managed service for Prometheus:
 - Certain limitations apply to PromQL query API for Azure Managed Prometheus. See: [Query Prometheus metrics using the API and PromQL](./prometheus-api-promql.md#api-limitations).
 - PrometheusRule CRD is not supported with Azure Managed Prometheus.
 
-## 1. Evaluate your current set up
+## 1. Evaluate your current setup
 
 Before migration, review your self-hosted Prometheus stack:
 
@@ -65,22 +65,22 @@ Before migration, review your self-hosted Prometheus stack:
 
 - **Evaluate cost**: Pricing is based on metrics ingestion ($0.16/10M samples) and query ($0.001/10 million samples) volume. See details on Metrics pricing in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/). You can use [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate the cost.
 
-- Review the below configurations for your self-hosted Prometheus set up
+- Review the below configurations for your self-hosted Prometheus setup:
   - Alerting and recording rules configuration
   - Active data sources and exporters
   - Dashboards
  
 This assessment will help identify any customizations requiring attention during migration.
 
-## 2. set up Azure Monitor environment
+## 2. Set up Azure Monitor environment
 
-### Setting up Azure Managed Prometheus via managed add-on
+### Set up Azure Managed Prometheus via managed add-on
 [Enable Managed Prometheus for your AKS or ARC-enabled cluster](../containers/kubernetes-monitoring-enable.md): This will enable the managed Prometheus add-on for your AKS cluster, and provision Azure Monitor Workspace and, you can optionally enable Azure Managed Grafana.
 
-### Setting up Azure Managed Prometheus via remote-write
+### Set up Azure Managed Prometheus via remote-write
 
-1. [Create an Azure Monitor Workspace](azure-monitor-workspace-manage.md): Create an Azure Monitor Workspace as the remote endpoint to send metrics from your Prometheus set up using remote-write.
-2. [Configure remote-write](prometheus-remote-write-virtual-machines.md) in your Prometheus set up to send data to Azure Monitor Workspace.
+1. [Create an Azure Monitor Workspace](azure-monitor-workspace-manage.md): Create an Azure Monitor Workspace as the remote endpoint to send metrics from your Prometheus setup using remote-write.
+2. [Configure remote-write](prometheus-remote-write-virtual-machines.md) in your Prometheus setup to send data to Azure Monitor Workspace.
 
 ## 3. Configure metrics collection and exporters
 
