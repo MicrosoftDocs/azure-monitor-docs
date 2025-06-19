@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 ms.topic: overview
-ms.date: 5/19/2025
+ms.date: 6/19/2025
 ---
 
 # Azure Service Health Portal
@@ -36,12 +36,6 @@ The Service Issues window shows a map with all the user services across the worl
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the services issue user interface." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
 
-
-
-> [!NOTE]
->If you're using Azure Resource Graph (ARG) queries to retrieve service health events and notice a different count compared to the Service Health UI, this is expected. The ARG returns one record per subscription ID and tracking ID combination. On the Azure portal, updates are grouped under each tracking ID, so you might see fewer rows.
->
->However, all updates for each tracking ID are still available in the Issue Updates tab, and the number of unique tracking IDs is the same in both ARG and the Service Health Portal.
 
 
 <!--
