@@ -86,6 +86,8 @@ In this article, you learn about the various ways that you can:
    var app = builder.Build();
    ```   
 
+   You can also [add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
+
    ### [ASP.NET Core 5 and earlier](#tab/net-core-old)
    
    Add `services.AddApplicationInsightsTelemetry()` and `services.AddServiceProfiler()` to the `ConfigureServices()` method in `Startup.cs`:
@@ -98,6 +100,8 @@ In this article, you learn about the various ways that you can:
      services.AddControllersWithViews();
    }
    ```
+
+   You can also [add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
    
    ---
 
@@ -179,6 +183,10 @@ Service Profiler session started.               # Profiler started.
 Finished calling trace uploader. Exit code: 0   # Uploader is called with exit code 0.
 Service Profiler session finished.              # A profiling session is completed.
 ```
+
+## Troubleshooting
+
+If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
 
 ## View the .NET Profiler traces
 
