@@ -1051,6 +1051,9 @@ items:
       - name: Overview
         displayName: Prometheus
         href: metrics/prometheus-metrics-overview.md
+      - name: Migrate from self-hosted Prometheus
+        displayName: Prometheus migrate
+        href: metrics/prometheus-migrate.md
       - name: Prometheus remote-write from virtual machines
         displayName: Prometheus remote-write
         href: metrics/prometheus-remote-write-virtual-machines.md
