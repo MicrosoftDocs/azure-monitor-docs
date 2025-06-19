@@ -13,7 +13,6 @@ This article shows how to create and configure Azure Resource Health alerts usin
 Resource Health alerts notify you when your Azure resources experience a change in health status, such as becoming unavailable or degraded. These alerts help you stay informed and respond quickly to service issues affecting your workloads.
 
 
-
 ## Create a Resource Health alert rule in the Service Health portal
 
 1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
@@ -22,7 +21,6 @@ Resource Health alerts notify you when your Azure resources experience a change 
 
     ![Service Health Selection](./media/resource-health-alert-monitor-guide/service-health-selection-1.png)
 
- 
 1. Select **Resource Health**.
 
      ![Resource Health Selection](./media/alerts-activity-log-service-notifications/resource-health-select.png)

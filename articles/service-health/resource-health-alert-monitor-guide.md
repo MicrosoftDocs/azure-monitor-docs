@@ -1,20 +1,14 @@
 ---
-<<<<<<< HEAD
 title: Resource Health Alerts in Azure portal
 description: Resource health alerts notify you when your Azure resources become unavailable.
 ms.topic: conceptual
 ms.date: 6/19/2025
-=======
-title: Create Resource Health Alerts using Azure portal
-description: Create alert using Azure portal that notifies you when your Azure resources become unavailable.
-ms.topic: how-to
-ms.date: 5/22/2025
->>>>>>> 8fe0bdd33db58f6022a1900939e172752e62b5c7
 ---
 
 # Resource Health alerts 
 
-Resource Health alerts in Azure Service Health are a proactive monitoring feature that notifies you when the health status of individual Azure resources such as virtual machines, storage accounts, or web apps change.<br>
+Resource Health alerts in Azure Service Health are a proactive monitoring feature that notifies you when the health status of individual Azure resources such as virtual machines, storage accounts, or web apps change.
+<br>
 These alerts are distinct from general Service Health alerts, which focus on broader platform-level issues. 
 
 
@@ -31,7 +25,8 @@ Resource Health alerts are created when the health status of a specific Azure re
 
 Unlike Service Health alerts, which are tied to known platform-wide issues (like regional outages), Resource Health alerts are resource-specific and can detect issues even when no broader Azure incident is occurring. For more information, see [Resource Health overview](resource-health-overview.md)
 
-For steps on how to create a Resource Health alert see [Create a Resource Health alert](resource-health-alert-arm-template-guide.md)
+
+For more information on how to create a Resource Health alert see [Create a Resource Health alert](resource-health-alert-arm-template-guide.md)
 
 ## Resource Health alerts in Azure portal
 Azure Resource Health keeps you informed about the current and historical health status of your Azure resources. These alerts notify you when these resources have a change in their health status.
