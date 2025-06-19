@@ -9,6 +9,7 @@ ms.author: hannahhunter
 ms.date: 05/16/2025
 ms.reviewer: jan.kalis
 ms.collection: ce-skilling-ai-copilot
+ms.update-cycle: 180-days
 ---
 
 # Monitor and analyze runtime behavior with Code Optimizations

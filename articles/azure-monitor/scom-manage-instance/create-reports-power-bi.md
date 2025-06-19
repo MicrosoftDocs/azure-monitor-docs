@@ -6,6 +6,7 @@ author: jyothisuri
 ms.author: jsuri
 ms.date: 03/05/2025
 ms.custom: UpdateFrequency.5, engagement-fy24
+ms.update-cycle: 180-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: how-to
