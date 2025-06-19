@@ -2,7 +2,7 @@
 title: Resource Health Alerts in Azure portal
 description: Resource health alerts notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 6/18/2025
+ms.date: 6/19/2025
 ---
 
 # Resource Health alerts 
@@ -50,7 +50,7 @@ You can receive an alert when an Azure resource sends resource health notificati
 
 To learn more about action groups, see [Azure Monitor action groups](../azure-monitor/alerts/action-groups.md).
 
-For information on how to configure resource health notification alerts, see [Create and configure Resource Health alerts](./resource-health-alert-arm-template-guide.md).
+For information on how to configure Resource Health notification alerts, see [Create and configure Resource Health alerts](./resource-health-alert-arm-template-guide.md).
 
 
 
