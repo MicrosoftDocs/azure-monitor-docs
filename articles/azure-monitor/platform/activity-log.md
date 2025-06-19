@@ -17,6 +17,10 @@ This article provides information on how to view the activity log and send it to
 > * Entries in the activity log are representing control plane changes like a virtual machine restart, any nonrelated entries should be written into [Azure Resource Logs](resource-logs.md)
 > * Entries in the activity log are typically a result of changes (create, update, or delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured.
 
+
+> [!TIP]
+> If you were directed to this article from a deployment operation error, see [Troubleshoot common Azure deployment errors](/azure/azure-resource-manager/troubleshooting/common-deployment-errors).
+
 ## Export activity logs
 
 1. Go to **Azure Monitor** > **Activity log** and select **Export Activity Logs**.
@@ -180,7 +184,7 @@ az monitor activity-log list --start-time "2024-03-01T00:00:00Z" --end-time "202
 Get-AzActivityLog -StartTime 2021-12-01T10:30 -EndTime 2022-01-14T11:30 | Export-csv operations_logs.csv
 ```
 
-The following example PowerShell script exports the activity log to CSV files in 1-hour intervals, each being saved to a separate file. 
+The following example PowerShell script exports the activity log to CSV files in one hour intervals, each being saved to a separate file. 
 
 
 ```powershell
