@@ -6,11 +6,11 @@ ms.date: 6/19/2025
 ---
 
 # Azure Service Health Portal
-The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard which tracks the health of your Azure services in the regions where you use them. 
+The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard, which tracks the health of your Azure services in the regions where you use them. 
 
 The Azure Service Health portal experience lets you engage with service events and manage actions and alerts to maintain the business continuity of impacted applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, or billing updates. 
 
-When events become inactive, they get placed in your health history for up to 90 days. Finally, you can use the Service Health dashboard to create and manage service health alerts which proactively notify you when service issues are affecting you.
+When events become inactive, they get placed in your health history for up to 90 days. Finally, you can use the Service Health dashboard to create and manage service health alerts, which proactively notify you when service issues are affecting you.
 
 ## Service Health Events
 
@@ -31,7 +31,7 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 ## Get Started with Service Health
 
 
-### See Service issues which might affect your services
+### See Service issues that might affect your services
 The Service Issues window shows a map with all the user services across the world. The information on this window helps you find services that might be impacted from an outage based on your subscription or tenant admin access.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the services issue user interface." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
