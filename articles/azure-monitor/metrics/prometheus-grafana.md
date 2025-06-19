@@ -1,7 +1,7 @@
 ---
 title: Connect Grafana to Azure Monitor Prometheus metrics
 description: How to configure Azure Monitor managed service for Prometheus and Azure hosted Prometheus data as data source for Azure Managed Grafana and self-managed Grafana. 
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/05/2025
 
 # Customer intent: As a developer or administrator, I want to connect Grafana to Azure Monitor managed service for Prometheus or Prometheus data hosted in an Azure Monitor workspace so that I can visualize and analyze the metrics.

@@ -2,7 +2,7 @@
 title: Manage an Azure Monitor workspace
 description: How to create and delete Azure Monitor workspaces.
 ms.reviewer: poojaa
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.date: 11/20/2024
 ---

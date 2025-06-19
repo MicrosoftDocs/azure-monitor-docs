@@ -1,7 +1,7 @@
 ---
 title: Analyze data using Log Analytics simple mode
 description: This article explains how to use Log Analytics simple mode to explore and analyze data in Azure Monitor Logs.
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.reviewer: noyablanga
 ms.date: 02/02/2025
 

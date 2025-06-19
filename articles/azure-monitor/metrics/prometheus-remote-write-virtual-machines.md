@@ -1,7 +1,7 @@
 ---
 title: Send Prometheus Metrics from Virtual Machines, Scale Sets, or Kubernetes Clusters to an Azure Monitor Workspace
 description: Learn how to configure remote write to send data from self-managed Prometheus to Azure Monitor managed service for Prometheus.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.date: 08/07/2024
 #customer intent: As an Azure administrator, I want to send Prometheus metrics from my self-managed Prometheus instance to an Azure Monitor workspace.

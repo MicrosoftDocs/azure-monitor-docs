@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor service limits | Microsoft Docs
 description: This article lists limits in different areas of Azure Monitor.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 07/26/2024
 ---
 

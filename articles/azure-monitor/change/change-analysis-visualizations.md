@@ -1,7 +1,7 @@
 ---
 title: View and use Change Analysis (classic)
 description: Learn the various scenarios in which you can use Change Analysis (classic).
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/25/2025
 ---
 

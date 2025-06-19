@@ -1,7 +1,7 @@
 ---
 title: Generate load and view Application Insights Profiler for .NET data
 description: Generate load to your Azure service to view the .NET Profiler data
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/24/2025
 ms.reviewer: charles.weininger
 ---

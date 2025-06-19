@@ -1,7 +1,7 @@
 ---
 title: What's new in Azure Service Health
 description: What's New in Azure Service Health
-ms.topic: conceptual
+ms.topic: whats-new
 ms.date: 04/25/2025
 ---
 

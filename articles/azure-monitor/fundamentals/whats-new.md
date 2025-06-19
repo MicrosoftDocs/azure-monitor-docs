@@ -1,7 +1,7 @@
 ---
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
-ms.topic: conceptual
+ms.topic: whats-new
 ms.date: 04/03/2025
 ---
 

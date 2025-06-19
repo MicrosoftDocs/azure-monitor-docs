@@ -1,7 +1,7 @@
 ---
 title: Switch to Managed Prometheus visualizations in Azure Monitor
 description: This article describes how to switch to using Managed Prometheus visualizations in Azure Monitor.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 05/15/2024
 ms.reviewer: vdiec
 ---

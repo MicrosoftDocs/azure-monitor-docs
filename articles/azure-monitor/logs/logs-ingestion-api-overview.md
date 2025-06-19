@@ -1,7 +1,7 @@
 ---
 title: Logs Ingestion API in Azure Monitor
 description: Send data to a Log Analytics workspace using REST API or client libraries.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 06/16/2025
 ---
 

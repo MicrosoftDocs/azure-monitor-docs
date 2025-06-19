@@ -1,7 +1,7 @@
 ---
 title: Monitor Kubernetes clusters using Azure services and cloud native tools
 description: Describes how to monitor the health and performance of the different layers of your Kubernetes environment using Azure Monitor and cloud native services in Azure.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 04/25/2025
 ---
 

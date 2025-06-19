@@ -1,7 +1,7 @@
 ---
 title: Configure Azure Advisor recommendations view
 description: View and filter Azure Advisor recommendations to reduce noise.
-ms.topic: article
+ms.topic: how-to
 ms.date: 09/26/2024
 ---
 

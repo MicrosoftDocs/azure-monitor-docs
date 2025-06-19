@@ -1,7 +1,7 @@
 ---
 title: Overview of common autoscale patterns
 description: Learn some of the common patterns to use with autoscale for your resource in Azure.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/01/2024
 ms.reviewer: akkumari
 ---

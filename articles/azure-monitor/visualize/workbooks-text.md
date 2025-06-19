@@ -2,7 +2,7 @@
 title: Azure Monitor workbook text parameters 
 description: Simplify complex reporting with prebuilt and custom parameterized workbooks. Learn more about workbook text parameters.
 ms.tgt_pltfrm: ibiza
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/17/2024
 ---
 

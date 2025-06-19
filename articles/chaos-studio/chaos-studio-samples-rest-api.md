@@ -3,7 +3,7 @@ title: Use REST APIs to interact with Chaos Studio
 description: Create, view, and manage Azure Chaos Studio experiments, targets, and capabilities with REST APIs.
 services: chaos-studio
 author: prasha-microsoft
-ms.topic: article
+ms.topic: how-to
 ms.date: 10/14/2024
 ms.reviewer: prashabora
 ms.custom: devx-track-azurecli

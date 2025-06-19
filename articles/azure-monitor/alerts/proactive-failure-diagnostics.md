@@ -1,7 +1,7 @@
 ---
 title: Smart Detection of Failure Anomalies in Application Insights | Microsoft Docs
 description: Alerts you to unusual changes in the rate of failed requests to your web app, and provides diagnostic analysis. No configuration is needed.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/09/2025
 ms.reviewer: yagil
 ---
