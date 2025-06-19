@@ -26,7 +26,7 @@ To verify that data is being collected, check for records in the **W3CIISLog** t
 
 :::image type="content" source="media/data-collection-iis/verify-iis.png" lightbox="media/data-collection-iis/verify-iis.png" alt-text="Screenshot that shows records returned from W3CIISLog table." :::
 
-If you are looking for different examples of log queries that retrieve IIS log records are shown in the mentioned table please follow the article [Queries for the W3CIISLog table](../../../articles/azure-monitor/reference/queries/w3ciislog.md) for additional details. 
+If you are looking for different examples of log queries that retrieve IIS log records shown in the mentioned table, follow the article [Queries for the W3CIISLog table](../../../articles/azure-monitor/reference/queries/w3ciislog.md) for additional details. 
 
 
 ## Configure collection of IIS logs on client
