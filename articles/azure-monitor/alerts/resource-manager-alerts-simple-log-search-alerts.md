@@ -98,7 +98,7 @@ The following sample creates a rule that can target any resource.
         "PT1H",
         "PT6H",
         "PT12H",
-        "PT24H"
+        "P1D"
       ],
       "metadata": {
         "description": "Mute actions for the chosen period of time (in ISO 8601 duration format) after the alert is fired."
