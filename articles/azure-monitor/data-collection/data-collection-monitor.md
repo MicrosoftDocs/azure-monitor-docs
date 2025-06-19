@@ -1,7 +1,7 @@
 ---
 title: Monitor DCR data collection in Azure Monitor
 description: Configure log collection for monitoring of DCR-based data collection in Azure Monitor.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/04/2024
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Data plane API and metrics batch query versus metrics export 
 description: A comparison of Data plane API or metrics batch query and metrics export.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/15/2024
 
 # As an Azure administrator, I want to understand the differences between the Data Plane API or Metrics Batch query and Metrics export so that I can choose the right service for my scenario.

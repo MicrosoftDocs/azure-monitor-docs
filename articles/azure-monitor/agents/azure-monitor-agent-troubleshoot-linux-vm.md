@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot the Azure Monitor agent on Linux virtual machines and scale sets
 description: Guidance for troubleshooting issues on Linux virtual machines, scale sets with Azure Monitor agent and Data Collection Rules.
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 11/14/2024
 ms.custom: references_region, linux-related-content
 ms.reviewer: shseth

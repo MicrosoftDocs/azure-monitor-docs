@@ -3,7 +3,7 @@ title: Chaos Agent Overview
 description: Introduction to the Chaos Agent, its purpose, and how it enables agent-based chaos experiments in Azure Chaos Studio.
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: article
+ms.topic: concept-article
 ms.date: 03/02/2025
 ms.reviewer: nikhilkaul
 ms.custom: 

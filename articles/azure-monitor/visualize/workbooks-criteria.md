@@ -1,7 +1,7 @@
 ---
 title: Azure Workbooks criteria parameters
 description: Learn about adding criteria parameters to your workbook.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/17/2024
 ms.reviewer: gardnerjr
 ---

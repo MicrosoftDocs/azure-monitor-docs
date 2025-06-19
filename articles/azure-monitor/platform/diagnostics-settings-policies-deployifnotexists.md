@@ -1,7 +1,7 @@
 ---
 title: Enable diagnostics settings by category group using built-in policies.
 description: Use Azure builtin policies to create diagnostic settings in Azure Monitor.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ms.date: 11/12/2024
 ms.reviewer: lualderm

@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor cost and usage
 description: Overview of how Azure Monitor is billed and how to analyze billable usage.
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: Dale.Koetke
 ms.date: 05/21/2025
 ---

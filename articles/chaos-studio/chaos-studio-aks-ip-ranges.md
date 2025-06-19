@@ -3,7 +3,7 @@ title: Authorize Chaos Studio IP addresses for an AKS cluster
 description: Learn about several ways to authorize Chaos Studio IP addresses to communicate with your AKS cluster.
 services: chaos-studio
 author: rsgel
-ms.topic: article
+ms.topic: how-to
 ms.date: 12/4/2024
 ms.author: carlsonr
 ---

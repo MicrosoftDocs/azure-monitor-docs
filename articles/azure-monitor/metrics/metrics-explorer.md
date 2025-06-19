@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor metrics explorer with PromQL (Preview)
 description: Learn about Azure Monitor metrics explorer with Prometheus query language support.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/20/2024
 ms.reviewer: priyamishra
 

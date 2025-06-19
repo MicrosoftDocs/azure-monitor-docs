@@ -1,7 +1,7 @@
 ---
 title: Stay informed about Azure security issues
 description: This article shows you where Azure customers receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 05/14/2025
 ---
 

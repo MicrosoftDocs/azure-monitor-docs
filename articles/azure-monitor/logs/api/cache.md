@@ -2,7 +2,7 @@
 title: Caching
 description: To improve performance, responses can be served from a cache. By default, responses are stored for 2 minutes.
 ms.date: 08/12/2024
-ms.topic: article
+ms.topic: concept-article
 ---
 # Caching
 To improve performance, responses can be served from a cache. By default, responses are stored for 2 minutes.

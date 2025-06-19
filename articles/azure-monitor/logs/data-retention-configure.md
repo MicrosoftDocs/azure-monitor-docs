@@ -2,7 +2,7 @@
 title: Manage data retention in a Log Analytics workspace
 description: Configure retention settings for a table in a Log Analytics workspace in Azure Monitor.
 ms.reviewer: adi.biran
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 5/05/2025
 # Customer intent: As an Azure account administrator, I want to manage data retention for each table in my Log Analytics workspace based on my account's data usage and retention needs.
 ---

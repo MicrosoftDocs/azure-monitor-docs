@@ -1,7 +1,7 @@
 ---
 title: Create and apply Pod and Service Monitors for Prometheus metrics in Azure Monitor
 description: Describes how to create and apply pod and service monitors to scrape Prometheus metrics in Azure Monitor to Kubernetes cluster.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/13/2024
 ms.reviewer: aul
 ---

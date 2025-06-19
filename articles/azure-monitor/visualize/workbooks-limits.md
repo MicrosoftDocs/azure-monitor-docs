@@ -1,7 +1,7 @@
 ---
 title: Azure Workbooks data source limits | Microsoft docs
 description: Learn about the limits of each type of workbook data source.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 09/17/2024
 ms.reviewer: gardnerjr
 ---

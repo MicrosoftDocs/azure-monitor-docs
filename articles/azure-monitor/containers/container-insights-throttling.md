@@ -1,7 +1,7 @@
 ---
 title: Configure throttling for Container Insights
 description: Configure throttling parameters and monitor for log loss in Container Insights
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/09/2025
 ---
 

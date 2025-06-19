@@ -1,7 +1,7 @@
 ---
 title: Metrics export through data collection rules (Preview)
 description: Learn how to create data collection rules for metrics.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 09/15/2024
 ms.custom: references_regions
 ---

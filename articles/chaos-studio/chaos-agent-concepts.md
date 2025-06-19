@@ -3,7 +3,7 @@ title: "Agent Concepts"
 description: "Agent Concepts – In-depth concepts for the Chaos Agent, including how it works, network access requirements, identities, and dependencies."
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: article
+ms.topic: concept-article
 ms.date: 03/02/2025
 ms.reviewer: nikhilkaul
 ms.custom: 

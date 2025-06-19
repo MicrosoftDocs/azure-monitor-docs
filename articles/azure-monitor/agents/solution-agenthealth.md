@@ -1,7 +1,7 @@
 ---
 title: Agent Health solution in Azure Monitor | Microsoft Docs
 description: Learn how to use this solution to monitor the health of your agents reporting directly to Log Analytics or System Center Operations Manager.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/14/2024
 ms.reviewer: shijain
 

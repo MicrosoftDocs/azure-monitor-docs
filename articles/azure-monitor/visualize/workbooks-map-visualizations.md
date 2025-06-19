@@ -2,7 +2,7 @@
 title: Azure Workbooks map visualizations
 description: Learn about Azure Workbooks map visualizations.
 ms.tgt_pltfrm: ibiza
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/17/2024
 ---
 
