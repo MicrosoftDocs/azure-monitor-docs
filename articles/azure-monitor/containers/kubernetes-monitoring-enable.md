@@ -65,22 +65,24 @@ This article provides onboarding guidance for the following types of clusters. A
 
 ## Workspaces
 
-The following table describes the workspaces that are required to support Managed Prometheus and Container insights. You can create each workspace as part of the onboarding process or use an existing workspace. See [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on how many workspaces to create and where they should be placed.
+The following table describes the workspaces that are required to support Managed Prometheus and Container insights. You can create each workspace as part of the onboarding process or use an existing workspace. See [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on how many workspaces to create and where they should be placed. 
 
 | Feature | Workspace | Notes |
 |:---|:---|:---|
 | Managed Prometheus | [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md) | `Contributor` permission is enough for enabling the addon to send data to the Azure Monitor workspace. You will need `Owner` level permission to link your Azure Monitor Workspace to view metrics in Azure Managed Grafana. This is required because the user executing the onboarding step, needs to be able to give the Azure Managed Grafana System Identity `Monitoring Reader` role on the Azure Monitor Workspace to query the metrics. |
-| Container insights | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). |
+| Container insights | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter. |
 | Managed Grafana | [Azure Managed Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal#create-an-azure-managed-grafana-workspace) | [Link your Grafana workspace to your Azure Monitor workspace](/azure/managed-grafana/how-to-connect-azure-monitor-workspace) to make the Prometheus metrics collected from your cluster available to Grafana dashboards. |
 
 
 ## Enable Prometheus and Grafana
 Use one of the following methods to enable scraping of Prometheus metrics from your cluster and enable Managed Grafana to visualize the metrics. See [Link a Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal) for options to connect your Azure Monitor workspace and Azure Managed Grafana workspace.
 
-> [!NOTE]
-> If the deployment is done using an ARM, Bicep or Terraform template or Azure Policy, and you are not using the provided examples, ensure that the Data Collection Endpoints, Data Collection Rules and the Data Collection Rule Associations are named `MSProm-<Location of Azure Monitor Workspace>-<Name of cluster resource>`. Failure to do so will result in the onboarding process not completing successfully.
+> [!IMPORTANT]
+> 
+> - If the deployment is done using an ARM, Bicep or Terraform template or Azure Policy, and you are not using the provided examples, ensure that the Data Collection Endpoints, Data Collection Rules and the Data Collection Rule Associations are named `MSProm-<Location of Azure Monitor Workspace>-<Name of cluster resource>`. Failure to do so will result in the onboarding process not completing successfully.
+> 
 
-> [!NOTE] 
+> [!IMPORTANT] 
 > If you have a single Azure Monitor Resource that is private-linked, then Prometheus enablement won't work if the AKS cluster and Azure Monitor Workspace are in different regions.
 > The configuration needed for the Prometheus add-on isn't available cross region because of the private link constraint.
 > To resolve this, create a new DCE in the cluster location and a new DCRA (association) in the same cluster region. Associate the new DCE with the cluster and name the new association (DCRA) as configurationAccessEndpoint.
@@ -361,9 +363,12 @@ After the policy is assigned to the subscription, whenever you create a new clus
 ## Enable Container insights
 Use one of the following methods to enable Container insights on your cluster. Once this is complete, see [Configure agent data collection for Container insights](container-insights-data-collection-configmap.md) to customize your configuration to ensure that you aren't collecting more data than you require.
 
-> [!NOTE] 
+> [!IMPORTANT] 
 > If you have a single Azure Monitor Resource that is private-linked, then Container insights enablement will not work through the Azure portal.
 > For full instructions on how to configure Container insights with Private Link, see [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
+
+> [!IMPORTANT] 
+> To enable Container insights with network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
 
 ### [CLI](#tab/cli)
 
@@ -379,6 +384,7 @@ Use one of the following commands to enable monitoring of your AKS and Arc-enabl
 - For CLI version 2.54.0 or higher, the logging schema will be configured to [ContainerLogV2](container-insights-logs-schema.md) using [ConfigMap](container-insights-data-collection-configmap.md).
 > [!NOTE]
 > You can enable the **ContainerLogV2** schema for a cluster either using the cluster's Data Collection Rule (DCR) or ConfigMap. If both settings are enabled, the ConfigMap will take precedence. Stdout and stderr logs will only be ingested to the ContainerLog table when both the DCR and ConfigMap are explicitly set to off.
+
 #### AKS cluster
 
 ```azurecli
