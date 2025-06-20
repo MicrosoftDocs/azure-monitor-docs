@@ -247,6 +247,7 @@ A list of the latest [currently supported modules](https://github.com/microsoft/
 ## Next steps
 
 * Review frequently asked questions (FAQ): [Dependency tracking FAQ](application-insights-faq.yml#dependency-tracking)
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Exceptions](./asp-net-exceptions.md)
 * [User and page data](./javascript.md)
 * [Availability](./availability-overview.md)

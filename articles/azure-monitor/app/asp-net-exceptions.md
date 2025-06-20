@@ -527,6 +527,7 @@ This count is different from the Exceptions count calculated by the Application 
 
 ## Next steps
 
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Monitor REST, SQL, and other calls to dependencies](./asp-net-dependencies.md)
 * [Monitor page load times, browser exceptions, and AJAX calls](./javascript.md)
 * [Monitor performance counters](./asp-net-counters.md)

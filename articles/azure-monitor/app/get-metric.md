@@ -308,6 +308,7 @@ SeverityLevel.Error);
 
 ## Next steps
 
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Metrics - Get - REST API](/rest/api/application-insights/metrics/get)
 * [Application Insights API for custom events and metrics](api-custom-events-metrics.md)
 * [Learn more](./worker-service.md) about monitoring worker service applications.
