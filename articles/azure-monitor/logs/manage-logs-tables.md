@@ -3,7 +3,7 @@ title: Manage tables in a Log Analytics workspace
 description: Learn how to manage table settings in a Log Analytics workspace based on your data analysis and cost management needs.
 ms.reviewer: adi.biran
 ms.topic: how-to
-ms.date: 07/21/2024
+ms.date: 06/20/2025
 # Customer intent: As a Log Analytics workspace administrator, I want to understand how table properties work and how to view and manage table properties so that I can manage the data and costs related to a Log Analytics workspace effectively.
 
 ---
@@ -50,9 +50,6 @@ To access data in long-term retention, [run a search job](../logs/search-jobs.md
 
 Reduce costs and analysis effort by using data collection rules to [filter out and transform data before ingestion](../essentials/data-collection-transformations.md) based on the schema you define for your custom table.    
 
-> [!NOTE]
-> Tables with the [Auxiliary table plan](data-platform-logs.md) do not currently support data transformation. For more details, see [Send data to a table with the Auxiliary plan](create-custom-table-auxiliary.md#send-data-to-a-table-with-the-auxiliary-plan).
-
 ## View table properties
 
 > [!NOTE]
@@ -81,7 +78,7 @@ To view and set table properties in the Azure portal:
 To view table properties, call the [Tables - Get API](/rest/api/loganalytics/tables/get):
 
 ```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}?api-version=2021-12-01-preview
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}?api-version={api-version}
 ```
 
 **Response body**
