@@ -94,7 +94,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{
 **Sample request**
 
 ```http
-GET https://management.azure.com/subscriptions/ContosoSID/resourcegroups/ContosoRG/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/ContainerLogV2?api-version=2021-12-01-preview
+GET https://management.azure.com/subscriptions/ContosoSID/resourcegroups/ContosoRG/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/ContainerLogV2?api-version=2025-02-01
 ```
 
 **Sample response**
@@ -135,7 +135,7 @@ To set table properties using Azure CLI, run the [az monitor log-analytics works
 To view table properties using PowerShell, run:
 
 ```powershell
-Invoke-AzRestMethod -Path "/subscriptions/ContosoSID/resourcegroups/ContosoRG/providers/microsoft.operationalinsights/workspaces/ContosoWorkspace/tables/Heartbeat?api-version=2021-12-01-preview" -Method GET 
+Invoke-AzRestMethod -Path "/subscriptions/ContosoSID/resourcegroups/ContosoRG/providers/microsoft.operationalinsights/workspaces/ContosoWorkspace/tables/Heartbeat?api-version=2025-02-01" -Method GET 
 ```
 
 **Sample response**
@@ -174,7 +174,6 @@ Invoke-AzRestMethod -Path "/subscriptions/ContosoSID/resourcegroups/ContosoRG/pr
           "isDefaultDisplay": true,
           "isHidden": false
         },
-        <OMITTED>
         {
           "name": "ComputerPrivateIPs",
           "type": "dynamic",
@@ -191,7 +190,7 @@ Invoke-AzRestMethod -Path "/subscriptions/ContosoSID/resourcegroups/ContosoRG/pr
     "provisioningState": "Succeeded",
     "retentionInDays": 30
   },
-  "id": "/subscriptions/{guid}/resourceGroups/{rg name}/providers/Microsoft.OperationalInsights/workspaces/{ws id}/tables/Heartbeat",
+  "id": "/subscriptions/0000aaaa-11bb-cccc-dd22-eeeeee333333/resourceGroups/ContosoRG/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Heartbeat",
   "name": "Heartbeat"
 }
 ```
