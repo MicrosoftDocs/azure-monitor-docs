@@ -425,6 +425,7 @@ You can also set the cloud role name via environment variable or system property
 
 ## Next steps
 
+- Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 - [Application map](./app-map.md)
 - Write [custom telemetry](../../azure-monitor/app/api-custom-events-metrics.md).
 - For advanced correlation scenarios in ASP.NET Core and ASP.NET, see [Track custom operations](custom-operations-tracking.md).

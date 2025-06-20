@@ -304,7 +304,8 @@ Configure a [snapshot collection for ASP.NET applications](snapshot-debugger-vm.
 
 ## Next steps
 
-[Learn more about the API][api]
+- Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
+- [Learn more about the API][api]
 
 <!--Link references-->
 

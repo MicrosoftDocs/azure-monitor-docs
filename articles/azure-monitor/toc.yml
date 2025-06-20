@@ -209,7 +209,7 @@ items:
             href: app/distributed-trace-data.md
             displayName: correlation headers, w3c, distributed tracing, tracing
         - name: SDK support policy
-          href: app/sdk-support-guidance.md
+          href: /troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance
     - name: Experiences
       items:
       - name: Application dashboard

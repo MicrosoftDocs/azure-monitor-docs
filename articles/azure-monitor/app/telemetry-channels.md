@@ -151,5 +151,6 @@ Like every SDK for Application Insights, channels are open source. Read and cont
 ## Next steps
 
 * To review frequently asked questions (FAQ), see [Telemetry channels FAQ](application-insights-faq.yml#telemetry-channels)
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Sampling](./sampling.md)
 * [SDK troubleshooting](./asp-net-troubleshoot-no-data.md)

@@ -298,3 +298,4 @@ To set an alert, open the **Alerts** pane and select **Add Alert**.
 ## Next steps
 
 -  To review frequently asked questions (FAQ), see [Performance counters FAQ](application-insights-faq.yml#asp-net-performance-counters) and [Event counters FAQ](application-insights-faq.yml#asp-net-event-counters)
+- Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
