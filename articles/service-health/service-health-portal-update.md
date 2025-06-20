@@ -10,7 +10,7 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 
 The Azure Service Health portal experience lets you engage with service events and manage actions and alerts to maintain the business continuity of impacted applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, or billing updates. 
 
-For more specific details about the portal experience see [Azure Portal Overview](/azure/azure-portal/azure-portal-overview).
+For more details about navigating in the portal see [Azure portal Overview](/azure/azure-portal/azure-portal-overview).
 
 When events become inactive, they get placed in your health history for up to 90 days. Finally, you can use the Service Health dashboard to create and manage service health alerts, which proactively notify you when service issues are affecting you.
 
@@ -90,7 +90,7 @@ An alert is triggered when the specified conditions are met. You can select any 
 ##### Tenant and Subscription access
 Tenant access refers to the ability to view events that affect the entire organization, requiring tenant admin roles. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, while subscription-level events are limited to the resources in that subscription. 
 <br>
-For more information see [Subscription vs tenant access](subscription-vs-tenant.md).
+For more information, see [Subscription vs tenant access](subscription-vs-tenant.md).
 
 This distinction ensures that users can manage and monitor Azure services effectively based on their roles and the scope of their responsibilities. 
 
