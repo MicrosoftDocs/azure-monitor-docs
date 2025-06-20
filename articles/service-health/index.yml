@@ -47,7 +47,7 @@ landingContent:
           - text: Configure alerts for service health alerts
             url: ./alerts-activity-log-service-notifications-portal.md
           - text: Learn about subscription and tenant accounts
-            url: subscription-vs-tenant
+            url: subscription-vs-tenant.md
 
 # Card 
   - title: Get started with Azure Resource Health
