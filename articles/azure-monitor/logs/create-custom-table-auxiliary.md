@@ -175,7 +175,7 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
                                     },
                                     {
                                         "name": "GuidProperty",
-                                        "type": "real"
+                                        "type": "guid"
                                     },
                                     {
                                         "name": "DateTimeProperty",
