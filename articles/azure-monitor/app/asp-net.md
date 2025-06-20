@@ -470,7 +470,7 @@ Our [Service Updates](https://azure.microsoft.com/updates/?service=application-i
 
 ## Next steps
 
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * Review frequently asked questions (FAQ): [Applications Insights for ASP.NET FAQ](application-insights-faq.yml#asp-net) 
 * Add synthetic transactions to test that your website is available from all over the world with [availability monitoring](availability-overview.md).
 * [Configure sampling](sampling.md) to help reduce telemetry traffic and data storage costs.
-
