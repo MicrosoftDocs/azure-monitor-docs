@@ -2066,6 +2066,8 @@ Configure the shutdown fault:
 ##### Limitations
 * Currently, only virtual machine scale sets configured with the **Uniform** orchestration mode are supported. If your virtual machine scale set uses **Flexible** orchestration, you can use the Azure Resource Manager virtual machine shutdown fault to shut down selected instances.
 * VM extension errors that occur during the restart operation are ignored. This means if the VM scale set instances successfully restart but VM extensions fail to load, the fault will be considered successful. Ignored extension errors include VMExtensionProvisioningError, VMExtensionProvisioningTimeout, VMExtensionManagementInternalError, and VMExtensionHandlerNonTransientError.
+> [!IMPORTANT]
+> **Limitation:** The Virtual Machine Scale Set Shutdown fault may fail if the target VMSS is in an updating state (such as during scaling or OS updates). Ensure your VMSS is not actively updating when running this fault. This is a known platform limitation.
 
 
 ## Details: Orchestration actions
