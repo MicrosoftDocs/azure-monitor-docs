@@ -190,7 +190,7 @@ Invoke-AzRestMethod -Path "/subscriptions/ContosoSID/resourcegroups/ContosoRG/pr
     "provisioningState": "Succeeded",
     "retentionInDays": 30
   },
-  "id": "/subscriptions/0000aaaa-11bb-cccc-dd22-eeeeee333333/resourceGroups/ContosoRG/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Heartbeat",
+  "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Heartbeat",
   "name": "Heartbeat"
 }
 ```
