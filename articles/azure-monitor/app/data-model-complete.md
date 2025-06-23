@@ -45,7 +45,7 @@ The following types of telemetry are used to monitor the execution of your appli
 > To compare field names in the Azure portal, open **Application Insights** > **Logs**, run a query, and copy the `Id` of a telemetry item (for example, `1234a5b6c7de8f90`). Then, open a new tab in your browser, go to **Log Analytics** > **Logs**, switch to **KQL mode**, and run the query:
 >
 > ```kusto
-> AppDependencies // Notice that the table name is also different, see [Types of telemetry](#types-of-telemetry).
+> AppDependencies // Notice that the table names are also different.
 > | where Id == "1234a5b6c7de8f90"
 > ```
 >
