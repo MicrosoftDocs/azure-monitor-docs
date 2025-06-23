@@ -22,6 +22,11 @@ Azure Monitor automatically collects host metrics and activity logs from your Az
 * To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 * See the detailed article for each [data source](#add-data-sources) for any additional prerequisites.
 
+> [!IMPORTANT]
+> If your Log Analytics workspace is associated with a network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
+
+
+
 ## Create a data collection rule
 
 In the Azure portal, on the **Monitor** menu, select **Data Collection Rules** > **Create** to open the DCR creation pane.
