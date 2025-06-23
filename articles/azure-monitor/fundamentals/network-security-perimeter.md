@@ -20,7 +20,7 @@ Network Security Perimeter allows you to control network access using network is
 
 ## Regions
 
-Azure Network Security Perimeter is available in all regions where Azure Monitor is supported.
+Azure Network Security Perimeter is available in all Public cloud regions where Azure Monitor is supported.
 
 ## Current limitations
 
@@ -28,7 +28,7 @@ Azure Network Security Perimeter is available in all regions where Azure Monitor
 * Only Azure resources that support network security perimeter can use a diagnostic setting with a destination in a network security perimeter. The resource being monitored also must be in the same network security perimeter as the destination.
 * Global action groups resources don't support network security perimeter. You must create regional action groups resources that will support network security perimeter.
 * Cross-resource queries are blocked for Log Analytics Workspaces associated with network security perimeter. This includes accessing the workspace through an ADX cluster.
-* network security perimeter access logs are sampled every 30 minutes.
+* Network security perimeter access logs are sampled every 30 minutes.
 * [Log Analytics workspace replication](../logs/workspace-replication.md) isn't supported.
 * [Ingesting events from Azure Event Hubs](../logs/ingest-logs-event-hub.md) isn't supported.
 * Collecting data into or querying data from [Azure Monitor workspaces](../metrics/azure-monitor-workspace-overview.md) isn't supported.
