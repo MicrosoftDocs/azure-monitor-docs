@@ -40,7 +40,16 @@ The following types of telemetry are used to monitor the execution of your appli
 | [Trace](#trace-telemetry) | `traces` | `AppTraces` | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
 
 > [!IMPORTANT]
-> You can query application telemetry from both Application Insights and Log Analytics *(recommended)*, but the table and field names differ between the two. This distinction preserves backward compatibility, for example to ensure that customer dashboards with custom queries created before the Log Analytics naming convention continue to function correctly.
+> You can query application telemetry from both Application Insights and Log Analytics *(recommended)*, but the table and field names are different. This distinction preserves backward compatibility, for example to ensure that customer dashboards with custom queries created before the Log Analytics naming convention continue to function correctly.
+>
+> To compare field names in the Azure portal, open **Application Insights** > **Logs**, run a query, and copy the `Id` of a telemetry item (for example, `1234a5b6c7de8f90`). Then, open a new tab in your browser, go to **Log Analytics** > **Logs**, switch to **KQL mode**, and run the query:
+>
+> ```kusto
+> AppDependencies // Notice that table names are also different.
+> | where Id == "1234a5b6c7de8f90"
+> ```
+>
+> Expand both telemetry items by selecting the chevron to the left of each row to view all their properties.
 
 Each telemetry item can include [context information](#context) such as the application version or user session ID. Context consists of a set of strongly typed fields that enable different analysis scenarios.
 
