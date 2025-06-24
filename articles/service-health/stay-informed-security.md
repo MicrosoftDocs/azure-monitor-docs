@@ -44,7 +44,7 @@ We communicate security-related information affecting your Azure subscription wo
 Azure Service Health security communications are visible. 
 - For services designed at the subscription level, notifications are sent at the subscription level. 
 - For services designed at the tenant level (for example, Microsoft Entra), notifications are sent at the tenant level.
-<br>
+
 However, when Microsoft identifies a security event that is both impactful and designed at the subscription level, we also proactively send another notifications at the tenant level to ensure maximum visibility and awareness.
 
 ## Three steps to help you stay informed about Azure security issues
