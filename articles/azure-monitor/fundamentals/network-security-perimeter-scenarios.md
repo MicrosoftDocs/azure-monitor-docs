@@ -1,12 +1,12 @@
 ---
 title: Azure Monitor with Network Security Perimeter scenarios
-description: Scenarios for configuration Network Security Perimeter with Azure Monitor.
+description: Scenarios for configuration of network security perimeters with Azure Monitor.
 ms.topic: article
 ms.date: 5/28/2025
 ---
 
-# Azure Monitor with network security perimeter scenarios
-[network security perimeter](/azure/private-link/network-security-perimeter-concepts) allows you to control network access using network isolation settings under supported Azure Monitor resources. This article provides the configuration of network security perimeters for different common scenarios with Azure Monitor.
+# Azure Monitor with Network Security Perimeter scenarios
+[Network Security Perimeter](/azure/private-link/network-security-perimeter-concepts) allows you to control network access using network isolation settings under supported Azure Monitor resources. This article provides the configuration of network security perimeters for different common scenarios with Azure Monitor.
 
 ## Azure Monitor data collection scenarios
 
@@ -78,12 +78,12 @@ The [Log Analytics agent](../agents/log-analytics-agent.md) has been deprecated 
 
 ### Queries with external operators and cross-workspace queries
 
-- Denied by default. The Network Security Perimeter is in place to prevent data exfiltration risks.
+- Denied by default. The network security perimeter is in place to prevent data exfiltration risks.
   
 ### Purge/Data Deletion (ARM paths) 
 Purge or Data Delete operation in Log Analytics workspace
 
-- Denied by default. The Network Security Perimeter is in place to prevent data exfiltration risks.
+- Denied by default. The network security perimeter is in place to prevent data exfiltration risks.
  
 
 ## Log search alerts
