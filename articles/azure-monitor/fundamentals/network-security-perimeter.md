@@ -93,9 +93,9 @@ A network security perimeter profile specifies rules that allow or deny access t
 > [!NOTE]
 > Any service associated with a network security perimeter implicitly allows inbound and outbound access to any other service associated with the same network security perimeter when that access is authenticated using [managed identities and role assignments](/entra/identity/managed-identities-azure-resources/overview). Access rules only need to be created when allowing access outside of the network security perimeter, or for access authenticated using API keys.
 
-## Add Network Security Perimeter inbound access rule
+## Add a network security perimeter inbound access rule
 
-Network Security Perimeter inbound access rules can allow the internet and resources outside the perimeter to connect with resources inside the perimeter.
+Network security perimeter inbound access rules can allow the internet and resources outside the perimeter to connect with resources inside the perimeter.
 
 Network security perimeters support two types of inbound access rules:
 
@@ -126,7 +126,7 @@ Use the following process to add a network security perimeter inbound access rul
 
     :::image type="content" source="media/network-security-perimeter/inbound-access-rule-new.png" lightbox="media/network-security-perimeter/inbound-access-rule-new.png" alt-text="Screenshot of network security perimeter profile new inbound access rule in the Azure portal."::: 
 
-## Add a Network Security Perimeter outbound access rule
+## Add a network security perimeter outbound access rule
 
 [Data export in a Log Analytics workspace](../logs/logs-data-export.md) lets you continuously export data for particular tables in your workspace. You can export to Azure Storage or Azure Event Hubs as the data arrives to an Azure Monitor pipeline.
 
@@ -160,4 +160,4 @@ Resource logs provide insights into the operation of network security perimeters
 ## Next steps
 
 * Read more about [Network Security Perimeter](/azure/private-link/network-security-perimeter-concepts) in Azure.
-* Follow guidance to transition your resources at [Transition to a Network Security Perimeter in Azure](/azure/private-link/network-security-perimeter-transition).
+* Follow guidance to transition your resources at [Transition to a network security perimeter in Azure](/azure/private-link/network-security-perimeter-transition).
