@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/08/2025
+ms.date: 06/24/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -330,5 +330,41 @@ Recommendation ID: 4b0be860-1d79-4360-861a-5382fdb0532c
 
 
 <!--4b0be860-1d79-4360-861a-5382fdb0532c_end-->
+
+<!--6772abda-0192-4e70-bfeb-409c7e7cf73c_begin-->
+
+#### Review the server for enable_indexscan turned off  
+  
+The server has enable_indexscan server parameter set to off. Turn on enable_indexscan server parameter for an optimized query performance.  
+  
+**Potential benefits**: Turn on enable_indexscan for improved query performance.  
+
+**Impact:** Medium
+  
+For more information, see [Query Tuning / Planner Method Configuration server parameters - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/server-parameters-table-query-tuning-planner-method-configuration?pivots=postgresql-17#enable_indexscan)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 6772abda-0192-4e70-bfeb-409c7e7cf73c  
+
+
+<!--6772abda-0192-4e70-bfeb-409c7e7cf73c_end-->
+
+<!--bb641db9-591e-4a7e-b4f0-6d9409d646fe_begin-->
+
+#### Review the server for enable_indexonlyscan turned off  
+  
+The enable_indexonlyscan setting is turned off for the server. Turn on the enable_indexonlyscan setting for an optimized query performance.  
+  
+**Potential benefits**: Turn on enable_indexonlyscan for improved query performance.  
+
+**Impact:** Medium
+  
+For more information, see [Query Tuning / Planner Method Configuration server parameters - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/server-parameters-table-query-tuning-planner-method-configuration?pivots=postgresql-17#enable_indexonlyscan)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: bb641db9-591e-4a7e-b4f0-6d9409d646fe  
+
+
+<!--bb641db9-591e-4a7e-b4f0-6d9409d646fe_end-->
 
 <!--articleBody-->
