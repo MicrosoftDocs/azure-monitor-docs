@@ -25,8 +25,8 @@ Azure Network Security Perimeter is available in all Public cloud regions where 
 ## Current limitations
 
 * For Log Analytics export scenarios with storage accounts/event hubs, both the Log Analytics workspace and the storage account/event hub must be part of the same perimeter.
-* Only Azure resources that support Network Security Perimeter can use a diagnostic setting with a destination in a network security perimeter. The resource being monitored also must be in the same network security perimeter as the destination.
-* Global action groups resources don't support Network Security Perimeter. You must create regional action groups resources that will support Network Security Perimeter.
+* Only Azure resources that support network security perimeters can use a diagnostic setting with a destination in a network security perimeter. The resource being monitored also must be in the same network security perimeter as the destination.
+* Global action groups resources don't support network security perimeters. You must create regional action groups resources that will support network security perimeters.
 * Cross-resource queries are blocked for Log Analytics workspaces associated with a network security perimeter. This includes accessing the workspace through an ADX cluster.
 * Network security perimeter access logs are sampled every 30 minutes.
 * [Replication of Log Analytics workspace](../logs/workspace-replication.md) isn't supported.
@@ -38,7 +38,7 @@ Azure Network Security Perimeter is available in all Public cloud regions where 
 > These limitations also apply to Sentinel-enabled Log Analytics workspaces.
 
 ## Supported components
-The components of Azure Monitor that are supported with a network security perimeter are listed in the following table with their minimum API version. See [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources) for a list of the other Azure services that are supported with Network Security Perimeter.
+The components of Azure Monitor that are supported with network security perimeters are listed in the following table with their minimum API version. See [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources) for a list of the other Azure services that are supported with network security perimeters.
 
 | Resource                                | Resource type                              | API version        |
 |:----------------------------------------|:-------------------------------------------|:-------------------|
@@ -48,9 +48,9 @@ The components of Azure Monitor that are supported with a network security perim
 | Action groups <sup>1</sup> <sup>2</sup> | Microsoft.Insights/actionGroups            | 2023-05-01         |
 | Diagnostic settings                     | Microsoft.Insights/diagnosticSettings      | 2021-05-01-preview |
 
-<sup>1</sup> Network Security Perimeter only operates with [regional action groups](../alerts/action-groups.md#create-an-action-group-in-the-azure-portal). Global action groups default to public network access.
+<sup>1</sup> Network security perimeters only operate with [regional action groups](../alerts/action-groups.md#create-an-action-group-in-the-azure-portal). Global action groups default to public network access.
 
-<sup>2</sup> Today, Event Hub is the only supported action type for Network Security Perimeter. All other actions default to public network access.
+<sup>2</sup> Event Hub is currently the only supported action type for network security perimeters. All other actions default to public network access.
 
 ### Unsupported components
 The following components of Azure Monitor are **not** supported with a network security perimeter:
@@ -97,7 +97,7 @@ A network security perimeter profile specifies rules that allow or deny access t
 
 Network Security Perimeter inbound access rules can allow the internet and resources outside the perimeter to connect with resources inside the perimeter.
 
-Network Security Perimeter supports two types of inbound access rules:
+Network security perimeters support two types of inbound access rules:
 
 * **IP Address Ranges**. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is 8.8.8.0/24, which represents the IPs that range from 8.8.8.0 to 8.8.8.255. This type of rule allows inbound from any IP address in the range is allowed.
 * **Subscriptions**. This type of rule allows inbound access authenticated using any managed identity from the subscription.
