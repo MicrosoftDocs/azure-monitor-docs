@@ -116,6 +116,8 @@ Prometheus remote-write configuration allows you to forward scraped metrics to a
 
 Also consider [Remote write tuning](https://prometheus.io/docs/practices/remote_write/) to adjust configuration settings for better performance. Consider reducing `max_shards` and increasing capacity and `max_samples_per_send` to avoid memory issues. 
 
+---
+
 ## 4. Migrate alerts and dashboards
 
 ### Alerting Rules and recording rules
