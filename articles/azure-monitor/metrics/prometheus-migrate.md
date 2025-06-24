@@ -15,7 +15,7 @@ Azure Monitor managed service for Prometheus enables you to leverage Prometheus 
 - Fully managed service
   - Automatic upgrades and scaling.
   - Data retention for 18 months with no cost for storage
-  - [Simple pricing based on ingestion and query](/azure/pricing/details/monitor/)
+  - [Simple pricing based on ingestion and query](https://azure.microsoft.com/pricing/details/monitor/)
 - Monitoring and observability
   - [End-to-end, at-scale monitoring](../containers/container-insights-overview.md)
   - Out-of-the-box dashboards, alerts, and scrape configurations
@@ -104,7 +104,7 @@ There are two methods to configure metrics collection as described in the follow
 
 ### [Managed add-on](#tab/entra-application)
 
-1. Review the default data/metrics collected by the managed add-on at [Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md). The predefined targets that you can enable/disable are the same as those available with the open-source Prometheus operator. The only difference is that the metrics collected by default are the ones queried by the auto-provisioned dashboards. These default metrics are referred to as [minimal ingestion profile](./containers/prometheus-metrics-scrape-default.md#minimal-ingestion-profile).
+1. Review the default data/metrics collected by the managed add-on at [Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md). The predefined targets that you can enable/disable are the same as those available with the open-source Prometheus operator. The only difference is that the metrics collected by default are the ones queried by the auto-provisioned dashboards. These default metrics are referred to as [minimal ingestion profile](../containers/prometheus-metrics-scrape-default.md#minimal-ingestion-profile).
 
 2. To customize the targets scraped using the add-on, configure the data collection using the [add-on ConfigMap](../containers/prometheus-metrics-scrape-validate.md) or using [Custom resources (Pod and Service Monitors)](../containers/prometheus-metrics-scrape-crd.md). 
     - If you're using Pod Monitor and Service Monitors to monitor your workloads, migrate them to Azure Managed Prometheus by changing the `apiVersion` in the Pod/Service Monitors to `azmonitoring.coreos.com/v1`.
