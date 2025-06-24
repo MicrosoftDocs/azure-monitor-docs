@@ -1,7 +1,7 @@
 ---
 title: Template to create Resource Health alerts
 description: Create alerts programmatically that notify you when your Azure resources become unavailable.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 4/9/2025 
 
 ---

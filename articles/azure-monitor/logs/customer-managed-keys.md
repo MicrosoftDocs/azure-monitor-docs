@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor customer-managed keys
 description: Information and steps to configure Customer-managed key to encrypt data in your Log Analytics workspaces using an Azure Key Vault key.
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: yossiy
 ms.date: 03/31/2025 
 ms.custom: devx-track-azurepowershell, devx-track-azurecli

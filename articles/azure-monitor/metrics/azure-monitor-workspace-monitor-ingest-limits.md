@@ -1,7 +1,7 @@
 ---
 title: Monitor Azure Monitor workspace metrics ingestion
 description: How to monitor Azure Monitor workspace metrics ingestion and set up an alert on Azure Monitor Workspace ingestion limits
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 10/06/2024
 ---
 

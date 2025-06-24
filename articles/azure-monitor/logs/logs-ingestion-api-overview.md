@@ -1,8 +1,8 @@
 ---
 title: Logs Ingestion API in Azure Monitor
 description: Send data to a Log Analytics workspace using REST API or client libraries.
-ms.topic: conceptual
-ms.date: 10/31/2024
+ms.topic: article
+ms.date: 06/16/2025
 ---
 
 # Logs Ingestion API in Azure Monitor
@@ -141,20 +141,20 @@ The `DCR Immutable ID` is generated for the DCR when it's created. You can retri
 
 `Stream Name` refers to the [stream](../data-collection/data-collection-rule-structure.md#input-streams) in the DCR that should handle the custom data.
 
-### Headers
+### Request headers
 
-The following table describes that headers for your API call.
+The following table describes request headers for your API call.
 
 | Header | Required? | Description |
 |:-------|:----------|:------------|
-| Authorization | Yes | Bearer token obtained through the client credentials flow. Use the token audience value for your cloud:<br><br>Azure public cloud - `https://monitor.azure.com`<br>Microsoft Azure operated by 21Vianet cloud - `https://monitor.azure.cn`<br>Azure US Government cloud - `https://monitor.azure.us` |
+| Authorization | Yes | Bearer token obtained through the client credentials flow. Use the token audience value (scope) for your cloud:<br><br>Azure public cloud - `https://monitor.azure.com`<br>Microsoft Azure operated by 21Vianet cloud - `https://monitor.azure.cn`<br>Azure US Government cloud - `https://monitor.azure.us` |
 | Content-Type | Yes | `application/json` |
 | Content-Encoding | No | `gzip` |
 | x-ms-client-request-id | No | String-formatted GUID. This is a request ID that can be used by Microsoft for any troubleshooting purposes. |
 
-### Body
+### Request body
 
-The body of the call includes the custom data to be sent to Azure Monitor. The shape of the data must be a JSON array with item structure that matches the format expected by the stream in the DCR. If it's needed to send a single item within API call, the data should be sent as a single-item array.
+The body of the call includes the custom data to be sent to Azure Monitor. The shape of the data must be a JSON array with item structure that matches the format expected by the stream in the DCR. Here's an example of a single-item array.
 
 For example:
 

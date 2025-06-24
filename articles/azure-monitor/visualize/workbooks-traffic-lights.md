@@ -1,7 +1,7 @@
 ---
 title: Azure Workbooks visual indicators and icons 
 description: Learn about all how to create visual indicators and icons, such as traffic lights in Azure Monitor Workbooks. 
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/17/2024
 ---
 

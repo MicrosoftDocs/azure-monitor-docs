@@ -2,15 +2,17 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 ms.topic: overview
-ms.date: 5/19/2025
+ms.date: 6/20/2025
 ---
 
 # Azure Service Health Portal
-The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard which tracks the health of your Azure services in the regions where you use them. 
+The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard, which tracks the health of your Azure services in the regions where you use them. 
 
 The Azure Service Health portal experience lets you engage with service events and manage actions and alerts to maintain the business continuity of impacted applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, or billing updates. 
 
-When events become inactive, they get placed in your health history for up to 90 days. Finally, you can use the Service Health dashboard to create and manage service health alerts which proactively notify you when service issues are affecting you.
+For more details about the portal elements and controls see [Azure portal Overview](/azure/azure-portal/azure-portal-overview).
+
+When events become inactive, they get placed in your health history for up to 90 days. Finally, you can use the Service Health dashboard to create and manage service health alerts, which proactively notify you when service issues are affecting you.
 
 ## Service Health Events
 
@@ -31,17 +33,11 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 ## Get Started with Service Health
 
 
-### See Service issues which might affect your services
+### See Service issues that might affect your services
 The Service Issues window shows a map with all the user services across the world. The information on this window helps you find services that might be impacted from an outage based on your subscription or tenant admin access.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the services issue user interface." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
 
-
-
-> [!NOTE]
->If you're using Azure Resource Graph (ARG) queries to retrieve service health events and notice a different count compared to the Service Health UI, this is expected. The ARG returns one record per subscription ID and tracking ID combination. On the Azure portal, updates are grouped under each tracking ID, so you might see fewer rows.
->
->However, all updates for each tracking ID are still available in the Issue Updates tab, and the number of unique tracking IDs is the same in both ARG and the Service Health Portal.
 
 
 <!--
@@ -83,7 +79,8 @@ This page watches your resource and tells you if it's running as expected. There
 
 The Health Alerts window allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status. 
 
-<br>An alert is triggered when the specified conditions are met. You can select any alert rule for more information, and details and see the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure portal](alerts-activity-log-service-notifications-portal.md).
+<br>
+An alert is triggered when the specified conditions are met. You can select any alert rule for more information, and details and see the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure portal](alerts-activity-log-service-notifications-portal.md).
 
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts window filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
@@ -92,6 +89,8 @@ The Health Alerts window allows you to search for and sort your alert rules by n
 
 ##### Tenant and Subscription access
 Tenant access refers to the ability to view events that affect the entire organization, requiring tenant admin roles. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, while subscription-level events are limited to the resources in that subscription. 
+<br>
+For more information, see [Subscription vs tenant access](subscription-vs-tenant.md).
 
 This distinction ensures that users can manage and monitor Azure services effectively based on their roles and the scope of their responsibilities. 
 

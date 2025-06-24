@@ -246,6 +246,7 @@ Perhaps your application sends voluminous amounts of data and you're using the A
 
 ## <a name="add"></a>Next steps
 
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Diagnose failures and exceptions in ASP.NET](asp-net-exceptions.md)
 * [Learn more about Transaction Search](transaction-search-and-diagnostics.md?tabs=transaction-search)
 * [Set up availability and responsiveness tests](availability-overview.md)

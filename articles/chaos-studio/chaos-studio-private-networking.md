@@ -3,7 +3,7 @@ title: Integration of virtual network injection with Chaos Studio
 description: Learn how to use virtual network injection with Azure Chaos Studio.
 services: chaos-studio
 author: prashabora
-ms.topic: conceptual
+ms.topic: article
 ms.date: 10/14/2024
 ms.reviewer: nikhilkaul
 ms.custom: devx-track-azurecli

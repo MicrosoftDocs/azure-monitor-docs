@@ -1,7 +1,7 @@
 ---
 title: Access Syslog data in Container Insights 
 description: Describes how to access Syslog data collected from AKS nodes using Container insights.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 08/19/2024
 ms.reviewer: damendo
 ---

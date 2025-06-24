@@ -209,7 +209,7 @@ items:
             href: app/distributed-trace-data.md
             displayName: correlation headers, w3c, distributed tracing, tracing
         - name: SDK support policy
-          href: app/sdk-support-guidance.md
+          href: /troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance
     - name: Experiences
       items:
       - name: Application dashboard
@@ -1051,6 +1051,9 @@ items:
       - name: Overview
         displayName: Prometheus
         href: metrics/prometheus-metrics-overview.md
+      - name: Migrate from self-hosted Prometheus
+        displayName: Prometheus migrate
+        href: metrics/prometheus-migrate.md
       - name: Prometheus remote-write from virtual machines
         displayName: Prometheus remote-write
         href: metrics/prometheus-remote-write-virtual-machines.md

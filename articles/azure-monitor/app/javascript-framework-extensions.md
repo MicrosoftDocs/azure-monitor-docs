@@ -17,20 +17,24 @@ These plugins provide extra functionality and integration with the specific fram
 
 ## Prerequisites
 
-- Install the [JavaScript SDK](./javascript-sdk.md).
+> [!div class="checklist"]
+> * Install the [JavaScript SDK](./javascript-sdk.md).
 
 ### [React](#tab/react)
 
-- Make sure the version of the React plugin that you want to install is compatible with your version of Application Insights. For more information, see [Compatibility Matrix for the React plugin](https://github.com/microsoft/applicationinsights-react-js#compatibility-matrix). 
+> [!div class="checklist"]
+> * Make sure the version of the React plugin that you want to install is compatible with your version of Application Insights. For more information, see [Compatibility Matrix for the React plugin](https://github.com/microsoft/applicationinsights-react-js#compatibility-matrix). 
 
 ### [React Native](#tab/reactnative)
 
-- You must be using a version >= 2.0.0 of `@microsoft/applicationinsights-web`. This plugin only works in react-native apps. It doesn't work with [apps using the Expo framework](https://docs.expo.io/) or Create React Native App, which is based on the Expo framework.
+> [!div class="checklist"]
+> * You must be using a version >= 2.0.0 of `@microsoft/applicationinsights-web`. This plugin only works in react-native apps. It doesn't work with [apps using the Expo framework](https://docs.expo.io/) or Create React Native App, which is based on the Expo framework.
 
 ### [Angular](#tab/angular)
 
-- The Angular plugin is NOT ECMAScript 3 (ES3) compatible.
-- When we add support for a new Angular version, our npm package becomes incompatible with down-level Angular versions. Continue to use older npm packages until you're ready to upgrade your Angular version.
+> [!div class="checklist"]
+> * The Angular plugin is NOT ECMAScript 3 (ES3) compatible.
+> * When we add support for a new Angular version, our npm package becomes incompatible with down-level Angular versions. Continue to use older npm packages until you're ready to upgrade your Angular version.
 
 ---
 
@@ -40,35 +44,31 @@ These plugins provide extra functionality and integration with the specific fram
 
 The React plug-in for the Application Insights JavaScript SDK enables:
 
-- Track router history
-- Track exceptions
-- Track components usage
-- Use Application Insights with React Context
+* Track router history
+* Track exceptions
+* Track components usage
+* Use Application Insights with React Context
 
 ### [React Native](#tab/reactnative)
 
 The React Native plugin for Application Insights JavaScript SDK enables: 
 
-- Track exceptions 
-- Collect device information
-
-   By default, this plugin automatically collects:
-
-  - **Unique Device ID** (Also known as Installation ID.)
-  - **Device Model Name** (Such as iPhone XS, Samsung Galaxy Fold, Huawei P30 Pro etc.)
-  - **Device Type** (For example, handset, tablet, etc.)
-
-- Disable automatic device info collection
-- Use your own device info collection class
-- Override the device information
+* Track exceptions.
+* Collect device information. By default, this plugin automatically collects:
+    * **Unique Device ID** (Also known as Installation ID.)
+    * **Device Model Name** (Such as iPhone XS, Samsung Galaxy Fold, Huawei P30 Pro etc.)
+    * **Device Type** (For example, handset, tablet, etc.)
+* Disable automatic device info collection.
+* Use your own device info collection class.
+* Override the device information.
 
 ### [Angular](#tab/angular)
 
 The Angular plugin for the Application Insights JavaScript SDK enables:
 
-- Track router history
-- Track exceptions
-- Chain more custom exception handlers
+* Track router history
+* Track exceptions
+* Chain more custom exception handlers
 
 ---
 
@@ -88,31 +88,29 @@ npm install @microsoft/applicationinsights-react-js @microsoft/applicationinsigh
 
 #### [React Native](#tab/reactnative)
 
-- **React Native Plugin**
+* **React Native Plugin**
 
-  By default, the React Native Plugin relies on the [`react-native-device-info` package](https://www.npmjs.com/package/react-native-device-info). You must install and link to this package. Keep the `react-native-device-info` package up to date to collect the latest device names using your app.
+    By default, the React Native Plugin relies on the [`react-native-device-info` package](https://www.npmjs.com/package/react-native-device-info). You must install and link to this package. Keep the `react-native-device-info` package up to date to collect the latest device names using your app.
+    
+    Since v3, support for accessing the DeviceInfo has been abstracted into an interface `IDeviceInfoModule` to enable you to use / set your own device info module. This interface uses the same function names and result `react-native-device-info`.
+    
+    ```zsh
+    
+    npm install --save @microsoft/applicationinsights-react-native @microsoft/applicationinsights-web
+    npm install --save react-native-device-info
+    react-native link react-native-device-info
+    
+    ```
 
-  Since v3, support for accessing the DeviceInfo has been abstracted into an interface `IDeviceInfoModule` to enable you to use / set your own device info module. This interface uses the same function names and result `react-native-device-info`.
+* **React Native Manual Device Plugin**
 
-  ```zsh
-
-  npm install --save @microsoft/applicationinsights-react-native @microsoft/applicationinsights-web
-  npm install --save react-native-device-info
-  react-native link react-native-device-info
-
-  ```
-
-- **React Native Manual Device Plugin**
-
-  If you're using React Native Expo, add the React Native Manual Device Plugin instead of the React Native Plugin. The React Native Plugin uses the `react-native-device-info package` package, which React Native Expo doesn't support.
-
-  ```bash
-
-  npm install --save @microsoft/applicationinsights-react-native @microsoft/applicationinsights-web
-
-  ```
-
-
+    If you're using React Native Expo, add the React Native Manual Device Plugin instead of the React Native Plugin. The React Native Plugin uses the `react-native-device-info package` package, which React Native Expo doesn't support.
+    
+    ```bash
+    
+    npm install --save @microsoft/applicationinsights-react-native @microsoft/applicationinsights-web
+    
+    ```
 
 #### [Angular](#tab/angular)
 
@@ -129,6 +127,13 @@ npm install @microsoft/applicationinsights-angularplugin-js
 #### [React](#tab/react)
 
 Initialize a connection to Application Insights:
+
+> [!NOTE]
+> If you're using history version 5 or later, the basename option is no longer supported in createBrowserHistory.
+>
+> Instead of `const browserHistory = createBrowserHistory({ basename: '' });`, use `const browserHistory = createBrowserHistory();`.
+>
+> To check which version of history you're using, run `npm list history`.
 
 ```javascript
 import React from 'react';
@@ -161,107 +166,107 @@ appInsights.loadAppInsights();
 
 #### [React Native](#tab/reactnative)
 
-- **React Native Plug-in**
+* **React Native Plug-in**
 
-  To use this plugin, you need to construct the plugin and add it as an `extension` to your existing Application Insights instance.
+    To use this plugin, you need to construct the plugin and add it as an `extension` to your existing Application Insights instance.
 
-  ```typescript
-  import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-  import { ReactNativePlugin } from '@microsoft/applicationinsights-react-native';
-  // *** Add the Click Analytics plug-in. ***
-  // import { ClickAnalyticsPlugin } from '@microsoft/applicationinsights-clickanalytics-js';
-  var RNPlugin = new ReactNativePlugin();
-  // *** Add the Click Analytics plug-in. ***
-  /* var clickPluginInstance = new ClickAnalyticsPlugin();
-  var clickPluginConfig = {
-  autoCapture: true
-  }; */
-  var appInsights = new ApplicationInsights({
-      config: {
-          connectionString: 'YOUR_CONNECTION_STRING_GOES_HERE',
-          // *** If you're adding the Click Analytics plug-in, delete the next line. ***
-          extensions: [RNPlugin]
-       // *** Add the Click Analytics plug-in. ***
-       /* extensions: [RNPlugin, clickPluginInstance],
-               extensionConfig: {
-                   [clickPluginInstance.identifier]: clickPluginConfig
+    ```typescript
+    import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+    import { ReactNativePlugin } from '@microsoft/applicationinsights-react-native';
+    // *** Add the Click Analytics plug-in. ***
+    // import { ClickAnalyticsPlugin } from '@microsoft/applicationinsights-clickanalytics-js';
+    var RNPlugin = new ReactNativePlugin();
+    // *** Add the Click Analytics plug-in. ***
+    /* var clickPluginInstance = new ClickAnalyticsPlugin();
+    var clickPluginConfig = {
+    autoCapture: true
+    }; */
+    var appInsights = new ApplicationInsights({
+        config: {
+            connectionString: 'YOUR_CONNECTION_STRING_GOES_HERE',
+            // *** If you're adding the Click Analytics plug-in, delete the next line. ***
+            extensions: [RNPlugin]
+        // *** Add the Click Analytics plug-in. ***
+        /* extensions: [RNPlugin, clickPluginInstance],
+                extensionConfig: {
+                    [clickPluginInstance.identifier]: clickPluginConfig
             } */
-      }
-  });
-  appInsights.loadAppInsights();
+        }
+    });
+    appInsights.loadAppInsights();
+    
+    ```
 
-  ```
+* **React Native Manual Device Plugin**
 
-- **React Native Manual Device Plugin**
-
-  To use this plugin, you must either disable automatic device info collection or use your own device info collection class after you add the extension to your code.
-
-  1. Construct the plugin and add it as an `extension` to your existing Application Insights instance.
-
-     ```typescript
-     import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-     import { ReactNativePlugin } from '@microsoft/applicationinsights-react-native';
-
-     var RNMPlugin = new ReactNativePlugin();
-     var appInsights = new ApplicationInsights({
-         config: {
-             instrumentationKey: 'YOUR_INSTRUMENTATION_KEY_GOES_HERE',
-             extensions: [RNMPlugin]
-         }
-     });
-     appInsights.loadAppInsights();
-     ```
-
-  1. Do one of the following:
-
-     - Disable automatic device info collection.
-
-       ```typescript
-       import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-
-       var RNMPlugin = new ReactNativeManualDevicePlugin();
-       var appInsights = new ApplicationInsights({
-           config: {
-               instrumentationKey: 'YOUR_INSTRUMENTATION_KEY_GOES_HERE',
-               disableDeviceCollection: true,
-               extensions: [RNMPlugin]
-           }
-       });
-       appInsights.loadAppInsights();
-       ```
-
-     - Use your own device info collection class.
-
-       ```typescript
-       import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-
-       // Simple inline constant implementation
-       const myDeviceInfoModule = {
-           getModel: () => "deviceModel",
-           getDeviceType: () => "deviceType",
-           // v5 returns a string while latest returns a promise
-           getUniqueId: () => "deviceId",         // This "may" also return a Promise<string>
-       };
-
-       var RNMPlugin = new ReactNativeManualDevicePlugin();
-       RNMPlugin.setDeviceInfoModule(myDeviceInfoModule);
-
-       var appInsights = new ApplicationInsights({
-           config: {
-               instrumentationKey: 'YOUR_INSTRUMENTATION_KEY_GOES_HERE',
-               extensions: [RNMPlugin]
-           }
-       });
-
-       appInsights.loadAppInsights();
-       ```
+    To use this plugin, you must either disable automatic device info collection or use your own device info collection class after you add the extension to your code.
+    
+    1. Construct the plugin and add it as an `extension` to your existing Application Insights instance.
+    
+    ```typescript
+    import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+    import { ReactNativePlugin } from '@microsoft/applicationinsights-react-native';
+    
+    var RNMPlugin = new ReactNativePlugin();
+    var appInsights = new ApplicationInsights({
+        config: {
+            instrumentationKey: 'YOUR_INSTRUMENTATION_KEY_GOES_HERE',
+            extensions: [RNMPlugin]
+        }
+    });
+    appInsights.loadAppInsights();
+    ```
+    
+    1. Do one of the following:
+    
+        * Disable automatic device info collection.
+        
+        ```typescript
+        import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+        
+        var RNMPlugin = new ReactNativeManualDevicePlugin();
+        var appInsights = new ApplicationInsights({
+            config: {
+                instrumentationKey: 'YOUR_INSTRUMENTATION_KEY_GOES_HERE',
+                disableDeviceCollection: true,
+                extensions: [RNMPlugin]
+            }
+        });
+        appInsights.loadAppInsights();
+        ```
+        
+        * Use your own device info collection class.
+        
+        ```typescript
+        import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+        
+        // Simple inline constant implementation
+        const myDeviceInfoModule = {
+            getModel: () => "deviceModel",
+            getDeviceType: () => "deviceType",
+            // v5 returns a string while latest returns a promise
+            getUniqueId: () => "deviceId",         // This "may" also return a Promise<string>
+        };
+        
+        var RNMPlugin = new ReactNativeManualDevicePlugin();
+        RNMPlugin.setDeviceInfoModule(myDeviceInfoModule);
+        
+        var appInsights = new ApplicationInsights({
+            config: {
+                instrumentationKey: 'YOUR_INSTRUMENTATION_KEY_GOES_HERE',
+                extensions: [RNMPlugin]
+            }
+        });
+        
+        appInsights.loadAppInsights();
+        ```
 
 #### [Angular](#tab/angular)
 
 Set up an instance of Application Insights in the entry component in your app:
 
 > [!IMPORTANT]
-> When using the ErrorService, there is an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. You must include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service will not be sent.
+> When using the ErrorService, there's an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. You must include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service won't be sent.
 
 ```js
 import { Component } from '@angular/core';
@@ -312,11 +317,12 @@ export class AppComponent {
 If you want to add the [Click Analytics plug-in](./javascript-feature-extensions.md):
  
 1. Uncomment the lines for Click Analytics.
+
 1. Do one of the following, depending on which plug-in you're adding:
 
-   - For React, delete `extensions: [reactPlugin],`.
-   - For React Native, delete `extensions: [RNPlugin]`.
-   - For Angular, delete `extensions: [angularPlugin],`.
+    * For React, delete `extensions: [reactPlugin],`.
+    * For React Native, delete `extensions: [RNPlugin]`.
+    * For Angular, delete `extensions: [angularPlugin],`.
 
 1. See [Use the Click Analytics plug-in](./javascript-feature-extensions.md#use-the-plug-in) to continue with the setup process.
 
@@ -328,9 +334,9 @@ This section covers configuration settings for the framework extensions for Appl
 
 #### [React](#tab/react)
 
-| Name    | Type   | Required? | Default | Description |
-|---------|--------|-----------|---------|------------------|
-| history | object | Optional  | null    | Track router history. For more information, see the [React router package documentation](https://reactrouter.com/en/main).<br><br>To track router history, most users can use the `enableAutoRouteTracking` field in the [JavaScript SDK configuration](./javascript-sdk-configuration.md#sdk-configuration). This field collects the same data for page views as the `history` object.<br><br>Use the `history` object when you're using a router implementation that doesn't update the browser URL, which is what the configuration listens to. You shouldn't enable both the `enableAutoRouteTracking` field and `history` object, because you'll get multiple page view events. |
+| Name | Type | Required? | Default | Description |
+|------|------|-----------|---------|-------------|
+| history | object | Optional | null | Track router history. For more information, see the [React router package documentation](https://reactrouter.com/en/main).<br><br>To track router history, most users can use the `enableAutoRouteTracking` field in the [JavaScript SDK configuration](./javascript-sdk-configuration.md#sdk-configuration). This field collects the same data for page views as the `history` object.<br><br>Use the `history` object when you're using a router implementation that doesn't update the browser URL, which is what the configuration listens to. You shouldn't enable both the `enableAutoRouteTracking` field and `history` object, because you'll get multiple page view events. |
 
 The following code example shows how to enable the `enableAutoRouteTracking` field.
 
@@ -352,9 +358,9 @@ React Native doesn't track router changes but does track [page views](./api-cust
 
 #### [Angular](#tab/angular)
 
-| Name    | Type   | Required? | Default | Description |
-|---------|--------|-----------|---------|------------------|
-| router  | object | Optional  | null    | Angular router for enabling Application Insights PageView tracking. |
+| Name | Type | Required? | Default | Description |
+|------|------|-----------|---------|-------------|
+| router | object | Optional | null | Angular router for enabling Application Insights PageView tracking. |
 
 The following code example shows how to enable tracking of router history.
 
@@ -363,8 +369,6 @@ import { Component } from '@angular/core';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import { AngularPlugin } from '@microsoft/applicationinsights-angularplugin-js';
 import { Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'app-root',
@@ -435,7 +439,7 @@ appInsights.loadAppInsights();
 To track uncaught exceptions, set up ApplicationinsightsAngularpluginErrorService in `app.module.ts`:
 
 > [!IMPORTANT]
-> When using the ErrorService, there is an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. you MUST include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service will not be sent.
+> When using the ErrorService, there's an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. you MUST include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service won't be sent.
 
 ```js
 import { ApplicationinsightsAngularpluginErrorService } from '@microsoft/applicationinsights-angularplugin-js';
@@ -461,26 +465,26 @@ To chain more custom exception handlers:
 
 1. Create custom exception handlers that implement IErrorService.
 
-   ```javascript
-   import { IErrorService } from '@microsoft/applicationinsights-angularplugin-js';
-
-   export class CustomErrorHandler implements IErrorService {
-       handleError(error: any) {
-           ...
-       }
-   }
-   ```
+    ```javascript
+    import { IErrorService } from '@microsoft/applicationinsights-angularplugin-js';
+    
+    export class CustomErrorHandler implements IErrorService {
+        handleError(error: any) {
+            ...
+        }
+    }
+    ```
 
 1. Pass errorServices array through extensionConfig.
 
-   ```javascript
-   extensionConfig: {
-           [angularPlugin.identifier]: {
-             router: this.router,
-             errorServices: [new CustomErrorHandler()]
-           }
-         }
-   ```
+    ```javascript
+    extensionConfig: {
+            [angularPlugin.identifier]: {
+                router: this.router,
+                errorServices: [new CustomErrorHandler()]
+            }
+            }
+    ```
 
 ---
 
@@ -492,10 +496,11 @@ The device information, which includes Browser, OS, version, and language, is al
 
 #### [React Native](#tab/reactnative)
 
-- **React Native Plugin**: In addition to user agent info from the browser, which is collected by Application Insights web package, React Native also collects device information. Device information is automatically collected when you add the plug-in.
-- **React Native Manual Device Plugin**: Depending on how you configured the plugin when you added the extension to your code, this plugin either:
-   - Doesn't collect device information
-   - Uses your own device info collection class
+* **React Native Plugin**: In addition to user agent info from the browser, which is collected by Application Insights web package, React Native also collects device information. Device information is automatically collected when you add the plug-in.
+
+* **React Native Manual Device Plugin**: Depending on how you configured the plugin when you added the extension to your code, this plugin either:
+    * Doesn't collect device information.
+    * Uses your own device info collection class.
 
 #### [Angular](#tab/angular)
 
@@ -551,7 +556,7 @@ It can take up to 10 minutes for new custom metrics to appear in the Azure porta
 
 #### Use Application Insights with React Context
 
-We provide general hooks to allow you to customize the change tracking for individual components. Alternatively, you can use [useTrackMetric](#usetrackmetric) or [useTrackEvent](#usetrackevent), which are pre-defined contacts we provide for tracking the changes to components.
+We provide general hooks to allow you to customize the change tracking for individual components. Alternatively, you can use [useTrackMetric](#usetrackmetric) or [useTrackEvent](#usetrackevent), which are predefined contacts we provide for tracking the changes to components.
 
 The React Hooks for Application Insights are designed to use [React Context](https://react.dev/learn/passing-data-deeply-with-context) as a containing aspect for it. To use Context, initialize Application Insights, and then import the Context object:
 
@@ -596,8 +601,8 @@ export default MyComponent;
 
 The `useTrackMetric` Hook replicates the functionality of the `withAITracking` higher-order component, without adding another component to the component structure. The Hook takes two arguments:
 
-- The Application Insights instance, which can be obtained from the `useAppInsightsContext` Hook.
-- An identifier for the component for tracking, such as its name.
+* The Application Insights instance, which can be obtained from the `useAppInsightsContext` Hook.
+* An identifier for the component for tracking, such as its name.
 
 ```javascript
 import React from "react";
@@ -620,10 +625,10 @@ It operates like the higher-order component, but it responds to Hooks lifecycle 
 
 Use the `useTrackEvent` Hook to track any custom event that an application might need to track, such as a button click or other API call. It takes four arguments:
 
--   Application Insights instance, which can be obtained from the `useAppInsightsContext` Hook.
--   Name for the event.
--   Event data object that encapsulates the changes that have to be tracked.
--   skipFirstRun (optional) flag to skip calling the `trackEvent` call on initialization. The default value is set to `true` to mimic more closely the way the non-Hook version works. With `useEffect` Hooks, the effect is triggered on each value update _including_ the initial setting of the value. As a result, tracking starts too early, which causes potentially unwanted events to be tracked.
+* Application Insights instance, which can be obtained from the `useAppInsightsContext` Hook.
+* Name for the event.
+* Event data object that encapsulates the changes that have to be tracked.
+* skipFirstRun (optional) flag to skip calling the `trackEvent` call on initialization. The default value is set to `true` to mimic more closely the way the non-Hook version works. With `useEffect` Hooks, the effect is triggered on each value update _including_ the initial setting of the value. As a result, tracking starts too early, which causes potentially unwanted events to be tracked.
 
 ```javascript
 import React, { useState, useEffect } from "react";
@@ -731,14 +736,14 @@ export interface IDeviceInfoModule {
      * When a promise is returned, the plugin will "wait" for the promise to `resolve` or `reject`
      * before processing any events. This WILL cause telemetry to be BLOCKED until either of these
      * states, so when returning a Promise, it MUST `resolve` or `reject`. Tt can't just never resolve.
-     * There is a default timeout configured via `uniqueIdPromiseTimeout` to automatically unblock
+     * There's a default timeout configured via `uniqueIdPromiseTimeout` to automatically unblock
      * event processing when this issue occurs.
      */
     getUniqueId: () => Promise<string> | string;
 }
 ```
 
-If events are getting "blocked" because the `Promise` returned via `getUniqueId` is never resolved / rejected, you can call `setDeviceId()` on the plugin to "unblock" this waiting state. There is also an automatic timeout configured via `uniqueIdPromiseTimeout` (defaults to 5 seconds), which will internally call `setDeviceId()` with any previously configured value.
+If events are getting "blocked" because the `Promise` returned via `getUniqueId` is never resolved / rejected, you can call `setDeviceId()` on the plugin to "unblock" this waiting state. There's also an automatic timeout configured via `uniqueIdPromiseTimeout` (defaults to 5 seconds), which will internally call `setDeviceId()` with any previously configured value.
 
 #### [Angular](#tab/angular)
 
@@ -764,7 +769,5 @@ Check out the [Application Insights Angular demo](https://github.com/microsoft/a
 
 ## Next steps
 
-
-- To review frequently asked questions (FAQ), see [JavaScript framework extensions FAQ](application-insights-faq.yml#javascript-framework-extensions) 
-- [Confirm data is flowing](javascript-sdk.md#confirm-data-is-flowing)
-
+* To review frequently asked questions (FAQ), see [JavaScript framework extensions FAQ](application-insights-faq.yml#javascript-framework-extensions) 
+* [Confirm data is flowing](javascript-sdk.md#confirm-data-is-flowing)

@@ -1,7 +1,7 @@
 ---
 title: Data transformations in Container insights
 description: Describes how to transform data using a DCR transformation in Container insights.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 05/14/2025
 ms.reviewer: aul
 ---

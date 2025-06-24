@@ -1,7 +1,7 @@
 ---
 title: Use Change Analysis (classic) | Microsoft Docs
 description: Use Azure Monitor Change Analysis (classic) to troubleshoot web app issues on live sites.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 03/25/2025
 ---
 

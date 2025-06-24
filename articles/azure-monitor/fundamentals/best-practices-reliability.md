@@ -1,7 +1,7 @@
 ---
 title: Reliability in Azure Monitor
 description: Recommendations for configuring Azure Monitor to optimize reliability.
-ms.topic: conceptual
+ms.topic: best-practice
 ms.date: 05/21/2025
 ms.reviewer: bwren
 ---

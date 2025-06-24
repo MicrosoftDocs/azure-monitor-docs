@@ -2,12 +2,14 @@
 title: Azure Resource Health overview
 description: Learn how Azure Resource Health helps you diagnose and get support for service problems that affect your Azure resources.
 ms.topic: concept-article
-ms.date: 05/15/2025
+ms.date: 06/23/2025
 
 ---
 # Resource Health overview
  
 Azure Resource Health helps you diagnose and get support for service problems that affect your Azure resources. It reports on the current and past health of your resources.
+
+:::image type="content" source="./media/resource-health-overview/resource-health-blade.png" alt-text="Screenshot of Resource Health main blade."Lightbox="./media/resource-health-overview/resource-health-blade.png":::
 
 [Azure status](https://azure.status.microsoft) reports on service problems that affect a broad set of Azure customers. Resource Health gives you a personalized dashboard of the health of your resources and shows all the times that your resources are unavailable because of Azure service problems. This data makes it easy for you to see if a Service Level Agreement (SLA) was violated.
 
@@ -16,6 +18,8 @@ Azure Resource Health helps you diagnose and get support for service problems th
 A *resource* is a specific instance of an Azure service, such as a virtual machine, web app, or SQL Database. Resource Health relies on signals from different Azure services to assess whether a resource is healthy. If a resource is unhealthy, Resource Health analyzes additional information to determine the source of the problem. It also reports on actions that Microsoft is taking to fix the problem and identifies things that you can do to address it.
 
 For more information on how health is assessed, see the list of resource types and health checks at [Azure Resource Health](resource-health-checks-resource-types.md).
+
+For information and steps on how to create a Resource Health alert see [Create a Resource Health alert].(resource-health-alert-monitor-guide.md)
 
 ## Health status
 
@@ -84,7 +88,7 @@ The following resource health transitions aren't recorded in the activity log:
 - A transition from Unknown state if:
     - This health transition is the first one.
     - The state before Unknown is the same as the new state after. (For example, if the resource transitioned from Healthy to Unknown and back to Healthy).
-    - For compute resources: VMs that transition from Healthy to Unhealthy, and back to Healthy, when the Unhealthy time is less than 35 seconds.
+    - For compute resources: Virtual Machines (VMs) that transition from Healthy to Unhealthy, and back to Healthy, when the Unhealthy time is less than 35 seconds.
 
 ## History information
 
@@ -118,4 +122,4 @@ To open Resource Health for one resource:
 Check out these references to learn more about Resource Health:
 -  [Resource types and health checks in Azure Resource Health](resource-health-checks-resource-types.md)
 -  [Resource Health virtual machine Health Annotations](resource-health-vm-annotation.md)
--  [Frequently asked questions about Azure Resource Health](resource-health-faq.yml)
+-  [Resource Health frequently asked questions](resource-health-faq.yml)

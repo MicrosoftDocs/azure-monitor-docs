@@ -1,7 +1,7 @@
 ---
 title: Visualize with Grafana
 description: This article explains how to use Grafana with Azure Monitor. It covers free Azure dashboards for integrated data and Managed Grafana for advanced features.
-ms.topic: conceptual
+ms.topic: article
 ms.reviewer: kayodeprinceMS
 ms.date: 05/20/2025
 ---
