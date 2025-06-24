@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/27/2025
+ms.date: 06/24/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -521,5 +521,41 @@ Recommendation ID: 796b9be0-487d-4daa-8771-f08e4d7c9c0c
 Subcategory: HighAvailability
 
 <!--796b9be0-487d-4daa-8771-f08e4d7c9c0c_end-->
+
+<!--5b132ebc-bd86-46fc-b2ee-95bc3e2d3017_begin-->
+
+#### Ensure backend pools contain at least two instances  
+  
+Deploying Azure Load Balancer backend pools with at least two instances prevents a single point of failure. Pairing with Virtual Machine Scale Sets can provide additional scalability.  
+  
+**Potential benefits**: Enhanced reliability and scalability  
+
+**Impact:** High
+  
+For more information, see [Resiliency checklist for services - Azure Architecture Center](/azure/architecture/checklist/resiliency-per-service#azure-load-balancer)  
+
+ResourceType: microsoft.network/loadbalancers  
+Recommendation ID: 5b132ebc-bd86-46fc-b2ee-95bc3e2d3017  
+Subcategory: HighAvailability
+
+<!--5b132ebc-bd86-46fc-b2ee-95bc3e2d3017_end-->
+
+<!--bc45d55d-3902-4505-8e34-ef8777bc6177_begin-->
+
+#### Configure and deploy public IP addresses and related resources to use availability zones.  
+  
+Standard Public IP addresses and related resources configured to use availability zones offer resilience to zone faults.  Zone-aligned resources, or resources all in the same zone, offer  isolation protection from faults in other zones.  
+  
+**Potential benefits**: Improved uptime and application availability.  
+
+**Impact:** High
+  
+For more information, see [Public IP addresses in Azure - Azure Virtual Network](https://aka.ms/learnmore_network_publicip)  
+
+ResourceType: microsoft.network/publicipaddresses  
+Recommendation ID: bc45d55d-3902-4505-8e34-ef8777bc6177  
+Subcategory: HighAvailability
+
+<!--bc45d55d-3902-4505-8e34-ef8777bc6177_end-->
 
 <!--articleBody-->

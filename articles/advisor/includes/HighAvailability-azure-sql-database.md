@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/10/2025
+ms.date: 06/24/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -70,5 +70,23 @@ Recommendation ID: e1967ca0-c0c3-4ae2-b69b-13d5676a4b18
 Subcategory: DisasterRecovery
 
 <!--e1967ca0-c0c3-4ae2-b69b-13d5676a4b18_end-->
+
+<!--9b7e559c-2f7a-41ea-9b8f-43a53a12c273_begin-->
+
+#### Enable zone redundancy for Azure SQL Managed Instance to improve high availability and resiliency  
+  
+Azure SQL Managed Instance offers built-in availability by deploying multiple replicas in the same zone. For higher availability, use a zone-redundant configuration that spreads replicas across three Azure availability zones, each with independent power, cooling, and networking.  
+  
+**Potential benefits**: Enhanced availability with minimal latency impact  
+
+**Impact:** High
+  
+For more information, see [Availability through local and zone redundancy - Azure SQL Managed Instance](https://aka.ms/learnmore_sql_managedinstances)  
+
+ResourceType: microsoft.sql/managedinstances  
+Recommendation ID: 9b7e559c-2f7a-41ea-9b8f-43a53a12c273  
+Subcategory: HighAvailability
+
+<!--9b7e559c-2f7a-41ea-9b8f-43a53a12c273_end-->
 
 <!--articleBody-->
