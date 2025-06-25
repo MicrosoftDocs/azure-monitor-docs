@@ -1,7 +1,7 @@
 ---
 title: Configure GPU monitoring with Container insights
 description: This article describes how you can configure monitoring Kubernetes clusters with NVIDIA and AMD GPU enabled nodes with Container insights.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 02/18/2025
 ms.reviewer: aul
 ---
@@ -17,6 +17,9 @@ Container insights supports monitoring GPU clusters from the following GPU vendo
 >If you are using **[Nvidia DCGM exporter](https://docs.nvidia.com/datacenter/cloud-native/gpu-telemetry/latest/dcgm-exporter.html)**, you can enable GPU monitoring with Managed Prometheus and Managed Grafana. For details on the setup and instructions, please see [Enable GPU monitoring with Nvidia DCGM exporter](./prometheus-dcgm-integration.md).
 
 Container insights automatically starts monitoring GPU usage on nodes and GPU requesting pods and workloads by collecting the following metrics at 60-second intervals and storing them in the **InsightMetrics** table.
+
+>[!CAUTION]
+>This method is no longer recommended for collecting GPU metrics.
 
 >[!NOTE]
 >After you provision clusters with GPU nodes, ensure that the [GPU driver](/azure/aks/gpu-cluster) is installed as required by Azure Kubernetes Service (AKS) to run GPU workloads. Container insights collect GPU metrics through GPU driver pods running in the node.

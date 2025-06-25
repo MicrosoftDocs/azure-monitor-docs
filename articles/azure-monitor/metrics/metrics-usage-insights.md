@@ -1,7 +1,7 @@
 ---
 title: Metrics usage insights in Azure Monitor (Preview)
 description: Describes the 
-ms.topic: conceptual
+ms.topic: article
 ms.date: 04/11/2025
 ---
 

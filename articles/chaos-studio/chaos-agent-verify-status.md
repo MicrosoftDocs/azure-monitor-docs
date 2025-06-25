@@ -3,7 +3,7 @@ title: Verify Azure Chaos Studio Agent Status
 description: Learn how to verify the status of the Azure Chaos Studio agent on a virtual machine after installation.
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: article
+ms.topic: how-to
 ms.date: 03/12/2025
 ms.reviewer: nikhilkaul
 ms.custom: 

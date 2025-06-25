@@ -1,7 +1,7 @@
 ---
 title: Test Notification Troubleshooting Guide
 description: Detailed description of error codes and actions to take when troubleshooting the test action group feature.
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 07/09/2025
 ms.reviewer: jagummersall
 ---

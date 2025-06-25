@@ -414,6 +414,7 @@ Each Application Insights operation (request or dependency) involves `Activity`.
 ## Next steps
 
 - Learn the basics of [telemetry correlation](distributed-trace-data.md) in Application Insights.
+- Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 - Check out how correlated data powers [transaction diagnostics experience](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) and [Application Map](./app-map.md).
 - See the [data model](./data-model-complete.md) for Application Insights types and data model.
 - Report custom [events and metrics](./api-custom-events-metrics.md) to Application Insights.

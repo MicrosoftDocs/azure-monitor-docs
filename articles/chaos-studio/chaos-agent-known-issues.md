@@ -3,7 +3,7 @@ title: "Chaos Agent Known Issues"
 description: "A list of known issues affecting the Chaos Agent and agent-based faults in Azure Chaos Studio, along with workarounds or mitigation steps."
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: article
+ms.topic: troubleshooting-known-issue
 ms.date: 03/03/2025
 ms.reviewer: nikhilkaul
 ms.custom: 

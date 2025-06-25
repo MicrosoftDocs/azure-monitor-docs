@@ -2,7 +2,7 @@
 title: Telemetry channels in Application Insights | Microsoft Docs
 description: How to customize telemetry channels in Application Insights SDKs for .NET and .NET Core.
 ms.topic: how-to
-ms.date: 3/21/2025
+ms.date: 7/17/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
 ms.reviewer: mmcc
@@ -19,6 +19,8 @@ Telemetry channels are an integral part of the [Application Insights SDKs](./app
 Telemetry channels are responsible for buffering telemetry items and sending them to the Application Insights service, where they're stored for querying and analysis. A telemetry channel is any class that implements the [`Microsoft.ApplicationInsights.ITelemetryChannel`](/dotnet/api/microsoft.applicationinsights.channel.itelemetrychannel) interface.
 
 The `Send(ITelemetry item)` method of a telemetry channel is called after all telemetry initializers and telemetry processors are called. So, any items dropped by a telemetry processor won't reach the channel. The `Send()` method doesn't ordinarily send the items to the back end instantly. Typically, it buffers them in memory and sends them in batches for efficient transmission.
+
+Avoid calling `Flush()` unless it's critical to send buffered telemetry immediately. Use it only in scenarios like application shutdown, exception handling, or when using short-lived processes such as background jobs or command-line tools. In web applications or long-running services, the SDK handles telemetry sending automatically. Calling `Flush()` unnecessarily can cause performance problems.
 
 [Live Metrics Stream](live-stream.md) also has a custom channel that powers the live streaming of telemetry. This channel is independent of the regular telemetry channel, and this document doesn't apply to it.
 
@@ -67,7 +69,7 @@ using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
 protected void Application_Start()
 {
     var serverTelemetryChannel = new ServerTelemetryChannel();
-    serverTelemetryChannel.StorageFolder = @"d:\temp\applicationinsights";
+serverTelemetryChannel.StorageFolder = @"d:\temp\applicationinsights";
     serverTelemetryChannel.Initialize(TelemetryConfiguration.Active);
     TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 }
@@ -88,7 +90,6 @@ public void ConfigureServices(IServiceCollection services)
 
     services.AddApplicationInsightsTelemetry();
 }
-
 ```
 
 > [!IMPORTANT]
@@ -111,7 +112,7 @@ TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 
 By default, a maximum of 10 `Transmission` instances can be sent in parallel. If telemetry is arriving at faster rates, or if the network or the Application Insights back end is slow, `Transmission` instances are stored in memory. The default capacity of this in-memory `Transmission` buffer is 5 MB. When the in-memory capacity has been exceeded, `Transmission` instances are stored on local disk up to a limit of 50 MB.
 
-`Transmission` instances are stored on local disk also when there are network problems. Only those items that are stored on a local disk survive an application crash. They're sent whenever the application starts again. If network issues persist, `ServerTelemetryChannel` will use an exponential backoff logic ranging from 10 seconds to 1 hour before retrying to send telemetry.
+`Transmission` instances are stored on local disk also when there are network problems. Only those items that are stored on a local disk survive an application crash. They're sent whenever the application starts again. If network issues persist, `ServerTelemetryChannel` uses an exponential backoff logic ranging from 10 seconds to 1 hour before retrying to send telemetry.
 
 ## Configurable settings in channels
 
@@ -128,18 +129,28 @@ Here are the most commonly used settings for `ServerTelemetryChannel`:
 
 ## Which channel should I use?
 
-We recommend `ServerTelemetryChannel` for most production scenarios that involve long-running applications. The `Flush()` method implemented by `ServerTelemetryChannel` isn't synchronous. It also doesn't guarantee sending all pending items from memory or disk.
+We recommend `ServerTelemetryChannel` for most production scenarios that involve long-running applications. For more about flushing telemetry, [read about using `Flush()`](#when-to-use-flush).
 
-If you use this channel in scenarios where the application is about to shut down, introduce some delay after you call `Flush()`. The exact amount of delay that you might require isn't predictable. It depends on factors like how many items or `Transmission` instances are in memory, how many are on disk, how many are being transmitted to the back end, and whether the channel is in the middle of exponential back-off scenarios.
 
-If you need to do a synchronous flush, use `InMemoryChannel`.
+## When to use Flush()
+
+The `Flush()` method sends any buffered telemetry immediately. However, it should only be used in specific scenarios.
+
+Use `Flush()` when:
+- The application is about to shut down and you want to ensure telemetry is sent before exit.
+- You're in an exception handler and need to guarantee telemetry is delivered.
+- You're writing a short-lived process like a background job or CLI tool that exits quickly.
+
+Avoid using `Flush()` in long-running applications such as web services. The SDK automatically manages buffering and transmission. Calling `Flush()` unnecessarily can cause performance problems and won't guarantee all data is sent, especially when using `ServerTelemetryChannel`, which doesn't flush synchronously.
+
 
 ## Open-source SDK
+
 Like every SDK for Application Insights, channels are open source. Read and contribute to the code or report problems at [the official GitHub repo](https://github.com/Microsoft/ApplicationInsights-dotnet).
 
 ## Next steps
 
 * To review frequently asked questions (FAQ), see [Telemetry channels FAQ](application-insights-faq.yml#telemetry-channels)
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Sampling](./sampling.md)
 * [SDK troubleshooting](./asp-net-troubleshoot-no-data.md)
-

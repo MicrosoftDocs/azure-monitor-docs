@@ -1,7 +1,7 @@
 ---
 title: Collect data from virtual machine client with Azure Monitor
 description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 02/26/2025
 ms.reviewer: jeffwo
 ---
@@ -21,6 +21,11 @@ Azure Monitor automatically collects host metrics and activity logs from your Az
 * [Permissions to create DCR objects](../data-collection/data-collection-rule-create-edit.md#permissions) in the workspace.
 * To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 * See the detailed article for each [data source](#add-data-sources) for any additional prerequisites.
+
+> [!IMPORTANT]
+> If your Log Analytics workspace is associated with a network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
+
+
 
 ## Create a data collection rule
 

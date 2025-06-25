@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 06/24/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -245,5 +245,59 @@ Recommendation ID: dc3edeee-f0ab-44ae-b612-605a0a739612
 Subcategory: Scalability
 
 <!--dc3edeee-f0ab-44ae-b612-605a0a739612_end-->
+
+<!--dc298556-8232-4aa8-bfe0-5204c5017be0_begin-->
+
+#### Use Standard or Premium tier  
+  
+Choose Standard or Premium Azure App Service Plan for robust apps with advanced scaling, high availability, better performance, and multiple slots, ensuring resilience and continuous operation.  
+  
+**Potential benefits**: Enhanced scaling and reliability  
+
+**Impact:** High
+  
+For more information, see [Resiliency checklist for services - Azure Architecture Center](/azure/architecture/checklist/resiliency-per-service#app-service)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: dc298556-8232-4aa8-bfe0-5204c5017be0  
+Subcategory: HighAvailability
+
+<!--dc298556-8232-4aa8-bfe0-5204c5017be0_end-->
+
+<!--e987dcce-fd2c-4683-8abf-f1a34bbad737_begin-->
+
+#### Set minimum instance count for App Service to 2  
+  
+App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warm-up time, a minimum of three instances should be used.  
+  
+**Potential benefits**: Improve app performance  
+
+**Impact:** High
+  
+For more information, see [Reliability in Azure App Service](/azure/reliability/reliability-app-service?toc=%2Fazure%2Fapp-service%2Ftoc.json&bc=%2Fazure%2Fapp-service%2Fbreadcrumb%2Ftoc.json&tabs=azurecli&pivots=free-shared-basic#transient-faults)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: e987dcce-fd2c-4683-8abf-f1a34bbad737  
+Subcategory: Scalability
+
+<!--e987dcce-fd2c-4683-8abf-f1a34bbad737_end-->
+
+<!--72063b96-92fa-4b74-9457-b84b662155f9_begin-->
+
+#### Enable Health check for App Service  
+  
+Use health check for production workloads. Health check increases the availability of the application by rerouting requests away from unhealthy instances and replacing instances if the instances remain unhealthy. The health check path should check critical components of the application.  
+  
+**Potential benefits**: Enhanced reliability via automation  
+
+**Impact:** High
+  
+For more information, see [Monitor the health of App Service instances - Azure App Service](/azure/app-service/monitor-instances-health-check?tabs=dotnet)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 72063b96-92fa-4b74-9457-b84b662155f9  
+Subcategory: MonitoringAndAlerting
+
+<!--72063b96-92fa-4b74-9457-b84b662155f9_end-->
 
 <!--articleBody-->

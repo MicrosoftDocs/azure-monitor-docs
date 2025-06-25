@@ -2,7 +2,7 @@
 title: Access Troubleshooting Guides in Azure Workbooks
 description: Learn how to access the deprecated troubleshooting guides in Azure Workbooks.
 ms.tgt_pltfrm: ibiza
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 09/17/2024
 ---
 

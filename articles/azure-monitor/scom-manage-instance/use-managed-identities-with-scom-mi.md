@@ -6,6 +6,7 @@ author: jyothisuri
 ms.author: jsuri
 ms.date: 05/24/2024
 ms.custom: UpdateFrequency.5
+ms.update-cycle: 180-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: article

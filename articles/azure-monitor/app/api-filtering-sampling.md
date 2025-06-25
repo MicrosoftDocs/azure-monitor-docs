@@ -566,5 +566,6 @@ What's the difference between telemetry processors and telemetry initializers?
 
 ## Next steps
 
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Search events and logs](./transaction-search-and-diagnostics.md?tabs=transaction-search)
 * [sampling](./sampling.md)

@@ -1,7 +1,7 @@
 ---
 title: Viewing impacted resource from Azure security incidents
 description: This article details where to find information from Azure Service Health about how Azure security incidents impact your resources.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 5/14/2025
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Workspace configuration to DCR config generator
 description: Using the Workspace configuration to DCR config generator to help migrate from MMA to AMA agents
-ms.topic: conceptual 
+ms.topic: concept-article
 ms.date: 11/14/2024
 
 # Customer intent: As an azure administrator, I want to understand how to use the workspace configuration to DCR config generator.

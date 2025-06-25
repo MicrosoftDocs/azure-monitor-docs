@@ -3,7 +3,7 @@ title: Azure Chaos Studio fault and action library
 description: Understand the available actions you can use with Azure Chaos Studio, including any prerequisites and parameters.
 services: chaos-studio
 author: rsgel
-ms.topic: article
+ms.topic: how-to
 ms.date: 07/06/2025
 ms.reviewer: vikramraju
 ms.custom: linux-related-content
@@ -995,7 +995,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 | --- | --- |
-| Capability name | DisableAutoscale |
+| Capability name | DisableAutoscale-1.0 |
 | Target type | Microsoft-AutoscaleSettings |
 | Description | Disables the [autoscale service](/azure/azure-monitor/autoscale/autoscale-overview). When autoscale is disabled, resources such as virtual machine scale sets, web apps, service bus, and [more](/azure/azure-monitor/autoscale/autoscale-overview#supported-services-for-autoscale) aren't automatically added or removed based on the load of the application. |
 | Prerequisites | The autoScalesetting resource that's enabled on the resource must be onboarded to Chaos Studio. |
@@ -1958,7 +1958,7 @@ This fault has two available versions that you can use, Version 1.0 and Version 
 
 | Property | Value |
 |-|-|
-| Capability name | Version 1.0 |
+| Capability name | Shutdown-1.0 |
 | Target type | Microsoft-VirtualMachineScaleSet |
 | Supported OS types | Windows, Linux. |
 | Description | Shuts down or kills a virtual machine scale set instance during the fault and restarts the VM at the end of the fault duration or if the experiment is canceled. |
@@ -2066,6 +2066,8 @@ Configure the shutdown fault:
 ##### Limitations
 * Currently, only virtual machine scale sets configured with the **Uniform** orchestration mode are supported. If your virtual machine scale set uses **Flexible** orchestration, you can use the Azure Resource Manager virtual machine shutdown fault to shut down selected instances.
 * VM extension errors that occur during the restart operation are ignored. This means if the VM scale set instances successfully restart but VM extensions fail to load, the fault will be considered successful. Ignored extension errors include VMExtensionProvisioningError, VMExtensionProvisioningTimeout, VMExtensionManagementInternalError, and VMExtensionHandlerNonTransientError.
+> [!IMPORTANT]
+> **Limitation:** The Virtual Machine Scale Set Shutdown fault may fail if the target VMSS is in an updating state (such as during scaling or OS updates). Ensure your VMSS is not actively updating when running this fault. This is a known platform limitation.
 
 
 ## Details: Orchestration actions

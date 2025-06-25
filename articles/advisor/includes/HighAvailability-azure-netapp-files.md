@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/22/2025
+ms.date: 06/24/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -30,23 +30,7 @@ Subcategory: Other
 
 <!--2e795f35-fce6-48dc-a5ac-6860cb9a0442_end-->
 
-<!--4e112555-7dc0-4f33-85e7-18398ac41345_begin-->
 
-#### Ensure Roles assigned to Microsoft.NetApp Delegated Subnet has Subnet Read Permissions  
-  
-Roles that are required for the management of Azure NetApp Files resources, must have "Microsoft.network/virtualNetworks/subnets/read" permissions on the subnet that is delegated to Microsoft.NetApp If the role, whether Custom or Built-In doesn't have this permission, then Volume Creations will fail  
-  
-**Potential benefits**: Prevent volume creation failures by ensuring subnet/read permissions  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
-Recommendation ID: 4e112555-7dc0-4f33-85e7-18398ac41345  
-Subcategory: HighAvailability
-
-<!--4e112555-7dc0-4f33-85e7-18398ac41345_end-->
 
 <!--8754f0ed-c82a-497e-be31-c9d701c976e1_begin-->
 

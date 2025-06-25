@@ -68,7 +68,8 @@ Beginning in April 2025, classic Application Insights resources are automaticall
 ### Limitations of automatic migration
 
 > [!WARNING]
-> Classic Application Insights resources that aren't migrated by April 24, 2025, will be disabled, and can't ingest new data. To reenable a resource, convert it to a workspace-based Application Insights resource.
+> * Microsoft completed attempts to automatically migrate classic Application Insights resources to workspace-based resources. Remaining classic resources must be manually migrated.
+> * Classic Application Insights resources that aren't migrated by July 31, 2025, will be disabled, and can't ingest new data. To reenable a resource, convert it to a workspace-based Application Insights resource.
 
 Some classic Application Insights resources can't be migrated until you take extra steps. Migration is blocked in the following scenarios:
 
@@ -152,7 +153,7 @@ These policies are defined and enforced at the management group, subscription, o
 ### What to expect
 
 - Microsoft doesn't retry automatic migration for resources blocked by policy.
-- Microsoft continues telemetry ingestion into classic resources until June 15th, 2025.
+- Microsoft continues telemetry ingestion into classic resources until July 31, 2025.
 - Microsoft keeps existing data available for query after ingestion stops but doesn't collect new telemetry.
 
 ### Required actions

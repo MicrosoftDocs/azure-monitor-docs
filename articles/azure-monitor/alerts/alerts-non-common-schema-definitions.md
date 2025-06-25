@@ -1,7 +1,7 @@
 ---
 title: Noncommon alert schema definitions in Azure Monitor
 description: Understanding the noncommon alert schema definitions for Azure Monitor.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 07/30/2024
 ms.reviewer: nolavime
 ---

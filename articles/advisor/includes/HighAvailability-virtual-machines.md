@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/10/2025
+ms.date: 06/24/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -478,5 +478,23 @@ Recommendation ID: 01c715f6-426a-47d3-87be-9f26e2ab2d8e
 Subcategory: DisasterRecovery
 
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_end-->
+
+<!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_begin-->
+
+#### Configure and deploy Azure Virtual Machine Scale Sets in a more resilient and balanced configuration  
+  
+Use Virtual Machine Scale Sets to deploy VMs across availability zones, fault domains, and have a balanced distribution. Balanced distribution provides a protection measure for the applications and data against the rare event of datacenter failure.  
+  
+**Potential benefits**: Increased application uptime.  
+
+**Impact:** High
+  
+For more information, see [Azure Virtual Machine Scale Sets overview - Azure Virtual Machine Scale Sets](https://aka.ms/learnmore_compute_vmss)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 4175946b-cd53-4a37-9e9a-0f8a418ef6ac  
+Subcategory: HighAvailability
+
+<!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_end-->
 
 <!--articleBody-->
