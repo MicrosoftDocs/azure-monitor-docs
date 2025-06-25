@@ -160,8 +160,8 @@ items:
         items:
         - name: .NET
           items:
-            - name: ASP.NET and ASP.NET Core App Monitoring
-              displayName: ASP.NET, c#, csharp, .NET, NET, dotnet, Core, .NET Core, services.add, dotnetcore,
+            - name: ASP.NET (Core) App Monitoring
+              displayName: NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, c#, csharp
               href: app/asp-net.md
             - name: ILogger
               displayName: ilogger, logging, log

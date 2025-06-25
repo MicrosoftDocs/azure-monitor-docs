@@ -10,28 +10,27 @@ ms.reviewer: mmcc
 
 # Application Insights for ASP.NET and ASP.NET Core applications
 
-This article describes how to enable and configure Application Insights for an ASP.NET or [ASP.NET Core](/aspnet/core) application.
+This article describes how to enable and configure Application Insights for an ASP.NET and [ASP.NET Core](/aspnet/core) application. This procedure configures your application to send telemetry to [Application Insights](./app-insights-overview.md).
 
-This procedure configures your ASP.NET web app to send telemetry to [Application Insights](./app-insights-overview.md). It works for ASP.NET apps hosted either in your own Internet Information Servers (IIS) on-premises or in the cloud.
-
-Application Insights can collect the following telemetry from your ASP.NET Core application:
+Application Insights can collect the following telemetry from your ASP.NET or ASP.NET Core application:
 
 > [!div class="checklist"]
 > * Requests
 > * Dependencies
 > * Exceptions
 > * Performance counters
+> * Traces (Logs)
 > * Heartbeats
-> * Logs
+> * Custom events & metrics (requires manual instrumentation)
+> * Page views (requires JavaScript SDK for webpages)
+> * Availability tests (requires manually setting up availability tests)
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](./worker-service.md).
 
-An [OpenTelemetry-based .NET offering](opentelemetry-enable.md?tabs=net) is available. For more information, see [OpenTelemetry overview](opentelemetry-overview.md).
-
 > [!NOTE]
-> If you want to use standalone ILogger provider, use [Microsoft.Extensions.Logging.ApplicationInsight](./ilogger.md).
+> If you want to use the standalone ILogger provider for your ASP.NET application, use [Microsoft.Extensions.Logging.ApplicationInsight](./ilogger.md).
 
 ## Supported scenarios
 
@@ -49,33 +48,44 @@ The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Micro
 
 ## Prerequisites
 
+> * An Azure subscripion. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/free/).
+> * An [Application Insights workspace-based resource](create-workspace-resource.md).
+
 ### [ASP.NET](#tab/net)
 
-To add Application Insights to your ASP.NET website, you need to:
-
 > [!div class="checklist"]
-> * Install the latest version of [Visual Studio for Windows](https://www.visualstudio.com/downloads/) with the following workloads:
+> * A functioning ASP.NET application. If you need to create an ASP.NET Core application, follow this [ASP.NET Core tutorial](/aspnet/core/getting-started/).
+> * The latest version of [Visual Studio for Windows](https://www.visualstudio.com/downloads/) with the following workloads:
 >     * ASP.NET and web development
 >     * Azure development
-> * Create a [free Azure account](https://azure.microsoft.com/free/) if you don't already have an Azure subscription.
-> * Create an [Application Insights workspace-based resource](create-workspace-resource.md).
 
 ### [ASP.NET Core](#tab/core)
 
 > [!div class="checklist"]
 > * A functioning ASP.NET Core application. If you need to create an ASP.NET Core application, follow this [ASP.NET Core tutorial](/aspnet/core/getting-started/).
 > * A reference to a supported version of the [Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) NuGet package.
-> * A valid Application Insights connection string. This string is required to send any telemetry to Application Insights. If you need to create a new Application Insights resource to get a connection string, see [Create an Application Insights resource](./create-workspace-resource.md).
 
 ---
 
-## Create a basic ASP.NET web app
+## Create a basic web app
+
+### [ASP.NET](#tab/net)
 
 1. Open Visual Studio.
-1. Select **File** > **New** > **Project**.
-1. Select **ASP.NET Web Application (.NET Framework) C#**.
-1. Enter a project name, and then select **Create**.
-1. Select **MVC** > **Create**. 
+1. Select **Create a new project**.
+1. Choose **ASP.NET Web Application (.NET Framework)** with **C#** and select **Next**.
+1. Enter a **Project name**, then select **Create**.
+1. Choose **MVC**, then select **Create**.
+
+### [ASP.NET Core](#tab/core)
+
+1. Open Visual Studio.
+1. Select **Create a new project**.
+1. Choose **ASP.NET Core Web App (Razor Pages)** with **C#** and select **Next**.
+1. Enter a **Project name**, then select **Create**.
+1. Choose a **Framework** (LTS or STS), then select **Create**.
+
+---
 
 ## Add Application Insights automatically (Visual Studio)
 
@@ -99,7 +109,8 @@ This section guides you through automatically adding Application Insights to a t
 
 ### [ASP.NET Core](#tab/core)
 
-For Visual Studio for Mac, use the [manual guidance](#enable-application-insights-server-side-telemetry-no-visual-studio). Only the Windows version of Visual Studio supports this procedure.
+> [!NOTE]
+> For Visual Studio for Mac, use the [manual guidance](#add-application-insights-manually-no-visual-studio). Only the Windows version of Visual Studio supports this procedure.
 
 1. Open your project in Visual Studio.
 
