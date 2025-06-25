@@ -5,7 +5,9 @@ ms.topic: overview
 ms.date: 6/25/2025
 ---
 
-# Introduction and overview
+# Event tags in Service Health
+
+
 
 This article explains the differences between event level tags and event tags in Azure Service Health. 
 
