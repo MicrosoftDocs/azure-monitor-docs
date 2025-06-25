@@ -26,8 +26,6 @@ Each advisory typically includes four key sections:
 
 
 
-
-
 ## Access requirements
 
 Due to the sensitive nature of the information, **elevated access roles** are required to view full details of Security Advisories:
