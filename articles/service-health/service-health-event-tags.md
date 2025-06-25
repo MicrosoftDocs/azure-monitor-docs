@@ -5,7 +5,7 @@ ms.topic: overview
 ms.date: 6/25/2025
 ---
 
-# Event tags in Service Health
+# Service Health event tags
 
 
 
