@@ -29,9 +29,6 @@ Application Insights can collect the following telemetry from your ASP.NET or AS
 
 We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](./worker-service.md).
 
-> [!NOTE]
-> If you want to use the standalone ILogger provider for your ASP.NET application, use [Microsoft.Extensions.Logging.ApplicationInsight](./ilogger.md).
-
 ## Supported scenarios
 
 The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) can monitor your applications no matter where or how they run. If your application is running and has network connectivity to Azure, telemetry can be collected. Application Insights monitoring is supported everywhere .NET Core is supported and covers the following scenarios:
@@ -48,22 +45,23 @@ The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Micro
 
 ## Prerequisites
 
+> [!div class="checklist"]
 > * An Azure subscripion. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/free/).
 > * An [Application Insights workspace-based resource](create-workspace-resource.md).
+> * A functioning web application. If you don't have one already, see [Create a basic web app](#create-a-basic-web-app).
+> * The latest version of [Visual Studio](https://www.visualstudio.com/downloads/) with the following workloads:
+>     * ASP.NET and web development
+>     * Azure development
 
 ### [ASP.NET](#tab/net)
 
 > [!div class="checklist"]
-> * A functioning ASP.NET application. If you need to create an ASP.NET Core application, follow this [ASP.NET Core tutorial](/aspnet/core/getting-started/).
-> * The latest version of [Visual Studio for Windows](https://www.visualstudio.com/downloads/) with the following workloads:
->     * ASP.NET and web development
->     * Azure development
+> * A reference to a supported version of the [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) NuGet package.
 
 ### [ASP.NET Core](#tab/core)
 
 > [!div class="checklist"]
-> * A functioning ASP.NET Core application. If you need to create an ASP.NET Core application, follow this [ASP.NET Core tutorial](/aspnet/core/getting-started/).
-> * A reference to a supported version of the [Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) NuGet package.
+> * A reference to a supported version of the [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package.
 
 ---
 
@@ -90,6 +88,9 @@ The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Micro
 ## Add Application Insights automatically (Visual Studio)
 
 ### [ASP.NET](#tab/net)
+
+> [!NOTE]
+> If you want to use the standalone ILogger provider for your ASP.NET application, use [Microsoft.Extensions.Logging.ApplicationInsight](./ilogger.md).
 
 This section guides you through automatically adding Application Insights to a template-based ASP.NET web app. From within your ASP.NET web app project in Visual Studio:
 
