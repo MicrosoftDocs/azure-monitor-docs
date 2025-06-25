@@ -81,7 +81,7 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 - Summary rules are currently only available in the public cloud. 
 - The summary rule processes incoming data and can't be configured on a historical time range. 
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
-- Querying a Log Analytics workspace in another tenant by using Lighthouse isn't supported.
+- Creating a summary rule with query across another tenant under Lighthouse isn't supported.
 - Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
 
 ## Pricing model
