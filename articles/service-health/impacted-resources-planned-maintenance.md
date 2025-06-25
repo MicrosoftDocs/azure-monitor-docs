@@ -63,7 +63,7 @@ The list of impacted resources can be exported as an Excel file by clicking on t
 
 The CSV file includes the properties associated with each event and more details per event level. This file could be used as a static point in time snapshot for all the active events under the **Service Health** > **Planned maintenance** view. <br> These details are a subset of more event level information available through Service Health API, which could be integrated with Event Grid or other event automation solutions.
 
-:::image type="content" source="./media/impacted-resource-maintenance/impacted-services.png" alt-text="Screenshot of impacted services." lightbox="./media/impacted-resource-maintenance/impacted-services.png"Lightbox="./media/impacted-resource-maintenance/impacted-services.png":::
+:::image type="content" source="./media/impacted-resource-maintenance/impacted-services.png" alt-text="Screenshot of impacted services." lightbox="./media/impacted-resource-maintenance/impacted-services.png":::
 
 This table contains a short description of each of the column properties.
 
