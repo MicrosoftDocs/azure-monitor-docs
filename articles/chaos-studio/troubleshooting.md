@@ -158,7 +158,7 @@ There are several common errors you may encounter when using AKS Chaos Mesh faul
 
 ### When I run an experiment with VNet injection, I get the error "InvalidResourceReference" 
 
-When executing an experiment, experiment may fail with the message `"Resource /subscriptions/.../providers/Microsoft.Network/virtualNetworks/... referenced by resource /subscriptions/.../providers/Microsoft.Network/privateEndpoints/... was not found"` in the Details of the experiment execution.
+When executing an experiment, it may fail with the message `"Resource /subscriptions/.../providers/Microsoft.Network/virtualNetworks/... referenced by resource /subscriptions/.../providers/Microsoft.Network/privateEndpoints/... was not found. Please make sure that the referenced resource exists, and that both resources are in the same region"` in the Details of the experiment execution.
 
 This error occurs when you're using VNet injection and your experiment is created in a different subscription than the one containing your virtual network. During experiment execution, Chaos Studio attempts to create a private endpoint but cannot find the referenced virtual network because it's in a different subscription.
 
