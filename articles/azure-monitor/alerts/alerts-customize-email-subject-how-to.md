@@ -31,7 +31,7 @@ Add the action properties parameter and include the Email.Subject value pair. Yo
 
 ## Use dynamic values
 
-To customize the email subject, you should use the action properties. The action properties are key/value pairs that use static text, a dynamic value extracted from the alert payload, or a combination of both. 
+To customize the email subject, you use action properties. Action properties are key/value pairs that use static text, a dynamic value extracted from the alert payload, or a combination of both. 
 
 The format for extracting a dynamic value from the alert payload is: `${<path to schema field>}`. For example: `${data.essentials.monitorCondition}`. Use the format of the common alert schema to specify the field in the payload, whether or not the action groups configured for the alert rule use the common schema.
 
@@ -42,7 +42,7 @@ This example creates an email subject with data regarding the window start time 
       
     Result:
  
-    AdditionalDetails:Evaluation windowStartTime: 2023-04-04T14:39:24.492Z. windowEndTime: 2023-04-04T14:44:24.492Z
+    AdditionalDetails: Evaluation windowStartTime: 2023-04-04T14:39:24.492Z. windowEndTime: 2023-04-04T14:44:24.492Z
 
 This example adds data regarding the reason for resolving or firing the alert:
     
