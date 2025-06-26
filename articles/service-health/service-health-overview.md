@@ -8,9 +8,9 @@ ms.date: 01/27/2025
 ---
 # Service Health portal classic experience overview
 
-The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard that tracks the health of your Azure services in the regions where you use them. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, or relevant health advisories. When events become inactive, they get placed in your health history for up to 90 days. Finally, you can use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues are affecting you.
+The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard that tracks the health of your Azure services in the regions where you use them. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, or relevant health advisories. You can use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues are affecting you.
 
-This article goes through the classic portal experience. The portal is in process of being updated to a new user interface. Some users see the experience described in this article. Others see [updated Service Health portal experience](service-health-portal-update.md).
+This article goes through the classic portal experience. The portal is in the process of being updated to a new user interface. Some users see the experience described in this article. Others see the [updated Service Health portal experience](service-health-portal-update.md).
 
 ## Service Health events
 
@@ -18,8 +18,10 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 
 - **Service issues**: Problems with the Azure services that affect you right now.
 - **Planned maintenance**: Upcoming maintenance that can affect the availability of your services in the future.  
-- **Health advisories**: Changes in Azure services that require your attention. Examples include deprecation of Azure features or upgrade requirements (e.g upgrade to a supported PHP framework).
+- **Health advisories**: Changes in Azure services that require your attention. Examples include deprecation of Azure features or upgrade requirements (like needing to upgrade to a supported PHP framework).
 - **Security advisories**: Security-related notifications or violations that might affect the availability of your Azure services.
+
+When events become inactive, they get placed in your health history for up to 90 days.
 
 > [!NOTE]
 > To view Service Health events, users must be [granted the Reader role](/azure/role-based-access-control/role-assignments-portal) on a subscription.
@@ -30,7 +32,7 @@ To open your Service Health dashboard, select **Service Health** under **Azure s
 
 :::image type="content" source="./media/service-health-overview/azure-service-health-overview-1a.png" alt-text="Screenshot that shows how to select Service Health and More services in the Azure portal.":::
 
-## See current issues that affected your services
+## See current issues that are affecting your services
 
 Select **Service issues** on the left menu to see ongoing problems in Azure services that are affecting your resources. You learn when the issue began, and what services and regions are affected. You can also read the most recent update to understand what Azure is doing to resolve the issue.
 
@@ -42,7 +44,7 @@ From the **Service issues** blade, select the **Potential impact** tab to see a 
 
 ## See emerging issues that might affect your services
 
-In certain situations, widespread service issues might be posted to the [Azure Status page](https://azure.status.microsoft) before targeted communications can be sent to affected customers. To ensure that Azure Service Health provides a comprehensive view of issues that might affect you, active Azure Status page issues are shown in Service Health as *emerging issues*. When an event is active on the Azure Status page, an **Emerging issues** banner is present in Service Health. Select the banner to see the full details of the issue.
+In certain situations, widespread service issues might be posted to the [Azure status page](https://azure.status.microsoft) before targeted communications can be sent to affected customers. To ensure that Azure Service Health provides a comprehensive view of issues that might affect you, active Azure status page issues are shown in Service Health as *emerging issues*. When an event is active on the Azure status page, an **Emerging issues** banner is present in Service Health. Select the banner to see the full details of the issue.
 
 :::image type="content" source="./media/service-health-overview/azure-service-health-emerging-issue.png" alt-text="Screenshot that shows the Emerging issues banner.":::
 
@@ -64,7 +66,7 @@ You can use filters in Service Health to show your business-critical subscriptio
 
 ## Configure Service Health alerts
 
-When your business-critical resources are affected, Service Health integrates with Azure Monitor to alert you via emails, text messages, and webhook notifications. Set up an activity log alert for the appropriate Service Health event. You can route that alert to the appropriate people in your organization by using **Action Groups**. For more information, see [Configure alerts for Service Health](./alerts-activity-log-service-notifications-portal.md)
+When your business-critical resources are affected, Service Health integrates with Azure Monitor to alert you via emails, text messages, and webhook notifications. Set up an activity log alert for the appropriate Service Health event. You can route that alert to the appropriate people in your organization by using **Action Groups**. For more information, see [Configure alerts for Service Health](./alerts-activity-log-service-notifications-portal.md).
 
 >[!VIDEO https://learn-video.azurefd.net/vod/player?id=fd3fa0ee-3cc4-4c58-9bb5-e7aef5009b34]
 

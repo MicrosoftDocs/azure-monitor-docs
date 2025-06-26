@@ -13,13 +13,13 @@ By using the Azure Service Health portal, you can engage with service events and
 
 You can use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues are affecting you.
 
-## Service Health Events
+## Service Health events
 
 The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) tracks five types of health events that might affect your resources:
 
 - **Service issues**: Problems in the Azure services that affect you right now.
 - **Planned maintenance**: Upcoming maintenance that can affect the availability of your services in the future.  
-- **Health advisories**: Changes in Azure services that require your attention. Examples include deprecation of Azure features or upgrade requirements (e.g upgrade to a supported PHP framework).
+- **Health advisories**: Changes in Azure services that require your attention. Examples include deprecation of Azure features or upgrade requirements (like needing to upgrade to a supported PHP framework).
 - **Security advisories**: Security-related notifications or violations that might affect the availability of your Azure services.
 - **Billing updates**: Billing communications related to your subscription.
 
@@ -46,7 +46,7 @@ Select **Planned maintenance** on the left menu to see a list of all planned mai
 
 :::image type="content" source="media/service-health-portal-update/services-issue-planned-maintenance.png" alt-text="A screenshot of the Planned maintenance window." lightbox="media/service-health-portal-update/services-issue-planned-maintenance.png":::
 
-### See updates about Health advisories
+### See updates about health advisories
 
 Health advisories are notifications that inform users about changes in Azure services. These advisories can include information about the deprecation of Azure features, upgrade requirements, or other actions that users need to take to maintain the health and performance of their Azure resources.
 
@@ -72,9 +72,9 @@ Select **Resource health** from the left menu to find out if your resource is ru
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health window." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
-### View and sort Health alerts
+### View and sort health alerts
 
-Select *Health alerts** from the left menu to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
+Select **Health alerts** from the left menu to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 
 You can configure your alerts so that an alert is triggered when specified conditions are met. Select any alert rule to see more information, including the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts by using the Azure portal](alerts-activity-log-service-notifications-portal.md).
 
@@ -88,7 +88,7 @@ Learn more about how to manage your account and information in the next section.
 
 Tenant access requires tenant admin roles and refers to the ability to view events that affect the entire organization. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, while subscription-level events are limited to the resources in that subscription.
 
-For more information, see [Subscription vs tenant access](subscription-vs-tenant.md).
+For more information, see [Subscription vs. tenant access](subscription-vs-tenant.md).
 
 This distinction ensures that users can effectively manage and monitor Azure services based on their roles and the scope of their responsibilities.
 
