@@ -38,6 +38,8 @@ The format for extracting a dynamic value from the alert payload is: `${<path to
 > [!NOTE]
 > Use the format of the common alert schema to specify the field in the payload even if the action groups configured for the alert rule don't use the common schema.
 
+### Examples
+
 This example creates an email subject with data regarding the window start time and window end time:
 
   -	**Name**: Email.Subject
