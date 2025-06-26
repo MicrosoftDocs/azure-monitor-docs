@@ -19,6 +19,8 @@ Areas in Azure Monitor where you'll use queries include:
 - [Azure Logic Apps](/azure/connectors/connectors-azure-monitor-logs): Use the results of a log query in an automated workflow by using a logic app workflow.
 - [PowerShell](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery): Use the results of a log query in a PowerShell script from a command line or an Azure Automation runbook that uses `Invoke-AzOperationalInsightsQuery`.
 - [Log Analytics Query API](/rest/api/loganalytics/query): Retrieve log data from the workspace from any REST API client. The API request includes a query that's run against Azure Monitor to determine the data to retrieve.
+   > [!IMPORTANT]
+   >  On 1 July 2025, in alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services), TLS 1.0/1.1 protocol versions will be completely retired for the query API endpoints. For more information, see [Secure data in transit](/log-query-overview.md#secure-data-in-transit).
 - **Azure Monitor Query client libraries**: Retrieve log data from the workspace via an idiomatic client library for the following ecosystems:
   - [.NET](/dotnet/api/overview/azure/Monitor.Query-readme)
   - [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/query/azlogs)
