@@ -94,7 +94,8 @@ The following code sample uses `2025-01-01`  for the `api-version`.
 https://management.azure.com/subscriptions/<Subscription-Id-Guid>/providers/Microsoft.Advisor/recommendations?api-version=2025-01-01&$filter=Category eq 'HighAvailability' and SubCategory eq 'ServiceUpgradeAndRetirement'
 ```
 
-⚠ **Note:** `Control` is a legacy filter property and will be deprecated in the future. Please use `SubCategory` for filtering recommendation subcategory
+>[!Note]
+> `Control` is a legacy filter property and will be deprecated in the future. Use `SubCategory` for filtering recommendation subcategory.
 
 #### Sample Recommendations - List API response
 
