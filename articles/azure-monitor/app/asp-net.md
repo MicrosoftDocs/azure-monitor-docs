@@ -10,6 +10,8 @@ ms.reviewer: mmcc
 
 # Application Insights for ASP.NET and ASP.NET Core applications
 
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
+
 This article describes how to enable and configure Application Insights for an ASP.NET and [ASP.NET Core](/aspnet/core) application. This procedure configures your application to send telemetry to [Application Insights](./app-insights-overview.md).
 
 Application Insights can collect the following telemetry from your ASP.NET or ASP.NET Core application:
@@ -24,8 +26,6 @@ Application Insights can collect the following telemetry from your ASP.NET or AS
 > * Custom events & metrics (requires manual instrumentation)
 > * Page views (requires JavaScript SDK for webpages)
 > * Availability tests (requires manually setting up availability tests)
-
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](./worker-service.md).
 
@@ -53,16 +53,6 @@ The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Micro
 >     * ASP.NET and web development
 >     * Azure development
 
-### [ASP.NET](#tab/net)
-
-> [!div class="checklist"]
-> * A reference to a supported version of the [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) NuGet package.
-
-### [ASP.NET Core](#tab/core)
-
-> [!div class="checklist"]
-> * A reference to a supported version of the [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package.
-
 ---
 
 ## Create a basic web app
@@ -87,12 +77,14 @@ The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Micro
 
 ## Add Application Insights automatically (Visual Studio)
 
+This section guides you through automatically adding Application Insights to a template-based web app. 
+
 ### [ASP.NET](#tab/net)
 
 > [!NOTE]
 > If you want to use the standalone ILogger provider for your ASP.NET application, use [Microsoft.Extensions.Logging.ApplicationInsight](./ilogger.md).
 
-This section guides you through automatically adding Application Insights to a template-based ASP.NET web app. From within your ASP.NET web app project in Visual Studio:
+From within your ASP.NET web app project in Visual Studio:
 
 1. Select **Project** > **Add Application Insights Telemetry** > **Application Insights Sdk (local)** > **Next** > **Finish** > **Close**.
 
@@ -113,7 +105,7 @@ This section guides you through automatically adding Application Insights to a t
 > [!NOTE]
 > For Visual Studio for Mac, use the [manual guidance](#add-application-insights-manually-no-visual-studio). Only the Windows version of Visual Studio supports this procedure.
 
-1. Open your project in Visual Studio.
+From within your ASP.NET web app project in Visual Studio:
 
 1. Go to **Project** > **Add Application Insights Telemetry**.
 
@@ -131,9 +123,11 @@ This section guides you through automatically adding Application Insights to a t
 
 ## Add Application Insights manually (no Visual Studio)
 
+This section guides you through manually adding Application Insights to a template-based web app. 
+
 ### [ASP.NET](#tab/net)
 
-This section guides you through manually adding Application Insights to a template-based ASP.NET web app. This section assumes that you're using a web app based on the standard Model, View, and Controller (MVC) web app template for the ASP.NET Framework.
+This section assumes that you're using a web app based on the standard Model, View, and Controller (MVC) web app template for the ASP.NET Framework.
 
 1. Add the following NuGet packages and their dependencies to your project:
 
