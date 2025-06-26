@@ -18,13 +18,13 @@ Resource Health alerts notify you when your Azure resources experience a change 
 1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
 
 
-
-    ![Service Health Selection](./media/resource-health-alert-monitor-guide/service-health-selection-1.png)
+:::image type="content" source="./media/alerts-activity-log-service-notifications/resource-health-select.png" alt-text="Screenshot of Service Health option." lightbox="./media/alerts-activity-log-service-notifications/resource-health-select.png.png":::
 
 1. Select **Resource Health**.
 
-     ![Resource Health Selection](./media/alerts-activity-log-service-notifications/resource-health-select.png)
-   
+::image type="content" source="./media/resource-health-alert-monitor-guide/service-health-selection-1.png" alt-text="Screenshot of Resource Health option." lightbox="./media/resource-health-alert-monitor-guide/service-health-selection-1.png":::
+
+    
 1. Select **Add resource health alert**.
    
 :::image type="content" source="./media/resource-health/resource-health-create.PNG" alt-text="Screenshot of Resource Health create option." lightbox="./media/resource-health/resource-health-create.PNG":::
@@ -69,7 +69,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 3. Create and save an ARM template for Resource Health alerts as `resourcehealthalert.json` ([see details](#create-resource-health-alerts-using-template-options))
 
 
-1. Create a new Azure Resource Manager (ARM) deployment using this template.
+1. Create a new Azure Resource Manager deployment using this template.
 
     ```azurepowershell
     New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName <resourceGroup> -TemplateFile <path\to\resourcehealthalert.json>
@@ -342,7 +342,7 @@ However, when a resource reports `Unknown,` it's likely that its health status i
 },
 ```
 
-In this example, we're only notifying on events where the current and previous health status doesn't have `Unknown`." This change could be a useful addition if your alerts are sent directly to your mobile phone or email. 
+In this example, we're only notifying on events where the current and previous health status doesn't have `Unknown`. This change could be a useful addition if your alerts are sent directly to your mobile phone or email. 
 
 It's possible for the `currentHealthStatus` and `previousHealthStatus` properties to be null in some events. For example, when an Updated event occurs, it's likely that the health status of the resource is the same since the last report. Only that other event information is available (for example, the cause). Therefore, using this clause might result in some alerts not being triggered, because the `properties.currentHealthStatus` and `properties.previousHealthStatus` values are set to null.
 
@@ -512,8 +512,8 @@ If you use the different adjustments described in the previous section, here's a
 "Command":
 
 New-AzResourceGroupDeployment -ResourceGroupName `name`
--TemplateFile resourcehealthalert.json `
--TemplateParameterFile parameters.json
+- TemplateFile resourcehealthalert.json 
+- TemplateParameterFile parameters.json
 
 
 You know best what configurations are effective for you, so use the tools shown to you in this documentation to make your own customization.
