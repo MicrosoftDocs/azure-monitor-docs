@@ -20,12 +20,12 @@ Resource Health alerts notify you when your Azure resources experience a change 
 
 :::image type="content" source="./media/alerts-activity-log-service-notifications/resource-health-select.png" alt-text="Screenshot of Service Health option." lightbox="./media/alerts-activity-log-service-notifications/resource-health-select.png":::
 
-1. Select **Resource Health**.
+2. Select **Resource Health**.
 
 :::image type="content" source="./media/resource-health-alert-monitor-guide/service-health-selection-1.png" alt-text="Screenshot of Resource Health option." lightbox="./media/resource-health-alert-monitor-guide/service-health-selection-1.PNG":::
 
     
-1. Select **Add resource health alert**.
+3. Select **Add resource health alert**.
    
 :::image type="content" source="./media/resource-health/resource-health-create.PNG" alt-text="Screenshot of Resource Health create option." lightbox="./media/resource-health/resource-health-create.PNG":::
 
