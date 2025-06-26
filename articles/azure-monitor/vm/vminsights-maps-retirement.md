@@ -8,7 +8,7 @@ ms.date: 05/05/2025
 
 # VM Insights Map and Dependency Agent retirement guidance
 
-The map feature of Virtual Machine ("VM") Insights provides data on dependencies and connections from a given VM. 
+The map feature of Virtual Machine (VM) Insights provides data on dependencies and connections from a given VM. 
 The VM Insights Map feature and the Dependency Agent will be retired on June 30, 2028 and no longer be supported.   
 
 ## Customer impact
