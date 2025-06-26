@@ -37,15 +37,19 @@ The format for extracting a dynamic value from the alert payload is: `${<path to
 
 This example creates an email subject with data regarding the window start time and window end time:
 
-    -	**Name**: Email.Subject
-    -	**Value**: Evaluation windowStartTime: ${data.alertContext.condition.windowStartTime}. windowEndTime: ${data.alertContext.condition.windowEndTime}
-    -	**Result**: AdditionalDetails:Evaluation windowStartTime: 2023-04-04T14:39:24.492Z. windowEndTime: 2023-04-04T14:44:24.492Z
+  -	**Name**: Email.Subject
+  -	**Value**: Evaluation windowStartTime: `${data.alertContext.condition.windowStartTime}. windowEndTime: ${data.alertContext.condition.windowEndTime}`
+      
+    Result:
+ 
+    AdditionalDetails:Evaluation windowStartTime: 2023-04-04T14:39:24.492Z. windowEndTime: 2023-04-04T14:44:24.492Z
 
 This example adds data regarding the reason for resolving or firing the alert:
     
-    -	**Name**: Email.Subject
-    -	**Value**: `${data.alertContext.condition.allOf[0].metricName} ${data.alertContext.condition.allOf[0].operator} ${data.alertContext.condition.allOf[0].threshold} ${data.essentials.monitorCondition}`. The value is `${data.alertContext.condition.allOf[0].metricValue}`
+  -	**Name**: Email.Subject
+  -	**Value**: `${data.alertContext.condition.allOf[0].metricName} ${data.alertContext.condition.allOf[0].operator} ${data.alertContext.condition.allOf[0].threshold} ${data.essentials.monitorCondition}`. The value is `${data.alertContext.condition.allOf[0].metricValue}`
     
-    Potential results:
-        -	Alert Resolved reason: Percentage CPU GreaterThan5 Resolved. The value is 3.585
-        -	Alert Fired reason": "Percentage CPU GreaterThan5 Fired. The value is 10.585"
+  Potential results:
+  
+  -	Alert Resolved reason: Percentage CPU GreaterThan5 Resolved. The value is 3.585
+  -	Alert Fired reason": "Percentage CPU GreaterThan5 Fired. The value is 10.585"
