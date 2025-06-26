@@ -63,7 +63,8 @@ The following code sample uses `2025-01-01`  for the `api-version`.
 https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter=recommendationCategory eq 'HighAvailability' and recommendationSubCategory eq 'ServiceUpgradeAndRetirement'
 ```
 
-⚠ **Note:** `recommendationControl` is a legacy filter property and will be deprecated in the future. Please use `recommendationSubCategory` for filtering recommendation subcategory
+>[!Note]
+> `recommendationControl` is a legacy filter property and will be deprecated in the future. Use `recommendationSubCategory` for filtering recommendation subcategory.
 
 #### Sample Recommendation Metadata - List API response
 
