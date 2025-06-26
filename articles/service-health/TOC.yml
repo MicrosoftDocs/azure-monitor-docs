@@ -56,7 +56,7 @@
       href: resource-health-vm-annotation.md
     - name: Resource health alerts
       items:
-      - name: Resource health alerts
+      - name: Resource health alerts overview
         href: resource-health-alert-monitor-guide.md
       - name: Configure and configure health alerts
         href: resource-health-alert-arm-template-guide.md
