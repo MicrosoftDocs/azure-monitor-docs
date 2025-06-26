@@ -23,11 +23,9 @@ Application Insights can collect the following telemetry from your ASP.NET or AS
 > * Performance counters
 > * Traces (Logs)
 > * Heartbeats
-> * Custom events & metrics (requires manual instrumentation)
-> * Page views (requires JavaScript SDK for webpages)
-> * Availability tests (requires manually setting up availability tests)
-
-We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](./worker-service.md).
+> * Custom events & metrics *(requires manual instrumentation)*
+> * Page views *(requires JavaScript SDK for webpages)*
+> * Availability tests *(requires manually setting up availability tests)*
 
 ## Supported scenarios
 
@@ -58,6 +56,8 @@ The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Micro
 ## Create a basic web app
 
 ### [ASP.NET](#tab/net)
+
+We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](./worker-service.md).
 
 1. Open Visual Studio.
 1. Select **Create a new project**.
@@ -645,7 +645,10 @@ while (true)
 }
 ```
 
-The preceding sample is for a console app, but the same code can be used in any .NET applications. If any other telemetry modules are enabled to autocollect telemetry, it's important to ensure that the same configuration used for initializing those modules is used for the live metrics module.
+The preceding sample is for a console app, but the same code can be used in any .NET applications.
+
+> [!IMPORTANT]
+> If any other telemetry modules are enabled to autocollect telemetry, ensure that the same configuration used for initializing those modules is used for the live metrics module.
 
 ---
 
@@ -659,38 +662,26 @@ Dependency collection is enabled by default. [Dependency tracking in Application
 
 ### Performance counters
 
-### [ASP.NET](#tab/net)
+ASP.NET fully supports performance counters, while ASP.NET Core offers limited support depending on the SDK version and hosting environment. For more information, see [Counters for .NET in Application Insights](./asp-net-counters.md).
 
-...
+### Event counters
 
-### [ASP.NET Core](#tab/core)
-
-Support for [performance counters](./asp-net-counters.md) in ASP.NET Core is limited:
-
-* SDK versions 2.4.1 and later collect performance counters if the application is running in Web Apps (Windows).
-* SDK versions 2.7.1 and later collect performance counters if the application is running in Windows and targets `netstandard2.0` or later.
-* For applications that target the .NET Framework, all versions of the SDK support performance counters.
-* SDK versions 2.8.0 and later support the CPU/memory counter in Linux. No other counter is supported in Linux. To get system counters in Linux and other non-Windows environments, use [EventCounters](#eventcounter).
-
----
-
-### EventCounter
-
-### [ASP.NET](#tab/net)
-
-...
-
-### [ASP.NET Core](#tab/core)
-
-By default, `EventCounterCollectionModule` is enabled. To learn how to configure the list of counters to be collected, see [EventCounters introduction](asp-net-counters.md).
-
----
+Application Insights supports collecting EventCounters with its `EventCounterCollectionModule`, which is enabled by default for ASP.NET Core. To learn how to configure the list of counters to be collected, see [Counters for .NET in Application Insights](asp-net-counters.md).
 
 ### Enrich data through HTTP
 
 ### [ASP.NET](#tab/net)
 
-...
+<!-- Send to engineer for confirmation -->
+
+```csharp
+var requestTelemetry = HttpContext.Current?.Items["Microsoft.ApplicationInsights.RequestTelemetry"] as RequestTelemetry;
+
+if (requestTelemetry != null)
+{
+    requestTelemetry.Properties["myProp"] = "someData";
+}
+```
 
 ### [ASP.NET Core](#tab/core)
 
@@ -702,13 +693,15 @@ HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
 
 ## Configure the Application Insights SDK
 
+You can customize the Application Insights SDK for ASP.NET and ASP.NET Core to change the default configuration. 
+
 ### [ASP.NET](#tab/net)
 
-...
+To learn how to configure the Application Insights SDK for ASP.NET applications, see [Configure the Application Insights SDK with ApplicationInsights.config or .xml](configuration-with-applicationinsights-config.md).
 
 ### [ASP.NET Core](#tab/core)
 
-You can customize the Application Insights SDK for ASP.NET Core to change the default configuration. Users of the Application Insights ASP.NET SDK might be familiar with changing configuration by using *ApplicationInsights.config* or by modifying `TelemetryConfiguration.Active`. For ASP.NET Core, make almost all configuration changes in the `ConfigureServices()` method of your *Startup.cs* class, unless you're directed otherwise. The following sections offer more information.
+In ASP.NET Core applications, all configuration changes are made in the `ConfigureServices()` method of your *Startup.cs* class, unless otherwise directed.
 
 > [!NOTE]
 > In ASP.NET Core applications, changing configuration by modifying `TelemetryConfiguration.Active` isn't supported.
