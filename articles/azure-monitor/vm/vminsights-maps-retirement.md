@@ -15,7 +15,7 @@ The VM Insights Map feature and the Dependency Agent will be retired on June 30,
 
 With this retirement, all functionality associated with the VM Insights Map and the Dependency Agent will be retired. 
 
-Specifically, customers will not be able to: 
+Specifically, customers won't be able to: 
 - Access the Map tab in VM Insights in the Azure Portal;
 - Access the Connections Overview workbook, which utilizes VM Insights Map data;
 - Install the Dependency Agent on new VMs from the Azure Portal. Customers may still be able to install Dependency Agent through existing downloaded binaries, however, these binaries won’t be able to send data;
@@ -27,7 +27,7 @@ Customers will still have access to existing VM Insights Map data ingested by De
 As part of the retirement process, 
 
 - No new Operating System versions will be added after 30 June 2025
-- Customers will not be able onboard new VMs from the Azure portal after 30 September 2025
+- Customers won't be able onboard new VMs from the Azure portal after 30 September 2025
 
  
 ## Recommended action  
