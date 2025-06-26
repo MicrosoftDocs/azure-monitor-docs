@@ -1,28 +1,28 @@
 ---
-title: What's new in Azure Service Health
-description: What's New in Azure Service Health
+title: What's New in Azure Service Health
+description: Learn about what's new in Azure Service Health.
 ms.topic: whats-new
 ms.date: 04/25/2025
 ---
 
 # What's new in Azure Service Health service
 
-This article lists recent changes in the Azure Service Health service. 
+This article lists recent changes in the Azure Service Health service.
 
-## New Metadata information
-In February 2025, there's a new field called Event Level which indicates the significance of each communication in Service Health Communications. 
-You can use this field to sort events. See [Service Health Event Level Filter notifications](metadata-filter.md)
+## New metadata information
 
-## In-portal Billing communications
-There are new Billing communication events available in-portals for subscribers to find more information about their billing events such as overbilling, underbilling, price changes, etc. <br>
-See [In-Portal Billing Communications](billing-elevated-access.md).
+As of February 2025, there's a new **Event Level** metadata field. This new field indicates the significance of each communication in Service Health communications. You can use this field to sort events. See [Service Health event-level filter notifications](metadata-filter.md)
 
-## Azure Copilot for Microsoft in Service Health
-You can now use Azure Copilot for Microsoft to find outage details, ask questions about subscriptions and resources, and access more details about outages through links to the service health portal. 
-<br>See [Understand service health events and status using Microsoft Copilot in Azure](/azure/copilot/understand-service-health).
+## In-portal billing communications
 
+There are new billing communication events available in the Service Health portal. Subscribers can use these communications to find more information about their billing events, including overbilling, underbilling, price changes, and more. See [In-Portal billing communications](billing-elevated-access.md).
 
-## What's coming
+## Microsoft Copilot in Azure in Service Health
 
-### New Communication Event tags
-There will be new metadata tags for communication events to filter through the service health events in the portal.
+You can now use Microsoft Copilot in Azure to find outage details, ask questions about subscriptions and resources, and access more details about outages through links to the Service Health portal.
+
+See [Understand Service Health events and status by using Microsoft Copilot in Azure](/azure/copilot/understand-service-health).
+
+## New communication event tags are coming soon
+
+There will be new metadata tags for communication events to filter through the Service Health events in the portal.
