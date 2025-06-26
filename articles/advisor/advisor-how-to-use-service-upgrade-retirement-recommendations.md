@@ -60,8 +60,10 @@ To get a list of all of the upgrade and retirement recommendations, [use the `Re
 The following code sample uses `2025-01-01`  for the `api-version`.
 
 ```https
-https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter=recommendationCategory eq 'HighAvailability' and recommendationControl eq 'ServiceUpgradeAndRetirement'
+https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter=recommendationCategory eq 'HighAvailability' and recommendationSubCategory eq 'ServiceUpgradeAndRetirement'
 ```
+
+⚠ **Note:** `recommendationControl` is a legacy filter property and will be deprecated in the future. Please use `recommendationSubCategory` for filtering recommendation subcategory
 
 #### Sample Recommendation Metadata - List API response
 
@@ -88,8 +90,10 @@ To get list of **Impacted Resources** in a subscription by the retirement and re
 The following code sample uses `2025-01-01`  for the `api-version`.
 
 ```https
-https://management.azure.com/subscriptions/<Subscription-Id-Guid>/providers/Microsoft.Advisor/recommendations?api-version=2025-01-01&$filter=Category eq 'HighAvailability' and Control eq 'ServiceUpgradeAndRetirement'
+https://management.azure.com/subscriptions/<Subscription-Id-Guid>/providers/Microsoft.Advisor/recommendations?api-version=2025-01-01&$filter=Category eq 'HighAvailability' and SubCategory eq 'ServiceUpgradeAndRetirement'
 ```
+
+⚠ **Note:** `Control` is a legacy filter property and will be deprecated in the future. Please use `SubCategory` for filtering recommendation subcategory
 
 #### Sample Recommendations - List API response
 
@@ -111,7 +115,7 @@ The retirement recommendations are available in the native user experience in Ad
 advisorresources
 | where type == "microsoft.advisor/recommendations"
 | where properties.category == "HighAvailability"
-| where properties.extendedProperties.recommendationControl == "ServiceUpgradeAndRetirement"
+| where properties.extendedProperties.recommendationSubCategory == "ServiceUpgradeAndRetirement"
 | extend retirementFeatureName = properties.extendedProperties.retirementFeatureName
 | extend retirementDate = properties.extendedProperties.retirementDate
 | extend resourceId = properties.resourceMetadata.resourceId
