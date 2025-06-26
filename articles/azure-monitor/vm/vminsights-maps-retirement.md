@@ -15,14 +15,14 @@ The VM Insights Map feature and the Dependency Agent will be retired on 30th Jun
 
 With this retirement, all functionality associated with the VM Insights Map and the Dependency Agent will be completely retired. 
 
-Specifically, customers  
-- Will not be able to access the Map tab in VM Insights in the Azure Portal;
-- Will not be able to access the Connections Overview workbook which utilizes VM Insights Map data;
-- Will not be able to install the Dependency Agent on new VMs from the Azure Portal. Customers may still be able to install Dependency Agent through existing downloaded binaries, however, these won’t be able to send data;
-- Will not be able to send new data to Azure Monitor Log Analytics using the Dependency Agent.
-- Will not be able to query the Service Map API   
+Specifically, customers will not be able to: 
+- Access the Map tab in VM Insights in the Azure Portal;
+- Access the Connections Overview workbook which utilizes VM Insights Map data;
+- Install the Dependency Agent on new VMs from the Azure Portal. Customers may still be able to install Dependency Agent through existing downloaded binaries, however, these won’t be able to send data;
+- Send new data to Azure Monitor Log Analytics using the Dependency Agent.
+- Query the Service Map API   
 
-Customers will still have access to existing VM Insights Map data ingested by Dependency Agent in the associated tables (VMComputer, VMProcess, VMConnection, VMBoundPort). This data will be retained as per the settings in the customers’ Log Analytics workspace.  
+Customers will still have access to existing VM Insights Map data ingested by Dependency Agent in the associated tables (VMComputer, VMProcess, VMConnection, VMBoundPort). This data is retained as per the settings in the customers’ Log Analytics workspace.  
 
 As part of the retirement process, 
 
@@ -54,7 +54,7 @@ Resources
 ) on vmname
 | project vmname, vmid, resourceGroup, location, subscriptionId, tenantId
 ```
-To run the query, please use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query will run in the existing Azure Portal scope. For more details on how to set scope and run Azure Resource Graph queries in the portal, see *[Quickstart: Run Resource Graph query using Azure portal](https://learn.microsoft.com/en-us/azure/governance/resource-graph/first-query-portal)*
+To run the query, please use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure Portal scope. For more details on how to set scope and run Azure Resource Graph queries in the portal, see *[Quickstart: Run Resource Graph query using Azure portal](https://learn.microsoft.com/azure/governance/resource-graph/first-query-portal)*
 
 ## Uninstalling the Dependency Agent
 
