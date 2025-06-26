@@ -36,7 +36,7 @@ To customize the email subject, use action properties. Action properties are key
 The format for extracting a dynamic value from the alert payload is: `${<path to schema field>}`, for example: `${data.essentials.monitorCondition}`. 
 
 > [!NOTE]
-> Use the format of the common alert schema to specify the field in the payload even if the action groups configured for the alert rule doesn't use the common schema.
+> Use the format of the common alert schema to specify the field in the payload even if the action groups configured for the alert rule don't use the common schema.
 
 This example creates an email subject with data regarding the window start time and window end time:
 
