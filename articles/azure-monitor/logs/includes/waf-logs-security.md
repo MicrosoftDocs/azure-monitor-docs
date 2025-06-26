@@ -18,11 +18,15 @@ The [PCI Security Standards Council](https://www.pcisecuritystandards.org/) set 
 Don't explicitly configure your agents, data connectors or API applications to *only* use TLS 1.2 unless necessary. Allowing them to automatically detect, negotiate, and take advantage of future security standards is recommended. Otherwise, you might miss the added security of the newer standards and possibly experience problems if TLS 1.2 is ever deprecated in favor of those newer standards.
 
 > [!IMPORTANT]
->  On 1 July 2025, in alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services), TLS 1.0/1.1 protocol versions will be completely retired for the query API endpoints (`https://api.loganalytics.azure.com` or `https://api.loganalytics.io`) in Azure Monitor Logs. To provide best-in-class encryption, Azure Monitor Logs already uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice.
->
-> **Recommended action**
->
-> To avoid potential service disruptions, confirm that your resources interacting with the query API endpoints have no dependencies on TLS 1.0 or 1.1 protocols. For example, clients tuned to work with older servers using TLS 1.0/1.1 protocols may start a TLS connection (client hello in the TLS handshake) with TLS 1.0/1.1. When they connect to Azure Monitor Logs before 1 July 2025, the query API endpoint (server hello in the TLS handshake) directs the client to use TLS 1.2 or higher and the client is allowed to establish the connection at 1.2/1.3 (or the connection is dropped).
+>  On **1 July 2025**, in alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services), TLS 1.0/1.1 protocol versions will be completely retired for the query API endpoints (`https://api.loganalytics.azure.com` or `https://api.loganalytics.io`) in Azure Monitor Logs. To provide best-in-class encryption, Azure Monitor Logs already uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice.
+
+**Recommended action**
+
+To avoid potential service disruptions, confirm that your resources interacting with the query API endpoints have no dependencies on TLS 1.0 or 1.1 protocols. 
+
+For example, clients configured to work with older servers might still use TLS 1.0/1.1 protocols to start a TLS handshake. When that client connects to Azure Monitor Logs before 1 July 2025, the query API endpoint still allows the initial TLS 1.0/1.1 connection for the client hello, but directs the client to use TLS 1.2 or higher. The client is then allowed to establish the connection at TLS 1.2/1.3, or the connection is dropped. After 1 July 2025, the query API endpoint drops any traffic that isn't TLS 1.2 or higher.
+
+For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
 #### Set up log query auditing
 
