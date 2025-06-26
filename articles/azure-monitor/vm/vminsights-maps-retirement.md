@@ -1,6 +1,6 @@
 ---
 title: VM Insights Map and Dependency Agent retirement guidance
-description: This article provides guidance to customers about the retirement of VM insights Map feature and the associated Dependency Agent. 
+description: This article provides guidance to customers about the retirement of Virtual Machine ("VM") / VM Insights Map feature and the associated Dependency Agent. 
 ms.topic: conceptual
 ms.custom: linux-related-content
 ms.date: 05/05/2025
@@ -11,7 +11,7 @@ ms.date: 05/05/2025
 The VM Insights Map feature and the Dependency Agent will be retired on June 30, 2028 and no longer be supported.   
 
 
-## Customers experiences impacted 
+## Customer impact
 
 With this retirement, all functionality associated with the VM Insights Map and the Dependency Agent will be retired. 
 
