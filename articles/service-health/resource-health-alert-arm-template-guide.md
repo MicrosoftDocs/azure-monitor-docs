@@ -18,7 +18,7 @@ Resource Health alerts notify you when your Azure resources experience a change 
 1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
 
 
-:::image type="content" source="./media/alerts-activity-log-service-notifications/resource-health-select.png" alt-text="Screenshot of Service Health option." lightbox="./media/alerts-activity-log-service-notifications/resource-health-select.png.png":::
+:::image type="content" source="./media/alerts-activity-log-service-notifications/resource-health-select.png" alt-text="Screenshot of Service Health option." lightbox="./media/alerts-activity-log-service-notifications/resource-health-select.png":::
 
 1. Select **Resource Health**.
 
