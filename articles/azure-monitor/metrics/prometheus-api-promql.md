@@ -34,7 +34,7 @@ To set up Microsoft Entra authentication, follow these steps:
 
 ### Register an app with Microsoft Entra ID
 
-1. To register an app, follow the steps in [Register an app to request authorization tokens and work with APIs](../logs/api/register-app-for-token.md?tabs=portal).
+To register an app, follow the steps in [Register an app to request authorization tokens and work with APIs](../logs/api/register-app-for-token.md?tabs=portal).
 
 ### Allow your app access to your workspace
 
