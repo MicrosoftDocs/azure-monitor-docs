@@ -32,13 +32,13 @@ Azure Monitor workspaces include an exploration workbook to query your Prometheu
 
    :::image type="content" source="media/prometheus-workbooks/prometheus-gallery.png" lightbox="media/prometheus-workbooks/prometheus-gallery.png" alt-text="Screenshot that shows the Azure Monitor workspace gallery.":::
 
-A workbook has the following input options:
-
-* **Time Range**: Select the period of time that you want to include in your query. Select **Custom** to set a start and end time.
-* **PromQL**: Enter the PromQL query to retrieve your data. For more information about PromQL, see [Query Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/#querying-prometheus).
-* **Graph, Grid, Dimensions**: Use the tabs to switch between a graphic, tabular, and dimensional view of the query output.
-
-:::image type="content" source="media/prometheus-workbooks/prometheus-explorer.png" lightbox="media/prometheus-workbooks/prometheus-explorer.png" alt-text="Screenshot that shows the PromQL explorer.":::
+    A workbook has the following input options:
+    
+    * **Time Range**: Select the period of time that you want to include in your query. Select **Custom** to set a start and end time.
+    * **PromQL**: Enter the PromQL query to retrieve your data. For more information about PromQL, see [Query Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/#querying-prometheus).
+    * **Graph, Grid, Dimensions**: Use the tabs to switch between a graphic, tabular, and dimensional view of the query output.
+    
+    :::image type="content" source="media/prometheus-workbooks/prometheus-explorer.png" lightbox="media/prometheus-workbooks/prometheus-explorer.png" alt-text="Screenshot that shows the PromQL explorer.":::
 
 ## Create a Prometheus workbook
 

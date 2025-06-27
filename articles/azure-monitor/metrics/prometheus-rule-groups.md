@@ -149,7 +149,7 @@ On the rule group **Details** tab:
     1. Select if the rule is to be enabled when created.
     1. Select **Create** to add the new rule to the rule list.
 
-    :::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-alert.png" alt-text="Screenshot that shows configuration of Prometheus rule group alert rule.":::
+       :::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-alert.png" alt-text="Screenshot that shows configuration of Prometheus rule group alert rule.":::
 
 > [!NOTE]
 > For alert rules, the expression query typically returns only time series that fulfill the expression condition. If the preview chart isn't shown and you get the message "The query returned no result," it's likely that the condition wasn't fulfilled in the preview time range.
