@@ -6,7 +6,7 @@ ms.date: 06/27/2025
 
 ---
 
-# Planned maintenance overview
+# Planned maintenance
 
 The Planned Maintenance blade in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
 
@@ -20,10 +20,11 @@ The information enables you to:
 
 Unlike unplanned outages, planned maintenance is scheduled and communicated ahead of time to help minimize the impact.
 
-:::image type="content" source="./media/planned-maintenance/planned-maintenance-main.PNG" alt-text="Screenshot of current planned maintenance events." lightbox="media/planned-maintenance/planned-maintenance-main.png":::
+
 
 ## Information found in the Planned Maintenance blade 
 When you open the Planned Maintenance blade, you see a list of maintenance events relevant to your subscriptions. 
+:::image type="content" source="./media/planned-maintenance/planned-maintenance-main.PNG" alt-text="Screenshot of current planned maintenance events." lightbox="media/planned-maintenance/planned-maintenance-main.png":::
 Each event includes the following information:
 - Issue Name
 - Tracking ID
@@ -36,7 +37,7 @@ Each event includes the following information:
 
 Select the **Issue name** link to open the blades with the information you need.
 
-### Summary
+### Summary tab
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-summary.PNG" alt-text="Screenshot of Summary tab." lightbox="media/planned-maintenance/planned-maintenance-summary.png":::
 
@@ -59,7 +60,7 @@ Each event includes:
 
 
 
-### Impacted Services
+### Impacted Services tab
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-impacted-services.PNG" alt-text="Screenshot of Impacted Services tab." lightbox="media/planned-maintenance/planned-maintenance-impacted-services.png":::
 
@@ -68,13 +69,13 @@ The Impacted Services tab displays information about any of your services that a
 - Status 
 - Last update time
 
-### Issue Updates
+### Issue Updates tab
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-issue-updates.PNG" alt-text="Screenshot of Issue Updates tab." lightbox="media/planned-maintenance/planned-maintenance-issue-updates.png":::
 
 The Issues Updates tab displays all information notifications by the date they were entered.
 
-### Impacted Resources
+### Impacted Resources tab
 
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-impacted-resources.PNG" alt-text="Screenshot of Impacted Resources tab." lightbox="media/planned-maintenance/planned-maintenance-impacted-resources.png":::
@@ -88,7 +89,7 @@ The tab for Impacted Resources displays the following information about any of y
 - **Subscription ID** - The subscription that owns the resource.
 - **Action** - A link to apply the update during a self-service window (for reboot-required updates).
 
-### Available tools on the tab
+### Filtering and sorting
 
 On each tab in this blade you can:
 
