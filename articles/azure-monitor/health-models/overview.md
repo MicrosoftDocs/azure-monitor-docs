@@ -4,7 +4,7 @@ description: Overview of health models in Azure Monitor that allow you to track 
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: The query must return a single record with a numeric value. If it returns multiple records, then only the first record is used.
+ms.date: 06/27/2025
 ---
 
 # Health models in Azure Monitor (preview)

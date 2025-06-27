@@ -63,7 +63,7 @@ In the following example, the entity is set to a degraded state since one of its
 
 ### Health rollup
 
-In addition to its own signals, the health state of the the [root entity](#root-entity) entity is affected by its child entities. The following example shows the same root entity with multiple children in different health states. The health of the root is set to an unhealthy state since this is the worst state of all its children.
+In addition to its own signals, the health state of the [root entity](#root-entity) entity is affected by its child entities. The following example shows the same root entity with multiple children in different health states. The health of the root is set to an unhealthy state since this is the worst state of all its children.
 
 
 :::image type="content" source="media/concepts/health-signals-rollup.png" lightbox="media/concepts/health-signals-rollup.png" alt-text="Screenshot of an example entity showing the health state from a child entity." border="false":::
@@ -78,7 +78,7 @@ The *impact* of an entity determines how its health state is propagated to its p
 | Limited  | Doesn't propagate a degraded state and propagates an unhealthy state as degraded. The parent will never receive an unhealthy state from this entity. For example, you may have an application that depends on a cache. If the cache is unhealthy, then the application will keep performing but with degraded performance. |
 | Suppressed | Doesn't propagate any health state. Even if the entity is degraded or unhealthy, the parent will appear as healthy. For example, your application may have a backup operation represented by an entity in the health model. Even though the backup operation is unhealthy, the application continues operating normally. |
 
-The following sample shows the effect of each impact setting. Each of the child entities are in an unhealthy state, but the parent health states are difference based on the impact setting of each child. 
+The following sample shows the effect of each impact setting. Each of the child entities is in an unhealthy state, but the parent health states are difference based on the impact setting of each child. 
 
 :::image type="content" source="media/concepts/health-impact.png" lightbox="media/concepts/health-impact.png" alt-text="Screenshot of an example health model showing different impact settings." border="false":::
 

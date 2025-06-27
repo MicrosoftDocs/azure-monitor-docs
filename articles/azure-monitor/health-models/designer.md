@@ -112,7 +112,7 @@ The following tables describe the properties that define an Azure resource signa
 | Metric namespace | The namespace of the metric. Each resource type will typically have a single namespace, but some resource types may have multiple. Each namespace has its own set of metrics. |
 | Metric | Metric to use for the signal. In the Azure portal, you can select from a list of all metrics in the selected namespace. The most commonly used metrics for the resource type are listed at the top. |
 | Description | Description of the metric. This is a read-only value that is provided by the metric definition. |
-| Dimension | Dimension for the signal if the metrics supports them. Dimensions are used to define difference instances of the metric on the Azure resource.  |
+| Dimension | Dimension for the signal if the metric supports them. Dimensions are used to define difference instances of the metric on the Azure resource.  |
 | Dimension filter | Only available if a dimension is selected. Filters data for only the specified dimension value. |
 | Aggregation Type | Method used to aggregate the different data samples over the *Time grain*. Metric data is sampled every minute, so there will typically be multiple values collected over the time grain specified for the signal. Different aggregations will be available for different metrics.<br><br>Examples of common aggregations include:<br><br>- Average - Average of the values collected over the time grain<br>- Maximum - Maximum of the different values collected over the time grain<br>- Total - Sum total of the values collected over the time grain |
 | Time grain | Length of time over which metric values are collected and then aggregated using the specified aggregation method. |
@@ -163,7 +163,7 @@ The following table describes the properties that define Log Analytics workspace
 Azure Monitor workspace signals run a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results to determine the health state. Use Azure Monitor workspace signals in place of metric signals for resources that have metric data scraped by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). The log query must return a single record with a text value. 
 
 #### Azure Monitor workspace
-Before you can create a Azure Monitor workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity.
+Before you can create an Azure Monitor workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity.
 
 #### Azure Monitor workspace signal definition properties
 The following table describes the properties that define Azure Monitor workspace signal definition.

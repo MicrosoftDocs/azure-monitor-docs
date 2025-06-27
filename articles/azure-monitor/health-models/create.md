@@ -54,18 +54,18 @@ Using either method, you need to provide the details for the new health model in
 | Tab | Description |
 |:---|:---|
 | **Basics** | Select the subscription, resource group, and region for the health model in addition to a descriptive name. The Azure resources don't need to be in the same subscription or resource group as the health model. |
-| **Identity** | Configure the identity for the health model access the service group. This is use to enumerate the members of the service group and add them as entities to the health model. It's also used by default to access telemetry for the Azure resources represented by each entity, although this identity can later be changed for each entity. See [Permissions required](#permissions-required) for the requirements of this identity. |
+| **Identity** | Configure the identity for the health model access the service group. This is used to enumerate the members of the service group and add them as entities to the health model. It's also used by default to access telemetry for the Azure resources represented by each entity, although this identity can later be changed for each entity. See [Permissions required](#permissions-required) for the requirements of this identity. |
 | **Discovery** | Select a service group for the health model. An entity will be created for each member of the service group. Select the option to **Add recommended signals** to automatically add a set of recommended signals to each entity for that Azure resource type. |
 | **Tags** | Add any [tags](/azure/azure-resource-manager/management/tag-resources) to help categorize the health model in your environment. |
 
 
 
 ## Configure a health model
-When you create a new health model, it will include an entity for each of the Azure resources in the service group, but non of the entities will be monitored. The next step is to configure the health model by adding  signals to each entity to measure their health and optionally add alerts to notify you when the health state of an entity changes.
+When you create a new health model, it will include an entity for each of the Azure resources in the service group, but none of the entities will be monitored. The next step is to configure the health model by adding  signals to each entity to measure their health and optionally add alerts to notify you when the health state of an entity changes.
 
 You'll perform most of the configuration in the **Designer**, which is a visual tool that provides access to all the configuration options for the entities in the health model. Get complete detail on the designer and the different configuration options it provides in [Use the Azure Monitor health model designer](./designer.md).
 
-The following sections describe the different views aside from the designer that are available in the available in the Azure portal.
+The following sections describe the different views aside from the designer that are available in the Azure portal.
 
 ### Entities view
 The Entities view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./designer.md#entities) from this view as you can in the designer view by selecting an entity and clicking **Edit**.
