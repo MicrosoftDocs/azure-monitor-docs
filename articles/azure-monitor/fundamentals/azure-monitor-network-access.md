@@ -64,7 +64,7 @@ For more information on availability tests, see [Private availability testing](.
 |---|---|---|
 | <a id="loganalyticsapi">Log Analytics API</a> | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`| 80,443 |
 
-## Log Ingestion API endpoins
+## Log Ingestion API endpoints
 
 | Purpose | URI | Ports |
 |---|---|---|
