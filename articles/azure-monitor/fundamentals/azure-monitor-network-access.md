@@ -56,19 +56,19 @@ For more information on availability tests, see [Private availability testing](.
 
 | Purpose | URI | Ports |
 |---------|-----|-------|
-| <a id="appinsightsapi">Application Insights API</a> | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`| 80,443 |
+| Application Insights API | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`| 80,443 |
 
 ## Log Analytics API endpoints
 
 | Purpose | URI | Ports |
 |---|---|---|
-| <a id="loganalyticsapi">Log Analytics API</a> | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`| 80,443 |
+| Log Analytics API | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`| 80,443 |
 
 ## Log Ingestion API endpoints
 
 | Purpose | URI | Ports |
 |---|---|---|
-| <a id="logingestionapi">Log Ingestion API</a> | `api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`</br>`*.api.loganalytics.azure.com` | 80,443 |
+| Log Ingestion API | `api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`</br>`*.api.loganalytics.azure.com` | 80,443 |
 
 ## Application Insights analytics
 
