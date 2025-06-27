@@ -21,7 +21,7 @@ Areas in Azure Monitor where you'll use queries include:
 - [Log Analytics Query API](/rest/api/loganalytics/query): Retrieve log data from the workspace from any REST API client. The API request includes a query that's run against Azure Monitor to determine the data to retrieve.
 
    > [!IMPORTANT]
-   > Starting July 1st, 2025, querying log data/events requires the use of TLS 1.2 or higher using [Log Analytics API endpoints](../fundamentals/azure-monitor-network-access.md#log-analytics-api-endpoints). For more information, see [Secure data in transit](../fundamentals/best-practices-security.md#secure-data-in-transit).
+   > Starting July 1, 2025, querying log data/events requires the use of TLS 1.2 or higher when using [Log Analytics API endpoints](../fundamentals/azure-monitor-network-access.md#log-analytics-api-endpoints). For more information, see [Secure data in transit](../fundamentals/best-practices-security.md#secure-data-in-transit).
 
 - **Azure Monitor Query client libraries**: Retrieve log data from the workspace via an idiomatic client library for the following ecosystems:
   - [.NET](/dotnet/api/overview/azure/Monitor.Query-readme)
