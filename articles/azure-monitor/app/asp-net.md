@@ -693,7 +693,7 @@ HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
 
 ## Configure the Application Insights SDK
 
-You can customize the Application Insights SDK for ASP.NET and ASP.NET Core to change the default configuration. 
+You can customize the Application Insights SDK for ASP.NET and ASP.NET Core to change the default configuration.
 
 ### [ASP.NET](#tab/net)
 
@@ -760,15 +760,33 @@ In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nug
 
 If `builder.Services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 6.0 or `services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 3.1 and earlier is used, it overrides the settings from `Microsoft.Extensions.Configuration.IConfiguration`.
 
+---
+
 ### Sampling
+
+### [ASP.NET](#tab/net)
+
+To learn how to configure sampling for ASP.NET applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+
+### [ASP.NET Core](#tab/core)
 
 The Application Insights SDK for ASP.NET Core supports both fixed-rate and adaptive sampling. By default, adaptive sampling is enabled.
 
-For more information, see [Configure adaptive sampling for ASP.NET Core applications](./sampling.md#configuring-adaptive-sampling-for-aspnet-core-applications).
+For more information, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
-### Add TelemetryInitializers
+---
 
-When you want to enrich telemetry with more information, use [telemetry initializers](./api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
+### Telemetry initializers
+
+When you want enrich telemetry with additional information or to override telemetry properties set by the standard telemetry modules, use telemetry initializers.
+
+### [ASP.NET](#tab/net)
+
+To learn how to use telemetry initializers with ASP.NET applications, see [Filter and preprocess telemetry in the Application Insights SDK](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
+
+### [ASP.NET Core](#tab/core)
+
+#### Add telemetry initializers
 
 Add any new `TelemetryInitializer` to the `DependencyInjection` container as shown in the following code. The SDK automatically picks up any `TelemetryInitializer` that's added to the `DependencyInjection` container.
 
@@ -783,7 +801,7 @@ var app = builder.Build();
 > [!NOTE]
 > `builder.Services.AddSingleton<ITelemetryInitializer, MyCustomTelemetryInitializer>();` works for simple initializers. For others, `builder.Services.AddSingleton(new MyCustomTelemetryInitializer() { fieldName = "myfieldName" });` is required.
 
-### Remove TelemetryInitializers
+#### Remove telemetry initializers
 
 By default, telemetry initializers are present. To remove all or specific telemetry initializers, use the following sample code *after* calling `AddApplicationInsightsTelemetry()`.
 
@@ -807,7 +825,17 @@ builder.Services.RemoveAll(typeof(ITelemetryInitializer));
 var app = builder.Build();
 ```
 
-### Add telemetry processors
+---
+
+### Telemetry processors
+
+### [ASP.NET](#tab/net)
+
+To learn how to use telemetry processors with ASP.NET applications, see [Filter and preprocess telemetry in the Application Insights SDK](api-filtering-sampling.md#filtering).
+
+### [ASP.NET Core](#tab/core)
+
+#### Add telemetry processors
 
 You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](./api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer). Use the following example:
 
@@ -824,6 +852,8 @@ builder.Services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetr
 var app = builder.Build();
 ```
 
+---
+
 ### Configure or remove default TelemetryModules
 
 Application Insights automatically collects telemetry about specific workloads without requiring manual tracking by user.
@@ -837,6 +867,12 @@ By default, the following automatic-collection modules are enabled. These module
 * `AppServicesHeartbeatTelemetryModule`: Collects heartbeats (which are sent as custom metrics), about the App Service environment where the application is hosted.
 * `AzureInstanceMetadataTelemetryModule`: Collects heartbeats (which are sent as custom metrics), about the Azure VM environment where the application is hosted.
 * `EventCounterCollectionModule`: Collects [EventCounters](asp-net-counters.md). This module is a new feature and is available in SDK version 2.8.0 and later.
+
+### [ASP.NET](#tab/net)
+
+To learn how to configure or remove telemetry modules for ASP.NET application, see [Configure the Application Insights SDK with ApplicationInsights.config or .xml](configuration-with-applicationinsights-config.md#telemetry-modules-aspnet).
+
+### [ASP.NET Core](#tab/core)
 
 To configure any default `TelemetryModule`, use the extension method `ConfigureTelemetryModule<T>` on `IServiceCollection`, as shown in the following example:
 
