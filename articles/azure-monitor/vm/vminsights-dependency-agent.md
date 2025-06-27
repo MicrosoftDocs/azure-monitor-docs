@@ -22,10 +22,10 @@ Dependency Agent collects data about processes running on the virtual machine an
 - Azure Monitor agent must be installed on the same machine.
 - Requires a connection from the virtual machine to the address 169.254.169.254. This address identifies the Azure metadata service endpoint.
 
-## Operating systems supported
+## Operating systems supported by VM Insights
 
-VM insights supports the following operating systems:
-- VM Insights supports all operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
+The following operating systems:
+- All operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
 - The Dependency Agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022, except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. 
 - For the Dependency Agent's Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
 - The Dependency Agent only supports x64 architectures.
