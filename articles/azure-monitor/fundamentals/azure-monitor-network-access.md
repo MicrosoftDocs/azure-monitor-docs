@@ -52,12 +52,23 @@ Application Insights Agent configuration is needed only when you're making chang
 
 For more information on availability tests, see [Private availability testing](../app/availability-private-test.md).
 
-## Application Insights and Log Analytics APIs
+## Application Insights API endpoints
 
 | Purpose | URI | Ports |
 |---------|-----|-------|
-| API | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`<br>`dev.applicationinsights.io`<br>`dev.applicationinsights.microsoft.com`<br>`dev.aisvc.visualstudio.com`<br>`www.applicationinsights.io`<br>`www.applicationinsights.microsoft.com`<br>`www.aisvc.visualstudio.com`<br>`api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`dev.loganalytics.io`<br>`docs.loganalytics.io`<br>`www.loganalytics.io`<br>`api.loganalytics.azure.com` | 80,443 |
-| Azure Pipeline annotations extension | `aigs1.aisvc.visualstudio.com` | 443 |
+| <a id="appinsightsapi">Application Insights API</a> | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`| 80,443 |
+
+## Log Analytics API endpoints
+
+| Purpose | URI | Ports |
+|---|---|---|
+| <a id="loganalyticsapi">Log Analytics API</a> | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`| 80,443 |
+
+## Log Ingestion API endpoins
+
+| Purpose | URI | Ports |
+|---|---|---|
+| <a id="logingestionapi">Log Ingestion API</a> | `api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`</br>`*.api.loganalytics.azure.com` | 80,443 |
 
 ## Application Insights analytics
 
