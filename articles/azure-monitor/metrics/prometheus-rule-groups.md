@@ -22,7 +22,7 @@ There are two types of Prometheus rules.
 
 You can create and configure Azure Managed Prometheus rule groups, recording rules, and alert rules by using the Azure resource type `Microsoft.AlertsManagement/prometheusRuleGroups`. The alert rules and recording rules are defined as part of the rule group properties. Prometheus rule groups are defined with a scope of a specific [Azure Monitor workspace](azure-monitor-workspace-overview.md). You can create Prometheus rule groups by using Azure Resource Manager templates (ARM templates), APIs, the Azure CLI, or PowerShell.
 
-Azure Managed Prometheus rule groups follow the structure and terminology of the open-source Prometheus rule groups. Rule names, expression, `for` clause, labels, and annotations are all supported in the Azure version. Note the following key differences between OSS rule groups and Azure Managed Prometheus:
+Azure Managed Prometheus rule groups follow the structure and terminology of the open-source Prometheus rule groups. Rule names, expression, `for` clause, labels, and annotations are all supported in the Azure version. Note the following key differences between open-source software rule groups and Azure Managed Prometheus:
 
 * Azure Managed Prometheus rule groups are managed as Azure resources and include necessary information for resource management, such as the subscription and resource group where the Azure rule group should reside.
 * Azure Managed Prometheus alert rules include dedicated properties that allow alerts to be processed like other Azure Monitor alerts. For example, alert severity, action group association, and alert autoresolve configuration are supported as part of Azure Managed Prometheus alert rules.
@@ -35,7 +35,7 @@ Azure Managed Prometheus rule groups follow the structure and terminology of the
 You can optionally limit the rules in a rule group to query data originating from a single specific cluster by adding a cluster scope to your rule group or by using the rule group `clusterName` property.
 Limit rules to a single cluster if your Azure Monitor workspace contains a large amount of data from multiple clusters. In such a case, there's a concern that running a single set of rules on all the data might cause performance or throttling issues. By using the cluster scope, you can create multiple rule groups, each configured with the same rules, with each group covering a different cluster.
 
-To limit your rule group to a cluster scope [by using an ARM template](#creating-prometheus-rule-group-using-resource-manager-template), add the Azure Resource ID value of your cluster to the rule group `scopes[]` list. *The scopes list must still include the Azure Monitor workspace resource ID.* The following cluster resource types are supported as a cluster scope:
+To limit your rule group to a cluster scope [by using an ARM template](#create-a-prometheus-rule-group-by-using-an-arm-template), add the Azure Resource ID value of your cluster to the rule group `scopes[]` list. *The scopes list must still include the Azure Monitor workspace resource ID.* The following cluster resource types are supported as a cluster scope:
 
 * Azure Kubernetes Service clusters (`Microsoft.ContainerService/managedClusters`)
 * Azure Arc-enabled Kubernetes clusters (`Microsoft.kubernetes/connectedClusters`)
@@ -95,7 +95,7 @@ To edit a new rule group from the portal home page:
 
 On the rule group **Scope** tab:
 
-1. Select the **Azure Monitor workspace** from a list of workspaces that are available in your subscriptions. The rules in this group query data from this workspace.
+1. Select the Azure Monitor workspace from a list of workspaces that are available in your subscriptions. The rules in this group query data from this workspace.
 
 1. To limit your rule group to a cluster scope, select the **Specific cluster** option:
 
@@ -104,7 +104,7 @@ On the rule group **Scope** tab:
 
 1. Select **Next** to configure the rule group details.
 
-:::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-scope.png" alt-text="Screenshot that shows configuration of Prometheus rule group scope.":::
+   :::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-scope.png" alt-text="Screenshot that shows configuration of Prometheus rule group scope.":::
 
 #### Configure the rule group details
 
@@ -116,7 +116,7 @@ On the rule group **Details** tab:
 1. Select if the rule group is to be enabled when created.
 1. Select **Next** to configure the rules in the group.
 
-:::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-details.png" alt-text="Screenshot that shows configuration of Prometheus rule group details.":::
+   :::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-details.png" alt-text="Screenshot that shows configuration of Prometheus rule group details.":::
 
 #### Configure the rules in the group
 
@@ -137,19 +137,19 @@ On the rule group **Details** tab:
 
 * To add a new alert rule:
 
-1. Select **+ Add alert rule** to open the **Create an alert rule** pane.
-1. Select the **Severity** value for alerts fired by this rule.
-1. Enter the name of the rule. This name is the name of alerts fired by the rule.
-1. Enter the PromQL **Expression** value for the rule by using the PromQL-sensitive expression editor box. You can see the results of the expression query visualized in the preview chart. You can modify the preview time range to zoom in or out on the expression result history.
-1. Select the **Wait for** value for the period when the alert expression first becomes true and until the alert is fired.
-1. You can enter optional **Annotations** key-value pairs for the rule. These annotations are added to alerts fired by the rule.
-1. You can enter optional **Labels** key-value pairs for the rule. These labels are added to the alerts fired by the rule.
-1. Select the [action groups](../alerts/action-groups.md) that the rule triggers.
-1. Select **Automatically resolve alert** to automatically resolve alerts if the rule condition is no longer true during the **Time to auto-resolve** period.
-1. Select if the rule is to be enabled when created.
-1. Select **Create** to add the new rule to the rule list.
+    1. Select **+ Add alert rule** to open the **Create an alert rule** pane.
+    1. Select the **Severity** value for alerts fired by this rule.
+    1. Enter the name of the rule. This name is the name of alerts fired by the rule.
+    1. Enter the PromQL **Expression** value for the rule by using the PromQL-sensitive expression editor box. You can see the results of the expression query visualized in the preview chart. You can modify the preview time range to zoom in or out on the expression result history.
+    1. Select the **Wait for** value for the period when the alert expression first becomes true and until the alert is fired.
+    1. You can enter optional **Annotations** key-value pairs for the rule. These annotations are added to alerts fired by the rule.
+    1. You can enter optional **Labels** key-value pairs for the rule. These labels are added to the alerts fired by the rule.
+    1. Select the [action groups](../alerts/action-groups.md) that the rule triggers.
+    1. Select **Automatically resolve alert** to automatically resolve alerts if the rule condition is no longer true during the **Time to auto-resolve** period.
+    1. Select if the rule is to be enabled when created.
+    1. Select **Create** to add the new rule to the rule list.
 
-:::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-alert.png" alt-text="Screenshot that shows configuration of Prometheus rule group alert rule.":::
+    :::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-alert.png" alt-text="Screenshot that shows configuration of Prometheus rule group alert rule.":::
 
 > [!NOTE]
 > For alert rules, the expression query typically returns only time series that fulfill the expression condition. If the preview chart isn't shown and you get the message "The query returned no result," it's likely that the condition wasn't fulfilled in the preview time range.
@@ -354,10 +354,10 @@ You can now view the [resource health state](../../service-health/resource-healt
 
     :::image type="content" source="media/prometheus-metrics-rule-groups/prometheus-rule-groups-resource-health-history.png" alt-text="Screenshot that shows how to view the resource health history of a Prometheus rule group.":::
 
-* If the rule group is marked as **Available**, it's working as expected.
-* If the rule group is marked as **Degraded**, one or more rules in the group aren't working as expected. The rule query might be throttled, or other issues might cause the rule evaluation to fail. Expand the status entry for more information on the detected problem, suggestions for mitigation, or for further troubleshooting.
-* If the rule group is marked as **Unavailable**, the entire rule group isn't working as expected. There might be a configuration issue (for example, the Azure Monitor workspace can't be detected) or internal service issues. Expand the status entry for more information on the detected problem, suggestions for mitigation, or for further troubleshooting.
-* If the rule group is marked as **Unknown**, the entire rule group is disabled or is in an unknown state.
+    * If the rule group is marked as **Available**, it's working as expected.
+    * If the rule group is marked as **Degraded**, one or more rules in the group aren't working as expected. The rule query might be throttled, or other issues might cause the rule evaluation to fail. Expand the status entry for more information on the detected problem, suggestions for mitigation, or for further troubleshooting.
+    * If the rule group is marked as **Unavailable**, the entire rule group isn't working as expected. There might be a configuration issue (for example, the Azure Monitor workspace can't be detected) or internal service issues. Expand the status entry for more information on the detected problem, suggestions for mitigation, or for further troubleshooting.
+    * If the rule group is marked as **Unknown**, the entire rule group is disabled or is in an unknown state.
 
 ## Disable and enable rule groups
 

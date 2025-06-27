@@ -33,7 +33,7 @@ Use Azure Managed Prometheus in either of the following configurations:
 - **Fully managed service or drop-in replacement for self-managed Prometheus**: In this case, a managed add-on within your AKS or Azure Arc-enabled Kubernetes cluster collects data. You can use custom resources (Pod and service monitors) and the add-on ConfigMaps to configure data collection. The format of the pod/service monitors and ConfigMaps are the same as open-source Prometheus. In this way, you can use existing configs directly with Azure Managed Prometheus.
 - **Remote-write target**: Use Prometheus remote write to send metrics from your existing Prometheus server running in Azure or non-Azure environments to send data to an Azure Monitor workspace. You can gradually migrate from self-hosted to the fully managed add-on.
 
-[Enabling the Azure Managed Prometheus add-on](../containers/kubernetes-monitoring-enable.md) in an AKS cluster deploys the [Pod](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.PodMonitor) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.ServiceMonitor) custom resource definitions (CRDs) so that you can create your own custom resources. Use Pod Monitors and Service Monitors to customize scraping targets, similar to the OSS Prometheus Operator.
+[Enabling the Azure Managed Prometheus add-on](../containers/kubernetes-monitoring-enable.md) in an AKS cluster deploys the [Pod](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.PodMonitor) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.ServiceMonitor) custom resource definitions (CRDs) so that you can create your own custom resources. Use Pod Monitors and Service Monitors to customize scraping targets, similar to the open-source software Prometheus Operator.
 
 > [!NOTE]
 > Currently, the `PrometheusRule` CRD isn't supported with Azure Managed Prometheus.
@@ -129,7 +129,7 @@ Also consider [remote-write tuning](https://prometheus.io/docs/practices/remote_
 
 ### Alerting rules and recording rules
 
-Azure Managed Prometheus supports Prometheus alerting rules and recording rules with Prometheus rule groups. See [Convert your existing rules to a Prometheus rule group Azure Resource Manager template](./prometheus-rule-groups.md#converting-prometheus-rules-file-to-a-prometheus-rule-group-arm-template).
+Azure Managed Prometheus supports Prometheus alerting rules and recording rules with Prometheus rule groups. See [Convert your existing rules to a Prometheus rule group Azure Resource Manager template](./prometheus-rule-groups.md#convert-prometheus-rules-file-to-a-prometheus-rule-group-arm-template).
 
 With the managed add-on, recommended recording rules are automatically set up as you enable Managed Prometheus for your AKS or Azure Arc-enabled cluster. To review the list of automatically provisioned recording rules, see [Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md#recording-rules). Prometheus community recommended alerts are also available, and you can create them out-of-the-box.
 

@@ -204,7 +204,7 @@ For more information, see [Label values](https://prometheus.io/docs/prometheus/l
 GET 'https://k8s02-workspace-abcd.eastus.prometheus.monitor.azure.com/api/v1/label/__name__/values'
 ```
 
-For the full specification of OSS Prometheus APIs, see [Prometheus HTTP API](https://prometheus.io/docs/prometheus/latest/querying/api/#http-api).
+For the full specification of open-source software Prometheus APIs, see [Prometheus HTTP API](https://prometheus.io/docs/prometheus/latest/querying/api/#http-api).
 
 ## API limitations
 
@@ -245,7 +245,7 @@ This section provides answers to common questions.
 
 ## Related content
 
-[Azure Monitor workspace overview](azure-monitor-workspace-overview.md)
-[Manage an Azure Monitor workspace](azure-monitor-workspace-manage.md)
-[Overview of Azure Monitor Managed Service for Prometheus](prometheus-metrics-overview.md)
-[Query Prometheus metrics using Azure workbooks](prometheus-workbooks.md)
+- [Azure Monitor workspace overview](azure-monitor-workspace-overview.md)
+- [Manage an Azure Monitor workspace](azure-monitor-workspace-manage.md)
+- [Overview of Azure Monitor Managed Service for Prometheus](prometheus-metrics-overview.md)
+- [Query Prometheus metrics using Azure workbooks](prometheus-workbooks.md)
