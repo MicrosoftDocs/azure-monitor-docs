@@ -12,11 +12,11 @@ ms.reviewer: luki
 Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources including virtual machines. This article provides an overview of Azure Diagnostics extension, the specific functionality that it supports, and options for installation and configuration.
 
 > [!IMPORTANT]
-> ## Migrate from Azure Diagnostic extension
+> ### Migrate from Azure Diagnostic extension
 > 
 > Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension. 
 > 
-> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to Azure Monitor Agent, which can collect the same data and send it to multiple destinations including Log Analytics workspaces, Azure Event Hubs, and Azure Storage. Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data. 
+> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to [Azure Monitor Agent](./azure-monitor-agent-overview.md), which can collect the same data and send it to multiple destinations including Log Analytics workspaces, Azure Event Hubs, and Azure Storage. Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data. 
 >
 > As an alternative to storage, you should send data to a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
 >
@@ -32,6 +32,8 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > | distinct id
 > ```
 >
+> This produces results similar to the following:
+> 
 > :::image type="content" source="media/diagnostics-extension-overview/query-results.png" lightbox="media/diagnostics-extension-overview/query-results.png" alt-text="Results of a sample Azure Resource Graph Query.":::
 
 
