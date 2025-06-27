@@ -1,5 +1,5 @@
 ---
-title: Create and configure a health model resource in Azure Monitor
+title: Configure an Azure Monitor health model
 description: Learn now to create a health model resource.
 ms.topic: conceptual
 author: bwren
@@ -11,7 +11,7 @@ ms.date: 12/12/2023
 The **Designer** is the primary tool for visually configuring [Azure Monitor health models](./overview.md). This article provides the details of different operations and common tasks that you can perform in the designer in addition to other views that you can use to configure the model. Before you read this article, you should be familiar with the [concepts of health models](./concepts.md).
 
 ## Canvas
-The designer is the primary tool that you'll use for visually configuring Azure Monitor health models. You can modify the arrangement of the entities that will translate to the [Graph](./analyze-health.md#graph-view) view which give you a visual representation of the current health state of your workload. You can also use the designer to create and edit signals, assign them to entities, and define health  alert rules. When you open the designer view, you're presented with the *canvas*, which is where you'll configure the [entities](./entities.md) that make up your health model.
+The designer is the primary tool that you'll use for visually configuring Azure Monitor health models. You can modify the arrangement of the entities that will translate to the [Graph](./analyze-health.md#graph-view) view which give you a visual representation of the current health state of your workload. You can also use the designer to create and edit signals, assign them to entities, and define health  alert rules. When you open the designer view, you're presented with the *canvas*, which is where you'll configure the [entities](./concepts.md#entities) that make up your health model.
 
 :::image type="content" source="media/designer/designer-canvas.png" lightbox="media/designer/designer-canvas.png" alt-text="Screenshot of a health model resource in the Azure portal with the Designer pane selected.":::
 
@@ -50,9 +50,9 @@ The **General** tab of the [entity editor](#entities) allows you to configure th
 | Name | Automatically assigned unique name of the entity. |
 | Display name | The name of the entity as it appears in the health model. This defaults to the name of the Azure resource but can be modified later. |
 | Kind | Azure resource type represented by the entity. This property can't be changed. |
-| Impact | Determines how the health state of this entity is propagated to its parent as described in [Impact](./health-states.md#impact). |
+| Impact | Determines how the health state of this entity is propagated to its parent as described in [Impact](./concepts.md#health-states#impact). |
 | Icon | Icon to display in the health model. *Use associated resource icon* uses the icon from the resource type represented by the entity. |
-| Health objective | The target health objective for this entity as described in [Health objective](./health-states.md#health-objective). This is an optional value. |
+| Health objective | The target health objective for this entity as described in [Health objective](./concepts.md#health-states#health-objective). This is an optional value. |
 | Canvas position | X and Y coordinates of the entity on the canvas. This is automatically set when you drag the entity around the canvas. You can also manually set these values to position the entity in a specific location. |
 | Labels | One of more optional name/value pairs to assign to the entity. Labels are used to group entities together for reporting and filtering purposes. You can use the same label on multiple entities. |
 
@@ -191,7 +191,7 @@ To define both thresholds for a signal definition ensure that degraded threshold
 
 
 ### Alerts
-The **Alerts** tab allows you to create or edit alert rules for the entity. See [Alerts](./alerts.md) for details.
+The **Alerts** tab allows you to create or edit alert rules for the entity. 
 
 Configure alerts in a health model from the **Alerts** tab in the [entity editor](./entities.md#entity-editor). You can enable either the **Degraded** or **Unhealthy** state or both. The only configuration required is the **Severity** of the alert which aligns with the severity values of other Azure Monitor alerts. The alert will fire when the health state of the entity changes to the selected state. Only one alert will be created for the entity even if multiple signals match this severity.
 

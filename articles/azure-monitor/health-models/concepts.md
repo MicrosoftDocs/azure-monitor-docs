@@ -38,7 +38,7 @@ The signals applied to each Azure resource entity are evaluated from the metrics
 
 
 ## Relationships
-A relationship represents the dependency of one entity on another. The primary function of relationships is to support health rollup as described in [Health states in Azure Monitor health models](./health-states.md). When the health model is created, a relationship is automatically created between the root entity and each Azure resource entity in the service group. These are currently the only relationships supported by health models.
+A relationship represents the dependency of one entity on another. The primary function of relationships is to support health rollup as described in [Health states in Azure Monitor health models](#health-states). When the health model is created, a relationship is automatically created between the root entity and each Azure resource entity in the service group. These are currently the only relationships supported by health models.
 
 
 ### Health states
@@ -70,7 +70,7 @@ In addition to its own signals, the health state of the the [root entity](#root-
 
 
 ### Impact
-The *impact* of an entity determines how its health state is propagated to its parent. Each entity in the health model has its own impact setting that applies to the root entity. The following table describes the different impact settings. Select the setting for each entity in the [entity editor](./entities.md#entity-editor).
+The *impact* of an entity determines how its health state is propagated to its parent. Each entity in the health model has its own impact setting that applies to the root entity. The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
 
 | Option | Description |
 |:-------|:------------|
@@ -83,7 +83,7 @@ The following sample shows the effect of each impact setting. Each of the child 
 :::image type="content" source="media/concepts/health-impact.png" lightbox="media/concepts/health-impact.png" alt-text="Screenshot of an example health model showing different impact settings." border="false":::
 
 ### Health objective
-The health objective for an entity is the target percentage of time this entity should be healthy. This allows you to track the achievement of your availability goals over time. Health objective is an optional value. Instead of setting one for each entity in the health model, you may choose to only set a health objective for the root entity which represents a health objective for the entire workload. Select the setting for each entity in the [entity editor](./entities.md#entity-editor).
+The health objective for an entity is the target percentage of time this entity should be healthy. This allows you to track the achievement of your availability goals over time. Health objective is an optional value. Instead of setting one for each entity in the health model, you may choose to only set a health objective for the root entity which represents a health objective for the entire workload. Select the setting for each entity in the [entity editor](#entities).
 
 :::image type="content" source="media/concepts/health-objective.png" lightbox="media/concepts/health-objective.png" alt-text="Screenshot of an example health objective reporting." border="false":::
 
