@@ -8,6 +8,8 @@ ms.date: 05/22/2025
 ---
 
 # Concepts
+This article describes the concepts that you must understand to create and use [Azure health models](./overview.md). This includes the components that make up a model, how those components are related, and how the health of each component is determined. See [Using the Designer in Azure Monitor](./designer.md) for details on creating and configuring these components.
+
 
 ## Entities
 Entities are the building blocks of an [Azure Monitor health model](./overview.md). They represent the different components of your workload and any supporting business processes. Entities in your health model are discovered from the service group the model is linked to.  This article describes the different types of entities, how they relate to each other, and how to configure them in different views.
@@ -40,9 +42,9 @@ A relationship represents the dependency of one entity on another. The primary f
 
 
 ### Health states
-The *health state* of an entity in an [Azure Monitor health model](./overview.md) represents its ability to perform its required tasks. It may be fully functional and performing within an expected range, or it may have limited functionality or degraded performance, or it may not be functional at all. This article describes how health states are determined and how they roll up to parent entities in the health model. 
+The *health state* of an entity represents its ability to perform its required tasks. It may be fully functional and performing within an expected range, or it may have limited functionality or degraded performance, or it may not be functional at all. This article describes how health states are determined and how they roll up to parent entities in the health model. 
 
-The health state of an entity is determined by the [signals](./signals.md) that are associated with it, and it may be affected by the health states of its child entities. You can view the most current health state of your workflow and its components in addition to tracking the health of the model over time.
+The health state of an entity is determined by the [signals](#signals) that are associated with it, and it may be affected by the health states of its child entities. You can view the most current health state of your workflow and its components in addition to tracking the health of the model over time.
 
 Azure Monitor health models use the health states in the following table to represent the health of each entity in the model. There's no objective definition of the thresholds that determine each of these health states, but you'll specify each according to the requirements of your particular workload and business. 
 
@@ -61,7 +63,7 @@ In the following example, the entity is set to a degraded state since one of its
 
 ### Health rollup
 
-In addition to its own signals, the health state of the the [root entity](./entities.md#root-entity) entity is affected by its child entities. The following example shows the same root entity with multiple children in different health states. The health of the root is set to an unhealthy state since this is the worst state of all its children.
+In addition to its own signals, the health state of the the [root entity](#root-entity) entity is affected by its child entities. The following example shows the same root entity with multiple children in different health states. The health of the root is set to an unhealthy state since this is the worst state of all its children.
 
 
 :::image type="content" source="media/concepts/health-signals-rollup.png" lightbox="media/concepts/health-signals-rollup.png" alt-text="Screenshot of an example entity showing the health state from a child entity." border="false":::
@@ -89,7 +91,6 @@ The health objective for an entity is the target percentage of time this entity 
 ## Signals
 The [health state](#health-states) of an entity in an Azure Monitor health model is determined by one or more *signals*. A signal is a value from a metric or a log query result that is periodically compared to threshold values associated with each health state for that entity. This article describes the different types of signals that can be used in a health model and how to create and edit them.
 
-### Signal types
 Each signal type uses a different type of data source that you must configure for each entity. The following table describes the different types of signals that can be used in a health model and their data sources. 
 
 | Signal type | Data source |
@@ -99,6 +100,8 @@ Each signal type uses a different type of data source that you must configure fo
 | Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results. |
 
 The health model doesn't collect data that signals use but instead relies on data that's already being collected for the Azure resources reference in the model. You must configure this data collection using other features of Azure Monitor. Since [platform metrics]() are automatically collected for all resources, data for Azure resource signals will always be available. See [Sources of monitoring data for Azure Monitor](../data-sources.md) for information on enabling data collection to support Log Analytics workspace and Azure Monitor workspace signals.
+
+
 
 
 ## Alerts

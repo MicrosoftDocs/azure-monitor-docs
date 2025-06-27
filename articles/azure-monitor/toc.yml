@@ -660,6 +660,9 @@ items:
     - name: Configure
       displayName: health models
       href: health-models/designer.md
+    - name: Analyze
+      displayName: health models
+      href: health-models/analyze-health.md
   - name: Azure Monitor SCOM Managed Instance
     items:
     - name: SCOM Managed Instance

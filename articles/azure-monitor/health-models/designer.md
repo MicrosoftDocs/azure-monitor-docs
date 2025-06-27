@@ -8,9 +8,9 @@ ms.date: 12/12/2023
 ---
 
 # Configure an Azure Monitor health model
+The **Designer** is the primary tool for visually configuring [Azure Monitor health models](./overview.md). This article provides the details of different operations and common tasks that you can perform in the designer in addition to other views that you can use to configure the model. Before you read this article, you should be familiar with the [concepts of health models](./concepts.md).
 
-
-## Designer view
+## Canvas
 The designer is the primary tool that you'll use for visually configuring Azure Monitor health models. You can modify the arrangement of the entities that will translate to the [Graph](./analyze-health.md#graph-view) view which give you a visual representation of the current health state of your workload. You can also use the designer to create and edit signals, assign them to entities, and define health  alert rules. When you open the designer view, you're presented with the *canvas*, which is where you'll configure the [entities](./entities.md) that make up your health model.
 
 :::image type="content" source="media/designer/designer-canvas.png" lightbox="media/designer/designer-canvas.png" alt-text="Screenshot of a health model resource in the Azure portal with the Designer pane selected.":::
@@ -32,20 +32,18 @@ The following table describes the options available in the command bar in the de
 | Download image | Downloads a PNG of the current view. |
 | Configure view | Select different options for display on the designer canvas. |
 
-## Arranging entities
-Entities are represented as nodes in the designer view. Icons on each entity identify different the different types of monitoring that have been configured for it as shown in the following image.
+## Entities
+Entities are represented as nodes in the designer view. In addition to the icons on each entity identify different the different types of monitoring that have been configured for it as shown in the following image. Click **Edit** on an entity to open the **Entity editor**. This allows you to configure the properties of the entity and to create and assign signals and alerts. 
 
 :::image type="content" source="media/designer/entity.png" lightbox="media/designer/entity.png" alt-text="Image of an entity in the designer view.":::
 
 You can click and drag entities to move them around the canvas. You can also use the mouse wheel to zoom in and out of the canvas. The position of the entity doesn't affect its operation in any way. The layout is saved when you save the model and will be restored when you reopen the model with either the [designer](#designer-view) or the [graph](./analyze-health.md#graph-view). Use the **Arrange** option to reposition the entities on the canvas in a more organized manner.
 
+> [!NOTE]
+> You can also open the entity editor from the [entities view](#entities). 
 
-
-## Entity editor
-The **Entity editor** allows you to configure the properties of an entity, create and assign signals and alerts. Open the editor from either the [designer](./create-configure.md#designer-view) or [entities view](./create-configure.md#entities-view). It has the tabs described in the following sections.
-
-### General
-The **General** tab allows you to configure the properties of the entity described in the following table. 
+## Entity properties
+The **General** tab of the [entity editor](#entities) allows you to configure the properties of the entity described in the following table. 
 
 | Setting | Description |
 |:---|:---|
@@ -59,7 +57,12 @@ The **General** tab allows you to configure the properties of the entity describ
 | Labels | One of more optional name/value pairs to assign to the entity. Labels are used to group entities together for reporting and filtering purposes. You can use the same label on multiple entities. |
 
 ### Signals
-The **Signals** tab allows you to create or edit signals and assign to the entity. 
+The **Signals** tab of the [entity editor](#entities) allows you to create or edit signals and assign to the entity. There is a section for each type of signal described in [Signals](./concepts.md#signals). If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable that type.
+
+## Data source
+When you add the first signal of a particular type to an entity, you must specify the data source for that signal type and the authentication that will be used to access it. The signals that are added to the entity will use this data source to apply their logic and compare to their threshold. Each entity can have only one data source for each signal type, but you can have multiple signals of that type that use the same data source. Each signal type uses a different type of data source that you must configure for each entity. 
+
+The **Authentication setting** specifies the type of authentication used by the entity to access the data source. An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication method. See [Permissions required](./create-configure.md#permissions-required) for the managed identity requirements.
 
 ### Add and remove signals
 Each type of signal has the following options. Click on a signal to edit its definition.
@@ -87,9 +90,10 @@ Azure resource signals sample the value of a [platform metric](../essentials/dat
 
 :::image type="content" source="media/designer/azure-resource-signals.png" lightbox="media/designer/azure-resource-signals.png" alt-text="Screenshot of Azure resource signals for an entity.":::
 
+### Signal properties
+
 The following tables describe the properties that define an Azure resource signal definition.
 
-**Collection properties**
 
 | Setting | Description |
 |:---|:---|
@@ -110,8 +114,7 @@ The following tables describe the properties that define an Azure resource signa
 Log Analytics workspace signals run a [log query](../logs/queries.md) against a Log Analytics workspace and compare the results to the thresholds to determine the health state. Use log signals to search for errors in log data or to perform complex calculations on numeric data stored in the Log Analytics workspace.
 
 ### Log Analytics workspace
-Before you can create a Log Analytics workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity.
-
+Before you can create a Log Analytics workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity, but you can have multiple signals using different log queries from this workspace.
 
 ### Log query
 The log query must return a single record with a numeric value. If the record includes multiple columns, then you can specify which column to use as the signal value. The query should return a single record. If it returns multiple records, then only the first record is used.
@@ -128,7 +131,7 @@ ContainerLogV2
 | summarize value = count()
 ```
 
-### Log Analytics workspace signal definition properties
+### Signal properties
 The following table describes the properties that define Log Analytics workspace signal definition.
 
 | Setting | Description |
@@ -152,6 +155,7 @@ Before you can create a Azure Monitor workspace signal, you must specify the wor
 
 
 ### PromQL Query
+The query must return a single record with a numeric value. If the record includes multiple columns, then you can specify which column to use as the signal value. The query should return a single record. If it returns multiple records, then only the first record is used.
 
 ### Azure Monitor workspace signal definition properties
 The following table describes the properties that define Azure Monitor workspace signal definition.
@@ -160,7 +164,7 @@ The following table describes the properties that define Azure Monitor workspace
 | Setting | Description |
 |:---|:---|
 | Display name | Name of the signal as it appears in the health model. |
-| Refresh interval | |
+| Refresh interval |  |
 | Query text | PromQL query |
 | Query time range |  |
 | Data unit |  |
