@@ -64,11 +64,11 @@ For more information on availability tests, see [Private availability testing](.
 |---|---|---|
 | Log Analytics API | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`| 80,443 |
 
-## Log Ingestion API endpoints
+## Logs Ingestion API endpoints
 
 | Purpose | URI | Ports |
 |---|---|---|
-| Log Ingestion API | `api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>`*.ingest.monitor.azure.com`</br>`prod.la.ingest.monitor.core.windows.NET`</br>`*.prod.la.ingestion.msftcloudes.com`</br>`prod.la.ingestion.msftcloudes.com`</br>`*.prod.la.ingest.monitor.core.windows.NET` | 80,443 |
+| Logs Ingestion API | `api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>`*.ingest.monitor.azure.com`</br>`prod.la.ingest.monitor.core.windows.NET`</br>`*.prod.la.ingestion.msftcloudes.com`</br>`prod.la.ingestion.msftcloudes.com`</br>`*.prod.la.ingest.monitor.core.windows.NET` | 80,443 |
 
 ## Application Insights analytics
 
