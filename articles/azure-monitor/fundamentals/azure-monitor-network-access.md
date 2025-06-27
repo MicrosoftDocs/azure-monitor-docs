@@ -54,17 +54,23 @@ For more information on availability tests, see [Private availability testing](.
 
 ## Application Insights API endpoints
 
+Starting **May 1, 2025**, Application Insights enforces TLS 1.2 or higher for secure communication. For more information, see [Application Insights supported TLS configurations](../fundamentals/best-practices-security.md#application-insights-tls-ingestion).
+
 | Purpose | URI | Ports |
 |---------|-----|-------|
 | Application Insights API | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`| 80,443 |
 
 ## Log Analytics API endpoints
 
+Starting **July 1, 2025**,  Log Analytics enforces TLS 1.2 or higher for secure communication. For more information, see [Secure Logs data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
+
 | Purpose | URI | Ports |
 |---|---|---|
 | Log Analytics API | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`| 80,443 |
 
 ## Logs Ingestion API endpoints
+
+Starting **March 1, 2026**,  Logs Ingestion enforces TLS 1.2 or higher for secure communication. For more information, see [Secure Logs data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
 
 | Purpose | URI | Ports |
 |---|---|---|

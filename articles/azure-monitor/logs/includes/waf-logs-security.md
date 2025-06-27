@@ -9,7 +9,7 @@ ms.date: 03/19/2025
 1. Assign the appropriate built-in role to grant workspace permissions to administrators at the subscription, resource group, or workspace level depending on their scope of responsibilities. <br>**Instructions**: [Manage access to Log Analytics workspaces](../manage-access.md#azure-rbac)
 1. Apply table-level RBAC for users who require access to a set of tables across multiple resources. Users with table permissions have access to all the data in the table regardless of their resource permissions.<br>**Instructions**: [Manage access to Log Analytics workspaces](../manage-access.md#set-table-level-read-access)
 
-#### Secure data in transit
+#### Secure Logs data in transit
 
 If you use agents, connectors, or the Logs APIs to [query](/rest/api/loganalytics/operation-groups?view=rest-loganalytics-2022-10-27-preview) or [send](../logs-ingestion-api-overview.md) data to your workspace, use Transport Layer Security (TLS) 1.2 or higher to ensure the security of your data in transit. Older versions of TLS and Secure Sockets Layer (SSL) have vulnerabilities and, while they might still work to allow backwards compatibility, they are **not recommended**, and the industry has quickly moved to abandon support for these older protocols.
 
