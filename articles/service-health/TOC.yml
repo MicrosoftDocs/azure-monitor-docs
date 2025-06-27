@@ -22,6 +22,8 @@
       href: service-notifications.md
     - name: Filter Service Health notifications by event level
       href: metadata-filter.md
+    - name: Service Health event tags
+      href: service-health-event-tags.md
     - name: Service Health notifications
       href: service-health-notifications-properties.md
     - name: How to view and access Security Advisories with elevated access
