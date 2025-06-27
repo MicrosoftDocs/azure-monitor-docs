@@ -18,13 +18,12 @@ The [PCI Security Standards Council](https://www.pcisecuritystandards.org/) set 
 Don't explicitly configure your agents, data connectors or API applications to *only* use TLS 1.2 unless necessary. Allowing them to automatically detect, negotiate, and take advantage of future security standards is recommended. Otherwise, you might miss the added security of the newer standards and possibly experience problems if TLS 1.2 is ever deprecated in favor of those newer standards.
 
 > [!IMPORTANT]
->  In alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services), TLS 1.0/1.1 protocol will be completely blocked for Azure Monitor Logs on the following dates:
-> 
-> On **1 July 2025**, TLS 1.0/1.1 will be completely blocked for the Azure Monitor [Log Analytics API endpoints](../../fundamentals/azure-monitor-network-access.md#log-analytics-api-endpoints). 
->
-> On **1 March 2026**, TLS 1.0/1.1 will be completely blocked for the Azure Monitor [Logs Ingestion API endpoints](../../fundamentals/azure-monitor-network-access.md#log-ingestion-api-endpoints). 
->
-> To provide best-in-class encryption, Azure Monitor Logs already uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice.
+>  In alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services), TLS 1.0/1.1 protocol will be completely blocked for Azure Monitor Logs according to the dates in the following table. To provide best-in-class encryption, Azure Monitor Logs already uses TLS 1.2/1.3 as the encryption mechanisms of choice.
+
+| Cutoff date | Logs API endpoints | TLS protocol version |
+|---|---|---|
+| **1 July 2025** | [Log Analytics API endpoints](../../fundamentals/azure-monitor-network-access.md#log-analytics-api-endpoints) | TLS 1.2 or higher | 
+| **1 March 20226** | [Logs Ingestion API endpoints](../../fundamentals/azure-monitor-network-access.md#log-ingestion-api-endpoints) | TLS 1.2 or higher |
 
 **Recommended action**
 
