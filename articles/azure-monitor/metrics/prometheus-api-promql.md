@@ -38,7 +38,7 @@ To set up Microsoft Entra authentication, follow these steps:
 
 ### Allow your app access to your workspace
 
-Assign the Monitoring Data Reader role your app so that it can query data from your Azure Monitor workspace.
+Assign the Monitoring Data Reader role to your app so that it can query data from your Azure Monitor workspace.
 
 1. Open your Azure Monitor workspace in the Azure portal.
 
@@ -111,7 +111,7 @@ The following queries are supported:
 
  For more information, see [Instant queries](https://prometheus.io/docs/prometheus/latest/querying/api/#instant-queries).
 
-Path: `/api/v1/query`
+**Path:** `/api/v1/query`
 
 #### Examples
 
@@ -135,7 +135,7 @@ GET 'https://k8s02-workspace-abcd.eastus.prometheus.monitor.azure.com/api/v1/que
 
 For more information, see [Range queries](https://prometheus.io/docs/prometheus/latest/querying/api/#range-queries).
 
-Path: `/api/v1/query_range`
+**Path:** `/api/v1/query_range`
 
 #### Examples
 
@@ -158,7 +158,7 @@ POST 'https://k8s02-workspace-abcd.eastus.prometheus.monitor.azure.com/api/v1/qu
 
 For more information, see [Series](https://prometheus.io/docs/prometheus/latest/querying/api/#finding-series-by-label-matchers).
 
-Path: `/api/v1/series`
+**Path:** `/api/v1/series`
 
 #### Examples
 
@@ -177,7 +177,7 @@ GET 'https://k8s02-workspace-abcd.eastus.prometheus.monitor.azure.com/api/v1/ser
 
 For more information, see [Labels](https://prometheus.io/docs/prometheus/latest/querying/api/#getting-label-names).
 
-Path: `/api/v1/labels`
+**Path:** `/api/v1/labels`
 
 #### Examples
 
@@ -193,10 +193,10 @@ POST 'https://k8s02-workspace-abcd.eastus.prometheus.monitor.azure.com/api/v1/la
 
 For more information, see [Label values](https://prometheus.io/docs/prometheus/latest/querying/api/#query.ing-label-values).
 
-Path: `/api/v1/label/__name__/values.`
+**Path:** `/api/v1/label/__name__/values`
 
 > [!NOTE]
-> `__name__` is the only supported version of this API and returns all metric names. No other /api/v1/label/<label_name>/values are supported.
+> The only supported version of this API is `__name__`, and it returns all metric names. No other `/api/v1/label/<label_name>/values` are supported.
 
 #### Example
 
@@ -204,11 +204,11 @@ Path: `/api/v1/label/__name__/values.`
 GET 'https://k8s02-workspace-abcd.eastus.prometheus.monitor.azure.com/api/v1/label/__name__/values'
 ```
 
-For the full specification of OSS prom APIs, see [Prometheus HTTP API](https://prometheus.io/docs/prometheus/latest/querying/api/#http-api).
+For the full specification of OSS Prometheus APIs, see [Prometheus HTTP API](https://prometheus.io/docs/prometheus/latest/querying/api/#http-api).
 
 ## API limitations
 
-The following limitations are in addition to the limitatios that are described in the Prometheus specification:
+The following limitations are in addition to the limitations that are described in the Prometheus specification:
 
 * Query must be scoped to a metric.
 
@@ -218,8 +218,8 @@ The following limitations are in addition to the limitatios that are described i
 
 * Supported time range:
 
-    * /query_range API supports a time range of 32 days. This is the maximum time range allowed, including range selectors specified in the query itself. For example, the query `rate(http_requests_total[1h]` for last the 24 hours would actually mean data is being queried for 25 hours. This comes from the 24-hour range plus the 1 hour specified in query itself.
-    * /series API fetches data for a maximum 12-hour time range. If `endTime` isn't provided, `endTime = time.now()`. If the time range is greater than 12 hours, `startTime` is set to `endTime – 12h`.
+    * The `/query_range` API supports a time range of 32 days. This length of time is the maximum time range allowed, including range selectors specified in the query itself. For example, the query `rate(http_requests_total[1h]` for the last 24 hours means that data is queried for 25 hours. This number comes from the 24-hour range plus the 1 hour specified in the query itself.
+    * The `/series` API fetches data for a maximum 12-hour time range. If `endTime` isn't provided, then `endTime = time.now()`. If the time range is greater than 12 hours, `startTime` is set to `endTime – 12h`.
 
 * Ignored time range:
 
