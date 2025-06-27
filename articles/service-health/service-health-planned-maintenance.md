@@ -20,7 +20,7 @@ The information enables you to:
 
 Unlike unplanned outages, planned maintenance is scheduled and communicated ahead of time to help minimize the impact.
 
-:::image type="content" source="./media/planned-maintenance/planned-maint-main.PNG" alt-text="Screenshot of current planned maintenance events." lightbox="media/planned-maintenance/planned-maint-main.png":::
+:::image type="content" source="./media/planned-maintenance/planned-maintenance-main.PNG" alt-text="Screenshot of current planned maintenance events." lightbox="media/planned-maintenance/planned-maintenance-main.png":::
 
 ## Information found in the Planned Maintenance blade 
 When you open the Planned Maintenance blade, you see a list of maintenance events relevant to your subscriptions. 
@@ -38,7 +38,7 @@ Select the **Issue name** link to open the blades with the information you need.
 
 ### Summary
 
-:::image type="content" source="./media/planned-maintenance/planned-maint-summary.PNG" alt-text="Screenshot of Summary tab." lightbox="media/planned-maintenance/planned-maint-summary.png":::
+:::image type="content" source="./media/planned-maintenance/planned-maintenance-summary.PNG" alt-text="Screenshot of Summary tab." lightbox="media/planned-maintenance/planned-maintenance-summary.png":::
 
 When you open the Planned Maintenance event, it opens the Summary tab, which shows you a list of information about this event. 
 Each event includes:
@@ -61,7 +61,7 @@ Each event includes:
 
 ### Impacted Services
 
-:::image type="content" source="./media/planned-maintenance/planned-maint-impacted-services.PNG" alt-text="Screenshot of Impacted Services tab." lightbox="media/planned-maintenance/planned-maint-impacted-services.png":::
+:::image type="content" source="./media/planned-maintenance/planned-maintenance-impacted-services.PNG" alt-text="Screenshot of Impacted Services tab." lightbox="media/planned-maintenance/planned-maintenance-impacted-services.png":::
 
 The Impacted Services tab displays information about any of your services that are affected. 
 - Region
@@ -70,14 +70,14 @@ The Impacted Services tab displays information about any of your services that a
 
 ### Issue Updates
 
-:::image type="content" source="./media/planned-maintenance/planned-maint-issue-updates.PNG" alt-text="Screenshot of Issue Updates tab." lightbox="media/planned-maintenance/planned-maint-issue-updates.png":::
+:::image type="content" source="./media/planned-maintenance/planned-maintenance-issue-updates.PNG" alt-text="Screenshot of Issue Updates tab." lightbox="media/planned-maintenance/planned-maintenance-issue-updates.png":::
 
 The Issues Updates tab displays all information notifications by the date they were entered.
 
 ### Impacted Resources
 
 
-:::image type="content" source="./media/planned-maintenance/planned-maint-impacted-resources.PNG" alt-text="Screenshot of Impacted Resources tab." lightbox="media/planned-maintenance/planned-maint-impacted-resources.png":::
+:::image type="content" source="./media/planned-maintenance/planned-maintenance-impacted-resources.PNG" alt-text="Screenshot of Impacted Resources tab." lightbox="media/planned-maintenance/planned-maintenance-impacted-resources.png":::
 
 The tab for Impacted Resources displays the following information about any of your resources that are affected. 
 
@@ -99,7 +99,7 @@ On each tab in this blade you can:
 - Filter by region, subscription, or resource type.
 
 
- :::image type="content" source="./media/planned-maintenance/planned-maint-tools.PNG" alt-text="Screenshot of tools on each tab." lightbox="media/planned-maintenance/planned-maint-tools.png":::
+ :::image type="content" source="./media/planned-maintenance/planned-maintenance-tools.PNG" alt-text="Screenshot of tools on each tab." lightbox="media/planned-maintenance/planned-maintenance-tools.png":::
 
 ### Next steps:
 
