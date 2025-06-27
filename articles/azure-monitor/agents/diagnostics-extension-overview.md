@@ -11,15 +11,30 @@ ms.reviewer: luki
 
 Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources including virtual machines. This article provides an overview of Azure Diagnostics extension, the specific functionality that it supports, and options for installation and configuration.
 
-> [!NOTE]
-> Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.
+> [!IMPORTANT]
+> ## Migrate from Azure Diagnostic extension
+> 
+> Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension. 
+> 
+> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to Azure Monitor Agent, which can collect the same data and send it to multiple destinations including Log Analytics workspaces, Azure Event Hubs, and Azure Storage. Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data. 
+>
+> As an alternative to storage, you should send data to a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
+>
+> To check which extensions are installed on a single VM, select **Extensions + applications** under **Settings** on your VM. To check the extensions for all VMs in a subscription, use the following query in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal):
+>
+> ``` kql
+> resources
+> | where type contains "extension"
+> | extend parsedProperties = parse_json(properties)
+> | extend publisher = tostring(parsedProperties.publisher)
+> | project-away parsedProperties
+> | where publisher == "Microsoft.Azure.Diagnostics"
+> | distinct id
+> ```
+>
+> :::image type="content" source="media/diagnostics-extension-overview/query-results.png" lightbox="media/diagnostics-extension-overview/query-results.png" alt-text="Results of a sample Azure Resource Graph Query.":::
 
-## Migrate from Azure Diagnostic extensions for Linux (LAD) and Windows (WAD) to Azure Monitor Agent
 
-- Azure Monitor Agent can collect and send data to multiple destinations, including Log Analytics workspaces, Azure Event Hubs, and Azure Storage.
-- To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
-- Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
-- As an alternative to storage, we highly recommend you set up a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
 
 ## Primary scenarios
 
