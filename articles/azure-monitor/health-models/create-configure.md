@@ -1,13 +1,13 @@
 ---
-title: Create and configure a health model resource in Azure Monitor
+title: Create and configure a health model resource in Azure Monitor (Preview)
 description: Learn now to create a new Azure Monitor health model.
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 12/12/2023
+ms.date: 06/27/2025
 ---
 
-# Create and configure an Azure Monitor health model
+# Create a new Azure Monitor health model (Preview)
 
 [Azure Monitor health models](./overview.md) allow you to define and track the health of your Azure workloads and the resources they depend on. This article describes different methods for creating and configuring health models. 
 
@@ -59,28 +59,25 @@ Using either method, you need to provide the details for the new health model in
 | **Tags** | Add any [tags](/azure/azure-resource-manager/management/tag-resources) to help categorize the health model in your environment. |
 
 
-## Azure portal views
-The following table describes the different views that are available in the Azure portal for working with the health model once it's been created. Each is described in further details below.
 
-| View | Description |
-|:---|:---|
-| [Designer](#designer-view) | Primary tool for visually configuring Azure Monitor health models. |
-| [Entities](#entities-view) | View a list of all the entities in the health model with their current health state.  |
-| [Discovery](#discovery-view) | Configures the service group and auto-discovery settings for the health model. | 
-| [Signal definitions](#signal-definitions) | View a list of all the signal definitions in the health model.  |
-| [Authentication settings](#authentication-settings) | Create and edit authentication methods for accessing telemetry data from the Azure resources in the health model.|
+## Configure a health model
+When you create a new health model, it will include an entity for each of the Azure resources in the service group, but non of the entities will be monitored. The next step is to configure the health model by adding  signals to each entity to measure their health and optionally add alerts to notify you when the health state of an entity changes.
+
+You'll perform most of the configuration in the **Designer**, which is a visual tool that provides access to all the configuration options for the entities in the health model. Get complete detail on the designer and the different configuration options it provides in [Use the Azure Monitor health model designer](./designer.md).
+
+The following sections describe the different views aside from the designer that are available in the available in the Azure portal.
 
 ### Entities view
 The Entities view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./entities.md#entity-editor) from this view as you can in the designer view by selecting an entity and clicking **Edit**.
 
 This view is useful for quickly finding and editing the signals and alerts for entities in the model. Use it as an alternative to the designer view when you want to focus on the entities and their properties rather than the visual layout of the model.
 
-:::image type="content" source="media/designer/entities-view.png" lightbox="media/designer/entities-view.png" alt-text="Screenshot of entities view.":::
+:::image type="content" source="media/create/entities-view.png" lightbox="media/designer/entities-view.png" alt-text="Screenshot of entities view.":::
 
 ### Discovery view
 The discovery view allows you to configure the service group and auto-discovery settings for the health model. This includes changing the identity used for accessing the service group.
 
-:::image type="content" source="media/designer/discovery-view.png" lightbox="media/designer/discovery-view.png" alt-text="Screenshot of discovery view.":::
+:::image type="content" source="media/create/discovery-view.png" lightbox="media/designer/discovery-view.png" alt-text="Screenshot of discovery view.":::
 
 > [!NOTE]
 > If you remove the service group for the health model, the health model will include only the root entity, and you'll receive a warning message that the health model will not be populated.
@@ -105,3 +102,5 @@ When you create a new authentication setting, you can select from the managed id
 
 
 ## Next steps
+- [Configure a health model using the designer](./designer.md).
+- [Understand the concepts of health models](./concepts.md).

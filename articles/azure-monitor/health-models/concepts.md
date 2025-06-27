@@ -89,7 +89,7 @@ The health objective for an entity is the target percentage of time this entity 
 
 
 ## Signals
-The [health state](#health-states) of an entity in an Azure Monitor health model is determined by one or more *signals*. A signal is a value from a metric or a log query result that is periodically compared to threshold values associated with each health state for that entity. This article describes the different types of signals that can be used in a health model and how to create and edit them.
+The [health state](#health-states) of an entity in an Azure Monitor health model is determined by one or more *signals*. A signal is a value from a metric or a log query result that is periodically compared to threshold values associated with each health state for that entity.
 
 Each signal type uses a different type of data source that you must configure for each entity. The following table describes the different types of signals that can be used in a health model and their data sources. 
 
@@ -133,6 +133,6 @@ Alert rules in health models also provide an opportunity to alert a different au
 
 
 
-
-
 ## Next steps
+- [Create a new health model](./create-configure.md).
+- [Configure a health model using the designer](./designer.md).

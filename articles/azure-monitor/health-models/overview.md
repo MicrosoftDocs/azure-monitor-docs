@@ -4,7 +4,7 @@ description: Overview of health models in Azure Monitor that allow you to track 
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 05/27/2025
+ms.date: The query must return a single record with a numeric value. If it returns multiple records, then only the first record is used.
 ---
 
 # Health models in Azure Monitor (preview)
@@ -42,4 +42,5 @@ Health models allow you to create alerts based on health as opposed to individua
 
 ## Next steps
 
-- [Create and configure a health model](./create-configure.md).
+- [Create a new health model](./create-configure.md).
+- [Understand the concepts of health models](./concepts.md).

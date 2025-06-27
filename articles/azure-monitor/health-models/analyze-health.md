@@ -1,13 +1,13 @@
 ---
-title: Analyze health state of Azure Monitor health models (preview)
+title: Analyze health state of Azure Monitor health models (Preview)
 description: Describes the different views available to view the health state of your Azure Monitor health models and their included entities.
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 05/19/2025
+ms.date: 06/27/2025
 ---
 
-# Analyze health state of Azure Monitor health models (preview)
+# Analyze health state of Azure Monitor health models (Preview)
 This article describes the views available to analyze the current health of your [health model in Azure Monitor](./overview.md) and its health measurements over time.
 
 The following table briefly describes each view, while the sections below provide more details on each.
@@ -64,4 +64,5 @@ The **Insights** section provides the latest value of each signal and other data
 | Change analysis | Any changes to the resource detected by [Change analysis](/azure/governance/resource-graph/changes/get-resource-changes). This helps you identify whether any issues were related to configuration changes.   |
 
 ## Next steps
-
+- [Configure a health model using the designer](./designer.md).
+- [Understand the concepts of health models](./concepts.md).
