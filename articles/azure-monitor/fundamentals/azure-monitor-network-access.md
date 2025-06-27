@@ -68,7 +68,7 @@ For more information on availability tests, see [Private availability testing](.
 
 | Purpose | URI | Ports |
 |---|---|---|
-| Log Ingestion API | `api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`</br>`*.api.loganalytics.azure.com` | 80,443 |
+| Log Ingestion API | `api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>`*.ingest.monitor.azure.com`</br>`prod.la.ingest.monitor.core.windows.NET`</br>`*.prod.la.ingestion.msftcloudes.com`</br>`prod.la.ingestion.msftcloudes.com`</br>`*.prod.la.ingest.monitor.core.windows.NET` | 80,443 |
 
 ## Application Insights analytics
 
