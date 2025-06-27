@@ -134,5 +134,5 @@ Alert rules in health models also provide an opportunity to alert a different au
 
 
 ## Next steps
-- [Create a new health model](./create-configure.md).
+- [Create a new health model](./create.md).
 - [Configure a health model using the designer](./designer.md).

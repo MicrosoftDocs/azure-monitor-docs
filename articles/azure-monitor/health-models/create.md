@@ -68,7 +68,7 @@ You'll perform most of the configuration in the **Designer**, which is a visual 
 The following sections describe the different views aside from the designer that are available in the available in the Azure portal.
 
 ### Entities view
-The Entities view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./entities.md#entity-editor) from this view as you can in the designer view by selecting an entity and clicking **Edit**.
+The Entities view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./designer.md#entities) from this view as you can in the designer view by selecting an entity and clicking **Edit**.
 
 This view is useful for quickly finding and editing the signals and alerts for entities in the model. Use it as an alternative to the designer view when you want to focus on the entities and their properties rather than the visual layout of the model.
 

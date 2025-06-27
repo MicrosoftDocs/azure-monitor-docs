@@ -42,5 +42,5 @@ Health models allow you to create alerts based on health as opposed to individua
 
 ## Next steps
 
-- [Create a new health model](./create-configure.md).
+- [Create a new health model](./create.md).
 - [Understand the concepts of health models](./concepts.md).

@@ -656,7 +656,7 @@ items:
       href: health-models/concepts.md
     - name: Create
       displayName: health models
-      href: health-models/create-configure.md
+      href: health-models/create.md
     - name: Configure
       displayName: health models
       href: health-models/designer.md

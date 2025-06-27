@@ -62,7 +62,7 @@ The **Signals** tab of the [entity editor](#entities) allows you to create or ed
 ### Data source
 When you add the first signal of a particular type to an entity, you must specify the data source for that signal type and the authentication that will be used to access it. The signals that are added to the entity will use this data source to apply their logic and compare to their threshold. Each entity can have only one data source for each signal type, but you can have multiple signals of that type that use the same data source. Each signal type uses a different type of data source that you must configure for each entity. 
 
-The **Authentication setting** specifies the type of authentication used by the entity to access the data source. An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication method. See [Permissions required](./create-configure.md#permissions-required) for the managed identity requirements.
+The **Authentication setting** specifies the type of authentication used by the entity to access the data source. An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication method. See [Permissions required](./create.md#permissions-required) for the managed identity requirements.
 
 ### Add and remove signals
 Each type of signal has the following options. Click on a signal to edit its definition.
