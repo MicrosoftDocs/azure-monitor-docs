@@ -17,7 +17,7 @@ Entities are the building blocks of an [Azure Monitor health model](./overview.m
 
 There are two distinct types of entities as described in the following sections.
 
-:::image type="content" source="media/entities/entities.png" lightbox="media/entities/entities.png" alt-text="Screenshot showing entity types.":::
+:::image type="content" source="media/concepts/entities.png" lightbox="media/concepts/entities.png" alt-text="Screenshot showing entity types.":::
 
 ### Root entity
 All health models have a single entity called the *root entity* that represents the model itself. All other entities in the health model will connect to the root. The root entity can't be deleted.
@@ -48,23 +48,23 @@ Azure Monitor health models use the health states in the following table to repr
 
 | Icon | State | Description |
 |:---|:---|:---|
-| :::image type="content" source="media/health-states/healthy.png" alt-text="Healthy icon." border="false"::: | Healthy | The entity is working as expected. |
-| :::image type="content" source="media/health-states/degraded.png" alt-text="Degraded icon." border="false"::: | Degraded | The entity is working but with diminished functionality or performance.<br>Does not count as downtime for [health objective](#health-objective). |
-| :::image type="content" source="media/health-states/unhealthy.png" alt-text="Unhealthy icon." border="false"::: | Unhealthy | The entity is not working or is working with unacceptable performance.<br>Counts as downtime for [health objective](#health-objective). |
-| :::image type="content" source="media/health-states/unknown.png" alt-text="Unknown icon." border="false"::: | Unknown | The health state of the entity can't be determined due to insufficient data or a lack of signals. |
+| :::image type="content" source="media/concepts/healthy.png" alt-text="Healthy icon." border="false"::: | Healthy | The entity is working as expected. |
+| :::image type="content" source="media/concepts/degraded.png" alt-text="Degraded icon." border="false"::: | Degraded | The entity is working but with diminished functionality or performance.<br>Does not count as downtime for [health objective](#health-objective). |
+| :::image type="content" source="media/concepts/unhealthy.png" alt-text="Unhealthy icon." border="false"::: | Unhealthy | The entity is not working or is working with unacceptable performance.<br>Counts as downtime for [health objective](#health-objective). |
+| :::image type="content" source="media/concepts/unknown.png" alt-text="Unknown icon." border="false"::: | Unknown | The health state of the entity can't be determined due to insufficient data or a lack of signals. |
 
 The following example illustrates an Azure resource entity with multiple metric signals. Each has a defined range for degraded and unhealthy states. When the value of each signal is outside of the degraded threshold, the health state of the entity is healthy to match all of its signals. When the value of a signal is within the degraded or unhealthy threshold, then that signal is set to the corresponding health state, and the entity is set to the **worst state** of all its signals. 
 
 In the following example, the entity is set to a degraded state since one of its signals is in a degraded state and the other two are healthy. If any of the signals were unhealthy, then the entity would be set to an unhealthy state.
 
-:::image type="content" source="media/health-states/health-signals.png" lightbox="media/health-states/health-signals.png" alt-text="Screenshot of an example entity showing the health state from different signals." border="false":::
+:::image type="content" source="media/concepts/health-signals.png" lightbox="media/concepts/health-signals.png" alt-text="Screenshot of an example entity showing the health state from different signals." border="false":::
 
 ### Health rollup
 
 In addition to its own signals, the health state of the the [root entity](./entities.md#root-entity) entity is affected by its child entities. The following example shows the same root entity with multiple children in different health states. The health of the root is set to an unhealthy state since this is the worst state of all its children.
 
 
-:::image type="content" source="media/health-states/health-signals-rollup.png" lightbox="media/health-states/health-signals-rollup.png" alt-text="Screenshot of an example entity showing the health state from a child entity." border="false":::
+:::image type="content" source="media/concepts/health-signals-rollup.png" lightbox="media/concepts/health-signals-rollup.png" alt-text="Screenshot of an example entity showing the health state from a child entity." border="false":::
 
 
 ### Impact
@@ -78,12 +78,12 @@ The *impact* of an entity determines how its health state is propagated to its p
 
 The following sample shows the effect of each impact setting. Each of the child entities are in an unhealthy state, but the parent health states are difference based on the impact setting of each child. 
 
-:::image type="content" source="media/health-states/health-impact.png" lightbox="media/health-states/health-impact.png" alt-text="Screenshot of an example health model showing different impact settings." border="false":::
+:::image type="content" source="media/concepts/health-impact.png" lightbox="media/concepts/health-impact.png" alt-text="Screenshot of an example health model showing different impact settings." border="false":::
 
 ### Health objective
 The health objective for an entity is the target percentage of time this entity should be healthy. This allows you to track the achievement of your availability goals over time. Health objective is an optional value. Instead of setting one for each entity in the health model, you may choose to only set a health objective for the root entity which represents a health objective for the entire workload. Select the setting for each entity in the [entity editor](./entities.md#entity-editor).
 
-:::image type="content" source="media/health-states/health-objective.png" lightbox="media/health-states/health-objective.png" alt-text="Screenshot of an example health objective reporting." border="false":::
+:::image type="content" source="media/concepts/health-objective.png" lightbox="media/concepts/health-objective.png" alt-text="Screenshot of an example health objective reporting." border="false":::
 
 
 ## Signals
@@ -100,6 +100,33 @@ Each signal type uses a different type of data source that you must configure fo
 
 The health model doesn't collect data that signals use but instead relies on data that's already being collected for the Azure resources reference in the model. You must configure this data collection using other features of Azure Monitor. Since [platform metrics]() are automatically collected for all resources, data for Azure resource signals will always be available. See [Sources of monitoring data for Azure Monitor](../data-sources.md) for information on enabling data collection to support Log Analytics workspace and Azure Monitor workspace signals.
 
+
+## Alerts
+Alerts in [Azure Monitor health models](./overview.md) allow you to be proactively notified when the health state of an entity changes. These alerts integrate with [Azure Monitor alerts](../alerts/alerts-overview.md) and can use the same [action groups](../alerts/action-groups.md) to notify your team or take corrective action.
+
+### Comparison to Azure Monitor alerts
+
+Alerting in health models is distinctly different than other alerting in Azure Monitor which typically alerts on each signal associated with a resource without any context of that resource's role in the application or workload. Health models allow you to create alerts that are more meaningful to your business and reduce the overall number of alerts generated for the same number of issues.
+
+:::image type="content" source="media/concepts/alert.png" lightbox="media/concepts/alert.png" alt-text="Diagram of alert created from health state." border="false":::
+
+The following table summarizes the differences between alert rules for Azure resources and alert rules for entities in a health model.
+
+| Azure resource alert rules | Health entity alert rules |
+|:---|:---|
+| Based on a single metric value or log query from a single resource. | Based on the health state of an entity which is determined from multiple signals and/or from multiple child entities. Can also alert from the root entity based on the health of its children entities. |
+| Potential multiple alerts from the same resource if multiple rules fire simultaneously. | Only one alert from an entity even if multiple signals are unhealthy. |
+| Always same alert criteria and severity for a particular resource. | Different alert criteria and severity for entities in different models representing the same resource. |
+
+You may have alert rules already defined for the Azure resources represented by your entities in the health model. These alert rules will continue to generate alerts so you may want to disable them if you create an alert rule for the health state of an entity.
+
+
+### Alert from root entity
+
+Alert rules in health models also provide an opportunity to alert a different audience at the root entity level. In the following example, alert rules that send an email to the operations team are created for the Azure resource entities since this is the team that will diagnose the problem and take corrective action. An alert rule on the root entity is created to send an email to the executive team for awareness of the application being unavailable.
+
+
+:::image type="content" source="media/concepts/alert-strategy.png" lightbox="media/concepts/alert-strategy.png" alt-text="Diagram of a health model with alert rules at different levels." border="false":::
 
 
 
