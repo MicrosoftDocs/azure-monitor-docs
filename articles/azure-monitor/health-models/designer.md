@@ -1,6 +1,6 @@
 ---
 title: Configure an Azure Monitor health model
-description: Learn now to create a health model resource.
+description: Learn how to use the designer to configure an Azure Monitor health model..
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
@@ -37,7 +37,7 @@ Entities are represented as nodes in the designer view. In addition to the icons
 
 :::image type="content" source="media/designer/entity.png" lightbox="media/designer/entity.png" alt-text="Image of an entity in the designer view.":::
 
-You can click and drag entities to move them around the canvas. You can also use the mouse wheel to zoom in and out of the canvas. The position of the entity doesn't affect its operation in any way. The layout is saved when you save the model and will be restored when you reopen the model with either the [designer](#designer-view) or the [graph](./analyze-health.md#graph-view). Use the **Arrange** option to reposition the entities on the canvas in a more organized manner.
+You can click and drag entities to move them around the canvas. You can also use the mouse wheel to zoom in and out of the canvas. The position of the entity doesn't affect its operation in any way. The layout is saved when you save the model and will be restored when you reopen the model with either the designer or the [graph](./analyze-health.md#graph-view). Use the **Arrange** option to reposition the entities on the canvas in a more organized manner.
 
 > [!NOTE]
 > You can also open the entity editor from the [entities view](#entities). 
@@ -50,9 +50,9 @@ The **General** tab of the [entity editor](#entities) allows you to configure th
 | Name | Automatically assigned unique name of the entity. |
 | Display name | The name of the entity as it appears in the health model. This defaults to the name of the Azure resource but can be modified later. |
 | Kind | Azure resource type represented by the entity. This property can't be changed. |
-| Impact | Determines how the health state of this entity is propagated to its parent as described in [Impact](./concepts.md#health-states#impact). |
+| Impact | Determines how the health state of this entity is propagated to its parent as described in [Impact](./concepts.md#impact). |
 | Icon | Icon to display in the health model. *Use associated resource icon* uses the icon from the resource type represented by the entity. |
-| Health objective | The target health objective for this entity as described in [Health objective](./concepts.md#health-states#health-objective). This is an optional value. |
+| Health objective | The target health objective for this entity as described in [Health objective](./concepts.md#health-objective). This is an optional value. |
 | Canvas position | X and Y coordinates of the entity on the canvas. This is automatically set when you drag the entity around the canvas. You can also manually set these values to position the entity in a specific location. |
 | Labels | One of more optional name/value pairs to assign to the entity. Labels are used to group entities together for reporting and filtering purposes. You can use the same label on multiple entities. |
 
@@ -200,54 +200,6 @@ You can optionally select up to five [Action groups](../alerts/action-groups.md)
 :::image type="content" source="media/designer/entity-editor-alerts.png" lightbox="media/designer/entity-editor-alerts.png" alt-text="Screenshot of alert configuration in the entity editor.":::
 
 
-
-
-
-
-
-
-## Other views
-
-## Azure portal views
-The following table describes the different views that are available in the Azure portal for working with the health model once it's been created. Each is described in further details below.
-
-| View | Description |
-|:---|:---|
-| [Designer](#designer-view) | Primary tool for visually configuring Azure Monitor health models. |
-| [Entities](#entities-view) | View a list of all the entities in the health model with their current health state.  |
-| [Discovery](#discovery-view) | Configures the service group and auto-discovery settings for the health model. | 
-| [Signal definitions](#signal-definitions) | View a list of all the signal definitions in the health model.  |
-| [Authentication settings](#authentication-settings) | Create and edit authentication methods for accessing telemetry data from the Azure resources in the health model.|
-
-### Entities view
-The Entities view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./entities.md#entity-editor) from this view as you can in the designer view by selecting an entity and clicking **Edit**.
-
-This view is useful for quickly finding and editing the signals and alerts for entities in the model. Use it as an alternative to the designer view when you want to focus on the entities and their properties rather than the visual layout of the model.
-
-:::image type="content" source="media/designer/entities-view.png" lightbox="media/designer/entities-view.png" alt-text="Screenshot of entities view.":::
-
-### Discovery view
-The discovery view allows you to configure the service group and auto-discovery settings for the health model. This includes changing the identity used for accessing the service group.
-
-:::image type="content" source="media/designer/discovery-view.png" lightbox="media/designer/discovery-view.png" alt-text="Screenshot of discovery view.":::
-
-> [!NOTE]
-> If you remove the service group for the health model, the health model will include only the root entity, and you'll receive a warning message that the health model will not be populated.
-
-### Signal definitions
-The signal definitions view provides a list of all the [signal definitions](./signals.md) in the health model and their thresholds. It can be useful for understanding the signals that are available in the model and their current thresholds and for cleaning up any unused signals.
-
-You can't add or edit signal definitions from this view, but you can delete any signals that aren't used by any entities in the model. Select any entities to delete and click **Delete** at the top of the screen. This button will be disabled if any signals that are in use are selected.
-
-:::image type="content" source="media/designer/signal-definitions-view.png" lightbox="media/designer/signal-definitions-view.png" alt-text="Screenshot of signal definitions view.":::
-
-
-### Authentication settings
-The authentication settings view lets you view and manage the authentication settings available in the health model. Each entity in the model uses an authentication setting to access to the Azure resource being monitored, and different entities may require different authentication settings. 
-
-When you create a new authentication setting, you can select from the managed identities in the health model that are managed from the **Identity** menu item. Delete an entity by selecting it and them clicking ***Delete**.
-
-:::image type="content" source="media/designer/authentication-settings.png" lightbox="media/designer/signal-definitions-view.png" alt-text="Screenshot of authentication settings view.":::
 
 
 ## Next steps

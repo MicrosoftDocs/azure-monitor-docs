@@ -1,6 +1,6 @@
 ---
 title: Create and configure a health model resource in Azure Monitor
-description: Learn now to create a health model resource.
+description: Learn now to create a new Azure Monitor health model.
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
@@ -57,6 +57,49 @@ Using either method, you need to provide the details for the new health model in
 | **Identity** | Configure the identity for the health model access the service group. This is use to enumerate the members of the service group and add them as entities to the health model. It's also used by default to access telemetry for the Azure resources represented by each entity, although this identity can later be changed for each entity. See [Permissions required](#permissions-required) for the requirements of this identity. |
 | **Discovery** | Select a service group for the health model. An entity will be created for each member of the service group. Select the option to **Add recommended signals** to automatically add a set of recommended signals to each entity for that Azure resource type. |
 | **Tags** | Add any [tags](/azure/azure-resource-manager/management/tag-resources) to help categorize the health model in your environment. |
+
+
+## Azure portal views
+The following table describes the different views that are available in the Azure portal for working with the health model once it's been created. Each is described in further details below.
+
+| View | Description |
+|:---|:---|
+| [Designer](#designer-view) | Primary tool for visually configuring Azure Monitor health models. |
+| [Entities](#entities-view) | View a list of all the entities in the health model with their current health state.  |
+| [Discovery](#discovery-view) | Configures the service group and auto-discovery settings for the health model. | 
+| [Signal definitions](#signal-definitions) | View a list of all the signal definitions in the health model.  |
+| [Authentication settings](#authentication-settings) | Create and edit authentication methods for accessing telemetry data from the Azure resources in the health model.|
+
+### Entities view
+The Entities view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./entities.md#entity-editor) from this view as you can in the designer view by selecting an entity and clicking **Edit**.
+
+This view is useful for quickly finding and editing the signals and alerts for entities in the model. Use it as an alternative to the designer view when you want to focus on the entities and their properties rather than the visual layout of the model.
+
+:::image type="content" source="media/designer/entities-view.png" lightbox="media/designer/entities-view.png" alt-text="Screenshot of entities view.":::
+
+### Discovery view
+The discovery view allows you to configure the service group and auto-discovery settings for the health model. This includes changing the identity used for accessing the service group.
+
+:::image type="content" source="media/designer/discovery-view.png" lightbox="media/designer/discovery-view.png" alt-text="Screenshot of discovery view.":::
+
+> [!NOTE]
+> If you remove the service group for the health model, the health model will include only the root entity, and you'll receive a warning message that the health model will not be populated.
+
+### Signal definitions
+The signal definitions view provides a list of all the [signal definitions](./signals.md) in the health model and their thresholds. It can be useful for understanding the signals that are available in the model and their current thresholds and for cleaning up any unused signals.
+
+You can't add or edit signal definitions from this view, but you can delete any signals that aren't used by any entities in the model. Select any entities to delete and click **Delete** at the top of the screen. This button will be disabled if any signals that are in use are selected.
+
+:::image type="content" source="media/designer/signal-definitions-view.png" lightbox="media/designer/signal-definitions-view.png" alt-text="Screenshot of signal definitions view.":::
+
+
+### Authentication settings
+The authentication settings view lets you view and manage the authentication settings available in the health model. Each entity in the model uses an authentication setting to access to the Azure resource being monitored, and different entities may require different authentication settings. 
+
+When you create a new authentication setting, you can select from the managed identities in the health model that are managed from the **Identity** menu item. Delete an entity by selecting it and them clicking ***Delete**.
+
+:::image type="content" source="media/designer/authentication-settings.png" lightbox="media/designer/signal-definitions-view.png" alt-text="Screenshot of authentication settings view.":::
+
 
 
 
