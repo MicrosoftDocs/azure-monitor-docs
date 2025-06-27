@@ -1,0 +1,253 @@
+---
+title: Create and configure a health model resource in Azure Monitor
+description: Learn now to create a health model resource.
+ms.topic: conceptual
+author: bwren
+ms.author: bwren
+ms.date: 12/12/2023
+---
+
+# Configure an Azure Monitor health model
+
+
+## Azure portal views
+The following table describes the different views that are available in the Azure portal for working with the health model once it's been created. Each is described in further details below.
+
+| View | Description |
+|:---|:---|
+| [Designer](#designer-view) | Primary tool for visually configuring Azure Monitor health models. |
+| [Entities](#entities-view) | View a list of all the entities in the health model with their current health state.  |
+| [Discovery](#discovery-view) | Configures the service group and auto-discovery settings for the health model. | 
+| [Signal definitions](#signal-definitions) | View a list of all the signal definitions in the health model.  |
+| [Authentication settings](#authentication-settings) | Create and edit authentication methods for accessing telemetry data from the Azure resources in the health model.|
+
+## Designer view
+The designer is the primary tool that you'll use for visually configuring Azure Monitor health models. You can modify the arrangement of the entities that will translate to the [Graph](./analyze-health.md#graph-view) view which give you a visual representation of the current health state of your workload. You can also use the designer to create and edit signals, assign them to entities, and define health  alert rules. When you open the designer view, you're presented with the *canvas*, which is where you'll configure the [entities](./entities.md) that make up your health model.
+
+:::image type="content" source="media/create-configure/designer-canvas.png" lightbox="media/create-configure/designer-canvas.png" alt-text="Screenshot of a health model resource in the Azure portal with the Designer pane selected.":::
+
+### Command bar
+
+:::image type="content" source="media/create-configure/toolbar.png" lightbox="media/create-configure/toolbar.png" alt-text="Screenshot of designer command bar.":::
+
+The following table describes the options available in the command bar in the designer.
+
+| Option | Description |
+|:-------|:------------|
+| Manage service group members | Launch service group management so you can add and remove members that will be included in the health model. It can take up to 5 minutes for a new member of a service group to appear in the health model. |
+| Save changes | Sends all edits to the server for persistence and validation. Until you click **Save changes**, changes only exist in the browser. The save only applies to changes in the canvas such as rearranging entities. Any edits to an entity are saved when **Save** is clicked in the entity editor. |
+| Discard changes | Discards all changes up to the last save point. |
+| Undo | Undo the last change. |
+| Refresh | Redraws the model from the last save point. |
+| Arrange | Automatically arranges the position of the entities on the canvas. |
+| Download image | Downloads a PNG of the current view. |
+| Configure view | Select different options for display on the designer canvas. |
+
+### Arranging entities
+You can click and drag entities to move them around the canvas. You can also use the mouse wheel to zoom in and out of the canvas. The position of the entity doesn't affect its operation in any way. The layout is saved when you save the model and will be restored when you reopen the model with either the [designer](#designer-view) or the [graph](./analyze-health.md#graph-view). Use the **Arrange** option to reposition the entities on the canvas in a more organized manner.
+
+### Entities
+Entities are represented as nodes in the designer view. Icons on each entity identify different the different types of monitoring that have been configured for it as shown in the following image.
+
+:::image type="content" source="media/create-configure/entity.png" lightbox="media/create-configure/entity.png" alt-text="Image of an entity in the designer view.":::
+
+
+
+## Entity editor
+The **Entity editor** allows you to configure the properties of an entity, create and assign signals and alerts. Open the editor from either the [designer](./create-configure.md#designer-view) or [entities view](./create-configure.md#entities-view). It has the tabs described in the following sections.
+
+### [General](#tab/general)
+The **General** tab allows you to configure the properties of the entity described in the following table. 
+
+| Setting | Description |
+|:---|:---|
+| Name | Automatically assigned unique name of the entity. |
+| Display name | The name of the entity as it appears in the health model. This defaults to the name of the Azure resource but can be modified later. |
+| Kind | Azure resource type represented by the entity. This property can't be changed. |
+| Impact | Determines how the health state of this entity is propagated to its parent as described in [Impact](./health-states.md#impact). |
+| Icon | Icon to display in the health model. *Use associated resource icon* uses the icon from the resource type represented by the entity. |
+| Health objective | The target health objective for this entity as described in [Health objective](./health-states.md#health-objective). This is an optional value. |
+| Canvas position | X and Y coordinates of the entity on the canvas. This is automatically set when you drag the entity around the canvas. You can also manually set these values to position the entity in a specific location. |
+| Labels | One of more optional name/value pairs to assign to the entity. Labels are used to group entities together for reporting and filtering purposes. You can use the same label on multiple entities. |
+
+### [Signals](#tab/signals)
+The **Signals** tab allows you to create or edit signals and assign to the entity. 
+
+### Add and remove signals
+Each type of signal has the following options. Click on a signal to edit its definition.
+
+| Setting | Description |
+|:---|:---|
+| Add signal assignment | Select from existing signals in the health model or from a set of 
+| Remove assignment | Enabled when one or more signals are selected. Removes the signal assignment from the entity, but doesn't delete the signal definition. The signal can still be assigned to other entities in the model. |
+
+### Add assignments
+When you click **Add a signal assignment** in the entity editor, the options will vary depending on the signal type. 
+
+| Option | Signal Types | Description |
+|:---|:---|:---|
+| Select existing | Azure resource<br>Log Analytics workspace<br>Azure Monitor workspace | Select from existing metric signals that have been added to other entities in the health model. This allows you to reuse the same signal definition across multiple entities. |
+| Recommended | Azure resource | Select from a set of recommended signals and thresholds for the resource type. Once you select a recommended signal, it's added to existing signals. |
+| Create new | Azure resource<br>Log Analytics workspace<br>Azure Monitor workspace | Create a new metric signal definition. This allows you to define a custom metric signal for the entity that can be used with other entities of the same type. |
+
+### Signal details
+The details that you need to provide for each signal will vary depending on its type.
+
+#### Azure resource
+Azure resource signals sample the value of a [platform metric](../essentials/data-platform-metrics.md) from a particular resource and compare against a numeric threshold to determine the health state. Only metric definitions that are supported for the resource type of the Azure resource represented by the entity are available.
+
+
+:::image type="content" source="media/signals/azure-resource-signals.png" lightbox="media/signals/azure-resource-signals.png" alt-text="Screenshot of Azure resource signals for an entity.":::
+
+The following tables describe the properties that define an Azure resource signal definition.
+
+**Collection properties**
+
+| Setting | Description |
+|:---|:---|
+| Display name | The name of the signal as it appears in the health model. This defaults to the name of the metric but can be modified later. |
+| Refresh interval | The interval at which the metric data is refreshed. This is typically set to 1 minute, but can be set to a longer interval if desired. |
+| Metric namespace | The namespace of the metric. Each resource type will typically have a single namespace, but some resource types may have multiple. Each namespace has its own set of metrics. |
+| Metric | Metric to use for the signal. In the Azure portal, you can select from a list of all metrics in the selected namespace. The most commonly used metrics for the resource type are listed at the top. |
+| Description | Description of the metric. This is a read-only value that is provided by the metric definition. |
+| Dimension | Dimension for the signal if the metrics supports them. Dimensions are used to define difference instances of the metric on the Azure resource.  |
+| Dimension filter | Only available if a dimension is selected. Filters data for only the specified dimension value. |
+| Aggregation Type | Method used to aggregate the different data samples over the *Time grain*. Metric data is sampled every minute, so there will typically be multiple values collected over the time grain specified for the signal. Different aggregations will be available for different metrics.<br><br>Examples of common aggregations include:<br><br>- Average - Average of the values collected over the time grain<br>- Maximum - Maximum of the different values collected over the time grain<br>- Total - Sum total of the values collected over the time grain |
+| Time grain | Length of time over which metric values are collected and then aggregated using the specified aggregation method. |
+| Degraded threshold | If this calculation is true, and the Unhealthy calculation is false, then the state of the entity is set to **Degraded**. If both this and the Unhealthy calculation are false, then the health of the entity is set to **Healthy**. Select **Remove threshold** to not use a degraded threshold. |
+| Unhealthy threshold | If this calculation is true, then the state of the entity is set to **Unhealthy**. If this calculation is false, then the **Degraded** threshold is checked. |
+
+#### Log Analytics workspace
+
+Log Analytics workspace signals run a [log query](../logs/queries.md) against a Log Analytics workspace and compare the results to the thresholds to determine the health state. Use log signals to search for errors in log data or to perform complex calculations on numeric data stored in the Log Analytics workspace.
+
+### Log Analytics workspace
+Before you can create a Log Analytics workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity.
+
+
+### Log query
+The log query must return a single record with a numeric value. If the record includes multiple columns, then you can specify which column to use as the signal value. The query should return a single record. If it returns multiple records, then only the first record is used.
+
+:::image type="content" source="media/signals/log-signals.png" lightbox="media/signals/log-signals.png" alt-text="Screenshot of log signals for an entity.":::
+
+
+The following example shows a log query that returns a count of error logs in the last hour. 
+
+```kusto
+ContainerLogV2
+| where _ResourceId == '/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.containerservice/managedclusters/my-cluster' 
+| where LogSource == 'stderr'
+| summarize value = count()
+```
+
+### Log Analytics workspace signal definition properties
+The following table describes the properties that define Log Analytics workspace signal definition.
+
+| Setting | Description |
+|:---|:---|
+| Display name | Name of the signal as it appears in the health model. |
+| Refresh interval |  |
+| Query text | The text of the log query to run. Click **Edit query** to create a new query or edit an existing one. Log Analytics interface is displayed where you can write queries and test the results. |
+| Query time range | The time range for the records retrieved by the query. It will only retrieve data from this time range. The value is set in the query editor when you edit the query. |
+| Value column name | The name of the column returned from the query that contains the value to compare to the thresholds for each health state. |
+| Data unit | Label for the units of the value returned from the query. This doesn't affect the results but only how the value is displayed. |
+| Degraded threshold | If this calculation is true, and the Unhealthy calculation is false, then the state of the entity is set to **Degraded**. If both this and the Unhealthy calculation are false, then the health of the entity is set to **Healthy**. |
+| Unhealthy threshold | If this calculation is true, then the state of the entity is set to **Unhealthy**. If this calculation is false, then the **Degraded** threshold is checked. |
+
+
+#### Azure Monitor workspace
+
+Azure Monitor workspace signals run a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results to determine the health state. Use Azure Monitor workspace signals in place of metric signals for resources that have metric data scraped by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). The log query must return a single record with a text value. 
+
+### Azure Monitor workspace
+Before you can create a Azure Monitor workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity.
+
+
+### PromQL Query
+
+### Azure Monitor workspace signal definition properties
+The following table describes the properties that define Azure Monitor workspace signal definition.
+
+
+| Setting | Description |
+|:---|:---|
+| Display name | Name of the signal as it appears in the health model. |
+| Refresh interval | |
+| Query text | PromQL query |
+| Query time range |  |
+| Data unit |  |
+| Degraded threshold | If this calculation is true, and the Unhealthy calculation is false, then the state of the entity is set to **Degraded**. If both this and the Unhealthy calculation are false, then the health of the entity is set to **Healthy**. |
+| Unhealthy threshold | If this calculation is true, then the state of the entity is set to **Unhealthy**. If this calculation is false, then the **Degraded** threshold is checked. |
+
+
+### Signal definitions
+A signal definition includes all of the properties required to uniquely define the signal and the thresholds that determine the health state to set. This allows different definitions to be used for the signal but with different thresholds. The properties required to define the signal vary by signal type.
+
+For example, you might use the same metric to measure the health of multiple entities, but different entities might require different thresholds. In this case, you would create multiple signal definitions using the same metric but with different thresholds. In the following example, there are two definitions for **Percentage CPU** because they have different thresholds.
+
+:::image type="content" source="media/signals/signal-definitions.png" lightbox="media/signals/signal-definitions.png" alt-text="Screenshot of list of signal definitions." :::
+
+
+### Thresholds
+Thresholds are numeric values that are compared to the value of the signal to determine the health state of the entity. Each signal definition has two thresholds, one for the **Degraded** state and one for the **Unhealthy** state. The degraded threshold is optional, but the unhealthy threshold is required. 
+
+You can specify the operator for each threshold to determine how the signal value is compared. Some signals might indicate a degraded or unhealthy state when the value is above the threshold, while others might indicate a degraded or unhealthy state when the value is below the threshold. 
+
+To define both thresholds for a signal definition ensure that degraded threshold is set to a value that is less than the unhealthy threshold. The degraded state will be set if the signal value is between the degraded and unhealthy thresholds. If the signal value is above the unhealthy threshold, then the entity is set to the unhealthy state. If the signal value is below the degraded threshold, then the entity is set to the healthy state.
+
+
+
+
+
+
+
+
+
+
+### [Alerts](#tab/alerts)
+The **Alerts** tab allows you to create or edit alert rules for the entity. See [Alerts](./alerts.md) for details.
+
+---
+
+
+
+
+
+
+
+
+
+## Other views
+
+### Entities view
+The Entities view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./entities.md#entity-editor) from this view as you can in the designer view by selecting an entity and clicking **Edit**.
+
+This view is useful for quickly finding and editing the signals and alerts for entities in the model. Use it as an alternative to the designer view when you want to focus on the entities and their properties rather than the visual layout of the model.
+
+:::image type="content" source="media/create-configure/entities-view.png" lightbox="media/create-configure/entities-view.png" alt-text="Screenshot of entities view.":::
+
+### Discovery view
+The discovery view allows you to configure the service group and auto-discovery settings for the health model. This includes changing the identity used for accessing the service group.
+
+:::image type="content" source="media/create-configure/discovery-view.png" lightbox="media/create-configure/discovery-view.png" alt-text="Screenshot of discovery view.":::
+
+> [!NOTE]
+> If you remove the service group for the health model, the health model will include only the root entity, and you'll receive a warning message that the health model will not be populated.
+
+### Signal definitions
+The signal definitions view provides a list of all the [signal definitions](./signals.md) in the health model and their thresholds. It can be useful for understanding the signals that are available in the model and their current thresholds and for cleaning up any unused signals.
+
+You can't add or edit signal definitions from this view, but you can delete any signals that aren't used by any entities in the model. Select any entities to delete and click **Delete** at the top of the screen. This button will be disabled if any signals that are in use are selected.
+
+:::image type="content" source="media/create-configure/signal-definitions-view.png" lightbox="media/create-configure/signal-definitions-view.png" alt-text="Screenshot of signal definitions view.":::
+
+
+### Authentication settings
+The authentication settings view lets you view and manage the authentication settings available in the health model. Each entity in the model uses an authentication setting to access to the Azure resource being monitored, and different entities may require different authentication settings. 
+
+When you create a new authentication setting, you can select from the managed identities in the health model that are managed from the **Identity** menu item. Delete an entity by selecting it and them clicking ***Delete**.
+
+:::image type="content" source="media/create-configure/authentication-settings.png" lightbox="media/create-configure/signal-definitions-view.png" alt-text="Screenshot of authentication settings view.":::
+
+
+## Next steps
