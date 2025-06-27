@@ -173,6 +173,12 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
 
 Now you can use your private AKS cluster with Chaos Studio. To learn how to install Chaos Mesh and run the experiment, see [Create a chaos experiment that uses a Chaos Mesh fault with the Azure CLI](chaos-studio-tutorial-aks-cli.md).
 
+<!--
+![Target resource with virtual network injection](images/chaos-studio-rp-vnet-injection.png)
+-->
+
+---
+
 ## Permissions and security
 
 ### Required RBAC permissions
@@ -216,10 +222,6 @@ The Container subnet hosts the containerized workloads that execute chaos experi
   While Chaos Studio generally supports targeting resources across subscriptions, this capability **does not apply** when private networking is enabled. This is because the private endpoint and other supporting resources required for VNet injection are deployed by Chaos Studio into the **same subscription as the experiment**. If the target VNet resides in a different subscription, private endpoint creation will fail due to cross-subscription restrictions.
 
   **Workaround:** To use private networking successfully, ensure that the target VNet and the Chaos Studio experiment are created within the same Azure subscription.
-
-<!--
-![Target resource with virtual network injection](images/chaos-studio-rp-vnet-injection.png)
--->
 
 ## Next steps
 Now that you understand how virtual network injection can be achieved for Chaos Studio, you're ready to:
