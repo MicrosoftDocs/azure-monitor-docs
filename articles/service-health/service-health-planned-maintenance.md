@@ -1,0 +1,108 @@
+---
+title: Service Health Planned maintenance
+description: Overview of the features and information found on the blade. 
+ms.topic: reference
+ms.date: 06/27/2025
+
+---
+
+# Planned maintenance overview
+
+The Planned Maintenance blade in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
+
+
+This blade is designed to provide you with advance notice of scheduled maintenance events that can affect your services. 
+The information enables you to:
+
+- Prepare for possible service disruptions.
+- Coordinate internal change management processes.
+- Use self-service update windows when available.
+
+Unlike unplanned outages, planned maintenance is scheduled and communicated ahead of time to help minimize the impact.
+
+:::image type="content" source="./media/planned-maintenance/planned-maint-main.PNG" alt-text="Screenshot of current planned maintenance events." lightbox="media/planned-maintenance/planned-maint-main.png":::
+
+## Information found in the Planned Maintenance blade 
+When you open the Planned Maintenance blade, you see a list of maintenance events relevant to your subscriptions. 
+Each event includes the following information:
+- Issue Name
+- Tracking ID
+- Services
+- Regions
+- Start time
+- End time
+- last updated 
+- Event tags
+
+Select the **Issue name** link to open the blades with the information you need.
+
+### Summary
+
+:::image type="content" source="./media/planned-maintenance/planned-maint-summary.PNG" alt-text="Screenshot of Summary tab." lightbox="media/planned-maintenance/planned-maint-summary.png":::
+
+When you open the Planned Maintenance event, it opens the Summary tab, which shows you a list of information about this event. 
+Each event includes:
+
+|Field    |Description  |
+|---------|---------|
+|Tracking ID     | The tracking ID of the event.       |
+|Shareable link    | Copy this link to share the information.       |
+|Impacted services    | A list of any services impacted by this event.        |
+|Impacted regions     | A list of all the regions impacted by this event and shown on the calendar.         |
+|Impacted subscriptions     | A list of any subscriptions impacted by this event.        |
+|Status    | The current status of this event.        |
+|Health event type   | The type of health event (Planned Maintence/Security)        |
+|Event tags     | The information that explains or names the nature and status of this event.           |
+|Start time     |The time the event started.         |
+| End time | The time the ends.   |
+|Last update   | The most current notification information about this event.    |
+
+
+
+### Impacted Services
+
+:::image type="content" source="./media/planned-maintenance/planned-maint-impacted-services.PNG" alt-text="Screenshot of Impacted Services tab." lightbox="media/planned-maintenance/planned-maint-impacted-services.png":::
+
+The Impacted Services tab displays information about any of your services that are affected. 
+- Region
+- Status 
+- Last update time
+
+### Issue Updates
+
+:::image type="content" source="./media/planned-maintenance/planned-maint-issue-updates.PNG" alt-text="Screenshot of Issue Updates tab." lightbox="media/planned-maintenance/planned-maint-issue-updates.png":::
+
+The Issues Updates tab displays all information notifications by the date they were entered.
+
+### Impacted Resources
+
+
+:::image type="content" source="./media/planned-maintenance/planned-maint-impacted-resources.PNG" alt-text="Screenshot of Impacted Resources tab." lightbox="media/planned-maintenance/planned-maint-impacted-resources.png":::
+
+The tab for Impacted Resources displays the following information about any of your resources that are affected. 
+
+- **Resource Name** - The name of the impacted resource.
+- **Resource Type** - Type of Azure service (for example, Virtual Machine, App Service).
+- **Resource Group** - The resource group containing the impacted resource.
+- **Regions** - The Azure region where the resource is located.
+- **Subscription ID** - The subscription that owns the resource.
+- **Action** - A link to apply the update during a self-service window (for reboot-required updates).
+
+### Available tools on the tab
+
+On each tab in this blade you can:
+
+- Download the information into a PDF file.
+- Select to track the issue on your mobile device.
+- Create a support request.
+- Create a service health ticket.
+- Filter by region, subscription, or resource type.
+
+
+ :::image type="content" source="./media/planned-maintenance/planned-maint-tools.PNG" alt-text="Screenshot of tools on each tab." lightbox="media/planned-maintenance/planned-maint-tools.png":::
+
+### Next steps:
+
+- [Impacted Resources from Planned maintenance events](impacted-resources-planned-maintenance.md)
+- [Resource impact from Azure outages](impacted-resources-outage.md)
+- [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
