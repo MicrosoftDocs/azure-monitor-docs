@@ -1,6 +1,6 @@
 ---
 title: VM Insights Map and Dependency Agent retirement guidance
-description: This article provides guidance to customers about the retirement of the VM Insights Map feature and the associated Dependency Agent. 
+description: This article provides guidance to customers about the retirement of the Virtual Machine (VM) Insights Map feature and the associated Dependency Agent. 
 ms.topic: conceptual
 ms.custom: linux-related-content
 ms.date: 05/05/2025
@@ -8,7 +8,7 @@ ms.date: 05/05/2025
 
 # VM Insights Map and Dependency Agent retirement guidance
 
-The map feature of Virtual Machine (VM) Insights provides data on dependencies and connections from a given VM. The VM Insights Map feature and the Dependency Agent will be retired on 30 June 2028 and no longer be supported. The following article calls out impacted functionality, provides guidance for offboarding and lists out key dates.
+The VM Insights Map feature and the Dependency Agent will be retired on 30 June 2028 and no longer be supported. The following article calls out impacted functionality, provides guidance for offboarding and lists out key dates.
 
 ## Customer impact
 
@@ -31,32 +31,40 @@ As part of the retirement process,
  
 ## Recommended action  
 
-We recommend considering a replacement solution from the Azure Marketplace if you want to continue collecting data about processes running on virtual machines and external process dependencies. Customers can consider using the Azure Monitor Agent for inventory tracking if applicable 
+Customers are recommeded to offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, we recommend considering a replacement solution from the Azure Marketplace. If applicable, customers can consider [using the Azure Monitor Agent for inventory tracking](https://learn.microsoft.com/azure/automation/change-tracking/manage-change-tracking-monitoring-agent?tabs=linux%2Csa-mi).  
 
 ## Finding VMs currently using VM Insights map 
 
 ### Query for finding VMs
 
-The following query lists all the VMs that have Dependency Agent installed. 
+The following query lists all the VMs that have Dependency Agent installed. The query provides all cloud VMs and Arc-connected VMs, on-premise VMs utilizing the Dependency Agent without Arc connectivity are not listed. 
 
-```kusto
+```AzureResourceGraph
 Resources
-| where type == "microsoft.compute/virtualmachines/extensions"
-| where name contains "DependencyAgent"
-| extend proparray = split(['id'],"/")
-| extend vmname = tostring(proparray[8])
-| join kind=inner (
-  resources
-  | where type == "microsoft.compute/virtualmachines" 
-  | extend vmname = name
-  | project vmname, vmid = ['id']
-) on vmname
-| project vmname, vmid, resourceGroup, location, subscriptionId, tenantId
+| where type in ('microsoft.compute/virtualmachines/extensions',
+                 'microsoft.hybridcompute/machines/extensions',
+                 'microsoft.connectedvmwarevsphere/virtualmachines/extensions')
+| where 'Microsoft.Azure.Monitoring.DependencyAgent' == properties.publisher
+| project id = tolower(substring(id, 0, indexof_regex(id, '(?i)/extensions')))
+| join kind = inner (resources | extend id = tolower(id)) on id
+| extend systemType = tostring(dynamic ({'microsoft.hybridcompute/machines' : 'ARC VM',
+                                 'microsoft.compute/virtualmachines' : 'VM',
+                                 'microsoft.connectedvmwarevsphere/virtualmachines' : 'AVS'
+                               })[type])
+| project subscriptionId, resourceGroup, name, systemType, id, tenantId
+| union (
+    resources
+    | where ['type'] == 'microsoft.compute/virtualmachinescalesets'
+    | where properties.virtualMachineProfile.extensionProfile.extensions has 'Microsoft.Azure.Monitoring.DependencyAgent'
+    | project subscriptionId, resourceGroup, name, systemType = 'VMSS', id, tenantId
+)
+| sort by subscriptionId asc, resourceGroup asc, name asc
 ```
 To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see *[Quickstart: Run Resource Graph query using Azure portal](https://learn.microsoft.com/azure/governance/resource-graph/first-query-portal)*
 
-## Uninstalling the Dependency Agent
+## Disabling the VM Insights Map experience
 
+### Removing Dependency Agent from a single VM 
 See the article on [Uninstall Dependency Agent](https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-dependency-agent#uninstall-dependency-agent) for steps to uninstall. 
 
 
