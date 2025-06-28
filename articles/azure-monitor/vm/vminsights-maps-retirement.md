@@ -31,7 +31,7 @@ As part of the retirement process,
  
 ## Recommended action  
 
-We recommend considering a replacement solution from the Azure Marketplace if you want to continue collecting data about processes running on virtual machines and external process dependencies. Customers can consider using the Azure Monitor Agent for inventory tracking if applicable 
+Customers are recommeded to offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, we recommend considering a replacement solution from the Azure Marketplace. If applicable, customers can consider [using the Azure Monitor Agent for inventory tracking](https://learn.microsoft.com/azure/automation/change-tracking/manage-change-tracking-monitoring-agent?tabs=linux%2Csa-mi).  
 
 ## Finding VMs currently using VM Insights map 
 
@@ -39,7 +39,7 @@ We recommend considering a replacement solution from the Azure Marketplace if yo
 
 The following query lists all the VMs that have Dependency Agent installed. The query provides all cloud VMs and Arc-connected VMs, on-premise VMs utilizing the Dependency Agent without Arc connectivity are not listed. 
 
-```Azure Resource Graph
+```AzureResourceGraph
 Resources
 | where type in ('microsoft.compute/virtualmachines/extensions',
                  'microsoft.hybridcompute/machines/extensions',
