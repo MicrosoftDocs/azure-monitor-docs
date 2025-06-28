@@ -48,8 +48,8 @@ See the *[Set up Container Network Logs with Advanced Container Networking Servi
 
 1. Download the setup files:
 
-* ARM Template: https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file
-* Parameter file: https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file 
+* ARM Template: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file)
+* Parameter file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file) 
 
 2. Use the table to configure the parameters
 
@@ -81,6 +81,51 @@ az deployment group create \
 --template-file  aks-enable-monitoring-msi-onboarding-template-file \ 
 --parameters aks-enable-monitoring-msi-onboarding-template-parameter-file
 ```
+
+##### [Bicep](#tab/bicep)
+
+> [!NOTE]
+> Before proceeding, ensure your cluster meets the prerequisites mentioned in the *[Set up Container Network Logs with Advanced Container Networking Services](https://learn.microsoft.com/azure/aks/how-to-configure-container-network-logs?tabs=cilium)* article. 
+
+
+1. Download the setup files:
+
+* [Bicep Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/onboarding-msi-bicep/existingClusterOnboarding.bicep)
+* [Parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/onboarding-msi-bicep/existingClusterParam.json)
+
+These are available in the [Bicep onboarding folder](https://github.com/microsoft/Docker-Provider/tree/ci_prod/scripts/onboarding/aks/onboarding-msi-bicep) the Github repostory for the Container Insights Logs add-on. 
+
+2. Use the table to configure the parameters
+
+| Parameter Name                          |  Description                                                                                                           |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| aksResourceId                           | Azure Resource ID of the AKS cluster                                                                                   |
+| aksResourceLocation                     | Azure Region of the AKS cluster                                                                                        |
+| workspaceResourceId                     | Azure Resource ID of the Azure Log Analytics Workspace                                                                 |
+| workspaceRegion                         | Azure Region of the Azure Log Analytics Workspace                                                                      |
+| enableContainerLogV2                    | Flag to indicate whether to use ContainerLogV2 or not.                                                                 |
+| enableRetinaNetworkFlowLogs             | Flag to indicate whether to enable Retina Network Flow Logs or not. This MUST be true                                  |
+| enableSyslog                            | Flag to indicate to enable Syslog collection or not.                                                                   |
+| syslogLevels                            | Log levels for Syslog collection                                                                                       |
+| syslogFacilities                        | Facilities for Syslog collection                                                                                       |
+| resourceTagValues                       | Azure Resource Tags to use on AKS, Azure Monitor Data Collection Rule, and Azure Monitor Data collection endpoint etc. |
+| dataCollectionInterval                  | Data collection interval for applicable inventory and perf data collection. Default is 1m                              |
+| namespaceFilteringModeForDataCollection | Data collection namespace filtering mode for applicable inventory and perf data collection. Default is off             |
+| namespacesForDataCollection             | Namespaces for data collection for applicable for inventory and perf data collection.                                  |
+| streams                                 | Streams for data collection.  For retina networkflow logs feature, include "Microsoft-RetinaNetworkFlowLogs"           |
+| useAzureMonitorPrivateLinkScope         | Flag to indicate whether to configure Azure Monitor Private Link Scope or not.                                         |
+| azureMonitorPrivateLinkScopeResourceId  |  Azure Resource ID of the Azure Monitor Private Link Scope.                                                            |
+
+3. Deploy the Bicep template
+
+```azurecli
+az deployment group create \ 
+--name AzureMonitorDeployment \ 
+--resource-group <aksClusterResourceGroup> \ 
+--template-file  existingClusterOnboarding.bicep \ 
+--parameters existingClusterParam.json
+```
+
 
 ---
 
