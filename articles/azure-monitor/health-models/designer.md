@@ -32,6 +32,8 @@ The following table describes the options available in the command bar in the de
 | Download image | Downloads a PNG of the current view. |
 | Configure view | Select different options for display on the designer canvas. |
 
+## Entities
+
 Entities are represented as nodes in the designer view. In addition to the name and resource type, each entity includes icons that identify the different types of monitoring that have been configured for it as shown in the following image. Click **Edit** on an entity to open the **Entity editor**, which allows you to configure the properties of the entity and to create and assign signals and alerts. 
 
 :::image type="content" source="media/designer/entity.png" lightbox="media/designer/entity.png" alt-text="Image of an entity in the designer view.":::
