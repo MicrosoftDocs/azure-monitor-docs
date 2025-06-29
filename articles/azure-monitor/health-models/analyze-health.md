@@ -8,7 +8,7 @@ ms.date: 06/27/2025
 ---
 
 # Analyze health state of Azure Monitor health models (Preview)
-This article describes the views available to analyze the current health of your [health model in Azure Monitor](./overview.md) and its health measurements over time.
+This article describes the views available to analyze the current health of your [Azure Monitor health model](./overview.md) and its health history over time.
 
 The following table briefly describes each view, while the sections below provide more details on each.
 
@@ -38,6 +38,8 @@ Select an entity in the graph or timeline view to open the entity details pane. 
 To drill down on an entity's health state, hover over it to view its type and current health state and then click on the entity to view its detail. The entity detail includes the last measurement of each signal and the entity's health over time. 
 
 :::image type="content" source="./media/analyze-health/entity-detail.png" lightbox="./media/analyze-health/entity-detail.png" alt-text="Screenshot of the Entity detail dialog for a health model resource in the Azure portal.":::
+
+The sections in the entity details pane are described below.
 
 **Entity details**<br>
 The **Entity details** section displays the entity's name, type, current health state, and other details.
