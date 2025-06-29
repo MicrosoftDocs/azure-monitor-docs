@@ -13,8 +13,7 @@ Azure Monitor health models allow you to define and track the health of the Azur
 
 Azure health models allow you to:
 
-- Define dependencies between resources in your services groups.
-- Track the health of your workloads that define your Azure workloads based on the health of its individual components.
+- Track the health of your Azure workloads based on the health of its individual components.
 - Alert on the health of your service group or any of its components based on multiple signals.
 - Add business context to the monitoring data collected by Azure Monitor.
 
@@ -29,7 +28,7 @@ Track the health of your workload using multiple views. The Graph view shown abo
 :::image type="content" source="media/overview/sample-graph-view.png" lightbox="media/overview/sample-graph-view.png" alt-text="Screenshot of health details of an entity in a sample health model." :::
 
 ## Configure a model
-Health models are based on [Azure service groups](/azure/governance/service-groups/overview), which allow you to group Azure resources that work together in a common workload or application. You specify a service group when you create a health model, and the health model is automatically populated with the resources in that service group. If any resources are added or removed from the service group, then the health model is automatically updated to reflect those changes. You can even choose to have recommended signals automatically added to each resource. You use a graphical tool to arrange the resources in your health model and to configure their health signals. 
+Health models are based on [Azure service groups](/azure/governance/service-groups/overview), which allow you to group Azure resources that work together in a common workload or application. You specify a service group when you create a health model, and the health model is automatically populated with the resources in that service group. If any resources are added or removed from the service group, then the health model is automatically updated to reflect those changes. You use a graphical tool to arrange the resources in your health model and to configure their health signals. 
 
 :::image type="content" source="media/overview/design-view.png" lightbox="media/overview/design-view.png" alt-text="Screenshot of configuring details of an entity in the designer for a sample health model." :::
 

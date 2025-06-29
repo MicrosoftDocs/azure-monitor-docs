@@ -1,5 +1,5 @@
 ---
-title: Health state in Azure Monitor health models
+title: Azure Monitor health model concepts
 description: Description of the core concepts required for building and using health models in Azure Monitor.
 ms.topic: conceptual
 author: bwren
@@ -7,15 +7,12 @@ ms.author: bwren
 ms.date: 05/22/2025
 ---
 
-# Concepts
+# Azure Monitor health model concepts (Preview)
 This article describes the concepts that you must understand to create and use [Azure health models](./overview.md). This includes the components that make up a model, how those components are related, and how the health of each component is determined. See [Using the Designer in Azure Monitor](./designer.md) for details on creating and configuring these components.
 
 
 ## Entities
 Entities are the building blocks of an [Azure Monitor health model](./overview.md). They represent the different components of your workload and any supporting business processes. Entities in your health model are discovered from the service group the model is linked to.  This article describes the different types of entities, how they relate to each other, and how to configure them in different views.
-
-
-## Entity types
 
 There are two distinct types of entities as described in the following sections.
 
@@ -28,17 +25,16 @@ The primary use of the root entity is to represent the overall health of the wor
 
 
 ### Azure resource entity
-An *Azure resource entity* represents an Azure resource from the current subscription or a subscription that you can access. Entities may also reside in another subscription if they're in a shared service model that you have access to.
+An *Azure resource entity* represents an Azure resource from the current subscription or a subscription that you can access. Entities may also reside in another subscription if they're in a shared service group that you have access to.
 
 To add an Azure resource entity to your health model you need to first add it as a member to your service group. The health model will then discover the resource and automatically add an Azure resource entity to the model to represent this new service group member. This discovery is automatically run every 5 minutes.
 
-The health model includes a representation of the Azure resource and not the resource itself. A resource can be represented by in multiple health models, and each can define different monitoring requirements and business logic.
+The health model includes a representation of the Azure resource and not the resource itself. A resource can be represented by in multiple health models, and each can define different monitoring requirements and business logic. If the resource is represented by multiple entities in different models, then the signals for each entity are evaluated separately, and each has its own independent health state.
 
-The signals applied to each Azure resource entity are evaluated from the metrics or logs that are associated with the resource. The collection of this data is defined for the resource itself and not in the health model. The health model instead focuses how to interpret that data in the context of the role of the resource in the workload. If the resource is represented by multiple entities in different models, then the signals for each entity are evaluated separately, and each has its own independent health state.
-
+The signals applied to each Azure resource entity are evaluated from the metrics or logs that are associated with the resource. The collection of this data is defined for the resource itself and not in the health model. The health model instead focuses how to interpret that data in the context of the role of the resource in the workload. 
 
 ## Relationships
-A relationship represents the dependency of one entity on another. The primary function of relationships is to support health rollup as described in [Health states in Azure Monitor health models](#health-states). When the health model is created, a relationship is automatically created between the root entity and each Azure resource entity in the service group. These are currently the only relationships supported by health models.
+A relationship represents the dependency of one entity on another. The primary function of relationships is to support health rollup as described in [Health states](#health-states). When the health model is created, a relationship is automatically created between the root entity and each Azure resource entity in the service group. These are currently the only relationships supported by Azure Monitor health models.
 
 
 ### Health states
@@ -70,7 +66,7 @@ In addition to its own signals, the health state of the [root entity](#root-enti
 
 
 ### Impact
-The *impact* of an entity determines how its health state is propagated to its parent. Each entity in the health model has its own impact setting that applies to the root entity. The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
+The *impact* of an entity determines how its health state is propagated to its parent. The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
 
 | Option | Description |
 |:-------|:------------|
@@ -85,7 +81,9 @@ The following sample shows the effect of each impact setting. Each of the child 
 ### Health objective
 The health objective for an entity is the target percentage of time this entity should be healthy. This allows you to track the achievement of your availability goals over time. Health objective is an optional value. Instead of setting one for each entity in the health model, you may choose to only set a health objective for the root entity which represents a health objective for the entire workload. Select the setting for each entity in the [entity editor](#entities).
 
-:::image type="content" source="media/concepts/health-objective.png" lightbox="media/concepts/health-objective.png" alt-text="Screenshot of an example health objective reporting." border="false":::
+Following is a history from [Entity details](./analyze-health.md#entity-details) for a sample entity showing health objective reporting.
+
+:::image type="content" source="media/concepts/health-objective.png" lightbox="media/concepts/health-objective.png" alt-text="Screenshot of an example health objective reporting.":::
 
 
 ## Signals
@@ -99,15 +97,13 @@ Each signal type uses a different type of data source that you must configure fo
 | Log Analytics workspace | Run a [log query](../logs/queries.md) against a Log Analytics workspace and evaluate the results. |
 | Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results. |
 
-The health model doesn't collect data that signals use but instead relies on data that's already being collected for the Azure resources reference in the model. You must configure this data collection using other features of Azure Monitor. Since [platform metrics]() are automatically collected for all resources, data for Azure resource signals will always be available. See [Sources of monitoring data for Azure Monitor](../data-sources.md) for information on enabling data collection to support Log Analytics workspace and Azure Monitor workspace signals.
+The health model doesn't collect data that signals use but instead relies on data that's already being collected for the Azure resources reference in the model. You must configure this data collection using other features of Azure Monitor. Since [platform metrics](../platform/tutorial-metrics.md) are automatically collected for all resources, data for Azure resource signals will always be available. See [Sources of monitoring data for Azure Monitor](../data-sources.md) for information on enabling data collection to support Log Analytics workspace and Azure Monitor workspace signals.
 
 
 
 
 ## Alerts
 Alerts in [Azure Monitor health models](./overview.md) allow you to be proactively notified when the health state of an entity changes. These alerts integrate with [Azure Monitor alerts](../alerts/alerts-overview.md) and can use the same [action groups](../alerts/action-groups.md) to notify your team or take corrective action.
-
-### Comparison to Azure Monitor alerts
 
 Alerting in health models is distinctly different than other alerting in Azure Monitor which typically alerts on each signal associated with a resource without any context of that resource's role in the application or workload. Health models allow you to create alerts that are more meaningful to your business and reduce the overall number of alerts generated for the same number of issues.
 
