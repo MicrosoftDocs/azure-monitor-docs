@@ -121,14 +121,13 @@ The following tables describe the properties that define an Azure resource signa
 ### Log Analytics workspace signals
 Log Analytics workspace signals run a [log query](../logs/queries.md) against a Log Analytics workspace and compare the results to the thresholds to determine the health state. Use log signals to search for errors in log data or to perform complex calculations on numeric data stored in the Log Analytics workspace.
 
+:::image type="content" source="media/designer/log-signals.png" lightbox="media/designer/log-signals.png" alt-text="Screenshot of log signals for an entity.":::
+
 #### Log Analytics workspace
 Before you can create a Log Analytics workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity, but you can have multiple signals using different log queries from this workspace.
 
 #### Log query
 The log query must return a single record with a numeric value. If the record includes multiple columns, then you can specify which column to use as the signal value. The query should return a single record. If it returns multiple records, then only the first record is used.
-
-:::image type="content" source="media/designer/log-signals.png" lightbox="media/designer/log-signals.png" alt-text="Screenshot of log signals for an entity.":::
-
 
 The following example shows a log query that returns a count of error logs in the last hour. 
 
@@ -157,12 +156,12 @@ The following table describes the properties that define Log Analytics workspace
 ### [Azure Monitor workspace](#tab/azuremonitorworkspace)
 
 ### Azure Monitor workspace signals
-Azure Monitor workspace signals run a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results to determine the health state. Use Azure Monitor workspace signals in place of metric signals for resources that have metric data scraped by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). The log query must return a single record with a text value. 
+Azure Monitor workspace signals run a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus data and evaluate the results to determine the health state. Use Azure Monitor workspace signals in place of metric signals for resources that have metric data scraped by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). The log query must return a single record with a numeric value. 
 
 #### Azure Monitor workspace
 Before you can create an Azure Monitor workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity.
 
-#### Azure Monitor workspace signal definition properties
+#### Signal properties
 The following table describes the properties that define Azure Monitor workspace signal definition.
 
 
@@ -179,9 +178,9 @@ The following table describes the properties that define Azure Monitor workspace
 ---
 
 #### Signal definitions
-A signal definition includes all of the properties required to uniquely define the signal and the thresholds that determine the health state to set. This allows different definitions to be used for the signal but with different thresholds. The properties required to define the signal vary by signal type.
+A signal definition includes all of the properties required to uniquely define the signal and the thresholds that determine the health state to set. This allows different definitions to be used for the signal but with different thresholds.
 
-For example, you might use the same metric to measure the health of multiple entities, but different entities might require different thresholds. In this case, you would create multiple signal definitions using the same metric but with different thresholds. In the following example, there are two definitions for **Percentage CPU** because they have different thresholds.
+You might use the same metric to measure the health of multiple entities, but different entities might require different thresholds. In this case, you would create multiple signal definitions using the same metric but with different thresholds. In the following example, there are two definitions for **Percentage CPU** because they have different thresholds.
 
 :::image type="content" source="media/designer/signal-definitions.png" lightbox="media/designer/signal-definitions.png" alt-text="Screenshot of list of signal definitions." :::
 
