@@ -93,9 +93,9 @@ az deployment group create \
 * [Bicep Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/onboarding-msi-bicep/existingClusterOnboarding.bicep)
 * [Parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/onboarding-msi-bicep/existingClusterParam.json)
 
-These are available in the [Bicep onboarding folder](https://github.com/microsoft/Docker-Provider/tree/ci_prod/scripts/onboarding/aks/onboarding-msi-bicep) the Github repostory for the Container Insights Logs add-on. 
+These are available in the [Bicep onboarding folder](https://github.com/microsoft/Docker-Provider/tree/ci_prod/scripts/onboarding/aks/onboarding-msi-bicep) the GitHub repository for the Container Insights Logs add-on. 
 
-2. Use the table to configure the parameters
+2. Use the table to configure the parameters:
 
 | Parameter Name                          |  Description                                                                                                           |
 | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -116,7 +116,7 @@ These are available in the [Bicep onboarding folder](https://github.com/microsof
 | useAzureMonitorPrivateLinkScope         | Flag to indicate whether to configure Azure Monitor Private Link Scope or not.                                         |
 | azureMonitorPrivateLinkScopeResourceId  |  Azure Resource ID of the Azure Monitor Private Link Scope.                                                            |
 
-3. Deploy the Bicep template
+3. Deploy the Bicep template:
 
 ```azurecli
 az deployment group create \ 
