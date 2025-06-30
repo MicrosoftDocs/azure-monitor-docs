@@ -22,6 +22,9 @@ In this article, you learn how to capture logs with Application Insights in .NET
 
 ## ASP.NET Core applications
 
+> [!TIP]
+> By default, the Application Insights provider only sends logs with a severity of `Warning` or higher. To include `Information` or lower-level logs, update the log level settings in `appsettings.json`.
+
 To add Application Insights logging to ASP.NET Core applications:
 
 1. Install the [`Microsoft.Extensions.Logging.ApplicationInsights`][nuget-ai].
