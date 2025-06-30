@@ -7,7 +7,7 @@ ms.author: bwren
 ms.date: 06/27/2025
 ---
 
-# Analyze health state of Azure Monitor health models (Preview)
+# Analyze health state of Azure Monitor health models (preview)
 This article describes the views available to analyze the current health of your [Azure Monitor health model](./overview.md) and its health history over time.
 
 The following table briefly describes each view, while the sections below provide more details on each.

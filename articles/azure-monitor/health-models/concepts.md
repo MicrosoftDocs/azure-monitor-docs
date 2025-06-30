@@ -7,7 +7,7 @@ ms.author: bwren
 ms.date: 05/22/2025
 ---
 
-# Azure Monitor health model concepts (Preview)
+# Azure Monitor health model concepts (preview)
 This article describes the concepts that you must understand to create and use [Azure health models](./overview.md). This includes the components that make up a model, how those components are related, and how the health of each component is determined. See [Using the Designer in Azure Monitor](./designer.md) for details on creating and configuring these components.
 
 

@@ -7,7 +7,7 @@ ms.author: bwren
 ms.date: 06/27/2025
 ---
 
-# Configure an Azure Monitor health model using the designer (Preview)
+# Configure an Azure Monitor health model using the designer (preview)
 The **Designer** is the primary tool for visually configuring [Azure Monitor health models](./overview.md). This article provides the details of different operations and common tasks that you can perform in the designer. Before you read this article, you should be familiar with the [concepts of health models](./concepts.md).
 
 ## Canvas
@@ -36,7 +36,7 @@ The following table describes the options available in the command bar in the de
 
 Entities are represented as nodes in the designer view. In addition to the name and resource type, each entity includes icons that identify the different types of monitoring that have been configured for it as shown in the following image. Click **Edit** on an entity to open the **Entity editor**, which allows you to configure the properties of the entity and to create and assign signals and alerts. 
 
-:::image type="content" source="media/designer/entity.png" lightbox="media/designer/entity.png" alt-text="Image of an entity in the designer view.":::
+:::image type="content" source="media/designer/entity.png" lightbox="media/designer/entity.png" alt-text="Screenshot of an entity in the designer view with its icons identified.":::
 
 > [!NOTE]
 > You can also open the entity editor from the [entities view](#entities). 

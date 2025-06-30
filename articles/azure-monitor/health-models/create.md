@@ -7,7 +7,7 @@ ms.author: bwren
 ms.date: 06/27/2025
 ---
 
-# Create a new Azure Monitor health model (Preview)
+# Create a new Azure Monitor health model (preview)
 
 [Azure Monitor health models](./overview.md) allow you to define and track the health of your Azure workloads and the resources they depend on. This article describes different methods for creating and configuring health models. 
 
