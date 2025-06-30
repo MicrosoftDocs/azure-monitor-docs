@@ -24,7 +24,7 @@ Unlike unplanned outages, planned maintenance is scheduled and communicated ahea
 
 ## Information found in the Planned Maintenance blade 
 When you open the Planned Maintenance blade, you see a list of maintenance events relevant to your subscriptions. 
-:::image type="content" source="./media/planned-maintenance/planned-maintenance-main.PNG" alt-text="Screenshot of current planned maintenance events." lightbox="./media/planned-maintenance/planned-maintenance-main.PNG.png":::
+:::image type="content" source="./media/planned-maintenance/planned-maintenance-main.png" alt-text="Screenshot of current planned maintenance events." lightbox="./media/planned-maintenance/planned-maintenance-main.png":::
 Each event includes the following information:
 - Issue Name
 - Tracking ID
