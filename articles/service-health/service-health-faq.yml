@@ -24,7 +24,7 @@ sections:
           Azure Resource Health focuses on the health of individual resources like VMs or databases, helping you diagnose whether a specific issue is due to Azure or your own configuration. 
           Overall, Service Health is broader with service-level information and Resource Health is granular and resource-specific.
       - question: |
-          What types of events do Azure Service Health report?
+          What types of events does Azure Service Health report?
         answer: |
           Azure Service Health reports the following events: 
           - Service issues 
