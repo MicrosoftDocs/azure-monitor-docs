@@ -2,7 +2,7 @@
 title: Configuring OpenTelemetry in Application Insights
 description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
 ms.topic: how-to
-ms.date: 03/23/2025
+ms.date: 06/30/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -789,7 +789,7 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
 
 ### [Java](#tab/java)
 
-The Application Insights Java Agent does not support OTLP.
+The Application Insights Java Agent doesn't support OTLP.
 For more information about supported configurations, see the [Java supplemental documentation](java-standalone-config.md).
 
 ### [Java native](#tab/java-native)
