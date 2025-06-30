@@ -41,9 +41,6 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 
 ## Linux operating systems
 
-> [!CAUTION]
-> CentOS is a Linux distribution that is nearing end of life (EOL) status. Consider your use and planning accordingly. For more information, see the [CentOS EOL guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
-
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
 | AlmaLinux 9                                                 | ✓ |
@@ -51,8 +48,6 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Amazon Linux 2                                              | ✓ |
 | Amazon Linux 2023                                           | ✓ |
 | Azure Linux 3.0                                             | ✓<sup>2</sup> |
-| CentOS Linux 8                                              | ✓ |
-| CentOS Linux 7                                              | ✓<sup>2</sup> |
 | CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
 | Debian 12                                                   | ✓ |
 | Debian 11                                                   | ✓<sup>2</sup> |
@@ -117,7 +112,6 @@ Currently supported hardening standards:
 
 | CIS-hardened operating system | Support |
 |:---|:---:|
-| CentOS Linux 7                    | ✓ |
 | Debian 10                         | ✓ |
 | Oracle Linux 8                    | ✓ |
 | Ubuntu 18.04 LTS                  | ✓ |
