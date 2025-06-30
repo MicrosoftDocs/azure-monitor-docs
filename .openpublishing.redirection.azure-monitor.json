@@ -8453,6 +8453,16 @@
    "source_path": "articles/azure-monitor/reference/tables/natgatewayflowlogsv1.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-dbforpostgresql_servergroupsv2.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-devcenter_plans.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
   }
  ]
 }
