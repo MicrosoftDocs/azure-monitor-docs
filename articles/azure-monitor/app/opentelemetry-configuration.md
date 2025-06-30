@@ -1028,6 +1028,8 @@ useAzureMonitor(options);
 
 We're actively working in the OpenTelemetry community to support redaction.
 
+---
+
 ## Metric export interval
 
 You can configure the metric export interval using the `OTEL_METRIC_EXPORT_INTERVAL` environment variable.
