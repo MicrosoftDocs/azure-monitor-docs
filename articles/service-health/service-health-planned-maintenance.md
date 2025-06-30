@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the blade. 
 ms.topic: reference
-ms.date: 06/27/2025
+ms.date: 06/30/2025
 
 ---
 
@@ -24,7 +24,7 @@ Unlike unplanned outages, planned maintenance is scheduled and communicated ahea
 
 ## Information found in the Planned Maintenance blade 
 When you open the Planned Maintenance blade, you see a list of maintenance events relevant to your subscriptions. 
-:::image type="content" source="./media/planned-maintenance/planned-maintenance-main.PNG" alt-text="Screenshot of current planned maintenance events." lightbox="media/planned-maintenance/planned-maintenance-main.png":::
+:::image type="content" source="./media/planned-maintenance/planned-maintenance-main.PNG" alt-text="Screenshot of current planned maintenance events." lightbox="./media/planned-maintenance/planned-maintenance-main.PNG.png":::
 Each event includes the following information:
 - Issue Name
 - Tracking ID
