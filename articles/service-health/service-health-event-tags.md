@@ -41,7 +41,7 @@ Event level tags are a separate metadata field used to help users assess the sev
 - **Warning** – Possible service problems that could affect performance or availability.
 - **Critical** – Immediate attention is required due to widespread issues.
 
-Unlike event tags, which describe the type or status of the communication, event levels indicate the urgency and impact of the event. This field is available on the Service Issues, Security advisories, Health Advisories, and Billing updates blades and can be used to filter and sort events for better prioritization.
+Unlike event tags, which describe the type or status of the communication, event level tags indicate the urgency and impact of the event. This field is available on the Service issues, Security advisories, Health advisories, and Billing updates blades, and can be used to filter and sort events for better prioritization.
 
  :::image type="content"source="./media/event-tags/event-level-tags-main.png"alt-text="Screenshot of blade with event level tags." lightbox="media/event-tags/event-level-tags-main.png":::
 
