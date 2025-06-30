@@ -34,7 +34,7 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 >
 > This produces results similar to the following:
 > 
-> :::image type="content" source="media/diagnostics-extension-overview/query-results.png" lightbox="media/diagnostics-extension-overview/query-results.png" alt-text="Results of a sample Azure Resource Graph Query.":::
+> :::image type="content" source="media/diagnostics-extension-overview/query-results.png" lightbox="media/diagnostics-extension-overview/query-results.png" alt-text="Screenshot showing the results of a sample Azure Resource Graph Query.":::
 
 
 
