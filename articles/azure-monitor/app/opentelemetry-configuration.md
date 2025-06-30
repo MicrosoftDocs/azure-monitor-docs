@@ -1027,3 +1027,20 @@ useAzureMonitor(options);
 ### [Python](#tab/python)
 
 We're actively working in the OpenTelemetry community to support redaction.
+
+## Metric export interval
+
+You can configure the metric export interval using the `OTEL_METRIC_EXPORT_INTERVAL` environment variable.
+
+```shell
+OTEL_METRIC_EXPORT_INTERVAL=60000
+```
+
+The default value is `60000` milliseconds (60 seconds). This setting controls how often the OpenTelemetry SDK exports metrics.
+
+[!INCLUDE [application-insights-metrics-interval](includes/application-insights-metrics-interval.md)]
+
+For reference, see the following OpenTelemetry specifications:
+
+- [Environment variable definitions](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#periodic-exporting-metricreader)
+- [Periodic exporting metric reader](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#periodic-exporting-metricreader)
