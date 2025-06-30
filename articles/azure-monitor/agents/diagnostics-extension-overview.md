@@ -2,7 +2,7 @@
 title: Azure Diagnostics extension overview
 description: Use Azure Diagnostics for debugging, measuring performance, monitoring, and performing traffic analysis in cloud services, virtual machines, and service fabric.
 ms.topic: concept-article
-ms.date: 11/14/2024
+ms.date: 06/30/2026
 ms.reviewer: luki
 
 ---
@@ -20,7 +20,7 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 >
 > As an alternative to storage, you should send data to a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
 >
-> To check which extensions are installed on a single VM, select **Extensions + applications** under **Settings** on your VM. To check the extensions for all VMs in a subscription, use the following query in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal):
+> To check which extensions are installed on a single VM, select **Extensions + applications** under **Settings** on your VM. To review the extensions installed on all virtual machines in subscriptions where you have access, use the following query in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal):
 >
 > ``` kql
 > resources
