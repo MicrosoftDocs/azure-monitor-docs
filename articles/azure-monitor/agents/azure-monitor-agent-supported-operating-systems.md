@@ -65,7 +65,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Red Hat Enterprise Linux Server 9+                          | ✓ |
 | Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ |
-| Red Hat Enterprise Linux Server 7                           | ✓ |
+| Red Hat Enterprise Linux Server 7.9                         | ✓ |
 | Rocky Linux 9                                               | ✓ |
 | Rocky Linux 8                                               | ✓ |
 | SUSE Linux Enterprise Server 15 SP6                         | ✓<sup>2</sup> |
