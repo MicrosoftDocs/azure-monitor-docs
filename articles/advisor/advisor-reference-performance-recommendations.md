@@ -4,7 +4,7 @@ description: Full list of available performance recommendations in Advisor.
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 05/12/2025
+ms.date: 06/24/2025
 ---
 
 # Performance recommendations
