@@ -183,7 +183,7 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
 
 ### Required RBAC permissions
 
-When using Chaos Studio with virtual network injection, your account or service principal must have the following RBAC actions to deploy the necessary resources in your subscription:
+When using Chaos Studio with virtual network injection, the managed identity for the experiment must have the following RBAC actions to deploy the necessary resources in your subscription:
 
 - `Microsoft.Relay/namespaces/*` - To create and manage Azure Relay namespaces
 - `Microsoft.Relay/namespaces/privateEndpointConnectionProxies/*` - To manage private endpoint connections for the relay
