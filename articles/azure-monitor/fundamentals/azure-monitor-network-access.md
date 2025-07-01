@@ -58,9 +58,9 @@ Starting **July 1, 2025**,  Log Analytics enforces TLS 1.2 or higher for secure 
 
 | Purpose | Hostname | Ports |
 |---------|-----|-------|
-| Application Insights | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`| 443 |
-| Log Analytics | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`</br>`api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>| 443 |
-| Azure Data Explorer | `ade.loganalytics.io`<br>`ade.applicationinsights.io`<br>`adx.monitor.azure.com`<br>`*.adx.monitor.azure.com`<br>`*.adx.applicationinsights.azure.com`<br>`adx.applicationinsights.azure.com`<br>`adx.loganalytics.azure.com`<br>`*.adx.loganalytics.azure.com` | 443 |
+| [Application Insights](/rest/api/application-insights/operation-groups?view=rest-application-insights-v1) | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`| 443 |
+| [Log Analytics](../logs/api/overview.md) | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`</br>`api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>| 443 |
+| [Azure Data Explorer](/azure/data-explorer/query-monitor-data) | `ade.loganalytics.io`<br>`ade.applicationinsights.io`<br>`adx.monitor.azure.com`<br>`*.adx.monitor.azure.com`<br>`*.adx.applicationinsights.azure.com`<br>`adx.applicationinsights.azure.com`<br>`adx.loganalytics.azure.com`<br>`*.adx.loganalytics.azure.com` | 443 |
 
 ## Logs Ingestion API endpoints
 
@@ -68,7 +68,7 @@ Starting **March 1, 2026**,  Logs Ingestion enforces TLS 1.2 or higher for secur
 
 | Purpose | Hostname | Ports |
 |---|---|---|
-| Logs Ingestion API | `*.ingest.monitor.azure.com`</br>`prod.la.ingest.monitor.core.windows.NET`</br>`*.prod.la.ingestion.msftcloudes.com`</br>`prod.la.ingestion.msftcloudes.com`</br>`*.prod.la.ingest.monitor.core.windows.NET` | 443 |
+| [Logs Ingestion API](../logs/logs-ingestion-api-overview.md) | `*.ingest.monitor.azure.com`</br>`prod.la.ingest.monitor.core.windows.NET`</br>`*.prod.la.ingestion.msftcloudes.com`</br>`prod.la.ingestion.msftcloudes.com`</br>`*.prod.la.ingest.monitor.core.windows.NET` | 443 |
 
 ## Application Insights analytics
 
