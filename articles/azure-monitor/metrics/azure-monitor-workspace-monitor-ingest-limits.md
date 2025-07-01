@@ -35,6 +35,59 @@ See your alerts in the Azure portal by selecting **Alerts** under the **Monitori
 
 The alert is fired if the ingestion utilization is more than the threshold. Request an increase in the limit by creating a support ticket.
 
+## Request for an increase in ingestion limits (Preview)
+
+Request for an increase in ingestion limits using Azure Resource Manager API. This API is in Preview and below conditions apply with this API:
+
+- Request for an increase in limit from the default 1 Mn events/min or active TS to up to 20 Mn events/min or active TS with an API update through cli or through ARM update. For limits above 20 mn, create a support ticket.
+  - For limit increase request up to 2 Mn, request will be auto-approved.
+  - For limit increase request above 2 Mn, current ingestion usage should be at 50% of desired limit, i.e. if customer's AMW is at 5 Mn, they can request for increase upto 10Mn. You can request up to 20 Mn.
+  - For requests beyond 20 Mn, please create a support ticket.
+- Creation of an Azure Monitor Workspace will always apply the default limits. **Creating** an AMW with custom limits is not supported.
+
+This document explains how to use the ARM API to update the data ingestion limits of your Azure Monitor Workspaces. 
+
+### Prerequisites
+
+- A command-line tool to run the ARM template commands, such as Azure PowerShell, or Azure CLI
+
+### Step 1: Download the ARM templates and update the parameters
+
+Download the ARM template files ([AMWLimitIncrease-Template.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Template.json) and [AMWLimitIncrease-Parameters.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Parameters.json) and update the Parameters.json file with the AMW name, location and required ingestion limits (maximum is 20000000).
+
+### Step 2: Execute the ARM update
+
+Run the below commands from the downloaded ARM templates folder:
+
+For Azure CLI:
+
+```azurecli
+az login
+az account set --subscription <subscriptionId>
+az deployment group create --name AmwLimits --resource-group <resourceGroupName>   --template-file AMWLimitIncrease-Template.json --parameters AMWLimitIncrease-Parameters.json
+```
+
+For Azure Powershell:
+
+```
+Connect-AzAccount
+New-AzResourceGroupDeployment -Name AmwLimits -ResourceGroupName  <resourceGroupName> -TemplateFile AMWLimitIncrease-Template.json -TemplateParameterFile AMWLimitIncrease-Parameters.json
+```
+
+### Step 3: Verify if the limits are updated
+
+To verify if the limits are updated successfully, you can go to the Azure portal, navigate to the Azure Monitor Workspace -> Metrics explorer -> In the Metric dropdown, select "View standard metrics with the builder", and then verify if the updated limits are applied to the “Active Time Series Limit” and “Events per minute Ingested Limit”.
+
+### Troubleshoot issues with increasing ingestion limits using ARM API
+
+If you see an error when using the API to request for a limit increase, check the error response to find the cause of the error.
+
+1.	Requested limit is above 20M: "ActiveTimeSeries quota requested exceeds the maximum limit of {MaxAutoApprovedActiveTimeSeries}": This error occurs when you request for a limit of 20M or more events/min or Active TS. Currently the API only supports an increase up to 20M. You can request for more ingestion limit by creating a support ticket.
+1.	Usage is less compared to requested limit: The current utilization does not meet the criteria for MaxTimeSeries quota requested. This error occurs when your current ingestion is less than 50% of the requested limt. Please reach the required usage threshold of 50% of desired limit before requesting an increase, or request a limit increase of up to 200% of your current usage. To check the current usage, go to the Azure portal, navigate to the Azure Monitor Workspace -> Metrics explorer -> In the Metric dropdown, select "View standard metrics with the builder", and then select “Active Time Series % Utliziation” and “Events per minute received % Utliziation”.
+
+
+## Request for an increase in ingestion limits through support ticket
+
 To open a support ticket:
 
 1. Select **Support + Troubleshooting** from the left pane of the Azure portal. 
