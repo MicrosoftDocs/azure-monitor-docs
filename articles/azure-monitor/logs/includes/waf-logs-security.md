@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 03/19/2025
+ms.date: 07/01/2025
 ---
 
 #### Grant access to data in the workspace based on need
@@ -20,10 +20,10 @@ Don't explicitly configure your agents, data connectors or API applications to *
 > [!IMPORTANT]
 >  In alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services), TLS 1.0/1.1 protocol will be completely blocked for Azure Monitor Logs according to the dates in the following table. To provide best-in-class encryption, Azure Monitor Logs already uses TLS 1.2/1.3 as the encryption mechanisms of choice.
 
-| Cutoff date | Logs API endpoints | TLS protocol version |
+| Enforcement date | Query API endpoints | TLS protocol version |
 |---|---|---|
-| **1 July 2025** | [Log Analytics API endpoints](../../fundamentals/azure-monitor-network-access.md#log-analytics-api-endpoints) | TLS 1.2 or higher | 
-| **1 March 20226** | [Logs Ingestion API endpoints](../../fundamentals/azure-monitor-network-access.md#log-ingestion-api-endpoints) | TLS 1.2 or higher |
+| **1 July 2025** | [Logs Query API endpoints](../../fundamentals/azure-monitor-network-access.md#logs-query-api-endpoints) | TLS 1.2 or higher | 
+| **1 March 2026** | [Logs Ingestion API endpoints](../../fundamentals/azure-monitor-network-access.md#log-ingestion-api-endpoints) | TLS 1.2 or higher |
 
 **Recommended action**
 

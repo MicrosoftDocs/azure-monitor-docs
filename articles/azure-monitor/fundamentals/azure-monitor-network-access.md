@@ -2,7 +2,7 @@
 title: Azure Monitor endpoint access and firewall configuration | Microsoft Docs
 description: Ensure your Azure resources can connect to Azure Monitor by configuring firewall rules and understanding endpoint access requirements.
 ms.topic: reference
-ms.date: 03/31/2025
+ms.date: 07/01/2025
 ms.servce: azure-monitor
 ms.reviewer: rofrenke
 ---
@@ -52,21 +52,14 @@ Application Insights Agent configuration is needed only when you're making chang
 
 For more information on availability tests, see [Private availability testing](../app/availability-private-test.md).
 
-## Application Insights API endpoints
-
-Starting **May 1, 2025**, Application Insights enforces TLS 1.2 or higher for secure communication. For more information, see [Application Insights supported TLS configurations](../fundamentals/best-practices-security.md#application-insights-tls-ingestion).
-
-| Purpose | URI | Ports |
-|---------|-----|-------|
-| Application Insights API | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`| 80,443 |
-
-## Log Analytics API endpoints
+## Logs Query API endpoints
 
 Starting **July 1, 2025**,  Log Analytics enforces TLS 1.2 or higher for secure communication. For more information, see [Secure Logs data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
 
 | Purpose | URI | Ports |
-|---|---|---|
-| Log Analytics API | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`| 80,443 |
+|---------|-----|-------|
+| Application Insights | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`| 80,443 |
+| Log Analytics | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`</br>`api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>| 80,443 |
 
 ## Logs Ingestion API endpoints
 
@@ -74,7 +67,7 @@ Starting **March 1, 2026**,  Logs Ingestion enforces TLS 1.2 or higher for secur
 
 | Purpose | URI | Ports |
 |---|---|---|
-| Logs Ingestion API | `api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>`*.ingest.monitor.azure.com`</br>`prod.la.ingest.monitor.core.windows.NET`</br>`*.prod.la.ingestion.msftcloudes.com`</br>`prod.la.ingestion.msftcloudes.com`</br>`*.prod.la.ingest.monitor.core.windows.NET` | 80,443 |
+| Logs Ingestion API | `*.ingest.monitor.azure.com`</br>`prod.la.ingest.monitor.core.windows.NET`</br>`*.prod.la.ingestion.msftcloudes.com`</br>`prod.la.ingestion.msftcloudes.com`</br>`*.prod.la.ingest.monitor.core.windows.NET` | 80,443 |
 
 ## Application Insights analytics
 
