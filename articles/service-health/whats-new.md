@@ -10,8 +10,8 @@ ms.date: 07/01/2025
 This article lists recent changes in the Azure Service Health service. 
 
 
-## New Frequently asked questions for Azure Service Health
-Check out this new page with new questions that help you understand more about Service Health.
+## Azure Service Health FAQ page
+Check out this new page with questions that help you understand more about Service Health.
 
 
 ## What's coming
