@@ -1,18 +1,22 @@
 ---
-title: Elevated access for viewing Security Advisories
-description: This article details a change that requires users to obtain elevated access roles in order to view Security Advisory details
+title: Viewing Security advisories
+description: This article describes the Security advisories blade and a change that requires users to obtain elevated access roles in order to view Security advisory details
 
 ms.topic: conceptual
-ms.date: 6/17/2025
+ms.date: 7/01/2025
 ---
 
 
 # What are Security advisories?
 
-Security Advisories are a category of Azure Service Health notifications that inform users about security events—such as vulnerabilities, threats, or policy changes—that could affect their Azure workloads. <br>
-These advisories are distinct from general service issues or maintenance alerts and are displayed in the Security Advisories blade of the Azure Service Health portal.
+The Security Advisories blade in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions. These notifications appear in the Security Advisories blade of the portal.
 
-Azure [Service Health](service-health-portal-update.md) helps customers stay informed about security events that could affect both critical and non-critical business applications. These notifications appear in the Security Advisories section of the portal.
+This blade is used to communicate critical security events such as:
+- Platform vulnerabilities
+- Security incidents
+- Privacy breaches
+
+These advisories are distinct from general health or service issues because they often involve sensitive information and require elevated access roles to view the full details. 
 
 Each advisory typically includes four key sections:
 
@@ -22,14 +26,13 @@ Each advisory typically includes four key sections:
 - **Impacted Resources** – Specific resources in your environment that are affected.
 
 
-
 :::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories Blade."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
 
 
 
-## Access requirements
+## Elevated Access requirements
 
-Due to the sensitive nature of the information, **elevated access roles** are required to view full details of Security Advisories:
+Due to the sensitive nature of the information, elevated access roles are required to view full details of Security Advisories:
 
 - Users must have appropriate **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
 - Only users with elevated roles can access the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
@@ -41,7 +44,7 @@ Users with tenant roles [listed here](admin-access-reference.md) can also access
 
 
 
-## Changes to Service Health API endpoint
+## Changes to the Service Health API endpoint
 
 API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details.<br> Users with the specified roles can view sensitive event details for a specific event with the new endpoint. <br>The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details. 
 
