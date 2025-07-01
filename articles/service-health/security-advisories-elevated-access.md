@@ -28,12 +28,6 @@ Each advisory typically includes four key sections:
 
 :::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories Blade."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
 
-When you open a Security advisory it typically includes:
-
-- Current security vulnerabilities or threats affecting Azure services.
-- Mitigation steps or recommended actions for affected users.
-- Status updates and resolution timelines from Microsoft.
-- Links to detailed documentation or incident reports.
 
 ## Elevated Access requirements
 
