@@ -12,7 +12,7 @@ ms.date: 7/01/2025
 Learn how to configure Azure Service Health alerts to notify you about service incidents using webhooks. This setup enables seamless integration with your existing notification platforms, such as ServiceNow, PagerDuty, or OpsGenie.
 
 
-## Use a webhook to configure health notifications for problem management systems
+## Use a webhook to configure health notifications
 
 This guide outlines the key components of the webhook payload and demonstrates how to set up custom alerts to keep you informed about relevant service issues.
 
