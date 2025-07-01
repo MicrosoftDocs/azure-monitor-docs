@@ -23,7 +23,7 @@ Don't explicitly configure your agents, data connectors or API applications to *
 | Enforcement date | Query API endpoints | TLS protocol version |
 |---|---|---|
 | **1 July 2025** | [Logs Query API endpoints](../../fundamentals/azure-monitor-network-access.md#logs-query-api-endpoints) | TLS 1.2 or higher | 
-| **1 March 2026** | [Logs Ingestion API endpoints](../../fundamentals/azure-monitor-network-access.md#log-ingestion-api-endpoints) | TLS 1.2 or higher |
+| **1 March 2026** | [Logs Ingestion API endpoints](../../fundamentals/azure-monitor-network-access.md#logs-ingestion-api-endpoints) | TLS 1.2 or higher |
 
 **Recommended action**
 

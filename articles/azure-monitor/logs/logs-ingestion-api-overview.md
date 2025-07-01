@@ -10,7 +10,7 @@ ms.date: 06/16/2025
 The Logs Ingestion API in Azure Monitor lets you send data to a Log Analytics workspace using either a [REST API call](#rest-api-call) or [client libraries](#client-libraries). The API allows you to send data to [supported Azure tables](#supported-tables) or to [custom tables that you create](create-custom-table.md#create-a-custom-table). You can also [extend the schema of Azure tables with custom columns](create-custom-table.md#add-or-delete-a-custom-column) to accept additional data.
 
 > [!IMPORTANT]
-> Starting March 1, 2026, the [Logs Ingestion API](../fundamentals/azure-monitor-network-access.md#logs-ingestion-api-endpoints) will enforce TLS 1.2 or higher connections. For more information, see [Secure Logs data in transit](../fundamentals/best-practices-security.md#secure-data-in-transit).
+> Starting March 1, 2026, the [Logs Ingestion API](../fundamentals/azure-monitor-network-access.md#logs-ingestion-api-endpoints) will enforce TLS 1.2 or higher connections. For more information, see [Secure Logs data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
 
 ## Basic operation
 
