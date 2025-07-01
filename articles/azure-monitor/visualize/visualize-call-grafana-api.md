@@ -49,7 +49,7 @@ You now need to gather some information, which you'll use to get a Grafana API a
    1. Select **Properties** from the left menu.
    1. Locate the field **Tenant ID** and save its value.
 
-    :::image type="content" source="./media/visualizations-grafana/app-registration-tenant-id.png" alt-text="Screenshot of the Azure portal, getting tenant ID.":::
+    :::image type="content" source="media/visualizations-grafana/app-registration-tenant-id.png" alt-text="Screenshot of the Azure portal, getting tenant ID.":::
 
 1. Find your client ID:
    1. In the Azure portal, in Microsoft Entra ID, select **App registrations** from the left menu.
