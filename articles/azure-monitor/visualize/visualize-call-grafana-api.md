@@ -91,7 +91,7 @@ Sign in to the Azure CLI by running the [az login](/cli/azure/reference-index?vi
 az login --service-principal --username "<client-id>" --password "<client-secret>" --tenant "<tenant-id>"
 ```
 
-Use the command [az account get-access-token](cli/azure/account?view=azure-cli-latest#az-account-get-access-token) to get an access token. Here's an example:
+Use the command [az account get-access-token](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token) to get an access token. Here's an example:
 
 ```
 az account get-access-token --tenant 00000000-0000-0000-0000-000000000000
