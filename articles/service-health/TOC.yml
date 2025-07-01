@@ -84,6 +84,8 @@
   items:
     - name: Resource Health FAQ
       href: resource-health-faq.yml
+    - name: Service Health FAQ
+      href: service-health-faq.yml
 - name: External Resources
   items:
   - name: Azure Roadmap
