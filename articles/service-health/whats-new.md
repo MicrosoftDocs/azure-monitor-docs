@@ -9,13 +9,14 @@ ms.date: 07/01/2025
 
 This article lists recent changes in the Azure Service Health service. 
 
+
 ## New Frequently asked questions for Azure Service Health
-Check out this new page with new questions that will help you understand more about Service Health.
+Check out this new page with new questions that help you understand more about Service Health.
 
 
 ## What's coming
 
 ### New Communication Event tags
-There will be new metadata tags for communication events to filter through the service health events in the portal.
+An introduction to new metadata tags for communication events to filter through the service health events in the portal.
 
 
