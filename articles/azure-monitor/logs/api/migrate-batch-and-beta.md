@@ -1,27 +1,37 @@
 ---
 title: Migrate from using batch and beta queries to the standard Log Analytics query API 
-description: Migrate from using batch and beta queries to the standard query API.
-ms.date: 04/01/2025
+description: Migrate from the batch operation and beta version of the Log Analytics and Application Insights APIs
+ms.date: 06/25/2025
 ms.reviewer: ron.frenkel
 ms.topic: upgrade-and-migration-article
 ---
 
-# Migrate from using batch and beta queries to the standard Log Analytics query API
+# Migrate from Logs Query API batch operation and beta version
 
-Azure Monitor Logs is deprecating the batch query and beta query APIs. Support for these APIs is available according to the following timelines:
+The Azure Monitor Logs Query API is deprecating the `batch` query operation and the `beta` API version. Support for these features is available according to the following timelines:
 
-| Deprecated API | Identifier | Support cutoff date |
+| Support cutoff date | Deprecation | Migration steps |
+|---|---|---|
+| March 31, 2026 | Logs Query API `beta` version | [Change `beta` path to `v1`](#change-beta-path-to-v1) |
+| March 31, 2028 | Logs Query API `batch` operation | [Split batch queries into single queries](#split-batch-queries-to-single-queries) |
+
+### Change `beta` path to `v1`
+
+To migrate from the `beta` version of the Logs Query API, change the path in your API calls from `beta` to `v1`.
+
+| Operation group reference | URI examples |
 |---|---|
-| beta | `https://api.loganalytics.azure.com/beta/` | March 31, 2026 |
-| batch | `https://api.loganalytics.azure.com/v1/$batch` | March 31, 2028 |
+| [Log Analytics](/rest/api/loganalytics/operation-groups?view=rest-loganalytics-2022-10-27-preview)<br>`query`<br>`metadata` |  `https://api.loganalytics.azure.com/beta/`<br>`https://api.loganalytics.io/beta/` |
+| Log Analytics via ARM<a id="note1"></a><sup>1</sup><br>`query`<br>`metadata` | `https://management.azure.com/.../api/query?api-version=2017-01-01-preview`<br>`https://management.azure.com/.../api/metadata?api-version=2017-01-01-preview` |
+| [Application Insights](/rest/api/application-insights/operation-groups?view=rest-application-insights-v1)<br>`query`<br>`metadata`<br>`metrics`<br>`events` | `https://api.applicationinsights.azure.com/beta/`<br>`https://api.applicationinsights.io/beta/` |
 
-This article explains how to use the [standard Log Analytics query API](overview.md) for existing queries that currently use the batch query and beta query APIs.
+<a href="#note1"><sup>1</sup></a>Log Analytics queries via ARM should migrate to the Logs Query API `v1` [request format](request-format.md#public-api-format).
 
-## Migrate batch queries to single queries
+### Split batch queries to single queries
 
-To migrate [batch API calls](batch-queries.md), split every query that you previously sent as part of the `requests` array in the body of the message and use `query` section in the [standard request format](request-format.md) instead.
+To migrate [batch API calls](batch-queries.md), split every query that you previously sent as part of the `requests` array in the body of the message and use the `query` section in the [request format](request-format.md#post-query) instead.
 
-If you use an Azure SDK client library listed below to initiate batch queries, split batched queries to run as separate queries using the corresponding method.
+If you use an Azure SDK client library to initiate batch queries, split batched queries to run as separate queries using the corresponding methods.
 
 | Ecosystem  | Package                                                                                                |
 |------------|--------------------------------------------------------------------------------------------------------|
@@ -31,8 +41,4 @@ If you use an Azure SDK client library listed below to initiate batch queries, s
 | JavaScript | [@azure/monitor-query](/javascript/api/overview/azure/monitor-query-readme)                            |
 | Python     | [azure-monitor-query](/python/api/overview/azure/monitor-query-readme)                                 |
 
-Make sure to adjust and handle the response using [the standard response format](response-format.md).
-
-## Migrate beta queries to standard queries
-
-To migrate queries that use the `beta` API version - for example, `https://api.loganalytics.io/beta/workspaces/{workspaceId}/query` - use the [standard request format](request-format.md) instead.
+Make adjustments to handle the response using the Logs Query API [response format](response-format.md).
