@@ -30,6 +30,9 @@ The following table lists the proxy and firewall configuration information requi
 > [!NOTE]
 > When using AMA with AMPLS, all of your Data Collection Rules must use Data Collection Endpoints. Those DCEs must be added to the AMPLS configuration using [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls)
 
+> [!IMPORTANT]
+> Using the `NO_PROXY` environment variable to bypass proxy settings is **not supported** when your cluster uses an HTTPS proxy **and** is configured as a private cluster. In this scenario, you must ensure that the required endpoints listed in the tables above are allowed through your proxy as well.
+
 ## Microsoft Azure operated by 21Vianet cloud
 
 | Endpoint                                                 | Purpose                                                                         | Port |

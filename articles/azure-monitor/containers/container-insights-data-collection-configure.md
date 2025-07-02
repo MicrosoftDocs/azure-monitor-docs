@@ -79,7 +79,7 @@ Using the Azure portal, you can select from multiple preset configurations for d
 
 ### [CLI](#tab/cli)
 
-### Configure DCR with Azure portal
+### Configure DCR with CLI
 
 #### Prerequisites
 

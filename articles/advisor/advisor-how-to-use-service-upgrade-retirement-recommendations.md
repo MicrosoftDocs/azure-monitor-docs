@@ -21,7 +21,9 @@ Azure services periodically undergo a retirement and upgrade journey, necessitat
 The **Service Upgrade and Retirement** subcategory of recommendations under **Reliability** category, includes both upgrade and retirement recommendations. The upgrade and retirement recommendations are a superset of the [retirement updates provided using customer communication](https://azure.microsoft.com/updates "Azure Updates | Microsoft Azure"). The recommendations intended for upgrades but not associated with any retirements will have 'Retirement Date' and 'Retiring Feature' values marked as N/A or null.
 
 Previously, [retirement recommendations were only available through Advisor workbooks](./advisor-workbook-service-retirement.md "Service Retirement workbook | Azure Advisor | Microsoft Learn") that are in preview mode. Now, you also have access to the information using the native user experience in Azure Advisor and Azure Advisor REST API requests. Based on your requirements and comfort, choose your route. <br>
-NOTE - Only recommendations with available impacted resources information will be displayed in the portal UI, and the API response will reflect the same. For more information about impacted Resources, see [Coverage of Services](#coverage-of-services).
+
+>[!NOTE]
+>Only recommendations with available impacted resources information will be displayed in the portal UI, and the API response will reflect the same. For more information about impacted Resources, see [Coverage of Services](#coverage-of-services).
 
 ### [Recommendations pane](#tab/portal)
 
@@ -60,8 +62,11 @@ To get a list of all of the upgrade and retirement recommendations, [use the `Re
 The following code sample uses `2025-01-01`  for the `api-version`.
 
 ```https
-https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter=recommendationCategory eq 'HighAvailability' and recommendationControl eq 'ServiceUpgradeAndRetirement'
+https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter=recommendationCategory eq 'HighAvailability' and recommendationSubCategory eq 'ServiceUpgradeAndRetirement'
 ```
+
+>[!Note]
+> `recommendationControl` is a legacy filter property and will be deprecated in the future. Use `recommendationSubCategory` for filtering recommendation subcategory.
 
 #### Sample Recommendation Metadata - List API response
 
@@ -88,8 +93,11 @@ To get list of **Impacted Resources** in a subscription by the retirement and re
 The following code sample uses `2025-01-01`  for the `api-version`.
 
 ```https
-https://management.azure.com/subscriptions/<Subscription-Id-Guid>/providers/Microsoft.Advisor/recommendations?api-version=2025-01-01&$filter=Category eq 'HighAvailability' and Control eq 'ServiceUpgradeAndRetirement'
+https://management.azure.com/subscriptions/<Subscription-Id-Guid>/providers/Microsoft.Advisor/recommendations?api-version=2025-01-01&$filter=Category eq 'HighAvailability' and SubCategory eq 'ServiceUpgradeAndRetirement'
 ```
+
+>[!Note]
+> `Control` is a legacy filter property and will be deprecated in the future. Use `SubCategory` for filtering recommendation subcategory.
 
 #### Sample Recommendations - List API response
 
@@ -111,7 +119,7 @@ The retirement recommendations are available in the native user experience in Ad
 advisorresources
 | where type == "microsoft.advisor/recommendations"
 | where properties.category == "HighAvailability"
-| where properties.extendedProperties.recommendationControl == "ServiceUpgradeAndRetirement"
+| where properties.extendedProperties.recommendationSubCategory == "ServiceUpgradeAndRetirement"
 | extend retirementFeatureName = properties.extendedProperties.retirementFeatureName
 | extend retirementDate = properties.extendedProperties.retirementDate
 | extend resourceId = properties.resourceMetadata.resourceId
