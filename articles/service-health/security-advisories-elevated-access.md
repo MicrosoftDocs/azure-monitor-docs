@@ -3,7 +3,7 @@ title: Viewing Security advisories
 description: This article describes the Security advisories blade and a change that requires users to obtain elevated access roles in order to view Security advisory details
 
 ms.topic: conceptual
-ms.date: 7/01/2025
+ms.date: 7/02/2025
 ---
 
 
@@ -26,18 +26,19 @@ Each advisory typically includes four key sections:
 - **Impacted Resources** – Specific resources in your environment that are affected.
 
 
-:::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories Blade."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
+:::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories blade."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
 
 
-## Elevated Access requirements
+## Who can view Security advisories? 
 
-Due to the sensitive nature of the information, elevated access roles are required to view full details of Security Advisories:
+Because the information in this tab is sensitive, Role-Based Access Control (RBAC) is required to view security-impacted resources through the UI or API.
 
 - Users must have appropriate **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
 - Only users with elevated roles can access the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
 - Users with only reader access or tenant-level roles can't view sensitive details unless they're assigned the appropriate elevated permissions.
 
 For more information, read [this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.<br>
+
 Users with tenant roles [listed here](admin-access-reference.md) can also access tenant level security advisory details on the **Summary** and **Issue Updates** tabs.
 
 
@@ -107,4 +108,5 @@ The following properties in the events object response aren't populated for sens
 
 * [Keep informed about Azure security events](stay-informed-security.md)
 * [Resource impact from Azure security incidents](impacted-resources-security.md)
-* [Azure Resource Health frequently asked questions](resource-health-faq.yml)
+* [Resource Health frequently asked questions](resource-health-faq.yml)
+* [Service Health frequently asked questions](service-health-faq.yml)
