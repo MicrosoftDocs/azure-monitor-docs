@@ -11,7 +11,8 @@ This article lists recent changes in the Azure Service Health service.
 
 
 ## Azure Service Health FAQ page
-Check out this new page with questions that help you understand more about Service Health.
+Check out this new page with questions that help you understand more about Service Health.<br>
+For more information see [Service Health FAQ](service-health-faq.yml).
 
 
 ## What's coming
