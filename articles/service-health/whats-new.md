@@ -10,19 +10,19 @@ ms.date: 07/02/2025
 This article lists recent changes in the Azure Service Health service. 
 
 
-## New Event tags
+### New Event tags
 There's a new field in the Azure Service Health portal called "Event tags" attached to individual service health communications to help users quickly understand the nature and status of an event.
 This field is informational only. See [Service Health Event tags](service-health-event-tags.md)
 
 
-## Azure Service Health FAQ page
+### Azure Service Health FAQ page
 Check out this new page with questions that help you understand more about Service Health.<br>
 For more information see [Service Health FAQ](service-health-faq.yml).
 
 
-## What's coming
+### What's coming
 
-### New option to create tenant-based Service Health alerts.
+#### Create tenant-based Service Health alerts.
 There will be option to create tenant-based Service Health alerts.
 
 
