@@ -656,7 +656,46 @@ The default configuration collects `ILogger` `Warning` logs and more severe logs
 
 ### Dependencies
 
-Dependency collection is enabled by default. [Dependency tracking in Application Insights](asp-net-dependencies.md#automatically-tracked-dependencies) explains the dependencies that are automatically collected and also contains steps to do manual tracking.
+#### Automatically tracked dependencies
+
+Application Insights SDKs for .NET and .NET Core ship with `DependencyTrackingTelemetryModule`, which is a telemetry module that automatically collects dependencies. The module `DependencyTrackingTelemetryModule` is shipped as the [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/) NuGet package and brought automatically when you use either the `Microsoft.ApplicationInsights.Web` NuGet package or the `Microsoft.ApplicationInsights.AspNetCore` NuGet package.
+
+ Currently, `DependencyTrackingTelemetryModule` tracks the following dependencies automatically:
+
+| Dependencies | Details |
+|--------------|---------|
+|HTTP/HTTPS | Local or remote HTTP/HTTPS calls. |
+|WCF calls| Only tracked automatically if HTTP-based bindings are used.|
+|SQL | Calls made with `SqlClient`. See the section [Advanced SQL tracking to get full SQL query](#advanced-sql-tracking-to-get-full-sql-query) for capturing SQL queries. |
+|[Azure Blob Storage, Table Storage, or Queue Storage](https://www.nuget.org/packages/WindowsAzure.Storage/) | Calls made with the Azure Storage client. |
+|[Azure Event Hubs client SDK](https://nuget.org/packages/Azure.Messaging.EventHubs) | Use the latest package: https://nuget.org/packages/Azure.Messaging.EventHubs. |
+|[Azure Service Bus client SDK](https://nuget.org/packages/Azure.Messaging.ServiceBus)| Use the latest package: https://nuget.org/packages/Azure.Messaging.ServiceBus. |
+|[Azure Cosmos DB](https://www.nuget.org/packages/Microsoft.Azure.Cosmos) | Tracked automatically if HTTP/HTTPS is used. Tracing for operations in direct mode with TCP are captured automatically using preview package >= [3.33.0-preview](https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.33.0-preview). For more details, visit the [documentation](/azure/cosmos-db/nosql/sdk-observability). |
+
+If you're missing a dependency or using a different SDK, make sure it's in the list of [autocollected dependencies](#dependency-autocollection). If the dependency isn't autocollected, you can track it manually with a [track dependency call](./api-custom-events-metrics.md#trackdependency).
+
+#### Set up automatic dependency tracking in console apps
+
+# [ASP.NET](#tab/net)
+
+To automatically track dependencies from .NET console apps, install the NuGet package `Microsoft.ApplicationInsights.DependencyCollector` and initialize `DependencyTrackingTelemetryModule`:
+
+```csharp
+    DependencyTrackingTelemetryModule depModule = new DependencyTrackingTelemetryModule();
+    depModule.Initialize(TelemetryConfiguration.Active);
+```
+
+# [ASP.NET Core](#tab/core)
+
+For .NET Core console apps, `TelemetryConfiguration.Active` is obsolete. See the guidance in the [Worker service documentation](./worker-service.md) and the [ASP.NET Core monitoring documentation](./asp-net-core.md).
+
+#### How does automatic dependency monitoring work?
+
+Dependencies are automatically collected by using one of the following techniques:
+
+* Using byte code instrumentation around select methods. Use `InstrumentationEngine` either from `StatusMonitor` or an Azure App Service Web Apps extension.
+* `EventSource` callbacks.
+* `DiagnosticSource` callbacks in the latest .NET or .NET Core SDKs.
 
 ### Performance counters
 
