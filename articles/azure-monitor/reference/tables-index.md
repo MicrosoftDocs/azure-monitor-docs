@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 06/12/2025
+ms.date: 06/30/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -268,14 +268,9 @@ Microsoft.DocumentDb/databaseAccounts
 Microsoft.DocumentDB/mongoClusters  
 
 - [VCoreMongoRequests](./tables/vcoremongorequests.md)
-
-### Azure Cosmos DB for PostgreSQL  
-
-Microsoft.DBForPostgreSQL/servergroupsv2  
-
 - [AzureActivity](./tables/azureactivity.md)
-- [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [AzureDiagnostics](./tables/azurediagnostics.md)
 
 ### Azure Data Explorer Clusters  
 
@@ -823,13 +818,6 @@ Microsoft.DesktopVirtualization/workspaces
 - [WVDCheckpoints](./tables/wvdcheckpoints.md)
 - [WVDManagement](./tables/wvdmanagement.md)
 
-### Dev Center Plans  
-
-Microsoft.DevCenter/plans  
-
-- [AzureActivity](./tables/azureactivity.md)
-- [AzureMetrics](./tables/azuremetrics.md)
-
 ### Dev Centers  
 
 Microsoft.DevCenter/devcenters  
@@ -1045,6 +1033,7 @@ Microsoft.HealthcareApis/workspaces
 Microsoft.Logic/integrationAccounts  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [LIATrackingEvents](./tables/liatrackingevents.md)
 
 ### Intune Specialist Reports.  
 
@@ -1284,7 +1273,7 @@ microsoft.standbypool/standbyvirtualmachinepools
 
 Microsoft.ManagedNetworkFabric/networkDevices  
 
-- [Azuremetrics](./tables/azuremetrics.md)
+- [AzureMetrics](./tables/azuremetrics.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [MNFDeviceUpdates](./tables/mnfdeviceupdates.md)
 - [MNFSystemStateMessageUpdates](./tables/mnfsystemstatemessageupdates.md)
