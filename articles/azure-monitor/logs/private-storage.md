@@ -23,7 +23,7 @@ Custom log content uploaded to customer-managed storage accounts might change in
 > Starting June 30, 2025, creating or updating **Custom logs and IIS logs** linked storage accounts will no longer be available. Existing storage accounts will be unlinked by November 1, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
 
 > [!WARNING]
-> Starting August 31, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
+> Starting August 31, 2025, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
 
 | Action | Permission required |
 |---|---|
