@@ -12,7 +12,7 @@ This article lists recent changes in the Azure Service Health service.
 
 ### New Event tags
 There's a new field in the Azure Service Health portal called "Event tags" attached to individual service health communications to help users quickly understand the nature and status of an event.
-This field is informational only. See [Service Health Event tags](service-health-event-tags.md)
+This field is informational only. See [Service Health Event tags](service-health-event-tags.md).
 
 
 ### Azure Service Health FAQ page
