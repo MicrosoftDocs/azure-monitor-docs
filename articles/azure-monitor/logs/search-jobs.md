@@ -273,21 +273,21 @@ Search jobs are subject to the following limitations:
 
 When you reach the record limit, Azure aborts the job with a status of *partial success*, and the table contains only records ingested up to that point. 
 
-### KQL query limitations
+### KQL query considerations
 
-Search jobs are intended to scan large volumes of data in a specific table. Therefore, search job queries must always start with a table name. To enable asynchronous execution using distribution and segmentation, the query supports a subset of KQL, including the operators: 
+Search jobs are intended to scan large volumes of data in a specific table, so search job queries must always start with a table name. To enable asynchronous execution using distribution and segmentation, the query supports a subset of KQL, including these operators: 
 
-* `[where](/azure/data-explorer/kusto/query/whereoperator)`
-* `[extend](/azure/data-explorer/kusto/query/extendoperator)`
-* `[project](/azure/data-explorer/kusto/query/projectoperator)`
-* `[project-away](/azure/data-explorer/kusto/query/projectawayoperator)`
-* `[project-keep](/azure/data-explorer/kusto/query/project-keep-operator)`
-* `[project-rename](/azure/data-explorer/kusto/query/projectrenameoperator)`
-* `[project-reorder](/azure/data-explorer/kusto/query/projectreorderoperator)`
-* `[parse](/azure/data-explorer/kusto/query/parse-operator)`
-* `[parse-where](/azure/data-explorer/kusto/query/parse-where-operator)`
+* [`where`](/azure/data-explorer/kusto/query/whereoperator)
+* [`extend`](/azure/data-explorer/kusto/query/extendoperator)
+* [`project`](/azure/data-explorer/kusto/query/projectoperator)
+* [`project-away`](/azure/data-explorer/kusto/query/projectawayoperator)
+* [`project-keep`](/azure/data-explorer/kusto/query/project-keep-operator)
+* [`project-rename`](/azure/data-explorer/kusto/query/projectrenameoperator)
+* [`project-reorder`](/azure/data-explorer/kusto/query/projectreorderoperator)
+* [`parse`](/azure/data-explorer/kusto/query/parse-operator)
+* [`parse-where`](/azure/data-explorer/kusto/query/parse-where-operator)
 
-You can use all functions and binary operators within these operators.
+All functions and binary operators within these operators are usable.
 
 ## Pricing model
 
