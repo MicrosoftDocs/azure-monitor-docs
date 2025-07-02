@@ -25,6 +25,4 @@ For more information see [Service Health FAQ](service-health-faq.yml).
 ### New option to create tenant-based Service Health alerts.
 There will be option to create tenant-based Service Health alerts.
 
-### New Communication Event tags
-An introduction to new metadata tags for communication events to filter through the service health events in the portal.
 
