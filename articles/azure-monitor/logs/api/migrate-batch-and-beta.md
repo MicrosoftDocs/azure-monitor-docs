@@ -22,7 +22,7 @@ To migrate from the `beta` version of the Logs Query API, change the path in you
 | Operation group reference | URI examples |
 |---|---|
 | [Log Analytics](/rest/api/loganalytics/operation-groups?view=rest-loganalytics-2022-10-27-preview)<br>`query`<br>`metadata` |  `https://api.loganalytics.azure.com/beta/`<br>`https://api.loganalytics.io/beta/` |
-| Log Analytics via ARM[<sup>1</sup>]((https://github.com/Azure/azure-rest-api-specs/blob/main/specification/operationalinsights/data-plane/Microsoft.OperationalInsights/preview/2017-10-01/swagger.json))<br>`query`<br>`metadata` | `https://management.azure.com/.../api/query?api-version=2017-01-01-preview`<br>`https://management.azure.com/.../api/metadata?api-version=2017-01-01-preview` |
+| Log Analytics via ARM[<sup>1</sup>]((https://github.com/Azure/azure-rest-api-specs/blob/main/specification/operationalinsights/data-plane/Microsoft.OperationalInsights/preview/2017-10-01))<br>`query`<br>`metadata` | `https://management.azure.com/.../api/query?api-version=2017-01-01-preview`<br>`https://management.azure.com/.../api/metadata?api-version=2017-01-01-preview` |
 | [Application Insights](/rest/api/application-insights/operation-groups?view=rest-application-insights-v1)<br>`query`<br>`metadata`<br>`metrics`<br>`events` | `https://api.applicationinsights.azure.com/beta/`<br>`https://api.applicationinsights.io/beta/` |
 
 For more information, see the Logs Query API [request format](request-format.md#public-api-format).
