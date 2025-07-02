@@ -8,7 +8,6 @@ ms.date: 7/02/2025
 # Service Health event tags
 
 
-
 This article explains the differences between event level and event tags in Azure Service Health. 
 
 **Event** tags are metadata labels that help users understand the nature of service health communications. 
