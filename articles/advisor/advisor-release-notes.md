@@ -198,7 +198,7 @@ Advisor now provides more filtering capabilities. You can filter recommendations
 
 ## November 2022
 
-### New cost recommendations for virtual machine scale sets
+### New cost recommendation for virtual machine scale sets
 
 Advisor now offers cost-optimization recommendations for virtual machine scale sets. They include shutdown recommendations for resources that we detect aren't used at all. They also include SKU change or instance count reduction recommendations for resources that we detect are underutilized. An example recommendation is for resources where we think customers are paying for more than what they might need based on the workloads running on the resources.
 
