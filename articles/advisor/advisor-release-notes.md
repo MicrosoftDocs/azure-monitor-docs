@@ -21,33 +21,33 @@ Azure Advisor now includes new recommendations that help improve zonal resilienc
  
   Resource type: microsoft.containerservice/managedclusters
 
-  [Configure and deploy AKS clusters and related resources to use Availability Zones](https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#configure-and-deploy-azure-kubernetes-service-aks-and-related-resources-to-use-availability-zones).
+  [Configure and deploy AKS clusters and related resources to use Availability Zones](/azure/advisor/advisor-reference-reliability-recommendations#configure-and-deploy-azure-kubernetes-service-aks-and-related-resources-to-use-availability-zones).
 
 * VPN Gateway
 
   Resource type: microsoft.network/virtualnetworkgateways/vpn
 
-  [Deploy VPN gateways and associated resources across Availability Zones](https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#configure-and-deploy-vpn-gateway-and-related-resources-to-use-availability-zones).
+  [Deploy VPN gateways and associated resources across Availability Zones](/azure/advisor/advisor-reference-reliability-recommendations#configure-and-deploy-vpn-gateway-and-related-resources-to-use-availability-zones).
 
 * Azure Firewall
 
   Resource type: microsoft.network/azurefirewalls
 
-  [Deploy Azure Firewall instances across multiple Availability Zones](https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#deploy-azure-firewall-across-multiple-availability-zones).
+  [Deploy Azure Firewall instances across multiple Availability Zones](/azure/advisor/advisor-reference-reliability-recommendations#deploy-azure-firewall-across-multiple-availability-zones).
 
 * Azure Database for PostgreSQL – Flexible Server
 
   Resource type: microsoft.dbforpostgresql/flexibleservers
 
-  [Enable high availability by configuring zone-redundant deployments](https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#enable-high-availability-with-zone-redundancy).
+  [Enable high availability by configuring zone-redundant deployments](/azure/advisor/advisor-reference-reliability-recommendations#enable-high-availability-with-zone-redundancy).
 
 * Load Balancer
 
   Resource type: microsoft.network/loadbalancers
 
-  [Configure and deploy load balancers and related resources to span Availability Zones](https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#configure-and-deploy-load-balancers-and-related-resources-to-use-availability-zones).
+  [Configure and deploy load balancers and related resources to span Availability Zones](/azure/advisor/advisor-reference-reliability-recommendations#configure-and-deploy-load-balancers-and-related-resources-to-use-availability-zones).
 
-For more information about how Availability Zones support resiliency, see [What are availability zones](https://learn.microsoft.com/azure/reliability/availability-zones-overview).
+For more information about how Availability Zones support resiliency, see [What are availability zones](/azure/reliability/availability-zones-overview).
 
 ## April 2025
 
@@ -55,7 +55,7 @@ For more information about how Availability Zones support resiliency, see [What 
 
 Azure Advisor now supports resource-level targeting for recommendations curated by Microsoft account teams as part of Resiliency Reviews. This enhancement allows enterprise customers to receive and manage resiliency guidance scoped to individual Azure resources, rather than entire subscriptions. It improves the precision and relevance of recommendations, making it easier for organizations to align remediation efforts with specific workloads and operational responsibilities.
 
-To learn more, see [Azure Advisor resiliency reviews](https://learn.microsoft.com/azure/advisor/advisor-resiliency-reviews).
+To learn more, see [Azure Advisor resiliency reviews](/advisor/advisor-resiliency-reviews).
 
 ### Service retirements 
 
