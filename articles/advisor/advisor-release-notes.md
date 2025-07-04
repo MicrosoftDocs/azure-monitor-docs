@@ -11,6 +11,12 @@ Learn about the latest updates and changes in Azure Advisor with the items in th
 
 ## April 2025
 
+### Resiliency Reviews Now Support Resource-Level Recommendations
+
+Azure Advisor now supports resource-level targeting for recommendations curated by Microsoft account teams as part of Resiliency Reviews. This enhancement allows enterprise customers to receive and manage resiliency guidance scoped to individual Azure resources, rather than entire subscriptions. It improves the precision and relevance of recommendations, making it easier for organizations to align remediation efforts with specific workloads and operational responsibilities.
+
+To learn more, see [Azure Advisor resiliency reviews](https://learn.microsoft.com/azure/advisor/advisor-resiliency-reviews).
+
 ### Service retirements 
 
 Advisor now offers upgrade and retirement recommendations, delivering essential guidance on upcoming service changes. These recommendations empower customers to proactively manage Azure resources, preserving their integrity and ensuring a resilient cloud environment. Customers can access these insights through both the UI and API.
@@ -33,7 +39,7 @@ The aggregated savings estimate is no longer available in Advisor portal. Evalua
 
 To learn more, see [Calculate cost savings](./advisor-how-to-calculate-total-cost-savings.md).
 
-### Public preview: Resiliency review on Azure Advisor
+### Public preview: Resiliency reviews
 
 Recommendations from Azure Well-Architected Framework (WAF) Reliability reviews in Advisor help you focus on the most important recommendations to ensure that your workloads remain resilient. As part of the review, personalized and prioritized recommendations from Microsoft Cloud Solution Architects are presented to you and your team. You can triage recommendations (accept or reject), manage their lifecycle on Advisor, and work with your Microsoft account team to track resolution. You can reach out to your account team to request a WAF Reliability assessment to successfully optimize workload resiliency and reliability by implementing curated recommendations and track its lifecycle on Advisor.
 
