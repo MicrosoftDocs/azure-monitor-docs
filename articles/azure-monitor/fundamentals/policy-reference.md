@@ -15,7 +15,7 @@ The name of each built-in policy definition links to the policy definition in th
 
 ## Azure Monitor
 
-[!INCLUDE [azure-policy-reference-policies-monitor](~/azure-docs-pr/includes/policy/reference/bycat/policies-monitoring.md)]
+[!INCLUDE [azure-policy-reference-policies-monitor](~/azure-policy-autogen-docs/includes/policy/reference/bycat/policies-monitoring.md)]
 
 ## Next steps
 
