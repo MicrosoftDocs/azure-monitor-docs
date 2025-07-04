@@ -67,7 +67,7 @@ To learn more, see [Use Service Upgrade and Retirement recommendations](/azure/a
 
 ### Advisor Score update
 
-The scoring logic for Reliability, Performance, and Operational Excellence has been updated to improve accuracy. Scores are now calculated using fixed-weight sub-categories aligned to best practices, making them more transparent and actionable. 
+The scoring logic for Reliability, Performance, and Operational Excellence was updated to improve accuracy. Scores are now calculated using fixed-weight subcategories aligned to best practices, making them more transparent and actionable. 
 
 To learn more, see [Advisor Score](./advisor-score.md).
 
@@ -107,7 +107,7 @@ To learn more, see [Use Azure disks with zone-redundant storage for higher resil
 
 Advisor now has a new version of the Service Retirement workbook that includes three major changes:
 
-* Ten new services are onboarded to the workbook. The retirement workbook now covers 40 services.
+* 10 new services are onboarded to the workbook. The retirement workbook now covers 40 services.
 * Seven services that completed their retirement lifecycle are off-boarded.
 * User experience and navigation are improved.
 
