@@ -55,13 +55,13 @@ For more information about how Availability Zones support resiliency, see [What 
 
 Azure Advisor now supports resource-level targeting for recommendations curated by Microsoft account teams as part of Resiliency Reviews. This enhancement allows enterprise customers to receive and manage resiliency guidance scoped to individual Azure resources, rather than entire subscriptions. It improves the precision and relevance of recommendations, making it easier for organizations to align remediation efforts with specific workloads and operational responsibilities.
 
-To learn more, see [Azure Advisor resiliency reviews](/advisor/advisor-resiliency-reviews).
+To learn more, see [Azure Advisor Resiliency reviews](/azure/advisor/advisor-resiliency-reviews).
 
 ### Service retirements 
 
 Advisor now offers upgrade and retirement recommendations, delivering essential guidance on upcoming service changes. These recommendations empower customers to proactively manage Azure resources, preserving their integrity and ensuring a resilient cloud environment. Customers can access these insights through both the UI and API.
 
-To learn more, see [Use Service Upgrade and Retirement recommendations](./advisor-how-to-use-service-upgrade-retirement-recommendations.md).
+To learn more, see [Use Service Upgrade and Retirement recommendations](/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations.md).
 
 ## March 2025
 
