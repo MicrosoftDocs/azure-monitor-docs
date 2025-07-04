@@ -61,7 +61,7 @@ To learn more, see [Azure Advisor Resiliency reviews](/azure/advisor/advisor-res
 
 Advisor now offers upgrade and retirement recommendations, delivering essential guidance on upcoming service changes. These recommendations empower customers to proactively manage Azure resources, preserving their integrity and ensuring a resilient cloud environment. Customers can access these insights through both the UI and API.
 
-To learn more, see [Use Service Upgrade and Retirement recommendations](/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations.md).
+To learn more, see [Use Service Upgrade and Retirement recommendations](/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations).
 
 ## March 2025
 
@@ -69,7 +69,7 @@ To learn more, see [Use Service Upgrade and Retirement recommendations](/azure/a
 
 The scoring logic for Reliability, Performance, and Operational Excellence has been updated to improve accuracy. Scores are now calculated using fixed-weight sub-categories aligned to best practices, making them more transparent and actionable. 
 
-To learn more, see [Advisor Score](./advisor-score.md).
+To learn more, see [Advisor Score](/azure/advisor/advisor-score).
 
 ## September 2024
 
@@ -77,7 +77,7 @@ To learn more, see [Advisor Score](./advisor-score.md).
 
 The aggregated savings estimate is no longer available in Advisor portal. Evaluate potential yearly savings tailored to your specific needs by following the steps in [Calculate cost savings](./advisor-how-to-calculate-total-cost-savings.md). All individual recommendations and the associated potential savings remain available.
 
-To learn more, see [Calculate cost savings](./advisor-how-to-calculate-total-cost-savings.md).
+To learn more, see [Calculate cost savings](/azure/advisor/advisor-how-to-calculate-total-cost-savings).
 
 ### Public preview: Resiliency reviews
 
