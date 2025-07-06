@@ -20,10 +20,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Fundamentals|[Azure Monitor with Network Security Perimeter scenarios](network-security-perimeter-scenarios.md)|New article with NSP configuration for common scenarios.|
 |Metrics|[Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md)|Removed preview tags.|
 |Health-Models|[Health models in Azure Monitor (preview)](../health-models/overview.md)|Public preview of new health models feature.|
-|Health-Models|[Azure Monitor health model concepts](../health-models/concepts.md)|Public preview of new health models feature.|
-|Health-Models|[Create and configure a health model resource in Azure Monitor (Preview)](../health-models/create.md?tabs=service-groups)|Public preview of new health models feature.|
-|Health-Models|[Configure an Azure Monitor health model using the designer (Preview)](..//health-models/designer.md?tabs=azureresource)|Public preview of new health models feature.|
-|Health-Models|[Analyze health state of Azure Monitor health models (Preview)](../health-models/analyze-health.md)|Public preview of new health models feature.|
 |Agents|[Azure Diagnostics extension overview ](../agents/diagnostics-extension-overview.md)|Added query to identify agents for migration.|
 |Metrics|[Migrate from Self-hosted Prometheus to Azure Monitor Managed Service for Prometheus](../metrics/prometheus-migrate.md?tabs=entra-application)|New article providiing guidance for migration from self-hosted Prometheus.|
 |Platform|[Send Azure Monitor activity log data](../platform/activity-log.md?tabs=powershell)|New article providing guidance for migration from self-hosted Prometheus.|
