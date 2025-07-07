@@ -25,6 +25,8 @@ Here's a video that provides an overview of some of the benefits of summary rule
 
 > [!VIDEO https://www.youtube.com/embed/uuZlOps42LE?cc_load_policy=1&cc_lang_pref=auto]
 
+Jump into a step-by-step example with this [summary rules tutorial](/azure/sentinel/summary-rules-tutorial).
+
 ## How summary rules work
 
 Summary rules perform batch processing directly in your Log Analytics workspace. The summary rule aggregates chunks of data, defined by bin size, based on a KQL query, and re-ingests the summarized results into a custom table with an [Analytics log plan](logs-table-plans.md) in your Log Analytics workspace. 
