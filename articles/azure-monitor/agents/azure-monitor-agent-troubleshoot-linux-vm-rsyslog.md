@@ -9,22 +9,22 @@ ms.reviewer: shseth
 
 # Syslog troubleshooting guide for Azure Monitor Agent for Linux
 
-Azure Monitor Agent (AMA) installs an output configuration for the system's Syslog daemon during the installation. This configuration defines how events are forwarded from the daemon to AMA and is located at:
+Azure Monitor Agent installs an output configuration for the system's Syslog daemon during the installation. This configuration defines how events are forwarded from the daemon to Azure Monitor Agent and is located at:
 
 * `/etc/rsyslog.d/10-azuremonitoragent-omfwd.conf` for `rsyslog` (most Linux distributions)
 * `/etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf` for `syslog-ng`
 
-AMA listens on a TCP port (logged at `/etc/opt/microsoft/azuremonitoragent/config-cache/syslog.port`) to receive events from `rsyslog` / `syslog-ng` . It filters these events based on facility or severity values defined in the  data collection rule (DCR) located in `/etc/opt/microsoft/azuremonitoragent/config-cache/configchunks/`. Events that don't match the DCR configuartion are dropped.
+Azure Monitor Agent listens on a TCP port (logged at `/etc/opt/microsoft/azuremonitoragent/config-cache/syslog.port`) to receive events from `rsyslog` / `syslog-ng` . It filters these events based on facility or severity values defined in the  data collection rule (DCR) located in `/etc/opt/microsoft/azuremonitoragent/config-cache/configchunks/`. Events that don't match the DCR configuartion are dropped.
 
 > [!NOTE]
 > Before version 1.28, Azure Monitor Agent used a Unix domain socket instead of a TCP port to receive events from rsyslog. The `omfwd` output module in `rsyslog` offers spooling and retry mechanisms for improved reliability.
 
-AMA parses incoming Syslog messages according to **RFC3164** and **RFC5424** and also supports [additional formats](./azure-monitor-agent-overview.md#supported-services-and-features). It determines the destination endpoint for each event from the DCR and attempts to upload them accordingly.
+Azure Monitor Agent parses incoming Syslog messages according to **RFC3164** and **RFC5424** and also supports [other formats](./azure-monitor-agent-overview.md#supported-services-and-features). It determines the destination endpoint for each event from the DCR and attempts to upload them accordingly.
 
 > [!NOTE]
 > If Azure Monitor Agent is unreachable or experiencing delays, the Syslog daemon buffers events using its internal queues.
 > 
-> Once events from `rsyslog` or `syslog-ng` are received by Azure Monitor Agent and fail to be uploaded, AMA queues them in `/var/opt/microsoft/azuremonitoragent/events` using its local persistence mechanism.
+> If Azure Monitor Agent fails to upload events it received from `rsyslog` or `syslog-ng`, it queues them in `/var/opt/microsoft/azuremonitoragent/events` using its local persistence mechanism.
 
 ## Issues
 
