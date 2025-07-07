@@ -3,7 +3,7 @@ title: Viewing Security advisories
 description: This article describes the Security advisories blade and a change that requires users to obtain elevated access roles in order to view Security advisory details
 
 ms.topic: conceptual
-ms.date: 7/02/2025
+ms.date: 7/07/2025
 ---
 
 
@@ -31,11 +31,11 @@ Each advisory typically includes four key sections:
 
 ## Who can view Security advisories? 
 
-Because the information in this tab is sensitive, Role-Based Access Control (RBAC) is required to view security-impacted resources through the UI or API.
+Because the information in this tab is sensitive, Role-Based Access Control (RBAC) is required to view security-impacted resources and sensitive details through the UI or API.
 
 - Users must have appropriate **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
-- Only users with elevated roles can access the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
-- Users with only reader access or tenant-level roles can't view sensitive details unless they're assigned the appropriate elevated permissions.
+- Only users with elevated roles can access sensitive information on the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
+- Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
 
 For more information, read [this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.<br>
 
