@@ -318,24 +318,6 @@ Recommendation ID: 84b1a508-fc21-49da-979e-96894f1665df
 
 <!--84b1a508-fc21-49da-979e-96894f1665df_end-->
 
-<!--6dcd6657-7a07-404a-b462-db76946f6a97_begin-->
-
-#### Consider SapHana reserved instance to save over your on-demand costs  
-  
-We analyzed your SapHana usage over selected Term, look-back period, and calculated reserved instance purchase that would maximize your savings. With reserved instance, you can prepurchase hourly usage and save over your current on-demand costs. Reserved instance is a billing benefit and is automatically applied to new or existing deployments. Saving estimates are calculated for individual subscriptions and the usage pattern observed over selected Term, look-back period. Shared scope recommendations are available in reservation purchase experience and can increase savings further.  
-  
-**Potential benefits**: savings  
-
-**Impact:** High
-  
-For more information, see [Azure reservation recommendations - Microsoft Cost Management ](https://aka.ms/rirecommendations)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: 6dcd6657-7a07-404a-b462-db76946f6a97  
-
-
-<!--6dcd6657-7a07-404a-b462-db76946f6a97_end-->
-
 <!--89515250-1243-43d1-b4e7-f9437cedffd8_begin-->
 
 #### Purchasing a savings plan for compute could unlock lower prices  
