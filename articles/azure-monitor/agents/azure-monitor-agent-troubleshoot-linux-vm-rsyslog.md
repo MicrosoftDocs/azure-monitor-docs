@@ -9,28 +9,22 @@ ms.reviewer: shseth
 
 # Syslog troubleshooting guide for Azure Monitor Agent for Linux
 
-Overview of Azure Monitor Agent for Linux Syslog collection and supported RFC standards:
+Azure Monitor Agent (AMA) installs an output configuration for the system's Syslog daemon during the installation. This configuration defines how events are forwarded from the daemon to AMA and is located at:
 
-* Azure Monitor Agent installs an output configuration for the system's Syslog daemon during the installation process. The configuration file specifies how events flow between the Syslog daemon and Azure Monitor Agent and is located at:
+* `/etc/rsyslog.d/10-azuremonitoragent-omfwd.conf` for `rsyslog` (most Linux distributions)
+* `/etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf` for `syslog-ng`
 
-    * `/etc/rsyslog.d/10-azuremonitoragent-omfwd.conf` for `rsyslog` (most Linux distributions)
-    * `/etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf` for `syslog-ng`
+AMA listens on a TCP port (logged at `/etc/opt/microsoft/azuremonitoragent/config-cache/syslog.port`) to receive events from `rsyslog` / `syslog-ng` . It filters these events based on facility or severity values defined in the  data collection rule (DCR) located in `/etc/opt/microsoft/azuremonitoragent/config-cache/configchunks/`. Events that don't match the DCR configuartion are dropped.
 
-* Azure Monitor Agent listens to a TCP port to receive events from `rsyslog` / `syslog-ng`. The port for this communication is logged at `/etc/opt/microsoft/azuremonitoragent/config-cache/syslog.port`.
+> [!NOTE]
+> Before version 1.28, Azure Monitor Agent used a Unix domain socket instead of a TCP port to receive events from rsyslog. The `omfwd` output module in `rsyslog` offers spooling and retry mechanisms for improved reliability.
 
-    > [!NOTE]
-    > Before Azure Monitor Agent version 1.28, it used a Unix domain socket instead of TCP port to receive events from rsyslog. The `omfwd` output module in `rsyslog` offers spooling and retry mechanisms for improved reliability.
-    
-* The Syslog daemon uses queues when Azure Monitor Agent ingestion is delayed or when Azure Monitor Agent isn't reachable.
+AMA parses incoming Syslog messages according to **RFC3164** and **RFC5424** and also supports [additional formats](./azure-monitor-agent-overview.md#supported-services-and-features). It determines the destination endpoint for each event from the DCR and attempts to upload them accordingly.
 
-* Azure Monitor Agent ingests Syslog events via the previously mentioned socket and filters them based on facility or severity combination from data collection rule (DCR) configuration in `/etc/opt/microsoft/azuremonitoragent/config-cache/configchunks/`. Any `facility` or `severity` not present in the DCR is dropped.
-
-* Azure Monitor Agent attempts to parse events in accordance with **RFC3164** and **RFC5424**. It also knows how to parse the message formats listed in [this website](./azure-monitor-agent-overview.md#supported-services-and-features).
-
-* Azure Monitor Agent identifies the destination endpoint for Syslog events from the DCR configuration and attempts to upload the events.
-
-    > [!NOTE]
-    > Azure Monitor Agent uses local persistency by default. All events received from `rsyslog` or `syslog-ng` are queued in `/var/opt/microsoft/azuremonitoragent/events` if they fail to be uploaded.
+> [!NOTE]
+> If Azure Monitor Agent is unreachable or experiencing delays, the Syslog daemon buffers events using its internal queues.
+> 
+> Once events from `rsyslog` or `syslog-ng` are received by Azure Monitor Agent and fail to be uploaded, AMA queues them in `/var/opt/microsoft/azuremonitoragent/events` using its local persistence mechanism.
 
 ## Issues
 
@@ -40,7 +34,7 @@ You might encounter the following issues:
 
 #### Symptom
 
-**Syslog data is not uploading**: When you inspect the error logs at `/var/opt/microsoft/azuremonitoragent/log/mdsd.err`, you see entries about *Error while inserting item to Local persistent store ... No space left on device.* similar to the following snippet:
+**Syslog data is not uploading**: When you inspect the error logs at `/var/opt/microsoft/azuremonitoragent/log/mdsd.err`, you see entries about *Error while inserting item to Local persistent store ... No space left on device ...* similar to the following snippet:
 
 ```
 2021-11-23T18:15:10.9712760Z: Error while inserting item to Local persistent store syslog.error: IO error: No space left on device: While appending to file: /var/opt/microsoft/azuremonitoragent/events/syslog.error/000555.log: No space left on device
