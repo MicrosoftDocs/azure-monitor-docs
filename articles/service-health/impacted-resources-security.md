@@ -26,6 +26,7 @@ Along with resource information, Service Health provides the information shown h
 Users with the authorized roles shown here can view security impacted resource information and sensitive details such as description, summary, and updates:
 
 **Subscription level**
+- Service Health Security reader
 - Subscription Owner
 - Subscription Admin
 - Custom Roles with
