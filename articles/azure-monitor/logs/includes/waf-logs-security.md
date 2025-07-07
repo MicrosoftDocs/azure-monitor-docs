@@ -11,7 +11,7 @@ ms.date: 07/01/2025
 
 #### Secure Logs data in transit
 
-If you use agents, connectors, or the Logs APIs to [query](/rest/api/loganalytics/operation-groups?view=rest-loganalytics-2022-10-27-preview) or [send](../logs-ingestion-api-overview.md) data to your workspace, use Transport Layer Security (TLS) 1.2 or higher to ensure the security of your data in transit. Older versions of TLS and Secure Sockets Layer (SSL) have vulnerabilities and, while they might still work to allow backwards compatibility, they are **not recommended**, and the industry has quickly moved to abandon support for these older protocols.
+If you use agents, connectors, or the Logs APIs to [../log-query-overview.md) or [send](../logs-ingestion-api-overview.md) data to your workspace, use Transport Layer Security (TLS) 1.2 or higher to ensure the security of your data in transit. Older versions of TLS and Secure Sockets Layer (SSL) have vulnerabilities and, while they might still work to allow backwards compatibility, they are **not recommended**, and the industry has quickly moved to abandon support for these older protocols.
 
 The [PCI Security Standards Council](https://www.pcisecuritystandards.org/) set a [deadline of June 30, 2018](https://www.pcisecuritystandards.org/pdfs/PCI_SSC_Migrating_from_SSL_and_Early_TLS_Resource_Guide.pdf) to disable older versions of TLS/SSL and upgrade to more secure protocols. Once Azure drops legacy support, clients that don't completely communicate over TLS 1.2 or higher won't be able to send or query data to Azure Monitor Logs.
 

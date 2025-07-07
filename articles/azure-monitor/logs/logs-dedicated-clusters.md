@@ -3,7 +3,7 @@ title: Azure Monitor Logs Dedicated Clusters
 description: Customers meeting the minimum commitment tier could use dedicated clusters
 ms.topic: how-to
 ms.reviewer: yossiy
-ms.date: 02/23/2025
+ms.date: 07/07/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ---
 
@@ -341,7 +341,7 @@ The following sample creates a new empty Log Analytics cluster with a commitment
 
 ### Check cluster provisioning status
 
-The provisioning of the Log Analytics cluster takes a while to complete. Use one of the following methods to check the *ProvisioningState* property. The value is *ProvisioningAccount* while provisioning and *Succeeded* when completed.
+The provisioning of the Log Analytics cluster takes a while to complete. Use one of the following methods to check the *ProvisioningState* property. The value is *Creating* while provisioning and *Succeeded* when completed.
 
 #### [Portal](#tab/azure-portal)
 
@@ -365,7 +365,7 @@ Get-AzOperationalInsightsCluster -ResourceGroupName "resource-group-name" -Clust
  
 #### [REST API](#tab/restapi)
 
-Send a GET request on the cluster resource and look at the *provisioningState* value. The value is *ProvisioningAccount* while provisioning and *Succeeded* when completed.
+Send a GET request on the cluster resource and look at the *provisioningState* value. The value is *Creating* while provisioning and *Succeeded* when completed.
 
   ```rest
   GET https://management.azure.com/subscriptions/subscription-id/resourceGroups/resource-group-name/providers/Microsoft.OperationalInsights/clusters/cluster-name?api-version=2023-09-01
@@ -386,7 +386,7 @@ Send a GET request on the cluster resource and look at the *provisioningState* v
       "capacity": 100
     },
     "properties": {
-      "provisioningState": "ProvisioningAccount",
+      "provisioningState": "Creating",
       "clusterId": "cluster-id",
       "billingType": "Cluster",
       "lastModifiedDate": "last-modified-date",
