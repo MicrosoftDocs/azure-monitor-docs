@@ -73,5 +73,5 @@ See the article on [Uninstall Dependency Agent](https://learn.microsoft.com/azur
 | Date      | Event       |
 | ------------- | ------------- |
 | 30 June 2025  | Retirement announcement |
-| 30 September 2025  | Customers restricted from onboarding new VMs using the Azure portal. Customers restricted from onboarding new subscriptions and tenants to VM Insights Map and Dependency Agent  |
+| 30 September 2025  | Customers restricted from onboarding new VMs using the Azure portal  |
 | 30 June 2028 | Product retired. Documentation archived and all experiences removed.  | 
