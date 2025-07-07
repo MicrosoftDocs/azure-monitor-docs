@@ -11,14 +11,14 @@ ms.reviewer: shseth
 
 Overview of Azure Monitor Agent for Linux Syslog collection and supported RFC standards:
 
-* Azure Monitor Agent installs an output configuration for the system Syslog daemon during the installation process. The configuration file specifies the way events flow between the Syslog daemon and Azure Monitor Agent.
+* Azure Monitor Agent installs an output configuration for the system's Syslog daemon during the installation process. The configuration file specifies the way events flow between the Syslog daemon and Azure Monitor Agent.
 
-* For `rsyslog` (most Linux distributions), the configuration file is `/etc/rsyslog.d/10-azuremonitoragent-omfwd.conf`. For `syslog-ng`, the configuration file is `/etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf`.
+* For `rsyslog` (most Linux distributions), the configuration file is located at `/etc/rsyslog.d/10-azuremonitoragent-omfwd.conf`. For `syslog-ng`, it's `/etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf`.
 
 * Azure Monitor Agent listens to a TCP port to receive events from `rsyslog` / `syslog-ng`. The port for this communication is logged at `/etc/opt/microsoft/azuremonitoragent/config-cache/syslog.port`.
 
     > [!NOTE]
-    > Before Azure Monitor Agent version 1.28, it used a Unix domain socket instead of TCP port to receive events from rsyslog. `omfwd` output module in `rsyslog` offers spooling and retry mechanisms for improved reliability.
+    > Before Azure Monitor Agent version 1.28, it used a Unix domain socket instead of TCP port to receive events from rsyslog. The `omfwd` output module in `rsyslog` offers spooling and retry mechanisms for improved reliability.
     
 * The Syslog daemon uses queues when Azure Monitor Agent ingestion is delayed or when Azure Monitor Agent isn't reachable.
 
@@ -33,11 +33,9 @@ Overview of Azure Monitor Agent for Linux Syslog collection and supported RFC st
 
 ## Issues
 
-You might encounter the following issues.
+You might encounter the following issues:
 
 ### Rsyslog data isn't uploaded because of a full disk space issue on Azure Monitor Agent for Linux
-
-The next sections describe the issue.
 
 #### Symptom
 
