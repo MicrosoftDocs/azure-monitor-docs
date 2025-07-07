@@ -1,6 +1,6 @@
 ---
 title: Viewing Security advisories
-description: This article describes the Security advisories blade and a change that requires users to obtain elevated access roles in order to view Security advisory details
+description: This article describes the Security advisories blade and that users are required to obtain elevated access roles in order to view Security advisory details.
 
 ms.topic: conceptual
 ms.date: 7/07/2025
