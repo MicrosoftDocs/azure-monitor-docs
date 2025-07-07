@@ -20,7 +20,7 @@ To create or edit an alert rule, you must have the following permissions:
 
 ## Use an ARM template
 
-To create an alert rule with a customized email subject, use a template from the [Resource Manager template samples for log search alerts](resource-manager-alerts-log.md). Be sure to use the latest API version 2023-10-01. Use the template from the [Resource Manager template smaple for simple log search alert rules](resource-manager-alerts-simple-log-search-alerts.md) for Simple log search alert rules.
+To create an alert rule with a customized email subject, use a template from the [Resource Manager template samples for log search alerts](resource-manager-alerts-log.md). Be sure to use the latest API version 2023-12-01. Use the template from the [Resource Manager template smaple for simple log search alert rules](resource-manager-alerts-simple-log-search-alerts.md) for Simple log search alert rules.
 
 
 Add the `actionProperties` object and include the Email.Subject property. For example:
