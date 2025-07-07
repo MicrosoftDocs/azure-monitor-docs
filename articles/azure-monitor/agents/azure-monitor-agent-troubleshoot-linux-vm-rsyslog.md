@@ -1,5 +1,5 @@
 ---
-title: Syslog troubleshooting on Azure Monitor Agent for Linux | Microsoft Docs
+title: Syslog troubleshooting guide for Azure Monitor Agent for Linux | Microsoft Docs
 description: Guidance for troubleshooting rsyslog issues on Linux virtual machines, scale sets with Azure Monitor Agent, and data collection rules.
 ms.topic: troubleshooting-general
 ms.date: 07/02/2025
@@ -11,9 +11,10 @@ ms.reviewer: shseth
 
 Overview of Azure Monitor Agent for Linux Syslog collection and supported RFC standards:
 
-* Azure Monitor Agent installs an output configuration for the system's Syslog daemon during the installation process. The configuration file specifies the way events flow between the Syslog daemon and Azure Monitor Agent.
+* Azure Monitor Agent installs an output configuration for the system's Syslog daemon during the installation process. The configuration file specifies how events flow between the Syslog daemon and Azure Monitor Agent and is located at:
 
-* For `rsyslog` (most Linux distributions), the configuration file is located at `/etc/rsyslog.d/10-azuremonitoragent-omfwd.conf`. For `syslog-ng`, it's `/etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf`.
+    * `/etc/rsyslog.d/10-azuremonitoragent-omfwd.conf` for `rsyslog` (most Linux distributions)
+    * `/etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf` for `syslog-ng`
 
 * Azure Monitor Agent listens to a TCP port to receive events from `rsyslog` / `syslog-ng`. The port for this communication is logged at `/etc/opt/microsoft/azuremonitoragent/config-cache/syslog.port`.
 
@@ -39,7 +40,7 @@ You might encounter the following issues:
 
 #### Symptom
 
-**Syslog data is not uploading**: When you inspect the error logs at `/var/opt/microsoft/azuremonitoragent/log/mdsd.err`, you see entries about *Error while inserting item to Local persistent store…No space left on device* similar to the following snippet:
+**Syslog data is not uploading**: When you inspect the error logs at `/var/opt/microsoft/azuremonitoragent/log/mdsd.err`, you see entries about *Error while inserting item to Local persistent store ... No space left on device.* similar to the following snippet:
 
 ```
 2021-11-23T18:15:10.9712760Z: Error while inserting item to Local persistent store syslog.error: IO error: No space left on device: While appending to file: /var/opt/microsoft/azuremonitoragent/events/syslog.error/000555.log: No space left on device
@@ -47,11 +48,11 @@ You might encounter the following issues:
 
 #### Cause
 
-Azure Monitor Agent for Linux buffers events to `/var/opt/microsoft/azuremonitoragent/events` prior to ingestion. On a default Azure Monitor Agent for Linux installation, this directory takes ~650 MB of disk space at idle. The size on disk increases when it's under sustained logging load. It gets cleaned up about every 60 seconds and reduces back to ~650 MB when the load returns to idle.
+Azure Monitor Agent for Linux buffers events to `/var/opt/microsoft/azuremonitoragent/events` before ingestion. On a default Azure Monitor Agent for Linux installation, this directory takes ~650 MB of disk space at idle. The size on disk increases when it's under sustained logging load. It gets cleaned up about every 60 seconds and reduces back to ~650 MB when the load returns to idle.
 
 #### Confirm the issue of a full disk
 
-The `df` command shows almost no space available on `/dev/sda1`, as shown in the following output. Note that you should examine the line item that correlates to the log directory (for example, `/var/log` or `/var` or `/`).
+The `df` command shows almost no space available on `/dev/sda1`, as shown in the following output. You should examine the line item that correlates to the log directory (for example, `/var/log` or `/var` or `/`).
 
 ```bash
 df -h
@@ -82,7 +83,9 @@ du -h syslog*
 18G     syslog.1
 ```
 
-In some cases, `du` might not report any large files or directories. It might be possible that a [file marked as (deleted) is taking up the space](https://unix.stackexchange.com/questions/182077/best-way-to-free-disk-space-from-deleted-files-that-are-held-open). This issue can happen when some other process has attempted to delete a file, but a process with the file is still open. You can use the `lsof` command to check for such files. In the following example, we see that `/var/log/syslog` is marked as deleted but it takes up 3.6 GB of disk space. It hasn't been deleted because a process with PID 1484 still has the file open.
+In some cases, `du` might not report any large files or directories. It's possible that a [file marked as (deleted) is taking up the space](https://unix.stackexchange.com/questions/182077/best-way-to-free-disk-space-from-deleted-files-that-are-held-open). This can happen when one process attempts to delete a file, but a different process still has the file open.
+
+You can use the `lsof` command to check for such files. In the following example, we see that `/var/log/syslog` is marked as deleted but it takes up 3.6 GB of disk space. It hasn't been deleted because a process with PID 1484 still has the file open.
 
 ```bash
 sudo lsof +L1
