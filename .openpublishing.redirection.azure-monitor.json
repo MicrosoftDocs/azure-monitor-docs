@@ -8498,6 +8498,13 @@
    "source_path": "articles/azure-monitor/fundamentals/best-practices-analysis.md",
    "redirect_url": "/azure/azure-monitor/visualize/best-practices-visualize",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/fundamentals/monitor-azure-monitor.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/overview",
+   "redirect_document_id": false
   }
  ]
 }
+
+

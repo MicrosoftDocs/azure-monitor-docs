@@ -7,8 +7,6 @@ items:
       href: fundamentals/overview.md
     - name: Insights and curated visualizations
       href: visualize/insights-overview.md
-    - name: Multicloud monitoring
-      href: fundamentals/best-practices-multicloud.md
     - name: Azure Monitor AIOPs
       items:
       - name: AIOps and machine learning
@@ -27,7 +25,7 @@ items:
       href: fundamentals/whats-new.md
 - name: Getting started
   items:
-    - name: Use Azure Monitor to monitor an Azure resource
+    - name: Monitor an Azure resource
       href: platform/monitor-azure-resource.md
     - name: Analyze metric data
       href: platform/tutorial-metrics.md
@@ -741,6 +739,8 @@ items:
         href: scom-manage-instance/use-managed-identities-with-scom-mi.md
       - name: Encryption at rest
         href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
+  - name: Multicloud monitoring
+    href: fundamentals/best-practices-multicloud.md
   - name: Enterprise architecture
     href: fundamentals/enterprise-monitoring-architecture.md
   - name: Monitor Azure Monitor
@@ -1263,7 +1263,7 @@ items:
   items:
   - name: Overview
     displayName: Visualize, dashboards, workbooks, Grafana, Power BI
-    href: visualize/best-practices-analyze.md
+    href: visualize/best-practices-visualize.md
   - name: Workbooks
     items:
     - name: Overview
