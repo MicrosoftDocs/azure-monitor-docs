@@ -649,6 +649,9 @@ In the `metrics:getBatch` error response, the error content is wrapped inside a 
 
 The individual metrics API requires a user have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permission on the resource being queried. Because the `metrics:getBatch` API is a subscription level API, users must have the Monitoring Reader permission for the queried subscription to use the batch API. Even if users have Monitoring Reader on all the resources being queried in the batch API, the request fails if the user doesn't have Monitoring Reader on the subscription itself.
 
+### 403 authorization failures
+This indicates that the required resource provider isn't registered. See [Microsoft.Insights resource provider isn't registered for your subscription](./metrics-troubleshoot.md#microsoftinsights-resource-provider-isnt-registered-for-your-subscription).
+
 ### 529 throttling errors
 
 While the data plane batch API is designed to help mitigate throttling problems, 529 error codes can still occur. This error indicates that the metrics backend is currently throttling your requests. The recommended action is to implement an exponential backoff retry scheme. For more information on throttling, see [Understand how Azure Resource Manager throttles requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
