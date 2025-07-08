@@ -59,7 +59,7 @@ The following examples show a security incident with impacted resources from the
 
 ## Accessing Impacted Resources programmatically via an API
 
-You can retrieve information about impacted resources for security incidents using the Events API program. Authorized users with the specified roles can access the list of resources impacted by a security incident using the endpoints provided here. For details on how to access this data, see the [API documentation](/rest/api/resourcehealth/2022-10-01/security-advisory-impacted-resources).
+You can retrieve information about impacted resources for security incidents using the Events API program. Authorized users with the specified roles can access the list of resources impacted by a security incident using the endpoints provided here. For details on how to access this data, see the [API documentation](2022-10-01/security-advisory-impacted-resources).
 
 **Subscription**
 
@@ -77,3 +77,4 @@ https://management.azure.com/providers/microsoft.resourcehealth/events/("Trackin
 - [Introduction to the Azure Service Health dashboard](service-health-overview.md)
 - [Introduction to Azure Resource Health](resource-health-overview.md)
 - [Azure Resource Health frequently asked questions](resource-health-faq.yml)
+/rest/api/resourcehealth/
