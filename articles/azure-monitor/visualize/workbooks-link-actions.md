@@ -40,7 +40,7 @@ Link actions can be accessed through workbook link components or through column 
 |Metrics| Opens a metrics view. |
 |Resource Overview| Opens the resource's view in the portal based on the resource ID value in the cell. You can also optionally set a submenu value that opens a specific menu item in the resource view. |
 |Workbook (Template)| Opens a workbook template. When this item is selected, more fields appear where you can configure what template to open. [See Workbook (Template) settings](#workbook-template-link-settings). |
-|Copilot in Azure | When the action is invoked, it formats and sends a prompt to Microsoft Copilot in Azure. [See Copilot in Azure settings](#copilot-in-azure-preview-settings). |
+|Copilot in Azure | When the action is invoked, it formats and sends a prompt to Microsoft Copilot in Azure. [See Copilot in Azure settings](#copilot-in-azure-settings). |
 
 ## Link settings
 
