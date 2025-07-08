@@ -3,7 +3,7 @@ title: Use customer-managed storage accounts in Azure Monitor Logs
 description: Use your own Azure Storage account to ingest logs into Azure Monitor Logs.
 ms.topic: how-to
 ms.reviewer: noakuper
-ms.date: 05/20/2025
+ms.date: 07/01/2025
 ---
 
 # Use customer-managed storage accounts in Azure Monitor Logs
@@ -23,7 +23,7 @@ Custom log content uploaded to customer-managed storage accounts might change in
 > Starting June 30, 2025, creating or updating **Custom logs and IIS logs** linked storage accounts will no longer be available. Existing storage accounts will be unlinked by November 1, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
 
 > [!WARNING]
-> Starting August 31, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
+> Starting August 31, 2025, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
 
 | Action | Permission required |
 |---|---|
@@ -75,7 +75,7 @@ The storage account and the key vault must be in the same region. They don't nee
 
 | Special case | Remediation |
 |---|---|
-| When a storage account is linked for queries with CMK, existing saved queries and functions in the workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
+| When a storage account is linked for queries, existing saved queries and functions in the workspace are deleted permanently for privacy and moved to a table in storage account. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). You can unlink the storage account for queries, to move saved queries and functions back to your workspace. Refresh the browser if you don't saved queries or functions don’t show up in the Azure Portal after the operation. |
 | Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK. |
 | Saved queries and log search alerts aren't encrypted in customer-managed storage by default. | Encrypt your storage account with CMK at storage account creation even though CMK is configurable after. |
 | A single StorageV2 storage account can be used for all purposes - queries, alerts, custom logs, and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.|

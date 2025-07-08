@@ -15,7 +15,7 @@ Azure [Virtual Network](/azure/virtual-network/virtual-networks-overview) is the
 
 Virtual network injection allows an Azure Chaos Studio resource provider to inject containerized workloads into your virtual network so that resources without public endpoints can be accessed via a private IP address on the virtual network. After you've configured virtual network injection for a resource in a virtual network and enabled the resource as a target, you can use it in multiple experiments. An experiment can target a mix of private and nonprivate resources if the private resources are configured according to the instructions in this article.
 
-We are also now excited to share that Chaos Studio supports running **agent-based experiments** using Private Endpoints! Chaos Studio now supports Private Link for **both** service-direct and agent-based experiments. If you would like to use Private-Link for agent-based experiments, please reach out to your CSA or visit [How to: Setup private link for agent-based experiments](chaos-studio-private-link-agent-service.md). For private link for service-direct faults, read the following sections for instructions on how to use them. 
+Chaos Studio also supports running **agent-based experiments** using Private Endpoints. Find detailed instructions at [Setup private link for agent-based experiments](chaos-studio-private-link-agent-service.md).
 
 ## Resource type support
 Currently, you can only enable certain resource types for Chaos Studio virtual network injection:
@@ -30,6 +30,7 @@ To use Chaos Studio with virtual network injection, you must meet the following 
     1. Both subnets need at least `/28` for the size of the address space (in this case `/27` is larger than `/28`, for example). An example is an address prefix of `10.0.0.0/28` or `10.0.0.0/24`.
     1. The container subnet must be delegated to `Microsoft.ContainerInstance/containerGroups`.
     1. The subnets can be arbitrarily named, but we recommend `ChaosStudioContainerSubnet` and `ChaosStudioRelaySubnet`.
+    1. **Network Security Groups (NSG)**: If using NSGs to control traffic, ensure both subnets allow **port 443** for inbound and outbound traffic. See the [Permissions and security](#permissions-and-security) section for detailed port requirements.
 1. When you enable the desired resource as a target so that you can use it in Chaos Studio experiments, the following properties must be set:
     1. Set `properties.subnets.containerSubnetId` to the ID for the container subnet.
     1. Set `properties.subnets.relaySubnetId` to the ID for the relay subnet.
@@ -172,7 +173,42 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
 
 Now you can use your private AKS cluster with Chaos Studio. To learn how to install Chaos Mesh and run the experiment, see [Create a chaos experiment that uses a Chaos Mesh fault with the Azure CLI](chaos-studio-tutorial-aks-cli.md).
 
+<!--
+![Target resource with virtual network injection](images/chaos-studio-rp-vnet-injection.png)
+-->
+
 ---
+
+## Permissions and security
+
+### Required RBAC permissions
+
+When using Chaos Studio with virtual network injection, the managed identity for the experiment must have the following RBAC actions to deploy the necessary resources in your subscription:
+
+- `Microsoft.Relay/namespaces/*` - To create and manage Azure Relay namespaces
+- `Microsoft.Relay/namespaces/privateEndpointConnectionProxies/*` - To manage private endpoint connections for the relay
+- `Microsoft.ContainerInstance/containerGroups/*` - To deploy container instances for chaos experiments
+- `Microsoft.Network/privateEndpoints/*` - To create private endpoints for secure connectivity
+- `Microsoft.Relay/namespaces/hybridConnections/*` - To manage hybrid connections used for tunneling
+
+### Network Security Group (NSG) port requirements
+
+If you're using Network Security Groups to control traffic in your virtual network, you need to configure the following port rules:
+
+#### Relay subnet requirements
+The Relay subnet uses Azure Relay's Hybrid Connection for secure tunneling between Chaos Studio and your private resources. Configure the following rules:
+
+- **Inbound traffic**: Allow port **443** (HTTPS) - Required for receiving connections from Chaos Studio
+- **Outbound traffic**: Allow port **443** (HTTPS) - Required for establishing connections to Azure Relay service
+
+#### Container subnet requirements  
+The Container subnet hosts the containerized workloads that execute chaos experiments. Configure the following rules:
+
+- **Inbound traffic**: Allow port **443** (HTTPS) - Required for the container to accept hybrid connection traffic
+- **Outbound traffic**: Allow port **443** (HTTPS) - Required for communicating with target resource data planes (for example, Kubernetes API endpoints for Chaos Mesh faults)
+
+> [!NOTE]
+> All communication uses standard HTTPS port 443, as documented in [Azure Relay port settings](/azure/azure-relay/relay-port-settings).
 
 ## Limitations
 
@@ -186,10 +222,6 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
   While Chaos Studio generally supports targeting resources across subscriptions, this capability **does not apply** when private networking is enabled. This is because the private endpoint and other supporting resources required for VNet injection are deployed by Chaos Studio into the **same subscription as the experiment**. If the target VNet resides in a different subscription, private endpoint creation will fail due to cross-subscription restrictions.
 
   **Workaround:** To use private networking successfully, ensure that the target VNet and the Chaos Studio experiment are created within the same Azure subscription.
-
-<!--
-![Target resource with virtual network injection](images/chaos-studio-rp-vnet-injection.png)
--->
 
 ## Next steps
 Now that you understand how virtual network injection can be achieved for Chaos Studio, you're ready to:

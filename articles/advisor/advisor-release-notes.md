@@ -9,21 +9,67 @@ ms.date: 06/10/2025
 
 Learn about the latest updates and changes in Azure Advisor with the items in this article. The updates and changes include release notes, videos, blog posts, and other types of information. Bookmark this article to stay up to date with the service.
 
+## May 2025
+
+### New Recommendations for Zonal Resiliency
+
+Azure Advisor now includes new recommendations that help improve zonal resiliency for several Azure services. These recommendations guide you in configuring deployments to use Availability Zones for improved fault tolerance and availability.
+
+#### Supported resource types
+
+* Azure Kubernetes Service (AKS)
+ 
+  Resource type: microsoft.containerservice/managedclusters
+
+  [Configure and deploy AKS clusters and related resources to use Availability Zones](/azure/advisor/advisor-reference-reliability-recommendations#configure-and-deploy-azure-kubernetes-service-aks-and-related-resources-to-use-availability-zones).
+
+* VPN Gateway
+
+  Resource type: microsoft.network/virtualnetworkgateways/vpn
+
+  [Deploy VPN gateways and associated resources across Availability Zones](/azure/advisor/advisor-reference-reliability-recommendations#configure-and-deploy-vpn-gateway-and-related-resources-to-use-availability-zones).
+
+* Azure Firewall
+
+  Resource type: microsoft.network/azurefirewalls
+
+  [Deploy Azure Firewall instances across multiple Availability Zones](/azure/advisor/advisor-reference-reliability-recommendations#deploy-azure-firewall-across-multiple-availability-zones).
+
+* Azure Database for PostgreSQL – Flexible Server
+
+  Resource type: microsoft.dbforpostgresql/flexibleservers
+
+  [Enable high availability by configuring zone-redundant deployments](/azure/advisor/advisor-reference-reliability-recommendations#enable-high-availability-with-zone-redundancy).
+
+* Load Balancer
+
+  Resource type: microsoft.network/loadbalancers
+
+  [Configure and deploy load balancers and related resources to span Availability Zones](/azure/advisor/advisor-reference-reliability-recommendations#configure-and-deploy-load-balancers-and-related-resources-to-use-availability-zones).
+
+For more information about how Availability Zones support resiliency, see [What are availability zones](/azure/reliability/availability-zones-overview).
+
 ## April 2025
+
+### Resiliency Reviews Now Support Resource-Level Recommendations
+
+Azure Advisor now supports resource-level targeting for recommendations curated by Microsoft account teams as part of Resiliency Reviews. This enhancement allows enterprise customers to receive and manage resiliency guidance scoped to individual Azure resources, rather than entire subscriptions. It improves the precision and relevance of recommendations, making it easier for organizations to align remediation efforts with specific workloads and operational responsibilities.
+
+To learn more, see [Azure Advisor Resiliency reviews](/azure/advisor/advisor-resiliency-reviews).
 
 ### Service retirements 
 
 Advisor now offers upgrade and retirement recommendations, delivering essential guidance on upcoming service changes. These recommendations empower customers to proactively manage Azure resources, preserving their integrity and ensuring a resilient cloud environment. Customers can access these insights through both the UI and API.
 
-To learn more, see [Use Service Upgrade and Retirement recommendations](./advisor-how-to-use-service-upgrade-retirement-recommendations.md).
+To learn more, see [Use Service Upgrade and Retirement recommendations](/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations).
 
 ## March 2025
 
 ### Advisor Score update
 
-The scoring logic for Reliability, Performance, and Operational Excellence has been updated to improve accuracy. Scores are now calculated using fixed-weight sub-categories aligned to best practices, making them more transparent and actionable. 
+The scoring logic for Reliability, Performance, and Operational Excellence was updated to improve accuracy. Scores are now calculated using fixed-weight subcategories aligned to best practices, making them more transparent and actionable. 
 
-To learn more, see [Advisor Score](./advisor-score.md).
+To learn more, see [Advisor Score](/azure/advisor/advisor-score).
 
 ## September 2024
 
@@ -31,9 +77,9 @@ To learn more, see [Advisor Score](./advisor-score.md).
 
 The aggregated savings estimate is no longer available in Advisor portal. Evaluate potential yearly savings tailored to your specific needs by following the steps in [Calculate cost savings](./advisor-how-to-calculate-total-cost-savings.md). All individual recommendations and the associated potential savings remain available.
 
-To learn more, see [Calculate cost savings](./advisor-how-to-calculate-total-cost-savings.md).
+To learn more, see [Calculate cost savings](/azure/advisor/advisor-how-to-calculate-total-cost-savings).
 
-### Public preview: Resiliency review on Azure Advisor
+### Public preview: Resiliency reviews
 
 Recommendations from Azure Well-Architected Framework (WAF) Reliability reviews in Advisor help you focus on the most important recommendations to ensure that your workloads remain resilient. As part of the review, personalized and prioritized recommendations from Microsoft Cloud Solution Architects are presented to you and your team. You can triage recommendations (accept or reject), manage their lifecycle on Advisor, and work with your Microsoft account team to track resolution. You can reach out to your account team to request a WAF Reliability assessment to successfully optimize workload resiliency and reliability by implementing curated recommendations and track its lifecycle on Advisor.
 
@@ -61,7 +107,7 @@ To learn more, see [Use Azure disks with zone-redundant storage for higher resil
 
 Advisor now has a new version of the Service Retirement workbook that includes three major changes:
 
-* Ten new services are onboarded to the workbook. The retirement workbook now covers 40 services.
+* 10 new services are onboarded to the workbook. The retirement workbook now covers 40 services.
 * Seven services that completed their retirement lifecycle are off-boarded.
 * User experience and navigation are improved.
 
@@ -192,7 +238,7 @@ Advisor now provides more filtering capabilities. You can filter recommendations
 
 ## November 2022
 
-### New cost recommendations for virtual machine scale sets
+### New cost recommendation for virtual machine scale sets
 
 Advisor now offers cost-optimization recommendations for virtual machine scale sets. They include shutdown recommendations for resources that we detect aren't used at all. They also include SKU change or instance count reduction recommendations for resources that we detect are underutilized. An example recommendation is for resources where we think customers are paying for more than what they might need based on the workloads running on the resources.
 

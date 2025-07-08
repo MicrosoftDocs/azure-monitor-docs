@@ -11,7 +11,7 @@ ms.reviewer: mmcc
 
 # Enable a framework extension for Application Insights JavaScript SDK
 
-In addition to the core SDK, there are also plugins available for specific frameworks, such as the [React plugin](javascript-framework-extensions.md?tabs=react), the [React Native plugin](javascript-framework-extensions.md?tabs=reactnative), and the [Angular plugin](javascript-framework-extensions.md?tabs=angular).
+In addition to the core SDK, there are also plugins available for specific frameworks, such as the React plugin, the React Native plugin, and the Angular plugin.
 
 These plugins provide extra functionality and integration with the specific framework.
 

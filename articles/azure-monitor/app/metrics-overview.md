@@ -2,7 +2,7 @@
 title: Metrics in Application Insights - Azure Monitor | Microsoft Docs
 description: This article explains the difference between log-based and standard/preaggregated metrics in Application Insights.
 ms.topic: how-to
-ms.date: 09/06/2024
+ms.date: 06/30/2025
 ms.reviewer: vitalyg
 ---
 
@@ -12,11 +12,15 @@ Application Insights supports three different types of metrics: standard (preagg
 
 #### Standard metrics
 
-Standard metrics in Application Insights are predefined metrics which are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics **are preaggregated** during collection and stored as a time series in a specialized repository with only key dimensions, which gives them better performance at query time. This makes standard metrics the best choice for near real time alerting on dimensions of metrics and more responsive [dashboards](./overview-dashboard.md).
+Application Insights collects and monitors standard metrics automatically. These predefined metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. You don't need to configure anything to start using them. During collection, the service preaggregates standard metrics and stores them as a time series in a specialized repository with only key dimensions. This design improves query performance. Because of their speed and structure, standard metrics work best for near real-time alerting and responsive [dashboards](./overview-dashboard.md).
 
 #### Log-based metrics
 
-Log-based metrics in Application Insights are a query-time concept, represented as a time series on top of the log data of your application. The underlying logs **aren't preaggregated** at the collection or storage time and retain all properties of each log entry. This retention makes it possible to use log properties as dimensions on log-based metrics at query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), giving log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](opentelemetry-sampling.md) and [telemetry filtering](api-filtering-sampling.md#filtering), commonly used with monitoring applications generating large volumes of telemetry, impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
+Log-based metrics in Application Insights are a query-time concept. The system represents them as time series built from your application's log data. It doesn't preaggregate the underlying logs during collection or storage. Instead, it retains all properties of each log entry.
+
+This retention allows you to use log properties as dimensions when querying log-based metrics. You can apply [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), which gives these metrics strong analytical and diagnostic value.
+
+However, telemetry volume reduction techniques affect log-based metrics. Techniques like [sampling](opentelemetry-sampling.md) and [telemetry filtering](api-filtering-sampling.md#filtering), often used to reduce data from high-volume applications, reduce the number of collected log entries. This reduction lowers the accuracy of log-based metrics.
 
 #### Custom metrics (preview)
 
@@ -39,15 +43,19 @@ For more information, see [Custom metrics in Azure Monitor (preview)](../essenti
 | **Query performance** | Fast, due to preaggregation. | Slower, as it involves querying log data. | Depends on data volume and query complexity. |
 | **Storage** | Stored as time series data in the Azure Monitor metrics store. | Stored as logs in Log Analytics workspace. | Stored in both Log Analytics and the Azure Monitor metrics store. |
 | **Alerting** | Supports real-time alerting. | Allows for complex alerting scenarios based on detailed log data. | Flexible alerting based on user-defined metrics. |
-| **Service limit** | Subject to [Application Insights limits](./../service-limits.md#application-insights). | Subject to [Log Analytics workspace limits](./../service-limits.md#log-analytics-workspaces). | Limited by the quota for free metrics and the cost for additional dimensions. |
+| **Service limit** | Subject to [Application Insights limits](./../service-limits.md#application-insights). | Subject to [Log Analytics workspace limits](./../service-limits.md#log-analytics-workspaces). | Limited by the quota for free metrics and the cost for extra dimensions. |
 | **Use cases** | Real-time monitoring, performance dashboards, and quick insights. | Detailed diagnostics, troubleshooting, and in-depth analysis. | Tailored performance indicators and business-specific metrics. |
 | **Examples** | CPU usage, memory usage, request duration. | Request counts, exception traces, dependency calls. | Custom application-specific metrics like user engagement, feature usages. |
 
 ## Metrics preaggregation
 
-OpenTelemetry SDKs and newer Application Insights SDKs (Classic API) preaggregate metrics during collection to reduce the volume of data sent from the SDK to the telemetry channel endpoint. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent using the [OpenTelemetry API](./opentelemetry-add-modify.md#add-custom-metrics) or [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), which results in less data ingestion and lower cost. If your version of the Application Insights SDK supports GetMetric and TrackValue, it's the preferred method of sending custom metrics.
+OpenTelemetry SDKs and some Application Insights SDKs (Classic API) preaggregate metrics during collection to reduce the volume of data sent from the SDK to the telemetry channel endpoint. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent using the [OpenTelemetry API](./opentelemetry-add-modify.md#add-custom-metrics) or [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), which results in less data ingestion and lower cost. If your version of the Application Insights SDK supports GetMetric and TrackValue, it's the preferred method of sending custom metrics.
 
-For SDKs that don't implement preaggregation (that is, older versions of Application Insights SDKs or for browser instrumentation), the Application Insights back end still populates the new metrics by aggregating the events received by the Application Insights telemetry channel endpoint. For custom metrics, you can use the [trackMetric](./api-custom-events-metrics.md#trackmetric) method. Although you don't benefit from the reduced volume of data transmitted over the wire, you can still use the preaggregated metrics and experience better performance and support of the near real time dimensional alerting with SDKs that don't preaggregate metrics during collection.
+Some SDKs don't implement preaggregation. Examples include older versions of the Application Insights SDK and browser-based instrumentation. In these cases, the back end creates the new metrics by aggregating the events received through the telemetry channel.
+
+To send custom metrics, use the [trackMetric](./api-custom-events-metrics.md#trackmetric) method.
+
+These SDKs don't reduce the volume of data sent. However, you can still use the preaggregated metrics they produce. This setup gives you better performance and supports near real-time dimensional alerting, even without preaggregation during collection.
 
 The telemetry channel endpoint preaggregates events before ingestion sampling. For this reason, ingestion sampling never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
 
@@ -112,7 +120,7 @@ Preaggregated metrics are stored as time series in Azure Monitor. [Azure Monitor
 
 ### Why is collection of custom metrics dimensions turned off by default?
 
-The collection of custom metrics dimensions is turned off by default because in the future, storing custom metrics with dimensions will be billed separately from Application Insights. Storing the nondimensional custom metrics remain free (up to a quota). You can learn about the upcoming pricing model changes on our official [pricing page](https://azure.microsoft.com/pricing/details/monitor/).
+Application Insights turns off the collection of custom metric dimensions by default. Storing custom metrics with dimensions incurs separate billing from Application Insights. Storing nondimensional custom metrics remains free, up to a quota. For details, see the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Create charts and explore metrics
 
@@ -124,7 +132,7 @@ Use [Azure Monitor metrics explorer](../essentials/metrics-getting-started.md) t
 
 Ingesting metrics into Application Insights, whether log-based or preaggregated, generates costs based on the size of the ingested data. For more information, see [Azure Monitor Logs pricing details](../logs/cost-logs.md#application-insights-billing). Your custom metrics, including all its dimensions, are always stored in the Application Insights log store. Also, a preaggregated version of your custom metrics with no dimensions is forwarded to the metrics store by default.
 
-Selecting the [Enable alerting on custom metric dimensions](#custom-metrics-dimensions-and-preaggregation) option to store all dimensions of the preaggregated metrics in the metric store can generate *extra costs* based on [custom metrics pricing](https://azure.microsoft.com/pricing/details/monitor/).
+Selecting the [Enable alerting on custom metric dimensions](#custom-metrics-dimensions-and-preaggregation) option to store all dimensions of the preaggregated metrics in the metric store can result in increased charges based on [custom metrics pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Available metrics
 
@@ -135,24 +143,24 @@ The following sections list metrics with supported aggregations and dimensions. 
 > [!IMPORTANT]
 > * **Time Series Limit:** Each metric can only have up to **5,000** time series within *24 hours*. Once this limit is reached, all dimension values of that metric point are replaced with the constant `Maximum values reached`.
 >
-> * **Cardinality limit:** Each dimension can only have a certain number of unique values within *7 days*. Once this limit is reached, the dimension value is replaced with the constant `Other values`. The cardinality limit for each dimension is listed in the tables below.
+> * **Cardinality limit:** Each dimension supports a limited number of unique values within a seven-day period. When the limit is reached, Azure Monitor replaces all new values with the constant `Other values`. The following tables list the cardinality limit for each dimension.
 
 ### [Log-based](#tab/log-based)
 
-The following sections list metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements. For convenience, each query uses defaults for time granularity, chart type, and sometimes splitting dimension which simplifies using the query in Log Analytics without any need for modification.
+The following sections list metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements. For convenience, each query uses defaults for time granularity, chart type, and sometimes splitting dimension, which simplifies using the query in Log Analytics without any need for modification.
 
 When you plot the same metric in [metrics explorer](./../essentials/analyze-metrics.md), there are no defaults - the query is dynamically adjusted based on your chart settings:
 
-* The selected **Time range** is translated into an additional `where timestamp...` clause to only pick the events from selected time range. For example, a chart showing data for the most recent 24 hours, the query includes `| where timestamp > ago(24 h)`.
+* The selected **Time range** is translated into a `where timestamp...` clause to only pick the events from selected time range. For example, a chart showing data for the most recent 24 hours, the query includes `| where timestamp > ago(24 h)`.
 
 * The selected **Time granularity** is put into the final `summarize ... by bin(timestamp, [time grain])` clause.
 
-* Any selected **Filter** dimensions are translated into additional `where` clauses.
+* Any selected **Filter** dimensions are translated into `where` clauses.
 
-* The selected **Split chart** dimension is translated into an extra summarize property. For example, if you split your chart by `location`, and plot using a 5-minute time granularity, the `summarize` clause is summarized `... by bin(timestamp, 5 m), location`.
+* The selected **Split chart** dimension is translated into a `summarize` property. For example, if you split your chart by `location`, and plot using a 5-minute time granularity, the `summarize` clause is summarized `... by bin(timestamp, 5 m), location`.
 
 > [!NOTE]
-> If you're new to the Kusto query language, you start by copying and pasting Kusto statements into the Log Analytics query pane without making any modifications. Click **Run** to see basic chart. As you begin to understand the syntax of query language, you can start making small modifications and see the impact of your change. Exploring your own data is a great way to start realizing the full power of [Log Analytics](../logs/log-analytics-tutorial.md) and [Azure Monitor](../overview.md).
+> If you're new to the Kusto query language, you start by copying and pasting Kusto statements into the Log Analytics query pane without making any modifications. Select **Run** to see basic chart. As you begin to understand the syntax of query language, you can start making small modifications and see the impact of your change. Exploring your own data is a great way to start realizing the full power of [Log Analytics](../logs/log-analytics-tutorial.md) and [Azure Monitor](../overview.md).
 
 > [!IMPORTANT]
 > For the following log-based metrics, if multiple aggregations are supported, the aggregation in *italic* is used in the Kusto query example.
@@ -167,7 +175,7 @@ Metrics in the Availability category enable you to see the health of your web ap
 
 #### Availability (availabilityResults/availabilityPercentage)
 
-The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
+The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs failed. The value of 100 means that all of the web test runs passed the validation criteria.
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -289,7 +297,7 @@ The *Availability tests* metric reflects the count of the web tests runs by Azur
 
 #### Availability (availabilityResults/availabilityPercentage)
 
-The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
+The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs failed. The value of 100 means that all of the web test runs passed the validation criteria.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -335,7 +343,7 @@ availabilityResults
 
 ### Browser metrics
 
-Browser metrics are collected by the Application Insights JavaScript SDK from real end-user browsers. They provide great insights into your users' experience with your web app. Browser metrics are typically not sampled, which means that they provide higher precision of the usage numbers compared to server-side metrics which might be skewed by sampling.
+The Application Insights JavaScript SDK collects browser metrics from real end-user browsers. These metrics give you valuable insights into your users' experience with your web app. The SDK typically doesn't sample browser metrics, so they offer higher precision in usage numbers. In contrast, server-side metrics often use sampling, which can skew results.
 
 > [!NOTE]
 > To collect browser metrics, your application must be instrumented with the [Application Insights JavaScript SDK](../app/javascript.md).
@@ -394,7 +402,7 @@ browserTimings
 
 #### Client processing time (browserTiming/processingDuration)
 
-Time between receiving the last byte of a document until the DOM is loaded. Async requests may still be processing.
+Time between receiving the last byte of a document until the DOM is loaded. Async requests could still be processing.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -412,7 +420,7 @@ browserTimings
 
 #### Page load network connect time (browserTimings/networkDuration)
 
-Time between user request and network connection. Includes DNS lookup and transport connection.
+Time between user request and network connection. Includes Domain Name System (DNS) lookup and transport connection.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -685,7 +693,7 @@ This metric shows the number of server exceptions.
 This metric reflects the number of thrown exceptions from your application code running in browser. Only exceptions that are tracked with a `trackException()` Application Insights API call are included in the metric.
 
 > [!NOTE]
-> When using sampling, the itemCount indicates how many telemetry items a single log record represents. For example, with 25% sampling, each log record kept represents 4 items (1 kept + 3 sampled out). Log-based queries sum up all itemCount values to ensure the metric reflects the total number of actual events, not just the number of stored log records.
+> When you're sampling, the itemCount indicates how many telemetry items a single log record represents. For example, with 25% sampling, each log record kept represents four items (1 kept + 3 sampled out). Log-based queries sum up all itemCount values to ensure the metric reflects the total number of actual events, not just the number of stored log records.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -797,14 +805,14 @@ Use metrics in the **Performance counters** category to access [system performan
 
 #### Process CPU (performanceCounters/processCpuPercentage)
 
-The metric shows how much of the total processor capacity is consumed by the process that is hosting your monitored app.
+The monitored app's hosting process consumes a portion of the total processor capacity, and the metric shows how much it uses.
 
 | Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
 | Percentage      | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 > [!NOTE]
-> The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of 4 CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
+> The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of four CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs, which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
 
 #### Process IO rate (performanceCounters/processIOBytesPerSecond)
 
@@ -829,7 +837,7 @@ CPU consumption by *all* processes running on the monitored server instance.
 | Percentage      | Average, Min, Max | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 >[!NOTE]
-> The processor time metric is not available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
+> The processor time metric isn't available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
 
 ### [Log-based](#tab/log-based)
 
@@ -903,7 +911,7 @@ performanceCounters
 | render timechart
 ```
 
-#### GC Total Count (performanceCounters/GC Total Count)
+#### Garbage Collection (GC) GC Total Count (performanceCounters/GC Total Count)
 
 | Unit of measure | Supported aggregations  | Supported dimensions |
 |-----------------|-------------------------|----------------------|
@@ -989,7 +997,7 @@ performanceCounters
 
 #### Process CPU (performanceCounters/processCpuPercentage)
 
-The metric shows how much of the total processor capacity is consumed by the process that is hosting your monitored app.
+The metric shows how much processor capacity the hosting process of your app uses.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -1004,7 +1012,7 @@ performanceCounters
 ```
 
 > [!NOTE]
-> The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of 4 CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
+> The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of four CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs, which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
 
 
 #### Process CPU (all cores) (performanceCounters/processCpuPercentageTotal)
@@ -1060,7 +1068,7 @@ CPU consumption by *all* processes running on the monitored server instance.
 | Percentage      | *Avg*, Min, Max        | All telemetry fields |
 
 >[!NOTE]
-> The processor time metric is not available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
+> The processor time metric isn't available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
 
 ```kusto
 performanceCounters
@@ -1236,7 +1244,7 @@ This metric refers to duration of dependency calls.
 
 #### Server request rate (requests/rate)
 
-This metric reflects the number of incoming server requests that were received by your web application.
+This metric shows the number of incoming server requests your web application receives.
 <!--
 | Unit of measure  | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |------------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -1449,7 +1457,7 @@ dependencies
 
 #### Server requests (requests/count)
 
-This metric reflects the number of incoming server requests that were received by your web application.
+This metric shows the number of incoming server requests your web application receives.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -1675,7 +1683,7 @@ pageViews
 
 #### Sessions (sessions/count)
 
-This metric refers to the count of distinct session IDs.
+This metric refers to the count of distinct session identifiers (IDs).
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -1704,7 +1712,7 @@ traces
 
 #### Users (users/count)
 
-The number of distinct users who accessed your application. The accuracy of this metric may be  significantly impacted by using telemetry sampling and filtering.
+The number of distinct users who accessed your application. The accuracy of this metric could be impacted by using telemetry sampling and filtering.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -1813,7 +1821,7 @@ customMetrics
 
 ## Access log-based metrics directly with the Application Insights REST API
 
-The Application Insights REST API enables programmatic retrieval of log-based metrics. It also features an optional parameter `ai.include-query-payload` that when added to a query string, prompts the API to return not only the time series data, but also the Kusto Query Language (KQL) statement used to fetch it. This parameter can be particularly beneficial for users aiming to comprehend the connection between raw events in Log Analytics and the resulting log-based metric.
+The Application Insights REST API enables programmatic retrieval of log-based metrics. It also features an optional parameter `ai.include-query-payload` that when added to a query string, prompts the API to return not only the time series data, but also the Kusto Query Language (KQL) statement used to fetch it. This parameter can be beneficial for users aiming to comprehend the connection between raw events in Log Analytics and the resulting log-based metric.
 
 To access your data directly, pass the parameter `ai.include-query-payload` to the Application Insights API in a query using KQL.
 
@@ -1824,7 +1832,7 @@ To access your data directly, pass the parameter `ai.include-query-payload` to t
 api.applicationinsights.io/v1/apps/DEMO_APP/metrics/users/authenticated?api_key=DEMO_KEY&prefer=ai.include-query-payload
 ```
 
-The following is an example of a return KQL statement for the metric `Authenticated Users`. (In this example, `"users/authenticated"` is the metric ID.)
+This example shows a return KQL statement for the metric `Authenticated Users`. In this example, `"users/authenticated"` is the metric ID.
 
 ```Kusto
 output

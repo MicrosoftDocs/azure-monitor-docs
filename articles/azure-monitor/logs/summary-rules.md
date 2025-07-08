@@ -25,6 +25,8 @@ Here's a video that provides an overview of some of the benefits of summary rule
 
 > [!VIDEO https://www.youtube.com/embed/uuZlOps42LE?cc_load_policy=1&cc_lang_pref=auto]
 
+Jump into a step-by-step example with this [summary rules tutorial](/azure/sentinel/summary-rules-tutorial).
+
 ## How summary rules work
 
 Summary rules perform batch processing directly in your Log Analytics workspace. The summary rule aggregates chunks of data, defined by bin size, based on a KQL query, and re-ingests the summarized results into a custom table with an [Analytics log plan](logs-table-plans.md) in your Log Analytics workspace. 
@@ -81,7 +83,7 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 - Summary rules are currently only available in the public cloud. 
 - The summary rule processes incoming data and can't be configured on a historical time range. 
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
-- Querying a Log Analytics workspace in another tenant by using Lighthouse isn't supported.
+- Creating a summary rule with query across another tenant under Lighthouse isn't supported.
 - Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
 
 ## Pricing model

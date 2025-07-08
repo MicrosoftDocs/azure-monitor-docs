@@ -1,28 +1,28 @@
 ---
-title: What's new in Azure Service Health
-description: What's New in Azure Service Health
+title: What's New in Azure Service Health
+description: Learn about what's new in Azure Service Health
 ms.topic: whats-new
-ms.date: 04/25/2025
+ms.date: 07/02/2025
 ---
 
 # What's new in Azure Service Health service
 
 This article lists recent changes in the Azure Service Health service. 
 
-## New Metadata information
-In February 2025, there's a new field called Event Level which indicates the significance of each communication in Service Health Communications. 
-You can use this field to sort events. See [Service Health Event Level Filter notifications](metadata-filter.md)
 
-## In-portal Billing communications
-There are new Billing communication events available in-portals for subscribers to find more information about their billing events such as overbilling, underbilling, price changes, etc. <br>
-See [In-Portal Billing Communications](billing-elevated-access.md).
-
-## Azure Copilot for Microsoft in Service Health
-You can now use Azure Copilot for Microsoft to find outage details, ask questions about subscriptions and resources, and access more details about outages through links to the service health portal. 
-<br>See [Understand service health events and status using Microsoft Copilot in Azure](/azure/copilot/understand-service-health).
+### New Event tags
+There's a new field in the Azure Service Health portal called "Event tags" attached to individual service health communications to help users quickly understand the nature and status of an event.
+This field is informational only. See [Service Health Event tags](service-health-event-tags.md).
 
 
-## What's coming
+### Azure Service Health FAQ page
+Check out this new page with questions that help you understand more about Service Health.<br>
+For more information see [Service Health FAQ](service-health-faq.yml).
 
-### New Communication Event tags
-There will be new metadata tags for communication events to filter through the service health events in the portal.
+
+### What's coming
+
+#### Create tenant-based Service Health alerts.
+There will be option to create tenant-based Service Health alerts.
+
+

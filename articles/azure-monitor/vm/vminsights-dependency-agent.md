@@ -10,6 +10,10 @@ ms.date: 01/29/2025
 
 Dependency Agent collects data about processes running on the virtual machine and their external process dependencies. Updates include bug fixes or support of new features or functionality. This article describes Dependency Agent requirements and how to upgrade it manually or through automation.
 
+> [!IMPORTANT]
+>  The Dependency Agent and the Map experience in VM Insights will be retired on 30 June 2028. See [our retirement guidance](https://aka.ms/DependencyAgentRetirement) for more details. 
+
+
 >[!NOTE]
 > Dependency Agent sends heartbeat data to the [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) table, for which you incur data ingestion charges. This behavior is different from Azure Monitor Agent, which sends agent health data to the [Heartbeat](/azure/azure-monitor/reference/tables/heartbeat) table that is free from data collection charges.
 
@@ -18,10 +22,10 @@ Dependency Agent collects data about processes running on the virtual machine an
 - Azure Monitor agent must be installed on the same machine.
 - Requires a connection from the virtual machine to the address 169.254.169.254. This address identifies the Azure metadata service endpoint.
 
-## Operating systems supported
+## Operating systems supported by VM Insights
 
-VM insights supports the following operating systems:
-- VM Insights supports all operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
+The following operating systems:
+- All operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
 - The Dependency Agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022, except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. 
 - For the Dependency Agent's Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
 - The Dependency Agent only supports x64 architectures.
