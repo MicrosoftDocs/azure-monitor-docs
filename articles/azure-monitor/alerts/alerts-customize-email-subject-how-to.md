@@ -2,7 +2,7 @@
 title: Customize log search alert email subjects (preview)
 description: This article explains how to customize log search alert email subjects in Azure Monitor by using dynamic values and ARM templates for personalized notifications.
 ms.topic: how-to
-ms.date: 07/07/2025
+ms.date: 07/08/2025
 ms.reviewer: nolavime
 ---
 
@@ -38,7 +38,7 @@ Add the `actionProperties` object and include the Email.Subject property. For ex
 The format for extracting a dynamic value from the alert payload is: `${<path to schema field>}`, for example: `${data.essentials.monitorCondition}`. 
 
 > [!NOTE]
-> Use the format of the common alert schema to specify the field in the payload even if the action groups configured for the alert rule don't use the common schema.
+> Use the format of the common alert schema to specify the field in the payload even if the action groups configured for the alert rule don't use the common schema. Refer to the [Common alert schema for Azure Monitor alerts](alerts-common-schema.md).
 
 ### Examples
 
