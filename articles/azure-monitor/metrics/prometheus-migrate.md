@@ -20,7 +20,7 @@ You can use Azure Monitor managed service for Prometheus to use Prometheus funct
 - Monitoring and observability:
   - [End-to-end, at-scale monitoring](../containers/container-insights-overview.md).
   - Out-of-the-box dashboards, alerts, and scrape configurations.
-  - Native integration with key Azure Kubernetes Service (AKS) components including [Customer Control Plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) and [Advanced Container Networking Services](/azure/aks/advanced-container-networking-services-overview).
+  - Native integration with key Azure Kubernetes Service (AKS) components, including [Customer Control Plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) and [Advanced Container Networking Services](/azure/aks/advanced-container-networking-services-overview).
   - [Compliance with Azure Trust Center](azure-monitor-workspace-overview.md#data-considerations).
 - Native integration with other Azure services, such as [Azure Managed Grafana](/azure/managed-grafana/overview) or [Azure Monitor dashboards with Grafana](../visualize/visualize-use-grafana-dashboards.md) for dashboarding.
 
@@ -30,17 +30,17 @@ You can use Azure Monitor managed service for Prometheus to use Prometheus funct
 
 Use Azure Managed Prometheus in either of the following configurations:
 
-- **Fully managed service or drop-in replacement for self-managed Prometheus**: In this case, a managed add-on within your AKS or Azure Arc-enabled Kubernetes cluster collects data. You can use custom resources (Pod and service monitors) and the add-on ConfigMaps to configure data collection. The format of the pod/service monitors and ConfigMaps are the same as open-source Prometheus. In this way, you can use existing configs directly with Azure Managed Prometheus.
+- **Fully managed service or drop-in replacement for self-managed Prometheus**: In this case, a managed add-on within your AKS or Azure Arc-enabled Kubernetes cluster collects data. You can use custom resources (pod and service monitors) and the add-on ConfigMaps to configure data collection. The format of the pod/service monitors and ConfigMaps are the same as open-source Prometheus. In this way, you can use existing configs directly with Azure Managed Prometheus.
 - **Remote-write target**: Use Prometheus remote write to send metrics from your existing Prometheus server running in Azure or non-Azure environments to send data to an Azure Monitor workspace. You can gradually migrate from self-hosted to the fully managed add-on.
 
-[Enabling the Azure Managed Prometheus add-on](../containers/kubernetes-monitoring-enable.md) in an AKS cluster deploys the [Pod](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.PodMonitor) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.ServiceMonitor) custom resource definitions (CRDs) so that you can create your own custom resources. Use Pod Monitors and Service Monitors to customize scraping targets, similar to the open-source software Prometheus Operator.
+[Enabling the Azure Managed Prometheus add-on](../containers/kubernetes-monitoring-enable.md) in an AKS cluster deploys the [pod monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.PodMonitor) and [service monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.ServiceMonitor) custom resource definitions (CRDs) so that you can create your own custom resources. Use pod monitors and service monitors to customize scraping targets, similar to the open-source software Prometheus Operator.
 
 > [!NOTE]
 > Currently, the `PrometheusRule` CRD isn't supported with Azure Managed Prometheus.
 
 ### Storage
 
-Prometheus metrics are stored in an [Azure Monitor workspace](azure-monitor-workspace-overview.md), which is a unique environment for data collected by Azure Monitor. Each workspace has its own data repository, configuration, and permissions. Data is stored for 18 months.
+Prometheus metrics are stored in an [Azure Monitor workspace](azure-monitor-workspace-overview.md), which is a unique environment for data that Azure Monitor collects. Each workspace has its own data repository, configuration, and permissions. Data is stored for 18 months.
 
 > [!NOTE]
 > Log Analytics workspaces contain logs and metrics data from multiple Azure resources. Azure Monitor workspaces currently contain only metrics related to Prometheus.
@@ -95,7 +95,7 @@ There are two methods to configure Azure Managed Prometheus, as described on the
 
 ### [Managed add-on](#tab/entra-application)
 
-To enable the managed Prometheus add-on for your AKS cluster and provision your Azure Monitor workspace, see [Enable Managed Prometheus for your AKS or ARC-enabled cluster](../containers/kubernetes-monitoring-enable.md).
+To enable the managed Prometheus add-on for your AKS cluster and provision your Azure Monitor workspace, see [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md).
 
 ### [Remote write](#tab/remote-write)
 
@@ -110,10 +110,10 @@ There are two methods to configure metrics collection, as described on the follo
 
 ### [Managed add-on](#tab/entra-application)
 
-1. Review the default data/metrics collected by the managed add-on at [Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md). The predefined targets that you can enable or disable are the same as the targets that are available with the open-source Prometheus operator. The only difference is that the metrics collected by default are the ones queried by the autoprovisioned dashboards. These default metrics are referred to as [minimal ingestion profile](../containers/prometheus-metrics-scrape-default.md#minimal-ingestion-profile).
+1. Review the default data/metrics collected by the managed add-on at [Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md). The predefined targets that you can enable or disable are the same as the targets that are available with the open-source Prometheus operator. The only difference is that the metrics collected by default are the ones queried by the automatically provisioned dashboards. These default metrics are referred to as [minimal ingestion profile](../containers/prometheus-metrics-scrape-default.md#minimal-ingestion-profile).
 
-1. To customize the targets that are scraped by using the add-on, configure the data collection by using the [add-on ConfigMap](../containers/prometheus-metrics-scrape-validate.md) or by using [Custom resources (Pod and Service Monitors)](../containers/prometheus-metrics-scrape-crd.md).
-    - If you're using Pod Monitors and Service Monitors to monitor your workloads, migrate them to Azure Managed Prometheus by changing the `apiVersion` in the Pod/Service Monitors to `azmonitoring.coreos.com/v1`.
+1. To customize the targets that are scraped by using the add-on, configure the data collection by using the [add-on ConfigMap](../containers/prometheus-metrics-scrape-validate.md) or by using [custom resources (pod and service monitors)](../containers/prometheus-metrics-scrape-crd.md).
+    - If you're using pod monitors and service monitors to monitor your workloads, migrate them to Azure Managed Prometheus by changing `apiVersion` to `azmonitoring.coreos.com/v1`.
     - The Azure Managed Prometheus add-on ConfigMap follows the same format as open-source Prometheus. If you have an existing Prometheus configuration YAML file, convert them into the ConfigMap add-on. See [Create and validate custom configuration file for Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-scrape-validate.md#deploy-config-file-as-configmap).
 1. Review the list of [commonly used workloads](../containers/prometheus-exporters.md) that have curated configurations and instructions to help you set up metrics collection with Azure Managed Prometheus.
 
@@ -145,7 +145,7 @@ After your migration is finished, validate that your setup is working as expecte
 - Verify that you can query metrics from an Azure Monitor workspace. You can query the metrics directly from the **Metrics** option for the workspace instance in the Azure portal or with a Grafana instance connected to the workspace.
 - Verify that you can access the Prometheus interface for Azure Managed Prometheus to verify jobs and confirm that targets are scraped. See [Access Prometheus interface for Azure Managed Prometheus](../containers/prometheus-metrics-troubleshoot.md#prometheus-interface).
 - Verify that any alerting workflows trigger as expected.
-- Verify that remote write is working as expected. See [verify remote-write deployment](./prometheus-remote-write-virtual-machines.md#verify-that-remote-write-data-is-flowing).
+- Verify that remote write is working as expected. See [Verify remote-write deployment](./prometheus-remote-write-virtual-machines.md#verify-that-remote-write-data-is-flowing).
 - For more troubleshooting guidance, see [Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot.md).
 
 ## 6. Monitor limits and quotas
