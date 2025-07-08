@@ -8,7 +8,7 @@ ms.reviewer: aul
 
 # Query Prometheus metrics by using the API and PromQL
 
-Azure Monitor managed service for Prometheus collects metrics from Azure Kubernetes clusters and stores them in an Azure Monitor workspace. The Prometheus query language (PromQL) is a functional query language that you can use to query and aggregate time-series data. Use PromQL to query and aggregate metrics stored in an Azure Monitor workspace.
+Azure Monitor managed service for Prometheus collects metrics from Azure Kubernetes clusters and stores them in an Azure Monitor workspace. Prometheus Query Language (PromQL) is a functional query language that you can use to query and aggregate time-series data. Use PromQL to query and aggregate metrics stored in an Azure Monitor workspace.
 
 This article describes how to query an Azure Monitor workspace by using PromQL via the REST API. For more information on PromQL, see [Query Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/).
 
