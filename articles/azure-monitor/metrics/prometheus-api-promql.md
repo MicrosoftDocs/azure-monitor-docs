@@ -46,11 +46,11 @@ Assign the Monitoring Data Reader role to your app so that it can query data fro
 
 1. Select **Access control (IAM)**.
 
-1. Select **Add** > **Add role assignment** on the **Access control (IAM**) page.
+1. On the **Access control (IAM**) page, select **Add** > **Add role assignment**.
 
     :::image type="content" source="media/prometheus-api-promql/access-control.png" lightbox="media/prometheus-api-promql/access-control.png" alt-text="Screenshot that shows the Azure Monitor workspace Overview page.":::
 
-1. On the **Add role Assignment** page, search for **Monitoring**.
+1. On the **Add role assignment** page, search for **Monitoring**.
 
 1. Select **Monitoring Data Reader**, and then select the **Members** tab.
 
@@ -105,11 +105,11 @@ Find your Azure Monitor workspace's query endpoint on the Azure Monitor workspac
 
 ## Supported APIs
 
-The following queries are supported:
+The following queries are supported.
 
 ### Instant queries
 
- For more information, see [Instant queries](https://prometheus.io/docs/prometheus/latest/querying/api/#instant-queries).
+For more information, see [Instant queries](https://prometheus.io/docs/prometheus/latest/querying/api/#instant-queries).
 
 **Path:** `/api/v1/query`
 
@@ -210,24 +210,18 @@ For the full specification of open-source software Prometheus APIs, see [Prometh
 
 The following limitations are in addition to the limitations that are described in the Prometheus specification:
 
-* Query must be scoped to a metric.
+* Any time-series fetch queries (`/series` or `/query` or `/query_range`) must contain a `\_\_name\_\_` label matcher. That is, each query must be scoped to a metric. There can be only one `\_\_name\_\_` label matcher in a query.
 
-    - Any time-series fetch queries (`/series` or `/query` or `/query_range`) must contain a `\_\_name\_\_` label matcher. That is, each query must be scoped to a metric. There can be only one `\_\_name\_\_` label matcher in a query.
-
-* Query `/series` doesn't support regular expression filter.
+* The query `/series` doesn't support regular expression filter.
 
 * Supported time range:
 
     * The `/query_range` API supports a time range of 32 days. This length of time is the maximum time range allowed, including range selectors specified in the query itself. For example, the query `rate(http_requests_total[1h]` for the last 24 hours means that data is queried for 25 hours. This number comes from the 24-hour range plus the 1 hour specified in the query itself.
     * The `/series` API fetches data for a maximum 12-hour time range. If `endTime` isn't provided, then `endTime = time.now()`. If the time range is greater than 12 hours, `startTime` is set to `endTime – 12h`.
 
-* Ignored time range:
+* The start time and end time provided with `/labels` and `/label/__name__/values` are ignored. All retained data in the Azure Monitor workspace is queried.
 
-    - Start time and end time provided with `/labels` and `/label/__name__/values` are ignored. All retained data in the Azure Monitor workspace is queried.
-
-* Experimental features:
-
-    - Experimental features such as exemplars aren't supported.
+* Experimental features such as exemplars aren't supported.
 
 For more information on Prometheus metrics limits, see [Prometheus metrics](../fundamentals/service-limits.md#prometheus-metrics).
 
