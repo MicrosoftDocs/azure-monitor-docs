@@ -1263,7 +1263,7 @@ items:
   items:
   - name: Overview
     displayName: Visualize, dashboards, workbooks, Grafana, Power BI
-    href: visualize/best-practices-analysis.md
+    href: visualize/best-practices-analyze.md
   - name: Workbooks
     items:
     - name: Overview

@@ -8493,6 +8493,11 @@
    "source_path": "articles/azure-monitor/fundamentals/monitor-at-scale.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-operation",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/fundamentals/best-practices-analysis.md",
+   "redirect_url": "/azure/azure-monitor/visualize/best-practices-analyze",
+   "redirect_document_id": false
   }
  ]
 }
