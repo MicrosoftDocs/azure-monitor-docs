@@ -2681,6 +2681,8 @@ items:
             href: tables/mnfsystemsessionhistoryupdates.md
           - name: MNFSystemStateMessageUpdates
             href: tables/mnfsystemstatemessageupdates.md
+          - name: MPCIngestionLogs
+            href: tables/mpcingestionlogs.md
           - name: McasShadowItReporting
             href: tables/mcasshadowitreporting.md
           - name: MicrosoftAzureBastionAuditLogs
