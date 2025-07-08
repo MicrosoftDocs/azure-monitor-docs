@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/10/2025
+ms.date: 07/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -40,13 +40,14 @@ Configure GRS to ensure that your database meets its availability and durability
 
 **Impact:** Medium
   
-For more information, see [Backup and restore - Azure Database for PostgreSQL - Flexible Server ](https://aka.ms/PGGeoBackup)  
+For more information, see [Backup and restore - Azure Database for PostgreSQL flexible server](https://aka.ms/PGGeoBackup)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 5295ed8a-f7a1-48d3-b4a9-e5e472cf1685  
 Subcategory: DisasterRecovery
 
 <!--5295ed8a-f7a1-48d3-b4a9-e5e472cf1685_end-->
+
 
 <!--6f33a917-418c-4608-b34f-4ff0e7be8637_begin-->
 
