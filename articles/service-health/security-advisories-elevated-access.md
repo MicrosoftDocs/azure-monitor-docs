@@ -7,9 +7,11 @@ ms.date: 7/08/2025
 ---
 
 
-# View and access Security advisories?
+# View and access Security advisories
 
-The Security Advisories blade in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions. These notifications appear in the Security Advisories blade of the portal.
+The Security advisories blade in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions. These notifications appear in the Security advisories blade of the portal.
+
+:::image type="content" source="./media/security-advisories/security-advisories-main.PNG" alt-text="Screenshot of Service Health Security Advisories blade."Lightbox="./media/security-advisories/security-advisories-main.PNG":::
 
 This blade is used to communicate critical security events such as:
 - Platform vulnerabilities
@@ -17,6 +19,8 @@ This blade is used to communicate critical security events such as:
 - Privacy breaches
 
 These advisories are distinct from general health or service issues because they often involve sensitive information and require elevated access roles to view the full details. 
+
+:::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories summary tab."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
 
 Each advisory typically includes four key sections:
 
@@ -26,7 +30,6 @@ Each advisory typically includes four key sections:
 - **Impacted Resources** – Specific resources in your environment that are affected.
 
 
-:::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories blade."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
 
 
 ## Who can view Security advisories? 
@@ -37,14 +40,14 @@ Because the information in this tab is sensitive, Role-Based Access Control (RBA
 - Only users with elevated roles can access sensitive information on the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
 - Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
 
-For more information, read [this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.<br>
+For more information, read [this article](impacted-resources-security.md) on the current RBAC requirements for accessing security impacted resources.<br>
 
 Users with tenant roles [listed here](admin-access-reference.md) can also access tenant level security advisory details on the **Summary** and **Issue Updates** tabs.
 
 
 
 
-## Changes to the Service Health API endpoint
+## Service Health API endpoint
 
 API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details.<br> Users with the specified roles can view sensitive event details for a specific event with the new endpoint. <br>The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details. <br>
 For more information see [Event- fetch Details by Tenant Id and Tracking Id](/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id)
@@ -66,7 +69,7 @@ https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/
 ```
 Operation: POST
 
-#### Impacted Resources for Security Advisories
+#### Impacted Resources for Security advisories
 
 Customers authorized with the above-mentioned roles can use the following endpoints to access the list of resources impacted by a Security Incident.
 <!--- Available since API version 2022-05-01-->
@@ -88,7 +91,7 @@ Operation: POST
 
 #### Existing Events API Endpoint
 
-**Security Advisories Subscription List Events** 
+**Security advisories Subscription List Events** 
 
 The current Events API, which lists all events, including sensitive security ones, stops including certain sensitive details for security-related events:<br> (Events marked as 'eventType': 'Security' and 'isEventSensitive'= true).
 <!--With API version 2023-10-01-preview (and future API versions), The existing Events API endpoint which returns the list of events (including sensitive security events with property 'eventType' : `Security` and property 'isEventSensitive' = true) will be restricted to not pass sensitive properties listed below for security events.-->
