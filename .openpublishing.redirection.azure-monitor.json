@@ -8468,6 +8468,31 @@
    "source_path": "articles/azure-monitor/app/asp-net-core.md",
    "redirect_url": "/azure/azure-monitor/app/asp-net",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/fundamentals/getting-started.md",
+   "redirect_url": "/azure/azure-monitor/platform/monitor-azure-resource",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/fundamentals/best-practices-plan.md",
+   "redirect_url": "/azure/cloud-adoption-framework/manage/monitor",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/fundamentals/best-practices-data-collection.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/data-sources",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/alerts/alerts-plan.md",
+   "redirect_url": "/azure/cloud-adoption-framework/manage/monitor#configure-alerting",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/fundamentals/monitor-at-scale.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-operation",
+   "redirect_document_id": false
   }
  ]
 }

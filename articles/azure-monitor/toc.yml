@@ -27,35 +27,6 @@ items:
       href: fundamentals/whats-new.md
 - name: Getting started
   items:
-  - name: Get started with Azure Monitor
-    href: fundamentals/getting-started.md
-  - name: Plan your implementation
-    href: fundamentals/best-practices-plan.md
-  - name: Configure data collection
-    href: fundamentals/best-practices-data-collection.md
-  - name: Understand analysis and visualization tools
-    href: fundamentals/best-practices-analysis.md
-  - name: Plan alerts and automated actions
-    href: alerts/alerts-plan.md
-  - name: At-scale monitoring solutions
-    displayName: scale, at-scale, monitor at-scale, monitor at scale, enterprise monitoring
-    href: fundamentals/monitor-at-scale.md
-  - name: Best practices
-    items:
-    - name: Reliability
-      href: fundamentals/best-practices-reliability.md
-    - name: Security
-      href: fundamentals/best-practices-security.md
-    - name: Cost optimization
-      href: fundamentals/best-practices-cost.md    
-    - name: Operational excellence
-      href: fundamentals/best-practices-operation.md
-    - name: Performance efficiency
-      href: fundamentals/best-practices-performance.md
-- name: Monitoring scenarios
-  items:
-  - name: Monitor an Azure resource
-    items:
     - name: Use Azure Monitor to monitor an Azure resource
       href: platform/monitor-azure-resource.md
     - name: Analyze metric data
@@ -66,6 +37,20 @@ items:
       href: platform/activity-log-insights.md
     - name: Create alerts
       href: alerts/alert-options.md
+- name: Best practices
+  items:
+  - name: Reliability
+    href: fundamentals/best-practices-reliability.md
+  - name: Security
+    href: fundamentals/best-practices-security.md
+  - name: Cost optimization
+    href: fundamentals/best-practices-cost.md    
+  - name: Operational excellence
+    href: fundamentals/best-practices-operation.md
+  - name: Performance efficiency
+    href: fundamentals/best-practices-performance.md
+- name: Monitoring scenarios
+  items:
   - name: Monitor applications with Application Insights
     items:
     - name: Application Insights overview
@@ -1276,6 +1261,9 @@ items:
     href: fundamentals/security-controls-policy.md
 - name: Visualize
   items:
+  - name: Overview
+    displayName: Visualize, dashboards, workbooks, Grafana, Power BI
+    href: visualize/best-practices-analyze.md
   - name: Workbooks
     items:
     - name: Overview

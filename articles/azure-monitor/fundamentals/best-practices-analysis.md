@@ -6,29 +6,17 @@ ms.date: 05/21/2025
 ms.reviewer: bwren
 ---
 
-# Analyze and visualize monitoring data
+# Visualize data in Azure Monitor
 
-This article describes built-in features for visualizing and analyzing collected data in Azure Monitor. Visualizations like charts and graphs can help you analyze your monitoring data to drill down on issues and identify patterns. You can create custom visualizations to meet the requirements of different users in your organization. 
+This article compares the different options for visualizing collected data in Azure Monitor.
 
-## Built-in analysis features
-
-This table describes Azure Monitor features that provide analysis of collected data without any configuration.
-
-| Component | Description | Required training and/or configuration |
-|-----------|-------------|----------------------------------------|
-| Overview page | Most Azure services have an **Overview** page in the Azure portal that includes a **Monitor** section with charts that show recent critical metrics. This information is intended for owners of individual services to quickly assess the performance of the resource. | This page is based on platform metrics that are collected automatically. No configuration is required. |
-| [Metrics Explorer](../essentials/metrics-getting-started.md) | You can use Metrics Explorer to interactively work with metric data and create metric alerts. You need minimal training to use Metrics Explorer, but you must be familiar with the metrics you want to analyze. | • Once data collection is configured, no other configuration is required.<br>• Platform metrics for Azure resources are automatically available.<br>• Guest metrics for virtual machines are available after an Azure Monitor agent is deployed to the virtual machine.<br>• Application metrics are available after Application Insights is configured. |
-| [Log Analytics](../logs/log-analytics-overview.md) | With Log Analytics, you can create log queries to interactively work with log data and create log search alerts. | Some training is required for you to become familiar with the query language, although you can use prebuilt queries for common requirements. You can also add [query packs](../logs/query-packs.md) with queries that are unique to your organization. Then if you're familiar with the query language, you can build queries for others in your organization. |
-
-## Built-in visualization tools
-
-### Azure workbooks
+## Azure workbooks
 
 [Azure workbooks](../visualize/workbooks-overview.md) provide a flexible canvas for data analysis and the creation of rich visual reports. You can use workbooks to tap into the most complete set of data sources from across Azure and combine them into unified interactive experiences. They're especially useful to prepare end-to-end monitoring views across multiple Azure resources. Insights use prebuilt workbooks to present you with critical health and performance information for a particular service. You can access a gallery of workbooks on the **Workbooks** tab in Azure Monitor, create custom workbooks, or leverage Azure GitHub community templates to meet the requirements of your different users.
 
 :::image type="content" source="media/visualizations/workbook.png" lightbox="media/visualizations/workbook.png" alt-text="Diagram that shows screenshots of three pages from a workbook, including Analysis of Page Views, Usage, and Time Spent on Page.":::
 
-### Azure dashboards
+## Azure dashboards
 
 [Azure dashboards](/azure/azure-portal/azure-portal-dashboards) are useful in providing a "single pane of glass" of your Azure infrastructure and services. While a workbook provides richer functionality, a dashboard can combine Azure Monitor data with data from other Azure services.
 
@@ -38,7 +26,7 @@ Here's a video about how to create dashboards:
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=14538555-8298-4e6e-8603-52db2ea447f1]
 
-### Grafana
+## Grafana
 
 [Grafana](https://grafana.com/) is an open platform that excels in operational dashboards. It's useful for:
 
@@ -60,7 +48,7 @@ The [out-of-the-box Grafana Azure alerts dashboard](https://grafana.com/grafana/
 
 :::image type="content" source="media/visualizations/grafana.png" lightbox="media/visualizations/grafana.png" alt-text="Screenshot that shows Grafana visualizations.":::
 
-### Power BI
+## Power BI
 
 [Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/) is useful for creating business-centric dashboards and reports, along with reports that analyze long-term KPI (Key Performance Indicator) trends. You can [import the results of a log query](../logs/log-powerbi.md) into a Power BI dataset, which allows you to take advantage of features such as combining data from different sources and sharing reports on the web and mobile devices.
 
@@ -70,7 +58,7 @@ The [out-of-the-box Grafana Azure alerts dashboard](https://grafana.com/grafana/
 
 We recommend using Azure Managed Grafana for data visualizations and dashboards in cloud-native scenarios, such as Kubernetes and Azure Kubernetes Service (AKS), as well as multicloud, open source software, and third-party integrations. For other Azure scenarios, including Azure hybrid environments with Azure Arc, we recommend Azure workbooks.
 
-#### When to use Azure Managed Grafana
+### When to use Azure Managed Grafana
 
 * Cloud native environments monitored with Prometheus and CNCF tools
 * Multi-cloud and multi-platform environments
@@ -78,13 +66,13 @@ We recommend using Azure Managed Grafana for data visualizations and dashboards 
 * Interoperability with open-source and third-party tools
 * Sharing dashboards outside of the Azure portal
 
-#### When to use Azure workbooks
+### When to use Azure workbooks
 
 * Azure managed hybrid and edge environments
 * Integrations with Azure actions and automation
 * Creating custom reports based on Azure Monitor insights
 
-### Benefits and use cases
+## Benefits and use cases
 
 | Visualization tool | Benefits | Recommended uses |
 |--------------------|----------|------------------|
