@@ -19,7 +19,7 @@ This article describes Azure Monitor features that customers can use for monitor
 * Read about the [default configuration in Managed Prometheus](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-default) and [metrics collected by default](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-default#metrics-collected-from-default-targets)
 
 **Container Network Observability** 
-* [Learn more about Container Network Observability](https://learn.microsoft.com/azure/aks/container-network-observability-concepts?tabs=cilium)
+* [Learn more about Container Network Observability](/azure/aks/container-network-observability-guide)
 * [Enable Container Network Observability on your AKS cluster](https://learn.microsoft.com/azure/aks/container-network-observability-how-to?tabs=cilium)
 
 
