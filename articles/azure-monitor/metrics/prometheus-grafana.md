@@ -14,13 +14,13 @@ The most common way to analyze and present Prometheus data is with a Grafana das
 * [Azure Monitor managed service for Prometheus](prometheus-metrics-overview.md)
 * [Self-managed Prometheus on Kubernetes clusters](prometheus-metrics-overview.md#self-managed-kubernetes-services)
 * [Self-managed Prometheus on Azure virtual machines (VMs)](prometheus-metrics-overview.md#virtual-machines-and-virtual-machine-scale-sets)
-* [Self-managed Prometheus hosted outside of Azure](prometheus-remote-write-virtual-machines.md?tabs=entra-application%2Cprom-vm#remote-write-using-microsoft-entra-application-authentication)
+* [Self-managed Prometheus hosted outside Azure](prometheus-remote-write-virtual-machines.md?tabs=entra-application%2Cprom-vm#remote-write-using-microsoft-entra-application-authentication)
 
-This article explains how to configure Azure-hosted Prometheus metrics as a data source for [Azure Managed Grafana](/azure/managed-grafana/overview), self-hosted Grafana running on an Azure VM, or a Grafana instance running outside of Azure.
+This article explains how to configure Azure-hosted Prometheus metrics as a data source for [Azure Managed Grafana](/azure/managed-grafana/overview), self-hosted Grafana running on an Azure VM, or a Grafana instance running outside Azure.
 
 ## Azure Monitor workspace query endpoint
 
-In Azure, Prometheus data is stored in an Azure Monitor workspace. When you configure the Prometheus data source in Grafana, you use the **Query endpoint** for your Azure Monitor workspace. To find the query endpoint, open the **Overview** page for your Azure Monitor workspace in the Azure portal.
+In Azure, Prometheus data is stored in an Azure Monitor workspace. When you configure the Prometheus data source in Grafana, you use the query endpoint for your Azure Monitor workspace. To find the query endpoint, open the **Overview** page for your Azure Monitor workspace in the Azure portal.
 
 :::image type="content" source="media/prometheus-grafana/query-endpoint.png" lightbox="media/prometheus-grafana/query-endpoint.png" alt-text="Screenshot that shows the query endpoint URL for an Azure Monitor workspace.":::
 
@@ -30,7 +30,7 @@ In Azure, Prometheus data is stored in an Azure Monitor workspace. When you conf
 
 ## Azure Managed Grafana
 
-An Azure Managed Grafana instance is automatically configured with a managed system identity. The identity has the Monitoring Data Reader role assigned to it at the subscription level. This role allows the identity to read any monitoring data for the subscription. This identity is used to authenticate Grafana to Azure Monitor. You don't need to do anything to configure the identity.
+An Azure Managed Grafana instance is automatically configured with a managed identity. The identity has the Monitoring Data Reader role assigned to it at the subscription level. This role allows the identity to read any monitoring data for the subscription. This identity is used to authenticate Grafana to Azure Monitor. You don't need to do anything to configure the identity.
 
 ### Create the Prometheus data source in Grafana
 
@@ -76,7 +76,7 @@ To allow access all Azure Monitor workspaces in a resource group or subscription
 
     :::image type="content" source="media/prometheus-grafana/virtual-machine-system-identity.png" lightbox="media/prometheus-grafana/virtual-machine-system-identity.png" alt-text="Screenshot that shows the identity page for a VM.":::
 
-1. If the **Monitoring Data Reader** role isn't listed for your subscription or resource group, select **+ Add role assignment**
+1. If the **Monitoring Data Reader** role isn't listed for your subscription or resource group, select **+ Add role assignment**.
 
 1. In the **Scope** dropdown list, select either **Subscription** or **Resource group**. Selecting **Subscription** allows access to all Azure Monitor workspaces in the subscription. Selecting **Resource group** allows access only to Azure Monitor workspaces in the selected resource group.
 
@@ -121,9 +121,9 @@ To configure Prometheus as a data source, follow these steps:
 
     :::image type="content" source="media/prometheus-grafana/prometheus-data-source.png" lightbox="media/prometheus-grafana/prometheus-data-source.png" alt-text="Screenshot that shows configuration for Prometheus data source.":::
 
-## [Grafana hosted outside of Azure](#tab/non-azure-grafana)
+## [Grafana hosted outside Azure](#tab/non-azure-grafana)
 
-## Grafana hosted outside of Azure
+## Grafana hosted outside Azure
 
 If your Grafana instance isn't hosted in Azure, you can use Microsoft Entra ID to connect to your Prometheus data in your Azure Monitor workspace.
 
@@ -154,7 +154,7 @@ To set up Microsoft Entra ID authentication, follow these steps:
 
 1. Enter a description.
 
-1. Select an expiration period from the dropdown list and select **Add**.
+1. Select an expiration period from the dropdown list, and then select **Add**.
 
     > [!NOTE]
     > Create a process to renew the secret and update your Grafana data source settings before the secret expires. After the secret expires, Grafana loses the ability to query data from your Azure Monitor workspace.
@@ -202,7 +202,7 @@ You created your app registration and assigned it access to query data from your
 
 ### Configure Grafana for Azure Authentication
 
-Grafana now supports connecting to Azure Monitor managed Prometheus by using the [Prometheus data source](https://grafana.com/docs/grafana/latest/datasources/prometheus/). For self-hosted Grafana instances, a configuration change is needed to use the Azure Authentication option in Grafana. For Grafana instances that Azure doesn't manage, make the following changes:
+Grafana now supports connecting to Azure Monitor managed Prometheus by using the [Prometheus data source](https://grafana.com/docs/grafana/latest/datasources/prometheus/). For self-hosted Grafana instances, a configuration change is needed to use the Azure Authentication option in Grafana. For Grafana instances that Azure doesn't manage, make the following changes.
 
 Versions 9.x and greater of Grafana support Azure Authentication, but it isn't enabled by default. To enable Azure Authentication, update your Grafana configuration and restart the Grafana instance. To find your `grafana.ini` file, review the [Configure Grafana](https://grafana.com/docs/grafana/v9.0/setup-grafana/configure-grafana/) document from Grafana Labs.
 
