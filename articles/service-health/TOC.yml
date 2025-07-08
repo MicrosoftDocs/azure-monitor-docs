@@ -24,7 +24,7 @@
       href: metadata-filter.md
     - name: Service Health notifications
       href: service-health-notifications-properties.md
-    - name: How to view and access Security Advisories
+    - name: View and access Security a dvisories
       href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
