@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 07/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -557,5 +557,23 @@ Recommendation ID: bc45d55d-3902-4505-8e34-ef8777bc6177
 Subcategory: HighAvailability
 
 <!--bc45d55d-3902-4505-8e34-ef8777bc6177_end-->
+
+<!--b4af9e04-3570-41f1-b4cf-b7af07224799_begin-->
+
+#### Configure a maintenance configuration  
+  
+Configure a maintenance configuration to avoid upgrades during important service hours.  
+  
+**Potential benefits**: Improve reliability during important service hours.  
+
+**Impact:** Low
+  
+For more information, see [Configure customer-controlled maintenance for your virtual network gateway - ExpressRoute](/azure/expressroute/customer-controlled-gateway-maintenance)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: b4af9e04-3570-41f1-b4cf-b7af07224799  
+Subcategory: BusinessContinuity
+
+<!--b4af9e04-3570-41f1-b4cf-b7af07224799_end-->
 
 <!--articleBody-->

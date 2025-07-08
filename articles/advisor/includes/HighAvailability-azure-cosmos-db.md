@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 07/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -317,5 +317,23 @@ Recommendation ID: a030f8ab-4dd4-4751-822b-f231a0df5f5a
 Subcategory: Scalability
 
 <!--a030f8ab-4dd4-4751-822b-f231a0df5f5a_end-->
+
+<!--52fef986-5897-4359-8b92-0f22749f0d73_begin-->
+
+#### Improve resiliency by migrating your Azure Cosmos DB accounts to continuous backup  
+  
+Your Azure Cosmos DB accounts use periodic backup. Continuous backup with point-in-time restore is now available - restore data to any moment in the past 30 days. It may also be more cost-effective, retaining only a single copy of your data.  
+  
+**Potential benefits**: Improve the resiliency of your Azure Cosmos DB workloads  
+
+**Impact:** Medium
+  
+For more information, see [Continuous backup with point in time restore feature in Azure Cosmos DB](/azure/cosmos-db/continuous-backup-restore-introduction)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 52fef986-5897-4359-8b92-0f22749f0d73  
+Subcategory: BusinessContinuity
+
+<!--52fef986-5897-4359-8b92-0f22749f0d73_end-->
 
 <!--articleBody-->
