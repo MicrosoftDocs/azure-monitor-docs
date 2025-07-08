@@ -8,7 +8,7 @@ ms.date: 09/23/2024
 # Query Prometheus metrics by using Azure workbooks
 
 Create dashboards powered by Azure Monitor managed service for Prometheus by using [Azure workbooks](../visualize/workbooks-overview.md).
-This article introduces workbooks for Azure Monitor workspaces and shows you how to query Prometheus metrics by using Azure workbooks and the Prometheus query language (PromQL).
+This article introduces workbooks for Azure Monitor workspaces and shows you how to query Prometheus metrics by using Azure workbooks and Prometheus Query Language (PromQL).
 
 You can also query Prometheus metrics by using PromQL from the metrics explorer in an Azure Monitor workspace. For more information, see [Azure Monitor metrics explorer with PromQL (preview)](metrics-explorer.md).
 
@@ -16,7 +16,7 @@ You can also query Prometheus metrics by using PromQL from the metrics explorer 
 
 To query Prometheus metrics from an Azure Monitor workspace:
 
-* You need an Azure Monitor workspace. To create an Azure Monitor workspace, see [Create an Azure Monitor workspace](azure-monitor-workspace-overview.md?tabs=azure-portal.md).
+* You need an Azure Monitor workspace. For more information, see [Create an Azure Monitor workspace](azure-monitor-workspace-overview.md?tabs=azure-portal.md).
 * Your Azure Monitor workspace must be [collecting Prometheus metrics](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an Azure Kubernetes Service (AKS) cluster or from a virtual machine or virtual machine scale set. For more information, see [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md).
 * The user must be assigned a role that can perform the `microsoft.monitor/accounts/read` operation on the Azure Monitor workspace.
 
@@ -24,7 +24,7 @@ To query Prometheus metrics from an Azure Monitor workspace:
 
 Azure Monitor workspaces include an exploration workbook to query your Prometheus metrics.
 
-1. On the Azure Monitor workspace **Overview** page, select **Prometheus explorer**.
+1. On the **Overview** page for the Azure Monitor workspace, select **Prometheus explorer**.
 
    :::image type="content" source="media/prometheus-workbooks/prometheus-explorer-menu.png" lightbox="media/prometheus-workbooks/prometheus-explorer-menu.png" alt-text="Screenshot that shows Azure Monitor workspace menu selection.":::
 
@@ -48,7 +48,7 @@ Workbooks support many visualizations and Azure integrations. For more informati
 
 1. Select **New**.
 
-1. In the new workbook, select **Add**, and select **Add query** from the dropdown list.
+1. In the new workbook, select **Add**, and then select **Add query** from the dropdown list.
 
    :::image type="content" source="media/prometheus-workbooks/prometheus-workspace-add-query.png" lightbox="media/prometheus-workbooks/prometheus-workspace-add-query.png" alt-text="Screenshot that shows the Add dropdown list in a blank workspace.":::
 
@@ -76,7 +76,7 @@ If your workbook query doesn't return data and returns with the message "You do 
 
 * Check that you have sufficient permissions to perform `microsoft.monitor/accounts/read` assigned through the **Access control (IAM)** option in your Azure Monitor workspace.
 * Confirm if your **Networking** settings support query access. You might need to enable private access through your private endpoint or change settings to allow public access.
-* Check if you have ad block enabled in your browser. If you do, you might need to pause or disable and refresh the workbook to view data.
+* Check if you have an ad blocker enabled in your browser. If you do, you might need to pause or disable and then refresh the workbook to view data.
 
 ## Frequently asked questions
 
