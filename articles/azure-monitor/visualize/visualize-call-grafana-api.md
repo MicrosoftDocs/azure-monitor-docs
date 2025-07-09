@@ -232,7 +232,7 @@ If you're not going to continue to use these resources, delete them with the fol
 1. Delete Azure Monitor dashboards with Grafana:
    1. In the Azure portal, in Azure Monitor dashboards with Grafana, select your resource.
    1. Click the dot icon to show menu and select **Delete**.
-      :::image type="content" source="./media/visualizations-grafana/dashboards-delete.png" alt-text="Screenshot of the Azure platform. Location displayed in the Overview page.":::
+      :::image type="content" source="./media/visualizations-grafana/dashboards-delete.png" alt-text="Screenshot of the Monitor gallery blade. Delete command displayed in the menu.":::
 
    1. Click **Delete** to confirm deletion.
 
