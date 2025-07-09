@@ -64,11 +64,11 @@
         href: resource-health-alert-arm-template-guide.md
     - name: Impacted Resources
       items:
-      - name: Impacted Resources Support for Outages
+      - name: Impacted Resources from Outages
         href: impacted-resources-outage.md
-      - name: Viewing Resources impacted by planned maintenance events
+      - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
-      - name: Viewing impacted resources from Azure security incidents
+      - name: Impacted Resources from Azure security incidents
         href: impacted-resources-security.md     
 - name: Reference
   items:
