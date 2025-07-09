@@ -1,7 +1,7 @@
 ---
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories blade in Azure Service Health
-ms.topic: Overview
+ms.topic: Article
 ms.date: 7/08/2025
 ---
 
