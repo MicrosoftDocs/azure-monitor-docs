@@ -38,7 +38,13 @@ Sign in to the Azure portal at [https://portal.azure.com/](https://portal.azure.
 1. Find and open your Azure Monitor dashboards with Grafana resource.
 1. Select **Access control (IAM)** in the navigation menu.
 1. Select **Add**, then **Add role assignment**.
-1. Select the **Azure Monitor Dashboards with Grafana Contributor** role and then **Next**.
+1. There're multi roles that works, you could check the description of each role and select the minimum access to keep security.
+    1. *Azure Monitor Dashboards with Grafana Contributor* role under *Job function roles* tab.
+    1. *Monitoring Contributor* role under *Job function roles* tab.
+    1. *Monitoring Reader* role under *Job function roles* tab.
+    1. *Contributor* role under *Privileged administrator roles* tab.
+    1. *Owner* role under *Privileged administrator roles* tab.
+1. Take **Azure Monitor Dashboards with Grafana Contributor** role as example, select that role and then **Next**.
 1. Under **Assign access to**, select **User,group, or service principal**.
 1. Select **Select members**, select your service principal, and hit **Select**.
 1. Select **Review + assign**.
