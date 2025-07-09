@@ -55,18 +55,12 @@ Sign in to the Azure portal at [https://portal.azure.com/](https://portal.azure.
 
 You now need to gather some information, which you'll use to get a Grafana API access token, and call Grafana APIs.
 
-1. Find your tenant ID:
+1. Find your tenant ID and Client Id:
    1. In the Azure portal, enter *Microsoft Entra ID* in the **Search resources, services, and docs (G+ /)**.
    1. Select **Microsoft Entra ID**.
-   1. Select **Properties** from the left menu.
-   1. Locate the field **Tenant ID** and save its value.
-
-    :::image type="content" source="media/visualizations-grafana/app-registration-tenant-id.png" alt-text="Screenshot of the Azure portal, getting tenant ID.":::
-
-1. Find your client ID:
-   1. In the Azure portal, in Microsoft Entra ID, select **App registrations** from the left menu.
+   1. Select **App registrations** from the left menu.
    1. Select your app.
-   1. In **Overview**, find the **Application (client) ID** field and save its value.
+   1. In **Overview**, find the **Directory (tenant) ID** field and the **Application (client) ID** field, then save the values.
 
     :::image type="content" source="./media/visualizations-grafana/app-registration-client-id.png" alt-text="Screenshot of the Azure portal, getting client ID.":::
   
