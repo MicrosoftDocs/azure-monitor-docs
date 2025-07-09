@@ -9,7 +9,7 @@ ms.date: 7/08/2025
 
 The Health advisories blade in Azure Service Health is a key feature designed to help Azure users proactively manage their environments by showing non-incident issues that might require attention. This article provides a detailed explanation of its purpose and the information it provides.
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-main-tab.png"alt-text="A screenshot of health advisories main blade with more information." Lightbox= "./media/service-health-advisories/health-advisories-main-tab.png":::
+:::image type="content"source="./media/service-health-advisories/health-advisories-main-tab.png" alt-text= "A screenshot of health advisories main blade with more information." Lightbox= "./media/service-health-advisories/health-advisories-main-tab.png":::
 
 ## Overview
 
@@ -38,11 +38,11 @@ When you open the Health Advisories blade, you see a list of relevant advisories
 |Field  |Description |
 |---------|---------|
 |Status   |Whether the advisory is active, resolved, or scheduled         |
-|Start/End time    |When the advisory was, or will be in effect         |
+|Start/End time    |The period during which the advisory was, or will be active         |
 |Impacted services | The Azure services affected by the advisory        |
 |Impacted regions  |The geographic regions where the advisory applies         |
 |Event level  | Tags to help users quickly assess the severity and urgency of the advisory. <br> - Informational <br>- Warning     |
-|Event tags   | Tags to define the categorization of the advisory <br>- Action recommended<br> - Final PIR<br> - Preliminary PIR<br> - False Positive        |
+|Event tags   | Tags to define the categorization of the advisory <br>- Action recommended<br> - Final Post Incident Review (PIR)<br> - Preliminary PIR<br> - False Positive        |
 |Last update  | Information entered to provide information as it is gathered         |
 
 ### Health advisories - Impacted Services
