@@ -186,8 +186,6 @@ items:
                 href: app/asp-net-counters.md
               - name: Exceptions
                 href: app/asp-net-exceptions.md
-              - name: ASP.NET Dependencies
-                href: app/asp-net-dependencies.md
         - name: Node.js
           href: app/nodejs.md
         - name: Python OpenCensus (retired)
@@ -330,6 +328,8 @@ items:
       - name: Geolocation and IP address handling
         href: app/ip-collection.md
         displayName: geolocation, IP collection, IP tracking, IP storage
+      - name: Dependencies
+        href: app/dependencies.md
       - name: Metrics
         href: app/metrics-overview.md
       - name: Microsoft Entra authentication

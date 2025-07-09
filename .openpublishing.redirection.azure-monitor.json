@@ -8468,6 +8468,11 @@
    "source_path": "articles/azure-monitor/app/asp-net-core.md",
    "redirect_url": "/azure/azure-monitor/app/asp-net",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/asp-net-dependencies.md",
+   "redirect_url": "/azure/azure-monitor/app/dependencies",
+   "redirect_document_id": false
   }
  ]
 }
