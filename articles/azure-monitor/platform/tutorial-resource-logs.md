@@ -35,15 +35,15 @@ If you want to create a new Log Analytics workspace, use the following procedure
 
 In the Azure portal, under **All services**, select **Log Analytics workspaces**.
 
-:::image type="content" source="../media/tutorial-resource-logs/azure-portal.png" lightbox="../media/tutorial-resource-logs/azure-portal.png" alt-text="Screenshot that shows selecting Log Analytics workspaces in the Azure portal.":::
+:::image type="content" source="media/tutorial-resource-logs/azure-portal.png" lightbox="media/tutorial-resource-logs/azure-portal.png" alt-text="Screenshot that shows selecting Log Analytics workspaces in the Azure portal.":::
 
 Select **Create** to create a new workspace.
 
-:::image type="content" source="../media/tutorial-resource-logs/create-workspace.png" lightbox="../media/tutorial-resource-logs/create-workspace.png" alt-text="Screenshot that shows the Create button.":::
+:::image type="content" source="media/tutorial-resource-logs/create-workspace.png" lightbox="media/tutorial-resource-logs/create-workspace.png" alt-text="Screenshot that shows the Create button.":::
 
 On the **Basics** tab, select a subscription, resource group, and region for the workspace. These values don't need to be the same as the resource being monitored. Provide a name that must be globally unique across all Azure Monitor subscriptions.
 
-:::image type="content" source="../media/tutorial-resource-logs/workspace-basics.png" lightbox="../media/tutorial-resource-logs/workspace-basics.png" alt-text=" Screenshot that shows the workspace Basics tab.":::
+:::image type="content" source="media/tutorial-resource-logs/workspace-basics.png" lightbox="media/tutorial-resource-logs/workspace-basics.png" alt-text=" Screenshot that shows the workspace Basics tab.":::
 
 Select **Review + Create** to create the workspace.
 

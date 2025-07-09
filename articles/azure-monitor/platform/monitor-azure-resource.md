@@ -37,7 +37,7 @@ To learn how to use Metrics Explorer, see [Analyze metrics for an Azure resource
 
 The **Activity log** menu item lets you view entries in the [activity log](./activity-log.md) for the resource. These are subscription-level events that track operations for each Azure resource, for example, creating a new resource or starting a virtual machine. Activity log events are automatically generated and collected for viewing in the Azure portal. 
 
-:::image type="content" source="media/monitor-azure-resource/activity-log.png" lightbox="media/monitor-azure-resource/activity-log.png" alt-text="Screenshot that shows an activity log."::
+:::image type="content" source="media/monitor-azure-resource/activity-log.png" lightbox="media/monitor-azure-resource/activity-log.png" alt-text="Screenshot that shows an activity log.":::
 
 ## Insights
 
