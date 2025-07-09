@@ -88,12 +88,10 @@ The Grafana endpoint usually follows the format: https://local-<your_dashboard_r
    1. In the Azure portal, enter *Azure Monitor dashboards with Grafana* in the **Search resources, services, and docs (G+ /)** bar.
    1. Select **Azure Monitor dashboards with Grafana (Preview)** to open the gallery blade.
    1. Select **Browse Saved dashboards** in the top command bar to open the browse blade.
-
     :::image type="content" source="media/visualizations-grafana/monitor-gallery-blade.png" alt-text="Screenshot of gallery blade in the Azure platform.":::
 
    1. Find and open your Azure Monitor dashboards with Grafana resource.
    1. Select **Overview** from the left menu and get the **location** value from **JSON View**.
-
    :::image type="content" source="./media/visualizations-grafana/dashboards-location.png" alt-text="Screenshot of the Azure platform. Location displayed in the Overview page.":::
 
 ## Get an access token
