@@ -1,9 +1,9 @@
 ---
-title: Viewing Security advisories
+title: View and access Security advisories
 description: This article describes the Security advisories blade and that users are required to obtain elevated access roles in order to view Security advisory details.
 
 ms.topic: conceptual
-ms.date: 7/08/2025
+ms.date: 7/09/2025
 ---
 
 
@@ -11,7 +11,8 @@ ms.date: 7/08/2025
 
 The Security advisories blade in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions. These notifications appear in the Security advisories blade of the portal.
 
-:::image type="content" source="./media/security-advisories/security-advisories-main.PNG" alt-text="Screenshot of Service Health Security Advisories blade."Lightbox="./media/security-advisories/security-advisories-main.PNG":::
+
+:::image type="content"source="./media/security-advisories/security-advisories-main.PNG"alt-text="Screenshot of Service Health Security Advisories blade."Lightbox="./media/security-advisories/security-advisories-main.PNG":::
 
 This blade is used to communicate critical security events such as:
 - Platform vulnerabilities
@@ -20,7 +21,7 @@ This blade is used to communicate critical security events such as:
 
 These advisories are distinct from general health or service issues because they often involve sensitive information and require elevated access roles to view the full details. 
 
-:::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories summary tab."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
+:::image type="content"source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories summary tab."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
 
 Each advisory typically includes four key sections:
 
@@ -28,7 +29,6 @@ Each advisory typically includes four key sections:
 - **Impacted Services** – Lists of the Azure services affected by the incident.
 - **Issue Updates** – A timeline of ongoing updates and the remediation steps.
 - **Impacted Resources** – Specific resources in your environment that are affected.
-
 
 
 
