@@ -1,7 +1,7 @@
 ---
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories blade in Azure Service Health
-ms.topic: Article
+ms.topic: how-to
 ms.date: 7/08/2025
 ---
 
@@ -9,7 +9,7 @@ ms.date: 7/08/2025
 
 The Health advisories blade in Azure Service Health is a key feature designed to help Azure users proactively manage their environments by showing non-incident issues that might require attention. This article provides a detailed explanation of its purpose and the information it provides.
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-main-tab.png"alt-text="A screenshot of health advisories main blade with more information."Lightbox="./media/service-health-advisories/health-advisories-main-tab.png":::
+:::image type="content"source="./media/service-health-advisories/health-advisories-main-tab.png"alt-text="A screenshot of health advisories main blade with more information." Lightbox= "./media/service-health-advisories/health-advisories-main-tab.png":::
 
 ## Overview
 
@@ -30,7 +30,7 @@ This section describes the information found on each tab in the blade.
 
 ### Health advisories - summary
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-summary.png"alt-text="A screenshot of health advisories summary tab."Lightbox="./media/service-health-advisories/health-advisories-summary.png":::
+:::image type="content"source="./media/service-health-advisories/health-advisories-summary.png"alt-text="A screenshot of health advisories summary tab." Lightbox= "./media/service-health-advisories/health-advisories-summary.png":::
 
 When you open the Health Advisories blade, you see a list of relevant advisories tailored to your subscriptions, services, and regions. Each advisory includes:
 
@@ -47,7 +47,7 @@ When you open the Health Advisories blade, you see a list of relevant advisories
 
 ### Health advisories - Impacted Services
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-impacted-services.png"alt-text="A screenshot of health advisories Impacted Services tab."Lightbox="./media/service-health-advisories/health-advisories-impacted-services.png":::
+:::image type="content"source="./media/service-health-advisories/health-advisories-impacted-services.png"alt-text="A screenshot of health advisories Impacted Services tab." Lightbox="./media/service-health-advisories/health-advisories-impacted-services.png":::
 
 The Impacted Services section in Azure Service Health Advisories outlines how a given advisory can affect the specific Azure services. It typically includes the following information:
 
