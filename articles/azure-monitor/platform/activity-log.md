@@ -1,8 +1,8 @@
 ---
-title: Send Azure Monitor activity log data
+title: Azure Monitor activity log
 description: Send Azure Monitor activity log data to Log Analytics, Azure Event Hubs, and Azure Storage.
 ms.topic: how-to
-ms.date: 05/21/2025
+ms.date: 07/08/2025
 ms.reviewer: orens
 ---
 
