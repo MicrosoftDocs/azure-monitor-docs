@@ -33,8 +33,6 @@ items:
       href: platform/tutorial-resource-logs.md
     - name: Monitor resources using Activity log insights
       href: platform/activity-log-insights.md
-    - name: Create alerts
-      href: alerts/alert-options.md
 - name: Best practices
   items:
   - name: Reliability

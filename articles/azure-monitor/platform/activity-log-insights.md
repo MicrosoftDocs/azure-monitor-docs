@@ -2,7 +2,7 @@
 title: Azure activity log and activity log insights
 description: Learn how to monitor changes to resources and resource groups in an Azure subscription with Azure Monitor activity log insights.
 ms.topic: how-to
-ms.date: 05/21/2025
+ms.date: 07/08/2025
 ms.reviewer: orens
 
 # Customer intent: As an IT manager, I want to understand how I can use the activity log and activity log insights to monitor changes to resources and resource groups in an Azure subscription.
@@ -10,7 +10,7 @@ ms.reviewer: orens
 
 # Use the Azure Monitor activity log and activity log insights
 
-The Azure Monitor activity log is a platform log that provides insight into subscription-level events. The activity log includes information like when a resource is modified or a virtual machine is started. This article provides information on how to view the activity log and send it to different destinations.
+The [activity log](./activity-log.md) in Azure Monitor is a platform log that provides insight into subscription-level events. It includes information like when a resource is modified or a virtual machine is started. This article provides information on how to view the activity log and send it to different destinations.
 
 ## View the activity log
 

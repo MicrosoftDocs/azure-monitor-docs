@@ -8503,8 +8503,12 @@
    "source_path": "articles/azure-monitor/fundamentals/monitor-azure-monitor.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/overview",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/alerts/alert-options.md",
+   "redirect_url": "/azure/azure-monitor/alerts/alerts-types",
+   "redirect_document_id": false
   }
  ]
 }
-
 
