@@ -7,9 +7,9 @@ ms.date: 6/20/2025
 
 # Azure Service Health portal
 
-The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard, which tracks the health of your Azure services in the regions where you use them.
+The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard that tracks the health of your Azure services in the regions where you use them.
 
-By using the Azure Service Health portal, you can engage with service events and manage actions and alerts to maintain the business continuity of affected applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, and billing updates. For more information about the portal elements and controls, see [Azure portal Overview](/azure/azure-portal/azure-portal-overview).
+By using the Azure Service Health portal, you can engage with service events and manage actions and alerts to maintain the business continuity of affected applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, and billing updates. For more information about the portal elements and controls, see [Azure portal overview](/azure/azure-portal/azure-portal-overview).
 
 You can use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues are affecting you.
 
@@ -36,7 +36,7 @@ In the following section, learn more about different aspects of Service Health.
 
 ### See issues that might affect your services
 
-Select **Service issues** on the left menu to see a map with all user services across the world. This information can help you find services that might be affected from an outage, based on your subscription or tenant admin access.
+Select **Service issues** on the left menu to see a map with all user services across the world. This information can help you find services that might be affected by an outage, based on your subscription or tenant admin access.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the Service issues user interface." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
 
@@ -92,7 +92,7 @@ For more information, see [Subscription vs. tenant access](subscription-vs-tenan
 
 This distinction ensures that users can effectively manage and monitor Azure services based on their roles and the scope of their responsibilities.
 
-The **Service issues**, **Health advisories**, **Security advisories**, and **Health history** blades show events both at **Tenant** and **Subscription** levels. For more information about the roles, see [Role-based access control (RBAC) for security incident resource impact](impacted-resources-security.md).  
+The **Service issues**, **Health advisories**, **Security advisories**, and **Health history** blades show events at both the **Tenant** and **Subscription** levels. For more information about roles, see [Role-based access control (RBAC) for security incident resource impact](impacted-resources-security.md).  
 
 :::image type="content" source="media/service-health-portal-update/service-issue-window-2.png" alt-text="A screenshot of the Service issues user interface that highlights Tenant and Subscription checkboxes." lightbox="media/service-health-portal-update/service-issue-window-2.png":::
 
