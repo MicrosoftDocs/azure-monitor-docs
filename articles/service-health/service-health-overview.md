@@ -38,13 +38,13 @@ Select **Service issues** on the left menu to see ongoing problems in Azure serv
 
 :::image type="content" source="./media/service-health-overview/azure-service-health-overview-2.png" alt-text="Screenshot that shows the Service issues pane.":::
 
-From the **Service issues** blade, select the **Potential impact** tab to see a list of the specific resources you own that might be affected by the issue. You can download a CSV file of these resources to share with your team.
+From the **Service issues** pane, select the **Potential impact** tab to see a list of the specific resources you own that might be affected by the issue. You can download a CSV file of these resources to share with your team.
 
 :::image type="content" source="./media/service-health-overview/azure-service-health-overview-4.png" alt-text="Screenshot that shows the Potential impact tab.":::
 
 ## See emerging issues that might affect your services
 
-In certain situations, widespread service issues might be posted to the [Azure status page](https://azure.status.microsoft) before targeted communications can be sent to affected customers. To ensure that Azure Service Health provides a comprehensive view of issues that might affect you, active Azure status page issues are shown in Service Health as *emerging issues*. When an event is active on the Azure status page, an **Emerging issues** banner is present in Service Health. Select the banner to see the full details of the issue.
+In certain situations, widespread service issues might be posted to the [Azure status page](https://azure.status.microsoft) before targeted communications can be sent to affected customers. To ensure that Azure Service Health provides a comprehensive view of issues that might affect you, active Azure status page issues appear in Service Health as *emerging issues*. When an event is active on the Azure status page, an **Emerging issues** banner is present in Service Health. Select the banner to see the full details of the issue.
 
 :::image type="content" source="./media/service-health-overview/azure-service-health-emerging-issue.png" alt-text="Screenshot that shows the Emerging issues banner.":::
 
@@ -66,10 +66,10 @@ You can use filters in Service Health to show your business-critical subscriptio
 
 ## Configure Service Health alerts
 
-When your business-critical resources are affected, Service Health integrates with Azure Monitor to alert you via emails, text messages, and webhook notifications. Set up an activity log alert for the appropriate Service Health event. You can route that alert to the appropriate people in your organization by using **Action Groups**. For more information, see [Configure alerts for Service Health](./alerts-activity-log-service-notifications-portal.md).
+When your business-critical resources are affected, Service Health integrates with Azure Monitor to alert you via emails, text messages, and webhook notifications. Set up an activity log alert for the appropriate Service Health event. You can route that alert to the appropriate people in your organization by using action groups. For more information, see [Configure alerts for Service Health](./alerts-activity-log-service-notifications-portal.md).
 
 >[!VIDEO https://learn-video.azurefd.net/vod/player?id=fd3fa0ee-3cc4-4c58-9bb5-e7aef5009b34]
 
 ## Related content
 
-Set up alerts so you're notified of health issues. For more information, see [Best practices for setting up Azure Service Health Alerts](https://www.youtube.com/watch?v=k5d5ca8K6tc&list=PLLasX02E8BPBBSqygdRvlTnHfp1POwE8K&index=6&t=0s).
+Set up alerts so you're notified of health issues. For more information, see [Best practices for setting up Azure Service Health alerts](https://www.youtube.com/watch?v=k5d5ca8K6tc&list=PLLasX02E8BPBBSqygdRvlTnHfp1POwE8K&index=6&t=0s).
