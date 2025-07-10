@@ -32,8 +32,6 @@ When events become inactive, they get placed in your health history for up to 90
 
 ## Get started with Service Health
 
-In the following section, learn more about different aspects of Service Health.
-
 ### See issues that might affect your services
 
 Select **Service issues** on the left menu to see a map with all user services across the world. This information can help you find services that might be affected by an outage, based on your subscription or tenant admin access.
