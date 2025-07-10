@@ -14,7 +14,7 @@ The Security advisories pane in Azure Service Health is a specialized dashboard 
 
 :::image type="content"source="./media/security-advisories/security-advisories-main.PNG"alt-text="Screenshot of Service Health Security Advisories blade."Lightbox="./media/security-advisories/security-advisories-main.PNG":::
 
-This blade is used to communicate critical security events such as:
+The Security Advisories pane is used to communicate critical security events such as:
 - Platform vulnerabilities
 - Security incidents
 - Privacy breaches
