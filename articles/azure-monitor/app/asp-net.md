@@ -674,13 +674,7 @@ Application Insights SDKs for .NET and .NET Core ship with `DependencyTrackingTe
 
 If you're missing a dependency or using a different SDK, make sure it's in the list of [autocollected dependencies](#dependency-autocollection). If the dependency isn't autocollected, you can track it manually with a [track dependency call](api-custom-events-metrics.md#trackdependency).
 
-#### How does automatic dependency monitoring work?
-
-Dependencies are automatically collected by using one of the following techniques:
-
-* Using byte code instrumentation around select methods. Use `InstrumentationEngine` either from `StatusMonitor` or an Azure App Service Web Apps extension.
-* `EventSource` callbacks.
-* `DiagnosticSource` callbacks in the latest .NET or .NET Core SDKs.
+For more information about how dependency tracking works, see [Dependency tracking in Application Insights](dependencies.md#how-does-automatic-dependency-monitoring-work).
 
 #### Set up automatic dependency tracking in console apps
 

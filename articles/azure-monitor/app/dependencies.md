@@ -16,6 +16,17 @@ A *dependency* is a component that's called by your application. It's typically 
 
 Below is the currently supported list of dependency calls that are automatically detected as dependencies without requiring any additional modification to your application's code. These dependencies are visualized in the Application Insights [Application map](app-map.md) and [Transaction diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) views. If your dependency isn't on the list, you can still track it manually with a [track dependency call](api-custom-events-metrics.md#trackdependency).
 
+**Autoinstrumentation**
+
+| Language | Dependency types | Notes |
+|----------|------------------|-------|
+| .NET / .NET Core | <ul><li>HTTP/HTTPS</li><li>SQL (via SqlClient)</li><li>Azure Blob, Table, Queue Storage</li><li>Azure Event Hubs</li><li>Azure Service Bus</li><li>Azure Cosmos DB (HTTP mode)</li><li>WCF (HTTP bindings only)</li></ul> | Uses `DependencyTrackingTelemetryModule` via Classic SDK or OTel Exporter. |
+| Java | <ul><li>HTTP</li><li>JDBC (SQL)</li><li>Azure SDKs (for example, Event Hubs, Service Bus)</li><li>Custom dependencies via OpenTelemetry spans</li></ul> | Uses OpenTelemetry Java Agent. Dependency types are inferred from span attributes. |
+| Node.js | <ul><li>HTTP/HTTPS</li><li>MongoDB</li><li>Redis</li><li>Azure SDKs (for example, Blob, Cosmos DB)</li><li>Custom spans</li></ul> | Uses OpenTelemetry SDK with Azure Monitor Exporter. |
+| Python | <ul><li>HTTP/HTTPS</li><li>SQLAlchemy (SQL)</li><li>Aure SDKs (limited)</li><li>Custom spans</li></ul> | Still in preview. Dependency coverage is evolving. |
+| Browser (JS) | <ul><li>AJAX (XHR, Fetch)</li><li>Page view dependencies (for example, script loads)</li></ul> | Uses client-side JS SDK. Dependency tracking is limited to browser context. |
+
+
 **Azure Monitor OpenTelemetry Distro**
 
 For a list of all autocollected dependencies, see the language-specific tabs in [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
