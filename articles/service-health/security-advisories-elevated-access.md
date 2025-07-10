@@ -34,7 +34,7 @@ Each advisory typically includes four key sections:
 
 ## Who can view Security advisories? 
 
-Because the information in this tab is sensitive, Role-Based Access Control (RBAC) is required to view security-impacted resources and sensitive details through the UI or API.
+Because the information in this tab is sensitive, specific Role-Based Access Control (RBAC) permissions are required to view security-impacted resources and sensitive details in the Azure portal or through APIs.
 
 - Users must have appropriate **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
 - Only users with elevated roles can access sensitive information on the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
