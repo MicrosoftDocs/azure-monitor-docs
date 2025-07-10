@@ -8,7 +8,7 @@ ms.date: 07/10/2025
 
 # Planned maintenance
 
-The Planned Maintenance pane in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
+The Planned aintenance pane in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
 
 
 This pane is designed to provide you with advance notice of scheduled maintenance events that can affect your services. 
@@ -22,8 +22,8 @@ Unlike unplanned outages, planned maintenance is scheduled and communicated ahea
 
 
 
-## Information found in the Planned Maintenance pane 
-When you open the Planned Maintenance pane, you see a list of maintenance events relevant to your subscriptions. 
+## Get started with Planned maintenance 
+When you open the Planned maintenance pane, you see a list of maintenance events relevant to your subscriptions. 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-main.png" alt-text="Screenshot of current planned maintenance events." lightbox="./media/planned-maintenance/planned-maintenance-main.png":::
 Each event includes the following information:
 - Issue Name
@@ -41,7 +41,7 @@ Select the **Issue name** link to open the panes with the information you need.
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-summary.PNG" alt-text="Screenshot of Summary tab." lightbox="media/planned-maintenance/planned-maintenance-summary.png":::
 
-When you open the Planned Maintenance event, it opens the Summary tab, which shows you a list of information about this event. 
+When you open the Planned maintenance event, it opens the Summary tab, which shows you a list of information about this event. 
 Each event includes:
 
 |Field    |Description  |
