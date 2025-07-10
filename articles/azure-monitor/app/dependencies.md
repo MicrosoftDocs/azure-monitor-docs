@@ -18,14 +18,17 @@ Below is the currently supported list of dependency calls that are automatically
 
 **Autoinstrumentation**
 
-| Language | Dependency types | Notes |
-|----------|------------------|-------|
-| .NET / .NET Core | <ul><li>HTTP/HTTPS</li><li>SQL (via SqlClient)</li><li>Azure Blob, Table, Queue Storage</li><li>Azure Event Hubs</li><li>Azure Service Bus</li><li>Azure Cosmos DB (HTTP mode)</li><li>WCF (HTTP bindings only)</li></ul> | Uses `DependencyTrackingTelemetryModule` via Classic SDK or OTel Exporter. |
-| Java | <ul><li>HTTP</li><li>JDBC (SQL)</li><li>Azure SDKs (for example, Event Hubs, Service Bus)</li><li>Custom dependencies via OpenTelemetry spans</li></ul> | Uses OpenTelemetry Java Agent. Dependency types are inferred from span attributes. |
-| Node.js | <ul><li>HTTP/HTTPS</li><li>MongoDB</li><li>Redis</li><li>Azure SDKs (for example, Blob, Cosmos DB)</li><li>Custom spans</li></ul> | Uses OpenTelemetry SDK with Azure Monitor Exporter. |
-| Python | <ul><li>HTTP/HTTPS</li><li>SQLAlchemy (SQL)</li><li>Aure SDKs (limited)</li><li>Custom spans</li></ul> | Still in preview. Dependency coverage is evolving. |
-| Browser (JS) | <ul><li>AJAX (XHR, Fetch)</li><li>Page view dependencies (for example, script loads)</li></ul> | Uses client-side JS SDK. Dependency tracking is limited to browser context. |
+| Language | Dependency types |
+|----------|------------------|
+| .NET / .NET Core | <ul><li>HTTP/HTTPS</li><li>SQL (via SqlClient)</li><li>Azure Blob, Table, Queue Storage</li><li>Azure Event Hubs</li><li>Azure Service Bus</li><li>Azure Cosmos DB (HTTP mode)</li><li>WCF (HTTP bindings only)</li></ul> |
+| Java | <ul><li>HTTP</li><li>JDBC (SQL)</li><li>Azure SDKs (for example, Event Hubs, Service Bus)</li><li>Custom dependencies via OpenTelemetry spans</li></ul> |
+| Node.js | <ul><li>HTTP/HTTPS</li><li>MongoDB</li><li>Redis</li><li>Azure SDKs (for example, Blob, Cosmos DB)</li><li>Custom spans</li></ul> |
+| Python | <ul><li>HTTP/HTTPS</li><li>SQLAlchemy (SQL)</li><li>Aure SDKs (limited)</li><li>Custom spans</li></ul> |
+| Browser (JS) | <ul><li>AJAX (XHR, Fetch)</li><li>Page view dependencies (for example, script loads)</li></ul> |
 
+| Language | .NET / .NET Core | Java | Node.js | Python | Browser (JS) |
+|--|------------------|------|---------|--------|--------------|
+| Dependency types | <ul><li>HTTP/HTTPS</li><li>SQL (via SqlClient)</li><li>Azure Blob, Table, Queue Storage</li><li>Azure Event Hubs</li><li>Azure Service Bus</li><li>Azure Cosmos DB (HTTP mode)</li><li>WCF (HTTP bindings only)</li></ul> | <ul><li>HTTP</li><li>JDBC (SQL)</li><li>Azure SDKs (for example, Event Hubs, Service Bus)</li><li>Custom dependencies via OpenTelemetry spans</li></ul> | <ul><li>HTTP/HTTPS</li><li>MongoDB</li><li>Redis</li><li>Azure SDKs (for example, Blob, Cosmos DB)</li><li>Custom spans</li></ul> | <ul><li>HTTP/HTTPS</li><li>SQLAlchemy (SQL)</li><li>Aure SDKs (limited)</li><li>Custom spans</li></ul> | <ul><li>AJAX (XHR, Fetch)</li><li>Page view dependencies (for example, script loads)</li></ul> |
 
 **Azure Monitor OpenTelemetry Distro**
 
