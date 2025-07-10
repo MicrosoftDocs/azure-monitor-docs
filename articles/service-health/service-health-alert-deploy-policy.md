@@ -1,6 +1,6 @@
 ---
-title: Deploy Service Health Alert Rules at Scale using Azure Policy 
-description: This article details a process by which users can deploy service health alerts across subscriptions via Azure policy
+title: Deploy Service Health alert rules at scale using Azure Policy 
+description: This article details a process by which users can deploy service health alerts across subscriptions via Azure policy.
 ms.topic: conceptual
 ms.date: 7/10/2025
 ---
@@ -8,11 +8,11 @@ ms.date: 7/10/2025
 # Deploy Service Health Alerts at Scale using Azure Policy
 
 
-This article explains how to deploy service health alerts across subscriptions via Azure policy.
+This article explains how to deploy service health alerts across subscriptions using Azure policy.
 
 ## Requirements
 
-See permissions and roles required to run Azure Policy in [Azure RBAC permissions in Azure Policy](/policy/overview#azure-rbac-permissions-in-azure-policy).
+See the permissions and roles required to run Azure Policy in [Azure RBAC permissions in Azure Policy](/policy/overview#azure-rbac-permissions-in-azure-policy).
 
 ## Steps to deploy Service Health Alert Rules using Azure Policy
 
@@ -65,7 +65,7 @@ Under the Parameters Tab uncheck the *Only show parameters that need input or re
 
 - **Alert rule name**: This is the name of the alert rule the policy creates. The policy doesn’t check the rule’s name, it only looks at the alert conditions, state, and whether it links to an action group. <br>If a rule already exists that meets these requirements, the policy doesn't create a new one, even if the name is different. Changing the name doesn't remove any existing alert rules.
 
-- **Alert rule event types**: The [Service Health Event Types](/service-health-portal-update.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions. 
+- **Alert rule event types**: The [Service Health Event Types](service-health/service-health-portal-update#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions. 
 
 - **Existing action group resource ids**: The resource IDs of existing action groups in the Management Group/Subscription (depending on policy assignment scope) to be used to send alerts.<br> This action group can be used to alert across subscriptions. <br>Refer to the documentation for [Action Groups](/azure/azure-monitor/alerts/action-groups). 
 
