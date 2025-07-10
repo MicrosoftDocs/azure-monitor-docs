@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.date: 7/10/2025
 ---
 
-# Deploy Service Health Alerts at Scale using Azure Policy
+# Deploy Service Health alerts at scale using Azure policy
 
 
 This article explains how to deploy service health alerts across subscriptions using Azure policy.
@@ -33,7 +33,7 @@ Service Health Alert Rules can be deployed on a single subscription or across al
     - Ensure the system assigned managed identity is selected, or assign a user assigned managed identity.
     - Select **Create a remediation task** to automatically apply the policy to existing subscriptions. Without this step, the policy only applies to new subscriptions.
 
-## Default Behavior
+## Default behavior
 
 By default on remediation, the policy creates the following resources in all noncompliant subscriptions: 
 - A resource Group named **rg-serviceHealthAlert**
@@ -46,9 +46,9 @@ By default, the alert rules and action groups are configured to email subscripti
 :::image type="content"source="./media/service-health-alerts-deploy/default-behavior-1.png"alt-text="Screenshot of path of default behavior."Lightbox="./media/service-health-alerts-deploy/default-behavior-1.png":::
 
 
-## Customization Options
+## Customization options
 
-Under the Parameters Tab uncheck the *Only show parameters that need input or review* to show the parameters the policy supports.
+Under the **Parameters** tab, uncheck *Only show parameters that need input or review* to show the parameters the policy supports.
 
 :::image type="content"source="./media/service-health-alerts-deploy/policy-parameters-1.png"alt-text="Screenshot of screen to set up parameters."Lightbox="./media/service-health-alerts-deploy/policy-parameters-1.png":::
 
