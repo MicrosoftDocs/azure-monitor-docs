@@ -157,9 +157,9 @@ For more details about these APIs, see [Grafana public doc](https://aka.ms/helio
 
 
 > [!NOTE]
-> You cannot import or delete dashboards through the Grafana API, as these operations require control plane requests.  
-> - Importing a dashboard requires the control plane to create a new Azure Monitor dashboard with the Grafana resource first, this can be done using [Azure Resource Manager (ARM) templates or Bicep](/azure/templates/microsoft.dashboard/dashboards?pivots=deployment-language-arm-template). The control plane request will create a resource with empty dashboard by default. After resource is created, then you could use Grafana data plane API(`POST /api/dashboards/db/`) to update the dashboard.
-> - Deleting a dashboard is a control plane operation, no Grafana API call is needed.
+> You cannot import or delete dashboards through the Grafana API, as these operations require Azure Resource Manager (ARM) requests.  
+> - Importing a dashboard requires the ARM to create a new Azure Monitor dashboard with the Grafana resource first, this can be done using [ARM templates or Bicep](/azure/templates/microsoft.dashboard/dashboards?pivots=deployment-language-arm-template). The ARM request will create a resource with empty dashboard by default. After resource is created, then you could use Grafana data plane API(`POST /api/dashboards/db/`) to update the dashboard.
+> - Deleting a dashboard is a ARM operation, no Grafana API call is needed.
 
 
 Below are some commonly used APIs example:
