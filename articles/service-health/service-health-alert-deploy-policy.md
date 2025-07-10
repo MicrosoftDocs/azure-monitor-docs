@@ -12,7 +12,7 @@ This article explains how to deploy service health alerts across subscriptions v
 
 ## Requirements
 
-See permissions and roles required to run Azure Policy in [Azure RBAC permissions in Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/overview#azure-rbac-permissions-in-azure-policy).
+See permissions and roles required to run Azure Policy in [Azure RBAC permissions in Azure Policy](./azure/governance/policy/overview#azure-rbac-permissions-in-azure-policy).
 
 ## Steps to deploy Service Health Alert Rules using Azure Policy
 
@@ -28,7 +28,7 @@ Service Health Alert Rules can be deployed on a single subscription or across al
     - Don't use any resource selectors
     - Ensure the Policy Definition contains "Configure subscriptions to enable Service Health Monitoring Alert Rules" and optionally edit the assignment name and description
 - Under Parameters tab: 
-    - Set the optional customization options (see [Default Behavior](#-Default-Behaviour) and [Customization Options](#Customization-Options)).
+    - Set the optional customization options (see [Default Behavior](#default-behaviour) and [Customization Options](#customization-options)).
 - Under Remediation
     - Ensure the system assigned managed identity is selected, or assign a user assigned managed identity.
     - Select **Create a remediation task** to automatically apply the policy to existing subscriptions. Without this step, the policy only applies to new subscriptions.
@@ -43,14 +43,14 @@ By default on remediation, the policy creates the following resources in all non
 
 By default, the alert rules and action groups are configured to email subscription owners for all service health events types.
 
-:::image type="content"source="./media/service-health-alerts-deploy/default_behavior1.png"alt-text="Screenshot of path of default behavior."Lightbox="./media/service-health-alerts-deploy/default_behavior1.png":::
+:::image type="content"source="./media/service-health-alerts-deploy/default-behavior1.png"alt-text="Screenshot of path of default behavior."Lightbox="./media/service-health-alerts-deploy/default-behavior1.png":::
 
 
 ## Customization Options
 
 Under the Parameters Tab uncheck the *Only show parameters that need input or review* to show the parameters the policy supports.
 
-:::image type="content"source="./media/service-health-alerts-deploy/policy_parameters1.png"alt-text="Screenshot of screen to set up parameters."Lightbox="./media/service-health-alerts-deploy/policy_parameters1.png":::
+:::image type="content"source="./media/service-health-alerts-deploy/policy-parameters1.png"alt-text="Screenshot of screen to set up parameters."Lightbox="./media/service-health-alerts-deploy/policy-parameters1.png":::
 
 
 - **Effect**: Allows the user to set the mode of the policy. <br>
@@ -67,9 +67,9 @@ Under the Parameters Tab uncheck the *Only show parameters that need input or re
 
 - **Alert rule event types**: The [Service Health Event Types](./service-health-overview.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions. 
 
-- **Existing action group resource ids**: The resource IDs of existing action groups in the Management Group/Subscription (depending on policy assignment scope) to be used to send alerts.<br> This action group can be used to alert across subscriptions. <br>Refer to the documentation for [Action Groups](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups). 
+- **Existing action group resource ids**: The resource IDs of existing action groups in the Management Group/Subscription (depending on policy assignment scope) to be used to send alerts.<br> This action group can be used to alert across subscriptions. <br>Refer to the documentation for [Action Groups](./azure/azure-monitor/alerts/action-groups). 
 
-:::image type="content"source="./media/service-health-alerts-deploy/alert_across_subscriptions.png"alt-text="Screenshot of the path of alerts across subscriptions."Lightbox="./media/service-health-alerts-deploy/alert_across_subscriptions.png":::
+:::image type="content"source="./media/service-health-alerts-deploy/alert-across-subscriptions.png"alt-text="Screenshot of the path of alerts across subscriptions."Lightbox="./media/service-health-alerts-deploy/alert-across-subscriptions.png":::
 
 
 
@@ -89,7 +89,7 @@ Possible values include:
     - Monitoring Contributor
 
 - **New action group resources**: Resources to be used by the new action group to send alerts. <br> The specified resources must already exist. <br>Currently email, logic app, Event Hubs, webhook, and Azure function are supported resources. <br>
-Refer to documentation for [Action Groups](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups). <br>The policy only checks if the alert rule is linked to the action groups as it doesn’t use this parameter to check compliance. If you change this setting after assigning the policy, it won’t update the action group. <br> To apply updates across subscriptions, change the **Alert rule enabled** or **Alert rule event types** settings, or set a new action group using the **New action group name** option. 
+Refer to documentation for [Action Groups](./azure/azure-monitor/alerts/action-groups). <br>The policy only checks if the alert rule is linked to the action groups as it doesn’t use this parameter to check compliance. If you change this setting after assigning the policy, it won’t update the action group. <br> To apply updates across subscriptions, change the **Alert rule enabled** or **Alert rule event types** settings, or set a new action group using the **New action group name** option. 
 
 - **Resource group name**: This resource group name is used only if the policy needs to create an alert rule or action group.<br> The policy doesn’t check the resource group name, it only checks the alert rule’s conditions, state, and if it links to an action group.<br> If a matching rule exists in a different resource group, the policy doesn't create a new one. Changing the name doesn't delete any existing resource group, alert rule, or action group.
 
