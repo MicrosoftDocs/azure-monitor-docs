@@ -56,7 +56,7 @@ You can get a link for the issue to use in your problem management system. You c
 
 ## Get support from Microsoft
 
-Contact support if your resource is left in a bad state even after the issue is resolved. Use the support links on the right of the page.  
+Contact support if your resource remains in an unhealthy or unusable state even after the issue is marked as resolved. Use the support links on the right of the page.  
 
 ## Pin a personalized health map to your dashboard
 
