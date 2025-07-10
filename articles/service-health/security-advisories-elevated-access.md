@@ -9,7 +9,7 @@ ms.date: 7/09/2025
 
 # View and access Security advisories
 
-The Security advisories blade in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions. These notifications appear in the Security advisories blade of the portal.
+The Security advisories pane in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions. 
 
 
 :::image type="content"source="./media/security-advisories/security-advisories-main.PNG"alt-text="Screenshot of Service Health Security Advisories blade."Lightbox="./media/security-advisories/security-advisories-main.PNG":::
