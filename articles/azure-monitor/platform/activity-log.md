@@ -6,61 +6,50 @@ ms.date: 07/08/2025
 ms.reviewer: orens
 ---
 
-# Send Azure Monitor activity log data
+# Activity log in Azure Monitor
 
-The Azure Monitor activity log is a platform log that provides insights into subscription-level events. The activity log includes information like when a resource is modified or when a deployment error occurs. You can view the **Activity log** in the Azure portal or retrieve entries with PowerShell and the Azure CLI.
-
-This article provides information on how to view the activity log and send it to different destinations.
-
-> [!NOTE]
-> * Entries in the activity log are system generated and can't be changed or deleted.
-> * Entries in the activity log are representing control plane changes like a virtual machine restart, any nonrelated entries should be written into [Azure Resource Logs](resource-logs.md)
-> * Entries in the activity log are typically a result of changes (create, update, or delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured.
-
+The Azure Monitor activity log is a platform log for control plane events from Azure resources. It includes information like when a resource is modified or when a deployment error occurs. Use the activity log to either review or audit this information for resources that you monitor, or create an alert to be proactively notified when an event is created.
 
 > [!TIP]
 > If you were directed to this article from a deployment operation error, see [Troubleshoot common Azure deployment errors](/azure/azure-resource-manager/troubleshooting/common-deployment-errors).
 
-## Export activity logs
+## Activity log entries
 
-1. Go to **Azure Monitor** > **Activity log** and select **Export Activity Logs**.
-    
-    :::image type="content" source="media/activity-log/go-to-activity-logs.png" lightbox="media/activity-log/go-to-activity-logs.png" alt-text="Screenshot that shows how to get to activity logs.":::
-    
-    > [!NOTE]
-    > You can send the activity log from any single subscription to up to five workspaces.
+Entries in the activity log are collected by default with no required configuration. They're kept for 90 days at no cost. To store them longer, [send them to a Log Analytics workspace or other location](#export-activity-logs). 
 
-1. **Add diagnostic setting** to send activity logs to one or more of these locations:
+Activity log entries are system generated and can't be changed or deleted. Entries are typically a result of changes (create, update, delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured.
 
-    * [Log Analytics workspace](#send-to-a-log-analytics-workspace) for more complex querying and alerting.
-    * [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
-    * [Azure Storage](#send-to-azure-storage) for cheaper, long-term archiving.
+> [!NOTE]
+> Operations above the control plane are logged in [Azure Resource Logs](resource-logs.md). These aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md) to be collected.
 
-    :::image type="content" source="media/activity-log/add-diagnostic-setting.png" lightbox="media/activity-log/add-diagnostic-setting.png" alt-text="Screenshot that shows adding a diagnostic setting.":::
-    
-    For details on how to create a diagnostic setting, see [Create diagnostic settings to send platform logs and metrics to different destinations](./diagnostic-settings.md).
+## View and retrieve the activity log
+You can view the **Activity log** in the Azure portal or retrieve entries with PowerShell and the Azure CLI. It appears in the menu for most Azure resources and also from the **Monitor** menu. If you select it from a resource, the initial filter is set to that resource although you can modify the filter to view all entries.
 
-    > [!TIP]
-    > Send activity log data to a Log Analytics workspace for the following benefits:
-    >
-    > * Sending logs to a Log Analytics workspace is free of charge for the default retention period.
-    > * Send logs to a Log Analytics workspace for [longer retention of up to 12 years](../logs/data-retention-configure.md).
-    > * Logs exported to a Log Analytics workspace can be [shown in Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview)
-    > * [Insights](./activity-log-insights.md) are provided for activity logs exported to Log Analytics.
+You can also access activity log events by using the following methods:
 
-## Send to a Log Analytics workspace
+- Use the [Get-AzLog](/powershell/module/az.monitor/get-azlog) cmdlet to retrieve the activity log from PowerShell. See [Azure Monitor PowerShell samples](../powershell-samples.md#retrieve-activity-log).
+- Use [az monitor activity-log](/cli/azure/monitor/activity-log) to retrieve the activity log from the CLI. See [Azure Monitor CLI samples](../cli-samples.md#view-activity-log).
+* Use the [Azure Monitor REST API](/rest/api/monitor/) to retrieve the activity log from a REST client.
 
-Send the activity log to a Log Analytics workspace to enable the [Azure Monitor Logs](../logs/data-platform-logs.md) feature, where you:
 
-* Correlate activity log data with other monitoring data collected by Azure Monitor.
-* Consolidate log entries from multiple Azure subscriptions and tenants into one location for analysis together.
-* Use log queries to perform complex analysis and gain deep insights on activity log entries.
-* Use log search alerts with Activity entries for more complex alerting logic.
-* Store activity log entries for longer than the activity log retention period.
-* Incur no data ingestion or retention charges for activity log data stored in a Log Analytics workspace.
-* The default retention period in Log Analytics is 90 days.
+### Export activity logs
+Create a [diagnostic setting](./diagnostic-settings.md) to export activity log entries to one or more of the following destinations:
 
-Activity log data in a Log Analytics workspace is stored in a table called `AzureActivity` that you can retrieve with a [log query](../logs/log-query-overview.md) in [Log Analytics](../logs/log-analytics-tutorial.md). The structure of this table varies depending on the [category of the log entry](activity-log-schema.md). For a description of the table properties, see the [Azure Monitor data reference](/azure/azure-monitor/reference/tables/azureactivity).
+- [Log Analytics workspace](#send-to-a-log-analytics-workspace) for more complex querying and alerting.
+- [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
+- [Azure Storage](#send-to-azure-storage) for cheaper, long-term archiving.
+
+## [Log Analytics workspace](#tab/log-analytics)
+
+Send the activity log to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md), which offers the following benefits:
+
+- Correlate activity logs with other log data using [log queries](../logs/log-query-overview.md). 
+- Create [log alerts](../alerts/alerts-create-log-alert-rule.md) which can use more complex logic than [activity log alerts](../alerts/alerts-create-activity-log-alert-rule.md).
+- Access activity log data with [Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview).
+
+There are data ingestion or retention charges for activity logs for the default retention period of 90 days. You can [increase the retention period](../logs/data-retention-configure.md) to up to 12 years.
+
+Activity log data in a Log Analytics workspace is stored in a table called [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity). The structure of this table varies depending on the [category of the log entry](activity-log-schema.md).
 
 For example, to view a count of activity log records for each category, use the following query:
 
@@ -77,11 +66,10 @@ AzureActivity
 ```
 
 > [!IMPORTANT]
-> In some scenarios, it's possible that values in fields of AzureActivity might have different casings from otherwise equivalent values. Take care when querying data in AzureActivity to use case-insensitive operators for string comparisons, or use a scalar function to force a field to a uniform casing before any comparisons. For example, use the [tolower()](/azure/kusto/query/tolowerfunction) function on a field to force it to always be lowercase or the [=~ operator](/azure/kusto/query/datatypes-string-operators) when performing a string comparison.
+> In some scenarios, it's possible that values in fields of `AzureActivity` might have different case from otherwise equivalent values. When querying data in `AzureActivity`, use case-insensitive operators for string comparisons, or use a scalar function to force a field to a uniform casing before any comparisons. For example, use the [tolower()](/azure/kusto/query/tolowerfunction) function on a field to force it to always be lowercase or the [=~ operator](/azure/kusto/query/datatypes-string-operators) when performing a string comparison.
 
-## Send to Azure Event Hubs
-
-Send the activity log to Azure Event Hubs to send entries outside of Azure, for example, to a third-party SIEM or other log analytics solutions. Activity log events from event hubs are consumed in JSON format with a `records` element that contains the records in each payload. The schema depends on the category and is described in [Azure activity log event schema](activity-log-schema.md).
+### [Azure Event Hubs](#tab/event-hub)
+Send the activity log to Azure Event Hubs to send entries outside of Azure, for example, to a third-party SIEM or other log analysis solutions. Activity log events from event hubs are consumed in JSON format with a `records` element that contains the records in each payload. The schema depends on the category and is described in [Azure activity log event schema](activity-log-schema.md).
 
 The following sample output data is from event hubs for an activity log:
 
@@ -141,7 +129,7 @@ The following sample output data is from event hubs for an activity log:
 }
 ```
 
-## Send to Azure Storage
+### [Azure Storage](#tab/storage)
 
 Send the activity log to an Azure Storage account if you want to retain your log data longer than 90 days for audit, static analysis, or back up. If you're required to retain your events for 90 days or less, you don't need to set up archival to a storage account. Activity log events are retained in the Azure platform for 90 days.
 
@@ -157,7 +145,7 @@ For example, a particular blob might have a name similar to:
 insights-activity-logs/resourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/y=2020/m=06/d=08/h=18/m=00/PT1H.json
 ```
 
-Each PT1H.json blob contains a JSON object with events from log files that were received during the hour specified in the blob URL. During the present hour, events are appended to the PT1H.json file as they're received, regardless of when they were generated. The minute value in the URL, `m=00` is always `00` as blobs are created on a per hour basis.
+Each `PT1H.json` blob contains a JSON object with events from log files that were received during the hour specified in the blob URL. During the present hour, events are appended to the PT1H.json file as they're received, regardless of when they were generated. The minute value in the URL, `m=00` is always `00` as blobs are created on a per hour basis.
 
 Each event is stored in the PT1H.json file with the following format. This format uses a common top-level schema but is otherwise unique for each category, as described in [Activity log schema](activity-log-schema.md).
 
@@ -165,7 +153,7 @@ Each event is stored in the PT1H.json file with the following format. This forma
 { "time": "2020-06-12T13:07:46.766Z", "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINES/MV-VM-01", "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee", "operationName": "Microsoft.Resourcehealth/healthevent/Updated/action", "level": "Information", "resultType": "Updated", "category": "ResourceHealth", "properties": {"eventCategory":"ResourceHealth","eventProperties":{"title":"This virtual machine is starting as requested by an authorized user or process. It will be online shortly.","details":"VirtualMachineStartInitiatedByControlPlane","currentHealthStatus":"Unknown","previousHealthStatus":"Unknown","type":"Downtime","cause":"UserInitiated"}}}
 ```
 
-## Export to CSV
+### CSV
 Select **Download as CSV** to export the activity log to a CSV file using the Azure portal.
 
 :::image type="content" source="media/activity-log/export-csv.png" lightbox="media/activity-log/export-csv.png" alt-text="Screenshot that shows option to export to CSV.":::
@@ -219,14 +207,8 @@ while ($currentStart -lt $endTime) {
 Write-Host "Export completed. Files saved to $outputFolder."
 ```
 
+---
 
-## Other methods to retrieve activity log events
-
-You can also access activity log events by using the following methods:
-
-* Use the [Get-AzLog](/powershell/module/az.monitor/get-azlog) cmdlet to retrieve the activity log from PowerShell. See [Azure Monitor PowerShell samples](../powershell-samples.md#retrieve-activity-log).
-* Use [az monitor activity-log](/cli/azure/monitor/activity-log) to retrieve the activity log from the CLI. See [Azure Monitor CLI samples](../cli-samples.md#view-activity-log).
-* Use the [Azure Monitor REST API](/rest/api/monitor/) to retrieve the activity log from a REST client.
 
 ## Legacy collection methods
 
@@ -359,3 +341,23 @@ Learn more about:
 * [Platform logs](./platform-logs-overview.md)
 * [Activity log event schema](activity-log-schema.md)
 * [Activity log insights](activity-log-insights.md)
+
+
+
+
+
+1. Go to **Azure Monitor** > **Activity log** and select **Export Activity Logs**.
+    
+    :::image type="content" source="media/activity-log/go-to-activity-logs.png" lightbox="media/activity-log/go-to-activity-logs.png" alt-text="Screenshot that shows how to get to activity logs.":::
+    
+    > [!NOTE]
+    > You can send the activity log from any single subscription to up to five workspaces.
+
+1. **Add diagnostic setting** to send activity logs to one or more of these locations:
+
+    * [Log Analytics workspace](#send-to-a-log-analytics-workspace) for more complex querying and alerting.
+    * [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
+    * [Azure Storage](#send-to-azure-storage) for cheaper, long-term archiving.
+
+    :::image type="content" source="media/activity-log/add-diagnostic-setting.png" lightbox="media/activity-log/add-diagnostic-setting.png" alt-text="Screenshot that shows adding a diagnostic setting.":::
+    
