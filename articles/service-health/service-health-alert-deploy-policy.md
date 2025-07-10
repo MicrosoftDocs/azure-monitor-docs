@@ -12,7 +12,7 @@ This article explains how to deploy service health alerts across subscriptions v
 
 ## Requirements
 
-See permissions and roles required to run Azure Policy in [Azure RBAC permissions in Azure Policy](./governance/policy/overview#azure-rbac-permissions-in-azure-policy).
+See permissions and roles required to run Azure Policy in [Azure RBAC permissions in Azure Policy](./policy/overview#azure-rbac-permissions-in-azure-policy).
 
 ## Steps to deploy Service Health Alert Rules using Azure Policy
 
@@ -65,9 +65,9 @@ Under the Parameters Tab uncheck the *Only show parameters that need input or re
 
 - **Alert rule name**: This is the name of the alert rule the policy creates. The policy doesn’t check the rule’s name, it only looks at the alert conditions, state, and whether it links to an action group. <br>If a rule already exists that meets these requirements, the policy doesn't create a new one, even if the name is different. Changing the name doesn't remove any existing alert rules.
 
-- **Alert rule event types**: The [Service Health Event Types](./service-health-overview.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions. 
+- **Alert rule event types**: The [Service Health Event Types](/service-health-overview.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions. 
 
-- **Existing action group resource ids**: The resource IDs of existing action groups in the Management Group/Subscription (depending on policy assignment scope) to be used to send alerts.<br> This action group can be used to alert across subscriptions. <br>Refer to the documentation for [Action Groups](./azure/azure-monitor/alerts/action-groups). 
+- **Existing action group resource ids**: The resource IDs of existing action groups in the Management Group/Subscription (depending on policy assignment scope) to be used to send alerts.<br> This action group can be used to alert across subscriptions. <br>Refer to the documentation for [Action Groups](/azure/azure-monitor/alerts/action-groups). 
 
 :::image type="content"source="./media/service-health-alerts-deploy/alert-across-subscriptions.png"alt-text="Screenshot of the path of alerts across subscriptions."Lightbox="./media/service-health-alerts-deploy/alert-across-subscriptions.png":::
 
@@ -89,7 +89,7 @@ Possible values include:
     - Monitoring Contributor
 
 - **New action group resources**: Resources to be used by the new action group to send alerts. <br> The specified resources must already exist. <br>Currently email, logic app, Event Hubs, webhook, and Azure function are supported resources. <br>
-Refer to documentation for [Action Groups](./azure/azure-monitor/alerts/action-groups). <br>The policy only checks if the alert rule is linked to the action groups as it doesn’t use this parameter to check compliance. If you change this setting after assigning the policy, it won’t update the action group. <br> To apply updates across subscriptions, change the **Alert rule enabled** or **Alert rule event types** settings, or set a new action group using the **New action group name** option. 
+Refer to documentation for [Action Groups](/azure/azure-monitor/alerts/action-groups). <br>The policy only checks if the alert rule is linked to the action groups as it doesn’t use this parameter to check compliance. If you change this setting after assigning the policy, it won’t update the action group. <br> To apply updates across subscriptions, change the **Alert rule enabled** or **Alert rule event types** settings, or set a new action group using the **New action group name** option. 
 
 - **Resource group name**: This resource group name is used only if the policy needs to create an alert rule or action group.<br> The policy doesn’t check the resource group name, it only checks the alert rule’s conditions, state, and if it links to an action group.<br> If a matching rule exists in a different resource group, the policy doesn't create a new one. Changing the name doesn't delete any existing resource group, alert rule, or action group.
 
