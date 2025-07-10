@@ -12,15 +12,15 @@ This article describes Azure Monitor features that customers can use for monitor
 
 ## Collecting network metrics
 
-[Azure Monitor managed service for Prometheus](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus) is Azure's recommended solution to collect metrics from your Azure Kubernetes Service (AKS) clusters. When metrics collection using managed Prometheus is enabled for a cluster, network monitoring metrics are collected by default. By default the metrics collected are at the node level. To collect pod level and other advanced metrics, customers need to enable the _Container Network Observability_ feature. Use the links following to explore more. 
+[Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus) is Azure's recommended solution to collect metrics from your Azure Kubernetes Service (AKS) clusters. When metrics collection using managed Prometheus is enabled for a cluster, network monitoring metrics are collected by default. By default the metrics collected are at the node level. To collect pod level and other advanced metrics, customers need to enable the _Container Network Observability_ feature. Use the links following to explore more. 
 
 **Managed Prometheus and default networking metrics collected**
-* [Enable Managed Prometheus on your cluster](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana)
-* Read about the [default configuration in Managed Prometheus](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-default) and [metrics collected by default](https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-default#metrics-collected-from-default-targets)
+* [Enable Managed Prometheus on your cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana)
+* Read about the [default configuration in Managed Prometheus](/azure/azure-monitor/containers/prometheus-metrics-scrape-default) and [metrics collected by default](/azure/azure-monitor/containers/prometheus-metrics-scrape-default#metrics-collected-from-default-targets)
 
 **Container Network Observability** 
-* [Learn more about Container Network Observability](https://learn.microsoft.com/azure/aks/container-network-observability-concepts?tabs=cilium)
-* [Enable Container Network Observability on your AKS cluster](https://learn.microsoft.com/azure/aks/container-network-observability-how-to?tabs=cilium)
+* [Learn more about Container Network Observability](/azure/aks/advanced-container-networking-services-overview#container-network-observability)
+* [Enable Container Network Observability on your AKS cluster](/azure/aks/container-network-observability-how-to)
 
 
 
@@ -29,21 +29,21 @@ This article describes Azure Monitor features that customers can use for monitor
 
 ### Intra-cluster logs
 
-To collect logs for network flows within your AKS cluster, customers can use the [Container Network Logs](https://aka.ms/ContainerNetworkLogsDoc) feature of [Advanced Container Networking Services](https://learn.microsoft.com/azure/aks/advanced-container-networking-services-overview). 
+To collect logs for network flows within your AKS cluster, customers can use the [Container Network Logs](https://aka.ms/ContainerNetworkLogsDoc) feature of [Advanced Container Networking Services](/azure/aks/advanced-container-networking-services-overview). 
 
 #### Onboarding to Container Network Logs
 
-Onboarding steps by method are listed below. For the onboarding options for Container Insights, see the *[Enable Container insights](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights)* article. 
+Onboarding steps by method are listed below. For the onboarding options for Container Insights, see the *[Enable Container insights](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights)* article. 
 
 ##### [CLI](#tab/cli)
 
-See the *[Set up Container Network Logs with Advanced Container Networking Services](https://learn.microsoft.com/azure/aks/how-to-configure-container-network-logs?tabs=cilium)* article for a tutorial on enabling Container Flow logs, which also covers pre-requisities and limitations. 
+See the *[Set up Container Network Logs with Advanced Container Networking Services](/azure/aks/how-to-configure-container-network-logs?tabs=cilium)* article for a tutorial on enabling Container Flow logs, which also covers pre-requisities and limitations. 
 
 
 ##### [Azure Resource Manager](#tab/arm)
 
 > [!NOTE]
-> Before proceeding, ensure your cluster meets the prerequisites mentioned in the *[Set up Container Network Logs with Advanced Container Networking Services](https://learn.microsoft.com/azure/aks/how-to-configure-container-network-logs?tabs=cilium)* article. 
+> Before proceeding, ensure your cluster meets the prerequisites mentioned in the *[Set up Container Network Logs with Advanced Container Networking Services](/azure/aks/how-to-configure-container-network-logs?tabs=cilium)* article. 
 
 
 1. Download the setup files:
@@ -85,7 +85,7 @@ az deployment group create \
 ##### [Bicep](#tab/bicep)
 
 > [!NOTE]
-> Before proceeding, ensure your cluster meets the prerequisites mentioned in the *[Set up Container Network Logs with Advanced Container Networking Services](https://learn.microsoft.com/azure/aks/how-to-configure-container-network-logs?tabs=cilium)* article. 
+> Before proceeding, ensure your cluster meets the prerequisites mentioned in the *[Set up Container Network Logs with Advanced Container Networking Services](/azure/aks/how-to-configure-container-network-logs?tabs=cilium)* article. 
 
 
 1. Download the setup files:
@@ -137,11 +137,11 @@ Container Network Logs requires a Customer Resource Definition (CRD) to be appli
 
 #### Change table plan
 
-Container Flow Logs are ingested to the `RetinaNetworkFlowLogs` table in Log Analytics. The table currently supports the Analytics and Basic table plans. To change the table plan for the `RetinaNetworkFlowLogs`, see the [instructions here](https://learn.microsoft.com/azure/azure-monitor/logs/logs-table-plans?tabs=portal-1#set-the-table-plan).
+Container Flow Logs are ingested to the `RetinaNetworkFlowLogs` table in Log Analytics. The table currently supports the Analytics and Basic table plans. To change the table plan for the `RetinaNetworkFlowLogs`, see the [instructions here](/azure/azure-monitor/logs/logs-table-plans?tabs=portal-1#set-the-table-plan).
 
 #### Throttling  
 
-As Container Network Logs captures every flow inside your AKS cluster, the volume of logs generated can be substantial leading to throttling and log loss. See the *[Configure throttling for Container Insights](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-throttling)* article for guidance on configuring throttling parameters and monitoring for log loss. 
+As Container Network Logs captures every flow inside your AKS cluster, the volume of logs generated can be substantial leading to throttling and log loss. See the *[Configure throttling for Container Insights](/azure/azure-monitor/containers/container-insights-throttling)* article for guidance on configuring throttling parameters and monitoring for log loss. 
 
 #### Limitations
 
@@ -149,10 +149,10 @@ Container Flow Logs has the following limitations:
 1. Onboarding using Terraform is currently not supported
 2. If the table plan is set to Basic Logs, the pre-built Grafana dashboards do not work
 3. The Auxiliary logs table plan is not supported
-4. Only the Cilium dataplane is supported. Refer to the *[Prerequisites for Container Flow logs](https://learn.microsoft.com/azure/aks/how-to-configure-container-network-logs?tabs=cilium#prerequisites)* article for a full list of limitations. 
+4. Only the Cilium dataplane is supported. Refer to the *[Prerequisites for Container Flow logs](/azure/aks/how-to-configure-container-network-logs?tabs=cilium#prerequisites)* article for a full list of limitations. 
 
 
 
 ### Cluster egress logs / Outbound flow logs 
 
-To track flows outside your cluster, customers can enable [Virtual network flow logs](https://learn.microsoft.com/azure/network-watcher/vnet-flow-logs-overview?tabs=Americas)
+To track flows outside your cluster, customers can enable [Virtual network flow logs](/azure/network-watcher/vnet-flow-logs-overview?tabs=Americas)
