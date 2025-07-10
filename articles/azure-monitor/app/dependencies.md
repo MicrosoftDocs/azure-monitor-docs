@@ -16,57 +16,15 @@ A *dependency* is a component that's called by your application. It's typically 
 
 Below is the currently supported list of dependency calls that are automatically detected as dependencies without requiring any additional modification to your application's code. These dependencies are visualized in the Application Insights [Application map](app-map.md) and [Transaction diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) views. If your dependency isn't on the list, you can still track it manually with a [track dependency call](api-custom-events-metrics.md#trackdependency).
 
-### Autoinstrumentation
-
-| Language | Dependency types |
-|----------|------------------|
-| .NET / .NET Core | <ul><li>HTTP/HTTPS</li><li>SQL (via SqlClient)</li><li>Azure Blob, Table, Queue Storage</li><li>Azure Event Hubs</li><li>Azure Service Bus</li><li>Azure Cosmos DB (HTTP mode)</li><li>WCF (HTTP bindings only)</li></ul> |
-| Java | <ul><li>HTTP</li><li>JDBC (SQL)</li><li>Azure SDKs (for example, Event Hubs, Service Bus)</li><li>Kafka (via instrumentation)</li><li>gRPC</li></ul> |
-| Node.js | <ul><li>HTTP/HTTPS</li><li>MongoDB</li><li>Redis</li><li>Azure SDKs (for example, Blob, Cosmos DB)</li></ul> |
-| Python | <ul><li>HTTP/HTTPS</li><li>SQLAlchemy (SQL)</li><li>Aure SDKs (limited)</li></ul> |
-| Browser (JS) | <ul><li>AJAX (XHR, Fetch)</li><li>Page view dependencies (for example, script loads)</li></ul> |
-
-### Manual instrumentation
-
-#### Azure Monitor OpenTelemetry Distro (recommended)
+**Azure Monitor OpenTelemetry Distro (recommended)**
 
 For a list of all autocollected dependencies, see the language-specific tabs in [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
 
-#### Application Insights SDK (Classic API)
+**Application Insights SDK (Classic API)**
 
-# [.NET](#tab/net)
-
-| App frameworks | Versions |
-|----------------|----------|
-| ASP.NET Webforms | 4.5+ |
-| ASP.NET MVC | 4+ |
-| ASP.NET WebAPI | 4.5+ |
-| ASP.NET Core | 1.1+ |
-| <b>Communication libraries</b> |
-| [HttpClient](https://dotnet.microsoft.com) | 4.5+, .NET Core 1.1+ |
-| [SqlClient](https://www.nuget.org/packages/System.Data.SqlClient) | .NET Core 1.0+, NuGet 4.3.0 |
-| [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient/1.1.2)| 1.1.0 - latest stable release. (See the following Note.) |
-| [Event Hubs Client SDK](https://www.nuget.org/packages/Microsoft.Azure.EventHubs) | 1.1.0 |
-| [ServiceBus Client SDK](https://www.nuget.org/packages/Azure.Messaging.ServiceBus) | 7.0.0 |
-| <b>Storage clients</b> |  |
-| ADO.NET | 4.5+ |
-
-> [!NOTE]
-> There is a [known issue](https://github.com/microsoft/ApplicationInsights-dotnet/issues/1347) with older versions of Microsoft.Data.SqlClient. We recommend using 1.1.0 or later to mitigate this issue. Entity Framework Core does not necessarily ship with the latest stable release of Microsoft.Data.SqlClient so we advise confirming that you are on at least 1.1.0 to avoid this issue.
-
-# [Node.js](#tab/node)
-
-A list of the latest [currently supported modules](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers) is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers).
-
-# [JavaScript](#tab/js)
-
-| Communication libraries | Versions |
-| ------------------------|----------|
-| [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest) | All |
-
----
-
----
+* **.NET** - For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies).
+* **Node.js** - A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers).
+* **Browser (JS)** - The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest).
 
 ### How does automatic dependency monitoring work?
 

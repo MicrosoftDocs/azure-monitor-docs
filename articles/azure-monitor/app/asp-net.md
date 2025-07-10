@@ -660,7 +660,7 @@ The default configuration collects `ILogger` `Warning` logs and more severe logs
 
 Application Insights SDKs for .NET and .NET Core ship with `DependencyTrackingTelemetryModule`, which is a telemetry module that automatically collects dependencies. The module `DependencyTrackingTelemetryModule` is shipped as the [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/) NuGet package and brought automatically when you use either the `Microsoft.ApplicationInsights.Web` NuGet package or the `Microsoft.ApplicationInsights.AspNetCore` NuGet package.
 
- Currently, `DependencyTrackingTelemetryModule` tracks the following dependencies automatically:
+Currently, `DependencyTrackingTelemetryModule` tracks the following dependencies automatically:
 
 | Dependencies | Details |
 |--------------|---------|
