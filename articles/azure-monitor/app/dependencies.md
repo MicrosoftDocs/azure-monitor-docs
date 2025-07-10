@@ -10,19 +10,81 @@ ms.reviewer: mmcc
 
 # Dependency tracking in Application Insights
 
-A *dependency* is a component that's called by your application. It's typically a service called by using HTTP, a database, or a file system. [Application Insights](./app-insights-overview.md) measures the duration of dependency calls and whether it's failing or not, along with information like the name of the dependency. You can investigate specific dependency calls and correlate them to requests and exceptions.
+A *dependency* is a component that's called by your application. It's typically a service called by using HTTP, a database, or a file system. [Application Insights](app-insights-overview.md) measures the duration of dependency calls and whether it's failing or not, and collects information like the name of the dependency. You can investigate specific dependency calls and correlate them to requests and exceptions.
 
 ## Automatically tracked dependencies
 
-...
+Below is the currently supported list of dependency calls that are automatically detected as dependencies without requiring any additional modification to your application's code. These dependencies are visualized in the Application Insights [Application map](app-map.md) and [Transaction diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) views. If your dependency isn't on the list, you can still track it manually with a [track dependency call](api-custom-events-metrics.md#trackdependency).
+
+**Azure Monitor OpenTelemetry Distro**
+
+For a list of all autocollected dependencies, see the language-specific tabs in [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
+
+**Application Insights SDK (Classic API)**
+
+# [.NET](#tab/net)
+
+| App frameworks | Versions |
+|----------------|----------|
+| ASP.NET Webforms | 4.5+ |
+| ASP.NET MVC | 4+ |
+| ASP.NET WebAPI | 4.5+ |
+| ASP.NET Core | 1.1+ |
+| <b>Communication libraries</b> |
+| [HttpClient](https://dotnet.microsoft.com) | 4.5+, .NET Core 1.1+ |
+| [SqlClient](https://www.nuget.org/packages/System.Data.SqlClient) | .NET Core 1.0+, NuGet 4.3.0 |
+| [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient/1.1.2)| 1.1.0 - latest stable release. (See the following Note.) |
+| [Event Hubs Client SDK](https://www.nuget.org/packages/Microsoft.Azure.EventHubs) | 1.1.0 |
+| [ServiceBus Client SDK](https://www.nuget.org/packages/Azure.Messaging.ServiceBus) | 7.0.0 |
+| <b>Storage clients</b> |  |
+| ADO.NET | 4.5+ |
+
+> [!NOTE]
+> There is a [known issue](https://github.com/microsoft/ApplicationInsights-dotnet/issues/1347) with older versions of Microsoft.Data.SqlClient. We recommend using 1.1.0 or later to mitigate this issue. Entity Framework Core does not necessarily ship with the latest stable release of Microsoft.Data.SqlClient so we advise confirming that you are on at least 1.1.0 to avoid this issue.
+
+# [Node.js](#tab/node)
+
+A list of the latest [currently supported modules](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers) is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers).
+
+# [JavaScript](#tab/js)
+
+| Communication libraries | Versions |
+| ------------------------|----------|
+| [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest) | All |
+
+---
+
+---
 
 ### How does automatic dependency monitoring work?
 
-...
+Dependencies are automatically collected using one of the following techniques, depending on the telemetry collection method.
+
+**Azure Monitor OpenTelemetry Distro**
+
+* [OpenTelemetry instrumentation libraries](opentelemetry-add-modify.md#included-instrumentation-libraries) are used to automatically collect dependencies such as HTTP, SQL, and Azure SDK calls. These libraries hook into supported frameworks and client libraries using `DiagnosticSource` or equivalent mechanisms.
+* In supported environments like [Azure App Services](codeless-app-service.md), [autoinstrumentation](codeless-overview.md) is available and enabled by default, injecting telemetry collectors at runtime without code changes.
+* In other environments, developers can manually configure instrumentation using the *Azure.Monitor.OpenTelemetry.\** packages and OpenTelemetry APIs to control which dependencies are tracked and how they are enriched or filtered.
+
+**Application Insights SDK (Classic API)**
+
+* Bytecode instrumentation is applied around selected methods using `InstrumentationEngine`, enabled via `StatusMonitor` or the Application Insights extension for Azure App Service.
+* `EventSource` callbacks are used to capture telemetry from .NET libraries that emit structured events.
+* `DiagnosticSource` callbacks are used in newer .NET and .NET Core SDKs to collect telemetry from libraries that support distributed tracing.
+
+---
 
 ## Manually tracking dependencies
 
-...
+**Azure Monitor OpenTelemetry Distro**
+
+..., see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
+
+**Application Insights SDK (Classic API)**
+
+* ASP.NET - [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#manually-tracking-dependencies).
+* Node.js - [Monitor your Node.js services and apps with Application Insights](nodejs.md#track-your-dependencies)
+* JavaScript - [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md)
 
 ## Track AJAX calls from webpages
 
@@ -38,7 +100,7 @@ For webpages, the [Application Insights JavaScript SDK](javascript-sdk.md) autom
 ## Where to find dependency data
 
 * [Application Map](app-map.md) visualizes dependencies between your app and neighboring components.
-* [Transaction Diagnostics](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) shows unified, correlated server data.
+* [Transaction Diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) shows unified, correlated server data.
 * [Browsers tab](javascript.md) shows AJAX calls from your users' browsers.
 * Select from slow or failed requests to check their dependency calls.
 * [Analytics](#logs-analytics) can be used to query dependency data.
@@ -53,15 +115,15 @@ Select the left-hand **Performance** tab and select the **Dependencies** tab at 
 
 Select a **Dependency Name** under **Overall**. After you select a dependency, it shows a graph of that dependency's distribution of durations.
 
-:::image type="content" source="./media/asp-net-dependencies/2-perf-dependencies.png" lightbox="./media/asp-net-dependencies/2-perf-dependencies.png" alt-text="Screenshot that shows the Dependencies tab open to select a Dependency Name in the chart.":::
+:::image type="content" source="media/asp-net-dependencies/2-perf-dependencies.png" lightbox="media/asp-net-dependencies/2-perf-dependencies.png" alt-text="Screenshot that shows the Dependencies tab open to select a Dependency Name in the chart.":::
 
 Select the **Samples** button at the bottom right. Then select a sample to see the end-to-end transaction details.
 
-:::image type="content" source="./media/asp-net-dependencies/3-end-to-end.png" lightbox="./media/asp-net-dependencies/3-end-to-end.png" alt-text="Screenshot that shows selecting a sample to see the end-to-end transaction details.":::
+:::image type="content" source="media/asp-net-dependencies/3-end-to-end.png" lightbox="media/asp-net-dependencies/3-end-to-end.png" alt-text="Screenshot that shows selecting a sample to see the end-to-end transaction details.":::
 
 ### Profile your live site
 
-The [.NET Profiler](../../azure-monitor/app/profiler.md) traces HTTP calls to your live site and shows you the functions in your code that took the longest time.
+The [.NET Profiler](profiler.md) traces HTTP calls to your live site and shows you the functions in your code that took the longest time.
 
 ## Failed requests
 
@@ -69,7 +131,7 @@ Failed requests might also be associated with failed calls to dependencies.
 
 Select the left-hand **Failures** tab and then select the **Dependencies** tab at the top.
 
-:::image type="content" source="./media/asp-net-dependencies/4-fail.png" lightbox="./media/asp-net-dependencies/4-fail.png" alt-text="Screenshot that shows selecting the failed requests chart.":::
+:::image type="content" source="media/asp-net-dependencies/4-fail.png" lightbox="media/asp-net-dependencies/4-fail.png" alt-text="Screenshot that shows selecting the failed requests chart.":::
 
 Here you see the failed dependency count. To get more information about a failed occurrence, select a **Dependency Name** in the bottom table. Select the **Dependencies** button at the bottom right to see the end-to-end transaction details.
 
@@ -114,77 +176,6 @@ You can track dependencies in the [Kusto query language](/azure/kusto/query/). H
 ## Open-source SDK
 
 Like every Application Insights SDK, the dependency collection module is also open source. Read and contribute to the code or report issues at [the official GitHub repo](https://github.com/Microsoft/ApplicationInsights-dotnet).
-
-## Dependency autocollection
-
-Below is the currently supported list of dependency calls that are automatically detected as dependencies without requiring any additional modification to your application's code. These dependencies are visualized in the Application Insights [Application map](app-map.md) and [Transaction diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) views. If your dependency isn't on the list, you can still track it manually with a [track dependency call](api-custom-events-metrics.md#trackdependency).
-
-### Azure Monitor OpenTelemetry Distro
-
-# [.NET](#tab/net)
-
-...
-
-# [Java](#tab/java)
-
-...
-
-# [Node.js](#tab/node)
-
-...
-
-# [JavaScript](#tab/js)
-
-...
-
-# [Python](#tab/python)
-
-...
-
----
-
-### Application Insights SDK (Classic API)
-
-# [.NET](#tab/net)
-
-| App frameworks | Versions |
-|----------------|----------|
-| ASP.NET Webforms | 4.5+ |
-| ASP.NET MVC | 4+ |
-| ASP.NET WebAPI | 4.5+ |
-| ASP.NET Core | 1.1+ |
-| <b> Communication libraries</b> |
-| [HttpClient](https://dotnet.microsoft.com) | 4.5+, .NET Core 1.1+ |
-| [SqlClient](https://www.nuget.org/packages/System.Data.SqlClient) | .NET Core 1.0+, NuGet 4.3.0 |
-| [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient/1.1.2)| 1.1.0 - latest stable release. (See the following Note.) |
-| [Event Hubs Client SDK](https://www.nuget.org/packages/Microsoft.Azure.EventHubs) | 1.1.0 |
-| [ServiceBus Client SDK](https://www.nuget.org/packages/Azure.Messaging.ServiceBus) | 7.0.0 |
-| <b>Storage clients</b>|  |
-| ADO.NET | 4.5+ |
-
-> [!NOTE]
-> There is a [known issue](https://github.com/microsoft/ApplicationInsights-dotnet/issues/1347) with older versions of Microsoft.Data.SqlClient. We recommend using 1.1.0 or later to mitigate this issue. Entity Framework Core does not necessarily ship with the latest stable release of Microsoft.Data.SqlClient so we advise confirming that you are on at least 1.1.0 to avoid this issue.
-
-# [Java](#tab/java)
-
-See the list of Application Insights Java's
-[autocollected dependencies](opentelemetry-add-modify.md?tabs=java#included-instrumentation-libraries).
-
-# [Node.js](#tab/node)
-
-A list of the latest [currently supported modules](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers) is maintained [here](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers).
-
-# [JavaScript](#tab/js)
-
-| Communication libraries | Versions |
-| ------------------------|----------|
-| [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest) | All |
-
-# [Python](#tab/python)
-
-...
-
----
 
 ## Next steps
 
