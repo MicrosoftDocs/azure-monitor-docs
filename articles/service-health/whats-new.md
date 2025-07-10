@@ -19,4 +19,4 @@ Check out this new page with frequently asked questions that help you understand
 
 ## Tenant-based Service Health alerts are coming
 
-Users will soon have the option to create tenant-based Service Health alerts.
+Users will soon be able to create tenant-based Service Health alerts.
