@@ -50,7 +50,7 @@ In certain situations, widespread service issues might be posted to the [Azure s
 
 ## Get links and explanations that you can download
 
-You can get a link for the issue to use in your problem management system. You can download PDF and sometimes CSV files to share with people who don't have access to the Azure portal.
+You can get a link for the issue to use in your problem management system. You can download PDF (and sometimes CSV) files to share with people who don't have access to the Azure portal.
 
 :::image type="content" source="./media/service-health-overview/azure-service-health-overview-3.png" alt-text="Screenshot that shows how to download files.":::
 
