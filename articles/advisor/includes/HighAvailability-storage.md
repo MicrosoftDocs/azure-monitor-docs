@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/27/2025
+ms.date: 06/24/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -48,23 +48,25 @@ Subcategory: DisasterRecovery
 
 <!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_end-->
 
-<!--4346d0ad-b591-479a-9c87-e01afe9188b6_begin-->
 
-#### Configure a backup for Azure Blob in the Azure Storage account  
-  
-Configure a backup for the Azure Blob in the Azure Storage account. Protect Azure Blob data with an offsite, vaulted, secure, managed, and compliant backup solution.  
-  
-**Potential benefits**: Secure, managed, and compliant backup solution.  
 
-**Impact:** Medium
+
+<!--4c10f447-fc3d-48b5-931d-23cea8486023_begin-->
+
+#### Enable zone redundancy for storage accounts to improve high availability and resiliency  
   
-For more information, see [Quickstart - Configure vaulted backup for Azure Blobs using Azure Backup - Azure Backup](/azure/backup/blob-backup-configure-quick)  
+By default, data in a storage account is replicated three times within a single data center. If the application must be highly available, convert the data to Zone Redundant Storage (ZRS). ZRS takes advantage of Azure availability zones to replicate data across three separate data centers.  
+  
+**Potential benefits**: Achieve higher availability for the application.  
+
+**Impact:** High
+  
+For more information, see [Data redundancy - Azure Storage](https://aka.ms/learnmore_storage_storageaccounts)  
 
 ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: 4346d0ad-b591-479a-9c87-e01afe9188b6  
-Subcategory: DisasterRecovery
+Recommendation ID: 4c10f447-fc3d-48b5-931d-23cea8486023  
+Subcategory: HighAvailability
 
-<!--4346d0ad-b591-479a-9c87-e01afe9188b6_end-->
-
+<!--4c10f447-fc3d-48b5-931d-23cea8486023_end-->
 
 <!--articleBody-->

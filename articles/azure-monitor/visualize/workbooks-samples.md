@@ -1,7 +1,7 @@
 ---
 title: Sample Azure Workbooks with links
 description: See sample Azure Workbooks.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-arm-template
 ms.date: 09/17/2024
 ms.reviewer: gardnerjr 

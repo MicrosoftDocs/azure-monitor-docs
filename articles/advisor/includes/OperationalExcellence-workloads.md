@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 03/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Workloads
@@ -12,114 +12,6 @@ ms.custom: OperationalExcellence Workloads
   
 ## Workloads  
   
-<!--8223061b-82a3-49ef-b245-e39f0bcfc1c3_begin-->
-
-#### Enable boot diagnostics on your VM as per recommendation for Epic on Azure  
-  
-Boot diagnostics is a debugging feature for Azure virtual machines (VM) that allows diagnosis of VM boot failures. Boot diagnostics enables a user to observe the state of their VM as it's booting up by collecting serial log information and screenshots  
-  
-**Potential benefits**: Allows VM boot failure diagnosis  
-
-**Impact:** Medium
-  
-For more information, see [Azure boot diagnostics - Azure Virtual Machines](/azure/virtual-machines/boot-diagnostics)  
-
-ResourceType: microsoft.workloads/epicvirtualinstances/databaseinstances  
-Recommendation ID: 8223061b-82a3-49ef-b245-e39f0bcfc1c3  
-
-
-<!--8223061b-82a3-49ef-b245-e39f0bcfc1c3_end-->
-
-<!--7a11e667-8448-490b-81f0-1b0dd05eba69_begin-->
-
-#### Ensure GRUB Large memory pages settings are corrctly set for your Epic ODB virtual machines  
-  
-For Epic Operational Database (ODB) server performance and high availability, Large memory pages, also known as huge pages, can be configured in the GRUB bootloader for the Epic  ODB  
-  
-**Potential benefits**: ODB server performance and reliability  
-
-**Impact:** Medium
-  
-For more information, see [Large Memory Support - Win32 apps](/windows/win32/memory/large-memory-support)  
-
-ResourceType: microsoft.workloads/epicvirtualinstances/databaseinstances  
-Recommendation ID: 7a11e667-8448-490b-81f0-1b0dd05eba69  
-
-
-<!--7a11e667-8448-490b-81f0-1b0dd05eba69_end-->
-
-<!--21e713ee-429d-422e-838e-e493abd2f8e2_begin-->
-
-#### Ensure kdump is running and set to auto start for your ODB Virtual machines  
-  
-Configuring and enabling kdump is needed to troubleshoot system crashes that don't have a clear cause. Sometimes a system crash cannot be explained by a hardware or infrastructure problem. In such cases, an operating system or application may have caused the problem. kdump will allow you to determine the reason for the system crash.  
-  
-**Potential benefits**: Diagnose system crashes to ensure correct HA setting  
-
-**Impact:** Medium
-  
-For more information, see [Script to enable kdump in SAP HANA (Large Instances)](/azure/sap/large-instances/hana-large-instance-enable-kdump#Setup%20details)  
-
-ResourceType: microsoft.workloads/epicvirtualinstances/databaseinstances  
-Recommendation ID: 21e713ee-429d-422e-838e-e493abd2f8e2  
-
-
-<!--21e713ee-429d-422e-838e-e493abd2f8e2_end-->
-
-<!--72c6aa94-ad6f-4618-b25a-d00e5793fc66_begin-->
-
-#### For ODB performance and availability, ensure managed disks are configured as a storage pool with correct stripe sizing  
-  
-For Epic Operational Database (ODB) storage performance and high availability, set up a resilient solution for data reads and writes. It's recommended to group multiple data disks into a single logical unit using LVM with a RAID configuration, preferably with disk stripping  
-  
-**Potential benefits**: ODB server performance and reliability  
-
-**Impact:** Medium
-  
-For more information, see [Use Azure Container Storage with Azure managed disks](/azure/storage/container-storage/use-container-storage-with-managed-disks)  
-
-ResourceType: microsoft.workloads/epicvirtualinstances/databaseinstances  
-Recommendation ID: 72c6aa94-ad6f-4618-b25a-d00e5793fc66  
-
-
-<!--72c6aa94-ad6f-4618-b25a-d00e5793fc66_end-->
-
-<!--953efacd-7601-4ec1-a985-f790785a3562_begin-->
-
-#### Deploy Hyperspace Web servers as part of a Virtual Machine Scale Set Flex for high availability and scale  
-  
-We have observed that your Hyperspace Web servers aren't deployed as part of Virtual Machine Scale Set Flex. For services like Hyperspace Web in Epic systems that require high availability and large scale, it's recommended that servers are deployed as part of Virtual Machine Scale Set Flex. With Flexible orchestration, Azure provides a unified experience across the Azure VM ecosystem  
-  
-**Potential benefits**: High availability and on-demand large scale for Hyperspace web servers in Epic DB  
-
-**Impact:** Medium
-  
-For more information, see [Orchestration modes for Virtual Machine Scale Sets in Azure - Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes?WT.mc_id=modinfra-31635-pierrer#scale-sets-with-flexible-orchestration)  
-
-ResourceType: microsoft.workloads/epicvirtualinstances/hyperspacewebinstances  
-Recommendation ID: 953efacd-7601-4ec1-a985-f790785a3562  
-
-
-<!--953efacd-7601-4ec1-a985-f790785a3562_end-->
-
-<!--73c1d1a9-a6af-47a7-ba92-05d821ffec54_begin-->
-
-#### Ensure Accelerated Networking is enabled on all network interfaces for improved performance of Epic workloads  
-  
-Network latency across workload VMSs is required to be low. If accelerated networking isn't enabled, network latency can increase beyond performance issues for the Epic system  
-  
-**Potential benefits**: Low network latency and improved performance in Epic workload  
-
-**Impact:** High
-  
-For more information, see [SAP workload planning and deployment checklist](/azure/sap/workloads/deployment-checklist?tabs=pilot#:~:text=Make%20sure%20that%20accelerated%20networking%20is%20enabled%20on%20every%20VM%20used%20for%20SAP.)  
-
-ResourceType: microsoft.workloads/epicvirtualinstances/wssinstances  
-Recommendation ID: 73c1d1a9-a6af-47a7-ba92-05d821ffec54  
-
-
-<!--73c1d1a9-a6af-47a7-ba92-05d821ffec54_end-->
-
 <!--aafa012d-9696-4f5b-8f72-ffa083d7040d_begin-->
 
 #### Set the parameter net.ipv4.tcp_keepalive_time to '300' in the Application VM OS in SAP workloads  

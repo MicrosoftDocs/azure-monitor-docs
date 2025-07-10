@@ -1,7 +1,7 @@
 ---
 title: Microsoft Entra authentication for Application Insights
 description: Learn how to enable Microsoft Entra authentication to ensure that only authenticated telemetry is ingested in your Application Insights resources.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: csharp
 ms.reviewer: rijolly

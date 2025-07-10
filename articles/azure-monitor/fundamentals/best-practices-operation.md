@@ -1,8 +1,8 @@
 ---
 title: Operational excellence in Azure Monitor
 description: Recommendations for configuring Azure Monitor for operational excellence.
-ms.topic: conceptual
-ms.date: 03/12/2024
+ms.topic: best-practice
+ms.date: 05/21/2025
 ms.reviewer: bwren
 ---
 

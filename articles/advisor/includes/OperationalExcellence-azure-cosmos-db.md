@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 05/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Cosmos DB
@@ -101,5 +101,23 @@ Recommendation ID: a850ac78-dcea-485d-9c86-17a5f2cf56c4
 
 
 <!--a850ac78-dcea-485d-9c86-17a5f2cf56c4_end-->
+
+<!--5c48d9ec-397c-4f11-a342-929a1208c375_begin-->
+
+#### Upgrade the Azure Cosmos DB account to TLS 1.2 or later  
+  
+To ensure optimal reliability, security and performance, the platform requires Azure Cosmos DB users to be secure connections using Transport Layer Security (TLS) 1.2 or later.  
+  
+**Potential benefits**: Enhanced security and reliability for data transmissions.  
+
+**Impact:** High
+  
+For more information, see [Self-serve minimum tls version enforcement in Azure Cosmos DB - Azure Cosmos DB](/azure/cosmos-db/self-serve-minimum-tls-enforcement)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 5c48d9ec-397c-4f11-a342-929a1208c375  
+
+
+<!--5c48d9ec-397c-4f11-a342-929a1208c375_end-->
 
 <!--articleBody-->

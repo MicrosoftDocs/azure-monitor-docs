@@ -1,7 +1,7 @@
 ---
 title: Collect JSON file from virtual machine with Azure Monitor
 description: Configure a data collection rule to collect log data from a JSON file on a virtual machine using Azure Monitor Agent.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/04/2025
 ms.reviewer: jeffwo
 ---
@@ -41,7 +41,7 @@ Custom JSON logs can only be sent to a Log Analytics workspace where it's stored
 The file that the Azure Monitor agent is collecting must meet the following requirements:
 
 - The file must be stored on the local drive of the agent machine in the directory that is being monitored.
-- Each entry must be contained in a single row and delineated with an end of line. The JSON body format is not supported. See sample below.
+- Each entry must be JSON Line (aka JSONL or NDJSON) which is a single row of JSON and delineated with an end of line. The JSON body format is not supported. See sample below.
 - The file must use ASCII or UTF-8 encoding. Other formats such as UTF-16 aren't supported.
 - New records should be appended to the end of the file and not overwrite old records. Overwriting will cause data loss.
 
@@ -56,6 +56,7 @@ Following is a sample of a typical JSON log file that can be collected by Azure 
 
 Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
 
+- Don't target more than 10 directories with log files. Polling too many directories leads to poor performance.
 - Continuously clean up log files in the monitored directory. Tracking many log files can drive up agent CPU and Memory usage. Wait for at least 2 days to allow ample time for all logs to be processed.
 - Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
 - Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.

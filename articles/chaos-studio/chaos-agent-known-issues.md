@@ -3,11 +3,9 @@ title: "Chaos Agent Known Issues"
 description: "A list of known issues affecting the Chaos Agent and agent-based faults in Azure Chaos Studio, along with workarounds or mitigation steps."
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: article
+ms.topic: troubleshooting-known-issue
 ms.date: 03/03/2025
-ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
-ms.service: azure-chaos-studio
 ms.custom: 
 ---
 
@@ -73,4 +71,4 @@ The Chaos Agent is officially tested on a specific set of operating systems. Run
 
 •	If the OS isn't supported, consider using a tested version or manually installing the ```stress-ng``` dependency.
 
-•	Make sure your package manager is up to date and you are using a [supported VM extension operating system](https://learn.microsoft.com/azure/virtual-machines/extensions/agent-linux).
+•	Make sure your package manager is up to date and you are using a [supported VM extension operating system](/azure/virtual-machines/extensions/agent-linux).

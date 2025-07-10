@@ -1,6 +1,6 @@
 ---
 title: Calculate cost savings in Azure Advisor
-ms.topic: article
+ms.topic: how-to
 ms.date: 09/05/2024
 description: Export cost savings in Azure Advisor and calculate the aggregated potential yearly savings by using the cost savings amount for each recommendation.
 ---

@@ -2,8 +2,8 @@
 title: Manage data retention in a Log Analytics workspace
 description: Configure retention settings for a table in a Log Analytics workspace in Azure Monitor.
 ms.reviewer: adi.biran
-ms.topic: conceptual
-ms.date: 7/22/2024
+ms.topic: how-to
+ms.date: 5/05/2025
 # Customer intent: As an Azure account administrator, I want to manage data retention for each table in my Log Analytics workspace based on my account's data usage and retention needs.
 ---
 
@@ -152,7 +152,7 @@ Set-AzOperationalInsightsWorkspace -ResourceGroupName "myResourceGroup" -Name "M
 
 By default, all tables with the Analytics data plan inherit the [Log Analytics workspace's default interactive retention setting](#configure-the-default-interactive-retention-period-of-analytics-tables) and have no long-term retention. You can increase the interactive retention period of Analytics tables to up to 730 days at an [extra cost](https://azure.microsoft.com/pricing/details/monitor/). 
 
-To add long-term retention to a table with any data plan, set **total retention** to up to 12 years (4,383 days). The Auxiliary table plan is currently in public preview, during which the plan's total retention is fixed at 365 days.
+To add long-term retention to a table with any data plan, set **total retention** to up to 12 years (4,383 days). 
 
 > [!NOTE]
 > Currently, you can set total retention to up to 12 years through the Azure portal and API. CLI and PowerShell are limited to seven years; support for 12 years will follow.
@@ -265,8 +265,80 @@ For example:
 ```powershell
 Update-AzOperationalInsightsTable -ResourceGroupName ContosoRG -WorkspaceName ContosoWorkspace -TableName Syslog -RetentionInDays -1 -TotalRetentionInDays -1
 ```
+# [Resource Manager template](#tab/azure-resource-manager-1)
 
+Use this sample ARM template and parameter file to update the retention period for a specific table.
 
+### Template file
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string",
+      "defaultValue": "sampleWorkspace",
+      "metadata": {
+        "description": "The number of days to retain the data."
+      }
+    },
+    "tableName": {
+      "type": "string",
+      "defaultValue": "sampleTable",
+      "metadata": {
+        "description": "The name of the Log Analytics table to modify."
+      }
+    },
+    "retentionInDays": {
+      "type": "int",
+      "defaultValue": 30,
+      "metadata": {
+        "description": "The number of days to retain the data."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2025-02-01",
+      "name": "[parameters('workspaceName')]",
+      "location": "[resourceGroup().location]",
+      "resources": [
+        {
+          "type": "Microsoft.OperationalInsights/workspaces/tables",
+          "apiVersion": "2025-02-01",
+          "name": "[concat(parameters('workspaceName'), '/', parameters('tableName'))]",
+          "properties": {
+            "retentionInDays": "[parameters('retentionInDays')]"
+          },
+          "dependsOn": [ "[resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]" ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Parameter file
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "value": "MyWorkspace"
+    },
+    "tableName": {
+      "value": "AppRequests"
+    },
+    "retentionInDays": {
+      "value": 120
+    }
+  }
+}
+```
 ---
 
 ## Get retention settings by table
@@ -360,5 +432,5 @@ For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pr
 Learn more about:
 
 - [Managing personal data in Azure Monitor Logs](../logs/personal-data-mgmt.md)
-- [Creating a search job to retrieve auxiliary data matching particular criteria](search-jobs.md)
-- [Restore data from the auxiliary tier for a specific time range](restore.md)
+- [Creating a search job to retrieve data matching particular criteria](search-jobs.md)
+- [Restore data for a specific time range](restore.md)

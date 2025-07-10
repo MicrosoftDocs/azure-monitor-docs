@@ -1,7 +1,7 @@
 ---
 title: Smart Detection notification change - Azure Application Insights
 description: Change to the default notification recipients from Smart Detection. Smart Detection lets you monitor application traces with Azure Application Insights for unusual patterns in trace telemetry.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 04/01/2024
 ms.reviewer: yagil
 ---
@@ -13,7 +13,7 @@ ms.reviewer: yagil
 >
 > See [Smart Detection Alerts migration](./alerts-smart-detections-migration.md) for more details on the migration process and the behavior of smart detection after the migration.
 
-Based on customer feedback, on April 1, 2019, we’re changing the default roles who receive email notifications from Smart Detection.
+Based on customer feedback, on April 1, 2019, we're changing the default roles who receive email notifications from Smart Detection.
 
 ## What is changing?
 
@@ -23,7 +23,7 @@ Currently, Smart Detection email notifications are sent by default to the _Subsc
 
 This change will affect all Smart Detection rules, excluding the following ones:
 
-* Smart Detection rules marked as preview. These Smart Detection rules don’t support email notifications today.
+* Smart Detection rules marked as preview. These Smart Detection rules don't support email notifications today.
 
 * Failure Anomalies rule.
 
@@ -36,7 +36,7 @@ To assign users to the Monitoring Reader or Monitoring Contributor roles via the
 > [!NOTE]
 > Specific recipients of Smart Detection notifications, configured using the _Additional email recipients_ option in the rule settings, will not be affected by this change. These recipients will continue receiving the email notifications.
 
-If you have any questions or concerns about this change, don’t hesitate to [contact us](mailto:smart-alert-feedback@microsoft.com).
+If you have any questions or concerns about this change, don't hesitate to [contact us](mailto:smart-alert-feedback@microsoft.com).
 
 ## Next steps
 

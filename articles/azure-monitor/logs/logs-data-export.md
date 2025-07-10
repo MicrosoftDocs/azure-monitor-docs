@@ -1,7 +1,7 @@
 ---
 title: Log Analytics workspace data export in Azure Monitor
 description: Log Analytics workspace data export in Azure Monitor lets you continuously export data per selected tables in your workspace. You can export to an Azure Storage Account or Azure Event Hubs as it's collected. 
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell
 ms.reviewer: yossiy
 ms.date: 03/06/2025
@@ -26,9 +26,9 @@ Data is exported without a filter. For example, when you configure a data export
 ## Other export options
 Log Analytics workspace data export continuously exports data that's sent to your Log Analytics workspace. There are other options to export data for particular scenarios:
 
-- Configure diagnostic settings in Azure resources. Logs are sent to a destination directly. This approach has lower latency compared to data export in Log Analytics.
-- Schedule export of data based on a log query you define with the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query/execute). Use Azure Data Factory, Azure Functions, or Azure Logic Apps to orchestrate queries in your workspace and export data to a destination. This method is similar to the data export feature, but you can use it to export historical data from your workspace by using filters and aggregation. This method is subject to [log query limits](../service-limits.md#log-analytics-workspaces) and isn't intended for scale. For more information, see [Export data from a Log Analytics workspace to a Storage Account by using Logic Apps](logs-export-logic-app.md).
-- One-time export to a local machine by using a PowerShell script. For more information, see [Invoke-AzOperationalInsightsQueryExport](https://www.powershellgallery.com/packages/Invoke-AzOperationalInsightsQueryExport).
+- If an Azure resource is sending logs to your Log Analytics workspace through its diagnostic log settings already, consider updating the diagnostic settings on the Azure resource directly to add the new destination instead of regularly using a data export. This approach has lower latency compared to a data export but doesn't send historical data.
+- Schedule an export of data based on a log query you define with the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query/execute). Use Azure Data Factory, Azure Functions, or Azure Logic Apps to orchestrate queries in your workspace and export data to a destination. This method is similar to the data export feature, but you can use it to export historical data from your workspace by using filters and aggregation. This method is subject to [log query limits](../service-limits.md#log-analytics-workspaces) and isn't intended for scale. For more information, see [Export data from a Log Analytics workspace to a Storage Account by using Logic Apps](logs-export-logic-app.md).
+- Use a one-time export to a local machine by using a PowerShell script. For more information, see [Invoke-AzOperationalInsightsQueryExport](https://www.powershellgallery.com/packages/Invoke-AzOperationalInsightsQueryExport).
 
 ## Permissions required
 
@@ -43,36 +43,36 @@ Log Analytics workspace data export continuously exports data that's sent to you
 
 ## Limitations
 
-- Custom logs created using the [HTTP Data Collector API](./data-collector-api.md) can't be exported, including text-based logs consumed by Log Analytics agent. Custom logs created using [data collection rules](./logs-ingestion-api-overview.md), including text-based logs, can be exported. 
-- Data export will gradually support more tables, but is currently limited to tables specified in the [supported tables](#supported-tables) section.
-- You can define up to 10 enabled rules in your workspace, each can include multiple tables. You can create more rules in workspace in disabled state. 
-- Destinations must be in the same region as the Log Analytics workspace.
+- Custom logs created using the [HTTP Data Collector API](./data-collector-api.md) can't be exported, including text-based logs consumed by Log Analytics agent. Custom logs created using [data collection rules](./logs-ingestion-api-overview.md), including text-based logs, can be exported.
+- Data export will gradually support more tables. See [Unsupported tables](#unsupported-tables) section.
+- The maximum number of active rules per workspace is 10, each can include multiple tables.
 - The Storage Account must be unique across rules in the workspace.
-- Table names can be 60 characters long when you're exporting to a Storage Account. They can be 47 characters when you're exporting to Event Hubs. Tables with longer names won't be exported.
+- Supported table plans are Analytics and Basic. Auxiliary plan isn't supported.
+- Destinations must be in the same region as the Log Analytics workspace.
 - Export to Premium Storage Account isn't supported.
-- There's currently no charge for export to sovereign clouds. A notification will be sent before enablement.
 
 ## Data completeness
 
-Data export is optimized to move large data volume to your destinations. In the event of of destination with insufficient scale or availability, a retry process continues for up to 12 hours and may a result with a fraction of duplication of the exported records. Follow recommendations for [Storage Account](#storage-account) and [Event Hubs](#event-hubs) destinations to improve reliability.
-For more information about destination limits and recommended alerts, see [Create or update a data export rule](#create-or-update-a-data-export-rule). If the destinations are still unavailable after the retry period, the data is discarded.
+Data export is optimized to move large data volumes to your destinations. In the event of a destination with insufficient scale or availability, a retry process continues for up to 12 hours and may a result in a fraction of the exported records duplicated. Follow the recommendations for [Storage Account](#storage-account) and [Event Hubs](#event-hubs) destinations to improve reliability. If the destinations are still unavailable after the retry period, the data is discarded.
+
+For more information about destination limits and recommended alerts, see [Create or update a data export rule](#create-or-update-a-data-export-rule).
 
 ## Pricing model
-Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). Size calculation in workspace query can't correspond with export charges since doesn't include the JSON formatted data. You can use PowerShell to [calculate the total billing size of a blob container](/azure/storage/scripts/storage-blobs-container-calculate-billing-size-powershell). There's currently no charge for export to sovereign clouds. A notification will be sent before enablement.
+Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). Data export size calculations can't be done with a workspace query since the size calculation doesn't include the JSON formatting overhead. Use the method in this sample PowerShell script to [calculate the total billing size of a blob container](/azure/storage/scripts/storage-blobs-container-calculate-billing-size-powershell). There's currently no charge for export to sovereign clouds. A notification will be sent before enablement.
 
 For more information, including the data export billing timeline, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/). Billing for Data Export was enabled in early October 2023. 
 
 ## Export destinations
 
-The data export destination must be available before you create export rules in your workspace. Destinations can be in different subscriptions, and when using Azure Lighthouse, it's also possible to send data to destinations in another Microsoft Entra tenant.
+The data export destination must be available before you create export rules in your workspace. Destinations can be in different subscriptions. With Azure Lighthouse, it's also possible to send data to destinations in another Microsoft Entra tenant.
 
 ### Storage Account
 
-Avoid using existing Storage Account that has other non-monitoring data, to better control access to the data, prevent reaching storage ingress rate limit failures, and latency.
+Prevent storage ingress failures due to latency or exceeding rate limits by using an existing Storage Account that doesn't have other non-monitoring data. This helps you better control access to the data and improves data export reliability.
 
 To send data to an immutable Storage Account, set the immutable policy for the Storage Account as described in [Set and manage immutability policies for Azure Blob Storage](/azure/storage/blobs/immutable-policy-configure-version-scope). You must follow all steps in this article, including enabling protected append blobs writes.
 
-The Storage Account can't be Premium, must be StorageV1 or later, and located in the same region as your workspace. If you need to replicate your data to other Storage Accounts in other regions, you can use any of the [Azure Storage redundancy options](/azure/storage/common/storage-redundancy#redundancy-in-a-secondary-region), including GRS and GZRS.
+The Storage Account can't be Premium, must be StorageV1 or later, and located in the same region as your workspace. If you need to replicate your data to other Storage Accounts in other regions, use any of the [Azure Storage redundancy options](/azure/storage/common/storage-redundancy#redundancy-in-a-secondary-region), including GRS and GZRS.
 
 Data is sent to Storage Accounts as it reaches Azure Monitor and exported to destinations located in a workspace region. A container is created for each table in the Storage Account with the name *am-* followed by the name of the table. For example, the table *SecurityEvent* would send to a container named *am-SecurityEvent*.
 
@@ -87,9 +87,9 @@ The format of blobs in a Storage Account is in [JSON lines](/previous-versions/a
 
 ### Event Hubs
 
-Avoid using existing Event Hub that has non-monitoring data to prevent reaching the Event Hubs namespace ingress rate limit failures, and latency.
+Avoid using an Event Hub that has existing, non-monitoring data. This best practice helps prevent ingress failures due to latency or exceeding rate limits.
 
-Data is sent to your Event Hub as it reaches Azure Monitor and is exported to destinations located in a workspace region. You can create multiple export rules to the same Event Hubs namespace by providing a different `Event Hub name` in the rule. When an `Event Hub name` isn't provided, a default Event Hub is created for tables that you export with the name *am-* followed by the name of the table. For example, the table *SecurityEvent* would be sent to an Event Hub named *am-SecurityEvent*.
+Data is sent to your Event Hub as it reaches Azure Monitor and is exported to destinations located in a workspace region. Create multiple export rules to the same Event Hub namespace by providing a different `Event Hub name` in the rule. When an `Event Hub name` isn't provided, a default Event Hub is created for tables that you export with the name *am-* followed by the name of the table. For example, the table *SecurityEvent* would be sent to an Event Hub named *am-SecurityEvent*.
 
 The [number of supported Event Hubs in Basic and Standard namespace tiers is 10](/azure/event-hubs/event-hubs-quotas#common-limits-for-all-tiers). When you're exporting more than 10 tables to these tiers, either split the tables between several export rules to different Event Hubs namespaces or provide an Event Hub name to export all tables to it.
 
@@ -102,15 +102,16 @@ The [number of supported Event Hubs in Basic and Standard namespace tiers is 10]
 Exporting data from workspaces to Storage Accounts help satisfy various scenarios mentioned in [overview](#overview), and can be consumed by tools that can read blobs from Storage Accounts. The following methods let you query data using Log Analytics query language, which is the same for Azure Data Explorer.
 1. Use Azure Data Explorer to [query data in Azure Data Lake](/azure/data-explorer/data-lake-query-data).
 2. Use Azure Data Explorer to [ingest data from a Storage Account](/azure/data-explorer/ingest-from-container).
-3. Use Log Analytics workspace to query [ingested data using Logs Ingestion API ](./logs-ingestion-api-overview.md). Ingested data is to a custom log table and not to the original table.
+3. Use Log Analytics workspace to query [ingested data using Logs Ingestion API ](./logs-ingestion-api-overview.md). Ingested data is sent to a custom log table and not to the original table.
    
 
 ## Enable data export
-The following steps must be performed to enable Log Analytics data export. For more information on each, see the following sections:
+The following steps must be performed to enable Log Analytics data export.
 
-- Register the resource provider
-- Allow trusted Microsoft services
-- Create or update a data export rule
+- [Register the resource provider](#register-the-resource-provider)
+- [Allow trusted Microsoft services](#allow-trusted-microsoft-services)
+- [Monitor destinations](#monitor-destinations) (Recommended)
+- [Create or update a data export rule](#create-or-update-a-data-export-rule)
 
 ### Register the resource provider
 The Azure resource provider **Microsoft.Insights** needs to be registered in your subscription to enable Log Analytics data export.
@@ -144,7 +145,7 @@ The following metrics are available for data export operation and alerts
 | Metric name	| Description |
 |:---|:---|
 | Bytes Exported | Total number of bytes exported to destination from Log Analytics workspace within the selected time range. The size of data exported is the number of bytes in the exported JSON formatted data. 1 GB = 10^9 bytes. |
-| Export Failures	| Total number of failed export requests to destination from Log Analytics workspace within the selected time range. This number includes export attempts failures due to destination resource throttling, forbidden access error, or any server error. A retry process handles failed attempts and the number isn’t an indication for missing data. |
+| Export Failures	| Total number of failed export requests to destination from Log Analytics workspace within the selected time range. This number includes export attempts failures due to destination resource throttling, forbidden access error, or any server error. A retry process handles failed attempts and the number isn't an indication for missing data. |
 | Records exported | Total number of records exported from Log Analytics workspace within the selected time range. This number counts records for operations that ended with success. |
 
 
@@ -658,602 +659,45 @@ The template option doesn't apply.
 ---
 
 ## Unsupported tables
-If the data export rule includes an unsupported table, the configuration will succeed, but no data will be exported for that table. When table is supported, data export will start then.
-
-## Supported tables
 
 > [!NOTE]
-> We are in a process of adding support for more tables. Please check this article regularly.
+> If the data export rule includes an unsupported table, the configuration will succeed, but no data will be exported for that table. When table is supported, data export will start then. We are in a process of adding support for more tables. Please check this article regularly.
 
 | Table | Limitations |
 |---|---|
-| AACAudit |  |
-| AACHttpRequest |  |
-| AADB2CRequestLogs |  |
-| AADCustomSecurityAttributeAuditLogs |  |
-| AADDomainServicesAccountLogon |  |
-| AADDomainServicesAccountManagement |  |
-| AADDomainServicesDirectoryServiceAccess |  |
-| AADDomainServicesDNSAuditsDynamicUpdates |  |
-| AADDomainServicesDNSAuditsGeneral |  |
-| AADDomainServicesLogonLogoff |  |
-| AADDomainServicesPolicyChange |  |
-| AADDomainServicesPrivilegeUse |  |
-| AADManagedIdentitySignInLogs |  |
-| AADNonInteractiveUserSignInLogs |  |
-| AADProvisioningLogs |  |
-| AADRiskyServicePrincipals |  |
-| AADRiskyUsers |  |
-| AADServicePrincipalRiskEvents |  |
-| AADServicePrincipalSignInLogs |  |
-| AADUserRiskEvents |  |
-| ABSBotRequests |  |
-| ACICollaborationAudit |  |
-| ACRConnectedClientList |  |
-| ACSAuthIncomingOperations |  |
-| ACSBillingUsage |  |
-| ACSCallAutomationIncomingOperations |  |
-| ACSCallAutomationMediaSummary |  |
-| ACSCallClientMediaStatsTimeSeries |  |
-| ACSCallClientOperations |  |
-| ACSCallClosedCaptionsSummary |  |
-| ACSCallDiagnostics |  |
-| ACSCallRecordingIncomingOperations |  |
-| ACSCallRecordingSummary |  |
-| ACSCallSummary |  |
-| ACSCallSurvey |  |
-| ACSChatIncomingOperations |  |
-| ACSEmailSendMailOperational |  |
-| ACSEmailStatusUpdateOperational |  |
-| ACSEmailUserEngagementOperational |  |
-| ACSJobRouterIncomingOperations |  |
-| ACSNetworkTraversalDiagnostics |  |
-| ACSNetworkTraversalIncomingOperations |  |
-| ACSRoomsIncomingOperations |  |
-| ACSSMSIncomingOperations |  |
-| ADAssessmentRecommendation |  |
-| AddonAzureBackupAlerts |  |
-| AddonAzureBackupJobs |  |
-| AddonAzureBackupPolicy |  |
-| AddonAzureBackupProtectedInstance |  |
-| AddonAzureBackupStorage |  |
-| ADFActivityRun |  |
-| ADFAirflowSchedulerLogs |  |
-| ADFAirflowTaskLogs |  |
-| ADFAirflowWebLogs |  |
-| ADFAirflowWorkerLogs |  |
-| ADFPipelineRun |  |
-| ADFSandboxActivityRun |  |
-| ADFSandboxPipelineRun |  |
-| ADFSSignInLogs |  |
-| ADFSSISIntegrationRuntimeLogs |  |
-| ADFSSISPackageEventMessageContext |  |
-| ADFSSISPackageEventMessages |  |
-| ADFSSISPackageExecutableStatistics |  |
-| ADFSSISPackageExecutionComponentPhases |  |
-| ADFSSISPackageExecutionDataStatistics |  |
-| ADFTriggerRun |  |
-| ADPAudit |  |
-| ADPDiagnostics |  |
-| ADPRequests |  |
-| ADReplicationResult |  |
-| ADSecurityAssessmentRecommendation |  |
-| ADTDataHistoryOperation |  |
-| ADTDigitalTwinsOperation |  |
-| ADTEventRoutesOperation |  |
-| ADTModelsOperation |  |
-| ADTQueryOperation |  |
-| ADXCommand |  |
-| ADXIngestionBatching |  |
-| ADXJournal |  |
-| ADXQuery |  |
-| ADXTableDetails |  |
-| ADXTableUsageStatistics |  |
-| AegDataPlaneRequests |  |
-| AegDeliveryFailureLogs |  |
-| AegPublishFailureLogs |  |
-| AEWAssignmentBlobLogs |  |
-| AEWAuditLogs |  |
-| AEWComputePipelinesLogs |  |
-| AFSAuditLogs |  |
-| AGCAccessLogs |  |
-| AgriFoodApplicationAuditLogs |  |
-| AgriFoodFarmManagementLogs |  |
-| AgriFoodFarmOperationLogs |  |
-| AgriFoodInsightLogs |  |
-| AgriFoodJobProcessedLogs |  |
-| AgriFoodModelInferenceLogs |  |
-| AgriFoodProviderAuthLogs |  |
-| AgriFoodSatelliteLogs |  |
-| AgriFoodSensorManagementLogs |  |
-| AgriFoodWeatherLogs |  |
-| AGSGrafanaLoginEvents |  |
-| AGWAccessLogs |  |
-| AGWFirewallLogs |  |
-| AGWPerformanceLogs |  |
-| AHDSDicomAuditLogs |  |
-| AHDSDicomDiagnosticLogs |  |
-| AHDSMedTechDiagnosticLogs |  |
-| AirflowDagProcessingLogs |  |
-| AKSAudit |  |
-| AKSAuditAdmin |  |
-| AKSControlPlane |  |
-| ALBHealthEvent |  |
+| ADXDataOperation |  |
 | Alert | Partial support. Data ingestion for Zabbix alerts isn't supported. |
-| AlertEvidence |  |
-| AlertInfo |  |
-| AmlComputeClusterEvent |  |
-| AmlComputeCpuGpuUtilization |  |
-| AmlComputeInstanceEvent |  |
-| AmlComputeJobEvent |  |
-| AmlDataLabelEvent |  |
-| AmlDataSetEvent |  |
-| AmlDataStoreEvent |  |
-| AmlDeploymentEvent |  |
-| AmlEnvironmentEvent |  |
-| AmlInferencingEvent |  |
-| AmlModelsEvent |  |
-| AmlOnlineEndpointConsoleLog |  |
-| AmlOnlineEndpointEventLog |  |
-| AmlOnlineEndpointTrafficLog |  |
-| AmlPipelineEvent |  |
-| AmlRegistryReadEventsLog |  |
-| AmlRegistryWriteEventsLog |  |
-| AmlRunEvent |  |
-| AmlRunStatusChangedEvent |  |
-| AMSKeyDeliveryRequests |  |
-| AMSLiveEventOperations |  |
-| AMSMediaAccountHealth |  |
-| AMSStreamingEndpointRequests |  |
-| AMWMetricsUsageDetails |  |
-| ANFFileAccess |  |
-| Anomalies |  |
-| AOIDatabaseQuery |  |
-| AOIDigestion |  |
-| AOIStorage |  |
-| ApiManagementGatewayLogs |  |
-| ApiManagementWebSocketConnectionLogs |  |
-| AppAvailabilityResults |  |
-| AppBrowserTimings |  |
-| AppCenterError |  |
-| AppDependencies |  |
-| AppEnvSpringAppConsoleLogs |  |
-| AppEvents |  |
-| AppExceptions |  |
-| AppMetrics |  |
-| AppPageViews |  |
-| AppPerformanceCounters |  |
-| AppPlatformBuildLogs |  |
-| AppPlatformContainerEventLogs |  |
-| AppPlatformIngressLogs |  |
-| AppPlatformLogsforSpring |  |
-| AppPlatformSystemLogs |  |
-| AppRequests |  |
-| AppServiceAntivirusScanAuditLogs |  |
-| AppServiceAppLogs |  |
-| AppServiceAuditLogs |  |
-| AppServiceAuthenticationLogs |  |
-| AppServiceConsoleLogs |  |
-| AppServiceEnvironmentPlatformLogs |  |
-| AppServiceFileAuditLogs |  |
-| AppServiceHTTPLogs |  |
-| AppServiceIPSecAuditLogs |  |
-| AppServicePlatformLogs |  |
-| AppServiceServerlessSecurityPluginData |  |
-| AppSystemEvents |  |
-| AppTraces |  |
-| ArcK8sAudit |  |
-| ArcK8sAuditAdmin |  |
-| ArcK8sControlPlane |  |
-| ASCAuditLogs |  |
-| ASCDeviceEvents |  |
-| ASimAuditEventLogs |  |
-| ASimAuthenticationEventLogs |  |
-| ASimDhcpEventLogs |  |
-| ASimDnsActivityLogs |  |
-| ASimFileEventLogs |  |
-| ASimNetworkSessionLogs |  |
-| ASimProcessEventLogs |  |
-| ASimRegistryEventLogs |  |
-| ASimUserManagementActivityLogs |  |
-| ASimWebSessionLogs |  |
-| ASRJobs |  |
-| ASRReplicatedItems |  |
-| ATCExpressRouteCircuitIpfix |  |
-| AuditLogs |  |
-| AutoscaleEvaluationsLog |  |
-| AutoscaleScaleActionsLog |  |
-| AVNMConnectivityConfigurationChange |  |
-| AVNMIPAMPoolAllocationChange |  |
-| AVNMNetworkGroupMembershipChange |  |
-| AVNMRuleCollectionChange |  |
-| AVSSyslog |  |
-| AWSCloudTrail |  |
-| AWSCloudWatch |  |
-| AWSGuardDuty |  |
-| AWSVPCFlow |  |
-| AZFWApplicationRule |  |
-| AZFWApplicationRuleAggregation |  |
-| AZFWDnsQuery |  |
-| AZFWFatFlow |  |
-| AZFWFlowTrace |  |
-| AZFWIdpsSignature |  |
-| AZFWInternalFqdnResolutionFailure |  |
-| AZFWNatRule |  |
-| AZFWNatRuleAggregation |  |
-| AZFWNetworkRule |  |
-| AZFWNetworkRuleAggregation |  |
-| AZFWThreatIntel |  |
-| AZKVAuditLogs |  |
-| AZKVPolicyEvaluationDetailsLogs |  |
-| AZMSApplicationMetricLogs |  |
-| AZMSArchiveLogs |  |
-| AZMSAutoscaleLogs |  |
-| AZMSCustomerManagedKeyUserLogs |  |
-| AZMSDiagnosticErrorLogs |  |
-| AZMSHybridConnectionsEvents |  |
-| AZMSKafkaCoordinatorLogs |  |
-| AZMSKafkaUserErrorLogs |  |
-| AZMSOperationalLogs |  |
-| AZMSRunTimeAuditLogs |  |
-| AZMSVnetConnectionEvents |  |
-| AzureAssessmentRecommendation |  |
-| AzureAttestationDiagnostics |  |
-| AzureBackupOperations |  |
-| AzureDevOpsAuditing |  |
-| AzureLoadTestingOperation |  |
-| AzureMetricsV2 |  |
-| BehaviorAnalytics |  |
-| CassandraAudit |  |
-| CassandraLogs |  |
-| CCFApplicationLogs |  |
-| CDBCassandraRequests |  |
-| CDBControlPlaneRequests |  |
-| CDBDataPlaneRequests |  |
-| CDBGremlinRequests |  |
-| CDBMongoRequests |  |
-| CDBPartitionKeyRUConsumption |  |
-| CDBPartitionKeyStatistics |  |
-| CDBQueryRuntimeStatistics |  |
-| ChaosStudioExperimentEventLogs |  |
-| CHSMManagementAuditLogs |  |
-| CIEventsAudit |  |
-| CIEventsOperational |  |
-| CloudAppEvents |  |
-| CommonSecurityLog |  |
-| ComputerGroup |  |
-| ConfidentialWatchlist |  |
+| AlertHistory |  |
+| AzureActivity | Partial support. Data arriving from the Log Analytics agent or Azure Monitor Agent is fully supported in export. Data arriving via the Diagnostics extension agent is collected through storage. This path isn't supported in export. |
+| AzureDiagnostics |  |
+| AzureMetrics |  |
+| ConfigurationChange |  |
 | ConfigurationData | Partial support. Some of the data is ingested through internal services that aren't supported in export. Currently, this portion is missing in export. |
-| ContainerAppConsoleLogs |  |
-| ContainerAppSystemLogs |  |
-| ContainerEvent |  |
-| ContainerImageInventory |  |
-| ContainerInstanceLog |  |
-| ContainerInventory |  |
-| ContainerLog |  |
-| ContainerLogV2 |  |
-| ContainerNodeInventory |  |
-| ContainerRegistryLoginEvents |  |
-| ContainerRegistryRepositoryEvents |  |
-| ContainerServiceLog |  |
-| CoreAzureBackup |  |
-| DatabricksAccounts |  |
-| DatabricksBrickStoreHttpGateway |  |
-| DatabricksCapsule8Dataplane |  |
-| DatabricksClamAVScan |  |
-| DatabricksCloudStorageMetadata |  |
-| DatabricksClusterLibraries |  |
-| DatabricksClusters |  |
-| DatabricksDashboards |  |
-| DatabricksDataMonitoring |  |
-| DatabricksDBFS |  |
-| DatabricksDeltaPipelines |  |
-| DatabricksFeatureStore |  |
-| DatabricksFilesystem |  |
-| DatabricksGenie |  |
-| DatabricksGitCredentials |  |
-| DatabricksGlobalInitScripts |  |
-| DatabricksIAMRole |  |
-| DatabricksIngestion |  |
-| DatabricksInstancePools |  |
-| DatabricksJobs |  |
-| DatabricksLineageTracking |  |
-| DatabricksMarketplaceConsumer |  |
-| DatabricksMLflowAcledArtifact |  |
-| DatabricksMLflowExperiment |  |
-| DatabricksModelRegistry |  |
-| DatabricksNotebook |  |
-| DatabricksPartnerHub |  |
-| DatabricksPredictiveOptimization |  |
-| DatabricksRemoteHistoryService |  |
-| DatabricksRepos |  |
-| DatabricksSecrets |  |
-| DatabricksServerlessRealTimeInference |  |
-| DatabricksSQLPermissions |  |
-| DatabricksSSH |  |
-| DatabricksUnityCatalog |  |
-| DatabricksWebTerminal |  |
-| DatabricksWorkspace |  |
-| DatabricksWorkspaceLogs |  |
-| DataTransferOperations |  |
-| DataverseActivity |  |
-| DCRLogErrors |  |
-| DCRLogTroubleshooting |  |
-| DevCenterBillingEventLogs |  |
-| DevCenterDiagnosticLogs |  |
-| DevCenterResourceOperationLogs |  |
-| DeviceEvents |  |
-| DeviceFileCertificateInfo |  |
-| DeviceFileEvents |  |
-| DeviceImageLoadEvents |  |
-| DeviceInfo |  |
-| DeviceLogonEvents |  |
-| DeviceNetworkEvents |  |
-| DeviceNetworkInfo |  |
-| DeviceProcessEvents |  |
-| DeviceRegistryEvents |  |
-| DeviceTvmSecureConfigurationAssessment |  |
-| DeviceTvmSecureConfigurationAssessmentKB |  |
-| DeviceTvmSoftwareInventory |  |
-| DeviceTvmSoftwareVulnerabilities |  |
-| DeviceTvmSoftwareVulnerabilitiesKB |  |
-| DnsEvents |  |
-| DnsInventory |  |
-| DNSQueryLogs |  |
-| DSMAzureBlobStorageLogs |  |
-| DSMDataClassificationLogs |  |
-| DSMDataLabelingLogs |  |
-| Dynamics365Activity |  |
-| DynamicSummary |  |
-| EGNFailedMqttConnections |  |
-| EGNFailedMqttPublishedMessages |  |
-| EGNFailedMqttSubscriptions |  |
-| EGNMqttDisconnections |  |
-| EGNSuccessfulMqttConnections |  |
-| EmailAttachmentInfo |  |
-| EmailEvents |  |
-| EmailPostDeliveryEvents |  |
-| EmailUrlInfo |  |
-| EnrichedMicrosoft365AuditLogs |  |
+| DatabricksDatabricksSQL |  |
+| DatabricksSQL |  |
+| DeviceAppLaunch |  |
+| DeviceCalendar |  |
+| DeviceConnectSession |  |
+| DeviceEtw |  |
+| DeviceHealth |  |
+| DeviceHeartbeat |  |
 | ETWEvent | Partial support. Data arriving from the Log Analytics agent or Azure Monitor Agent is fully supported in export. Data arriving via the Diagnostics extension agent is collected through storage. This path isn't supported in export. |
 | Event | Partial support. Data arriving from the Log Analytics agent or Azure Monitor Agent is fully supported in export. Data arriving via the Diagnostics extension agent is collected through storage. This path isn't supported in export. |
-| ExchangeAssessmentRecommendation |  |
-| ExchangeOnlineAssessmentRecommendation |  |
-| FailedIngestion |  |
-| FunctionAppLogs |  |
-| GCPAuditLogs |  |
-| GoogleCloudSCC |  |
-| HDInsightAmbariClusterAlerts |  |
-| HDInsightAmbariSystemMetrics |  |
-| HDInsightGatewayAuditLogs |  |
-| HDInsightHadoopAndYarnLogs |  |
-| HDInsightHadoopAndYarnMetrics |  |
-| HDInsightHBaseLogs |  |
-| HDInsightHBaseMetrics |  |
-| HDInsightHiveAndLLAPLogs |  |
-| HDInsightHiveAndLLAPMetrics |  |
-| HDInsightHiveQueryAppStats |  |
-| HDInsightHiveTezAppStats |  |
-| HDInsightJupyterNotebookEvents |  |
-| HDInsightKafkaLogs |  |
-| HDInsightKafkaMetrics |  |
-| HDInsightOozieLogs |  |
-| HDInsightRangerAuditLogs |  |
-| HDInsightSecurityLogs |  |
-| HDInsightSparkApplicationEvents |  |
-| HDInsightSparkBlockManagerEvents |  |
-| HDInsightSparkEnvironmentEvents |  |
-| HDInsightSparkExecutorEvents |  |
-| HDInsightSparkExtraEvents |  |
-| HDInsightSparkJobEvents |  |
-| HDInsightSparkLogs |  |
-| HDInsightSparkSQLExecutionEvents |  |
-| HDInsightSparkStageEvents |  |
-| HDInsightSparkStageTaskAccumulables |  |
-| HDInsightSparkTaskEvents |  |
-| HDInsightStormLogs |  |
-| HDInsightStormMetrics |  |
-| HDInsightStormTopologyMetrics |  |
-| HealthStateChangeEvent |  |
-| Heartbeat |  |
-| HuntingBookmark |  |
-| IdentityDirectoryEvents |  |
-| IdentityInfo |  |
-| IdentityLogonEvents |  |
-| IdentityQueryEvents |  |
 | InsightsMetrics | Partial support. Some of the data is ingested through internal services that aren't supported in export. Currently, this portion is missing in export. |
-| IntuneAuditLogs |  |
-| IntuneDeviceComplianceOrg |  |
-| IntuneDevices |  |
-| IntuneOperationalLogs |  |
-| KubeEvents |  |
-| KubeHealth |  |
-| KubeMonAgentEvents |  |
-| KubeNodeInventory |  |
-| KubePodInventory |  |
-| KubePVInventory |  |
-| KubeServices |  |
-| LAQueryLogs |  |
-| LASummaryLogs |  |
-| LinuxAuditLog |  |
-| LogicAppWorkflowRuntime |  |
-| McasShadowItReporting |  |
-| MCCEventLogs |  |
-| MCVPAuditLogs |  |
-| MCVPOperationLogs |  |
-| MDCFileIntegrityMonitoringEvents |  |
-| MDECustomCollectionDeviceFileEvents |  |
-| MicrosoftAzureBastionAuditLogs |  |
-| MicrosoftDataShareReceivedSnapshotLog |  |
-| MicrosoftDataShareSentSnapshotLog |  |
-| MicrosoftDataShareShareLog |  |
-| MicrosoftGraphActivityLogs |  |
-| MicrosoftHealthcareApisAuditLogs |  |
-| MicrosoftPurviewInformationProtection |  |
-| MNFDeviceUpdates |  |
-| MNFSystemSessionHistoryUpdates |  |
-| MNFSystemStateMessageUpdates |  |
-| NCBMBreakGlassAuditLogs |  |
-| NCBMSecurityDefenderLogs |  |
-| NCBMSecurityLogs |  |
-| NCBMSystemLogs |  |
-| NCCKubernetesLogs |  |
-| NCCVMOrchestrationLogs |  |
-| NCSStorageAlerts |  |
-| NCSStorageLogs |  |
-| NetworkAccessTraffic |  |
-| NetworkMonitoring |  |
-| NGXOperationLogs |  |
-| NSPAccessLogs |  |
-| NTAInsights |  |
-| NTAIpDetails |  |
-| NTANetAnalytics |  |
-| NTATopologyDetails |  |
-| NWConnectionMonitorDestinationListenerResult |  |
-| NWConnectionMonitorDNSResult |  |
-| NWConnectionMonitorPathResult |  |
-| NWConnectionMonitorTestResult |  |
-| OEPAirFlowTask |  |
-| OEPAuditLogs |  |
-| OEPDataplaneLogs |  |
-| OEPElasticOperator |  |
-| OEPElasticsearch |  |
-| OfficeActivity |  |
-| OLPSupplyChainEntityOperations |  |
-| OLPSupplyChainEvents |  |
+| NetworkSessions |  |
 | Operation | Partial support. Some of the data is ingested through internal services that aren't supported in export. Currently, this portion is missing in export. |
-| Perf |  |
-| PFTitleAuditLogs |  |
-| PowerAppsActivity |  |
-| PowerAutomateActivity |  |
-| PowerBIActivity |  |
-| PowerBIAuditTenant |  |
-| PowerBIDatasetsTenant |  |
-| PowerBIDatasetsWorkspace |  |
-| PowerBIReportUsageWorkspace |  |
-| PowerPlatformAdminActivity |  |
-| PowerPlatformConnectorActivity |  |
-| PowerPlatformDlpActivity |  |
-| ProjectActivity |  |
-| PurviewDataSensitivityLogs |  |
-| PurviewScanStatusLogs |  |
-| PurviewSecurityLogs |  |
-| REDConnectionEvents |  |
-| RemoteNetworkHealthLogs |  |
-| ResourceManagementPublicAccessLogs |  |
-| SCCMAssessmentRecommendation |  |
-| SCOMAssessmentRecommendation |  |
-| SecureScoreControls |  |
-| SecureScores |  |
-| SecurityAlert |  |
-| SecurityAttackPathData |  |
-| SecurityBaseline |  |
-| SecurityBaselineSummary |  |
-| SecurityDetection |  |
-| SecurityEvent | |
-| SecurityIncident |  |
-| SecurityIoTRawEvent |  |
-| SecurityNestedRecommendation |  |
-| SecurityRecommendation |  |
-| SecurityRegulatoryCompliance |  |
-| SentinelAudit |  |
-| SentinelHealth |  |
+| ProtectionStatus |  |
 | ServiceFabricOperationalEvent | Partial support. Data arriving from the Log Analytics agent or Azure Monitor Agent is fully supported in export. Data arriving via the Diagnostics extension agent is collected through storage. This path isn't supported in export. |
 | ServiceFabricReliableActorEvent | Partial support. Data arriving from the Log Analytics agent or Azure Monitor Agent is fully supported in export. Data arriving via the Diagnostics extension agent is collected through storage. This path isn't supported in export. |
 | ServiceFabricReliableServiceEvent | Partial support. Data arriving from the Log Analytics agent or Azure Monitor Agent is fully supported in export. Data arriving via the Diagnostics extension agent is collected through storage. This path isn't supported in export. |
-| SfBAssessmentRecommendation |  |
-| SharePointOnlineAssessmentRecommendation |  |
-| SignalRServiceDiagnosticLogs |  |
-| SigninLogs |  |
-| SPAssessmentRecommendation |  |
-| SQLAssessmentRecommendation |  |
-| SqlAtpStatus |  |
-| SQLSecurityAuditEvents |  |
-| SqlVulnerabilityAssessmentScanStatus |  |
-| StorageBlobLogs |  |
-| StorageCacheOperationEvents |  |
-| StorageCacheUpgradeEvents |  |
-| StorageCacheWarningEvents |  |
-| StorageFileLogs |  |
-| StorageMalwareScanningResults |  |
-| StorageMoverCopyLogsFailed |  |
-| StorageMoverCopyLogsTransferred |  |
-| StorageMoverJobRunLogs |  |
-| StorageQueueLogs |  |
-| StorageTableLogs |  |
-| SucceededIngestion |  |
-| SynapseBigDataPoolApplicationsEnded |  |
-| SynapseBuiltinSqlPoolRequestsEnded |  |
-| SynapseDXCommand |  |
-| SynapseDXFailedIngestion |  |
-| SynapseDXIngestionBatching |  |
-| SynapseDXQuery |  |
-| SynapseDXSucceededIngestion |  |
-| SynapseDXTableDetails |  |
-| SynapseDXTableUsageStatistics |  |
-| SynapseGatewayApiRequests |  |
-| SynapseIntegrationActivityRuns |  |
-| SynapseIntegrationPipelineRuns |  |
-| SynapseIntegrationTriggerRuns |  |
-| SynapseLinkEvent |  |
-| SynapseRbacOperations |  |
-| SynapseScopePoolScopeJobsEnded |  |
-| SynapseScopePoolScopeJobsStateChange |  |
-| SynapseSqlPoolDmsWorkers |  |
-| SynapseSqlPoolExecRequests |  |
-| SynapseSqlPoolRequestSteps |  |
-| SynapseSqlPoolSqlRequests |  |
-| SynapseSqlPoolWaits |  |
-| Syslog | |
-| ThreatIntelligenceIndicator |  |
-| TSIIngress |  |
-| UCClient |  |
-| UCClientReadinessStatus |  |
-| UCClientUpdateStatus |  |
-| UCDeviceAlert |  |
-| UCDOAggregatedStatus |  |
-| UCDOStatus |  |
-| UCServiceUpdateStatus |  |
-| UCUpdateAlert |  |
 | Update | Partial support. Some of the data is ingested through internal services that aren't supported in export. Currently, this portion is missing in export. |
-| UpdateRunProgress |  |
-| UpdateSummary |  |
-| UrlClickEvents |  |
-| Usage |  |
-| UserAccessAnalytics |  |
-| UserPeerAnalytics |  |
-| VCoreMongoRequests |  |
-| VIAudit |  |
-| VIIndexing |  |
-| VMConnection | Partial support. Some of the data is ingested through internal services that aren't supported in export. Currently, this portion is missing in export. |
+| VMBoundPort |  |
+| VMComputer |  |
+| VMConnection |  |
+| VMProcess |  |
 | W3CIISLog | Partial support. Data arriving from the Log Analytics agent or Azure Monitor Agent is fully supported in export. Data arriving via the Diagnostics extension agent is collected through storage. This path isn't supported in export. |
-| WaaSDeploymentStatus |  |
-| WaaSInsiderStatus |  |
-| WaaSUpdateStatus |  |
-| Watchlist |  |
-| WebPubSubConnectivity |  |
-| WebPubSubHttpRequest |  |
-| WebPubSubMessaging |  |
-| Windows365AuditLogs |  |
-| WindowsClientAssessmentRecommendation |  |
-| WindowsEvent |  |
-| WindowsFirewall |  |
-| WindowsServerAssessmentRecommendation |  |
 | WireData | Partial support. Some of the data is ingested through internal services that aren't supported in export. Currently, this portion is missing in export. |
-| WorkloadDiagnosticLogs |  |
-| WUDOAggregatedStatus |  |
-| WUDOStatus |  |
-| WVDAgentHealthStatus |  |
-| WVDAutoscaleEvaluationPooled |  |
-| WVDCheckpoints |  |
-| WVDConnectionGraphicsDataPreview |  |
-| WVDConnectionNetworkData |  |
-| WVDConnections |  |
-| WVDErrors |  |
-| WVDFeeds |  |
-| WVDHostRegistrations |  |
-| WVDManagement |  |
-| WVDSessionHostManagement |  |
+
 
 ## Next steps
 

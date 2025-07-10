@@ -1,7 +1,7 @@
 ---
 title: Create and apply Pod and Service Monitors for Prometheus metrics in Azure Monitor
 description: Describes how to create and apply pod and service monitors to scrape Prometheus metrics in Azure Monitor to Kubernetes cluster.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/13/2024
 ms.reviewer: aul
 ---
@@ -9,9 +9,6 @@ ms.reviewer: aul
 
 
 The enablement of Managed Prometheus automatically deploys the custom resource definitions (CRD) for [pod monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-podmonitor-crd.yaml) and [service monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-servicemonitor-crd.yaml). These custom resource definitions are the same custom resource definitions (CRD) as [OSS Pod monitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) and [OSS service monitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) for Prometheus, except for a change in the group name. If you have existing Prometheus CRDs and custom resources on your cluster, these CRDs won't conflict with the CRDs created by the add-on. At the same time, the managed Prometheus addon does not pick up the CRDs created for the OSS Prometheus. This separation is intentional for the purposes of isolation of scrape jobs.
-
-> [!NOTE]
-> Support for custom resources definitions (CRDs) in Azure ARC-enabled Kubernetes is currently not available.
 
 ## Create a Pod or Service Monitor
 
@@ -47,7 +44,7 @@ spec:
         operator: In
         values: [app-frontend, app-backend]
 
-    # [Optional] Filter by pod namespace
+    # [Optional] Filter by pod namespace. Required if service is in another namespace.
     namespaceSelector:
       matchNames: [app-frontend, app-backend]
 
@@ -56,7 +53,7 @@ spec:
 
   # Multiple pod endpoints can be specified. Port requires a named port.
   podMetricsEndpoints:
-    - port: metrics
+    - port: metricscs from the exa
 ```
 
 ### Example Service Monitor
@@ -103,23 +100,23 @@ podmonitor.azmonitoring.coreos.com/my-pod-monitor created
 Deploy a sample application exposing prometheus metrics to be configured by pod/service monitor.
 
 ```bash
-kubectl apply -f https://github.com/Azure/prometheus-collector/blob/main/internal/referenceapp/prometheus-reference-app.yaml
+kubectl apply -f https://raw.githubusercontent.com/Azure/prometheus-collector/refs/heads/main/internal/referenceapp/prometheus-reference-app.yaml
 ```
 
 #### Create a pod monitor and/or service monitor to scrape metrics 
 
-Deploy a pod monitor that is configured to scrape metrics from the example application from the previous step.
+Deploy a pod monitor that is configured to scrape metrimple application from the previous step.
 
 ##### Pod Monitor
 
 ```bash
-kubectl apply -f https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/example-custom-resources/pod-monitor/pod-monitor-reference-app.yaml
+kubectl apply -f https://raw.githubusercontent.com/Azure/prometheus-collector/refs/heads/main/otelcollector/deploy/example-custom-resources/pod-monitor/pod-monitor-reference-app.yaml
 ```
 
 ##### Service Monitor
 
 ```bash
-kubectl apply -f https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/example-custom-resources/service-monitor/service-monitor-reference-app.yaml
+kubectl apply -f https://raw.githubusercontent.com/Azure/prometheus-collector/refs/heads/main/otelcollector/deploy/example-custom-resources/service-monitor/service-monitor-reference-app.yaml
 ```
 
 ### Troubleshooting

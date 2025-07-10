@@ -1,7 +1,7 @@
 ---
 title: Azure Workbooks overview
 description: Learn how workbooks provide a flexible canvas for data analysis and the creation of rich visual reports within the Azure portal.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/23/2024
 ms.reviewer: gardnerjr 
 ---

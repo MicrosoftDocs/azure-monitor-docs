@@ -1,8 +1,8 @@
 ---
 title: Customize alert notifications by using Logic Apps
 description: Learn how to create a logic app to process Azure Monitor alerts.
-ms.topic: conceptual
-ms.date: 03/10/2024
+ms.topic: how-to
+ms.date: 07/09/2025
 
 # Customer intent: As an administrator, I want to create a logic app that's triggered by an alert so that I can send emails or Teams messages when an alert is fired.
 ---
@@ -10,7 +10,6 @@ ms.date: 03/10/2024
 # Customize alert notifications by using Logic Apps
 
 This article shows you how to create a logic app and integrate it with an Azure Monitor alert.
-
 You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build and customize workflows for integration. Use Logic Apps to customize your alert notifications. You can:
 
 * Customize the alerts email by using your own email subject and body format.
@@ -152,9 +151,9 @@ This example creates a logic app that uses the [common alerts schema](./alerts-c
         | Subscription | `variables('AffectedResource')[2]` |
         | Resource Group | `variables('AffectedResource')[4]` |
         | Resource Provider | `variables('AffectedResource')[6]` |
-        | Short Resource ID | `concat(variables('AffectedResource')[7], '/', variables('AffectedResource')[8]` |
+        | Short Resource ID | `concat(variables('AffectedResource')[7], '/', variables('AffectedResource')[8])`|
         | Client Api Version | Resource type's API version |
-    
+
         To find your resource type's API version, select the **JSON view** link on the top right-hand side of the resource overview page.
 
         The **Resource JSON** page is displayed with the **ResourceID** and **API version** at the top of the page.
@@ -279,9 +278,9 @@ To trigger your logic app, create an action group. Then create an alert that use
 1. Select **Test**.
 
     :::image type="content" source="./media/alerts-logic-apps/test-action-group.png" lightbox="./media/alerts-logic-apps/test-action-group.png" alt-text="Screenshot of an action group details Test page.":::
-    
+
     The following email is sent to the specified account:
-    
+
     :::image type="content" source="./media/alerts-logic-apps/sample-output-email.png" lightbox="./media/alerts-logic-apps/sample-output-email.png" alt-text="Screenshot of a sample email sent by the Test page.":::
 
 ## Create a rule by using your action group
@@ -300,5 +299,5 @@ To trigger your logic app, create an action group. Then create an alert that use
 
 ## Next steps
 
-* [Learn more about action groups](./action-groups.md)
-* [Learn more about the common alert schema](./alerts-common-schema.md)
+* [Learn more about action groups](./action-groups.md).
+* [Learn more about the common alert schema](./alerts-common-schema.md).

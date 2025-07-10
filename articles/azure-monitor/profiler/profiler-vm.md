@@ -2,7 +2,7 @@
 title: Enable Application Insights Profiler for .NET for web apps on an Azure virtual machine
 description: Profile web apps running on an Azure virtual machine or a virtual machine scale set by using Application Insights Profiler
 ms.topic: how-to
-ms.date: 08/19/2024
+ms.date: 03/25/2025
 ms.reviewer: charles.weininger
 ---
 
@@ -24,6 +24,9 @@ In this guide, you learn how to:
 > - Install the Application Insights SDK on a VM.
 > - Deploy your application.
 > - View Profiler traces via the Application Insights instance in the Azure portal.
+
+> [!NOTE]
+> Currently, Application Insights Profiler for .NET isn't supported for on-premises servers.
 
 ## Prerequisites
 
@@ -84,7 +87,7 @@ You can enable Profiler by any of three ways:
 
 1. Add the resource type `extension` from the template to the `arm.json` file to set up a VM or virtual machine scale set with Azure Diagnostics.
 
-1. Within the `WadCfg` tag, add your Application Insights instrumentation key to `MyApplicationInsightsProfilerSink`.
+1. Within the `WadCfg` tag, add your Application Insights connection string to `MyApplicationInsightsProfilerSink`.
 
         
       ```json
@@ -215,10 +218,6 @@ Because the Azure portal doesn't provide a way to set the Application Insights P
    :::image type="content" source="./media/profiler-vm/resource-explorer-put.png" alt-text="Screenshot that shows sending the PUT request to apply changes.":::
 
 ---
-
-## Can the .NET Profiler run on on-premises servers?
-
-Currently, Application Insights Profiler for .NET isn't supported for on-premises servers.
 
 ## Next steps
 

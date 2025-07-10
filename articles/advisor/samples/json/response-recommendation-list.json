@@ -1,0 +1,31 @@
+{
+    "value": [
+        {
+            "properties": {
+                "category": "HighAvailability",
+                "impact": "Medium",
+                "impactedField": "MICROSOFT.INSIGHTS/WEBTESTS",
+                "impactedValue": "<Impacted-Value-Text>",
+                "lastUpdated": "ast-Updated-YYYY-MM-ddThh:mm:ssZ",
+                "recommendationTypeId": "<Recommendation-Type-Id-Guid>",
+                "shortDescription": {
+                    "problem": "<Description-Of-The-Recommendation>",
+                    "solution": "The URL ping test capability of the application insights feature for Azure Monitor is being retired."
+                },
+                "extendedProperties": {
+                    "recommendationControl": "ServiceUpgradeAndRetirement",
+                    "maturityLevel": "Preview",
+                    "retirementDate": "<Retirement-Date-YYY-MM-dd>",
+                    "retirementFeatureName": "<Name-Of-The-Retiring-Feature>",
+                    "recommendationOfferingId": "<Recommendation-Offering-Id-Guid>"
+                },
+                "resourceMetadata": {
+                    "ResourceId": "/subscription/<Subscription-Id>/resourceGroups/<Resource-Group-Name>/providers/<Azure-Resource-Manager-Resource-Details>/<Impacted-Value-Text>"
+                },
+                "id": "/subscription/<Subscription-Id>/resourceGroups/<Resource-Group-Name>/providers/<Azure-Resource-Manager-Resource-Details>/<Impacted-Value-Text>/providers/Microsoft.Advisor/recommendations/<Recommendation-Guid>",
+                "type": "Microsoft.Advisor/recommendations",
+                "name": "<Recommendation-Guid>"
+            }
+        }
+    ]
+}

@@ -1,12 +1,6 @@
 ---
-title: include file
-description: include file
-author: AaronMaxwell
-ms.service: application-insights
 ms.topic: include
 ms.date: 08/06/2019
-ms.author: aaronmax
-ms.custom: include file
 ---
 
 There are some limits on the number of metrics and events per application, that is, per instrumentation key. Limits depend on the [pricing plan](https://azure.microsoft.com/pricing/details/application-insights/) that you choose.

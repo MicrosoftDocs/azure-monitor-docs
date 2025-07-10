@@ -1,7 +1,7 @@
 ---
 title: Configure Container insights data collection
 description: Details on configuring data collection in Azure Monitor Container insights after you enable it on your Kubernetes cluster.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 05/14/2024
 ms.reviewer: aul
 ---
@@ -79,7 +79,7 @@ Using the Azure portal, you can select from multiple preset configurations for d
 
 ### [CLI](#tab/cli)
 
-### Configure DCR with Azure portal
+### Configure DCR with CLI
 
 #### Prerequisites
 
@@ -350,11 +350,13 @@ The following table describes the settings you can configure to control data col
 | `[enable_multiline_logs]`<br>`enabled` | Boolean | true<br>false | Controls whether multiline container logs are enabled. See [Multi-line logging in Container Insights](./container-insights-logs-schema.md#multi-line-logging) for details. If not specified in the ConfigMap, the default value is `false`. This requires the `schema` setting to be `v2`. |
 | `[metadata_collection]`<br>`enabled` | Boolean | true<br>false | Controls whether metadata is collected in the `KubernetesMetadata` column of the `ContainerLogV2` table. |
 | `[metadata_collection]`<br>`include_fields` | String | Comma-separated array | List of metadata fields to include. If the setting isn't used then all fields are collected. Valid values are  `["podLabels","podAnnotations","podUid","image","imageID","imageRepo","imageTag"]` |
+| `[log_collection_settings.multi_tenancy]`<br>`enabled` | Boolean | true<br>false | Controls whether multi-tenancy is enabled. See  [Multi-tenant managed logging](./container-insights-multitenant.md) for details. If not specified in the ConfigMap, the default value is `false`. |
 | **[metric_collection_settings]** | | | |
 | `[collect_kube_system_pv_metrics]`<br>`enabled` | Boolean | true<br>false | Allows persistent volume (PV) usage metrics to be collected in the kube-system namespace. By default, usage metrics for persistent volumes with persistent volume claims in the kube-system namespace aren't collected. When this setting is set to `true`, PV usage metrics for all namespaces are collected. If not specified in the ConfigMap, the default value is `false`. |
 | **[agent_settings]** | | | |
 | `[proxy_config]`<br>`ignore_proxy_settings` | Boolean | true<br>false | When `true`, proxy settings are ignored. For both AKS and Arc-enabled Kubernetes environments, if your cluster is configured with forward proxy, then proxy settings are automatically applied and used for the agent. For certain configurations, such as with AMPLS + Proxy, you might want the proxy configuration to be ignored. If not specified in the ConfigMap, the default value is `false`. |
-
+| **[agent_settings.fbit_config]** | | | |
+| `enable_internal_metrics` | Boolean | true<br>false | Controls whether collection of internal metrics are enabled. If not specified in the ConfigMap, the default value is `false`. |
 
 
 ## Next steps

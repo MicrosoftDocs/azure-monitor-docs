@@ -1,7 +1,7 @@
 ---
 title: Collect Prometheus metrics with Container insights
 description: Describes different methods for configuring the Container insights agent to scrape Prometheus metrics from your Kubernetes cluster.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/26/2024
 ms.reviewer: aul
 ---
@@ -116,11 +116,11 @@ Perform the following steps to configure your ConfigMap configuration file for y
 
     ```
     - prometheus.io/scrape:"true" #Enable scraping for this pod ​
-    - prometheus.io/scheme:"http" #If the metrics endpoint is secured then you will need to set this to `https`, if not default ‘http’​
+    - prometheus.io/scheme:"http" #If the metrics endpoint is secured then you will need to set this to `https`, if not default `http`
     - prometheus.io/path:"/mymetrics" #If the metrics path is not /metrics, define it with this annotation. ​
     - prometheus.io/port:"8000" #If port is not 9102 use this annotation​
     ```
-	
+    
     If you want to restrict monitoring to specific namespaces for pods that have annotations, for example, only include pods dedicated for production workloads, set the `monitor_kubernetes_pod` to `true` in ConfigMap. Then add the namespace filter `monitor_kubernetes_pods_namespaces` to specify the namespaces to scrape from. An example is `monitor_kubernetes_pods_namespaces = ["default1", "default2", "default3"]`.
 
 2. Run the following kubectl command: `kubectl apply -f <configmap_yaml_file.yaml>`.

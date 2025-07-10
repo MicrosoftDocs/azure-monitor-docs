@@ -1,7 +1,7 @@
 ---
 title: Microsoft Azure Monitor Application Insights JavaScript SDK
 description: Microsoft Azure Monitor Application Insights JavaScript SDK is a powerful tool for monitoring and analyzing web application performance.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/07/2024
 ms.devlang: javascript
 ms.custom: devx-track-js
@@ -88,7 +88,7 @@ Two methods are available to add the code to enable Application Insights via the
 | useXhr | boolean | Optional | This setting is used only for reporting SDK load failures. For example, this setting is useful when the JavaScript (Web) SDK Loader Script is preventing the HTML page from loading, causing fetch() to be unavailable.<br><br>Reporting first attempts to use fetch() if available and then fallback to XHR. Set this setting to `true` to bypass the fetch check. This setting is necessary only in environments where fetch can't transmit failure events, for example, when the JavaScript (Web) SDK Loader Script fails to load successfully.
 | crossOrigin | string  | Optional | By including this setting, the script tag added to download the SDK includes the crossOrigin attribute with this string value. Use this setting when you need to provide support for CORS. When not defined (the default), no crossOrigin attribute is added. Recommended values aren't defined (the default), "", or "anonymous". For all valid values, see the [cross origin HTML attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) documentation.
 | onInit | function(aiSdk) { ... } | Optional | This callback function is called after the main SDK script is successfully loaded and initialized from the CDN (based on the src value). This callback function is useful when you need to insert a telemetry initializer. It's passed one argument, which is a reference to the SDK instance that's being called for and is also called before the first initial page view. If the SDK is already loaded and initialized, this callback is still called. NOTE: During the processing of the sdk.queue array, this callback is called. You can't add any more items to the queue because they're ignored and dropped. (Added as part of JavaScript (Web) SDK Loader Script version 5--the sv:"5" value within the script). |
-| cr | boolean | Optional | If the SDK fails to load and the endpoint value defined for `src` is the public CDN location, this configuration option attempts to immediately load the SDK from one of the following backup CDN endpoints:<ul><li>js.monitor.azure.com</li><li>js.cdn.applicationinsights.io</li><li>js.cdn.monitor.azure.com</li><li>js0.cdn.applicationinsights.io</li><li>js0.cdn.monitor.azure.com</li><li>js2.cdn.applicationinsights.io</li><li>js2.cdn.monitor.azure.com</li><li>az416426.vo.msecnd.net</li></ul>NOTE: az416426.vo.msecnd.net is partially supported, so it's not recommended.<br><br>If the SDK successfully loads from a backup CDN endpoint, it loads from the first available one, which is determined when the server performs a successful load check. If the SDK fails to load from any of the backup CDN endpoints, the SDK Failure error message appears.<br><br>When not defined, the default value is `true`. If you don’t want to load the SDK from the backup CDN endpoints, set this configuration option to `false`.<br><br>If you’re loading the SDK from your own privately hosted CDN endpoint, this configuration option isn't applicable.
+| cr | boolean | Optional | If the SDK fails to load and the endpoint value defined for `src` is the public CDN location, this configuration option attempts to immediately load the SDK from one of the following backup CDN endpoints:<ul><li>js.monitor.azure.com</li><li>js.cdn.applicationinsights.io</li><li>js.cdn.monitor.azure.com</li><li>js0.cdn.applicationinsights.io</li><li>js0.cdn.monitor.azure.com</li><li>js2.cdn.applicationinsights.io</li><li>js2.cdn.monitor.azure.com</li><li>az416426.vo.msecnd.net</li></ul>NOTE: az416426.vo.msecnd.net is partially supported, so it's not recommended.<br><br>If the SDK successfully loads from a backup CDN endpoint, it loads from the first available one, which is determined when the server performs a successful load check. If the SDK fails to load from any of the backup CDN endpoints, the SDK Failure error message appears.<br><br>When not defined, the default value is `true`. If you don't want to load the SDK from the backup CDN endpoints, set this configuration option to `false`.<br><br>If you're loading the SDK from your own privately hosted CDN endpoint, this configuration option isn't applicable.
 
 #### [npm package](#tab/npmpackage)
 
@@ -131,7 +131,7 @@ To paste the connection string in your environment, follow these steps:
 
     The `connectionString` format must follow "InstrumentationKey=xxxx;....". If the string provided doesn't meet this format, the SDK load process fails.
  
-    The connection string isn't considered a security token or key. For more information, see [Do new Azure regions require the use of connection strings?](./connection-strings.md#do-new-azure-regions-require-the-use-of-connection-strings).
+    The connection string isn't considered a security token or key. For more information, see [Do new Azure regions require the use of connection strings?](./application-insights-faq.yml#do-new-azure-regions-require-the-use-of-connection-strings).
 
    > [!NOTE]
    > The Application Insights JavaScript SDK requires the connection string to be provided during initialization and configuration. This connection string is visible in plain text in client browsers, and there is no straightforward way to use [Microsoft Entra ID-based authentication](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights) for browser telemetry. We recommend that you consider creating a separate Application Insights resource with local authentication enabled for JavaScript browser-based telemetry if you need to secure the service telemetry separately using Microsoft Entra ID-based authentication.
@@ -180,59 +180,21 @@ If you want to use the extra features provided by plugins for specific framework
     
         For essential KQL operators, see [Learn common KQL operators](/azure/data-explorer/kusto/query/tutorials/learn-common-operators).
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### What are the user and session counts?
-
-* The JavaScript SDK sets a user cookie on the web client, to identify returning users, and a session cookie to group activities.
-* If there's no client-side script, you can [set cookies at the server](https://apmtips.com/posts/2016-07-09-tracking-users-in-api-apps/).
-* If one real user uses your site in different browsers, or by using in-private/incognito browsing, or different machines, they're counted more than once.
-* To identify a signed-in user across machines and browsers, add a call to [setAuthenticatedUserContext()](./api-custom-events-metrics.md#authenticated-users).
-
-### What is the JavaScript SDK performance/overhead?
-
-The Application Insights JavaScript SDK has a minimal overhead on your website. At just 36 KB gzipped, and taking only ~15 ms to initialize, the SDK adds a negligible amount of load time to your website. The minimal components of the library are quickly loaded when you use the SDK, and the full script is downloaded in the background.
-
-Additionally, while the script is downloading from the CDN, all tracking of your page is queued, so you don't lose any telemetry during the entire life cycle of your page. This setup process provides your page with a seamless analytics system that's invisible to your users.
-
-### What browsers are supported by the JavaScript SDK?
-
-:::image type="content" source="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt-text="Chrome"::: | :::image type="content" source="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt-text="Firefox"::: | :::image type="content" source="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt-text="IE"::: | :::image type="content" source="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt-text="Opera"::: | :::image type="content" source="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt-text="Safari":::
-| --- | --- | --- | --- | --- |
-| Chrome Latest ✔ |  Firefox Latest ✔ | v3.x: IE 9+ & Microsoft Edge ✔<br>v2.x: IE 8+ Compatible & Microsoft Edge ✔ | Opera Latest ✔ | Safari Latest ✔ |
-
-### Where can I find code examples for the JavaScript SDK?
-
-For runnable examples, see [Application Insights JavaScript SDK samples](https://github.com/microsoft/ApplicationInsights-JS/tree/master/examples).
-
-### What is the ES3/Internet Explorer 8 compatibility with the JavaScript SDK?
-
-We need to take necessary measures to ensure that this SDK continues to "work" and doesn't break the JavaScript execution when loaded by an older browser. It would be ideal to not support older browsers, but numerous large customers can't control which browser their users choose to use.
-
-This statement doesn't mean that we only support the lowest common set of features. We need to maintain ES3 code compatibility. New features need to be added in a manner that wouldn't break ES3 JavaScript parsing and added as an optional feature.
-
-See GitHub for full details on [Internet Explorer 8 support](https://github.com/Microsoft/ApplicationInsights-JS#es3ie8-compatibility).
-      
-### Is the JavaScript SDK open-source?
-
-Yes, the Application Insights JavaScript SDK is open source. To view the source code or to contribute to the project, see the [official GitHub repository](https://github.com/Microsoft/ApplicationInsights-JS).
-      
 ## Support
 
 * If you can't run the application or you aren't getting data as expected, see the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/javascript-sdk-troubleshooting).
-* For common question about the JavaScript SDK, see the [FAQ](#frequently-asked-questions).
+* For common question about the JavaScript SDK, see the [FAQ](application-insights-faq.yml#javascript-sdk).
 * For Azure support issues, open an [Azure support ticket](https://azure.microsoft.com/support/create-ticket/).
 * For a list of open issues related to the Application Insights JavaScript SDK, see the [GitHub Issues Page](https://github.com/microsoft/ApplicationInsights-JS/issues).
 * Use the [Telemetry Viewer extension](https://github.com/microsoft/ApplicationInsights-JS/tree/master/tools/chrome-debug-extension) to list out the individual events in the network payload and monitor the internal calls within Application Insights.
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [JavaScript SDK FAQ](application-insights-faq.yml#javascript-sdk)
 * [Explore Application Insights usage experiences](usage.md)
 * [Track page views](api-custom-events-metrics.md#page-views)
 * [Track custom events and metrics](api-custom-events-metrics.md)
 * [Insert a JavaScript telemetry initializer](api-filtering-sampling.md#javascript-telemetry-initializers)
 * [Add JavaScript SDK configuration](javascript-sdk-configuration.md)
-* See the detailed [release notes](https://github.com/microsoft/ApplicationInsights-JS/releases) on GitHub for updates and bug fixes.
-* [Query data in Log Analytics](../../azure-monitor/logs/log-query-overview.md).
+* See the detailed [release notes](https://github.com/microsoft/ApplicationInsights-JS/releases) on GitHub for updates and bug fixes
+* [Query data in Log Analytics](../../azure-monitor/logs/log-query-overview.md)

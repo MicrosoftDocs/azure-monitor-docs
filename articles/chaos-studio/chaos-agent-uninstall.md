@@ -3,11 +3,9 @@ title: "Uninstalling the Chaos Agent"
 description: "Instructions for uninstalling the Chaos Agent via the Azure portal and Azure CLI."
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: article
+ms.topic: how-to
 ms.date: 03/02/2025
-ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
-ms.service: azure-chaos-studio
 ms.custom: 
 ---
 

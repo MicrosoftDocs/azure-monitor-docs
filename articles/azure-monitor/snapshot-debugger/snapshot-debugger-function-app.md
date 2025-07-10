@@ -1,8 +1,6 @@
 ---
 title: Enable Snapshot Debugger for .NET and .NET Core apps in Azure Functions | Microsoft Docs
 description: Enable Snapshot Debugger for .NET and .NET Core apps in Azure Functions.
-ms.author: hannahhunter
-author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to

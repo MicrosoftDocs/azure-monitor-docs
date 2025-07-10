@@ -1,8 +1,8 @@
 ---
 title: Data transformations in Container insights
 description: Describes how to transform data using a DCR transformation in Container insights.
-ms.topic: conceptual
-ms.date: 07/17/2024
+ms.topic: article
+ms.date: 05/14/2025
 ms.reviewer: aul
 ---
 
@@ -90,7 +90,7 @@ ContainerLogV2 | where LogLevel in ('error', 'critical')
 
 This logic is shown in the following diagram.
 
-:::image type="content" source="media/container-insights-cost/transformation-sample.png" lightbox="media/container-insights-cost/transformation-sample.png" alt-text="Diagram that shows filtering container logs using a transformation." border="false":::
+:::image type="content" source="media/container-insights-transformations/transformation-sample.png" lightbox="media/container-insights-transformations/transformation-sample.png" alt-text="Diagram that shows filtering container logs using a transformation." border="false":::
 
 
 In a transformation, the table name `source` is used to represent the incoming data. Following is the modified query to use in the transformation.
@@ -162,9 +162,9 @@ The following sample shows this transformation added to the Container insights D
 
 ### Send data to different tables
 
-In the example above, only records with a `LogLevel` of `error` or `critical` are collected. An alternate strategy instead of not collecting these records at all is to save them to an alternate table configured for basic logs. 
+In the example above, only records with a `LogLevel` of `error` or `critical` are collected. An alternate strategy instead of not collecting these records at all is to configure ContainerLogV2 for Basic logs and send these records to an alternate table. 
 
-For this strategy, two transformations are needed. The first transformation sends the records with `LogLevel` of `error` or `critical` to the default table. The second transformation sends the other records to a custom table named `ContainerLogV2_CL`. The queries for each are shown below using `source` for the incoming data as described in the previous example.
+For this strategy, two transformations are needed. The first transformation sends the records with `LogLevel` of `error` or `critical` to a custom table named `ContainerLogV2_CL`. The second transformation sends the other records to the standard `ContainerLogV2`. The queries for each are shown below using `source` for the incoming data as described in the previous example.
 
 ```kusto
 # Return error and critical logs
@@ -176,10 +176,10 @@ source | where LogLevel !in ('error', 'critical')
 
 This logic is shown in the following diagram.
 
-:::image type="content" source="media/container-insights-cost/transformation-sample-basic-logs.png" lightbox="media/container-insights-cost/transformation-sample-basic-logs.png" alt-text="Diagram that shows filtering container logs using a transformation that sends some data to analytics table and other data to basic logs." border="false":::
+:::image type="content" source="media/container-insights-transformations/transformation-sample-basic-logs.png" lightbox="media/container-insights-transformations/transformation-sample-basic-logs.png" alt-text="Diagram that shows filtering container logs using a transformation that sends some data to analytics table and other data to basic logs." border="false":::
 
 > [!IMPORTANT]
-> Before you install the DCR in this sample, you must [create a new table](../logs/create-custom-table.md) with the same schema as `ContainerLogV2`. Name it `ContainerLogV2_CL` and [configure it for basic logs](../logs/basic-logs-configure.md).
+> Before you install the DCR in this sample, you must [create a new table](../logs/create-custom-table.md) with the same schema as `ContainerLogV2`. Name it `ContainerLogV2_CL`. The configure ContainerLogV2 for [basic logs](../logs/basic-logs-configure.md).
 
 The following sample shows this transformation added to the Container insights DCR. There are two data flows for `Microsoft-ContainerLogV2` in this DCR, one for each transformation. The first sends to the default table you don't need to specify a table name. The second requires the `outputStream` property to specify the destination table.
 
@@ -235,7 +235,7 @@ The following sample shows this transformation added to the Container insights D
                 "destinations": [
                     "ciworkspace"
                 ],
-                "transformKql": "source | where LogLevel in ('error', 'critical')"
+                "transformKql": "source | where LogLevel !in ('error', 'critical')"
             },
             {
                 "streams": [
@@ -244,7 +244,7 @@ The following sample shows this transformation added to the Container insights D
                 "destinations": [
                     "ciworkspace"
                 ],
-                "transformKql": "source | where LogLevel !in ('error','critical')",
+                "transformKql": "source | where LogLevel in ('error','critical')",
                 "outputStream": "Custom-ContainerLogV2_CL"
             }
         ],

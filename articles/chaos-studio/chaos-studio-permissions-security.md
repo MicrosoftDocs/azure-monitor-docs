@@ -2,10 +2,8 @@
 title: Permissions and security for Azure Chaos Studio
 description: Understand how permissions work in Azure Chaos Studio and how you can secure resources from accidental fault injection.
 author: prasha-microsoft
-ms.author: abbyweisberg
 ms.reviewer: carlsonr
-ms.service: azure-chaos-studio
-ms.topic: conceptual
+ms.topic: article
 ms.date: 05/06/2024
 ms.custom: template-concept, devx-track-arm-template
 ---
@@ -28,7 +26,7 @@ Chaos Studio has three levels of security to help you control how and when fault
 
 * Second, a chaos experiment has a [system-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) or a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) that executes faults on a resource. If you choose to use a system-assigned managed identity for your experiment, the identity is created at experiment creation time in your Microsoft Entra tenant. User-assigned managed identites may be used across any number of experiments.
 
-   Within a chaos experiment, you can choose to enable custom role assignment on either your system-assigned or user-assigned managed identity selection. Enabling this functionality allows Chaos Studio to create and assign a custom role containing any necessary experiment action capabilities to your experiment's identity (that do not already exist in your identity selection). If a chaos experiment is using a user-assigned managed identity, any custom roles assigned to the experiment identity by Chaos Studio will persist after experiment deletion.
+   When creating a chaos experiment in the Azure portal, you can choose to enable [automatic role assignment using Azure built-in roles or a custom role](chaos-studio-assign-experiment-permissions.md) on either your system-assigned or user-assigned managed identity selection. Enabling this functionality allows Chaos Studio to create and assign Azure built-in roles or a custom role containing any necessary experiment action capabilities to your experiment's identity (that do not already exist in your identity selection). If a chaos experiment is using a user-assigned managed identity, any custom roles assigned to the experiment identity by Chaos Studio will persist after experiment deletion.
   
   If you choose to grant your experiment permissions manually, you must grant its identity [appropriate permissions](chaos-studio-fault-providers.md) to all target resources. If the experiment identity doesn't have appropriate permission to a resource, it can't execute a fault against that resource.
 
@@ -38,7 +36,7 @@ Chaos Studio has three levels of security to help you control how and when fault
 
 A chaos experiment can utilize a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to obtain sufficient permissions to inject faults on the experiment's target resources. Additionally, user-assigned managed identities may be used across any number of experiments in Chaos Studio. To utilize this functionality, you must:
 * First, create a user-assigned managed identity within the [Managed Identities](/azure/active-directory/managed-identities-azure-resources/overview) service. You may assign your user-assigned managed identity required permissions to run your chaos experiment(s) at this point.
-* Second, when creating your chaos experiment, select a user-assigned managed identity from your Subscription. You can choose to enable custom role assignment at this step. Enabling this functionality would grant your identity selection any required permissions it may need based on the faults contained in your experiment.
+* Second, when creating your chaos experiment in the Azure portal, select a user-assigned managed identity from your Subscription. You can choose to enable [automatic role assignment using Azure built-in roles or a custom role](chaos-studio-assign-experiment-permissions.md) at this step. Enabling this functionality would grant your identity selection any required permissions it may need based on the faults contained in your experiment.
 * Third, after you've added all of your faults to your chaos experiment, review if your identity configuration contains all the necessary actions for your chaos experiment to run successfully. If it does not, contact your system administrator for access or edit your experiment's fault selections.
 
 ## Agent authentication
@@ -81,7 +79,7 @@ All user interactions with Chaos Studio happen through Azure Resource Manager. I
 * **Agent-based private networking**: The Chaos Studio agent now supports private networking. Please see [Private networking for Chaos Agent](chaos-studio-private-link-agent-service.md). 
 
 ## Service tags
-A [service tag](/azure/virtual-network/service-tags-overview) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren’t sufficient to secure traffic.
+A [service tag](/azure/virtual-network/service-tags-overview) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren't sufficient to secure traffic.
 
 You can use service tags to explicitly allow inbound traffic from Chaos Studio without the need to know the IP addresses of the platform. Chaos Studio's service tag is `ChaosStudio`.
 
@@ -98,7 +96,7 @@ By specifying the `ChaosStudio` Service Tag in security rules, traffic can be al
 
 ### Security considerations
 
-When evaluating and using service tags, it’s important to note that they don’t provide granular control over individual IP addresses and shouldn’t be relied on as the sole method for securing a network. They aren’t a replacement for proper network security measures.
+When evaluating and using service tags, it's important to note that they don't provide granular control over individual IP addresses and shouldn't be relied on as the sole method for securing a network. They aren't a replacement for proper network security measures.
 
 ## Data encryption
 

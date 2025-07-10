@@ -1,7 +1,7 @@
 ---
 title: Plan alerts and automated actions
 description: Recommendations for deployment of Azure Monitor alerts and automated actions.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 02/15/2024
 ---
 

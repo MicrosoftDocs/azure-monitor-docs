@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor Agent Requirements
 description: Learn the requirements for the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers and prerequisites for installation.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 01/08/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
@@ -11,6 +11,9 @@ ms.reviewer: jeffwo
 # Azure Monitor Agent requirements
 
 This article provides requirements and prerequisites for using the Azure Monitor Agent. Before you follow guidance to install the agent in [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md), review the information in this article.
+
+> [!NOTE]
+> See [Azure Monitor Agent supported operating systems and environments](./azure-monitor-agent-supported-operating-systems.md) for the operating systems supported by Azure Monitor agent.
 
 ## Virtual machine extension details
 
@@ -67,7 +70,7 @@ This table lists the Azure Monitor Agent disk space requirements. Azure Monitor 
 | Extension logs | Linux (Azure Arc) | */var/lib/GuestConfig/extension_logs/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{version}/* | 100 MB |
 | Extension logs | Windows (Azure VM) | *C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent* | 100 MB |
 | Extension logs | Windows (Azure Arc) | *C:\ProgramData\GuestConfig\extension_logs\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent* | 100 MB |
-| Agent cache | Linux | */etc/opt/microsoft/azuremonitoragent*, */var/opt/microsoft/azuremonitoragent* | 500 MB |
+| Agent cache | Linux | */etc/opt/microsoft/azuremonitoragent*, */opt/microsoft/azuremonitoragent* | 500 MB |
 | Agent cache | Windows (Azure VM) | *C:\WindowsAzure\Resources\AMADataStore.{DataStoreName}* | 10.5 GB |
 | Agent cache | Windows (Azure Arc) | *C:\Resources\Directory\AMADataStore.{DataStoreName}* | 10.5 GB |
 | Event cache | Linux | */var/opt/microsoft/azuremonitoragent/events* | 10 GB |

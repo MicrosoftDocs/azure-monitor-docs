@@ -1,44 +1,47 @@
 ---
 title: Receive Service health alerts on Azure service notifications using Resource Manager template
 description: Get notified via SMS, email, or webhook when Azure service occurs using a Resource Manager template.
-ms.date: 05/13/2022
+ms.date: 05/27/2025
 ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-arm-template
 ---
 
 # Quickstart: Create Service health alerts on service notifications using an ARM template
 
-This article shows you how to set up service health alerts for service health notifications by using an Azure Resource Manager template (ARM template).
+This guide walks you through how to set up service health alerts for service health notifications by using an Azure Resource Manager (ARM) template.
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
-Service health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md). Given the possibly large volume of information stored in the activity log, there is a separate user interface to make it easier to view and set up alerts on service health notifications.
+## Overview
+
+Service health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md). Given the possibly large volume of information stored in the activity log, there's a separate user interface to make it easier to view and set up alerts on service health notifications.
 
 You can receive an alert when Azure sends service health notifications to your Azure subscription. You can configure the alert based on:
 
 - The class of service health notification (Service issues, Planned maintenance, Health advisories).
 - The subscription affected.
-- The service(s) affected.
-- The region(s) affected.
+- The services affected.
+- The regions affected.
 
 > [!NOTE]
-> Service health notifications does not send an alert regarding resource health events.
+> Service health notifications don't send alerts regarding resource health events.
 
 You also can configure who the alert should be sent to:
 
 - Select an existing action group.
-- Create a new action group (that can be used for future alerts).
+- Create a new action group that can be used for future alerts.
 
 To learn more about action groups, see [Create and manage action groups](../azure-monitor/alerts/action-groups.md).
 
-## Prerequisites
+### Prerequisites
 
 - If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 - To run the commands from your local computer, install Azure CLI or the Azure PowerShell modules. For more information, see [Install the Azure CLI](/cli/azure/install-azure-cli) and [Install Azure PowerShell](/powershell/azure/install-azure-powershell).
 
-## Review the template
+**1. Review the template**
 
-The following template creates an action group with an email target and enables all service health notifications for the target subscription. Save this template as *CreateServiceHealthAlert.json*.
+The following template creates an action group with an email target and enables all service health notifications for the target subscription. 
+<br> Save this template as *CreateServiceHealthAlert.json*.
 
 ```json
 {
@@ -123,9 +126,11 @@ The template defines two resources:
 - [Microsoft.Insights/actionGroups](/azure/templates/microsoft.insights/actiongroups)
 - [Microsoft.Insights/activityLogAlerts](/azure/templates/microsoft.insights/activityLogAlerts)
 
-## Deploy the template
+**2. Deploy the template**
 
-Deploy the template using any standard method for [deploying an ARM template](/azure/azure-resource-manager/templates/deploy-portal) such as the following examples using CLI and PowerShell. Replace the sample values for **Resource Group** and **emailAddress** with appropriate values for your environment.
+Deploy the template using any standard method for [deploying an ARM template](/azure/azure-resource-manager/templates/deploy-portal). You can use the following examples for using CLI and PowerShell. 
+
+Replace the sample values for **Resource Group** and **emailAddress** with the appropriate values for your environment.
 
 # [CLI](#tab/CLI)
 
@@ -144,9 +149,9 @@ New-AzResourceGroupDeployment -Name CreateServiceHealthAlert -ResourceGroupName 
 
 ---
 
-## Validate the deployment
+**3. Validate the deployment**
 
-Verify that the workspace has been created using one of the following commands. Replace the sample values for **Resource Group** with the value you used above.
+Verify that the workspace is created using one of the following commands. Replace the sample values for **Resource Group** with the values you used.
 
 # [CLI](#tab/CLI)
 
@@ -162,9 +167,11 @@ Get-AzActivityLogAlert -ResourceGroupName my-resource-group -Name ServiceHealthA
 
 ---
 
-## Clean up resources
+**4. Clean up resources**
 
-If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When no longer needed, delete the resource group, which deletes the alert rule and the related resources. To delete the resource group by using Azure CLI or Azure PowerShell
+If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. 
+
+You can delete the resource group when it's no longer needed, which deletes the alert rule and the related resources. To delete the resource group by using Azure CLI or Azure PowerShell commands shown here.
 
 # [CLI](#tab/CLI)
 

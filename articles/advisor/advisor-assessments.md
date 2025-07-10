@@ -2,7 +2,7 @@
 title: Use Well Architected Framework assessments in Azure Advisor
 description: Azure Advisor offers Well Architected Framework assessments (curated and focused Advisor optimization reports) through the Assessments entry in the left menu of the Azure Advisor Portal.
 ms.service: azure
-ms.topic: article
+ms.topic: how-to
 ms.date: 08/22/2024
 
 #customer intent: As an Advisor user, I want WAF assessments so that I can better understand recommendations.

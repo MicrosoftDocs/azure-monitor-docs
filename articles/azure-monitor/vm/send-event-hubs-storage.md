@@ -1,86 +1,67 @@
 ---
 title: Send data to Event Hubs and Storage (Preview)
 description: This article describes how to use Azure Monitor Agent to upload data to Azure Storage and Event Hubs.
-ms.topic: conceptual
-ms.date: 01/05/2025
+ms.topic: how-to
+ms.date: 04/03/2025
 ms.reviewer: luki
 ---
 
-# Send data to Event Hubs and Storage (Preview)
+# Send virtual machine client data to Event Hubs and Storage (Preview)
 
-This article describes how to use the Azure Monitor Agent (AMA) to upload data to Azure Storage and Event Hubs. This feature is in preview.
+[Collect data from virtual machine client with Azure Monitor](./data-collection.md) describes how to collect data from virtual machines (VMs) with Azure Monitor. This article describes how to send that data described to Azure Storage and Event Hubs. This feature is currently in public preview.
 
-The Azure Monitor Agent is the new, consolidated telemetry agent for collecting data from IaaS resources like virtual machines. By using the upload capability in this preview, you can upload the logs<sup>[1](#FN1)</sup> you send to Log Analytics workspaces to Event Hubs and Storage. Both data destinations use data collection rules to configure collection setup for the agents.
+> [!TIP]
+> As an alternative to storage, you should create a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
+
+The following table lists the data sources that are supported by this feature.
+
+## Supported data types
+
+The data types in the following table are supported by this feature. Each has a link to an article describing the details of that source.
+
+| Data source | Operating Systems | Supported destinations |
+|:---|:---|:---|
+| [Windows Event Logs](./data-collection-windows-events.md) | Windows | Eventhub<br>Storage |
+| [Syslog](./data-collection-syslog.md) | Linux | Eventhub<br>Storage |
+| [Performance counters](./data-collection-performance.md) | Windows<br>Linux | Eventhub<br>Storage |
+| [IIS logs](./data-collection-iis.md) |  Windows<br>Linux | Storage Blob |
+| [Text logs](./data-collection-log-text.md) |  Windows<br>Linux | Eventhub (Linux Only) </br>Storage Blob |
+
+The following logs are not supported:
+
+- ETW Logs. This is planned for later release.
+- Windows Crash Dumps. The Azure Monitoring Agent is meant for telemetry logs and not large file types.
+- Application Logs. These are collected by Application insights, which doesn't use DCRs.
+- .NET event source logs
 
 > [!NOTE]
-> Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.
-
-**Footnotes**
-
-<a name="FN1">1</a>: Not all data types are supported; refer to [What's supported](#whats-supported) for specifics.
-
-## Migration from Azure Diagnostic Extensions for Linux and Windows (LAD/WAD)
-
-- Azure Monitor Agent can collect and send data to multiple destinations, including Log Analytics workspaces, Azure Event Hubs, and Azure Storage.
-- To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
-- Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
-- As an alternative to storage, we highly recommend you set up a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
+> This feature is only supported for Azure VMs. Arc-enabled VMs are not supported.
 
 
-## What's supported
+## Permissions
 
-### Data types
+The agent VM must have system-assigned managed identity enabled or a user-assigned managed identity associated to it. [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) is recommended for better scalability and performance. The agent must be configured to use the managed identity for authentication as described in [Azure Monitor agent requirements](../agents/azure-monitor-agent-requirements.md#permissions). 
 
-- Windows:
-   - Windows Event Logs – to eventhub and storage
-   - Perf counters – eventhub and storage
-   - IIS logs – to storage blob
-   - Custom logs – to storage blob
+The following RBAC roles must be assigned to the managed identity depending on the data destinations you're using.
 
-- Linux:
-   - Syslog – to eventhub and storage
-   - Perf counters – to eventhub and storage
-   - Custom Logs / Log files – to storage
-
-### Operating systems
-
-- Environments that are supported by the Azure Monitoring Agent on Windows and Linux
-- This feature is only supported and planned to be supported for Azure VMs. There are no plans to bring this to on-premises or Azure Arc scenarios.
-
-## What's not supported
-
-### Data types
-
-- Windows:
-   - ETW Logs (Coming in a later released)
-   - Windows Crash Dumps (not planned nor will be supported)
-   - Application Logs (not planned nor will be supported)
-   - .NET event source logs (not planned nor will be supported)
-
-## Prerequisites
-
-+ An existing compute resource, such as a virtual machine or virtual machine scale set. 
-+ The machine to which Azure Monitor Agent is deployed must have system-assigned managed identity enabled or a user-assigned managed identity associated it to it. [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities)  is recommended for better scalability and performance. 
-+ Azure Monitor Agent must be configured to use the managed identity for authentication as described in [Azure Monitor agent requirements](../agents/azure-monitor-agent-requirements.md#permissions). 
-+ You must provision the necessary [storage account(s)](/azure/storage/common/storage-account-create) and/or [Event Hubs](/azure/event-hubs/event-hubs-create) to which you wish to publish data via Azure Monitor Agent. 
-+ The appropriate built-in RBAC role(s) must be assigned to the chosen managed identity according to your desired data destination(s).
-    - Storage table: `Storage Table Data Contributor` role
-    - Storage blob: `Storage Blob Data Contributor` role
-    - Event hub: `Azure Event Hubs Data Sender` role
+| Destination | RBAC role |
+|:---|:---|
+| Storage table | `Storage Table Data Contributor` |
+| Storage blob | `Storage Blob Data Contributor` |
+| Event hub | `Azure Event Hubs Data Sender` |
 
 ## Create a data collection rule
 
-Create a data collection rule for collecting events and sending to storage and event hub.
+There's not currently a UI experience for creating a data collection rule (DCR) that sends data to Event Hubs or storage. The following process describes the steps for creating a DCR using an ARM template in the Azure portal. Alternatively, you can use the sample DCR here to [create a new DCR using any other methods](../essentials/data-collection-rule-create-edit.md).
 
-1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**.
+> [!WARNING]
+> Don't edit an existing DCR that you created using [Collect data from virtual machine client with Azure Monitor](./data-collection.md) to add Event Hubs or storage. These destinations require a DCR with a `kind` of `AgentDirectToStore`. Instead, create multiple DCRs using the same data sources that send to different destinations.
+
+1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**. Select **Build your own template in the editor**.
 
     :::image type="content" source="../logs/media/tutorial-workspace-transformations-api/deploy-custom-template.png" lightbox="../logs/media/tutorial-workspace-transformations-api/deploy-custom-template.png" alt-text="Screenshot that shows the Azure portal with template entered in the search box and Deploy a custom template highlighted in the search results.":::
 
-1. Select **Build your own template in the editor**.
-
-    :::image type="content" source="../logs/media/tutorial-workspace-transformations-api/build-custom-template.png" lightbox="../logs/media/tutorial-workspace-transformations-api/build-custom-template.png" alt-text="Screenshot that shows portal screen to build template in the editor.":::
-
-1. Paste this Azure Resource Manager template into the editor:
+2. Paste the following template definition into the editor:
 
     ### [Windows](#tab/windows)
 
@@ -122,61 +103,61 @@ Create a data collection rule for collecting events and sending to storage and e
         "kind": "AgentDirectToStore",
         "properties": {
             "dataSources": {
-            "performanceCounters": [
-                {
-                "streams": [
-                    "Microsoft-Perf"
-                ],
-                "samplingFrequencyInSeconds": 10,
-                "counterSpecifiers": [
-                    "\\Process(_Total)\\Working Set - Private",
-                    "\\Memory\\% Committed Bytes In Use",
-                    "\\LogicalDisk(_Total)\\% Free Space",
-                    "\\Network Interface(*)\\Bytes Total/sec"
-                ],
-                "name": "perfCounterDataSource10"
-                }
-            ],
-            "windowsEventLogs": [
-                {
-                "streams": [
-                    "Microsoft-Event"
-                ],
-                "xPathQueries": [
-                    "Application!*[System[(Level=2)]]",
-                    "System!*[System[(Level=2)]]"
-                ],
-                "name": "eventLogsDataSource"
-                }
-            ],
-            "iisLogs": [
-                {
-                "streams": [
-                    "Microsoft-W3CIISLog"
-                ],
-                "logDirectories": [
-                    "C:\\inetpub\\logs\\LogFiles\\W3SVC1\\"
-                ],
-                "name": "myIisLogsDataSource"
-                }
-            ],
-            "logFiles": [
-                {
-                "streams": [
-                    "Custom-Text-logs"
-                ],
-                "filePatterns": [
-                    "C:\\JavaLogs\\*.log"
-                ],
-                "format": "text",
-                "settings": {
-                    "text": {
-                    "recordStartTimestampFormat": "ISO 8601"
+                "performanceCounters": [
+                    {
+                    "streams": [
+                        "Microsoft-Perf"
+                    ],
+                    "samplingFrequencyInSeconds": 10,
+                    "counterSpecifiers": [
+                        "\\Process(_Total)\\Working Set - Private",
+                        "\\Memory\\% Committed Bytes In Use",
+                        "\\LogicalDisk(_Total)\\% Free Space",
+                        "\\Network Interface(*)\\Bytes Total/sec"
+                    ],
+                    "name": "perfCounterDataSource10"
                     }
-                },
-                "name": "myTextLogs"
-                }
-            ]
+                ],
+                "windowsEventLogs": [
+                    {
+                    "streams": [
+                        "Microsoft-Event"
+                    ],
+                    "xPathQueries": [
+                        "Application!*[System[(Level=2)]]",
+                        "System!*[System[(Level=2)]]"
+                    ],
+                    "name": "eventLogsDataSource"
+                    }
+                ],
+                "iisLogs": [
+                    {
+                    "streams": [
+                        "Microsoft-W3CIISLog"
+                    ],
+                    "logDirectories": [
+                        "C:\\inetpub\\logs\\LogFiles\\W3SVC1\\"
+                    ],
+                    "name": "myIisLogsDataSource"
+                    }
+                ],
+                "logFiles": [
+                    {
+                    "streams": [
+                        "Custom-Text-logs"
+                    ],
+                    "filePatterns": [
+                        "C:\\JavaLogs\\*.log"
+                    ],
+                    "format": "text",
+                    "settings": {
+                        "text": {
+                        "recordStartTimestampFormat": "ISO 8601"
+                        }
+                    },
+                    "name": "myTextLogs"
+                    }
+                ]
             },
             "destinations": {
             "eventHubsDirect": [
@@ -227,40 +208,40 @@ Create a data collection rule for collecting events and sending to storage and e
             "dataFlows": [
             {
                 "streams": [
-                "Microsoft-Perf"
+                    "Microsoft-Perf"
                 ],
                 "destinations": [
-                "myEh1",
-                "blobNamedPerf",
-                "tableNamedPerf",
-                "tableUnnamed"
+                    "myEh1",
+                    "blobNamedPerf",
+                    "tableNamedPerf",
+                    "tableUnnamed"
                 ]
             },
             {
                 "streams": [
-                "Microsoft-Event"
+                    "Microsoft-Event"
                 ],
                 "destinations": [
-                "myEh1",
-                "blobNamedWin",
-                "tableNamedWin",
-                "tableUnnamed"
+                    "myEh1",
+                    "blobNamedWin",
+                    "tableNamedWin",
+                    "tableUnnamed"
                 ]
             },
             {
                 "streams": [
-                "Microsoft-W3CIISLog"
+                    "Microsoft-W3CIISLog"
                 ],
                 "destinations": [
-                "blobNamedIIS"
+                    "blobNamedIIS"
                 ]
             },
             {
                 "streams": [
-                "Custom-Text-logs"
+                    "Custom-Text-logs"
                 ],
                 "destinations": [
-                "blobNamedTextLogs"
+                    "blobNamedTextLogs"
                 ]
             }
             ]
@@ -318,43 +299,43 @@ Create a data collection rule for collecting events and sending to storage and e
                 "samplingFrequencyInSeconds": 10, 
                 "counterSpecifiers": [ 
                     "Processor(*)\\% Processor Time",
-    "Processor(*)\\% Idle Time",
-    "Processor(*)\\% User Time",
-    "Processor(*)\\% Nice Time",
-    "Processor(*)\\% Privileged Time",
-    "Processor(*)\\% IO Wait Time",
-    "Processor(*)\\% Interrupt Time",
-    "Processor(*)\\% DPC Time",
-    "Memory(*)\\Available MBytes Memory",
-    "Memory(*)\\% Available Memory",
-    "Memory(*)\\Used Memory MBytes",
-    "Memory(*)\\% Used Memory",
-    "Memory(*)\\Pages/sec",
-    "Memory(*)\\Page Reads/sec",
-    "Memory(*)\\Page Writes/sec",
-    "Memory(*)\\Available MBytes Swap",
-    "Memory(*)\\% Available Swap Space",
-    "Memory(*)\\Used MBytes Swap Space",
-    "Memory(*)\\% Used Swap Space",
-    "Logical Disk(*)\\% Free Inodes",
-    "Logical Disk(*)\\% Used Inodes",
-    "Logical Disk(*)\\Free Megabytes",
-    "Logical Disk(*)\\% Free Space",
-    "Logical Disk(*)\\% Used Space",
-    "Logical Disk(*)\\Logical Disk Bytes/sec",
-    "Logical Disk(*)\\Disk Read Bytes/sec",
-    "Logical Disk(*)\\Disk Write Bytes/sec",
-    "Logical Disk(*)\\Disk Transfers/sec",
-    "Logical Disk(*)\\Disk Reads/sec",
-    "Logical Disk(*)\\Disk Writes/sec",
-    "Network(*)\\Total Bytes Transmitted",
-    "Network(*)\\Total Bytes Received",
-    "Network(*)\\Total Bytes",
-    "Network(*)\\Total Packets Transmitted",
-    "Network(*)\\Total Packets Received",
-    "Network(*)\\Total Rx Errors",
-    "Network(*)\\Total Tx Errors",
-    "Network(*)\\Total Collisions"
+                    "Processor(*)\\% Idle Time",
+                    "Processor(*)\\% User Time",
+                    "Processor(*)\\% Nice Time",
+                    "Processor(*)\\% Privileged Time",
+                    "Processor(*)\\% IO Wait Time",
+                    "Processor(*)\\% Interrupt Time",
+                    "Processor(*)\\% DPC Time",
+                    "Memory(*)\\Available MBytes Memory",
+                    "Memory(*)\\% Available Memory",
+                    "Memory(*)\\Used Memory MBytes",
+                    "Memory(*)\\% Used Memory",
+                    "Memory(*)\\Pages/sec",
+                    "Memory(*)\\Page Reads/sec",
+                    "Memory(*)\\Page Writes/sec",
+                    "Memory(*)\\Available MBytes Swap",
+                    "Memory(*)\\% Available Swap Space",
+                    "Memory(*)\\Used MBytes Swap Space",
+                    "Memory(*)\\% Used Swap Space",
+                    "Logical Disk(*)\\% Free Inodes",
+                    "Logical Disk(*)\\% Used Inodes",
+                    "Logical Disk(*)\\Free Megabytes",
+                    "Logical Disk(*)\\% Free Space",
+                    "Logical Disk(*)\\% Used Space",
+                    "Logical Disk(*)\\Logical Disk Bytes/sec",
+                    "Logical Disk(*)\\Disk Read Bytes/sec",
+                    "Logical Disk(*)\\Disk Write Bytes/sec",
+                    "Logical Disk(*)\\Disk Transfers/sec",
+                    "Logical Disk(*)\\Disk Reads/sec",
+                    "Logical Disk(*)\\Disk Writes/sec",
+                    "Network(*)\\Total Bytes Transmitted",
+                    "Network(*)\\Total Bytes Received",
+                    "Network(*)\\Total Bytes",
+                    "Network(*)\\Total Packets Transmitted",
+                    "Network(*)\\Total Packets Received",
+                    "Network(*)\\Total Rx Errors",
+                    "Network(*)\\Total Tx Errors",
+                    "Network(*)\\Total Collisions"
                 ], 
                 "name": "perfCounterDataSource10" 
                 } 
@@ -418,45 +399,45 @@ Create a data collection rule for collecting events and sending to storage and e
             ] 
             }, 
             "destinations": { 
-            "eventHubsDirect": [ 
-                { 
-                "eventHubResourceId": "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventHubNamespaceName'), parameters('eventHubInstanceName'))]", 
-                "name": "myEh1" 
-                } 
-            ], 
-            "storageBlobsDirect": [ 
-                { 
-                "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
-                "name": "blobNamedPerf", 
-                "containerName": "PerfBlob" 
-                }, 
-                { 
-                "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
-                "name": "blobNamedLinux", 
-                "containerName": "SyslogBlob" 
-                }, 
-                { 
-                "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
-                "name": "blobNamedTextLogs", 
-                "containerName": "TxtLogBlob" 
-                } 
-            ], 
-            "storageTablesDirect": [ 
-                { 
-                "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
-                "name": "tableNamedPerf", 
-                "tableName": "PerfTable" 
-                }, 
-                { 
-                "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
-                "name": "tableNamedLinux", 
-                "tableName": "LinuxTable" 
-                }, 
-                { 
-                "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
-                "name": "tableUnnamed" 
-                } 
-            ] 
+                "eventHubsDirect": [ 
+                    { 
+                    "eventHubResourceId": "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventHubNamespaceName'), parameters('eventHubInstanceName'))]", 
+                    "name": "myEh1" 
+                    } 
+                ], 
+                "storageBlobsDirect": [ 
+                    { 
+                    "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
+                    "name": "blobNamedPerf", 
+                    "containerName": "PerfBlob" 
+                    }, 
+                    { 
+                    "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
+                    "name": "blobNamedLinux", 
+                    "containerName": "SyslogBlob" 
+                    }, 
+                    { 
+                    "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
+                    "name": "blobNamedTextLogs", 
+                    "containerName": "TxtLogBlob" 
+                    } 
+                ], 
+                "storageTablesDirect": [ 
+                    { 
+                    "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
+                    "name": "tableNamedPerf", 
+                    "tableName": "PerfTable" 
+                    }, 
+                    { 
+                    "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
+                    "name": "tableNamedLinux", 
+                    "tableName": "LinuxTable" 
+                    }, 
+                    { 
+                    "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]", 
+                    "name": "tableUnnamed" 
+                    } 
+                ] 
             }, 
             "dataFlows": [ 
             { 
@@ -498,253 +479,199 @@ Create a data collection rule for collecting events and sending to storage and e
 
     ---
 
-1. Update the following values in the Azure Resource Manager template. See the example Azure Resource Manager template for a sample.
-
-   **Event hub**
+3. Edit the template according to your requirements using details of the DCR sections in the following table. The template uses parameters to accept the names of the storage account and event hub, so you can provide these when you save the template or in a parameter file depending on how you deploy the template. See [Structure of a data collection rule (DCR) in Azure Monitor](../essentials/data-collection-rule-structure.md) for more details on DCR structure.
 
    | Value | Description |
    |:---|:---|
-   | `dataSources` | Define it per your requirements. The supported types for direct upload to Event Hubs for Windows are `performanceCounters` and `windowsEventLogs` and for Linux, they're `performanceCounters` and `syslog`. |
-   | `destinations` | Use `eventHubsDirect` for direct upload to the event hub. |
-   | `eventHubResourceId` | Resource ID of the event hub instance.<br><br>NOTE: It isn't the event hub namespace resource ID. |
-   | `dataFlows` | Under `dataFlows`, include destination name. |
+   | `dataSources` | Entry for each data source collected by the DCR. The sample template includes definitions for logs and performance counters. See [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#collect-vm-client-data) for details on configuring these data sources and on others that you can add to the template. |
+   | `destinations` | Single entry for each destination.<br><br>  **Event Hubs**<br> Use `eventHubsDirect` for direct upload to the event hub. `eventHubResourceId` includes the Resource ID of the event hub instance.<br><br>**Storage blob**<br>Use `storageBlobsDirect` for direct upload to blob storage. `storageAccountResourceId` includes the Resource ID of the storage account. `containerName` includes the name of the container.<br><br>**Storage table**<br>Use `storageTablesDirect` for direct upload to table storage. `storageAccountResourceId` includes the Resource ID of the storage account. `tableName` includes an optional name of the table.  |
+   | `dataFlows` | A `dataflow` to match each incoming stream with at least one destination. The data from that source is sent to each destination in the data flow. |
 
-   **Storage table**
-
-   | Value | Description |
-   |:---|:---|
-   | `dataSources` | Define it per your requirements. The supported types for direct upload to storage Table for Windows are `performanceCounters`, `windowsEventLogs` and for Linux, they're `performanceCounters` and `syslog`. |
-   | `destinations` | Use `storageTablesDirect` for direct upload to table storage. |
-   | `storageAccountResourceId` | Resource ID of the storage account. |
-   | `tableName` | The name of the Table where JSON blob with event data is uploaded to. |
-   | `dataFlows` | Under `dataFlows`, include destination name. |
-
-   **Storage blob**
-
-   | Value | Description |
-   |:---|:---|
-   | `dataSources` | Define it per your requirements. The supported types for direct upload to storage blob for Windows are `performanceCounters`, `windowsEventLogs`, `iisLogs`, `logFiles` and for Linux, they're `performanceCounters`, `syslog` and `logFiles`. |
-   | `destinations` | Use `storageBlobsDirect` for direct upload to blob storage. | 
-   | `storageAccountResourceId` | The resource ID of the storage account. | 
-   | `containerName` | The name of the container where JSON blob with event data is uploaded to.  |
-   | `dataFlows` | Under `dataFlows`, include destination name. |
-
-1. Select **Save**.
+4. Select **Save** and provide values for the required parameters.
 
 ## Create DCR association and deploy Azure Monitor Agent
 
-Use custom template deployment to create the DCR association and AMA deployment.
+To use the DCR, it must have a data collection rule association (DCRA) with one or more virtual machines with the Azure Monitor agent (AMA) installed. See [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md) for different options to install the agent and [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md) for different options to create the DCRA.
 
-1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**.
+The following ARM template can be used to deploy the Azure Monitor Agent create the DCRA for a particular VM. The template uses a user-assigned managed identity (UAI) for authentication. The UAI must be created before you deploy the template. You can also use a system-assigned managed identity, but this is not recommended for production workloads.
 
-    :::image type="content" source="../logs/media/tutorial-workspace-transformations-api/deploy-custom-template.png" lightbox="../logs/media/tutorial-workspace-transformations-api/deploy-custom-template.png" alt-text="Screenshot that shows the Azure portal with template entered in the search box and Deploy a custom template highlighted in the search results.":::
+Use the process above or any other valid method to deploy this template. It includes parameters for required values to identify the VM and DCR, so you don't need to modify the template itself.
 
-1. Select **Build your own template in the editor**.
 
-    :::image type="content" source="../logs/media/tutorial-workspace-transformations-api/build-custom-template.png" lightbox="../logs/media/tutorial-workspace-transformations-api/build-custom-template.png" alt-text="Screenshot that shows portal screen to build template in the editor.":::
+### [Windows](#tab/windows-1)
 
-1. Paste this Azure Resource Manager template into the editor.
-
-    ### [Windows](#tab/windows-1)
-
-    ```json
-    {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "vmName": {
-        "defaultValue": "[concat(resourceGroup().name, 'vm')]",
-        "type": "String"
-        },
-        "location": {
-        "type": "string",
-        "defaultValue": "[resourceGroup().location]",
-        "metadata": {
-            "description": "Location for all resources."
-        }
-        },
-        "dataCollectionRulesName": {
-        "defaultValue": "[concat(resourceGroup().name, 'DCR')]",
-        "type": "String",
-        "metadata": {
-            "description": "Data Collection Rule Name"
-        }
-        },
-        "dcraName": {
-        "type": "string",
-        "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
-        "metadata": {
-            "description": "Name of the association."
-        }
-        },
-        "identityName": {
-        "type": "string",
-        "defaultValue": "[concat(resourceGroup().name, 'UAI')]",
-        "metadata": {
-            "description": "Managed Identity"
-        }
-        }
+```json
+{
+"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+"contentVersion": "1.0.0.0",
+"parameters": {
+    "vmName": {
+    "defaultValue": "[concat(resourceGroup().name, 'vm')]",
+    "type": "String"
     },
-    "resources": [
-        {
-        "type": "Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations",
-        "name": "[concat(parameters('vmName'),'/microsoft.insights/', parameters('dcraName'))]",
-        "apiVersion": "2021-04-01",
-        "properties": {
-            "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
-            "dataCollectionRuleId": "[resourceID('Microsoft.Insights/dataCollectionRules',parameters('dataCollectionRulesName'))]"
-        }
-        },
-        {
-        "type": "Microsoft.Compute/virtualMachines/extensions",
-        "name": "[concat(parameters('vmName'), '/AMAExtension')]",
-        "apiVersion": "2020-06-01",
-        "location": "[parameters('location')]",
-        "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations', parameters('vmName'), 'Microsoft.Insights', parameters('dcraName'))]"
-        ],
-        "properties": {
-            "publisher": "Microsoft.Azure.Monitor",
-            "type": "AzureMonitorWindowsAgent",
-            "typeHandlerVersion": "1.0",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-            "authentication": {
-                "managedIdentity": {
-                "identifier-name": "mi_res_id",
-                "identifier-value": "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',parameters('identityName'))]"
-                }
-            }
-            }
-        }
-        }
-    ]
+    "location": {
+    "type": "string",
+    "defaultValue": "[resourceGroup().location]",
+    "metadata": {
+        "description": "Location for all resources."
     }
-    ```
-
-    ### [Linux](#tab/linux-1)
-
-    ```json
-    {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "vmName": {
-        "defaultValue": "[concat(resourceGroup().name, 'vm')]",
-        "type": "String"
-        },
-        "location": {
-        "type": "string",
-        "defaultValue": "[resourceGroup().location]",
-        "metadata": {
-            "description": "Location for all resources."
-        }
-        },
-        "dataCollectionRulesName": {
-        "defaultValue": "[concat(resourceGroup().name, 'DCR')]",
-        "type": "String",
-        "metadata": {
-            "description": "Data Collection Rule Name"
-        }
-        },
-        "dcraName": {
-        "type": "string",
-        "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
-        "metadata": {
-            "description": "Name of the association."
-        }
-        },
-        "identityName": {
-        "type": "string",
-        "defaultValue": "[concat(resourceGroup().name, 'UAI')]",
-        "metadata": {
-            "description": "Managed Identity"
-        }
-        }
     },
-    "resources": [
-        {
-        "type": "Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations",
-        "name": "[concat(parameters('vmName'),'/microsoft.insights/', parameters('dcraName'))]",
-        "apiVersion": "2021-04-01",
-        "properties": {
-            "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
-            "dataCollectionRuleId": "[resourceID('Microsoft.Insights/dataCollectionRules',parameters('dataCollectionRulesName'))]"
-        }
-        },
-        {
-        "type": "Microsoft.Compute/virtualMachines/extensions",
-        "name": "[concat(parameters('vmName'), '/AMAExtension')]",
-        "apiVersion": "2020-06-01",
-        "location": "[parameters('location')]",
-        "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations', parameters('vmName'), 'Microsoft.Insights', parameters('dcraName'))]"
-        ],
-        "properties": {
-            "publisher": "Microsoft.Azure.Monitor",
-            "type": "AzureMonitorLinuxAgent",
-            "typeHandlerVersion": "1.0",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-            "authentication": {
-                "managedIdentity": {
-                "identifier-name": "mi_res_id",
-                "identifier-value": "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',parameters('identityName'))]"
-                }
-            }
-            }
-        }
-        }
-    ]
+    "dataCollectionRulesName": {
+    "defaultValue": "[concat(resourceGroup().name, 'DCR')]",
+    "type": "String",
+    "metadata": {
+        "description": "Data Collection Rule Name"
     }
-    ```
-    ---
+    },
+    "dcraName": {
+    "type": "string",
+    "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
+    "metadata": {
+        "description": "Name of the association."
+    }
+    },
+    "identityName": {
+    "type": "string",
+    "defaultValue": "[concat(resourceGroup().name, 'UAI')]",
+    "metadata": {
+        "description": "Managed Identity"
+    }
+    }
+},
+"resources": [
+    {
+    "type": "Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations",
+    "name": "[concat(parameters('vmName'),'/microsoft.insights/', parameters('dcraName'))]",
+    "apiVersion": "2021-04-01",
+    "properties": {
+        "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
+        "dataCollectionRuleId": "[resourceID('Microsoft.Insights/dataCollectionRules',parameters('dataCollectionRulesName'))]"
+    }
+    },
+    {
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "name": "[concat(parameters('vmName'), '/AMAExtension')]",
+    "apiVersion": "2020-06-01",
+    "location": "[parameters('location')]",
+    "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations', parameters('vmName'), 'Microsoft.Insights', parameters('dcraName'))]"
+    ],
+    "properties": {
+        "publisher": "Microsoft.Azure.Monitor",
+        "type": "AzureMonitorWindowsAgent",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+        "authentication": {
+            "managedIdentity": {
+            "identifier-name": "mi_res_id",
+            "identifier-value": "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',parameters('identityName'))]"
+            }
+        }
+        }
+    }
+    }
+]
+}
+```
+
+### [Linux](#tab/linux-1)
+
+```json
+{
+"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+"contentVersion": "1.0.0.0",
+"parameters": {
+    "vmName": {
+    "defaultValue": "[concat(resourceGroup().name, 'vm')]",
+    "type": "String"
+    },
+    "location": {
+    "type": "string",
+    "defaultValue": "[resourceGroup().location]",
+    "metadata": {
+        "description": "Location for all resources."
+    }
+    },
+    "dataCollectionRulesName": {
+    "defaultValue": "[concat(resourceGroup().name, 'DCR')]",
+    "type": "String",
+    "metadata": {
+        "description": "Data Collection Rule Name"
+    }
+    },
+    "dcraName": {
+    "type": "string",
+    "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
+    "metadata": {
+        "description": "Name of the association."
+    }
+    },
+    "identityName": {
+    "type": "string",
+    "defaultValue": "[concat(resourceGroup().name, 'UAI')]",
+    "metadata": {
+        "description": "Managed Identity"
+    }
+    }
+},
+"resources": [
+    {
+    "type": "Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations",
+    "name": "[concat(parameters('vmName'),'/microsoft.insights/', parameters('dcraName'))]",
+    "apiVersion": "2021-04-01",
+    "properties": {
+        "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
+        "dataCollectionRuleId": "[resourceID('Microsoft.Insights/dataCollectionRules',parameters('dataCollectionRulesName'))]"
+    }
+    },
+    {
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "name": "[concat(parameters('vmName'), '/AMAExtension')]",
+    "apiVersion": "2020-06-01",
+    "location": "[parameters('location')]",
+    "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations', parameters('vmName'), 'Microsoft.Insights', parameters('dcraName'))]"
+    ],
+    "properties": {
+        "publisher": "Microsoft.Azure.Monitor",
+        "type": "AzureMonitorLinuxAgent",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+        "authentication": {
+            "managedIdentity": {
+            "identifier-name": "mi_res_id",
+            "identifier-value": "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',parameters('identityName'))]"
+            }
+        }
+        }
+    }
+    }
+]
+}
+```
+---
    
-1. Select **Save**.
 
-## Troubleshooting
 
-Use the following section to troubleshoot sending data to Event Hubs and Storage.
+## Migration from Azure Diagnostic Extensions for Linux and Windows (LAD/WAD)
 
-### Data not found in storage account blob storage
+[Azure Diagnostics extension](../agents/diagnostics-extension-overview.md) currently sends data to Event Hubs and storage but will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.  Only security patches are being provided. Azure Monitor Agent (AMA) provides a more efficient and flexible way to collect client data from VMs.
 
-- Check that the built-in role `Storage Blob Data Contributor` is assigned with managed identity on the storage account.
-- Check that the managed identity is assigned to the VM.
-- Check that the AMA settings have managed identity parameter.
+- To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
+- Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
 
-### Data not found in storage account table storage
 
-- Check that the built-in role `Storage Table Data Contributor` is assigned with managed identity on the storage account.
-- Check that the managed identity is assigned to the VM.
-- Check that the AMA settings have managed identity parameter.
+## Troubleshoot
 
-### Data not flowing to event hub
+If data isn't being sent to Event Hubs or storage, check the following:
 
-- Check that the built-in role `Azure Event Hubs Data Sender` is assigned with managed identity on the event hub instance.
-- Check that the managed identity is assigned to the VM.
-- Check that the AMA settings have managed identity parameter.
+- The appropriate built-in role listed in [Permissions](#permissions) is assigned with managed identity on the storage account or event hub.
+- Managed identity is assigned to the VM.
+- AMA settings have managed identity parameter.
 
-## AMA and WAD/LAD Convergence 
 
-### Will the Azure Monitoring Agent support data upload to Application Insights?
-
-No, this support isn't a part of the roadmap. Application Insights are now powered by Log Analytics Workspaces.
-
-### Will the Azure Monitoring Agent support Windows Crash Dumps as a data type to upload?
-
-No, this support isn't a part of the roadmap. The Azure Monitoring Agent is meant for telemetry logs and not large file types.
-
-### Does this mean the Linux (LAD) and Windows (WAD) Diagnostic Extensions are no longer supported/retired?
-
-LAD and WAD will be retired on March 31, 2026. Beyond required security patches and bug/regression fixes there are no enhancements nor feature development planned for WAD/LAD. We highly recommend you move to the Azure Monitor Agent as soon as possible.
-
-### How to configure AMA for event hubs and storage data destinations
-
-Today the configuration experience is by using the DCR API.
-
-### Will you still be actively developing on WAD and LAD?
-
-WAD and LAD will only be getting security/patches going forward. Most engineering funding has gone to the Azure Monitoring Agent. We highly recommend migrating to the Azure Monitoring Agent to benefit from all its awesome capabilities.
 
 ## See also
 

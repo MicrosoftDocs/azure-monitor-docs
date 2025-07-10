@@ -2,8 +2,7 @@
 title: Enable Application Insights Profiler for .NET for Azure Service Fabric applications
 description: Profile live Azure Service Fabric apps with Application Insights.
 ms.topic: how-to
-ms.custom:
-ms.date: 08/16/2024
+ms.date: 03/25/2025
 ---
 
 # Enable the .NET Profiler for Azure Service Fabric applications
@@ -13,7 +12,7 @@ Application Insights Profiler for .NET is included with Azure Diagnostics. You c
 In this guide, you learn how to:
 > [!div class="checklist"]
 > - Add the Application Insights Profiler for .NET property to your ARM template.
-> - Deploy your Service Fabric cluster with the Application Insights Profiler for .NET instrumentation key.
+> - Deploy your Service Fabric cluster with the Application Insights Profiler for .NET connection string.
 > - Enable Application Insights on your Service Fabric application.
 > - Redeploy your Service Fabric cluster to enable the .NET Profiler.
 
@@ -30,7 +29,7 @@ In this guide, you learn how to:
 
 1. Locate the `WadCfg` tags in the [Azure Diagnostics](../agents/diagnostics-extension-overview.md) extension in the deployment template file.
 
-1. Add the following `SinksConfig` section as a child element of `WadCfg`. Replace the `ApplicationInsightsProfiler` property value with your own Application Insights instrumentation key:
+1. Add the following `SinksConfig` section as a child element of `WadCfg`. Replace the `ApplicationInsightsProfiler` property value with your own Application Insights connection string:
     
       ```json
       "settings": {
@@ -51,7 +50,7 @@ In this guide, you learn how to:
 
 ## Deploy your Service Fabric cluster
 
-After you update `WadCfg` with your instrumentation key, deploy your Service Fabric cluster.
+After you update `WadCfg` with your connection string, deploy your Service Fabric cluster.
 
 Application Insights Profiler for .NET is installed and enabled when the Azure Diagnostics extension is installed.
 

@@ -33,7 +33,7 @@ Manage your alert rules in the Azure portal, or using the [Azure Command-Line In
     - Suppression status
 
     > [!NOTE]
-    > If you filter on a `target resource type` scope, the alerts rules list doesn’t include resource health alert rules. To see the resource health alert rules, remove the `Target resource type` filter, or filter the rules based on the `Resource group` or `Subscription`.
+    > If you filter on a `target resource type` scope, the alerts rules list doesn't include resource health alert rules. To see the resource health alert rules, remove the `Target resource type` filter, or filter the rules based on the `Resource group` or `Subscription`.
 
 1. Select an alert rule or use the checkboxes on the left to select multiple alert rules. 
 1. If you select multiple alert rules, you can enable or disable the selected rules. Selecting multiple rules can be useful when you want to perform maintenance on specific alert rule resources. 
@@ -60,7 +60,7 @@ Manage your alert rules in the Azure portal, or using the [Azure Command-Line In
 You can [create a new alert rule](alerts-log.md#create-a-new-log-alert-rule-in-the-azure-portal), or enable recommended out-of-the-box alert rules in the Azure portal.
 
 The system compiles a list of recommended alert rules based on:
-- The resource provider’s knowledge of important signals and thresholds for monitoring the resource.
+- The resource provider's knowledge of important signals and thresholds for monitoring the resource.
 - Data that tells us what customers commonly alert on for this resource.
 
 > [!NOTE]

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 05/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure IoT Hub
@@ -101,5 +101,23 @@ Recommendation ID: e4bda6ac-032c-44e0-9b40-e0522796a6d2
 Subcategory: Scalability
 
 <!--e4bda6ac-032c-44e0-9b40-e0522796a6d2_end-->
+
+<!--63f181a7-95a9-42be-9443-34ea8a5b4d3e_begin-->
+
+#### Upgrade the Azure Device Update for IoT Hub SDK to the latest version  
+  
+When a Device Update for IoT Hub instance uses an outdated version of the SDK, it doesn't get the latest upgrades. Upgrade the Device Update for IoT Hub SDK to the latest version.  
+  
+**Potential benefits**: Ensure business continuity with supported SDK  
+
+**Impact:** Medium
+  
+For more information, see [Introduction to Device Update for Azure IoT Hub](/azure/iot-hub-device-update/understand-device-update)  
+
+ResourceType: microsoft.devices/iothubs  
+Recommendation ID: 63f181a7-95a9-42be-9443-34ea8a5b4d3e  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--63f181a7-95a9-42be-9443-34ea8a5b4d3e_end-->
 
 <!--articleBody-->

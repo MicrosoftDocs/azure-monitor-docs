@@ -1,8 +1,6 @@
 ---
 title: View Application Insights Snapshot Debugger data
 description: View snapshots collected by the Snapshot Debugger in either the Azure portal or Visual Studio 
-ms.author: hannahhunter
-author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to

@@ -1,7 +1,7 @@
 ---
 title: Reduce service costs using Azure Advisor
 description: Use Azure Advisor to optimize the cost of your Azure deployments.
-ms.topic: article
+ms.topic: how-to
 ms.date: 11/08/2023
 
 ---
@@ -116,7 +116,7 @@ To adjust Advisor VM/Virtual Machine Scale Sets right sizing rules, follow these
 
 1. Select the **VM/Virtual Machine Scale Sets right sizing** tab.
 
-1. Select the subscriptions you’d like to set up a filter for average CPU utilization, and then click **Edit**.
+1. Select the subscriptions you'd like to set up a filter for average CPU utilization, and then click **Edit**.
 
 1. Select the desired average CPU utilization value and click **Apply**. It can take up to 24 hours for the new settings to be reflected in recommendations.
 

@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot log alerts in Azure Monitor | Microsoft Docs
 description: Common issues, errors, and resolutions for log alert rules in Azure.
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 02/28/2024
 ms.reviewer: nolavime
 ---
@@ -53,7 +53,7 @@ If your log search alert didn't fire when it should have, check the following it
 
 1. **Does the alert rule use a system-assigned managed identity?** 
 
-    When you create a log alert rule with system-assigned managed identity, the identity is created without any permissions. After you create the rule, you need to assign the appropriate roles to the rule’s identity so that it can access the data you want to query. For example, you might need to give it a Reader role for the relevant Log Analytics workspaces, or a Reader role and a Database Viewer role for the relevant ADX cluster. See [managed identities](/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-the-alert-rule-details) for more information about using managed identities in log alerts.
+    When you create a log alert rule with system-assigned managed identity, the identity is created without any permissions. After you create the rule, you need to assign the appropriate roles to the rule's identity so that it can access the data you want to query. For example, you might need to give it a Reader role for the relevant Log Analytics workspaces, or a Reader role and a Database Viewer role for the relevant ADX cluster. See [managed identities](/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-the-alert-rule-details) for more information about using managed identities in log alerts.
 
 1. **Is the query used in the log search alert rule valid?**
 
@@ -190,7 +190,7 @@ For details about the number of log search alert rules per subscription and maxi
 See [Check the total number of log alert rules in use](alerts-manage-alert-rules.md#check-the-number-of-log-alert-rules-in-use) to see how many metric alert rules are currently in use.
 If you've reached the quota limit, the following steps might help resolve the issue.
 
-1. Delete or disable log search alert rules that aren’t used anymore.
+1. Delete or disable log search alert rules that aren't used anymore.
 1. Use [splitting by dimensions](alerts-types.md#monitor-multiple-instances-of-a-resource-using-dimensions) to reduce the number of rules. When you use splitting by dimensions, one rule can monitor many resources.
 1. If you need the quota limit to be increased, continue to open a support request, and provide the following information:
 
@@ -211,13 +211,13 @@ Identify the Time Range: Determine the specific time range you want to query. Fo
 
 ```json
     // Original query without time filter
-    resources
+    resourcechanges
     | where type == "microsoft.compute/virtualmachines"
 
     // Modified query with time filter
-    resources
+    resourcechanges
     | where type == "microsoft.compute/virtualmachines"
-    | where timestamp >= ago(24h)
+    | where properties.changeAttributes.timestamp > ago(1d)
 ```
 
 3) Test the Query: Run the modified query to ensure it returns the expected results within the specified time range.

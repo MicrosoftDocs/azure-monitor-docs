@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 04/01/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Reservations
@@ -192,24 +192,6 @@ Recommendation ID: a205074f-8049-48b3-903f-556f5e530ae3
 
 <!--a205074f-8049-48b3-903f-556f5e530ae3_end-->
 
-<!--171f87ad-4ead-42fc-8f32-a3b18d451837_begin-->
-
-#### Consider Database for MariaDB reserved instance to save over your pay-as-you-go costs  
-  
-We analyzed you Azure Database for MariaDB usage pattern over selected Term, look-back period, and recommend reserved instance purchase that maximizes your savings. With reserved instance, you can prepurchase MariaDB hourly usage and save over your compute costs. Reserved instance is a billing benefit and is automatically applied to new or existing deployments. Saving estimates are calculated for individual subscriptions and the usage pattern over selected Term, look-back period. Shared scope recommendations are available in reservation purchase experience and can increase savings further.  
-  
-**Potential benefits**: savings  
-
-**Impact:** High
-  
-For more information, see [Azure reservation recommendations - Microsoft Cost Management ](https://aka.ms/rirecommendations)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: 171f87ad-4ead-42fc-8f32-a3b18d451837  
-
-
-<!--171f87ad-4ead-42fc-8f32-a3b18d451837_end-->
-
 <!--a8fd63ce-4600-43eb-af33-a6d5481f5930_begin-->
 
 #### Consider Database for MySQL reserved instance to save over your pay-as-you-go costs  
@@ -282,24 +264,6 @@ Recommendation ID: 06ad499a-0952-48d3-b061-ec81c9cabb8b
 
 <!--06ad499a-0952-48d3-b061-ec81c9cabb8b_end-->
 
-<!--3327646a-c325-417f-a3e3-36ae7119da69_begin-->
-
-#### Consider Red Hat reserved instance to save over your on-demand costs  
-  
-We analyzed your Red Hat usage over selected Term, look-back period, and calculated reserved instance purchase that would maximize your savings. With reserved instance, you can prepurchase hourly usage and save over your current on-demand costs. Reserved instance is a billing benefit and is automatically applied to new or existing deployments. Saving estimates are calculated for individual subscriptions and the usage pattern observed over selected Term, look-back period. Shared scope recommendations are available in reservation purchase experience and can increase savings further.  
-  
-**Potential benefits**: savings  
-
-**Impact:** High
-  
-For more information, see [Azure reservation recommendations - Microsoft Cost Management ](https://aka.ms/rirecommendations)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: 3327646a-c325-417f-a3e3-36ae7119da69  
-
-
-<!--3327646a-c325-417f-a3e3-36ae7119da69_end-->
-
 <!--148cdd60-97e8-426b-a7b9-141b7cb4bc2f_begin-->
 
 #### Consider RedHat Osa reserved instance to save over your on-demand costs  
@@ -354,29 +318,11 @@ Recommendation ID: 84b1a508-fc21-49da-979e-96894f1665df
 
 <!--84b1a508-fc21-49da-979e-96894f1665df_end-->
 
-<!--6dcd6657-7a07-404a-b462-db76946f6a97_begin-->
-
-#### Consider SapHana reserved instance to save over your on-demand costs  
-  
-We analyzed your SapHana usage over selected Term, look-back period, and calculated reserved instance purchase that would maximize your savings. With reserved instance, you can prepurchase hourly usage and save over your current on-demand costs. Reserved instance is a billing benefit and is automatically applied to new or existing deployments. Saving estimates are calculated for individual subscriptions and the usage pattern observed over selected Term, look-back period. Shared scope recommendations are available in reservation purchase experience and can increase savings further.  
-  
-**Potential benefits**: savings  
-
-**Impact:** High
-  
-For more information, see [Azure reservation recommendations - Microsoft Cost Management ](https://aka.ms/rirecommendations)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: 6dcd6657-7a07-404a-b462-db76946f6a97  
-
-
-<!--6dcd6657-7a07-404a-b462-db76946f6a97_end-->
-
 <!--89515250-1243-43d1-b4e7-f9437cedffd8_begin-->
 
 #### Purchasing a savings plan for compute could unlock lower prices  
   
-We analyzed your compute usage over the last 30 days and recommend adding a savings plan to increase your savings. The savings plan unlocks lower prices on select compute services when you commit to spend a fixed hourly amount for 1 or 3 years. As you use select compute services globally, your usage is covered by the plan at reduced prices. During the times when your usage is above your hourly commitment, you’ll simply be billed at your regular pay-as-you-go prices. With savings automatically applying across compute usage globally, you’ll continue saving even as your usage needs change over time. Savings plan are more suited for dynamic workloads while accommodating for planned or unplanned changes while reservations are more suited for stable, predictable workloads with no planned changes. Saving estimates are calculated for individual subscriptions and the usage pattern observed over last 30 days. Shared scope savings plans are available in purchase experience and can further increase savings.  
+We analyzed your compute usage over the last 30 days and recommend adding a savings plan to increase your savings. The savings plan unlocks lower prices on select compute services when you commit to spend a fixed hourly amount for 1 or 3 years. As you use select compute services globally, your usage is covered by the plan at reduced prices. During the times when your usage is above your hourly commitment, you'll simply be billed at your regular pay-as-you-go prices. With savings automatically applying across compute usage globally, you'll continue saving even as your usage needs change over time. Savings plan are more suited for dynamic workloads while accommodating for planned or unplanned changes while reservations are more suited for stable, predictable workloads with no planned changes. Saving estimates are calculated for individual subscriptions and the usage pattern observed over last 30 days. Shared scope savings plans are available in purchase experience and can further increase savings.  
   
 **Potential benefits**: savings  
 
@@ -443,23 +389,5 @@ Recommendation ID: db621e98-4a20-4942-b174-c455dc71dbae
 
 
 <!--db621e98-4a20-4942-b174-c455dc71dbae_end-->
-
-<!--f0382960-6906-4b0d-add3-ed12690bff31_begin-->
-
-#### Consider VMware Cloud Simple reserved instance  
-  
-We analyzed your VMware Cloud Simple usage over selected Term, look-back period, and calculated reserved instance purchase that would maximize your savings. With reserved instance, you can prepurchase hourly usage and save over your current on-demand costs. Reserved instance is a billing benefit and is automatically applied to new or existing deployments. Saving estimates are calculated for individual subscriptions and the usage pattern observed over selected Term, look-back period. Shared scope recommendations are available in reservation purchase experience and can increase savings further.  
-  
-**Potential benefits**: savings  
-
-**Impact:** High
-  
-For more information, see [Azure reservation recommendations - Microsoft Cost Management ](https://aka.ms/rirecommendations)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: f0382960-6906-4b0d-add3-ed12690bff31  
-
-
-<!--f0382960-6906-4b0d-add3-ed12690bff31_end-->
 
 <!--articleBody-->

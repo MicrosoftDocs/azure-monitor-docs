@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 06/24/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Database for MySQL
@@ -36,17 +36,18 @@ Recommendation ID: 2bf9d58d-6ceb-41f2-9f95-94089f3cdbf6
   
 Storage auto-growth prevents a server from running out of storage and becoming read-only.  
   
-**Potential benefits**: Storage auto-growth prevents a server from running out of storage and becoming read-only.  
+**Potential benefits**: Prevent servers from going read-only due to low storage  
 
 **Impact:** High
   
-For more information, see [Service Tiers - Azure Database for MySQL - Flexible Server](/azure/mysql/flexible-server/concepts-service-tiers-storage#storage-auto-grow)  
+For more information, see [Service Tiers - Azure Database for MySQL - Flexible Server](/azure/mysql/flexible-server/concepts-service-tiers-storage#storage-autogrow)  
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: 43b6411e-c197-4e3d-9295-af1b84e552cf  
 
 
 <!--43b6411e-c197-4e3d-9295-af1b84e552cf_end-->
+
 
 <!--6e5238b4-d495-4bde-bc7b-17f5d67f696b_begin-->
 

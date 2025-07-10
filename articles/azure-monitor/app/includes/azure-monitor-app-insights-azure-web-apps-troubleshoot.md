@@ -1,9 +1,6 @@
 ---
 ms.topic: include
 ms.date: 08/04/2023
-ms.author: AaronMaxwell
-author: AaronMaxwell
-ms.subservice: application-insights
 ---
 
 ### What's the difference between standard metrics from Application Insights vs. Azure App Service metrics?

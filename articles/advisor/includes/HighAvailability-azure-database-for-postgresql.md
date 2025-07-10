@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/17/2025
+ms.date: 07/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -40,13 +40,14 @@ Configure GRS to ensure that your database meets its availability and durability
 
 **Impact:** Medium
   
-For more information, see [Backup and restore - Azure Database for PostgreSQL - Flexible Server ](https://aka.ms/PGGeoBackup)  
+For more information, see [Backup and restore - Azure Database for PostgreSQL flexible server](https://aka.ms/PGGeoBackup)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 5295ed8a-f7a1-48d3-b4a9-e5e472cf1685  
 Subcategory: DisasterRecovery
 
 <!--5295ed8a-f7a1-48d3-b4a9-e5e472cf1685_end-->
+
 
 <!--6f33a917-418c-4608-b34f-4ff0e7be8637_begin-->
 
@@ -83,5 +84,41 @@ Recommendation ID: 7d2149f5-94f7-458d-8171-92cf66832cb2
 Subcategory: DisasterRecovery
 
 <!--7d2149f5-94f7-458d-8171-92cf66832cb2_end-->
+
+<!--80b4e93c-4500-4fbd-bd6f-3ec245f72be9_begin-->
+
+#### Enable high availability with zone redundancy  
+  
+Enable high availability with zone redundancy on flexible server instances to deploy a standby replica in a different zone, offering automatic failover capability for improved reliability and disaster recovery.  
+  
+**Potential benefits**: Enhanced uptime and data protection  
+
+**Impact:** High
+  
+For more information, see [Reliability and high availability in PostgreSQL - Flexible Server - Azure Database for PostgreSQL - Flexible Server](https://aka.ms/learnmore_dbforpostgresql_flexibleservers)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 80b4e93c-4500-4fbd-bd6f-3ec245f72be9  
+Subcategory: HighAvailability
+
+<!--80b4e93c-4500-4fbd-bd6f-3ec245f72be9_end-->
+
+<!--d1f667d3-b945-4c67-98e2-84a1df2c30ca_begin-->
+
+#### Turn on backup for PostgreSQL flexible server  
+  
+Backup helps protect data from accidental or malicious deletion. The platform recommends configuring the PostgreSQL flexible server to turn on backup.  
+  
+**Potential benefits**: Protect data from accidental or malicious deletion.  
+
+**Impact:** Medium
+  
+For more information, see [About Azure Database for PostgreSQL Flexible server backup - Azure Backup](/azure/backup/backup-azure-database-postgresql-flex-overview)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: d1f667d3-b945-4c67-98e2-84a1df2c30ca  
+Subcategory: DisasterRecovery
+
+<!--d1f667d3-b945-4c67-98e2-84a1df2c30ca_end-->
 
 <!--articleBody-->

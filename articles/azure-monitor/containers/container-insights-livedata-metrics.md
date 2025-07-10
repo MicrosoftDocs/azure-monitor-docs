@@ -1,7 +1,7 @@
 ---
 title: View metrics in real time with Container insights
 description: This article describes the real-time view of metrics without using kubectl with Container insights.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 05/24/2022
 ms.custom: references_regions
 ms.reviewer: aul
@@ -15,6 +15,7 @@ This article provides a detailed overview and helps you understand how to use th
 
 >[!NOTE]
 >Azure Kubernetes Service (AKS) clusters enabled as [private clusters](https://azure.microsoft.com/updates/aks-private-cluster/) aren't supported with this feature. This feature relies on directly accessing the Kubernetes API through a proxy server from your browser. Enabling networking security to block the Kubernetes API from this proxy will block this traffic.
+>This feature is also not supported with [Managed Prometheus visualizations in Azure Monitor for AKS](container-insights-experience-v2.md)
 
 For help with setting up or troubleshooting the Live Data feature, review the [setup guide](container-insights-livedata-setup.md).
 

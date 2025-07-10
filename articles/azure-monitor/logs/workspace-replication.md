@@ -1,15 +1,15 @@
 ---
-title: Enhance resilience by replicating your Log Analytics workspace across regions (Preview)
+title: Enhance resilience by replicating your Log Analytics workspace across regions
 description: Use the workspace replication feature in Log Analytics to create copies of a workspace in different regions for data resiliency.
 ms.topic: how-to
 ms.reviewer: noakuper
-ms.date: 01/30/2025
+ms.date: 05/22/2025
 ms.custom: references_regions 
 
 # Customer intent: As a Log Analytics workspace administrator, I want to replicate my workspace across regions to protect and continue to access my log data in the event of a regional failure.
 ---
 
-# Enhance resilience by replicating your Log Analytics workspace across regions (Preview)
+# Enhance resilience by replicating your Log Analytics workspace across regions
 
 Replicating your Log Analytics workspace across regions enhances resilience by letting you switch over to the replicated workspace and continue operations if there's a regional failure. This article explains how Log Analytics workspace replication works, how to replicate your workspace, how to switch over and back, and how to decide when to switch between your replicated workspaces.
 
@@ -26,9 +26,12 @@ Your original workspace and region are referred to as the **primary**. The repli
 
 The workspace replication process creates an instance of your workspace in the secondary region. The process creates the secondary workspace with the same configuration as your primary workspace, and Azure Monitor automatically updates the secondary workspace with any future changes you make to your primary workspace configuration. 
 
-The secondary workspace is a "shadow" workspace for resilience purposes only. You can’t see the secondary workspace in the Azure portal, and you can't manage or access it directly.
+The secondary workspace is a "shadow" workspace for resilience purposes only. You can't see the secondary workspace in the Azure portal, and you can't manage or access it directly.
 
-When you enable workspace replication, Azure Monitor sends new logs ingested to your primary workspace to your secondary region also. Logs you ingest to the workspace before you enable workspace replication aren’t copied over. 
+When you enable workspace replication, Azure Monitor sends new logs ingested to your primary workspace to your secondary region also. Logs you ingest to the workspace before you enable workspace replication aren't copied over. 
+
+> [!NOTE]
+> Workspace replication fully replicates all table schemas, but only sends **new** logs ingested since replication was activated. Logs ingested to the workspace before you enable workspace replication aren't copied over.
 
 If an outage affects your primary region, you can switch over and reroute all ingestion and query requests to your secondary region. After Azure mitigates the outage and your primary workspace is healthy again, you can switch back over to your primary region.
 
@@ -41,7 +44,7 @@ When you switch over, the secondary workspace becomes active and your primary be
 
 #### Protection against loss of data in transit during a regional failure
 
-Azure Monitor has several mechanisms to ensure that data in transit isn’t lost when there's a failure in the primary region. 
+Azure Monitor has several mechanisms to ensure that data in transit isn't lost when there's a failure in the primary region. 
 
 Azure Monitor protects data that reaches the primary region's ingestion endpoint when the primary region's pipeline is unavailable to process the data. When the pipeline becomes available, it continues to process data in transit, and Azure Monitor ingests and replicates the data to the secondary region.
 
@@ -51,22 +54,24 @@ If you write your own client to send log data to your Log Analytics workspace, e
 
 ## Deployment considerations
 
-* Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.
+> [!NOTE]
+> Workspace replication currently doesn't support replication of [Auxiliary tables](./create-custom-table-auxiliary.md), and shouldn't be enabled on workspaces that include Auxiliary tables. Auxiliary tables aren't replicated, and therefore aren't protected against data loss in the event of a regional failure and aren't available when you switch over to your secondary workspace.
+
+* Workspace management operations can't be initiated during switchover, including:
+    * Change of workspace retention, pricing tier, daily cap, and so on
+    * Change of network settings
+    * Change of schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
+
+* The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up on DNS updates. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Microsoft Sentinel.
+
+> [!IMPORTANT]
+> [Log search alert rules](../alerts/alerts-types.md#log-alerts) continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. This can happen, for example, if the region in which the alert rules were created is entirely down. Replication of alert rules across regions isn't done automatically as part of workspace replication, but can be done by the user (for example by exporting from the primary region and importing to the secondary).
 
 * The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
 
-* Azure Monitor supports querying of the inactive region. Query-based alerts continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. Replication of alert rules across regions is currently not supported.
-
-* When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
-
-* Workspace management operations can't be initiated during switchover, including:
-    * Change workspace retention, pricing tier, daily cap, and so on
-    * Change network settings
-    * Change schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
+* Microsoft Sentinel refreshes logs in the Watchlist and Threat Intelligence tables every 12 days. So, because only new logs are ingested to the replicated workspace, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary location.
 
 * The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents.
-
-* The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Microsoft Sentinel.
 
 * These features are currently not supported or only partially supported:
 
@@ -85,21 +90,19 @@ Workspace replication is currently supported for workspaces in a limited set of 
 
 These region groups and regions are currently supported:
 
-| Region Group  | Regions              | Notes                                                                          |
-|---------------|----------------------|--------------------------------------------------------------------------------|
-| North America | East US              | East US can't replicate to or from the East US 2 and South Central US regions. |
-|               | East US 2            | East US 2 can't replicate to or from the East US and South Central US regions. |
-|               | West US              |                                                                                |
-|               | West US 2            |                                                                                |
-|               | Central US           |                                                                                |
-|               | South Central US     | South Central US can't replicate to or from the East US and East US 2 regions. |
-|               | Central Canada       |                                                                                |
-| Europe        | West Europe          |                                                                                |
-|               | North Europe         |                                                                                |
-|               | South UK             |                                                                                |
-|               | West UK              |                                                                                |
-|               | Germany West Central |                                                                                |
-|               | France Central       |                                                                                |
+| Region Group | Primary regions | Secondary regions (replication locations) |
+|--------------|-----------------|-------------------------------------------|
+| North America | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3 | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2 |
+| South America | Brazil South <br> Brazil Southeast | Brazil South <br> Brazil Southeast |
+| Europe | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK | France Central <br> North Europe <br> South UK <br> West Europe |
+| Middle East | Qatar Central <br> UAE Central <br> UAE North | Qatar Central <br> UAE Central <br> UAE North |
+| India | Central India <br> South India | Central India <br> South India |
+| Asia Pacific | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | East Asia <br> Japan East <br> Korea Central |
+| Oceania | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast | Australia Central <br> Australia East <br> Australia Southeast |
+| Africa | South Africa North <br> South Africa West | South Africa North <br> South Africa West |
+
+> [!NOTE]
+> Workspaces located in East US, East US 2, and South Central US can only replicate to secondary regions outside that set of three. Please select another secondary location from the North America region group.
 
 ### Data residency requirements
 
@@ -118,7 +121,7 @@ Some Azure Monitor experiences, including Application Insights and VM Insights, 
 When you enable workspace replication, you're charged for the replication of all data you ingest to your workspace. 
 
 > [!IMPORTANT]
-> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.  
+> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.
 
 ## Permissions required
 
@@ -128,19 +131,26 @@ When you enable workspace replication, you're charged for the replication of all
 | Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`, `Microsoft.OperationalInsights/workspaces/failback`, `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailback/action` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
 | Check workspace state | `Microsoft.OperationalInsights/workspaces/read` permissions to the Log Analytics workspace, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
 
-
 ## Enable and disable workspace replication
 
 You enable and disable workspace replication by using a REST command. The command triggers a long running operation, which means that it can take a few minutes for the new settings to apply. After you enable replication, it can take up to one hour for all tables (data types) to begin replicating, and some data types might start replicating before others. Changes you make to table schemas after you enable workspace replication - for example, new custom log tables or custom fields you create, or diagnostic logs set up for new resource types - can take up to one hour to start replicating.
 
-### Enable workspace replication
+### Using a dedicated cluster?
 
-To enable replication on your Log Analytics workspace, use this `PUT` command:
+If your workspace is linked to a dedicated cluster, you must first enable replication on the cluster, and only then on the workspace. This operation creates a second cluster on your secondary region (no extra charge beyond replication charges), in order to allow your workspace to keep using a dedicated cluster even if you fail over. This also means features like cluster managed keys (CMK) continue to work (with the same key) during failover.
+Once cross-region replication is enabled, proceed to enable replication for one or more of the workspaces linked to this cluster.
+
+> [!IMPORTANT]
+> Once cluster replication is enabled, changing the replication destination requires disabling replication and re-enabling it against a different location.
+
+To enable replication on your dedicated cluster, use the following PUT command. This call returns 202. It's a long running operation which might take time to complete, and you can track its exact state as explained in [Check cluster provisioning state](#check-cluster-provisioning-state).
+
+To enable cluster replication, use this `PUT` command: 
 
 ```http
 PUT 
 
-https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2025-02-01
 
 body:
 {
@@ -156,24 +166,77 @@ body:
 
 Where:
 
-* `<subscription_id>`: The subscription ID related to your workspace.
-* `<resourcegroup_name>` : The resource group that contains your Log Analytics workspace resource.
-* `<workspace_name>`: The name of your workspace.
-* `<primary_region>`: The primary region for your Log Analytics workspace.
-* `<secondary_region>`: The region in which Azure Monitor creates the secondary workspace.
+* `<subscription_id>`: The subscription ID related to your cluster
+* `<resourcegroup_name>` : The resource group that contains your Log Analytics cluster resource
+* `<cluster_name>`: The name of your dedicated cluster
+* `<primary_region>`: The primary region for your Log Analytics dedicated cluster
+* `<secondary_region>`: The region in which Azure Monitor creates the secondary dedicated cluster
 
-For the supported `location` values, see [Supported regions](#supported-regions).
+### Check cluster provisioning state
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
-
-### Check request provisioning state
-
-To check the provisioning state of your request, run this `GET` command:
+To check the provisioning state of your cluster, run this `GET` command:
 
 ```http
 GET
 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/clusters/<cluster_name>?api-version=2025-02-01
+```
+
+Where:
+
+* `<subscription_id>`: The subscription ID related to your cluster
+* `<resourcegroup_name>`: The resource group that contains your Log Analytics cluster resource
+* `<cluster_name>`: The name of your Log Analytics cluster
+ 
+Use the `GET` command to verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
+
+> [!NOTE]
+> When you enable cluster replication, a new cluster is being provisioned on the secondary location. This process can take 1-2 hours.
+
+### Enable workspace replication
+
+To enable replication on your Log Analytics workspace, use this `PUT` command:
+
+```http
+PUT 
+
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2025-02-01
+
+body:
+{
+    "properties": {
+        "replication": {
+            "enabled": true,
+            "location": "<secondary_region>"
+        }
+    },
+    "location": "<primary_region>"
+}
+```
+
+Where:
+
+* `<subscription_id>`: The subscription ID related to your workspace
+* `<resourcegroup_name>` : The resource group that contains your Log Analytics workspace resource
+* `<workspace_name>`: The name of your workspace
+* `<primary_region>`: The primary region for your Log Analytics workspace
+* `<secondary_region>`: The region in which Azure Monitor creates the secondary workspace
+
+For the supported `location` values, see [Supported regions](#supported-regions).
+
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+
+> [!IMPORTANT]
+> If your workspace is linked to a dedicated cluster, first enable replication on the cluster. Also note that the secondary location of your workspace must be identical to the secondary location of its dedicated cluster.
+
+### Check workspace provisioning state
+
+To check the provisioning state of your workspace, run this `GET` command:
+
+```http
+GET
+
+https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>?api-version=2025-02-01
 ```
 
 Where:
@@ -187,11 +250,21 @@ Use the `GET` command to verify that the workspace provisioning state changes fr
 > [!NOTE]
 > When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
 
+### Check if replication is enabled on a workspace
+To check if and where workspace replication is enabled, review these settings.
+
+In the Azure portal, select the workspace > **Overview**.
+If replication is enabled, the **Essentials** section displays the **Secondary location**, indicating the region of the replicated workspace.
+    :::image type="content" source="media/workspace-replication/workspace-essentials-with-secondary-location.png" lightbox="media/workspace-replication/workspace-essentials-with-secondary-location.png" alt-text="Screenshot that shows the secondary location property in the Workspace Essentials section in the Azure portal.":::
+
+The same **Essentials** section has a **JSON View** that displays the replication details as a JSON object, which is also available via REST/CLI.
+    :::image type="content" source="media/workspace-replication/workspace-replication-json.png" lightbox="media/workspace-replication/workspace-replication-json.png" alt-text="Screenshot that shows the replication settings in the workspace JSON object.":::
+
 ### Associate data collection rules with the workspace data collection endpoint
 
-Azure Monitor Agent, the Logs Ingestion API, and Azure Event Hubs collect data and send it to the destination you specify based on how you set up your [data collection rules (DCR)](../essentials/data-collection-rule-overview.md).
+Azure Monitor Agent, the Logs Ingestion API, and Azure Event Hubs collect data and send it to the destination you specify based on how you set up your [data collection rules (DCR)](../data-collection/data-collection-rule-overview.md).
 
-If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The name of the workspace data collection endpoint is identical to your workspace ID. Only data collection rules you associate to the workspace data collection endpoint enable replication and switchover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
+If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The name of the workspace data collection endpoint is identical to your workspace ID. Only data collection rules you associate to the workspace data collection endpoint enable replication and switchover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
 
 To replicate data you collect using data collection rules, associate your data collection rules to the workspace data collection endpoint:
 
@@ -199,11 +272,32 @@ To replicate data you collect using data collection rules, associate your data c
 1. From the **Data collection rules** screen, select a data collection rule that sends data to your primary Log Analytics workspace.
 1. On the data collection rule **Overview** page, select **Configure DCE** and select the workspace data collection endpoint from the available list:
 
-    :::image type="content" source="media/workspace-replication/configure-dce.png" alt-text="Screenshot that shows how to configure a data collection endpoint for an existing data collection rule in the Azure portal." lightbox="media/workspace-replication/configure-dce.png":::
+    :::image type="content" source="media/workspace-replication/configure-dce.png" lightbox="media/workspace-replication/configure-dce.png" alt-text="Screenshot that shows how to configure a data collection endpoint for an existing data collection rule in the Azure portal.":::
+
     For details about the System DCE, check the workspace object properties.
 
 > [!IMPORTANT]
 > Data collection rules connected to a workspace data collection endpoint can target only that specific workspace. The data collection rules **must not** target other destinations, such as other workspaces or Azure Storage accounts.
+
+### What to check if workspace replication fails
+
+* Is the workspace linked to a dedicated cluster? 
+    * Replication must be enabled on the cluster before it can be enabled on the workspace. 
+    * Both cluster and workspace replication must be set to the same secondary location. For example, if the cluster is replicated to North Europe, the workspaces linked to it can only be replicated to North Europe too.
+* Did you use the REST API to enable replication?
+    * Verify you used API version 2025-02-01 or later.
+* Is the primary workspace located in East US, East US 2, or South Central US?
+    * East US, East US 2, and South Central US can't replicate to one another.
+* Where is the primary workspace located and where is the secondary? Both locations must be in the same region group. For example, workspaces located in US regions can't have a replication (secondary region) in Europe, and vice versa. For the list of region groups, see [Supported regions](#supported-regions).
+* Do you have the [required permissions](#permissions-required)?
+* Did you allow enough time for replication operation to complete? replication is a long running operation. Monitor the state of the operation as explained in [Check workspace provisioning state](#check-workspace-provisioning-state).
+* Did you try to re-enable replication in order to change the workspace secondary location? To change the location of your secondary workspace, you must first [disable workspace replication](#disable-workspace-replication), allow the operation to complete and only then enable replication to another secondary location.
+
+### What to check if workspace replication is set but logs aren't replicated?
+
+* Replication can take up to an hour to start applying, and some data types might start replicating before others.
+* Logs ingested to the workspace before replication was enabled are **not** copied over to the secondary workspace. Only logs ingested after replication enablement are replicated.
+* If some logs are replicated and others aren't - verify all the data collection rules (DCRs) that stream logs to the workspace are [configured properly](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). To review the DCRs that target the workspace, see the [Log Analytics Workspace Insights](log-analytics-workspace-insights-overview.md) Data Collection tab, in the Azure portal.
 
 ### Disable workspace replication
 
@@ -212,7 +306,7 @@ To disable replication for a workspace, use this `PUT` command:
 ```http
 PUT 
 
-https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2025-02-01
 
 body:
 {
@@ -232,7 +326,46 @@ Where:
 * `<workspace_name>`: The name of your workspace.
 * `<primary_region>`: The primary region for your workspace.
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+
+> [!IMPORTANT]
+> If you're using a dedicated cluster, you should disable cluster replication after disabling replication for each workspace linked to this cluster.
+
+### Disable cluster replication
+
+Disabling cluster replication can be done only after disabling replication for all workspaces linked to this cluster (if previously enabled).
+To disable replication for a workspace, use this `PUT` command:
+
+```http
+PUT 
+
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2025-02-01
+
+body:
+{
+    "properties": {
+        "replication": {
+            "enabled": false
+        }
+    },
+    "location": "<primary_region>"
+}
+```
+
+Where:
+
+* `<subscription_id>`: The subscription ID related to your cluster.
+* `<resourcegroup_name>` : The resource group that contains your cluster resource.
+* `<workspace_name>`: The name of your cluster.
+* `<primary_region>`: The primary region for your cluster.
+
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+
+> [!NOTE]
+> Once replication is disabled and the replicated cluster is purged, the replicated logs are deleted and are unable to access again. Their original copy on your primary location isn't changed in this process.
+
+> [!IMPORTANT]
+> The process of removing cluster replication takes 14 days. If you need this process to complete quicker, create an [Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
 
 ## Monitor workspace and service health
 
@@ -245,6 +378,7 @@ Service Health notifications are useful for service-related issues. To identify 
 * Set your own thresholds for [workspace health metrics](log-analytics-workspace-health.md#view-log-analytics-workspace-health-metrics)
 
 * Create your own monitoring queries to serve as custom health indicators for your workspace, as described in [Monitor workspace performance using queries](#monitor-workspace-performance-using-queries), to:
+
     * Measure ingestion latency per table
     * Identify whether the source of latency is the collection agents or the ingestion pipeline
     * Monitor ingestion volume anomalies per table and resource
@@ -287,13 +421,13 @@ Before you switch regions during switchover, your secondary workspace needs to c
 
 ### Trigger switchover
 
-Before you switch over, [confirm that the workspace replication operation completed successfully](#check-request-provisioning-state). Switchover only succeeds when the secondary workspace is configured correctly. 
+Before you switch over, [confirm that the workspace replication operation completed successfully](#check-workspace-provisioning-state). Switchover only succeeds when the secondary workspace is configured correctly. 
 
 To switch over to your secondary workspace, use this `POST` command:
 
 ```http
 POST 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/locations/<secondary_region>/workspaces/<workspace_name>/failover?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/locations/<secondary_region>/workspaces/<workspace_name>/failover?api-version=2025-02-01
 ```
 
 Where:
@@ -303,7 +437,14 @@ Where:
 * `<secondary_region>`: The region to switch to during switchover.
 * `<workspace_name>`: The name of the workspace to switch to during switchover.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+
+### What to check if switchover (failover) fails
+
+* Did you use the REST API to trigger switchover (failover)?
+    * Verify you used API version 2025-02-01 or later.
+    * Verify the secondary location provided in the failover command is the secondary location set for this workspace. This information is available in the Azure portal view of the workspace, and over API.
+* Switching regions requires a Log Analytics Contributor role **on the resource group of the workspace**, and not just on the workspace itself.
 
 ## Switch back to your primary workspace
 
@@ -341,7 +482,7 @@ To switch back to your primary workspace, use this `POST` command:
 ```http
 POST
 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>/failback?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>/failback?api-version=2025-02-01
 ```
 
 Where:
@@ -350,13 +491,13 @@ Where:
 * `<resourcegroup_name>` : The resource group that contains your workspace resource.
 * `<workspace_name>`: The name of the workspace to switch to during switchback.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 ## Audit the inactive workspace
 
-By default, your workspace’s active region is the region where you create the workspace, and the inactive region is the secondary region, where Azure Monitor creates the replicated workspace.
+By default, your workspace's active region is the region where you create the workspace, and the inactive region is the secondary region, where Azure Monitor creates the replicated workspace.
 
-When you trigger failover, this switches – the secondary region is activated, and primary region becomes inactive. We say it's inactive because it’s not the direct target of log ingestion and query requests.
+When you trigger failover, this switches – the secondary region is activated, and primary region becomes inactive. We say it's inactive because it's not the direct target of log ingestion and query requests.
 
 It's useful to query the inactive region before you switch between regions to verify that the workspace in the inactive region has the logs you expect to see there.
 
@@ -370,7 +511,7 @@ GET
 api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=<query>&timespan=<timespan-in-ISO8601-format>&overrideWorkspaceRegion=<primary|secondary>
 ```
 
-For example, to run a simple query like `Perf | count` for the past day in your secondary region, use:
+For example, to run a short query like `Perf | count` for the past day in your secondary region, use:
 
 ```http
 GET
@@ -440,14 +581,14 @@ Because you can expect some fluctuations, create an alert rule condition to chec
 
 When you notice your total ingestion latency is going up, you can use queries to determine whether the source of the latency is the agents or the ingestion pipeline.
 
-This query charts the 90th percentile latency of the agents and of the pipeline, separately:  
+This query charts the 90th percentile latency of the agents and of the pipeline, separately:
 
 ```kusto
 // Assess agent and pipeline (backend) latency
 Perf
 | where TimeGenerated > ago(1h) 
 | extend AgentLatencySeconds = (_TimeReceived-TimeGenerated)/1s,
-	  PipelineLatencySeconds=(ingestion_time()-_TimeReceived)/1s
+    PipelineLatencySeconds=(ingestion_time()-_TimeReceived)/1s
 | summarize percentile(AgentLatencySeconds,90), percentile(PipelineLatencySeconds,90) by bin(TimeGenerated,5m)
 | render columnchart
 ```

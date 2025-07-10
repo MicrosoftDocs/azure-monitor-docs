@@ -1,7 +1,7 @@
 ---
 title: Understand autoscale settings in Azure Monitor
 description: This article explains autoscale settings, how they work, and how they apply to Azure Virtual Machines, Azure Cloud Services, and the Web Apps feature of Azure App Service.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/13/2025
 ms.reviewer: akkumari
 ---

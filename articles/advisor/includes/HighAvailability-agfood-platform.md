@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 05/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability AgFood Platform
@@ -12,24 +12,6 @@ ms.custom: HighAvailability AgFood Platform
   
 ## AgFood Platform  
   
-<!--77f976ab-59e3-474d-ba04-32a7d41c9cb1_begin-->
-
-#### Upgrade to the latest ADMA DotNet SDK version  
-  
-We identified calls to an ADMA DotNet SDK version that is scheduled for deprecation. To ensure uninterrupted access to ADMA, latest features, and performance improvements, switch to the latest SDK version.  
-  
-**Potential benefits**: Ensure uninterrupted access to ADMA  
-
-**Impact:** Medium
-  
-For more information, see [Azure Data Manager for Agriculture REST APIs Reference ](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
-
-ResourceType: microsoft.agfoodplatform/farmbeats  
-Recommendation ID: 77f976ab-59e3-474d-ba04-32a7d41c9cb1  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--77f976ab-59e3-474d-ba04-32a7d41c9cb1_end-->
-
 <!--1233e513-ac1c-402d-be94-7133dc37cac6_begin-->
 
 #### Upgrade to the latest FarmBeats API version  

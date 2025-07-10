@@ -1,8 +1,8 @@
 ---
 title: Configuring OpenTelemetry in Application Insights
 description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
-ms.topic: conceptual
-ms.date: 03/23/2025
+ms.topic: how-to
+ms.date: 06/30/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -15,6 +15,9 @@ ms.reviewer: mmcc
 # Configure Azure Monitor OpenTelemetry
 
 This guide explains how to configure OpenTelemetry (OTel) in [Azure Monitor Application Insights](app-insights-overview.md) using the Azure Monitor OpenTelemetry distro. Proper configuration ensures consistent telemetry data collection across .NET, Java, Node.js, and Python applications, allowing for more reliable monitoring and diagnostics.
+
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
 
 ## Connection string
 
@@ -183,7 +186,7 @@ configure_azure_monitor(
 
 ## Set the Cloud Role Name and the Cloud Role Instance
 
-For [supported languages](opentelemetry-help-support-feedback.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro), the Azure Monitor OpenTelemetry Distro automatically detects the resource context and provides default values for the [Cloud Role Name](app-map.md#understand-the-cloud-role-name-within-the-context-of-an-application-map) and the Cloud Role Instance properties of your component. However, you might want to override the default values to something that makes sense to your team. The cloud role name value appears on the Application Map as the name underneath a node.
+For [supported languages](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro), the Azure Monitor OpenTelemetry Distro automatically detects the resource context and provides default values for the [Cloud Role Name](app-map.md#understand-the-cloud-role-name-within-the-context-of-an-application-map) and the Cloud Role Instance properties of your component. However, you might want to override the default values to something that makes sense to your team. The cloud role name value appears on the Application Map as the name underneath a node.
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
@@ -207,7 +210,7 @@ builder.Services.AddOpenTelemetry()
     .UseAzureMonitor()
     // Configure the ResourceBuilder to add the custom resource attributes to all signals.
     // Custom resource attributes should be added AFTER AzureMonitor to override the default ResourceDetectors.
-    .ConfigureResource(resourceBuilder => resourceBuilder.AddAttributes(_testResourceAttributes));
+    .ConfigureResource(resourceBuilder => resourceBuilder.AddAttributes(resourceAttributes));
 
 // Build the ASP.NET Core web application.
 var app = builder.Build();
@@ -329,6 +332,7 @@ You might want to enable sampling to reduce your data ingestion volume, which re
 
 > [!NOTE]
 > Metrics and Logs are unaffected by sampling.
+> If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
@@ -536,7 +540,7 @@ For information on configuring Entra ID authentication, see [Microsoft Entra aut
 
 ## Offline Storage and Automatic Retries
 
-Azure Monitor OpenTelemetry-based offerings cache telemetry when an application disconnects from Application Insights and retries sending for up to 48 hours. For data handling recommendations, see [Export and delete private data](../logs/personal-data-mgmt.md#exporting-and-deleting-personal-data). High-load applications occasionally drop telemetry for two reasons: exceeding the allowable time or exceeding the maximum file size. When necessary, the product prioritizes recent events over old ones.
+Azure Monitor OpenTelemetry-based offerings cache telemetry when an application disconnects from Application Insights and retries sending for up to 48 hours. For data handling recommendations, see [Export and delete private data](../logs/personal-data-mgmt.md#export-delete-or-purge-personal-data). High-load applications occasionally drop telemetry for two reasons: exceeding the allowable time or exceeding the maximum file size. When necessary, the product prioritizes recent events over old ones.
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
@@ -631,13 +635,17 @@ To disable this feature, you should set `AzureMonitorExporterOptions.DisableOffl
 
 ### [Java](#tab/java)
 
-Configuring Offline Storage and Automatic Retries isn't available in Java.
+When the agent can't send telemetry to Azure Monitor, it stores telemetry files on disk. The files are saved in a `telemetry` folder under the directory specified by the `java.io.tmpdir` system property. Each file name starts with a timestamp and ends with the `.trn` extension. This offline storage mechanism helps ensure telemetry is retained during temporary network outages or ingestion failures.
+
+The agent stores up to 50 MB of telemetry data by default and allows [configuration of the storage limit](./java-standalone-config.md#recovery-from-ingestion-failures). Attempts to send stored telemetry are made periodically. Telemetry files older than 48 hours are deleted and the oldest events are discarded when the storage limit is reached.
 
 For a full list of available configurations, see [Configuration options](./java-standalone-config.md).
 
 ### [Java native](#tab/java-native)
 
-Configuring Offline Storage and Automatic Retries isn't available in Java native image applications.
+When the agent can't send telemetry to Azure Monitor, it stores telemetry files on disk. The files are saved in a `telemetry` folder under the directory specified by the `java.io.tmpdir` system property. Each file name starts with a timestamp and ends with the `.trn` extension. This offline storage mechanism helps ensure telemetry is retained during temporary network outages or ingestion failures.
+
+The agent stores up to 50 MB of telemetry data by default. Attempts to send stored telemetry are made periodically. Telemetry files older than 48 hours are deleted and the oldest events are discarded when the storage limit is reached.
 
 ### [Node.js](#tab/nodejs)
 
@@ -781,7 +789,8 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
 
 ### [Java](#tab/java)
 
-For more information about Java, see the [Java supplemental documentation](java-standalone-config.md).
+The Application Insights Java Agent doesn't support OTLP.
+For more information about supported configurations, see the [Java supplemental documentation](java-standalone-config.md).
 
 ### [Java native](#tab/java-native)
 
@@ -1018,3 +1027,22 @@ useAzureMonitor(options);
 ### [Python](#tab/python)
 
 We're actively working in the OpenTelemetry community to support redaction.
+
+---
+
+## Metric export interval
+
+You can configure the metric export interval using the `OTEL_METRIC_EXPORT_INTERVAL` environment variable.
+
+```shell
+OTEL_METRIC_EXPORT_INTERVAL=60000
+```
+
+The default value is `60000` milliseconds (60 seconds). This setting controls how often the OpenTelemetry SDK exports metrics.
+
+[!INCLUDE [application-insights-metrics-interval](includes/application-insights-metrics-interval.md)]
+
+For reference, see the following OpenTelemetry specifications:
+
+- [Environment variable definitions](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#periodic-exporting-metricreader)
+- [Periodic exporting metric reader](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#periodic-exporting-metricreader)

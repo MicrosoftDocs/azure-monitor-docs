@@ -1,7 +1,7 @@
 ---
 title: Application Insights API for custom events and metrics | Microsoft Docs
 description: Insert a few lines of code in your device or desktop app, webpage, or service to track usage and diagnose issues.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/21/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, vb
@@ -60,7 +60,7 @@ If you don't have a reference on Application Insights SDK yet:
 
 Get an instance of `TelemetryClient` (except in JavaScript in webpages):
 
-For [ASP.NET Core](asp-net-core.md) apps and [Non-HTTP/Worker for .NET/.NET Core](worker-service.md#how-can-i-track-telemetry-thats-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
+For [ASP.NET Core](asp-net-core.md) apps and [Non-HTTP/Worker for .NET/.NET Core](application-insights-faq.yml#how-can-i-track-telemetry-that-s-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
 
 If you use Azure Functions v2+ or Azure WebJobs v3+, see [Monitor Azure Functions](/azure/azure-functions/functions-monitoring).
 
@@ -681,11 +681,11 @@ The function is asynchronous for the [server telemetry channel](https://www.nuge
 
 > [!NOTE]
 > * The Java and JavaScript SDKs automatically flush on application shutdown.
-> * **Review Autoflush configuration**: [Enabling autoflush](/dotnet/api/system.diagnostics.trace.autoflush) in your `web.config` file can lead to performance degradation in .NET applications instrumented with Application Insights. With autoflush enabled, every invocation of `System.Diagnostics.Trace.Trace*` methods results in individual telemetry items being sent as separate distinct web requests to the ingestion service. This can potentially cause network and storage exhaustion on your web servers. For enhanced performance, it’s recommended to disable autoflush and also, utilize the [ServerTelemetryChannel](/azure/azure-monitor/app/telemetry-channels#built-in-telemetry-channels), designed for a more effective telemetry data transmission.
+> * **Review Autoflush configuration**: [Enabling autoflush](/dotnet/api/system.diagnostics.trace.autoflush) in your `web.config` file can lead to performance degradation in .NET applications instrumented with Application Insights. With autoflush enabled, every invocation of `System.Diagnostics.Trace.Trace*` methods results in individual telemetry items being sent as separate distinct web requests to the ingestion service. This can potentially cause network and storage exhaustion on your web servers. For enhanced performance, it's recommended to disable autoflush and also, utilize the [ServerTelemetryChannel](/azure/azure-monitor/app/telemetry-channels#built-in-telemetry-channels), designed for a more effective telemetry data transmission.
 
 ## Authenticated users
 
-In a web app, users are [identified by cookies](./usage.md#users-sessions-and-events---analyze-telemetry-from-three-perspectives) by default. A user might be counted more than once if they access your app from a different machine or browser, or if they delete cookies.
+In a web app, users are [identified by cookies](usage.md#users-sessions-and-events) by default. A user might be counted more than once if they access your app from a different machine or browser, or if they delete cookies.
 
 If users sign in to your app, you can get a more accurate count by setting the authenticated user ID in the browser code:
 
@@ -1135,46 +1135,9 @@ To determine how long data is kept, see [Data retention and privacy](/previous-v
 * [Node.js SDK](https://github.com/Microsoft/ApplicationInsights-Node.js)
 * [JavaScript SDK](https://github.com/Microsoft/ApplicationInsights-JS)
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Why am I missing telemetry data?
-
-Both [TelemetryChannels](telemetry-channels.md#what-are-telemetry-channels) will lose buffered telemetry if it isn't flushed before an application shuts down.
-
-To avoid data loss, flush the TelemetryClient when an application is shutting down.
-
-For more information, see [Flushing data](#flushing-data).
-
-### What exceptions might `Track_()` calls throw?
-
-None. You don't need to wrap them in try-catch clauses. If the SDK encounters problems, it will log messages in the debug console output and, if the messages get through, in Diagnostic Search.
-
-### Is there a REST API to get data from the portal?
-
-Yes, the [data access API](/rest/api/application-insights/). Other ways to extract data include [Power BI](..\logs\log-powerbi.md) on [workspace-based resource](create-workspace-resource.md).
-
-### Why are my calls to custom events and metrics APIs ignored?
-
-The Application Insights SDK isn't compatible with autoinstrumentation. If autoinstrumentation is enabled, calls to <code class="notranslate">Track()</code> and other custom events and metrics APIs will be ignored.
-
-Turn off autoinstrumentation in the Azure portal on the Application Insights tab of the App Service page or set <code class="notranslate">ApplicationInsightsAgent_EXTENSION_VERSION</code> to <code class="notranslate">disabled</code>.
-
-### Why are the counts in Search and Metrics charts unequal?
-
-[Sampling](./sampling.md) reduces the number of telemetry items (like requests and custom events) that are sent from your app to the portal. In Search, you see the number of items received. In metric charts that display a count of events, you see the number of original events that occurred.
-          
-Each item that's transmitted carries an `itemCount` property that shows how many original events that item represents. To observe sampling in operation, you can run this query in Log Analytics:
-          
-```
-    requests | summarize original_events = sum(itemCount), transmitted_events = count()
-```
-
-### How can I set an alert on an event?
-
-Azure alerts are only on metrics. Create a custom metric that crosses a value threshold whenever your event occurs. Then set an alert on the metric. You get a notification whenever the metric crosses the threshold in either direction. You won't get a notification until the first crossing, no matter whether the initial value is high or low. There's always a latency of a few minutes.
-
 ## <a name="next"></a>Next steps
 
+* To review frequently asked questions (FAQ), see [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Search events and logs](./transaction-search-and-diagnostics.md?tabs=transaction-search)
+

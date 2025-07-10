@@ -1,9 +1,6 @@
 ---
-author: guywild
-ms.author: guywild
-ms.service: log-analytics
 ms.topic: include
-ms.date: 06/22/2022
+ms.date: 05/21/2025
 ---
 
 > [!IMPORTANT]

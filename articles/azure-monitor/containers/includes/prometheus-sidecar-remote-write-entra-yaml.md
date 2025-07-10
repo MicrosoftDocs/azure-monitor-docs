@@ -1,9 +1,6 @@
 ---
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.topic: include
-ms.date: 11/12/2023
+ms.date: 05/21/2025
 ---
 
 ```yaml

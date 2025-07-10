@@ -1,8 +1,8 @@
 ---
-title: Log search alerts from Container insights | Microsoft Docs
+title: Log search alerts from Container insights
 description: This article describes how to create custom log search alerts for memory and CPU utilization from Container insights.
-ms.topic: conceptual
-ms.date: 2/28/2024
+ms.topic: how-to
+ms.date: 04/23/2025
 ms.reviewer: viviandiec
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: Upgrading from 2.x - Azure Monitor Application Insights Java
 description: Upgrading from Azure Monitor Application Insights Java 2.x
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/28/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java

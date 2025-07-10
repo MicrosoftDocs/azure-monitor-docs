@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/27/2025
+ms.date: 07/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -251,9 +251,16 @@ Private Endpoint not in a succeeded state potentially influences application ava
   
 **Potential benefits**: Resume private connectivity and availability of application  
 
+**Impact:** Medium
+  
 For more information, see [Troubleshoot Azure Private Link Service connectivity problems](https://aka.ms/pe-troubleshooting)  
 
+ResourceType: microsoft.network/privateendpoints  
+Recommendation ID: 5db013ba-e657-4b80-93f7-8c5b5f9e780a  
+Subcategory: BusinessContinuity
+
 <!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_end-->
+
 
 
 
@@ -373,7 +380,7 @@ Subcategory: HighAvailability
 
 #### Enable Active-Active gateways for redundancy  
   
-In active-active configuration, both instances of the VPN gateway establish site-to-site (S2S) VPN tunnels to your on-premise VPN device. When a planned maintenance or unplanned event happens to one gateway instance, traffic is automatically switched over to the other active IPsec tunnel.  
+In active-active configuration, both instances of the VPN gateway establish site-to-site (S2S) VPN tunnels to your on-premises VPN device. When a planned maintenance or unplanned event happens to one gateway instance, traffic is automatically switched over to the other active IPsec tunnel.  
   
 **Potential benefits**: Ensure business continuity through connection resilience  
 
@@ -391,19 +398,20 @@ Subcategory: BusinessContinuity
 
 #### Implement Site Resiliency for ExpressRoute  
   
-To ensure maximum resiliency, Microsoft recommends that you connect to two ExpressRoute circuits in two peering locations. The goal of Maximum Resiliency is to enhance availability and ensure the highest level of resilience for critical workloads.  
+To ensure maximum resiliency, the platform recommends connecting to two ExpressRoute circuits in two peering locations. The goal of maximum resiliency is to enhance availability and ensure the highest level of resilience for critical workloads.  
   
-**Potential benefits**: Maximum Resiliency in ExpressRoute is designed to ensure there isn’t a single point of failure within the Microsoft network path. This is achieved by offering dual (2) circuits across two different locations for site diversity in ExpressRoute. The goal of Maximum Resiliency is to enhance availability and ensure the highest level of resilience for critical workloads.  
+**Potential benefits**: Improve ExpressRoute uptime with Site Resilient Connectivity  
 
 **Impact:** High
   
-For more information, see [Design and architect Azure ExpressRoute for resiliency ](https://aka.ms/ersiteresiliency)  
+For more information, see [Design and architect Azure ExpressRoute for resiliency](https://aka.ms/ersiteresiliency)  
 
 ResourceType: microsoft.network/virtualnetworkgateways  
 Recommendation ID: 8d61a7d4-5405-4f43-81e3-8c6239b844a6  
-Subcategory: null
+Subcategory: HighAvailability
 
 <!--8d61a7d4-5405-4f43-81e3-8c6239b844a6_end-->
+
 
 <!--c9af1ef6-55bc-48af-bfe4-2c80490159f8_begin-->
 
@@ -459,5 +467,113 @@ Subcategory: Scalability
 
 <!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_end-->
 
+
+<!--1afa00b3-bb4c-496d-99e5-b7bda59a057c_begin-->
+
+#### Configure and deploy VPN gateway and related resources to use availability zones  
+  
+Deploying zone-redundant virtual network gateways across availability zones ensures zone-resiliency, improving access to mission-critical, scalable services on Azure.  
+  
+**Potential benefits**: Improved availability and reliability  
+
+**Impact:** High
+  
+For more information, see [About zone-redundant virtual network gateway in Azure availability zones - Azure VPN Gateway](/azure/vpn-gateway/about-zone-redundant-vnet-gateways?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: 1afa00b3-bb4c-496d-99e5-b7bda59a057c  
+Subcategory: HighAvailability
+
+<!--1afa00b3-bb4c-496d-99e5-b7bda59a057c_end-->
+
+<!--e82f5b61-b0f8-48e7-8e18-5aa1f57bff81_begin-->
+
+#### Deploy Azure Firewall across multiple availability zones  
+  
+Azure Firewall SLAs vary by deployment type such as single or multiple availability zones to improve reliability and performance.  
+  
+**Potential benefits**: Enhanced SLA and reliability  
+
+**Impact:** High
+  
+For more information, see [Deploy Azure Firewall with Availability Zones using PowerShell](https://aka.ms/learnmore_firewalls)  
+
+ResourceType: microsoft.network/azurefirewalls  
+Recommendation ID: e82f5b61-b0f8-48e7-8e18-5aa1f57bff81  
+Subcategory: HighAvailability
+
+<!--e82f5b61-b0f8-48e7-8e18-5aa1f57bff81_end-->
+
+<!--796b9be0-487d-4daa-8771-f08e4d7c9c0c_begin-->
+
+#### Configure and deploy load balancers and related resources to use availability zones  
+  
+Standard Load Balancers and related resources configured to use availability zones offer resilience to zone faults. Assigning a zone-redundant frontend IP to a Standard Load Balancer ensures continuous traffic distribution even if one availability zone fails.  
+  
+**Potential benefits**: Improved availability and reliability  
+
+**Impact:** High
+  
+For more information, see [Reliability in Azure Load Balancer](https://aka.ms/learnmore_loadbalancers)  
+
+ResourceType: microsoft.network/loadbalancers  
+Recommendation ID: 796b9be0-487d-4daa-8771-f08e4d7c9c0c  
+Subcategory: HighAvailability
+
+<!--796b9be0-487d-4daa-8771-f08e4d7c9c0c_end-->
+
+<!--5b132ebc-bd86-46fc-b2ee-95bc3e2d3017_begin-->
+
+#### Ensure backend pools contain at least two instances  
+  
+Deploying Azure Load Balancer backend pools with at least two instances prevents a single point of failure. Pairing with Virtual Machine Scale Sets can provide additional scalability.  
+  
+**Potential benefits**: Enhanced reliability and scalability  
+
+**Impact:** High
+  
+For more information, see [Resiliency checklist for services - Azure Architecture Center](/azure/architecture/checklist/resiliency-per-service#azure-load-balancer)  
+
+ResourceType: microsoft.network/loadbalancers  
+Recommendation ID: 5b132ebc-bd86-46fc-b2ee-95bc3e2d3017  
+Subcategory: HighAvailability
+
+<!--5b132ebc-bd86-46fc-b2ee-95bc3e2d3017_end-->
+
+<!--bc45d55d-3902-4505-8e34-ef8777bc6177_begin-->
+
+#### Configure and deploy public IP addresses and related resources to use availability zones.  
+  
+Standard Public IP addresses and related resources configured to use availability zones offer resilience to zone faults.  Zone-aligned resources, or resources all in the same zone, offer  isolation protection from faults in other zones.  
+  
+**Potential benefits**: Improved uptime and application availability.  
+
+**Impact:** High
+  
+For more information, see [Public IP addresses in Azure - Azure Virtual Network](https://aka.ms/learnmore_network_publicip)  
+
+ResourceType: microsoft.network/publicipaddresses  
+Recommendation ID: bc45d55d-3902-4505-8e34-ef8777bc6177  
+Subcategory: HighAvailability
+
+<!--bc45d55d-3902-4505-8e34-ef8777bc6177_end-->
+
+<!--b4af9e04-3570-41f1-b4cf-b7af07224799_begin-->
+
+#### Configure a maintenance configuration  
+  
+Configure a maintenance configuration to avoid upgrades during important service hours.  
+  
+**Potential benefits**: Improve reliability during important service hours.  
+
+**Impact:** Low
+  
+For more information, see [Configure customer-controlled maintenance for your virtual network gateway - ExpressRoute](/azure/expressroute/customer-controlled-gateway-maintenance)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: b4af9e04-3570-41f1-b4cf-b7af07224799  
+Subcategory: BusinessContinuity
+
+<!--b4af9e04-3570-41f1-b4cf-b7af07224799_end-->
 
 <!--articleBody-->

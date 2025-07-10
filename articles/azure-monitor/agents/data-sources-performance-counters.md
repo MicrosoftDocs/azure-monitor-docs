@@ -1,7 +1,7 @@
 ---
 title: Collect Windows and Linux performance data sources with the Log Analytics agent in Azure Monitor
 description: Learn how to configure collection of performance counters for Windows and Linux agents, how they're stored in the workspace, and how to analyze them.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 11/14/2024
 ---

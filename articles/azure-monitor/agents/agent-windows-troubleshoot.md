@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot issues with the Log Analytics agent for Windows
 description: Describe the symptoms, causes, and resolution for the most common issues with the Log Analytics agent for Windows in Azure Monitor.
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.custom: devx-track-azurecli
 ms.date: 11/14/2024
 ms.reviewer: JeffWo
@@ -144,7 +144,7 @@ As part of an ongoing security effort across various Azure services, Azure Log A
 
 *Solution products*
 
-You may have received the breaking change notification even if you have not personally installed the Microsoft Monitoring Agent. That is because various Azure products leverage the Microsoft Monitoring Agent. If you’re using one of these products, you may be affected as they leverage the Windows Log Analytics Agent. For those products with links below there may be specific instructions that will require you to upgrade to the latest agent.
+You may have received the breaking change notification even if you have not personally installed the Microsoft Monitoring Agent. That is because various Azure products leverage the Microsoft Monitoring Agent. If you're using one of these products, you may be affected as they leverage the Windows Log Analytics Agent. For those products with links below there may be specific instructions that will require you to upgrade to the latest agent.
 
 -	VM Insights
 -	[System Center Operations Manager (SCOM)](/system-center/scom/deploy-upgrade-agents)

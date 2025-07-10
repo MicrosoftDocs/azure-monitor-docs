@@ -1,14 +1,14 @@
 ---
 title: Default Prometheus metrics configuration in Azure Monitor
 description: This article lists the default targets, dashboards, and recording rules for Prometheus metrics in Azure Monitor.
-ms.topic: conceptual
-ms.date: 05/15/2024
+ms.topic: article
+ms.date: 03/10/2025
 ms.reviewer: aul
 ---
 
 # Default Prometheus metrics configuration in Azure Monitor
 
-This article lists the default targets, dashboards, and recording rules when you [configure Prometheus metrics to be scraped from an Azure Kubernetes Service (AKS) cluster](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) for any AKS cluster.
+This article lists the default targets, dashboards, and recording rules when you [configure Prometheus metrics to be scraped](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes.
 
 ## Minimal ingestion profile
 `Minimal ingestion profile` is a setting that helps reduce ingestion volume of metrics, as only metrics used by default dashboards, default recording rules & default alerts are collected. For addon based collection, `Minimal ingestion profile` setting is enabled by default. You can modify collection to enable collecting more metrics, as specified below.
@@ -65,7 +65,6 @@ The following metrics are collected by default from each default target. All oth
    - `container_memory_swap`
    - `container_cpu_cfs_throttled_periods_total`
    - `container_cpu_cfs_periods_total`
-   - `container_memory_usage_bytes`
    - `kubernetes_build_info"`
 
    **kubelet (job=kubelet)**<br>

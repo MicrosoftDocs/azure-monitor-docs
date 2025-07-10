@@ -1,7 +1,7 @@
 ---
 title: Migrating Azure Monitor Application Insights Python from OpenCensus to OpenTelemetry
 description: This article provides guidance on how to migrate from the Azure Monitor Application Insights Python SDK and OpenCensus exporter to OpenTelemetry.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: python
 ms.custom: devx-track-python
@@ -11,7 +11,8 @@ ms.reviewer: mmcc
 # Migrating from OpenCensus Python SDK and Azure Monitor OpenCensus exporter for Python to Azure Monitor OpenTelemetry Python Distro
 
 > [!NOTE]
-> [OpenCensus Python SDK is deprecated](https://opentelemetry.io/blog/2023/sunsetting-opencensus/), but Microsoft supports it until retirement on September 30, 2024. We now recommend the [OpenTelemetry-based Python offering](./opentelemetry-enable.md?tabs=python) and provide [migration guidance](./opentelemetry-python-opencensus-migrate.md?tabs=aspnetcore).
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+> [OpenCensus Python SDK is retired](https://opentelemetry.io/blog/2023/sunsetting-opencensus/).
 
 Follow these steps to migrate Python applications to the [Azure Monitor](../overview.md) [Application Insights](./app-insights-overview.md) [OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python).
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 05/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Key Vault
@@ -32,11 +32,11 @@ Recommendation ID: 47e36ece-24bb-4d3e-8172-af28c9df172d
 
 <!--9017e82f-b7ac-4a06-8b9b-5858cb3d5113_begin-->
 
-#### Update Key Vault SDK Version  
+#### Upgrade the Azure Key Vault SDK to the latest version  
   
-New Key Vault Client Libraries are split to keys, secrets, and certificates SDKs, which are integrated with recommended Azure Identity library to provide seamless authentication to Key Vault across all languages and environments. It also contains several performance fixes to issues reported by customers and proactively identified through our QA process. **DISMISS**: If Key Vault is integrated with Azure Storage, Disk or other Azure services which can use old Key Vault SDK and when all your current custom applications are using .NET SDK 4.0 or newer.  
+New Key Vault libraries split keys, secrets, and certificates into separate SDKs with Azure Identity integration for seamless auth and performance improvements. DISMISS: If using Key Vault with Azure Storage, Disk, or other services, and all custom apps that use .NET SDK 4.0+.  
   
-**Potential benefits**: Latest Key Vault Client Libraries contain fixes for known issues and other improvements.  
+**Potential benefits**: Fixes for known issues and other improvements.  
 
 **Impact:** Medium
   
@@ -47,5 +47,7 @@ Recommendation ID: 9017e82f-b7ac-4a06-8b9b-5858cb3d5113
 
 
 <!--9017e82f-b7ac-4a06-8b9b-5858cb3d5113_end-->
+
+
 
 <!--articleBody-->

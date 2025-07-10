@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 11/29/2023
-ms.author: abbyweisberg
-author: AbbyMSFT
 ---
 
 <a name="custom-props"></a>(Optional) In the **Custom properties** section, if this alert rule contains action groups, you can add your own properties to include in the alert notification payload. You can use these properties in the actions that the action group calls, such as by a webhook, Azure function, or logic app action.

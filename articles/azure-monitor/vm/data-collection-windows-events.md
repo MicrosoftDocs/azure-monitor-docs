@@ -1,7 +1,7 @@
 ---
 title: Collect Windows events from virtual machines with Azure Monitor Agent
 description: Describes how to collect Windows events counters from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 03/03/2025
 ms.reviewer: jeffwo
 
@@ -19,7 +19,7 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Windows Event Logs** from the **Data source type** dropdown. Select from a set of logs and severity levels to collect. Only logs with the selected severity level for each log are collected.
 
 > [!TIP]
-> If you select the **Security** log in the DCR, the events are sent to the [Event](/azure/azure-monitor/reference/tables/Event) table in your Log Analytics workspace with events from other logs such as System and Application. Another option is to enable [Microsoft Sentinel](/azure/sentinel/) on the workspace and enable the [Windows Security Events via AMA connector for Microsoft Sentinel](/azure/sentinel/data-connectors/windows-security-events-via-ama). This uses the same [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) and collects the same events, but they're sent to the [SecurityEvent](/azure/azure-monitor/reference/tables/SecurityEvent) table which is used by Sentinel.
+> If you select the **Security** log in the DCR, the events are sent to the [Event](/azure/azure-monitor/reference/tables/Event) table in your Log Analytics workspace with events from other logs such as System and Application. Another option is to enable [Microsoft Sentinel](/azure/sentinel/) on the workspace and enable the [Windows Security Events via AMA connector for Microsoft Sentinel](/azure/sentinel/data-connectors/security-events-via-legacy-agent). This uses the same [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) and collects the same events, but they're sent to the [SecurityEvent](/azure/azure-monitor/reference/tables/SecurityEvent) table which is used by Sentinel.
 
 :::image type="content" source="media/data-collection-windows-event/data-source-windows-event.png" lightbox="media/data-collection-windows-event/data-source-windows-event.png" alt-text="Screenshot that shows configuration of a Windows event data source in a data collection rule." :::
 

@@ -3,7 +3,7 @@ title: Enable Application Insights Profiler for .NET for Azure App Service apps 
 description: Profile live apps on Azure App Service with Application Insights Profiler for .NET.
 ms.topic: how-to
 ms.date: 02/18/2025
-ms.reviewer: ryankahng
+ms.reviewer: charles.weininger
 ---
 
 # Enable the .NET Profiler for Azure App Service apps in Windows

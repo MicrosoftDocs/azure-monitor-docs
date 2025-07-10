@@ -1,7 +1,7 @@
 ---
 title: Manage the Container insights agent
 description: Describes how to manage the most common maintenance tasks with the containerized Log Analytics agent used by Container insights.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/19/2023
 ms.reviewer: aul
 ---
@@ -9,6 +9,10 @@ ms.reviewer: aul
 # Manage the Container insights agent
 
 Container Insights uses a containerized version of the Log Analytics agent for Linux. After initial deployment, you might need to perform routine or optional tasks during its lifecycle. This article explains how to manually upgrade the agent and disable collection of environmental variables from a particular container.
+
+> [!WARNING]
+> Starting October 1, 2025, the HELM chart-based onboarding workflow for the Container Insights agent will be retired. To ensure your clusters are secure and running smoothly, please migrate to Azure Arc Kubernetes Container Insights Extension. You’ll need to connect your cluster to **[Azure Arc for Kubernetes](/azure/azure-arc/kubernetes/overview)** and then enable Container Insights through the **[Azure Arc Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release)**.  
+> **[Learn more about the retirement](https://azure.microsoft.com/updates?id=488759)**.  
 
 > [!NOTE]
 > If you've already deployed an AKS cluster and enabled monitoring by using either the Azure CLI or a Resource Manager template, you can't use `kubectl` to upgrade, delete, redeploy, or deploy the agent. The template needs to be deployed in the same resource group as the cluster.
@@ -37,7 +41,7 @@ After you've reenabled monitoring, it might take about 15 minutes before you can
 
 The version of the agent shown should match the latest version listed on the [Release history](https://github.com/microsoft/docker-provider/tree/ci_feature_prod) page.
 
-### Upgrade the agent on a hybrid Kubernetes cluster
+### Upgrade the agent on a hybrid Kubernetes cluster (deprecated)
 
 Perform the following steps to upgrade the agent on a Kubernetes cluster that runs on:
 
@@ -102,7 +106,7 @@ With the rise of Kubernetes and the OSS ecosystem, Container Insights migrate to
 
 ## Repair duplicate or obsolete agents on AKS or Azure Arc Kubernetes cluster
 
-If you manually enabled Container Insights using custom methods such as HELM or yaml, you could end up with multiple versions of the agent or an old version of the agent that doesn’t get updated automatically. Follow the steps below to ensure your cluster remains secure and continues to receive all critical security and quality updates for the agent.
+If you manually enabled Container Insights using custom methods such as HELM or yaml, you could end up with multiple versions of the agent or an old version of the agent that doesn't get updated automatically. Follow the steps below to ensure your cluster remains secure and continues to receive all critical security and quality updates for the agent.
 
 
 1.	Gather details of any custom settings, such as memory and CPU limits on your omsagent containers. 

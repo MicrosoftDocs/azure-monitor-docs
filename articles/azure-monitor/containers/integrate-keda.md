@@ -3,17 +3,17 @@ title: Integrate KEDA with your Azure Kubernetes Service cluster
 description: How to integrate KEDA with your Azure Kubernetes Service cluster.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-ms.date: 07/26/2024
+ms.date: 03/10/2025
 --- 
 
 
 # Integrate KEDA with your Azure Kubernetes Service cluster
 
-KEDA is a Kubernetes-based Event Driven Autoscaler. KEDA lets you drive the scaling of any container in Kubernetes based on the load to be processed, by querying metrics from systems such as Prometheus. Integrate KEDA with your Azure Kubernetes Service (AKS) cluster to scale your workloads based on Prometheus metrics from your Azure Monitor workspace.
+KEDA is a Kubernetes-based Event Driven Autoscaler. KEDA lets you drive the scaling of any container in Kubernetes based on the load to be processed, by querying metrics from systems such as Prometheus. Integrate KEDA with your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes cluster to scale your workloads based on Prometheus metrics from your Azure Monitor workspace.
 
 To integrate KEDA into your Azure Kubernetes Service, you have to deploy and configure a workload identity or pod identity on your cluster. The identity allows KEDA to authenticate with Azure and retrieve metrics for scaling from your Monitor workspace. 
 
-This article walks you through the steps to integrate KEDA into your AKS cluster using a workload identity.
+This article walks you through the steps to integrate KEDA into your AKS or Azure Arc-enabled Kubernetes cluster using a workload identity.
 
 > [!NOTE]
 > We recommend using Microsoft Entra Workload ID. This authentication method replaces pod-managed identity (preview), which integrates with the Kubernetes native capabilities to federate with any external identity providers on behalf of the application.
@@ -24,12 +24,12 @@ This article walks you through the steps to integrate KEDA into your AKS cluster
 
 ## Prerequisites
 
-+ Azure Kubernetes Service (AKS) cluster
++ Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes cluster
 + Prometheus sending metrics to an Azure Monitor workspace. For more information, see [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md).
 
 ## Set up a workload identity
 
-1. Start by setting up some environment variables. Change the values to suit your AKS cluster.
+1. Start by setting up some environment variables. Change the values to suit your cluster.
  
     ```bash
     export RESOURCE_GROUP="rg-keda-integration"

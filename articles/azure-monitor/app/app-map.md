@@ -1,7 +1,7 @@
 ---
 title: Application map in Azure Application Insights
 description: Monitor complex application topologies with Application map and Intelligent view by using Application Insights in Azure Monitor.
-ms.topic: concept-article
+ms.topic: how-to
 ms.date: 10/09/2024
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -74,6 +74,10 @@ In the node details pane, you can troubleshoot performance problems with the com
 The **Performance** view lets you explore telemetry data for operations, dependencies, and roles connected with the selected component:
 
 :::image type="content" source="media/app-map/view-performance.png" alt-text="Screenshot that shows the Performance view for a selected component." lightbox="media/app-map/view-performance.png":::
+
+### Investigate Virtual Machine
+
+If the component is hosted on a virtual machine (VM), you can view key properties of the VM, including its name, subscription, resource group, and operating system. Performance metrics such as Availability, CPU Usage (average), and Available Memory (GB) are also displayed. To further investigate the VM’s performance and health, select **Go to VM Monitoring** to open the Monitoring page for the VM.
 
 ### Go to details and stack trace
 
@@ -495,66 +499,8 @@ To start troubleshooting an issue, select **Investigate failures**. You can revi
 
 When **Intelligent view** doesn't highlight any edges on the application map, the machine learning model didn't find potential incidents in the dependencies of your application.
 
-## Troubleshooting tips
-
-If you're having trouble getting **Application map** to work as expected, review the suggestions in the following sections.
-
-Here are some general recommendations:
-
-- Use an officially supported SDK. Unsupported or community SDKs might not support correlation. For a list of supported SDKs, see [Application Insights: Languages, platforms, and integrations](./app-insights-overview.md#supported-languages).
-
-- Upgrade all components to the latest SDK version.
-
-- Support Azure Functions with C# by upgrading to [Azure Functions V2](/azure/azure-functions/functions-versions).
-
-- Ensure the [cloud role name](#set-cloud-role-names) is correctly configured.
-
-- Confirm any missing dependencies are listed as [autocollected dependencies](asp-net-dependencies.md#dependency-autocollection). If a dependency isn't listed, you can track it manually with a [track dependency call](./api-custom-events-metrics.md#trackdependency).
-
-### Too many nodes on map
-
-**Application map** adds a component node for each unique cloud role name in your request telemetry. The process also adds a dependency node for each unique combination of type, target, and cloud role name.
-
-- If you have more than 10,000 nodes in your telemetry, **Application map** can't fetch all of the nodes and links. In this scenario, your map structure is incomplete. If this scenario occurs, a warning message appears when you view the map.
-
-- **Application map** can render a maximum of 1,000 separate ungrouped nodes at once. **Application map** reduces visual complexity by grouping dependencies together when they have the same type and callers.
-
-- If your telemetry has too many unique cloud role names or too many dependency types, the grouping is insufficient and the map isn't rendered.
-
-To fix this issue, you need to change your instrumentation to properly set the cloud role name, dependency type, and dependency target fields. Confirm your application adheres to the following criteria: 
-
-- Each dependency target represents the logical name of a dependency. In many cases, this value is equivalent to the server or resource name of the dependency. For example, if there are HTTP dependencies, the value is the hostname. The value shouldn't contain unique IDs or parameters that change from one request to another.
-
-- Each dependency type represents the logical type of a dependency. For example, HTTP, SQL, or Azure Blob are typical dependency types. This value shouldn't contain unique IDs.
-
-- Each cloud role name purpose applies the description in the [Set or override cloud role name](#set-cloud-role-names) section.
-
-### Intelligent view: Edge not highlighted
-
-**Intelligent view** might not highlight an edge as expected, even with a low sensitivity setting. A dependency might appear to be in failure but the model doesn't indicate the issue as a potential incident. Here are some possible scenarios:
-
-- If the dependency commonly fails, the model might consider the failure a standard state for the component and not highlight the edge. **Intelligent view** focuses on problem-solving in real time.
-
-- If the dependency has a minimal effect on the overall performance of the application, **Intelligent view**  might ignore the component during machine learning modeling.
-
-If your scenario is unique, you can use the **Feedback** option to describe your experience and help improve future model versions.
-
-### Intelligent view: Edge highlighted
-
-When **intelligent view** highlights an edge, the actionable insights from the machine learning model should identify the significant issues that contribute to the high probability score. Keep in mind that the recommendation isn't based solely on failures, but on other indicators like unexpected latency in dominant flows.
-
-### Intelligent view: Doesn't load
-
-If **Intelligent view** doesn't load, set the configured time frame to six days or less.
-
-### Intelligent view: Long load time
-
-If **Intelligent view** takes longer to load than expected, avoid selecting the **Update map components** option. Enable **Intelligent view** only for a single Application Insights resource.
-
-## Related content
-
+## Next steps
+- To review our dedicated troubleshooting guide, see [Application map troubleshooting](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-application-map-issues).
 - Learn how correlation works in Application Insights with [Telemetry correlation](distributed-trace-data.md).
-
 - Explore the [end-to-end transaction diagnostic experience](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) that correlates server-side telemetry from across all your Application Insights-monitored components into a single view.
-
 - Support advanced correlation scenarios in ASP.NET Core and ASP.NET with [Track custom operations](custom-operations-tracking.md).

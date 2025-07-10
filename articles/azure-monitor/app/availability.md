@@ -1,8 +1,8 @@
 ---
 title: Application Insights availability tests 
 description: Set up recurring web tests to monitor availability and responsiveness of your app or website.
-ms.topic: conceptual
-ms.date: 07/05/2024
+ms.topic: how-to
+ms.date: 04/01/2025
 ms.reviewer: cogoodson
 ---
 
@@ -33,9 +33,8 @@ There are four types of availability tests:
 
 > [!IMPORTANT]
 > There are two upcoming availability tests retirements:
-> * **Multi-step web tests:** On August 31, 2024, multi-step web tests in Application Insights will be retired. We advise users of these tests to transition to alternative availability tests before the retirement date. Following this date, we will be taking down the underlying infrastructure which will break remaining multi-step tests.
->
-> * **URL ping tests:** On September 30, 2026, URL ping tests in Application Insights will be retired. Existing URL ping tests will be removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
+> - **Multi-step web tests:** Application Insights retires multi-step web tests on August 31, 2024. To maintain availability monitoring, switch to alternative availability tests before this date. After the retirement, the platform removes the underlying infrastructure, which causes remaining multi-step tests to fail.
+> - **URL ping tests:** On September 30, 2026, URL ping tests in Application Insights will be retired. Existing URL ping tests are removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
 
 ## Create an availability test
 
@@ -60,16 +59,16 @@ There are four types of availability tests:
    |---------|---------|-------------|
    | **Basic Information** | | |
    | | **URL** | The URL can be any webpage you want to test, but it must be visible from the public internet. The URL can include a query string. So, for example, you can exercise your database a little. If the URL resolves to a redirect, we follow it up to 10 redirects. |
-   | | **Parse dependent requests** | The test loads images, scripts, style files, and other resources from the webpage under test. It records the response time, including the time to retrieve these files. The test fails if it can't download all resources within the timeout. If you don't enable the option, the test only loads the file at the specified URL. Enabling it makes the check stricter, potentially failing in cases that manual browsing wouldn't catch. The test parses up to 15 dependent requests. |
+   | | **Parse dependent requests** | The test loads images, scripts, style files, and other resources from the webpage under test. It records the response time, including the time to retrieve these files. The test fails if it can't download all resources within the time-out. If you don't enable the option, the test only loads the file at the specified URL. Enabling it makes the check stricter, potentially failing in cases that manual browsing wouldn't catch. The test parses up to 15 dependent requests. |
    | | **Enable retries for availability test failures** | When the test fails, it retries after a short interval. A failure is reported only if three successive attempts fail. Subsequent tests are then performed at the usual test frequency. Retry is temporarily suspended until the next success. This rule is applied independently at each test location. *We recommend this option*. On average, about 80% of failures disappear on retry. |
-   | | **Enable SSL certificate validity** | You can verify the SSL certificate on your website to make sure it's correctly installed, valid, trusted, and doesn't give any errors to any of your users. SSL certificate validation will only be performed on the *final redirected URL*. |
+   | | **Enable SSL certificate validity** | To confirm correct setup, verify the SSL certificate on your website. Make sure it's installed correctly, valid, trusted, and doesn't generate errors for users. The availability test only validates the SSL certificate on the *final redirected URL*. |
    | | **Proactive lifetime check** | This setting enables you to define a set time period before your SSL certificate expires. After it expires, your test will fail. |
    | | **Test frequency** | Sets how often the test is run from each test location. With a default frequency of five minutes and five test locations, your site is tested on average every minute. |
    | | **Test locations** |  Our servers send web requests to your URL from these locations. *Our minimum number of recommended test locations is five* to ensure that you can distinguish problems in your website from network issues. You can select up to 16 locations. |
    | **Standard test info** | | |
    | | **HTTP request verb** | Indicate what action you want to take with your request. |
    | | **Request body** | Custom data associated with your HTTP request. You can upload your own files, enter your content, or disable this feature. |
-   | | **Add custom headers** | Key value pairs that define the operating parameters. The "Host" and "User-Agent" headers are reserved in Availability Tests and cannot be modified or overwritten.|
+   | | **Add custom headers** | Key value pairs that define the operating parameters. The "Host" and "User-Agent" headers are reserved in Availability Tests and can't be modified or overwritten.|
    | **Success criteria** | | |
    | | **Test Timeout** | Decrease this value to be alerted about slow responses. The test is counted as a failure if the responses from your site aren't received within this period. If you selected **Parse dependent requests**, all the images, style files, scripts, and other dependent resources must be received within this period. |
    | | **HTTP response** | The returned status code counted as a success. The number 200 is the code that indicates that a normal webpage is returned. |
@@ -78,7 +77,7 @@ There are four types of availability tests:
 ## [TrackAvailability()](#tab/track)
 
 > [!IMPORTANT]
-> [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) requires making a developer investment in writing and maintanining potentially complex custom code.
+> [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) requires making a developer investment in writing and maintaining potentially complex custom code.
 >
 > *Standard tests should always be used if possible*, as they require little investment, no maintenance, and have few prerequisites.
 
@@ -94,9 +93,9 @@ This example is designed only to show you the mechanics of how the `TrackAvailab
 ### Get started
 
 > [!NOTE]
-> To follow these instructions, you must use either the [App Service](/azure/azure-functions/dedicated-plan) plan or Functions Premium plan to allow editing code in App Service Editor.
+> To follow these instructions, you must use either the [App Service](/azure/azure-functions/dedicated-plan) plan or Functions Premium plan to allow editing code in App Service Editor. You also must choose a runtime version that supports the in-process model.
 > 
-> If you're testing behind a virtual network or testing nonpublic endpoints, you'll need to use the Functions Premium plan.
+> If you're testing behind a virtual network or testing nonpublic endpoints, you need to use the Functions Premium plan.
 
 #### Create a timer trigger function
 
@@ -124,7 +123,7 @@ To create a new file, right-click under your timer trigger function (for example
             <TargetFramework>netstandard2.0</TargetFramework> 
         </PropertyGroup> 
         <ItemGroup> 
-            <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" /> <!-- Ensure you’re using the latest version --> 
+            <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" /> <!-- Ensure you're using the latest version --> 
         </ItemGroup> 
     </Project> 
     ```
@@ -235,7 +234,7 @@ To create a new file, right-click under your timer trigger function (for example
     ```
 
 > [!NOTE]
-> Tests created with `TrackAvailability()` will appear with **CUSTOM** next to the test name.
+> Tests created with `TrackAvailability()` appear with **CUSTOM** next to the test name.
 >
 > :::image type="content" source="media/availability/availability-test-list.png" alt-text="Screenshot showing the Availability experience with two different tests listed.":::
 
@@ -288,7 +287,7 @@ You can use the following population tags for the geo-location attribute when yo
 ### Enable alerts
 
 > [!NOTE]
-> With the [new unified alerts](../alerts/alerts-overview.md), the alert rule severity and notification preferences with [action groups](../alerts/action-groups.md) *must be* configured in the alerts experience. Without the following steps, you'll only receive in-portal notifications.
+> To receive alerts through your configured [action groups](../alerts/action-groups.md), set the alert rule severity and notification preferences in the [unified alerts experience](../alerts/alerts-overview.md). Without completing the following steps, you only receive in-portal notifications.
 
 1. After you save the availability test, open the context menu by the test you made, then select **Open Rules (Alerts) page**.
 
@@ -311,9 +310,9 @@ You might not want to receive notifications when your website is down for only a
 > [!TIP]
 > For longer scheduled downtimes, temporarily deactivate the alert rule or create a custom rule. It gives you more options to account for the downtime.
 
-To make changes to the location threshold, aggregation period, and test frequency, go to the **Edit alert rule** page (see step 2 under [Enable alerts](#enable-alerts)), then select the condition to open the **Configure signal logic** window.
+To make changes to the location threshold, aggregation period, and test frequency, go to the **Edit alert rule** page (see step 2 under [Enable alerts](#enable-alerts)), then select the condition to open the `Configure signal logic` window.
 
-:::image type="content" source="media/availability/configure-signal-logic.png" alt-text="Screenshot showing a highlighted alert condition and the Configure signal logic window." lightbox="media/availability/configure-signal-logic.png":::
+:::image type="content" source="media/availability/configure-signal-logic.png" alt-text="Screenshot showing a highlighted alert condition and the `Configure signal logic` window." lightbox="media/availability/configure-signal-logic.png":::
 
 ### Create a custom alert rule
 
@@ -327,7 +326,7 @@ A custom alert rule offers higher values for the aggregation period (up to 24 ho
 
     1. Select an Application Insights resource in the **Metrics** experience, and select an **Availability** metric.
     
-    1. The **Configure alerts** option from the menu takes you to the new experience where you can select specific tests or locations on which to set up alert rules. You can also configure the action groups for this alert rule here.
+    1. The `Configure alerts` option from the menu takes you to the new experience where you can select specific tests or locations on which to set up alert rules. You can also configure the action groups for this alert rule here.
 
 * **Alert on custom analytics queries**: By using the [new unified alerts](../alerts/alerts-overview.md), you can alert on [custom log queries](../alerts/alerts-types.md#log-alerts). With custom queries, you can alert on any arbitrary condition that helps you get the most reliable signal of availability issues. It's also applicable if you're sending custom availability results by using the TrackAvailability SDK.
 
@@ -396,7 +395,7 @@ You can use Log Analytics to view your availability results (`availabilityResult
 The following steps walk you through the process of creating [standard tests](#types-of-availability-tests) that replicate the functionality of your [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability). It allows you to more easily start using the advanced features of standard tests using your previously created URL ping tests.
 
 > [!IMPORTANT]
-> A cost is associated with running **[standard tests](#types-of-availability-tests)**. Once you create a standard test, you will be charged for test executions. Refer to **[Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing)** before starting this process.
+> A cost is associated with running **[standard tests](#types-of-availability-tests)**. Once you create a standard test, you're charged for test executions. Refer to **[Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing)** before starting this process.
 
 #### Prerequisites
 
@@ -470,7 +469,7 @@ To ensure endpoint availability behind firewalls, enable public availability tes
 Ensure your internal website has a public Domain Name System (DNS) record. Availability tests fail if DNS can't be resolved. For more information, see [Create a custom domain name for internal application](/azure/cloud-services/cloud-services-custom-domain-name-portal#add-an-a-record-for-your-custom-domain).
 
 > [!WARNING]
-> The IP addresses used by the availability tests service are shared and can expose your firewall-protected service endpoints to other tests. IP address filtering alone doesn't secure your service's traffic, so it's recommended to add extra custom headers to verify the origin of web request. For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview#virtual-network-service-tags).
+> The availability tests service uses shared IP addresses, which can expose your firewall-protected endpoints to traffic from other tests. To secure your service, don't rely on IP address filtering alone. Add custom headers to verify the origin of each web request. For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview#virtual-network-service-tags).
 
 #### Authenticate traffic
 
@@ -499,7 +498,7 @@ To simplify enabling Azure services without authorizing individual IPs or mainta
 
 1. Next, select *Service Tag* as the **Source** and *ApplicationInsightsAvailability* as the **Source service tag**. Use open ports 80 (http) and 443 (https) for incoming traffic from the service tag.
 
-To manage access when your endpoints are outside Azure or when service tags aren't an option, allowlist the [IP addresses of our web test agents](ip-addresses.md). You can query IP ranges using PowerShell, Azure CLI, or a REST call with the [Service Tag API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api). For a comprehensive list of current service tags and their IP details, download the [JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
+To manage access when your endpoints are outside Azure or when service tags aren't an option, allowlist the IP addresses of our web test agents. You can query IP ranges using PowerShell, Azure CLI, or a REST call with the [Service Tag API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api). For a comprehensive list of current service tags and their IP details, download the [JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
   
 1. In your network security group resource, under **Settings**, open the **Inbound security rules** experience, then select **Add**.
 
@@ -511,39 +510,11 @@ To manage access when your endpoints are outside Azure or when service tags aren
 
 1. Write custom code to periodically test your internal server or endpoints. Send the results to Application Insights using the [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) API in the core SDK package.
 
-## Supported TLS configurations
-
-To provide best-in-class encryption, all availability tests use Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice. In addition, the following Cipher suites and Elliptical curves are also supported within each version.
-
-TLS 1.3 is currently only available in the availability test regions NorthCentralUS, CentralUS, EastUS, SouthCentralUS, and WestUS.
-
-| Version | Cipher suites | Elliptical curves |
-|---------|---------|---------|
-| TLS 1.2 | • TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384<br>• TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256<br>• TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384<br>• TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256<br>• TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384<br>• TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256<br>• TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384<br>• TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 | • NistP384<br>• NistP256 |
-| TLS 1.3 | • TLS_AES_256_GCM_SHA384<br>• TLS_AES_128_GCM_SHA256 | • NistP384<br>• NistP256 |
-
-### Deprecating TLS configuration
-
+[!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements.md)]
 > [!IMPORTANT]
-> On 1 May 2025, in alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/), TLS 1.0/1.1 protocol versions and the listed TLS 1.2/1.3 legacy Cipher suites and Elliptical curves will be retired for Application Insights availability tests.
+> TLS 1.3 is currently only available in the availability test regions NorthCentralUS, CentralUS, EastUS, SouthCentralUS, and WestUS
 
-#### TLS 1.0 and TLS 1.1
-
-TLS 1.0 and TLS 1.1 are being retired.
-
-#### TLS 1.2 and TLS 1.3
-
-| Version | Cipher suites | Elliptical curves |
-|---------|---------|---------|
-| TLS 1.2 | • TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA<br>• TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA<br>• TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA<br>• TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA<br>• TLS_RSA_WITH_AES_256_GCM_SHA384<br>• TLS_RSA_WITH_AES_128_GCM_SHA256<br>• TLS_RSA_WITH_AES_256_CBC_SHA256<br>• TLS_RSA_WITH_AES_128_CBC_SHA256<br>• TLS_RSA_WITH_AES_256_CBC_SHA<br>• TLS_RSA_WITH_AES_128_CBC_SHA | • curve25519 |
-| TLS 1.3 | | • curve25519 |
-
-### Troubleshooting
-
-> [!WARNING]
-> We have recently enabled TLS 1.3 in availability tests. If you are seeing new error messages as a result, ensure that clients running on Windows Server 2022 with TLS 1.3 enabled can connect to your endpoint. If you are unable to do this, you may consider temporarily disabling TLS 1.3 on your endpoint so that availability tests will fall back to older TLS versions.
-> 
-> For additional information, check the  [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-availability).
+[!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements-deprecating.md)]
 
 ## Downtime & Outages workbook
 
@@ -594,58 +565,10 @@ There are two more tabs next to the **Overview** page:
 
 * **Access and sharing:** The report can be shared with your teams and leadership or pinned to a dashboard for further use. The user needs read permissions and access to the Application Insights resource where the actual workbook is stored.
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### General
-
-#### Can I run availability tests on an intranet server?
-
-Availability tests run on points of presence that are distributed around the globe. There are two solutions:
-          
-* **Firewall door**: Allow requests to your server from [the long and changeable list of web test agents](../ip-addresses.md).
-* **Custom code**: Write your own code to send periodic requests to your server from inside your intranet. You could run Visual Studio web tests for this purpose. The tester could send the results to Application Insights by using the `TrackAvailability()` API.
-
-#### What is the user agent string for availability tests?
-
-The user agent string is **Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; AppInsights)**
-
-### TLS support
-
-#### How does this deprecation impact my web test behavior?
-
-Availability tests act as a distributed client in each of the supported web test locations. Every time a web test is executed the availability test service attempts to reach out to the remote endpoint defined in the web test configuration. A TLS Client Hello message is sent which contains all the currently supported TLS configuration. If the remote endpoint shares a common TLS configuration with the availability test client, then the TLS handshake succeeds. Otherwise, the web test fails with a TLS handshake failure. 
-
-#### How do I ensure my web test isn't impacted?
-
-To avoid any impact, each remote endpoint (including dependent requests) your web test interacts with needs to support at least one combination of the same Protocol Version, Cipher Suite, and Elliptical Curve that availability test does. If the remote endpoint doesn't support the needed TLS configuration, it needs to be updated with support for some combination of the above-mentioned post-deprecation TLS configuration. These endpoints can be discovered through viewing the [Transaction Details](/azure/azure-monitor/app/availability-standard-tests#see-your-availability-test-results) of your web test (ideally for a successful web test execution). 
-
-#### How do I validate what TLS configuration a remote endpoint supports?
-
-There are several tools available to test what TLS configuration an endpoint supports. One way would be to follow the example detailed on this [page](/security/engineering/solving-tls1-problem#appendix-a-handshake-simulation). If your remote endpoint isn't available via the Public internet, you need to ensure you validate the TLS configuration supported on the remote endpoint from a machine that has access to call your endpoint. 
-
-> [!NOTE]
-> For steps to enable the needed TLS configuration on your web server, it is best to reach out to the team that owns the hosting platform your web server runs on if the process is not known. 
-
-#### After May 1, 2025, what will the web test behavior be for impacted tests?
-
-There's no one exception type that all TLS handshake failures impacted by this deprecation would present themselves with. However, the most common exception your web test would start failing with would be `The request was aborted: Couldn't create SSL/TLS secure channel`. You should also be able to see any TLS related failures in the TLS Transport [Troubleshooting Step](/troubleshoot/azure/azure-monitor/app-insights/availability/diagnose-ping-test-failure) for the web test result that is potentially impacted. 
-
-#### Can I view what TLS configuration is currently in use by my web test?
-
-The TLS configuration negotiated during a web test execution can't be viewed. As long as the remote endpoint supports common TLS configuration with availability tests, no impact should be seen post-deprecation. 
-
-#### Which components does the deprecation affect in the availability test service?
-
-The TLS deprecation detailed in this document should only affect the availability test web test execution behavior after May 1, 2025. For more information about interacting with the availability test service for CRUD operations, see [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support). This resource provides more details on TLS support and deprecation timelines.
-
-#### Where can I get TLS support?
-
-For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem).
-
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Availability tests FAQ](application-insights-faq.yml#availability-tests) and [TLS support for availability tests FAQ](application-insights-faq.yml#tls-support-for-availability-tests)
 * [Troubleshooting](troubleshoot-availability.md)
 * [Web tests Azure Resource Manager template](/azure/templates/microsoft.insights/webtests?tabs=json)
 * [Web test REST API](/rest/api/application-insights/web-tests)
+

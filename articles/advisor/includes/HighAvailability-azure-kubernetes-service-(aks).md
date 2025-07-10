@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/05/2025
+ms.date: 05/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -12,17 +12,7 @@ ms.custom: HighAvailability Azure Kubernetes Service (AKS)
   
 ## Azure Kubernetes Service (AKS)  
   
-<!--29a14bcd-36ad-41ea-9138-70049121eaea_begin-->
 
-#### Set node pool subnet size to maximum auto scale setting  
-  
-To allow AKS to efficiently scale out nodes, update the subnet size for node pools to match the maximum settings for the auto-scaler.  
-  
-**Potential benefits**: Efficient scaling for demand. Reduced resource constraints.  
-
-For more information, see [Configure Azure CNI networking for dynamic allocation of IPs and enhanced subnet support in Azure Kubernetes Service (AKS)](https://aka.ms/configure-azure-cni-dynamic-ip-allocation)  
-
-<!--29a14bcd-36ad-41ea-9138-70049121eaea_end-->
 
 
 
@@ -35,9 +25,16 @@ Azure Kubernetes Service (AKS) backup is a cloud-native solution for backing up 
   
 **Potential benefits**: Backups for cluster state and persistent volumes  
 
-For more information, see [What is Azure Kubernetes Service backup?](https://aka.ms/aks-backup)  
+**Impact:** Medium
+  
+For more information, see [What is Azure Kubernetes Service (AKS) backup? - Azure Backup](https://aka.ms/aks-backup)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 29f2eea3-b0d8-4934-a0f8-171dbd70ba13  
+Subcategory: DisasterRecovery
 
 <!--29f2eea3-b0d8-4934-a0f8-171dbd70ba13_end-->
+
 
 
 
@@ -100,7 +97,7 @@ Subcategory: HighAvailability
 
 #### Ensure B-series Virtual Machine's (VMs) aren't used in production environments  
   
-When a cluster has one or more node pools using a non-recommended burstable VM SKU, full vCPU capability 100% is unguaranteed. Ensure B-series VM's aren't used in production environments.  
+When a cluster has one or more node pools using a non-recommended burstable VM SKU, full vCPU capability 100% is unguaranteed. Ensure B-series VMs aren't used in production environments.  
   
 **Potential benefits**: Best practice for consistent performance  
 
@@ -113,5 +110,23 @@ Recommendation ID: fac2ad84-1421-4dd3-8477-9d6e605392b4
 Subcategory: HighAvailability
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_end-->
+
+<!--9f3263db-b9c0-43bb-8523-6800f9f50793_begin-->
+
+#### Configure and deploy Azure Kubernetes Service (AKS) and related resources to use availability zones  
+  
+The availability zones in Azure regions ensure high availability by offering independent locations. An availability zone is equipped with independent power, cooling, and networking to ensure applications and data are protected from datacenter-level failures.  
+  
+**Potential benefits**: Improved availability and reliability  
+
+**Impact:** High
+  
+For more information, see [Availability Zones in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/availability-zones?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 9f3263db-b9c0-43bb-8523-6800f9f50793  
+Subcategory: HighAvailability
+
+<!--9f3263db-b9c0-43bb-8523-6800f9f50793_end-->
 
 <!--articleBody-->

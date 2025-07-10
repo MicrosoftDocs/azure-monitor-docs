@@ -1,7 +1,7 @@
 ---
 title: Azure Workbooks options group parameters
 description: Learn about adding options group parameters to your Azure workbook.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/17/2024
 ms.reviewer: gardnerjr
 ---

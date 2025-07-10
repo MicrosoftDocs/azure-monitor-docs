@@ -1,9 +1,9 @@
 ---
 title: Azure Monitor cost and usage
 description: Overview of how Azure Monitor is billed and how to analyze billable usage.
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: Dale.Koetke
-ms.date: 01/24/2024
+ms.date: 05/21/2025
 ---
 
 # Azure Monitor cost and usage
@@ -138,7 +138,9 @@ Operation
 | render columnchart 
 ```
 
-(This functionality of reporting the benefits used in the `Operation` table started January 27, 2024.)
+Note that for workspaces in the legacy Per Node pricing tier, the Defender benefit listed in the `Operation` table only includes the benefit from the set of security tables eligible for the Defender benefit. In this pricing tier, the total benefit applied will include data allowances from the Per Node tier and Defender which are combined and applied to all tables.    
+  
+This functionality of reporting the benefits used in the `Operation` table started January 27, 2024.)
 
 > [!TIP]
 > If you [increase the data retention](../logs/data-retention-configure.md) of the [Operation](/azure/azure-monitor/reference/tables/operation) table, you'll be able to view these benefit trends over longer periods.

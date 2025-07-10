@@ -124,7 +124,7 @@ landingContent:
           - text: Power BI
             url: logs/log-powerbi.md
           - text: Grafana
-            url: visualize/grafana-plugin.md
+            url: visualize/visualize-grafana-overview.md
 
  # Card
   - title: Respond to issues

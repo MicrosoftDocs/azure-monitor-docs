@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 04/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Cognitive Services
@@ -148,13 +148,14 @@ The resource is approaching PTU utilization limit for seven or more days. Add mo
 
 **Impact:** Medium
   
-For more information, see [Azure OpenAI Service Provisioned Throughput Units (PTU) onboarding - Azure AI services](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
+For more information, see [Understanding costs associated with provisioned throughput units (PTU) - Azure AI services](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 5bb8940d-e316-4dea-90fd-5d879619c98c  
 
 
 <!--5bb8940d-e316-4dea-90fd-5d879619c98c_end-->
+
 
 <!--6b44d824-b4f7-4928-b755-abec825931dd_begin-->
 
@@ -166,13 +167,14 @@ Request more PTU quota for the deployment. The resource is approaching the limit
 
 **Impact:** Medium
   
-For more information, see [Azure OpenAI Service Provisioned Throughput Units (PTU) onboarding - Azure AI services](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
+For more information, see [Understanding costs associated with provisioned throughput units (PTU) - Azure AI services](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 6b44d824-b4f7-4928-b755-abec825931dd  
 
 
 <!--6b44d824-b4f7-4928-b755-abec825931dd_end-->
+
 
 <!--8dde1045-da54-4d32-b8f9-635c5c9c0ac6_begin-->
 

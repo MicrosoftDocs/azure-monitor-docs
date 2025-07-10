@@ -1,9 +1,9 @@
 ---
 title: OpenTelemetry on Azure 
 description: This article provides an overview of OpenTelemetry on Azure.
-ms.topic: conceptual
-ms.date: 06/21/2024
-ms.reviewer: quying
+ms.topic: overview
+ms.date: 06/22/2025
+ms.reviewer: mmcc
 ---
 
 # OpenTelemetry on Azure
@@ -14,13 +14,13 @@ Azure's integration with OpenTelemetry provides a suite of products for:
 > - Collection of telemetry data in a standardized way
 > - Consumption of data using curated experiences on Azure Monitor and local tools
 
-This article guides you through our OpenTelemetry offerings to help you understand Microsoft’s strategic investments.
+This article guides you through our OpenTelemetry offerings to help you understand Microsoft's strategic investments.
 
 For more information about OpenTelemetry on Azure, see [our OpenTelemetry Roadmap](https://techcommunity.microsoft.com/t5/azure-observability-blog/making-azure-the-best-place-to-observe-your-apps-with/ba-p/3995896).
 
 ## Data collection
 
-The **Azure Monitor OpenTelemetry Distro** is Microsoft’s customized, supported, and open-sourced version of the OpenTelemetry software development kits (SDKs). It supports .NET, Java, JavaScript (Node.js), and Python. We recommend the Azure Monitor OpenTelemetry Distro for most customers, and we continue to invest in adding new capabilities to it.
+The **Azure Monitor OpenTelemetry Distro** is Microsoft's customized, supported, and open-sourced version of the OpenTelemetry software development kits (SDKs). It supports .NET, Java, JavaScript (Node.js), and Python. We recommend the Azure Monitor OpenTelemetry Distro for most customers, and we continue to invest in adding new capabilities to it.
 
 It focuses on ease-of-enablement by bundling together:
 
@@ -64,6 +64,8 @@ The **.NET** OpenTelemetry implementation uses logging, metrics, and activity AP
 - [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto)
 - [Monitor Azure Functions](/azure/azure-functions/monitor-functions)
 
+The **Azure Container Apps** OpenTelemetry agent automatically collects and exports data to any OTLP-supported endpoint. It's enabled via environment variable and doesn't require manual configuration. For more information, see [Collect and read OpenTelemetry data in Azure Container Apps](/azure/container-apps/opentelemetry-agents).
+
 ## Data platform and consumption
 
 **.NET Aspire** is an opinionated cloud-native stack that includes observability by default with OpenTelemetry. Part of it's a "Developer Dashboard" to observe OpenTelemetry signals in real-time during debugging. It collects logs, metrics, and traces using OTLP from applications of any OpenTelemetry-supported languages besides .NET.
@@ -71,7 +73,7 @@ The **.NET** OpenTelemetry implementation uses logging, metrics, and activity AP
 - [.NET Aspire: Simplifying Cloud-Native Development with .NET 8](https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8/)
 - [.NET Aspire dashboard overview](/dotnet/aspire/fundamentals/dashboard/overview)
 
-**Azure Monitor Application Insights** is Azure’s APM that supports cloud-scale application monitoring and excels at observability for both cloud-native applications and VM-based applications. Application Insights provides experiences powered by OpenTelemetry to enhance the performance, reliability, and quality of your applications. For example, Application map is a visual overview of application architecture and components' interactions; Transaction search helps identify issues and optimize performance.
+**Azure Monitor Application Insights** is Azure's APM that supports cloud-scale application monitoring and excels at observability for both cloud-native applications and VM-based applications. Application Insights provides experiences powered by OpenTelemetry to enhance the performance, reliability, and quality of your applications. For example, Application map is a visual overview of application architecture and components' interactions; Transaction search helps identify issues and optimize performance.
 
 - [Application Insights overview](./app-insights-overview.md)
 - [Application map in Azure Application Insights](./app-map.md)

@@ -1,9 +1,9 @@
 ---
 title: Azure Workbooks link actions 
 description: This article explains how to use link actions in Azure Workbooks.
-ms.topic: conceptual
+ms.topic: article
 ms.custom: devx-track-arm-template
-ms.date: 09/18/2024
+ms.date: 07/08/2025
 ms.reviewer: gardnerjr
 ---
 
@@ -40,13 +40,11 @@ Link actions can be accessed through workbook link components or through column 
 |Metrics| Opens a metrics view. |
 |Resource Overview| Opens the resource's view in the portal based on the resource ID value in the cell. You can also optionally set a submenu value that opens a specific menu item in the resource view. |
 |Workbook (Template)| Opens a workbook template. When this item is selected, more fields appear where you can configure what template to open. [See Workbook (Template) settings](#workbook-template-link-settings). |
-|Copilot in Azure (preview)| When the action is invoked, it formats and sends a prompt to Microsoft Copilot in Azure (preview). [See Copilot in Azure (preview) settings](#copilot-in-azure-preview-settings). |
+|Copilot in Azure | When the action is invoked, it formats and sends a prompt to Microsoft Copilot in Azure. [See Copilot in Azure settings](#copilot-in-azure-settings). |
 
 ## Link settings
 
 When you use the link renderer, the following settings are available:
-<!-- convertborder later -->
-:::image type="content" source="./media/workbooks-link-actions/link-settings.png" lightbox="./media/workbooks-link-actions/link-settings.png" alt-text="Screenshot that shows Link Settings." border="false":::
 
 | Setting | Description |
 |:------------- |:-------------|
@@ -81,8 +79,6 @@ This section defines the ARM action API.
 |Headers| Headers grid with the key and value.|
 |Body| Editor for the request payload in JSON.|
 
-:::image type="content" source="media/workbooks-link-actions/azure-resource-manager-action-settings.png" alt-text="Screenshot that shows Azure Workbooks ARM action settings.":::
-
 ### ARM Action UX Settings
 
 This section configures what the users see before they run the ARM action.
@@ -94,16 +90,11 @@ This section configures what the users see before they run the ARM action.
 |Description of ARM Action| The markdown text used to provide a helpful description to users when they want to run the ARM action. |
 |Run button text from| Label used on the run (execute) button to trigger the ARM action.|
 
-:::image type="content" source="media/workbooks-link-actions/azure-resource-manager-action-interface-settings.png" alt-text="Screenshot that shows Azure Workbooks ARM action UX settings.":::
-
 After these configurations are set, when the user selects the link, the view opens with the UX described here. If the user selects the button specified by **Run button text from**, it runs the ARM action using the configured values. On the bottom of the context pane, you can select **View Request Details** to inspect the HTTP method and the ARM API endpoint used for the ARM action.
 
 :::image type="content" source="media/workbooks-link-actions/azure-resource-manager-action-pane.png" alt-text="Screenshot that shows Azure Workbooks ARM action pane.":::
 
 The progress and result of the ARM Action is shown as an Azure portal notification.
-
-:::image type="content" source="media/workbooks-link-actions/azure-resource-manager-action-custom-notifications.png" alt-text="Screenshot that shows Azure ARM custom notifications.":::
-
 
 ## Azure Resource Manager deployment link settings
 
@@ -118,8 +109,6 @@ This section defines where the template should come from and the parameters used
 |Resource group ID comes from| The resource ID is used to manage deployed resources. The subscription is used to manage deployed resources and costs. The resource groups are used like folders to organize and manage all your resources. If this value isn't specified, the deployment fails. Select from **Cell**, **Column**, **Parameter**, and **Static Value** in [Link sources](#link-sources).|
 |ARM template URI from| The URI to the ARM template itself. The template URI needs to be accessible to the users who deploy the template. Select from **Cell**, **Column**, **Parameter**, and **Static Value** in [Link sources](#link-sources). For more information, see [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/).|
 |ARM Template Parameters|Defines the template parameters used for the template URI defined earlier. These parameters are used to deploy the template on the run page. The grid contains an **Expand** toolbar button to help fill the parameters by using the names defined in the template URI and set to static empty values. This option can only be used when there are no parameters in the grid and the template URI is set. The lower section is a preview of what the parameter output looks like. Select **Refresh** to update the preview with current changes. Parameters are typically values. References are something that could point to key vault secrets that the user has access to. <br/><br/> **Template Viewer pane limitation** doesn't render reference parameters correctly and shows as a null/value. As a result, users won't be able to correctly deploy reference parameters from the **Template Viewer** tab.|
-<!-- convertborder later -->
-:::image type="content" source="./media/workbooks-link-actions/template-settings.png" lightbox="./media/workbooks-link-actions/template-settings.png" alt-text="Screenshot that shows the Template Settings tab." border="false":::
 
 ### UX settings
 
@@ -130,19 +119,12 @@ This section configures what you see before you run the Resource Manager deploym
 |Title from| Title used on the run view. Select from **Cell**, **Column**, **Parameter**, and **Static Value** in [Link sources](#link-sources).|
 |Description from| The Markdown text used to provide a helpful description to users when they want to deploy the template. Select from **Cell**, **Column**, **Parameter**, and **Static Value** in [Link sources](#link-sources). <br/><br/> If you select **Static Value**, a multi-line text box appears. In this text box, you can resolve parameters by using `"{paramName}"`. Also, you can treat columns as parameters by appending `"_column"` after the column name like `{columnName_column}`. In the following example image, you can reference the column `"VMName"` by writing `"{VMName_column}"`. The value after the colon is the [parameter formatter](../visualize/workbooks-parameters.md#parameter-formatting-options). In this case, it's **value**.|
 |Run button text from| Label used on the run (execute) button to deploy the ARM template. Users select this button to start deploying the ARM template.|
-<!-- convertborder later -->
-:::image type="content" source="./media/workbooks-link-actions/ux-settings.png" lightbox="./media/workbooks-link-actions/ux-settings.png" alt-text="Screenshot that shows the Resource Manager UX Settings tab." border="false":::
 
 After these configurations are set, when you select the link, the view opens with the UX described in the UX settings. If you select **Run button text from**, an ARM template is deployed by using the values from [Template Settings](#template-settings). **View template** opens the **Template Viewer** tab so that you can examine the template and the parameters before you deploy.
-<!-- convertborder later -->
-:::image type="content" source="./media/workbooks-link-actions/run-tab.png" lightbox="./media/workbooks-link-actions/run-tab.png" alt-text="Screenshot that shows running Resource Manager view." border="false":::
 
 ## Custom view link settings
 
 Use this setting to open **Custom Views** in the Azure portal. You can configure the settings using the form or URL.
-
-<!-- convertborder later -->
-:::image type="content" source="./media/workbooks-link-actions/custom-link-settings.png" lightbox="./media/workbooks-link-actions/custom-link-settings.png" alt-text="Screenshot that shows the Custom link settings." border="false":::
 
 > [!NOTE]
 > Views with a menu can't be opened in a context tab. If a view with a menu is configured to open in a context tab, no context tab is shown when the link is selected.
@@ -216,18 +198,18 @@ When the workbook link is opened, the new workbook view is passed to all the val
 |Workbook| Use the value set in the current workbook. |
 |Default| Use the default value that would be used if no value were specified. This situation is common for **Gallery Type comes from**, where the default gallery would be set by the type of the owner resource. |
 
-## Copilot in Azure (preview) settings
+## Copilot in Azure settings
 
-When a **Copilot in Azure (preview)** link is invoked, it formats the configured link and sends it as a prompt to the [Microsoft Copilot in Azure (preview)](/azure/copilot/overview). The Microsoft Copilot in Azure then responds  to the prompt to explain more about Azure concepts, services, or offerings. 
+When a **Copilot in Azure** link is invoked, it formats the configured link and sends it as a prompt to the [Microsoft Copilot in Azure](/azure/copilot/overview). The Microsoft Copilot in Azure then responds  to the prompt to explain more about Azure concepts, services, or offerings. 
 The link action can be configured to insert parameter values or grid content into the prompt text.
 
 > [!NOTE]
-> If Microsoft Copilot in Azure (preview) is not enabled in your environment, instead of sending the prompt to Microsoft Copilot in Azure, the formatted prompt will be displayed in Cell Details side pane.
+> If Microsoft Copilot in Azure is not enabled in your environment, instead of sending the prompt to Microsoft Copilot in Azure, the formatted prompt will be displayed in Cell Details side pane.
 
-Select the **Configure...** button to open the Copilot in Azure (preview) prompt settings pane. The Copilot in Azure (preview) prompt settings shows a text area, where you can configure the prompt text and insert parameter markers with the standard `{parameter}` syntax, or references grid columns via the standard `["column name"]` syntax. At the current time, the prompt content is limited to 500 characters after formatting. Any remaining content is truncated.
+Select the **Configure...** button to open the Copilot in Azure prompt settings pane. The Copilot in Azure prompt settings shows a text area, where you can configure the prompt text and insert parameter markers with the standard `{parameter}` syntax, or references grid columns via the standard `["column name"]` syntax. At the current time, the prompt content is limited to 500 characters after formatting. Any remaining content is truncated.
 
 <!-- convertborder later -->
-:::image type="content" source="./media/workbooks-link-actions/copilot-link-settings.png" lightbox="./media/workbooks-link-actions/copilot-link-settings.png" alt-text="Screenshot that shows Copilot in Azure (preview) prompt text." border="false":::
+:::image type="content" source="./media/workbooks-link-actions/copilot-link-settings.png" lightbox="./media/workbooks-link-actions/copilot-link-settings.png" alt-text="Screenshot that shows Copilot in Azure prompt text." border="false":::
 
 
 

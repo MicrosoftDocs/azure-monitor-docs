@@ -40,6 +40,9 @@
   items:
     - name: Permissions and security
       href: chaos-studio-permissions-security.md
+      items:
+        - name: Assigning experiment permissions
+          href: chaos-studio-assign-experiment-permissions.md
     - name: Private networking
       href: chaos-studio-private-networking.md
       items:
@@ -61,6 +64,8 @@
           href: chaos-studio-tutorial-agent-based-portal.md
         - name: CLI installation tutorial
           href: chaos-studio-tutorial-agent-based-cli.md
+        - name: Enable and install agent via ARM template
+          href: chaos-agent-arm-template.md
         - name: Verify agent status
           href: chaos-agent-verify-status.md
         - name: Private Link and network security for agent

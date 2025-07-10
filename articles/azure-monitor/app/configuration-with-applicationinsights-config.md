@@ -1,7 +1,7 @@
 ---
 title: ApplicationInsights.config reference - Azure | Microsoft Docs
 description: Enable or disable data collection modules and add performance counters and other parameters.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/21/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp
@@ -304,7 +304,8 @@ Configure a [snapshot collection for ASP.NET applications](snapshot-debugger-vm.
 
 ## Next steps
 
-[Learn more about the API][api]
+- Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
+- [Learn more about the API][api]
 
 <!--Link references-->
 

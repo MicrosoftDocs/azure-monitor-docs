@@ -2,7 +2,7 @@
 title: Query data in a Basic and Auxiliary table in Azure Monitor Logs 
 description: This article explains how to query data from Basic and Auxiliary logs tables.
 ms.reviewer: adi.biran
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/21/2024
 ---
 
@@ -52,7 +52,7 @@ Queries of data in Auxiliary tables are unoptimized and might take longer to ret
 
 ### Purge
 
-You can’t [purge personal data](personal-data-mgmt.md#exporting-and-deleting-personal-data) from Basic and Auxiliary tables. 
+You can't [purge personal data](personal-data-mgmt.md#export-delete-or-purge-personal-data) from Basic and Auxiliary tables. 
 
 ## Run a query on a Basic or Auxiliary table
 
@@ -99,7 +99,7 @@ https://api.loganalytics.io/v1/workspaces/{workspaceId}/search?timespan=P1D
 
 ## Pricing model
 
-The charge for a query on Basic and Auxiliary tables is based on the amount of data the query scans, which depends on the size of the table and the query's time range. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. For example, a query that scans three days of data in a table that ingests 100 GB each day, would be charged for 300 GB. 
+The charge for a query on Basic and Auxiliary tables is based on the amount of data the query scans, which depends on the size of the table and the query's time range. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. For example, a query that scans three days of data in a table that ingests 100 GB each day, would be charged for 300 GB.
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 

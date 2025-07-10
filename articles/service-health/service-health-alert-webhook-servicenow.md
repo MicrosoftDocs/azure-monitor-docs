@@ -1,17 +1,17 @@
 ---
 title: Send Azure service health alerts with ServiceNow
 description: Get personalized notifications about service health events to your ServiceNow instance.
-ms.topic: conceptual
-ms.date: 06/10/2019
+ms.topic: how-to
+ms.date: 05/20/2025
 ms.custom:
 ---
 # Send Azure service health alerts with ServiceNow using webhooks
 
-This article shows you how to integrate Azure service health alerts with ServiceNow using a webhook. After setting up webhook integration with your ServiceNow instance, you get alerts through your existing notification infrastructure when Azure service issues affect you. Every time an Azure Service Health alert fires, it calls a webhook through the ServiceNow Scripted REST API.
+This article shows you how to integrate Azure service health alerts with ServiceNow using a webhook. After setting up webhook integration with your ServiceNow instance, you get alerts through your existing notification infrastructure when Azure service issues affect you. Every time an Azure Service Health alert happens, it calls a webhook through the ServiceNow Scripted REST API.
 
 ## Creating a scripted REST API in ServiceNow
 
-1.  Make sure you have signed up for and are signed into your [ServiceNow](https://www.servicenow.com/) account.
+1.  Make sure you're signed up for and are signed into your [ServiceNow](https://www.servicenow.com/) account.
 
 1.  Navigate to the **System Web Services** section in ServiceNow and select **Scripted REST APIs**.
 
@@ -36,7 +36,7 @@ This article shows you how to integrate Azure service health alerts with Service
 1.  In the **Script** section, add the following JavaScript code:
 
     >[!NOTE]
-    >You need to update the `<secret>`,`<group>`, and `<email>` value in the script below.
+    >You need to update the `<secret>`,`<group>`, and `<email>` value in the script shown here.
     >* `<secret>` should be a random string, like a GUID
     >* `<group>` should be the ServiceNow group you want to assign the incident to
     >* `<email>` should be the specific person you want to assign the incident to (optional)
@@ -142,7 +142,7 @@ This article shows you how to integrate Azure service health alerts with Service
 
 ## Create an alert using ServiceNow in the Azure portal
 ### For a new action group:
-1. Follow steps 1 through 8 in [this article](./alerts-activity-log-service-notifications-portal.md) to create an alert with a new action group.
+1. Follow steps 1 through 8 in [Action groups](/azure/azure-monitor/alerts/action-groups) and create an alert with a new action group.
 
 1. Define in the list of **Actions**:
 

@@ -1,8 +1,8 @@
 ---
 title: 'Azure Monitor best practices: Configure data collection'
 description: Guidance and recommendations for configuring data collection in Azure Monitor.
-ms.topic: conceptual
-ms.date: 07/26/2024
+ms.topic: best-practice
+ms.date: 05/21/2025
 ms.reviewer: bwren
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: Manage the Azure Log Analytics agent 
 description: This article describes the different management tasks that you'll typically perform during the lifecycle of the Log Analytics Windows or Linux agent deployed on a machine.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 11/14/2024
 ms.reviewer: luki

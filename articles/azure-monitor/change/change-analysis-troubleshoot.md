@@ -1,11 +1,8 @@
 ---
 title: Troubleshoot Change Analysis (classic)
 description: Learn how to troubleshoot problems in Azure Monitor Change Analysis (classic).
-ms.topic: conceptual
-ms.author: hannahhunter
-author: hhunter-ms
-ms.date: 09/12/2024
-ms.subservice: change-analysis
+ms.topic: troubleshooting-general
+ms.date: 03/25/2025
 ---
 
 # Troubleshoot Change Analysis (classic)

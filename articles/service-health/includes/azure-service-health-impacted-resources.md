@@ -1,12 +1,12 @@
 ---
 ms.service: azure-service-health
 ms.topic: include
-ms.date: 2/12/2024
+ms.date: 6/16/2025
 ---
 
-### Confirmed impacted resources
+#### Confirmed impacted resources
 
-Returns all impacted resources for all service issue (outage) Service Health events across all subscriptions to which the user has access.
+This query finds and returns a list of all impacted resources affected by service issues (outages) and Service Health events across all subscriptions you access.
 
 ```kusto
 ServiceHealthResources
@@ -36,9 +36,10 @@ Search-AzGraph -Query "ServiceHealthResources | where type == 'microsoft.resourc
 
 ---
 
-### Confirmed impacted resources with more details
+#### Confirmed impacted resources with more details
 
-Returns all impacted resources for all service issue (outage) Service Health events across all subscriptions to which the user has access. This query also provides more details from the `resources` table.
+This query retrieves all resources affected by Service Health issues (such as outages) across all the subscriptions you have access to. It also includes extra details from the `resources` table.
+
 
 ```kusto
 servicehealthresources

@@ -1,7 +1,7 @@
 ---
 title: Application Insights IP address collection | Microsoft Docs
 description: Understand how Application Insights handles IP addresses and geolocation.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/05/2025
 ms.reviewer: mmcc
 ---

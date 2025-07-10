@@ -1,7 +1,7 @@
 ---
 title: Get-Metric in Azure Monitor Application Insights
 description: Learn how to effectively use the GetMetric() call to capture locally preaggregated metrics for .NET and .NET Core applications with Azure Monitor Application Insights.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/21/2025
 ms.devlang: csharp
 ms.custom: devx-track-dotnet
@@ -308,6 +308,7 @@ SeverityLevel.Error);
 
 ## Next steps
 
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Metrics - Get - REST API](/rest/api/application-insights/metrics/get)
 * [Application Insights API for custom events and metrics](api-custom-events-metrics.md)
 * [Learn more](./worker-service.md) about monitoring worker service applications.

@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 11/29/2023
-ms.author: abbyweisberg
-author: AbbyMSFT
 ---
 
 ## Configure the scope of the alert rule

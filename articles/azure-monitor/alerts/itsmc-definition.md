@@ -1,7 +1,7 @@
 ---
 title: IT Service Management Connector in Log Analytics
 description: This article provides an overview of IT Service Management Connector (ITSMC) and information about using it to monitor and manage ITSM work items in Log Analytics and resolve problems quickly.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/07/2024
 ms.custom: references_regions
 ms.reviewer: nolavime
@@ -116,7 +116,7 @@ When you create or edit an Azure alert rule, use an action group, which has an I
 >
 > * If you have policies for inbound traffic for your ServiceNow instances, add ActionGroup service tag to allowList.
 > 
-> * Notice that when you are defining a query in Log Search alerts you need to have in the query result the Configuration items names with one of the label names "Computer",  "Resource", "_ResourceId" or "ResourceId”. This mapping will enable to map the configuration items to the ITSM payload
+> * Notice that when you are defining a query in Log Search alerts you need to have in the query result the Configuration items names with one of the label names "Computer",  "Resource", "_ResourceId" or "ResourceId". This mapping will enable to map the configuration items to the ITSM payload
 
 ## Next steps
 

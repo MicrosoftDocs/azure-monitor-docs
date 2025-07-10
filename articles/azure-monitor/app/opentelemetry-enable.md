@@ -1,7 +1,7 @@
 ---
 title: Enable OpenTelemetry in Application Insights
 description: Learn how to enable OpenTelemetry (OTel) data collection in Application Insights for .NET, Java, Node.js, and Python applications using the Azure Monitor OpenTelemetry Distro.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/28/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, typescript, python
@@ -21,13 +21,16 @@ This article describes how to enable and configure OpenTelemetry-based data coll
 * Allows collecting [custom](opentelemetry-add-modify.md#collect-custom-telemetry) telemetry.
 * Supports [Live Metrics](live-stream.md) to monitor and collect more telemetry from live, in-production web applications.
 
-For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](opentelemetry-help-support-feedback.md#why-should-i-use-the-azure-monitor-opentelemetry-distro).
+For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](application-insights-faq.yml#why-should-i-use-the-azure-monitor-opentelemetry-distro).
 
 To learn more about collecting data using OpenTelemetry, check out [Data Collection Basics](opentelemetry-overview.md) or the [OpenTelemetry FAQ](.\opentelemetry-help-support-feedback.md).
 
 ### OpenTelemetry release status
 
-OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applications. For a feature-by-feature release status, see the [FAQ](opentelemetry-help-support-feedback.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applications. For a feature-by-feature release status, see the [FAQ](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
 
 ## Enable OpenTelemetry with Application Insights
 
@@ -230,6 +233,7 @@ Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path
 
 > [!NOTE]
 > Sampling is enabled by default at a rate of 5 requests per second, aiding in cost management. Telemetry data may be missing in scenarios exceeding this rate. For more information on modifying sampling configuration, see [sampling overrides](./java-standalone-sampling-overrides.md).
+> If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 > [!TIP]
 > For scenario-specific guidance, see [Get Started (Supplemental)](./java-get-started-supplemental.md).

@@ -1,7 +1,7 @@
 ---
 title: Create Log Analytics workspaces
 description: Learn how to create a Log Analytics workspace to enable management solutions and data collection from your cloud and on-premises environments.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 08/12/2024
 ms.reviewer: yossiy
 

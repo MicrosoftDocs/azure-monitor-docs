@@ -2,7 +2,7 @@
 title: Azure Monitor workbook chart visualizations
 description: Learn about all the Azure Monitor workbook chart visualizations.
 ms.tgt_pltfrm: ibiza
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/17/2024
 ---
 

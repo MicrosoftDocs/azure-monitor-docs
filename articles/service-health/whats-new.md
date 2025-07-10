@@ -1,27 +1,28 @@
 ---
-title: What's new in Azure Service Health
-description: What's New in Azure Service Health
-ms.topic: conceptual
-ms.date: 02/14/2025
+title: What's New in Azure Service Health
+description: Learn about what's new in Azure Service Health
+ms.topic: whats-new
+ms.date: 07/02/2025
 ---
 
 # What's new in Azure Service Health service
 
 This article lists recent changes in the Azure Service Health service. 
 
-## New Metadata information
-In February 2025, there's a new field called Event Level which indicates the significance of each communication in Service Health Communications. 
-You can use this field to sort events. See [Service Health Event Level Filter notifications](metadata-filter.md)
+
+### New Event tags
+There's a new field in the Azure Service Health portal called "Event tags" attached to individual service health communications to help users quickly understand the nature and status of an event.
+This field is informational only. See [Service Health Event tags](service-health-event-tags.md).
 
 
+### Azure Service Health FAQ page
+Check out this new page with questions that help you understand more about Service Health.<br>
+For more information see [Service Health FAQ](service-health-faq.yml).
 
-## What's coming
 
-### Azure Co-Pilot for Microsoft in Service Health
-You can use Azure Co-Pilot for Microsoft to find outage details, ask questions about subscriptions and resources, and access more details about outages through links to the service health portal. 
+### What's coming
 
-### In-portal Billing communications
-There will be new Billing communication events available in-portal for subscribers to find more information about their billing events such as overbilling, underbilling, price changes, etc.
+#### Create tenant-based Service Health alerts.
+There will be option to create tenant-based Service Health alerts.
 
-### New Communication Event tags
-There will be new metadata tags for communication events to filter through the service health events in the portal.
+
