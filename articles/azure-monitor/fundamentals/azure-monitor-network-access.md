@@ -2,7 +2,7 @@
 title: Azure Monitor endpoint access and firewall configuration | Microsoft Docs
 description: Ensure your Azure resources can connect to Azure Monitor by configuring firewall rules and understanding endpoint access requirements.
 ms.topic: reference
-ms.date: 03/31/2025
+ms.date: 07/01/2025
 ms.servce: azure-monitor
 ms.reviewer: rofrenke
 ---
@@ -23,7 +23,7 @@ If you're using [Azure network security groups](/azure/virtual-network/network-s
 
 You need to open some outgoing ports in your server's firewall to allow the Application Insights SDK or Application Insights Agent to send data to the portal.
 
-| Purpose | URL | Type | Ports |
+| Purpose | Hostname | Type | Ports |
 |---------|-----|------|-------|
 | Telemetry | `dc.applicationinsights.azure.com`<br>`dc.applicationinsights.microsoft.com`<br>`dc.services.visualstudio.com`<br><br>`{region}.in.applicationinsights.azure.com`<br><br> | Global<br>Global<br>Global<br><br>Regional<br> | 443 |
 | Live Metrics | `live.applicationinsights.azure.com`<br>`rt.applicationinsights.microsoft.com`<br>`rt.services.visualstudio.com`<br><br>`{region}.livediagnostics.monitor.azure.com`<br><br>Example for `{region}`: `westus2` |Global<br>Global<br>Global<br><br>Regional<br> | 443 |
@@ -37,7 +37,7 @@ You need to open some outgoing ports in your server's firewall to allow the Appl
 
 Application Insights Agent configuration is needed only when you're making changes.
 
-| Purpose | URL | Ports |
+| Purpose | Hostname | Ports |
 |---------|-----|-------|
 | Configuration | `management.core.windows.net` | `443` |
 | Configuration | `management.azure.com` | `443` |
@@ -52,16 +52,27 @@ Application Insights Agent configuration is needed only when you're making chang
 
 For more information on availability tests, see [Private availability testing](../app/availability-private-test.md).
 
-## Application Insights and Log Analytics APIs
+## Logs Query API endpoints
 
-| Purpose | URI | Ports |
+Starting **July 1, 2025**,  Log Analytics enforces TLS 1.2 or higher for secure communication. For more information, see [Secure Logs data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
+
+| Purpose | Hostname | Ports |
 |---------|-----|-------|
-| API | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`<br>`dev.applicationinsights.io`<br>`dev.applicationinsights.microsoft.com`<br>`dev.aisvc.visualstudio.com`<br>`www.applicationinsights.io`<br>`www.applicationinsights.microsoft.com`<br>`www.aisvc.visualstudio.com`<br>`api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`dev.loganalytics.io`<br>`docs.loganalytics.io`<br>`www.loganalytics.io`<br>`api.loganalytics.azure.com` | 80,443 |
-| Azure Pipeline annotations extension | `aigs1.aisvc.visualstudio.com` | 443 |
+| [Application Insights](/rest/api/application-insights/operation-groups?view=rest-application-insights-v1) | `api.applicationinsights.io`<br>`api1.applicationinsights.io`<br>`api2.applicationinsights.io`<br>`api3.applicationinsights.io`<br>`api4.applicationinsights.io`<br>`api5.applicationinsights.io`</br>`api.applicationinsights.azure.com`</br>`*.api.applicationinsights.azure.com`| 443 |
+| [Log Analytics](../logs/api/overview.md) | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`</br>`api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>| 443 |
+| [Azure Data Explorer](/azure/data-explorer/query-monitor-data) | `ade.loganalytics.io`<br>`ade.applicationinsights.io`<br>`adx.monitor.azure.com`<br>`*.adx.monitor.azure.com`<br>`*.adx.applicationinsights.azure.com`<br>`adx.applicationinsights.azure.com`<br>`adx.loganalytics.azure.com`<br>`*.adx.loganalytics.azure.com` | 443 |
+
+## Logs Ingestion API endpoints
+
+Starting **March 1, 2026**,  Logs Ingestion enforces TLS 1.2 or higher for secure communication. For more information, see [Secure Logs data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
+
+| Purpose | Hostname | Ports |
+|---|---|---|
+| [Logs Ingestion API](../logs/logs-ingestion-api-overview.md) | `*.ingest.monitor.azure.com`</br>`prod.la.ingest.monitor.core.windows.NET`</br>`*.prod.la.ingestion.msftcloudes.com`</br>`prod.la.ingestion.msftcloudes.com`</br>`*.prod.la.ingest.monitor.core.windows.NET` | 443 |
 
 ## Application Insights analytics
 
-| Purpose | URI | Ports |
+| Purpose | Hostname | Ports |
 |---------|-----|-------|
 | CDN (Content Delivery Network) | `applicationanalytics.azureedge.net` | 80,443 |
 | Media CDN | `applicationanalyticsmedia.azureedge.net` | 80,443 |
@@ -70,22 +81,22 @@ The Application Insights team owns the *.applicationinsights.io domain.
 
 ## Log Analytics portal
 
-| Purpose | URI | Ports |
+| Purpose | Hostname | Ports |
 |---------|-----|-------|
-| Portal | `portal.loganalytics.io` | 80,443 |
+| Portal | `portal.loganalytics.io` | 443 |
 
 The Log Analytics team owns the *.loganalytics.io domain.
 
 ## Application Insights Azure portal extension
 
-| Purpose | URI | Ports |
+| Purpose | Hostname | Ports |
 |---------|-----|-------|
 | Application Insights extension | `stamp2.app.insightsportal.visualstudio.com` | 80,443 |
 | Application Insights extension CDN | `insightsportal-prod2-cdn.aisvc.visualstudio.com`<br>`insightsportal-prod2-asiae-cdn.aisvc.visualstudio.com`<br>`insightsportal-cdn-aimon.applicationinsights.io` | 80,443 |
 
 ## Application Insights SDKs (Software Development Kits)
 
-| Purpose | URI | Ports |
+| Purpose | Hostname | Ports |
 |---------|-----|-------|
 | Application Insights JS SDK CDN | `az416426.vo.msecnd.net`<br>`js.monitor.azure.com` | 80,443 |
 
@@ -122,7 +133,7 @@ Managing changes to source IP addresses can be time consuming. Using *service ta
 
 ## Application Insights Profiler for .NET
 
-| Purpose | URI | Ports |
+| Purpose | Hostname | Ports |
 |---------|-----|-------|
 | Agent | `agent.azureserviceprofiler.net`<br>`*.agent.azureserviceprofiler.net`<br>`profiler.monitor.azure.com` | 443 |
 | Portal | `gateway.azureserviceprofiler.net`<br>`dataplane.diagnosticservices.azure.com` | 443 |
@@ -133,7 +144,7 @@ Managing changes to source IP addresses can be time consuming. Using *service ta
 > [!NOTE]
 > Application Insights Profiler for .NET and Snapshot Debugger share the same set of IP addresses.
 
-| Purpose | URI | Ports |
+| Purpose | Hostname | Ports |
 |---------|-----|-------|
 | Agent | `agent.azureserviceprofiler.net`<br>`*.agent.azureserviceprofiler.net`<br>`snapshot.monitor.azure.com` | 443 |
 | Portal | `gateway.azureserviceprofiler.net`<br>`dataplane.diagnosticservices.azure.com` | 443 |

@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 03/19/2025
+ms.date: 07/01/2025
 ---
 
 #### Grant access to data in the workspace based on need
@@ -9,16 +9,27 @@ ms.date: 03/19/2025
 1. Assign the appropriate built-in role to grant workspace permissions to administrators at the subscription, resource group, or workspace level depending on their scope of responsibilities. <br>**Instructions**: [Manage access to Log Analytics workspaces](../manage-access.md#azure-rbac)
 1. Apply table-level RBAC for users who require access to a set of tables across multiple resources. Users with table permissions have access to all the data in the table regardless of their resource permissions.<br>**Instructions**: [Manage access to Log Analytics workspaces](../manage-access.md#set-table-level-read-access)
 
-#### Send data to your workspace using Transport Layer Security (TLS) 1.2 or higher
+#### Secure Logs data in transit
 
-If you use agents, connectors, or the Logs APIs to [query](/rest/api/loganalytics/operation-groups?view=rest-loganalytics-2022-10-27-preview) or [send](../logs-ingestion-api-overview.md) data to your workspace, use Transport Layer Security (TLS) 1.2 or higher to ensure the security of your data in transit. Older versions of TLS and Secure Sockets Layer (SSL) have vulnerabilities and, while they might still work to allow backwards compatibility, they are **not recommended**, and the industry has quickly moved to abandon support for these older protocols.
+If you use agents, connectors, or the Logs APIs to [query](../log-query-overview.md) or [send](../logs-ingestion-api-overview.md) data to your workspace, use Transport Layer Security (TLS) 1.2 or higher to ensure the security of your data in transit. Older versions of TLS and Secure Sockets Layer (SSL) have vulnerabilities and, while they might still work to allow backwards compatibility, they are **not recommended**, and the industry has quickly moved to abandon support for these older protocols.
 
-The [PCI Security Standards Council](https://www.pcisecuritystandards.org/) set a [deadline of June 30, 2018](https://www.pcisecuritystandards.org/pdfs/PCI_SSC_Migrating_from_SSL_and_Early_TLS_Resource_Guide.pdf) to disable older versions of TLS/SSL and upgrade to more secure protocols. Once Azure drops legacy support, if your agents can't communicate over at least TLS 1.2, you won't be able to send data to Azure Monitor Logs.
+The [PCI Security Standards Council](https://www.pcisecuritystandards.org/) set a [deadline of June 30, 2018](https://www.pcisecuritystandards.org/pdfs/PCI_SSC_Migrating_from_SSL_and_Early_TLS_Resource_Guide.pdf) to disable older versions of TLS/SSL and upgrade to more secure protocols. Once Azure drops legacy support, clients that don't completely communicate over TLS 1.2 or higher won't be able to send or query data to Azure Monitor Logs.
 
 Don't explicitly configure your agents, data connectors or API applications to *only* use TLS 1.2 unless necessary. Allowing them to automatically detect, negotiate, and take advantage of future security standards is recommended. Otherwise, you might miss the added security of the newer standards and possibly experience problems if TLS 1.2 is ever deprecated in favor of those newer standards.
 
 > [!IMPORTANT]
->  On 1 July 2025, in alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services), TLS 1.0/1.1 protocol versions will be retired for Azure Monitor Logs. To provide best-in-class encryption, Azure Monitor Logs uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice. 
+>  In alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services), TLS 1.0/1.1 protocol will be completely blocked for Azure Monitor Logs according to the dates in the following table. To provide best-in-class encryption, Azure Monitor Logs already uses TLS 1.2/1.3 as the encryption mechanisms of choice.
+
+| Enforcement date | Query API endpoints | TLS protocol version |
+|---|---|---|
+| **1 July 2025** | [Logs Query API endpoints](../../fundamentals/azure-monitor-network-access.md#logs-query-api-endpoints) | TLS 1.2 or higher | 
+| **1 March 2026** | [Logs Ingestion API endpoints](../../fundamentals/azure-monitor-network-access.md#logs-ingestion-api-endpoints) | TLS 1.2 or higher |
+
+**Recommended action**
+
+To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols. 
+
+For example, clients configured to work with older servers might still use TLS 1.0/1.1 protocols to start a TLS handshake. When that client connects to Azure Monitor Logs before the TLS 1.2 enforcement date, the Logs API endpoint still allows the initial TLS 1.0/1.1 connection for the client hello, but directs the client to use TLS 1.2 or higher. The client is then allowed to establish the connection at TLS 1.2/1.3, or the connection is dropped. After the TLS 1.2 enforcement date, the Logs API endpoint drops any traffic that isn't TLS 1.2 or higher.
 
 For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 

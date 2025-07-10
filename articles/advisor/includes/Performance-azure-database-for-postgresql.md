@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 07/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -341,13 +341,14 @@ The server has enable_indexscan server parameter set to off. Turn on enable_inde
 
 **Impact:** Medium
   
-For more information, see [Query Tuning / Planner Method Configuration server parameters - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/server-parameters-table-query-tuning-planner-method-configuration?pivots=postgresql-17#enable_indexscan)  
+  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 6772abda-0192-4e70-bfeb-409c7e7cf73c  
 
 
 <!--6772abda-0192-4e70-bfeb-409c7e7cf73c_end-->
+
 
 <!--bb641db9-591e-4a7e-b4f0-6d9409d646fe_begin-->
 
@@ -366,5 +367,23 @@ Recommendation ID: bb641db9-591e-4a7e-b4f0-6d9409d646fe
 
 
 <!--bb641db9-591e-4a7e-b4f0-6d9409d646fe_end-->
+
+<!--e77d49af-7101-4e7e-a184-472fbf882c35_begin-->
+
+#### Review the pgaudit.log server parameter for the server  
+  
+The pgaudit.log server parameter for the server is set to values that impact performance. Update the server parameter to exclude all, read, write, and function values to improve efficiency and reduce overhead.  
+  
+**Potential benefits**: Improve server performance  
+
+**Impact:** Medium
+  
+For more information, see [Customized Options server parameters - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/server-parameters-table-customized-options?pivots=postgresql-17#pgauditlog)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: e77d49af-7101-4e7e-a184-472fbf882c35  
+
+
+<!--e77d49af-7101-4e7e-a184-472fbf882c35_end-->
 
 <!--articleBody-->

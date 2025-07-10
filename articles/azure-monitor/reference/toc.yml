@@ -1308,8 +1308,6 @@ items:
             href: tables/microsoft-dbformysql_servers.md
           - name: microsoft.dbforpostgresql/flexibleservers
             href: tables/microsoft-dbforpostgresql_flexibleservers.md
-          - name: microsoft.dbforpostgresql/servergroupsv2
-            href: tables/microsoft-dbforpostgresql_servergroupsv2.md
           - name: microsoft.dbforpostgresql/servers
             href: tables/microsoft-dbforpostgresql_servers.md
           - name: microsoft.dbforpostgresql/serversv2
@@ -1322,8 +1320,6 @@ items:
             href: tables/microsoft-desktopvirtualization_workspaces.md
           - name: microsoft.devcenter/devcenters
             href: tables/microsoft-devcenter_devcenters.md
-          - name: microsoft.devcenter/plans
-            href: tables/microsoft-devcenter_plans.md
           - name: microsoft.devices/iothubs
             href: tables/microsoft-devices_iothubs.md
           - name: microsoft.devices/provisioningservices
@@ -2195,6 +2191,16 @@ items:
             href: tables/containerregistryrepositoryevents.md
           - name: ContainerServiceLog
             href: tables/containerservicelog.md
+          - name: CrowdStrikeAlerts
+            href: tables/crowdstrikealerts.md
+          - name: CrowdStrikeDetections
+            href: tables/crowdstrikedetections.md
+          - name: CrowdStrikeHosts
+            href: tables/crowdstrikehosts.md
+          - name: CrowdStrikeIncidents
+            href: tables/crowdstrikeincidents.md
+          - name: CrowdStrikeVulnerabilities
+            href: tables/crowdstrikevulnerabilities.md
           - name: DCRLogErrors
             href: tables/dcrlogerrors.md
           - name: DCRLogTroubleshooting
@@ -2359,6 +2365,12 @@ items:
             href: tables/devicecleanup.md
           - name: DeviceConnectSession
             href: tables/deviceconnectsession.md
+          - name: DeviceCustomFileEvents
+            href: tables/devicecustomfileevents.md
+          - name: DeviceCustomNetworkEvents
+            href: tables/devicecustomnetworkevents.md
+          - name: DeviceCustomScriptEvents
+            href: tables/devicecustomscriptevents.md
           - name: DeviceEtw
             href: tables/deviceetw.md
           - name: DeviceEvents
@@ -2451,6 +2463,8 @@ items:
             href: tables/filemaliciouscontentinfo.md
           - name: FunctionAppLogs
             href: tables/functionapplogs.md
+          - name: GCPApigee
+            href: tables/gcpapigee.md
           - name: GCPAuditLogs
             href: tables/gcpauditlogs.md
           - name: GCPCDN
@@ -2581,6 +2595,8 @@ items:
             href: tables/laquerylogs.md
           - name: LASummaryLogs
             href: tables/lasummarylogs.md
+          - name: LIATrackingEvents
+            href: tables/liatrackingevents.md
           - name: LogicAppWorkflowRuntime
             href: tables/logicappworkflowruntime.md
           - name: MAApplication
@@ -2665,6 +2681,8 @@ items:
             href: tables/mnfsystemsessionhistoryupdates.md
           - name: MNFSystemStateMessageUpdates
             href: tables/mnfsystemstatemessageupdates.md
+          - name: MPCIngestionLogs
+            href: tables/mpcingestionlogs.md
           - name: McasShadowItReporting
             href: tables/mcasshadowitreporting.md
           - name: MicrosoftAzureBastionAuditLogs

@@ -103,7 +103,7 @@ Here's a comparison between using the client installer and using the virtual mac
     | `INSTALLDIR` | Directory path where the agent binaries are installed. |
     | `DATASTOREDIR` | Directory path where the agent stores its operational logs and data. |
     | `PROXYUSE` | Must be set to `true` to use a proxy. |
-    | `PROXYADDRESS` | Set to the proxy address. `PROXYUSE` must be set to `true` to be correctly applied. |
+    | `PROXYADDRESS` | Set to the proxy address including the port number, in the format `Address:Port`. `PROXYUSE` must be set to `true` for this parameter to be correctly applied. |
     | `PROXYUSEAUTH` | Set to `true` if a proxy requires authentication. |
     | `PROXYUSERNAME` | Set to the proxy username. `PROXYUSE` and `PROXYUSEAUTH` must be set to `true`. |
     | `PROXYPASSWORD` | Set to the proxy password. `PROXYUSE` and `PROXYUSEAUTH` must be set to `true`. |

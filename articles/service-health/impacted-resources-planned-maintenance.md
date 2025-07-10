@@ -2,7 +2,7 @@
 title: Impacted Resources from Azure planned maintenance events
 description: This article details where to find information from Azure Service Health about how Azure planned maintenance impacts your resources.
 ms.topic: article
-ms.date: 5/14/2025
+ms.date: 6/25/2025
 
 ---
 
@@ -26,7 +26,7 @@ This article details what is communicated to users and where they can view infor
 In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Planned Maintenance** displays resources affected by a planned maintenance event. The following example of the Impacted Resources tab shows a planned maintenance event with impacted resources.
 
 
-:::image type="content" source="./media/impacted-resource-maintenance/grid-images.PNG" alt-text="Screenshot of planned maintenance impacted resources in Azure Service Health." lightbox="./media/impacted-resource-maintenance/grid-image.PNG":::
+:::image type="content" source="./media/impacted-resource-maintenance/grid-images.PNG" alt-text="Screenshot of planned maintenance impacted resources in Azure Service Health."lightbox="./media/impacted-resource-maintenance/grid-image.PNG":::
 
 Service Health provides the following information on resources impacted by a planned maintenance event:
 
@@ -54,12 +54,12 @@ Customers can filter the results using these filters:
 * **Subscription ID**: All the subscription IDs the user has access to. 
 * **Resource Type**: All the resource types under the user subscriptions.
 
-:::image type="content" source="./media/impacted-resource-maintenance/details-filters.PNG" alt-text="Screenshot of filters used to sort impacted resources.":::
+:::image type="content" source="./media/impacted-resource-maintenance/details-filters.PNG" alt-text="Screenshot of filters used to sort impacted resources."Lightbox= "./media/impacted-resource-maintenance/details-filters.PNG":::
 
 #### Export to a CSV file
 The list of impacted resources can be exported as an Excel file by clicking on this option.
 
-:::image type="content" source="./media/impacted-resource-maintenance/details-csv.PNG" alt-text="Screenshot of export to csv button.":::
+:::image type="content" source="./media/impacted-resource-maintenance/details-csv.PNG" alt-text="Screenshot of export to csv button."lightbox="./media/impacted-resource-maintenance/details-csv.PNG":::
 
 The CSV file includes the properties associated with each event and more details per event level. This file could be used as a static point in time snapshot for all the active events under the **Service Health** > **Planned maintenance** view. <br> These details are a subset of more event level information available through Service Health API, which could be integrated with Event Grid or other event automation solutions.
 

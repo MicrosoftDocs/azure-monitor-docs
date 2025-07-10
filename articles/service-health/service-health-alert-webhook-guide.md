@@ -3,19 +3,20 @@ title: Send Azure Service Health notifications via webhooks
 description: Send personalized notifications about service health events to your existing problem management system.
 ms.topic: how-to
 ms.service: azure-service-health
-ms.date: 3/27/2018
+ms.date: 7/02/2025
 
 ---
 
-# Use a webhook to configure health notifications for problem management systems
+# Send alerts to outside systems using webhook
 
-This article explains how to set up Azure Service Health alerts to send data through webhooks to your existing notification system.
+Learn how to set up Azure Service Health alerts using webhooks to receive real-time notifications about service incidents. This approach enables seamless integration with your existing notification platforms, such as ServiceNow, PagerDuty, or OpsGenie.
 
-While you can configure Service Health alerts to notify you by text message or email when an Azure service incident affects you, you might prefer to use an existing external notification system. 
 
-This guide highlights the key parts of the webhook payload and shows you how to create custom alerts to notify you about relevant service issues.
+## Use webhook to configure health notifications
 
-If you want to use a preconfigured integration, see:
+This guide outlines the key components of the webhook payload and demonstrates how to set up custom alerts to keep you informed about relevant service issues.
+
+If you want to use a preconfigured integration, read:
 * [Configure alerts with ServiceNow](service-health-alert-webhook-servicenow.md)
 * [Configure alerts with PagerDuty](service-health-alert-webhook-pagerduty.md)
 * [Configure alerts with OpsGenie](service-health-alert-webhook-opsgenie.md)
@@ -24,7 +25,7 @@ If you want to use a preconfigured integration, see:
 
 >[!VIDEO https://learn-video.azurefd.net/vod/player?id=4f25cc06-5873-4521-8c35-f4e9f0add183]
 
-## Configure a custom notification by using the Service Health webhook payload
+### Configure a custom notification by using the Service Health webhook payload
 To set up your own custom webhook integration, you need to parse the JSON payload sent via Service Health notification.
 
 See [an example](../azure-monitor/alerts/activity-log-alerts-webhook.md) `ServiceHealth` webhook payload.
@@ -48,10 +49,10 @@ For example, if your *subscriptionId* is aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e an
 
 https<i></i>://app.azure.com/h/0DET-URB/bbadb3
 
-### Use the level to detect the severity of the issue
+#### Use the level to detect the severity of the issue
 From lowest to highest severity, the **level** property in the payload can be *Informational*, *Warning*, *Error*, or *Critical*.
 
-### Determine the scope of the incident
+#### Determine the scope of the incident
 Service Health alerts can inform you about issues across multiple regions and services. To get  complete details, you need to parse the value of `impactedServices`.
 
 The content inside is an escaped [JSON](https://json.org/) string that, when unescaped, contains another JSON object that can be parsed regularly. For example:
@@ -60,7 +61,7 @@ The content inside is an escaped [JSON](https://json.org/) string that, when une
 {"data.context.activityLog.properties.impactedServices": "[{\"ImpactedRegions\":[{\"RegionName\":\"Australia East\"},{\"RegionName\":\"Australia Southeast\"}],\"ServiceName\":\"Alerts & Metrics\"},{\"ImpactedRegions\":[{\"RegionName\":\"Australia Southeast\"}],\"ServiceName\":\"App Service\"}]"}
 ```
 
-becomes:
+Becomes:
 
 ```json
 [

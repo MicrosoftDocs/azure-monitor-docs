@@ -160,15 +160,12 @@ items:
         items:
         - name: .NET
           items:
-            - name: ASP.NET Core App Monitoring
-              displayName: Core, .NET Core, services.add, dotnetcore, c#, csharp
-              href: app/asp-net-core.md
+            - name: ASP.NET (Core) App Monitoring
+              displayName: NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, c#, csharp
+              href: app/asp-net.md
             - name: ILogger
               displayName: ilogger, logging, log
               href: app/ilogger.md
-            - name: ASP.NET App Monitoring
-              displayName: ASP.NET, c#, csharp, .NET, NET, dotnet
-              href: app/asp-net.md
             - name: Non-HTTP, console, and background apps
               displayName: console, .NET, .NET Core, dotnet console, dotnet, c#, csharp, NET, worker, background, generic host
               href: app/worker-service.md
@@ -441,6 +438,8 @@ items:
           href: vm/vminsights-maps.md
         - name: Query map data
           href: vm/vminsights-log-query.md
+        - name: Map Retirement guidance
+          href: vm/vminsights-maps-retirement.md
         - name: Monitor changes
           href: vm/vminsights-change-analysis.md
         - name: Visualize data with workbooks
@@ -644,6 +643,23 @@ items:
         href: /azure/network-watcher/network-insights-overview?toc=/azure/azure-monitor/toc.json
       - name: Topology
         href: /azure/network-watcher/network-insights-topology?toc=/azure/azure-monitor/toc.json
+  - name: Health models
+    items:
+    - name: Overview
+      displayName: health models
+      href: health-models/overview.md
+    - name: Concepts
+      displayName: health models
+      href: health-models/concepts.md
+    - name: Create
+      displayName: health models
+      href: health-models/create.md
+    - name: Configure
+      displayName: health models
+      href: health-models/designer.md
+    - name: Analyze
+      displayName: health models
+      href: health-models/analyze-health.md
   - name: Azure Monitor SCOM Managed Instance
     items:
     - name: SCOM Managed Instance
@@ -1587,6 +1603,8 @@ items:
           href: alerts/alerts-resource-move.md
         - name: Query alerts using ARG
           href: alerts/migrate-from-alerts-summary-api.md
+        - name: Customize alert email subjects
+          href: alerts/alerts-customize-email-subject-how-to.md
     - name: Tutorials
       items:
       - name: Create a metric alert

@@ -1,0 +1,97 @@
+### YamlMime:FAQ
+metadata:
+  title: Azure Service Health Frequently asked Questions
+  description: Overview of Azure Resource Health
+  ms.topic: faq
+  ms.date: 06/30/2025
+title: Azure Service Health FAQ
+summary: Learn the answers to common questions about Azure Service Health.
+
+
+sections:
+  - name: General
+    questions:
+      - question: |
+           What is Azure Service Health and how is it different from Azure Status?
+        answer: |
+           Azure Service Health is a personalized service in the Azure portal that helps you stay informed about issues affecting your Azure resources. It provides real-time updates on service incidents, planned maintenance, health advisories, and security notices that are specific to your subscriptions and regions.<br>
+           Unlike the global Azure Status page, which shows broad service outages, Azure Service Health gives you a tailored view of how events impact your environment.<br> 
+           You can also configure alerts to receive notifications via email, SMS, push, or tools like ServiceNow.
+      - question: |
+          What is the difference between Azure Service Health and Resource Health?
+        answer: |
+          Azure Service Health provides personalized alerts and guidance about issues affecting Azure services and regions, such as outages or planned maintenance.<br> 
+          Azure Resource Health focuses on the health of individual resources like VMs or databases, helping you diagnose whether a specific issue is due to Azure or your own configuration. 
+          Overall, Service Health is broader with service-level information and Resource Health is granular and resource-specific.
+      - question: |
+          What types of events does Azure Service Health report?
+        answer: |
+          Azure Service Health reports the following events: 
+          - Service issues 
+          - Planned maintenance
+          - Health advisories
+          - Security advisories
+          - Billing updates<br>
+          These events are personalized to your Azure subscriptions and regions, helping you stay informed about issues that might impact your resources.<br>
+          For more information read [Service Health Portal](service-health-portal-update.md).
+          
+      - question: |
+          Who can access Service Health information on the Azure portal?
+        answer: |
+          In the Azure portal, Service Health information is accessible to users who have appropriate permissions on the subscription, such as Owner, Contributor, or Reader roles. These roles allow users to view health events and set up alerts for services and regions tied to their subscriptions.
+      - question: |
+          How often is Service Health information updated?
+        answer: |
+           Azure Service Health information is updated in near real-time as Microsoft detects and confirms issues. Updates are posted as incidents evolve, ensuring you receive timely and accurate information about the health of your services.
+      - question: |
+          What is the difference between Subscription and tenant level accounts?
+        answer: |
+          In Azure Service Health, a subscription refers to a billing and resource management boundary that contains your Azure resources. 
+          A tenant represents your entire Azure Active Directory organization.
+          - Subscription-level accounts can view service health events that affect specific resources within that subscription, such as outages or maintenance.
+          - Tenant-level accounts can access broader, organization-wide events like security advisories or global service disruptions. 
+          Only users with tenant-level roles (for example, Global Administrator) can view tenant-scoped events, and they aren't accessible via Azure Resource Graph. For more information, read [Subscription vs Tenant](subscription-vs-tenant.md) and [Roles with tenant admin access](admin-access-reference.md)
+      - question: |
+          What's the difference between Service Health notifications and Service Health alerts?
+        answer: |
+          Service Health notifications are messages published by Azure about events like incidents or maintenance that affect your services. Service Health alerts are custom rules you set up to automatically notify you via email, SMS, or other channels, when the events occur.
+      - question: |
+          How do I set up Service Health alerts for my subscriptions or services?
+        answer: |
+            To set up Service Health alerts, go to the Azure portal, open Service Health, and select "Health alerts" under the "Alerts" section.<br> 
+            From there, you can create a new alert rule by choosing the subscriptions, services, and regions you want to monitor, and then define how you want to be notified. For more information, see [Configure alerts in Azure portal](alerts-activity-log-service-notifications-portal.md)
+      - question: |
+            Can I receive Service Health alerts via email, SMS, or other channels?
+        answer: |
+            Yes, you can receive Azure Service Health alerts through multiple channels including email, SMS, push notifications, webhooks, and integrations with tools like ServiceNow. The custom rules you set up in the Azure portal trigger the alerts, allowing you to stay informed about incidents, maintenance, and other health-related events affecting your resources.
+    
+      - question: |
+            Why didn't I receive a Service Health alert even though there was an issue?
+        answer: |
+            You might not receive a Service Health alert even though there was an issue because the alert rule wasn't configured to include the affected subscription, service, or region. It’s also possible that the action group tied to the alert wasn’t set up correctly to deliver notifications. Double-checking your alert scope and notification settings can help ensure you’re covered for future events.
+      - question: |
+            Can I create reports based to collect information about Service Health notifications and event?
+        answer: |
+            You can query information using API, PowerShell, CLI, or an ARM template. For more information, see [Azure Graph Queries](resource-graph-samples.md)
+ 
+      - question: |
+            What should I do if my resource is marked as healthy but I'm experiencing issues?
+        answer: |
+          If your resource is marked as healthy but you're still experiencing issues, it could be due to problems outside the scope of what Azure Resource Health monitors—such as application errors, misconfigurations, or network issues. In such cases, review your application logs and configuration, and consider opening a support ticket if the issue persists.
+      - question: |
+            When should I open a support ticket versus relying on Service Health updates?
+        answer: |
+           You should open a support ticket when you're experiencing issues that aren't reflected in Service Health updates. You can also open a support ticket when you need help with mitigating an active incident, or require a root cause analysis or documentation for compliance. If the issue is already listed in Service Health and matches your symptoms, you can usually rely on the updates provided there.
+  
+      - question: |
+          How can I use Azure Resource Graph to query Service Health data?
+        answer: |
+          You can use Azure Resource Graph to query Service Health data by writing Kusto queries that target the relevant Service Health resources, allowing you to analyze and report on health events across your environment.
+      - question: |
+          Can I see the history of my service health events?
+        answer: |
+          You can view historical Service Health events by going to the Service Health section in the Azure portal and selecting the "Health history" tab. This shows past incidents, maintenance events, and advisories relevant to your subscriptions and regions. For more advanced tracking, you can also use the Service Health API or Azure Resource Graph. 
+      - question: |
+          What's the best way to monitor Service Health across multiple tenants or subscriptions?
+        answer: |
+          To monitor Azure Service Health across multiple tenants or subscriptions, the best approach combines Azure-native tools with cross-tenant management capabilities. Need more information

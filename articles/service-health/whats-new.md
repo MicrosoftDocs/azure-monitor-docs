@@ -2,27 +2,21 @@
 title: What's New in Azure Service Health
 description: Learn about what's new in Azure Service Health.
 ms.topic: whats-new
-ms.date: 04/25/2025
+ms.date: 07/02/2025
 ---
 
-# What's new in Azure Service Health service
+# What's new in Azure Service Health
 
 This article lists recent changes in the Azure Service Health service.
 
-## New metadata information
+## New event tags
 
-As of February 2025, there's a new **Event Level** metadata field. This new field indicates the significance of each communication in Service Health communications. You can use this field to sort events. See [Service Health event-level filter notifications](metadata-filter.md).
+There's a new field in the Azure Service Health portal called **Event tags**. These tags are attached to individual Service Health communications to help users quickly understand the nature and status of an event. This field is informational only. See [Service Health event tags](service-health-event-tags.md).
 
-## In-portal billing communications
+## Azure Service Health FAQ page
 
-There are new billing communication events available in the Service Health portal. Subscribers can use these communications to find more information about their billing events, including overbilling, underbilling, price changes, and more. See [In-portal billing communications](billing-elevated-access.md).
+Check out this new page with frequently asked questions that help you understand more about Service Health. For more information, see [Service Health FAQ](service-health-faq.yml).
 
-## Microsoft Copilot in Azure in Service Health
+## Tenant-based Service Health alerts are coming
 
-You can now use Microsoft Copilot in Azure to find outage details, ask questions about subscriptions and resources, and access more details about outages through links to the Service Health portal.
-
-See [Understand Service Health events and status by using Microsoft Copilot in Azure](/azure/copilot/understand-service-health).
-
-## New communication event tags are coming soon
-
-There will be new metadata tags for communication events to filter through the Service Health events in the portal.
+Users will soon have the option to create tenant-based Service Health alerts.

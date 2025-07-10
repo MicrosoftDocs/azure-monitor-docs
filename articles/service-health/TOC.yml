@@ -22,6 +22,8 @@
       href: service-notifications.md
     - name: Filter Service Health notifications by event level
       href: metadata-filter.md
+    - name: Service Health event tags
+      href: service-health-event-tags.md
     - name: Service Health notifications
       href: service-health-notifications-properties.md
     - name: How to view and access Security Advisories with elevated access
@@ -56,17 +58,17 @@
       href: resource-health-vm-annotation.md
     - name: Resource health alerts
       items:
-      - name: Configure resource health alerts using Azure portal
+      - name: Resource health alerts overview
         href: resource-health-alert-monitor-guide.md
-      - name: Configure resource health alerts with Resource Manager templates
+      - name: Create and configure Resource health alerts
         href: resource-health-alert-arm-template-guide.md
     - name: Impacted Resources
       items:
-      - name: Impacted Resources Support for Outages
+      - name: Impacted Resources from Outages
         href: impacted-resources-outage.md
-      - name: Viewing Resources impacted by planned maintenance events
+      - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
-      - name: Viewing impacted resources from Azure security incidents
+      - name: Impacted Resources from Azure security incidents
         href: impacted-resources-security.md     
 - name: Reference
   items:
@@ -84,6 +86,8 @@
   items:
     - name: Resource Health FAQ
       href: resource-health-faq.yml
+    - name: Service Health FAQ
+      href: service-health-faq.yml
 - name: External Resources
   items:
   - name: Azure Roadmap

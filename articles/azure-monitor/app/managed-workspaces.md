@@ -76,7 +76,7 @@ Some classic Application Insights resources can't be migrated until you take ext
 - Using Unicode or non-UTF-8 characters in the resource name or resource group name.
 - Blocking Log Analytics workspace creation in the subscription.
 - Enforcing policies that prevent new resource creation in the subscription.
-- Approaching the resource group limit in the subscription. Each migrated resource gets its own workspace and resource group. If your subscription already has many resource groups or classic Application Insights resources, you might not have enough remaining quota. Azure subscriptions support up to [980 total resource groups](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-subscription-limits).
+- Approaching the resource group limit in the subscription. Each migrated resource gets its own workspace and resource group. If your subscription already has many resource groups or classic Application Insights resources, you might not have enough remaining quota. Azure subscriptions support up to 980 total resource groups.
 
 To complete the migration, update your subscription or resource configuration to remove the blockers mentioned earlier.
 
