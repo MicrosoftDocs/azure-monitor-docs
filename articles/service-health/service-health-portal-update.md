@@ -28,7 +28,7 @@ When events become inactive, they get placed in your health history for up to 90
 > [!NOTE]
 > If you use Azure Resource Graph queries to retrieve Service Health events, you might notice a different count compared to the Service Health UI. This outcome is expected. Resource Graph returns one record per subscription ID and tracking ID combination. On the Azure portal, updates are grouped under each tracking ID, so you might see fewer rows.
 >
-> However, all updates for each tracking ID are still available in the **Issue Updates** tab, and the number of unique tracking IDs is the same in both Resource Graph and the Service Health portal.
+> However, all updates for each tracking ID are still available on the **Issue Updates** tab, and the number of unique tracking IDs is the same in both Resource Graph and the Service Health portal.
 
 ## Get started with Service Health
 
@@ -62,7 +62,7 @@ Select **Security advisories** from the left menu to see all the current securit
 
 ### See all billing updates
 
-Select **Billing updates** from the left menu to see billing updates. Only users with subscription owner or contributor access are able to access this information. For more, see [In-portal billing](billing-elevated-access.md).
+Select **Billing updates** from the left menu to see billing updates. Only users with subscription owner or contributor permissions can access this information. For more information, see [In-portal billing](billing-elevated-access.md).
 
 :::image type="content" source="media/service-health-portal-update/in-portal-billing-blade.png" alt-text="A screenshot of the Billing updates window." lightbox="media/service-health-portal-update/in-portal-billing-blade.png":::
 
@@ -82,22 +82,20 @@ You can configure your alerts so that an alert is triggered when specified condi
 
 ### Manage your account and information
 
-Learn more about how to manage your account and information in the next section.
-
 #### Tenant and subscription access
 
-Tenant access requires tenant admin roles and refers to the ability to view events that affect the entire organization. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, while subscription-level events are limited to the resources in that subscription.
+Tenant access requires tenant admin roles and refers to the ability to view events that affect the entire organization. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, whereas subscription-level events are limited to the resources in that subscription.
 
 For more information, see [Subscription vs. tenant access](subscription-vs-tenant.md).
 
 This distinction ensures that users can effectively manage and monitor Azure services based on their roles and the scope of their responsibilities.
 
-The **Service issues**, **Health advisories**, **Security advisories**, and **Health history** blades show events at both the **Tenant** and **Subscription** levels. For more information about roles, see [Role-based access control (RBAC) for security incident resource impact](impacted-resources-security.md).  
+The **Service issues**, **Health advisories**, **Security advisories**, and **Health history** panes show events at both the **Tenant** and **Subscription** levels. For more information about roles, see [Role-based access control (RBAC) for security incident resource impact](impacted-resources-security.md).  
 
 :::image type="content" source="media/service-health-portal-update/service-issue-window-2.png" alt-text="A screenshot of the Service issues user interface that highlights Tenant and Subscription checkboxes." lightbox="media/service-health-portal-update/service-issue-window-2.png":::
 
-#### Filter and sort information
+#### Filtering and sorting the information
 
-On the **Service issues** blade, you can filter by **Scope**. The **Scope** column indicates when an event is affecting the **Tenant** level or **Subscription** level.
+On the **Service issues** pane, you can filter by **Scope**. The **Scope** column indicates when an event is affecting the **Tenant** level or **Subscription** level.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-3.png" alt-text="A screenshot of the Service issues user interface that highlights the Scope column." lightbox="media/service-health-portal-update/services-issue-window-3.png":::
