@@ -1,17 +1,17 @@
 ---
 title: Service Health Planned maintenance
-description: Overview of the features and information found on the blade. 
+description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 06/30/2025
+ms.date: 07/10/2025
 
 ---
 
 # Planned maintenance
 
-The Planned Maintenance blade in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
+The Planned Maintenance pane in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
 
 
-This blade is designed to provide you with advance notice of scheduled maintenance events that can affect your services. 
+This pane is designed to provide you with advance notice of scheduled maintenance events that can affect your services. 
 The information enables you to:
 
 - Prepare for possible service disruptions.
@@ -22,8 +22,8 @@ Unlike unplanned outages, planned maintenance is scheduled and communicated ahea
 
 
 
-## Information found in the Planned Maintenance blade 
-When you open the Planned Maintenance blade, you see a list of maintenance events relevant to your subscriptions. 
+## Information found in the Planned Maintenance pane 
+When you open the Planned Maintenance pane, you see a list of maintenance events relevant to your subscriptions. 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-main.png" alt-text="Screenshot of current planned maintenance events." lightbox="./media/planned-maintenance/planned-maintenance-main.png":::
 Each event includes the following information:
 - Issue Name
@@ -35,7 +35,7 @@ Each event includes the following information:
 - last updated 
 - Event tags
 
-Select the **Issue name** link to open the blades with the information you need.
+Select the **Issue name** link to open the panes with the information you need.
 
 ### Summary tab
 
@@ -91,7 +91,7 @@ The tab for Impacted Resources displays the following information about any of y
 
 ### Filtering and sorting
 
-On each tab in this blade you can:
+On each tab in this pane you can:
 
 - Download the information into a PDF file.
 - Select to track the issue on your mobile device.
