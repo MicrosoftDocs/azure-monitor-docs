@@ -12,7 +12,7 @@ This article explains how to deploy service health alerts across subscriptions v
 
 ## Requirements
 
-See permissions and roles required to run Azure Policy in [Azure RBAC permissions in Azure Policy](./azure/governance/policy/overview#azure-rbac-permissions-in-azure-policy).
+See permissions and roles required to run Azure Policy in [Azure RBAC permissions in Azure Policy](./governance/policy/overview#azure-rbac-permissions-in-azure-policy).
 
 ## Steps to deploy Service Health Alert Rules using Azure Policy
 
@@ -28,7 +28,7 @@ Service Health Alert Rules can be deployed on a single subscription or across al
     - Don't use any resource selectors
     - Ensure the Policy Definition contains "Configure subscriptions to enable Service Health Monitoring Alert Rules" and optionally edit the assignment name and description
 - Under Parameters tab: 
-    - Set the optional customization options (see [Default Behavior](#default-behaviour) and [Customization Options](#customization-options)).
+    - Set the optional customization options (see [Default Behavior](#default-behavior) and [Customization Options](#customization-options)).
 - Under Remediation
     - Ensure the system assigned managed identity is selected, or assign a user assigned managed identity.
     - Select **Create a remediation task** to automatically apply the policy to existing subscriptions. Without this step, the policy only applies to new subscriptions.
@@ -43,14 +43,14 @@ By default on remediation, the policy creates the following resources in all non
 
 By default, the alert rules and action groups are configured to email subscription owners for all service health events types.
 
-:::image type="content"source="./media/service-health-alerts-deploy/default-behavior1.png"alt-text="Screenshot of path of default behavior."Lightbox="./media/service-health-alerts-deploy/default-behavior1.png":::
+:::image type="content"source="./media/service-health-alerts-deploy/default-behavior-1.png"alt-text="Screenshot of path of default behavior."Lightbox="./media/service-health-alerts-deploy/default-behavior-1.png":::
 
 
 ## Customization Options
 
 Under the Parameters Tab uncheck the *Only show parameters that need input or review* to show the parameters the policy supports.
 
-:::image type="content"source="./media/service-health-alerts-deploy/policy-parameters1.png"alt-text="Screenshot of screen to set up parameters."Lightbox="./media/service-health-alerts-deploy/policy-parameters1.png":::
+:::image type="content"source="./media/service-health-alerts-deploy/policy-parameters-1.png"alt-text="Screenshot of screen to set up parameters."Lightbox="./media/service-health-alerts-deploy/policy-parameters-1.png":::
 
 
 - **Effect**: Allows the user to set the mode of the policy. <br>
