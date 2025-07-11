@@ -23,8 +23,7 @@ Send resource logs to a [Log Analytics workspace](../logs/log-analytics-workspac
 - Create [log alerts](../alerts/alerts-create-log-alert-rule.md) from resource log entries.
 - Access resource log data with [Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview).
 
-
-[Create a diagnostic setting](../essentials/diagnostic-settings.md) to send resource logs to a Log Analytics workspace. This data is stored in tables as described in [Structure of Azure Monitor Logs](../logs/data-platform-logs.md). The tables used by resource logs depend on what the resource type and the type of collection the resource is using. There are two types of collection modes for resource logs:
+The tables used by resource logs depend on what the resource type and the type of collection the resource is using. There are two types of collection modes for resource logs:
 
 * **Azure diagnostics**: All data is written to the [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table.
 * **Resource-specific**: Data is written to individual tables for each category of the resource.
@@ -64,7 +63,7 @@ You can modify an existing diagnostic setting to resource-specific mode. In this
 
 Continue to watch the [Azure Updates](https://azure.microsoft.com/updates/) blog for announcements about Azure services that support resource-specific mode.
 
-## Send to Azure Event Hubs
+## [Event Hubs](#tab/event-hub)
 
 Send resource logs to an event hub to send them outside of Azure. For example, resource logs might be sent to a third-party SIEM or other log analytics solutions. Resource logs from event hubs are consumed in JSON format with a `records` element that contains the records in each payload. The schema depends on the resource type as described in [Common and service-specific schema for Azure resource logs](resource-logs-schema.md).
 
@@ -131,7 +130,7 @@ The following sample output data is from Azure Event Hubs for a resource log:
 }
 ```
 
-## Send to Azure Storage
+## [Azure Storage](#tab/storage)
 
 Send resource logs to Azure Storage to retain them for archiving. After you've created the diagnostic setting, a storage container is created in the storage account as soon as an event occurs in one of the enabled log categories.
 
@@ -161,6 +160,7 @@ Within the PT1H.json file, each event is stored in the following format. It uses
 ```json
 {"time": "2016-07-01T00:00:37.2040000Z","systemId": "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1","category": "NetworkSecurityGroupRuleCounter","resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/TESTNSG","operationName": "NetworkSecurityGroupCounters","properties": {"vnetResourceGuid": "{aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e}","subnetPrefix": "10.3.0.0/24","macAddress": "000123456789","ruleName": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg/securityRules/default-allow-rdp","direction": "In","type": "allow","matchedConnections": 1988}}
 ```
+---
 
 ## Azure Monitor partner integrations
 
