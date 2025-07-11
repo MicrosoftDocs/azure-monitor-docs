@@ -40,7 +40,7 @@ Because the information in this tab is sensitive, specific Role-Based Access Con
 - Only users with elevated roles can access sensitive information on the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
 - Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
 
-For more information, read [this article](impacted-resources-security.md) on the current RBAC requirements for accessing security impacted resources.<br>
+For details about role requirements for accessing these resources, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
 
 Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
 
