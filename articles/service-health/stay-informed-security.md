@@ -11,9 +11,7 @@ With the increased use of cloud computing, customers rely increasingly on Azure 
 
 This article shows where Azure customers receive Azure security notifications, and the three steps you can follow to ensure security alerts reach the right people in your organization.
 
-##  Stay informed about Azure security issues
-
-### Security issues affecting your Azure subscription workloads
+## Security issues affecting your Azure subscription workloads
 
 You receive security-related notifications affecting your Azure **subscription** workloads in two ways: 
 
@@ -33,7 +31,7 @@ We communicate security-related information affecting your Azure subscription wo
 >[!NOTE]
 >You should ensure that there's a **contactable email address** as the [subscription administrator or subscription owner](/azure/cost-management-billing/manage/add-change-subscription-administrator). This email address is used for security issues that can have an effect  at the subscription level.
 
-### Security issues affecting your Azure tenant workloads
+## Security issues affecting your Azure tenant workloads
 
 - We communicate security-related information affecting your Azure **tenant** workloads through Email and/or Azure Service Health Notifications. 
 - We send notifications to Global Admins, Technical Contacts, and Security Admins. 
@@ -47,7 +45,7 @@ Azure Service Health security communications are visible.
 
 However, when Microsoft identifies a security event that is both impactful and designed at the subscription level, we also proactively send another notifications at the tenant level to ensure maximum visibility and awareness.
 
-## Three steps to help you stay informed about Azure security issues
+### Three steps to help you stay informed about Azure security issues
 
 1. **Check the Contact on Subscription Admin Owner Role**
 
