@@ -1,17 +1,17 @@
 ---
-title: Stay informed about Azure security issues
+title: View and manage Azure security notifications
 description: This article shows you where Azure customers receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
 ms.topic: article
-ms.date: 06/24/2025
+ms.date: 07/11/2025
 ---
 
-# Stay informed about Azure security issues
+# View and manage Azure security notifications
 
 With the increased use of cloud computing, customers rely increasingly on Azure to run their workload for critical and noncritical business applications. It's important for you as an Azure customer to stay informed about Azure security issues or privacy breaches and take the right action to protect your environment.
 
 This article shows where Azure customers receive Azure security notifications, and the three steps you can follow to ensure security alerts reach the right people in your organization.
 
-## View and manage Azure security notifications 
+##  Stay informed about Azure security issues
 
 ### Security issues affecting your Azure subscription workloads
 
@@ -49,17 +49,17 @@ However, when Microsoft identifies a security event that is both impactful and d
 
 ## Three steps to help you stay informed about Azure security issues
 
-**1. Check the Contact on Subscription Admin Owner Role**
+1. Check the Contact on Subscription Admin Owner Role
 
 Ensure that there's a **contactable email address** as the [subscription administrator or subscription owner](/azure/cost-management-billing/manage/add-change-subscription-administrator). 
-This email address is used for security issues that would have an impact at the subscription level.
+This email address is used for security issues that would have an effect at the subscription level.
 
-**2. Check the Contacts for Tenant Global Admin, Technical Contact, and Security Admin Roles**
+2. Check the Contacts for Tenant Global Admin, Technical Contact, and Security Admin Roles
 
 Ensure that there are **contactable email addresses** entered for your [Global Admins](/azure/active-directory/roles/permissions-reference), [Technical contacts](/azure/active-directory/fundamentals/active-directory-properties-area), and [security admins](/azure/defender-for-cloud/permissions). 
-These email addresses are used for security issues that would have an impact at the tenant level.
+These email addresses are used for security issues that would have an effect at the tenant level.
 
-**3. Create Azure Service Health alerts for subscription notifications**
+3. Create Azure Service Health alerts for subscription notifications
 
 Create **Azure Service Health** alerts for security events so that your organization can be alerted for any security event that Microsoft identifies. 
 This channel is the same one you configure to be alerted of outages, or maintenance information on the platform: [Create Activity Log Alerts on Service Notifications using the Azure portal](../service-health/alerts-activity-log-service-notifications-portal.md).
