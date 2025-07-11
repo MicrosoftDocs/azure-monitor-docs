@@ -3,7 +3,7 @@ title: View and access Security advisories
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 
 ms.topic: conceptual
-ms.date: 7/09/2025
+ms.date: 7/11/2025
 ---
 
 
@@ -12,7 +12,7 @@ ms.date: 7/09/2025
 The Security advisories pane in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions. 
 
 
-:::image type="content"source="./media/security-advisories/security-advisories-main.PNG"alt-text="Screenshot of Service Health Security Advisories blade."Lightbox="./media/security-advisories/security-advisories-main.PNG":::
+:::image type="content"source="./media/security-advisories/security-advisories-main.PNG"alt-text="Screenshot of Service Health Security Advisories pane."Lightbox="./media/security-advisories/security-advisories-main.PNG":::
 
 The Security Advisories pane is used to communicate critical security events such as:
 - Platform vulnerabilities
@@ -50,7 +50,7 @@ Users with tenant roles [listed here](admin-access-reference.md) can also access
 ## Service Health API endpoint
 
 API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details.<br> Users with the specified roles can view sensitive event details for a specific event with the new endpoint. <br>The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details. <br>
-For more information, see [Event- fetch Details by Tenant Id and Tracking Id](/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id)
+For more information, see [Event- fetch Details by Tenant ID and Tracking ID](/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id)
 
 The endpoints listed here return the security notification details for a specific event.
 
