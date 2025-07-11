@@ -27,9 +27,7 @@ Don't explicitly configure your agents, data connectors or API applications to *
 
 **Recommended action**
 
-To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols. 
-
-For example, clients configured to work with older servers might still use TLS 1.0/1.1 protocols to start a TLS handshake. When that client connects to Azure Monitor Logs before the TLS 1.2 enforcement date, the Logs API endpoint still allows the initial TLS 1.0/1.1 connection for the client hello, but directs the client to use TLS 1.2 or higher. The client is then allowed to establish the connection at TLS 1.2/1.3, or the connection is dropped. After the TLS 1.2 enforcement date, the Logs API endpoint drops any traffic that isn't TLS 1.2 or higher.
+To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols.
 
 For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
