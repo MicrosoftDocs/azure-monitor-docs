@@ -26,7 +26,7 @@
       href: service-health-event-tags.md
     - name: Service Health notifications
       href: service-health-notifications-properties.md
-    - name: How to view and access Security Advisories with elevated access
+    - name: View and access Security advisories
       href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
