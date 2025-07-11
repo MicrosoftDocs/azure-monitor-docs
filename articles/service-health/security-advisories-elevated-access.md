@@ -49,7 +49,10 @@ Users with tenant roles [listed here](admin-access-reference.md) can also access
 
 ## Service Health API endpoint
 
-API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details.<br> Users with the specified roles can view sensitive event details for a specific event with the new endpoint. <br>The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details. <br>
+To access Security Advisories through APIs, you must update your code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details. Users with the specified roles can view sensitive event details for a specific event with the new endpoint.
+
+The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details.
+
 For more information, see [Event- fetch Details by Tenant ID and Tracking ID](/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id)
 
 The endpoints listed here return the security notification details for a specific event.
