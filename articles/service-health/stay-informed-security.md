@@ -49,20 +49,20 @@ However, when Microsoft identifies a security event that is both impactful and d
 
 ## Three steps to help you stay informed about Azure security issues
 
-1. Check the Contact on Subscription Admin Owner Role
+1. **Check the Contact on Subscription Admin Owner Role**
 
-Ensure that there's a **contactable email address** as the [subscription administrator or subscription owner](/azure/cost-management-billing/manage/add-change-subscription-administrator). 
-This email address is used for security issues that would have an effect at the subscription level.
+    Ensure that there's a **contactable email address** as the [subscription administrator or subscription owner](/azure/cost-management-billing/manage/add-change-subscription-administrator). 
+    This email address is used for security issues that would have an effect at the subscription level.
 
-2. Check the Contacts for Tenant Global Admin, Technical Contact, and Security Admin Roles
+2. **Check the Contacts for Tenant Global Admin, Technical Contact, and Security Admin Roles**
 
-Ensure that there are **contactable email addresses** entered for your [Global Admins](/azure/active-directory/roles/permissions-reference), [Technical contacts](/azure/active-directory/fundamentals/active-directory-properties-area), and [security admins](/azure/defender-for-cloud/permissions). 
-These email addresses are used for security issues that would have an effect at the tenant level.
+    Ensure that there are **contactable email addresses** entered for your [Global Admins](/azure/active-directory/roles/permissions-reference), [Technical contacts](/azure/active-directory/fundamentals/active-directory-properties-area), and [security admins](/azure/defender-for-cloud/permissions). 
+T    hese email addresses are used for security issues that would have an effect at the tenant level.
 
-3. Create Azure Service Health alerts for subscription notifications
+3. **Create Azure Service Health alerts for subscription notifications**
 
-Create **Azure Service Health** alerts for security events so that your organization can be alerted for any security event that Microsoft identifies. 
-This channel is the same one you configure to be alerted of outages, or maintenance information on the platform: [Create Activity Log Alerts on Service Notifications using the Azure portal](../service-health/alerts-activity-log-service-notifications-portal.md).
+    Create **Azure Service Health** alerts for security events so that your organization can be alerted for any security event that Microsoft identifies. 
+    This channel is the same one you configure to be alerted of outages, or maintenance information on the platform: [Create Activity Log Alerts on Service Notifications using the Azure portal](../service-health/alerts-activity-log-service-notifications-portal.md).
 
 Depending on your requirements, you can configure various alerts to use the same [action group](../azure-monitor/alerts/action-groups.md) or different action groups. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 
