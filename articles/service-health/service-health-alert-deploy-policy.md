@@ -2,7 +2,7 @@
 title: Deploy Service Health alert rules at scale using Azure Policy 
 description: This article details a process by which users can deploy service health alerts across subscriptions via Azure policy.
 ms.topic: conceptual
-ms.date: 7/10/2025
+ms.date: 7/11/2025
 ---
 
 # Deploy Service Health alerts at scale using Azure policy
@@ -18,11 +18,16 @@ See the permissions and roles required to run Azure Policy in [Azure RBAC permis
 
 Service Health Alert Rules can be deployed on a single subscription, or across all subscriptions in a management group by running the **Configure subscriptions to enable Service Health Monitoring Alert Rules** built-in policy.
 
-1. open the ???? location 
-1.  Navigate to **Home > Policy**. 
-- Under Authoring > Assignments, check if *Configure subscriptions to enable Service Health Monitoring Alert Rules* isn't already deployed. 
-- Under Authoring > Definitions, search for *Configure subscriptions to enable Service Health Monitoring Alert Rules* and select it. <!-- to be replaced by clicking link -->
-2.  Select the Assign policy. 
+
+1. From the Azure portal, navigate to **Home > Policy**. 
+:::image type="content"source="./media/service-health-alerts-deploy/policy-home-authoring.png"alt-text="Screenshot of policy page."Lightbox="./media/service-health-alerts-deploy/policy-home-authoring.png"::: 
+1. Under Authoring > Assignments, check if *Configure subscriptions to enable Service Health Monitoring Alert Rules* is already deployed. 
+1. Under Authoring > Definitions, search for *Configure subscriptions to enable Service Health Monitoring Alert Rules* and select it. <!-- to be replaced by clicking link -->
+1.  Select **Assign policy.** 
+    :::image type="content"source="./media/service-health-alerts-deploy/assign-policy.png"alt-text="Screenshot of policy page to select assign policy."Lightbox="./media/service-health-alerts-deploy/assign-policy.png"::: 
+
+    :::image type="content"source="./media/service-health-alerts-deploy/policy-home-tabs.png"alt-text="Screenshot of policy page with tabs."Lightbox="./media/service-health-alerts-deploy/policy-home-tabs.png"::: 
+
 - In the **Basics** tab:
     - Set the **Scope** to the management group that updates the policy subscriptions. You can also choose to scope it to a single subscription. This policy doesn't support a resource group-level scope.
     - Under **Exclusions**, add any subscriptions that the policy shouldn’t update. These subscriptions aren't checked for compliance and don't have any alert rules or resources created through the policy.
@@ -49,7 +54,8 @@ By default, the alert rules and action groups are configured to email subscripti
 
 ## Customization options
 
-On the **Parameters** tab, uncheck *Only show parameters that need input or review* to display all the parameters supported by the policy.
+>[!Note]
+> On the **Parameters** tab, check to turn off *Only show parameters that need input or review* which will display all the parameters supported by the policy.
 
 :::image type="content"source="./media/service-health-alerts-deploy/policy-parameters-1.png"alt-text="Screenshot of screen to set up parameters."Lightbox="./media/service-health-alerts-deploy/policy-parameters-1.png":::
 
@@ -62,13 +68,13 @@ On the **Parameters** tab, uncheck *Only show parameters that need input or revi
         - A condition that checks for the event types is specified.<br>
     - *DeployIfNotExists*: During remediation, if the subscription is found to be noncompliant, it creates or updates the resources.
 
-- **Alert rule enabled**: The state of the alert rule (enabled or disabled) created by this policy can be updated to enableor disable alert rules across subscriptions.
+- **Alert rule enabled**:<br> The state of the alert rule (enabled or disabled) created by this policy can be updated to enableor disable alert rules across subscriptions.
 
-- **Alert rule name**: This is the name of the alert rule the policy creates. The policy doesn’t check the rule’s name, it only looks at the alert conditions, state, and whether it links to an action group. <br>If a rule already exists that meets these requirements, the policy doesn't create a new one, even if the name is different. Changing the name doesn't remove any existing alert rules.
+- **Alert rule name**:<br> This is the name of the alert rule the policy creates. The policy doesn’t check the rule’s name, it only looks at the alert conditions, state, and whether it links to an action group. <br>If a rule already exists that meets these requirements, the policy doesn't create a new one, even if the name is different. Changing the name doesn't remove any existing alert rules.
 
-- **Alert rule event types**: The [Service Health Event Types](./service-health-portal-update.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions. 
+- **Alert rule event types**:<br> The [Service Health Event Types](./service-health-portal-update.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions. 
 
-- **Existing action group resource ids**: Enter the resource IDs of existing action groups within the management group or subscription (based on the policy’s scope) that should be used to send alerts. This action group can be used to alert across subscriptions. <br>For more information, refer to [Action Groups](/azure/azure-monitor/alerts/action-groups). 
+- **Existing action group resource ids**:<br> Enter the resource IDs of existing action groups within the management group or subscription (based on the policy’s scope) that should be used to send alerts. This action group can be used to alert across subscriptions. <br>For more information, refer to [Action Groups](/azure/azure-monitor/alerts/action-groups). 
 
 :::image type="content"source="./media/service-health-alerts-deploy/alert-across-subscriptions.png"alt-text="Screenshot of the path of alerts across subscriptions."Lightbox="./media/service-health-alerts-deploy/alert-across-subscriptions.png":::
 
@@ -79,7 +85,7 @@ On the **Parameters** tab, uncheck *Only show parameters that need input or revi
     - If set to `false`, no new action group is created. This step creates an action group in each subscription. 
 <br>It can be used along side the **Existing action group resource ids** parameter. Both are mapped to the alert rule. 
 
-- **New action group name**: Enter an action group name to create new action group. Updating the name doesn't delete any previously created action group. The alert rule mapping to the action group is updated.
+- **New action group name**: <br>Enter an action group name to create new action group. Updating the name doesn't delete any previously created action group. The alert rule mapping to the action group is updated.
 
 - **New action group roles to email**:<br> Arm built-in roles to notify using the new action group. <br>The policy only checks if the alert rule is linked to the action groups, it doesn’t use this parameter to check compliance.  If you change this setting after assigning the policy, it won’t update the action group.<br> To apply updates across subscriptions, change the **Alert rule enabled** or **Alert rule event types** parameters, or set a new action group using the **New action group name** parameter. <br>
 Possible values include:
