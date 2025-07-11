@@ -42,7 +42,7 @@ Because the information in this tab is sensitive, specific Role-Based Access Con
 
 For more information, read [this article](impacted-resources-security.md) on the current RBAC requirements for accessing security impacted resources.<br>
 
-Users with tenant roles [listed here](admin-access-reference.md) can also access tenant level security advisory details on the **Summary** and **Issue Updates** tabs.
+Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
 
 
 
