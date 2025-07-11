@@ -1,11 +1,11 @@
 ---
-title: View and manage Azure security notifications
+title: View and manage Azure security issues
 description: This article shows you where Azure customers receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
 ms.topic: article
 ms.date: 07/11/2025
 ---
 
-# View and manage Azure security notifications
+# View and manage Azure security issues
 
 With the increased use of cloud computing, customers rely increasingly on Azure to run their workload for critical and noncritical business applications. It's important for you as an Azure customer to stay informed about Azure security issues or privacy breaches and take the right action to protect your environment.
 
