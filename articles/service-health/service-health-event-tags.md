@@ -2,7 +2,7 @@
 title: Service Health event tags
 description: Learn how to understand and use the event tags in Azure Service Health
 ms.topic: overview
-ms.date: 7/02/2025
+ms.date: 7/11/2025
 ---
 
 # Service Health event tags
@@ -16,7 +16,7 @@ This article explains the differences between event level and event tags in Azur
 
 Event tags help users understand the type of action required, while event levels indicate the urgency and impact of the issue. Together, they enable more effective management of service communications.
 
-:::image type="content" source="media/event-tags/event-tags-metadata.png" alt-text="Screenshot of blade with event level and event tags." lightbox="media/event-tags/event-tags-metadata.png":::
+:::image type="content" source="media/event-tags/event-tags-metadata.png" alt-text="Screenshot of pane with event level and event tags." lightbox="media/event-tags/event-tags-metadata.png":::
 
 
 ## Event Tags
@@ -27,7 +27,7 @@ Event tags are metadata labels attached to individual service health communicati
 - **Preliminary PIR** – Refers to post-incident reviews that provide an early summary of the root cause and resolution.
 - **Final PIR** – Refers to post-incident reviews that provide the final summaries of the root cause and resolution. 
 
-:::image type="content"source="./media/event-tags/event-tags-main.png"alt-text="Screenshot of blade with event tags." lightbox="media/event-tags/event-tags-main.png":::
+:::image type="content"source="./media/event-tags/event-tags-main.png"alt-text="Screenshot of pane with event tags." lightbox="media/event-tags/event-tags-main.png":::
 
 These tags are visible on the Azure Service Health portal and are especially useful for customers managing many subscriptions, helping them filter and prioritize which events to focus on. 
 
@@ -40,13 +40,13 @@ Event level tags are a separate metadata field used to help users assess the sev
 - **Warning** – Possible service problems that could affect performance or availability.
 - **Critical** – Immediate attention is required due to widespread issues.
 
-Unlike event tags, which describe the type or status of the communication, event level tags indicate the urgency and impact of the event. This field is available on the Service issues, Security advisories, Health advisories, and Billing updates blades, and can be used to filter and sort events for better prioritization.
+Unlike event tags, which describe the type or status of the communication, event level tags indicate the urgency and impact of the event. This field is available on the Service issues, Security advisories, Health advisories, and Billing updates panes, and can be used to filter and sort events for better prioritization.
 
- :::image type="content"source="./media/event-tags/event-level-tags-main.png"alt-text="Screenshot of blade with event level tags." lightbox="media/event-tags/event-level-tags-main.png":::
+ :::image type="content"source="./media/event-tags/event-level-tags-main.png"alt-text="Screenshot of pane with event level tags." lightbox="media/event-tags/event-level-tags-main.png":::
 
-The event tags and event level tags are shown on the following blades:
+The event tags and event level tags are shown on the following panes:
 
-|Blade |Event level tags  |Event tags  |
+|pane |Event level tags  |Event tags  |
 |---------|---------|---------|
 |Service issues      |Yes| Yes |
 |Planned maintenance |No | Yes|
