@@ -105,7 +105,7 @@ Consider the following best practices for optimizing recording rules:
 | Identify High Volume Metrics. | Focus on metrics that are queried frequently and have a high cardinality. |
 | Optimize Rule Evaluation Interval. | To balance between data freshness and computational load, adjust the evaluation interval of your recording rules. |
 | Monitor Performance. | Monitor query performance and adjust recording rules as necessary. |
-| Optimize rules by limiting scope. | To make recording rules faster, limit them in scope to a specific cluster. For more information, see [Limiting rules to a specific cluster](prometheus-rule-groups.md#limiting-rules-to-a-specific-cluster). |
+| Optimize rules by limiting scope. | To make recording rules faster, limit them in scope to a specific cluster. For more information, see [Limiting rules to a specific cluster](prometheus-rule-groups.md#limit-rules-to-a-specific-cluster). |
 
 #### Using filters in queries
 

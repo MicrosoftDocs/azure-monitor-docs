@@ -103,7 +103,7 @@ After a few minutes, the `KubernetesMetadata` column should be included with any
 > [!IMPORTANT]
 > If you enabled Grafana using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) then your Grafana instance should already have access to your Azure Monitor workspace for Prometheus metrics. The Kubernetes Logs Metadata dashboard also requires access to your Log Analytics workspace which contains log data. See [How to modify access permissions to Azure Monitor](/azure/managed-grafana/how-to-permissions) for guidance on granting your Grafana instance the Monitoring Reader role for your Log Analytics workspace.
 
-Import the dashboard from the Grafana gallery at [ContainerLogV2 Dashboard](https://grafana.com/grafana/dashboards/20995-azure-monitor-container-insights-containerlogv2/). You can then open the dashboard and select values for DataSource, Subscription, ResourceGroup, Cluster, Namespace, and Labels. 
+Import the dashboard from the Grafana gallery at [ContainerLogV2 Dashboard](https://grafana.com/grafana/dashboards/20995-azure-insights-containers-containerlogv2/). You can then open the dashboard and select values for DataSource, Subscription, ResourceGroup, Cluster, Namespace, and Labels. 
 
 :::image type="content" source="./media/container-insights-logging-v2/grafana-3.png" lightbox="./media/container-insights-logging-v2/grafana-3.png" alt-text="Screenshot that shows grafana dashboard." border="false":::
 

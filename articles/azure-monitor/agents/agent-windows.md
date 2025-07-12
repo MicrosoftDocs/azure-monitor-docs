@@ -42,7 +42,7 @@ The change doesn't require any customer action unless you're running the agent o
 
 1. Update to the latest version of the Windows agent (version 10.20.18067).
 
-1. We recommend that you configure the agent to [use TLS 1.2](agent-windows.md#configure-agent-to-use-tls-12).
+1. We recommend that you configure the agent to [use TLS 1.2](#configure-agent-to-use-tls-12).
 
 ### Network requirements
 
@@ -82,7 +82,7 @@ Regardless of the installation method used, you'll require the workspace ID and 
 :::image type="content" source="media/log-analytics-agent/workspace-details.png" lightbox="media/log-analytics-agent/workspace-details.png" alt-text="Screenshot that shows workspace details.":::
 
 > [!NOTE]
-> You can't configure the agent to report to more than one workspace during initial setup. [Add or remove a workspace](agent-manage.md#add-or-remove-a-workspace) after installation by updating the settings from Control Panel or PowerShell.
+> You can't configure the agent to report to more than one workspace during initial setup. [Add or remove a workspace](./agent-manage.md#add-or-remove-a-workspace) after installation by updating the settings from Control Panel or PowerShell.
 
 > [!NOTE]
 > While regenerating the Log Analytics Workspace shared keys is possible, the intention for this is **not** to immediately restrict access to any agents currently using those keys. Agents use the key to generate a certificate that expires after three months. Regenerating the shared keys will only prevent agents from renewing their certificates, not continuing to use those certificates until they expire.
