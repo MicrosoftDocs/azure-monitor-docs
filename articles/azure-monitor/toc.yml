@@ -746,11 +746,14 @@ items:
 - name: Data collection
   items:
   - name: Data sources
-    href: fundamentals/data-sources.md
-  - name: Activity logs
-    href: platform/activity-log.md
-  - name: Resource logs
-    href: platform/resource-logs.md
+    items:
+    - name: Overview
+      displayName: data sources, data collection
+      href: fundamentals/data-sources.md
+    - name: Activity logs
+      href: platform/activity-log.md
+    - name: Resource logs
+      href: platform/resource-logs.md
   - name: Data collection methods
     items:
     - name: Data collection rules (DCR)
