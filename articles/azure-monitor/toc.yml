@@ -747,6 +747,10 @@ items:
   items:
   - name: Data sources
     href: fundamentals/data-sources.md
+  - name: Activity logs
+    href: platform/activity-log.md
+  - name: Resource logs
+    href: platform/resource-logs.md
   - name: Data collection methods
     items:
     - name: Data collection rules (DCR)
@@ -997,14 +1001,10 @@ items:
         - name: Sample code
           displayName: logs ingestion
           href: logs/tutorial-logs-ingestion-code.md
-  - name: Collect logs from Event Hubs
-    href: logs/ingest-logs-event-hub.md
-  - name: Send data
+  - name: Event hubs
     items:
-    - name: Send resource log data
-      href: platform/resource-logs.md
-    - name: Send activity log data
-      href: platform/activity-log.md
+    - name: Collect logs from Event Hubs
+      href: logs/ingest-logs-event-hub.md
     - name: Stream monitoring data to Event Hubs
       href: platform/stream-monitoring-data-event-hubs.md
   - name: Troubleshoot
