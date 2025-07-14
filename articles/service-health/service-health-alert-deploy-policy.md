@@ -46,7 +46,7 @@ Service Health Alert Rules can be deployed on a single subscription, or across a
     
 1. In the **Remediation** tab:
 
-    :::image type="content"source="./media/service-health-alerts-deploy/policy_remediation.png"alt-text="Screenshot of Remediation tab."Lightbox="./media/service-health-alerts-deploy/policy_remediation.png":::
+    :::image type="content"source="./media/service-health-alerts-deploy/policy-remediation.png"alt-text="Screenshot of Remediation tab."Lightbox="./media/service-health-alerts-deploy/policy-remediation.png":::
 
     - Ensure the system assigned managed identity is selected, or assign a user assigned managed identity.
     - Select **Create a remediation task** to automatically apply the policy to existing subscriptions. Without this step, the policy only applies to new subscriptions.
