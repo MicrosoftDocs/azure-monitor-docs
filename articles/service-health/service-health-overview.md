@@ -11,7 +11,8 @@ ms.date: 01/27/2025
 The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard that tracks the health of your Azure services in the regions where you use them. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, or relevant health advisories. You can use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues are affecting you.
 
 >[!Note]
->This article describes the older "classic" experience, which will be removed later this year. We recommend using the new [Service Health](service-health-portal-update.md) portal instead. For more information, see [Azure Service Health](https://aka.ms/azureservicehealth).
+>This article describes the older "classic" experience, which will be removed later this year. We recommend using the new [Service Health](service-health-portal-update.md) portal instead. 
+>For more information, see [Azure Service Health](https://aka.ms/azureservicehealth).
 
 ## Service Health events
 
