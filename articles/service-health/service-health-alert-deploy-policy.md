@@ -2,7 +2,7 @@
 title: Deploy Service Health alert rules at scale using Azure Policy 
 description: This article details a process by which users can deploy service health alerts across subscriptions via Azure policy.
 ms.topic: conceptual
-ms.date: 7/11/2025
+ms.date: 7/14/2025
 ---
 
 # Deploy Service Health alerts at scale using Azure policy
@@ -12,7 +12,7 @@ This article explains how to deploy service health alerts across subscriptions u
 
 ## Requirements
 
-See the permissions and roles required to run Azure Policy in [Azure RBAC permissions in Azure Policy](/azure/governance/policy/overview#azure-rbac-permissions-in-azure-policy).
+See the permissions and roles required to run Azure Policy in Role-Based Access Control (RBAC) [Azure RBAC permissions in Azure Policy](/azure/governance/policy/overview#azure-rbac-permissions-in-azure-policy).
 
 ## Steps to deploy Service Health alert rules using Azure Policy
 
@@ -21,21 +21,33 @@ Service Health Alert Rules can be deployed on a single subscription, or across a
 
 1. From the Azure portal, navigate to **Home > Policy**. 
 :::image type="content"source="./media/service-health-alerts-deploy/policy-home-authoring.png"alt-text="Screenshot of policy page."Lightbox="./media/service-health-alerts-deploy/policy-home-authoring.png"::: 
-1. Under Authoring > Assignments, check if *Configure subscriptions to enable Service Health Monitoring Alert Rules* is already deployed. 
-1. Under Authoring > Definitions, search for *Configure subscriptions to enable Service Health Monitoring Alert Rules* and select it. <!-- to be replaced by clicking link -->
+1. Under Authoring > Assignments, check if *Configure subscriptions to enable Service Health Monitoring Alert Rules* is assigned. 
+1. If  not already assigned, under Authoring > Definitions, search for *Configure subscriptions to enable Service Health Monitoring Alert Rules* and select it. <!-- to be replaced by clicking link -->
 1.  Select **Assign policy.** 
-    :::image type="content"source="./media/service-health-alerts-deploy/assign-policy.png"alt-text="Screenshot of policy page to select assign policy."Lightbox="./media/service-health-alerts-deploy/assign-policy.png"::: 
+    :::image type="content"source="./media/service-health-alerts-deploy/assign-policy.png"alt-text="Screenshot of policy page to select the assigned policy."Lightbox="./media/service-health-alerts-deploy/assign-policy.png"::: 
+ 
 
-    :::image type="content"source="./media/service-health-alerts-deploy/policy-home-tabs.png"alt-text="Screenshot of policy page with tabs."Lightbox="./media/service-health-alerts-deploy/policy-home-tabs.png"::: 
+1. In the **Basics** tab:
 
-- In the **Basics** tab:
-    - Set the **Scope** to the management group that updates the policy subscriptions. You can also choose to scope it to a single subscription. This policy doesn't support a resource group-level scope.
+    :::image type="content"source="./media/service-health-alerts-deploy/policy-home-tabs.png"alt-text="Screenshot of policy page with tabs."Lightbox="./media/service-health-alerts-deploy/policy-home-tabs.png":::
+
+    - Set the **Scope** to the management group that contains the subscriptions you want the service health alerts deployed to. You can also choose to scope it to a single subscription. This policy doesn't support a resource group-level scope.
     - Under **Exclusions**, add any subscriptions that the policy shouldn’t update. These subscriptions aren't checked for compliance and don't have any alert rules or resources created through the policy.
     - Don't use any resource selectors.
     - Make sure the Policy Definition contains **Configure subscriptions to enable Service Health Monitoring Alert** rules. You can also update the assignment name and description if needed.
-- In the **Parameters** tab: 
+    
+
+1. In the **Parameters** tab: 
+
+    :::image type="content"source="./media/service-health-alerts-deploy/policy-parameters-1.png"alt-text="Screenshot of Parameters tab."Lightbox="./media/service-health-alerts-deploy/policy-parameters-1.png":::
+
     - You can set the optional customization options (see [Default Behavior](#default-behavior) and [Customization Options](#customization-options)).
-- In the **Remediation** tab:
+    
+    
+1. In the **Remediation** tab:
+
+    :::image type="content"source="./media/service-health-alerts-deploy/policy_remediation.png"alt-text="Screenshot of Remediation tab."Lightbox="./media/service-health-alerts-deploy/policy_remediation.png":::
+
     - Ensure the system assigned managed identity is selected, or assign a user assigned managed identity.
     - Select **Create a remediation task** to automatically apply the policy to existing subscriptions. Without this step, the policy only applies to new subscriptions.
 
@@ -70,7 +82,7 @@ By default, the alert rules and action groups are configured to email subscripti
 
 - **Alert rule enabled**:<br> The state of the alert rule (enabled or disabled) created by this policy can be updated to enable or disable alert rules across subscriptions.
 
-- **Alert rule name**:<br> This is the name of the alert rule the policy creates. The policy doesn’t check the rule’s name, it only looks at the alert conditions, state, and whether it links to an action group. <br>If a rule already exists that meets these requirements, the policy doesn't create a new one, even if the name is different. Changing the name doesn't remove any existing alert rules.
+- **Alert rule name**:<br> The name of the alert rule the policy creates. The policy doesn’t check the rule’s name, it only looks at the alert conditions, state, and whether it links to an action group. <br>If a rule already exists that meets these requirements, the policy doesn't create a new one, even if the name is different. Changing the name doesn't remove any existing alert rules.
 
 - **Alert rule event types**:<br> The [Service Health Event Types](./service-health-portal-update.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions. 
 
