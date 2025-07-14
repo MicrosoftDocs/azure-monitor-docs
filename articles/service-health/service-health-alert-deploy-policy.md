@@ -47,6 +47,8 @@ Service Health Alert Rules can be deployed on a single subscription, or across a
 
     - Ensure the system assigned managed identity is selected, or assign a user assigned managed identity.
     - Select **Create a remediation task** to automatically apply the policy to existing subscriptions. Without this step, the policy only applies to new subscriptions.
+1. Select **Review and save** the assignment.
+
 
 ## Default behavior
 
@@ -86,7 +88,6 @@ By default, the alert rules and action groups are configured to email subscripti
 - **Existing action group resource ids**:<br> Enter the resource IDs of existing action groups within the management group or subscription (based on the policy’s scope) that should be used to send alerts. This action group can be used to alert across subscriptions.<br>For more information, see [Action Groups](/azure/azure-monitor/alerts/action-groups). 
 
 :::image type="content"source="./media/service-health-alerts-deploy/alert-across-subscriptions.png"alt-text="Screenshot of the path of alerts across subscriptions."Lightbox="./media/service-health-alerts-deploy/alert-across-subscriptions.png":::
-
 
 
 - **New action group creation**:<br>
