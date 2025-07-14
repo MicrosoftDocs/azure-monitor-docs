@@ -38,7 +38,6 @@ Service Health Alert Rules can be deployed on a single subscription, or across a
     
 
 1. In the **Parameters** tab: 
-
     - You can set the optional customization options (see [Default Behavior](#default-behavior) and [Customization Options](#customization-options)).
     
     
