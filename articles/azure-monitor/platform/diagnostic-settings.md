@@ -9,110 +9,80 @@ ms.reviewer: lualderm
 
 # Diagnostic settings in Azure Monitor
 
-This article provides details on creating and configuring diagnostic settings to send Azure platform metrics, resource logs, and the activity log to different destinations.
+Diagnostic settings in Azure Monitor allow you to collect [resource logs](./resource-logs.md) and to send [platform metrics](./metrics-supported.md) and the [activity log](./activity-log.md) to different destinations. This article describes how to create and configure diagnostic settings.
 
-Each Azure resource requires its own diagnostic setting, which defines the following criteria:
-
-- **Sources**: The type of metric and log data to send to the destinations defined in the setting. The available types vary by resource type.
-- **Destinations**: One or more destinations to send to.
+## Overview
+A diagnostic setting applies to a single Azure resource, such as a virtual machine, storage account, or SQL database. Create a separate diagnostic setting for each resource you want to collect data from. Each settings defines the sources of data to collect and the destinations to send that data to.
 
 A single diagnostic setting can define no more than one of each of the destinations. If you want to send data to more than one of a particular destination type (for example, two different Log Analytics workspaces), create multiple settings. Each resource can have up to five diagnostic settings.
 
 > [!WARNING]
-> If you need to delete a resource, rename, or move a resource, or migrate it across resource groups or subscriptions, first delete its diagnostic settings. Otherwise, if you recreate this resource, the diagnostic settings for the deleted resource could be included with the new resource, depending on the resource configuration for each resource. If the diagnostics settings are included with the new resource, this resumes the collection of resource logs as defined in the diagnostic setting and sends the applicable metric and log data to the previously configured destination. 
->
-> Also, it's a good practice to delete the diagnostic settings for a resource you're going to delete and don't plan on using again to keep your environment clean.
-
+> Delete any diagnostic settings for a resource if you delete or rename that resource, or migrate it across resource groups or subscriptions. If you recreate this resource, any diagnostic settings for the deleted resource could be applied to the new one. This resumes the collection of resource logs as defined in the diagnostic setting. 
 
 > [!NOTE]
 >
-> Azure Monitor Resource Logs aren't 100% lossless. Resource Logs are based on a store and forward architecture designed to affordably move 
-> petabytes of data per day at scale. This capability includes built-in redundancy and retries across the platform, but doesn't provide 
-> transactional guarantees. Transactional monitoring might reduce the reliability and performance of the monitored service. 
-> Also, transient logging errors must halt the upstream service when unable to confirm log delivery. 
-> Whenever the Azure Monitor team can confirm a persistent source of data loss, the team considers resolution and prevention its highest priority. 
-> However, small data losses might still happen due to temporary, non-repeating service issues distributed across Azure, and not all can be caught.
+> Resource Logs aren't completely lossless. They're based on a store and forward architecture designed to affordably move petabytes of data per day at scale. This capability includes built-in redundancy and retries across the platform but doesn't provide transactional guarantees. Anytime a persistent source of data loss is identified, its resolution and future prevention is prioritized. Small data losses may still occur to temporary, non-repeating service issues distributed across Azure.
 
-The following video walks you through routing resource platform logs with diagnostic settings. The video was done at an earlier time. Be aware of the following changes:
+The following video walks through routing resource platform logs with diagnostic settings. The following changes were made to diagnostic settings since the video was recorded. These changes are described in this article.
 
-- There are now four destinations. You can send platform metrics and logs to certain Azure Monitor partners.
+- You can now also send platform metrics and logs to certain Azure Monitor partners.
 - A new feature called category groups was introduced in November 2021.
-
-Information on these newer features is included in this article.
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=2e9e11cc-fc03-4caa-8fee-4386abf454bc]
 
 ## Sources
 
-There are three sources for diagnostic information:
+There are three data sources collected by diagnostic settings:
 
-- Platform metrics are sent automatically to [Azure Monitor Metrics](./data-platform-metrics.md) by default and without configuration. For more information on supported metrics, see [Supported metrics with Azure Monitor](./metrics-supported.md)
-- Platform logs provide detailed diagnostic and auditing information for Azure resources and the Azure platform they depend on.
-   - **Resource logs**  aren't collected until they're routed to a destination. For more information on supported logs, see [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/supported-logs/logs-index)
-   - The **Activity log** provides information about resources from outside the resource, such as when the resource was created or deleted. Entries exist on their own but can be routed to other locations.
+- [Platform metrics](./metrics-supported.md) are automatically sent to [Azure Monitor Metrics](./data-platform-metrics.md) without configuration. Use a diagnostic setting to sent platform metrics to other [destinations](#destinations). Send them to a Log Analytics workspace to analyze them with related log data.
+- The [Activity log](./activity-log.md) are automatically collected without configuration. Use a diagnostic setting to sent activity log entries to other [destinations](#destinations).
+- [Resource logs](./resource-logs.md) aren't collected by default. Create a diagnostic setting to collect resource logs.
+   
+### Category groups in resource logs
 
-### Metrics
-
-The **AllMetrics** setting routes a resource's platform metrics to other destinations. This option might not be present for all resource providers.  
-
-### Resource logs
-
-With resource logs, you can select the log categories you want to route individually or choose a category group.
-
-**Category groups**
 > [!NOTE]
-> Category groups don't apply to all metric resource providers. If a provider doesn't have them available in the diagnostic settings in the Azure portal, then they also won't be available via Azure Resource Manager templates. 
+> Not all Azure services use category groups. If category groups aren't available for a particular resource, then the option won't be available when create the diagnostic setting. 
 
-You can use *category groups* to dynamically collect resource logs based on predefined groupings instead of selecting individual log categories. Microsoft defines the groupings to help monitor specific use cases across all Azure services. Over time, the categories in the group might be updated as new logs are rolled out or as assessments change. When log categories are added or removed from a category group, your log collection is modified automatically without you having to update your diagnostic settings.
+You can use *category groups* to collect resource logs based on predefined groupings instead of selecting individual log categories. Microsoft defines the groupings to help monitor common use cases. If the categories in the group are updated, your log collection is modified automatically. 
 
-When you use category groups, you:
-
-- No longer can individually select resource logs based on individual category types.
-- No longer can apply retention settings to logs sent to Azure Storage.
+If you do use category groups in a diagnostic setting, you can't select individual category types. You also can't apply retention settings to any logs sent to Azure Storage.
 
 Currently, there are two category groups:
 
-- **All**: Every resource log offered by the resource.
-- **Audit**: All resource logs that record customer interactions with data or the settings of the service. Audit logs are an attempt by each resource provider to provide the most relevant audit data, but might not be considered sufficient from an auditing standards perspective depending on your use case. As mentioned above, what's collected is dynamic, and Microsoft may change it over time as new resource log categories become available.
-
-The "Audit" category group is a subset of the "All" category group, but the Azure portal and REST API consider them separate settings. Selecting the "All" category group does collect all audit logs even if the "Audit" category group is also selected.  
+- **allLogs**: all categories for the resource.
+- **audit**: All resource logs that record customer interactions with data or the settings of the service. You don't need to select this category group if you select the **allLogs** category group.
 
 The following image shows the logs category groups on the **Add diagnostics settings** page.
 
 :::image type="content" source="./media/diagnostic-settings/audit-category-group.png" alt-text="A screenshot showing the logs category groups."::: 
 
-> [!NOTE]
+> [!IMPORTANT]
 > Enabling the Audit category in the diagnostic settings for Azure SQL Database does not activate auditing for the database. To enable database auditing, you have to enable it from the auditing blade for Azure Database. 
 
-### Activity log
-
-See the [Activity log settings](#activity-log-settings) section.
 
 ## Destinations
 
-Platform logs and metrics can be sent to the destinations listed in the following table.  
-  
-To ensure the security of data in transit, all destination endpoints are configured to support TLS 1.2.
+Diagnostic settings can send data to one or more of the following destinations. To ensure the security of data in transit, all destination endpoints are configured to support TLS 1.2.
 
 | Destination | Description |
 |:---|:---|
-| [Log Analytics workspace](../logs/workspace-design.md) | Metrics are converted to log form. This option might not be available for all resource types. Sending them to the Azure Monitor Logs store (which is searchable via Log Analytics) helps you to integrate them into queries, alerts, and visualizations with existing log data.
-| [Azure Storage account](/azure/storage/blobs/) | Archiving logs and metrics to a Storage account is useful for audit, static analysis, or back up. Compared to using Azure Monitor Logs or a Log Analytics workspace, Storage is less expensive, and logs can be kept there indefinitely.  | 
-| [Azure Event Hubs](/azure/event-hubs/) | When you send logs and metrics to Event Hubs, you can stream data to external systems such as third-party SIEMs and other Log Analytics solutions.  |
-| [Azure Monitor partner solutions](/azure/partner-solutions/partners#observability)| Specialized integrations can be made between Azure Monitor and other non-Microsoft monitoring platforms. Integration is useful when you're already using one of the partners.  |
+| [Log Analytics workspace](../logs/workspace-design.md) | Retrieve data using [log queries](../logs/log-query-overview.md) and [workbooks](../visualize/workbooks-overview.md). Use [log alerts](../alerts/alerts-types.md#log-search-alerts) to proactively alert on data. See [Azure Monitor Resource log reference](/azure/azure-monitor/reference/tables-index) for the tables used by different Azure resources. |
+| [Azure Storage account](/azure/storage/blobs/) | Store for audit, static analysis, or back up. Storage may be less expensive than other options and can be kept indefinitely.  | 
+| [Azure Event Hubs](/azure/event-hubs/) | Stream data to external systems such as third-party SIEMs and other Log Analytics solutions.  |
+| [Azure Monitor partner solutions](/azure/partner-solutions/partners#observability)| Specialized integrations can be made between Azure Monitor and other non-Microsoft monitoring platforms.  |
 
-## Activity log settings
-
-The activity log uses a diagnostic setting but has its own user interface because it applies to the whole subscription rather than individual resources. The destination information listed here still applies. For more information, see [Azure activity log](activity-log.md).
-
+> [!IMPORTANT]
+>The Retention Policy as set in the Diagnostic Setting settings is now deprecated and can no longer be used. Use the Azure Storage Lifecycle Policy to manage the length of time that your logs are retained. For more information, see [Migrate diagnostic settings storage retention to Azure Storage lifecycle management](migrate-to-azure-storage-lifecycle-policy.md).
 
 ## Requirements and limitations
 
 This section discusses requirements and limitations.
 
 ### Time before telemetry gets to destination
+Data should start arriving at the destinations within 90 minutes after a diagnostic setting has been created. 
 
-After you set up a diagnostic setting, data should start flowing to your selected destination(s) within 90 minutes. When sending logs to a Log Analytics workspace, the table is created automatically if it doesn't already exist. The table is only created when the first log records are received. If you get no information within 24 hours, then you might be experiencing one of the following issues:
+
+When sending logs to a Log Analytics workspace, the table is created automatically if it doesn't already exist. The table is only created when the first log records are received. If you get no information within 24 hours, then you might be experiencing one of the following issues:
 
 - No logs are being generated.
 - Something is wrong in the underlying routing mechanism.
