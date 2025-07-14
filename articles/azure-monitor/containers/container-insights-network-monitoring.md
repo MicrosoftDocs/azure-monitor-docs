@@ -22,8 +22,6 @@ This article describes Azure Monitor features that customers can use for monitor
 * [Learn more about Container Network Observability](/azure/aks/advanced-container-networking-services-overview#container-network-observability)
 * [Enable Container Network Observability on your AKS cluster](/azure/aks/container-network-observability-how-to)
 
-
-
 ## Collecting network logs
 
 
