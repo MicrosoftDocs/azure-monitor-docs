@@ -39,8 +39,6 @@ Service Health Alert Rules can be deployed on a single subscription, or across a
 
 1. In the **Parameters** tab: 
 
-    :::image type="content"source="./media/service-health-alerts-deploy/policy-parameters-1.png"alt-text="Screenshot of Parameters tab."Lightbox="./media/service-health-alerts-deploy/policy-parameters-1.png":::
-
     - You can set the optional customization options (see [Default Behavior](#default-behavior) and [Customization Options](#customization-options)).
     
     
