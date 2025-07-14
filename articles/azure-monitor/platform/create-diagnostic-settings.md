@@ -12,7 +12,22 @@ ms.reviewer: lualderm
 Create and edit diagnostic settings in Azure Monitor to send Azure platform metrics and logs to different destinations like Azure Monitor Logs, Azure Storage, or Azure Event Hubs. You can use different methods to work with the diagnostic settings, such as the Azure portal, the Azure CLI, PowerShell, and Azure Resource Manager.
 
 ## Prerequisites
-- Any destinations used by the diagnostic setting must exist before the setting can be created. Any tables in a Log Analytics workspace are created automatically when the first data is sent to the workspace, so only the workspace itself must exist.
+Any destinations used by the diagnostic setting must exist before the setting can be created. Any tables in a Log Analytics workspace are created automatically when the first data is sent to the workspace, so only the workspace itself must exist. The destination doesn't have to be in the same subscription as the resource sending logs if the user who configures the setting has appropriate Azure role-based access control access to both subscriptions. By using Azure Lighthouse, it's also possible to have diagnostic settings sent to a workspace, storage account, or event hub in another Microsoft Entra tenant.
+
+**Storage accounts**<br><br>
+- The storage account needs to be in the same region as the resource being monitored if the resource is regional.
+- To prevent modification of the data, send it to immutable storage. Set the immutable policy for the storage account as described in [Set and manage immutability policies for Azure Blob Storage](/azure/storage/blobs/immutable-policy-configure-version-scope).
+- Diagnostic settings can't access storage accounts when virtual networks are enabled. You must enable **Allow trusted Microsoft services** to bypass this firewall setting in storage accounts.
+- [Azure DNS zone endpoints (preview)](/azure/storage/common/storage-account-overview#azure-dns-zone-endpoints-preview) and any [Premium storage accounts](/azure/storage/common/storage-account-overview#types-of-storage-accounts) aren't supported as a destination. Any [Standard storage accounts](/azure/storage/common/storage-account-overview#types-of-storage-accounts) are supported.
+
+**Event hubs**<br><br>
+- The event hub namespace needs to be in the same region as the resource being monitored if the resource is regional.
+- The shared access policy for the namespace defines the permissions that the streaming mechanism has. Streaming to Event Hubs requires `Manage`, `Send`, and `Listen` permissions. To update the diagnostic setting to include streaming, you must have the `ListKey` permission on that Event Hubs authorization rule.
+-  Diagnostic settings can't access Event Hubs resources when virtual networks are enabled. You must enable **Allow trusted Microsoft services** to bypass this firewall setting in Event Hubs so that the Azure Monitor diagnostic settings service is granted access to your Event Hubs resources.
+
+
+> [!NOTE]
+> Allow up to 90 minutes for data to start arriving at destinations after a diagnostic setting is created. 
 
 
 ## [Azure portal](#tab/portal)
@@ -191,10 +206,7 @@ When a resource is inactive for one hour, the export mechanism backs off to 15 m
 
 ### Duplicate data for Application Insights
 
-When you create a diagnostic Settings to export workspace-based Application Insights data to any Log Analytics workspace—including the same one that already stores Application Insights data—queries return duplicate results. This duplication happens because both the default pipeline and Diagnostic Settings send the same data to the workspace.
-
-To avoid duplicate telemetry, don't configure Diagnostic Settings to send data to the same workspace. If you need to export data to a different workspace, use a Data Collection Rule (DCR) with a transformation and a custom table. This setup filters the data before ingestion and prevents duplicate records in your queries.
-
+Diagnostic settings for workspace-based Application insights applications collect the same data as Application insights itself. This results in duplicate data being collected if the destination is the same Log Analytics workspace that the application is using. Create a diagnostic setting for Application insights to send data to a different Log Analytics workspace or another destination. 
 
 
 ## Next steps
