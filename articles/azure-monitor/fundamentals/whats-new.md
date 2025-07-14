@@ -21,8 +21,8 @@ This article lists significant changes to Azure Monitor documentation.
 |Metrics|[Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md)|Removed preview tags.|
 |Health-Models|[Health models in Azure Monitor (preview)](../health-models/overview.md)|Public preview of new health models feature.|
 |Agents|[Azure Diagnostics extension overview ](../agents/diagnostics-extension-overview.md)|Added query to identify agents for migration.|
-|Metrics|[Migrate from Self-hosted Prometheus to Azure Monitor Managed Service for Prometheus](../metrics/prometheus-migrate.md?tabs=entra-application)|New article providiing guidance for migration from self-hosted Prometheus.|
-|Platform|[Send Azure Monitor activity log data](../platform/activity-log.md?tabs=powershell)|New article providing guidance for migration from self-hosted Prometheus.|
+|Metrics|[Migrate from Self-hosted Prometheus to Azure Monitor Managed Service for Prometheus](../metrics/prometheus-migrate.md?tabs=entra-application)|New article providing guidance for migration from self-hosted Prometheus.|
+|Platform|[Send Azure Monitor activity log data](../platform/activity-log.md?tabs=powershell)|Updated Send Azure Monitor activity log data.|
 |Visualizations|[Grafana Dashboards](../visualize/visualize-use-grafana-dashboards.md)|Azure Monitor dashboards with Grafana empower users to effortlessly create, edit, and share dynamic visualizations for monitoring data from Azure resources, enhancing operational insights and efficiency.|
 
 ### May 2025

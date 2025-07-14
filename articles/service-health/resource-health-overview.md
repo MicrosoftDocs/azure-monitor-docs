@@ -2,7 +2,7 @@
 title: Azure Resource Health overview
 description: Learn how Azure Resource Health helps you diagnose and get support for service problems that affect your Azure resources.
 ms.topic: concept-article
-ms.date: 06/23/2025
+ms.date: 07/09/2025
 
 ---
 # Resource Health overview
@@ -19,7 +19,7 @@ A *resource* is a specific instance of an Azure service, such as a virtual machi
 
 For more information on how health is assessed, see the list of resource types and health checks at [Azure Resource Health](resource-health-checks-resource-types.md).
 
-For information and steps on how to create a Resource Health alert see [Create a Resource Health alert].(resource-health-alert-monitor-guide.md)
+For information and steps on how to create a Resource Health alert see [Create a Resource Health alert](resource-health-alert-monitor-guide.md)
 
 ## Health status
 

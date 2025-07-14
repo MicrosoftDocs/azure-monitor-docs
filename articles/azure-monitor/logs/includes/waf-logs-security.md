@@ -11,7 +11,7 @@ ms.date: 07/01/2025
 
 #### Secure Logs data in transit
 
-If you use agents, connectors, or the Logs APIs to [../log-query-overview.md) or [send](../logs-ingestion-api-overview.md) data to your workspace, use Transport Layer Security (TLS) 1.2 or higher to ensure the security of your data in transit. Older versions of TLS and Secure Sockets Layer (SSL) have vulnerabilities and, while they might still work to allow backwards compatibility, they are **not recommended**, and the industry has quickly moved to abandon support for these older protocols.
+If you use agents, connectors, or the Logs APIs to [query](../log-query-overview.md) or [send](../logs-ingestion-api-overview.md) data to your workspace, use Transport Layer Security (TLS) 1.2 or higher to ensure the security of your data in transit. Older versions of TLS and Secure Sockets Layer (SSL) have vulnerabilities and, while they might still work to allow backwards compatibility, they are **not recommended**, and the industry has quickly moved to abandon support for these older protocols.
 
 The [PCI Security Standards Council](https://www.pcisecuritystandards.org/) set a [deadline of June 30, 2018](https://www.pcisecuritystandards.org/pdfs/PCI_SSC_Migrating_from_SSL_and_Early_TLS_Resource_Guide.pdf) to disable older versions of TLS/SSL and upgrade to more secure protocols. Once Azure drops legacy support, clients that don't completely communicate over TLS 1.2 or higher won't be able to send or query data to Azure Monitor Logs.
 
@@ -27,9 +27,7 @@ Don't explicitly configure your agents, data connectors or API applications to *
 
 **Recommended action**
 
-To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols. 
-
-For example, clients configured to work with older servers might still use TLS 1.0/1.1 protocols to start a TLS handshake. When that client connects to Azure Monitor Logs before the TLS 1.2 enforcement date, the Logs API endpoint still allows the initial TLS 1.0/1.1 connection for the client hello, but directs the client to use TLS 1.2 or higher. The client is then allowed to establish the connection at TLS 1.2/1.3, or the connection is dropped. After the TLS 1.2 enforcement date, the Logs API endpoint drops any traffic that isn't TLS 1.2 or higher.
+To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols.
 
 For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
