@@ -54,7 +54,7 @@ Cross-service queries aren't supported in the following scenarios:
 * When you query Azure Resource Graph data from Azure Monitor:
     * The `join` operator lets you combine data from one Azure Resource Graph table with one table in your Log Analytics workspace.
     * Azure Monitor doesn't return Azure Resource Graph query errors.
-    * The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors. For example, a valid query might give an error like this, "The name /<column name/> does not refer to any known column, table, variable or function."
+    * The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors. For example, a valid query might give an error like this, "The name \<valid name> does not refer to any known column, table, variable or function."
     * These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`, `bin_at`.
 * Microsoft Sentinel doesn't support cross-service queries in all features where KQL is used.
 
