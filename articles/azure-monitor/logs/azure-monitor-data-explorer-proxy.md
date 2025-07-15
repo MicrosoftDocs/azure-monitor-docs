@@ -27,28 +27,27 @@ Cross-service queries aren't supported in the following scenarios:
 - Data Explorer clusters configured with [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) or [Private Link](../logs/private-link-security.md) (private endpoints)
 
 ### General cross-service considerations
-
 * Database names are case sensitive.
 * Use non-parameterized functions and functions whose definition does not include other cross-workspace or cross-service expressions. Acceptable functions include `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
 * Cross-service queries support data retrieval only.
 * Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter.
-* Cross-service queries support **only ".show"** commands.
-    This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.
-    The following commands are supported with the cross-service query:
-    * `.show functions`
-    * `.show function {FunctionName}`
-    * `.show database {DatabaseName} schema as json`
+* Cross-service queries support **only ".show"** commands. This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.
+
+  | Commands supported with the cross-service query |
+  |---|
+  | `.show functions` |
+  | `.show function {FunctionName}` |
+  | `.show database {DatabaseName} schema as json` |
+
 * `mv-expand` supports up to 2,000 records.
 * Azure Monitor Logs doesn't support the `external_table()` function, which lets you query external tables in Azure Data Explorer. To query an external table, define `external_table(<external-table-name>)` as a parameterless function in Azure Data Explorer. You can then call the function using the expression `adx("").<function-name>`.
-* When you use the [`join` operator](/azure/data-explorer/kusto/query/joinoperator) instead of union, you need to use a [`hint`](/azure/data-explorer/kusto/query/joinoperator#join-hints) to combine data in Azure Data Explorer or Azure Resource Graph with data in the Log Analytics workspace. Use `Hint.remote={direction of the Log Analytics workspace}`. 
+* When you use the [`join` operator](/azure/data-explorer/kusto/query/joinoperator) instead of union, you need to use a [`hint`](/azure/data-explorer/kusto/query/joinoperator#join-hints) to combine data in Azure Data Explorer or Azure Resource Graph with data in the Log Analytics workspace. Use `Hint.remote={direction of the Log Analytics workspace}`. For example:
 
-    For example:
-    
-    ```kusto
-    AzureDiagnostics
-    | join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
-    ```
-    
+```kusto
+AzureDiagnostics
+| join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
+```
+
 ### Azure Resource Graph cross-service query considerations
 
 * When you query Azure Resource Graph data from Azure Monitor:
