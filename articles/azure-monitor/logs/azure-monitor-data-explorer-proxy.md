@@ -2,7 +2,7 @@
 title: Correlate data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace 
 description: Run cross-service queries to correlated data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace.
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 07/15/2024
 ms.reviewer: osalzberg
 ---
 
@@ -15,7 +15,6 @@ Run cross-service queries by using any client tools that support Kusto Query Lan
 ## Permissions required
 
 To run a cross-service query that correlates data in Azure Data Explorer or Azure Resource Graph with data in a Log Analytics workspace, you need:
-
 - `Microsoft.OperationalInsights/workspaces/query/*/read` permissions to the Log Analytics workspaces you query, as provided by the [Log Analytics Reader built-in role](../logs/manage-access.md#log-analytics-reader), for example.
 - Reader permissions to the resources you query in Azure Resource Graph.
 - Viewer permissions to the tables you query in Azure Data Explorer.
@@ -27,35 +26,35 @@ Cross-service queries aren't supported in the following scenarios:
 - Data Explorer clusters configured with [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) or [Private Link](../logs/private-link-security.md) (private endpoints)
 
 ### General cross-service considerations
-* Database names are case sensitive.
-* Use non-parameterized functions and functions whose definition does not include other cross-workspace or cross-service expressions. Acceptable functions include `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
-* Cross-service queries support data retrieval only.
-* Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter.
-* Cross-service queries support **only ".show"** commands. This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.
 
-  | Commands supported with the cross-service query |
-  |---|
-  | `.show functions` |
-  | `.show function {FunctionName}` |
-  | `.show database {DatabaseName} schema as json` |
+- Database names are case sensitive.
+- Use non-parameterized functions and functions whose definition does not include other cross-workspace or cross-service expressions. Acceptable functions include `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
+- Cross-service queries support data retrieval only.
+- Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter.
+- Cross-service queries support **only ".show"** commands. This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.
 
-* `mv-expand` supports up to 2,000 records.
-* Azure Monitor Logs doesn't support the `external_table()` function, which lets you query external tables in Azure Data Explorer. To query an external table, define `external_table(<external-table-name>)` as a parameterless function in Azure Data Explorer. You can then call the function using the expression `adx("").<function-name>`.
-* When you use the [`join` operator](/azure/data-explorer/kusto/query/joinoperator) instead of union, you need to use a [`hint`](/azure/data-explorer/kusto/query/joinoperator#join-hints) to combine data in Azure Data Explorer or Azure Resource Graph with data in the Log Analytics workspace. Use `Hint.remote={direction of the Log Analytics workspace}`. For example:
+   | Commands supported with the cross-service query |
+   |---|
+   | `.show functions` |
+   | `.show function {FunctionName}` |
+   | `.show database {DatabaseName} schema as json` |
 
-```kusto
-AzureDiagnostics
-| join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
-```
+- `mv-expand` supports up to 2,000 records.
+- Azure Monitor Logs doesn't support the `external_table()` function, which lets you query external tables in Azure Data Explorer. To query an external table, define `external_table(<external-table-name>)` as a parameterless function in Azure Data Explorer. You can then call the function using the expression `adx("").<function-name>`.
+- When you use the [`join` operator](/azure/data-explorer/kusto/query/joinoperator) instead of union, you need to use a [`hint`](/azure/data-explorer/kusto/query/joinoperator#join-hints) to combine data in Azure Data Explorer or Azure Resource Graph with data in the Log Analytics workspace. Use `Hint.remote={direction of the Log Analytics workspace}`. For example:
+
+   ```kusto
+   AzureDiagnostics
+   | join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
+   ```
 
 ### Azure Resource Graph cross-service query considerations
 
-* When you query Azure Resource Graph data from Azure Monitor:
-    * The `join` operator lets you combine data from one Azure Resource Graph table with one table in your Log Analytics workspace.
-    * Azure Monitor doesn't return Azure Resource Graph query errors.
-    * The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors. For example, a valid query might give an error like this, "The name \<valid name> does not refer to any known column, table, variable or function."
-    * These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`, `bin_at`.
-* Microsoft Sentinel doesn't support cross-service queries in all features where KQL is used.
+- The `join` operator lets you combine data from one Azure Resource Graph table with one table in your Log Analytics workspace.
+- Azure Monitor doesn't return Azure Resource Graph query errors.
+- The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors. For example, a valid query might give an error like this, "The name \<valid name> does not refer to any known column, table, variable or function."
+- These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`, `bin_at`.
+- Microsoft Sentinel doesn't support cross-service queries in all features where KQL is used.
 
 ## Query data in Azure Data Explorer by using adx()
 
@@ -64,6 +63,7 @@ Enter the identifier for an Azure Data Explorer cluster in a query within the `a
 ```kusto
 adx('https://help.kusto.windows.net/Samples').StormEvents
 ```
+
 ### Combine Azure Data Explorer cluster tables with a Log Analytics workspace
 
 Use the `union` command to combine cluster tables with a Log Analytics workspace.
@@ -90,8 +90,8 @@ Cross-tenant queries between the services aren't supported. You're signed in to 
 
 If the Azure Data Explorer resource is in Tenant A and the Log Analytics workspace is in Tenant B, use one of the following methods:
 
-* Use Azure Data Explorer to add roles for principals in different tenants. Add your user ID in Tenant B as an authorized user on the Azure Data Explorer cluster. Validate that the [TrustedExternalTenant](/powershell/module/az.kusto/update-azkustocluster) property on the Azure Data Explorer cluster contains Tenant B. Run the cross query fully in Tenant B.
-* Use [Lighthouse](/azure/lighthouse/) to project the Azure Monitor resource into Tenant A.
+- Use Azure Data Explorer to add roles for principals in different tenants. Add your user ID in Tenant B as an authorized user on the Azure Data Explorer cluster. Validate that the [TrustedExternalTenant](/powershell/module/az.kusto/update-azkustocluster) property on the Azure Data Explorer cluster contains Tenant B. Run the cross query fully in Tenant B.
+- Use [Lighthouse](/azure/lighthouse/) to project the Azure Monitor resource into Tenant A.
 
 ### Connect to Azure Data Explorer clusters from different tenants
 
@@ -152,8 +152,8 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
        ```
 
 More use cases:
--    Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
--    Show alerts on any server that contains a certain number of cores.
+- Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
+- Show alerts on any server that contains a certain number of cores.
 
 ## Create an alert based on a cross-service query from your Log Analytics workspace
 
@@ -185,7 +185,7 @@ Perf | where ObjectName == "Memory" and (CounterName == "Available MBytes Memory
 | join hint.remote=left (arg("").Resources | where type =~ 'Microsoft.Compute/virtualMachines' | project _ResourceId=id, tags) on _ResourceId | project-away _ResourceId1 | where tostring(tags.env) == "prod"
 ```
 
-## Next steps
-* [Write queries](/azure/data-explorer/write-queries)
-* [Perform cross-resource log queries in Azure Monitor](../logs/cross-workspace-query.md)
+## Related content
+- [Write queries](/azure/data-explorer/write-queries)
+- [Perform cross-resource log queries in Azure Monitor](../logs/cross-workspace-query.md)
 
