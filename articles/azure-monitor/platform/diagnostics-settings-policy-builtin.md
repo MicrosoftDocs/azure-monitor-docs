@@ -10,151 +10,10 @@ ms.reviewer: lualderm
 # Create diagnostic settings at scale using built-in Azure Policies
 Policies and policy initiatives provide a simple method to enable logging at-scale with [diagnostics settings](./diagnostic-settings.md) for Azure Monitor. This article describes how to use a set of built-in policies to direct resource logs for [supported resources](#supported-resources) to Log Analytics Workspaces, Event Hubs, and Storage Accounts. To create a custom policy definition for a resource type that doesn't have a built-in policy, see [Create diagnostic settings at scale using Azure Policies and Initiatives](diagnostics-settings-policy.md).
 
+## Policies and initiatives
+An initiative is a collection of policies. Rather than assigning multiple policies to a scope, you can assign a single initiative that includes the different policies you need. You can alter add polities to this initiative without changing the assignment.
 
-## Deploy policies
-Deploy a built-in policy for a supported Azure resource type using one of the following methods.
-
-### [Azure portal](#tab/portal)
-
-Use the following steps to apply a policy using the Azure portal.
-
-1. From the Policy page in the Azure portal, select **Definitions**.
-1. Set the following filter:
-   1. Select a **Scope** to apply the policy, This can be the entire subscription, a resource group, or an individual resource.
-   2. Select **Policy** for the **Definition type**.
-   3. Select **Monitoring** for the **Category**.
-2. Type the name of your resource type in the **Search** field. The sample below uses key vaults as the resource type.
-   :::image type="content" source="./media/diagnostics-settings-policy-builtin/policy-definitions-search.png" lightbox="./media/diagnostics-settings-policy-builtin/policy-definitions-search.png" alt-text="A screenshot of the policy definitions page with search for key vaults.":::
-
-3. Select the policy for your resource type and destination. The sample below sends data to a Log Analytics workspace.
-    :::image type="content" source="./media/diagnostics-settings-policy-builtin/policy-definitions.png" lightbox="./media/diagnostics-settings-policy-builtin/policy-definitions.png" alt-text="A screenshot of the policy definitions page.":::
-
-4. From the policy definition page, select **Assign Policy** and set a **Scope** for the policy assignment. The scope can be a management group, subscription, or resource group. The policy is applied to all resources within the scope.
-5. Select the **Parameters** tab and then select the specific destination where you want to send the audit logs.
-6. Select the **Remediation** tab.
- :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-policy-parameters.png" lightbox="./media/diagnostics-settings-policy-builtin/assign-policy-parameters.png" alt-text="A screenshot of the assign policy page, parameters tab.":::
-1. Enable the **Create a remediation task** checkbox and then ensure that **Create a Managed Identity** is enabled.
-2. Under **Type of Managed Identity**, select **System assigned Managed Identity**.
-3. Select **Review + create**, then select **Create** .
-  :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-policy-remediation.png" lightbox="./media/diagnostics-settings-policy-builtin/assign-policy-remediation.png" alt-text="A screenshot of the assign policy page, remediation tab.":::
-
-
-### [CLI](#tab/cli)
-Use the following commands to apply a policy using the CLI.
-
-1. Create a policy assignment using [`az policy assignment create`](/cli/azure/policy/assignment#az-policy-assignment-create).
-    ```azurecli
-      az policy assignment create --name <policy assignment name>  --policy "6b359d8f-f88d-4052-aa7c-32015963ecc1"  --scope <scope> --params "{\"logAnalytics\": {\"value\": \"<log analytics workspace resource ID"}}" --mi-system-assigned --location <location>
-    ```
-    For example, to apply the policy to send audit logs to a log analytics workspace
-
-    ```azurecli
-      az policy assignment create --name "policy-assignment-1"  --policy "6b359d8f-f88d-4052-aa7c-32015963ecc1"  --scope /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001 --params "{\"logAnalytics\": {\"value\": \"/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-001/providers/microsoft.operationalinsights/workspaces/workspace-001\"}}" --mi-system-assigned --location eastus
-    ```
-
-1. Assign the required role to the identity created for the policy assignment.
-Find the role in the policy definition by searching for *roleDefinitionIds*
-
-    ```json
-       ...},
-          "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
-          ],
-          "deployment": {
-            "properties": {...
-    ```
-    Assign the required role using [`az policy assignment identity assign`](/cli/azure/policy/assignment/identity):
-    ```azurecli
-    az policy assignment identity assign --system-assigned --resource-group <resource group name> --role <role name or ID> --identity-scope </scope> --name <policy assignment name>
-    ```
-    For example:
-    ```azurecli
-    az policy assignment identity assign --system-assigned --resource-group rg-001  --role 92aaf0da-9dab-42b6-94a3-d43ce8d16293 --identity-scope /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg001 --name policy-assignment-1
-    ```
-
-1. Trigger a scan to find existing resources using [`az policy state trigger-scan`](/cli/azure/policy/state#az-policy-state-trigger-scan).
-
-    ```azurecli
-    az policy state trigger-scan --resource-group rg-001
-    ```
-
-1. Create a remediation task to apply the policy to existing resources using [`az policy remediation create`](/cli/azure/policy/remediation#az-policy-remediation-create).
-
-    ```azurecli
-    az policy remediation create -g <resource group name> --policy-assignment <policy assignment name> --name <remediation name> 
-    ```
-
-    For example,
-    ```azurecli
-    az policy remediation create -g rg-001 -n remediation-001 --policy-assignment policy-assignment-1
-    ```
-
-For more information on policy assignment using CLI, see [Azure CLI reference - az policy assignment](/cli/azure/policy/assignment#az-policy-assignment-create)
-
-### [PowerShell](#tab/Powershell)
-
-Use the following commands to apply a policy using PowerShell.
-
-1. Set up your environment.
-    Select your subscription and set your resource group
-    ```azurepowershell
-    Select-AzSubscription <subscriptionID>
-    $rg = Get-AzResourceGroup -Name <resource groups name>    
-    ```
-
-1. Get the policy definition and configure the parameters for the policy. In the example below we assign the policy to send keyVault logs to a Log Analytics workspace
-    ```azurepowershell
-    $definition = Get-AzPolicyDefinition |Where-Object Name -eq 6b359d8f-f88d-4052-aa7c-32015963ecc1
-    $params =  @{"logAnalytics"="/subscriptions/<subscriptionID/resourcegroups/<resourcgroup>/providers/microsoft.operationalinsights/workspaces/<log anlaytics workspace name>"}  
-    ```
-
-1. Assign the policy 
-    ```azurepowershell
-    $policyAssignment=New-AzPolicyAssignment -Name <assignment name> -DisplayName "assignment display name" -Scope $rg.ResourceId -PolicyDefinition $definition -PolicyparameterObject $params -IdentityType 'SystemAssigned' -Location <location>
- 
-    #To get your assignemnt use:
-    $policyAssignment=Get-AzPolicyAssignment -Name '<assignment name>' -Scope '/subscriptions/<subscriptionID>/resourcegroups/<resource group name>'
-
-    ```
-
-1. Assign the required role or roles to the system assigned Managed Identity
-    ```azurepowershell
-        $principalID=$policyAssignment.Identity.PrincipalId
-        $roleDefinitionIds=$definition.Properties.policyRule.then.details.roleDefinitionIds
-        $roleDefinitionIds | ForEach-Object {
-            $roleDefId = $_.Split("/") | Select-Object -Last 1
-            New-AzRoleAssignment -Scope $rg.ResourceId -ObjectId $policyAssignment.Identity.PrincipalId -RoleDefinitionId $roleDefId
-        }
-    ```
-
-1. Scan for compliance, then create a remediation task to force compliance for existing resources.
-    ```azurepowershell
-        Start-AzPolicyComplianceScan -ResourceGroupName $rg.ResourceGroupName
-        Start-AzPolicyRemediation -Name $policyAssignment.Name -PolicyAssignmentId $policyAssignment.PolicyAssignmentId  -ResourceGroupName $rg.ResourceGroupName
-    ```
-
-1. Check compliance 
-    ```azurepowershell
-    Get-AzPolicyState -PolicyAssignmentName  $policyAssignment.Name -ResourceGroupName $policyAssignment.ResourceGroupName|select-object IsCompliant, ResourceID
-    ```
----
-
-The policy is visible in the resources' diagnostic settings after approximately 30 minutes.
-
-## Remediation tasks
-
-Policies are applied to new resources when they're created. The remediation task applies the policy to existing resources. To create a remediation task after the policy has been assigned, select your assigned policy from the list on the Policy Assignments page.
- 
-:::image type="content" source="./media/diagnostics-settings-policy-builtin/remediation-after-assignment.png"  lightbox="./media/diagnostics-settings-policy-builtin/remediation-after-assignment.png" alt-text="A screenshot showing the policy remediation page.":::
-
-Select **Remediate** and then track the status of your remediation task in the **Remediation tasks** tab of the Policy Remediation page.
-
-:::image type="content" source="./media/diagnostics-settings-policy-builtin/new-remediation-task-after-assignment.png" lightbox="./media/diagnostics-settings-policy-builtin/new-remediation-task-after-assignment.png" alt-text="A screenshot showing the new remediation task page.":::
-
-
-
-
-For more information on remediation tasks, see [Remediate noncompliant resources](/azure/governance/policy/how-to/remediate-resources)
+A set of built-in initiatives are available to help you apply diagnostics settings for different destinations. These initiatives contain all of the built-in policies for the supported resources. Use the process in [Assign initiatives](#assign-initiatives) to assign these initiatives to your selected scopes. If you want to apply individual policies to certain scopes, use the process in [Assign policies](#assign-policies).
 
 ## Assign initiatives
 
@@ -175,13 +34,14 @@ Deploy a built-in initiative for all supported Azure resource types using one of
 
 ### [Azure portal](#tab/portal)
 
-1. From the Policy page in the Azure portal, select **Definitions**.
-1. Set the following filter:
-   1. Select a **Scope** to apply the policy, This can be the entire subscription, a resource group, or an individual resource.
-   2. Select **Initiative** for the **Definition type**.
-   3. Select **Monitoring** for the **Category**.
+Use the following steps to apply an initiative using the Azure portal.
 
-1. Type *audit* or *allLogs* in the **Search** field and then select the initiative for your destination.
+1. From the Policy page in the Azure portal, select **Definitions**.
+2. Set the following filter:
+   1. Select **Initiative** for the **Definition type**.
+   2. Select **Monitoring** for the **Category**.
+
+3. Type *audit* or *allLogs* in the **Search** field and then select the initiative for your destination.
 
     :::image type="content" source="./media/diagnostics-settings-policy-builtin/initiatives.png" lightbox="./media/diagnostics-settings-policy-builtin/initiatives.png" alt-text="Screenshot showing the list of initiatives.":::
 
@@ -193,7 +53,7 @@ Deploy a built-in initiative for all supported Azure resource types using one of
 
     :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-initiatives-basics.png"  lightbox="./media/diagnostics-settings-policy-builtin/assign-initiatives-basics.png" alt-text="A screenshot showing the assign initiatives basics tab.":::  
 
-6. Select the **Parameters** tab and select the specific destination.
+4. Select the **Parameters** tab and then select the specific destination where you want to send the logs. These details will vary for each destination type. See [Parameters](#parameters) for more information on the parameters for each destination type.
 
     :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-initiatives-parameters.png" lightbox="./media/diagnostics-settings-policy-builtin/assign-initiatives-parameters.png" alt-text="A screenshot showing the assign initiatives parameters tab.":::
 
@@ -339,6 +199,161 @@ You can get your policy assignment details using the following command:
 ---
 
 
+## Deploy policies
+Deploy a built-in policy for a supported Azure resource type using one of the following methods.
+
+### [Azure portal](#tab/portal)
+
+Use the following steps to apply a policy using the Azure portal.
+
+1. From the Policy page in the Azure portal, select **Definitions**.
+1. Set the following filter:
+   1. Select **Policy** for the **Definition type**.
+   2. Select **Monitoring** for the **Category**.
+
+2. Type the name of your resource type in the **Search** field and then select the policy for your resource type and destination. The sample below sends key vault data to a Log Analytics workspace. 
+
+    :::image type="content" source="./media/diagnostics-settings-policy-builtin/policy-definitions.png" lightbox="./media/diagnostics-settings-policy-builtin/policy-definitions.png" alt-text="A screenshot of the policy definitions page.":::
+
+4. From the policy definition page, select **Assign policy**.
+
+    :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-policy.png"  lightbox="./media/diagnostics-settings-policy-builtin/assign-policy.png" alt-text="A screenshot showing the assign policy option."::: 
+
+5.  Set a **Scope** for the initiative assignment. The scope can be a management group, subscription, or resource group. The initiative is applied to all resources within the scope.
+
+    :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-policy-basics.png"  lightbox="./media/diagnostics-settings-policy-builtin/assign-policy-basics.png" alt-text="A screenshot showing the assign policy basics tab.":::  
+
+4. Select the **Parameters** tab and then select the specific destination where you want to send the audit logs. These details will vary for each destination type. See [Parameters](#parameters) for more information on the parameters for each destination type.
+
+
+
+5. Select the **Remediation** tab.
+ :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-policy-parameters.png" lightbox="./media/diagnostics-settings-policy-builtin/assign-policy-parameters.png" alt-text="A screenshot of the assign policy page, parameters tab.":::
+1. Enable the **Create a remediation task** checkbox and then ensure that **Create a Managed Identity** is enabled.
+2. Under **Type of Managed Identity**, select **System assigned Managed Identity**.
+3. Select **Review + create**, then select **Create** .
+  :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-policy-remediation.png" lightbox="./media/diagnostics-settings-policy-builtin/assign-policy-remediation.png" alt-text="A screenshot of the assign policy page, remediation tab.":::
+
+
+### [CLI](#tab/cli)
+Use the following commands to apply a policy using the CLI.
+
+1. Create a policy assignment using [`az policy assignment create`](/cli/azure/policy/assignment#az-policy-assignment-create).
+    ```azurecli
+      az policy assignment create --name <policy assignment name>  --policy "6b359d8f-f88d-4052-aa7c-32015963ecc1"  --scope <scope> --params "{\"logAnalytics\": {\"value\": \"<log analytics workspace resource ID"}}" --mi-system-assigned --location <location>
+    ```
+    For example, to apply the policy to send audit logs to a log analytics workspace
+
+    ```azurecli
+      az policy assignment create --name "policy-assignment-1"  --policy "6b359d8f-f88d-4052-aa7c-32015963ecc1"  --scope /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001 --params "{\"logAnalytics\": {\"value\": \"/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-001/providers/microsoft.operationalinsights/workspaces/workspace-001\"}}" --mi-system-assigned --location eastus
+    ```
+
+1. Assign the required role to the identity created for the policy assignment.
+Find the role in the policy definition by searching for *roleDefinitionIds*
+
+    ```json
+       ...},
+          "roleDefinitionIds": [
+            "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
+          ],
+          "deployment": {
+            "properties": {...
+    ```
+    Assign the required role using [`az policy assignment identity assign`](/cli/azure/policy/assignment/identity):
+    ```azurecli
+    az policy assignment identity assign --system-assigned --resource-group <resource group name> --role <role name or ID> --identity-scope </scope> --name <policy assignment name>
+    ```
+    For example:
+    ```azurecli
+    az policy assignment identity assign --system-assigned --resource-group rg-001  --role 92aaf0da-9dab-42b6-94a3-d43ce8d16293 --identity-scope /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg001 --name policy-assignment-1
+    ```
+
+1. Trigger a scan to find existing resources using [`az policy state trigger-scan`](/cli/azure/policy/state#az-policy-state-trigger-scan).
+
+    ```azurecli
+    az policy state trigger-scan --resource-group rg-001
+    ```
+
+1. Create a remediation task to apply the policy to existing resources using [`az policy remediation create`](/cli/azure/policy/remediation#az-policy-remediation-create).
+
+    ```azurecli
+    az policy remediation create -g <resource group name> --policy-assignment <policy assignment name> --name <remediation name> 
+    ```
+
+    For example,
+    ```azurecli
+    az policy remediation create -g rg-001 -n remediation-001 --policy-assignment policy-assignment-1
+    ```
+
+For more information on policy assignment using CLI, see [Azure CLI reference - az policy assignment](/cli/azure/policy/assignment#az-policy-assignment-create)
+
+### [PowerShell](#tab/Powershell)
+
+Use the following commands to apply a policy using PowerShell.
+
+1. Set up your environment.
+    Select your subscription and set your resource group
+    ```azurepowershell
+    Select-AzSubscription <subscriptionID>
+    $rg = Get-AzResourceGroup -Name <resource groups name>    
+    ```
+
+1. Get the policy definition and configure the parameters for the policy. In the example below we assign the policy to send keyVault logs to a Log Analytics workspace
+    ```azurepowershell
+    $definition = Get-AzPolicyDefinition |Where-Object Name -eq 6b359d8f-f88d-4052-aa7c-32015963ecc1
+    $params =  @{"logAnalytics"="/subscriptions/<subscriptionID/resourcegroups/<resourcgroup>/providers/microsoft.operationalinsights/workspaces/<log anlaytics workspace name>"}  
+    ```
+
+1. Assign the policy 
+    ```azurepowershell
+    $policyAssignment=New-AzPolicyAssignment -Name <assignment name> -DisplayName "assignment display name" -Scope $rg.ResourceId -PolicyDefinition $definition -PolicyparameterObject $params -IdentityType 'SystemAssigned' -Location <location>
+ 
+    #To get your assignemnt use:
+    $policyAssignment=Get-AzPolicyAssignment -Name '<assignment name>' -Scope '/subscriptions/<subscriptionID>/resourcegroups/<resource group name>'
+
+    ```
+
+1. Assign the required role or roles to the system assigned Managed Identity
+    ```azurepowershell
+        $principalID=$policyAssignment.Identity.PrincipalId
+        $roleDefinitionIds=$definition.Properties.policyRule.then.details.roleDefinitionIds
+        $roleDefinitionIds | ForEach-Object {
+            $roleDefId = $_.Split("/") | Select-Object -Last 1
+            New-AzRoleAssignment -Scope $rg.ResourceId -ObjectId $policyAssignment.Identity.PrincipalId -RoleDefinitionId $roleDefId
+        }
+    ```
+
+1. Scan for compliance, then create a remediation task to force compliance for existing resources.
+    ```azurepowershell
+        Start-AzPolicyComplianceScan -ResourceGroupName $rg.ResourceGroupName
+        Start-AzPolicyRemediation -Name $policyAssignment.Name -PolicyAssignmentId $policyAssignment.PolicyAssignmentId  -ResourceGroupName $rg.ResourceGroupName
+    ```
+
+1. Check compliance 
+    ```azurepowershell
+    Get-AzPolicyState -PolicyAssignmentName  $policyAssignment.Name -ResourceGroupName $policyAssignment.ResourceGroupName|select-object IsCompliant, ResourceID
+    ```
+---
+
+The policy is visible in the resources' diagnostic settings after approximately 30 minutes.
+
+## Remediation tasks
+
+Policies are applied to new resources when they're created. The remediation task applies the policy to existing resources. To create a remediation task after the policy has been assigned, select your assigned policy from the list on the Policy Assignments page.
+ 
+:::image type="content" source="./media/diagnostics-settings-policy-builtin/remediation-after-assignment.png"  lightbox="./media/diagnostics-settings-policy-builtin/remediation-after-assignment.png" alt-text="A screenshot showing the policy remediation page.":::
+
+Select **Remediate** and then track the status of your remediation task in the **Remediation tasks** tab of the Policy Remediation page.
+
+:::image type="content" source="./media/diagnostics-settings-policy-builtin/new-remediation-task-after-assignment.png" lightbox="./media/diagnostics-settings-policy-builtin/new-remediation-task-after-assignment.png" alt-text="A screenshot showing the new remediation task page.":::
+
+
+
+
+For more information on remediation tasks, see [Remediate noncompliant resources](/azure/governance/policy/how-to/remediate-resources)
+
+
+
 ## Parameters
 
 ### Common parameters
@@ -363,6 +378,7 @@ The following table describes the parameters for each set of policies and initia
 ### Event Hubs parameters
 
 The following table describes the parameters for each set of policies and initiatives that use event hubs as a destination.
+
 |Parameter| Description| Valid Values|Default|
 |---|---|---|---|
 |resourceLocation|Resource Location must be the same location as the event hub Namespace|Supported locations||
