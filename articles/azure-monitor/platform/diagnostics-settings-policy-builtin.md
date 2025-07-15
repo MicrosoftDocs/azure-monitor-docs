@@ -339,9 +339,11 @@ You can get your policy assignment details using the following command:
 ---
 
 
-## Common parameters
+## Parameters
 
-The following table describes the common parameters for each set of policies.
+### Common parameters
+
+The following table describes the common parameters for each set of policies and initiatives that create diagnostic settings.
 
 |Parameter| Description| Valid Values|Default|
 |---|---|---|---|
@@ -350,19 +352,17 @@ The following table describes the common parameters for each set of policies.
 |categoryGroup|Diagnostic category group|none,<br>audit,<br>allLogs|audit|
 |resourceTypeList|For initiatives, a list of resource types to be evaluated for diagnostic setting existence.|Supported resources|All supported resources|
 
-## Policy-specific parameters
-### Log Analytics policy parameters
- This policy deploys a diagnostic setting using a category group to route logs to a Log Analytics workspace.
+### Log Analytics parameters
+The following table describes the parameters for each set of policies and initiatives that use Log Analytics as a destination.
 
 |Parameter| Description| Valid Values|Default|
 |---|---|---|---|
 |resourceLocationList|Resource Location List to send logs to nearby Log Analytics. <br>"*" selects all locations|Supported locations|\*|
 |logAnalytics|Log Analytics Workspace|||
 
-### Event Hubs policy parameters
+### Event Hubs parameters
 
-This policy deploys a diagnostic setting using a category group to route logs to an event hub.
-
+The following table describes the parameters for each set of policies and initiatives that use event hubs as a destination.
 |Parameter| Description| Valid Values|Default|
 |---|---|---|---|
 |resourceLocation|Resource Location must be the same location as the event hub Namespace|Supported locations||
@@ -371,7 +371,7 @@ This policy deploys a diagnostic setting using a category group to route logs to
 
 
 ### Storage Accounts policy parameters
-This policy deploys a diagnostic setting using a category group to route logs to a Storage Account.
+The following table describes the parameters for each set of policies and initiatives that use storage accounts as a destination.
 
 |Parameter| Description| Valid Values|Default|
 |---|---|---|---|

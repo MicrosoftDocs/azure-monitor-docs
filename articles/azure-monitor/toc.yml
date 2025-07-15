@@ -827,7 +827,7 @@ items:
         href: platform/diagnostic-settings-policy.md
       - name: Assign built-in policy or initiative
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostics-settings-policies-deployifnotexists.md
+        href: platform/diagnostics-settings-policy-builtin.md
     - name: Migrate storage retention 
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/migrate-to-azure-storage-lifecycle-policy.md
