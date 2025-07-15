@@ -24,7 +24,7 @@ Contains all Network Rule log data. Each match between data plane and network ru
 |**Categories**|Security|
 |**Solutions**| LogManagement|
 |**Basic log**|Yes|
-|**Ingestion-time transformation**|No|
+|**Ingestion-time transformation**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwnetworkrule)|
 
 
