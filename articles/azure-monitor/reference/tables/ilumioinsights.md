@@ -31,4 +31,4 @@ Illumio Insights data connector provides the capability to ingest audit and even
 
 ## Columns
   
-[!INCLUDE [Illumioinsights](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/Illumioinsights-include.md)]
+[!INCLUDE [Illumioinsights](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ilumioinsights-include.md)]
