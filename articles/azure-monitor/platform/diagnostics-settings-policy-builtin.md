@@ -24,19 +24,19 @@ Use the following steps to apply a policy using the Azure portal.
    2. Select **Policy** for the **Definition type**.
    3. Select **Monitoring** for the **Category**.
 2. Type the name of your resource type in the **Search** field. The sample below uses key vaults as the resource type.
-   :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/policy-definitions-search.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/policy-definitions-search.png" alt-text="A screenshot of the policy definitions page with search for key vaults.":::
+   :::image type="content" source="./media/diagnostics-settings-policy-builtin/policy-definitions-search.png" lightbox="./media/diagnostics-settings-policy-builtin/policy-definitions-search.png" alt-text="A screenshot of the policy definitions page with search for key vaults.":::
 
 3. Select the policy for your resource type and destination. The sample below sends data to a Log Analytics workspace.
-    :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/policy-definitions.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/policy-definitions.png" alt-text="A screenshot of the policy definitions page.":::
+    :::image type="content" source="./media/diagnostics-settings-policy-builtin/policy-definitions.png" lightbox="./media/diagnostics-settings-policy-builtin/policy-definitions.png" alt-text="A screenshot of the policy definitions page.":::
 
 4. From the policy definition page, select **Assign Policy** and set a **Scope** for the policy assignment. The scope can be a management group, subscription, or resource group. The policy is applied to all resources within the scope.
 5. Select the **Parameters** tab and then select the specific destination where you want to send the audit logs.
 6. Select the **Remediation** tab.
- :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-policy-parameters.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-policy-parameters.png" alt-text="A screenshot of the assign policy page, parameters tab.":::
+ :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-policy-parameters.png" lightbox="./media/diagnostics-settings-policy-builtin/assign-policy-parameters.png" alt-text="A screenshot of the assign policy page, parameters tab.":::
 1. Enable the **Create a remediation task** checkbox and then ensure that **Create a Managed Identity** is enabled.
 2. Under **Type of Managed Identity**, select **System assigned Managed Identity**.
 3. Select **Review + create**, then select **Create** .
-  :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-policy-remediation.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-policy-remediation.png" alt-text="A screenshot of the assign policy page, remediation tab.":::
+  :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-policy-remediation.png" lightbox="./media/diagnostics-settings-policy-builtin/assign-policy-remediation.png" alt-text="A screenshot of the assign policy page, remediation tab.":::
 
 
 ### [CLI](#tab/cli)
@@ -145,11 +145,11 @@ The policy is visible in the resources' diagnostic settings after approximately 
 
 Policies are applied to new resources when they're created. The remediation task applies the policy to existing resources. To create a remediation task after the policy has been assigned, select your assigned policy from the list on the Policy Assignments page.
  
-:::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/remediation-after-assignment.png"  lightbox="./media/diagnostics-settings-policies-deployifnotexists/remediation-after-assignment.png" alt-text="A screenshot showing the policy remediation page.":::
+:::image type="content" source="./media/diagnostics-settings-policy-builtin/remediation-after-assignment.png"  lightbox="./media/diagnostics-settings-policy-builtin/remediation-after-assignment.png" alt-text="A screenshot showing the policy remediation page.":::
 
 Select **Remediate** and then track the status of your remediation task in the **Remediation tasks** tab of the Policy Remediation page.
 
-:::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/new-remediation-task-after-assignment.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/new-remediation-task-after-assignment.png" alt-text="A screenshot showing the new remediation task page.":::
+:::image type="content" source="./media/diagnostics-settings-policy-builtin/new-remediation-task-after-assignment.png" lightbox="./media/diagnostics-settings-policy-builtin/new-remediation-task-after-assignment.png" alt-text="A screenshot showing the new remediation task page.":::
 
 
 
@@ -183,19 +183,19 @@ Deploy a built-in initiative for all supported Azure resource types using one of
 
 1. Type *audit* or *allLogs* in the **Search** field and then select the initiative for your destination.
 
-    :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/initiatives.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/initiatives.png" alt-text="Screenshot showing the list of initiatives.":::
+    :::image type="content" source="./media/diagnostics-settings-policy-builtin/initiatives.png" lightbox="./media/diagnostics-settings-policy-builtin/initiatives.png" alt-text="Screenshot showing the list of initiatives.":::
 
 4. From the initiative definition page, select **Assign initiative**.
 
-    :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-initiative.png"  lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-initiative.png" alt-text="A screenshot showing the assign initiative option."::: 
+    :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-initiative.png"  lightbox="./media/diagnostics-settings-policy-builtin/assign-initiative.png" alt-text="A screenshot showing the assign initiative option."::: 
 
 5.  Set a **Scope** for the initiative assignment. The scope can be a management group, subscription, or resource group. The initiative is applied to all resources within the scope.
 
-    :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-basics.png"  lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-basics.png" alt-text="A screenshot showing the assign initiatives basics tab.":::  
+    :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-initiatives-basics.png"  lightbox="./media/diagnostics-settings-policy-builtin/assign-initiatives-basics.png" alt-text="A screenshot showing the assign initiatives basics tab.":::  
 
 6. Select the **Parameters** tab and select the specific destination.
 
-    :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-parameters.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-parameters.png" alt-text="A screenshot showing the assign initiatives parameters tab.":::
+    :::image type="content" source="./media/diagnostics-settings-policy-builtin/assign-initiatives-parameters.png" lightbox="./media/diagnostics-settings-policy-builtin/assign-initiatives-parameters.png" alt-text="A screenshot showing the assign initiatives parameters tab.":::
 
 7. Select **Review + create** then **Create**
 
@@ -205,11 +205,11 @@ To verify that your policy or initiative assignment is working, create a resourc
 After 10 minutes, select the **Diagnostics settings** page for your resource.
 Your diagnostic setting appears in the list with the default name *setByPolicy-LogAnalytics* and the workspace name that you configured in the policy.
 
-:::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/diagnostics-settings.png"  lightbox="./media/diagnostics-settings-policies-deployifnotexists/diagnostics-settings.png" alt-text="A screenshot showing the Diagnostics setting page for a resource.":::
+:::image type="content" source="./media/diagnostics-settings-policy-builtin/diagnostics-settings.png"  lightbox="./media/diagnostics-settings-policy-builtin/diagnostics-settings.png" alt-text="A screenshot showing the Diagnostics setting page for a resource.":::
 
 Change the default name in the **Parameters** tab of the **Assign initiative** or policy page by unselecting the **Only show parameters that need input or review** checkbox.
 
-:::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/edit-initiative-assignment.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/edit-initiative-assignment.png" alt-text="A screenshot showing the edit-initiative-assignment page with the checkbox unselected.":::
+:::image type="content" source="./media/diagnostics-settings-policy-builtin/edit-initiative-assignment.png" lightbox="./media/diagnostics-settings-policy-builtin/edit-initiative-assignment.png" alt-text="A screenshot showing the edit-initiative-assignment page with the checkbox unselected.":::
 
 ### [PowerShell](#tab/Powershell)
 

@@ -8508,6 +8508,11 @@
    "source_path": "articles/azure-monitor/alerts/alert-options.md",
    "redirect_url": "/azure/azure-monitor/alerts/alerts-types",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/platform/diagnostics-settings-policies-deployifnotexists.md",
+   "redirect_url": "/azure/azure-monitor/platform/diagnostics-settings-policy-builtin",
+   "redirect_document_id": false
   }
  ]
 }
