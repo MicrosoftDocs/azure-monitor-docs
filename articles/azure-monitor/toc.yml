@@ -817,7 +817,7 @@ items:
     - name: Overview
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/diagnostic-settings.md
-    - name: Create Diagnostic Settings in Azure Monitor
+    - name: Create diagnostic settings
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/create-diagnostic-settings.md
     - name: Create Diagnostic Settings with Azure Policy
@@ -826,7 +826,7 @@ items:
     - name: Enable Diagnostics settings using built-in policies.
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/diagnostics-settings-policies-deployifnotexists.md
-    - name: Migrate retention to Azure Storage lifecycle
+    - name: Migrate storage retention 
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/migrate-to-azure-storage-lifecycle-policy.md
   - name: Azure Monitor Agent

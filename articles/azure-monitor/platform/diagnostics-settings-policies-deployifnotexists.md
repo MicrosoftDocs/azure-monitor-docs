@@ -3,47 +3,44 @@ title: Enable diagnostics settings by category group using built-in policies.
 description: Use Azure builtin policies to create diagnostic settings in Azure Monitor.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
-ms.date: 11/12/2024
+ms.date: 07/14/2025
 ms.reviewer: lualderm
 --- 
 
-# Built-in policies for Azure Monitor
-Policies and policy initiatives provide a simple method to enable logging at-scale via diagnostics settings for Azure Monitor. Using a policy initiative, you can turn on audit logging for all [supported resources](#supported-resources) in your Azure environment.  
-
-Enable resource logs to track activities and events that take place on your resources and give you visibility and insights into any changes that occur.
-Assign policies to enable resource logs and to send them to destinations according to your needs. Send logs to event hubs for third-party SIEM systems, enabling continuous security operations. Send logs to storage accounts for longer term storage or the fulfillment of regulatory compliance. 
-
-A set of built-in policies and initiatives exists to direct resource logs to Log Analytics Workspaces, Event Hubs, and Storage Accounts. The policies enable audit logging, sending logs belonging to the **audit** or the **All logs** log category group,  to an event hub, Log Analytics workspace or Storage Account. The policies' `effect` is `DeployIfNotExists`, which deploys the policy as a default if there aren't other settings defined.
+# Create diagnostic settings at scale using built-in Azure Policies
+Policies and policy initiatives provide a simple method to enable logging at-scale with [diagnostics settings](./diagnostic-settings.md) for Azure Monitor. This article describes how to use a set of built-in policies to direct resource logs for [supported resources](#supported-resources) to Log Analytics Workspaces, Event Hubs, and Storage Accounts. To create a custom policy definition for a resource type that doesn't have a built-in policy, see [Create diagnostic settings at scale using Azure Policies and Initiatives](diagnostics-settings-policy.md).
 
 
-## Deploy policies.
-Deploy the policies and initiatives using the Portal, CLI, PowerShell, or Azure Resource Management templates
+## Deploy policies
+Deploy a built-in policy for a supported Azure resource type using one of the following methods.
+
 ### [Azure portal](#tab/portal)
 
-The following steps show how to apply the policy to send audit logs to for key vaults to a log analytics workspace.
+Use the following steps to apply a policy using the Azure portal.
 
-1. From the Policy page, select **Definitions**.
+1. From the Policy page in the Azure portal, select **Definitions**.
+1. Set the following filter:
+   1. Select a **Scope** to apply the policy, This can be the entire subscription, a resource group, or an individual resource.
+   2. Select **Policy** for the **Definition type**.
+   3. Select **Monitoring** for the **Category**.
+2. Type the name of your resource type in the **Search** field. The sample below uses key vaults as the resource type.
+   :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/policy-definitions-search.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/policy-definitions-search.png" alt-text="A screenshot of the policy definitions page with search for key vaults.":::
 
-1. Select your scope. You can apply a policy to the entire subscription, a resource group, or an individual resource.
-1. From the **Definition type** dropdown, select **Policy**.
-1. Select **Monitoring** from the Category dropdown
-1. Enter *keyvault* in the **Search** field.
-1. Select the **Enable logging by category group for Key vaults (microsoft.keyvault/vaults) to Log Analytics** policy,
+3. Select the policy for your resource type and destination. The sample below sends data to a Log Analytics workspace.
     :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/policy-definitions.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/policy-definitions.png" alt-text="A screenshot of the policy definitions page.":::
-1. From the policy definition page, select **Assign**
-1. Select the **Parameters** tab.
-1. Select the Log Analytics Workspace that you want to send the audit logs to.
-1. Select the **Remediation** tab.
+
+4. From the policy definition page, select **Assign Policy** and set a **Scope** for the policy assignment. The scope can be a management group, subscription, or resource group. The policy is applied to all resources within the scope.
+5. Select the **Parameters** tab and then select the specific destination where you want to send the audit logs.
+6. Select the **Remediation** tab.
  :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-policy-parameters.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-policy-parameters.png" alt-text="A screenshot of the assign policy page, parameters tab.":::
-1. On the remediation tab, select the keyvault policy from the **Policy to remediate** dropdown.
-1. Select the **Create a Managed Identity** checkbox.
-1. Under **Type of Managed Identity**, select **System assigned Managed Identity**.
-1. Select **Review + create**, then select **Create** .
+1. Enable the **Create a remediation task** checkbox and then ensure that **Create a Managed Identity** is enabled.
+2. Under **Type of Managed Identity**, select **System assigned Managed Identity**.
+3. Select **Review + create**, then select **Create** .
   :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-policy-remediation.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-policy-remediation.png" alt-text="A screenshot of the assign policy page, remediation tab.":::
 
 
 ### [CLI](#tab/cli)
-To apply a policy using the CLI, use the following commands:
+Use the following commands to apply a policy using the CLI.
 
 1. Create a policy assignment using [`az policy assignment create`](/cli/azure/policy/assignment#az-policy-assignment-create).
     ```azurecli
@@ -96,7 +93,7 @@ For more information on policy assignment using CLI, see [Azure CLI reference - 
 
 ### [PowerShell](#tab/Powershell)
 
-To apply a policy using the PowerShell, use the following commands:
+Use the following commands to apply a policy using PowerShell.
 
 1. Set up your environment.
     Select your subscription and set your resource group
@@ -146,20 +143,11 @@ The policy is visible in the resources' diagnostic settings after approximately 
 
 ## Remediation tasks
 
-Policies are applied to new resources when they're created. To apply a policy to existing resources, create a remediation task. Remediation tasks bring resources into compliance with a policy.
-
-Remediation tasks act for specific policies. For initiatives that contain multiple policies, create a remediation task for each policy in the initiative where you have resources that you want to bring into compliance.
-
- Define remediation tasks when you first assign the policy, or at any stage after assignment. 
-
-To create a remediation task for policies during the policy assignment, select the **Remediation** tab on **Assign policy** page and select the **Create remediation task** checkbox.
-
-To create a remediation task after the policy has been assigned, select your assigned policy from the list on the Policy Assignments page.
+Policies are applied to new resources when they're created. The remediation task applies the policy to existing resources. To create a remediation task after the policy has been assigned, select your assigned policy from the list on the Policy Assignments page.
  
 :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/remediation-after-assignment.png"  lightbox="./media/diagnostics-settings-policies-deployifnotexists/remediation-after-assignment.png" alt-text="A screenshot showing the policy remediation page.":::
 
-Select **Remediate**.
-Track the status of your remediation task in the **Remediation tasks** tab of the Policy Remediation page.
+Select **Remediate** and then track the status of your remediation task in the **Remediation tasks** tab of the Policy Remediation page.
 
 :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/new-remediation-task-after-assignment.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/new-remediation-task-after-assignment.png" alt-text="A screenshot showing the new remediation task page.":::
 
@@ -183,30 +171,34 @@ Initiatives are collections of policies. There are two sets of initiatives for A
     + [Enable allLogs category group resource logging for supported resources to Log Analytics](https://portal.azure.com/#view/Microsoft_Azure_Policy/InitiativeDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicySetDefinitions%2F0884adba-2312-4468-abeb-5422caed1038/version~/null/scopes/%5B%22%2Fsubscriptions%2F""%22%22%5D)
 
 
-In this example, we assign an initiative for sending audit logs to a Log Analytics workspace.
+Deploy a built-in initiative for all supported Azure resource types using one of the following methods.
 
 ### [Azure portal](#tab/portal)
 
-1. From the policy **Definitions** page, select your scope.
+1. From the Policy page in the Azure portal, select **Definitions**.
+1. Set the following filter:
+   1. Select a **Scope** to apply the policy, This can be the entire subscription, a resource group, or an individual resource.
+   2. Select **Initiative** for the **Definition type**.
+   3. Select **Monitoring** for the **Category**.
 
-1. Select *Initiative* in the **Definition type** dropdown.
-1. Select *Monitoring* in the **Category** dropdown.
-1. Enter *audit* in the **Search** field.
-1. Select thee *Enable audit category group resource logging for supported resources to Log Analytics* initiative.
-1. On the following page, select **Assign**
-:::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/initiatives-definitions.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/initiatives-definitions.png" alt-text="A screenshot showing the initiatives definitions page.":::
+1. Type *audit* or *allLogs* in the **Search** field and then select the initiative for your destination.
 
-1. On the **Basics** tab of the **Assign initiative** page, select a **Scope** that you want the initiative to apply to.
-1. Enter a name in the **Assignment name** field.
-1. Select the **Parameters** tab.
-:::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-basics.png"  lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-basics.png" alt-text="A screenshot showing the assign initiatives basics tab.":::  
+    :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/initiatives.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/initiatives.png" alt-text="Screenshot showing the list of initiatives.":::
 
-    The **Parameters** contains the parameters defined in the policy. In this case, we need to select the Log Analytics workspace that we want to send the logs to. For more information in the individual parameters for each policy, see [Policy-specific parameters](#policy-specific-parameters).
+4. From the initiative definition page, select **Assign initiative**.
 
-1. Select the **Log Analytics workspace** to send your audit logs to.
+    :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-initiative.png"  lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-initiative.png" alt-text="A screenshot showing the assign initiative option."::: 
 
-1. Select **Review + create** then **Create**
-:::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-parameters.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-parameters.png" alt-text="A screenshot showing the assign initiatives parameters tab.":::
+5.  Set a **Scope** for the initiative assignment. The scope can be a management group, subscription, or resource group. The initiative is applied to all resources within the scope.
+
+    :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-basics.png"  lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-basics.png" alt-text="A screenshot showing the assign initiatives basics tab.":::  
+
+6. Select the **Parameters** tab and select the specific destination.
+
+    :::image type="content" source="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-parameters.png" lightbox="./media/diagnostics-settings-policies-deployifnotexists/assign-initiatives-parameters.png" alt-text="A screenshot showing the assign initiatives parameters tab.":::
+
+7. Select **Review + create** then **Create**
+
 
 To verify that your policy or initiative assignment is working, create a resource in the subscription or resource group scope that you defined in your policy assignment.
 

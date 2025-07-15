@@ -81,9 +81,6 @@ To work around the limitations for specific metrics, you can manually extract th
 
 
 
-
- 
-
 ## Controlling costs
 
 There's a cost for collecting data in a Log Analytics workspace, so only collect the categories you require for each service. The data volume for resource logs varies significantly between services. 
