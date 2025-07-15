@@ -39,7 +39,7 @@ Cross-service queries aren't supported in the following scenarios:
    | `.show database {DatabaseName} schema as json` |</br>
 - `mv-expand` supports up to 2,000 records.
 - Azure Monitor Logs doesn't support the `external_table()` function, which lets you query external tables in Azure Data Explorer. To query an external table, define `external_table(<external-table-name>)` as a parameterless function in Azure Data Explorer. You can then call the function using the expression `adx("").<function-name>`.
-- When you use the [`join` operator](/azure/data-explorer/kusto/query/joinoperator) instead of union, you need to use a [`hint`](/azure/data-explorer/kusto/query/joinoperator#join-hints) to combine data in Azure Data Explorer or Azure Resource Graph with data in the Log Analytics workspace. Use `Hint.remote={direction of the Log Analytics workspace}`. For example:
+- When you use the [`join` operator](/azure/data-explorer/kusto/query/joinoperator) instead of union, you need to use a [`hint`](/azure/data-explorer/kusto/query/joinoperator#join-hints) to combine data in Azure Data Explorer or Azure Resource Graph with data in the Log Analytics workspace. Use `Hint.remote={direction of the Log Analytics workspace}`. </br>For example:
    ```kusto
    AzureDiagnostics
    | join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
@@ -111,7 +111,7 @@ arg("").<Azure-Resource-Graph-table-name>
 
 Here are some sample Azure Log Analytics queries that use the new Azure Resource Graph cross-service query capabilities:
 
-### Example filter Log Analytics query based on the results of an Azure Resource Graph query
+### Example: Filter Log Analytics query based on the results of an Azure Resource Graph query
 
 ```kusto
 arg("").Resources 
@@ -124,17 +124,16 @@ arg("").Resources
 on $left.name == $right.Computer
 ```
 
-### Example create an alert rule that applies only to certain resources taken from an ARG query
+### Examples: Create an alert rule that applies only to certain resources taken from an ARG query
 
-Exclude resources based on tags – for example, not to trigger alerts for VMs with a `Test` tag.
-
+Exclude resources based on tags. For example, don't trigger alerts for VMs with a `Test` tag.
 ```kusto
 arg("").Resources
 | where tags.environment=~'Test'
 | project name 
 ```
+
 Retrieve performance data related to CPU utilization and filter to resources with the `prod` tag.
-  
 ```kusto
 InsightsMetrics
 | where Name == "UtilizationPercentage"
@@ -156,8 +155,8 @@ on _ResourceId
 
 To create an alert rule based on a cross-service query from your Log Analytics workspace, follow the steps in [Create or edit a log search alert rule](../alerts/alerts-create-log-alert-rule.md), selecting your Log Analytics workspace, on the **Scope** tab.
 
-> [!NOTE]
-> You can also run cross-service queries from Azure Data Explorer and Azure Resource Graph to a Log Analytics workspace, by selecting the relevant resource as the scope of your alert.  
+> [!TIP]
+> Run cross-service queries from Azure Data Explorer and Azure Resource Graph to a Log Analytics workspace, by selecting the relevant resource as the scope of your alert.  
 
 ### Combine Azure Resource Graph tables with a Log Analytics workspace
 
