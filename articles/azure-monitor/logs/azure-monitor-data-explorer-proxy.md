@@ -31,18 +31,15 @@ Cross-service queries aren't supported in the following scenarios:
 - Use non-parameterized functions and functions whose definition does not include other cross-workspace or cross-service expressions. Acceptable functions include `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
 - Cross-service queries support data retrieval only.
 - Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter.
-- Cross-service queries support **only ".show"** commands. This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.
-
-   | Commands supported with the cross-service query |
+- Cross-service queries support **only** `.show` commands. This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.
+   | `show` commands supported with the cross-service query |
    |---|
    | `.show functions` |
    | `.show function {FunctionName}` |
    | `.show database {DatabaseName} schema as json` |
-
 - `mv-expand` supports up to 2,000 records.
 - Azure Monitor Logs doesn't support the `external_table()` function, which lets you query external tables in Azure Data Explorer. To query an external table, define `external_table(<external-table-name>)` as a parameterless function in Azure Data Explorer. You can then call the function using the expression `adx("").<function-name>`.
 - When you use the [`join` operator](/azure/data-explorer/kusto/query/joinoperator) instead of union, you need to use a [`hint`](/azure/data-explorer/kusto/query/joinoperator#join-hints) to combine data in Azure Data Explorer or Azure Resource Graph with data in the Log Analytics workspace. Use `Hint.remote={direction of the Log Analytics workspace}`. For example:
-
    ```kusto
    AzureDiagnostics
    | join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
@@ -112,46 +109,46 @@ arg("").<Azure-Resource-Graph-table-name>
 > [!TIP]
 > The `arg()` operator is now available for advanced hunting in the Microsoft Defender portal. This feature allows results that query Microsoft Sentinel tables. For more information, see [Azure Resource Graph queries in advanced hunting](/defender-xdr/advanced-hunting-defender-use-custom-rules#use-arg-operator-for-azure-resource-graph-queries).
 
-
 Here are some sample Azure Log Analytics queries that use the new Azure Resource Graph cross-service query capabilities:
 
-- Filter a Log Analytics query based on the results of an Azure Resource Graph query:
+### Example filter Log Analytics query based on the results of an Azure Resource Graph query
 
-    ```kusto
-    arg("").Resources 
-    | where type == "microsoft.compute/virtualmachines" and properties.hardwareProfile.vmSize startswith "Standard_D"
-    | join (
-        Heartbeat
-        | where TimeGenerated > ago(1d)
-        | distinct Computer
-        )
-        on $left.name == $right.Computer
-    ```
+```kusto
+arg("").Resources 
+| where type == "microsoft.compute/virtualmachines" and properties.hardwareProfile.vmSize startswith "Standard_D"
+| join (
+   Heartbeat
+   | where TimeGenerated > ago(1d)
+   | distinct Computer
+)
+on $left.name == $right.Computer
+```
 
-- Create an alert rule that applies only to certain resources taken from an ARG query:
-   - Exclude resources based on tags – for example, not to trigger alerts for VMs with a `Test` tag.
+### Example create an alert rule that applies only to certain resources taken from an ARG query
 
-       ```kusto
-       arg("").Resources
-       | where tags.environment=~'Test'
-       | project name 
-       ```
+Exclude resources based on tags – for example, not to trigger alerts for VMs with a `Test` tag.
 
-   - Retrieve performance data related to CPU utilization and filter to resources with the `prod` tag.
-    
-       ```kusto
-       InsightsMetrics
-       | where Name == "UtilizationPercentage"
-       | lookup (
-           arg("").Resources 
-           | where type == 'microsoft.compute/virtualmachines' 
-           | project _ResourceId=tolower(id), tags
-           )
-           on _ResourceId
-       | where tostring(tags.Env) == "Prod"
-       ```
+```kusto
+arg("").Resources
+| where tags.environment=~'Test'
+| project name 
+```
+Retrieve performance data related to CPU utilization and filter to resources with the `prod` tag.
+  
+```kusto
+InsightsMetrics
+| where Name == "UtilizationPercentage"
+| lookup (
+   arg("").Resources 
+   | where type == 'microsoft.compute/virtualmachines' 
+   | project _ResourceId=tolower(id), tags
+)
+on _ResourceId
+| where tostring(tags.Env) == "Prod"
+```
 
-More use cases:
+### More example use cases
+
 - Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
 - Show alerts on any server that contains a certain number of cores.
 
