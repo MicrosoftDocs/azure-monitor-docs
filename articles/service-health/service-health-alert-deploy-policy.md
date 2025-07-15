@@ -1,14 +1,14 @@
 ---
 title: Deploy Service Health alert rules at scale using Azure Policy 
-description: This article details a process by which users can deploy service health alerts across subscriptions via Azure policy.
+description: This article details a process by which users can deploy Service Health alerts across subscriptions via Azure policy.
 ms.topic: conceptual
-ms.date: 7/14/2025
+ms.date: 7/15/2025
 ---
 
 # Deploy Service Health alerts at scale using Azure policy
 
 
-This article explains how to deploy service health alerts across subscriptions using Azure policy.
+This article explains how to deploy Service Health alerts across subscriptions using Azure policy.
 
 ## Requirements
 
@@ -16,7 +16,7 @@ See the permissions and roles required to run Azure Policy in Role-Based Access 
 
 ## Steps to deploy Service Health alert rules using Azure Policy
 
-Service Health Alert Rules can be deployed on a single subscription, or across all subscriptions in a management group by running the **Configure subscriptions to enable Service Health Monitoring Alert Rules** built-in policy.
+Service Health Alert rules can be deployed on a single subscription, or across all subscriptions in a management group by running the **Configure subscriptions to enable Service Health Monitoring Alert Rules** built-in policy.
 
 
 1. From the Azure portal, navigate to **Home > Policy**. 
