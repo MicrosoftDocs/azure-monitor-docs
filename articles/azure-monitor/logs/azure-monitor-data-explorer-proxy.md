@@ -12,7 +12,7 @@ ms.reviewer: osalzberg
 
 Enhance your analysis in [Azure Monitor Logs](../logs/data-platform-logs.md) by correlating data in [Azure Data Explorer](/azure/data-explorer/data-explorer-overview) and [Azure Resource Graph](/azure/governance/resource-graph/overview) with data in your Log Analytics workspace and Application Insights resources. This article explains how to run cross-service queries from any service that stores data in a Log Analytics workspace. Although [Microsoft Sentinel](/azure/sentinel/overview) stores data in Log Analytics workspaces and supports cross-service queries to Azure Data Explorer, not every feature of Microsoft Sentinel supports queries to Azure Resource Graph.
 
-Run cross-service queries using any client tools that support Kusto Query Language (KQL) queries, including the Log Analytics web UI, workbooks, PowerShell, and the REST API.
+Run cross-service queries using any client tools that support Kusto Query Language (KQL) queries, including Log Analytics in the Azure portal, workbooks, PowerShell, and the REST API.
 
 ## Prerequisites
 
