@@ -4,20 +4,23 @@ description: Run cross-service queries to correlated data in Azure Data Explorer
 ms.topic: how-to
 ms.date: 07/15/2024
 ms.reviewer: osalzberg
+
+# Customer intent: As a data scientist or Azure administrator, I want to learn how to correlate data from Log Analytics worskpaces to data in Data Explorer and Azure Resource Graph.
 ---
 
 # Correlate data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace
 
-You can correlate data in [Azure Data Explorer](/azure/data-explorer/data-explorer-overview) and [Azure Resource Graph](/azure/governance/resource-graph/overview) with data in your Log Analytics workspace and Application Insights resources to enhance your analysis in [Azure Monitor Logs](../logs/data-platform-logs.md). [Microsoft Sentinel](/azure/sentinel/overview), which also stores data in Log Analytics workspaces, supports cross-service queries to Azure Data Explorer but not to Azure Resource Graph. This article explains how to run cross-service queries from any service that stores data in a Log Analytics workspace.
+Enhance your analysis in [Azure Monitor Logs](../logs/data-platform-logs.md) by correlating data in [Azure Data Explorer](/azure/data-explorer/data-explorer-overview) and [Azure Resource Graph](/azure/governance/resource-graph/overview) with data in your Log Analytics workspace and Application Insights resources. This article explains how to run cross-service queries from any service that stores data in a Log Analytics workspace. Although [Microsoft Sentinel](/azure/sentinel/overview) stores data in Log Analytics workspaces and supports cross-service queries to Azure Data Explorer, not every feature of Microsoft Sentinel supports queries to Azure Resource Graph.
 
-Run cross-service queries by using any client tools that support Kusto Query Language (KQL) queries, including the Log Analytics web UI, workbooks, PowerShell, and the REST API.
+Run cross-service queries using any client tools that support Kusto Query Language (KQL) queries, including the Log Analytics web UI, workbooks, PowerShell, and the REST API.
 
-## Permissions required
+## Prerequisites
 
-To run a cross-service query that correlates data in Azure Data Explorer or Azure Resource Graph with data in a Log Analytics workspace, you need:
-- `Microsoft.OperationalInsights/workspaces/query/*/read` permissions to the Log Analytics workspaces you query, as provided by the [Log Analytics Reader built-in role](../logs/manage-access.md#log-analytics-reader), for example.
-- Reader permissions to the resources you query in Azure Resource Graph.
-- Viewer permissions to the tables you query in Azure Data Explorer.
+| Resource | Permission required |
+|---|---|
+| Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/query/*/read` at the Log Analytics workspaces you query</br> For example, as provided by the [Log Analytics Reader built-in role](../logs/manage-access.md#log-analytics-reader). |
+| Azure Resource Graph | Read permissions to the resources you query in Azure Resource Graph |
+| Azure Data Explorer | View permissions to the tables you query in Azure Data Explorer |
 
 ## Implementation considerations
 
@@ -28,7 +31,7 @@ Cross-service queries aren't supported in the following scenarios:
 ### General cross-service considerations
 
 - Database names are case sensitive.
-- Use non-parameterized functions and functions whose definition does not include other cross-workspace or cross-service expressions. Acceptable functions include `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
+- Use non-parameterized functions and functions whose definition doesn't include other cross-workspace or cross-service expressions. Acceptable functions include `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
 - Cross-service queries support data retrieval only.
 - Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter.
 - The **only** commands cross-service queries support are `.show` commands. This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.</br>
@@ -124,7 +127,7 @@ arg("").Resources
 on $left.name == $right.Computer
 ```
 
-### Examples: Create an alert rule that applies only to certain resources taken from an ARG query
+### Examples: Create an alert rule that applies only to certain resources taken from an arg() query
 
 Exclude resources based on tags. For example, don't trigger alerts for VMs with a `Test` tag.
 ```kusto
@@ -149,7 +152,7 @@ on _ResourceId
 ### More example use cases
 
 - Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
-- Show alerts on any server that contains a certain number of cores.
+- Show alerts on any server that contains a defined number of cores.
 
 ## Create an alert based on a cross-service query from your Log Analytics workspace
 
