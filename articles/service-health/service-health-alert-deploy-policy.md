@@ -60,7 +60,7 @@ When remediation runs, the policy automatically creates the following resources 
 
 By default, the alert rules and action groups are configured to email subscription owners for all types service health events.
 
-:::image type="content"source="./media/service-health-alerts-deploy/default-behavior-1.png"alt-text="Screenshot of path of default behavior."Lightbox="./media/service-health-alerts-deploy/default-behavior-1.png":::
+:::image type="content"source="./media/service-health-alerts-deploy/default-behavior.png"alt-text="Screenshot of path of default behavior."Lightbox="./media/service-health-alerts-deploy/default-behavior.png":::
 
 
 ## Customization options
