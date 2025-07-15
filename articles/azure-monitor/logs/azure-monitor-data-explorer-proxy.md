@@ -22,10 +22,16 @@ To run a cross-service query that correlates data in Azure Data Explorer or Azur
 
 ## Implementation considerations
 
+Cross-service queries aren't supported in the following scenarios:
+- Government clouds
+- Data Explorer clusters configured with [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) or [Private Link](../logs/private-link-security.md) (private endpoints)
+
 ### General cross-service considerations
+
 * Database names are case sensitive.
-* Use non-parameterized functions and functions whose definition does not include other cross-workspace or cross-service expressions, including `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
-* Cross-service queries support data retrieval only. 
+* Use non-parameterized functions and functions whose definition does not include other cross-workspace or cross-service expressions. Acceptable functions include `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
+* Cross-service queries support data retrieval only.
+* Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter.
 * Cross-service queries support **only ".show"** commands.
     This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.
     The following commands are supported with the cross-service query:
@@ -42,19 +48,15 @@ To run a cross-service query that correlates data in Azure Data Explorer or Azur
     AzureDiagnostics
     | join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
     ```
-
-* Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter.
-* Data Explorer clusters configured with [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) or [Private Link](../logs/private-link-security.md) (private endpoints) don't support cross-service queries.
     
 ### Azure Resource Graph cross-service query considerations
 
 * When you query Azure Resource Graph data from Azure Monitor:
-    * The `join` operator lets you combine data from one Azure Resource Graph table with one table in your Log Analytics workspace.  
-    * The query returns the first 1,000 records only.
+    * The `join` operator lets you combine data from one Azure Resource Graph table with one table in your Log Analytics workspace.
     * Azure Monitor doesn't return Azure Resource Graph query errors.
-    * The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors.
+    * The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors. For example, a valid query might give an error like this, "The name /<column name/> does not refer to any known column, table, variable or function."
     * These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`, `bin_at`.
-* Microsoft Sentinel doesn't support cross-service queries to Azure Resource Graph.
+* Microsoft Sentinel doesn't support cross-service queries in all features where KQL is used.
 
 ## Query data in Azure Data Explorer by using adx()
 
@@ -109,7 +111,7 @@ arg("").<Azure-Resource-Graph-table-name>
 ```
 
 > [!TIP]
-> The `arg()` operator is now available for advanced hunting in the unified Microsoft Defender platform. This feature allows you to query over Microsoft Sentinel data only. Read more at [Use arg() operator for Azure Resource Graph queries](/defender-xdr/advanced-hunting-defender-use-custom-rules#use-arg-operator-for-azure-resource-graph-queries).
+> The `arg()` operator is now available for advanced hunting in the Microsoft Defender portal. This feature allows results that query Microsoft Sentinel tables. For more information, see [Azure Resource Graph queries in advanced hunting](/defender-xdr/advanced-hunting-defender-use-custom-rules#use-arg-operator-for-azure-resource-graph-queries).
 
 
 Here are some sample Azure Log Analytics queries that use the new Azure Resource Graph cross-service query capabilities:
