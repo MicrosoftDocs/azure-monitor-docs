@@ -34,6 +34,7 @@ Cross-service queries aren't supported in the following scenarios:
 - Use non-parameterized functions and functions whose definition doesn't include other cross-workspace or cross-service expressions. Acceptable functions include `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
 - Cross-service queries support data retrieval only.
 - The **only** commands cross-service queries support are `.show` commands. This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.\
+\
     | `.show` commands supported with the cross-service query |
     |---|
     | `.show functions` |
