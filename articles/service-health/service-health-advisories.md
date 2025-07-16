@@ -28,7 +28,7 @@ This section describes the information found on each tab in the pane.
 > - On each tab, you can download the information as PDF, create a support request and create a service health alert.
 > - You can filter advisories by subscription, region, or service using the options shown. 
 
-### Health advisories - summary
+### Summary tab
 
 :::image type="content"source="./media/service-health-advisories/health-advisories-summary.png"alt-text="A screenshot of health advisories summary tab." Lightbox= "./media/service-health-advisories/health-advisories-summary.png":::
 
@@ -45,7 +45,7 @@ When you open the Health Advisories pane, you see a list of relevant advisories 
 |Event tags   | Tags to define the categorization of the advisory <br>- Action recommended<br> - Final Post Incident Review (PIR)<br> - Preliminary PIR<br> - False Positive        |
 |Last update  | Information entered to provide information as it is gathered         |
 
-### Health advisories - Impacted Services
+### Impacted Services tab
 
 :::image type="content"source="./media/service-health-advisories/health-advisories-impacted-services.png"alt-text="A screenshot of health advisories Impacted Services tab." Lightbox="./media/service-health-advisories/health-advisories-impacted-services.png":::
 
@@ -57,7 +57,7 @@ The Impacted Services section in Azure Service Health advisories outlines how a 
 - Service Categories: Sometimes grouped by service type (for example, compute, storage, networking).
 
 
-### Health advisories - Issue Updates
+### Issue Updates tab
 
 :::image type="content"source="./media/service-health-advisories/health-advisories-issue-updates.png"alt-text="A screenshot of health advisories Issue Updates tab."Lightbox="./media/service-health-advisories/health-advisories-issue-updates.png":::
 
