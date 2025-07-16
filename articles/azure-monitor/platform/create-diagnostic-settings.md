@@ -48,6 +48,11 @@ You can configure diagnostic settings in the Azure portal either from the Azure 
 
 1. **Destination details**: Select the checkbox for each destination. Options appear so that you can add more information.
 
+> [!WARNING]
+> From Azure portal when creating or updating Diagnostic Settings for an Azure Storage account or Azure Event Hub namespace, you could be unable to select itself as a destination for the resource logs or metrics data.
+> This is by design as it is possible to get into a state where resource logs or metrics being sent from a resource to the same resource would generate an infinite loop of generating and writing data.  
+> This design is only applied at the Azure portal UX layer, if there is truly a need to write data to the same resource and you are willing to accept the associated risks, you can create the Diagnostic Setting using Azure PowerShell, Azure CLI, REST API, ARM Template or other supported Microsoft SDK.
+
     :::image type="content" source="media/diagnostic-settings/send-to-log-analytics-event-hubs.png" alt-text="Screenshot that shows the available options under the Destination details section." border="false":::
 
     1. **Send to Log Analytics workspace**: Select your **Subscription** and the **Log Analytics workspace** where you want to send the data. If you don't have a workspace, you must [create one before you proceed](../logs/quick-create-workspace.md).
@@ -75,6 +80,9 @@ You can configure diagnostic settings in the Azure portal either from the Azure 
 1. Select **Save**.
 
 After a few moments, the new setting appears in your list of settings for this resource. Logs are streamed to the specified destinations as new event data is generated. It might take up to 15 minutes between when an event is emitted and when it [appears in a Log Analytics workspace](../logs/data-ingestion-time.md).
+
+
+
 
 ## [PowerShell](#tab/powershell)
 
