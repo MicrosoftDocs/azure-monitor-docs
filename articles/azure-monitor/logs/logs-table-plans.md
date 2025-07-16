@@ -30,7 +30,7 @@ For information about what each table plan offers and which use cases it's optim
   
 ## Set the table plan
 
-You can set the table plan to Auxiliary only when you [create a custom table](../logs/create-custom-table.md#create-a-custom-table) by using the API. Built-in Azure tables don't currently support the Auxiliary plan. After you create a table with an Auxiliary plan, you can't switch the table's plan. 
+You can set the table plan to Auxiliary only when you [create a custom table](create-custom-table-auxiliary.md#create-a-custom-table-with-the-auxiliary-plan) by using the API. Built-in Azure tables don't currently support the Auxiliary plan. After you create a table with an Auxiliary plan, you can't switch the table's plan. 
 
 All tables support the Analytics plan and all DCR-based custom tables and [some Azure tables support the Basic log plan](basic-logs-azure-tables.md). You can switch between the Analytics and Basic plans, the change takes effect on existing data in the table immediately. 
 
