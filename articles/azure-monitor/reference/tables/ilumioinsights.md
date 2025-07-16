@@ -25,7 +25,7 @@ Illumio Insights data connector provides the capability to ingest audit and even
 |**Solutions**| SecurityInsights|
 |**Basic log**|Yes|
 |**Ingestion-time transformation**|No|
-|**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/Illumioinsights)|
+|**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ilumioinsights)|
 
 
 
