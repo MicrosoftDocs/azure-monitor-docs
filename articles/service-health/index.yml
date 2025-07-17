@@ -48,6 +48,10 @@ landingContent:
             url: ./alerts-activity-log-service-notifications-portal.md
           - text: Learn about subscription and tenant accounts
             url: subscription-vs-tenant.md
+      - linkListType: video
+        links:
+          - text: Video introduction on how to create Service Health alerts
+            url: https://learn.microsoft.com/_themes/docs.theme/master/en-us/_themes/global/video-embed-one-stream.html?id=771688cf-0348-44c4-ba48-f36bcd0aba3f
 
 # Card 
   - title: Get started with Azure Resource Health
