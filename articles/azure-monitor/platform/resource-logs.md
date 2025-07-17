@@ -10,14 +10,13 @@ ms.reviewer: lualderm
 
 Azure resource logs provide insight into operations that are performed in an Azure resource. The content of resource logs is different for each resource type. They can include information about the operations performed on the resource, the status of those operations, and other details that help you understand the health and performance of the resource.
 
-## Collecting
+## Collecting resource logs
 
 Resource logs aren't collected by default. To collect them, you must create a diagnostic setting for each Azure resource. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for details on creating diagnostic settings. The information below provides further details on the different destinations that resources logs can be sent to.
 
-:::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics.":::
+:::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." "border"="false":::
 
-> [!IMPORTANT]
-> There is a cost to collecting resource logs. The cost depends on the destination you choose and the volume of data collected. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
+
 
 ## Destinations
 

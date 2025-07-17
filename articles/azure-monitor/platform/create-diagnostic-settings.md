@@ -38,33 +38,13 @@ Create and edit diagnostic settings in Azure Monitor to send Azure platform metr
 
     :::image type="Add diagnostic setting - existing settings" source="media/diagnostic-settings/edit-setting.png" alt-text="Screenshot that shows adding a diagnostic setting for existing settings.":::
 
-1. Give your setting a name if it doesn't already have one.
+1. Give your setting a descriptive name if it doesn't already have one. 
 
     :::image type="Add diagnostic setting" source="media/diagnostic-settings/setting-new-blank.png" alt-text="Screenshot that shows Diagnostic setting name.":::
 
-1. **Logs and metrics to route**: For logs, either choose a category group or select the individual checkboxes for each category of data you want to send to the destinations specified later. The list of categories varies for each Azure service. Select **AllMetrics** if you want to store metrics in Azure Monitor Logs too.
+2. **Logs and metrics to route**: For logs, either choose a [category group](#category-group) or select the individual checkboxes for each category of data you want to send to the destinations specified later. The list of categories varies for each Azure service. Select **AllMetrics** if you want to collect platform metrics.
 
-1. **Destination details**: Select the checkbox for each destination. Options appear so that you can add more information.
-
-    :::image type="content" source="media/diagnostic-settings/send-to-log-analytics-event-hubs.png" alt-text="Screenshot that shows the available options under the Destination details section." border="false":::
-
-    1. **Send to Log Analytics workspace**: Select your **Subscription** and the **Log Analytics workspace** where you want to send the data. If you don't have a workspace, you must [create one before you proceed](../logs/quick-create-workspace.md).
-
-    1. **Archive to a storage account**: Select your **Subscription** and the **Storage account** where you want to store the data.
-
-        :::image type="content" source="media/diagnostic-settings/storage-settings-new.png" alt-text="Screenshot that shows storage category and destination details." lightbox="media/diagnostic-settings/storage-settings-new.png":::
-        
-        > [!TIP]
-        > Use the [Azure Storage Lifecycle Policy](/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal) to manage the length of time that your logs are retained. The Retention Policy as set in the Diagnostic Setting settings is now deprecated.
-
-    1. **Stream to an event hub**: Specify the following criteria:
-
-        * **Subscription**: The subscription that the event hub is part of.
-        * **Event hub namespace**: If you don't have one, you must [create one](/azure/event-hubs/event-hubs-create).
-        * **Event hub name (optional)**: The name to send all data to. If you don't specify a name, an event hub is created for each log category. If you're sending to multiple categories, you might want to specify a name to limit the number of event hubs created. For more information, see [Azure Event Hubs quotas and limits](/azure/event-hubs/event-hubs-quotas).
-        * **Event hub policy name** (also optional): A policy defines the permissions that the streaming mechanism has. For more information, see [Event Hubs features](/azure/event-hubs/event-hubs-features#publisher-policy).
-
-    1. **Send to partner solution**: You must first install Azure Native ISV Services into your subscription. Configuration options vary by partner. For more information, see [Azure Native ISV Services overview](/azure/partner-solutions/overview).
+3. **Destination details**: Select the checkbox for each destination that should be included in the diagnostic settings and then provide the details for each. If you select Log Analytics workspace as a destination, then you may need to specify the collection mode. See [Collection mode](./resource-logs.md#collection-mode).
 
 
 ## [PowerShell](#tab/powershell)
