@@ -10,14 +10,22 @@ ms.reviewer: lualderm
 
 Azure resource logs provide insight into operations that are performed in an Azure resource. The content of resource logs is different for each resource type. They can include information about the operations performed on the resource, the status of those operations, and other details that help you understand the health and performance of the resource.
 
-Resource logs aren't collected by default. To collect them, you must create a diagnostic setting for each Azure resource. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for details on creating diagnostic settings. The information below provides further details on the different destinations resources logs can be sent to.
+## Collecting
+
+Resource logs aren't collected by default. To collect them, you must create a diagnostic setting for each Azure resource. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for details on creating diagnostic settings. The information below provides further details on the different destinations that resources logs can be sent to.
+
+:::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics.":::
 
 > [!IMPORTANT]
 > There is a cost to collecting resource logs. The cost depends on the destination you choose and the volume of data collected. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
-## [Log Analytics workspace](#tab/log-analytics)
+## Destinations
 
-Send resource logs to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md), which offers the following benefits:
+When you create a diagnostic setting, you can choose to send resource logs to one or more of the following destinations. The destinations you choose are based on your needs for analysis, retention, and integration with other systems.
+
+### [Log Analytics workspace](#tab/log-analytics)
+
+Send resource logs to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) for the following actions:
 
 - Correlate resource logs with other log data using [log queries](../logs/log-query-overview.md). 
 - Create [log alerts](../alerts/alerts-create-log-alert-rule.md) from resource log entries.
@@ -63,7 +71,7 @@ You can modify an existing diagnostic setting to resource-specific mode. In this
 
 Continue to watch the [Azure Updates](https://azure.microsoft.com/updates/) blog for announcements about Azure services that support resource-specific mode.
 
-## [Event Hubs](#tab/event-hub)
+### [Event Hubs](#tab/event-hub)
 
 Send resource logs to an event hub to send them outside of Azure. For example, resource logs might be sent to a third-party SIEM or other log analytics solutions. Resource logs from event hubs are consumed in JSON format with a `records` element that contains the records in each payload. The schema depends on the resource type as described in [Common and service-specific schema for Azure resource logs](resource-logs-schema.md).
 
@@ -130,7 +138,7 @@ The following sample output data is from Azure Event Hubs for a resource log:
 }
 ```
 
-## [Azure Storage](#tab/storage)
+### [Azure Storage](#tab/storage)
 
 Send resource logs to Azure Storage to retain them for archiving. After you've created the diagnostic setting, a storage container is created in the storage account as soon as an event occurs in one of the enabled log categories.
 

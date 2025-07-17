@@ -11,14 +11,6 @@ ms.reviewer: lualderm
 
 Create and edit diagnostic settings in Azure Monitor to send Azure platform metrics and logs to different destinations like Azure Monitor Logs, Azure Storage, or Azure Event Hubs. You can use different methods to work with the diagnostic settings, such as the Azure portal, the Azure CLI, PowerShell, and Azure Resource Manager.
 
-## Prerequisites
-- Any destinations used by the diagnostic setting must exist before the setting can be created. The destination doesn't have to be in the same subscription as the resource sending logs if the user who configures the setting has appropriate Azure role-based access control access to both subscriptions. Using Azure Lighthouse, you can use destinations in another Microsoft Entra tenant.
-- Any tables in a Log Analytics workspace are created automatically when the first data is sent to the workspace, so only the workspace itself must exist.
-- Storage accounts and event hubs must to be in the same region as the resource being monitored if the resource is regional.
-- [Azure DNS zone endpoints (preview)](/azure/storage/common/storage-account-overview#azure-dns-zone-endpoints-preview) and any [Premium storage accounts](/azure/storage/common/storage-account-overview#types-of-storage-accounts) aren't supported as a destination. Any [Standard storage accounts](/azure/storage/common/storage-account-overview#types-of-storage-accounts) are supported.
-- Send data to immutable storage to prevent its modification. Set the immutable policy for the storage account as described in [Set and manage immutability policies for Azure Blob Storage](/azure/storage/blobs/immutable-policy-configure-version-scope).
-- Diagnostic settings can't access storage accounts or event hubs when virtual networks are enabled. Enable **Allow trusted Microsoft services** to bypass this firewall setting in storage accounts and event hubs.
-- The shared access policy for event hub namespace defines the permissions that the streaming mechanism has. Streaming to Event Hubs requires `Manage`, `Send`, and `Listen` permissions. To update the diagnostic setting to include streaming, you must have the `ListKey` permission on that Event Hubs authorization rule.
 
 
 > [!NOTE]
@@ -42,7 +34,7 @@ Create and edit diagnostic settings in Azure Monitor to send Azure platform metr
 
         :::image type="content" source="media/diagnostic-settings/menu-activity-log.png" alt-text="Screenshot that shows the Azure Monitor menu with Activity log selected and Export activity logs highlighted in the Monitor-Activity log menu bar.":::
 
-1.  Select **Add diagnostic setting** to add a new setting or select **Edit setting** to edit an existing one. You may need multiple diagnostic settings for a resource if you want to send to multiple destinations of the same type.
+1.  Select **Add diagnostic setting** to add a new setting or **Edit setting** to edit an existing one. You may need multiple diagnostic settings for a resource if you want to send to multiple destinations of the same type.
 
     :::image type="Add diagnostic setting - existing settings" source="media/diagnostic-settings/edit-setting.png" alt-text="Screenshot that shows adding a diagnostic setting for existing settings.":::
 
@@ -178,29 +170,22 @@ The following sample template creates a diagnostic setting to send all audit log
 ```
 
 
-
-## [REST API](#tab/api)
-
-To create or update diagnostic settings by using the [Azure Monitor REST API](/rest/api/monitor/), see [Diagnostic settings](/rest/api/monitor/diagnosticsettings).
-
 ---
 
 ## Troubleshooting
 
-### Metric category isn't supported
+**Metric category isn't supported**<br>
 You may receive an error message similar to *Metric category 'xxxx' is not supported* when using a Resource Manager template, REST API, Azure CLI, or Azure PowerShell. Metric categories other than `AllMetrics` aren't supported except for a limited number of Azure services. Remove any metric category names other than `AllMetrics` and repeat your deployment. 
 
-### Setting disappears due to non-ASCII characters in resourceID
+**Setting disappears due to non-ASCII characters in resourceID**<br>
 Diagnostic settings don't support resource IDs with non-ASCII characters (for example, Preproduccón). Since you can't rename resources in Azure, you must create a new resource without the non-ASCII characters. If the characters are in a resource group, you can move the resources to a new group.
 
-### Inactive resources
+**Inactive resources**<br>
 When a resource is inactive and exporting zero-value metrics, the diagnostic settings export mechanism backs off incrementally to avoid unnecessary costs of exporting and storing zero values. This back-off may lead to a delay in the export of the next non-zero value. This behavior only applies to exported metrics and doesn't affect metrics-based alerts or autoscale.
 
 When a resource is inactive for one hour, the export mechanism backs off to 15 minutes. This means that there is a potential latency of up to 15 minutes for the next nonzero value to be exported. The maximum backoff time of two hours is reached after seven days of inactivity. Once the resource starts exporting nonzero values, the export mechanism reverts to the original export latency of three minutes. 
 
-
-### Duplicate data for Application Insights
-
+**Duplicate data for Application Insights**<br>
 Diagnostic settings for workspace-based Application insights applications collect the same data as Application insights itself. This results in duplicate data being collected if the destination is the same Log Analytics workspace that the application is using. Create a diagnostic setting for Application insights to send data to a different Log Analytics workspace or another destination. 
 
 
