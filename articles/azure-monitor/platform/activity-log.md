@@ -284,22 +284,3 @@ Learn more about:
 * [Activity log event schema](activity-log-schema.md)
 * [Activity log insights](activity-log-insights.md)
 
-
-
-
-
-1. Go to **Azure Monitor** > **Activity log** and select **Export Activity Logs**.
-    
-    :::image type="content" source="media/activity-log/go-to-activity-logs.png" lightbox="media/activity-log/go-to-activity-logs.png" alt-text="Screenshot that shows how to get to activity logs.":::
-    
-    > [!NOTE]
-    > You can send the activity log from any single subscription to up to five workspaces.
-
-1. **Add diagnostic setting** to send activity logs to one or more of these locations:
-
-    * [Log Analytics workspace](#send-to-a-log-analytics-workspace) for more complex querying and alerting.
-    * [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
-    * [Azure Storage](#send-to-azure-storage) for cheaper, long-term archiving.
-
-    :::image type="content" source="media/activity-log/add-diagnostic-setting.png" lightbox="media/activity-log/add-diagnostic-setting.png" alt-text="Screenshot that shows adding a diagnostic setting.":::
-    
