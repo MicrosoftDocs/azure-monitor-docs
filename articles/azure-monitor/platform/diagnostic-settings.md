@@ -234,6 +234,22 @@ To work around the limitations for specific metrics, you can manually extract th
 ## Deleting diagnostic settings
 Delete any diagnostic settings for a resource if you delete or rename that resource, or migrate it across resource groups or subscriptions. If you recreate this resource, any diagnostic settings for the deleted resource could be applied to the new one. This resumes the collection of resource logs as defined in the diagnostic setting. 
 
+## Troubleshooting
+
+**Metric category isn't supported**<br>
+You may receive an error message similar to *Metric category 'xxxx' is not supported* when using a Resource Manager template, REST API, Azure CLI, or Azure PowerShell. Metric categories other than `AllMetrics` aren't supported except for a limited number of Azure services. Remove any metric category names other than `AllMetrics` and repeat your deployment. 
+
+**Setting disappears due to non-ASCII characters in resourceID**<br>
+Diagnostic settings don't support resource IDs with non-ASCII characters (for example, Preproduccón). Since you can't rename resources in Azure, you must create a new resource without the non-ASCII characters. If the characters are in a resource group, you can move the resources to a new group.
+
+**Inactive resources**<br>
+When a resource is inactive and exporting zero-value metrics, the diagnostic settings export mechanism backs off incrementally to avoid unnecessary costs of exporting and storing zero values. This back-off may lead to a delay in the export of the next non-zero value. This behavior only applies to exported metrics and doesn't affect metrics-based alerts or autoscale.
+
+When a resource is inactive for one hour, the export mechanism backs off to 15 minutes. This means that there is a potential latency of up to 15 minutes for the next nonzero value to be exported. The maximum backoff time of two hours is reached after seven days of inactivity. Once the resource starts exporting nonzero values, the export mechanism reverts to the original export latency of three minutes. 
+
+**Duplicate data for Application Insights**<br>
+Diagnostic settings for workspace-based Application insights applications collect the same data as Application insights itself. This results in duplicate data being collected if the destination is the same Log Analytics workspace that the application is using. Create a diagnostic setting for Application insights to send data to a different Log Analytics workspace or another destination. 
+
 ## Next steps
 
 - [Create diagnostic settings for Azure Monitor platform metrics and logs](./create-diagnostic-settings.md)

@@ -8513,6 +8513,11 @@
    "source_path": "articles/azure-monitor/platform/diagnostics-settings-policies-deployifnotexists.md",
    "redirect_url": "/azure/azure-monitor/platform/diagnostics-settings-policy-builtin",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/platform/create-diagnostics-settings.md",
+   "redirect_url": "/azure/azure-monitor/platform/diagnostics-settings",
+   "redirect_document_id": false
   }
  ]
 }
