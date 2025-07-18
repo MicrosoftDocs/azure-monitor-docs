@@ -105,8 +105,10 @@ Possible values include:
     - Monitoring Reader
     - Monitoring Contributor
 
-- **New action group resources**:<br> Resources to be used by the new action group to send alerts. <br> The specified resources must already exist. <br>Currently email, logic app, Event Hubs, webhook, and Azure function are supported resources. <br>
-Refer to documentation for [Action Groups](/azure/azure-monitor/alerts/action-groups). <br>The policy only checks if the alert rule is linked to the action groups as it doesn’t use this parameter to check compliance. If you change this setting after assigning the policy, it won’t update the action group. <br> To apply updates across subscriptions, change the **Alert rule enabled** or **Alert rule event types** settings, or set a new action group using the **New action group name** option. 
+- **New action group resources**:<br> Resources to be used by the new action group to send alerts. <br> Any specified resources must already exist. <br>Currently email, logic app, Event Hubs, webhook, and Azure function are supported resources. <br>
+Refer to documentation for [Action Groups](/azure/azure-monitor/alerts/action-groups) and integrations. <br>The policy only checks if the alert rule is linked to the action groups as it doesn’t use this parameter to check compliance. If you change this setting after assigning the policy, it won’t update the action group. <br> To apply updates across subscriptions, change the **Alert rule enabled** or **Alert rule event types** settings, or set a new action group using the **New action group name** option. 
+
+:::image type="content"source="./media/service-health-alerts-deploy/policy-sample.png"alt-text="Screenshot of sample action group resources."Lightbox="./media/service-health-alerts-deploy/policy-sample.png":::
 
 - **Resource group name**:<br> This resource group name is used only if the policy needs to create an alert rule or action group.<br> The policy doesn’t check the resource group name, it only checks the alert rule’s conditions, state, and if it links to an action group.<br> If a matching rule exists in a different resource group, the policy doesn't create a new one. Changing the name doesn't delete any existing resource group, alert rule, or action group.
 
