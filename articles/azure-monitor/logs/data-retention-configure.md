@@ -347,7 +347,7 @@ Use this sample ARM template and parameter file to update the retention period f
 
 To view a table's retention settings in the Azure portal, from the **Log Analytics workspaces** menu, select **Tables**.
 
-The **Tables** screen shows the retention and total retention periods for all the tables in the workspace.
+The **Tables** screen shows the analytics retention and total retention periods for all the tables in the workspace.
 
 :::image type="content" source="media/data-retention-configure/log-analytics-view-table-retention-auxiliary.png" lightbox="media/data-retention-configure/log-analytics-view-table-retention-auxiliary.png" alt-text="Screenshot that shows the Manage table button for one of the tables in a workspace.":::
 
