@@ -50,6 +50,8 @@
         href: service-health-alert-webhook-pagerduty.md
       - name: Send alerts using OpsGenie
         href: service-health-alert-webhook-opsgenie.md
+      - name: Deploy Service Health alert rules at scale using Azure Policy 
+        href: service-health-alert-deploy-policy.md
   - name: Azure Resource Health
     items:
     - name: Resource health types and checks
