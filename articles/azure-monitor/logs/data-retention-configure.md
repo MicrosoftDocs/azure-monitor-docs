@@ -167,11 +167,11 @@ To modify the retention setting for a table in the Azure portal:
 
 1. Select the context menu for the table you want to configure and select **Manage table**.
 
-    :::image type="content" source="media/basic-logs-configure/log-analytics-table-configuration.png" lightbox="media/basic-logs-configure/log-analytics-table-configuration.png" alt-text="Screenshot that shows the Manage table button for one of the tables in a workspace.":::
+    :::image type="content" source="media/logs-table-plans/log-analytics-table-configuration.png" lightbox="media/logs-table-plans/log-analytics-table-configuration.png" alt-text="Screenshot that shows the Manage table button for one of the tables in a workspace.":::
 
 1. Configure the analytics retention and total retention settings in the **Data retention settings** section of the table configuration screen.
 
-    :::image type="content" source="media/data-retention-configure/log-analytics-configure-table-retention-auxiliary.png" lightbox="media/data-retention-configure/log-analytics-configure-table-retention-auxiliary.png" alt-text="Screenshot that shows the data retention settings on the table configuration screen.":::
+    :::image type="content" source="media/data-retention-configure/log-analytics-configure-table-retention-basic.png" lightbox="media/data-retention-configure/log-analytics-configure-table-retention-basic.png" alt-text="Screenshot that shows the data retention settings on the table configuration screen.":::
 
 # [API](#tab/api-1)
 
