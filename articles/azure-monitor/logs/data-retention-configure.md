@@ -54,7 +54,7 @@ When you change the long-term retention settings of a table with existing data, 
 
 ## Configure the default analytics retention period of Analytics tables
 
-The default retention period of Analytics tables in a Log Analytics workspace is 30 days. You can change the default analytics period of Analytics tables up to two years by modifying the workspace-level data retention setting. Basic tables have a fixed retention period of 30 days. Auxiliary tables only have a total retention period.
+The default retention period of Analytics tables in a Log Analytics workspace is 30 days. You can change the default analytics period of Analytics tables up to two years by modifying the workspace-level data retention setting. Basic and Auxiliary tables only have a total retention period, which is 30 days by default.
 
 Changing the default workspace-level data retention setting automatically affects all Analytics tables to which the default setting still applies in your workspace. If you've already changed the analytics retention of a particular table, that table isn't affected when you change the workspace default data retention setting.     
 
