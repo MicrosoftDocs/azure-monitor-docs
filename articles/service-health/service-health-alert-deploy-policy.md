@@ -122,4 +122,5 @@ AMBA-ALZ offers advanced deployment scenarios like Bicep, Terraform, Azure Pipel
 For references on how to deploy AMBA-ALZ, refer to [Introduction to deploying the AMBA-ALZ Pattern](https://azure.github.io/azure-monitor-baseline-alerts/patterns/alz/HowTo/deploy/Introduction-to-deploying-the-ALZ-Pattern/). 
 
 For details about how to deploy Service Health alerts only, refer to [Deploy only Service Health Alerts](https://azure.github.io/azure-monitor-baseline-alerts/patterns/alz/HowTo/deploy/Deploy-only-Service-Health-Alerts/).
-Footer
+
+
