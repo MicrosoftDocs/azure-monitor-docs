@@ -40,6 +40,8 @@
         href: alerts-activity-log-service-notifications-bicep.md
       - name: Create activity log alerts using ARM template
         href: alerts-activity-log-service-notifications-arm.md
+      - name: Deploy Service Health alert rules at scale using Azure Policy 
+        href: service-health-alert-deploy-policy.md
     - name: How to send alerts
       items:
       - name: Send alerts to outside systems via webhook
@@ -50,8 +52,6 @@
         href: service-health-alert-webhook-pagerduty.md
       - name: Send alerts using OpsGenie
         href: service-health-alert-webhook-opsgenie.md
-      - name: Deploy Service Health alert rules at scale using Azure Policy 
-        href: service-health-alert-deploy-policy.md
   - name: Azure Resource Health
     items:
     - name: Resource health types and checks

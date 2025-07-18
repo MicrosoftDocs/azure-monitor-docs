@@ -106,7 +106,7 @@ Possible values include:
     - Monitoring Contributor
 
 - **New action group resources**:<br> Resources to be used by the new action group to send alerts. <br> Any specified resources must already exist. <br>Currently email, logic app, Event Hubs, webhook, and Azure function are supported resources. <br>
-Refer to documentation for [Action Groups](/azure/azure-monitor/alerts/action-groups) and integrations. <br>The policy only checks if the alert rule is linked to the action groups as it doesn’t use this parameter to check compliance. If you change this setting after assigning the policy, it won’t update the action group. <br> To apply updates across subscriptions, change the **Alert rule enabled** or **Alert rule event types** settings, or set a new action group using the **New action group name** option. 
+Refer to documentation for [Action Groups](/azure/azure-monitor/alerts/action-groups) and integrations [Logic App](/azure/azure-monitor/alerts/alerts-logic-apps?tabs=send-email), or [Send alerts with Webhook](service-health-alert-webhook-guide.md). <br>The policy only checks if the alert rule is linked to the action groups as it doesn’t use this parameter to check compliance. If you change this setting after assigning the policy, it won’t update the action group. <br> To apply updates across subscriptions, change the **Alert rule enabled** or **Alert rule event types** settings, or set a new action group using the **New action group name** option. 
 
     :::image type="content"source="./media/service-health-alerts-deploy/policy-sample.png"alt-text="Screenshot of sample action group resources."Lightbox="./media/service-health-alerts-deploy/policy-sample.png":::
 
