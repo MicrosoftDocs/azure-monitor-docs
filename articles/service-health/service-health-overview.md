@@ -70,7 +70,6 @@ You can use filters in Service Health to show your business-critical subscriptio
 
 When your business-critical resources are affected, Service Health integrates with Azure Monitor to alert you via emails, text messages, and webhook notifications. Set up an activity log alert for the appropriate Service Health event. You can route that alert to the appropriate people in your organization by using action groups. For more information, see [Configure alerts for Service Health](./alerts-activity-log-service-notifications-portal.md).
 
->[!VIDEO https://learn-video.azurefd.net/vod/player?id=fd3fa0ee-3cc4-4c58-9bb5-e7aef5009b34]
 
 ## Related content
 
