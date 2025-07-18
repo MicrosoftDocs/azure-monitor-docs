@@ -43,7 +43,7 @@
     - name: How to send alerts
       items:
       - name: Send alerts to outside systems via webhook
-        href: service-health-alert-webhook-guide.md
+        href: service-health-alert-webhook-guide.mdgit 
       - name: Send alerts with ServiceNow
         href: service-health-alert-webhook-servicenow.md
       - name: Send alerts with PagerDuty
