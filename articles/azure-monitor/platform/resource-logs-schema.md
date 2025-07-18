@@ -107,6 +107,6 @@ The schema for resource logs varies depending on the resource and log category. 
 
 * [See the resource log categories you can collect](resource-logs-categories.md)
 * [Learn more about resource logs](../essentials/platform-logs-overview.md)
-* [Stream resource logs to Event Hubs](./resource-logs.md#destinations&tabs=event-hub)
+* [Stream resource logs to Event Hubs](./resource-logs.md#destinations)
 * [Change resource log diagnostic settings by using the Azure Monitor REST API](/rest/api/monitor/diagnosticsettings)
-* [Analyze logs from Azure Storage with Log Analytics](./resource-logs.md#destinations&tabs=storage)
+* [Analyze logs from Azure Storage with Log Analytics](./resource-logs.md#destinations)
