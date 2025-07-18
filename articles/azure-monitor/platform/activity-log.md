@@ -2,7 +2,7 @@
 title: Azure Monitor activity log
 description: Send Azure Monitor activity log data to Log Analytics, Azure Event Hubs, and Azure Storage.
 ms.topic: how-to
-ms.date: 07/08/2025
+ms.date: 07/17/2025
 ms.reviewer: orens
 ---
 
@@ -15,9 +15,7 @@ The Azure Monitor activity log is a platform log for control plane events from A
 
 ## Activity log entries
 
-Entries in the activity log are collected by default with no required configuration. They're kept for 90 days at no cost. To store them longer, [send them to a Log Analytics workspace or other location](#export-activity-logs). 
-
-Activity log entries are system generated and can't be changed or deleted. Entries are typically a result of changes (create, update, delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured. For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
+Entries in the activity log are collected by default with no required configuration. They're system generated and can't be changed or deleted. Entries are typically a result of changes (create, update, delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured. For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
 
 > [!NOTE]
 > Operations above the control plane are logged in [Azure Resource Logs](resource-logs.md). These aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md) to be collected.
@@ -49,61 +47,26 @@ If any changes are associated with the event, you'll see a list of changes that 
 
 ## Activity log insights
 
-Activity log insights provide you with a set of dashboards that monitor the changes to resources and resource groups in a subscription. The dashboards also present data about which users or services performed activities in the subscription and the activities' status. This article explains how to onboard and view activity log insights in the Azure portal.
+Activity log insights is a worbook that provides a set of dashboards that monitor the changes to resources and resource groups in a subscription. The dashboards also present data about which users or services performed activities in the subscription and the activities' status. 
 
-Activity log insights are a curated [Log Analytics workbook](../visualize/workbooks-overview.md) with dashboards that visualize the data in the `AzureActivity` table. For example, data might include which administrators deleted, updated, or created resources and whether the activities failed or succeeded.
-
-Azure Monitor stores all activity logs you send to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) in a table called `AzureActivity`. Before you use activity log insights, you must [enable sending logs to your Log Analytics workspace](./diagnostic-settings.md).
+To enable activity log insights, export the activity log to a Log Analytics workspace as described in [Export activity log](#export-activity-log). This sends events to the `AzureActivity` table which is used by activity log insights.
 
 :::image type="content" source="media/activity-log/activity-logs-insights-main-screen.png" lightbox= "media/activity-log/activity-logs-insights-main-screen.png" alt-text="Screenshot that shows activity log insights dashboards.":::
 
-## View resource group or subscription-level activity log insights 
-
-To view activity log insights at the resource group or subscription level:
-
-1. In the Azure portal, select **Monitor** > **Workbooks**.
-1. In the **Insights** section, select **Activity Logs Insights**.
+You can open activity log insights at the subscription or resource level. For the subscription, select **Activity Logs Insights** from the **Workbooks** section of the **Monitor** menu.
 
     :::image type="content" source="media/activity-log/open-activity-log-insights-workbook.png" lightbox= "media/activity-log/open-activity-log-insights-workbook.png" alt-text="Screenshot that shows how to locate and open the Activity Logs Insights workbook on a scale level.":::
 
-1. At the top of the **Activity Logs Insights** page, select:
-
-    - One or more subscriptions from the **Subscriptions** dropdown.
-    - Resources and resource groups from the **CurrentResource** dropdown.
-    - A time range for which to view data from the **TimeRange** dropdown.
-
-## View resource-level activity log insights
-
->[!Note]
-> Activity log insights does not currently support Application Insights resources.
-
-To view activity log insights at the resource level:
-
-1. In the Azure portal, go to your resource and select **Workbooks**.
-1. In the **Activity Logs Insights** section, select **Activity Logs Insights**.
+For an individual resource, select **Activity Logs Insights** from the **Workbooks** section of the resource's menu.
 
     :::image type="content" source="media/activity-log/activity-log-resource-level.png" lightbox= "media/activity-log/activity-log-resource-level.png" alt-text="Screenshot that shows how to locate and open the Activity Logs Insights workbook on a resource level.":::
 
-1. At the top of the **Activity Logs Insights** page, select a time range for which to view data from the **TimeRange** dropdown:
-   
-   * **Azure Activity Log Entries** shows the count of activity log records in each activity log category.
-     
-     :::image type="content" source="media/activity-log/activity-logs-insights-category-value.png" lightbox= "media/activity-log/activity-logs-insights-category-value.png" alt-text="Screenshot that shows Azure activity logs by category value.":::
-    
-   * **Activity Logs by Status** shows the count of activity log records in each status.
-    
-     :::image type="content" source="media/activity-log/activity-logs-insights-status.png" lightbox= "media/activity-log/activity-logs-insights-status.png" alt-text="Screenshot that shows Azure activity logs by status.":::
-    
-   * At the subscription and resource group level, **Activity Logs by Resource** and **Activity Logs by Resource Provider** show the count of activity log records for each resource and resource provider.
-    
-     :::image type="content" source="media/activity-log/activity-logs-insights-resource.png" lightbox= "media/activity-log/activity-logs-insights-resource.png" alt-text="Screenshot that shows Azure activity logs by resource.":::
+## Export activity log
+Create a diagnostic setting to export activity log entries. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for details.
 
-### Export activity logs
-Create a [diagnostic setting](./diagnostic-settings.md) to export activity log entries to one or more of the following destinations:
+:::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
-- [Log Analytics workspace](#send-to-a-log-analytics-workspace) for more complex querying and alerting.
-- [Azure Event Hubs](#send-to-azure-event-hubs) to forwarding logs outside of Azure.
-- [Azure Storage](#send-to-azure-storage) for cheaper, long-term archiving.
+The information below provides further details on the different destinations that resources logs can be sent to.
 
 ## [Log Analytics workspace](#tab/log-analytics)
 
@@ -218,8 +181,9 @@ Each event is stored in the PT1H.json file with the following format. This forma
 ```json
 { "time": "2020-06-12T13:07:46.766Z", "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINES/MV-VM-01", "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee", "operationName": "Microsoft.Resourcehealth/healthevent/Updated/action", "level": "Information", "resultType": "Updated", "category": "ResourceHealth", "properties": {"eventCategory":"ResourceHealth","eventProperties":{"title":"This virtual machine is starting as requested by an authorized user or process. It will be online shortly.","details":"VirtualMachineStartInitiatedByControlPlane","currentHealthStatus":"Unknown","previousHealthStatus":"Unknown","type":"Downtime","cause":"UserInitiated"}}}
 ```
+---
 
-### [CSV](#tab/csv)
+## Export to CSV
 Select **Download as CSV** to export the activity log to a CSV file using the Azure portal.
 
 :::image type="content" source="media/activity-log/export-csv.png" lightbox="media/activity-log/export-csv.png" alt-text="Screenshot that shows option to export to CSV.":::
@@ -273,7 +237,6 @@ while ($currentStart -lt $endTime) {
 Write-Host "Export completed. Files saved to $outputFolder."
 ```
 
----
 
 
 ## Next steps

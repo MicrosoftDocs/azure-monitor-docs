@@ -2,7 +2,7 @@
 title: Resource logs in Azure Monitor
 description: Learn how to send Azure resource logs to a Log Analytics workspace, event hub, or Azure Storage in Azure Monitor.
 ms.topic: how-to
-ms.date: 09/30/2024
+ms.date: 07/17/2025
 ms.reviewer: lualderm
 ---
 
@@ -10,9 +10,13 @@ ms.reviewer: lualderm
 
 Azure resource logs provide insight into operations that are performed in an Azure resource. The content of resource logs is different for each resource type. They can include information about the operations performed on the resource, the status of those operations, and other details that help you understand the health and performance of the resource.
 
+> [!NOTE]
+>
+> Resource Logs aren't completely lossless. They're based on a store and forward architecture designed to affordably move petabytes of data per day at scale. This capability includes built-in redundancy and retries across the platform but doesn't provide transactional guarantees. Anytime a persistent source of data loss is identified, its resolution and future prevention is prioritized. Small data losses may still occur to temporary, non-repeating service issues distributed across Azure.
+
 ## Collecting resource logs
 
-Resource logs aren't collected by default. To collect them, you must create a diagnostic setting for each Azure resource. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for details on creating diagnostic settings. The information below provides further details on the different destinations that resources logs can be sent to.
+Resource logs aren't collected by default. To collect them, you must create a diagnostic setting for each Azure resource. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for details. The information below provides further details on the different destinations that resources logs can be sent to.
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
@@ -21,6 +25,8 @@ Resource logs aren't collected by default. To collect them, you must create a di
 ## Destinations
 
 When you create a diagnostic setting, you can choose to send resource logs to one or more of the following destinations. The destinations you choose are based on your needs for analysis, retention, and integration with other systems.
+
+The following sections describe details of resource logs for each destination.
 
 ### [Log Analytics workspace](#tab/log-analytics)
 
@@ -72,7 +78,9 @@ Continue to watch the [Azure Updates](https://azure.microsoft.com/updates/) blog
 
 ### [Event Hubs](#tab/event-hub)
 
-Send resource logs to an event hub to send them outside of Azure. For example, resource logs might be sent to a third-party SIEM or other log analytics solutions. Resource logs from event hubs are consumed in JSON format with a `records` element that contains the records in each payload. The schema depends on the resource type as described in [Common and service-specific schema for Azure resource logs](resource-logs-schema.md).
+Send resource logs to an event hub to send them outside of Azure. For example, resource logs might be sent to a third-party SIEM or other log analytics solutions. 
+
+Resource logs from event hubs are consumed in JSON format with a `records` element that contains the records in each payload. The schema depends on the resource type as described in [Common and service-specific schema for Azure resource logs](resource-logs-schema.md).
 
 The following sample output data is from Azure Event Hubs for a resource log:
 
@@ -167,11 +175,17 @@ Within the PT1H.json file, each event is stored in the following format. It uses
 ```json
 {"time": "2016-07-01T00:00:37.2040000Z","systemId": "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1","category": "NetworkSecurityGroupRuleCounter","resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/TESTNSG","operationName": "NetworkSecurityGroupCounters","properties": {"vnetResourceGuid": "{aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e}","subnetPrefix": "10.3.0.0/24","macAddress": "000123456789","ruleName": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg/securityRules/default-allow-rdp","direction": "In","type": "allow","matchedConnections": 1988}}
 ```
+
+### [Azure Monitor partner integrations](#tab/partner-solutions)
+Resource logs can be sent to partner solutions that are fully integrated into Azure. For a list of these solutions and details on how to configure them, see [Azure Monitor partner integrations](/azure/partner-solutions/overview).
+
 ---
 
-## Azure Monitor partner integrations
+## Categories and schemas
+All resource logs share a common top-level schema. Each service defines unique properties for its own events. See [Common and service-specific schemas for Azure resource logs](./resource-logs-schema.md) for the common schema and the schemas for each service. See [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index) for the different categories supported by each service and links to the schemas for each category.
 
-Resource logs can also be sent to partner solutions that are fully integrated into Azure. For a list of these solutions and details on how to configure them, see [Azure Monitor partner integrations](/azure/partner-solutions/overview).
+
+
 
 ## Next steps
 
