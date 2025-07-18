@@ -66,11 +66,11 @@ In the Azure portal, select **Monitor** > **Logs** > **Tables**.
 
 In the list of tables, you can identify Basic and Auxiliary tables by their unique icon: 
 
-:::image type="content" source="./media/basic-logs-configure/table-icon.png" lightbox="./media/basic-logs-configure/table-icon.png" alt-text="Screenshot of the Basic Logs table icon in the table list." border="false":::
+:::image type="content" source="./media/basic-logs-query/table-icon.png" lightbox="./media/basic-logs-query/table-icon.png" alt-text="Screenshot of the Basic Logs table icon in the table list." border="false":::
 
 You can also hover over a table name for the table information view, which specifies that the table has the Basic or Auxiliary table plan:
 
-:::image type="content" source="./media/basic-logs-configure/table-info.png" lightbox="./media/basic-logs-configure/table-info.png" alt-text="Screenshot of the Basic Logs table indicator in the table details." border="false":::
+:::image type="content" source="./media/basic-logs-query/table-info.png" lightbox="./media/basic-logs-query/table-info.png" alt-text="Screenshot of the Basic Logs table indicator in the table details." border="false":::
 
 When you add a table to the query, Log Analytics identifies a Basic or Auxiliary table and aligns the authoring experience accordingly. 
 
