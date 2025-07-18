@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 07/10/2025
+ms.date: 07/18/2025
 
 ---
 
@@ -14,12 +14,11 @@ The Planned aintenance pane in Azure Service Health is a dedicated section withi
 This pane is designed to provide you with advance notice of scheduled maintenance events that can affect your services. 
 The information enables you to:
 
-- Prepare for possible service disruptions.
-- Coordinate internal change management processes.
-- Use self-service update windows when available.
+- Prepare for possible service disruptions
+- Coordinate internal change management processes
+- Use self-service update windows when available
 
 Unlike unplanned outages, planned maintenance is scheduled and communicated ahead of time to help minimize the impact.
-
 
 
 ## Get started with Planned maintenance 

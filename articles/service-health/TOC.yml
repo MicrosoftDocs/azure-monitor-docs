@@ -30,6 +30,8 @@
       href: stay-informed-security.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
+    - name: Planned Maintenance overview
+      href: service-health-planned-maintenance.md
     - name: How to create alerts
       items:
       - name: Configure alerts for service health events in the Azure portal
