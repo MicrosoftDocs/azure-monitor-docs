@@ -122,9 +122,10 @@ Status code: 200
       "legacy": 0,
       "searchVersion": 1,
       "immediatePurgeDataOn30Days": true,
-      ...
+      ...}
     },
     ...
+}
 ```
 
 
@@ -168,7 +169,7 @@ To modify the retention setting for a table in the Azure portal:
 
     :::image type="content" source="media/basic-logs-configure/log-analytics-table-configuration.png" lightbox="media/basic-logs-configure/log-analytics-table-configuration.png" alt-text="Screenshot that shows the Manage table button for one of the tables in a workspace.":::
 
-1. Configure the retention and total retention settings in the **Data retention settings** section of the table configuration screen.
+1. Configure the analytics retention and total retention settings in the **Data retention settings** section of the table configuration screen.
 
     :::image type="content" source="media/data-retention-configure/log-analytics-configure-table-retention-auxiliary.png" lightbox="media/data-retention-configure/log-analytics-configure-table-retention-auxiliary.png" alt-text="Screenshot that shows the data retention settings on the table configuration screen.":::
 
