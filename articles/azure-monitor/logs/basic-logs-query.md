@@ -38,7 +38,7 @@ Queries of data in Basic or Auxiliary tables support all KQL [scalar](/azure/dat
 
 Specify the start and end datetime using the time range picker in Log Analytics or using time range syntax with an API call. If you specify the time range in the query, the union of the time range picker and the KQL time range is used.
 
-Auxiliary log tables support a time range for the entire retention period. Basic log tables support a time range up to the past 30 days. Use a search job in Basic tables when you need to search a range between 30 days and the total retention period of the Basic table. For more information, see [Search jobs in Basic tables](search-jobs.md).
+Auxiliary log tables support a time range for the entire retention period. Basic log tables support a time range up to the past 30 days. If you need to find data between 30 days ago and the total retention period of the Basic table, use a search job. For more information, see [Search jobs in Basic tables](search-jobs.md).
 
 ### Query scope
 
