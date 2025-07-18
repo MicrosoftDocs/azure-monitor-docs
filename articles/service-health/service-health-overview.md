@@ -74,4 +74,4 @@ When your business-critical resources are affected, Service Health integrates wi
 ## Related content
 
 Set up alerts so you're notified of health issues. 
-Learn about [best practices for setting up Azure Service Health alerts](https://learn-video.azurefd.net/vod/player?id=771688cf-0348-44c4-ba48-f36bcd0aba3f).
+Learn about [best practices for setting up Azure Service Health alerts](https://learn-video.azurefd.net/vod/player?id=fd3fa0ee-3cc4-4c58-9bb5-e7aef5009b34).
