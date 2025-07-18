@@ -36,12 +36,14 @@ Send resource logs to a [Log Analytics workspace](../logs/log-analytics-workspac
 - Create [log alerts](../alerts/alerts-create-log-alert-rule.md) from resource log entries.
 - Access resource log data with [Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview).
 
+### Collection mode
+
 The tables used by resource logs depend on what the resource type and the type of collection the resource is using. There are two types of collection modes for resource logs:
 
 * **Azure diagnostics**: All data is written to the [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table.
 * **Resource-specific**: Data is written to individual tables for each category of the resource.
 
-### Resource-specific
+#### Resource-specific
 
 For logs using resource-specific mode, individual tables in the selected workspace are created for each log category selected in the diagnostic setting.
 Resource-specific logs have the following advantages over Azure diagnostics logs:
@@ -53,7 +55,7 @@ Resource-specific logs have the following advantages over Azure diagnostics logs
 
 For a description of resource-specific logs and tables, see [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index)
 
-### Azure diagnostics mode
+#### Azure diagnostics mode
 
 In Azure diagnostics mode, all data from any diagnostic setting is collected in the [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table. This legacy method is used today by a minority of Azure services. Because multiple resource types send data to the same table, its schema is the superset of the schemas of all the different data types being collected. For details on the structure of this table and how it works with this potentially large number of columns, see [AzureDiagnostics reference](/azure/azure-monitor/reference/tables/azurediagnostics).
 
@@ -61,7 +63,7 @@ The AzureDiagnostics table contains the resourceId of the resource that generate
 
 :::image type="content" source="media/resource-logs/azure-diagnostics-table.png" lightbox="media/resource-logs/azure-diagnostics-table.png" alt-text="A screenshot showing the AzureDiagnostics table in a Log Analytics workspace.":::
 
-### Select the collection mode
+#### Select the collection mode
 
 Most Azure resources write data to the workspace in either **Azure diagnostics** or **resource-specific** mode without giving you a choice. For more information, see [Common and service-specific schemas for Azure resource logs](resource-logs-schema.md).
 

@@ -41,7 +41,7 @@ The **Activity log** menu item lets you view entries in the [activity log](./act
 
 ## Insights
 
-The **Insights** menu item opens the insight for the resource if the Azure service has one. [Insights](../visualize/insights-overview.md) provide a customized monitoring experience built on the Azure Monitor data platform and standard features. Examples include [Application insights](../app/app-insights-overview.md), [Container insights](../containers/container-insights-overview.md), and [Virtual machine insights](../virtual-machines/monitor-vm-insights.md). 
+The **Insights** menu item opens the insight for the resource if the Azure service has one. [Insights](../visualize/insights-overview.md) provide a customized monitoring experience built on the Azure Monitor data platform and standard features. Examples include [Application insights](../app/app-insights-overview.md), [Container insights](../containers/container-insights-overview.md), and [Virtual machine insights](../virtual-machines/vm-insights.md). 
 
 :::image type="content" source="media/monitor-azure-resource/insights.png" lightbox="media/monitor-azure-resource/insights.png" alt-text="Screenshot that shows the Insights page." border="false":::
 

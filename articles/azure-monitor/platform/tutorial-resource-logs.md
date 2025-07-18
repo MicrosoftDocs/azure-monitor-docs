@@ -86,11 +86,11 @@ Select **Logs** from your resource's menu. Log Analytics opens with the **Querie
 
 Browse through the available queries. Identify one to run and select **Run**. The query is added to the query window and the results are returned.
 
-:::image type="content" source="media/tutorial-resource-logs/query-results-chart.png" lightbox="media/tutorial-resource-logs/query-results.png"alt-text="Screenshot that shows the chart results of a sample log query.":::
+:::image type="content" source="media/tutorial-resource-logs/query-results-chart.png" lightbox="media/tutorial-resource-logs/query-results-chart.png"alt-text="Screenshot that shows the chart results of a sample log query.":::
 
 If the query you chose creates a chart, then try selecting the **Results** tab to view the results in a table format. 
 
-:::image type="content" source="media/tutorial-resource-logs/query-results-table.png" lightbox="media/tutorial-resource-logs/query-results.png"alt-text="Screenshot that shows the table results of a sample log query.":::
+:::image type="content" source="media/tutorial-resource-logs/query-results-table.png" lightbox="media/tutorial-resource-logs/query-results-table.png"alt-text="Screenshot that shows the table results of a sample log query.":::
 
 See [Log queries in Azure Monitor](../logs/log-query-overview.md) for details about writing log queries and using Log Analytics.
 

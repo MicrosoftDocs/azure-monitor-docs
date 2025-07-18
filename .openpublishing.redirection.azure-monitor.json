@@ -8511,12 +8511,12 @@
   },
   {
    "source_path": "articles/azure-monitor/platform/diagnostics-settings-policies-deployifnotexists.md",
-   "redirect_url": "/azure/azure-monitor/platform/diagnostics-settings-policy-builtin",
+   "redirect_url": "/azure/azure-monitor/platform/diagnostic-settings-policy-builtin",
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/platform/create-diagnostics-settings.md",
-   "redirect_url": "/azure/azure-monitor/platform/diagnostics-settings",
+   "source_path": "articles/azure-monitor/platform/create-diagnostic-settings.md",
+   "redirect_url": "/azure/azure-monitor/platform/diagnostic-settings",
    "redirect_document_id": false
   }
  ]

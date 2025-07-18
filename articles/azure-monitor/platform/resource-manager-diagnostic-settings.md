@@ -1272,7 +1272,7 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 
 ## Diagnostic setting for Recovery Services vault
 
-The following sample creates a diagnostic setting for an Azure Recovery Services vault by adding a resource of type `microsoft.recoveryservices/vaults/providers/diagnosticSettings` to the template. This example specifies the collection mode as described in [Azure resource logs](./resource-logs.md#send-to-log-analytics-workspace). Specify `Dedicated` or `AzureDiagnostics` for the `logAnalyticsDestinationType` property.
+The following sample creates a diagnostic setting for an Azure Recovery Services vault by adding a resource of type `microsoft.recoveryservices/vaults/providers/diagnosticSettings` to the template. This example specifies the collection mode as described in [Azure resource logs](./resource-logs.md#log-analytics-workspace). Specify `Dedicated` or `AzureDiagnostics` for the `logAnalyticsDestinationType` property.
 
 ### Template file
 

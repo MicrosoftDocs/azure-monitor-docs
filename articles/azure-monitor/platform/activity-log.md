@@ -47,7 +47,7 @@ If any changes are associated with the event, you'll see a list of changes that 
 
 ## Activity log insights
 
-Activity log insights is a worbook that provides a set of dashboards that monitor the changes to resources and resource groups in a subscription. The dashboards also present data about which users or services performed activities in the subscription and the activities' status. 
+Activity log insights is a workbook that provides a set of dashboards that monitor the changes to resources and resource groups in a subscription. The dashboards also present data about which users or services performed activities in the subscription and the activities' status. 
 
 To enable activity log insights, export the activity log to a Log Analytics workspace as described in [Export activity log](#export-activity-log). This sends events to the `AzureActivity` table which is used by activity log insights.
 

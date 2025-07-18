@@ -814,20 +814,15 @@ items:
         href: logs/tutorial-workspace-transformations-api.md
   - name: Diagnostic Settings
     items:
-    - name: Overview
+    - name: Create
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/diagnostic-settings.md
-    - name: Create diagnostic settings
+    - name: Use built-in policy or initiative
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-      href: platform/create-diagnostic-settings.md
-    - name: Azure Policy
-      items:
-      - name: Assign built-in policy or initiative
-        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostics-settings-policy-builtin.md
-      - name: Create custom policy
-        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostic-settings-policy.md
+      href: platform/diagnostics-settings-policy-builtin.md
+    - name: Create custom policy
+      displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
+      href: platform/diagnostic-settings-policy.md
     - name: Migrate storage retention 
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/migrate-to-azure-storage-lifecycle-policy.md
