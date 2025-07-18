@@ -821,7 +821,7 @@ items:
       items:
       - name: Use built-in policy or initiative
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostic-settings-policy-builtin.md
+        href: platform/diagnostic-settings-policy-built-in.md
       - name: Create custom policy
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
         href: platform/diagnostic-settings-policy.md

@@ -32,29 +32,29 @@ Use the following steps to apply an initiative or policy using the Azure portal.
    
    1. For initiatives, type *audit* or *allLogs* in the **Search** field and then select the initiative for your destination.
 
-        :::image type="content" source="./media/diagnostic-settings-policy-builtin/initiatives.png" lightbox="./media/diagnostic-settings-policy-builtin/initiatives.png" alt-text="Screenshot showing the list of initiatives.":::
+        :::image type="content" source="./media/diagnostic-settings-policy-built-in/initiatives.png" lightbox="./media/diagnostic-settings-policy-built-in/initiatives.png" alt-text="Screenshot showing the list of initiatives.":::
 
     2. For policies, type the name of your resource type in the **Search** field and then select the policy for your resource type and destination. The sample below sends key vault data to a Log Analytics workspace. 
 
-        :::image type="content" source="./media/diagnostic-settings-policy-builtin/policy-definitions.png" lightbox="./media/diagnostic-settings-policy-builtin/policy-definitions.png" alt-text="A screenshot of the policy definitions page.":::
+        :::image type="content" source="./media/diagnostic-settings-policy-built-in/policy-definitions.png" lightbox="./media/diagnostic-settings-policy-built-in/policy-definitions.png" alt-text="A screenshot of the policy definitions page.":::
 
 4. From the definition page, select **Assign initiative**.
 
-    :::image type="content" source="./media/diagnostic-settings-policy-builtin/assign-initiative.png"  lightbox="./media/diagnostic-settings-policy-builtin/assign-initiative.png" alt-text="A screenshot showing the assign initiative option."::: 
+    :::image type="content" source="./media/diagnostic-settings-policy-built-in/assign-initiative.png"  lightbox="./media/diagnostic-settings-policy-built-in/assign-initiative.png" alt-text="A screenshot showing the assign initiative option."::: 
 
 5.  Set a **Scope** for the assignment. The scope can be a management group, subscription, or resource group. The initiative or policy is applied to all resources within the scope.
 
-    :::image type="content" source="./media/diagnostic-settings-policy-builtin/assign-initiatives-basics.png"  lightbox="./media/diagnostic-settings-policy-builtin/assign-initiatives-basics.png" alt-text="A screenshot showing the assign initiatives basics tab.":::  
+    :::image type="content" source="./media/diagnostic-settings-policy-built-in/assign-initiatives-basics.png"  lightbox="./media/diagnostic-settings-policy-built-in/assign-initiatives-basics.png" alt-text="A screenshot showing the assign initiatives basics tab.":::  
 
 6. Select the **Parameters** tab and then select the specific destination where you want to send the logs. These details will vary for each destination type. See [Parameters](#parameters) for more information on the parameters for each destination type.
 
-    :::image type="content" source="./media/diagnostic-settings-policy-builtin/assign-initiatives-parameters.png" lightbox="./media/diagnostic-settings-policy-builtin/assign-initiatives-parameters.png" alt-text="A screenshot showing the assign initiatives parameters tab.":::
+    :::image type="content" source="./media/diagnostic-settings-policy-built-in/assign-initiatives-parameters.png" lightbox="./media/diagnostic-settings-policy-built-in/assign-initiatives-parameters.png" alt-text="A screenshot showing the assign initiatives parameters tab.":::
 
 7. Select the **Remediation** tab. This will apply the policy to existing resources in the scope. Without a remediation task, the initiative or policy assignment only applies to new resources created after the assignment. 
 
 8. Enable the **Create a remediation task** checkbox and then ensure that **Create a Managed Identity** is enabled. Under **Type of Managed Identity**, select **System assigned Managed Identity**.
 
-    :::image type="content" source="./media/diagnostic-settings-policy-builtin/assign-policy-remediation.png" lightbox="./media/diagnostic-settings-policy-builtin/assign-policy-remediation.png" alt-text="A screenshot of the assign policy page, remediation tab.":::
+    :::image type="content" source="./media/diagnostic-settings-policy-built-in/assign-policy-remediation.png" lightbox="./media/diagnostic-settings-policy-built-in/assign-policy-remediation.png" alt-text="A screenshot of the assign policy page, remediation tab.":::
 
 9.  Select **Review + create**, then select **Create** .
    
@@ -128,7 +128,7 @@ Use the [New-AzPolicyAssignment](/powershell/module/az.resources/new-azpolicyass
 
 
 ### [CLI](#tab/cli)
-Use the following commands to apply a policy using the CLI. For more information on policy assignment using CLI, see [Azure CLI reference - az policy assignment](/cli/azure/policy/assignment#az-policy-assignment-create)
+Use the following commands to apply a policy using the CLI. For more information on policy assignment using CLI, see [Azure CLI reference - az policy assignment](/cli/azure/policy/assignment#az-policy-assignment-create).
 
 
 1. Create a policy assignment using [`az policy assignment create`](/cli/azure/policy/assignment#az-policy-assignment-create). This requires the name or ID of the initiative or policy definition instead of the display name.
@@ -214,7 +214,7 @@ Policies are applied to new resources when they're created. Use a remediation ta
 In the Azure portal, select **Remediation** and then select your policy. Click **Remediate**. For more information on remediation tasks, see [Remediate noncompliant resources](/azure/governance/policy/how-to/remediate-resources).
 
 
-:::image type="content" source="./media/diagnostic-settings-policy-builtin/remediation-after-assignment.png"  lightbox="./media/diagnostic-settings-policy-builtin/remediation-after-assignment.png" alt-text="A screenshot showing the policy remediation page.":::
+:::image type="content" source="./media/diagnostic-settings-policy-built-in/remediation-after-assignment.png"  lightbox="./media/diagnostic-settings-policy-built-in/remediation-after-assignment.png" alt-text="A screenshot showing the policy remediation page.":::
 
 Select **Remediate** and then track the status of your remediation task in the **Remediation tasks** tab of the Policy Remediation page.
 
@@ -406,7 +406,7 @@ Built-in All logs and Audit logs policies for Log Analytics workspaces, Event Hu
 |microsoft.web/hostingenvironments|Yes|Yes|
 |microsoft.workloads/sapvirtualinstances|Yes|Yes|
 
-## Next Steps
+## Next steps
 
 * [Create diagnostic settings at scale using Azure Policy](./diagnostic-settings-policy.md)
 * [Azure Policy built-in definitions for Azure Monitor](../policy-reference.md)
