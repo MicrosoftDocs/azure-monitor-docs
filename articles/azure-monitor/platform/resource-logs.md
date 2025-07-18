@@ -10,9 +10,7 @@ ms.reviewer: lualderm
 
 Azure resource logs provide insight into operations that are performed in an Azure resource. The content of resource logs is different for each resource type. They can include information about the operations performed on the resource, the status of those operations, and other details that help you understand the health and performance of the resource.
 
-> [!NOTE]
->
-> Resource Logs aren't completely lossless. They're based on a store and forward architecture designed to affordably move petabytes of data per day at scale. This capability includes built-in redundancy and retries across the platform but doesn't provide transactional guarantees. Anytime a persistent source of data loss is identified, its resolution and future prevention is prioritized. Small data losses may still occur to temporary, non-repeating service issues distributed across Azure.
+
 
 ## Collecting resource logs
 
@@ -20,6 +18,9 @@ Resource logs aren't collected by default. To collect them, you must create a di
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
+> [!NOTE]
+>
+> Resource Logs aren't completely lossless. They're based on a store and forward architecture designed to affordably move petabytes of data per day at scale. This capability includes built-in redundancy and retries across the platform but doesn't provide transactional guarantees. Anytime a persistent source of data loss is identified, its resolution and future prevention is prioritized. Small data losses may still occur to temporary, non-repeating service issues distributed across Azure.
 
 
 ## Destinations
@@ -30,7 +31,8 @@ The following sections describe details of resource logs for each destination.
 
 ### [Log Analytics workspace](#tab/log-analytics)
 
-Send resource logs to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) for the following actions:
+Send the resource logs to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) for the following functionality:
+
 
 - Correlate resource logs with other log data using [log queries](../logs/log-query-overview.md). 
 - Create [log alerts](../alerts/alerts-create-log-alert-rule.md) from resource log entries.
@@ -38,7 +40,7 @@ Send resource logs to a [Log Analytics workspace](../logs/log-analytics-workspac
 
 ### Collection mode
 
-The tables used by resource logs depend on what the resource type and the type of collection the resource is using. There are two types of collection modes for resource logs:
+The tables in the Log Analytics workspace used by resource logs depend on the resource type and the type of collection the resource is using. There are two types of collection modes for resource logs:
 
 * **Azure diagnostics**: All data is written to the [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table.
 * **Resource-specific**: Data is written to individual tables for each category of the resource.
@@ -184,7 +186,7 @@ Resource logs can be sent to partner solutions that are fully integrated into Az
 ---
 
 ## Categories and schemas
-All resource logs share a common top-level schema. Each service defines unique properties for its own events. See [Common and service-specific schemas for Azure resource logs](./resource-logs-schema.md) for the common schema and the schemas for each service. See [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index) for the different categories supported by each service and links to the schemas for each category.
+All resource logs share a common top-level schema. Each service defines unique properties for its own logs. See [Common and service-specific schemas for Azure resource logs](./resource-logs-schema.md) for the common schema and the schemas for each service. See [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index) for the different categories supported by each service and links to the schemas for each category.
 
 
 

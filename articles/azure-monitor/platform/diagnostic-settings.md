@@ -9,11 +9,11 @@ ms.reviewer: lualderm
 
 # Diagnostic settings in Azure Monitor
 
-Diagnostic settings in Azure Monitor allow you to collect [resource logs](./resource-logs.md) and to send [platform metrics](./metrics-supported.md) and the [activity log](./activity-log.md) to different destinations. Create a separate diagnostic setting for each resource you want to collect data from. Each setting defines the data from the resource to collect and the destinations to send that data to.
+Diagnostic settings in Azure Monitor allow you to collect [resource logs](./resource-logs.md) and to send [platform metrics](./metrics-supported.md) and the [activity log](./activity-log.md) to different destinations. Create a separate diagnostic setting for each resource you want to collect data from. Each setting defines the data from the resource to collect and the destinations to send that data to. This article describes the details of diagnostic settings, including how to create them and the destinations available for sending data.
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
-The following video walks through routing resource platform logs with diagnostic settings. The following changes were made to diagnostic settings since the video was recorded. 
+The following video walks through routing resource platform logs with diagnostic settings. The following changes were made to diagnostic settings since the video was recorded, but these topics are discussed in this article.
 
 - [Azure Monitor partners](#destinations)
 - [Category groups](#category-groups)
@@ -124,7 +124,7 @@ az monitor diagnostic-settings create  \
 
 ### [ARM template](#tab/arm)
 
-The following sample template creates a diagnostic setting to send all audit logs to a log analytics workspace. The `apiVersion` can change depending on the resource in the scope.
+The following sample template creates a diagnostic setting to send all audit logs to a log analytics workspace. The `apiVersion` can change depending on the resource in the scope. See [Resource Manager template samples for diagnostic settings in Azure Monitor](./resource-manager-diagnostic-settings.md) for sample templates for other resources.
 
 **Template file**
 

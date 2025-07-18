@@ -25,8 +25,8 @@ Use the following steps to apply an initiative or policy using the Azure portal.
 
 1. From the Policy page in the Azure portal, select **Definitions**.
 2. Set the following filter:
-   2. For the **Category**, select **Monitoring** .
-   1. For the **Definition type**, select **Initiative** or **Policy**.
+   1. For the **Category**, select **Monitoring**.
+   2. For the **Definition type**, select **Initiative** or **Policy**.
    
 3. Locate and select the initiative or policy you want to assign.
    
@@ -50,19 +50,14 @@ Use the following steps to apply an initiative or policy using the Azure portal.
 
     :::image type="content" source="./media/diagnostic-settings-policy-builtin/assign-initiatives-parameters.png" lightbox="./media/diagnostic-settings-policy-builtin/assign-initiatives-parameters.png" alt-text="A screenshot showing the assign initiatives parameters tab.":::
 
-5. Select the **Remediation** tab. This will apply the policy to existing resources in the scope. Without a remediation task, the initiative or policy assignment only applies to new resources created after the assignment. 
+7. Select the **Remediation** tab. This will apply the policy to existing resources in the scope. Without a remediation task, the initiative or policy assignment only applies to new resources created after the assignment. 
 
-    :::image type="content" source="./media/diagnostic-settings-policy-builtin/assign-policy-parameters.png" lightbox="./media/diagnostic-settings-policy-builtin/assign-policy-parameters.png" alt-text="A screenshot of the assign policy page, parameters tab.":::
+8. Enable the **Create a remediation task** checkbox and then ensure that **Create a Managed Identity** is enabled. Under **Type of Managed Identity**, select **System assigned Managed Identity**.
 
-1. Enable the **Create a remediation task** checkbox and then ensure that **Create a Managed Identity** is enabled. Under **Type of Managed Identity**, select **System assigned Managed Identity**.
+    :::image type="content" source="./media/diagnostic-settings-policy-builtin/assign-policy-remediation.png" lightbox="./media/diagnostic-settings-policy-builtin/assign-policy-remediation.png" alt-text="A screenshot of the assign policy page, remediation tab.":::
 
-3. Select **Review + create**, then select **Create** .
+9.  Select **Review + create**, then select **Create** .
    
-  :::image type="content" source="./media/diagnostic-settings-policy-builtin/assign-policy-remediation.png" lightbox="./media/diagnostic-settings-policy-builtin/assign-policy-remediation.png" alt-text="A screenshot of the assign policy page, remediation tab.":::
-
-
-1. Select **Review + create** then **Create**
-
 
 ### [PowerShell](#tab/Powershell)
 
@@ -133,13 +128,14 @@ Use the [New-AzPolicyAssignment](/powershell/module/az.resources/new-azpolicyass
 
 
 ### [CLI](#tab/cli)
-Use the following commands to apply a policy using the CLI.
+Use the following commands to apply a policy using the CLI. For more information on policy assignment using CLI, see [Azure CLI reference - az policy assignment](/cli/azure/policy/assignment#az-policy-assignment-create)
+
 
 1. Create a policy assignment using [`az policy assignment create`](/cli/azure/policy/assignment#az-policy-assignment-create). This requires the name or ID of the initiative or policy definition instead of the display name.
 
     ```azurecli
     # Initiative        
-    az policy assignment create --name <policy assignment name>  --policy-set-definition "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"  --scope <scope> --params "{\"logAnalytics\": {\"value\": \"<log analytics workspace resource ID"}}" --mi-system-assigned --location <location>
+    az policy assignment create --name <policy assignment name>  --policy-set-definition "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"  --scope <scope> --params "{\"logAnalytics\": {\"value\": \"<log analytics workspace resource ID>\"}}" --mi-system-assigned --location <location>
     
     # Policy
     az policy assignment create --name <policy assignment name>  --policy "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"  --scope <scope> --params "{\"logAnalytics\": {\"value\": \"<log analytics workspace resource ID"}}" --mi-system-assigned --location <location>
@@ -182,7 +178,7 @@ Use the following commands to apply a policy using the CLI.
     az policy remediation create --resource-group "cli-example-01" --policy-assignment assign-cli-example-01 --name "rem-assign-cli-example-01" --definition-reference-id  "keyvault-vaults"  --resource-discovery-mode ReEvaluateCompliance
     ```
     To create a remediation task for all of the policies in the initiative, use the following example:
-    ```bash
+    ```azurecli
     for policyDefinitionReferenceId in $(az policy set-definition show --name a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 |grep policyDefinitionReferenceId |cut -d":" -f2|sed s/\"//g) 
     do 
         az policy remediation create --resource-group "cli-example-01" --policy-assignment assign-cli-example-01 --name remediate-$policyDefinitionReferenceId --definition-reference-id $policyDefinitionReferenceId; 
@@ -207,7 +203,6 @@ Use the following commands to apply a policy using the CLI.
     az policy remediation create -g rg-001 -n remediation-001 --policy-assignment policy-assignment-1
     ```
 
-For more information on policy assignment using CLI, see [Azure CLI reference - az policy assignment](/cli/azure/policy/assignment#az-policy-assignment-create)
 
 
 ---

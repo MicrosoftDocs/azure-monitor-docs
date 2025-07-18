@@ -22,7 +22,7 @@ Entries in the activity log are collected by default with no required configurat
 
 ## Retention period
 
-Activity log events are retained in Azure for *90 days* and then deleted. There's no charge for entries during this time regardless of volume. For more functionality, such as longer retention, create a diagnostic setting and route the entries to another location based on your needs. See the criteria in the preceding section.
+Activity log events are retained in Azure for *90 days* and then deleted. There's no charge for entries during this time regardless of volume. For more functionality, such as longer retention, create a diagnostic setting and [route the entries to another location](#export-activity-log) based on your needs.
 
 ## View and retrieve the activity log
 You can access the activity log from most menus in the Azure portal. The menu that you open it from determines its initial filter. If you open it from the **Monitor** menu, the only filter is on the subscription. If you open it from a resource's menu, the filter is set to that resource. You can always change the filter to view all other entries. Select **Add Filter** to add more properties to the filter.
@@ -62,7 +62,7 @@ For an individual resource, select **Activity Logs Insights** from the **Workboo
 :::image type="content" source="media/activity-log/activity-log-resource-level.png" lightbox= "media/activity-log/activity-log-resource-level.png" alt-text="Screenshot that shows how to locate and open the Activity Logs Insights workbook on a resource level.":::
 
 ## Export activity log
-Create a diagnostic setting to export activity log entries. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for details.
+Create a diagnostic setting to send activity log entries to other destinations for additional retention time and functionality. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for the detailed steps to create a diagnostic setting.
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
@@ -70,11 +70,12 @@ The information below provides further details on the different destinations tha
 
 ## [Log Analytics workspace](#tab/log-analytics)
 
-Send the activity log to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md), which offers the following benefits:
+Send the activity log to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) for the following functionality:
 
 - Correlate activity logs with other log data using [log queries](../logs/log-query-overview.md). 
 - Create [log alerts](../alerts/alerts-create-log-alert-rule.md) which can use more complex logic than [activity log alerts](../alerts/alerts-create-activity-log-alert-rule.md).
 - Access activity log data with [Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview).
+- Retain activity log data for longer than 90 days.
 
 There are data ingestion or retention charges for activity logs for the default retention period of 90 days. You can [increase the retention period](../logs/data-retention-configure.md) to up to 12 years.
 
@@ -160,9 +161,9 @@ The following sample output data is from event hubs for an activity log:
 
 ### [Azure Storage](#tab/storage)
 
-Send the activity log to an Azure Storage account if you want to retain your log data longer than 90 days for audit, static analysis, or back up. If you're required to retain your events for 90 days or less, you don't need to set up archival to a storage account. Activity log events are retained in the Azure platform for 90 days.
+Send the activity log to an Azure Storage account if you want to retain your log data longer than 90 days for audit, static analysis, or back up. If you're required to retain your events for 90 days or less, you don't need to set up archival to a storage account. 
 
-When you send the activity log to Azure, a storage container is created in the storage account as soon as an event occurs. The blobs in the container use the following naming convention:
+When you send the activity log to storage, a storage container is created in the storage account as soon as an event occurs. The blobs in the container use the following naming convention:
 
 ```
 insights-activity-logs/resourceId=/SUBSCRIPTIONS/{subscription ID}/y={four-digit numeric year}/m={two-digit numeric month}/d={two-digit numeric day}/h={two-digit 24-hour clock hour}/m=00/PT1H.json
@@ -237,13 +238,12 @@ while ($currentStart -lt $endTime) {
 Write-Host "Export completed. Files saved to $outputFolder."
 ```
 
-
-
 ## Next steps
 
 Learn more about:
 
-* [Platform logs](./platform-logs-overview.md)
 * [Activity log event schema](activity-log-schema.md)
-* [Activity log insights](activity-log-insights.md)
+* [Resource logs](resource-logs.md)
+* [Diagnostic settings](diagnostic-settings.md)
+
 
