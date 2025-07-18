@@ -75,7 +75,7 @@ Use the following steps to create a new diagnostic setting or edit an existing o
 
 1. Give your setting a descriptive name if it doesn't already have one. 
 
-    :::image type="Add diagnostic setting" source="media/diagnostic-settings/setting-new-blank.png lightbox="media/diagnostic-settings/setting-new-blank.png" alt-text="Screenshot that shows Diagnostic setting details.":::
+    :::image type="Add diagnostic setting" source="media/diagnostic-settings/setting-new-blank.png" lightbox="media/diagnostic-settings/setting-new-blank.png" alt-text="Screenshot that shows Diagnostic setting details.":::
 
 2. **Logs and metrics to route**: For logs, either choose a [category group](#category-group) or select the individual checkboxes for each category of data you want to send to the destinations specified later. The list of categories varies for each Azure service. Select **AllMetrics** if you want to collect platform metrics.
 
