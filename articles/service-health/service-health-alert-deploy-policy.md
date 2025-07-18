@@ -2,19 +2,19 @@
 title: Deploy Service Health alert rules at scale using Azure Policy 
 description: This article details a process by which users can deploy Service Health alerts across subscriptions via Azure policy.
 ms.topic: conceptual
-ms.date: 7/15/2025
+ms.date: 7/18/2025
 ---
 
-# Deploy Service Health alerts at scale using Azure policy
+# Deploy Service Health alerts at scale using Azure Policy
 
 
-This article explains how to deploy Service Health alerts across subscriptions using Azure policy.
+This article explains how to deploy Service Health alerts across subscriptions using Azure Policy.
 
 ## Requirements
 
 See the permissions and roles required to run Azure Policy in Role-Based Access Control (RBAC) [Azure RBAC permissions in Azure Policy](/azure/governance/policy/overview#azure-rbac-permissions-in-azure-policy).
 
-## Steps to deploy Service Health alert rules using Azure Policy
+## Steps to deploy Service Health alert rules using Azure Policy in Azure Portal
 
 Service Health Alert rules can be deployed on a single subscription, or across all subscriptions in a management group by running the **Configure subscriptions to enable Service Health Monitoring Alert Rules** built-in policy.
 
@@ -50,7 +50,7 @@ Service Health Alert rules can be deployed on a single subscription, or across a
 1. Select **Review and save** the assignment.
 
 
-## Default behavior
+### Default behavior
 
 When remediation runs, the policy automatically creates the following resources in all subscriptions that aren’t compliant:
 - A resource group named **rg-serviceHealthAlert**.
@@ -63,7 +63,7 @@ By default, the alert rules and action groups are configured to email subscripti
 :::image type="content"source="./media/service-health-alerts-deploy/default-behavior.png"alt-text="Screenshot of path of default behavior."Lightbox="./media/service-health-alerts-deploy/default-behavior.png":::
 
 
-## Customization options
+### Customization options
 
 >[!Note]
 > On the **Parameters** tab, check to turn off *Only show parameters that need input or review* which will display all the parameters supported by the policy.
@@ -114,4 +114,12 @@ Refer to documentation for [Action Groups](/azure/azure-monitor/alerts/action-gr
 
 - **Resource tags**:<br> Tags on the resources created by this policy.
 
+## Steps to deploy Service Health alert rules using Azure Monitor Baseline Alerts for Azure Landing Zone (AMBA-ALZ)
 
+
+AMBA-ALZ offers advanced deployment scenarios like Bicep, Terraform, Azure Pipelines, GitHub Actions, and a broader range of coverage including platform alerts.
+
+For references on how to deploy AMBA-ALZ, refer to [Introduction to deploying the AMBA-ALZ Pattern](https://azure.github.io/azure-monitor-baseline-alerts/patterns/alz/HowTo/deploy/Introduction-to-deploying-the-ALZ-Pattern/). 
+
+For details about how to deploy Service Health alerts only, refer to [Deploy only Service Health Alerts](https://azure.github.io/azure-monitor-baseline-alerts/patterns/alz/HowTo/deploy/Deploy-only-Service-Health-Alerts/).
+Footer
