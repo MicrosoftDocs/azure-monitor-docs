@@ -26,7 +26,7 @@ The options available in the **Custom Text Logs** configuration are described in
 
 | Setting | Description |
 |:---|:---|
-| File pattern     | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas. Commas may only be used in the file name, not in the folder name.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
+| File pattern     | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas. Wildcards may only be used in the file name, not in the folder name.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
 | Table name       | Name of the destination table in your Log Analytics Workspace. This table must already exist. |     
 | Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat` to identify the start of a new record. If no date in the specified format is found then end of line is used. See [Time formats](#time-formats) for more details. | 
 | TimeStamp Format | The time format used in the log file as described in [Time formats](#time-formats) below. |
