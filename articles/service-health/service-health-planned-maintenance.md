@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 07/18/2025
+ms.date: 07/21/2025
 
 ---
 
