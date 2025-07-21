@@ -6,28 +6,14 @@ ms.date: 01/16/2025
 ms.reviewer: lualderm
 ---
 
-# Create diagnostic settings at scale using Azure Policies and Initiatives
+# Create diagnostic settings at scale using custom Azure Policies
 
-In order to monitor Azure resources, it's necessary to create [diagnostic settings](diagnostic-settings.md) for each resource. This process can be difficult to manage when you have many resources. To simplify the process of creating and applying diagnostic settings at scale, use Azure Policy to automatically generate diagnostic settings for both new and existing resources. 
-
-Each Azure resource type has a unique set of categories listed in the diagnostic settings. Each resource type therefore requires a separate policy definition. Some resource types have built-in policy definitions that you can assign without modification. For other resource types, you can create a custom definition.
+Policies and policy initiatives provide a simple method to enable logging at-scale with [diagnostics settings](./diagnostic-settings.md) for Azure Monitor. This article describes how to create a custom policy for Azure resources that don't have a built-in policy. See [Create diagnostic settings at scale using built-in Azure Policies](diagnostics-settings-policies-deployifnotexists.md) to more easily create diagnostic settings for Azure resources that have built-in policies.
 
 ## Log category groups
 
-Log category groups, group together similar types of logs. Category groups make it easy to refer to multiple logs in a single command. An **allLogs** category group exists containing all of the logs. There's also an **audit** category group that includes all audit logs. By using to a category group, you can define a policy that dynamically updates as new log categories are added to group.
+Log category groups, group together similar types of logs. Category groups make it easy to refer to multiple logs in a single command. An **allLogs** category group exists containing all of the logs. There's also an **audit** category group that includes all audit logs. By using a category group, you can define a policy that dynamically updates as new log categories are added to group.
 
-## Built-in policy definitions for Azure Monitor
-
-There are generally three built-in policy definitions for each resource type, corresponding to the three destinations to send diagnostics to:
-* Log Analytics workspaces 
-* Azure Storage accounts 
-* Event hubs 
-
-Assign the policies for the resource type according to which destinations you need.
-
-A set of policies built-in policies and initiatives based on the audit log category groups exist to help you apply diagnostics settings with only a few steps. For more information, see [Enable Diagnostics settings by category group using built-in policies.](diagnostics-settings-policies-deployifnotexists.md)
-
-For a complete list of built-in policies for Azure Monitor, see [Azure Policy built-in definitions for Azure Monitor](../fundamentals/policy-reference.md)
 
 ## Custom policy definitions
 For resource types that don't have a built-in policy, you need to create a custom policy definition. You could do create a new policy manually in the Azure portal by copying an existing built-in policy and then modifying it for your resource type. Alternatively, create the policy programmatically by using a script in the PowerShell Gallery.
@@ -99,8 +85,6 @@ The initiative is applied to each virtual machine as it's created. A [remediatio
 When you create the assignment by using the Azure portal, you have the option of creating a remediation task at the same time. See [Remediate noncompliant resources with Azure Policy](/azure/governance/policy/how-to/remediate-resources) for details on the remediation.
 <!-- convertborder later -->
 :::image type="content" source="media/diagnostic-settings-policy/initiative-remediation.png" lightbox="media/diagnostic-settings-policy/initiative-remediation.png" alt-text="Screenshot that shows initiative remediation for a Log Analytics workspace." border="false":::
-
-[!INCLUDE [diagnostics-settings-troubleshooting](includes/diagnostics-settings-troubleshooting.md)]
 
 ## Next steps
 
