@@ -22,7 +22,7 @@ Service Health Alert rules can be deployed on a single subscription, or across a
 1. From the Azure portal, navigate to **Home > Policy**. 
 :::image type="content"source="./media/service-health-alerts-deploy/policy-home-authoring.png"alt-text="Screenshot of policy page."Lightbox="./media/service-health-alerts-deploy/policy-home-authoring.png"::: 
 1. Under Authoring > Assignments, check if *Configure subscriptions to enable Service Health Monitoring Alert Rules* is assigned. 
-1. If  not already assigned, under Authoring > Definitions, search for *Configure subscriptions to enable Service Health Monitoring Alert Rules* and select it. <!-- to be replaced by clicking link -->
+1. If  not already assigned, under Authoring > Definitions, search for *Configure subscriptions to enable Service Health Monitoring Alert Rules* and select it, or use [this link](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailAdaptor.ReactView/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F98903777-a9f6-47f5-90a9-acaf62ab01a8) <!-- to be replaced by clicking link -->
 1.  Select **Assign policy.** 
     :::image type="content"source="./media/service-health-alerts-deploy/assign-policy.png"alt-text="Screenshot of policy page to select the assigned policy."Lightbox="./media/service-health-alerts-deploy/assign-policy.png"::: 
  
