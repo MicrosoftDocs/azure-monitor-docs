@@ -10,7 +10,7 @@ ms.reviewer: adi.biran
 
 # Run search jobs in Azure Monitor
 
-A search job is an asynchronous query you run on any data in your Log Analytics - in both [interactive and long-term retention](data-retention-configure.md) - that makes the query results available for interactive queries in a new search table within your workspace. The search job uses parallel processing and can run for hours across large datasets. This article describes how to create a search job and how to query its resulting data.
+A search job is an asynchronous query you run on any data in your Log Analytics - in both [analytics and long-term retention](data-retention-configure.md) - that makes the query results available for interactive queries in a new search table within your workspace. The search job uses parallel processing and can run for hours across large datasets. This article describes how to create a search job and how to query its resulting data.
 
 This video explains when and how to use search jobs:
  
@@ -34,7 +34,9 @@ Use search jobs to:
 
 ## What does a search job do?
 
-A search job sends its results to a new table in the same workspace as the source data. The results table is available as soon as the search job begins, but it may take time for results to begin to appear. 
+A search job scans data and sends its results to a new table in the same workspace as the source data. The results table is available as soon as the search job begins, but it may take time for results to begin to appear. A cost is incurred based on the [pricing model](#pricing-model) of scanned data and the size of the ingested results. Before a search job is run, a cost estimation is available to help you decide whether to run the job.
+
+:::image type="content" source="media/search-job/cost-estimation-preview.png" alt-text="Screenshot showing cost estimation preview.":::
 
 The search job results table is an [Analytics table](../logs/logs-table-plans.md) that is available for log queries and other Azure Monitor features that use tables in a workspace. The table uses the [retention value](data-retention-configure.md) set for the workspace, but you can modify this value after the table is created.
 
@@ -54,7 +56,7 @@ Queries on the results table appear in [log query auditing](query-audit.md) but 
 Run a search job to fetch records from large datasets into a new search results table in your workspace.
 
 > [!TIP] 
-> You incur charges for running a search job. Therefore, write and optimize your query in interactive query mode before running the search job.  
+> You incur charges for running a search job. Write and optimize your query in interactive query mode before running the search job. Use the cost estimation preview to understand the potential costs.
 
 ### [Portal](#tab/portal-1)
 
@@ -302,8 +304,7 @@ The search job charge is based on:
   
 * Search job results - The amount of data the search job finds and is ingested into the results table, based on the data ingestion rate for Analytics tables.
 
-For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table. 
-
+For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table.
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
