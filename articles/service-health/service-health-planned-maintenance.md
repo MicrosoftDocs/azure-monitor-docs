@@ -2,13 +2,13 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 07/21/2025
+ms.date: 07/22/2025
 
 ---
 
 # Planned maintenance
 
-The Planned aintenance pane in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
+The Planned Maintenance pane in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
 
 
 This pane is designed to provide you with advance notice of scheduled maintenance events that can affect your services. 
@@ -35,6 +35,19 @@ Each event includes the following information:
 - Event tags
 
 Select the **Issue name** link to open the panes with the information you need.
+
+### Filtering and sorting
+
+On each tab in this pane you can:
+
+- Download the information into a PDF file.
+- Select to track the issue on your mobile device.
+- Create a support request. See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
+- Create a service health alert. See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
+- Filter by region, subscription, or resource type.
+
+
+ :::image type="content" source="./media/planned-maintenance/planned-maintenance-tools.PNG" alt-text="Screenshot of tools on each tab." lightbox="media/planned-maintenance/planned-maintenance-tools.png":::
 
 ### Summary tab
 
@@ -88,18 +101,7 @@ The tab for Impacted Resources displays the following information about any of y
 - **Subscription ID** - The subscription that owns the resource.
 - **Action** - A link to apply the update during a self-service window (for reboot-required updates).
 
-### Filtering and sorting
 
-On each tab in this pane you can:
-
-- Download the information into a PDF file.
-- Select to track the issue on your mobile device.
-- Create a support request.
-- Create a service health ticket.
-- Filter by region, subscription, or resource type.
-
-
- :::image type="content" source="./media/planned-maintenance/planned-maintenance-tools.PNG" alt-text="Screenshot of tools on each tab." lightbox="media/planned-maintenance/planned-maintenance-tools.png":::
 
 ### Next steps:
 
