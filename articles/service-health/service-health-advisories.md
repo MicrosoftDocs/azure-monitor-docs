@@ -24,9 +24,19 @@ These advisories are communicated at least 90 days in advance, except in urgent 
 ## Health advisories information 
 This section describes the information found on each tab in the pane.
 
->[!Note]
-> - On each tab, you can download the information as PDF, create a support request and create a service health alert.
-> - You can filter advisories by subscription, region, or service using the options shown. 
+### Filtering and sorting
+
+On each tab in this pane you can:
+
+- Download the information into a PDF file.
+- Select to track the issue on your mobile device.
+- Create a support request.
+- Create a service health ticket.
+- Filter by region, subscription, or resource type.
+
+
+ :::image type="content"source="./media/service-health-advisories/health-advisories-tool-bar.png"alt-text="A screenshot of tools and filtering options."Lightbox="./media/service-health-advisories/health-advisories-tool-bar.png":::
+ 
 
 ### Summary tab
 
@@ -65,3 +75,13 @@ The Issue Updates section in the Health advisories pane of Azure Service Health 
 - Chronological Updates: These updates track the progression of the advisory—detailing when it was initially identified, any modifications in scope or severity, and the point at which it was resolved or mitigated.
 - Contextual Details: Clarifications about the root cause, mitigation steps, or any changes in the recommended actions.
 - Status Transitions: Updates on whether the advisory is moved from “Active” to “Resolved” or “Scheduled.”
+
+
+
+
+### Next steps:
+
+- [Resource Health overview](resource-health-overview.md)
+- [Service Health FAQs](service-health-faq.yml)
+- [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
+
