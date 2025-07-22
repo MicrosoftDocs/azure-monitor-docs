@@ -11,7 +11,7 @@ The Health advisories pane in Azure Service Health is a key feature designed to 
 
 :::image type="content"source="./media/service-health-advisories/health-advisories-main-tab.png" alt-text= "A screenshot of health advisories main pane with more information." Lightbox= "./media/service-health-advisories/health-advisories-main-tab.png":::
 
-## Overview
+## Get started with Health advisories
 
 The Health advisories pane is used to notify users about important but non-critical issues that could affect their Azure resources. These issues aren't active service outages but rather informational or action-required events that could include:
 - Service retirements (for example, deprecated APIs or features)
@@ -21,18 +21,15 @@ The Health advisories pane is used to notify users about important but non-criti
 
 These advisories are communicated at least 90 days in advance, except in urgent cases such as misconfigurations, which are reported immediately.
 
-## Health advisories information 
-This section describes the information found on each tab in the pane.
+Select the **Issue name** link to open the tabs with the information you need.
 
 ### Filtering and sorting
+At the top of each tab, there are several options of how to view the information on this page.
 
-On each tab in this pane you can:
-
-- Download the information into a PDF file.
-- Select to track the issue on your mobile device.
-- Create a support request. See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
-- Create a service health alert. See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
-- Filter by the data shown on each tab.
+- **Download as a PDF**: Select to download and open a PDF with the information about this event.
+- **Track issue on mobile**: Select to open and point your mobile phone camera at the QR code.
+- **Create a support request**: See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
+- **Create a service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
 
 
  :::image type="content"source="./media/service-health-advisories/health-advisories-tool-bar.png"alt-text="A screenshot of tools and filtering options."Lightbox="./media/service-health-advisories/health-advisories-tool-bar.png":::
