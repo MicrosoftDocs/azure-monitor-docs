@@ -258,43 +258,6 @@ Recommendation ID: eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40
 
 <!--eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40_end-->
 
-
-<!--c3c74c9e-e241-496c-be3f-57a2797aa91f_begin-->
-
-#### Distribute data in server group to distribute workload among nodes  
-  
-It looks like the data isn't distributed in this server group but stays on the coordinator. For full Hyperscale (Citus) benefits distribute data on worker nodes in this server group.  
-  
-**Potential benefits**: Improve query performance by utilizing resource of each node in the server group  
-
-**Impact:** High
-  
-For more information, see [Creating and Modifying Distributed Tables (DDL) — Citus Docs 9.3 documentation](https://go.microsoft.com/fwlink/?linkid=2135201)  
-
-ResourceType: microsoft.dbforpostgresql/servergroups  
-Recommendation ID: c3c74c9e-e241-496c-be3f-57a2797aa91f  
-
-
-<!--c3c74c9e-e241-496c-be3f-57a2797aa91f_end-->
-
-<!--426292db-b3e8-46f6-ad3e-d46753943afb_begin-->
-
-#### Rebalance data in Hyperscale (Citus) server group to distribute workload among worker nodes more evenly  
-  
-It looks like the data isn't well balanced between worker nodes in this Hyperscale (Citus) server group. In order to use each worker node of the Hyperscale (Citus) server group effectively rebalance data in this server group.  
-  
-**Potential benefits**: Get the most of Hyperscale (Citus) by utilizing resources of each node more evenly  
-
-**Impact:** High
-  
-For more information, see [SQL functions – Azure Cosmos DB for PostgreSQL](https://go.microsoft.com/fwlink/?linkid=2148869)  
-
-ResourceType: microsoft.dbforpostgresql/servergroups  
-Recommendation ID: 426292db-b3e8-46f6-ad3e-d46753943afb  
-
-
-<!--426292db-b3e8-46f6-ad3e-d46753943afb_end-->
-
 <!--b26edab6-a8dc-4903-b29f-d3b7fb9e0f9c_begin-->
 
 #### Increase the storage limit for Hyperscale (Citus) server group  
@@ -312,24 +275,6 @@ Recommendation ID: b26edab6-a8dc-4903-b29f-d3b7fb9e0f9c
 
 
 <!--b26edab6-a8dc-4903-b29f-d3b7fb9e0f9c_end-->
-
-<!--4b0be860-1d79-4360-861a-5382fdb0532c_begin-->
-
-#### Increase the storage limit for Hyperscale (Citus) server group  
-  
-Our internal telemetry shows that one or more nodes in the server group may be constrained because they are approaching limits for the currently provisioned storage values. This may result in degraded performance or in the server being moved to read-only mode. To ensure continued performance, we recommend increasing the provisioned disk space.  
-  
-**Potential benefits**: Improve server performance by increasing the storage and continue to use server in read-write mode.  
-
-**Impact:** High
-  
-For more information, see [Configure cluster - Azure Cosmos DB for PostgreSQL](/azure/postgresql/howto-hyperscale-scale-grow#increase-storage-on-nodes)  
-
-ResourceType: microsoft.dbforpostgresql/servers  
-Recommendation ID: 4b0be860-1d79-4360-861a-5382fdb0532c  
-
-
-<!--4b0be860-1d79-4360-861a-5382fdb0532c_end-->
 
 <!--6772abda-0192-4e70-bfeb-409c7e7cf73c_begin-->
 
