@@ -34,17 +34,15 @@ Each event includes the following information:
 - last updated 
 - Event tags
 
-Select the **Issue name** link to open the panes with the information you need.
+Select the **Issue name** link to open the tabs with the information you need.
 
 ### Filtering and sorting
+At the top of each tab, there are several options of how to view the information on this page.
 
-On each tab in this pane you can:
-
-- Download the information into a PDF file.
-- Select to track the issue on your mobile device.
-- Create a support request. See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
-- Create a service health alert. See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
-- Filter by region, subscription, or resource type.
+ - **Download as a PDF**: Select to download and open a PDF with the information about this event.
+- **Track issue on mobile**: Select to open and point your mobile phone camera at the QR code.
+- **Create a support request**: See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
+- **Create a service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md). 
 
 
  :::image type="content" source="./media/planned-maintenance/planned-maintenance-tools.PNG" alt-text="Screenshot of tools on each tab." lightbox="media/planned-maintenance/planned-maintenance-tools.png":::
