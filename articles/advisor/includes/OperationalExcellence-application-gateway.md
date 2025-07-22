@@ -210,25 +210,6 @@ Recommendation ID: 14368063-38db-4dd6-a755-9c49ff123a5e
 
 <!--14368063-38db-4dd6-a755-9c49ff123a5e_end-->
 
-
-<!--3f0e3a98-0a69-4798-b780-efeaa6c44810_begin-->
-
-#### Upgrade to the latest bot protection rule set in Front Door WAF  
-  
-Bot protection in Web Application Firewall (WAF) will protect you application against malicious bots, crawlers, and scanners. Using the latest version of bot Protection rule set will ensure the WAF engine will apply the latest rules.  
-  
-**Potential benefits**: Ensure increased efficiency and protection against bots  
-
-**Impact:** Medium
-  
-For more information, see [Azure Web Application Firewall DRS rule groups and rules](https://aka.ms/afdwafbotrs)  
-
-ResourceType: microsoft.network/frontdoorwebapplicationfirewallpolicies  
-Recommendation ID: 3f0e3a98-0a69-4798-b780-efeaa6c44810  
-
-
-<!--3f0e3a98-0a69-4798-b780-efeaa6c44810_end-->
-
 <!--a1ad465b-8218-40d6-a6ce-4bfff566a6cd_begin-->
 
 #### Upgrade to the latest DRS rule set in Front Door WAF  
