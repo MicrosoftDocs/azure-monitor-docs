@@ -14,7 +14,7 @@ This article explains how to deploy Service Health alerts across subscriptions u
 
 See the permissions and roles required to run Azure Policy in Role-Based Access Control (RBAC) [Azure RBAC permissions in Azure Policy](/azure/governance/policy/overview#azure-rbac-permissions-in-azure-policy).
 
-## Steps to deploy Service Health alert rules using Azure Policy in Azure Portal
+## Steps to deploy Service Health alert rules using Azure Policy in Azure portal
 
 Service Health Alert rules can be deployed on a single subscription, or across all subscriptions in a management group by running the **Configure subscriptions to enable Service Health Monitoring Alert Rules** built-in policy.
 
