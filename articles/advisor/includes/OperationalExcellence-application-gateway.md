@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/22/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -336,5 +336,23 @@ Recommendation ID: f8d4da72-3b27-4dd7-839c-bd69b9b95111
 
 
 <!--f8d4da72-3b27-4dd7-839c-bd69b9b95111_end-->
+
+<!--8a885111-34c0-4fd6-bb77-dbbb844ad7e5_begin-->
+
+#### Monitor Azure Firewall Metrics  
+  
+Monitor Azure Firewall for overall health, processed throughput, and outbound SNAT port usage. Get alerted before limits affect services. Consider NAT gateway integration with zonal deployments; Take into account limitations with zone redundant Firewalls and Secure Virtual Hub Networks.  
+  
+**Potential benefits**: Improve health and performance monitoring.  
+
+**Impact:** High
+  
+For more information, see [Azure Monitor supported metrics by resource type - Azure Monitor](/azure/azure-monitor/reference/metrics-index#microsoftnetworkazurefirewalls)  
+
+ResourceType: microsoft.network/azurefirewalls  
+Recommendation ID: 8a885111-34c0-4fd6-bb77-dbbb844ad7e5  
+
+
+<!--8a885111-34c0-4fd6-bb77-dbbb844ad7e5_end-->
 
 <!--articleBody-->

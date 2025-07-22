@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/08/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -40,13 +40,14 @@ Configure GRS to ensure that your database meets its availability and durability
 
 **Impact:** Medium
   
-For more information, see [Backup and restore - Azure Database for PostgreSQL flexible server](https://aka.ms/PGGeoBackup)  
+For more information, see [Backup and restore - Azure Database for PostgreSQL](https://aka.ms/PGGeoBackup)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 5295ed8a-f7a1-48d3-b4a9-e5e472cf1685  
 Subcategory: DisasterRecovery
 
 <!--5295ed8a-f7a1-48d3-b4a9-e5e472cf1685_end-->
+
 
 
 <!--6f33a917-418c-4608-b34f-4ff0e7be8637_begin-->
@@ -120,5 +121,23 @@ Recommendation ID: d1f667d3-b945-4c67-98e2-84a1df2c30ca
 Subcategory: DisasterRecovery
 
 <!--d1f667d3-b945-4c67-98e2-84a1df2c30ca_end-->
+
+<!--2de25da6-5d44-4c0d-8a37-b61f8a65babe_begin-->
+
+#### Review the server for storage auto grow  
+  
+The server has utilized 80 percent of the storage and storage auto growth isn't enabled. Storage auto grow can help ensure that your server always has enough free space available and doesn't become read-only.  
+  
+**Potential benefits**: Storage autogrow  ensures your server has enough free space  
+
+**Impact:** High
+  
+For more information, see [Storage options - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/concepts-storage#storage-autogrow-premium-ssd)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 2de25da6-5d44-4c0d-8a37-b61f8a65babe  
+Subcategory: null
+
+<!--2de25da6-5d44-4c0d-8a37-b61f8a65babe_end-->
 
 <!--articleBody-->

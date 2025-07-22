@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/08/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -378,12 +378,31 @@ The pgaudit.log server parameter for the server is set to values that impact per
 
 **Impact:** Medium
   
-For more information, see [Customized Options server parameters - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/server-parameters-table-customized-options?pivots=postgresql-17#pgauditlog)  
+For more information, see [Customized Options server parameters - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/server-parameters-table-customized-options?pivots=postgresql-17#pgauditlog)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: e77d49af-7101-4e7e-a184-472fbf882c35  
 
 
 <!--e77d49af-7101-4e7e-a184-472fbf882c35_end-->
+
+
+<!--278ffae3-fa57-463b-a9f6-4b04a8b320b0_begin-->
+
+#### Review the server for table stats reset  
+  
+The server's table stats are reset. Run ANALYZE on the databases. It collects statistics to help the PostgreSQL Optimizer choose the best execution paths for queries.  
+  
+**Potential benefits**: Improve query performance by running ANALYZE  
+
+**Impact:** High
+  
+For more information, see [Autovacuum tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#what-is-autovacuum)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 278ffae3-fa57-463b-a9f6-4b04a8b320b0  
+
+
+<!--278ffae3-fa57-463b-a9f6-4b04a8b320b0_end-->
 
 <!--articleBody-->
