@@ -10,25 +10,7 @@ ms.custom: HighAvailability Azure Database for PostgreSQL
   
 ---
   
-## Azure Database for PostgreSQL  
-  
-<!--33f26810-57d0-4612-85ff-a83ee9be884a_begin-->
-
-#### Remove inactive logical replication slots (important)  
-  
-Inactive logical replication slots can result in degraded server performance and unavailability due to write ahead log (WAL) file retention and buildup of snapshot files. Your Azure Database for PostgreSQL flexible server might have inactive logical replication slots. THIS NEEDS IMMEDIATE ATTENTION. Either delete the inactive replication slots, or start consuming the changes from these slots, so that the slots' Log Sequence Number (LSN) advances and is close to the current LSN of the server.  
-  
-**Potential benefits**: Improve PostgreSQL availability by removing inactive logical replication slots  
-
-**Impact:** High
-  
-For more information, see [Logical replication and logical decoding - Azure Database for PostgreSQL - Flexible Server ](https://aka.ms/azure_postgresql_flexible_server_logical_decoding)  
-
-ResourceType: microsoft.dbforpostgresql/flexibleservers  
-Recommendation ID: 33f26810-57d0-4612-85ff-a83ee9be884a  
-Subcategory: Other
-
-<!--33f26810-57d0-4612-85ff-a83ee9be884a_end-->
+## Azure Database for PostgreSQL
 
 <!--5295ed8a-f7a1-48d3-b4a9-e5e472cf1685_begin-->
 
