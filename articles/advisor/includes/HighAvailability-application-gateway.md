@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/08/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -380,19 +380,20 @@ Subcategory: HighAvailability
 
 #### Enable Active-Active gateways for redundancy  
   
-In active-active configuration, both instances of the VPN gateway establish site-to-site (S2S) VPN tunnels to your on-premises VPN device. When a planned maintenance or unplanned event happens to one gateway instance, traffic is automatically switched over to the other active IPsec tunnel.  
+In active-active configuration, both instances of the VPN gateway establish site-to-site (S2S) VPN tunnels to your on-premise VPN device. When a planned maintenance or unplanned event happens to one gateway instance, traffic is automatically switched over to the other active IPsec tunnel.  
   
 **Potential benefits**: Ensure business continuity through connection resilience  
 
 **Impact:** Medium
   
-For more information, see [Design highly available gateway connectivity - Azure VPN Gateway ](https://aka.ms/aa_vpnha_learnmore)  
+For more information, see [Design highly available gateway connectivity - Azure VPN Gateway](https://aka.ms/aa_vpnha_learnmore)  
 
 ResourceType: microsoft.network/virtualnetworkgateways  
 Recommendation ID: c249dc0e-9a17-423e-838a-d72719e8c5dd  
 Subcategory: BusinessContinuity
 
 <!--c249dc0e-9a17-423e-838a-d72719e8c5dd_end-->
+
 
 <!--8d61a7d4-5405-4f43-81e3-8c6239b844a6_begin-->
 
