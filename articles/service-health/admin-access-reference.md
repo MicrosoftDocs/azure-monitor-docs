@@ -2,7 +2,7 @@
 title: Roles with tenant admin access
 description: This article defines the tenant roles with access to tenant scope view.
 ms.topic: article
-ms.date: 05/22/2025
+ms.date: 07/22/2025
 ---
 
 # Roles with tenant admin access
