@@ -32,7 +32,7 @@ On each tab in this pane you can:
 - Select to track the issue on your mobile device.
 - Create a support request.
 - Create a service health ticket.
-- Filter by region, subscription, or resource type.
+- Filter by the data on the tab.
 
 
  :::image type="content"source="./media/service-health-advisories/health-advisories-tool-bar.png"alt-text="A screenshot of tools and filtering options."Lightbox="./media/service-health-advisories/health-advisories-tool-bar.png":::
