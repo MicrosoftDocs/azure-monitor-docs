@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/08/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -328,12 +328,13 @@ Your Azure Cosmos DB accounts use periodic backup. Continuous backup with point-
 
 **Impact:** Medium
   
-For more information, see [Continuous backup with point in time restore feature in Azure Cosmos DB](/azure/cosmos-db/continuous-backup-restore-introduction)  
+For more information, see [Continuous Backup with Point-in-Time Restore](/azure/cosmos-db/continuous-backup-restore-introduction)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 52fef986-5897-4359-8b92-0f22749f0d73  
 Subcategory: BusinessContinuity
 
 <!--52fef986-5897-4359-8b92-0f22749f0d73_end-->
+
 
 <!--articleBody-->
