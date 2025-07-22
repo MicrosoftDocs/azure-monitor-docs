@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Subscriptions
@@ -65,24 +65,6 @@ Recommendation ID: 93214083-e48e-420e-881f-89d02265f831
 
 
 <!--93214083-e48e-420e-881f-89d02265f831_end-->
-
-<!--1ee8eace-1e7e-4d73-8547-1f687c72979b_begin-->
-
-#### Upgrade SAP Migrate Discovery SDK to the latest version  
-  
-An outdated version of the SAP Migrate Discovery SDK has been detected for resources within the SAP Discovery Site under your subscription. To ensure access to the latest features and performance enhancements, we recommend upgrading to the most recent version of the SDK.  
-  
-**Potential benefits**: Latest SAP Migrate Discovery SDK contains fixes for known issues and other improvements.  
-
-**Impact:** Medium
-  
-  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: 1ee8eace-1e7e-4d73-8547-1f687c72979b  
-
-
-<!--1ee8eace-1e7e-4d73-8547-1f687c72979b_end-->
 
 <!--fec68ad4-95b5-4dca-9e20-afa10b3e5401_begin-->
 

@@ -340,24 +340,6 @@ Subcategory: HighAvailability
 
 <!--e3489565-d891-406e-91d1-44f476563850_end-->
 
-<!--70f87e66-9b2d-4bfa-ae38-1d7d74837689_begin-->
-
-#### Implement multiple ExpressRoute circuits in your Virtual Network for cross premises resiliency  
-  
-When an ExpressRoute gateway only has one ExpressRoute circuit associated to it, resiliency issues might occur. To ensure peering location redundancy and resiliency, connect one or more additional circuits to your gateway.  
-  
-**Potential benefits**: Improve resiliency in case of ExpressRoute peering location failure  
-
-**Impact:** Medium
-  
-For more information, see [Azure ExpressRoute: Designing for high availability ](/azure/expressroute/designing-for-high-availability-with-expressroute)  
-
-ResourceType: microsoft.network/virtualnetworkgateways  
-Recommendation ID: 70f87e66-9b2d-4bfa-ae38-1d7d74837689  
-Subcategory: BusinessContinuity
-
-<!--70f87e66-9b2d-4bfa-ae38-1d7d74837689_end-->
-
 <!--e070c4bf-afaf-413e-bc00-e476b89c5f3d_begin-->
 
 #### Move to production gateway SKUs from Basic gateways  
