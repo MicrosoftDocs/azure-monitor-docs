@@ -423,6 +423,20 @@ items:
           href: vm/vminsights-change-analysis.md
         - name: Visualize data with workbooks
           href: vm/vminsights-workbooks.md
+    - name: Performance diagnostics
+      items:
+        - name: Overview
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics.md
+        - name: Install
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-install.md
+        - name: Use Windows
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-using-windows.md
+        - name: Use Linux
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics.md
     - name: Deployment guide
       items:
       - name: Overview
