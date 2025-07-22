@@ -2,7 +2,7 @@
 title: What's New in Azure Service Health
 description: Learn about what's new in Azure Service Health.
 ms.topic: whats-new
-ms.date: 07/21/2025
+ms.date: 07/22/2025
 ---
 
 # What's new in Azure Service Health
@@ -11,7 +11,7 @@ This article lists recent changes in the Azure Service Health service.
 
 
 ### New way to deploy Service Health alerts using Azure Policy
-Now Service Health Alert rules can be deployed on a single subscription, or across all subscriptions in a management group. For more information, see [Deploy Service Health alerts at scale using Azure Policy](service-health-alert-deploy-policy.md)
+Now Service Health Alert rules can be deployed on a single subscription, or across all subscriptions in a management group. For more information, see [Deploy Service Health alerts at scale using Azure Policy](service-health-alert-deploy-policy.md).
 
 ### New Event tags
 There's a new field in the Azure Service Health portal called "Event tags" attached to individual service health communications to help users quickly understand the nature and status of an event.
