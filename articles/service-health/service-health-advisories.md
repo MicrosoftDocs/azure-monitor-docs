@@ -30,9 +30,9 @@ On each tab in this pane you can:
 
 - Download the information into a PDF file.
 - Select to track the issue on your mobile device.
-- Create a support request.
-- Create a service health ticket.
-- Filter by the data on the tab.
+- Create a support request. See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
+- Create a service health alert. See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
+- Filter by the data shown on each tab.
 
 
  :::image type="content"source="./media/service-health-advisories/health-advisories-tool-bar.png"alt-text="A screenshot of tools and filtering options."Lightbox="./media/service-health-advisories/health-advisories-tool-bar.png":::
