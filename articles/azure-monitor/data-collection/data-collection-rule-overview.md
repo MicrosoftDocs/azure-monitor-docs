@@ -67,13 +67,13 @@ This allows you to develop a strategy for maintaining your monitoring across set
 
 For example, the following diagram illustrates data collection for [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. The agent uses that information to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, any [transformation](#transformations) specified in the DCR are run to filter and modify the data and then sends the data to the specified workspace and table.
 
-:::image type="content" source="media/data-collection-rule-overview/data-collection-virtual-machine.svg" lightbox="media/data-collection-rule-overview/data-collection-virtual-machine.svg" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
+:::image type="content" source="media/data-collection-rule-overview/data-collection-virtual-machine.png" lightbox="media/data-collection-rule-overview/data-collection-virtual-machine.png" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
 
 ### Direct ingestion
 
 With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using [Logs ingestion API](../logs/logs-ingestion-api-overview.md). Each API call specifies the DCR that processes its data. The DCR understands the structure of the incoming data, includes a [transformation](#transformations) that ensures the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
 
-:::image type="content" source="media/data-collection-rule-overview/data-collection-direct-ingestion.svg" lightbox="media/data-collection-rule-overview/data-collection-direct-ingestion.svg" alt-text="Diagram that shows basic operation for DCR using Logs ingestion API." border="false":::
+:::image type="content" source="media/data-collection-rule-overview/data-collection-direct-ingestion.png" lightbox="media/data-collection-rule-overview/data-collection-direct-ingestion.png" alt-text="Diagram that shows basic operation for DCR using Logs ingestion API." border="false":::
 
 ## Transformations
 
