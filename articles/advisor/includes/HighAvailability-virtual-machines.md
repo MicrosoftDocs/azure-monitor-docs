@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/08/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -66,25 +66,6 @@ Recommendation ID: ed651749-cd37-4fd5-9897-01b416926745
 Subcategory: DisasterRecovery
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_end-->
-
-
-<!--bcfeb92b-fe93-4cea-adc6-e747055518e9_begin-->
-
-#### Update your outbound connectivity protocol to Service Tags for Azure Site Recovery  
-  
-IP address-based allowlisting is a vulnerable way to control outbound connectivity for firewalls, Service Tags are a good  alternative. We highly recommend the use of Service Tags, to allow connectivity to Azure Site Recovery services for the machines.  
-  
-**Potential benefits**: Ensures better security, stability and resiliency than hard coded IP Addresses  
-
-**Impact:** High
-  
-For more information, see [About networking in Azure VM disaster recovery with Azure Site Recovery - Azure Site Recovery ](https://aka.ms/azure-site-recovery-using-service-tags)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: bcfeb92b-fe93-4cea-adc6-e747055518e9  
-Subcategory: Other
-
-<!--bcfeb92b-fe93-4cea-adc6-e747055518e9_end-->
 
 <!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_begin-->
 
