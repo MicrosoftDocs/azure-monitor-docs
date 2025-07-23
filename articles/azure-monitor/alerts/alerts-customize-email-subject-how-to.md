@@ -2,7 +2,7 @@
 title: Customize log search alert email subjects (preview)
 description: This article explains how to customize log search alert email subjects in Azure Monitor by using dynamic values and ARM templates for personalized notifications.
 ms.topic: how-to
-ms.date: 07/08/2025
+ms.date: 07/22/2025
 ms.reviewer: nolavime
 ---
 
