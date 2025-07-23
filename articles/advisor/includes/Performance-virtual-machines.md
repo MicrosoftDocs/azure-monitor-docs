@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/10/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Virtual Machines
@@ -10,25 +10,7 @@ ms.custom: Performance Virtual Machines
   
 ---
   
-## Virtual Machines  
-  
-<!--00c14add-2aef-4bb4-a3bd-5759096d4417_begin-->
-
-#### Convert Managed Disks from Standard HDD to Premium SSD for performance  
-  
-We noticed your Standard HDD disk is approaching performance targets. Azure premium SSDs deliver high-performance and low-latency disk support for virtual machines with IO-intensive workloads. Give your disk performance a boost by upgrading your Standard HDD disk to Premium SSD disk. Upgrading requires a VM reboot, which takes three to five minutes.  
-  
-**Potential benefits**: Give your disk performance a boost using Premium SSD disks.  
-
-**Impact:** Medium
-  
-For more information, see [Select a disk type for Azure IaaS VMs - managed disks - Azure Virtual Machines](/azure/virtual-machines/windows/disks-types#premium-ssd)  
-
-ResourceType: microsoft.compute/disks  
-Recommendation ID: 00c14add-2aef-4bb4-a3bd-5759096d4417  
-
-
-<!--00c14add-2aef-4bb4-a3bd-5759096d4417_end-->
+## Virtual Machines
 
 <!--3a3c1a2a-8597-4d3a-981a-0a24a0ee9de4_begin-->
 
@@ -47,78 +29,6 @@ Recommendation ID: 3a3c1a2a-8597-4d3a-981a-0a24a0ee9de4
 
 
 <!--3a3c1a2a-8597-4d3a-981a-0a24a0ee9de4_end-->
-
-<!--a06456ed-afb7-4d16-86fd-0054e25268ed_begin-->
-
-#### Accelerated Networking may require stopping and starting the VM  
-  
-We detected that Accelerated Networking isn't engaged on a VM resources in your existing deployment even though the feature has been requested. In rare cases like this, it may be necessary to stop and start your VM, at your convenience, to re-engage AccelNet.  
-  
-**Potential benefits**: Improves performance throughput while reducing latency and jitter  
-
-**Impact:** Medium
-  
-For more information, see [Create an Azure Virtual Machine with Accelerated Networking](/azure/virtual-network/create-vm-accelerated-networking-cli#enable-accelerated-networking-on-existing-vms)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: a06456ed-afb7-4d16-86fd-0054e25268ed  
-
-
-<!--a06456ed-afb7-4d16-86fd-0054e25268ed_end-->
-
-<!--7fc8d697-5101-4dd2-abf5-32deac4b9cae_begin-->
-
-#### Update Automanage to the latest API Version  
-  
-We identified SDK requests from outdated API for resources under this subscription. We recommend switching to the latest SDK versions. This ensures you receive the latest features and performance improvements.  
-  
-**Potential benefits**: Latest Automanage API contains fixes for known issues and other improvements.  
-
-**Impact:** Medium
-  
-For more information, see [SDK Overview](/azure/automanage/reference-sdk)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 7fc8d697-5101-4dd2-abf5-32deac4b9cae  
-
-
-<!--7fc8d697-5101-4dd2-abf5-32deac4b9cae_end-->
-
-<!--7cdecd2c-a8b0-41cf-b0a4-528bd4d85f5a_begin-->
-
-#### Take advantage of Ultra Disk low latency for your log disks and improve your database workload performance  
-  
-Ultra disk is available in the same region as your database workload. Ultra disk offers high throughput, high IOPS, and consistent low latency disk storage for your database workloads: For Oracle DBs, you can now use either 4k or 512E sector sizes with Ultra disk depending on your Oracle DB version. For SQL server, leveraging Ultra disk for your log disk might offer more performance for your database. See instructions here for migrating your log disk to Ultra disk.  
-  
-**Potential benefits**: Boost the performance of your database on IaaS VMs by using Ultra disk as log disk.  
-
-**Impact:** Medium
-  
-For more information, see [Ultra disks for VMs - Azure managed disks - Azure Virtual Machines](/azure/virtual-machines/disks-enable-ultra-ssd?tabs=azure-portal)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 7cdecd2c-a8b0-41cf-b0a4-528bd4d85f5a  
-
-
-<!--7cdecd2c-a8b0-41cf-b0a4-528bd4d85f5a_end-->
-
-<!--9b0d1cf7-8a3a-4c8b-8f9f-1c3e70e399d6_begin-->
-
-#### Match production Virtual Machines with Production Disk for consistent performance and better latency  
-  
-Production virtual machines need production disks if you want to get the best performance. We see that you are running a production level virtual machine, however, you are using a low performing disk with standard HDD. Upgrading your disks that are attached to your production disks, either Standard SSD or Premium SSD, provides a more consistent experience and improvements in latency.  
-  
-**Potential benefits**: More consistent performance, better latency  
-
-**Impact:** Medium
-  
-For more information, see [Select a disk type for Azure IaaS VMs - managed disks - Azure Virtual Machines](/azure/virtual-machines/windows/disks-types#disk-comparison)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 9b0d1cf7-8a3a-4c8b-8f9f-1c3e70e399d6  
-
-
-<!--9b0d1cf7-8a3a-4c8b-8f9f-1c3e70e399d6_end-->
 
 <!--06c03895-e210-4153-a4a0-a5e5c8e8eb83_begin-->
 
@@ -155,24 +65,6 @@ Recommendation ID: 36c3633b-daac-4e01-af95-11b8c2f4fe20
 
 
 <!--36c3633b-daac-4e01-af95-11b8c2f4fe20_end-->
-
-<!--6747b02b-b6ac-4c2e-aeca-c2aa0438f58d_begin-->
-
-#### Use SSD Disks for your production workloads  
-  
-We noticed that you are using SSD disks while also using Standard HDD disks on the same VM. Standard HDD managed disks are recommended for dev-test and backup; we recommend you use Premium SSDs or Standard SSDs for production. Premium SSDs deliver high-performance and low-latency disk support for virtual machines with IO-intensive workloads. Standard SSDs provide consistent and lower latency. Upgrade your disk configuration today for improved latency, reliability, and availability. Upgrading requires a VM reboot, which takes three to five minutes.  
-  
-**Potential benefits**: Improve latency, reliability, and availability  
-
-**Impact:** High
-  
-For more information, see [Select a disk type for Azure IaaS VMs - managed disks - Azure Virtual Machines](/azure/virtual-machines/windows/disks-types#disk-comparison)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 6747b02b-b6ac-4c2e-aeca-c2aa0438f58d  
-
-
-<!--6747b02b-b6ac-4c2e-aeca-c2aa0438f58d_end-->
 
 <!--5e305558-6944-40bb-9d69-eb161b42fcec_begin-->
 

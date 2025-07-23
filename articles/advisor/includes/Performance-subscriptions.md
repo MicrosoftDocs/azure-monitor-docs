@@ -66,22 +66,22 @@ Recommendation ID: 93214083-e48e-420e-881f-89d02265f831
 
 <!--93214083-e48e-420e-881f-89d02265f831_end-->
 
-<!--fec68ad4-95b5-4dca-9e20-afa10b3e5401_begin-->
+<!--1ee8eace-1e7e-4d73-8547-1f687c72979b_begin-->
 
-#### Experience more predictable, consistent latency with a private connection to Azure  
+#### Upgrade SAP Migrate Discovery SDK to the latest version  
   
-Improve the performance, privacy, and reliability of your business-critical apps by extending your on-premises networks to Azure with Azure ExpressRoute. Establish private ExpressRoute connections directly from your WAN, through a cloud exchange facility, or through POP and IPVPN connections.  
+An outdated version of the SAP Migrate Discovery SDK has been detected for resources within the SAP Discovery Site under your subscription. To ensure access to the latest features and performance enhancements, we recommend upgrading to the most recent version of the SDK.  
   
-**Potential benefits**: Fast, private, bandwidth up to 100 Gbps, plus cost benefits  
+**Potential benefits**: Latest SAP Migrate Discovery SDK contains fixes for known issues and other improvements.  
 
 **Impact:** Medium
   
-For more information, see [Quickstart: Create and modify ExpressRoute circuits - Azure portal](/azure/expressroute/expressroute-howto-circuit-portal-resource-manager)  
+  
 
 ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: fec68ad4-95b5-4dca-9e20-afa10b3e5401  
+Recommendation ID: 1ee8eace-1e7e-4d73-8547-1f687c72979b  
 
 
-<!--fec68ad4-95b5-4dca-9e20-afa10b3e5401_end-->
+<!--1ee8eace-1e7e-4d73-8547-1f687c72979b_end-->
 
 <!--articleBody-->
