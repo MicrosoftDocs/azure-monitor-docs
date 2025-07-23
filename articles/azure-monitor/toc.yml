@@ -17,6 +17,8 @@ items:
           href: aiops/aiops-issue-and-investigation-overview.md
         - name: Use issues and investigations
           href: aiops/aiops-issue-and-investigation-how-to.md
+        - name: Issues and investigations best practices guide
+          href: aiops/aiops-issue-and-investigation-best-practices.md
         - name: Issues and investigations responsible use
           href: aiops/aiops-issue-and-investigation-responsible-use.md
         - name: Issues and investigations troubleshooting guide
