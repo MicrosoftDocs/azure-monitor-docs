@@ -18,13 +18,6 @@ To create or edit an alert rule, you must have the following permissions:
 -	Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
 -	Read permission on any action group associated to the alert rule, if applicable.
 
-## Customize email subject in the Azure portal
-
-1. Create or edit a log search alert rule.
-1. One the **Actions** tab, after creating or selecting an existing Action group, use the **Email subject** section to add your own custom email subject.
-
-:::image type="content" source="media/common/custom-email-subject-ux.png" alt-text="screenshot of email subject ux":::
-
 ## Use an ARM template
 
 To create an alert rule with a customized email subject, use a template from the [Resource Manager template samples for log search alerts](resource-manager-alerts-log.md). Be sure to use the latest API version 2023-12-01. Use the template from the [Resource Manager template sample for simple log search alert rules](resource-manager-alerts-simple-log-search-alerts.md) for Simple log search alert rules.
