@@ -22,34 +22,33 @@ ms.custom: sap:VM Performance
 
 
 
-## What information does Performance Diagnostics collect in Windows?
-
-Information about Windows VM, disks or storage pools configuration, performance counters, logs, and various traces are collected. It depends on the performance scenario you're using. The following table provides details:
+## Data collected
+Performance Diagnostics collected the information in the following table from Windows machines., depending on the performance scenario you're using.
 
 | Data collected | Quick performance analysis | Benchmarking | Performance analysis | Azure Files analysis | Advanced performance analysis |
-|----------------------------------|----------------------------|------------------------------------|--------------------------|--------------------------------|----------------------|
-| Information from event logs       | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| System information                | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Volume map                        | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Disk map                          | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Running tasks                     | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Storage reliability counters      | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Storage information               | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Fsutil output                     | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Filter driver info                | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Netstat output                    | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Network configuration             | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Firewall configuration            | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| SQL Server configuration          | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Performance diagnostics traces *  | Yes                        | Yes                                | Yes                      | Yes                  | Yes                  |
-| Performance counter trace **      |                            |                                    | Yes                      |                      | Yes                  |
-| SMB counter trace **              |                            |                                    |                          | Yes                  |                      |
-| SQL Server counter trace **       |                            |                                    | Yes                      |                      | Yes                  |
-| Xperf trace                       |                            |                                    |                          |                      | Yes                  |
-| StorPort trace                    |                            |                                    |                          |                      | Yes                  |
-| Network trace                     |                            |                                    |                          | Yes                  | Yes                  |
-| Diskspd benchmark trace ***       |                            | Yes                                |                          |                      |                      |
-|       |                            |                         |                                                   |                      |                      |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| Information from event logs       | Yes        | Yes  | Yes      | Yes  | Yes  |
+| System information  | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Volume map        | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Disk map          | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Running tasks     | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Storage reliability counters      | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Storage information               | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Fsutil output     | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Filter driver info  | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Netstat output    | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Network configuration             | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Firewall configuration            | Yes        | Yes  | Yes      | Yes  | Yes  |
+| SQL Server configuration          | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Performance diagnostics traces *  | Yes        | Yes  | Yes      | Yes  | Yes  |
+| Performance counter trace **      |            |    | Yes      |      | Yes  |
+| SMB counter trace **              |            |    |          | Yes  |      |
+| SQL Server counter trace **       |            |    | Yes      |      | Yes  |
+| Xperf trace       |            |    |          |      | Yes  |
+| StorPort trace    |            |    |          |      | Yes  |
+| Network trace     |            |    |          | Yes  | Yes  |
+| Diskspd benchmark trace ***       |            | Yes  |          |      |      |
+|       |            |         |   |      |      |
 
 ### Performance diagnostics trace (*)
 
@@ -211,73 +210,60 @@ When the traces or operations are completed, a new file appears in the same fold
 
 ## Review the diagnostics report
 
-Within the **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip** file, you can find an HTML report that details the findings of PerfInsights. To review the report, expand the **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip** file, and then open the **PerfInsights Report.html** file.
+The **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip** file contains the HTML report that details the findings of PerfInsights. To review the report, expand the **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip** file, and then open **PerfInsights Report.html**.
 
-Select the **Findings** tab.
+### Findings tab
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-overview-findings-tab.png" alt-text="Screenshot of Findings tab under Overview tab of the PerfInsights Report.":::
+:::image type="content" source="media/how-to-use-perfInsights/pi-overview-findings-tab.png" lightbox="media/how-to-use-perfInsights/pi-overview-findings-tab.png" alt-text="Screenshot of Findings tab under Overview tab of the PerfInsights Report.":::
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-storage-findings-tab.png" alt-text="Screenshot of Findings tab under Storage tab of the PerfInsights Report.":::
+:::image type="content" source="media/how-to-use-perfInsights/pi-storage-findings-tab.png" lightbox="media/how-to-use-perfInsights/pi-storage-findings-tab.png" alt-text="Screenshot of Findings tab under Storage tab of the PerfInsights Report.":::
 
-> [!NOTE]
-> Findings categorized as high are known issues that might cause performance issues. Findings categorized as medium represent non-optimal configurations that do not necessarily cause performance issues. Findings categorized as low are informative statements only.
+Each finding is assigned one of the following categories:
 
-Review the recommendations and links for all high and medium findings. Learn about how they can affect performance, and also about best practices for performance-optimized configurations.
+| Category | Description |
+|:---|:---|
+| High | Known issues that might cause performance issues. |
+| Medium | Non-optimal configurations that do not necessarily cause performance issues. |
+| Low | Informative statements only.  |
+
 
 ### Storage tab
-
-The **Findings** section displays various findings and recommendations related to storage.
-
 The **Disk Map** and **Volume Map** sections describe how logical volumes and physical disks are related to each other.
 
 In the physical disk perspective (Disk Map), the table shows all logical volumes that are running on the disk. In the following example, **PhysicalDrive2** runs two logical volumes created on multiple partitions (J and H):
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-disk-map.png" alt-text="Screenshot of disk map section under Findings tab of the PerfInsights Report.":::
+:::image type="content" source="media/how-to-use-perfInsights/pi-disk-map.png" lightbox="media/how-to-use-perfInsights/pi-disk-map.png" alt-text="Screenshot of disk map section under Findings tab of the PerfInsights Report.":::
 
 In the volume perspective (Volume Map), the tables show all the physical disks under each logical volume. Notice that for RAID/Dynamic disks, you might run a logical volume on multiple physical disks. In the following example, *C:\\mount* is a mount point configured as *SpannedDisk* on physical disks 2 and 3:
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-volume-map.png" alt-text="Screenshot of volume map section under Findings tab of the PerfInsights Report.":::
+:::image type="content" source="media/how-to-use-perfInsights/pi-volume-map.png" lightbox="media/how-to-use-perfInsights/pi-volume-map.png" alt-text="Screenshot of volume map section under Findings tab of the PerfInsights Report.":::
 
 ### SQL tab
 
-If the target VM hosts any SQL Server instances, you see another tab in the report, named **SQL**:
+The report will include a **SQL** tab if the target VM hosts any SQL Server instances.
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-sql-tab.png" alt-text="Screenshot of SQL tab and the sub-tabs under it.":::
+:::image type="content" source="media/how-to-use-perfInsights/pi-sql-tab.png" lightbox="media/how-to-use-perfInsights/pi-sql-tab.png" alt-text="Screenshot of SQL tab and the sub-tabs under it.":::
 
-This section contains a **Findings** tab, and extra tabs for each of the SQL Server instances hosted on the VM.
+The **Findings** tab contains a list of all the SQL related performance issues found, along with the recommendations. In the following example, **PhysicalDrive0** (running the C drive) is displayed. This is because both the **modeldev** and **modellog** files are located on the C drive, and they are of different types (such as data file and transaction log, respectively).
 
-The **Findings** tab contains a list of all the SQL related performance issues found, along with the recommendations.
-
-In the following example, **PhysicalDrive0** (running the C drive) is displayed. This is because both the **modeldev** and **modellog** files are located on the C drive, and they are of different types (such as data file and transaction log, respectively).
-
-:::image type="content" source="media/how-to-use-perfInsights/pi-physical-drive-0.png" alt-text="Screenshot of modeldev and modellog files information.":::
+:::image type="content" source="media/how-to-use-perfInsights/pi-physical-drive-0.png" lightbox="media/how-to-use-perfInsights/pi-physical-drive-0.png" alt-text="Screenshot of modeldev and modellog files information.":::
 
 The tabs for specific instances of SQL Server contain a general section that displays basic information about the selected instance. The tabs also contain more sections for advanced information, including settings, configurations, and user options.
 
 ### Diagnostic tab
 
-The **Diagnostic** tab contains information about top CPU, disk, and memory consumers on the computer during the Performance Diagnostics run. You can also find information about critical patches that the system might be missing, the task list, and important system events.
+The **Diagnostic** tab contains information about top CPU, disk, and memory consumers on the computer during the Performance Diagnostics run. It also includes information about critical patches that the system might be missing, the task list, and important system events.
 
 ## References to the external tools used
 
-### Diskspd
+| Tool | Description |
+|:---|:---|
+| Diskspd | Diskspd is a storage load generator and performance test tool from Microsoft. For more information, see [Diskspd](https://github.com/Microsoft/diskspd). |
+| Xperf | Xperf is a command-line tool to capture traces from the Windows Performance Toolkit. For more information, see [Windows Performance Toolkit – Xperf](/archive/blogs/ntdebugging/windows-performance-toolkit-xperf). |
 
-Diskspd is a storage load generator and performance test tool from Microsoft. For more information, see [Diskspd](https://github.com/Microsoft/diskspd).
-
-### Xperf
-
-Xperf is a command-line tool to capture traces from the Windows Performance Toolkit. For more information, see [Windows Performance Toolkit – Xperf](/archive/blogs/ntdebugging/windows-performance-toolkit-xperf).
 
 ## Next steps
 
 You can upload diagnostics logs and reports to Microsoft Support for further review. Support might request that you transmit the output that is generated by PerfInsights to assist with the troubleshooting process.
-
-The following screenshot shows a message similar to what you might receive:
-
-:::image type="content" source="media/how-to-use-perfInsights/pi-support-email.png" alt-text="Screenshot of sample message from Microsoft Support.":::
-
-Follow the instructions in the message to access the file transfer workspace. For extra security, you have to change your password on first use.
-
-After you sign in, you'll find a dialog box to upload the **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip** file that was collected by PerfInsights.
 
 [!INCLUDE [Azure Help Support](includes/azure-help-support.md)]

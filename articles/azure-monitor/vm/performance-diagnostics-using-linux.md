@@ -50,15 +50,10 @@ PerfInsights can collect and analyze several kinds of information. The following
 This scenario collects basic information such as storage and hardware configuration of your virtual machine, various logs, including:
 
 - Operating System information
-
 - PCI device information
-
 - General Guest OS logs
-
 - Configuration files
-
 - Storage information
-
 - Azure Virtual Machine Configuration (collected using [Azure Instance Metadata Service](/azure/virtual-machines/windows/instance-metadata-service))
 
 - List of running processes, Disk, Memory, and CPU usage
@@ -209,15 +204,15 @@ The following categories of rules are currently supported:
   > [!NOTE]  
   > Microsoft has only tested the versions that are listed in the table. If a version isn't listed in the table, then it isn't explicitly tested by Microsoft, but the version might still work.
 
-    | Distribution               | Version                                         |
-    |----------------------------|-------------------------------------------------|
-    | Oracle Linux Server        | 6.10 [`*`], 7.3, 7.5, 7.6, 7.7, 7.8, 7.9 |
-    | RHEL                       | 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0 [`*`], 8.1, 8.2, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9                               |
-    | Ubuntu                     | 16.04, 18.04, 20.04, 22.04                               |
-    | Debian                     | 9, 10, 11 [`*`]                                    |
-    | SLES                       | 12 SP5 [`*`], 15 SP1 [`*`], 15 SP2 [`*`], 15 SP3 [`*`], 15 SP4 [`*`], 15 SP5 [`*`], 15 SP6 [`*`]                                     |
-    | AlmaLinux                  | 8.4, 8.5                                               |
-    | Azure Linux               | 2.0, 3.0                                                   |
+    | Distribution | Version |
+    |:---|:---|
+    | Oracle Linux Server | 6.10 [`*`], 7.3, 7.5, 7.6, 7.7, 7.8, 7.9 |
+    | RHEL | 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0 [`*`], 8.1, 8.2, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9 |
+    | Ubuntu | 16.04, 18.04, 20.04, 22.04 |
+    | Debian | 9, 10, 11 [`*`] |
+    | SLES | 12 SP5 [`*`], 15 SP1 [`*`], 15 SP2 [`*`], 15 SP3 [`*`], 15 SP4 [`*`], 15 SP5 [`*`], 15 SP6 [`*`] |
+    | AlmaLinux | 8.4, 8.5 |
+    | Azure Linux | 2.0, 3.0 |
 
 >[!Note]
 >[`*`] Please refer to [Known issues](#known-issues) section

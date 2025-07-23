@@ -13,18 +13,31 @@ ms.reviewer: poharjan
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
-You can use the Performance Diagnostics tool to identify and troubleshoot performance issues on your Azure virtual machine (VM) in one of two modes:
+You can use the Performance Diagnostics tool to identify and troubleshoot performance issues on your Azure virtual machine (VM).
 
-* **Continuous diagnostics** collects data at five-second intervals and reports actionable insights about high resource usage every five minutes. Continuous diagnostics is Generally Available (GA) for Windows VMs and in Public Preview for Linux VMs.
-* **On-demand diagnostics** helps you troubleshoot an ongoing performance issue by providing more in-depth data, insights, and recommendations that are based on data that's collected at a single moment. On-demand diagnostics is supported on both Windows and Linux.
 
 Performance Diagnostics stores all insights and reports in a storage account that you can configure for short data retention to minimize costs.
 
 Run Performance Diagnostics directly from the Azure portal, where you can also review insights and a report about various logs, rich configuration, and diagnostics data. We recommend that you run Performance Diagnostics and review the insights and diagnostics data before you contact Microsoft Support.
 
+## Performance Diagnostics modes
+Performance diagnostics operates in one of the following two modes:
+
+* **Continuous diagnostics** collects data at five-second intervals and reports actionable insights about high resource usage every five minutes. Continuous diagnostics is Generally Available (GA) for Windows VMs and in Public Preview for Linux VMs.
+* **On-demand diagnostics** helps you troubleshoot an ongoing performance issue by providing more in-depth data, insights, and recommendations that are based on data that's collected at a single moment. On-demand diagnostics is supported on both Windows and Linux.
+
+The following table compares the data provided by Continuous and On-demand Performance Diagnostics. For a complete list of all the collected diagnostics data, see **What kind of information is collected by PerfInsights** on [Windows](how-to-use-perfinsights.md#what-information-does-performance-diagnostics-collect-in-windows) or [Linux](../linux/how-to-use-perfinsights-linux.md#what-kind-of-information-is-collected-by-perfinsights).
+
+| | Continuous Performance Diagnostics | On-demand Performance Diagnostics |
+|:---|:---|:---|
+| **Availability**  | GA for Windows VMs<br>Public Preview for Linux VMs | GA for Windows<br>GA for Linux VMs |
+| **Insights generated** | Continuous actionable insights into high resource usage, such as high CPU, high memory, and high disk usage | On-demand actionable insights into high resource usage and various system configurations |
+| **Data collection frequency** | Collects data every five seconds, updates are uploaded every five minutes | Collects data on demand for the selected duration of the on-demand run |
+| **Reports generated** | Doesn't generate a report | Generates a report that has comprehensive diagnostics data |
+
 ## Supported troubleshooting scenarios
 
-You can use Performance Diagnostics to troubleshoot various scenarios. The following sections describe common scenarios for using Continuous and On-Demand Performance Diagnostics to identify and troubleshoot performance issues. For a comparison of Continuous and On-Demand Performance Diagnostics, see [Performance Diagnostics insights and reports](performance-diagnostics.md)
+You can use Performance Diagnostics to troubleshoot various scenarios. The following sections describe common scenarios for using Continuous and On-Demand Performance Diagnostics to identify and troubleshoot performance issues.
 
 > [!NOTE]
 > For information about using PerfInsights across an Azure virtual machine scale set, see [PerfInsights and scale set VM instances](perfinsights-and-scale-set-vm-instances.md).
@@ -47,7 +60,7 @@ This scenario collects the disk configuration and other important information, i
 - Network status for all incoming and outgoing connections
 - Network and firewall configuration settings
 - Task list for all applications that are currently running on the system
-- Microsoft SQL Server database configuration settings (if the VM is identified as a server that is running SQL Server)
+- Microsoft SQL Server database configuration settings (if VM is running SQL Server)
 - Storage reliability counters
 - Important Windows hotfixes
 - Installed filter drivers
@@ -58,19 +71,15 @@ This is a passive collection of information that shouldn't affect the system.
 >This scenario is automatically included in each of the following scenarios.
 
 #### Benchmarking
-
 This scenario runs the [Diskspd](https://github.com/Microsoft/diskspd) benchmark test (IOPS and MBPS) for all drives that are attached to the VM.
 
 > [!Note]
 > This scenario can affect the system, and shouldn't be run on a live production system. If necessary, run this scenario in a dedicated maintenance window to avoid any problems. An increased workload that is caused by a trace or benchmark test can adversely affect the performance of your VM.
->
 
 #### Performance analysis
-
-This scenario runs a [performance counter](/windows/win32/perfctrs/performance-counters-portal) trace by using the counters that are specified in the RuleEngineConfig.json file. If the VM is identified as a server that is running SQL Server, a performance counter trace is run. It does so by using the counters that are found in the RuleEngineConfig.json file. This scenario also includes performance diagnostics data.
+This scenario runs a [performance counter](/windows/win32/perfctrs/performance-counters-portal) trace by using the counters that are specified in the `RuleEngineConfig.json file`. If the VM is identified as a server that is running SQL Server, a performance counter trace is run. It does so by using the counters that are found in the `RuleEngineConfig.json` file. This scenario also includes performance diagnostics data.
 
 #### Azure Files analysis
-
 This scenario runs a special performance counter capture together with a network trace. The capture includes all the Server Message Block (SMB) client shares counters. The following are some key SMB client share performance counters that are part of the capture:
 
 | **Type**     | **SMB client shares counter** |
@@ -92,25 +101,24 @@ This scenario runs a special performance counter capture together with a network
 |              | Avg. Data Queue Length        |
 
 #### Advanced performance analysis
-
 When you run an advanced performance analysis, you select traces to run in parallel. If you want, you can run them all (Performance Counter, Xperf, Network, and StorPort).  
 
 > [!Note]
 > This scenario can affect the system, and shouldn't be run on a live production system. If necessary, run this scenario in a dedicated maintenance window to avoid any problems. An increased workload that is caused by a trace or benchmark test can adversely affect the performance of your VM.
 
+## Permissions required
+
+| Action | Authentication type | Permissions required |
+|:-|:-|:-|
+| Run Performance Diagnostics | Storage Account Access Keys | The **Owner** role on the VM and an Azure role that includes the **Microsoft.Storage/storageAccounts/listkeys/action** permission on the storage account. |
+| Run Performance Diagnostics | Managed Identities (System-assigned and User-assigned) | The **Owner** role on the VM and an Azure role that includes the **Microsoft.Storage/storageAccounts/providers/roleAssignments/write** permission on the storage account. |
+| View Performance Diagnostics | Storage Account Access Keys | An Azure role that includes the **Microsoft.Storage/storageAccounts/listkeys/action** permission on the storage account or the **Storage Table Data Reader** role on the storage account. |
+| View Performance Diagnostics | Managed Identities (System-assigned and User-assigned) | An Azure role that includes the **Storage Table Data Reader** role on the storage account. |
+| Download Performance Diagnostics reports | All | An Azure role that includes the **Storage Table Data Reader** role and the **Storage Blob Data Reader** role on the storage account. |
 
 
+For detailed information about built-in roles for Azure Storage, refer to [Azure built-in roles for Storage](/azure/role-based-access-control/built-in-roles/storage). For more information about storage account settings, see [view and manage storage account and stored data](performance-diagnostics.md#view-and-manage-storage-account-and-stored-data).
 
-## View insights and reports
-
-This table compares the data that's provided by Continuous and On-demand Performance Diagnostics. For a complete list of all the collected diagnostics data, see **What kind of information is collected by PerfInsights** on [Windows](how-to-use-perfinsights.md#what-information-does-performance-diagnostics-collect-in-windows) or [Linux](../linux/how-to-use-perfinsights-linux.md#what-kind-of-information-is-collected-by-perfinsights).
-
-|                               | Continuous Performance Diagnostics                                                                          | On-demand Performance Diagnostics                                                        |
-|-------------------------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| **Availability**              | GA for Windows VMs, Public Preview for Linux VMs                                                                  | GA for both Windows and Linux VMs                                                 |
-| **Insights generated**        | Continuous actionable insights into high resource usage, such as high CPU, high memory, and high disk usage | On-demand actionable insights into high resource usage and various system configurations |
-| **Data collection frequency** | Collects data every five seconds, updates are uploaded every five minutes                                             | Collects data on demand for the selected duration of the on-demand run                    |
-| **Reports generated**         | Doesn't generate a report                                                                                   | Generates a report that has comprehensive diagnostics data                                   |
 
 ### View Performance Diagnostics insights
 
@@ -263,13 +271,7 @@ To change storage accounts in which the diagnostics insights and output are stor
 
     :::image type="content" source="media/performance-diagnostics/change-storage-settings.png" alt-text="Screenshot of the Performance Diagnostics settings screen on which you can change storage accounts." lightbox="media/performance-diagnostics/change-storage-settings.png":::
 
-## Uninstall Performance Diagnostics
 
-Uninstalling Performance Diagnostics from a VM removes the VM extension but doesn't affect any diagnostics data that's in the storage account.
-
-To uninstall Performance Diagnostics, select the **Uninstall** button on the toolbar.
-
-:::image type="content" source="media/performance-diagnostics/uninstall-button.png" alt-text="Screenshot of the Performance Diagnostics screen toolbar that shows the Uninstall button highlighted." lightbox="media/performance-diagnostics/uninstall-button.png":::
 
 ## Frequently asked questions
 
@@ -301,12 +303,12 @@ We ran 12-hour tests of Continuous Performance Diagnostics on a range of Windows
 
 The test results that are presented in this table show that Continuous Performance Diagnostics provides valuable insights by having a minimal effect on system resources.
 
-| OS version              | VM size         | CPU load      | Avgerage CPU usage | 90th percentile CPU usage | 99th percentile CPU usage | Memory usage |
-|-------------------------|-----------------|---------------|--------------------|-------------------------|-------------------------|--------------|
-| Windows Server 2019     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5%              | 2%                      | 3%                      | 42-43 MB     |
-| Windows Server 2016 SQL | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5%              | 2%                      | 3%                      | 42-43 MB     |
-| Windows Server 2019     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5%              | 2%                      | 3%                      | 42-43 MB     |
-| Windows Server 2022     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5%              | <0.5%                   | 3%                      | 42-43 MB     |
+| OS version | VM size | CPU load | Avgerage CPU usage | 90th percentile CPU usage | 99th percentile CPU usage | Memory usage |
+||:---|:---|:---|:---|:---|:---|
+| Windows Server 2019     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | 2% | 3% | 42-43 MB |
+| Windows Server 2016 SQL | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | 2% | 3% | 42-43 MB |
+| Windows Server 2019     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | 2% | 3% | 42-43 MB |
+| Windows Server 2022     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | <0.5% | 3% | 42-43 MB |
 
 **Rough calculations of storage costs**
 

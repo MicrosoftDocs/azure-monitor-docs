@@ -30,20 +30,6 @@ ms.author: anandh
 > [!NOTE]
 > To install Performance Diagnostics on classic VMs, see [Azure Performance Diagnostics VM extension](performance-diagnostics-vm-extension.md).
 
-## Permissions required
-
-| Action | Authentication type | Permissions required |
-|:-|:-|:-|
-| Run Performance Diagnostics | Storage Account Access Keys | The **Owner** role on the VM and an Azure role that includes the **Microsoft.Storage/storageAccounts/listkeys/action** permission on the storage account. |
-| Run Performance Diagnostics | Managed Identities (System-assigned and User-assigned) | The **Owner** role on the VM and an Azure role that includes the **Microsoft.Storage/storageAccounts/providers/roleAssignments/write** permission on the storage account. |
-| View Performance Diagnostics | Storage Account Access Keys | An Azure role that includes the **Microsoft.Storage/storageAccounts/listkeys/action** permission on the storage account or the **Storage Table Data Reader** role on the storage account. |
-| View Performance Diagnostics | Managed Identities (System-assigned and User-assigned) | An Azure role that includes the **Storage Table Data Reader** role on the storage account. |
-| Download Performance Diagnostics reports | All | An Azure role that includes the **Storage Table Data Reader** role and the **Storage Blob Data Reader** role on the storage account. |
-
-
-For detailed information about built-in roles for Azure Storage, refer to [Azure built-in roles for Storage](/azure/role-based-access-control/built-in-roles/storage).
-
-For more information about storage account settings, see [view and manage storage account and stored data](performance-diagnostics.md#view-and-manage-storage-account-and-stored-data).
 
 ## Supported operating systems
 
@@ -66,15 +52,15 @@ The following distributions are currently supported for on-demand diagnostics.
 > [!NOTE]  
 > Microsoft has tested only the versions that are listed in the table. If a version isn't listed in the table, then it isn't explicitly tested by Microsoft, but it might still work.
 
-| Distribution               | Version                                         |
-|----------------------------|-------------------------------------------------|
-| Oracle Linux Server        | 6.10 [`*`], 7.3, 7.5, 7.6, 7.7, 7.8, 7.9, 9.0, 9.1, 9.2, 9.3, 9.4 |
-| RHEL                       | 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0 [`*`], 8.1, 8.2, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9.0, 9.1, 9.2, 9.3, 9.4 |
-| Ubuntu                     | 16.04, 18.04, 20.04, 22.04, 24.04 |
-| Debian                     | 9, 10, 11 [`*`], 12 |
-| SLES                       | 12 SP5 [`*`], 15 SP1 [`*`], 15 SP2 [`*`], 15 SP3 [`*`], 15 SP4 [`*`], 15 SP5 [`*`], 15 SP6 [`*`] |
-| AlmaLinux                  | 8.4, 8.5, 9 |
-| Azure Linux                | 2.0, 3.0|
+| Distribution | Version |
+|:---|:---|
+| Oracle Linux Server  | 6.10 [`*`], 7.3, 7.5, 7.6, 7.7, 7.8, 7.9, 9.0, 9.1, 9.2, 9.3, 9.4 |
+| RHEL | 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0 [`*`], 8.1, 8.2, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9.0, 9.1, 9.2, 9.3, 9.4 |
+| Ubuntu | 16.04, 18.04, 20.04, 22.04, 24.04 |
+| Debian | 9, 10, 11 [`*`], 12 |
+| SLES | 12 SP5 [`*`], 15 SP1 [`*`], 15 SP2 [`*`], 15 SP3 [`*`], 15 SP4 [`*`], 15 SP5 [`*`], 15 SP6 [`*`] |
+| AlmaLinux | 8.4, 8.5, 9 |
+| Azure Linux | 2.0, 3.0|
 
 > [!NOTE]
 > [`*`] See [Known issues](../linux/how-to-use-perfinsights-linux.md#known-issues)
