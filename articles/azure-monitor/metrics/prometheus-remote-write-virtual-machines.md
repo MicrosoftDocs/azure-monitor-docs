@@ -47,11 +47,15 @@ Use the Azure portal or the Azure CLI to create a user-assigned managed identity
 
 ### Remote write using system-assigned managed identity authentication
 
-A system-assigned managed identity authentication can be used in case Azure VM/VMSS or AKS. If your Prometheus service is running in a non-Azure environment, use Microsoft Entra application authentication.
+A system-assigned managed identity authentication can be used in case of Azure VM/VMSS or AKS. If your Prometheus service is running in a non-Azure environment, use Microsoft Entra application authentication.
 
-A system-assigned managed identity, when enabled, is automatically setup for an Azure resource. In case your Prometheus service is running in an AKS cluster, you will need to use the system-assigned managed identity for the underlying VMSS 
+A system-assigned managed identity, when enabled, is automatically setup for an Azure resource. In case your Prometheus service is **running in an AKS cluster, you will need to use the system-assigned managed identity for the underlying VMSS of the cluster**.
 
-To enable system-assigned managed identity for Azure VM/VMSS, see [](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities#system-assigned-managed-identity). Follow the steps below to use the system-assigned managed identity for Prometheus remote-write
+| Azure Kubernetes clusters | Azure VMs and VMSS   |
+|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| For Azure Kubernetes Service, the managed identity must be assigned to virtual machine scale sets. AKS creates a resource group that contains the virtual machine scale sets. The resource group name is in the format `MC_<resource group name>_<AKS cluster name>_<region>` and can be found in the **Settings** -> **Properties** -> **Infrastructure Resource Group** section of the AKS cluster.<br>For each virtual machine scale set in the resource group, enable system-assigned managed identity in the **Security** -> **Identity** section. | For Azure VM/VMSS, enable system-assigned managed identity in the **Security** -> **Identity** section of the VM/VMSS page. See [Configure system-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities#system-assigned-managed-identity) for more details. |
+
+Follow the steps below to use the system-assigned managed identity for Prometheus remote-write.
 
 #### Assign the Monitoring Metrics Publisher role to the application
 
@@ -75,7 +79,7 @@ On the workspace's data collection rule, assign the Monitoring Metrics Publisher
 
 1. Choose **Select members**.
 
-1. In the **Managed identity** dropdown list, select **User-assigned managed identity**.
+1. In the **Managed identity** dropdown list, select **System-assigned managed identity**, and then choose the VM/VMSS or the VMSS that hosts the AKS cluster.
 
 
 ### [Remote write using a user-assigned managed identity](#tab/managed-identity)
@@ -410,7 +414,10 @@ The `url` parameter specifies the metrics ingestion endpoint of the Azure Monito
 
 Use either `managed_identity` or `oauth` for Microsoft Entra application authentication, depending on your implementation. Remove the object that you're not using.
 
-Find your client ID for the managed identity by using the following Azure CLI command:
+> [!NOTE]
+> For system-assigned managed identity, leave the client ID field blank (client_id: "" or clientId: ""). 
+
+For user-assigned managed identity, find the client ID by using the following Azure CLI command:
 
 ```azurecli
 az identity list --resource-group <resource group name>
@@ -418,7 +425,7 @@ az identity list --resource-group <resource group name>
 
 For more information, see [az identity list](/cli/azure/identity#az-identity-list).
 
-To find your client for managed identity authentication in the portal, go to **Managed Identities** in the Azure portal and select the relevant identity name. Copy the value of **Client ID** from the managed identity's **Overview** pane.
+To find your client ID for managed identity authentication in the portal, go to **Managed Identities** in the Azure portal and select the relevant identity name. Copy the value of **Client ID** from the managed identity's **Overview** pane.
 
 :::image type="content" source="media/prometheus-remote-write-virtual-machines/find-clinet-id.png" lightbox="media/prometheus-remote-write-virtual-machines/find-clinet-id.png" alt-text="Screenshot that shows the client ID on the managed identity's overview pane.":::
 
