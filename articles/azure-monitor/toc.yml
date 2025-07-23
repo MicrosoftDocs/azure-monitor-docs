@@ -431,6 +431,9 @@ items:
         - name: Install
           displayName: performance diagnostics, virtual machine, vm
           href: vm/performance-diagnostics-install.md
+        - name: Use
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-using.md
         - name: Use Windows
           displayName: performance diagnostics, virtual machine, vm
           href: vm/performance-diagnostics-using-windows.md

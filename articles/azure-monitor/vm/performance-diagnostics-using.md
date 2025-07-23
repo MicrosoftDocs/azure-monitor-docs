@@ -15,9 +15,68 @@ ms.date: 05/02/2025
 ms.author: jarrettr
 ms.custom: sap:VM Performance
 ---
-#  Troubleshoot Windows virtual machine performance issues using the Performance Diagnostics (PerfInsights) CLI tool
+#  Viewing Performance Diagnostics data
 
 **Applies to:** :heavy_check_mark: Windows VMs
+
+
+## Insights
+The **Impact** column indicates an impact level of High, Medium, or Low to indicate the potential for performance issues, based on factors such as misconfiguration, known problems, or issues that are reported by other users. You might not yet be experiencing one or more of the listed issues. For example, you might have SQL log files and database files on the same data disk. This condition has a high potential for bottlenecks and other performance issues if the database usage is high. However, you might not notice an issue if the usage is low.
+
+
+## View Performance Diagnostics insights
+Performance Diagnostics insights lists a combination of the insights identified by the continuous and on-demand diagnostics. You can view this report from three different locations in the Azure portal, depending on your troubleshooting workflow. From your virtual machine, go to:
+
+    > [!NOTE]
+    > The **Performance Diagnostics** grid in the Overview experience is *limited to show 300 rows*. To view all rows, go to the Performance Diagnostics experience.
+
+You can view the Performance Diagnostics reports from multiple locations in the Azure portal. Each of these methods displays the same data, although the **Performance Diagnostics** option provides the following additional features:
+
+- Displays all insights in the selected time range. The other methods are limited to 300 rows.
+- Ability to group insights by category, insight, or recommendation.
+
+- From the menu for the virtual machine. In the **Help** section of the menu, select **Performance Diagnostics**.
+
+    :::image type="content" source="media/performance-diagnostics/view-from-performance-diagnostics.png" alt-text="Screenshot of the Performance Diagnostics experience in the Azure portal." lightbox="media/performance-diagnostics/view-from-performance-diagnostics.png":::
+
+- From the **Overview** page for the virtual machine. Select the **Monitoring** tab and then expand the **Insights** section.
+
+    :::image type="content" source="media/performance-diagnostics/view-from-overview.png" alt-text="Screenshot of the Overview experience in the Azure portal." lightbox="media/performance-diagnostics/view-from-overview.png":::
+
+1. Select a row to open the **Performance diagnostics insights details** context menu. For more information, see the following section.
+
+- From VM insights. Select **Virtual machines** from the **Insights** section of the **Monitor** menu and select the VM that you want to run diagnostics on. Select **Insights** and then the **Performance** tab.
+
+    :::image type="content" source="media/performance-diagnostics/view-from-insights.png" alt-text="Screenshot of the Insights experience in the Azure portal." lightbox="media/performance-diagnostics/view-from-insights.png":::
+
+---
+
+:::image type="content" source="media/performance-diagnostics/insights-list-grouping.png" alt-text="Screenshot of the Insights tab on the Performance Diagnostics screen that shows results grouped by insight." lightbox="media/performance-diagnostics/insights-list-grouping.png":::
+
+Click on the name of an insight to open the **Performance diagnostics insights details** context menu, which shows additional information, such as recommendations about what to do and links to relevant documentation. For an on-demand insight, you can also view or download the Performance Diagnostics report in the list by selecting **View all insights** or **Download report**, respectively.
+
+:::image type="content" source="media/performance-diagnostics/performance-diagnostics-details.png" alt-text="Screenshot of the details screen on the Performance Diagnostics experience." lightbox="media/performance-diagnostics/performance-diagnostics-details.png" :::
+
+
+## View Performance Diagnostics reports
+
+The **Performance Diagnostics reports** tab is available only in the [Performance diagnostics](#view-performance-diagnostics-insights) experience. It lists all the on-demand diagnostics reports that were run. The list indicates the type of analysis that was run, insights that were found, and their impact levels.
+
+:::image type="content" source="media/performance-diagnostics/select-report.png" alt-text="Screenshot of selecting a diagnostics report from the Performance Diagnostics screen." lightbox="media/performance-diagnostics/select-report.png":::
+
+Select a row to view more details.
+
+:::image type="content" source="media/performance-diagnostics/performance-diagnostics-report-overview.png" alt-text="Screenshot of Performance Diagnostics report overview screen." lightbox="media/performance-diagnostics/performance-diagnostics-report-overview.png":::
+
+Select the **Download report** button to download an HTML report that contains richer diagnostics information, such as storage and network configuration, performance counters, traces, list of processes, and logs. The content depends on the selected analysis. For advanced troubleshooting, the report might contain additional information and interactive charts that are related to high CPU usage, high disk usage, and processes that consume excessive memory. For more information about the Performance Diagnostics report, see [Windows](how-to-use-perfinsights.md#review-the-diagnostics-report) or [Linux](../linux/how-to-use-perfinsights-linux.md#review-the-diagnostics-report).
+
+
+
+> [!NOTE]
+> You can download Performance Diagnostics reports from the **Performance Diagnostics** screen within 30 days after you generate them. After 30 days, you might receive an error Message when you download a report from the **Performance Diagnostics** screen. To get a report after 30 days, go to the storage account, and download the report from a binary large object (BLOB) container that's named *azdiagextnresults*. You can view the storage account information by using the **Settings** button on the toolbar.
+
+
+
 
 
 

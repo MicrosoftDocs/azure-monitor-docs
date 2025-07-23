@@ -1,7 +1,6 @@
 ---
 title: Troubleshoot performance issues on Azure virtual machines using Performance Diagnostics (PerfInsights)
 description: Use the Performance Diagnostics tool to identify and troubleshoot performance issues on your Azure virtual machine (VM).
-author: anandhms
 ms.topic: troubleshooting
 ms.date: 06/10/2025
 ms.reviewer: poharjan
@@ -9,16 +8,15 @@ ms.reviewer: poharjan
 # Customer intent: As a VM administrator or a DevOps engineer, I want to analyze and troubleshoot performance issues on my Azure virtual machine so that I can resolve these issues myself or share Performance Diagnostics information with Microsoft Support.
 ---
 
-# Troubleshoot performance issues on Azure virtual machines using Performance Diagnostics
+# Troubleshoot performance issues on Azure virtual machines with Performance Diagnostics
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
-You can use the Performance Diagnostics tool to identify and troubleshoot performance issues on your Azure virtual machine (VM).
+Performance Diagnostics (PerfInsights) is a tool available for Azure virtual machines to identify and troubleshoot performance issues. It provides insights into high resource usage, such as high CPU, memory, and disk usage, and helps you understand the root cause of performance issues. 
 
+Run Performance Diagnostics directly from the Azure portal where you can review insights and a report about various logs, rich configuration, and diagnostics data. Use this information to diagnose your issue before contacting Microsoft Support.
 
 Performance Diagnostics stores all insights and reports in a storage account that you can configure for short data retention to minimize costs.
-
-Run Performance Diagnostics directly from the Azure portal, where you can also review insights and a report about various logs, rich configuration, and diagnostics data. We recommend that you run Performance Diagnostics and review the insights and diagnostics data before you contact Microsoft Support.
 
 ## Performance Diagnostics modes
 Performance diagnostics operates in one of the following two modes:
@@ -26,7 +24,7 @@ Performance diagnostics operates in one of the following two modes:
 * **Continuous diagnostics** collects data at five-second intervals and reports actionable insights about high resource usage every five minutes. Continuous diagnostics is Generally Available (GA) for Windows VMs and in Public Preview for Linux VMs.
 * **On-demand diagnostics** helps you troubleshoot an ongoing performance issue by providing more in-depth data, insights, and recommendations that are based on data that's collected at a single moment. On-demand diagnostics is supported on both Windows and Linux.
 
-The following table compares the data provided by Continuous and On-demand Performance Diagnostics. For a complete list of all the collected diagnostics data, see **What kind of information is collected by PerfInsights** on [Windows](how-to-use-perfinsights.md#what-information-does-performance-diagnostics-collect-in-windows) or [Linux](../linux/how-to-use-perfinsights-linux.md#what-kind-of-information-is-collected-by-perfinsights).
+The following table compares the data provided by Continuous and On-demand Performance Diagnostics. For a complete list of all the collected diagnostics data, see **Data collected by Performance Diagnostics** on [Windows](./performance-diagnostics-using-windows.md#data-collected) or [Linux](./performance-diagnostics-using-linux.md#data-collected).
 
 | | Continuous Performance Diagnostics | On-demand Performance Diagnostics |
 |:---|:---|:---|
@@ -120,156 +118,7 @@ When you run an advanced performance analysis, you select traces to run in paral
 For detailed information about built-in roles for Azure Storage, refer to [Azure built-in roles for Storage](/azure/role-based-access-control/built-in-roles/storage). For more information about storage account settings, see [view and manage storage account and stored data](performance-diagnostics.md#view-and-manage-storage-account-and-stored-data).
 
 
-### View Performance Diagnostics insights
 
-You can view Performance Diagnostics insights from three different locations in the Azure portal, depending on your troubleshooting workflow. From your virtual machine, go to:
-
-* **Overview** → Monitoring tab
-* **Insights** → Performance tab
-* **Performance diagnostics**
-
-Select one of the following tabs for detailed instructions.
-
-> [!NOTE]
-> To view Performance Diagnostics, make sure that you have all [required permissions](#permissions-required).
-
-### [Performance Diagnostics](#tab/perfdiag)
-
-1. In the [Azure portal](https://portal.azure.com), open **Virtual machines**, and then select the VM that you view diagnostics for.
-
-1. In the left-hand navigation menu, expand the **Help** section, then select **Performance Diagnostics**.
-
-1. The **Performance Diagnostics insights** tab is active by default.
-
-    Every row under **Performance Diagnostics insights** lists an insight, its impact level, category, and related recommendations. Use filters to retrieve insights by timestamp, impact, category, or diagnostic type.
-
-    :::image type="content" source="media/performance-diagnostics/view-from-performance-diagnostics.png" alt-text="Screenshot of the Performance Diagnostics experience in the Azure portal." lightbox="media/performance-diagnostics/view-from-performance-diagnostics.png":::
-
-1. Select a row to open the **Performance diagnostics insights details** context menu. For more information, see the following section.
-
-### [Overview](#tab/overview)
-
-1. In the [Azure portal](https://portal.azure.com), open **Virtual machines** and select the VM that you want to view diagnostics for.
-
-1. On the **Overview** page, switch to the **Monitoring** tab.
-
-1. Expand **Insights** (if collapsed) to view Performance Diagnostics.
-
-    Each row under **Performance Diagnostics** lists an insight, its impact level, category, and related recommendations. Use filters to retrieve insights by impact, category, or diagnostic type.
-
-    > [!NOTE]
-    > The **Performance Diagnostics** grid in the Overview experience is *limited to show 300 rows*. To view all rows, go to the Performance Diagnostics experience.
-
-    :::image type="content" source="media/performance-diagnostics/view-from-overview.png" alt-text="Screenshot of the Overview experience in the Azure portal." lightbox="media/performance-diagnostics/view-from-overview.png":::
-
-1. Select a row to open the **Performance diagnostics insights details** context menu. For more information, see the following section.
-
-### [Insights](#tab/insights)
-
-1. In the [Azure portal](https://portal.azure.com), open **Virtual machines**, and then select the VM that you want to view diagnostics for.
-
-1. In the left-hand navigation menu, expand the **Monitoring** section, and then select **Insights**.
-
-1. Switch to the **Performance** tab to view **Performance insights**.
-
-    Every row under **Performance insights** lists an insight, its impact level, category, and related recommendations. Use filters to retrieve insights by impact, category, or diagnostic type.
-
-    > [!NOTE]
-    > The **Performance insights** grid in the Insights experience is *limited to show 300 rows*. To view all rows, go to the Performance Diagnostics experience.
-
-    :::image type="content" source="media/performance-diagnostics/view-from-insights.png" alt-text="Screenshot of the Insights experience in the Azure portal." lightbox="media/performance-diagnostics/view-from-insights.png":::
-
-1. Select a row to open the **Performance diagnostics insights details** context menu. For more information, see the next section.
-
----
-
-### View details and download report
-
-The **Performance diagnostics insights details** context menu shows additional information, such as recommendations about what to do and links to relevant documentation. For an on-demand insight, you can also view or download the Performance Diagnostics report in the list by selecting **View all insights** or **Download report**, respectively. For more information, see [Download and review the full Performance Diagnostics report](#view-performance-diagnostics-reports).
-
-:::image type="content" source="media/performance-diagnostics/performance-diagnostics-details.png" alt-text="Screenshot of the details screen on the Performance Diagnostics experience." lightbox="media/performance-diagnostics/performance-diagnostics-details.png" :::
-
->[!NOTE]
-> The Performance Diagnostics experience offers additional options to group or ungroup insights. You can group on-demand and continuous insights by category, insight, or recommendation.
->
-> :::image type="content" source="media/performance-diagnostics/insights-list-grouping.png" alt-text="Screenshot of the Insights tab on the Performance Diagnostics screen that shows results grouped by insight." lightbox="media/performance-diagnostics/insights-list-grouping.png":::
-
-### View Performance Diagnostics reports
-
-> [!NOTE]
-> To download Performance Diagnostics reports, make sure that you have all [required permissions](#permissions-required).
-
-The **Performance Diagnostics reports** tab is available only in the [Performance diagnostics](#view-performance-diagnostics-insights) experience. It lists all the on-demand diagnostics reports that were run. The list indicates the type of analysis that was run, insights that were found, and their impact levels.
-
-:::image type="content" source="media/performance-diagnostics/select-report.png" alt-text="Screenshot of selecting a diagnostics report from the Performance Diagnostics screen." lightbox="media/performance-diagnostics/select-report.png":::
-
-Select a row to view more details.
-
-:::image type="content" source="media/performance-diagnostics/performance-diagnostics-report-overview.png" alt-text="Screenshot of Performance Diagnostics report overview screen." lightbox="media/performance-diagnostics/performance-diagnostics-report-overview.png":::
-
-Performance Diagnostics reports might contain several insights. Every insight includes recommendations.
-
-The **Impact** column indicates an impact level of High, Medium, or Low to indicate the potential for performance issues, based on factors such as misconfiguration, known problems, or issues that are reported by other users. You might not yet be experiencing one or more of the listed issues. For example, you might have SQL log files and database files on the same data disk. This condition has a high potential for bottlenecks and other performance issues if the database usage is high. However, you might not notice an issue if the usage is low.
-
-Select the **Download report** button to download an HTML report that contains richer diagnostics information, such as storage and network configuration, performance counters, traces, list of processes, and logs. The content depends on the selected analysis. For advanced troubleshooting, the report might contain additional information and interactive charts that are related to high CPU usage, high disk usage, and processes that consume excessive memory. For more information about the Performance Diagnostics report, see [Windows](how-to-use-perfinsights.md#review-the-diagnostics-report) or [Linux](../linux/how-to-use-perfinsights-linux.md#review-the-diagnostics-report).
-
-> [!NOTE]
-> You can download Performance Diagnostics reports from the **Performance Diagnostics** screen within 30 days after you generate them. After 30 days, you might receive an error Message when you download a report from the **Performance Diagnostics** screen. To get a report after 30 days, go to the storage account, and download the report from a binary large object (BLOB) container that's named *azdiagextnresults*. You can view the storage account information by using the **Settings** button on the toolbar.
-
-## View and manage storage account and stored data
-
-Performance Diagnostics stores all insights and reports in a storage account that you can [configure for short data retention](/azure/storage/blobs/lifecycle-management-policy-configure) to minimize costs.
-
-To ensure Performance Diagnostics functions correctly, you must enable the **Allow storage account key access** setting for the storage account. To enable this setting, follow these steps:
-
-1. Navigate to your storage account.
-2. In the storage account settings, locate the **Configuration** section.
-3. Find the **Allow storage account key access** option and set it to **Enabled**.
-4. Save your changes.
-
-You can use the same storage account for multiple VMs that use Performance Diagnostics. When you change the storage account, the old reports and insights aren't deleted. However, they're no longer displayed in the list of diagnostics reports.
-
-> [!NOTE]
-> Performance Diagnostics stores insights in Azure tables and stores reports in a binary large object (BLOB) container.
->
-> If your storage account uses [private endpoints](/azure/storage/common/storage-private-endpoints), to make sure that Performance Diagnostics can store insights and reports in the storage account:
->
-> 1. Create separate private endpoints for Table and BLOB.
-> 1. Add DNS configuration to each separate private endpoint.
-
-### View diagnostics data stored in your account
-
-> [!NOTE]
-> To view diagnostics data, make sure that you have all [required permissions](#permissions-required).
-
-To view diagnostics data:
-
-1. Navigate to your storage account in the Azure portal.
-1. In the left-hand navigation menu, Select **Storage browser**.
-
-    :::image type="content" source="media/performance-diagnostics/performance-diagnostics-storage-browser.png" alt-text="Screenshot of the storage account screen that shows the Performance Diagnostics insights and report files." lightbox="media/performance-diagnostics/performance-diagnostics-storage-browser.png":::
-
-    Performance Diagnostics stores reports in a binary large object (BLOB) container that's named **azdiagextnresults**, and insights in tables. Insights include:
-
-    * All the insights and related information about the run
-    * An output compressed (.zip) file (named **PerformanceDiagnostics_yyyy-MM-dd_hh-mm-ss-fff.zip**) on Windows and a tar file (named **PerformanceDiagnostics_yyyy-MM-dd_hh-mm-ss-fff.tar.gz**) on Linux that contains log files
-    * An HTML report
-
-1. To download a report, select **Blob containers** > **azdiagextnresults** > `<report name>` > **Download**.
-
-### Change storage accounts
-
-To change storage accounts in which the diagnostics insights and output are stored:
-
-1. In the Azure portal, open the **Performance diagnostics** experience from your VM.
-
-1. In the top toolbar, select **Settings** to open the **Performance diagnostic settings** screen.
-
-    :::image type="content" source="media/performance-diagnostics/performance-diagnostics-settings.png" alt-text="Screenshot of the Performance Diagnostics screen toolbar that shows the Settings button highlighted." lightbox="media/performance-diagnostics/performance-diagnostics-settings.png":::
-
-1. Select **Change storage account** to select a different storage account.
-
-    :::image type="content" source="media/performance-diagnostics/change-storage-settings.png" alt-text="Screenshot of the Performance Diagnostics settings screen on which you can change storage accounts." lightbox="media/performance-diagnostics/change-storage-settings.png":::
 
 
 
