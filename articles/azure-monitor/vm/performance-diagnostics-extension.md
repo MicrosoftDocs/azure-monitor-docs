@@ -311,4 +311,4 @@ You should also be able to download the zip file directly from the portal by sel
 
      To resolve the errors, ensure that you don't have a Network Security Group (NSG) blocking access to the Certificate Authority URLs described in [this list](/azure/security/fundamentals/tls-certificate-changes#will-this-change-affect-me). Or ensure that you don't have any SSL inspection tool in your Network Virtual Appliance or firewall.
   
-[!INCLUDE [Azure Help Support](../../../includes/azure-help-support.md)]
+[!INCLUDE [Azure Help Support](includes/azure-help-support.md)]
