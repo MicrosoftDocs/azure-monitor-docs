@@ -27,7 +27,7 @@ Self-managed Prometheus can run in Azure and non-Azure environments. The followi
 
 * Prometheus versions later than 2.45 are required for user-assigned managed identity authentication.
 * Prometheus versions later than 2.48 are required for Microsoft Entra application authentication.
-* Prometheus versions later than 3.50 are required for system-assigned managed identity authentication.
+* Prometheus versions 3.50 or later are required for system-assigned managed identity authentication.
 
 ### Azure Monitor workspace
 
