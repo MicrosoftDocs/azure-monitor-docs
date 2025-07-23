@@ -2,7 +2,7 @@
 title: Customize log search alert email subjects (preview)
 description: This article explains how to customize log search alert email subjects in Azure Monitor by using dynamic values and ARM templates for personalized notifications.
 ms.topic: how-to
-ms.date: 07/08/2025
+ms.date: 07/22/2025
 ms.reviewer: nolavime
 ---
 
@@ -17,6 +17,13 @@ To create or edit an alert rule, you must have the following permissions:
 -	Read permission on the target resource of the alert rule.
 -	Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
 -	Read permission on any action group associated to the alert rule, if applicable.
+
+## Customize email subject in the Azure portal
+
+1. Create or edit a log search alert rule.
+1. On the Actions tab, after creating or selecting an existing Action group, use the Email subject secion to add your own custom email subject.
+
+:::image type="content" source="media/common/custom-email-subject-ux.png" alt-text="screen shot of UI for customizing email in Azure portal":::
 
 ## Use an ARM template
 
