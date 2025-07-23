@@ -322,4 +322,4 @@ To calculate the storage cost:
 
 Therefore, assuming steady stress on the VM, the storage cost is estimated to be less than one cent per month, assuming that you use locally redundant storage.
 
-[!INCLUDE [Azure Help Support](../../../includes/azure-help-support.md)]
+[!INCLUDE [Azure Help Support](includes/azure-help-support.md)]
