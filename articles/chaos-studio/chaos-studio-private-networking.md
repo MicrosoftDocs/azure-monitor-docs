@@ -210,6 +210,30 @@ The Container subnet hosts the containerized workloads that execute chaos experi
 > [!NOTE]
 > All communication uses standard HTTPS port 443, as documented in [Azure Relay port settings](/azure/azure-relay/relay-port-settings).
 
+
+## Network and Security Configuration
+
+When operating in a secured environment, you may need to configure specific network rules or understand the identities used by Chaos Studio.
+
+### Firewall and NSG Configuration for Agent-Based Faults
+
+The Chaos Studio agent requires outbound access to the Azure Relay service. If you use a Network Security Group (NSG), Azure Firewall, or other network appliance to restrict outbound traffic, you must create rules to allow communication.
+
+*   **Standard Outbound Access:** For agents in networks with firewalls, you must allow outbound TCP traffic to the public endpoints of Azure Relay on ports **443, 5671, and 5672**.
+*   **Private Link Access:** If you are using an [Azure Relay private endpoint](https://learn.microsoft.com/en-us/azure/azure-relay/private-link-service-integration) for the agent, you must also allow outbound TCP traffic on ports **9400-9599**. This is required for the private relay listener running on your virtual machine.
+
+In both scenarios, the agent initiates the connection, so no inbound port rules are required on your VM or NSG for the agent to function.
+
+### AKS Faults: Understanding the 'masterclient' User in Audit Logs
+
+When you use Chaos Studio's Microsoft Entra ID-integrated faults (v2v2) on an AKS cluster, you may still see the user principal `masterclient` in the cluster's API server audit logs.
+
+This is expected behavior on AKS clusters that have not explicitly disabled local accounts. The `masterclient` is a built-in, local administrator credential. When Chaos Studio authenticates, Kubernetes may use either the Entra ID identity or this local account.
+
+If your security policy requires that only Entra ID principals appear in audit logs, you must **disable local accounts on your AKS cluster**.
+
+For detailed instructions, refer to the official AKS documentation: [Disable local accounts with AKS-managed Microsoft Entra integration](https://learn.microsoft.com/en-us/azure/aks/manage-local-accounts-managed-aad).
+
 ## Limitations
 
 * Virtual network injection is currently only possible in subscriptions/regions where Azure Container Instances and Azure Relay are available.
