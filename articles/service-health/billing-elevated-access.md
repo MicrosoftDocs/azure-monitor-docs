@@ -60,7 +60,7 @@ Or use an **Azure Resource Graph (ARG)** using supported queries.
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-azure-resource-graph-query.png"alt-text="A screenshot of sample Azure graph query."Lightbox="./media/billing-elevated-access/in-portal-billing-azure-resource-graph-query.png":::
 
 ### Filtering and sorting
-At the top of the pane, there are several options how to sort the information.
+At the top of the pane, there are several options to sort the information.
 
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-sort-bar.png"alt-text="A screenshot of filtering options."Lightbox="./media/billing-elevated-access/in-portal-billing-sort-bar.png":::
 
