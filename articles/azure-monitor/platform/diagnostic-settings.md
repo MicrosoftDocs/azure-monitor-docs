@@ -223,6 +223,16 @@ Only collect the categories you require for each service. You might also not wan
 
 Diagnostic settings don't allow granular filtering within a selected category. You can filter data for supported tables in a Log Analytics workspace using transformations. See [Transformations in Azure Monitor](../data-collection/data-collection-transformations.md) for details.
 
+## Time before telemetry gets to destination
+After you create a diagnostic setting, data should start flowing to your selected destinations within 90 minutes. When sending data to a Log Analytics workspace, the table is created automatically if it doesn't already exist. The table is only created when the first log records are received. If you get no information within 24 hours, then you might be experiencing one of the following issues:
+
+- No logs are being generated.
+- Something is wrong in the underlying routing mechanism.
+
+If you're experiencing an issue, disable the configuration and then reenable it. Contact Azure support through the Azure portal if you continue to have issues.
+
+
+
 ## Troubleshooting
 
 **Metric category isn't supported**<br>
