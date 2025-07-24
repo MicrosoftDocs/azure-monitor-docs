@@ -33,8 +33,7 @@ landingContent:
         links:
           - text: Azure Monitor fundamentals 
             url: /training/paths/monitor-usage-performance-availability-resources-azure-monitor/
-          - text: Monitor hybrid virtual machines, containers, and network resources
-            url: /training/paths/monitor-hybrid-virtual-machines-containers-network/
+
 
 # Card
   - title: Best practices for Azure Monitor
@@ -69,6 +68,10 @@ landingContent:
             url: fundamentals/azure-monitor-operations-manager.md
           - text: Migrate from Splunk to Azure Monitor Logs
             url: logs/migrate-splunk-to-azure-monitor-logs.md
+      - linkListType: training
+        links:
+          - text: Monitor hybrid virtual machines, containers, and network resources
+            url: /training/paths/monitor-hybrid-virtual-machines-containers-network/
 
 # Card 
   - title: Get started with Application Insights
@@ -105,22 +108,22 @@ landingContent:
             url: logs/log-analytics-tutorial.md
 
  # Card
-  - title: Get started with Azure Monitor Metrics
+  - title: Metrics in Azure Monitor
     linkLists: 
       - linkListType: how-to-guide
         links:
-          - text: Set up a Log Analytics workspace
-            url: logs/log-analytics-workspace-overview.md
-          - text: Design a Log Analytics workspace architecture
-            url: logs/workspace-design.md
-          - text: Manage tables in a Log Analytics workspace
-            url: logs/manage-logs-tables.md
-          - text: Monitor workspaces with Log Analytics Workspace Insights
-            url: logs/log-analytics-workspace-insights-overview.md
-          - text: Analyze data in Log Analytics
-            url: logs/log-analytics-tutorial.md
-          - text: Get started with KQL log queries
-            url: logs/log-analytics-tutorial.md
+          - text: Overview of Azure Monitor Metrics
+            url: metrics/data-platform-metrics.md
+          - text: Use custom metrics with Azure Monitor
+            url: metrics/metrics-custom-overview.md
+          - text: Azure Monitor managed service for Prometheus
+            url: metrics/prometheus-metrics-overview.md
+          - text: Connect Grafana to Azure Monitor Prometheus metrics
+            url: metrics/prometheus-grafana.md
+          - text: Manage an Azure Monitor workspace
+            url: metrics/azure-monitor-workspace-manage.md
+          - text: Query Prometheus metrics by using Azure workbooks
+            url: metrics/prometheus-workbooks.md
 
  # Card
   - title: Visualize monitoring data
