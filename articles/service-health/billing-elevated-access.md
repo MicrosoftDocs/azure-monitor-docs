@@ -2,7 +2,7 @@
 title: In-portal Billing Communications
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 6/09/2025
+ms.date: 7/24/2025
 ---
 
 # In-portal Billing Communications
@@ -59,3 +59,13 @@ Or use an **Azure Resource Graph (ARG)** using supported queries.
   
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-azure-resource-graph-query.png"alt-text="A screenshot of sample Azure graph query."Lightbox="./media/billing-elevated-access/in-portal-billing-azure-resource-graph-query.png":::
 
+### Filtering and sorting
+At the top of the pane, there are several options how to sort the information.
+
+:::image type="content"source="./media/billing-elevated-access/in-portal-billing-sort-bar.png"alt-text="A screenshot of filtering options."Lightbox="./media/billing-elevated-access/in-portal-billing-sort-bar.png":::
+
+- Scope
+- Subscription
+- Region
+- Service
+- Event level
