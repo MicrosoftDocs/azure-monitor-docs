@@ -14,7 +14,7 @@ metadata:
 landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
-  # Card 
+# Card 
   - title: About Azure Monitor
     linkLists:
       - linkListType: overview
@@ -29,11 +29,6 @@ landingContent:
             url: metrics/data-platform-metrics.md
           - text: What is Azure Monitor Logs?
             url: logs/data-platform-logs.md
-      - linkListType: training
-        links:
-          - text: Azure Monitor fundamentals 
-            url: /training/paths/monitor-usage-performance-availability-resources-azure-monitor/
-
 
 # Card
   - title: Best practices for Azure Monitor
@@ -51,7 +46,7 @@ landingContent:
           - text: Optimize costs
             url: fundamentals/best-practices-cost.md
 
-  # Card
+# Card
   - title: Common scenarios
     linkLists:
       - linkListType: how-to-guide
@@ -68,10 +63,6 @@ landingContent:
             url: fundamentals/azure-monitor-operations-manager.md
           - text: Migrate from Splunk to Azure Monitor Logs
             url: logs/migrate-splunk-to-azure-monitor-logs.md
-      - linkListType: training
-        links:
-          - text: Monitor hybrid virtual machines, containers, and network resources
-            url: /training/paths/monitor-hybrid-virtual-machines-containers-network/
 
 # Card 
   - title: Get started with Application Insights
