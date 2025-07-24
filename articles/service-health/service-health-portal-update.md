@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of affected applications.
 ms.topic: overview
-ms.date: 6/20/2025
+ms.date: 7/24/2025
 ---
 
 # Azure Service Health portal
@@ -23,7 +23,23 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 - **Security advisories**: Security-related notifications or violations that might affect the availability of your Azure services.
 - **Billing updates**: Billing communications related to your subscription.
 
-When events become inactive, they get placed in your health history for up to 90 days.
+
+### The retention of Service Health events
+Azure Service Health retains all event types in the Health History section of the portal for up to 90 days after they become inactive. These events are archived in the Health History once they're resolved or inactive. You can filter and review them by type, date, and impact.
+
+|Event category  |Retention duration  |
+|---------|---------|
+|Service issues | 90 days  |
+|Planned maintenance | 90 days |
+|Health advisories   | 90 days |
+|Security advisories |  90 days |
+|Billing updates    |  90 days  |
+
+- **Alerts**: Service Health alerts (for example, via email, webhook, Logic Apps) aren't subject to the 90-day limit because they're tied to your alerting infrastructure.
+- **Resource Health**: Resource Health events, like when a virtual machine (VM) goes offline aren’t part of Service Health. They’re saved for 90 days and viewed in a different section of the Azure portal.
+- **Saved Views**: Custom views in the Service Health portal are retained for 30 days unless actively used. 
+- **Metadata**: Tags and event levels remain in place until the event is resolved or archived.
+
 
 > [!NOTE]
 > If you use Azure Resource Graph queries to retrieve Service Health events, you might notice a different count compared to the Service Health UI. This outcome is expected. Resource Graph returns one record per subscription ID and tracking ID combination. On the Azure portal, updates are grouped under each tracking ID, so you might see fewer rows.
@@ -34,7 +50,7 @@ When events become inactive, they get placed in your health history for up to 90
 
 ### See issues that might affect your services
 
-Select **Service issues** on the left menu to see a map with all user services across the world. This information can help you find services that might be affected by an outage, based on your subscription or tenant admin access.
+Select **Service issues** on the left menu to see a map with all user services across the world. This information can help you find services that could be affected from an outage, based on your subscription or tenant admin access.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the Service issues user interface." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
 
