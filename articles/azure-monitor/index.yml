@@ -24,55 +24,67 @@ landingContent:
           - text: What can you monitor?
             url: fundamentals/data-sources.md
           - text: How do you collect data?
-            url: essentials/data-collection.md
+            url: data-collection/data-collection-rule-overview.md
           - text: What is Azure Monitor Metrics?
-            url: essentials/data-platform-metrics.md
+            url: metrics/data-platform-metrics.md
           - text: What is Azure Monitor Logs?
             url: logs/data-platform-logs.md
-
-  # Card 
-  - title: Common scenarios
-    linkLists:
-      - linkListType: how-to-guide
-        links:
-          - text: Multi-cloud monitoring
-            url: fundamentals/best-practices-multicloud.md
-          - text: Monitor virtual machines
-            url: vm/monitor-virtual-machine.md
-          - text: Monitor containers
-            url: containers/container-insights-overview.md
-          - text: Migrate from SCOM
-            url: fundamentals/azure-monitor-operations-manager.md
-          - text: Migrate from Splunk to Azure Monitor Logs
-            url: logs/migrate-splunk-to-azure-monitor-logs.md
-
-  # Card
-  - title: Training
-    linkLists: 
-      - linkListType: learn
+      - linkListType: training
         links:
           - text: Azure Monitor fundamentals 
             url: /training/paths/monitor-usage-performance-availability-resources-azure-monitor/
-          - text: Analyze monitoring data with Kusto Query Language
-            url: /training/paths/analyze-monitoring-data-with-kql/
           - text: Monitor hybrid virtual machines, containers, and network resources
             url: /training/paths/monitor-hybrid-virtual-machines-containers-network/
 
-# Card 
-  - title: Get started with Azure Monitor
+# Card
+  - title: Best practices for Azure Monitor
     linkLists:
       - linkListType: get-started
         links:
           - text: Plan your implementation
-            url: fundamentals/best-practices-plan.md
+            url: /azure/cloud-adoption-framework/manage/monitor
           - text: Configure data collection
-            url: fundamentals/best-practices-data-collection.md
+            url: fundamentals/data-sources.md
           - text: Understand analysis and visualization tools
             url: fundamentals/best-practices-analysis.md
           - text: Configure alerts and automated actions
             url: alerts/best-practices-alerts.md
           - text: Optimize costs
             url: fundamentals/best-practices-cost.md
+
+  # Card
+  - title: Common scenarios
+    linkLists:
+      - linkListType: how-to-guide
+        links:
+          - text: Monitor applications
+            url: app/app-insights-overview.md
+          - text: Monitor virtual machines
+            url: vm/monitor-virtual-machine.md
+          - text: Monitor containers
+            url: containers/container-insights-overview.md
+          - text: Multi-cloud monitoring
+            url: fundamentals/best-practices-multicloud.md
+          - text: Migrate from SCOM
+            url: fundamentals/azure-monitor-operations-manager.md
+          - text: Migrate from Splunk to Azure Monitor Logs
+            url: logs/migrate-splunk-to-azure-monitor-logs.md
+
+# Card 
+  - title: Get started with Application Insights
+    linkLists:
+      - linkListType: how-to-guide
+        links:
+          - text: Create a resource
+            url: app/create-workspace-resource.md
+          - text: Auto-instrumentation overview
+            url: app/codeless-overview.md
+          - text: Application Dashboard
+            url: app/overview-dashboard.md
+          - text: Availability tests
+            url: app/availability-overview.md
+          - text: Application map
+            url: app/app-map.md
 
  # Card
   - title: Get started with Azure Monitor Logs
@@ -92,23 +104,23 @@ landingContent:
           - text: Get started with KQL log queries
             url: logs/log-analytics-tutorial.md
 
-   # Card 
-  - title: Get started with Application Insights
-    linkLists:
+ # Card
+  - title: Get started with Azure Monitor Metrics
+    linkLists: 
       - linkListType: how-to-guide
         links:
-          - text: Application Insights overview
-            url: app/app-insights-overview.md
-          - text: Create a resource
-            url: app/create-workspace-resource.md
-          - text: Auto-instrumentation overview
-            url: app/codeless-overview.md
-          - text: Application Dashboard
-            url: app/overview-dashboard.md
-          - text: Availability tests
-            url: app/availability-overview.md
-          - text: Application map
-            url: app/app-map.md
+          - text: Set up a Log Analytics workspace
+            url: logs/log-analytics-workspace-overview.md
+          - text: Design a Log Analytics workspace architecture
+            url: logs/workspace-design.md
+          - text: Manage tables in a Log Analytics workspace
+            url: logs/manage-logs-tables.md
+          - text: Monitor workspaces with Log Analytics Workspace Insights
+            url: logs/log-analytics-workspace-insights-overview.md
+          - text: Analyze data in Log Analytics
+            url: logs/log-analytics-tutorial.md
+          - text: Get started with KQL log queries
+            url: logs/log-analytics-tutorial.md
 
  # Card
   - title: Visualize monitoring data
