@@ -168,7 +168,7 @@ To resolve this issue, ensure that your experiment is created in the same subscr
 
 **Cause:** When you run Chaos Mesh faults against your AKS cluster, even when using Microsoft Entra ID authentication, you may see the user `masterclient` in the API server audit logs. This user is the built-in local administrator account for the cluster. This behavior is expected on AKS clusters that have not explicitly disabled local accounts.
 
-**Solution:** If your organization's security policy requires that all actions are tied to a specific Entra ID identity in the logs, you must disable local accounts on your AKS cluster. This forces all authentication to go through the Microsoft Entra ID provider. You can find instructions in the AKS documentation: [Disable local accounts with AKS-managed Microsoft Entra integration](https://learn.microsoft.com/en-us/azure/aks/manage-local-accounts-managed-aad).
+**Solution:** If your organization's security policy requires that all actions are tied to a specific Entra ID identity in the logs, you must disable local accounts on your AKS cluster. This forces all authentication to go through the Microsoft Entra ID provider. You can find instructions in the AKS documentation: [Disable local accounts with AKS-managed Microsoft Entra integration]([https://learn.microsoft.com/azure/aks/manage-local-accounts-managed-aad](https://learn.microsoft.com/en-us/azure/aks/manage-local-accounts-managed-azure-ad#disable-local-accounts)).
 
 ## Problems when setting up a managed identity
 
