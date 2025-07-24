@@ -232,11 +232,6 @@ This is expected behavior on AKS clusters that have not explicitly disabled loca
 
 If your security policy requires that only Entra ID principals appear in audit logs, you must **disable local accounts on your AKS cluster**.
 
-For detailed instructions, refer to the official AKS documentation: [Disable local accounts with AKS-managed Microsoft Entra integration](
-This is expected behavior on AKS clusters that have not explicitly disabled local accounts. The `masterclient` is a built-in, local administrator credential. When Chaos Studio authenticates, Kubernetes may use either the Entra ID identity or this local account.
-
-If your security policy requires that only Entra ID principals appear in audit logs, you must **disable local accounts on your AKS cluster**.
-
 For detailed instructions, refer to the official AKS documentation: [Disable local accounts with AKS-managed Microsoft Entra integration](https://learn.microsoft.com/azure/aks/manage-local-accounts-managed-azure-ad#disable-local-accounts)
 
 ## Limitations
