@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 06/30/2025
+ms.date: 07/21/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -556,6 +556,7 @@ Microsoft.PlayFab/titles
 microsoft.securityinsights  
 
 - [SecurityAlert](./tables/securityalert.md)
+- [WindowsEvent](./tables/windowsevent.md)
 - [SecurityEvent](./tables/securityevent.md)
 - [DnsAuditEvents](./tables/dnsauditevents.md)
 - [AggregatedSecurityAlert](./tables/aggregatedsecurityalert.md)
@@ -1103,6 +1104,7 @@ Microsoft.OperationalInsights/Workspaces
 - [LAQueryLogs](./tables/laquerylogs.md)
 - [LASummaryLogs](./tables/lasummarylogs.md)
 - [AzureMetricsV2](./tables/azuremetricsv2.md)
+- [LAJobLogs](./tables/lajoblogs.md)
 
 ### Logic Apps  
 
@@ -1216,6 +1218,7 @@ Microsoft.Graph/tenants
 Microsoft.Orbital/geocatalogs  
 
 - [OGOAuditLogs](./tables/ogoauditlogs.md)
+- [MPCIngestionLogs](./tables/mpcingestionlogs.md)
 
 ### Microsoft Playwright Testing  
 

@@ -1,30 +1,51 @@
 ---
-title: Send Azure resource logs to Log Analytics workspaces, Event Hubs, or Azure Storage
+title: Resource logs in Azure Monitor
 description: Learn how to send Azure resource logs to a Log Analytics workspace, event hub, or Azure Storage in Azure Monitor.
 ms.topic: how-to
-ms.date: 09/30/2024
+ms.date: 07/17/2025
 ms.reviewer: lualderm
 ---
 
-# Send Azure resource logs to Log Analytics workspaces, Event Hubs, or Azure Storage
+# Resource logs in Azure Monitor
 
-Azure resource logs are [platform logs](../fundamentals/data-sources.md) that provide insight into operations that are performed in an Azure resource. The content of resource logs is different for each resource type. Resource logs aren't collected by default. To collect resource logs, you must enable and configure Diagnostic Settings or use data collection rules. For more information on data collection rules, see [Data collection rules in Azure Monitor](../data-collection/data-collection-rule-overview.md). This article describes the [diagnostic setting](diagnostic-settings.md) required for each Azure resource to send its resource logs to Log Analytics workspaces, Event Hubs, or Azure Storage.
+Azure resource logs provide insight into operations that are performed in an Azure resource. The content of resource logs is different for each resource type. They can include information about the operations performed on the resource, the status of those operations, and other details that help you understand the health and performance of the resource.
 
-## Send to Log Analytics workspace
 
-Send resource logs to a Log Analytics workspace to enable the features of [Azure Monitor Logs](../logs/data-platform-logs.md), where you can:
 
-* Correlate resource log data with other monitoring data collected by Azure Monitor.
-* Consolidate log entries from multiple Azure resources, subscriptions, and tenants into one location for analysis together.
-* Use log queries to perform complex analysis and gain deep insights on log data.
-* Use log search alerts with complex alerting logic.
+## Collecting resource logs
 
-[Create a diagnostic setting](../essentials/diagnostic-settings.md) to send resource logs to a Log Analytics workspace. This data is stored in tables as described in [Structure of Azure Monitor Logs](../logs/data-platform-logs.md). The tables used by resource logs depend on what the resource type and the type of collection the resource is using. There are two types of collection modes for resource logs:
+Resource logs aren't collected by default. To collect them, you must create a diagnostic setting for each Azure resource. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for details. The information below provides further details on the different destinations that resources logs can be sent to.
+
+:::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
+
+> [!NOTE]
+>
+> Resource Logs aren't completely lossless. They're based on a store and forward architecture designed to affordably move petabytes of data per day at scale. This capability includes built-in redundancy and retries across the platform but doesn't provide transactional guarantees. Anytime a persistent source of data loss is identified, its resolution and future prevention is prioritized. Small data losses may still occur to temporary, non-repeating service issues distributed across Azure.
+
+
+## Destinations
+
+When you create a diagnostic setting, you can choose to send resource logs to one or more of the following destinations. The destinations you choose are based on your needs for analysis, retention, and integration with other systems.
+
+The following sections describe details of resource logs for each destination.
+
+### [Log Analytics workspace](#tab/log-analytics)
+
+Send the resource logs to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) for the following functionality:
+
+
+- Correlate resource logs with other log data using [log queries](../logs/log-query-overview.md). 
+- Create [log alerts](../alerts/alerts-create-log-alert-rule.md) from resource log entries.
+- Access resource log data with [Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview).
+
+### Collection mode
+
+The tables in the Log Analytics workspace used by resource logs depend on the resource type and the type of collection the resource is using. There are two types of collection modes for resource logs:
 
 * **Azure diagnostics**: All data is written to the [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table.
 * **Resource-specific**: Data is written to individual tables for each category of the resource.
 
-### Resource-specific
+#### Resource-specific
 
 For logs using resource-specific mode, individual tables in the selected workspace are created for each log category selected in the diagnostic setting.
 Resource-specific logs have the following advantages over Azure diagnostics logs:
@@ -36,7 +57,7 @@ Resource-specific logs have the following advantages over Azure diagnostics logs
 
 For a description of resource-specific logs and tables, see [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index)
 
-### Azure diagnostics mode
+#### Azure diagnostics mode
 
 In Azure diagnostics mode, all data from any diagnostic setting is collected in the [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table. This legacy method is used today by a minority of Azure services. Because multiple resource types send data to the same table, its schema is the superset of the schemas of all the different data types being collected. For details on the structure of this table and how it works with this potentially large number of columns, see [AzureDiagnostics reference](/azure/azure-monitor/reference/tables/azurediagnostics).
 
@@ -44,7 +65,7 @@ The AzureDiagnostics table contains the resourceId of the resource that generate
 
 :::image type="content" source="media/resource-logs/azure-diagnostics-table.png" lightbox="media/resource-logs/azure-diagnostics-table.png" alt-text="A screenshot showing the AzureDiagnostics table in a Log Analytics workspace.":::
 
-### Select the collection mode
+#### Select the collection mode
 
 Most Azure resources write data to the workspace in either **Azure diagnostics** or **resource-specific** mode without giving you a choice. For more information, see [Common and service-specific schemas for Azure resource logs](resource-logs-schema.md).
 
@@ -59,9 +80,11 @@ You can modify an existing diagnostic setting to resource-specific mode. In this
 
 Continue to watch the [Azure Updates](https://azure.microsoft.com/updates/) blog for announcements about Azure services that support resource-specific mode.
 
-## Send to Azure Event Hubs
+### [Event Hubs](#tab/event-hub)
 
-Send resource logs to an event hub to send them outside of Azure. For example, resource logs might be sent to a third-party SIEM or other log analytics solutions. Resource logs from event hubs are consumed in JSON format with a `records` element that contains the records in each payload. The schema depends on the resource type as described in [Common and service-specific schema for Azure resource logs](resource-logs-schema.md).
+Send resource logs to an event hub to send them outside of Azure. For example, resource logs might be sent to a third-party SIEM or other log analytics solutions. 
+
+Resource logs from event hubs are consumed in JSON format with a `records` element that contains the records in each payload. The schema depends on the resource type as described in [Common and service-specific schema for Azure resource logs](resource-logs-schema.md).
 
 The following sample output data is from Azure Event Hubs for a resource log:
 
@@ -126,7 +149,7 @@ The following sample output data is from Azure Event Hubs for a resource log:
 }
 ```
 
-## Send to Azure Storage
+### [Azure Storage](#tab/storage)
 
 Send resource logs to Azure Storage to retain them for archiving. After you've created the diagnostic setting, a storage container is created in the storage account as soon as an event occurs in one of the enabled log categories.
 
@@ -157,9 +180,16 @@ Within the PT1H.json file, each event is stored in the following format. It uses
 {"time": "2016-07-01T00:00:37.2040000Z","systemId": "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1","category": "NetworkSecurityGroupRuleCounter","resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/TESTNSG","operationName": "NetworkSecurityGroupCounters","properties": {"vnetResourceGuid": "{aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e}","subnetPrefix": "10.3.0.0/24","macAddress": "000123456789","ruleName": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg/securityRules/default-allow-rdp","direction": "In","type": "allow","matchedConnections": 1988}}
 ```
 
-## Azure Monitor partner integrations
+### [Azure Monitor partner integrations](#tab/partner-solutions)
+Resource logs can be sent to partner solutions that are fully integrated into Azure. For a list of these solutions and details on how to configure them, see [Azure Monitor partner integrations](/azure/partner-solutions/overview).
 
-Resource logs can also be sent to partner solutions that are fully integrated into Azure. For a list of these solutions and details on how to configure them, see [Azure Monitor partner integrations](/azure/partner-solutions/overview).
+---
+
+## Categories and schemas
+All resource logs share a common top-level schema. Each service defines unique properties for its own logs. See [Common and service-specific schemas for Azure resource logs](./resource-logs-schema.md) for the common schema and the schemas for each service. See [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index) for the different categories supported by each service and links to the schemas for each category.
+
+
+
 
 ## Next steps
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Service Bus
@@ -16,19 +16,20 @@ ms.custom: HighAvailability Service Bus
 
 #### Use Service Bus premium tier for improved resilience  
   
-When running critical applications, the Service Bus premium tier offers better resource isolation at the CPU and memory level, enhancing availability. It also supports Geo-disaster recovery feature enabling easier recovery from regional disasters without having to change application configurations.  
+When running critical applications, the Service Bus premium tier offers better resource isolation at the CPU and memory level, enhancing availability. It also supports geo-replication feature enabling full recovery from regional disasters.  
   
-**Potential benefits**: Service Bus premium tier offers better resiliency with CPU and memory resource isolation as well as Geo-disaster recovery  
+**Potential benefits**: Stronger resiliency with CPU isolation and geo-replication  
 
 **Impact:** Low
   
-For more information, see [Azure Service Bus premium messaging tier - Azure Service Bus ](https://aka.ms/asb-premium)  
+For more information, see [Azure Service Bus premium messaging tier - Azure Service Bus](https://aka.ms/asb-premium)  
 
 ResourceType: microsoft.servicebus/namespaces  
 Recommendation ID: 29765e2c-5286-4039-963f-f8231e56cc3e  
 Subcategory: HighAvailability
 
 <!--29765e2c-5286-4039-963f-f8231e56cc3e_end-->
+
 
 <!--68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106_begin-->
 
@@ -47,5 +48,23 @@ Recommendation ID: 68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106
 Subcategory: Scalability
 
 <!--68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106_end-->
+
+<!--15a7e73b-943e-4cf5-847d-f54ed39c33f1_begin-->
+
+#### Set up Geo-replication for Service Bus namespace  
+  
+Set up Geo-replication on Premium Service Bus namespaces to ensure high availability and regional failover. This new feature replicates both metadata and data, helping protect against outages and disasters for mission-critical workloads.  
+  
+**Potential benefits**: Ensures high availability and regional failover  
+
+**Impact:** High
+  
+For more information, see [Azure Service Bus Geo-Replication - Azure Service Bus](/azure/service-bus-messaging/service-bus-geo-replication)  
+
+ResourceType: microsoft.servicebus/namespaces  
+Recommendation ID: 15a7e73b-943e-4cf5-847d-f54ed39c33f1  
+Subcategory: DisasterRecovery
+
+<!--15a7e73b-943e-4cf5-847d-f54ed39c33f1_end-->
 
 <!--articleBody-->

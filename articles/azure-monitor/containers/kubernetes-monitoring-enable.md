@@ -369,7 +369,7 @@ Use one of the following commands to enable monitoring of your AKS and Arc-enabl
 
 #### Prerequisites
 
-- Azure CLI version 2.43.0 or higher
+- Azure CLI version 2.75.0 or higher
 - Managed identity authentication is default in CLI version 2.49.0 or higher.
 - Azure k8s-extension version 1.3.7 or higher
 - Managed identity authentication is the default in k8s-extension version 1.43.0 or higher.

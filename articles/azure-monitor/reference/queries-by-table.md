@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 06/12/2025
+ms.date: 07/14/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1457,6 +1457,11 @@ ms.reviewer: lualderm
 ## [KubeServices](./queries/KubeServices.md)
 
 - [Find In KubeServices](./queries/KubeServices.md#find-in-kubeservices)
+
+## [LAJobLogs](./queries/LAJobLogs.md)
+
+- [Failed jobs](./queries/LAJobLogs.md#failed-jobs)
+- [Jobs in progress](./queries/LAJobLogs.md#jobs-in-progress)
 
 ## [LAQueryLogs](./queries/LAQueryLogs.md)
 

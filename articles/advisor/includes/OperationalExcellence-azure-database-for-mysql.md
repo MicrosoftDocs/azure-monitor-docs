@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Database for MySQL
@@ -84,23 +84,5 @@ Recommendation ID: be19e76c-125e-4f19-aa19-51e400e754fe
 
 
 <!--be19e76c-125e-4f19-aa19-51e400e754fe_end-->
-
-<!--feae9d98-0d24-48eb-ac98-0cedeefd5b9a_begin-->
-
-#### Your Azure Database for MySQL - Flexible Server is vulnerable using weak, deprecated TLSv1 or TLSv1.1 protocols  
-  
-To support modern security standards, MySQL community edition discontinued the support for communication over Transport Layer Security (TLS) 1.0 and 1.1 protocols. Microsoft will also stop supporting connection over TLSv1 and TLSv1.1 to Azure Database for MySQL - Flexible server soon to comply with the modern security standards . We recommend you upgrade your client driver to support TLSv1.2.  
-  
-**Potential benefits**: Secured & Strong TLS protocol for communication  
-
-**Impact:** High
-  
-For more information, see [MySQL :: MySQL 5.7 Reference Manual :: 6.3.2 Encrypted Connection TLS Protocols and Ciphers](https://aka.ms/encrypted_connection_deprecated_protocols)  
-
-ResourceType: microsoft.dbformysql/flexibleservers  
-Recommendation ID: feae9d98-0d24-48eb-ac98-0cedeefd5b9a  
-
-
-<!--feae9d98-0d24-48eb-ac98-0cedeefd5b9a_end-->
 
 <!--articleBody-->

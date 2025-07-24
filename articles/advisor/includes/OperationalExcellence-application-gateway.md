@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/22/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -210,25 +210,6 @@ Recommendation ID: 14368063-38db-4dd6-a755-9c49ff123a5e
 
 <!--14368063-38db-4dd6-a755-9c49ff123a5e_end-->
 
-
-<!--3f0e3a98-0a69-4798-b780-efeaa6c44810_begin-->
-
-#### Upgrade to the latest bot protection rule set in Front Door WAF  
-  
-Bot protection in Web Application Firewall (WAF) will protect you application against malicious bots, crawlers, and scanners. Using the latest version of bot Protection rule set will ensure the WAF engine will apply the latest rules.  
-  
-**Potential benefits**: Ensure increased efficiency and protection against bots  
-
-**Impact:** Medium
-  
-For more information, see [Azure Web Application Firewall DRS rule groups and rules](https://aka.ms/afdwafbotrs)  
-
-ResourceType: microsoft.network/frontdoorwebapplicationfirewallpolicies  
-Recommendation ID: 3f0e3a98-0a69-4798-b780-efeaa6c44810  
-
-
-<!--3f0e3a98-0a69-4798-b780-efeaa6c44810_end-->
-
 <!--a1ad465b-8218-40d6-a6ce-4bfff566a6cd_begin-->
 
 #### Upgrade to the latest DRS rule set in Front Door WAF  
@@ -336,5 +317,23 @@ Recommendation ID: f8d4da72-3b27-4dd7-839c-bd69b9b95111
 
 
 <!--f8d4da72-3b27-4dd7-839c-bd69b9b95111_end-->
+
+<!--8a885111-34c0-4fd6-bb77-dbbb844ad7e5_begin-->
+
+#### Monitor Azure Firewall Metrics  
+  
+Monitor Azure Firewall for overall health, processed throughput, and outbound SNAT port usage. Get alerted before limits affect services. Consider NAT gateway integration with zonal deployments; Take into account limitations with zone redundant Firewalls and Secure Virtual Hub Networks.  
+  
+**Potential benefits**: Improve health and performance monitoring.  
+
+**Impact:** High
+  
+For more information, see [Azure Monitor supported metrics by resource type - Azure Monitor](/azure/azure-monitor/reference/metrics-index#microsoftnetworkazurefirewalls)  
+
+ResourceType: microsoft.network/azurefirewalls  
+Recommendation ID: 8a885111-34c0-4fd6-bb77-dbbb844ad7e5  
+
+
+<!--8a885111-34c0-4fd6-bb77-dbbb844ad7e5_end-->
 
 <!--articleBody-->

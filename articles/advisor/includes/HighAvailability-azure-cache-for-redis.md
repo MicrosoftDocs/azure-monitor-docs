@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cache for Redis
@@ -47,5 +47,41 @@ Recommendation ID: c9e4a27c-79e6-4e4c-904f-b6612b6cd892
 Subcategory: DisasterRecovery
 
 <!--c9e4a27c-79e6-4e4c-904f-b6612b6cd892_end-->
+
+<!--1a0a309c-54f0-4cb0-a839-2cee5912ba62_begin-->
+
+#### Enable zone redundancy for Redis  
+  
+Enable multi-node replication configuration across Availability Zones, with automatic failover  
+  
+**Potential benefits**: Reduces outage risk; 99.9% uptime for Premium cache  
+
+**Impact:** High
+  
+For more information, see [What is Azure Cache for Redis? - Azure Cache for Redis](https://aka.ms/CacheRedis)  
+
+ResourceType: microsoft.cache/redis  
+Recommendation ID: 1a0a309c-54f0-4cb0-a839-2cee5912ba62  
+Subcategory: HighAvailability
+
+<!--1a0a309c-54f0-4cb0-a839-2cee5912ba62_end-->
+
+<!--08cff11d-aa10-44a1-a92f-a76a19e63f7d_begin-->
+
+#### Use Enterprise SKU with zone redundancy  
+  
+Select Zone Redundancy in portal or ARM template  
+  
+**Potential benefits**: Reduces outage risk; 99.9% uptime for Enterprise cache  
+
+**Impact:** High
+  
+For more information, see [What is Azure Cache for Redis? - Azure Cache for Redis](https://aka.ms/CacheRedisEnterprise)  
+
+ResourceType: microsoft.cache/redisenterprise  
+Recommendation ID: 08cff11d-aa10-44a1-a92f-a76a19e63f7d  
+Subcategory: HighAvailability
+
+<!--08cff11d-aa10-44a1-a92f-a76a19e63f7d_end-->
 
 <!--articleBody-->

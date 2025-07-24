@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Subscriptions
@@ -10,25 +10,7 @@ ms.custom: OperationalExcellence Subscriptions
   
 ---
   
-## Subscriptions  
-  
-<!--9c0c3708-17f6-4108-9aff-f0e052c3cd41_begin-->
-
-#### Set up staging environments in Azure App Service  
-  
-Deploying an app to a slot first and swapping it into production makes sure that all instances of the slot are warmed up before being swapped into production. This eliminates downtime when you deploy your app. The traffic redirection is seamless, no requests are dropped because of swap operations.  
-  
-**Potential benefits**: Validate changes in a staging slot, then swap to production.  
-
-**Impact:** Low
-  
-For more information, see [Set up Staging Environments in Azure App Service - Azure App Service](/azure/app-service/deploy-staging-slots)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: 9c0c3708-17f6-4108-9aff-f0e052c3cd41  
-
-
-<!--9c0c3708-17f6-4108-9aff-f0e052c3cd41_end-->
+## Subscriptions
 
 <!--a58fd47f-d7b9-49dc-b763-c511d8774639_begin-->
 

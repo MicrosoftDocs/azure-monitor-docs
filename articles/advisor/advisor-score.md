@@ -310,24 +310,24 @@ The score doesn't immediately reflect adopted recommendations. It takes at least
 | Subcategories <br /> Maximum score | Detail |
 |:--- |:--- |
 | Compute Optimization <br /> `25` | Assess and optimize the performance of your compute resources. <ul> <li> Virtual Machine </li> <li> App server instance </li> </ul> |
-| Data Performance <br /> `15` | Optimizing data performance is about refining the efficiency with which the workload processes and stores data. Every workload operation, transaction, or computation typically relies on the quick and accurate retrieval, processing, and storage of data. |
+| Data Performance <br /> `20` | Optimizing data performance is about refining the efficiency with which the workload processes and stores data. Every workload operation, transaction, or computation typically relies on the quick and accurate retrieval, processing, and storage of data. |
 | Monitoring and Alerting <br /> `5` | To effectively monitor your workload for security, performance, and reliability, you need a comprehensive system with a stand-alone stack. The comprehensive system provides the foundation for all monitoring, detection, and alert functions. |
 | Storage Optimization <br /> `25` | Assess and optimize the performance of your Storage resources. <ul> <li> SQL data warehouse </li> <li> Storage account </li> </ul> |
-| Network Optimization <br /> `30` | Assess and optimize the performance of your Network resources. <ul> <li> Traffic Manager </li> </ul> |
+| Network Optimization <br /> `25` | Assess and optimize the performance of your Network resources. <ul> <li> Traffic Manager </li> </ul> |
 | Scalability <br /> `10` | Design and implement a reliable scaling strategy for the basis of the workload, the load patterns for user, and ensure the business continuity while scaling the solutions. |
-| Service upgrade and Retirement <br /> `10` | Assess and plan to migrate resources from services and features which are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
+| Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features which are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
 | Other <br /> `5` | All recommendations which aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
 ### What is the list of subcategories for Operational Excellence category and the maximum score?
 
 | Subcategories <br /> Maximum score | Detail |
 |:--- |:--- |
-| Efficiency Optimization <br /> `25` | Assess and manage configurations to ensure better performance of Azure Resources. <ul> <li> Enable accelerated networking </li> </ul> |
-| Failure Mitigation <br /> `15` | Implement and configure Azure resources in a well-designed fashion to handle and mitigate deployment failures with little effect on the user. |
+| Efficiency Optimization <br /> `30` | Assess and manage configurations to ensure better performance of Azure Resources. <ul> <li> Enable accelerated networking </li> </ul> |
+| Failure Mitigation <br /> `20` | Implement and configure Azure resources in a well-designed fashion to handle and mitigate deployment failures with little effect on the user. |
 | Monitoring and Alerting <br /> `5` | To effectively monitor your workload for security, performance, and reliability, you need a comprehensive system with a stand-alone stack. The comprehensive system provides the foundation for all monitoring, detection, and alert functions. |
 | Safe and Secure Deployment <br /> `5` | Safe and secure deployment processes define how to safely make and deploy changes to your workload. Implementing it requires you to think about deployments through the lens of managing risk. |
-| Scalability <br /> `5` | Design and implement a reliable scaling strategy for the basis of the workload, the load patterns for user, and ensure the business continuity while scaling the solutions. |
-| Service upgrade and Retirement <br /> `30` | Assess and plan to migrate resources from services and features which are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
+| Scalability <br /> `10` | Design and implement a reliable scaling strategy for the basis of the workload, the load patterns for user, and ensure the business continuity while scaling the solutions. |
+| Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features which are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
 | Other <br /> `5` | All recommendations which aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
 ### Why do some recommendations have the empty '-' value in the Impact column of the category score?

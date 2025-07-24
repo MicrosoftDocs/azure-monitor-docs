@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Subscriptions
@@ -83,23 +83,5 @@ Recommendation ID: 1ee8eace-1e7e-4d73-8547-1f687c72979b
 
 
 <!--1ee8eace-1e7e-4d73-8547-1f687c72979b_end-->
-
-<!--fec68ad4-95b5-4dca-9e20-afa10b3e5401_begin-->
-
-#### Experience more predictable, consistent latency with a private connection to Azure  
-  
-Improve the performance, privacy, and reliability of your business-critical apps by extending your on-premises networks to Azure with Azure ExpressRoute. Establish private ExpressRoute connections directly from your WAN, through a cloud exchange facility, or through POP and IPVPN connections.  
-  
-**Potential benefits**: Fast, private, bandwidth up to 100 Gbps, plus cost benefits  
-
-**Impact:** Medium
-  
-For more information, see [Quickstart: Create and modify ExpressRoute circuits - Azure portal](/azure/expressroute/expressroute-howto-circuit-portal-resource-manager)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: fec68ad4-95b5-4dca-9e20-afa10b3e5401  
-
-
-<!--fec68ad4-95b5-4dca-9e20-afa10b3e5401_end-->
 
 <!--articleBody-->

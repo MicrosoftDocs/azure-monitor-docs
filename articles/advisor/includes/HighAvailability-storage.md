@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -10,25 +10,7 @@ ms.custom: HighAvailability Storage
   
 ---
   
-## Storage  
-  
-<!--d42d751d-682d-48f0-bc24-bb15b61ac4b8_begin-->
-
-#### Use Managed Disks for storage accounts reaching capacity limit  
-  
-When Premium SSD unmanaged disks in storage accounts are about to reach their Premium Storage capacity limit, failures might occur. To avoid failures when this limit is reached, migrate to Managed Disks that don't have an account capacity limit. This migration can be done through the portal in less than 5 minutes.  
-  
-**Potential benefits**: Avoid scale issues when account reaches capacity limit  
-
-**Impact:** High
-  
-For more information, see [Scalability and performance targets for standard storage accounts - Azure Storage ](https://aka.ms/premium_blob_quota)  
-
-ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: d42d751d-682d-48f0-bc24-bb15b61ac4b8  
-Subcategory: Scalability
-
-<!--d42d751d-682d-48f0-bc24-bb15b61ac4b8_end-->
+## Storage
 
 <!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_begin-->
 

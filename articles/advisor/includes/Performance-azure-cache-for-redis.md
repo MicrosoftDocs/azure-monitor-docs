@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Cache for Redis
@@ -48,42 +48,6 @@ Recommendation ID: e34f1fd6-7d4b-4030-9c1a-0b413675cb40
 
 <!--e34f1fd6-7d4b-4030-9c1a-0b413675cb40_end-->
 
-<!--a67201dd-6df0-4838-8258-5abf26adc8f6_begin-->
-
-#### Improve your Cache and application performance when running with high network bandwidth  
-  
-Cache instances perform best when not running under high network bandwidth which may cause them to become unresponsive, experience data loss, or become unavailable. Apply best practices to reduce network bandwidth or scale to a different size or sku with more capacity.  
-  
-**Potential benefits**: Ensure optimal performance and high availability through best practices  
-
-**Impact:** Medium
-  
-For more information, see [Troubleshoot Azure Cache for Redis server issues - Azure Cache for Redis](https://aka.ms/redis/recommendations/bandwidth)  
-
-ResourceType: microsoft.cache/redis  
-Recommendation ID: a67201dd-6df0-4838-8258-5abf26adc8f6  
-
-
-<!--a67201dd-6df0-4838-8258-5abf26adc8f6_end-->
-
-<!--a616baa6-74dd-45ac-a2a3-ab278d63f2d7_begin-->
-
-#### Improve your Cache and application performance when running with high network bandwidth  
-  
-Cache instances perform best when not running under high network bandwidth which may cause them to become unresponsive, experience data loss, or become unavailable. Apply best practices to reduce network bandwidth or scale to a different size or sku with more capacity.  
-  
-**Potential benefits**: Ensure optimal performance and high availability through best practices  
-
-**Impact:** High
-  
-For more information, see [Troubleshoot Azure Cache for Redis server issues - Azure Cache for Redis](https://aka.ms/redis/recommendations/bandwidth)  
-
-ResourceType: microsoft.cache/redis  
-Recommendation ID: a616baa6-74dd-45ac-a2a3-ab278d63f2d7  
-
-
-<!--a616baa6-74dd-45ac-a2a3-ab278d63f2d7_end-->
-
 <!--a25fccfd-854d-4c1a-9fae-aa0597a45e27_begin-->
 
 #### Improve your Cache and application performance when running with high server load  
@@ -101,24 +65,6 @@ Recommendation ID: a25fccfd-854d-4c1a-9fae-aa0597a45e27
 
 
 <!--a25fccfd-854d-4c1a-9fae-aa0597a45e27_end-->
-
-<!--dcd94184-c5fb-4e80-ac1e-7f11930b4f77_begin-->
-
-#### Improve your Cache and application performance when running with high server load  
-  
-Cache instances perform best when not running under high server load which may cause them to become unresponsive, experience data loss, or become unavailable. Apply best practices to reduce the server load or scale to a different size or sku with more capacity.  
-  
-**Potential benefits**: Ensure optimal performance and high availability through best practices  
-
-**Impact:** High
-  
-For more information, see [Troubleshoot Azure Cache for Redis server issues - Azure Cache for Redis](https://aka.ms/redis/recommendations/cpu)  
-
-ResourceType: microsoft.cache/redis  
-Recommendation ID: dcd94184-c5fb-4e80-ac1e-7f11930b4f77  
-
-
-<!--dcd94184-c5fb-4e80-ac1e-7f11930b4f77_end-->
 
 <!--2f57b58b-1677-4c31-8a37-be79838d14ca_begin-->
 

@@ -29,7 +29,8 @@ ms.date: 05/08/2025
 
 | Category | Limit | Comments |
 |:---------|:------|:---------|
-| Maximum records returned by a log query | 100,000 | Reduce results by using query scope, time range, and filters in the query. |
+| Maximum records returned by a log query | 500,000 | Reduce results by using query scope, time range, and filters in the query. |
+| Maximum size of data returned | ~104 MB (~100 MiB)|The portal UI returns up to 64 MB of compressed data, which translates to up to 100 MB of raw data. |
 
 ### Data Collector API
 

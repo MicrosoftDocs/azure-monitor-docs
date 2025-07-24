@@ -24,7 +24,7 @@ Contains all Application rule log data. Each match between data plane and Applic
 |**Categories**|Security|
 |**Solutions**| LogManagement|
 |**Basic log**|Yes|
-|**Ingestion-time transformation**|No|
+|**Ingestion-time transformation**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwapplicationrule)|
 
 

@@ -58,7 +58,7 @@ If you enable [workspace replication](workspace-replication.md) on your Log Anal
 | Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 
 > [!NOTE]
-> Delete-data operation doesn't affect on retention charge. The charge for retention is governed by the retention period configured in your [workspace](./data-retention-configure.md#configure-the-default-interactive-retention-period-of-analytics-tables), or [tables](./data-retention-configure.md#configure-table-level-retention).
+> Delete-data operation doesn't affect on retention charge. The charge for retention is governed by the retention period configured in your [workspace](./data-retention-configure.md#configure-the-default-analytics-retention-period-of-analytics-tables), or [tables](./data-retention-configure.md#configure-table-level-retention).
 
 ## Considerations
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Arc-enabled Kubernetes Configuration
@@ -47,23 +47,5 @@ Recommendation ID: 79cfad72-9b6d-4215-922d-7df77e1ea3bb
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--79cfad72-9b6d-4215-922d-7df77e1ea3bb_end-->
-
-<!--c8e3b516-a0d5-4c64-8a7a-71cfd068d5e8_begin-->
-
-#### Upgrade Microsoft Flux extension to a supported version  
-  
-Current version of Microsoft Flux on one or more Azure Arc enabled clusters and Azure Kubernetes clusters is out of support. To get security patches, bug fixes and Microsoft support, upgrade to a supported version.  
-  
-**Potential benefits**: Get security patches, bug fixes and Microsoft support  
-
-**Impact:** Medium
-  
-For more information, see [Available extensions for Azure Arc-enabled Kubernetes clusters - Azure Arc ](https://aka.ms/fluxreleasenotes)  
-
-ResourceType: microsoft.kubernetesconfiguration/extensions  
-Recommendation ID: c8e3b516-a0d5-4c64-8a7a-71cfd068d5e8  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--c8e3b516-a0d5-4c64-8a7a-71cfd068d5e8_end-->
 
 <!--articleBody-->

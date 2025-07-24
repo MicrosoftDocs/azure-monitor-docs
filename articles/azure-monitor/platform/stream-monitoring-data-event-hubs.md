@@ -31,7 +31,7 @@ Data can be sent to Event Hubs by using the following methods in Azure Monitor:
 
 * **Diagnostic settings**
 
-    Use diagnostics setting to stream logs and metrics to Event Hubs. For information on how to set up diagnostic settings, see [Create diagnostic settings](create-diagnostic-settings.md).
+    Use diagnostics setting to stream logs and metrics to Event Hubs. For information on how to set up diagnostic settings, see [Create a diagnostic setting](diagnostic-settings.md#create-a-diagnostic-setting).
 
 * **Manually stream using Logic Apps**
 

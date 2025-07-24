@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/08/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for MySQL
@@ -106,5 +106,23 @@ Recommendation ID: f51c5bce-c771-42c0-97c8-5c6676bad17c
 Subcategory: HighAvailability
 
 <!--f51c5bce-c771-42c0-97c8-5c6676bad17c_end-->
+
+<!--5dd0cbbb-61a6-497c-a498-50fe19c7f5d1_begin-->
+
+#### Enable HA with zone redundancy  
+  
+Set highAvailability.mode to ZoneRedundant  
+  
+**Potential benefits**: Maintains DB access during zone failures  
+
+**Impact:** High
+  
+For more information, see [Azure Database for MySQL - Flexible Server Overview - Azure Database for MySQL](https://aka.ms/MysqlFlexibleServers)  
+
+ResourceType: microsoft.dbformysql/flexibleservers  
+Recommendation ID: 5dd0cbbb-61a6-497c-a498-50fe19c7f5d1  
+Subcategory: HighAvailability
+
+<!--5dd0cbbb-61a6-497c-a498-50fe19c7f5d1_end-->
 
 <!--articleBody-->

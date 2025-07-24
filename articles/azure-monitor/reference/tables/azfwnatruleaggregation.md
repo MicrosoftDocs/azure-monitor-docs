@@ -24,7 +24,7 @@ Contains aggregated NAT Rule log data for Policy Analytics.
 |**Categories**|Security|
 |**Solutions**| LogManagement|
 |**Basic log**|Yes|
-|**Ingestion-time transformation**|No|
+|**Ingestion-time transformation**|Yes|
 |**Sample Queries**|-|
 
 

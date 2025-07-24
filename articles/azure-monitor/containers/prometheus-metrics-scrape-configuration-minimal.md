@@ -31,6 +31,7 @@ Following targets are available to scrape, but scraping isn't enabled (**disable
 - `controlplane-cluster-autoscaler` (`job=controlplane-cluster-autoscaler`)
 - `controlplane-kube-scheduler` (`job=controlplane-kube-scheduler`)
 - `controlplane-kube-controller-manager` (`job=controlplane-kube-controller-manager`)
+- `controlplane-node-auto-provisioning` (`job=controlplane-node-auto-provisioning`)
 
 > [!NOTE]
 > The default scrape frequency for all default targets and scrapes is `30 seconds`. You can override it per target using the [ama-metrics-settings-configmap](https://aka.ms/azureprometheus-addon-settings-configmap) under `default-targets-scrape-interval-settings` section.
@@ -334,6 +335,14 @@ The following are metrics that are allow-listed with `minimalingestionprofile=tr
 - `rest_client_request_duration_seconds`
 - `rest_client_requests_total`
 - `workqueue_depth`
+
+**controlplane-node-auto-provisioning**<br>
+- `karpenter_pods_state`
+- `karpenter_nodes_created_total`
+- `karpenter_nodes_terminated_total`
+- `karpenter_nodeclaims_disrupted_total`
+- `karpenter_voluntary_disruption_eligible_nodes`
+- `karpenter_voluntary_disruption_decisions_total`
 
 ## Next steps
 

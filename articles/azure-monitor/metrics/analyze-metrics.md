@@ -362,7 +362,7 @@ This section provides answers to common questions.
 
 ### Why are metrics from the guest OS of my Azure virtual machine not showing up in metrics explorer?
 
-[Platform metrics](../platform/monitor-azure-resource.md#monitoring-data) are collected automatically for Azure resources. You must perform some configuration, though, to collect metrics from the guest OS of a virtual machine. For a Windows Virtual Machine, install the diagnostic extension and configure the Azure Monitor sink as described in [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md). For Linux, install the Telegraf agent as described in [Collect custom metrics for a Linux VM with the InfluxData Telegraf agent](../agents/collect-custom-metrics-linux-telegraf.md).
+[Platform metrics](../platform/monitor-azure-resource.md#metrics) are collected automatically for Azure resources. You must perform some configuration, though, to collect metrics from the guest OS of a virtual machine. For a Windows Virtual Machine, install the diagnostic extension and configure the Azure Monitor sink as described in [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md). For Linux, install the Telegraf agent as described in [Collect custom metrics for a Linux VM with the InfluxData Telegraf agent](../agents/collect-custom-metrics-linux-telegraf.md).
 
 [!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
 

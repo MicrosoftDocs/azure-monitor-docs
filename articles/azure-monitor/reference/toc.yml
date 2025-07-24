@@ -1861,6 +1861,8 @@ items:
             href: tables/awsnetworkfirewalltls.md
           - name: AWSRoute53Resolver
             href: tables/awsroute53resolver.md
+          - name: AWSS3ServerAccess
+            href: tables/awss3serveraccess.md
           - name: AWSSecurityHubFindings
             href: tables/awssecurityhubfindings.md
           - name: AWSVPCFlow
@@ -2469,6 +2471,12 @@ items:
             href: tables/gcpauditlogs.md
           - name: GCPCDN
             href: tables/gcpcdn.md
+          - name: GCPCloudRun
+            href: tables/gcpcloudrun.md
+          - name: GCPCloudSQL
+            href: tables/gcpcloudsql.md
+          - name: GCPComputeEngine
+            href: tables/gcpcomputeengine.md
           - name: GCPDNS
             href: tables/gcpdns.md
           - name: GCPFirewallLogs
@@ -2481,10 +2489,30 @@ items:
             href: tables/gcploadbalancer.md
           - name: GCPMonitoring
             href: tables/gcpmonitoring.md
+          - name: GCPNAT
+            href: tables/gcpnat.md
+          - name: GCPNATAudit
+            href: tables/gcpnataudit.md
+          - name: GCPResourceManager
+            href: tables/gcpresourcemanager.md
           - name: GCPVPCFlow
             href: tables/gcpvpcflow.md
+          - name: GKEAPIServer
+            href: tables/gkeapiserver.md
+          - name: GKEApplication
+            href: tables/gkeapplication.md
+          - name: GKEAudit
+            href: tables/gkeaudit.md
+          - name: GKEControllerManager
+            href: tables/gkecontrollermanager.md
+          - name: GKEHPADecision
+            href: tables/gkehpadecision.md
+          - name: GKEScheduler
+            href: tables/gkescheduler.md
           - name: GoogleCloudSCC
             href: tables/googlecloudscc.md
+          - name: GoogleWorkspaceReports
+            href: tables/googleworkspacereports.md
           - name: HDInsightAmbariClusterAlerts
             href: tables/hdinsightambariclusteralerts.md
           - name: HDInsightAmbariSystemMetrics
@@ -2591,6 +2619,8 @@ items:
             href: tables/kubepodinventory.md
           - name: KubeServices
             href: tables/kubeservices.md
+          - name: LAJobLogs
+            href: tables/lajoblogs.md
           - name: LAQueryLogs
             href: tables/laquerylogs.md
           - name: LASummaryLogs
@@ -3535,6 +3565,8 @@ items:
             href: queries/KubePodInventory.md
           - name: KubeServices
             href: queries/KubeServices.md
+          - name: LAJobLogs
+            href: queries/LAJobLogs.md
           - name: LAQueryLogs
             href: queries/LAQueryLogs.md
           - name: LASummaryLogs

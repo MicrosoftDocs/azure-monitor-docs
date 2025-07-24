@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Storage
@@ -66,24 +66,6 @@ Recommendation ID: b353f187-4cb4-4b2b-b502-472f45f32fd6
 
 <!--b353f187-4cb4-4b2b-b502-472f45f32fd6_end-->
 
-<!--8433e84a-8f5c-4b6c-9052-9b98757348ea_begin-->
-
-#### Upgrade to Standard SSD Disks for consistent and improved performance  
-  
-Because you are running IaaS virtual machine workloads on Standard HDD managed disks, we wanted to let you know that a Standard SSD disk option is now available for all Azure VM types. Standard SSD disks are a cost-effective storage option optimized for enterprise workloads that need consistent performance. Upgrade your disk configuration today for improved latency, reliability, and availability. Upgrading requires a VM reboot, which takes three to five minutes.  
-  
-**Potential benefits**: Improve disk latency, reliability, and availability using Standard SSD disks.  
-
-**Impact:** Medium
-  
-For more information, see [Select a disk type for Azure IaaS VMs - managed disks - Azure Virtual Machines](/azure/virtual-machines/windows/disks-types#standard-ssd)  
-
-ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: 8433e84a-8f5c-4b6c-9052-9b98757348ea  
-
-
-<!--8433e84a-8f5c-4b6c-9052-9b98757348ea_end-->
-
 <!--33557a7c-6dd6-4b46-9579-fc5273f07458_begin-->
 
 #### Convert Unmanaged Disks from Standard HDD to Premium SSD for performance  
@@ -101,42 +83,6 @@ Recommendation ID: 33557a7c-6dd6-4b46-9579-fc5273f07458
 
 
 <!--33557a7c-6dd6-4b46-9579-fc5273f07458_end-->
-
-<!--7e9fbfe8-1234-435c-b114-424445c9be6f_begin-->
-
-#### Upgrade your Storage Client Library to the latest version for better reliability and performance  
-  
-The latest version of Storage Client Library/ SDK contains fixes to issues reported by customers and proactively identified through our QA process. The latest version also carries reliability and performance optimization in addition to new features that can improve your overall experience using Azure Storage.  
-  
-**Potential benefits**: Latest Storage Client Library contains fixes for known issues and other improvements.  
-
-**Impact:** Medium
-  
-For more information, see [Install and manage packages in Visual Studio using the NuGet Package Manager](https://aka.ms/AA5wtca)  
-
-ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: 7e9fbfe8-1234-435c-b114-424445c9be6f  
-
-
-<!--7e9fbfe8-1234-435c-b114-424445c9be6f_end-->
-
-<!--97172837-e5ea-45b2-af3b-cadbf428a6d9_begin-->
-
-#### Upgrade your Storage Client Library to the latest version for better reliability and performance  
-  
-The latest version of Storage Client Library/ SDK contains fixes to issues reported by customers and proactively identified through our QA process. The latest version also carries reliability and performance optimization in addition to new features that can improve your overall experience using Azure Storage.  
-  
-**Potential benefits**: Latest Storage Client Library contains fixes for known issues and other improvements.  
-
-**Impact:** Medium
-  
-  
-
-ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: 97172837-e5ea-45b2-af3b-cadbf428a6d9  
-
-
-<!--97172837-e5ea-45b2-af3b-cadbf428a6d9_end-->
 
 <!--6708739d-5221-4d53-9960-698cd2fd9628_begin-->
 

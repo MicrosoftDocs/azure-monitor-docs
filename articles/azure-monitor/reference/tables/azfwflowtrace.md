@@ -24,7 +24,7 @@ Flow logs across Azure Firewall instances. Log contains flow information, flags 
 |**Categories**|Azure Resources|
 |**Solutions**| LogManagement|
 |**Basic log**|Yes|
-|**Ingestion-time transformation**|No|
+|**Ingestion-time transformation**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwflowtrace)|
 
 

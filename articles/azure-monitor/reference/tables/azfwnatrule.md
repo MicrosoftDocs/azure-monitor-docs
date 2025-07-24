@@ -24,7 +24,7 @@ Contains all DNAT (Destination Network Address Translation) events log data. Eac
 |**Categories**|Security|
 |**Solutions**| LogManagement|
 |**Basic log**|Yes|
-|**Ingestion-time transformation**|No|
+|**Ingestion-time transformation**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwnatrule)|
 
 

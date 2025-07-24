@@ -8,7 +8,7 @@ You can have an unlimited number of action groups in a subscription.
 | Resource | Default limit | Maximum limit |
 |----------|---------------|---------------|
 | Azure app push | 10 Azure app actions per action group. | Same as Default |
-| Email | 1,000 email actions in an action group.<br>No more than 100 emails every hour for each email address per region<br>The character limit in an e-mail address is 64.<br>The character limit in an e-mail is 55296.<br>Also see the [rate limiting information](../alerts-rate-limiting.md). | Same as Default |
+| Email | 1,000 email actions in an action group.<br>No more than 100 emails every hour for each email address per region<br>The character limit in an e-mail address is 64.<br>The character limit in an e-mail is 55296.<br>Also see [Service limits for notifications](../action-groups.md#service-limits-for-notifications). | Same as Default |
 | Email Azure Resource Manager role | 10 Email ARM role actions per action group.<br>In production: No more than 100 emails in an hour per region.<br>In a test action group: No more than two emails in every one (1) minute. | Same as Default |
 | Event Hubs | 10 Event Hubs actions per action group. | Same as Default |
 | ITSM | 10 ITSM actions in an action group. | Same as Default |

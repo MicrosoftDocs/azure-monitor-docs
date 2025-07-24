@@ -2,12 +2,12 @@
 title: Use Event Level to Prioritize Notifications and Communications
 description: Learn how to use a new metadata field to filter event notifications in Azure Service Health.
 ms.topic: overview
-ms.date: 06/20/2025
+ms.date: 07/11/2025
 ---
 
 # Filter notifications using Event Level in Azure Service Health
 
-To help you prioritize Azure Service Health event communications, the **Service issues,** **Health advisories,** and **Security advisories** blades include a new metadata field called **Event Level**. This field can help you understand the significance of each communication and rapidly evaluate the importance of each alert.
+To help you prioritize Azure Service Health event communications, the **Service issues,** **Health advisories,** and **Security advisories** panes include a new metadata field called **Event Level**. This field can help you understand the significance of each communication and rapidly evaluate the importance of each alert.
 
 You can use this feature to filter and sort events, and more effectively prioritize your actions.
 
@@ -29,7 +29,7 @@ Everyone with access to the subscription can view and filter by **Event Level**.
 
 
 > [!NOTE]
-> This field is currently available on the **Service Issues,** **Health advisories,** and the **Security advisories** blades.
+> This field is currently available on the **Service Issues,** **Health advisories,** and the **Security advisories** panes.
 
 ## Health advisories event level alert definitions
 
@@ -53,4 +53,4 @@ Everyone with access to the subscription can view and filter by **Event Level**.
 :::image type="content" source="media/metadata/metadata-security-screen.png" alt-text="Screenshot of the security advisory metadata filter screen." lightbox="media/metadata/metadata-security-screen.png":::
 
 > [!NOTE]
-> For more information about access to the Security advisories blade, see [Elevated access to Security advisories](security-advisories-elevated-access.md).
+> For more information about access to the Security advisories pane, see [Elevated access to Security advisories](security-advisories-elevated-access.md).
