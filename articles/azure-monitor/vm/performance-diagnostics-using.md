@@ -24,16 +24,21 @@ ms.custom: sap:VM Performance
 The **Impact** column indicates an impact level of High, Medium, or Low to indicate the potential for performance issues, based on factors such as misconfiguration, known problems, or issues that are reported by other users. You might not yet be experiencing one or more of the listed issues. For example, you might have SQL log files and database files on the same data disk. This condition has a high potential for bottlenecks and other performance issues if the database usage is high. However, you might not notice an issue if the usage is low.
 
 
+#### Accessing SQL Server
+
+If the VM has SQL Server instances installed on it, PerfInsights uses the account NT AUTHORITY\SYSTEM to access the SQL Server instances to collect configuration information and run rules. The account NT AUTHORITY\SYSTEM must be granted View Server State permission and Connect SQL permission for each instance, otherwise PerfInsights won't be able to connect to the SQL Server and the PerfInsights report won't show any SQL Server related information.
+
+#### Possible problems when you run the tool on production VMs
+
+- For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Xperf or Diskspd, the tool might adversely affect the performance of the VM. These scenarios shouldn't be run in a live production environment.
+
+- For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Diskspd, ensure that no other background activity interferes with the I/O workload.
+
+- By default, the tool uses the temporary storage drive to collect data. If tracing stays enabled for a longer time, the amount of data that is collected might be relevant. This can reduce the availability of space on the temporary disk, and can therefore affect any application that relies on this drive.
+
+
 ## View Performance Diagnostics insights
-Performance Diagnostics insights lists a combination of the insights identified by the continuous and on-demand diagnostics. You can view this report from three different locations in the Azure portal, depending on your troubleshooting workflow. From your virtual machine, go to:
-
-    > [!NOTE]
-    > The **Performance Diagnostics** grid in the Overview experience is *limited to show 300 rows*. To view all rows, go to the Performance Diagnostics experience.
-
-You can view the Performance Diagnostics reports from multiple locations in the Azure portal. Each of these methods displays the same data, although the **Performance Diagnostics** option provides the following additional features:
-
-- Displays all insights in the selected time range. The other methods are limited to 300 rows.
-- Ability to group insights by category, insight, or recommendation.
+Performance Diagnostics insights lists a combination of the insights identified by the continuous and on-demand diagnostics. You can view this report from three different locations in the Azure portal, depending on your troubleshooting workflow. You can view the Performance Diagnostics reports from multiple locations in the Azure portal. 
 
 - From the menu for the virtual machine. In the **Help** section of the menu, select **Performance Diagnostics**.
 
@@ -43,13 +48,16 @@ You can view the Performance Diagnostics reports from multiple locations in the 
 
     :::image type="content" source="media/performance-diagnostics/view-from-overview.png" alt-text="Screenshot of the Overview experience in the Azure portal." lightbox="media/performance-diagnostics/view-from-overview.png":::
 
-1. Select a row to open the **Performance diagnostics insights details** context menu. For more information, see the following section.
-
 - From VM insights. Select **Virtual machines** from the **Insights** section of the **Monitor** menu and select the VM that you want to run diagnostics on. Select **Insights** and then the **Performance** tab.
 
     :::image type="content" source="media/performance-diagnostics/view-from-insights.png" alt-text="Screenshot of the Insights experience in the Azure portal." lightbox="media/performance-diagnostics/view-from-insights.png":::
 
 ---
+
+Each of these methods displays the same data, although the **Performance Diagnostics** option provides the following additional features:
+
+- Displays all insights in the selected time range. The other methods are limited to 300 rows.
+- Ability to group insights by category, insight, or recommendation.
 
 :::image type="content" source="media/performance-diagnostics/insights-list-grouping.png" alt-text="Screenshot of the Insights tab on the Performance Diagnostics screen that shows results grouped by insight." lightbox="media/performance-diagnostics/insights-list-grouping.png":::
 
@@ -80,125 +88,8 @@ Select the **Download report** button to download an HTML report that contains r
 
 
 
+## Run Performance Diagnostics in standalone mode
 
-## Data collected
-Performance Diagnostics collected the information in the following table from Windows machines., depending on the performance scenario you're using.
-
-| Data collected | Quick performance analysis | Benchmarking | Performance analysis | Azure Files analysis | Advanced performance analysis |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| Information from event logs | Yes  | Yes  | Yes  | Yes  | Yes  |
-| System information  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Volume map  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Disk map    | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Running tasks     | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Storage reliability counters  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Storage information   | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Fsutil output     | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Filter driver info  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Netstat output    | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Network configuration   | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Firewall configuration  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| SQL Server configuration    | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Performance diagnostics traces *  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Performance counter trace **  |  |    | Yes  |  | Yes  |
-| SMB counter trace **  |  |    |    | Yes  |  |
-| SQL Server counter trace ** |  |    | Yes  |  | Yes  |
-| Xperf trace |  |    |    |  | Yes  |
-| StorPort trace    |  |    |    |  | Yes  |
-| Network trace     |  |    |    | Yes  | Yes  |
-| Diskspd benchmark trace *** |  | Yes  |    |  |  |
-| |  |   |   |  |  |
-
-### Performance diagnostics trace (*)
-
-Runs a rule-based engine in the background to collect data and diagnose ongoing performance issues. Rules are displayed in the report under the Category -> Finding tab.
-
-Each rule consists of the following items:
-
-- Finding: Description of the finding.
-- Recommendation: Recommendation on what action could be taken for the finding. There are also reference links to documentation containing more information on the finding and/or recommendation.
-- Impact Level: Represents the potential for having an impact on performance.
-
-The following categories of rules are currently supported:
-
-- High resource usage:
-  - High CPU usage: Detects high CPU usage periods, and shows the top CPU usage consumers during those periods.
-  - High memory usage: Detects high memory usage periods, and shows the top memory usage consumers during those periods.
-  - High disk usage: Detects high disk usage periods on physical disks, and shows the top disk usage consumers during those periods.
-  - High resolution disk usage: Shows IOPS, throughput, and I/O latency metrics per 50 milliseconds for each physical disk. It helps to quickly identify disk throttling periods.
-- Knowledge base: Detects if specific Knowledge Base (KB) articles aren't installed.
-- Disk: Detects specific disk configuration settings.
-- SQL: Detects specific SQL settings.
-- Network: Detects specific network settings.
-- Server cluster: Detects specific server cluster configuration settings.
-- System: Detects specific system configuration settings.
-- CLR: Detects long garbage collection pauses on managed processes.
-
-> [!NOTE]
-> Currently, Windows versions that include the .NET Framework 4.5 or later versions are supported.
-
-### Performance counter trace (**)
-
-Collects the following performance counters:
-
-- \System, \Process, \Processor, \Memory, \Thread, \PhysicalDisk, and \LogicalDisk
-- \Cache\Dirty Pages, \Cache\Lazy Write Flushes/sec, \Server\Pool Nonpaged, Failures, and \Server\Pool Paged Failures
-- Selected counters under \Network Interface, \IPv4\Datagrams, \IPv6\Datagrams, \TCPv4\Segments, \TCPv6\Segments,  \Network Adapter, \WFPv4\Packets, \WFPv6\Packets, \UDPv4\Datagrams, \UDPv6\Datagrams, \TCPv4\Connection, \TCPv6\Connection, \Network QoS Policy\Packets, \Per Processor Network Interface Card Activity, and \Microsoft Winsock BSP
-
-#### For SQL Server instances
-
-- \SQL Server:Buffer Manager, \SQLServer:Resource Pool Stats, and \SQLServer:SQL Statistics\
-- \SQLServer:Locks, \SQLServer:General, Statistics
-- \SQLServer:Access Methods
-
-#### For Azure Files
-
-\SMB Client Shares
-
-### Diskspd benchmark trace (***)
-
-Diskspd I/O workload tests (OS Disk [write] and pool drives [read/write])
-
-## Run Performance Diagnostics on your VM using the CLI tool
-
-### What do I have to know before I run the tool?
-
-#### Tool requirements
-
-- This tool must be run on the VM that has the performance issue.
-
-- The following operating systems are supported:
-  - Windows Server 2022
-  - Windows Server 2019
-  - Windows Server 2016
-  - Windows Server 2012 R2
-  - Windows Server 2012
-  - Windows 11
-  - Windows 10
-
-#### Accessing SQL Server
-
-If the VM has SQL Server instances installed on it, PerfInsights uses the account NT AUTHORITY\SYSTEM to access the SQL Server instances to collect configuration information and run rules. The account NT AUTHORITY\SYSTEM must be granted View Server State permission and Connect SQL permission for each instance, otherwise PerfInsights won't be able to connect to the SQL Server and the PerfInsights report won't show any SQL Server related information.
-
-#### Possible problems when you run the tool on production VMs
-
-- For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Xperf or Diskspd, the tool might adversely affect the performance of the VM. These scenarios shouldn't be run in a live production environment.
-
-- For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Diskspd, ensure that no other background activity interferes with the I/O workload.
-
-- By default, the tool uses the temporary storage drive to collect data. If tracing stays enabled for a longer time, the amount of data that is collected might be relevant. This can reduce the availability of space on the temporary disk, and can therefore affect any application that relies on this drive.
-
-### How do I run PerfInsights?
-
-You can run PerfInsights on a virtual machine by installing [Azure Performance Diagnostics VM Extension](performance-diagnostics-vm-extension.md). You can also run it as a standalone tool.
-
-**Install and run PerfInsights from the Azure portal**
-
-For more information about this option, see [Install Azure Performance Diagnostics VM Extension](performance-diagnostics-vm-extension.md#install-the-extension).  
-
-**Run PerfInsights in standalone mode**
-
-To run the PerfInsights tool, follow these steps:
 
 1. Download [PerfInsights.zip](https://aka.ms/perfinsightsdownload).
 
@@ -206,7 +97,7 @@ To run the PerfInsights tool, follow these steps:
 
     :::image type="content" source="media/how-to-use-perfInsights/pi-unlock-file.png" alt-text="Screenshot of PerfInsights Properties, with Unblock highlighted.":::
 
-3. Expand the compressed PerfInsights.zip file into your temporary drive (by default, this is usually the D drive).
+3. Expand the compressed PerfInsights.zip file to your temporary drive.
 
 4. Open Windows command prompt as an administrator, and then run PerfInsights.exe to view the available commandline parameters.
 
@@ -223,47 +114,47 @@ To run the PerfInsights tool, follow these steps:
     PerfInsights /run <ScenarioName> [AdditionalOptions]
     ```
 
-    Look up all the available scenarios and options by using the **/list** command:
+    Use the **/list** command to view the list of supported scenarios:
 
     ```console
     PerfInsights /list
     ```
 
-    These are examples of how to use the CLI tool to run the various [troubleshooting scenarios](#supported-troubleshooting-scenarios):
+Following are examples of running different [troubleshooting scenarios](#supported-troubleshooting-scenarios):
 
-    - Run the performance analysis scenario for 5 mins:
+- Run the performance analysis scenario for 5 mins:
 
-  ```console
-  PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics
-  ```
+    ```console
+    PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics
+    ```
 
     - Run the advanced scenario with Xperf and Performance counter traces for 5 mins:
 
-  ```console
-  PerfInsights /run advanced xp /d 300 /AcceptDisclaimerAndShareDiagnostics
-  ```
+    ```console
+    PerfInsights /run advanced xp /d 300 /AcceptDisclaimerAndShareDiagnostics
+    ```
 
     - Run the benchmark scenario for 5 mins:
 
-  ```console
-  PerfInsights /run benchmark /d 300 /AcceptDisclaimerAndShareDiagnostics
-  ```
+    ```console
+    PerfInsights /run benchmark /d 300 /AcceptDisclaimerAndShareDiagnostics
+    ```
 
     - Run the performance analysis scenario for 5 mins and upload the result zip file to the storage account:
 
-  ```console
-  PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics /sa <StorageAccountName> /sk <StorageAccountKey>
-  ```
+    ```console
+    PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics /sa <StorageAccountName> /sk <StorageAccountKey>
+    ```
 
 
-    >[!Note]
-    >Before running a scenario, PerfInsights prompts the user to agree to share diagnostic information and to agree to the EULA. Use **/AcceptDisclaimerAndShareDiagnostics** option to skip these prompts.
-    >
-    >If you have an active support ticket with Microsoft and running PerfInsights per the request of the support engineer you are working with, make sure to provide the support ticket number using the **/sr** option.
-    >
-    >By default, PerfInsights will try updating itself to the latest version if available. Use **/SkipAutoUpdate** or **/sau** parameter to skip auto update.  
-    >
-    >If the duration switch **/d** is not specified, PerfInsights will prompt you to repro the issue while running vmslow, azurefiles and advanced scenarios.
+    
+    Before running a scenario, PerfInsights prompts the user to agree to share diagnostic information and to agree to the EULA. Use **/AcceptDisclaimerAndShareDiagnostics** option to skip these prompts.
+    
+    If you have an active support ticket with Microsoft and running PerfInsights per the request of the support engineer you are working with, make sure to provide the support ticket number using the **/sr** option.
+    
+    By default, PerfInsights will try updating itself to the latest version if available. Use **/SkipAutoUpdate** or **/sau** parameter to skip auto update.  
+    
+    If the duration switch **/d** is not specified, PerfInsights will prompt you to repro the issue while running vmslow, azurefiles and advanced scenarios.
 
 When the traces or operations are completed, a new file appears in the same folder as PerfInsights. The name of the file is **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip.** You can send this file to the support agent for analysis or open the report inside the zip file to review findings and recommendations.
 
