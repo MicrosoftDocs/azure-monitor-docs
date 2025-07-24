@@ -1,7 +1,7 @@
 ---
 title: Telemetry processor examples - Azure Monitor Application Insights for Java
 description: Explore examples that show telemetry processors in Azure Monitor Application Insights for Java.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
@@ -643,8 +643,6 @@ Let's assume the input log message body is `User account with userId 123456xx fa
 }
 ```
 
-## Frequently asked questions
+## Next steps
 
-### Why doesn't the log processor process log files using TelemetryClient.trackTrace()?
-
-TelemetryClient.trackTrace() is part of the Application Insights Classic SDK bridge, and the log processors only work with the new [OpenTelemetry-based instrumentation](opentelemetry-enable.md).
+* To review frequently asked questions (FAQ), see [Telemetry processors FAQ](application-insights-faq.yml#telemetry-processors)

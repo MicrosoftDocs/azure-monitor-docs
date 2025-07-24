@@ -1,8 +1,8 @@
 ---
 title: ASP.NET performance and event counters
 description: Monitor .NET system and event counters in Application Insights.
-ms.topic: conceptual
-ms.date: 01/31/2025
+ms.topic: how-to
+ms.date: 04/08/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
 ms.reviewer: rijolly
@@ -12,7 +12,7 @@ ms.reviewer: rijolly
 
 [Azure Monitor](..\overview.md) [Application Insights](app-insights-overview.md) supports performance counters and event counters. This guide provides an overview of both, including their purpose, configuration, and usage in .NET applications.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ## Overview
 
@@ -295,23 +295,7 @@ Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a
 
 To set an alert, open the **Alerts** pane and select **Add Alert**.
 
-## Frequently asked questions
+## Next steps
 
-### [Performance counters](#tab/performancecounters)
-
-#### What's the difference between the Exception rate and Exceptions metrics?
-
-* `Exception rate`: The Exception rate is a system performance counter. The CLR counts all the handled and unhandled exceptions that are thrown and divides the total in a sampling interval by the length of the interval. The Application Insights SDK collects this result and sends it to the portal.
-* `Exceptions`: The Exceptions metric counts the `TrackException` reports received by the portal in the sampling interval of the chart. It includes only the handled exceptions where you write `TrackException` calls in your code. It doesn't include all [unhandled exceptions](./asp-net-exceptions.md).
-
-### [Event counters](#tab/eventcounters)
-
-### Can I see EventCounters in Live Metrics?
-
-Live Metrics don't show EventCounters. Use Metric Explorer or Analytics to see the telemetry.
-
-#### After I enabled Application Insights from the Azure Web App Portal, why can't I see event counters?
-
- [Application Insights extension](./azure-web-apps.md) for ASP.NET Core doesn't yet support this feature.
-
----
+-  To review frequently asked questions (FAQ), see [Performance counters FAQ](application-insights-faq.yml#asp-net-performance-counters) and [Event counters FAQ](application-insights-faq.yml#asp-net-event-counters)
+- Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.

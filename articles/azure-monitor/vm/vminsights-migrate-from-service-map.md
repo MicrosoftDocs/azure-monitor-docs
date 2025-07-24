@@ -1,7 +1,7 @@
 ---
 title: Migrate from Service Map to Azure Monitor VM insights
 description: Migrate from Service Map to Azure Monitor VM insights to monitor the performance and health of virtual machines and scale sets, including their running processes and dependencies on other resources.
-ms.topic: conceptual
+ms.topic: upgrade-and-migration-article
 ms.date: 10/29/2024
 ms.reviewer: xpathak
 

@@ -1,7 +1,7 @@
 ---
 title: Add and modify OpenTelemetry in Application Insights
-description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights for .NET, Java, Node.js, and Python applications, including custom attributes, telemetry processors, and log and trace modifications.
-ms.topic: conceptual
+description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights. Includes .NET, Java, Node.js, and Python applications, custom attributes, telemetry processors, and log and trace modifications.
+ms.topic: how-to
 ms.date: 03/23/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
@@ -17,6 +17,9 @@ ms.reviewer: mmcc
 This guide provides instructions on integrating and customizing OpenTelemetry (OTel) instrumentation within [Azure Monitor Application Insights](app-insights-overview.md).
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
+
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
 
 <!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
 
@@ -43,13 +46,16 @@ The distros automatically collect data by bundling OpenTelemetry instrumentation
 
 * `ILogger`
 
+To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `Warning` and `Error` logs to OpenTelemetry/Azure Monitor. OpenTelemetry doesn't control log routing or filtering - your `ILogger` configuration makes these decisions. For more information on configuring `ILogger`, see [Configure logging](/dotnet/core/extensions/logging#configure-logging).
+
+
 For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/extensions/logging) and [code examples](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs).
 
 #### [.NET](#tab/net)
 
 The Azure Monitor Exporter doesn't include any instrumentation libraries.
 
-You can collect dependencies from the [Azure SDKs](https://github.com/Azure/azure-sdk) using the following code sample to manually subscribe to the source.
+You can collect dependencies from the [Azure Software Development Kits (SDKs)](https://github.com/Azure/azure-sdk) using the following code sample to manually subscribe to the source.
 
 ```csharp
 // Create an OpenTelemetry tracer provider builder.
@@ -75,11 +81,13 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
+To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `Warning` and `Error` logs to OpenTelemetry/Azure Monitor. OpenTelemetry doesn't control log routing or filtering - your `ILogger` configuration makes these decisions. For more information on configuring `ILogger`, see [Configure logging](/dotnet/core/extensions/logging#configure-logging).
+
 #### [Java](#tab/java)
 
 **Requests**
 
-* JMS consumers
+* Java Message Service (JMS) consumers
 * Kafka consumers
 * Netty
 * Quartz
@@ -88,7 +96,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 * Spring scheduling
 
 > [!NOTE]
-> Servlet and Netty autoinstrumentation covers the majority of Java HTTP services, including Java EE, Jakarta EE, Spring Boot, Quarkus, and Micronaut.
+> Servlet and Netty autoinstrumentation covers most Java HTTP services, including Java EE, Jakarta EE, Spring Boot, Quarkus, and `Micronaut`.
 
 **Dependencies (plus downstream distributed trace propagation)**
 
@@ -109,22 +117,24 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 **Dependencies (without downstream distributed trace propagation)**
 
-* Cassandra
-* JDBC
-* MongoDB (async and sync)
-* Redis (Lettuce and Jedis)
+* Supports Cassandra
+* Supports Java Database Connectivity (JDBC)
+* Supports MongoDB (async and sync)
+* Supports Redis (Lettuce and Jedis)
 
 **Metrics**
 
 * Micrometer Metrics, including Spring Boot Actuator metrics
-* JMX Metrics
+* Java Management Extensions (JMX) Metrics
 
 **Logs**
 
-* Logback (including MDC properties) ¹ ³
-* Log4j (including MDC/Thread Context properties) ¹ ³
-* JBoss Logging (including MDC properties) ¹ ³
-* java.util.logging ¹ ³
+* Logback (including MDC properties) ¹
+* Log4j (including MDC/Thread Context properties) ¹
+* JBoss Logging (including MDC properties) ¹
+* java.util.logging ¹
+
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 **Default collection**
 
@@ -136,7 +146,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 * [Azure Communication Common](/java/api/overview/azure/communication-common-readme) 1.0.0+
 * [Azure Communication Identity](/java/api/overview/azure/communication-identity-readme) 1.0.0+
 * [Azure Communication Phone Numbers](/java/api/overview/azure/communication-phonenumbers-readme) 1.0.0+
-* [Azure Communication SMS](/java/api/overview/azure/communication-sms-readme) 1.0.0+
+* [Azure Communication SMS (Short Message Service)](/java/api/overview/azure/communication-sms-readme) 1.0.0+
 * [Azure Cosmos DB](/java/api/overview/azure/cosmos-readme) 4.22.0+
 * [Azure Digital Twins - Core](/java/api/overview/azure/digitaltwins-core-readme) 1.1.0+
 * [Azure Event Grid](/java/api/overview/azure/messaging-eventgrid-readme) 4.0.0+
@@ -183,7 +193,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 **Requests for Spring Boot native applications**
 
 * Spring Web
-* Spring Web MVC
+* Spring Web MVC (Model-View-Controller)
 * Spring WebFlux
 
 **Dependencies for Spring Boot native applications**
@@ -202,6 +212,8 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 
 * Logback
 
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
+
 For Quartz native applications, look at the [Quarkus documentation](https://quarkus.io/guides/opentelemetry).
 
 #### [Node.js](#tab/nodejs)
@@ -214,19 +226,19 @@ The following OpenTelemetry Instrumentation libraries are included as part of th
 
 **Dependencies**
 
-* [MongoDB](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-mongodb)
-* [MySQL](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-mysql)
-* [Postgres](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-pg)
-* [Redis](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-redis)
-* [Redis-4](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-redis-4)
-* [Azure SDK](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/instrumentation/opentelemetry-instrumentation-azure-sdk)
+* Supports [MongoDB](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-mongodb)
+* Supports [MySQL](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-mysql)
+* Supports [Postgres](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-pg)
+* Supports [Redis](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-redis)
+* Supports [Redis-4](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-redis-4)
+* Supports [Azure SDK](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/instrumentation/opentelemetry-instrumentation-azure-sdk)
 
 **Logs**
 
 * [Bunyan](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-bunyan)
-<!--
 * [Winston](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-winston)
--->
+
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 Instrumentations can be configured using `AzureMonitorOpenTelemetryOptions`:
 
@@ -280,11 +292,13 @@ useAzureMonitor(options);
 
 **Logs**
 
-* [Python logging library](https://docs.python.org/3/howto/logging.html) ⁴
+* [Python logging library](https://docs.python.org/3/howto/logging.html)
+
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 Examples of using the Python logging library can be found on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples/logging).
 
-Telemetry emitted by Azure SDKS is automatically [collected](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md#officially-supported-instrumentations) by default.
+Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [collected](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md#officially-supported-instrumentations) by default.
 
 ---
 
@@ -292,8 +306,6 @@ Telemetry emitted by Azure SDKS is automatically [collected](https://github.com/
 
 * ¹: Supports automatic reporting of *unhandled/uncaught* exceptions
 * ²: Supports OpenTelemetry Metrics
-* ³: By default, logging is only collected at INFO level or higher. To change this setting, see the [configuration options](./java-standalone-config.md#autocollected-logging).
-* ⁴: By default, logging is only collected when that logging is performed at the WARNING level or higher.
 
 > [!NOTE]
 > The Azure Monitor OpenTelemetry Distros include custom mapping and logic to automatically emit [Application Insights standard metrics](standard-metrics.md).
@@ -305,7 +317,7 @@ Telemetry emitted by Azure SDKS is automatically [collected](https://github.com/
 
 You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
 
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](../includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
+[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
 
 #### [ASP.NET Core](#tab/aspnetcore)
 
@@ -394,7 +406,7 @@ Other OpenTelemetry Instrumentations are available [here](https://github.com/ope
 To add a community instrumentation library (not officially supported/included in Azure Monitor distro), you can instrument directly with the instrumentations. The list of community instrumentation libraries can be found [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
 > [!NOTE]
-> Instrumenting a [supported instrumentation library](.\opentelemetry-add-modify.md?tabs=python#included-instrumentation-libraries) manually with `instrument()` in conjunction with the distro `configure_azure_monitor()` is not recommended. This is not a supported scenario and you may get undesired behavior for your telemetry.
+> Instrumenting a [supported instrumentation library](#included-instrumentation-libraries) manually with `instrument()` and the distro `configure_azure_monitor()` isn't recommended. It's not a supported scenario and you could get undesired behavior for your telemetry.
 
 ```python
 # Import the `configure_azure_monitor()`, `SQLAlchemyInstrumentor`, `create_engine`, and `text` functions from the appropriate packages.
@@ -456,11 +468,11 @@ The following table represents the currently supported custom telemetry types:
 | &nbsp;&nbsp;&nbsp;Events Extension        | Yes           |                |              |            |            |          | Yes    |
 
 > [!NOTE]
-> Application Insights Java 3.x listens for telemetry that's sent to the Application Insights [Classic API](api-custom-events-metrics.md). Similarly, Application Insights Node.js 3.x collects events created with the Application Insights [Classic API](api-custom-events-metrics.md). This makes upgrading easier and fills a gap in our custom telemetry support until all custom telemetry types are supported via the OpenTelemetry API.
+> Application Insights Java 3.x and Application Insights Node.js 3.x collect telemetry from the Application Insights [Classic API](api-custom-events-metrics.md). This behavior simplifies upgrades and temporarily supports custom telemetry until the OpenTelemetry API includes all custom telemetry types.
 
 ### Add custom metrics
 
-In this context, the custom metrics term refers to manually instrumenting your code to collect additional metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
+In this context, the custom metrics term refers to manually instrumenting your code to collect extra metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
 
 The OpenTelemetry API offers six metric "instruments" to cover various metric scenarios and you need to pick the correct "Aggregation Type" when visualizing metrics in Metrics Explorer. This requirement is true when using the OpenTelemetry Metric API to send metrics and when using an instrumentation library.
 
@@ -476,13 +488,13 @@ The following table shows the recommended [aggregation types](../essentials/metr
 | Asynchronous UpDownCounter                           | Sum                                                        |
 
 > [!CAUTION]
-> Aggregation types beyond what's shown in the table typically aren't meaningful.
+> Other aggregation types aren't meaningful in most cases.
 
 The [OpenTelemetry Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#instrument)
 describes the instruments and provides examples of when you might use each one.
 
 > [!TIP]
-> The histogram is the most versatile and most closely equivalent to the Application Insights GetMetric [Classic API](api-custom-events-metrics.md). Azure Monitor currently flattens the histogram instrument into our five supported aggregation types, and support for percentiles is underway. Although less versatile, other OpenTelemetry instruments have a lesser impact on your application's performance.
+> The histogram is the most versatile and most closely equivalent to the Application Insights GetMetric [Classic API](api-custom-events-metrics.md). Azure Monitor currently flattens the histogram instrument into our five supported aggregation types, and support for percentiles is underway. Although less versatile, other OpenTelemetry instruments have a lesser effect on your application's performance.
 
 #### Histogram example
 
@@ -1275,8 +1287,8 @@ span.recordException(e);
 
 #### [Node.js](#tab/nodejs)
 
-The Node.js SDK will only export these manually recorded span-based exceptions to Application Insights as exceptions if they are recorded on the children of
-remote, internal spans, or if the exception is recorded on a top level span.
+The Node.js SDK exports manually recorded span-based exceptions to Application Insights as exceptions only when recorded on a top-level span or a child of a remote or internal span.
+
 
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
@@ -1358,7 +1370,7 @@ You might want to add a custom span in two scenarios. First, when there's a depe
 #### [ASP.NET Core](#tab/aspnetcore)
 
 > [!NOTE]
-> The `Activity` and `ActivitySource` classes from the `System.Diagnostics` namespace represent the OpenTelemetry concepts of `Span` and `Tracer`, respectively. You create `ActivitySource` directly by using its constructor instead of by using `TracerProvider`. Each [`ActivitySource`](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/trace/customizing-the-sdk#activity-source) class must be explicitly connected to `TracerProvider` by using `AddSource()`. That's because parts of the OpenTelemetry tracing API are incorporated directly into the .NET runtime. To learn more, see [Introduction to OpenTelemetry .NET Tracing API](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Api/README.md#introduction-to-opentelemetry-net-tracing-api).
+> The `Activity` and `ActivitySource` classes from the `System.Diagnostics` namespace represent the OpenTelemetry concepts of `Span` and `Tracer`, respectively. You create `ActivitySource` directly by using its constructor instead of by using `TracerProvider`. Each [`ActivitySource`](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/trace/customizing-the-sdk#activity-source) class must be explicitly connected to `TracerProvider` by using `AddSource()`. It's because parts of the OpenTelemetry tracing API are incorporated directly into the .NET runtime. To learn more, see [Introduction to OpenTelemetry .NET Tracing API](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Api/README.md#introduction-to-opentelemetry-net-tracing-api).
 
 
 ```csharp
@@ -1401,7 +1413,7 @@ app.Run();
 #### [.NET](#tab/net)
 
 > [!NOTE]
-> The `Activity` and `ActivitySource` classes from the `System.Diagnostics` namespace represent the OpenTelemetry concepts of `Span` and `Tracer`, respectively. You create `ActivitySource` directly by using its constructor instead of by using `TracerProvider`. Each [`ActivitySource`](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/trace/customizing-the-sdk#activity-source) class must be explicitly connected to `TracerProvider` by using `AddSource()`. That's because parts of the OpenTelemetry tracing API are incorporated directly into the .NET runtime. To learn more, see [Introduction to OpenTelemetry .NET Tracing API](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Api/README.md#introduction-to-opentelemetry-net-tracing-api).
+> The `Activity` and `ActivitySource` classes from the `System.Diagnostics` namespace represent the OpenTelemetry concepts of `Span` and `Tracer`, respectively. You create `ActivitySource` directly by using its constructor instead of by using `TracerProvider`. Each [`ActivitySource`](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/trace/customizing-the-sdk#activity-source) class must be explicitly connected to `TracerProvider` by using `AddSource()`. It's because parts of the OpenTelemetry tracing API are incorporated directly into the .NET runtime. To learn more, see [Introduction to OpenTelemetry .NET Tracing API](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Api/README.md#introduction-to-opentelemetry-net-tracing-api).
 
 ```csharp
 // Create an OpenTelemetry tracer provider builder.
@@ -1603,273 +1615,182 @@ with tracer.start_as_current_span("my request span", kind=SpanKind.SERVER) as sp
 
 ---
 
-<!--
+### Send custom events
 
-### Add Custom Events
+[Application Insights](./app-insights-overview.md) stores custom events in the `customEvents` table. One way to *analyze, filter, and visualize* them is by using the [Application Insights usage experiences](./usage.md#usage-analysis-with-custom-events).
 
-#### Span Events
-
-The OpenTelemetry Logs/Events API is still under development. In the meantime, you can use the OpenTelemetry Span API to create "Span Events", which populate the traces table in Application Insights. The string passed in to addEvent() is saved to the message field within the trace.
-
-> [!CAUTION]
-> Span Events are only recommended for when you need additional diagnostic metadata associated with your span. For other scenarios, such as describing business events, we recommend you wait for the release of the OpenTelemetry Events API.
+If you want to automate the collection of client-side interaction events, you can use the [plugin in the JavaScript SDK](./javascript-feature-extensions.md).
 
 #### [ASP.NET Core](#tab/aspnetcore)
-  
-Currently unavailable.
-  
-#### [.NET](#tab/net)
 
-Currently unavailable.
+Custom events are in Public Preview and use `Azure.Monitor.OpenTelemetry.AspNetCore` 1.3.0-beta.3.
 
-#### [Java](#tab/java)
+> [!IMPORTANT]
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-You can use `opentelemetry-api` to create span events, which populate the `traces` table in Application Insights. The string passed in to `addEvent()` is saved to the `message` field within the trace.
+To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
-1. Add `opentelemetry-api-1.0.0.jar` (or later) to your application:
+```csharp
+// Create a logger factory and configure OpenTelemetry with Azure Monitor
+var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder
+        .AddOpenTelemetry(options =>
+        {
+            options.AddAzureMonitorLogExporter();
+        });
+});
 
-   ```xml
-   <dependency>
-     <groupId>io.opentelemetry</groupId>
-     <artifactId>opentelemetry-api</artifactId>
-     <version>1.0.0</version>
-   </dependency>
-   ```
+// Create a logger for the specified category
+var logger = loggerFactory.CreateLogger(logCategoryName);
 
-1. Add span events in your code:
-
-   ```java
-    import io.opentelemetry.api.trace.Span;
-
-    Span.current().addEvent("eventName");
-   ```
-
-#### [Java native](#tab/java-native)
-
-You can use OpenTelemetry API to create span events, which populate the `traces` table in Application Insights. The string passed in to `addEvent()` is saved to the `message` field within the trace.
-
-Add span events in your code:
-
-   ```java
-    import io.opentelemetry.api.trace.Span;
-
-    Span.current().addEvent("eventName");
-   ```
-
-#### [Node.js](#tab/nodejs)
-
-Currently unavailable.
-  
-#### [Python](#tab/python)
-
-Currently unavailable.
-
----
-
--->
-  
-### Send custom telemetry using the Application Insights Classic API
-
-We recommend you use the OpenTelemetry APIs whenever possible, but there might be some scenarios when you have to use the Application Insights [Classic API](api-custom-events-metrics.md).
-  
-#### [ASP.NET Core](#tab/aspnetcore)
-  
-**Events**
-
-1. Add `Microsoft.ApplicationInsights` to your application.
-
-1. Create a `TelemetryClient` instance:
-
-    > [!NOTE]
-    > It's important to only create once instance of the TelemetryClient per application.
-    
-    ```csharp
-    var telemetryConfiguration = new TelemetryConfiguration { ConnectionString = "" };
-    var telemetryClient = new TelemetryClient(telemetryConfiguration);
-    ```
-
-1. Use the client to send custom telemetry:
-
-    ```csharp
-    telemetryClient.TrackEvent("testEvent");
-    ```
+// Log a custom event with a custom name and additional attribute
+// The 'microsoft.custom_event.name' value will be used as the name of the customEvent
+logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-event-name", "val1");
+```
 
 #### [.NET](#tab/net)
 
-**Events**
+Custom events are in Public Preview and use `Azure.Monitor.OpenTelemetry.Exporter` 1.4.0-beta.3.
 
-1. Add `Microsoft.ApplicationInsights` to your application.
+> [!IMPORTANT]
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-1. Create a `TelemetryClient` instance:
+To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
-    > [!NOTE]
-    > It's important to only create once instance of the TelemetryClient per application.
-    
-    ```csharp
-    var telemetryConfiguration = new TelemetryConfiguration { ConnectionString = "" };
-    var telemetryClient = new TelemetryClient(telemetryConfiguration);
-    ```
+```csharp
+// Create a logger factory and configure OpenTelemetry with Azure Monitor
+var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder
+        .AddOpenTelemetry(options =>
+        {
+            options.AddAzureMonitorLogExporter();
+        });
+});
 
-1. Use the client to send custom telemetry:
+// Create a logger for the specified category
+var logger = loggerFactory.CreateLogger(logCategoryName);
 
-    ```csharp
-    telemetryClient.TrackEvent("testEvent");
-    ```
+// Log a custom event with a custom name and additional attribute
+// The 'microsoft.custom_event.name' value will be used as the name of the customEvent
+logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-event-name", "val1");
+```
 
 #### [Java](#tab/java)
 
-1. Add `applicationinsights-core` to your application:
+To send a `customEvent` with the Java agent, set the `"microsoft.custom_event.name"` attribute on the OpenTelemetry log record.
 
-    ```xml
-    <dependency>
-      <groupId>com.microsoft.azure</groupId>
-      <artifactId>applicationinsights-core</artifactId>
-      <version>3.4.18</version>
-    </dependency>
-    ```
+Depending on whether the application insights java agent is in use, or the automatic configuration SDK, the manner of fetching the OpenTelemetry logger is slightly different. This detail is explained further in the following examples.
 
-1. Create a `TelemetryClient` instance:
-    
-    ```java
-    static final TelemetryClient telemetryClient = new TelemetryClient();
-    ```
+For the application insights java agent: 
+```java
+import io.opentelemetry.api.GlobalOpenTelemetry;
+import io.opentelemetry.api.logs.Logger;
+import io.opentelemetry.api.common.AttributeKey;
+import io.opentelemetry.api.logs.Severity;
+```
 
-1. Use the client to send custom telemetry:
+```java
+Logger logger = GlobalOpenTelemetry.get().getLogsBridge().get("opentelemetry-logger");
 
-    **Events**
-    
-    ```java
-    telemetryClient.trackEvent("WinGame");
-    ```
+logger.logRecordBuilder() 
+	  .setAttribute(AttributeKey.stringKey("microsoft.custom_event.name"),"test-event-name") 
+      .setSeverity(Severity.INFO)
+      .emit();
+```
 
-    **Logs**
-    
-    ```java
-    telemetryClient.trackTrace(message, SeverityLevel.Warning, properties);
-    ```
 
-    **Metrics**
-    
-    ```java
-    telemetryClient.trackMetric("queueLength", 42.0);
-    ```
+For autoconfigure SDK:
+```java 
+import com.azure.monitor.opentelemetry.autoconfigure.AzureMonitorAutoConfigure;
+import com.azure.monitor.opentelemetry.autoconfigure.AzureMonitorAutoConfigureOptions;
+import io.opentelemetry.api.OpenTelemetry;
+import io.opentelemetry.api.common.AttributeKey;
+import io.opentelemetry.api.logs.Logger;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdkBuilder;
+```
+```java
+AutoConfiguredOpenTelemetrySdkBuilder sdkBuilder = AutoConfiguredOpenTelemetrySdk.builder();
+AzureMonitorAutoConfigureOptions options = new AzureMonitorAutoConfigureOptions();
+options.connectionString("<your connection string>");
+     
+AzureMonitorAutoConfigure.customize(sdkBuilder, options);
+OpenTelemetry openTelemetry = sdkBuilder.build().getOpenTelemetrySdk();
+      
+Logger logger = openTelemetry.getLogsBridge().get("opentelemetry-logger");
+logger.logRecordBuilder() 
+	  .setAttribute(AttributeKey.stringKey("microsoft.custom_event.name"),"test-event-name") 
+      .setSeverity(Severity.INFO)
+      .emit();
+```
 
-    **Dependencies**
-    
-    ```java
-    boolean success = false;
-    long startTime = System.currentTimeMillis();
-    try {
-        success = dependency.call();
-    } finally {
-        long endTime = System.currentTimeMillis();
-        RemoteDependencyTelemetry telemetry = new RemoteDependencyTelemetry();
-        telemetry.setSuccess(success);
-        telemetry.setTimestamp(new Date(startTime));
-        telemetry.setDuration(new Duration(endTime - startTime));
-        telemetryClient.trackDependency(telemetry);
-    }
-    ```
-
-    **Exceptions**
-    
-    ```java
-    try {
-        ...
-    } catch (Exception e) {
-        telemetryClient.trackException(e);
-    }
-
+To reliably emit custom events, use the OpenTelemetry API directly. Some logging frameworks don't support appending or parsing the custom events attribute.
 
 #### [Java native](#tab/java-native)
 
-It's not possible to send custom telemetry using the Application Insights Classic API in Java native.
+It's not possible to send a `customEvent` using the `"microsoft.custom_event.name"` attribute in Java native.
 
 #### [Node.js](#tab/nodejs)
 
-If you want to add custom events or access the Application Insights API, replace the @azure/monitor-opentelemetry package with the `applicationinsights` [v3 Beta package](https://www.npmjs.com/package/applicationinsights/v/beta). It offers the same methods and interfaces, and all sample code for @azure/monitor-opentelemetry applies to the v3 Beta package.
+To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object. Other attributes can also be included as needed.
 
-You need to use the `applicationinsights` v3 Beta package to send custom telemetry using the Application Insights classic API. (https://www.npmjs.com/package/applicationinsights/v/beta)
+```typescript
+// Send a customEvent by including the microsoft attribute key in the log.
+// The customEvent name uses the value of that attribute.
+logger.emit({
+  body: 'Hello World!',
+  attributes: {
+    "microsoft.custom_event.name": "test-event-name",
+    "additional_attrs": "val1"
+  },
+});
 
-```javascript
-// Import the TelemetryClient class from the Application Insights SDK for JavaScript.
-const { TelemetryClient } = require("applicationinsights");
-
-// Create a new TelemetryClient instance.
-const telemetryClient = new TelemetryClient();
-```
-
-Then use the `TelemetryClient` to send custom telemetry:
-
-**Events**
-
-```javascript
-// Create an event telemetry object.
-let eventTelemetry = {
-    name: "testEvent"
-};
-
-// Send the event telemetry object to Azure Monitor Application Insights.
-telemetryClient.trackEvent(eventTelemetry);
-```
-
-**Logs**
-
-```javascript
-// Create a trace telemetry object.
-let traceTelemetry = {
-    message: "testMessage",
-    severity: "Information"
-};
-
-// Send the trace telemetry object to Azure Monitor Application Insights.
-telemetryClient.trackTrace(traceTelemetry);
-```
-
-**Exceptions**
-
-```javascript
-// Try to execute a block of code.
-try {
-    ...
-}
-
-// If an error occurs, catch it and send it to Azure Monitor Application Insights as an exception telemetry item.
-catch (error) {
-    let exceptionTelemetry = {
-    exception: error,
-    severity: "Critical"
-    };
-    telemetryClient.trackException(exceptionTelemetry);
-}
+// You can also populate fields like client_IP with attribute `client.address`
+logger.emit({
+  body: 'This entry will have a custom client_IP',
+  attributes: {
+    "microsoft.custom_event.name": "test_event",
+    "client.address": "192.168.1.1"
+  },
+});
 ```
 
 #### [Python](#tab/python)
   
-Unlike other languages, Python doesn't have an Application Insights SDK. You can meet all your monitoring needs with the Azure Monitor OpenTelemetry Distro, except for sending `customEvents`. Until the OpenTelemetry Events API stabilizes, use the [Azure Monitor Events Extension](https://pypi.org/project/azure-monitor-events-extension/0.1.0/) with the Azure Monitor OpenTelemetry Distro to send `customEvents` to Application Insights.
-
-Install the distro and the extension:
-
-```console
-pip install azure-monitor-opentelemetry
-pip install azure-monitor-events-extension
-```
-
-Use the `track_event` API offered in the extension to send customEvents:
+To send a `customEvent` in Python, use the logging library with the `"microsoft.custom_event.name"` attribute in the `extra` parameter.
 
 ```python
-...
-from azure.monitor.events.extension import track_event
+import logging
 from azure.monitor.opentelemetry import configure_azure_monitor
 
-configure_azure_monitor()
+# Set up your application logger
+logger = logging.getLogger("my-app-logger")
 
-# Use the track_event() api to send custom event telemetry
-# Takes event name and custom dimensions
-track_event("Test event", {"key1": "value1", "key2": "value2"})
+# Configure Azure Monitor to collect logs from the specified logger name
+configure_azure_monitor(
+    logger_name="my-app-logger",  # Collect logs from your namespaced logger
+)
 
-input()
-...
+# Log a custom event with a custom name and additional attribute
+# The 'microsoft.custom_event.name' value will be used as the name of the customEvent
+logger.warning(
+    "Hello World!",
+    extra={
+        "microsoft.custom_event.name": "test-event-name",
+        "additional_attrs": "val1"
+    }
+)
+
+# You can also populate fields like client_IP with attribute `client.address`
+logger.info(
+    "This entry will have a custom client_IP",
+    extra={
+        "microsoft.custom_event.name": "test_event",
+        "client.address": "192.168.1.1"
+    }
+)
 ```
 
 ---
@@ -2270,7 +2191,7 @@ Attaching custom dimensions to logs can be accomplished using a [message templat
 
 #### [Java](#tab/java)
 
-Logback, Log4j, and java.util.logging are [autoinstrumented](#send-custom-telemetry-using-the-application-insights-classic-api). Attaching custom dimensions to your logs can be accomplished in these ways:
+Logback, Log4j, and java.util.logging are automatically instrumented. Attaching custom dimensions to your logs can be accomplished in these ways:
 
 * [Log4j 2.0 MapMessage](https://logging.apache.org/log4j/2.0/javadoc/log4j-api/org/apache/logging/log4j/message/MapMessage.html) (a `MapMessage` key of `"message"` is captured as the log message)
 * [Log4j 2.0 Thread Context](https://logging.apache.org/log4j/2.x/manual/thread-context.html)
@@ -2307,7 +2228,7 @@ log.info({
 
 #### [Python](#tab/python)
   
-The Python [logging](https://docs.python.org/3/howto/logging.html) library is [autoinstrumented](.\opentelemetry-add-modify.md?tabs=python#included-instrumentation-libraries). You can attach custom dimensions to your logs by passing a dictionary into the `extra` argument of your logs:
+The Python [logging](https://docs.python.org/3/howto/logging.html) library is [autoinstrumented](#included-instrumentation-libraries). You can attach custom dimensions to your logs by passing a dictionary into the `extra` argument of your logs:
 
 ```python
 ...
@@ -2328,7 +2249,7 @@ You can obtain the `Trace ID` and `Span ID` of the currently active Span using f
 ### [ASP.NET Core](#tab/aspnetcore)
 
 > [!NOTE]
-> The `Activity` and `ActivitySource` classes from the `System.Diagnostics` namespace represent the OpenTelemetry concepts of `Span` and `Tracer`, respectively. That's because parts of the OpenTelemetry tracing API are incorporated directly into the .NET runtime. To learn more, see [Introduction to OpenTelemetry .NET Tracing API](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Api/README.md#introduction-to-opentelemetry-net-tracing-api).
+> The `Activity` and `ActivitySource` classes from the `System.Diagnostics` namespace represent the OpenTelemetry concepts of `Span` and `Tracer`, respectively. It's because parts of the OpenTelemetry tracing API are incorporated directly into the .NET runtime. To learn more, see [Introduction to OpenTelemetry .NET Tracing API](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Api/README.md#introduction-to-opentelemetry-net-tracing-api).
 
 ```csharp
 // Get the current activity.
@@ -2342,7 +2263,7 @@ string spanId = activity?.SpanId.ToHexString();
 ### [.NET](#tab/net)
 
 > [!NOTE]
-> The `Activity` and `ActivitySource` classes from the `System.Diagnostics` namespace represent the OpenTelemetry concepts of `Span` and `Tracer`, respectively. That's because parts of the OpenTelemetry tracing API are incorporated directly into the .NET runtime. To learn more, see [Introduction to OpenTelemetry .NET Tracing API](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Api/README.md#introduction-to-opentelemetry-net-tracing-api).
+> The `Activity` and `ActivitySource` classes from the `System.Diagnostics` namespace represent the OpenTelemetry concepts of `Span` and `Tracer`, respectively. It's because parts of the OpenTelemetry tracing API are incorporated directly into the .NET runtime. To learn more, see [Introduction to OpenTelemetry .NET Tracing API](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Api/README.md#introduction-to-opentelemetry-net-tracing-api).
 
 ```csharp
 // Get the current activity.
@@ -2441,19 +2362,18 @@ span_id = trace.get_current_span().get_span_context().span_id
 
 ### [Java](#tab/java)
 
-* Review [Java autoinstrumentation configuration options](java-standalone-config.md).
+* To review configuration options, see [Java autoinstrumentation configuration options](java-standalone-config.md).
 * To review the source code, see the [Azure Monitor Java autoinstrumentation GitHub repository](https://github.com/Microsoft/ApplicationInsights-Java).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
 * To enable usage experiences, see [Enable web or browser user monitoring](javascript.md).
-* See the [release notes](https://github.com/microsoft/ApplicationInsights-Java/releases) on GitHub.
+* To see release notes, see [release notes](https://github.com/microsoft/ApplicationInsights-Java/releases) on GitHub.
 * To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Java native](#tab/java-native)
 
-* For details on adding and modifying Azure Monitor OpenTelemetry, see [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md).
 * To review the source code, see [Azure Monitor OpenTelemetry Distro in Spring Boot native image Java application](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-starter-monitor) and [Quarkus OpenTelemetry Exporter for Azure](https://github.com/quarkiverse/quarkus-opentelemetry-exporter/tree/main/quarkus-opentelemetry-exporter-azure).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
-* See the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
+* To see the release notes, see [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
 * To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Node.js](#tab/nodejs)
@@ -2469,7 +2389,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 
 * To review the source code and extra documentation, see the [Azure Monitor Distro GitHub repository](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md).
 * To see extra samples and use cases, see [Azure Monitor Distro samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples).
-* See the [release notes](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/CHANGELOG.md) on GitHub.
+* To see the release notes, see [release notes](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/CHANGELOG.md) on GitHub.
 * To install the PyPI package, check for updates, or view release notes, see the [Azure Monitor Distro PyPI Package](https://pypi.org/project/azure-monitor-opentelemetry/) page.
 * To become more familiar with Azure Monitor Application Insights and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure-Samples/azure-monitor-opentelemetry-python).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python).

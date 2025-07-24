@@ -1,7 +1,7 @@
 ---
 title: Set up Prometheus remote write by using Microsoft Entra authentication
 description: Learn how to set up remote write in Azure Monitor managed service for Prometheus. Use Microsoft Entra authentication to send data from a self-managed Prometheus server running in your Azure Kubernetes Server (AKS) cluster or Azure Arc-enabled Kubernetes cluster on-premises or in a different cloud.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.date: 4/18/2024
 ---
@@ -139,7 +139,7 @@ This step is required only if you didn't turn on Azure Key Vault Provider for Se
 
 1. Create `SecretProviderClass` by saving the following YAML to a file named *secretproviderclass.yml*. Replace the values for `userAssignedIdentityID`, `keyvaultName`, `tenantId`, and the objects to retrieve from your key vault. For information about what values to use, see [Provide an identity to access the Azure Key Vault Provider for Secrets Store CSI Driver](/azure/aks/csi-secrets-store-identity-access).
 
-    [!INCLUDE [secret-provider-class-yaml](../includes/secret-procider-class-yaml.md)]
+    [!INCLUDE [secret-provider-class-yaml](includes/secret-procider-class-yaml.md)]
 
 1. Apply `SecretProviderClass` by running the following command on your cluster:
 
@@ -151,14 +151,14 @@ This step is required only if you didn't turn on Azure Key Vault Provider for Se
 
 1. Copy the following YAML and save it to a file. The YAML uses port 8081 as the listening port. If you use a different port, modify that value in the YAML.
 
-    [!INCLUDE [prometheus-sidecar-remote-write-entra-yaml](../includes/prometheus-sidecar-remote-write-entra-yaml.md)]
+    [!INCLUDE [prometheus-sidecar-remote-write-entra-yaml](includes/prometheus-sidecar-remote-write-entra-yaml.md)]
 
 1. Replace the following values in the YAML file:
 
     | Value | Description |
     |:---|:---|
     | `<CLUSTER-NAME>` | The name of your AKS cluster. |
-    | `<CONTAINER-IMAGE-VERSION>` | [!INCLUDE [version](../includes/prometheus-remotewrite-image-version.md)]<br>The remote write container image version.   |
+    | `<CONTAINER-IMAGE-VERSION>` | [!INCLUDE [version](includes/prometheus-remotewrite-image-version.md)]<br>The remote write container image version.   |
     | `<INGESTION-URL>` | The value for **Metrics ingestion endpoint** from the **Overview** page for the Azure Monitor workspace. |
     | `<APP-REGISTRATION -CLIENT-ID>` | The client ID of your application. |
     | `<TENANT-ID>` | The tenant ID of the Microsoft Entra application. |

@@ -3,11 +3,11 @@ title: "Log Analytics tutorial"
 description: Learn how to use Log Analytics in Azure Monitor to build and run a log query and analyze its results in the Azure portal.
 ms.topic: tutorial
 ms.reviewer: ilanawaitser
-ms.date: 09/05/2024
+ms.date: 03/17/2025
 
 ---
 
-# Log Analytics tutorial
+# Tutorial: Use Log Analytics 
 
 Log Analytics is a tool in the Azure portal to edit and run log queries from data collected by Azure Monitor logs and interactively analyze their results. You can use Log Analytics queries to retrieve records that match particular criteria, identify trends, analyze patterns, and provide various insights into your data.
 
@@ -32,7 +32,7 @@ This tutorial uses the [Log Analytics demo environment](https://portal.azure.com
 
 ## Open Log Analytics
 
-Open the [Log Analytics demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), or select **Logs** from the Azure Monitor menu in your subscription. This step sets the initial scope to a Log Analytics workspace so that your query selects from all data in that workspace. If you select **Logs** from an Azure resource's menu, the scope is set to only records from that resource. For details about the scope, see [Log query scope](./scope.md).
+Open the [Log Analytics demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), or select **Logs** from the Azure Monitor menu in your subscription. This step sets the initial scope to a Log Analytics workspace so that your query selects from all data in that workspace. If you select **Logs** from an Azure resource's menu, the scope is set to only record from that resource. For more infornmation, see [Log query scope](./scope.md).
 
 You can view the scope in the upper-left corner of the Logs experience, below the name of your active query tab. If you're using your own environment, you see an option to select a different scope. This option isn't available in the demo environment.
 

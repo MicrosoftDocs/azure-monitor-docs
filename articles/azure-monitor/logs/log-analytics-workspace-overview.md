@@ -1,7 +1,7 @@
 ---
 title: Log Analytics workspace overview
 description: Overview of Log Analytics workspace, which stores data for Azure Monitor Logs.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 07/20/2024
 
 # Customer intent: As a Log Analytics administrator, I want to understand to set up and manage my workspace, so that I can best address my business needs, including data access, cost management, and workspace health. As a Log Analytics user, I want to understand the workspace configuration options available to me, so I can best address my analysis.

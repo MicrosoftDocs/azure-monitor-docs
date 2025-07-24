@@ -2,9 +2,8 @@
 ms.assetid: 
 title: Azure Monitor SCOM Managed Instance self-verification of steps
 description: This article describes the self-verification processes of the Operations Manager admin, Active Directory admin, and network admin.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 05/22/2024
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance

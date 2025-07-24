@@ -1,15 +1,19 @@
 ---
 title: Configure hybrid Kubernetes clusters with Container insights | Microsoft Docs
 description: This article describes how you can configure Container insights to monitor Kubernetes clusters hosted on Azure Stack or other environments.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 08/21/2023
 ms.reviewer: aul
 ---
 
-# Configure hybrid Kubernetes clusters with Container insights
+# Configure hybrid Kubernetes clusters (deprecated) with Container insights
 
 Container insights provides a rich monitoring experience for the Azure Kubernetes Service (AKS). This article describes how to enable monitoring of Kubernetes clusters hosted outside of Azure and achieve a similar monitoring experience.
 
+> [!WARNING]
+> Starting October 1, 2025, the HELM chart-based onboarding workflow for the Container Insights agent will be retired. To ensure your clusters are secure and running smoothly, please migrate to Azure Arc Kubernetes Container Insights Extension. You’ll need to connect your cluster to [Azure Arc for Kubernetes ](/azure/azure-arc/kubernetes/overview)and then enable Container Insights through the [Azure Arc Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release).  
+> [Learn more about the retirement](https://azure.microsoft.com/updates?id=488759).  
+> 
 ## Supported configurations
 
 The following configurations are officially supported with Container insights. If you have a different version of Kubernetes and operating system versions, please open a support ticket..
@@ -233,7 +237,7 @@ To first identify the full resource ID of your Log Analytics workspace that's re
 
        After you've enabled monitoring, it might take about 15 minutes before you can view health metrics for the cluster.
 
-## Install the Helm chart
+## Install the Helm chart (deprecated)
 
 In this section, you install the containerized agent for Container insights. Before you proceed, identify the workspace ID required for the `amalogsagent.secret.wsid` parameter and the primary key required for the `amalogsagent.secret.key` parameter. To identify this information, follow these steps and then run the commands to install the agent by using the Helm chart.
 
@@ -281,7 +285,7 @@ In this section, you install the containerized agent for Container insights. Bef
     --set amalogsagent.domain=opinsights.azure.us,amalogsagent.secret.wsid=<logAnalyticsWorkspaceId>,amalogsagent.secret.key=<logAnalyticsWorkspaceKey>,amalogsagent.env.clusterName=<your_cluster_name> incubator/azuremonitor-containers
     ```
 
-### Enable the Helm chart by using the API model
+### Enable the Helm chart by using the API model (deprecated)
 
 You can specify an add-on in the AKS Engine cluster specification JSON file, which is also referred to as the API model. In this add-on, provide the base64-encoded version of `WorkspaceGUID` and `WorkspaceKey` of the Log Analytics workspace where the collected monitoring data is stored. You can find `WorkspaceGUID` and `WorkspaceKey` by using steps 1 and 2 in the previous section.
 

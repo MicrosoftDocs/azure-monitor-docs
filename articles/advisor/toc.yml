@@ -13,7 +13,7 @@
   - name: Roles and permissions
     href: permissions.md
   - name: Advisor score
-    href: azure-advisor-score.md
+    href: ./advisor-score.md
   - name: Configure recommendations view
     href: view-recommendations.md
   - name: Configure alerts for new recommendations
@@ -48,6 +48,8 @@
     href: advisor-azure-resource-graph.md
   - name: Calculate total cost savings
     href: advisor-how-to-calculate-total-cost-savings.md
+  - name: Use Service Upgrade and Retirement recommendations
+    href: ./advisor-how-to-use-service-upgrade-retirement-recommendations.md
 - name: Recommendations
   items:
   - name: Cost
@@ -120,7 +122,7 @@
   - name: App Service
     href: /azure/app-service/app-service-best-practices
   - name: REST API
-    href: /rest/api/advisor/operation-groups?view=rest-advisor-2023-01-01&preserve-view=true
+    href: /rest/api/advisor/operation-groups
   - name: Azure CLI
     href: /cli/azure/advisor
   - name: PowerShell
@@ -128,7 +130,7 @@
 - name: Resources
   items:
   - name: Azure Roadmap
-    href: https://azure.microsoft.com/roadmap/
+    href: https://techcommunity.microsoft.com/discussions/microsoft-entra/introducing-the-azure-roadmap/113500
   - name: Pricing
     href: https://azure.microsoft.com/pricing/details/advisor/
   - name: Pricing calculator
@@ -137,8 +139,6 @@
     href: https://azure.microsoft.com/updates/?product=advisor
   - name: Regional availability
     href: https://azure.microsoft.com/global-infrastructure/services/?products=advisor
-  - name: Videos
-    href: https://azure.microsoft.com/resources/videos/index/?services=advisor
   - name: Stack Overflow
     href: https://stackoverflow.com/search?q=azure+advisor
   - name: Code samples

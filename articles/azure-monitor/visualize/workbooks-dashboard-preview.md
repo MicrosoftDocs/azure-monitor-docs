@@ -1,7 +1,7 @@
 ---
 title: Azure Workbooks Dashboard preview
 description: Information about the Azure Workbooks Dashboard preview functionality
-ms.topic: conceptual
+ms.topic: article
 ms.date: 10/3/2024
 ---
 

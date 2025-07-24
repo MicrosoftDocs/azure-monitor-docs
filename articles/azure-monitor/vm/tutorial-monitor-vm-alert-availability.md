@@ -1,7 +1,7 @@
 ---
 title: Create availability alert rule for multiple Azure virtual machines (preview)
 description: Create a single alert rule in Azure Monitor to proactively notify you if any virtual machine in a subscription or resource group is unavailable.
-ms.topic: article
+ms.topic: tutorial
 ms.custom: subject-monitoring
 ms.date: 03/04/2025
 ms.reviewer: Xema Pathak

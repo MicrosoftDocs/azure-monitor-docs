@@ -2,9 +2,7 @@
 title: Overview of Azure Monitor alerts
 description: Learn about Azure Monitor alerts, alert rules, action processing rules, and action groups, and how they work together to monitor your system.
 ms.topic: overview 
-ms.date: 01/14/2024
-ms.custom: template-overview 
-ms.reviewer: harelbr
+ms.date: 05/08/2025
 ---
 
 # What are Azure Monitor alerts?
@@ -49,6 +47,7 @@ This table provides a brief description of each alert type. For more information
 |:---------|:---------|
 |[Metric alerts](alerts-types.md#metric-alerts)|Metric alerts evaluate resource metrics at regular intervals. Metrics can be platform metrics, custom metrics, logs from Azure Monitor converted to metrics, or Application Insights metrics. Metric alerts can also apply multiple conditions and dynamic thresholds.|
 |[Log search alerts](alerts-types.md#log-alerts)|Log search alerts allow users to use a Log Analytics query to evaluate resource logs at a predefined frequency.|
+|[Simple log search alerts - preview](alerts-types.md#simple-log-search-alerts---preview) | Simple Log alerts allow users to use a Log Analytics query to evaluate each row individually.|
 |[Activity log alerts](alerts-types.md#activity-log-alerts)|Activity log alerts are triggered when a new activity log event occurs that matches defined conditions. Resource Health alerts and Service Health alerts are activity log alerts that report on your service and resource health.|
 |[Smart detection alerts](alerts-types.md#smart-detection-alerts)|Smart detection on an Application Insights resource automatically warns you of potential performance problems and failure anomalies in your web application. You can migrate smart detection on your Application Insights resource to create alert rules for the different smart detection modules.|
 |[Prometheus alerts](alerts-types.md#prometheus-alerts)|Prometheus alerts are used for alerting on Prometheus metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). The alert rules are based on the PromQL open-source query language.|
@@ -92,11 +91,11 @@ You can [enable recommended out-of-the-box alert rules in the Azure portal](aler
 
 The system compiles a list of recommended alert rules based on:
 
-- The resource provider’s knowledge of important signals and thresholds for monitoring the resource.
+- The resource provider's knowledge of important signals and thresholds for monitoring the resource.
 - Data that tells us what customers commonly alert on for this resource.
 
 > [!NOTE]
-> Recommended alert rules is enabled for:
+> Recommended alert rules are enabled for:
 > - Virtual machines
 > - AKS resources
 > - Log Analytics workspaces
@@ -121,6 +120,16 @@ You can also create resource-centric alerts instead of workspace-centric alerts 
 Log search alert rules that use splitting by dimensions are charged based on the number of time series created by the dimensions resulting from your query. If the data is already collected to a Log Analytics workspace, there is no additional cost. 
 
 If you use metric data at scale in the Log Analytics workspace, pricing will change based on the data ingestion.
+
+### Simple log search alerts - Preview
+
+Simple log search alerts are designed to provide a simpler and faster alternative to traditional log search alerts. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.  
+
+Simple log search alerts use the Kusto Query Language (KQL) but the feature is designed to simplify the query process, making it easier for you to create alerts without extensive KQL knowledge. 
+
+Simple search alerts provide faster alerting compared to traditional log search alerts By evaluating each row individually. Alerts are triggered almost in real-time, allowing for quicker incident response.
+
+[Create a simple log search alert](alerts-create-simple-alert.md).
 
 ### Using Azure policies for alerting at scale
 
@@ -153,4 +162,3 @@ For information about pricing, see [Azure Monitor pricing](https://azure.microso
 - [Learn about action groups](../alerts/action-groups.md)
 - [Learn about alert processing rules](alerts-action-rules.md)
 - [Manage your alerts programmatically](alerts-manage-alert-instances.md#manage-your-alerts-programmatically)
-

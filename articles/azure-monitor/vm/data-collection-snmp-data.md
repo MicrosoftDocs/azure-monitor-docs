@@ -76,7 +76,7 @@ To set up the snmptrapd trap receiver on a Red Hat Enterprise Linux 7 or Oracle 
         ```
 
         > [!NOTE]
-        > snmptrapd logs both traps and daemon messages - for example, service stop and start - to the same log file. In the example above, we’ve defined the log format to start with the word “snmptrap” to make it easy to filter snmptraps from the log later on. 
+        > snmptrapd logs both traps and daemon messages - for example, service stop and start - to the same log file. In the example above, we've defined the log format to start with the word `snmptrap` to make it easy to filter snmptraps from the log later on. 
 
 ## Configure the trap receiver to send trap data to syslog or text file
 

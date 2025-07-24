@@ -1,8 +1,8 @@
 ---
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
-ms.topic: conceptual
-ms.date: 01/30/2025
+ms.topic: concept-article
+ms.date: 03/07/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
@@ -28,11 +28,12 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Windows Server 2019 Core                                 | ✓ |
 | Windows Server 2016                                      | ✓ |
 | Windows Server 2016 Core                                 | ✓ |
+| Windows Server 2012 R2 with an ESU agreement             | ✓ |
 | Windows 11 Client and Pro                                | ✓<sup>1, 2</sup> |
 | Windows 11 Enterprise<br>(including multi-session)       | ✓ |
-| Windows 10 1803 (RS4) and later                         | ✓<sup>1</sup> |
+| Windows 10 1803 (RS4) and later                          | ✓<sup>1</sup> |
 | Windows 10 Enterprise<br>(including multi-session) and Pro<br>(server scenarios only)  | ✓ |
-| Azure Stack HCI                                          | ✓ |
+| Azure Local                                              | ✓ |
 | Windows IoT Enterprise                                   | ✓ |
 
 <sup>1</sup> Requires the Azure Monitor Agent [client installer](./azure-monitor-agent-windows-client.md) for Windows client devices.<br>
@@ -40,18 +41,13 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 
 ## Linux operating systems
 
-> [!CAUTION]
-> CentOS is a Linux distribution that is nearing end of life (EOL) status. Consider your use and planning accordingly. For more information, see the [CentOS EOL guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
-
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
-| AlmaLinux 9                                                 | ✓<sup>2</sup> |
+| AlmaLinux 9                                                 | ✓ |
 | AlmaLinux 8                                                 | ✓<sup>2</sup> |
 | Amazon Linux 2                                              | ✓ |
 | Amazon Linux 2023                                           | ✓ |
 | Azure Linux 3.0                                             | ✓<sup>2</sup> |
-| CentOS Linux 8                                              | ✓ |
-| CentOS Linux 7                                              | ✓<sup>2</sup> |
 | CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
 | Debian 12                                                   | ✓ |
 | Debian 11                                                   | ✓<sup>2</sup> |
@@ -64,7 +60,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Red Hat Enterprise Linux Server 9+                          | ✓ |
 | Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ |
-| Red Hat Enterprise Linux Server 7                           | ✓ |
+| Red Hat Enterprise Linux Server 7.9                         | ✓ |
 | Rocky Linux 9                                               | ✓ |
 | Rocky Linux 8                                               | ✓ |
 | SUSE Linux Enterprise Server 15 SP6                         | ✓<sup>2</sup> |
@@ -116,7 +112,6 @@ Currently supported hardening standards:
 
 | CIS-hardened operating system | Support |
 |:---|:---:|
-| CentOS Linux 7                    | ✓ |
 | Debian 10                         | ✓ |
 | Oracle Linux 8                    | ✓ |
 | Ubuntu 18.04 LTS                  | ✓ |

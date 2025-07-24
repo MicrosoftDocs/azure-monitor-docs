@@ -11,7 +11,7 @@ ms.date: 04/01/2024
 
 This article includes examples of [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to create and configure activity log alerts for Administrative events in Azure Monitor. 
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 ## Activity log alert rule condition for the **Administrative** event category:
 
@@ -57,17 +57,17 @@ This example sets the condition to the **Administrative** category:
       }
     }
   },
-  "resources": [   
+  "resources": [
     {
       "type": "Microsoft.Insights/activityLogAlerts",
       "apiVersion": "2017-04-01",
-      "name": "[parameters('activityLogAlertName')]",      
+      "name": "[parameters('activityLogAlertName')]",
       "location": "Global",
       "properties": {
         "enabled": "[parameters('activityLogAlertEnabled')]",
         "scopes": [
             "[subscription().id]"
-        ],        
+        ],
         "condition": {
           "allOf": [
             {
@@ -100,5 +100,5 @@ This example sets the condition to the **Administrative** category:
 
 ## Next steps
 
-- [Get other sample templates for Azure Monitor](../resource-manager-samples.md).
-- [Learn more about alert rules](./alerts-overview.md).
+* [Get other sample templates for Azure Monitor](../resource-manager-samples.md).
+* [Learn more about alert rules](./alerts-overview.md).

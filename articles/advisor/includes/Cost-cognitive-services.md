@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2025
+ms.date: 04/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Cognitive Services
@@ -65,24 +65,6 @@ Recommendation ID: 4cfb349a-b25a-4bef-a7b4-ff9886dd53b6
 
 
 <!--4cfb349a-b25a-4bef-a7b4-ff9886dd53b6_end-->
-
-<!--b943f4f0-a520-4b48-b546-70eae9d882d0_begin-->
-
-#### Scale down PTU deployments  
-  
-Leverage available unused PTU capacity for alternative use cases or scale down PTU units to avoid unnecessary costs.  
-  
-**Potential benefits**: Apply unused capacity for other use cases.  
-
-**Impact:** Medium
-  
-For more information, see [Azure OpenAI Service Provisioned Throughput Units (PTU) onboarding - Azure AI services ](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: b943f4f0-a520-4b48-b546-70eae9d882d0  
-
-
-<!--b943f4f0-a520-4b48-b546-70eae9d882d0_end-->
 
 <!--c1c98b41-ddf6-4b27-988c-0e8e6359a42a_begin-->
 

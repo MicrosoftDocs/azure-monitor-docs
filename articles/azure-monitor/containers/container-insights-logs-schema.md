@@ -1,8 +1,7 @@
 ---
 title: Configure the ContainerLogV2 schema for Container Insights
 description: Switch your ContainerLog table to the ContainerLogV2 schema.
-ms.subservice: logs
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/19/2024
 ms.reviewer: aul
 ---
@@ -35,7 +34,10 @@ The following table highlights the key differences between using ContainerLogV2 
 <sup>3</sup> DCR configuration requires [managed identity authentication](./container-insights-authentication.md).
 
 >[!NOTE]
-> [Export](../logs/logs-data-export.md) to Event Hub and Storage Account is not supported if the incoming `LogMessage` is not valid JSON. For best performance, emit container logs in JSON format.
+> The `LogMessage` field is dynamic and supports ingesting both JSON and plaintext string formats. 
+[Log data export](../logs/logs-data-export.md) to Event Hub and Storage Account is supported if the incoming `LogMessage` is valid JSON or a valid plain string. 
+>
+> If the `LogMessage` is malformed JSON then those log messages will be ingested with escaping. By default, log messages larger than 16KB are truncated. With [multi-line logging](#multi-line-logging) enabled, log messages larger than 64KB are truncated.
 
 
 ## Enable the ContainerLogV2 schema
@@ -101,7 +103,7 @@ After a few minutes, the `KubernetesMetadata` column should be included with any
 > [!IMPORTANT]
 > If you enabled Grafana using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) then your Grafana instance should already have access to your Azure Monitor workspace for Prometheus metrics. The Kubernetes Logs Metadata dashboard also requires access to your Log Analytics workspace which contains log data. See [How to modify access permissions to Azure Monitor](/azure/managed-grafana/how-to-permissions) for guidance on granting your Grafana instance the Monitoring Reader role for your Log Analytics workspace.
 
-Import the dashboard from the Grafana gallery at [ContainerLogV2 Dashboard](https://grafana.com/grafana/dashboards/20995-azure-monitor-container-insights-containerlogv2/). You can then open the dashboard and select values for DataSource, Subscription, ResourceGroup, Cluster, Namespace, and Labels. 
+Import the dashboard from the Grafana gallery at [ContainerLogV2 Dashboard](https://grafana.com/grafana/dashboards/20995-azure-insights-containers-containerlogv2/). You can then open the dashboard and select values for DataSource, Subscription, ResourceGroup, Cluster, Namespace, and Labels. 
 
 :::image type="content" source="./media/container-insights-logging-v2/grafana-3.png" lightbox="./media/container-insights-logging-v2/grafana-3.png" alt-text="Screenshot that shows grafana dashboard." border="false":::
 

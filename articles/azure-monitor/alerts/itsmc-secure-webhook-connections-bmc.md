@@ -1,7 +1,7 @@
 ---
 title: 'IT Service Management Connector: Secure Webhook in Azure Monitor - Configuration with BMC'
 description: This article shows you how to connect your ITSM products or services with BMC on Secure Webhook in Azure Monitor.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/11/2024
 ms.reviewer: nolavime
 ---

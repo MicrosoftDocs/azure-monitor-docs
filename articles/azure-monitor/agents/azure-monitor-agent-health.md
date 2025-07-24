@@ -1,7 +1,7 @@
 ---
 title: View Azure Monitor Agent Health
 description: Learn how to view Azure Monitor Agent health at scale and troubleshoot issues related to data collection via agents.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/14/2024
 ms.reviewer: shseth
 ---

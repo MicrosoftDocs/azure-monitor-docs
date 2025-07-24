@@ -24,7 +24,6 @@ Where applicable, the article provides examples of querying data using both Kust
 > [!NOTE]
 > If you're collecting data from at least one virtual machine, you can work through this exercise in your own environment. For other scenarios, use our [demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), which includes plenty of sample data.
 
-
 ## Tutorial video
 
 > [!NOTE]
@@ -34,7 +33,7 @@ Where applicable, the article provides examples of querying data using both Kust
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=ea873b8b-3e6e-4459-989b-26a2b664acae]
 
-[!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
+[!INCLUDE [log-analytics-query-permissions](includes/log-analytics-query-permissions.md)]
 
 ## Structure a query
 

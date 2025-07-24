@@ -1,7 +1,7 @@
 ---
 title: Integrate Log Analytics and Excel
 description: Get a Log Analytics query into Excel and refresh results inside Excel. 
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: ron.frenkel
 ms.date: 12/08/2024
 
@@ -21,11 +21,11 @@ To integrate Log Analytics and Excel, you need:
 - [Excel](https://www.microsoft.com/en-us/microsoft-365/excel) local client application.
 - A Log Analytics workspace that has some data. If needed, [create a diagnostic setting to send data to a Log Analytics workspace](../essentials/create-diagnostic-settings.md).
 
-[!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
+[!INCLUDE [log-analytics-query-permissions](includes/log-analytics-query-permissions.md)]
 
 ## Create your M query in Log Analytics 
 
-1. **Create and run your query** in Log analytics as you normally would. Don’t worry if you hit the number of records limitation in the user interface.  We recommend you use relative dates - like the ‘ago’ function or the UI time picker - so Excel refreshes the right set of data.
+1. **Create and run your query** in Log analytics as you normally would. Don't worry if you hit the number of records limitation in the user interface.  We recommend you use relative dates - like the `ago` function or the UI time picker - so Excel refreshes the right set of data.
   
 2. **Export Query** - Once you are happy with the query and its results, export the query to M using Log Analytics **Export to Power BI (M query)** menu choice under the *Export* menu:
 
@@ -35,7 +35,7 @@ To integrate Log Analytics and Excel, you need:
 
 Choosing this option downloads a .txt file containing the M code you can use in Excel.
 
-The query shown above exports the following M code. Here’s an example of the M code exported for the query in our example:
+The query shown above exports the following M code. Here's an example of the M code exported for the query in our example:
 
 ```m
 /*
@@ -104,10 +104,10 @@ To import the query.
 > [!Note]
 > If the number of records is less than expected, the volume of the results might exceeded the 61MiB limit. Try using `project` or `project-away` in your query to limit the columns to the one you need.
 
-##	Refreshing  data
+##    Refreshing  data
 
 You can refresh your data directly from Excel. In the **Data** menu group in the Excel ribbon, select the **Refresh** button.
  
 ## Next steps
 
-For more information about Excel’s integrations with external data sources, see [Import data from external data sources (Power Query)](https://support.office.com/article/import-data-from-external-data-sources-power-query-be4330b3-5356-486c-a168-b68e9e616f5a)
+For more information about Excel's integrations with external data sources, see [Import data from external data sources (Power Query)](https://support.office.com/article/import-data-from-external-data-sources-power-query-be4330b3-5356-486c-a168-b68e9e616f5a)

@@ -4,7 +4,7 @@ description: Full list of available cost recommendations in Advisor.
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 02/10/2025
+ms.date: 06/24/2025
 ---
 
 # Cost recommendations
@@ -26,17 +26,15 @@ Azure Advisor helps you optimize and reduce your overall Azure spend by identify
 
 [!INCLUDE [Cost-azure-data-explorer.md](./includes/Cost-azure-data-explorer.md)]
 
-[!INCLUDE [Cost-azure-database-for-mariadb.md](./includes/Cost-azure-database-for-mariadb.md)]
-
 [!INCLUDE [Cost-azure-database-for-mysql.md](./includes/Cost-azure-database-for-mysql.md)]
 
 [!INCLUDE [Cost-azure-databricks.md](./includes/Cost-azure-databricks.md)]
 
+[!INCLUDE [Cost-azure-kubernetes-service-(aks).md](./includes/Cost-azure-kubernetes-service-(aks).md)]
+
 [!INCLUDE [Cost-azure-monitor.md](./includes/Cost-azure-monitor.md)]
 
 [!INCLUDE [Cost-azure-site-recovery.md](./includes/Cost-azure-site-recovery.md)]
-
-[!INCLUDE [Cost-azure-spring-apps.md](./includes/Cost-azure-spring-apps.md)]
 
 [!INCLUDE [Cost-azure-synapse-analytics.md](./includes/Cost-azure-synapse-analytics.md)]
 

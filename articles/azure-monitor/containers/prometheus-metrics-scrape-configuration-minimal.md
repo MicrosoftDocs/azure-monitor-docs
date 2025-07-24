@@ -1,7 +1,7 @@
 ---
 title: Minimal Prometheus ingestion profile in Azure Monitor
 description: Describes minimal ingestion profile in Azure Monitor managed service for Prometheus and how you can configure it to collect more data.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 2/28/2024
 ms.reviewer: aul
 ---
@@ -31,6 +31,7 @@ Following targets are available to scrape, but scraping isn't enabled (**disable
 - `controlplane-cluster-autoscaler` (`job=controlplane-cluster-autoscaler`)
 - `controlplane-kube-scheduler` (`job=controlplane-kube-scheduler`)
 - `controlplane-kube-controller-manager` (`job=controlplane-kube-controller-manager`)
+- `controlplane-node-auto-provisioning` (`job=controlplane-node-auto-provisioning`)
 
 > [!NOTE]
 > The default scrape frequency for all default targets and scrapes is `30 seconds`. You can override it per target using the [ama-metrics-settings-configmap](https://aka.ms/azureprometheus-addon-settings-configmap) under `default-targets-scrape-interval-settings` section.
@@ -193,6 +194,9 @@ The following metrics are allow-listed with `minimalingestionprofile=true` for d
 - `node_exporter_build_info`
 - `node_time_seconds`
 - `node_uname_info"`
+  
+> [!NOTE]
+> The controlplane-apiserver and controlplane-etcd are currently in preview and require enabling the flag. Follow the documentation [here](/azure/aks/control-plane-metrics-monitor).
 
 **controlplane-apiserver**<br>
 - `apiserver_request_total`
@@ -331,6 +335,14 @@ The following are metrics that are allow-listed with `minimalingestionprofile=tr
 - `rest_client_request_duration_seconds`
 - `rest_client_requests_total`
 - `workqueue_depth`
+
+**controlplane-node-auto-provisioning**<br>
+- `karpenter_pods_state`
+- `karpenter_nodes_created_total`
+- `karpenter_nodes_terminated_total`
+- `karpenter_nodeclaims_disrupted_total`
+- `karpenter_voluntary_disruption_eligible_nodes`
+- `karpenter_voluntary_disruption_decisions_total`
 
 ## Next steps
 

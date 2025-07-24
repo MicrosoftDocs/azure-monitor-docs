@@ -1,15 +1,14 @@
 ---
 title: Generate load and view Application Insights Profiler for .NET data
 description: Generate load to your Azure service to view the .NET Profiler data
-ms.contributor: charles.weininger
-ms.topic: conceptual
-ms.date: 07/11/2024
+ms.topic: how-to
+ms.date: 03/24/2025
 ms.reviewer: charles.weininger
 ---
 
 # View Application Insights Profiler for .NET data
 
-Let's say you're running a web performance test. You'll need traces to understand how your web app is running under load. In this article, you'll:
+Let's say you're running a web performance test. You'll need traces to understand how your web app is running under load. For the .NET Profiler to upload traces, your service must be actively handling requests. In this article, you'll:
 
 > [!div class="checklist"]
 > - Generate traffic to your web app by starting a web performance test or starting a Profiler on-demand session.
@@ -17,8 +16,6 @@ Let's say you're running a web performance test. You'll need traces to understan
 > - Learn how to read the Profiler performance data and call stack.
 
 ## Generate traffic to your Azure service
-
-For .NET Profiler to upload traces, your service must be actively handling requests. 
 
 If you've newly enabled the Profiler for .NET, run a short [load test with Azure Load Testing](/azure/load-testing/quickstart-create-and-run-load-test). 
 
@@ -53,7 +50,7 @@ The trace explorer displays the following information:
 | Thread time | The time interval between the start of the operation and the end of the operation. |
 | Timeline | The time when the function or event was running in relation to other functions. |
 
-## How to read performance data
+## Read performance data
 
 The .NET Profiler uses a combination of sampling methods and instrumentation to analyze your application's performance. While performing detailed collection, the .NET Profiler:
 

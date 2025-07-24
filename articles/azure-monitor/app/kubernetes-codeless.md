@@ -1,7 +1,7 @@
 ---
 title: Monitor applications on AKS with Azure Monitor Application Insights (Preview)
 description: Azure Monitor integrates seamlessly with your application running on Azure Kubernetes Service and allows you to spot the problems with your apps quickly.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-extended-java
 ms.date: 04/03/2025
 ms.reviewer: abinetabate
@@ -30,17 +30,25 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 
 [!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
 
-To install the aks-preview extension, run the following command:
+Install the `aks-preview` extension:
 
 ```azurecli
 az extension add --name aks-preview
 ```
 
-Run the following command to update to the latest version of the extension released:
+Update to the latest version of the extension:
 
 ```azurecli
 az extension update --name aks-preview
 ```
+
+Verify that the installed Azure CLI version meets the requirement in the [Prerequisites](#prerequisites) section:
+
+```azurecli
+az version
+```
+
+If the version doesn't meet the requirement, follow the steps mentioned earlier to install and update Azure CLI.
 
 ## Register the `AzureMonitorAppMonitoringPreview` feature flag
 
@@ -92,9 +100,7 @@ metadata:
   namespace: mynamespace1
 spec:
   settings:
-    autoInstrumentationPlatforms: # required
-      - Java
-      - NodeJs
+    autoInstrumentationPlatforms: []
   destination: # required
     applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
 ```
@@ -128,19 +134,13 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
       namespace: mynamespace1
     spec:
       settings:
-        autoInstrumentationPlatforms: # required
-          - Java
-          - NodeJs
+        autoInstrumentationPlatforms: []
       destination: # required
         applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
     ```
     
     At a minimum, the following configuration is required:
     - `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource.
-
-    > [!TIP]
-    > `spec.settings.autoInstrumentationPlatforms` is ignored in nondefault _Instrumentation_ custom resources. The annotation that links a deployment to the custom resource determines the language.
-
 
 3. Associate each deployment with the appropriate custom resource using [annotations](#annotations). The annotation overrides the language set in the custom resource.
 
@@ -260,89 +260,8 @@ AKS Clusters can be prepared for this feature during cluster creation. Run the f
 az aks create --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --generate-ssh-keys
 ```
 
-
-## Frequently asked questions
-
-#### Does AKS autoinstrumentation support custom metrics?
-
-If you want custom metrics in Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro.](opentelemetry-enable.md)
-
-Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics, then they flow through when autoinstrumentation is enabled.
-
-#### Does AKS autoinstrumentation work with applications instrumented with an Open Source Software (OSS) OpenTelemetry SDK?
-
-AKS autoinstrumentation can disrupt the telemetry sent to third parties by an OSS OpenTelemetry SDK.
-
-#### Can AKS autoinstrumentation coexist with manual instrumentation?
-
-AKS autoinstrumentation is designed to coexist with both manual instrumentation options: the Application Insights classic API SDK and OpenTelemetry Distro.
-
-It always prevents duplicate data and ensures custom metrics work.
-
-Refer to this chart to determine when autoinstrumentation or manual instrumentation takes precedence.
-
-| Language | Precedence             |
-|----------|------------------------|
-| Node.js  | Manual instrumentation |
-| Java     | Autoinstrumentation    |
-
-#### How do I ensure I'm using the latest and most secure versions of Azure Monitor OpenTelemetry Distro?
-
-Vulnerabilities detected in the Azure Monitor OpenTelemetry Distro are prioritized, fixed, and released in the next version.
-
-AKS autoinstrumentation injects the latest version of the Azure Monitor OpenTelemetry Distro into your application pods every time your deployment is changed or restarted.
-
-The OpenTelemetry Distro can become vulnerable on deployments that aren't changed or restarted for extended periods of time. For this reason, we suggest updating or restarting deployments weekly to ensure a recent version of the Distro is being used.
-
-#### How do I learn more about the Azure Monitor OpenTelemetry Distro?
-
-This feature achieves autoinstrumentation by injecting Azure Monitor OpenTelemetry Distro into application pods. 
-
-For Java, this feature integrates the standalone Azure Monitor OpenTelemetry Distro for Java. See our [Java distro documentation](opentelemetry-enable.md?tabs=java) to learn more about the Java instrumentation binary. 
-
-For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. For more information, see [Node.js distro documentation](opentelemetry-enable.md?tabs=nodejs). Keep in mind that we don't have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code based configurations steps related to manual instrumentation. However, everything else in our distro documentation such as default settings, environment variable configurations, etc. is applicable to this feature.
-
-## Troubleshooting
-
-#### Missing telemetry
-
-The following steps can help to resolve problems when no data appears in your Application Insights workspace-based resource.
-
-1. Confirm the pod is in the running state.
-
-2. Verify the deployment is instrumented.
-    
-    Check the `monitor.azure.com/instrumentation` annotation on the deployment itself and the latest replica set that belongs to it.
-    
-    The annotation should be present with proper JSON in the following pattern: `{"crName": "crName1","crResourceVersion": "20177993","platforms":["Java"]}`
-
-    If the annotation **isn't present**, then the deployment isn't instrumented and the following steps need to be completed.
-    
-    1. Prepare the cluster. For more information, see [Prepare the cluster](#prepare-a-cluster).
-    2. Confirm your _Instrumentation_ custom resource is in the correct namespace as the deployment.
-    3. Confirm your _Instrumentation_ custom resource contains the correct connection string and instrumentation platform.
-    4. Restart the deployment. For more information, see [Restart deployment](#restart-deployment).
-    
-    If the annotation **is present**, then the deployment is instrumented and you should proceed to the next step.
-
-3. Check for networking errors in the SDK log located in the pod’s logs volume, `/var/log/applicationinsights`.
-    
-    As an example, the following errors indicate a connectivity problem.
-    
-    - `Ingestion endpoint could not be reached.`
-    - `Error: getaddrinfo ENOTFOUND eastus2-3.in.applicationinsights.azure.com`
-    - `getaddrinfo ENOTFOUND eastus2-3.in.applicationinsights.azure.com`
-    
-    If this type of error exists, sign into the container and test connectivity to the endpoint.
-    
-    `kubectl exec -ti customer-java-1-1234567890-abcde -- /bin/bash`
-    
-    If connectivity can't be established, then troubleshoot the network connectivity problem such as a firewall or name resolution issue.
-
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
-
 ## Next steps
-
-* Learn more about [Azure Monitor](../overview.md) and [Application Insights](./app-insights-overview.md).
-* See what [Application Map](./app-map.md?tabs=net) can do for your business.
+- To review frequently asked questions (FAQ), see [Autoinstrumentation for Azure Kubernetes Service FAQ](application-insights-faq.yml#autoinstrumentation-for-azure-kubernetes-service)
+- To review our dedicated troubleshooting guide, see [Troubleshooting autoinstrumentation for Azure Kubernetes Service](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-aks-autoinstrumentation).
+- Learn more about [Azure Monitor](../overview.md) and [Application Insights](./app-insights-overview.md).
+- See what [Application Map](./app-map.md?tabs=net) can do for your business.

@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor workbook grid visualizations
 description: Learn about all the Azure Monitor workbook grid visualizations.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/17/2024
 ---
 

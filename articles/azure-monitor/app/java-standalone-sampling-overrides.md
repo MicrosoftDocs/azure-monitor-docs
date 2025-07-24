@@ -1,7 +1,7 @@
 ---
 title: Sampling overrides - Azure Monitor Application Insights for Java
 description: Learn to configure sampling overrides in Azure Monitor Application Insights for Java.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
@@ -420,24 +420,6 @@ you have an issue with the first regex and read [this regex documentation](https
 If it doesn't work with `.*`, you might have a syntax issue in your `application-insights.json file`. Look at the Application Insights logs and see if you notice
 warning messages.
 
-## Frequently asked questions
+## Next steps
 
-#### Do I need to use manual instrumentation to enable Sampling Overrides?
-
-No, Sampling Overrides is now generally available (GA) and can be used with both autoinstrumentation and manual instrumentation.
-
-#### How do I configure Sampling Overrides when using Azure App Service with autoinstrumentation?
-
-If you use autoinstrumentation, update the `applicationinsights.json` file in the Azure portal.
-
-#### Is it necessary to manually upload the Application Insights agent file for Sampling Overrides?
-
-For autoinstrumentation, no manual agent upload is required. However, for manual instrumentation, you still need to include the Application Insights agent JAR file and configuration files in your deployment package.
-
-#### What is the difference between "local development" and "application server" in the context of manual instrumentation?
-
-Local development refers to the environment where the app is being built or tested, such as a developer’s machine or an Azure Cloud Shell instance. Application server refers to the web server running the application, such as Tomcat 11 in an Azure App Service environment. When using manual instrumentation, you must ensure that the agent JAR file is correctly placed on the application server.
-
-#### If I'm using an Azure App Service with a Java runtime (for example, Tomcat 11), how do I configure Sampling Overrides?
-
-For autoinstrumentation, you can configure Sampling Overrides via the Azure portal. If using manual instrumentation, you should place the Application Insights agent JAR in the appropriate directory and include the applicationinsights.json file with your desired sampling settings.
+- To review frequently asked questions (FAQ), see [Sampling overrides FAQ](application-insights-faq.yml#sampling-overrides---application-insights-for-java).

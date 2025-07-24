@@ -1,9 +1,9 @@
 ---
 title: Monitor applications running on Azure Functions with Application Insights - Azure Monitor | Microsoft Docs
 description: Azure Monitor integrates with your Azure Functions application, allowing performance monitoring and quickly identifying problems.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-extended-java, devx-track-python, devx-track-js
-ms.date: 08/24/2024
+ms.date: 07/30/2025
 ms.reviewer: abinetabate
 ---
 
@@ -78,7 +78,7 @@ Your Java functions might have slow startup times if you adopted this feature be
     APPLICATIONINSIGHTS_ENABLE_AGENT: true
     ```
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 #### Duplicate logs
 

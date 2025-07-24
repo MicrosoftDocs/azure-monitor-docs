@@ -1,7 +1,7 @@
 ---
 title: Monitor multiple time series in a single metric alert rule
 description: Alert at scale by using a single alert rule for multiple time series.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/12/2024
 ms.reviewer: harelbr
 ---
@@ -37,7 +37,7 @@ An example of such an alert rule, with only the relevant properties shown:
 
 For this alert rule, a single metric time series is monitored:
 
--	Percentage CPU where *Resource*=’VM-a’ > 80%
+-	Percentage CPU where *Resource*='VM-a' > 80%
 
 :::image type="content" source="media/alerts-metric-multiple-time-series-single-rule/simple-alert-rule.png" lightbox="media/alerts-metric-multiple-time-series-single-rule/simple-alert-rule.png" alt-text="Screenshot that shows an alert rule on a single time series.":::
 
@@ -62,8 +62,8 @@ An example of such an alert rule:
 
 For this alert rule, two metric time series are monitored separately:
 
--	Percentage CPU where *Resource*=’VM-a’ > 80%
--	Percentage CPU where *Resource*=’myVM2’ > 80%
+-	Percentage CPU where *Resource*='VM-a' > 80%
+-	Percentage CPU where *Resource*='myVM2' > 80%
 
 :::image type="content" source="media/alerts-metric-multiple-time-series-single-rule/multi-resource-alert-rule.png" lightbox="media/alerts-metric-multiple-time-series-single-rule/multi-resource-alert-rule.png" alt-text="Screenshot that shows a multi-resource alert rule.":::
 
@@ -99,15 +99,15 @@ For example:
 
 For this alert rule, two metric time series are being monitored:
 
-- The *Percentage CPU* where *Resource*=’VM-a’ > 80%.
-- The *Network In Total* where *Resource*=’VM-a’ > 20 MB.
+- The *Percentage CPU* where *Resource*='VM-a' > 80%.
+- The *Network In Total* where *Resource*='VM-a' > 20 MB.
 
 :::image type="content" source="media/alerts-metric-multiple-time-series-single-rule/multi-condition-alert-rule.png" lightbox="media/alerts-metric-multiple-time-series-single-rule/multi-condition-alert-rule.png" alt-text="Screenshot that shows a multi-condition alert rule.":::
 
 An AND operator is used between the conditions. The alert rule fires an alert when *all* conditions are met. The fired alert resolves if at least one of the conditions is no longer met.
 
 > [!NOTE]
-> There are restrictions when you use dimensions in an alert rule with multiple conditions. For more information, see [Restrictions when using dimensions in a metric alert rule with multiple conditions](alerts-create-metric-alert-rule.yml#restrictions-when-you-use-dimensions-in-a-metric-alert-rule-with-multiple-conditions).
+> There are restrictions when you use dimensions in an alert rule with multiple conditions. For more information, see [Restrictions when using dimensions in a metric alert rule with multiple conditions](alerts-create-metric-alert-rule.md#restrictions-when-you-use-dimensions-in-a-metric-alert-rule-with-multiple-conditions).
 
 ## Multiple dimensions (multi-dimension)
 
@@ -126,9 +126,9 @@ An example of an alert rule monitoring multiple dimensions is:
 
 For this alert rule, three metric time series are being monitored:
 
-- Transactions where *Resource*=’mystorage1’ and *API Name*=’EntityGroupTransaction’ > 80
-- Transactions where *Resource*=’mystorage1’ and *API Name*=’GetBlob’ > 80
-- Transactions where *Resource*=’mystorage1’ and *API Name*=’PutPage’ > 80
+- Transactions where *Resource*='mystorage1' and *API Name*='EntityGroupTransaction' > 80
+- Transactions where *Resource*='mystorage1' and *API Name*='GetBlob' > 80
+- Transactions where *Resource*='mystorage1' and *API Name*='PutPage' > 80
 
 :::image type="content" source="media/alerts-metric-multiple-time-series-single-rule/multi-dimension-1.png" lightbox="media/alerts-metric-multiple-time-series-single-rule/multi-dimension-1.png" alt-text="Screenshot that shows a multi-dimension alert rule with values from one dimension.":::
 
@@ -146,12 +146,12 @@ An example of this type of alert rule:
 
 For this alert rule, six metric time series are being monitored separately:
 
-- Transactions where *Resource*=’myStorage1’ and *API Name*=’GetBlob’ and *Authentication*=’SAS’ > 80
-- Transactions where *Resource*=’myStorage1’ and *API Name*=’GetBlob’ and *Authentication*=’AccountKey’ > 80
-- Transactions where *Resource*=’myStorage1’ and *API Name*=’DeleteBlob’ and *Authentication*=’SAS’ > 80
-- Transactions where *Resource*=’myStorage1’ and *API Name*=’DeleteBlob’ and *Authentication*=’AccountKey’ > 80
-- Transactions where *Resource*=’myStorage1’ and *API Name*=’PutPage’ and *Authentication*=’SAS’ > 80
-- Transactions where *Resource*=’myStorage1’ and *API Name*=’PutPage’ and *Authentication*=’AccountKey’ > 80
+- Transactions where *Resource*='myStorage1' and *API Name*='GetBlob' and *Authentication*='SAS' > 80
+- Transactions where *Resource*='myStorage1' and *API Name*='GetBlob' and *Authentication*='AccountKey' > 80
+- Transactions where *Resource*='myStorage1' and *API Name*='DeleteBlob' and *Authentication*='SAS' > 80
+- Transactions where *Resource*='myStorage1' and *API Name*='DeleteBlob' and *Authentication*='AccountKey' > 80
+- Transactions where *Resource*='myStorage1' and *API Name*='PutPage' and *Authentication*='SAS' > 80
+- Transactions where *Resource*='myStorage1' and *API Name*='PutPage' and *Authentication*='AccountKey' > 80
 
 :::image type="content" source="media/alerts-metric-multiple-time-series-single-rule/multi-dimension-2.png" lightbox="media/alerts-metric-multiple-time-series-single-rule/multi-dimension-2.png" alt-text="Screenshot that shows a multi-dimension alert rule with values from multiple dimensions.":::
 

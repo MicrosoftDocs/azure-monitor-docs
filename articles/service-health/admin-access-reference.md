@@ -1,15 +1,16 @@
 ---
 title: Roles with tenant admin access
 description: This article defines the tenant roles with access to tenant scope view.
-ms.topic: conceptual
-ms.date: 06/10/2022
+ms.topic: article
+ms.date: 07/22/2025
 ---
 
 # Roles with tenant admin access
+## Overview
+This document provides a comprehensive list of Microsoft Entra built-in roles that grant tenant-level administrative access in Azure. This information is useful if you're an administrator who manages access and permissions across tenants.
 
-This document defines all of the roles with tenant admin access, which grant permission to the tenant scope view.
 
-For descriptions of each role, see [Microsoft Entra built-in roles](/azure/active-directory/roles/permissions-reference).
+For descriptions of each role, see [Microsoft Entra built-in roles](/azure/active-directory/roles/permissions-reference). Each role is linked to its description and permissions, helping you understand what access and capabilities each role provides.
 
 |**Role**  |
 |---------|

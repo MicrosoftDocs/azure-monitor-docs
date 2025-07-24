@@ -2,7 +2,7 @@
 title: Design Azure Monitor Private Link configuration
 description: This article shows how to design your Azure Private Link setup
 ms.reviewer: noakuper
-ms.topic: conceptual
+ms.topic: article
 ms.date: 10/23/2024
 ---
 
@@ -12,7 +12,7 @@ When you create an [Azure Monitor Private Link Scope (AMPLS)](./private-link-sec
 
 ## AMPLS limits
 
-[!INCLUDE [ampls-limitations](../includes/ampls-limitations.md)]
+[!INCLUDE [ampls-limitations](../fundamentals//includes/ampls-limitations.md)]
 
 ## Plan by network topology
 
@@ -59,7 +59,7 @@ This mode allows the virtual network to reach only private link resources in the
 
 ### Open access mode
 
-This mode allows the virtual network to reach both private link resources and resources not in the AMPLS (if they [accept traffic from public networks](./private-link-design.md#control-network-access-to-ampls-resources)). The Open access mode doesn't prevent data exfiltration, but it still offers the other benefits of private links. Traffic to private link resources is sent through private endpoints before it is validated and then sent over the Microsoft backbone. The Open mode is useful for mixed mode where some resources are accessed publicly and others accessed over a private link. It can also be useful during a gradual onboarding process.
+This mode allows the virtual network to reach both private link resources and resources not in the AMPLS (if they [accept traffic from public networks](#control-network-access-to-ampls-resources)). The Open access mode doesn't prevent data exfiltration, but it still offers the other benefits of private links. Traffic to private link resources is sent through private endpoints before it is validated and then sent over the Microsoft backbone. The Open mode is useful for mixed mode where some resources are accessed publicly and others accessed over a private link. It can also be useful during a gradual onboarding process.
  
 :::image type="content" source="./media/private-link-security/ampls-open-access-mode.png" lightbox="./media/private-link-security/ampls-open-access-mode.png" alt-text="Diagram that shows the AMPLS Open access mode." border="false":::
 
@@ -69,7 +69,7 @@ This mode allows the virtual network to reach both private link resources and re
 ### Set access modes for specific networks
 The access modes set on the AMPLS resource affect all networks, but you can override these settings for specific networks.
 
-In the following diagram, VNet1 uses the Open mode and VNet2 uses the Private Only mode. Requests from VNet1 can reach Workspace 1 and Component 2 over a private link. Requests can reach Component 3 only if it [accepts traffic from public networks](./private-link-design.md#control-network-access-to-ampls-resources). VNet2 requests can't reach Component 3.
+In the following diagram, VNet1 uses the Open mode and VNet2 uses the Private Only mode. Requests from VNet1 can reach Workspace 1 and Component 2 over a private link. Requests can reach Component 3 only if it [accepts traffic from public networks](#control-network-access-to-ampls-resources). VNet2 requests can't reach Component 3.
 
 :::image type="content" source="./media/private-link-security/ampls-mixed-access-modes.png" lightbox="./media/private-link-security/ampls-mixed-access-modes.png" alt-text="Diagram that shows mixed access modes." border="false":::
 
@@ -100,6 +100,7 @@ Following are exceptions to this network access:
 > * VM Insights
 > * Container Insights
 > * Log Analytics **Workspace Summary (deprecated)** pane (that shows the solutions dashboard)
+> * Metrics pane in Application Insights (log-based metrics charting)
 
 ## Special considerations
 
@@ -116,6 +117,8 @@ Following are exceptions to this network access:
 
 * Private Link ingestion settings are made using AMPLS and settings on the Data Collection Endpoints (DCEs) that reference the Azure Monitor workspace used to store Prometheus metrics.
 * Private Link query settings are made directly on the Azure Monitor workspace used to store Prometheus metrics and aren't handled with AMPLS.
+
+To set up ingestion of Managed Prometheus metrics using AMPLS, see [Enable ingestion of metrics from AKS with AMPLS](../containers/kubernetes-monitoring-private-link.md).
 
 ## Next steps
 

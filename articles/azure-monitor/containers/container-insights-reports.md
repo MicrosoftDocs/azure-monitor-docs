@@ -1,7 +1,7 @@
 ---
 title: Reports in Container insights
 description: This article describes reports that are available to analyze data collected by Container insights.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 07/26/2024
 ms.reviewer: aul
 ---
@@ -11,6 +11,11 @@ Reports in Container insights are recommended out-of-the-box for [Azure workbook
 
 > [!NOTE]
 > The **Reports** tab will not be available if you enable the [Prometheus experience for Container insights](./container-insights-experience-v2.md). You can still access the workbooks from the **Workbooks** page for the cluster.
+
+
+> [!NOTE]
+> The workbooks on the Reports tab may not function as expected if the [data being collected in Container insights is configured and filtered](./container-insights-data-collection-configure.md
+).
 >
 > :::image type="content" source="media/container-insights-reports/workbooks-page.png" alt-text="Screenshot of workbook option for a cluster." lightbox="media/container-insights-reports/workbooks-page.png":::
 
@@ -39,17 +44,17 @@ The **event anomaly** analyzer groups similar events together for easier analysi
 :::image type="content" source="media/container-insights-reports/cluster-optimization-workbook-event-anomaly.png" alt-text="Screenshot of event anomaly analyzer in Cluster Optimization Workbook." lightbox="media/container-insights-reports/cluster-optimization-workbook-event-anomaly.png":::
 
 ### Container optimizer
-The **container optimizer** analyzer shows containers with excessive cpu and memory limits and requests. Each tile can represent multiple containers with the same spec. For example, if a deployment creates 100 identical pods each with a container C1 and C2, then there will be a single tile for all C1 containers and a single tile for all C2 containers. Containers with set limits and requests are color-coded in a gradient from green to red. 
+The **container optimizer** analyzer identifies containers with excessive cpu and memory limits and requests based on actual usage patterns. Each tile can represent multiple containers with the same spec. For example, if a deployment creates 100 identical pods each with a container C1 and C2, then there will be a single tile for all C1 containers and a single tile for all C2 containers. Containers with set limits and requests are color-coded in a gradient from green to red. 
 
 > [!IMPORTANT]
-> This view doesn't include containers in the **kube-system** namespace and doesn't support Windows Server nodes.
+> This view excludes containers in the **kube-system** namespace and doesn't support Windows Server nodes.
 >
 
-The number on each tile represents how far the container limits/requests are from the optimal/suggested value. The closer the number is to 0 the better it is. Each tile has a color to indicate the following:
+The number displayed on each tile represents how far the container limits/requests deviate from the optimal/suggested value. The closer the number is to 0, the better the resource allocation. Each tile has a color to indicate its efficiency:
 
-- green: well set limits and requests
-- red: excessive limits or requests
-- gray: unset limits or requests
+- Green: well set limits and requests
+- Red: excessive limits or requests
+- Gray: unset limits or requests
 
 
 :::image type="content" source="media/container-insights-reports/cluster-optimization-workbook-container-optimizer.png" alt-text="Screenshot of container optimizer analyzer in the Cluster Optimization Workbook." lightbox="media/container-insights-reports/cluster-optimization-workbook-container-optimizer.png":::

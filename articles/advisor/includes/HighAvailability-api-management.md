@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 05/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability API Management
@@ -12,24 +12,6 @@ ms.custom: HighAvailability API Management
   
 ## API Management  
   
-<!--3dd24a8c-af06-49c3-9a04-fb5721d7a9bb_begin-->
-
-#### Migrate API Management service to stv2 platform  
-  
-Support for API Management instances hosted on the stv1 platform will be retired by 31 August 2024. Migrate to stv2 based platform before that to avoid service disruption.  
-  
-**Potential benefits**: Improve service stability and leverage new platform features  
-
-**Impact:** High
-  
-For more information, see [Azure API Management - global Azure - stv1 platform retirement (August 2024) ](/azure/api-management/breaking-changes/stv1-platform-retirement-august-2024)  
-
-ResourceType: microsoft.apimanagement/service  
-Recommendation ID: 3dd24a8c-af06-49c3-9a04-fb5721d7a9bb  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--3dd24a8c-af06-49c3-9a04-fb5721d7a9bb_end-->
-
 <!--8962964c-a6d6-4c3d-918a-2777f7fbdca7_begin-->
 
 #### Hostname certificate rotation failed  

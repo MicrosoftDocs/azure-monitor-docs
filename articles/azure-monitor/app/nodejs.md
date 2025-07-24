@@ -1,7 +1,7 @@
 ---
 title: Monitor Node.js services with Application Insights | Microsoft Docs
 description: Monitor performance and diagnose problems in Node.js services with Application Insights.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/21/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
@@ -20,7 +20,7 @@ All events related to an incoming HTTP request are correlated for faster trouble
 
 You can use the TelemetryClient API to manually instrument and monitor more aspects of your app and system. We describe the TelemetryClient API in more detail later in this article.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ## Get started
 
@@ -87,7 +87,7 @@ Because the SDK batches data for submission, there might be a delay before items
 
 * Continue to use the application. Take more actions to generate more telemetry.
 * Select **Refresh** in the portal resource view. Charts periodically refresh on their own, but manually refreshing forces them to refresh immediately.
-* Verify that [required outgoing ports](../ip-addresses.md) are open.
+* Verify that [required outgoing ports](../fundamentals/azure-monitor-network-access.md) are open.
 * Use [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search) to look for specific events.
 * Check the [FAQ][FAQ].
 
@@ -202,8 +202,8 @@ Web Instrumentation is enabled on node server responses when all of the followin
 - If response is compressed, it must have only one `Content-Encoding` type, and encoding type must be one of `gzip`, `br` or `deflate`.
 - Response does not contain current /backup web Instrumentation CDN endpoints.  (current and backup Web Instrumentation CDN endpoints [here](https://github.com/microsoft/ApplicationInsights-JS#active-public-cdn-endpoints))
 
-web Instrumentation CDN endpoint can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_SOURCE = "web Instrumentation CDN endpoints"`.
-web Instrumentation connection string can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_CONNECTION_STRING = "web Instrumentation connection string"`
+Web Instrumentation CDN endpoint can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_SOURCE = "web Instrumentation CDN endpoints"`.
+Web Instrumentation connection string can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_CONNECTION_STRING = "web Instrumentation connection string"`
 
 > [!Note] 
 > Web Instrumentation may slow down server response time, especially when response size is large or response is compressed. For the case in which some middle layers are applied, it may result in web Instrumentation not working and original response will be returned.
@@ -342,7 +342,7 @@ Use the following code to manually track HTTP GET requests:
 
 > [!NOTE]
 > - All requests are tracked by default. To disable automatic collection, call `.setAutoCollectRequests(false)` before calling `start()`.
-> - Native fetch API requests aren’t automatically tracked by classic Application Insights; manual dependency tracking is required.
+> - Native fetch API requests aren't automatically tracked by classic Application Insights; manual dependency tracking is required.
 
 ```javascript
 appInsights.defaultClient.trackRequest({name:"GET /customers", url:"http://myserver/customers", duration:309, resultCode:200, success:true});
@@ -459,21 +459,16 @@ These properties are client specific, so you can configure `appInsights.defaultC
 | correlationIdRetryIntervalMs    | The time to wait before retrying to retrieve the ID for cross-component correlation. (Default is `30000`.)     |
 | correlationHeaderExcludedDomains| A list of domains to exclude from cross-component correlation header injection. (Default. See [Config.ts](https://github.com/Microsoft/ApplicationInsights-node.js/blob/develop/Library/Config.ts).)|
 
-## Frequently asked questions
-
-#### How can I disable telemetry correlation?
-
-To disable telemetry correlation, use the `correlationHeaderExcludedDomains` property in configuration. For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js#configuration).
-
 ## Troubleshooting
 
 For troubleshooting information, including "no data" scenarios and customizing logs, see [Troubleshoot Application Insights monitoring of Node.js apps and services](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-app-insights-nodejs).
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Node.js FAQ](application-insights-faq.yml#node-js)
 * [Monitor your telemetry in the portal](./overview-dashboard.md)
 * [Write Analytics queries over your telemetry](../logs/log-analytics-tutorial.md)
 
 <!--references-->
 
-[FAQ]: ./app-insights-overview.md#frequently-asked-questions
+[FAQ]: ./application-insights-faq.yml#overview

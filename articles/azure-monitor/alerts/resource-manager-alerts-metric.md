@@ -11,7 +11,7 @@ ms.reviewer: harelbr
 
 This article provides samples of using [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to configure [metric alert rules](../alerts/alerts-types.md#metric-alerts) in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 See the schema and properties for an alert rule at [Create Or Update Metric Alerts](/rest/api/monitor/metricalerts/createorupdate).
 
@@ -20,7 +20,7 @@ See the schema and properties for an alert rule at [Create Or Update Metric Aler
 
 ## Template references
 
-- [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/2018-03-01/metricalerts)
+* [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/2018-03-01/metricalerts)
 
 ## Single criteria, static threshold
 
@@ -91,7 +91,7 @@ param timeAggregation string = 'Average'
   'PT1H'
   'PT6H'
   'PT12H'
-  'PT24H'
+  'P1D'
 ])
 param windowSize string = 'PT5M'
 
@@ -245,7 +245,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
         "PT1H",
         "PT6H",
         "PT12H",
-        "PT24H"
+        "P1D"
       ],
       "metadata": {
         "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."
@@ -790,7 +790,7 @@ param criterion2 object
   'PT1H'
   'PT6H'
   'PT12H'
-  'PT24H'
+  'P1D'
 ])
 param windowSize string = 'PT5M'
 
@@ -907,7 +907,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
         "PT1H",
         "PT6H",
         "PT12H",
-        "PT24H"
+        "P1D"
       ],
       "metadata": {
         "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."
@@ -1093,7 +1093,7 @@ param criterion object
   'PT1H'
   'PT6H'
   'PT12H'
-  'PT24H'
+  'P1D'
 ])
 param windowSize string = 'PT5M'
 
@@ -1202,7 +1202,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
         "PT1H",
         "PT6H",
         "PT12H",
-        "PT24H"
+        "P1D"
       ],
       "metadata": {
         "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."
@@ -1672,7 +1672,7 @@ param timeAggregation string = 'Average'
   'PT1H'
   'PT6H'
   'PT12H'
-  'PT24H'
+  'P1D'
 ])
 param windowSize string = 'PT5M'
 
@@ -1834,7 +1834,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
         "PT1H",
         "PT6H",
         "PT12H",
-        "PT24H"
+        "P1D"
       ],
       "metadata": {
         "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."
@@ -2096,7 +2096,7 @@ param timeAggregation string = 'Average'
   'PT1H'
   'PT6H'
   'PT12H'
-  'PT24H'
+  'P1D'
 ])
 param windowSize string = 'PT5M'
 
@@ -2310,7 +2310,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
         "PT1H",
         "PT6H",
         "PT12H",
-        "PT24H"
+        "P1D"
       ],
       "metadata": {
         "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."
@@ -3042,7 +3042,7 @@ param timeAggregation string = 'Average'
   'PT1H'
   'PT6H'
   'PT12H'
-  'PT24H'
+  'P1D'
 ])
 param windowSize string = 'PT5M'
 
@@ -3259,7 +3259,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
         "PT1H",
         "PT6H",
         "PT12H",
-        "PT24H"
+        "P1D"
       ],
       "metadata": {
         "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."
@@ -3992,7 +3992,7 @@ param timeAggregation string = 'Average'
   'PT1H'
   'PT6H'
   'PT12H'
-  'PT24H'
+  'P1D'
 ])
 param windowSize string = 'PT5M'
 
@@ -4207,7 +4207,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
         "PT1H",
         "PT6H",
         "PT12H",
-        "PT24H"
+        "P1D"
       ],
       "metadata": {
         "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."

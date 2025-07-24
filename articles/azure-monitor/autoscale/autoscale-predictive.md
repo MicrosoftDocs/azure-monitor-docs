@@ -1,7 +1,7 @@
 ---
 title: Use predictive autoscale to scale out before load demands in virtual machine scale sets
 description: This article provides information on the new predictive autoscale feature in Azure Monitor.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/12/2024
 ms.custom: references_regions, devx-track-arm-template
 ms.reviewer: akkumari
@@ -357,7 +357,7 @@ Standard autoscaling is a necessary fallback if the predictive model doesn't wor
 ### Which rule takes effect if both predictive and standard autoscale rules are set?
 Standard autoscale rules are used if there's an unexpected spike in the CPU load, or an error occurs when retrieving predictive data
 
-We use the threshold set in the standard autoscale rules to understand when you’d like to scale out and by how many instances. If you want your Virtual Machine Scale Set to scale out when the CPU usage exceeds 70% and actual or predicted data shows that CPU usage is or will be over 70%, then a scale out will occur.
+We use the threshold set in the standard autoscale rules to understand when you'd like to scale out and by how many instances. If you want your Virtual Machine Scale Set to scale out when the CPU usage exceeds 70% and actual or predicted data shows that CPU usage is or will be over 70%, then a scale out will occur.
 
 ## Errors and warnings
 

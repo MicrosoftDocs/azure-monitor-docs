@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability HDInsight
@@ -66,24 +66,6 @@ Subcategory: Other
 
 <!--35e3a19f-16e7-4bb1-a7b8-49e02a35af2e_end-->
 
-<!--41a248ef-50d4-4c48-81fb-13196f957210_begin-->
-
-#### Cluster Name length update  
-  
-The max length of cluster name will be changed to 45 from 59 characters, to improve the security posture of clusters. This change will be implemented by September 30th, 2023.  
-  
-**Potential benefits**: Security posture improvement for HDInsight  
-
-**Impact:** Medium
-  
-For more information, see [Release notes for Azure HDInsight ](/azure/hdinsight/hdinsight-release-notes)  
-
-ResourceType: microsoft.hdinsight/clusters  
-Recommendation ID: 41a248ef-50d4-4c48-81fb-13196f957210  
-Subcategory: Other
-
-<!--41a248ef-50d4-4c48-81fb-13196f957210_end-->
-
 <!--8f163c95-0029-4139-952a-42bd0d773b93_begin-->
 
 #### Upgrade your cluster to the the latest HDInsight image  
@@ -124,7 +106,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 #### Gateway or virtual machine not reachable  
   
-We have detected a Network prob failure, it indicates unreachable gateway or a virtual machine. Verify all cluster hosts’ availability.  Restart virtual machine to recover. If you need further assistance, don't hesitate to contact Azure support for help.  
+We have detected a Network prob failure, it indicates unreachable gateway or a virtual machine. Verify all cluster hosts' availability.  Restart virtual machine to recover. If you need further assistance, don't hesitate to contact Azure support for help.  
   
 **Potential benefits**: Improved availability  
 

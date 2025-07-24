@@ -1,7 +1,7 @@
 ---
 title: Functions in Azure Monitor log queries
 description: This article describes how to use functions to call a query from another log query in Azure Monitor.
-ms.topic: conceptual
+ms.topic: article
 ms.reviewer: roygal
 ms.date: 10/08/2024
 
@@ -67,7 +67,7 @@ The following sample uses the [Microsoft.OperationalInsights workspaces/savedSea
 
 To learn more about how to deploy resources from a custom template, go to [Deploy resources with ARM templates and Azure portal](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template).
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 ### Template file
 

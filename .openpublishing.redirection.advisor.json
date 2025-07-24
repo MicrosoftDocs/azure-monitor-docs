@@ -26,6 +26,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/advisor/azure-advisor-score.md",
+      "redirect_url": "/azure/advisor/advisor-score",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/advisor/advisor-how-to-improve-reliability.md",
       "redirect_url": "/azure/advisor/advisor-workbook-reliability",
       "redirect_document_id": false

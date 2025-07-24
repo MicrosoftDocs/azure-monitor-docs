@@ -52,6 +52,9 @@
         ]
       }
     ],
+    "suppress": [
+      "sensitive-language-ma"
+    ],
     "globalMetadata": {
       "contributors_to_exclude": [
         "alexbuckgit",
@@ -142,18 +145,22 @@
         "articles/azure-monitor/**/*": "bwren",
         "articles/azure-monitor/agents/**/*": "bwren",
         "articles/azure-monitor/alerts/**/*": "IngridAtMicrosoft",
-        "articles/azure-monitor/app/**/*": "AaronMaxwell",
+        "articles/azure-monitor/app/**/*": "AarDavMax",
         "articles/azure-monitor/autoscale/**/*": "IngridAtMicrosoft",
         "articles/azure-monitor/change/**/*": "hhunter-ms",
         "articles/azure-monitor/containers/**/*": "bwren",
-        "articles/azure-monitor/essentials/**/*": "bwren",
-        "articles/azure-monitor/insights/**/*": "bwren",
+        "articles/azure-monitor/data-collection/**/*": "bwren",
+        "articles/azure-monitor/fundamentals/**/*": "bwren",
         "articles/azure-monitor/logs/**/*": "austinmccollum",
+        "articles/azure-monitor/metrics/**/*": "bwren",
+        "articles/azure-monitor/optimization-insights/**/*": "bwren",
+        "articles/azure-monitor/platform/**/*": "bwren",
         "articles/azure-monitor/profiler/**/*": "hhunter-ms",
         "articles/azure-monitor/snapshot-debugger/**/*": "hhunter-ms",
         "articles/azure-monitor/visualize/**/*": "IngridAtMicrosoft",
+        "articles/azure-monitor/reference/**/*": "IngridAtMicrosoft",
         "articles/azure-monitor/vm/**/*": "bwren",
-        "articles/chaos-studio/**/*": "",
+        "articles/chaos-studio/**/*": "IngridAtMicrosoft",
         "articles/service-health/**/*": "jocalland"
       },
       "featureFlags": {
@@ -183,7 +190,7 @@
         ]
       },
       "manager": {
-        "articles/azure-monitor/**/*": "orspodek"
+        "articles/azure-monitor/**/*": "eliotgra"
       },
       "ms.author": {
         "articles/advisor/**/*": "ikhapova",
@@ -194,14 +201,18 @@
         "articles/azure-monitor/autoscale/**/*": "inhenkel",
         "articles/azure-monitor/change/**/*": "hannahhunter",
         "articles/azure-monitor/containers/**/*": "bwren",
-        "articles/azure-monitor/essentials/**/*": "bwren",
-        "articles/azure-monitor/insights/**/*": "bwren",
+        "articles/azure-monitor/data-collection/**/*": "bwren",
+        "articles/azure-monitor/fundamentals/**/*": "bwren",
         "articles/azure-monitor/logs/**/*": "austinmc",
+        "articles/azure-monitor/metrics/**/*": "bwren",
+        "articles/azure-monitor/optimization-insights/**/*": "bwren",
+        "articles/azure-monitor/platform/**/*": "bwren",
         "articles/azure-monitor/profiler/**/*": "hannahhunter",
+        "articles/azure-monitor/reference/**/*": "inhenkel",
         "articles/azure-monitor/snapshot-debugger/**/*": "hannahhunter",
         "articles/azure-monitor/visualize/**/*": "inhenkel",
         "articles/azure-monitor/vm/**/*": "bwren",
-        "articles/chaos-studio/**/*": "",
+        "articles/chaos-studio/**/*": "inhenkel",
         "articles/service-health/**/*": "v-jocalland"
       },
       "ms.service": {
@@ -214,17 +225,20 @@
         "articles/advisor/**/*": "ikhapova"
       },
       "ms.subservice": {
-        "articles/azure-monitor/**/*": "general",
         "articles/azure-monitor/agents/**/*": "agents",
         "articles/azure-monitor/alerts/**/*": "alerts",
         "articles/azure-monitor/app/**/*": "application-insights",
         "articles/azure-monitor/autoscale/**/*": "autoscale",
         "articles/azure-monitor/change/**/*": "change-analysis",
         "articles/azure-monitor/containers/**/*": "containers",
-        "articles/azure-monitor/essentials/**/*": "essentials",
-        "articles/azure-monitor/insights/**/*": "insights",
+        "articles/azure-monitor/data-collection/**/*": "data-collection",
+        "articles/azure-monitor/fundamentals/**/*": "fundamentals",
         "articles/azure-monitor/logs/**/*": "logs",
+        "articles/azure-monitor/metrics/**/*": "metrics",
+        "articles/azure-monitor/optimization-insights/**/*": "optimization-insights",
+        "articles/azure-monitor/platform/**/*": "platform",
         "articles/azure-monitor/profiler/**/*": "profiler",
+        "articles/azure-monitor/referece/**/*": "reference",
         "articles/azure-monitor/snapshot-debugger/**/*": "snapshot-debugger",
         "articles/azure-monitor/visualize/**/*": "visualizations",
         "articles/azure-monitor/vm/**/*": "virtual-machines"
@@ -273,5 +287,13 @@
     "overwrite": [],
     "externalReference": [],
     "template": []
-  }
-}
+  },
+"dest": "azure monitor",
+"rules": {
+      "sensitive-language-ma": {
+        "exclude": [
+          "articles/azure-monitor/reference/tables/dnsauditevents.md"
+        ]
+      }
+    }
+}  

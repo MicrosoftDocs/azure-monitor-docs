@@ -1,7 +1,7 @@
 ---
 title: 'IT Service Management Connector: Secure Webhook in Azure Monitor - Azure configurations'
 description: This article shows you how to configure Azure to connect your ITSM products or services with Secure Webhook in Azure Monitor to centrally monitor and manage ITSM work items.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/30/2024
 ms.reviewer: nolavime
 ---
@@ -44,7 +44,7 @@ To learn more about action groups, see [Create and manage action groups in the A
 > - "Computer"
 > - "Resource"
 > - "_ResourceId"
-> - "ResourceId”
+> - "ResourceId"
 
 To add a webhook to an action, follow these instructions for Secure Webhook:
 

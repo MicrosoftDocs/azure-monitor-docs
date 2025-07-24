@@ -2,9 +2,8 @@
 ms.assetid: 
 title: Customizations on Azure Monitor SCOM Managed Instance management servers
 description: This article describes about the Customizations on Azure Monitor SCOM Managed Instance management servers.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 05/22/2024
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -25,8 +24,8 @@ The script internally uses Azure custom script extensions for making the customi
 You can run the script on a machine, which has PowerShell running. Sign into the Azure portal Microsoft account that is a part of the SCOM Managed Instance subscription. Run the following cmdlets in the PowerShell console:
 
 ```powershell
-“az login”
-“az account set –subscription “NameOf Subscription”
+az login
+az account set –subscription "Name Of Subscription"
 ```
 
 The script needs the following inputs:
@@ -41,7 +40,7 @@ The script needs the following inputs:
 Here's an example of a command to run the script (replace the parameters in quotation marks with your own values):
 
 ```
-.\RunCustomization.ps1 – ResourceGroupName “myResourceGroup” -VMSSName “myVMSS” -FileURI “https://example.com/myscript.ps1” -CommandToExecute “powershell.exe -ExecutionPolicy Unrestricted -File myscript.ps1”
+.\RunCustomization.ps1 –ResourceGroupName "myResourceGroup" -VMSSName "myVMSS" -FileURI "https://example.com/myscript.ps1" -CommandToExecute "powershell.exe -ExecutionPolicy Unrestricted -File "myscript.ps1"
 ```
 
 If the script runs successfully, deployment gets successful and displays **Deployment finished Successfully** message.

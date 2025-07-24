@@ -2,9 +2,8 @@
 ms.assetid: 
 title: Troubleshoot issues with Azure Monitor SCOM Managed Instance
 description: This article describes the errors that might occur when you deploy or use Azure Monitor SCOM Managed Instance and how to resolve them.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 06/19/2024
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -92,11 +91,11 @@ This article describes the errors that might occur when you deploy or use Azure 
 
 **Resolution**: Provide an available IP from the subnet range and retry the operation.
 
-### Issue: Identity isn’t a system admin on SQL Managed Instance: '%instance'.
+### Issue: Identity isn't a system admin on SQL Managed Instance: '%instance'.
 
 **Cause**: Occurs due to the following reasons:
 
-1.	User Managed Identity isn’t SQL Admin on the SQL MI.
+1.	User Managed Identity isn't SQL Admin on the SQL MI.
 2.	User Managed Identity is confirmed as SQL Admin on the SQL MI, and this is deployed using ARM, BICEP, Terraform or other deployment solution.
 
 **Resolution**: Ensure that the User Managed Identity is deployed using the AppId and not the ObjectId. You can confirm if this is applicable by navigating to the SQL MI, Microsoft Entra ID admin pane. Check if the guid that is listed with the User Managed Identity is the ObjectId or AppId of the Service Principal. When this is the ObjectId:
@@ -144,7 +143,7 @@ Check the quota section on Azure portal and allocate more cores of type Standard
 
 **Cause**: This error might occur during the provisioning of System Center Operations Manager extension or System Center Operations Manager installation.
 
-**Resolution**: Check the [general troubleshooting](./troubleshoot-scom-managed-instance.md#general-troubleshooting), try to identify the issue, and resolve it accordingly.
+**Resolution**: Check the [general troubleshooting](#general-troubleshooting), try to identify the issue, and resolve it accordingly.
 
 ### Issue: Conflict
 

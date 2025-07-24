@@ -1,15 +1,15 @@
 ---
 title: Smart detection in Application Insights | Microsoft Docs
 description: Application Insights performs automatic deep analysis of your app telemetry and warns you about potential problems.
-ms.topic: conceptual
-ms.date: 04/01/2024
+ms.topic: article
+ms.date: 07/09/2025
 ms.reviewer: yagil
 ---
 
 # Smart detection in Application Insights
 
->[!NOTE]
->You can migrate smart detection on your Application Insights resource to be based on alerts. The migration creates alert rules for the different smart detection modules. After it's created, you can manage and configure these rules like any other Azure Monitor alert rules. You can also configure action groups for these rules to enable multiple methods of taking actions or triggering notification on new detections.
+> [!NOTE]
+> You can migrate smart detection on your Application Insights resource to be based on alerts. The migration creates alert rules for the different smart detection modules. After it's created, you can manage and configure these rules like any other Azure Monitor alert rules. You can also configure action groups for these rules to enable multiple methods of taking actions or triggering notification on new detections.
 >
 > For more information, see [Smart detection alerts migration](./alerts-smart-detections-migration.md).
 
@@ -18,6 +18,7 @@ Smart detection automatically warns you of potential performance problems and fa
 You can access the detections issued by smart detection from the emails you receive and from the smart detection pane.
 
 ## Review your smart detections
+
 You can discover detections in two ways:
 
 * **You receive an email** from Application Insights. Here's a typical example:
@@ -25,6 +26,7 @@ You can discover detections in two ways:
     :::image type="content" source="./media/proactive-diagnostics/03.png" lightbox="./media/proactive-diagnostics/03.png" alt-text="Screenshot that shows an email alert." border="false":::
   
     Select **See the analysis of this issue** to see more information in the portal.
+
 * **The smart detection pane** in Application Insights. Under the **Investigate** menu, select **Smart Detection** to see a list of recent detections.
    <!-- convertborder later -->
    :::image type="content" source="./media/proactive-diagnostics/04.png" lightbox="./media/proactive-diagnostics/04.png" alt-text="Screenshot that shows recent detections." border="false":::
@@ -50,6 +52,7 @@ You can configure email notifications for a specific smart detection rule. On th
 Alternatively, you can change the configuration by using Azure Resource Manager templates. For more information, see [Manage Application Insights smart detection rules by using Azure Resource Manager templates](./proactive-arm-config.md).
 
 ## Next steps
+
 These diagnostic tools help you inspect the telemetry from your app:
 
 * [Metric explorer](../essentials/metrics-charts.md)

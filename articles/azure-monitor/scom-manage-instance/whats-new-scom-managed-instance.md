@@ -1,17 +1,16 @@
 ---
 ms.assetid: 
-title: What’s new in Azure Monitor SCOM Managed Instance
+title: What's new in Azure Monitor SCOM Managed Instance
 description: This article provides details of what's new in each version of Azure Monitor SCOM Managed Instance.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 10/29/2024
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: whats-new
 ---
 
-# What’s new in Azure Monitor SCOM Managed Instance 
+# What's new in Azure Monitor SCOM Managed Instance 
 
 This article provides details of what's new in each version of Azure Monitor SCOM Managed Instance.
 

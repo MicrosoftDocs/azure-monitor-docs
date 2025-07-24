@@ -3,11 +3,9 @@ title: Verify Azure Chaos Studio Agent Status
 description: Learn how to verify the status of the Azure Chaos Studio agent on a virtual machine after installation.
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: article
-ms.date: 03/02/2025
-ms.author: abbyweisberg
+ms.topic: how-to
+ms.date: 03/12/2025
 ms.reviewer: nikhilkaul
-ms.service: azure-chaos-studio
 ms.custom: 
 ---
 
@@ -53,5 +51,5 @@ If the agent isn't behaving as expected, check the logs for more details:
 - **Linux**: To view logs run the following command:
 
   ```sh
-  journalctl -u azure-chaos-agent
+  journalctl -u azure-chaos-agent --lines 50
   ```

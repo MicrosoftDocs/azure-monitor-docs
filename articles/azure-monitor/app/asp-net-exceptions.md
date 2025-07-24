@@ -1,7 +1,7 @@
 ---
 title: Diagnose failures and exceptions with Azure Application Insights
 description: Capture exceptions from ASP.NET apps along with request telemetry.
-ms.topic: conceptual
+ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ms.date: 3/21/2025
@@ -11,7 +11,7 @@ ms.reviewer: mmcc
 
 # Diagnose exceptions in web apps with Application Insights
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 Exceptions in web applications can be reported with [Application Insights](./app-insights-overview.md). You can correlate failed requests with exceptions and other events on both the client and server so that you can quickly diagnose the causes. In this article, you'll learn how to set up exception reporting, report exceptions explicitly, diagnose failures, and more.
 
@@ -527,6 +527,7 @@ This count is different from the Exceptions count calculated by the Application 
 
 ## Next steps
 
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Monitor REST, SQL, and other calls to dependencies](./asp-net-dependencies.md)
 * [Monitor page load times, browser exceptions, and AJAX calls](./javascript.md)
 * [Monitor performance counters](./asp-net-counters.md)

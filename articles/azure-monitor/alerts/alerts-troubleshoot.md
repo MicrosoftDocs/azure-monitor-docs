@@ -2,7 +2,7 @@
 title: Troubleshooting Azure Monitor alerts and notifications
 description: Troubleshoot common problems with Azure Monitor alerts and possible solutions. 
 ms.topic: troubleshooting
-ms.date: 02/28/2024
+ms.date: 03/25/2025
 ms.reviewer: nolavime
 ---
 
@@ -21,6 +21,12 @@ If the alert fires as intended, but the proper notifications don't perform as ex
 
 Otherwise, use the information in the rest of this article to troubleshoot your issue.
 
+## Log search alert rule creation failed 
+
+In the Azure portal you received the error "The log search alert rule creation failed with error – 'Failed to create alert rule `<Rule Name>`. There was a problem with the server, Please try again in a few minutes.'"
+
+This could happen if the combined size of all data in the log alert rule properties exceeds 64 KB (or 32 K string characters). Check if the alert rule is using a large query, has many dimensions, action group, or a long description, whose combined size could be greater than 64 KB.
+
 ## I didn't receive the expected email
 
 If you can see a fired alert in the Azure portal, but didn't receive the email that you configured, follow these steps:
@@ -34,7 +40,7 @@ If you can see a fired alert in the Azure portal, but didn't receive the email t
 1. **Is the type of action "Email Azure Resource Manager Role"?**
 
     This action only looks at Azure Resource Manager role assignments that are at the subscription scope and of type *User* or *Group*. Make sure that you assigned the role at the subscription level, and not at the resource level or resource group level.
-   
+
 1. **Are your email server and mailbox accepting external emails?**
 
     Verify that emails from these three addresses aren't blocked:
@@ -42,7 +48,7 @@ If you can see a fired alert in the Azure portal, but didn't receive the email t
     * azureemail-noreply@microsoft.com
     * alerts-noreply@mail.windowsazure.com
 
-    It's common for internal mailing lists or distribution lists  to block emails from external email addresses. Make sure that you allow mail from the above email addresses.
+    It's common for internal mailing lists or distribution lists to block emails from external email addresses. Make sure that you allow mail from the above email addresses.
     To test, add a regular work email address (not a mailing list) to the action group and see if alerts arrive to that email.
 
 1. **Was the email processed by inbox rules or a spam filter?**
@@ -84,7 +90,7 @@ If you can see a fired alert in the Azure portal, but didn't receive the email t
     * [Logic app](/azure/logic-apps/logic-apps-overview)
     * [Azure function](/azure/azure-functions/functions-get-started?pivots=programming-language-csharp)
     * [Automation runbooks](/azure/automation/automation-create-alert-triggered-runbook)
-   
+
     None of these actions are rate limited.
 
 ## I didn't receive the expected SMS, voice call, or push notification
@@ -99,7 +105,7 @@ If you can see a fired alert in the portal, but didn't receive the SMS, voice ca
 
     If that was unintentional, you can modify, disable, or delete the alert processing rule.
  
-1. **SMS/voice:  Is your phone number correct?**
+1. **SMS/voice: Is your phone number correct?**
 
     Check the SMS action for typos in the country code or phone number.
  
@@ -116,7 +122,7 @@ If you can see a fired alert in the portal, but didn't receive the SMS, voice ca
     * [Logic app](/azure/logic-apps/logic-apps-overview)
     * [Azure function](/azure/azure-functions/functions-get-started?pivots=programming-language-csharp)
     * [Automation runbooks](/azure/automation/automation-create-alert-triggered-runbook)
-      
+
     None of these actions are rate limited. 
  
 1. **SMS: Have you accidentally unsubscribed from the action group?**
@@ -130,7 +136,7 @@ If you can see a fired alert in the portal, but didn't receive the SMS, voice ca
     Most mobile phones allow you to block calls or SMS from specific phone numbers or short codes, or to block push notifications from specific apps (such as the Azure mobile app). To check if you accidentally blocked the notifications on your phone, search the documentation specific for your phone operating system and model, or test with a different phone and phone number.
 
 ## The expected action didn't trigger
-   
+
 If you can see a fired alert in the portal, but its configured action didn't trigger, follow these steps:
 
 1. **Was the action suppressed by an alert processing rule?**
@@ -144,12 +150,12 @@ If you can see a fired alert in the portal, but its configured action didn't tri
 1. **Did the webhook trigger?**
 
     1. **Is the source IP address blocked?**
-    
-        Webhooks only support public networks and firewalls, [IP addresses](../ip-addresses.md) for all regions need to be in the allowlist. Add the [IP addresses](../ip-addresses.md) that the webhook is called from to your allowlist.
+
+        Webhooks only support public networks and firewalls. IP addresses for all regions need to be in the allowlist. Add the [IP addresses that the webhook is called from](../fundamentals/azure-monitor-network-access.md#action-group-webhooks) to your allowlist.
 
     1. **Does your webhook endpoint work correctly?**
 
-        Verify the webhook endpoint you configured is correct and the endpoint is working correctly. Check your webhook logs or instrument its code so you could investigate (for example, log the incoming payload).
+        Verify that the webhook endpoint you configured is correct, and that the endpoint is working correctly. Check your webhook logs or instrument its code so you could investigate (for example, log the incoming payload).
 
     1. **Are you using the correct format for calling Slack or Microsoft Teams?**
 
@@ -176,7 +182,7 @@ If you received a notification for an alert (such as an email or an SMS) more th
 
 1. **Is it really the same alert?** 
 
-    In some cases, multiple similar alerts are fired at around the same time. So, it might just seem like the same alert triggered its actions multiple times. For example, an activity log alert rule might be configured to fire both when an event starts and finishes (succeeded or failed), by not filtering on the event status field. Another example is in Log search alerts when you define dimentions and we check all the dimension combinations due to the fact that we're checking all the different combinations it can also result in similar alerts.
+    In some cases, multiple similar alerts are fired at around the same time. So, it might just seem like the same alert triggered its actions multiple times. For example, an activity log alert rule might be configured to fire both when an event starts and finishes (succeeded or failed), by not filtering on the event status field. Another example is in Log search alerts when you define dimensions and we check all the dimension combinations because we're checking all the different combinations it can also result in similar alerts.
 
     To check if these actions or notifications came from different alerts, examine the alert details, such as its timestamp and either the alert ID or its correlation ID. Alternatively, check the list of fired alerts in the portal. If that is the case, you would need to adapt the alert rule logic or otherwise configure the alert source. 
 
@@ -243,7 +249,7 @@ If you can see a fired alert in the portal, but a related alert processing rule 
     Check the alert processing rule status field to verify that the related action role is enabled. By default, the portal only shows alert rules that are enabled, but you can change the filter to show all rules. 
 
     :::image type="content" source="media/alerts-troubleshoot/alerts-troubleshoot-alert-processing-rules-status.png" lightbox="media/alerts-troubleshoot/alerts-troubleshoot-alert-processing-rules-status.png" alt-text="Screenshot of alert processing rule list highlighting the status field and status filter.":::
-   
+
     If it isn't enabled, you can enable the alert processing rule by selecting it and clicking Enable. 
 
 1. **Is it a service health alert?** 

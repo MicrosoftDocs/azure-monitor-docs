@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/27/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -10,25 +10,7 @@ ms.custom: HighAvailability Storage
   
 ---
   
-## Storage  
-  
-<!--d42d751d-682d-48f0-bc24-bb15b61ac4b8_begin-->
-
-#### Use Managed Disks for storage accounts reaching capacity limit  
-  
-When Premium SSD unmanaged disks in storage accounts are about to reach their Premium Storage capacity limit, failures might occur. To avoid failures when this limit is reached, migrate to Managed Disks that don't have an account capacity limit. This migration can be done through the portal in less than 5 minutes.  
-  
-**Potential benefits**: Avoid scale issues when account reaches capacity limit  
-
-**Impact:** High
-  
-For more information, see [Scalability and performance targets for standard storage accounts - Azure Storage ](https://aka.ms/premium_blob_quota)  
-
-ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: d42d751d-682d-48f0-bc24-bb15b61ac4b8  
-Subcategory: Scalability
-
-<!--d42d751d-682d-48f0-bc24-bb15b61ac4b8_end-->
+## Storage
 
 <!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_begin-->
 
@@ -48,23 +30,25 @@ Subcategory: DisasterRecovery
 
 <!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_end-->
 
-<!--4346d0ad-b591-479a-9c87-e01afe9188b6_begin-->
 
-#### Configure a backup for Azure Blob in the Azure Storage account  
-  
-Configure a backup for the Azure Blob in the Azure Storage account. Protect Azure Blob data with an offsite, vaulted, secure, managed, and compliant backup solution.  
-  
-**Potential benefits**: Secure, managed, and compliant backup solution.  
 
-**Impact:** Medium
+
+<!--4c10f447-fc3d-48b5-931d-23cea8486023_begin-->
+
+#### Enable zone redundancy for storage accounts to improve high availability and resiliency  
   
-For more information, see [Quickstart - Configure vaulted backup for Azure Blobs using Azure Backup - Azure Backup](/azure/backup/blob-backup-configure-quick)  
+By default, data in a storage account is replicated three times within a single data center. If the application must be highly available, convert the data to Zone Redundant Storage (ZRS). ZRS takes advantage of Azure availability zones to replicate data across three separate data centers.  
+  
+**Potential benefits**: Achieve higher availability for the application.  
+
+**Impact:** High
+  
+For more information, see [Data redundancy - Azure Storage](https://aka.ms/learnmore_storage_storageaccounts)  
 
 ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: 4346d0ad-b591-479a-9c87-e01afe9188b6  
-Subcategory: DisasterRecovery
+Recommendation ID: 4c10f447-fc3d-48b5-931d-23cea8486023  
+Subcategory: HighAvailability
 
-<!--4346d0ad-b591-479a-9c87-e01afe9188b6_end-->
-
+<!--4c10f447-fc3d-48b5-931d-23cea8486023_end-->
 
 <!--articleBody-->

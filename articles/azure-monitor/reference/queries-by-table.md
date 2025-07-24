@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 02/18/2025
+ms.date: 07/14/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -57,6 +57,15 @@ ms.reviewer: lualderm
 ## [AADDomainServicesPrivilegeUse](./queries/AADDomainServicesPrivilegeUse.md)
 
 - [Show logs from AADDomainServicesPrivilegeUse table](./queries/AADDomainServicesPrivilegeUse.md#show-logs-from-aaddomainservicesprivilegeuse-table)
+
+## [AADDomainServicesSystemSecurity](./queries/AADDomainServicesSystemSecurity.md)
+
+- [Show logs from AADDomainServicesSystemSecurity table](./queries/AADDomainServicesSystemSecurity.md#show-logs-from-aaddomainservicessystemsecurity-table)
+
+## [AADGraphActivityLogs](./queries/AADGraphActivityLogs.md)
+
+- [Frequent users endpoint callers (AAD Graph)](./queries/AADGraphActivityLogs.md#frequent-users-endpoint-callers-aad-graph)
+- [Failed groups endpoint requests (AAD Graph)](./queries/AADGraphActivityLogs.md#failed-groups-endpoint-requests-aad-graph)
 
 ## [AADManagedIdentitySignInLogs](./queries/AADManagedIdentitySignInLogs.md)
 
@@ -165,6 +174,12 @@ ms.reviewer: lualderm
 - [Call Automation API operations on a call](./queries/ACSCallAutomationIncomingOperations.md#call-automation-api-operations-on-a-call)
 - [CallDiagnostics log for CallAutomation API call](./queries/ACSCallAutomationIncomingOperations.md#calldiagnostics-log-for-callautomation-api-call)
 - [CallSummary log for CallAutomation API call](./queries/ACSCallAutomationIncomingOperations.md#callsummary-log-for-callautomation-api-call)
+- [Number of calls with MediaStreaming active](./queries/ACSCallAutomationIncomingOperations.md#number-of-calls-with-mediastreaming-active)
+- [MediaStreaming operation Success count](./queries/ACSCallAutomationIncomingOperations.md#mediastreaming-operation-success-count)
+- [MediaStreaming operation Failure count](./queries/ACSCallAutomationIncomingOperations.md#mediastreaming-operation-failure-count)
+- [Number of calls with Transcription active](./queries/ACSCallAutomationIncomingOperations.md#number-of-calls-with-transcription-active)
+- [Transcription operation Success count](./queries/ACSCallAutomationIncomingOperations.md#transcription-operation-success-count)
+- [Transcription operation Failure count](./queries/ACSCallAutomationIncomingOperations.md#transcription-operation-failure-count)
 
 ## [ACSCallAutomationMediaSummary](./queries/ACSCallAutomationMediaSummary.md)
 
@@ -172,6 +187,15 @@ ms.reviewer: lualderm
 - [Play to participant success rate](./queries/ACSCallAutomationMediaSummary.md#play-to-participant-success-rate)
 - [Recognize success rate](./queries/ACSCallAutomationMediaSummary.md#recognize-success-rate)
 - [Success rate by sub operation name](./queries/ACSCallAutomationMediaSummary.md#success-rate-by-sub-operation-name)
+
+## [ACSCallAutomationStreamingUsage](./queries/ACSCallAutomationStreamingUsage.md)
+
+- [Media Streaming minutes](./queries/ACSCallAutomationStreamingUsage.md#media-streaming-minutes)
+- [Media Streaming minutes per call](./queries/ACSCallAutomationStreamingUsage.md#media-streaming-minutes-per-call)
+- [Media Streaming minutes per call per participant](./queries/ACSCallAutomationStreamingUsage.md#media-streaming-minutes-per-call-per-participant)
+- [Transcription streaming minutes](./queries/ACSCallAutomationStreamingUsage.md#transcription-streaming-minutes)
+- [Transcription streaming minutes per call](./queries/ACSCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call)
+- [Transcription streaming minutes per call per participant](./queries/ACSCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call-per-participant)
 
 ## [ACSCallClientMediaStatsTimeSeries](./queries/ACSCallClientMediaStatsTimeSeries.md)
 
@@ -805,10 +829,6 @@ ms.reviewer: lualderm
 
 - [Failing dependencies](./queries/AppDependencies.md#failing-dependencies)
 
-## [AppEnvSpringAppConsoleLogs](./queries/AppEnvSpringAppConsoleLogs.md)
-
-- [Latest Container App first party Spring App errors](./queries/AppEnvSpringAppConsoleLogs.md#latest-container-app-first-party-spring-app-errors)
-
 ## [AppExceptions](./queries/AppExceptions.md)
 
 - [Top 3 browser exceptions](./queries/AppExceptions.md#top-3-browser-exceptions)
@@ -1167,10 +1187,6 @@ ms.reviewer: lualderm
 
 - [Recent stopped auto services](./queries/ConfigurationData.md#recent-stopped-auto-services)
 
-## [ContainerAppConsoleLogs](./queries/ContainerAppConsoleLogs.md)
-
-- [Latest Container App user errors](./queries/ContainerAppConsoleLogs.md#latest-container-app-user-errors)
-
 ## [ContainerImageInventory](./queries/ContainerImageInventory.md)
 
 - [Image inventory](./queries/ContainerImageInventory.md#image-inventory)
@@ -1231,6 +1247,15 @@ ms.reviewer: lualderm
 ## [DataverseActivity](./queries/DataverseActivity.md)
 
 - [Dataverse events filtered by operation type](./queries/DataverseActivity.md#dataverse-events-filtered-by-operation-type)
+
+## [DevCenterAgentHealthLogs](./queries/DevCenterAgentHealthLogs.md)
+
+- [DevCenter - DevBoxAgent Health Status Summary](./queries/DevCenterAgentHealthLogs.md#devcenter---devboxagent-health-status-summary)
+
+## [DevCenterBillingEventLogs](./queries/DevCenterBillingEventLogs.md)
+
+- [DevCenter - DevBox storage and compute usage breakdown by dev box](./queries/DevCenterBillingEventLogs.md#devcenter---devbox-storage-and-compute-usage-breakdown-by-dev-box)
+- [DevCenter - DevBox billing meter breakdown by Pool](./queries/DevCenterBillingEventLogs.md#devcenter---devbox-billing-meter-breakdown-by-pool)
 
 ## [DevCenterDiagnosticLogs](./queries/DevCenterDiagnosticLogs.md)
 
@@ -1388,6 +1413,10 @@ ms.reviewer: lualderm
 
 - [SAMR queries to Active Directory](./queries/IdentityQueryEvents.md#samr-queries-to-active-directory)
 
+## [IlumioInsights](./queries/IlumioInsights.md)
+
+- [Ilumio Insights multiple deny events](./queries/IlumioInsights.md#ilumio-insights-multiple-deny-events)
+
 ## [InsightsMetrics](./queries/InsightsMetrics.md)
 
 - [IoT Edge: Device offline or not sending messages upstream at expected rate](./queries/InsightsMetrics.md#iot-edge-device-offline-or-not-sending-messages-upstream-at-expected-rate)
@@ -1428,6 +1457,11 @@ ms.reviewer: lualderm
 ## [KubeServices](./queries/KubeServices.md)
 
 - [Find In KubeServices](./queries/KubeServices.md#find-in-kubeservices)
+
+## [LAJobLogs](./queries/LAJobLogs.md)
+
+- [Failed jobs](./queries/LAJobLogs.md#failed-jobs)
+- [Jobs in progress](./queries/LAJobLogs.md#jobs-in-progress)
 
 ## [LAQueryLogs](./queries/LAQueryLogs.md)
 
@@ -1515,11 +1549,6 @@ ms.reviewer: lualderm
 - [Failed tests](./queries/NWConnectionMonitorTestResult.md#failed-tests)
 - [Tests performance](./queries/NWConnectionMonitorTestResult.md#tests-performance)
 
-## [NatGatewayFlowlogsV1](./queries/NatGatewayFlowlogsV1.md)
-
-- [Total allowed packets and bytes sent per NatGateway IP and Destination IP](./queries/NatGatewayFlowlogsV1.md#total-allowed-packets-and-bytes-sent-per-natgateway-ip-and-destination-ip)
-- [Total allowed packets and bytes sent per NatGateway IP and Source IP](./queries/NatGatewayFlowlogsV1.md#total-allowed-packets-and-bytes-sent-per-natgateway-ip-and-source-ip)
-
 ## [NetworkSessions](./queries/NetworkSessions.md)
 
 - [Get traffic to non standard ports](./queries/NetworkSessions.md#get-traffic-to-non-standard-ports)
@@ -1573,6 +1602,10 @@ ms.reviewer: lualderm
 - [Office activity for user](./queries/OfficeActivity.md#office-activity-for-user)
 - [Creation of Forward rule](./queries/OfficeActivity.md#creation-of-forward-rule)
 - [Suspicious file name](./queries/OfficeActivity.md#suspicious-file-name)
+
+## [OktaSystemLogs](./queries/OktaSystemLogs.md)
+
+- [Okta SSO Successful logins](./queries/OktaSystemLogs.md#okta-sso-successful-logins)
 
 ## [Perf](./queries/Perf.md)
 
@@ -1646,6 +1679,11 @@ ms.reviewer: lualderm
 - [Calls based on the target URI](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-the-target-uri)
 - [Calls based on operation name](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-operation-name)
 - [Calls based on user](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-user)
+
+## [RetinaNetworkFlowLogs](./queries/RetinaNetworkFlowLogs.md)
+
+- [Dropped network low Logs](./queries/RetinaNetworkFlowLogs.md#dropped-network-low-logs)
+- [Top 10 network flow log metrics](./queries/RetinaNetworkFlowLogs.md#top-10-network-flow-log-metrics)
 
 ## [SCGPoolExecutionLog](./queries/SCGPoolExecutionLog.md)
 
@@ -1889,6 +1927,15 @@ ms.reviewer: lualderm
 - [Bytes received by each IIS computer](./queries/W3CIISLog.md#bytes-received-by-each-iis-computer)
 - [Bytes responded to clients by each IIS server IP](./queries/W3CIISLog.md#bytes-responded-to-clients-by-each-iis-server-ip)
 - [Average HTTP request time by client IP](./queries/W3CIISLog.md#average-http-request-time-by-client-ip)
+
+## [WOUserAudits](./queries/WOUserAudits.md)
+
+- [Auditing workload orchestration Operations](./queries/WOUserAudits.md#auditing-workload-orchestration-operations)
+- [Auditing workload orchestration API requests](./queries/WOUserAudits.md#auditing-workload-orchestration-api-requests)
+
+## [WOUserDiagnostics](./queries/WOUserDiagnostics.md)
+
+- [workload orchestration target provider and solution deployment failures](./queries/WOUserDiagnostics.md#workload-orchestration-target-provider-and-solution-deployment-failures)
 
 ## [WVDAgentHealthStatus](./queries/WVDAgentHealthStatus.md)
 

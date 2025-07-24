@@ -1,7 +1,7 @@
 ---
 title: Autoscale flapping
 description: "Flapping in Autoscale"
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/01/2024
 ms.reviewer: akkumari
 

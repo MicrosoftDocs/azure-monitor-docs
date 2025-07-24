@@ -1,7 +1,7 @@
 ---
 title: Collect Syslog events with Azure Monitor Agent 
 description: Configure collection of Syslog events by using a data collection rule on virtual machines with Azure Monitor Agent.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 03/03/2025
 ---
@@ -18,34 +18,7 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 > [!NOTE]
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#syslog-events).
 
-
-## Configure Syslog data source
-Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Linux Syslog** from the **Data source type** dropdown. 
-
-Select a **Minimum log level** for each facility or **NONE** to collect no events for that facility. You can configure multiple facilities at once by selecting their checkbox and then selecting a log level in **Set minimum log level for selected facilities**.
-
-:::image type="content" source="./media/data-collection-syslog/create-rule-data-source.png" lightbox="./media/data-collection-syslog/create-rule-data-source.png" alt-text="Screenshot that shows the page to select the data source type and minimum log level.":::
-
-All logs with the selected severity level and higher are collected for the facility. The supported severity levels and their relative severity are as follows:
-
-1. Debug
-2. Info
-3. Notice
-4. Warning
-5. Error
-6. Critical
-7. Alert
-8. Emergency
-
-## Add destinations
-Syslog data can only be sent to a Log Analytics workspace where it's stored in the [Syslog](/azure/azure-monitor/reference/tables/syslog) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
-
-:::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::    
-
-## Verify data collection
-To verify that data is being collected, check for records in the **Syslog** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Syslog**. 
-
-:::image type="content" source="media/data-collection-syslog/verify-syslog.png" lightbox="media/data-collection-syslog/verify-syslog.png" alt-text="Screenshot that shows records returned from Syslog table." :::
+[!INCLUDE [configure-syslog-ama](~/reusable-content/ce-skilling/azure/includes/azure-monitor/agents/configure-syslog-ama.md)]
 
 ## Configure Syslog on the Linux agent
 When Azure Monitor Agent is installed on a Linux machine, it installs a default Syslog configuration file that defines the facility and severity of the messages that are collected if Syslog is enabled in a DCR. The configuration file is different depending on the Syslog daemon that the client has installed.

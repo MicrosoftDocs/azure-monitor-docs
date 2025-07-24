@@ -3,7 +3,7 @@ title: Write code to track requests with Application Insights Profiler for .NET 
 description: Write code to track requests with Application Insights so you can get profiles for your requests.
 ms.topic: how-to
 ms.custom: devx-track-csharp
-ms.date: 08/19/2024
+ms.date: 03/25/2025
 ms.reviewer: charles.weininger
 ---
 
@@ -11,7 +11,7 @@ ms.reviewer: charles.weininger
 
 Application Insights needs to track requests for your application to provide profiles for your application on the **Performance** page in the Azure portal. For applications built on already-instrumented frameworks (like ASP.NET and ASP.NET Core), Application Insights can automatically track requests.
 
-For other applications (like Azure Cloud Services worker roles and Azure Service Fabric stateless APIs), you need to track requests with code that tells Application Insights where your requests begin and end. Requests telemetry is then sent to Application Insights, which you can view on the **Performance** page. Profiles are collected for those requests.
+For other applications (like Azure Service Fabric stateless APIs), you need to track requests with code that tells Application Insights where your requests begin and end. Requests telemetry is then sent to Application Insights, which you can view on the **Performance** page. Profiles are collected for those requests.
 
 To manually track requests:
 
@@ -20,11 +20,11 @@ To manually track requests:
    ```csharp
    using Microsoft.ApplicationInsights.Extensibility;
    ...
-   // Replace with your own Application Insights instrumentation key.
+   // Replace with your own Application Insights connection string.
    TelemetryConfiguration.Active.InstrumentationKey = "00000000-0000-0000-0000-000000000000";
    ```
     
-   For more information about this global instrumentation key configuration, see [Use Service Fabric with Application Insights](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/blob/dev/appinsights/ApplicationInsights.md).
+   For more information about this global connection string configuration, see [Use Service Fabric with Application Insights](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/blob/dev/appinsights/ApplicationInsights.md).
 
 1. For any piece of code that you want to instrument, add a `StartOperation<RequestTelemetry>` **using** statement around it, as shown in the following example:
 

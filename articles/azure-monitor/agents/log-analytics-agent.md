@@ -1,7 +1,7 @@
 ---
 title: Log Analytics agent overview
 description: This article helps you understand how to collect data and monitor computers hosted in Azure, on-premises, or other cloud environments with Log Analytics.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/14/2024
 ms.reviewer: luki
 
@@ -9,7 +9,7 @@ ms.reviewer: luki
 
 # Log Analytics agent overview
 
-[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
+[!INCLUDE [Log Analytics agent deprecation](includes/log-analytics-agent-deprecation.md)]
 
 This article provides a detailed overview of the Log Analytics agent and the agent's system and network requirements and deployment methods.
 
@@ -28,9 +28,9 @@ Use the Log Analytics agent if you need to:
 
 Limitations of the Log Analytics agent:
 
-- Can't send data to Azure Monitor Metrics, Azure Storage, or Azure Event Hubs.
-- Difficult to configure unique monitoring definitions for individual agents.
-- Difficult to manage at scale because each virtual machine has a unique configuration.
+* Can't send data to Azure Monitor Metrics, Azure Storage, or Azure Event Hubs.
+* Difficult to configure unique monitoring definitions for individual agents.
+* Difficult to manage at scale because each virtual machine has a unique configuration.
 
 ## Comparison to other agents
 
@@ -38,49 +38,49 @@ For a comparison between the Log Analytics and other agents in Azure Monitor, se
 
 ## Supported operating systems
 
- For a list of the Windows and Linux operating system versions that are supported by the Log Analytics agent, see [Supported operating systems](../agents/agents-overview.md#supported-operating-systems).
+For a list of the Windows and Linux operating system versions that are supported by the Log Analytics agent, see [Supported operating systems](../agents/agents-overview.md#supported-operating-systems).
 
 ## Installation options
 
 This section explains how to install the Log Analytics agent on different types of virtual machines and connect the machines to Azure Monitor.
 
-[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
+[!INCLUDE [Log Analytics agent deprecation](includes/log-analytics-agent-deprecation.md)]
 
 > [!NOTE]
 > Cloning a machine with the Log Analytics Agent already configured is *not* supported. If the agent is already associated with a workspace, cloning won't work for "golden images."
 
 ### Azure virtual machine
 
-- Use [VM insights](../vm/vminsights-enable-overview.md) to install the agent for a [single machine using the Azure portal](../vm/vminsights-enable-portal.md) or for [multiple machines at scale](../vm/vminsights-enable-policy.md). This installs the Log Analytics agent and [Dependency agent](../vm/vminsights-dependency-agent-maintenance.md). 
-- Log Analytics VM extension for [Windows](/azure/virtual-machines/extensions/oms-windows) or [Linux](/azure/virtual-machines/extensions/oms-linux) can be installed with the Azure portal, Azure CLI, Azure PowerShell, or an Azure Resource Manager template.
-- [Microsoft Defender for Cloud can provision the Log Analytics agent](/azure/security-center/security-center-enable-data-collection) on all supported Azure VMs and any new ones that are created if you enable it to monitor for security vulnerabilities and threats.
-- Install for individual Azure virtual machines [manually from the Azure portal](../vm/monitor-virtual-machine.md?toc=%2fazure%2fazure-monitor%2ftoc.json).
-- Connect the machine to a workspace from the **Virtual machines (deprecated)** option in the **Log Analytics workspaces** menu in the Azure portal.
+* Use [VM insights](../vm/vminsights-enable-overview.md) to install the agent for a [single machine using the Azure portal](../vm/vminsights-enable-portal.md) or for [multiple machines at scale](../vm/vminsights-enable-policy.md). This installs the Log Analytics agent and [Dependency agent](../vm/vminsights-dependency-agent-maintenance.md). 
+* Log Analytics VM extension for [Windows](/azure/virtual-machines/extensions/oms-windows) or [Linux](/azure/virtual-machines/extensions/oms-linux) can be installed with the Azure portal, Azure CLI, Azure PowerShell, or an Azure Resource Manager template.
+* [Microsoft Defender for Cloud can provision the Log Analytics agent](/azure/security-center/security-center-enable-data-collection) on all supported Azure VMs and any new ones that are created if you enable it to monitor for security vulnerabilities and threats.
+* Install for individual Azure virtual machines [manually from the Azure portal](../vm/monitor-virtual-machine.md?toc=%2fazure%2fazure-monitor%2ftoc.json).
+* Connect the machine to a workspace from the **Virtual machines (deprecated)** option in the **Log Analytics workspaces** menu in the Azure portal.
 
 ### Windows virtual machine on-premises or in another cloud
 
-- Use [Azure Arc-enabled servers](/azure/azure-arc/servers/overview) to deploy and manage the Log Analytics VM extension. Review the [deployment options](/azure/azure-arc/servers/concept-log-analytics-extension-deployment) to understand the different deployment methods available for the extension on machines registered with Azure Arc-enabled servers.
-- [Manually install](../agents/agent-windows.md) the agent from the command line.
-- Automate the installation with [Azure Automation DSC](../agents/agent-windows.md#install-the-agent).
-- Use a [Resource Manager template with Azure Stack](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/MicrosoftMonitoringAgent-ext-win).
+* Use [Azure Arc-enabled servers](/azure/azure-arc/servers/overview) to deploy and manage the Log Analytics VM extension. Review the [deployment options](/azure/azure-arc/servers/concept-log-analytics-extension-deployment) to understand the different deployment methods available for the extension on machines registered with Azure Arc-enabled servers.
+* [Manually install](../agents/agent-windows.md) the agent from the command line.
+* Automate the installation with [Azure Automation DSC](../agents/agent-windows.md#install-the-agent).
+* Use a [Resource Manager template with Azure Stack](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/MicrosoftMonitoringAgent-ext-win).
 
 ### Linux virtual machine on-premises or in another cloud
 
-- Use [Azure Arc-enabled servers](/azure/azure-arc/servers/overview) to deploy and manage the Log Analytics VM extension. Review the [deployment options](/azure/azure-arc/servers/concept-log-analytics-extension-deployment) to understand the different deployment methods available for the extension on machines registered with Azure Arc-enabled servers.
-- [Manually install](../agents/agent-linux.md#install-the-agent) the agent calling a wrapper-script hosted on GitHub.
-- Integrate [System Center Operations Manager](./om-agents.md) with Azure Monitor to forward collected data from Windows computers reporting to a management group.
+* Use [Azure Arc-enabled servers](/azure/azure-arc/servers/overview) to deploy and manage the Log Analytics VM extension. Review the [deployment options](/azure/azure-arc/servers/concept-log-analytics-extension-deployment) to understand the different deployment methods available for the extension on machines registered with Azure Arc-enabled servers.
+* [Manually install](../agents/agent-linux.md#install-the-agent) the agent calling a wrapper-script hosted on GitHub.
+* Integrate [System Center Operations Manager](./om-agents.md) with Azure Monitor to forward collected data from Windows computers reporting to a management group.
 
 ## Data collected
 
 The following table lists the types of data you can configure a Log Analytics workspace to collect from all connected agents. 
 
 | Data Source | Description |
-| --- | --- |
+|-------------|-------------|
 | [Windows Event logs](../agents/data-sources-windows-events.md) | Information sent to the Windows event logging system |
-| [Syslog](../agents/data-sources-syslog.md)                     | Information sent to the Linux event logging system |
-| [Performance](data-sources-performance-counters.md)  | Numerical values measuring performance of different aspects of operating system and workloads |
-| [IIS logs](../agents/data-sources-iis-logs.md)                 | Usage information for IIS websites running on the guest operating system |
-| [Custom logs](../agents/data-sources-custom-logs.md)           | Events from text files on both Windows and Linux computers |
+| [Syslog](../agents/data-sources-syslog.md) | Information sent to the Linux event logging system |
+| [Performance](data-sources-performance-counters.md) | Numerical values measuring performance of different aspects of operating system and workloads |
+| [IIS logs](../agents/data-sources-iis-logs.md) | Usage information for IIS websites running on the guest operating system |
+| [Custom logs](../agents/data-sources-custom-logs.md) | Events from text files on both Windows and Linux computers |
 
 ## Other services
 
@@ -111,12 +111,12 @@ The following table lists the proxy and firewall configuration information requi
 
 ### Firewall requirements
 
-|Agent Resource|Ports |Direction |Bypass HTTPS inspection|
-|------|---------|--------|--------|
-|*.ods.opinsights.azure.com |Port 443 |Outbound|Yes |  
-|*.oms.opinsights.azure.com |Port 443 |Outbound|Yes |  
-|*.blob.core.windows.net |Port 443 |Outbound|Yes |
-|*.azure-automation.net |Port 443 |Outbound|Yes |
+| Agent Resource | Ports | Direction | Bypass HTTPS inspection |
+|----------------|-------|-----------|-------------------------|
+| *.ods.opinsights.azure.com | Port 443 | Outbound | Yes |
+| *.oms.opinsights.azure.com | Port 443 | Outbound | Yes |
+| *.blob.core.windows.net | Port 443 | Outbound | Yes |
+| *.azure-automation.net | Port 443 | Outbound | Yes |
 
 For firewall information required for Azure Government, see [Azure Government management](/azure/azure-government/compare-azure-government-global-azure#azure-monitor).
 
@@ -137,11 +137,11 @@ For the Linux agent, the proxy server is specified during installation or [after
 
 |Property| Description |
 |--------|-------------|
-|Protocol | https |
-|user | Optional username for proxy authentication |
-|password | Optional password for proxy authentication |
-|proxyhost | Address or FQDN of the proxy server/Log Analytics gateway |
-|port | Optional port number for the proxy server/Log Analytics gateway |
+| Protocol | https |
+| user | Optional username for proxy authentication |
+| password | Optional password for proxy authentication |
+| proxyhost | Address or FQDN of the proxy server/Log Analytics gateway |
+| port | Optional port number for the proxy server/Log Analytics gateway |
 
 For example:
 `https://user01:password@proxy01.contoso.com:30443`

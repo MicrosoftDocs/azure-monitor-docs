@@ -1,7 +1,7 @@
 ---
 title: View live data with Container insights
 description: This article describes the real-time view of Kubernetes logs, events, and pod metrics without using kubectl in Container insights.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 2/28/2024
 ms.custom: references_regions
 ms.reviewer: aul
@@ -83,7 +83,7 @@ Suspend or pause autoscroll for only a short period of time while you're trouble
 
 This section provides answers to common questions.
 
-[!INCLUDE [container-insights-faq-what-does-other-processes-represent](../includes/container-insights-faq-what-does-other-processes-represent.md)]
+[!INCLUDE [container-insights-faq-what-does-other-processes-represent](includes/container-insights-faq-what-does-other-processes-represent.md)]
 
 ## Next steps
 

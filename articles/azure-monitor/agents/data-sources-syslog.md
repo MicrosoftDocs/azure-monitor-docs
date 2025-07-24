@@ -1,7 +1,7 @@
 ---
 title: Collect Syslog data sources with the Log Analytics agent in Azure Monitor
 description: Syslog is an event logging protocol that's common to Linux. This article describes how to configure collection of Syslog messages in Log Analytics and details the records they create.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 11/14/2024
 ms.reviewer: luki
@@ -14,7 +14,7 @@ ms.reviewer: luki
 
 Syslog is an event logging protocol that's common to Linux. Applications send messages that might be stored on the local machine or delivered to a Syslog collector. When the Log Analytics agent for Linux is installed, it configures the local Syslog daemon to forward messages to the agent. The agent then sends the messages to Azure Monitor where a corresponding record is created.
 
-[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
+[!INCLUDE [Log Analytics agent deprecation](includes/log-analytics-agent-deprecation.md)]
 
 > [!NOTE]
 > Azure Monitor supports collection of messages sent by rsyslog or syslog-ng, where rsyslog is the default daemon. The default Syslog daemon on version 5 of Red Hat Enterprise Linux, CentOS, and Oracle Linux version (sysklog) isn't supported for Syslog event collection. To collect Syslog data from this version of these distributions, the [rsyslog daemon](http://rsyslog.com) should be installed and configured to replace sysklog.
@@ -59,8 +59,6 @@ When the [Log Analytics agent is installed on a Linux client](../vm/monitor-virt
 
 > [!NOTE]
 > If you edit the Syslog configuration, you must restart the Syslog daemon for the changes to take effect.
->
->
 
 #### rsyslog
 
@@ -211,7 +209,7 @@ After you finish the changes, restart the Syslog and the Log Analytics agent ser
 Syslog records have a type of **Syslog** and have the properties shown in the following table.
 
 | Property | Description |
-|:--- |:--- |
+|:---------|:------------|
 | Computer |Computer that the event was collected from. |
 | Facility |Defines the part of the system that generated the message. |
 | HostIP |IP address of the system sending the message. |
@@ -226,7 +224,7 @@ Syslog records have a type of **Syslog** and have the properties shown in the fo
 The following table provides different examples of log queries that retrieve Syslog records.
 
 | Query | Description |
-|:--- |:--- |
+|:------|:------------|
 | Syslog |All Syslogs |
 | Syslog &#124; where SeverityLevel == "error" |All Syslog records with severity of error |
 | Syslog &#124; summarize AggregatedValue = count() by Computer |Count of Syslog records by computer |

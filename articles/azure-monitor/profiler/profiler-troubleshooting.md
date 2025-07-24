@@ -1,8 +1,8 @@
 ---
 title: Troubleshoot Application Insights Profiler for .NET
 description: Walk through troubleshooting steps and information to enable and use Application Insights Profiler for .NET.
-ms.topic: conceptual
-ms.date: 08/19/2024
+ms.topic: troubleshooting-general
+ms.date: 03/25/2025
 ms.reviewer: charles.weininger
 ---
 
@@ -21,7 +21,7 @@ Currently, the only regions that require endpoint modifications are [Azure Gover
 
 ## Is your app running on the right version?
 
-The Profiler is supported on the [.NET Framework later than 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework).
+The Profiler is supported on [.NET Framework versions later than 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework).
 
 If your web app is an ASP.NET Core application, it must be running on the [latest supported ASP.NET Core runtime](https://dotnet.microsoft.com/download/dotnet/8.0).
 
@@ -106,7 +106,7 @@ When you see parallel threads in your traces, determine which threads are waitin
 
 ## Troubleshoot the .NET Profiler on your specific Azure service
 
-The following sections walk you through troubleshooting steps for using Profiler on Azure App Service or Azure Cloud Services.
+The following sections walk you through troubleshooting steps for using Profiler on Azure App Service.
 
 ### Azure App Service
 
@@ -198,7 +198,7 @@ These parameters delete the folder used by Application Insights Profiler for .NE
 
 The Profiler runs as a continuous WebJob in the web app. You can open the web app resource in the [Azure portal](https://portal.azure.com). In the **WebJobs** pane, check the status of **ApplicationInsightsProfiler**. If it isn't running, open **Logs** to get more information.
 
-### VMs and Azure Cloud Services
+### Virtual machines
 
 To see whether the .NET Profiler is configured correctly by Azure Diagnostics:
 
@@ -214,15 +214,10 @@ To check the settings that were used to configure Azure Diagnostics:
 
 1. Open the log file at this location. The plug-in version might be newer on your machine.
 
-    For VMs:
     ```
     c:\WindowsAzure\logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\1.11.3.12\DiagnosticsPlugin.log
     ```
 
-    For Azure Cloud Services:
-    ```
-    c:\logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\1.11.3.12\DiagnosticsPlugin.log
-    ```
 
 1. In the file, search for the string `WadCfg` to find the settings that were passed to the VM to configure Azure Diagnostics.
 
@@ -230,14 +225,8 @@ To check the settings that were used to configure Azure Diagnostics:
 
 1. Check the command line that starts Profiler. The command line arguments are in the following file (the drive could be `c:` or `d:` and the directory might be hidden):
 
-    For VMs:
     ```
     C:\ProgramData\ApplicationInsightsProfiler\config.json
-    ```
-
-    For Azure Cloud Services:
-    ```
-    D:\ProgramData\ApplicationInsightsProfiler\config.json
     ```
 
 1. Make sure that the iKey on the Profiler command line is correct.
@@ -249,14 +238,8 @@ To check the settings that were used to configure Azure Diagnostics:
 
     You can find the file:
 
-    For VMs:
     ```
     C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\1.17.0.6\ApplicationInsightsProfiler
-    ```
-
-    For Azure Cloud Services:
-    ```
-    C:\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\1.17.0.6\ApplicationInsightsProfiler
     ```
 
 1. If the .NET Profiler is running while your application is receiving requests, the following message appears: "Activity detected from iKey."
@@ -269,6 +252,8 @@ If your application connects to the internet via a proxy or a firewall, you migh
 
 The IPs used by Application Insights Profiler for .NET are included in the Azure Monitor service tag. For more information, see [Service tags documentation](/azure/virtual-network/service-tags-overview).
 
+[!INCLUDE [bring-your-own-storage-troubleshooting](./includes/bring-your-own-storage-troubleshooting.md)]
+
 ## Support
 
-If you still need help, submit a support ticket in the Azure portal. Include the correlation ID from the error message.
+If you still need help, submit a support ticket by clicking the question mark icon in the Azure portal. Include the correlation ID from the error message.

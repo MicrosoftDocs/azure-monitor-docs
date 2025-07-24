@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Application Gateway
@@ -47,24 +47,6 @@ Recommendation ID: 17ebccd8-1405-405c-8695-1981d115ffdc
 
 
 <!--17ebccd8-1405-405c-8695-1981d115ffdc_end-->
-
-<!--f606607c-ee34-445e-997e-49d7cb563fe0_begin-->
-
-#### Upgrade your ExpressRoute circuit bandwidth to accommodate your bandwidth needs  
-  
-You have been using over 90% of your procured circuit bandwidth recently. If you exceed your allocated bandwidth, you experience an increase in dropped packets sent over ExpressRoute. Upgrade your circuit bandwidth to maintain performance, if your bandwidth needs remain high.  
-  
-**Potential benefits**: Prevent packet drops caused by bandwidth oversubscription  
-
-**Impact:** High
-  
-For more information, see [About upgrading circuit bandwidth](/azure/expressroute/about-upgrade-circuit-bandwidth)  
-
-ResourceType: microsoft.network/expressroutecircuits  
-Recommendation ID: f606607c-ee34-445e-997e-49d7cb563fe0  
-
-
-<!--f606607c-ee34-445e-997e-49d7cb563fe0_end-->
 
 <!--10b153b5-59d0-45ac-bb3f-6a0b7ad9c0cd_begin-->
 
@@ -124,7 +106,7 @@ Recommendation ID: db00ef71-91ab-418a-a2ea-da45a678bb34
 
 #### Use HEAD health probes  
   
-Health probes can use either the GET or HEAD HTTP methods. It’s a good practice to use the HEAD method for health probes, which reduces the amount of traffic load on your origins.  
+Health probes can use either the GET or HEAD HTTP methods. It's a good practice to use the HEAD method for health probes, which reduces the amount of traffic load on your origins.  
   
 **Potential benefits**: Reduce traffic load on your origins  
 

@@ -1,8 +1,8 @@
 ---
 title: Telemetry channels in Application Insights | Microsoft Docs
 description: How to customize telemetry channels in Application Insights SDKs for .NET and .NET Core.
-ms.topic: conceptual
-ms.date: 3/21/2025
+ms.topic: how-to
+ms.date: 7/17/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
 ms.reviewer: mmcc
@@ -12,13 +12,15 @@ ms.reviewer: mmcc
 
 Telemetry channels are an integral part of the [Application Insights SDKs](./app-insights-overview.md). They manage buffering and transmission of telemetry to the Application Insights service. The .NET and .NET Core versions of the SDKs have two built-in telemetry channels: `InMemoryChannel` and `ServerTelemetryChannel`. This article describes each channel and shows how to customize channel behavior.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ## What are telemetry channels?
 
 Telemetry channels are responsible for buffering telemetry items and sending them to the Application Insights service, where they're stored for querying and analysis. A telemetry channel is any class that implements the [`Microsoft.ApplicationInsights.ITelemetryChannel`](/dotnet/api/microsoft.applicationinsights.channel.itelemetrychannel) interface.
 
 The `Send(ITelemetry item)` method of a telemetry channel is called after all telemetry initializers and telemetry processors are called. So, any items dropped by a telemetry processor won't reach the channel. The `Send()` method doesn't ordinarily send the items to the back end instantly. Typically, it buffers them in memory and sends them in batches for efficient transmission.
+
+Avoid calling `Flush()` unless it's critical to send buffered telemetry immediately. Use it only in scenarios like application shutdown, exception handling, or when using short-lived processes such as background jobs or command-line tools. In web applications or long-running services, the SDK handles telemetry sending automatically. Calling `Flush()` unnecessarily can cause performance problems.
 
 [Live Metrics Stream](live-stream.md) also has a custom channel that powers the live streaming of telemetry. This channel is independent of the regular telemetry channel, and this document doesn't apply to it.
 
@@ -67,7 +69,7 @@ using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
 protected void Application_Start()
 {
     var serverTelemetryChannel = new ServerTelemetryChannel();
-    serverTelemetryChannel.StorageFolder = @"d:\temp\applicationinsights";
+serverTelemetryChannel.StorageFolder = @"d:\temp\applicationinsights";
     serverTelemetryChannel.Initialize(TelemetryConfiguration.Active);
     TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 }
@@ -88,7 +90,6 @@ public void ConfigureServices(IServiceCollection services)
 
     services.AddApplicationInsightsTelemetry();
 }
-
 ```
 
 > [!IMPORTANT]
@@ -111,7 +112,7 @@ TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 
 By default, a maximum of 10 `Transmission` instances can be sent in parallel. If telemetry is arriving at faster rates, or if the network or the Application Insights back end is slow, `Transmission` instances are stored in memory. The default capacity of this in-memory `Transmission` buffer is 5 MB. When the in-memory capacity has been exceeded, `Transmission` instances are stored on local disk up to a limit of 50 MB.
 
-`Transmission` instances are stored on local disk also when there are network problems. Only those items that are stored on a local disk survive an application crash. They're sent whenever the application starts again. If network issues persist, `ServerTelemetryChannel` will use an exponential backoff logic ranging from 10 seconds to 1 hour before retrying to send telemetry.
+`Transmission` instances are stored on local disk also when there are network problems. Only those items that are stored on a local disk survive an application crash. They're sent whenever the application starts again. If network issues persist, `ServerTelemetryChannel` uses an exponential backoff logic ranging from 10 seconds to 1 hour before retrying to send telemetry.
 
 ## Configurable settings in channels
 
@@ -128,56 +129,28 @@ Here are the most commonly used settings for `ServerTelemetryChannel`:
 
 ## Which channel should I use?
 
-We recommend `ServerTelemetryChannel` for most production scenarios that involve long-running applications. The `Flush()` method implemented by `ServerTelemetryChannel` isn't synchronous. It also doesn't guarantee sending all pending items from memory or disk.
+We recommend `ServerTelemetryChannel` for most production scenarios that involve long-running applications. For more about flushing telemetry, [read about using `Flush()`](#when-to-use-flush).
 
-If you use this channel in scenarios where the application is about to shut down, introduce some delay after you call `Flush()`. The exact amount of delay that you might require isn't predictable. It depends on factors like how many items or `Transmission` instances are in memory, how many are on disk, how many are being transmitted to the back end, and whether the channel is in the middle of exponential back-off scenarios.
 
-If you need to do a synchronous flush, use `InMemoryChannel`.
+## When to use Flush()
 
-## Frequently asked questions
+The `Flush()` method sends any buffered telemetry immediately. However, it should only be used in specific scenarios.
 
-This section provides answers to common questions.
+Use `Flush()` when:
+- The application is about to shut down and you want to ensure telemetry is sent before exit.
+- You're in an exception handler and need to guarantee telemetry is delivered.
+- You're writing a short-lived process like a background job or CLI tool that exits quickly.
 
-### Does the Application Insights channel guarantee telemetry delivery? If not, what are the scenarios in which telemetry can be lost?
+Avoid using `Flush()` in long-running applications such as web services. The SDK automatically manages buffering and transmission. Calling `Flush()` unnecessarily can cause performance problems and won't guarantee all data is sent, especially when using `ServerTelemetryChannel`, which doesn't flush synchronously.
 
-The short answer is that none of the built-in channels offer a transaction-type guarantee of telemetry delivery to the back end. `ServerTelemetryChannel` is more advanced compared with `InMemoryChannel` for reliable delivery, but it also makes only a best-effort attempt to send telemetry. Telemetry can still be lost in several situations, including these common scenarios:
-
-- Items in memory are lost when the application crashes.
-- Telemetry is lost during extended periods of network problems. Telemetry is stored to local disk during network outages or when problems occur with the Application Insights back end. However, items older than 48 hours are discarded.
-- The default disk locations for storing telemetry in Windows are %LOCALAPPDATA% or %TEMP%. These locations are typically local to the machine. If the application migrates physically from one location to another, any telemetry stored in the original location is lost.
-- In Azure Web Apps on Windows, the default disk-storage location is D:\local\LocalAppData. This location isn't persisted. It's wiped out in app restarts, scale-outs, and other such operations, which leads to loss of any telemetry stored there. You can override the default and specify storage to a persisted location like D:\home. However, such persisted locations are served by remote storage and so can be slow.
-
-Although less likely, it's also possible that the channel can cause duplicate telemetry items. This behavior occurs when `ServerTelemetryChannel` retries because of network failure or timeout, when the telemetry was delivered to the back end, but the response was lost because of network issues or there was a timeout.
-
-### Does ServerTelemetryChannel work on systems other than Windows?
-
-Although the name of its package and namespace includes "WindowsServer," this channel is supported on systems other than Windows, with the following exception. On systems other than Windows, the channel doesn't create a local storage folder by default. You must create a local storage folder and configure the channel to use it. After local storage has been configured, the channel works the same way on all systems.
-
-> [!NOTE]
-> With the release 2.15.0-beta3 and greater, local storage is now automatically created for Linux, Mac, and Windows. For non-Windows systems, the SDK will automatically create a local storage folder based on the following logic:
->
-> - `${TMPDIR}`: If the `${TMPDIR}` environment variable is set, this location is used.
-> - `/var/tmp`: If the previous location doesn't exist, we try `/var/tmp`.
-> - `/tmp`: If both the previous locations don't exist, we try `tmp`.
-> - If none of those locations exist, local storage isn't created and manual configuration is still required. For full implementation details, see [this GitHub repo](https://github.com/microsoft/ApplicationInsights-dotnet/pull/1860).
-
-### Does the SDK create temporary local storage? Is the data encrypted at storage?
-
-The SDK stores telemetry items in local storage during network problems or during throttling. This data isn't encrypted locally.
-
-For Windows systems, the SDK automatically creates a temporary local folder in the %TEMP% or %LOCALAPPDATA% directory and restricts access to administrators and the current user only.
-
-For systems other than Windows, no local storage is created automatically by the SDK, so no data is stored locally by default.
-
-> [!NOTE]
-> With the release 2.15.0-beta3 and greater, local storage is now automatically created for Linux, Mac, and Windows.
-
- You can create a storage directory yourself and configure the channel to use it. In this case, you're responsible for ensuring that the directory is secured. Read more about [data protection and privacy](/previous-versions/azure/azure-monitor/app/data-retention-privacy#does-the-sdk-create-temporary-local-storage).
 
 ## Open-source SDK
+
 Like every SDK for Application Insights, channels are open source. Read and contribute to the code or report problems at [the official GitHub repo](https://github.com/Microsoft/ApplicationInsights-dotnet).
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Telemetry channels FAQ](application-insights-faq.yml#telemetry-channels)
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Sampling](./sampling.md)
 * [SDK troubleshooting](./asp-net-troubleshoot-no-data.md)

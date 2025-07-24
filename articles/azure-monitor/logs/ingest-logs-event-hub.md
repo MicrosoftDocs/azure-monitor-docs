@@ -7,12 +7,12 @@ ms.date: 12/28/2023
 ms.custom: references_regions 
 
 # Customer intent: As a DevOps engineer, I want to ingest data from an event hub into a Log Analytics workspace so that I can monitor logs that I send to Azure Event Hubs.
+
 ---
 
 # Tutorial: Ingest events from Azure Event Hubs into Azure Monitor Logs (Public Preview)
 
 [Azure Event Hubs](/azure/event-hubs/event-hubs-about) is a big data streaming platform that collects events from multiple sources to be ingested by Azure and external services. This article explains how to ingest data directly from an event hub into a Log Analytics workspace.
-
 
 In this tutorial, you learn how to:
 
@@ -27,27 +27,26 @@ In this tutorial, you learn how to:
 
 To send events from Azure Event Hubs to Azure Monitor Logs, you need these resources:
 
-- [Log Analytics workspace](../logs/quick-create-workspace.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
-- Your Log Analytics workspace needs to be [linked to a dedicated cluster](../logs/logs-dedicated-clusters.md#link-a-workspace-to-a-cluster) or to have a [commitment tier](../logs/cost-logs.md#commitment-tiers).
-- [Event Hubs namespace](/azure/event-hubs/event-hubs-features#namespace) that permits public network access. If public network access is disabled, ensure that "Allow trusted Microsoft services to bypass this firewall" is set to "Yes."
-
-- [Event hub](/azure/event-hubs/event-hubs-create) with events. You can send events to your event hub by following the steps in [Send and receive events in Azure Event Hubs tutorials](/azure/event-hubs/event-hubs-create#next-steps) or by [configuring the diagnostic settings of Azure resources](../essentials/create-diagnostic-settings.md).
+* [Log Analytics workspace](quick-create-workspace.md) where you have at least [contributor rights](manage-access.md#azure-rbac).
+* Your Log Analytics workspace needs to be [linked to a dedicated cluster](logs-dedicated-clusters.md#link-a-workspace-to-a-cluster) or to have a [commitment tier](cost-logs.md#commitment-tiers).
+* [Event Hubs namespace](/azure/event-hubs/event-hubs-features#namespace) that permits public network access. If public network access is disabled, ensure that "Allow trusted Microsoft services to bypass this firewall" is set to "Yes."
+* [Event hub](/azure/event-hubs/event-hubs-create) with events. You can send events to your event hub by following the steps in [Send and receive events in Azure Event Hubs tutorials](/azure/event-hubs/event-hubs-create#next-steps) or by [configuring the diagnostic settings of Azure resources](../platform/diagnostic-settings.md#create-a-diagnostic-setting).
 
 ## Supported regions
 
 Azure Monitor currently supports ingestion from Event Hubs in these regions:
 
-| Americas | Europe | Middle East | Africa | Asia Pacific |
-| - | - | - | - | - |
-|	Brazil South	|	France Central	|	UAE North	|	South Africa North	|	Australia Central	|
-|	Brazil Southeast	|	North Europe	|		|		|	Australia East	|
-|	Canada Central	|	Norway East	|		|		|	Australia Southeast	|
-|	Canada East	|	Switzerland North	|		|		|	Central India	|
-|	East US	|	Switzerland West	|		|		|	East Asia	|
-|	East US 2	|	UK South	|		|		|	Japan East	|
-|	South Central US	|	UK West	|		|		|	Jio India West	|
-|	West US	|	West Europe	|		|		|	Korea Central	|
-|	West US 3	 |		|		|		|	Southeast Asia	|
+| Americas         | Europe            | Middle East | Africa             | Asia Pacific        |
+|------------------|-------------------|-------------|--------------------|---------------------|
+| Brazil South     | France Central    | UAE North   | South Africa North | Australia Central   |
+| Brazil Southeast | North Europe      |             |                    | Australia East      |
+| Canada Central   | Norway East       |             |                    | Australia Southeast |
+| Canada East      | Switzerland North |             |                    | Central India       |
+| East US          | Switzerland West  |             |                    | East Asia           |
+| East US 2        | UK South          |             |                    | Japan East          |
+| South Central US | UK West           |             |                    | Jio India West      |
+| West US          | West Europe       |             |                    | Korea Central       |
+| West US 3        |                   |             |                    | Southeast Asia      |
 
 You need to create your Data Collection Rule Association (DCRA) in the same region as the Event Hub. The Log Analytics workspace can be in any region, but the Data Collection Rule (DCR) and Data Collection Endpoint (DCE) must be in the same region as the Log Analytics workspace.
 
@@ -68,16 +67,16 @@ You need your subscription ID, resource group name, workspace name, workspace re
 1. Navigate to your event hub instance, select **JSON** to open the **Resource JSON** screen, and copy the event hub instance's **Resource ID**. You'll need the event hub instance's resource ID to associate the data collection rule with the event hub.
 
     :::image type="content" source="media/ingest-logs-event-hub/event-hub-resource-id.png" lightbox="media/ingest-logs-event-hub/event-hub-resource-id.png" alt-text="Screenshot showing the Resource JSON screen with the event hub resource ID highlighted.":::
+
 ## Create a destination table in your Log Analytics workspace
 
-Before you can ingest data, you need to set up a destination table. You can ingest data into custom tables and [supported Azure tables](../logs/logs-ingestion-api-overview.md#supported-tables).
+Before you can ingest data, you need to set up a destination table. You can ingest data into custom tables and [supported Azure tables](logs-ingestion-api-overview.md#supported-tables).
 
-To create a custom table into which to ingest events, in the Azure portal:  
+To create a custom table into which to ingest events, in the Azure portal:
 
 1. Select the **Cloud Shell** button and ensure the environment is set to **PowerShell**.
 
     :::image type="content" source="media/ingest-logs-event-hub/create-custom-table-open-cloud-shell.png" lightbox="media/ingest-logs-event-hub/create-custom-table-open-cloud-shell.png" alt-text="Screenshot showing how to open Cloud Shell.":::
-
 
 1. Run this PowerShell command to create the table, providing the table name (`<table_name>`) in the JSON (that too with suffix *_CL* in case of custom table), and setting the `<subscription_id>`, `<resource_group_name>`, `<workspace_name>`, and `<table_name>` values in the `Invoke-AzRestMethod -Path` command:
 
@@ -113,15 +112,15 @@ To create a custom table into which to ingest events, in the Azure portal:
     ```
 
 > [!IMPORTANT]
-> - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
-> -  `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. 
-> - Column names are case-sensitive. Make sure to use the correct case in your data collection rule. 
+> * Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
+> * `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. 
+> * Column names are case-sensitive. Make sure to use the correct case in your data collection rule. 
 
 ## Create a data collection endpoint
 
 To collect data with a data collection rule, you need a data collection endpoint: 
 
-1. [Create a data collection endpoint](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint). 
+1. [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint). 
 
     > [!IMPORTANT]
     > Create the data collection endpoint in the same region as your Log Analytics workspace.
@@ -136,7 +135,7 @@ To collect data with a data collection rule, you need a data collection endpoint
     
 ## Create a data collection rule
 
-Azure Monitor uses [data collection rules](../essentials/data-collection-rule-overview.md) to define which data to collect, how to transform that data, and where to send the data.
+Azure Monitor uses [data collection rules](../data-collection/data-collection-rule-overview.md) to define which data to collect, how to transform that data, and where to send the data.
 
 To create a data collection rule in the Azure portal:
 
@@ -154,19 +153,23 @@ To create a data collection rule in the Azure portal:
 
     Notice the following details in the data collection rule below:
 
-    - `identity` - Defines which type of [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to use. In our example, we use system-assigned identity. You can also [configure user-assigned managed identity](#configure-user-assigned-managed-identity-optional).
+    * `identity` - Defines which type of [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to use. In our example, we use system-assigned identity. You can also [configure user-assigned managed identity](#configure-user-assigned-managed-identity-optional).
     
-    - `dataCollectionEndpointId` - Resource ID of the data collection endpoint.
-    - `streamDeclarations` - Defines which data to ingest from the event hub (incoming data). The stream declaration can't be modified. 
+    * `dataCollectionEndpointId` - Resource ID of the data collection endpoint.
+
+    * `streamDeclarations` - Defines which data to ingest from the event hub (incoming data). The stream declaration can't be modified. 
        
-       - `TimeGenerated` - The time at which the data was ingested from event hub to Azure Monitor Logs.
-       - `RawData` - Body of the event. For more information, see [Read events](/azure/event-hubs/event-hubs-features#read-events).
-       - `Properties` - User properties from the event. For more information, see [Read events](/azure/event-hubs/event-hubs-features#read-events).
-    
-    - `datasources` - Specifies the [event hub consumer group](/azure/event-hubs/event-hubs-features#consumer-groups) and the stream to which you ingest the data.
-    - `destinations` - Specifies all of the destinations where the data will be sent. You can [ingest data to one or more Log Analytics workspaces](../essentials/data-collection-transformations.md#).
-    - `dataFlows` - Matches the stream with the destination workspace and specifies the transformation query and the destination table. In our example, we ingest data to the custom table we created previously. You can also [ingest into a supported Azure table](#ingest-log-data-into-an-azure-table-optional). 
-    - `transformKql` - Specifies a transformation to apply to the incoming data (stream declaration) before it's sent to the workspace. In our example, we set `transformKql` to `source`, which doesn't modify the data from the source in any way, because we're mapping incoming data to a custom table we've created specifically with the corresponding schema. If you're ingesting data to a table with a different schema or to filter data before ingestion, [define a data collection transformation](../essentials/data-collection-transformations.md).
+        * `TimeGenerated` - The time at which the data was ingested from event hub to Azure Monitor Logs.
+        * `RawData` - Body of the event. For more information, see [Read events](/azure/event-hubs/event-hubs-features#read-events).
+        * `Properties` - User properties from the event. For more information, see [Read events](/azure/event-hubs/event-hubs-features#read-events).
+
+    * `datasources` - Specifies the [event hub consumer group](/azure/event-hubs/event-hubs-features#consumer-groups) and the stream to which you ingest the data.
+
+    * `destinations` - Specifies all of the destinations where the data will be sent. You can [ingest data to one or more Log Analytics workspaces](../data-collection/data-collection-transformations.md#).
+
+    * `dataFlows` - Matches the stream with the destination workspace and specifies the transformation query and the destination table. In our example, we ingest data to the custom table we created previously. You can also [ingest into a supported Azure table](#ingest-log-data-into-an-azure-table-optional).
+
+    * `transformKql` - Specifies a transformation to apply to the incoming data (stream declaration) before it's sent to the workspace. In our example, we set `transformKql` to `source`, which doesn't modify the data from the source in any way, because we're mapping incoming data to a custom table we've created specifically with the corresponding schema. If you're ingesting data to a table with a different schema or to filter data before ingestion, [define a data collection transformation](../data-collection/data-collection-transformations.md).
 
     ```json
     {
@@ -268,24 +271,25 @@ To create a data collection rule in the Azure portal:
         ]
     }
     ```
-2. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule and then provide values for the parameters defined in the template, including: 
 
-    - **Region** - Region for the data collection rule. Populated automatically based on the resource group you select. 
-    - **Data Collection Rule Name** - Give the rule a name.
-    - **Workspace Resource ID** - See [Collect required information](#collect-required-information). 
-    - **Endpoint Resource ID** - Generated when you [create the data collection endpoint](#create-a-data-collection-endpoint).
-    - **Table Name** - The name of the destination table. In our example, and whenever you use a custom table, the table name must end with the suffix *_CL*. If you're ingesting data to an Azure table, enter the table name - for example, `Syslog` - without the suffix.  
-    - **Consumer Group** - By default, the consumer group is set to `$Default`. If needed, change the value to a different [event hub consumer group](/azure/event-hubs/event-hubs-features#consumer-groups). 
+1. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule and then provide values for the parameters defined in the template, including: 
+
+    * **Region** - Region for the data collection rule. Populated automatically based on the resource group you select. 
+    * **Data Collection Rule Name** - Give the rule a name.
+    * **Workspace Resource ID** - See [Collect required information](#collect-required-information). 
+    * **Endpoint Resource ID** - Generated when you [create the data collection endpoint](#create-a-data-collection-endpoint).
+    * **Table Name** - The name of the destination table. In our example, and whenever you use a custom table, the table name must end with the suffix *_CL*. If you're ingesting data to an Azure table, enter the table name - for example, `Syslog` - without the suffix.
+    * **Consumer Group** - By default, the consumer group is set to `$Default`. If needed, change the value to a different [event hub consumer group](/azure/event-hubs/event-hubs-features#consumer-groups). 
 
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-custom-template-deployment.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-custom-template-deployment.png" alt-text="Screenshot showing the Custom Template Deployment screen with the deployment values for the data collection rule set up in this tutorial.":::
 
 1. Select **Review + create** and then **Create** when you review the details.
 
-2. When the deployment is complete, expand the **Deployment details** box, and select your data collection rule to view its details. Select **JSON View**.
+1. When the deployment is complete, expand the **Deployment details** box, and select your data collection rule to view its details. Select **JSON View**.
 
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-details.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-details.png" alt-text="Screenshot that shows the Data Collection Rule Overview screen.":::
 
-3. Copy the **Resource ID** for the data collection rule. You'll use this information in the next step.
+1. Copy the **Resource ID** for the data collection rule. You'll use this information in the next step.
 
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-json-view.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-json-view.png" alt-text="Screenshot that shows the data collection rule JSON view.":::
 
@@ -317,7 +321,7 @@ To find the `<identity_resource_Id>` value, navigate to your user-assigned manag
 
 ### Ingest log data into an Azure table (optional)
 
-To ingest data into a [supported Azure table](../logs/logs-ingestion-api-overview.md#supported-tables): 
+To ingest data into a [supported Azure table](logs-ingestion-api-overview.md#supported-tables): 
 
 1. In the data collection rule, change `outputStream`: 
 
@@ -325,7 +329,7 @@ To ingest data into a [supported Azure table](../logs/logs-ingestion-api-overvie
     
     To: `"outputStream": "outputStream": "[concat(Microsoft-', parameters('tableName'))]"`
     
-1. In `transformKql`, [define a transformation](../essentials/data-collection-transformations-structure.md#transformation-structure) that sends the ingested data into the target columns in the destination Azure table.
+1. In `transformKql`, [define a transformation](../data-collection/data-collection-transformations-kql.md) that sends the ingested data into the target columns in the destination Azure table.
 
 ## Grant the event hub permission to the data collection rule
 
@@ -335,7 +339,7 @@ With [managed identity](/azure/active-directory/managed-identities-azure-resourc
 
     :::image type="content" source="media/ingest-logs-event-hub/event-hub-add-role-assignment.png" lightbox="media/ingest-logs-event-hub/event-hub-add-role-assignment.png" alt-text="Screenshot that shows the Access control screen for the data collection rule.":::
 
-1. Select **Azure Event Hubs Data Receiver** and select **Next**.   
+1. Select **Azure Event Hubs Data Receiver** and select **Next**.
 
     :::image type="content" source="media/ingest-logs-event-hub/event-hub-data-receiver-role-assignment.png" lightbox="media/ingest-logs-event-hub/event-hub-data-receiver-role-assignment.png" alt-text="Screenshot that shows the Add Role Assignment screen for the event hub with the Azure Event Hubs Data Receiver role highlighted.":::
 
@@ -405,11 +409,11 @@ To create a data collection rule association in the Azure portal:
 
 1. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule association and then provide values for the parameters defined in the template, including: 
 
-    - **Region** - Populated automatically based on the resource group you select.
-    - **Event Hub Instance Resource ID** - See [Collect required information](#collect-required-information).  
-    - **Association Name** - Give the association a name.
-    - **Data Collection Rule ID** - Generated when you [create the data collection rule](#create-a-data-collection-rule).
-  
+    * **Region** - Populated automatically based on the resource group you select.
+    * **Event Hub Instance Resource ID** - See [Collect required information](#collect-required-information).  
+    * **Association Name** - Give the association a name.
+    * **Data Collection Rule ID** - Generated when you [create the data collection rule](#create-a-data-collection-rule).
+
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-association-custom-template-deployment.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-association-custom-template-deployment.png" alt-text="Screenshot showing the Custom Template Deployment screen with the deployment values for the data collection rule association set up in this tutorial.":::
 
 1. Select **Review + create** and then **Create** when you review the details.
@@ -426,18 +430,19 @@ To check your destination table for ingested events:
     ```kusto
     <table_name>
     ``` 
-    
+
     You should see events from your event hub.
 
 :::image type="content" source="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" lightbox="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" alt-text="Screenshot showing the results of a simple query on a custom table. The results consist of events ingested from an event hub.":::
+
 ## Clean up resources
 
 In this tutorial, you created the following resources:
 
-- Custom table 
-- Data collection endpoint
-- Data collection rule
-- Data collection rule association
+* Custom table 
+* Data collection endpoint
+* Data collection rule
+* Data collection rule association
 
 Evaluate whether you still need these resources. Delete the resources you don't need individually, or delete all of these resources at once by deleting the resource group. Resources you leave running can cost you money.
 
@@ -445,13 +450,13 @@ To stop ingesting data from the event hub, [delete all data collection rule asso
 
 ## Known issues and limitations
 
-- If you transfer a subscription between Microsoft Entra directories, you need to follow the steps described in [Known issues with managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/known-issues#transferring-a-subscription-between-azure-ad-directories) to continue ingesting data.
-- You can ingest messages of up to 64 KB from Event Hubs to Azure Monitor Logs.
+* If you transfer a subscription between Microsoft Entra directories, you need to follow the steps described in [Known issues with managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/known-issues#transferring-a-subscription-between-azure-ad-directories) to continue ingesting data.
+* You can ingest messages of up to 64 KB from Event Hubs to Azure Monitor Logs.
 
 ## Next steps
 
 Learn more about to:
 
-- [Create a custom table](../logs/create-custom-table.md#create-a-custom-table).
-- [Create a data collection endpoint](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint).
-- [Update an existing data collection rule](../essentials/data-collection-rule-create-edit.md).
+* [Create a custom table](create-custom-table.md#create-a-custom-table).
+* [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint).
+* [Update an existing data collection rule](../data-collection/data-collection-rule-create-edit.md).

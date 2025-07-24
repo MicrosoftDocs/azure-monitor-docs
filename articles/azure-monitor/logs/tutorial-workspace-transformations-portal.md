@@ -2,7 +2,7 @@
 title: 'Tutorial: Add a workspace transformation to Azure Monitor Logs by using the Azure portal'
 description: Describes how to add a custom transformation to data flowing through Azure Monitor Logs by using the Azure portal.
 ms.topic: tutorial
-ms.date: 08/12/2024
+ms.date: 03/17/2025
 ---
 
 # Tutorial: Add a transformation in a workspace data collection rule by using the Azure portal
@@ -27,7 +27,8 @@ To complete this tutorial, you need:
 - A table that already has some data.
 - The table can't be linked to the [workspace transformation DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr).
 
-## Overview of the tutorial
+## Overview
+
 In this tutorial, you'll reduce the storage requirement for the `LAQueryLogs` table by filtering out certain records. You'll also remove the contents of a column while parsing the column data to store a piece of data in a custom column. The [LAQueryLogs table](query-audit.md#audit-data) is created when you enable [log query auditing](query-audit.md) in a workspace. You can use this same basic process to create a transformation for any [supported table](tables-feature-support.md) in a Log Analytics workspace.
 
 This tutorial uses the Azure portal, which provides a wizard to walk you through the process of creating an ingestion-time transformation. After you finish the steps, you'll see that the wizard:

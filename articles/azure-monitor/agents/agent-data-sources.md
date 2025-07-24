@@ -1,10 +1,9 @@
 ---
 title: Log Analytics agent data sources in Azure Monitor
 description: Data sources define the log data that Azure Monitor collects from agents and other connected sources. This article describes how Azure Monitor uses data sources, explains how to configure them, and summarizes the different data sources available.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/14/2024
 ms.reviewer: shseth
-
 ---
 
 # Log Analytics agent data sources in Azure Monitor
@@ -13,7 +12,7 @@ The data that Azure Monitor collects from virtual machines with the legacy [Log 
 
 :::image type="content" source="media/agent-data-sources/overview.png" lightbox="media/agent-data-sources/overview.png" alt-text="Diagram that shows log data collection.":::
 
-[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
+[!INCLUDE [Log Analytics agent deprecation](includes/log-analytics-agent-deprecation.md)]
 
 > [!IMPORTANT]
 > The data sources described in this article apply only to virtual machines running the Log Analytics agent.
@@ -23,14 +22,14 @@ The data that Azure Monitor collects from virtual machines with the legacy [Log 
 The following table lists the agent data sources that are currently available with the Log Analytics agent. Each agent data source links to an article that provides information for that data source. It also provides information on their method and frequency of collection.
 
 | Data source | Platform | Log Analytics agent | Operations Manager agent | Azure Storage | Operations Manager required? | Operations Manager agent data sent via management group | Collection frequency |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| [Custom logs](data-sources-custom-logs.md) | Windows |&#8226; |  | |  |  | On arrival. |
-| [Custom logs](data-sources-custom-logs.md) | Linux   |&#8226; |  | |  |  | On arrival. |
-| [IIS logs](data-sources-iis-logs.md) | Windows |&#8226; |&#8226; |&#8226; |  |  |Depends on the Log File Rollover setting. |
-| [Performance counters](data-sources-performance-counters.md) | Windows |&#8226; |&#8226; |  |  |  |As scheduled, minimum of 10 seconds. |
-| [Performance counters](data-sources-performance-counters.md) | Linux |&#8226; |  |  |  |  |As scheduled, minimum of 10 seconds. |
-| [Syslog](data-sources-syslog.md) | Linux |&#8226; |  |  |  |  |From Azure Storage is 10 minutes. From agent is on arrival. |
-| [Windows Event logs](data-sources-windows-events.md) |Windows |&#8226; |&#8226; |&#8226; |  |&#8226; | On arrival. |
+|-------------|----------|---------------------|--------------------------|---------------|------------------------------|---------------------------------------------------------|----------------------|
+| [Custom logs](data-sources-custom-logs.md) | Windows | &#8226; |  |  |  |  | On arrival. |
+| [Custom logs](data-sources-custom-logs.md) | Linux | &#8226; |  |  |  |  | On arrival. |
+| [IIS logs](data-sources-iis-logs.md) | Windows | &#8226; | &#8226; | &#8226; |  |  | Depends on the Log File Rollover setting. |
+| [Performance counters](data-sources-performance-counters.md) | Windows | &#8226; | &#8226; |  |  |  | As scheduled, minimum of 10 seconds. |
+| [Performance counters](data-sources-performance-counters.md) | Linux | &#8226; |  |  |  |  | As scheduled, minimum of 10 seconds. |
+| [Syslog](data-sources-syslog.md) | Linux |&#8226; |  |  |  |  | From Azure Storage is 10 minutes. From agent is on arrival. |
+| [Windows Event logs](data-sources-windows-events.md) | Windows | &#8226; | &#8226; | &#8226; |  | &#8226; | On arrival. |
 
 ## Configure data sources
 

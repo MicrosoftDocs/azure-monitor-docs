@@ -1,16 +1,15 @@
 ---
-title: Aggregate data in a Log Analytics workspace by using summary rules (Preview)
+title: Aggregate data in a Log Analytics workspace by using summary rules
 description: Aggregate data in Log Analytics workspace with summary rules feature in Azure Monitor, including creating, starting, stopping, and troubleshooting rules. 
-ms.service: azure-monitor
 ms.subservice: logs
 ms.topic: how-to
 ms.reviewer: yossi-y
-ms.date: 03/06/2025
+ms.date: 07/22/2025
 
 # Customer intent: As a Log Analytics workspace administrator or developer, I want to optimize my query performance, cost-effectiveness, security, and analysis capabilities by using summary rules to aggregate data I ingest to specific tables.
 ---
 
-# Aggregate data in a Log Analytics workspace by using summary rules (Preview)
+# Aggregate data in a Log Analytics workspace by using summary rules
 
 A summary rule lets you aggregate log data at a regular cadence and send the aggregated results to a custom log table in your Log Analytics workspace. Use summary rules to optimize your data for:
 
@@ -25,6 +24,8 @@ This article describes how summary rules work and how to define and view summary
 Here's a video that provides an overview of some of the benefits of summary rules:
 
 > [!VIDEO https://www.youtube.com/embed/uuZlOps42LE?cc_load_policy=1&cc_lang_pref=auto]
+
+Jump into a step-by-step example with this [summary rules tutorial](/azure/sentinel/summary-rules-tutorial).
 
 ## How summary rules work
 
@@ -78,11 +79,13 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 
 ## Implementation considerations
 
-- The maximum number of active rules in a workspace is 30. 
-- Summary rules are currently only available in the public cloud. 
+- The maximum number of active rules in a workspace is 100.
+- THe API version labeled preview. A stable version, SDKs, and cmdlets are expected in September 2025.
+- Summary rules are currently only available in the public cloud.
 - The summary rule processes incoming data and can't be configured on a historical time range. 
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
-- Querying a Log Analytics workspace in another tenant by using Lighthouse isn't supported.
+- Creating a summary rule with query across another tenant under Lighthouse isn't supported.
+- Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
 
 ## Pricing model
 
@@ -468,7 +471,7 @@ A KQL query can contain sensitive information in comments or in the query syntax
 
 Considerations when you work with encrypted queries:
 
--	Linking a storage account to encrypt your queries doesn’t interrupt existing rules.
+-	Linking a storage account to encrypt your queries doesn't interrupt existing rules.
 -	By default, Azure Monitor stores summary rule queries in Log Analytics storage. If you have existing summary rules before you link a storage account to your Log Analytics workspace, update your summary rules so the queries to save the existing queries in the storage account.
 -	Queries that you save in a storage account are located in the `CustomerConfigurationStoreTable` table. These queries are considered service artifacts and their format might change.
 -	You can use the same storage account for summary rule queries, [saved queries in Log Analytics](save-query.md), and [log alerts](../alerts/alerts-types.md#log-alerts).

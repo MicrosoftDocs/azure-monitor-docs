@@ -3,13 +3,13 @@ title: Enable VM insights using Azure Policy
 description: This article describes how you enable VM insights for multiple Azure virtual machines or virtual machine scale sets by using Azure Policy.
 ms.topic: how-to
 ms.reviewer: Rahul.Bagaria
-ms.date: 07/09/2023
+ms.date: 05/21/2025
 
 ---
 
 # Enable VM insights using Azure Policy
 
-[Azure Policy](/azure/governance/policy/overview) lets you set and enforce requirements for all new resources you create and resources you modify. VM insights policy initiatives, which are predefined sets of policies created for VM insights, install the agents required for VM insights and enable monitoring on all new virtual machines in your Azure environment. 
+[Azure Policy](/azure/governance/policy/overview) lets you set and enforce requirements for all new resources you create and resources you modify. VM insights policy initiatives, which are predefined sets of policies created for VM insights, install the agents required for VM insights and enable monitoring on all new virtual machines in your Azure environment.
 
 This article explains how to enable VM insights for Azure virtual machines, virtual machine scale sets, and hybrid virtual machines connected with Azure Arc by using predefined VM insights policy initiates.
 
@@ -17,8 +17,8 @@ This article explains how to enable VM insights for Azure virtual machines, virt
 
 Before you can enable VM insights using Azure Policy, you need to have a VM insights DCR created. The DCR specifies what data to collect from the agent and how it should be processed. See [VM insights DCR](./vminsights-enable.md#vm-insights-dcr) for details on creating this DCR.
 
-
 ## VM insights initiatives
+
 VM insights policy initiatives install Azure Monitor Agent and the Dependency agent on new virtual machines in your Azure environment. Assign these initiatives to a management group, subscription, or resource group to install the agents on Windows or Linux Azure virtual machines in the defined scope automatically.
 
 > [!NOTE]
@@ -28,28 +28,28 @@ Enable Azure Monitor for VMs with Azure Monitoring Agent
 Enable Azure Monitor for virtual machine scale sets with Azure Monitoring Agent
 Enable Azure Monitor for Hybrid VMs with Azure Monitoring Agent
 
-
 The initiatives apply to new machines you create and machines you modify, but not to existing VMs.
 
-|Policy Initiative Name |Description |
-|-----|------------|
-| Enable Azure Monitor for VMs with Azure Monitoring Agent  | Installs Azure Monitor Agent and the Dependency agent on Azure VMs. |
-| Enable Azure Monitor for virtual machine scale sets with Azure Monitoring Agent  | Installs Azure Monitor Agent and the Dependency agent on virtual machine scale sets. |
+| Policy Initiative Name | Description |
+|------------------------|-------------|
+| Enable Azure Monitor for VMs with Azure Monitoring Agent | Installs Azure Monitor Agent and the Dependency agent on Azure VMs. |
+| Enable Azure Monitor for virtual machine scale sets with Azure Monitoring Agent | Installs Azure Monitor Agent and the Dependency agent on virtual machine scale sets. |
 | Enable Azure Monitor for Hybrid VMs with Azure Monitoring Agent | Installs Azure Monitor Agent and Dependency agent on hybrid VMs connected with Azure Arc. |
 | Legacy: Enable Azure Monitor for VMs | Installs the Log Analytics agent and Dependency agent on virtual machine scale sets. |
 | Legacy: Enable Azure Monitor for virtual machine scale sets | Installs the Log Analytics agent and Dependency agent on virtual machine scale sets. |
 
-[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
+[!INCLUDE [Log Analytics agent deprecation](../agents/includes/log-analytics-agent-deprecation.md)]
 
 ## Support for custom images
 
-Azure Monitor Agent-based VM insights policy and initiative definitions have a `scopeToSupportedImages` parameter that's set to `true` by default to enable onboarding Dependency Agent on supported images only. Set this parameter to `false` to allow onboarding Dependency Agent on custom images.  
+Azure Monitor Agent-based VM insights policy and initiative definitions have a `scopeToSupportedImages` parameter that's set to `true` by default to enable onboarding Dependency Agent on supported images only. Set this parameter to `false` to allow onboarding Dependency Agent on custom images.
 
 ## Assign a VM insights policy initiative
 
 To assign a VM insights policy initiative to a subscription or management group from the Azure portal:
 
 1. Search for and open **Policy**.
+
 1. Select **Assignments** > **Assign initiative**.
 
     :::image type="content" source="media/vminsights-enable-policy/vm-insights-assign-initiative.png" lightbox="media/vminsights-enable-policy/vm-insights-assign-initiative.png" alt-text="Screenshot that shows the Policy Assignments screen with the Assign initiative button highlighted.":::
@@ -64,14 +64,14 @@ To assign a VM insights policy initiative to a subscription or management group 
     1. (Optional) Select **Exclusions** to exclude specific resources from the initiative assignment. For example, if your scope is a management group, you might specify a subscription in that management group to be excluded from the assignment.
     1. Select the ellipsis (**...**) next to **Initiative assignment** to start the policy definition picker. Select one of the VM insights initiatives.
     1. (Optional) Change the **Assignment name** and add a **Description**.
-   1. On the **Parameters** tab, select a **Log Analytics workspace** to which all virtual machines in the assignment will send data. For virtual machines to send data to different workspaces, create multiple assignments, each with their own scope.  This step will have different parameters depending on which Policy Initiative you are working with at the time.
-   
-   :::image type="content" source="media/vminsights-enable-policy/assignment-workspace.png" lightbox="media/vminsights-enable-policy/assignment-workspace.png" alt-text="Screenshot that shows a workspace.":::
+    1. On the **Parameters** tab, select a **Log Analytics workspace** to which all virtual machines in the assignment will send data. For virtual machines to send data to different workspaces, create multiple assignments, each with their own scope.  This step will have different parameters depending on which Policy Initiative you are working with at the time.
 
-   > [!NOTE]
-     > If you select a workspace that's not within the scope of the assignment, grant *Log Analytics Contributor* permissions to the policy assignment's principal ID. Otherwise, you might get a deployment failure like:
-     >
-     > `The client 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' with object id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' does not have authorization to perform action 'microsoft.operationalinsights/workspaces/read' over scope ...`
+    :::image type="content" source="media/vminsights-enable-policy/assignment-workspace.png" lightbox="media/vminsights-enable-policy/assignment-workspace.png" alt-text="Screenshot that shows a workspace.":::
+
+    > [!NOTE]
+    > If you select a workspace that's not within the scope of the assignment, grant *Log Analytics Contributor* permissions to the policy assignment's principal ID. Otherwise, you might get a deployment failure like:
+    >
+    > `The client 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' with object id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' does not have authorization to perform action 'microsoft.operationalinsights/workspaces/read' over scope ...`
 
 1. Select **Review + create** to review the initiative assignment details. Select **Create** to create the assignment.
 
@@ -89,26 +89,24 @@ To see how many virtual machines exist in each of the management groups or subsc
     :::image type="content" source="media/vminsights-enable-policy/other-onboarding-options.png" lightbox="media/vminsights-enable-policy/other-onboarding-options.png" alt-text="Screenshot that shows other onboarding options page of VM insights with the Enable using policy option.":::
 
     The **Azure Monitor for VMs Policy Coverage** page appears.
-   <!-- convertborder later -->
-   ![Screenshot that shows the VM insights Azure Monitor for VMs Policy Coverage page.](media/vminsights-enable-policy/image.png)
-   
-   
-   
-   The following table describes the compliance information presented on the **Azure Monitor for VMs Policy Coverage** page.
+
+    :::image type="content" source="media/vminsights-enable-policy/image.png" lightbox="media/vminsights-enable-policy/image.png" alt-text="Screenshot that shows the VM insights Azure Monitor for VMs Policy Coverage page.":::
+
+The following table describes the compliance information presented on the **Azure Monitor for VMs Policy Coverage** page.
  
-    | Function | Description |
- |----------|-------------|
- | **Scope** | Management group or subscription to which the initiative applies.|
- | **My Role** | Your role in the scope. The role can be Reader, Owner, Contributor, or blank if you have access to the subscription but not to the management group to which it belongs. Your role determines which data you can see and whether you can assign policies or initiatives (owner), edit them, or view compliance. |
- | **Total VMs** | Total number of VMs in the scope, regardless of their status. For a management group, this number is the sum total of VMs in all related subscriptions or child management groups. |
- | **Assignment Coverage** | Percentage of VMs covered by the initiative. When you assign the initiative, the scope you select in the assignment could be the scope listed or a subset of it. For instance, if you create an assignment for a subscription (initiative scope) and not a management group (coverage scope), the value of **Assignment Coverage** indicates the VMs in the initiative scope divided by the VMs in coverage scope. In another case, you might exclude some VMs, resource groups, or a subscription from the policy scope. If the value is blank, it indicates that either the policy or initiative doesn't exist or you don't have permission.|
- | **Assignment Status** | **Success**: Azure Monitor Agent or the Log Analytics agent and Dependency agent deployed on all machines in scope.<br>**Warning**: The subscription isn't under a management group.<br>**Not Started**: A new assignment was added.<br>**Lock**: You don't have sufficient privileges to the management group.<br>**Blank**: No VMs exist or a policy isn't assigned. |
- | **Compliant VMs** | Number of VMs that have both Azure Monitor Agent or Log Analytics agent and Dependency agent installed. This field is blank if there are no assignments, no VMs in the scope, or if you don't have the relevant permissions. |
- | **Compliance** | The overall compliance number is the sum of distinct compliant resources divided by the sum of all distinct resources. |
- | **Compliance State** | **Compliant**: All VMs in the scope have Azure Monitor Agent or the Log Analytics agent and Dependency agent deployed to them, or any new VMs in the scope haven't yet been evaluated.<br>**Noncompliant**: There are VMs that aren't enabled and might need remediation.<br>**Not Started**: A new assignment was added.<br>**Lock**: You don't have sufficient privileges to the management group.<br>**Blank**: No policy assigned.  |
+| Function | Description |
+|----------|-------------|
+| **Scope** | Management group or subscription to which the initiative applies. |
+| **My Role** | Your role in the scope. The role can be Reader, Owner, Contributor, or blank if you have access to the subscription but not to the management group to which it belongs. Your role determines which data you can see and whether you can assign policies or initiatives (owner), edit them, or view compliance. |
+| **Total VMs** | Total number of VMs in the scope, regardless of their status. For a management group, this number is the sum total of VMs in all related subscriptions or child management groups. |
+| **Assignment Coverage** | Percentage of VMs covered by the initiative. When you assign the initiative, the scope you select in the assignment could be the scope listed or a subset of it. For instance, if you create an assignment for a subscription (initiative scope) and not a management group (coverage scope), the value of **Assignment Coverage** indicates the VMs in the initiative scope divided by the VMs in coverage scope. In another case, you might exclude some VMs, resource groups, or a subscription from the policy scope. If the value is blank, it indicates that either the policy or initiative doesn't exist or you don't have permission. |
+| **Assignment Status** | **Success**: Azure Monitor Agent or the Log Analytics agent and Dependency agent deployed on all machines in scope.<br>**Warning**: The subscription isn't under a management group.<br>**Not Started**: A new assignment was added.<br>**Lock**: You don't have sufficient privileges to the management group.<br>**Blank**: No VMs exist or a policy isn't assigned. |
+| **Compliant VMs** | Number of VMs that have both Azure Monitor Agent or Log Analytics agent and Dependency agent installed. This field is blank if there are no assignments, no VMs in the scope, or if you don't have the relevant permissions. |
+| **Compliance** | The overall compliance number is the sum of distinct compliant resources divided by the sum of all distinct resources. |
+| **Compliance State** | **Compliant**: All VMs in the scope have Azure Monitor Agent or the Log Analytics agent and Dependency agent deployed to them, or any new VMs in the scope haven't yet been evaluated.<br>**Noncompliant**: There are VMs that aren't enabled and might need remediation.<br>**Not Started**: A new assignment was added.<br>**Lock**: You don't have sufficient privileges to the management group.<br>**Blank**: No policy assigned. |
 
 1. Select the ellipsis (**...**) > **View Compliance**.
-    <!-- convertborder later -->
+
     :::image type="content" source="media/vminsights-enable-policy/view-compliance.png" lightbox="media/vminsights-enable-policy/view-compliance.png" alt-text="Screenshot that shows View Compliance." border="false":::
 
     The **Compliance** page appears. It lists assignments that match the specified filter and indicates whether they're compliant.
@@ -154,5 +152,6 @@ To track the progress of remediation tasks, on the **Policy** menu, select **Rem
 ## Next steps
 
 Learn how to:
-- [View VM insights Map](vminsights-maps.md) to see application dependencies. 
-- [View Azure VM performance](vminsights-performance.md) to identify bottlenecks and overall utilization of your VM's performance.
+
+* [View VM insights Map](vminsights-maps.md) to see application dependencies. 
+* [View Azure VM performance](vminsights-performance.md) to identify bottlenecks and overall utilization of your VM's performance.

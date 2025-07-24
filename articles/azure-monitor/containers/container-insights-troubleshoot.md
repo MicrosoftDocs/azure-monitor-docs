@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot Container insights | Microsoft Docs
 description: This article describes how you can troubleshoot and resolve issues with Container insights.
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 01/29/2025
 ms.reviewer: aul
 

@@ -5,9 +5,7 @@ services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: how-to
 ms.date: 12/04/2023
-ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
-ms.service: azure-chaos-studio
 ms.custom: ignite-fall-2023
 ---
 
@@ -28,7 +26,7 @@ This article explains the steps needed to configure Azure Private Link for an Az
 
 ## Limitations
 
-- You need to use our *2023-10-27-preview REST API* to create and use Private Link for agent-based experiments only. There's *no* support for Private Link for agent-based experiments in our GA-stable REST API until H1 2024.
+- You need to use our *2023-10-27-preview REST API* to create and use Private Link for agent-based experiments only. There's *no* support for Private Link for agent-based experiments in our GA-stable REST API.
 - The entire end-to-end experience for this flow requires some use of the CLI. The current end-to-end experience can't be done from the Azure portal.
 - The **Chaos Studio Private Accesses (CSPA)** resource type has a strict 1:1 mapping of Chaos Target:CSPA Resource (abstraction for private endpoint). We allow only *five CSPA resources to be created per subscription* to maintain the expected experience for all our customers.  
 

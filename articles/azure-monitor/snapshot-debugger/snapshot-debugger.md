@@ -1,11 +1,9 @@
 ---
 title: Debug exceptions in .NET applications using Snapshot Debugger
 description: Use Snapshot Debugger to automatically collect snapshots and debug exceptions in .NET apps.
-ms.author: hannahhunter
-author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-dotnet, devdivchpfy22, engagement
 ms.date: 01/21/2025
 ---

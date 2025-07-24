@@ -1,7 +1,7 @@
 ---
 title: Use Azure Policy to Install the Azure Monitor Agent
 description: Learn about options for managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
-ms.topic: conceptual
+ms.topic: install-set-up-deploy
 ms.date: 11/14/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
@@ -15,7 +15,7 @@ You can use [Azure Policy](/azure/governance/policy/overview) to automatically i
 Use the following policies and policy initiatives to automatically install the agent and associate it with a DCR each time you create a virtual machine, virtual machine scale set, or Azure Arc-enabled server.
 
 > [!NOTE]
-> Azure Monitor has a preview [DCR](../essentials/data-collection-rule-overview.md) experience that simplifies creating assignments for policies and initiatives that use DCRs. The experience includes initiatives that install the Azure Monitor Agent. You can choose to use that experience to create assignments for the initiatives described in this article. For more information, see [Manage DCRs and associations in Azure Monitor](../essentials/data-collection-rule-view.md#azure-policy).
+> Azure Monitor has a preview [DCR](../essentials/data-collection-rule-overview.md) experience that simplifies creating assignments for policies and initiatives that use DCRs. The experience includes initiatives that install the Azure Monitor Agent. You can choose to use that experience to create assignments for the initiatives described in this article. For more information, see [Manage data collection rule associations in Azure Monitor](../data-collection/data-collection-rule-associations.md#preview-dcr-experience).
 
 ## Prerequisites
 

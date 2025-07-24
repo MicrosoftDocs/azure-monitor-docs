@@ -2,10 +2,7 @@
 title: Supported log categories - Microsoft.Cdn/profiles/endpoints
 description: Reference for Microsoft.Cdn/profiles/endpoints in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
-ms.date: 02/18/2025
+ms.date: 04/16/2025
 ms.custom: Microsoft.Cdn/profiles/endpoints, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 

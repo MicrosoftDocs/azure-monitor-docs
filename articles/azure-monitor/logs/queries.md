@@ -10,7 +10,7 @@ ms.date: 12/28/2023
 # Use queries in Log Analytics
 When you open Log Analytics, you can access existing log queries. You can either run these queries without modification or use them as a starting point for your own queries. The available queries include examples provided by Azure Monitor and queries saved by your organization. This article describes the queries that are available and how you can discover and use them.
 
-[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-query-permissions.md)]
+[!INCLUDE [Log Analytics agent deprecation](includes/log-analytics-query-permissions.md)]
 
 ## Queries interface
 Select queries from the query interface, which is available from two different locations in Log Analytics.

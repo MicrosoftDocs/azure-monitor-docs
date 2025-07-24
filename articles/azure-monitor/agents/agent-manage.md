@@ -1,7 +1,7 @@
 ---
 title: Manage the Azure Log Analytics agent 
 description: This article describes the different management tasks that you'll typically perform during the lifecycle of the Log Analytics Windows or Linux agent deployed on a machine.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 11/14/2024
 ms.reviewer: luki
@@ -11,16 +11,16 @@ ms.reviewer: luki
 
 After initial deployment of the Log Analytics Windows or Linux agent in Azure Monitor, you might need to reconfigure the agent, upgrade it, or remove it from the computer if it has reached the retirement stage in its lifecycle. You can easily manage these routine maintenance tasks manually or through automation, which reduces both operational error and expenses.
 
-[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
+[!INCLUDE [Log Analytics agent deprecation](includes/log-analytics-agent-deprecation.md)]
 
 ## Upgrade the agent
 
 Upgrade to the latest release of the Log Analytics agent for Windows and Linux manually or automatically based on your deployment scenario and the environment the VM is running in.
 
 | Environment | Installation method | Upgrade method |
-|--------|----------|-------------|
+|-------------|---------------------|----------------|
 | Azure VM | Log Analytics agent VM extension for Windows/Linux | The agent is automatically upgraded [after the VM model changes](/azure/virtual-machines/extensions/features-linux#how-agents-and-extensions-are-updated), unless you configured your Azure Resource Manager template to opt out by setting the property `autoUpgradeMinorVersion` to **false**. Once deployed, however, the extension won't upgrade minor versions unless redeployed, even with this property set to **true**. Only the Linux agent supports automatic update post deployment with `enableAutomaticUpgrade` property (see [Enable Auto-update for the Linux agent](#enable-auto-update-for-the-linux-agent)). Major version upgrade is always manual (see [VirtualMachineExtensionInner.AutoUpgradeMinorVersion Property](/dotnet/api/microsoft.azure.management.compute.fluent.models.virtualmachineextensioninner.autoupgrademinorversion)). |
-| Custom Azure VM images | Manual installation of Log Analytics agent for Windows/Linux | Updating VMs to the newest version of the agent must be performed from the command line running the Windows installer package or Linux self-extracting and installable shell script bundle.|
+| Custom Azure VM images | Manual installation of Log Analytics agent for Windows/Linux | Updating VMs to the newest version of the agent must be performed from the command line running the Windows installer package or Linux self-extracting and installable shell script bundle. |
 | Non-Azure VMs | Manual installation of Log Analytics agent for Windows/Linux | Updating VMs to the newest version of the agent must be performed from the command line running the Windows installer package or Linux self-extracting and installable shell script bundle. |
 
 ### Upgrade the Windows agent
@@ -39,9 +39,8 @@ To download the latest version of the Windows agent from your Log Analytics work
 
 1. On the **Windows Servers** screen, select the appropriate **Download Windows Agent** version to download depending on the processor architecture of the Windows operating system.
 
->[!NOTE]
->During the upgrade of the Log Analytics agent for Windows, it doesn't support configuring or reconfiguring a workspace to report to. To configure the agent, follow one of the supported methods listed under [Add or remove a workspace](#add-or-remove-a-workspace).
->
+> [!NOTE]
+> During the upgrade of the Log Analytics agent for Windows, it doesn't support configuring or reconfiguring a workspace to report to. To configure the agent, follow one of the supported methods listed under [Add or remove a workspace](#add-or-remove-a-workspace).
 
 #### Upgrade using the Setup Wizard
 
@@ -289,8 +288,8 @@ Use the Windows agent.
 
 1. In **Programs and Features**, select **Microsoft Monitoring Agent** > **Uninstall** > **Yes**.
 
->[!NOTE]
->The **Agent Setup Wizard** can also be run by double-clicking `MMASetup-\<platform\>.exe`, which is available for download from a workspace in the Azure portal.
+> [!NOTE]
+> The **Agent Setup Wizard** can also be run by double-clicking `MMASetup-\<platform\>.exe`, which is available for download from a workspace in the Azure portal.
 
 #### Uninstall from the command line
 
@@ -306,7 +305,7 @@ The downloaded file for the agent is a self-contained installation package creat
 
 To remove the agent, run the following command on the Linux computer. The `--purge` argument completely removes the agent and its configuration.
 
-   `wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh --purge`
+`wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh --purge`
 
 ## Configure agent to report to an Operations Manager management group
 
@@ -362,5 +361,5 @@ For agents connected to Log Analytics directly, open Control Panel and select **
 
 ## Next steps
 
-- Review [Troubleshooting the Linux agent](agent-linux-troubleshoot.md) if you encounter issues while you install or manage the Linux agent.
-- Review [Troubleshooting the Windows agent](agent-windows-troubleshoot.md) if you encounter issues while you install or manage the Windows agent.
+* Review [Troubleshooting the Linux agent](agent-linux-troubleshoot.md) if you encounter issues while you install or manage the Linux agent.
+* Review [Troubleshooting the Windows agent](agent-windows-troubleshoot.md) if you encounter issues while you install or manage the Windows agent.

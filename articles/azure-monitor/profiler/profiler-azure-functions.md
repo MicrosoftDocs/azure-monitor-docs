@@ -3,7 +3,7 @@ title: Enable Application Insights Profiler for .NET for Azure Functions apps
 description: Enable Application Insights Profiler for .NET for Azure Functions app.
 ms.contributor: charles.weininger
 ms.topic: how-to
-ms.date: 08/16/2024
+ms.date: 03/21/2025
 ms.reviewer: ryankahng
 ---
 
@@ -37,7 +37,7 @@ In this article, you'll use the Azure portal to:
 
 From your Functions app overview page in the Azure portal:
 
-1. Under **Settings**, select **Environment variables**, verify the `APP_INSIGHTS_CONNECTION_STRING` setting is included in the settings list.
+1. Under **Settings**, select **Environment variables**, verify the `APPLICATIONINSIGHTS_CONNECTION_STRING` setting is included in the settings list.
 
    :::image type="content" source="./media/profiler-azure-functions/app-insights-key.png" alt-text="Screenshot showing the App Insights connection string setting in the list.":::
 

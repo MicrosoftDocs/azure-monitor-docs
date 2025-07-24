@@ -1,7 +1,7 @@
 ---
 title: Enable application monitoring in Azure App Service for .NET, Node.js, Python, and Java applications - Azure Monitor | Microsoft Docs
 description: Application performance monitoring for Azure App Service. Chart load and response time, dependency information, and set alerts on performance.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/28/2025
 ms.reviewer: abinetabate
 ---
@@ -183,7 +183,7 @@ For more information, see the [Django documentation](https://docs.djangoproject.
 
 You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
 
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-community-library-warning](../includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
+[!INCLUDE [azure-monitor-app-insights-opentelemetry-community-library-warning](includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
 
 To add the community OpenTelemetry Instrumentation Library, install it via your app's `requirements.txt` file. OpenTelemetry autoinstrumentation automatically picks up and instruments all installed libraries. Find the list of community libraries [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
@@ -461,40 +461,11 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ---
 
-[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
-
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### What does Application Insights modify in my project?
-
-The details depend on the type of project. The following list is an example for a web application.
-          
-* **Adds files to your project:**
-    * ApplicationInsights.config
-    * ai.js
-
-* **Installs NuGet packages:**
-    * Application Insights API: The core API
-    * Application Insights API for Web Applications: Used to send telemetry from the server
-    * Application Insights API for JavaScript Applications: Used to send telemetry from the client
-
-* **Includes assemblies in packages:**
-    * Microsoft.ApplicationInsights
-    * Microsoft.ApplicationInsights.Platform
-
-* **Inserts items into:**
-    * Web.config
-    * packages.config
-
-* Inserts snippets into the client and server code to initialize them with the Application Insights resource ID. For example, in an MVC app, code is inserted into the main page *Views/Shared/\_Layout.cshtml*. For new projects only, you [add Application Insights to an existing project manually](./app-insights-overview.md).
-
-[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
+[!INCLUDE [azure-web-apps-arm-automation](includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
 ## Troubleshooting
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ## [ASP.NET Core](#tab/aspnetcore)
 
@@ -728,6 +699,8 @@ Only use autoinstrumentation on App Service if you aren't using manual instrumen
 
 Using autoinstrumentation on top of the manual instrumentation could cause duplicate telemetry and increase your cost. In order to use App Service OpenTelemetry autoinstrumentation, first remove manual instrumentation of OpenTelemetry from your code.
 
+If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
+
 ### Missing telemetry
 
 If you're missing telemetry, follow these steps to confirm that autoinstrumentation is enabled correctly.
@@ -771,10 +744,13 @@ If your app uses Django and is either failing to start or using incorrect settin
 
 For the latest updates and bug fixes, [consult the release notes](web-app-extension-release-notes.md).
           
+---
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Monitoring in Azure App Service for .NET, Node.js, Python, and Java applications FAQ](application-insights-faq.yml#monitoring-in-azure-app-service-for--net--node-js--python--and-java-applications). 
 * [Enable the .NET Profiler for Azure App Service apps](./profiler.md) on your live app.
 * [Enable Azure diagnostics](../agents/diagnostics-extension-to-application-insights.md) to be sent to Application Insights.
 * [Monitor service health metrics](../data-platform.md) to make sure your service is available and responsive.
 * [Receive alert notifications](../alerts/alerts-overview.md) whenever operational events happen or metrics cross a threshold.
 * [Set up availability tests](availability-overview.md) for your application.
+

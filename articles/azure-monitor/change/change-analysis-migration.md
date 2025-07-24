@@ -1,16 +1,18 @@
 ---
 title: Migrate to the Change Analysis API powered by Azure Resource Graph
 description: Learn how to migrate to the Azure Monitor Change Analysis API powered by Azure Resource Graph and what it has to offer.
-ms.topic: conceptual
-ms.author: hannahhunter
-author: hhunter-ms
-ms.date: 10/29/2024
-ms.subservice: change-analysis
+ms.topic: upgrade-and-migration-article
+ms.date: 03/25/2025
 ---
 
 # Migrate to the Change Analysis API powered by Azure Resource Graph
 
-[!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
+Azure Monitor Change Analysis (classic) is moving to [Azure Resource Graph](/azure/governance/resource-graph/changes/get-resource-changes) on 10/31/2025. In this guide, you learn:
+
+> [!div class="checklist"]
+> - How to migrate your services to the Change Analysis API powered by Azure Resource Graph. 
+> - What the Azure Resource Graph Change Analysis API provides.
+> - How the Change Analysis API compares with Change Analysis (classic).
 
 ## How to migrate
 
@@ -28,7 +30,7 @@ To query the Change Analysis API powered by Resource Graph:
 1. Use Kusto Query Language (KQL).
     Resource Graph queries use the full power of KQL, which provides granular filtering so that you can see specific values. The classic method returns all values.
 
-To review how you’re using the classic experience, refer to the following links. You can perform queries within a specified time range and scope them by subscription, resource group, or resource.
+To review how you're using the classic experience, refer to the following links. You can perform queries within a specified time range and scope them by subscription, resource group, or resource.
 
 - **PowerShell**: [`Get-AzChangeAnalysis` (`Az.ChangeAnalysis`)](/powershell/module/az.changeanalysis/get-azchangeanalysis)
 - **Azure CLI**: [`az change-analysis`](/cli/azure/change-analysis)
@@ -41,7 +43,7 @@ If you're calling the Change Analysis REST API directly (without CLI or PowerShe
 
 - **Resource Graph Change Analysis SDK**: [`ResourceGraphExtensions` Class (`Azure.ResourceManager.ResourceGraph`)](/dotnet/api/azure.resourcemanager.resourcegraph.resourcegraphextensions)
 
-    Here are some code samples for the resources table: [`azure-sdk-for-net/sdk/resourcegraph/Azure.ResourceManager.ResourceGraph/samples/Generated/Samples/Sample_TenantResourceExtensions.cs`](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/resourcegraph/Azure.ResourceManager.ResourceGraph/samples/Generated/Samples/Sample_TenantResourceExtensions.cs)
+    Here are some code samples for the resources table: [`azure-sdk-for-net/sdk/resourcegraph/Azure.ResourceManager.ResourceGraph/tests/Generated/Samples/Sample_TenantResourceExtensions.cs`](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/resourcegraph/Azure.ResourceManager.ResourceGraph/tests/Generated/Samples/Sample_TenantResourceExtensions.cs)
 
 - **Classic SDK**: [`ChangeAnalysisExtensions` Class](/dotnet/api/azure.resourcemanager.changeanalysis.changeanalysisextensions)
 

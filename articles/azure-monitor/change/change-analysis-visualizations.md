@@ -1,16 +1,13 @@
 ---
 title: View and use Change Analysis (classic)
 description: Learn the various scenarios in which you can use Change Analysis (classic).
-ms.topic: conceptual
-ms.author: hannahhunter
-author: hhunter-ms
-ms.date: 09/12/2024
-ms.subservice: change-analysis
+ms.topic: how-to
+ms.date: 03/25/2025
 ---
 
 # View and use Change Analysis (classic)
 
-[!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
+[!INCLUDE [transition](includes/change-analysis-is-moving.md)]
 
 Change Analysis (classic) provides data for various management and troubleshooting scenarios to help you understand what changes to your application caused breaking issues.
 

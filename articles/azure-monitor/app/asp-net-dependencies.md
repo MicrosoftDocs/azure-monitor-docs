@@ -1,7 +1,7 @@
 ---
 title: Dependency tracking in Application Insights | Microsoft Docs
 description: Monitor dependency calls from your on-premises or Azure web application with Application Insights.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, build-2023
@@ -10,7 +10,7 @@ ms.reviewer: mmcc
 
 # Dependency tracking in Application Insights
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 A *dependency* is a component that's called by your application. It's typically a service called by using HTTP, a database, or a file system. [Application Insights](./app-insights-overview.md) measures the duration of dependency calls and whether it's failing or not, along with information like the name of the dependency. You can investigate specific dependency calls and correlate them to requests and exceptions.
 
@@ -200,32 +200,6 @@ You can track dependencies in the [Kusto query language](/azure/kusto/query/). H
           on operation_Id
     ```
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### How does the automatic dependency collector report failed calls to dependencies?
-
-Failed dependency calls have the `success` field set to False. The module `DependencyTrackingTelemetryModule` doesn't report `ExceptionTelemetry`. The full data model for dependency is described in [Application Insights telemetry data model](data-model-complete.md#dependency).
-
-### How do I calculate ingestion latency for my dependency telemetry?
-
-Use this code:
-
-```kusto
-dependencies
-| extend E2EIngestionLatency = ingestion_time() - timestamp 
-| extend TimeIngested = ingestion_time()
-```
-
-### How do I determine the time the dependency call was initiated?
-
-In the Log Analytics query view, `timestamp` represents the moment the TrackDependency() call was initiated, which occurs immediately after the dependency call response is received. To calculate the time when the dependency call began, you would take `timestamp` and subtract the recorded `duration` of the dependency call.
-
-### Does dependency tracking in Application Insights include logging response bodies?
-
-Dependency tracking in Application Insights doesn't include logging response bodies as it would generate too much telemetry for most applications.
-
 ## Open-source SDK
 
 Like every Application Insights SDK, the dependency collection module is also open source. Read and contribute to the code or report issues at [the official GitHub repo](https://github.com/Microsoft/ApplicationInsights-dotnet).
@@ -272,11 +246,14 @@ A list of the latest [currently supported modules](https://github.com/microsoft/
 
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Dependency tracking FAQ](application-insights-faq.yml#dependency-tracking)
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Exceptions](./asp-net-exceptions.md)
 * [User and page data](./javascript.md)
 * [Availability](./availability-overview.md)
-* Set up custom dependency tracking for [Java](opentelemetry-add-modify.md?tabs=java#add-custom-spans).
-* Set up custom dependency tracking for [OpenCensus Python](/previous-versions/azure/azure-monitor/app/opencensus-python-dependency).
+* Set up custom dependency tracking for [Java](opentelemetry-add-modify.md?tabs=java#add-custom-spans)
+* Set up custom dependency tracking for [OpenCensus Python](/previous-versions/azure/azure-monitor/app/opencensus-python-dependency)
 * [Write custom dependency telemetry](./api-custom-events-metrics.md#trackdependency)
-* See [data model](./data-model-complete.md) for Application Insights types and data model.
-* Check out [platforms](./app-insights-overview.md#supported-languages) supported by Application Insights.
+* See [data model](./data-model-complete.md) for Application Insights types and data model
+* Check out [platforms](./app-insights-overview.md#supported-languages) supported by Application Insights
+

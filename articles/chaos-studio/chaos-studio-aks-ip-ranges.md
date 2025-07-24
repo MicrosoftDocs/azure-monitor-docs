@@ -3,11 +3,9 @@ title: Authorize Chaos Studio IP addresses for an AKS cluster
 description: Learn about several ways to authorize Chaos Studio IP addresses to communicate with your AKS cluster.
 services: chaos-studio
 author: rsgel
-ms.topic: article
+ms.topic: how-to
 ms.date: 12/4/2024
 ms.author: carlsonr
-ms.reviewer: abbyweisberg
-ms.service: azure-chaos-studio
 ---
 
 # Add Chaos Studio IPs as Authorized IPs on AKS
@@ -27,7 +25,7 @@ There are several ways to resolve this:
 
 ### Use Service Tags with AKS preview feature
 
-A [service tag](/azure/virtual-network/service-tags-overview) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren’t sufficient to secure traffic.
+A [service tag](/azure/virtual-network/service-tags-overview) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren't sufficient to secure traffic.
 
 You can use a preview AKS feature to add Service Tags directly to the authorized IP ranges: [Use Service Tags for API Server authorized IP ranges](/azure/aks/api-server-authorized-ip-ranges#use-service-tags-for-api-server-authorized-ip-ranges---preview?tabs=azure-cli).
 

@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor Agent Network Configuration
 description: Learn how to define network settings and enable network isolation for the Azure Monitor Agent.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/14/2024
 ms.custom: references_regions
 ms.reviewer: shseth
@@ -27,40 +27,40 @@ The following table provides the endpoints that firewalls must provide access to
 > [!IMPORTANT]
 > For all endpoints, HTTPS inspection must be disabled.
 
-|Endpoint |Purpose | Example |
-|:--|:--|:--|
+| Endpoint | Purpose | Example |
+|:---------|:--------|:--------|
 | `global.handler.control.monitor.azure.com` | Access the control service | Not applicable |
-| `<virtual-machine-region-name>.handler.control.monitor.azure.com` | Fetch DCRs for a specific machine  | `westus2.handler.control.monitor.azure.com` |
+| `<virtual-machine-region-name>.handler.control.monitor.azure.com` | Fetch DCRs for a specific machine | `westus2.handler.control.monitor.azure.com` |
 |`<log-analytics-workspace-id>.ods.opinsights.azure.com` | Ingest log data | `1234a123-aa1a-123a-aaa1-a1a345aa6789.ods.opinsights.azure.com` |
-| `management.azure.com` | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../essentials/metrics-custom-overview.md) database  | Not applicable |
-| `<virtual-machine-region-name>.monitoring.azure.com`  | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../essentials/metrics-custom-overview.md) database | `westus2.monitoring.azure.com` |
-| `<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` | Needed only if you send data to a Log Analytics [custom logs](./data-collection-text-log.md) table | `275test-01li.eastus2euap-1.canary.ingest.monitor.azure.com` |
+| `management.azure.com` | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../metrics/metrics-custom-overview.md) database | Not applicable |
+| `<virtual-machine-region-name>.monitoring.azure.com` | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../metrics/metrics-custom-overview.md) database | `westus2.monitoring.azure.com` |
+| `<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` |Ingest log data | `275test-01li.eastus2euap-1.canary.ingest.monitor.azure.com` |
 
 Replace the suffix in the endpoints with the suffix in the following table for respective clouds:
 
-| Cloud | Suffix |
-|:---|:---|
-| Azure Commercial | `.com` |
-| Azure Government | `.us` |
-| Microsoft Azure operated by 21Vianet | `.cn` |
+| Cloud                                | Suffix |
+|:-------------------------------------|:-------|
+| Azure Commercial                     | `.com` |
+| Azure Government                     | `.us`  |
+| Microsoft Azure operated by 21Vianet | `.cn`  |
 
 > [!NOTE]
 >
-> - If you use private links on the agent, you must add *only* [private DCEs](../essentials/data-collection-endpoint-overview.md#components-of-a-dce). The agent doesn't use the nonprivate endpoints listed in the preceding table when you use private links or private DCEs.
+> * If you use private links on the agent, you must add *only* [private DCEs](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce). The agent doesn't use the nonprivate endpoints listed in the preceding table when you use private links or private DCEs.
 >
-> - The Azure Monitor metrics (custom metrics) preview isn't available in Azure Government and Azure operated by 21Vianet clouds.
+> * The Azure Monitor metrics (custom metrics) preview isn't available in Azure Government and Azure operated by 21Vianet clouds.
 >
-> - When you use the Azure Monitor Agent with Azure Monitor Private Link Scope, all your DCRs must use DCEs. The DCEs must be added to the Azure Monitor Private Link Scope configuration via a [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls).
+> * When you use the Azure Monitor Agent with Azure Monitor Private Link Scope, all your DCRs must use DCEs. The DCEs must be added to the Azure Monitor Private Link Scope configuration via a [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls).
 
 ## Proxy configuration
 
-The Azure Monitor Agent extensions for Windows and Linux can communicate either through a proxy server or through a [Log Analytics gateway](./gateway.md) to Azure Monitor by using the HTTPS protocol. Use it for Azure VMs, scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
+The Azure Monitor Agent extensions for Windows and Linux can communicate either through a proxy server or through a [Log Analytics gateway](gateway.md) to Azure Monitor by using the HTTPS protocol. Use it for Azure VMs, scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
 
 > [!IMPORTANT]
 > OMS Gateway is not supported with Azure Arc-enabled servers for proxy connectivity, private link connectivity, and public endpoint connectivity options.
 
 > [!IMPORTANT]
-> Proxy configuration isn't supported for [Azure Monitor Metrics (preview)](../essentials/metrics-custom-overview.md) as a destination. If you send metrics to this destination, it uses the public internet without any proxy.
+> Proxy configuration isn't supported for [Azure Monitor Metrics (preview)](../metrics/metrics-custom-overview.md) as a destination. If you send metrics to this destination, it uses the public internet without any proxy.
 
 > [!NOTE]
 > Setting Linux system proxy via environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you configure a proxy, use the ARM template shown here as an example of how to declare the proxy settings inside the ARM template. Also, a user can set global environment variables that are picked up by all systemd services [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
@@ -73,14 +73,14 @@ Use Azure PowerShell commands in the following examples based on your environmen
 
 ```azurepowershell
 $settingsString = '{"proxy":{"mode":"none"}}';
-Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString
+Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString
 ```
 
 **Proxy with no authentication**
 
 ```azurepowershell
 $settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth": "false"}}';
-Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString
+Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString
 ```
 
 **Proxy with authentication**
@@ -88,7 +88,7 @@ Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMo
 ```azurepowershell
 $settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth": "true"}}';
 $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[password]"}}';
-Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
+Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
 ```
 
 **Revert Proxy configuration to defaults**
@@ -96,7 +96,7 @@ Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMo
 To restore proxy configuration to defaults you could define $settingsString = '{}'; as in the following example:
 ```azurepowershell
 $settingsString = '{}';
-Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName RESOURCE GROUP HERE -VMName VM NAME HERE -Location westeurope  -> >  SettingString $settingsString
+Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName RESOURCE GROUP HERE -VMName VM NAME HERE -Location westeurope -> > SettingString $settingsString
 ```
 
 # [Linux VM](#tab/PowerShellLinux)
@@ -105,7 +105,7 @@ Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMo
 
 ```azurepowershell
 $settingsString = '{"proxy":{"mode":"none"}}';
-Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString
+Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString
 ```
 
 **Proxy with no authentication**
@@ -120,7 +120,7 @@ Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMoni
 ```azurepowershell
 $settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth": "true"}}';
 $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[password]"}}';
-Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
+Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
 ```
 
 # [Windows Arc-enabled server](#tab/PowerShellWindowsArc)
@@ -351,20 +351,23 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 ## Log Analytics gateway configuration
 
 1. Follow the preceding guidance to configure proxy settings on the agent and provide the IP address and port number that correspond to the gateway server. If you deployed multiple gateway servers behind a load balancer, for the agent proxy configuration, instead use the virtual IP address of the load balancer.
+
 1. Add the configuration endpoint URL to fetch DCRs to the allowlist for the gateway:
 
-   1. Run `Add-OMSGatewayAllowedHost -Host global.handler.control.monitor.azure.com`.
-   1. Run `Add-OMSGatewayAllowedHost -Host <gateway-server-region-name>.handler.control.monitor.azure.com`.
+    1. Run `Add-OMSGatewayAllowedHost -Host global.handler.control.monitor.azure.com`.
+    1. Run `Add-OMSGatewayAllowedHost -Host <gateway-server-region-name>.handler.control.monitor.azure.com`.
 
-   (If you use private links on the agent, you must also add the [DCEs](../essentials/data-collection-endpoint-overview.md#components-of-a-dce).)
+    (If you use private links on the agent, you must also add the [DCEs](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce).)
+
 1. Add the data ingestion endpoint URL to the allowlist for the gateway:
 
-   - Run `Add-OMSGatewayAllowedHost -Host <log-analytics-workspace-id>.ods.opinsights.azure.com`.
+    * Run `Add-OMSGatewayAllowedHost -Host <log-analytics-workspace-id>.ods.opinsights.azure.com`.
+
 1. To apply the changes, restart the Log Analytics gateway (*OMS Gateway*) service:
 
-   1. Run `Stop-Service -Name <gateway-name>`.
-   1. Run `Start-Service -Name <gateway-name>`.
+    1. Run `Stop-Service -Name <gateway-name>`.
+    1. Run `Start-Service -Name <gateway-name>`.
 
 ## Related content
 
-- Learn how to [add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-ampls-to-a-private-endpoint).
+* Learn how to [add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-ampls-to-a-private-endpoint).

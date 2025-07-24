@@ -1,7 +1,7 @@
 ---
 title: Set up Prometheus remote write by using managed identity authentication
 description: Learn how to set up remote write in Azure Monitor managed service for Prometheus. Use managed identity authentication to send data from a self-managed Prometheus server running in your Azure Kubernetes Server (AKS) cluster or Azure Arc-enabled Kubernetes cluster.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 4/18/2024
 ---
 
@@ -40,17 +40,17 @@ Administrator permissions for the cluster or resource are required to complete t
 
 The process to set up Prometheus remote write for an application by using managed identity authentication involves completing the following tasks:
 
-1. Get the name of the AKS node resource group.
+1. Get the name of the cluster's node resource group.
 1. Get the client ID of the user-assigned managed identity.
 1. Assign the Monitoring Metrics Publisher role on the workspace data collection rule to the managed identity.
-1. Give the AKS cluster access to the managed identity.
+1. Give the cluster access to the managed identity.
 1. Deploy a sidecar container to set up remote write.
 
 The tasks are described in the following sections.
 
-### Get the name of the AKS node resource group
+### Get the name of the cluster's node resource group
 
-The node resource group of the AKS cluster contains resources that you use in other steps in this process. This resource group has the name `MC_<AKS-RESOURCE-GROUP>_<AKS-CLUSTER-NAME>_<REGION>`. You can find the resource group name by using the **Resource groups** menu in the Azure portal.
+The node resource group of the cluster contains resources that you use in other steps in this process. This resource group has the name `MC_<RESOURCE-GROUP>_<CLUSTER-NAME>_<REGION>`. You can find the resource group name by using the **Resource groups** menu in the Azure portal.
 
 :::image type="content" source="media/prometheus-remote-write-managed-identity/resource-groups.png" alt-text="Screenshot that shows a list of resource groups." lightbox="media/prometheus-remote-write-managed-identity/resource-groups.png":::
 
@@ -60,11 +60,11 @@ You must get the client ID of the identity that you're going to use. Copy the cl
 
 Instead of creating your own client ID, you can use one of the identities that are created by AKS. To learn more about the identities, see [Use a managed identity in Azure Kubernetes Service](/azure/aks/use-managed-identity).
 
-This article uses the kubelet identity. The name of this identity is `<AKS-CLUSTER-NAME>-agentpool`, and it's in the node resource group of the AKS cluster.
+This article uses the kubelet identity. The name of this identity is `<CLUSTER-NAME>-agentpool`, and it's in the node resource group of the cluster.
 
 :::image type="content" source="media/prometheus-remote-write-managed-identity/resource-group-details.png" alt-text="Screenshot that shows a list of resources that are in the node resource group." lightbox="media/prometheus-remote-write-managed-identity/resource-group-details.png":::
 
-Select the `<AKS-CLUSTER-NAME>-agentpool` managed identity. On the **Overview** page, copy the value for **Client ID**. For more information, see [Manage user-assigned managed identities](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
+Select the `<CLUSTER-NAME>-agentpool` managed identity. On the **Overview** page, copy the value for **Client ID**. For more information, see [Manage user-assigned managed identities](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
 
 :::image type="content" source="media/prometheus-remote-write-managed-identity/client-id.png" alt-text="Screenshot that shows a client ID on an overview page for a managed identity." lightbox="media/prometheus-remote-write-managed-identity/client-id.png":::
 
@@ -99,28 +99,28 @@ This step isn't required if you're using an AKS identity. An AKS identity alread
 > [!IMPORTANT]
 > To complete the steps in this section, you must have owner or user access administrator permissions for the cluster.
 
-1. Identify the virtual machine scale sets in the [node resource group](#get-the-name-of-the-aks-node-resource-group) for your AKS cluster.
+1. Identify the virtual machine scale sets in the [node resource group](#get-the-name-of-the-clusters-node-resource-group) for your cluster.
 
     :::image type="content" source="media/prometheus-remote-write-managed-identity/resource-group-details-virtual-machine-scale-sets.png" alt-text="Screenshot that shows virtual machine scale sets in the node resource group." lightbox="media/prometheus-remote-write-managed-identity/resource-group-details-virtual-machine-scale-sets.png":::
 
 2. For each virtual machine scale set, run the following command in the Azure CLI:
 
     ```azurecli
-    az vmss identity assign -g <AKS-NODE-RESOURCE-GROUP> -n <AKS-VMSS-NAME> --identities <USER-ASSIGNED-IDENTITY-RESOURCE-ID>
+    az vmss identity assign -g <NODE-RESOURCE-GROUP> -n <VMSS-NAME> --identities <USER-ASSIGNED-IDENTITY-RESOURCE-ID>
     ```
 
 ### Deploy a sidecar container to set up remote write
 
 1. Copy the following YAML and save it to a file. The YAML uses port 8081 as the listening port. If you use a different port, modify the port in the YAML.
 
-    [!INCLUDE[managed-identity-yaml](../includes/prometheus-sidecar-remote-write-managed-identity-yaml.md)]
+    [!INCLUDE[managed-identity-yaml](includes/prometheus-sidecar-remote-write-managed-identity-yaml.md)]
 
 1. Replace the following values in the YAML:
 
     | Value | Description |
     |:---|:---|
     | `<AKS-CLUSTER-NAME>` | The name of your AKS cluster. |
-    | `<CONTAINER-IMAGE-VERSION>` | [!INCLUDE [version](../includes/prometheus-remotewrite-image-version.md)]<br> The remote write container image version.   |
+    | `<CONTAINER-IMAGE-VERSION>` | [!INCLUDE [version](includes/prometheus-remotewrite-image-version.md)]<br> The remote write container image version.   |
     | `<INGESTION-URL>` | The value for **Metrics ingestion endpoint** from the **Overview** page for the Azure Monitor workspace. |
     | `<MANAGED-IDENTITY-CLIENT-ID>` | The value for **Client ID** from the **Overview** page for the managed identity. |
     | `<CLUSTER-NAME>` | Name of the cluster that Prometheus is running on. |

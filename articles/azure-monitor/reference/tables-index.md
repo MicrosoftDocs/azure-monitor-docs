@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 02/18/2025
+ms.date: 07/21/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -19,6 +19,14 @@ ms.reviewer: lualderm
 ## Resource log / log analytics tables
 
 
+### AAD Graph Logs  
+
+Microsoft.AzureADGraph/tenants  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [AuditLogs](./tables/auditlogs.md)
+- [AADGraphActivityLogs](./tables/aadgraphactivitylogs.md)
+
 ### Analysis Services  
 
 microsoft.analysisservices/servers  
@@ -32,6 +40,7 @@ microsoft.analysisservices/servers
 Microsoft.ApiManagement/service  
 
 - [APIMDevPortalAuditDiagnosticLog](./tables/apimdevportalauditdiagnosticlog.md)
+- [ApiManagementGatewayLlmLog](./tables/apimanagementgatewayllmlog.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
@@ -108,6 +117,11 @@ Microsoft.Automation/AutomationAccounts
 
 microsoft.avs/privateClouds  
 
+- [AVSVcSyslog](./tables/avsvcsyslog.md)
+- [AVSEsxiFirewallSyslog](./tables/avsesxifirewallsyslog.md)
+- [AVSEsxiSyslog](./tables/avsesxisyslog.md)
+- [AVSNsxManagerSyslog](./tables/avsnsxmanagersyslog.md)
+- [AVSNsxEdgeSyslog](./tables/avsnsxedgesyslog.md)
 - [AVSSyslog](./tables/avssyslog.md)
 
 ### Azure Active Directory Logs  
@@ -130,6 +144,7 @@ Microsoft.AAD/domainServices
 - [AADDomainServicesLogonLogoff](./tables/aaddomainserviceslogonlogoff.md)
 - [AADDomainServicesPolicyChange](./tables/aaddomainservicespolicychange.md)
 - [AADDomainServicesPrivilegeUse](./tables/aaddomainservicesprivilegeuse.md)
+- [AADDomainServicesSystemSecurity](./tables/aaddomainservicessystemsecurity.md)
 
 ### Azure API for FHIR  
 
@@ -235,6 +250,8 @@ Microsoft.DocumentDb/databaseAccounts
 
 - [AzureActivity](./tables/azureactivity.md)
 - [CDBDataPlaneRequests](./tables/cdbdataplanerequests.md)
+- [CDBDataPlaneRequests5M](./tables/cdbdataplanerequests5m.md)
+- [CDBDataPlaneRequests15M](./tables/cdbdataplanerequests15m.md)
 - [CDBPartitionKeyStatistics](./tables/cdbpartitionkeystatistics.md)
 - [CDBPartitionKeyRUConsumption](./tables/cdbpartitionkeyruconsumption.md)
 - [CDBQueryRuntimeStatistics](./tables/cdbqueryruntimestatistics.md)
@@ -251,14 +268,9 @@ Microsoft.DocumentDb/databaseAccounts
 Microsoft.DocumentDB/mongoClusters  
 
 - [VCoreMongoRequests](./tables/vcoremongorequests.md)
-
-### Azure Cosmos DB for PostgreSQL  
-
-Microsoft.DBForPostgreSQL/servergroupsv2  
-
 - [AzureActivity](./tables/azureactivity.md)
-- [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [AzureDiagnostics](./tables/azurediagnostics.md)
 
 ### Azure Data Explorer Clusters  
 
@@ -378,6 +390,7 @@ Microsoft.Databricks/workspaces
 - [DatabricksSQLPermissions](./tables/databrickssqlpermissions.md)
 - [DatabricksSSH](./tables/databricksssh.md)
 - [DatabricksSecrets](./tables/databrickssecrets.md)
+- [DatabricksTables](./tables/databrickstables.md)
 - [DatabricksWorkspace](./tables/databricksworkspace.md)
 - [DatabricksFeatureStore](./tables/databricksfeaturestore.md)
 - [DatabricksGenie](./tables/databricksgenie.md)
@@ -496,6 +509,17 @@ Microsoft.Dashboard/grafana
 - [AGSGrafanaLoginEvents](./tables/agsgrafanaloginevents.md)
 - [AGSGrafanaUsageInsightsEvents](./tables/agsgrafanausageinsightsevents.md)
 
+### Azure Migrate Data Replication  
+
+Microsoft.DataReplication/ReplicationVaults  
+
+- [ASRv2JobEvents](./tables/asrv2jobevents.md)
+- [ASRv2HealthEvents](./tables/asrv2healthevents.md)
+- [ASRv2ReplicationVaults](./tables/asrv2replicationvaults.md)
+- [ASRv2ReplicationPolicies](./tables/asrv2replicationpolicies.md)
+- [ASRv2ReplicationExtensions](./tables/asrv2replicationextensions.md)
+- [ASRv2ProtectedItems](./tables/asrv2protecteditems.md)
+
 ### Azure Monitor autoscale settings  
 
 Microsoft.Insights/AutoscaleSettings  
@@ -532,6 +556,7 @@ Microsoft.PlayFab/titles
 microsoft.securityinsights  
 
 - [SecurityAlert](./tables/securityalert.md)
+- [WindowsEvent](./tables/windowsevent.md)
 - [SecurityEvent](./tables/securityevent.md)
 - [DnsAuditEvents](./tables/dnsauditevents.md)
 - [AggregatedSecurityAlert](./tables/aggregatedsecurityalert.md)
@@ -549,6 +574,7 @@ microsoft.securityinsights
 - [ASimProcessEventLogs](./tables/asimprocesseventlogs.md)
 - [ThreatIntelObjects](./tables/threatintelobjects.md)
 - [ThreatIntelIndicators](./tables/threatintelindicators.md)
+- [ThreatIntelExportOperation](./tables/threatintelexportoperation.md)
 
 ### Azure Sphere  
 
@@ -653,12 +679,14 @@ Microsoft.Communication/CommunicationServices
 - [AzureMetrics](./tables/azuremetrics.md)
 - [ACSChatIncomingOperations](./tables/acschatincomingoperations.md)
 - [ACSSMSIncomingOperations](./tables/acssmsincomingoperations.md)
+- [ACSOptOutManagementOperations](./tables/acsoptoutmanagementoperations.md)
 - [ACSAuthIncomingOperations](./tables/acsauthincomingoperations.md)
 - [ACSBillingUsage](./tables/acsbillingusage.md)
 - [ACSCallDiagnostics](./tables/acscalldiagnostics.md)
 - [ACSCallDiagnosticsUpdates](./tables/acscalldiagnosticsupdates.md)
 - [ACSCallingMetrics](./tables/acscallingmetrics.md)
 - [ACSCallSurvey](./tables/acscallsurvey.md)
+- [ACSCallClientServiceRequestAndOutcome](./tables/acscallclientservicerequestandoutcome.md)
 - [ACSCallClientOperations](./tables/acscallclientoperations.md)
 - [ACSCallClientMediaStatsTimeSeries](./tables/acscallclientmediastatstimeseries.md)
 - [ACSCallSummary](./tables/acscallsummary.md)
@@ -673,6 +701,7 @@ Microsoft.Communication/CommunicationServices
 - [ACSRoomsIncomingOperations](./tables/acsroomsincomingoperations.md)
 - [ACSCallAutomationIncomingOperations](./tables/acscallautomationincomingoperations.md)
 - [ACSCallAutomationMediaSummary](./tables/acscallautomationmediasummary.md)
+- [ACSCallAutomationStreamingUsage](./tables/acscallautomationstreamingusage.md)
 - [ACSAdvancedMessagingOperations](./tables/acsadvancedmessagingoperations.md)
 
 ### Container Apps  
@@ -683,6 +712,9 @@ Microsoft.App/managedEnvironments
 - [ContainerAppConsoleLogs](./tables/containerappconsolelogs.md)
 - [ContainerAppSystemLogs](./tables/containerappsystemlogs.md)
 - [AppEnvSpringAppConsoleLogs](./tables/appenvspringappconsolelogs.md)
+- [AppEnvSessionConsoleLogs](./tables/appenvsessionconsolelogs.md)
+- [AppEnvSessionPoolEventLogs](./tables/appenvsessionpooleventlogs.md)
+- [AppEnvSessionLifecycleLogs](./tables/appenvsessionlifecyclelogs.md)
 
 ### Container Registries  
 
@@ -787,13 +819,6 @@ Microsoft.DesktopVirtualization/workspaces
 - [WVDCheckpoints](./tables/wvdcheckpoints.md)
 - [WVDManagement](./tables/wvdmanagement.md)
 
-### Dev Center Plans  
-
-Microsoft.DevCenter/plans  
-
-- [AzureActivity](./tables/azureactivity.md)
-- [AzureMetrics](./tables/azuremetrics.md)
-
 ### Dev Centers  
 
 Microsoft.DevCenter/devcenters  
@@ -803,6 +828,8 @@ Microsoft.DevCenter/devcenters
 - [DevCenterDiagnosticLogs](./tables/devcenterdiagnosticlogs.md)
 - [DevCenterResourceOperationLogs](./tables/devcenterresourceoperationlogs.md)
 - [DevCenterBillingEventLogs](./tables/devcenterbillingeventlogs.md)
+- [DevCenterAgentHealthLogs](./tables/devcenteragenthealthlogs.md)
+- [DevCenterConnectionLogs](./tables/devcenterconnectionlogs.md)
 
 ### Device Provisioning Services  
 
@@ -1007,6 +1034,7 @@ Microsoft.HealthcareApis/workspaces
 Microsoft.Logic/integrationAccounts  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [LIATrackingEvents](./tables/liatrackingevents.md)
 
 ### Intune Specialist Reports.  
 
@@ -1021,7 +1049,6 @@ Microsoft.Devices/IotHubs
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
-- [IoTHubDistributedTracing](./tables/iothubdistributedtracing.md)
 - [InsightsMetrics](./tables/insightsmetrics.md)
 
 ### Key Vaults  
@@ -1038,6 +1065,7 @@ Microsoft.KeyVault/vaults
 
 Microsoft.ContainerService/managedClusters  
 
+- [RetinaNetworkFlowLogs](./tables/retinanetworkflowlogs.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
@@ -1072,9 +1100,11 @@ Microsoft.Network/LoadBalancers
 
 Microsoft.OperationalInsights/Workspaces  
 
+- [AzureMetrics](./tables/azuremetrics.md)
 - [LAQueryLogs](./tables/laquerylogs.md)
 - [LASummaryLogs](./tables/lasummarylogs.md)
 - [AzureMetricsV2](./tables/azuremetricsv2.md)
+- [LAJobLogs](./tables/lajoblogs.md)
 
 ### Logic Apps  
 
@@ -1123,6 +1153,7 @@ Microsoft.MachineLearningServices/registries
 Microsoft.DevOpsInfrastructure/pools  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [MDPResourceLog](./tables/mdpresourcelog.md)
 
 ### Media Services  
 
@@ -1182,6 +1213,13 @@ Microsoft.Graph/tenants
 - [SigninLogs](./tables/signinlogs.md)
 - [AuditLogs](./tables/auditlogs.md)
 
+### Microsoft Planetary Computer Pro  
+
+Microsoft.Orbital/geocatalogs  
+
+- [OGOAuditLogs](./tables/ogoauditlogs.md)
+- [MPCIngestionLogs](./tables/mpcingestionlogs.md)
+
 ### Microsoft Playwright Testing  
 
 Microsoft.AzurePlaywrightService/accounts  
@@ -1234,17 +1272,11 @@ microsoft.standbypool/standbyvirtualmachinepools
 - [SVMPoolExecutionLog](./tables/svmpoolexecutionlog.md)
 - [SVMPoolRequestLog](./tables/svmpoolrequestlog.md)
 
-### NAT Gateways  
-
-Microsoft.Network/NatGateways  
-
-- [NatGatewayFlowlogsV1](./tables/natgatewayflowlogsv1.md)
-
 ### Network Devices (Operator Nexus)  
 
 Microsoft.ManagedNetworkFabric/networkDevices  
 
-- [Azuremetrics](./tables/azuremetrics.md)
+- [AzureMetrics](./tables/azuremetrics.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [MNFDeviceUpdates](./tables/mnfdeviceupdates.md)
 - [MNFSystemStateMessageUpdates](./tables/mnfsystemstatemessageupdates.md)
@@ -1333,6 +1365,7 @@ NGINX.NGINXPLUS/nginxDeployments
 Microsoft.OnlineExperimentation/workspaces  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [OEWAuditLogs](./tables/oewauditlogs.md)
 - [OEWExperimentAssignmentSummary](./tables/oewexperimentassignmentsummary.md)
 - [OEWExperimentScorecards](./tables/oewexperimentscorecards.md)
 - [OEWExperimentScorecardMetricPairs](./tables/oewexperimentscorecardmetricpairs.md)
@@ -1724,6 +1757,15 @@ Microsoft.WorkloadMonitor/monitors
 Microsoft.Insights/WorkloadMonitoring  
 
 - [InsightsMetrics](./tables/insightsmetrics.md)
+
+### workload orchestration  
+
+Microsoft.Edge/diagnostics  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [AzureDiagnostics](./tables/azurediagnostics.md)
+- [WOUserAudits](./tables/wouseraudits.md)
+- [WOUserDiagnostics](./tables/wouserdiagnostics.md)
 
 ## Next steps
 

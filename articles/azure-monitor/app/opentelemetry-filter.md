@@ -1,7 +1,7 @@
 ---
 title: Filtering OpenTelemetry in Application Insights
 description: Learn how to filter OpenTelemetry (OTel) data in Application Insights for .NET, Java, Node.js, and Python applications to exclude unwanted telemetry and protect sensitive information.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/23/2025
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -22,6 +22,9 @@ Reasons why you might want to filter out telemetry include:
 * Filtering out low-value telemetry to optimize performance.
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
+
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
 
 ## Filter OpenTelemetry using instrumentation libraries
 

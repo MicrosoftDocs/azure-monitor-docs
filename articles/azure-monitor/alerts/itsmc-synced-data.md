@@ -1,7 +1,7 @@
 ---
 title: Data synced from your ITSM product to LA Workspace
 description: This article provides an overview of data synced from your ITSM product to LA Workspace.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 08/07/2024
 ms.custom: references_regions
 ms.reviewer: nolavime

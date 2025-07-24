@@ -1,7 +1,7 @@
 ---
 title: Recommended alert rules for Kubernetes clusters
 description: Describes how to enable recommended metric alerts rules for a Kubernetes cluster in Azure Monitor.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 08/19/2024
 ms.reviewer: vdiec
 ---
@@ -13,8 +13,7 @@ ms.reviewer: vdiec
 Use one of the following methods to enable the recommended alert rules for your cluster. You can enable both Prometheus and platform metric alert rules for the same cluster.
 
 >[!NOTE]
-> ARM templates are the only supported method to enable recommended alerts on Arc-enabled Kubernetes clusters.
->
+> Recommended alerts for Arc-enabled Kubernetes clusters are in Preview and do not support Platform metric alert rules.
 
 ### [Azure portal](#tab/portal)
 Using the Azure portal, the Prometheus rule group will be created in the same region as the cluster.
@@ -92,7 +91,7 @@ Once the rule group has been created, you can't use the same page in the portal 
 
 4. For platform metrics:
 
-   1. click **Edit** to open the details for the alert rule. Use the guidance in [Create an alert rule](../alerts/alerts-create-metric-alert-rule.yml) to modify the rule.
+   1. click **Edit** to open the details for the alert rule. Use the guidance in [Create an alert rule](../alerts/alerts-create-metric-alert-rule.md) to modify the rule.
 
         :::image type="content" source="media/kubernetes-metric-alerts/edit-platform-metric-rule.png" lightbox="media/kubernetes-metric-alerts/edit-platform-metric-rule.png" alt-text="Screenshot of option to edit platform metric rule.":::
 

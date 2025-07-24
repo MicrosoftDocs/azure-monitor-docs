@@ -2,8 +2,6 @@
 title: Troubleshoot common Azure Chaos Studio problems
 description: Learn to troubleshoot common problems when you use Azure Chaos Studio.
 author: c-ashton
-ms.service: azure-chaos-studio
-ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.topic: troubleshooting
 ms.date: 10/14/2024
@@ -157,6 +155,14 @@ There are several common errors you may encounter when using AKS Chaos Mesh faul
 | Getting static credential is not allowed because this cluster is set to disable local accounts. | The AKS Chaos Mesh faults can use either Kubernetes local accounts or Microsoft Entra authentication as of version 2.2. Learn how to migrate your experiments here: [Using Microsoft Entra authentication with Chaos Studio AKS faults](chaos-studio-aks-authentication.md). |
 | The Chaos Mesh experiment could not be started because the provided configuration was invalid | Ensure the `jsonSpec` contains all the required fields. |
 | Chaos Mesh version 'x.x.x' is not currently supported by Chaos Studio | Verify the installed version against the [Azure Chaos Studio version compatibility](chaos-studio-versions.md) page and submit a [feature request](https://feedback.azure.com/d365community/forum/18f8dc01-dc37-ec11-b6e6-000d3a9c7101) if the desired version isn't listed. |
+
+### When I run an experiment with VNet injection, I get the error "InvalidResourceReference" 
+
+When executing an experiment, it may fail with the message `"Resource /subscriptions/.../providers/Microsoft.Network/virtualNetworks/... referenced by resource /subscriptions/.../providers/Microsoft.Network/privateEndpoints/... was not found. Please make sure that the referenced resource exists, and that both resources are in the same region"` in the Details of the experiment execution.
+
+This error occurs when you're using VNet injection and your experiment is created in a different subscription than the one containing your virtual network. During experiment execution, Chaos Studio attempts to create a private endpoint but cannot find the referenced virtual network because it's in a different subscription.
+
+To resolve this issue, ensure that your experiment is created in the same subscription as your virtual network. You'll need to recreate the experiment in the correct subscription. For more information about this limitation, see [Integration of virtual network injection with Chaos Studio](chaos-studio-private-networking.md).
 
 ## Problems when setting up a managed identity
 

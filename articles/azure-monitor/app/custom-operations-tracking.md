@@ -1,7 +1,7 @@
 ---
 title: Track custom operations with Application Insights .NET SDK 
 description: Learn how to track custom operations with the Application Insights .NET SDK.
-ms.topic: conceptual
+ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
 ms.date: 12/07/2024
@@ -20,7 +20,7 @@ This article provides guidance on how to track custom operations with the Applic
 - Application Insights for web applications (running ASP.NET) version 2.4+.
 - Application Insights for ASP.NET Core version 2.1+.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ## Overview
 
@@ -414,6 +414,7 @@ Each Application Insights operation (request or dependency) involves `Activity`.
 ## Next steps
 
 - Learn the basics of [telemetry correlation](distributed-trace-data.md) in Application Insights.
+- Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 - Check out how correlated data powers [transaction diagnostics experience](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) and [Application Map](./app-map.md).
 - See the [data model](./data-model-complete.md) for Application Insights types and data model.
 - Report custom [events and metrics](./api-custom-events-metrics.md) to Application Insights.

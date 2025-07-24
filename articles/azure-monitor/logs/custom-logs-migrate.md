@@ -18,40 +18,42 @@ The Azure Monitor [Log Ingestion API](../logs/logs-ingestion-api-overview.md) pr
 
 The Log Ingestion API provides the following advantages over the Data Collector API:
 
-- Supports [transformations](../essentials/data-collection-transformations.md), which enable you to modify the data before it's ingested into the destination table, including filtering and data manipulation.
-- Lets you send data to multiple destinations.  
-- Enables you to manage the destination table schema, including column names, and whether to add new columns to the destination table when the source data schema changes.
+* Supports [transformations](../data-collection/data-collection-transformations.md), which enable you to modify the data before it's ingested into the destination table, including filtering and data manipulation.
+* Lets you send data to multiple destinations.  
+* Enables you to manage the destination table schema, including column names, and whether to add new columns to the destination table when the source data schema changes.
+* Supports role-based access controls (RBAC) to restrict data ingestion by data collection rule and identity.
+
 ## Prerequisites
 
 The migration procedure described in this article assumes you have:
 
-- A Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
-- [Permissions to create data collection rules](../essentials/data-collection-rule-create-edit.md#permissions) in the Log Analytics workspace.
-- [A Microsoft Entra application to authenticate API calls](../logs/tutorial-logs-ingestion-portal.md#create-azure-ad-application) or any other Resource Manager authentication scheme.
+* A Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
+* [Permissions to create data collection rules](../data-collection/data-collection-rule-create-edit.md#permissions) in the Log Analytics workspace.
+* [A Microsoft Entra application to authenticate API calls](../logs/tutorial-logs-ingestion-portal.md#create-azure-ad-application) or any other Resource Manager authentication scheme.
 
 ## Permissions required
 
 | Action | Permissions required |
-|:---|:---|
+|:-------|:---------------------|
 | Create a data collection endpoint. | `Microsoft.Insights/dataCollectionEndpoints/write` permissions as provided by the [Monitoring Contributor built-in role](/azure/role-based-access-control/built-in-roles#monitoring-contributor), for example. |
 | Create or modify a data collection rule. | `Microsoft.Insights/DataCollectionRules/Write` permissions as provided by the [Monitoring Contributor built-in role](/azure/role-based-access-control/built-in-roles#monitoring-contributor), for example. |
 | Convert a table that uses the Data Collector API to data collection rules and the Log Ingestion API. | `Microsoft.OperationalInsights/workspaces/tables/migrate/action` permissions as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example. |
-| Create new tables or modify table schemas. | `microsoft.operationalinsights/workspaces/tables/write` permissions as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example. |
-| Call the Log Ingestion API. | See [Assign permissions to a DCR](./tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr). |
+| Create new tables or modify table schemas. | `microsoft.operationalinsights/workspaces/tables/write` permissions as provided by the [Log Analytics Contributor built-in role](manage-access.md#log-analytics-contributor), for example. |
+| Call the Log Ingestion API. | See [Assign permissions to a DCR](tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr). |
 
 ## Create new resources required for the Log ingestion API
 
 The Log Ingestion API requires you to create two new types of resources, which the HTTP Data Collector API doesn't require: 
 
-- [Data collection endpoints](../essentials/data-collection-endpoint-overview.md), from which the data you collect is ingested into the pipeline for processing.
-- [Data collection rules](../essentials/data-collection-rule-overview.md), which define [data transformations](../essentials/data-collection-transformations.md) and the destination table to which the data is ingested.
+* [Data collection endpoints](../data-collection/data-collection-endpoint-overview.md), from which the data you collect is ingested into the pipeline for processing.
+* [Data collection rules](../data-collection/data-collection-rule-overview.md), which define [data transformations](../data-collection/data-collection-transformations.md) and the destination table to which the data is ingested.
 
 ## Migrate existing custom tables or create new tables
 
 If you have an existing custom table to which you currently send data using the Data Collector API, you can: 
 
-- Migrate the table to continue ingesting data into the same table using the Log Ingestion API. 
-- Maintain the existing table and data and set up a new table into which you ingest data using the Log Ingestion API. You can then delete the old table when you're ready. 
+* Migrate the table to continue ingesting data into the same table using the Log Ingestion API. 
+* Maintain the existing table and data and set up a new table into which you ingest data using the Log Ingestion API. You can then delete the old table when you're ready. 
 
     This is the preferred option, especially if you to need to make changes to the existing table. Changes to existing data types and multiple schema changes to existing Data Collector API custom tables can lead to errors.
 
@@ -60,11 +62,11 @@ If you have an existing custom table to which you currently send data using the 
 
 This table summarizes considerations to keep in mind for each option:
 
-||Table migration|Side-by-side implementation|
-|-|-|-|
-|**Table and column naming**|Reuse existing table name.<br>Column naming options: <br>- Use new column names and define a transformation to direct incoming data to the newly named column.<br>- Continue using old names.|Set the new table name freely.<br>Need to adjust integrations, dashboards, and alerts before switching to the new table.|
-|**Migration procedure**|One-off table migration. Not possible to roll back a migrated table. |Migration can be done gradually, per table.|
-|**Post-migration**|You can continue to ingest data using the HTTP Data Collector API with existing columns, except custom columns.<br>Ingest data into new columns using the Log Ingestion API only.| Data in the old table is available until the end of retention period.<br>When you first set up a new table or make schema changes, it can take 10-15 minutes for the data changes to start appearing in the destination table.|
+|  | Table migration | Side-by-side implementation |
+|--|-----------------|-----------------------------|
+| **Table and column naming** | Reuse existing table name.<br>Column naming options: <br>- Use new column names and define a transformation to direct incoming data to the newly named column.<br>- Continue using old names. | Set the new table name freely.<br>Need to adjust integrations, dashboards, and alerts before switching to the new table. |
+| **Migration procedure** | One-off table migration. Not possible to roll back a migrated table. | Migration can be done gradually, per table. |
+| **Post-migration** | You can continue to ingest data using the HTTP Data Collector API with existing columns, except custom columns.<br>Ingest data into new columns using the Log Ingestion API only. | Data in the old table is available until the end of retention period.<br>When you first set up a new table or make schema changes, it can take 10-15 minutes for the data changes to start appearing in the destination table. |
 
 To convert a table that uses the Data Collector API to data collection rules and the Log Ingestion API, issue this API call against the table:  
 
@@ -93,14 +95,14 @@ While the Data Collector API automatically adjusts the destination table schema 
 
 When the source data schema changes, you can:
 
-- [Modify destination table schemas](../logs/create-custom-table.md) and [data collection rules](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to align with source data schema changes.
-- [Define a transformation](../essentials/data-collection-transformations.md) in the data collection rule to send the new data into existing columns in the destination table. 
-- Leave the destination table and data collection rule unchanged. In this case, you won't ingest the new data.
+* [Modify destination table schemas](../logs/create-custom-table.md) and [data collection rules](../data-collection/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to align with source data schema changes.
+* [Define a transformation](../data-collection/data-collection-transformations.md) in the data collection rule to send the new data into existing columns in the destination table.
+* Leave the destination table and data collection rule unchanged. In this case, you won't ingest the new data.
 
 > [!NOTE]
 > You can't reuse a column name with a data type that's different to the original data type defined for the column. 
 
 ## Next steps
 
-- [Walk through a tutorial sending custom logs using the Azure portal.](tutorial-logs-ingestion-portal.md)
-- [Walk through a tutorial sending custom logs using Resource Manager templates and REST API.](tutorial-logs-ingestion-api.md)
+* [Walk through a tutorial sending custom logs using the Azure portal.](tutorial-logs-ingestion-portal.md)
+* [Walk through a tutorial sending custom logs using Resource Manager templates and REST API.](tutorial-logs-ingestion-api.md)

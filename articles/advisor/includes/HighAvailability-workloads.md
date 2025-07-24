@@ -12,60 +12,6 @@ ms.custom: HighAvailability Workloads
   
 ## Workloads  
   
-<!--dfa50c39-104a-418b-873a-c145fe521c9b_begin-->
-
-#### Deploy Hyperspace Web servers as part of a Virtual Machine Scale Set Flex configured for 3 zones  
-  
-We have observed that your Hyperspace Web servers in the Virtual Machine Scale Set Flex set up aren't spread across 3 zones in the selected region. For services like Hyperspace Web in Epic systems that require high availability and large scale, it's recommended that servers are deployed as part of Virtual Machine Scale Set Flex and spread across 3 zones. With Flexible orchestration, Azure provides a unified experience across the Azure VM ecosystem   
-  
-**Potential benefits**: High availability and on-demand large scale for Hyperspace web servers in Epic DB  
-
-**Impact:** Medium
-  
-For more information, see [Create an Azure scale set that uses Availability Zones - Azure Virtual Machine Scale Sets ](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones?tabs=cli-1%2Cportal-2)  
-
-ResourceType: microsoft.workloads/epicvirtualinstances/hyperspacewebinstances  
-Recommendation ID: dfa50c39-104a-418b-873a-c145fe521c9b  
-Subcategory: HighAvailability
-
-<!--dfa50c39-104a-418b-873a-c145fe521c9b_end-->
-
-<!--f3d23f88-aee2-4b5a-bfd6-65b22bd70fc0_begin-->
-
-#### Configure Local host cache on Citrix VDI servers to ensure seamless connection brokering operations  
-  
-We have observed that your Citrix VDI servers aren't configured Local host Cache. Local Host Cache (LHC) is a feature in Citrix Virtual Apps and Desktops that allows connection brokering operations to continue when an outage occurs.LHC engages when the site database is inaccessible for 90 seconds.  
-  
-**Potential benefits**: Seamless connection brokering operations  
-
-**Impact:** Medium
-  
-  
-
-ResourceType: microsoft.workloads/epicvirtualinstances/presentationinstances  
-Recommendation ID: f3d23f88-aee2-4b5a-bfd6-65b22bd70fc0  
-Subcategory: HighAvailability
-
-<!--f3d23f88-aee2-4b5a-bfd6-65b22bd70fc0_end-->
-
-<!--3ca22452-0f8f-4701-a313-a2d83334e3cc_begin-->
-
-#### Configure an Always On availability group for Multi-purpose SQL servers (MPSQL)  
-  
-MPSQL servers with an Always On availability group have better availability. Your MPSQL servers aren't configured as part of an Always On availability group in the shared infrastructure in your Epic system. Always On availability groups improve database availability and resource use.  
-  
-**Potential benefits**: Improved Database availability and resource use  
-
-**Impact:** Medium
-  
-For more information, see [What is an Always On availability group? - SQL Server Always On ](/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server?view=sql-server-ver16#Benefits)  
-
-ResourceType: microsoft.workloads/epicvirtualinstances/sharedinstances  
-Recommendation ID: 3ca22452-0f8f-4701-a313-a2d83334e3cc  
-Subcategory: HighAvailability
-
-<!--3ca22452-0f8f-4701-a313-a2d83334e3cc_end-->
-
 <!--90a86c8e-efab-47a1-bb4d-63f231b15292_begin-->
 
 #### Ensure high availability for production SAP app server  
@@ -286,7 +232,7 @@ Subcategory: HighAvailability
 
 #### Set the stonith timeout to 144 for the cluster configuration in ASCS HA setup in SAP workloads  
   
-The ‘stonith-timeout’ specifies how long the cluster waits for a STONITH action to complete. Setting it to '144' seconds allows more time for fencing actions to complete. We recommend this setting for HA clusters for SAP on Azure.  
+The `stonith-timeout` specifies how long the cluster waits for a STONITH action to complete. Setting it to '144' seconds allows more time for fencing actions to complete. We recommend this setting for HA clusters for SAP on Azure.  
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
@@ -826,7 +772,7 @@ Subcategory: HighAvailability
 
 #### Set the stonith timeout to 144 for the cluster configuration in HA enabled SAP workloads  
   
-The ‘stonith-timeout’ specifies how long the cluster waits for a STONITH action to complete. Setting it to '144' seconds allows more time for fencing actions to complete. We recommend this setting for HA clusters for SAP on Azure.  
+The 'stonith-timeout' specifies how long the cluster waits for a STONITH action to complete. Setting it to '144' seconds allows more time for fencing actions to complete. We recommend this setting for HA clusters for SAP on Azure.  
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 

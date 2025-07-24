@@ -1,7 +1,7 @@
 ---
 title: Filtering and preprocessing in the Application Insights SDK | Microsoft Docs
 description: Write telemetry processors and telemetry initializers for the SDK to filter or add properties to the data before the telemetry is sent to the Application Insights portal.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, python
@@ -11,13 +11,13 @@ ms.reviewer: cithomas
 
 # Filter and preprocess telemetry in the Application Insights SDK
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 You can write code to filter, modify, or enrich your telemetry before it's sent from the SDK. The processing includes data that's sent from the standard telemetry modules, such as HTTP request collection and dependency collection.
 
-* [Filtering](./api-filtering-sampling.md#filtering) can modify or discard telemetry before it's sent from the SDK by implementing `ITelemetryProcessor`. For example, you could reduce the volume of telemetry by excluding requests from robots. Unlike sampling, You have full control over what is sent or discarded, but it affects any metrics based on aggregated logs. Depending on how you discard items, you might also lose the ability to navigate between related items.
+* [Filtering](#filtering) can modify or discard telemetry before it's sent from the SDK by implementing `ITelemetryProcessor`. For example, you could reduce the volume of telemetry by excluding requests from robots. Unlike sampling, You have full control over what is sent or discarded, but it affects any metrics based on aggregated logs. Depending on how you discard items, you might also lose the ability to navigate between related items.
 
-* [Add or Modify properties](./api-filtering-sampling.md#add-properties) to any telemetry sent from your app by implementing an `ITelemetryInitializer`. For example, you could add calculated values or version numbers by which to filter the data in the portal.
+* [Add or Modify properties](#add-properties) to any telemetry sent from your app by implementing an `ITelemetryInitializer`. For example, you could add calculated values or version numbers by which to filter the data in the portal.
 
 * [Sampling](sampling.md) reduces the volume of telemetry without affecting your statistics. It keeps together related data points so that you can navigate between them when you diagnose a problem. In the portal, the total counts are multiplied to compensate for the sampling.
 
@@ -79,7 +79,7 @@ To filter telemetry, you write a telemetry processor and register it with `Telem
     }
     ```
 
-2. Add your processor.
+1. Add your processor.
 
     #### [ASP.NET](#tab/dotnet)
     
@@ -182,8 +182,6 @@ If you want to diagnose only calls that are slow, filter out the fast ones.
 
 > [!NOTE]
 > This filtering will skew the statistics you see on the portal.
->
->
 
 ```csharp
 public void Process(ITelemetry item)
@@ -223,11 +221,11 @@ You can filter telemetry from JavaScript web applications by using ITelemetryIni
     };
     ```
 
-2. Add your telemetry initializer callback:
+1. Add your telemetry initializer callback:
 
-   ```js
-   appInsights.addTelemetryInitializer(filteringFunction);
-   ```
+    ```js
+    appInsights.addTelemetryInitializer(filteringFunction);
+    ```
 
 ## Add/modify properties: ITelemetryInitializer
 
@@ -278,7 +276,7 @@ If you provide a telemetry initializer, it's called whenever any of the Track*()
     }
     ```
 
-2. Load your initializer
+1. Load your initializer
 
     #### [ASP.NET](#tab/dotnet)
     
@@ -361,7 +359,7 @@ const appInsights = new ApplicationInsights({ config: {
 } });
 appInsights.loadAppInsights();
 // To insert a telemetry initializer, uncomment the following code.
-/** var telemetryInitializer = (envelope) => {   envelope.data = envelope.data || {}; envelope.data.someField = 'This item passed through my telemetry initializer'; 
+/** var telemetryInitializer = (envelope) => { envelope.data = envelope.data || {}; envelope.data.someField = 'This item passed through my telemetry initializer'; 
  };
 appInsights.addTelemetryInitializer(telemetryInitializer); **/ 
 appInsights.trackPageView();
@@ -548,12 +546,12 @@ What's the difference between telemetry processors and telemetry initializers?
 
 ## Azure Monitor Telemetry Data Types Reference
 
- * [ASP.NET Core SDK](/dotnet/api/microsoft.applicationinsights.datacontracts)
- * [ASP.NET SDK](/dotnet/api/microsoft.applicationinsights.datacontracts)
- * [Node.js SDK](https://github.com/Microsoft/ApplicationInsights-node.js/tree/develop/Declarations/Contracts/TelemetryTypes)
- * [Java SDK (via config)](/azure/azure-monitor/app/java-in-process-agent#modify-telemetry)
- * [Python SDK](https://github.com/census-instrumentation/opencensus-python/blob/master/contrib/opencensus-ext-azure/opencensus/ext/azure/common/protocol.py)
- * [JavaScript SDK](https://github.com/microsoft/ApplicationInsights-JS/tree/master/shared/AppInsightsCommon/src/Telemetry)
+* [ASP.NET Core SDK](/dotnet/api/microsoft.applicationinsights.datacontracts)
+* [ASP.NET SDK](/dotnet/api/microsoft.applicationinsights.datacontracts)
+* [Node.js SDK](https://github.com/Microsoft/ApplicationInsights-node.js/tree/develop/Declarations/Contracts/TelemetryTypes)
+* [Java SDK (via config)](/azure/azure-monitor/app/java-in-process-agent#modify-telemetry)
+* [Python SDK](https://github.com/census-instrumentation/opencensus-python/blob/master/contrib/opencensus-ext-azure/opencensus/ext/azure/common/protocol.py)
+* [JavaScript SDK](https://github.com/microsoft/ApplicationInsights-JS/tree/master/shared/AppInsightsCommon/src/Telemetry)
 
 ## Reference docs
 
@@ -566,6 +564,8 @@ What's the difference between telemetry processors and telemetry initializers?
 * [ASP.NET SDK](https://github.com/Microsoft/ApplicationInsights-dotnet)
 * [JavaScript SDK](https://github.com/Microsoft/ApplicationInsights-JS)
 
-## <a name="next"></a>Next steps
+## Next steps
+
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Search events and logs](./transaction-search-and-diagnostics.md?tabs=transaction-search)
 * [sampling](./sampling.md)

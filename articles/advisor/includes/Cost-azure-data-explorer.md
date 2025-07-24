@@ -84,24 +84,6 @@ Recommendation ID: 354D7BBB-A243-4BE1-A8B9-43DBFC05C44A
 
 <!--354D7BBB-A243-4BE1-A8B9-43DBFC05C44A_end-->
 
-<!--900b17ec-0125-458a-a065-6c213e57c342_begin-->
-
-#### Cleanup unused storage in Data Explorer resources  
-  
-Over time, internal extents merge operations can accumulate redundant and unused storage artifacts that remain beyond the data retention period. While this unreferenced data doesn’t negatively impact the performance, it can lead to more storage use and larger costs than necessary. This recommendation surfaces Data Explorer resources that have unused storage artifacts. The recommended action is to run the cleanup command to detect and delete unused storage artifacts and reduce cost. Note that data recoverability will be reset to the cleanup time and will not be available on data that was created before running the cleanup.  
-  
-**Potential benefits**: Optimize cost  
-
-**Impact:** Medium
-  
-For more information, see [Extents (data shards) - Kusto ](https://aka.ms/adxcleanextentcontainers)  
-
-ResourceType: microsoft.kusto/clusters  
-Recommendation ID: 900b17ec-0125-458a-a065-6c213e57c342  
-
-
-<!--900b17ec-0125-458a-a065-6c213e57c342_end-->
-
 <!--947a627a-532d-44f8-8e23-4f365a80a2ba_begin-->
 
 #### Reduce Data Explorer table cache policy to optimize costs  

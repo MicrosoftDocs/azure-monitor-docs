@@ -1,7 +1,7 @@
 ---
 title: Custom fields in Azure Monitor (Preview)
 description: The Custom Fields feature of Azure Monitor allows you to create your own searchable fields from records in a Log Analytics workspace that add to the properties of a collected record. This article describes the process to create a custom field and provides a detailed walkthrough with a sample event.
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: roygal
 ms.date: 08/12/2024
 
@@ -32,7 +32,7 @@ When you create a custom field, Log Analytics must understand which data to use 
 The following sections provide the procedure for creating a custom field. To see a walkthrough of a sample extraction, go to [Sample walkthrough](#sample-walkthrough).
 
 > [!NOTE]
-> The custom field is populated as records matching the specified criteria are added to the Log Analytics workspace, so it will only appear on records collected after the custom field is created. The custom field will not be added to records that are already in the data store when it’s created.
+> The custom field is populated as records matching the specified criteria are added to the Log Analytics workspace, so it will only appear on records collected after the custom field is created. The custom field will not be added to records that are already in the data store when it's created.
 
 ### Step 1: Identify records that get the custom field
 
@@ -56,11 +56,11 @@ Once you identified the records that get the custom field, you identify the data
 
 Once you have performed the initial extract, Log Analytics will display its results based on data that has already been collected. If the results look accurate, you can create the custom field with no further work. If not, you can refine the results so that Log Analytics can improve its logic.
 
-1. If any values in the initial extract aren’t correct, then click the **Edit** icon next to an inaccurate record and select **Modify this highlight** in order to modify the selection.
+1. If any values in the initial extract aren't correct, then click the **Edit** icon next to an inaccurate record and select **Modify this highlight** in order to modify the selection.
 1. The entry is copied to the **Additional examples** section underneath the **Main Example**. You can adjust the highlight here to help Log Analytics understand the selection it should have made.
 1. Click **Extract** to use this new information to evaluate all the existing records. The results may be modified for records other than the one you just modified based on this new intelligence.
 1. Continue to add corrections until all records in the extract correctly identify the data to populate the new custom field.
-1. Click **Save Extract** when you're satisfied with the results. The custom field is now defined, but it won’t be added to any records yet.
+1. Click **Save Extract** when you're satisfied with the results. The custom field is now defined, but it won't be added to any records yet.
 1. Wait for new records matching the specified criteria to be collected and then run the log search again. New records should have the custom field.
 1. Use the custom field like any other record property. You can use it to aggregate and group data and even use it to produce new insights.
 
@@ -80,7 +80,7 @@ We then right-click on any record with event ID 7036 and select **Extract fields
 <!-- convertborder later -->
 :::image type="content" source="media/custom-fields/extract-fields.png" lightbox="media/custom-fields/extract-fields.png" alt-text="Screenshot showing the Copy and Extract fields options, which are available when you right-click a record from the list of results." border="false":::
 
-The **Field Extraction Wizard** opens with the **EventLog** and **EventID** fields selected in the **Main Example** column. This indicates that the custom field will be defined for events from the System log with an event ID of 7036. This is sufficient so we don’t need to select any other fields.
+The **Field Extraction Wizard** opens with the **EventLog** and **EventID** fields selected in the **Main Example** column. This indicates that the custom field will be defined for events from the System log with an event ID of 7036. This is sufficient so we don't need to select any other fields.
 <!-- convertborder later -->
 :::image type="content" source="media/custom-fields/main-example.png" lightbox="media/custom-fields/main-example.png" alt-text="Screenshot of main example." border="false":::
 
@@ -88,7 +88,7 @@ We highlight the name of the service in the **RenderedDescription** property and
 <!-- convertborder later -->
 :::image type="content" source="media/custom-fields/field-title.png" lightbox="media/custom-fields/field-title.png" alt-text="Screenshot of Field Title." border="false":::
 
-We see that the service name is identified properly for some records but not for others. The **Search Results** show that part of the name for the **WMI Performance Adapter** wasn’t selected. The **Summary** shows that one record identified **Modules Installer** instead of **Windows Modules Installer**.  
+We see that the service name is identified properly for some records but not for others. The **Search Results** show that part of the name for the **WMI Performance Adapter** wasn't selected. The **Summary** shows that one record identified **Modules Installer** instead of **Windows Modules Installer**.  
 <!-- convertborder later -->
 :::image type="content" source="media/custom-fields/search-results-01.png" lightbox="media/custom-fields/search-results-01.png" alt-text="Screenshot showing portions of the service name highlighted in the Search Results pane and one incorrect service name highlighted in the Summary." border="false":::
 

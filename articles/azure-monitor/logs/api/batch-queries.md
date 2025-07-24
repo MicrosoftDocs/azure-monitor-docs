@@ -2,12 +2,15 @@
 title: Batch queries
 description: The Azure Monitor Log Analytics API supports batching.
 ms.date: 08/12/2024
-ms.topic: article
+ms.topic: how-to
 ---
 
 # Batch queries
 
 The Azure Monitor Log Analytics API supports batching queries together. Batch queries currently require Microsoft Entra authentication.
+
+>[!NOTE]
+>The `batch` api has been deprecated. For more information, see [Migrate from using batch and beta query APIs](migrate-batch-and-beta.md).
 
 ## Request format
 To batch queries, use the API endpoint, adding $batch at the end of the URL: `https://api.loganalytics.azure.com/v1/$batch`.

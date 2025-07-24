@@ -3,11 +3,9 @@ title: Run and manage a chaos experiment in Azure Chaos Studio
 description: Learn how to start, stop, view details, and view history for a chaos experiment in Azure Chaos Studio.
 services: chaos-studio
 author: prasha-microsoft
-ms.topic: article
+ms.topic: how-to
 ms.date: 10/14/2024
-ms.author: abbyweisberg
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ---
 
 # Run and manage an experiment in Azure Chaos Studio

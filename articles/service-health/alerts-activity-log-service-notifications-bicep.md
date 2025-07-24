@@ -1,28 +1,32 @@
 ---
 title: Receive activity log alerts on Azure service notifications using Bicep
 description: Get notified via SMS, email, or webhook when Azure service occurs using a Bicep file.
-ms.date: 05/13/2022
+ms.date: 05/27/2025
 ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-bicep
 ---
 
-# Quickstart: Create activity log alerts on service notifications using a Bicep file
+# Create activity log alerts on service notifications using a Bicep file
 
-This article shows you how to set up activity log alerts for service health notifications by using a Bicep file.
+## Overview
+
+This article provides a step-by-step guide on how to use a Bicep file to create activity log alerts for Azure Service Health notifications. The purpose is to automate the creation of alerts to notify you when Azure posts service health events (like incidents, planned maintenance, or health advisories) to your subscription’s activity log.
+
+
 
 [!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 
-Service health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md). Given the possibly large volume of information stored in the activity log, there is a separate user interface to make it easier to view and set up alerts on service health notifications.
+Service health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md). Given the possibly large volume of information stored in the activity log, there's a separate user interface to make it easier to view and set up alerts on service health notifications.
 
 You can receive an alert when Azure sends service health notifications to your Azure subscription. You can configure the alert based on:
 
 - The class of service health notification (Service issues, Planned maintenance, Health advisories).
 - The subscription affected.
-- The service(s) affected.
-- The region(s) affected.
+- The services affected.
+- The regions affected.
 
 > [!NOTE]
-> Service health notifications does not send an alert regarding resource health events.
+> Service health notifications don't send alerts regarding resource health events.
 
 You also can configure who the alert should be sent to:
 
@@ -31,12 +35,14 @@ You also can configure who the alert should be sent to:
 
 To learn more about action groups, see [Create and manage action groups](../azure-monitor/alerts/action-groups.md).
 
-## Prerequisites
+## Set up the Bicep file
+
+**Prerequisites**
 
 - If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 - To run the commands from your local computer, install Azure CLI or the Azure PowerShell modules. For more information, see [Install the Azure CLI](/cli/azure/install-azure-cli) and [Install Azure PowerShell](/powershell/azure/install-azure-powershell).
 
-## Review the Bicep file
+**1. Review the Bicep file**
 
 The following Bicep file creates an action group with an email target and enables all service health notifications for the target subscription. Save this Bicep as *CreateServiceHealthAlert.bicep*.
 
@@ -102,9 +108,9 @@ The Bicep file defines two resources:
 - [Microsoft.Insights/actionGroups](/azure/templates/microsoft.insights/actiongroups)
 - [Microsoft.Insights/activityLogAlerts](/azure/templates/microsoft.insights/activityLogAlerts)
 
-## Deploy the Bicep file
+**2. Deploy the Bicep file**
 
-Deploy the Bicep file using Azure CLI and Azure PowerShell. Replace the sample values for **Resource Group** and **emailAddress** with appropriate values for your environment.
+Deploy the Bicep file using Azure CLI and Azure PowerShell. Replace the sample values for **Resource Group** and **emailAddress** with appropriate values for your environment:
 
 # [CLI](#tab/CLI)
 
@@ -123,9 +129,9 @@ New-AzResourceGroupDeployment -Name CreateServiceHealthAlert -ResourceGroupName 
 
 ---
 
-## Validate the deployment
+**3. Validate the deployment**
 
-Verify that the workspace has been created using one of the following commands. Replace the sample values for **Resource Group** with the value you used above.
+Verify that the workspace is created using one of the following commands. Replace the sample values for **Resource Group** with the value you used shown here:
 
 # [CLI](#tab/CLI)
 
@@ -141,9 +147,9 @@ Get-AzActivityLogAlert -ResourceGroupName my-resource-group -Name ServiceHealthA
 
 ---
 
-## Clean up resources
+**4. Clean up the resources**
 
-If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When no longer needed, delete the resource group, which deletes the alert rule and the related resources. To delete the resource group by using Azure CLI or Azure PowerShell
+If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When no longer needed, delete the resource group, which deletes the alert rule and the related resources. If you need to delete the resource group by using Azure CLI or Azure PowerShell use the following commands:
 
 # [CLI](#tab/CLI)
 

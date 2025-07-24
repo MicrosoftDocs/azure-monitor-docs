@@ -1,22 +1,22 @@
 ---
 title: Set daily cap on Log Analytics workspace
 description: Set a 
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: Dale.Koetke
 ms.date: 10/23/2023
 ---
 
 # Set daily cap on Log Analytics workspace
-A daily cap on a Log Analytics workspace allows you to reduce unexpected increases in charges for data ingestion by stopping collection of billable log data for tables in the Analytics or Basic [table plans](/azure/azure-monitor/logs/manage-logs-tables#table-plan) for the rest a 24-hour period whenever your specified threshold is reached.  Tables in the Auxiliary table plan are not subject to any daily cap. 
+A daily cap on a Log Analytics workspace allows you to reduce unexpected increases in charges for data ingestion by stopping collection of billable log data for tables in the Analytics or Basic [table plans](/azure/azure-monitor/logs/manage-logs-tables#table-plan) for the rest of a 24-hour period whenever your specified threshold is reached. Tables in the Auxiliary table plan are not subject to any daily cap. 
+
+> [!IMPORTANT]
+> The daily cap feature in Azure Monitor should **not** be used as a primary mechanism to filter or reduce data before ingestion into a Log Analytics workspace to save costs. Instead, use **ingestion-time transformations** to filter or reshape data prior to ingestion ([learn more](../data-collection/data-collection-transformations.md)). 
+> The daily cap is designed to protect against **unexpected spikes in data volume** that could lead to unplanned charges. It should be used carefully and only as a safeguard—not as a routine cost-control tool. 
+> Keep in mind that once the daily cap is reached, **data collection stops**. This will impact your ability to monitor resources, receive alerts, and maintain the health and functionality of dependent services and solutions. When the daily cap is met, you are effectively blind to the current state of your monitored environment and no collecting potentially critical events that might be needed later. Your goal should be to **avoid regularly hitting the daily cap** and instead treat it as a backup measure for rare or unforeseen data surges. 
+> For strategies to optimize Azure Monitor costs, refer to [Cost optimization and Azure Monitor](../fundamentals/best-practices-cost.md).
 
 This article describes how the daily cap works and how to configure one in your workspace.
 
-> [!IMPORTANT]
-> You should use care when setting a daily cap because when data collection stops, your ability to observe and receive alerts when the health conditions of your resources will be impacted. It can also impact other Azure services and solutions whose functionality may depend on up-to-date data being available in the workspace. Your goal shouldn't be to regularly hit the daily limit but rather use it as an infrequent method to avoid unplanned charges resulting from an unexpected increase in the volume of data collected.
-> 
-> For strategies to reduce your Azure Monitor costs, see [Cost optimization and Azure Monitor](../best-practices-cost.md).
-
-## Permissions required
 
 | Action | Permissions or role needed |
 |------|------------------------------|
@@ -31,17 +31,21 @@ Each workspace has a daily cap that defines its own data volume limit.  When the
 
 The data size used for the daily cap is the size after customer-defined data transformations. (Learn more about data [transformations in Data Collection Rules](../essentials/data-collection-transformations.md).)  
 
-Data collection resumes at the reset time which is a different hour of the day for each workspace.  This reset hour can't be configured. You can optionally create an alert rule to send an alert when this event is created.
+Data collection resumes at the reset time which is a different hour of the day for each workspace.  This reset hour can't be configured.
 
 > [!NOTE]
-> The daily cap can't stop data collection at precisely the specified cap level and some excess data is expected. The data collection beyond the daily cap can be particularly large if the workspace is receiving high rates of data. If data is collected above the cap, it's still billed. See [View the effect of the Daily Cap](#view-the-effect-of-the-daily-cap) for a query that is helpful in studying the daily cap behavior. 
+> The daily cap can't stop data collection at precisely the specified cap level and some excess data is expected. The data collection beyond the daily cap can be particularly large if the workspace is receiving high rates of data. If data is collected above the cap, it's still billed. See [View the effect of the Daily Cap](#view-the-effect-of-the-daily-cap) for a query that is helpful in studying the daily cap behavior.
+
+> [!IMPORTANT]
+> Since late 2024, there are issues with the daily cap being accurately applied during ingestion into Log Analytics workspaces. In some cases, the daily cap may not get triggered even if data is ingested well above the daily cap. Given this, it is recommended that you rely on the myriad other tools available to control and reduce data ingestion such as data filtering and data transformations in your Data Collection Rules. These and more best practices are outlined the document [Cost optimization and Azure Monitor](../fundamentals/best-practices-cost.md).
+
 ## When to use a daily cap
 Daily caps are typically used by organizations that are particularly cost conscious. They shouldn't be used as a method to reduce costs, but rather as a preventative measure to ensure that you don't exceed a particular budget. 
 
 When data collection stops, you effectively have no monitoring of features and resources relying on that workspace. Instead of relying on the daily cap alone, you can [create an alert rule](#alert-when-daily-cap-is-reached) to notify you when data collection reaches some level before the daily cap. Notification allows you to address any increases before data collection shuts down, or even to temporarily disable collection for less critical resources.
 
 ## Application Insights
-You should configure the daily cap setting for both Application Insights and Log Analytics to limit the amount of telemetry data ingested by your service. For workspace-based Application Insights resources, the effective daily cap is the minimum of the two settings. For classic Application Insights resources, only the Application Insights daily cap applies since their data doesn’t reside in a Log Analytics workspace. 
+You should configure the daily cap setting for both Application Insights and Log Analytics to limit the amount of telemetry data ingested by your service. For workspace-based Application Insights resources, the effective daily cap is the minimum of the two settings. For classic Application Insights resources, only the Application Insights daily cap applies since their data doesn't reside in a Log Analytics workspace. 
 
 > [!TIP]
 > If you're concerned about the amount of billable data collected by Application Insights, you should configure [sampling](../app/sampling.md) to tune its data volume to the level you want. Use the daily cap as a safety method in case your application unexpectedly begins to send much higher volumes of telemetry.
@@ -49,7 +53,7 @@ You should configure the daily cap setting for both Application Insights and Log
 The maximum cap for an Application Insights classic resource is 1,000 GB/day unless you request a higher maximum for a high-traffic application. When you create a resource in the Azure portal, the daily cap is set to 100 GB/day. When you create a resource in Visual Studio, the default is small (only 32.3 MB/day). The daily cap default is set to facilitate testing. It's intended that the user will raise the daily cap before deploying the app into production. 
 
 > [!NOTE]
-> If you are using connection strings to send data to Application Insights using [regional ingestion endpoints](../ip-addresses.md#outgoing-ports), then the Application Insights and Log Analytics daily cap settings are effective per region. If you are using only instrumentation key (ikey) to send data to Application Insights using the [global ingestion endpoint](../ip-addresses.md#outgoing-ports), then the Application Insights daily cap setting may not be effective across regions, but the Log Analytics daily cap setting will still apply.
+> If you are using connection strings to send data to Application Insights using [regional ingestion endpoints](../fundamentals/azure-monitor-network-access.md#outgoing-ports), then the Application Insights and Log Analytics daily cap settings are effective per region. If you are using only instrumentation key (ikey) to send data to Application Insights using the [global ingestion endpoint](../fundamentals/azure-monitor-network-access.md#outgoing-ports), then the Application Insights daily cap setting may not be effective across regions, but the Log Analytics daily cap setting will still apply.
 
 We've removed the restriction on some subscription types that have credit that couldn't be used for Application Insights. Previously, if the subscription has a spending limit, the daily cap dialog has instructions to remove the spending limit and enable the daily cap to be raised beyond 32.3 MB/day.
 
@@ -68,7 +72,7 @@ To help you determine an appropriate  daily cap for your workspace, see [Azure M
 > be sure that the cap is high enough to accommodate this change. 
 > Also, be sure to set an alert (see below) so that you are notified as soon as your daily cap is met. 
 
-Until September 18, 2023, if a workspace enabled the [Microsoft Defenders for Servers](/azure/defender-for-cloud/plan-defender-for-servers-select-plan) solution after June 19, 2017, some security related data types are collected for Microsoft Defender for Cloud or Microsoft Sentinel despite any daily cap configured. The following data types will be subject to this special exception from the daily cap WindowsEvent, SecurityAlert, SecurityBaseline, SecurityBaselineSummary, SecurityDetection,  SecurityEvent, WindowsFirewall, MaliciousIPCommunication, LinuxAuditLog, SysmonEvent, ProtectionStatus, Update, UpdateSummary, CommonSecurityLog and Syslog 
+Until September 18, 2023, if a workspace enabled the [Microsoft Defenders for Servers](/azure/defender-for-cloud/plan-defender-for-servers-select-plan) solution after June 19, 2017, some security related data types are collected for Microsoft Defender for Cloud or Microsoft Sentinel despite any daily cap configured. The following data types were subject to this special exception from the daily cap WindowsEvent, SecurityAlert, SecurityBaseline, SecurityBaselineSummary, SecurityDetection,  SecurityEvent, WindowsFirewall, MaliciousIPCommunication, LinuxAuditLog, SysmonEvent, ProtectionStatus, Update, UpdateSummary, CommonSecurityLog and Syslog.
 
 ## Set the daily cap
 ### Log Analytics workspace
@@ -156,7 +160,6 @@ Usage
 | summarize IngestedGbBetweenDailyCapResets=sum(Quantity)/1000. by day=bin(StartTime , 1d) // Quantity in units of MB
 | render areachart  
 ```
-Add `Update` and `UpdateSummary` data types to the `where Datatype` line when the Update Management solution is not running on the workspace or solution targeting is enabled ([learn more](/azure/security-center/security-center-pricing#what-data-types-are-included-in-the-500-mb-data-daily-allowance).)
 
 ## Next steps
 

@@ -1,7 +1,7 @@
 ---
 title: Application Insights API for custom events and metrics | Microsoft Docs
 description: Insert a few lines of code in your device or desktop app, webpage, or service to track usage and diagnose issues.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/21/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, vb
@@ -11,7 +11,7 @@ ms.reviewer: mmcc
 
 # Application Insights API for custom events and metrics
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 Insert a few lines of code in your application to find out what users are doing with it, or to help diagnose issues. You can send telemetry from device and desktop apps, web clients, and web servers. Use the [Application Insights](./app-insights-overview.md) core telemetry API to send custom events and metrics and your own versions of standard telemetry. This API is the same API that the standard Application Insights data collectors use.
 
@@ -22,7 +22,7 @@ Insert a few lines of code in your application to find out what users are doing 
 The core API is uniform across all platforms, apart from a few variations like `GetMetric` (.NET only).
 
 | Method | Used for |
-| --- | --- |
+|--------|----------|
 | [`TrackPageView`](#page-views) |Pages, screens, panes, or forms. |
 | [`TrackEvent`](#trackevent) |User actions and other events. Used to track user behavior or to monitor performance. |
 | [`GetMetric`](#getmetric) |Zero and multidimensional metrics, centrally configured aggregation, C# only. |
@@ -40,11 +40,12 @@ If you don't have a reference on Application Insights SDK yet:
 
 * Add the Application Insights SDK to your project:
 
-  * [ASP.NET project](./asp-net.md)
-  * [ASP.NET Core project](./asp-net-core.md)
-  * [Java project](./opentelemetry-enable.md?tabs=java)
-  * [Node.js project](./nodejs.md)
-  * [JavaScript in each webpage](./javascript.md)
+    * [ASP.NET project](./asp-net.md)
+    * [ASP.NET Core project](./asp-net-core.md)
+    * [Java project](./opentelemetry-enable.md?tabs=java)
+    * [Node.js project](./nodejs.md)
+    * [JavaScript in each webpage](./javascript.md)
+
 * In your device or web server code, include:
 
     *C#:* `using Microsoft.ApplicationInsights;`
@@ -59,7 +60,7 @@ If you don't have a reference on Application Insights SDK yet:
 
 Get an instance of `TelemetryClient` (except in JavaScript in webpages):
 
-For [ASP.NET Core](asp-net-core.md) apps and [Non-HTTP/Worker for .NET/.NET Core](worker-service.md#how-can-i-track-telemetry-thats-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
+For [ASP.NET Core](asp-net-core.md) apps and [Non-HTTP/Worker for .NET/.NET Core](application-insights-faq.yml#how-can-i-track-telemetry-that-s-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
 
 If you use Azure Functions v2+ or Azure WebJobs v3+, see [Monitor Azure Functions](/azure/azure-functions/functions-monitoring).
 
@@ -165,8 +166,7 @@ To learn how to effectively use the `GetMetric()` call to capture locally preagg
 > [!NOTE]
 > `Microsoft.ApplicationInsights.TelemetryClient.TrackMetric` isn't the preferred method for sending metrics. Metrics should always be preaggregated across a time period before being sent. Use one of the `GetMetric(..)` overloads to get a metric object for accessing SDK pre-aggregation capabilities.
 >
-> If you're implementing your own pre-aggregation logic, you can use the `TrackMetric()` method to send the resulting aggregates. If your application requires sending a separate telemetry item on every occasion without aggregation across time, you likely have a use case for event telemetry. See `TelemetryClient.TrackEvent
-(Microsoft.ApplicationInsights.DataContracts.EventTelemetry)`.
+> If you're implementing your own pre-aggregation logic, you can use the `TrackMetric()` method to send the resulting aggregates. If your application requires sending a separate telemetry item on every occasion without aggregation across time, you likely have a use case for event telemetry. See `TelemetryClient.TrackEvent(Microsoft.ApplicationInsights.DataContracts.EventTelemetry)`.
 
 Application Insights can chart metrics that aren't attached to particular events. For example, you could monitor a queue length at regular intervals. With metrics, the individual measurements are of less interest than the variations and trends, and so statistical charts are useful.
 
@@ -174,11 +174,11 @@ To send metrics to Application Insights, you can use the `TrackMetric(..)` API. 
 
 * **Single value**. Every time you perform a measurement in your application, you send the corresponding value to Application Insights.
 
-  For example, assume you have a metric that describes the number of items in a container. During a particular time period, you first put three items into the container and then you remove two items. Accordingly, you would call `TrackMetric` twice. First, you would pass the value `3` and then pass the value `-2`. Application Insights stores both values for you.
+    For example, assume you have a metric that describes the number of items in a container. During a particular time period, you first put three items into the container and then you remove two items. Accordingly, you would call `TrackMetric` twice. First, you would pass the value `3` and then pass the value `-2`. Application Insights stores both values for you.
 
 * **Aggregation**. When you work with metrics, every single measurement is rarely of interest. Instead, a summary of what happened during a particular time period is important. Such a summary is called _aggregation_.
 
-  In the preceding example, the aggregate metric sum for that time period is `1` and the count of the metric values is `2`. When you use the aggregation approach, you invoke `TrackMetric` only once per time period and send the aggregate values. We recommend this approach because it can significantly reduce the cost and performance overhead by sending fewer data points to Application Insights, while still collecting all relevant information.
+    In the preceding example, the aggregate metric sum for that time period is `1` and the count of the metric values is `2`. When you use the aggregation approach, you invoke `TrackMetric` only once per time period and send the aggregate values. We recommend this approach because it can significantly reduce the cost and performance overhead by sending fewer data points to Application Insights, while still collecting all relevant information.
 
 ### Single value examples
 
@@ -507,11 +507,11 @@ trackTrace({
 
 Log a diagnostic event such as entering or leaving a method.
 
- Parameter | Description
----|---
-`message` | Diagnostic data. Can be much longer than a name.
-`properties` | Map of string to string. More data is used to [filter exceptions](#properties) in the portal. Defaults to empty.
-`severityLevel` | Supported values: [SeverityLevel.ts](https://github.com/microsoft/ApplicationInsights-JS/blob/17ef50442f73fd02a758fbd74134933d92607ecf/shared/AppInsightsCommon/src/Interfaces/Contracts/Generated/SeverityLevel.ts).
+| Parameter | Description |
+|-----------|-------------|
+| `message` | Diagnostic data. Can be much longer than a name. |
+| `properties` | Map of string to string. More data is used to [filter exceptions](#properties) in the portal. Defaults to empty. |
+| `severityLevel` | Supported values: [SeverityLevel.ts](https://github.com/microsoft/ApplicationInsights-JS/blob/17ef50442f73fd02a758fbd74134933d92607ecf/shared/AppInsightsCommon/src/Interfaces/Contracts/Generated/SeverityLevel.ts). |
 
 You can search on message content, but unlike property values, you can't filter on it.
 
@@ -680,12 +680,12 @@ telemetry.flush();
 The function is asynchronous for the [server telemetry channel](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel/).
 
 > [!NOTE]
-> - The Java and JavaScript SDKs automatically flush on application shutdown.
-> - **Review Autoflush configuration**: [Enabling autoflush](/dotnet/api/system.diagnostics.trace.autoflush) in your `web.config` file can lead to performance degradation in .NET applications instrumented with Application Insights. With autoflush enabled, every invocation of `System.Diagnostics.Trace.Trace*` methods results in individual telemetry items being sent as separate distinct web requests to the ingestion service. This can potentially cause network and storage exhaustion on your web servers. For enhanced performance, it’s recommended to disable autoflush and also, utilize the [ServerTelemetryChannel](/azure/azure-monitor/app/telemetry-channels#built-in-telemetry-channels), designed for a more effective telemetry data transmission.
+> * The Java and JavaScript SDKs automatically flush on application shutdown.
+> * **Review Autoflush configuration**: [Enabling autoflush](/dotnet/api/system.diagnostics.trace.autoflush) in your `web.config` file can lead to performance degradation in .NET applications instrumented with Application Insights. With autoflush enabled, every invocation of `System.Diagnostics.Trace.Trace*` methods results in individual telemetry items being sent as separate distinct web requests to the ingestion service. This can potentially cause network and storage exhaustion on your web servers. For enhanced performance, it's recommended to disable autoflush and also, utilize the [ServerTelemetryChannel](/azure/azure-monitor/app/telemetry-channels#built-in-telemetry-channels), designed for a more effective telemetry data transmission.
 
 ## Authenticated users
 
-In a web app, users are [identified by cookies](./usage.md#users-sessions-and-events---analyze-telemetry-from-three-perspectives) by default. A user might be counted more than once if they access your app from a different machine or browser, or if they delete cookies.
+In a web app, users are [identified by cookies](usage.md#users-sessions-and-events) by default. A user might be counted more than once if they access your app from a different machine or browser, or if they delete cookies.
 
 If users sign in to your app, you can get a more accurate count by setting the authenticated user ID in the browser code:
 
@@ -732,9 +732,9 @@ You can also [search](./transaction-search-and-diagnostics.md?tabs=transaction-s
 > [!NOTE]
 > The [EnableAuthenticationTrackingJavaScript property in the ApplicationInsightsServiceOptions class](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs) in the .NET Core SDK simplifies the JavaScript configuration needed to inject the user name as the Auth ID for each trace sent by the Application Insights JavaScript SDK.
 >
->When this property is set to `true`, the user name from the user in the ASP.NET Core is printed along with [client-side telemetry](asp-net-core.md#enable-client-side-telemetry-for-web-applications). For this reason, adding `appInsights.setAuthenticatedUserContext` manually wouldn't be needed anymore because it's already injected by the SDK for ASP.NET Core. The Auth ID will also be sent to the server where the SDK in .NET Core will identify it and use it for any server-side telemetry, as described in the [JavaScript API reference](https://github.com/microsoft/ApplicationInsights-JS/blob/master/API-reference.md#setauthenticatedusercontext).
+> When this property is set to `true`, the user name from the user in the ASP.NET Core is printed along with [client-side telemetry](asp-net-core.md#enable-client-side-telemetry-for-web-applications). For this reason, adding `appInsights.setAuthenticatedUserContext` manually wouldn't be needed anymore because it's already injected by the SDK for ASP.NET Core. The Auth ID will also be sent to the server where the SDK in .NET Core will identify it and use it for any server-side telemetry, as described in the [JavaScript API reference](https://github.com/microsoft/ApplicationInsights-JS/blob/master/API-reference.md#setauthenticatedusercontext).
 >
->For JavaScript applications that don't work in the same way as ASP.NET Core MVC, such as SPA web apps, you would still need to add `appInsights.setAuthenticatedUserContext` manually.
+> For JavaScript applications that don't work in the same way as ASP.NET Core MVC, such as SPA web apps, you would still need to add `appInsights.setAuthenticatedUserContext` manually.
 
 ## <a name="properties"></a>Filter, search, and segment your data by using properties
 
@@ -1107,15 +1107,15 @@ If you set any of these values yourself, consider removing the relevant line fro
 * **InstrumentationKey**: The Application Insights resource in Azure where the telemetry appears. It's usually picked up from `ApplicationInsights.config`.
 * **Location**: The geographic location of the device.
 * **Operation**: In web apps, the current HTTP request. In other app types, you can set this value to group events together.
-  * **ID**: A generated value that correlates different events so that when you inspect any event in Diagnostic Search, you can find related items.
-  * **Name**: An identifier, usually the URL of the HTTP request.
-  * **SyntheticSource**: If not null or empty, a string that indicates that the source of the request has been identified as a robot or web test. By default, it's excluded from calculations in Metrics Explorer.
+    * **ID**: A generated value that correlates different events so that when you inspect any event in Diagnostic Search, you can find related items.
+    * **Name**: An identifier, usually the URL of the HTTP request.
+    * **SyntheticSource**: If not null or empty, a string that indicates that the source of the request has been identified as a robot or web test. By default, it's excluded from calculations in Metrics Explorer.
 * **Session**: The user's session. The ID is set to a generated value, which is changed when the user hasn't been active for a while.
 * **User**: User information.
 
 ## Limits
 
-[!INCLUDE [application-insights-limits](../includes/application-insights-limits.md)]
+[!INCLUDE [application-insights-limits](includes/application-insights-limits.md)]
 
 To avoid hitting the data rate limit, use [sampling](./sampling.md).
 
@@ -1135,47 +1135,9 @@ To determine how long data is kept, see [Data retention and privacy](/previous-v
 * [Node.js SDK](https://github.com/Microsoft/ApplicationInsights-Node.js)
 * [JavaScript SDK](https://github.com/Microsoft/ApplicationInsights-JS)
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Why am I missing telemetry data?
-
-Both [TelemetryChannels](telemetry-channels.md#what-are-telemetry-channels) will lose buffered telemetry if it isn't flushed before an application shuts down.
-
-To avoid data loss, flush the TelemetryClient when an application is shutting down.
-
-For more information, see [Flushing data](#flushing-data).
-
-### What exceptions might `Track_()` calls throw?
-
-None. You don't need to wrap them in try-catch clauses. If the SDK encounters problems, it will log messages in the debug console output and, if the messages get through, in Diagnostic Search.
-
-### Is there a REST API to get data from the portal?
-
-Yes, the [data access API](/rest/api/application-insights/). Other ways to extract data include [Power BI](..\logs\log-powerbi.md) on [workspace-based resource](create-workspace-resource.md).
-
-### Why are my calls to custom events and metrics APIs ignored?
-
-The Application Insights SDK isn't compatible with autoinstrumentation. If autoinstrumentation is enabled, calls to <code class="notranslate">Track()</code> and other custom events and metrics APIs will be ignored.
-
-Turn off autoinstrumentation in the Azure portal on the Application Insights tab of the App Service page or set <code class="notranslate">ApplicationInsightsAgent_EXTENSION_VERSION</code> to <code class="notranslate">disabled</code>.
-
-### Why are the counts in Search and Metrics charts unequal?
-
-[Sampling](./sampling.md) reduces the number of telemetry items (like requests and custom events) that are sent from your app to the portal. In Search, you see the number of items received. In metric charts that display a count of events, you see the number of original events that occurred.
-          
-Each item that's transmitted carries an `itemCount` property that shows how many original events that item represents. To observe sampling in operation, you can run this query in Log Analytics:
-          
-```
-    requests | summarize original_events = sum(itemCount), transmitted_events = count()
-```
-
-### How can I set an alert on an event?
-
-Azure alerts are only on metrics. Create a custom metric that crosses a value threshold whenever your event occurs. Then set an alert on the metric. You get a notification whenever the metric crosses the threshold in either direction. You won't get a notification until the first crossing, no matter whether the initial value is high or low. There's always a latency of a few minutes.
-
-
 ## <a name="next"></a>Next steps
 
+* To review frequently asked questions (FAQ), see [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
+* Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Search events and logs](./transaction-search-and-diagnostics.md?tabs=transaction-search)
+

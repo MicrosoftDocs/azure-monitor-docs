@@ -2,15 +2,17 @@
 ms.service: azure-service-health
 ms.custom: devx-track-azurepowershell
 ms.topic: include
-ms.date: 12/12/2024
+ms.date: 06/16/2025
 ---
 
-### Active Service Health event subscription impact
+#### Active Service Health events by subscription 
 
-Returns all active Service Health events - including service issues, planned maintenance, health advisories, and security advisories – grouped by event type and including count of impacted subscriptions.
+This query shows all active Service Health events—such as service issues, planned maintenance, health advisories, and security advisories, grouped by event type and includes a count of the impacted services.
 
-[!NOTE:]
-This does not include emerging issues. For more information open "https://rest/api/resourcehealth/emerging-issues".
+An example would show each event type including a count showing how many subscriptions affected by it.
+
+>[!NOTE]
+>This event subscription doesn't include emerging issues. For more information, open [this page](/rest/api/resourcehealth/emerging-issues).
 
 
 ```kusto
@@ -41,9 +43,9 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ---
 
-### All active health advisory events
+#### All active health advisory events
 
-Returns all active health advisory Service Health events across all subscriptions to which the user has access.
+This query lists all active health advisory events from Service Health across every subscription you have access to.
 
 ```kusto
 ServiceHealthResources
@@ -71,10 +73,29 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 - Azure operated by 21Vianet portal: <a href="https://portal.azure.cn/#blade/HubsExtension/ArgQueryBlade/query/ServiceHealthResources%0D%0A%7C%20where%20type%20%3D~%20%27Microsoft.ResourceHealth%2Fevents%27%0D%0A%7C%20extend%20eventType%20%3D%20properties.EventType%2C%20status%20%3D%20properties.Status%2C%20description%20%3D%20properties.Title%2C%20trackingId%20%3D%20properties.TrackingId%2C%20summary%20%3D%20properties.Summary%2C%20priority%20%3D%20properties.Priority%2C%20impactStartTime%20%3D%20properties.ImpactStartTime%2C%20impactMitigationTime%20%3D%20todatetime%28tolong%28properties.ImpactMitigationTime%29%29%0D%0A%7C%20where%20eventType%20%3D%3D%20%27HealthAdvisory%27%20and%20impactMitigationTime%20%3E%20now%28%29" target="_blank">portal.azure.cn</a>
 
 ---
+#### All upcoming service retirement events
 
-### All active planned maintenance events
+This query returns all upcoming Service Health events for Retirements across all your subscriptions.
 
-Returns all active planned maintenance Service Health events across all subscriptions to which the user has access.
+```kusto
+ServiceHealthResources
+| where type =~ 'Microsoft.ResourceHealth/events'
+| extend eventType = properties.EventType, status = properties.Status, description = properties.Title, trackingId = properties.TrackingId, summary = properties.Summary, priority = properties.Priority, impactStartTime = properties.ImpactStartTime, impactMitigationTime = todatetime(tolong(properties.ImpactMitigationTime))
+| where eventType == 'PlannedMaintenance' and impactMitigationTime > now()
+```
+
+```
+where type =~ 'Microsoft.ResourceHealth/events'
+| extend eventType = properties.EventType, eventSubType = properties.EventSubType
+| where eventType == "HealthAdvisory" and eventSubType == "Retirement"
+|extend status = properties.Status, description = properties.Title, trackingId = properties.TrackingId, summary = properties.Summary, priority = properties.Priority, impactStartTime = todatetime(tolong(properties.ImpactStartTime)), impactMitigationTime = todatetime(tolong(properties.ImpactMitigationTime)), impact = properties.Impact
+| where impactMitigationTime > datetime(now)
+|project trackingId, subscriptionId, status, eventType, eventSubType, summary, description, priority, impactStartTime, impactMitigationTime, impact
+```
+---
+#### All active planned maintenance events
+
+This query finds and returns a list of all active planned maintenance Service Health events across all the subscriptions you have access to.
 
 ```kusto
 ServiceHealthResources
@@ -103,9 +124,9 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ---
 
-### All active Service Health events
+#### All active Service Health events
 
-Returns all active Service Health events across all subscriptions to which the user has access including service issues, planned maintenance, health advisories, and security advisories.
+Use this query to list all active Service Health events, like service issues, planned maintenance, health advisories, and security advisories across all your subscriptions.
 
 ```kusto
 ServiceHealthResources
@@ -134,9 +155,9 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ---
 
-### All active service issue events
+#### All active service issue events
 
-Returns all active service issue (outage) Service Health events across all subscriptions to which the user has access.
+This query finds and lists all active service issues (outages) and Service Health events across all subscriptions.
 
 ```kusto
 ServiceHealthResources

@@ -1,7 +1,7 @@
 ---
 title: Autoscale common metrics
 description: Learn which metrics are commonly used for autoscaling your cloud services, virtual machines, and web apps.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/01/2024
 ms.reviewer: akkumari
 

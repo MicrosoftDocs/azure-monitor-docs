@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -160,7 +160,7 @@ Subcategory: Other
 
 #### Upgrade your App Service to a Standard plan to avoid request rejects  
   
-When an application is part of a shared App Service plan and meets its quota multiple times, incoming requests might be rejected. Your web application can’t accept incoming requests after meeting a quota. To remove the quota, upgrade to a Standard plan.  
+When an application is part of a shared App Service plan and meets its quota multiple times, incoming requests might be rejected. Your web application can't accept incoming requests after meeting a quota. To remove the quota, upgrade to a Standard plan.  
   
 **Potential benefits**: Keep your app healthy  
 
@@ -245,5 +245,95 @@ Recommendation ID: dc3edeee-f0ab-44ae-b612-605a0a739612
 Subcategory: Scalability
 
 <!--dc3edeee-f0ab-44ae-b612-605a0a739612_end-->
+
+<!--dc298556-8232-4aa8-bfe0-5204c5017be0_begin-->
+
+#### Use Standard or Premium tier  
+  
+Choose Standard or Premium Azure App Service Plan for robust apps with advanced scaling, high availability, better performance, and multiple slots, ensuring resilience and continuous operation.  
+  
+**Potential benefits**: Enhanced scaling and reliability  
+
+**Impact:** High
+  
+For more information, see [Resiliency checklist for services - Azure Architecture Center](/azure/architecture/checklist/resiliency-per-service#app-service)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: dc298556-8232-4aa8-bfe0-5204c5017be0  
+Subcategory: HighAvailability
+
+<!--dc298556-8232-4aa8-bfe0-5204c5017be0_end-->
+
+<!--e987dcce-fd2c-4683-8abf-f1a34bbad737_begin-->
+
+#### Set minimum instance count for App Service to 2  
+  
+App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warm-up time, a minimum of three instances should be used.  
+  
+**Potential benefits**: Improve app performance  
+
+**Impact:** High
+  
+For more information, see [Reliability in Azure App Service](/azure/reliability/reliability-app-service?toc=%2Fazure%2Fapp-service%2Ftoc.json&bc=%2Fazure%2Fapp-service%2Fbreadcrumb%2Ftoc.json&tabs=azurecli&pivots=free-shared-basic#transient-faults)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: e987dcce-fd2c-4683-8abf-f1a34bbad737  
+Subcategory: Scalability
+
+<!--e987dcce-fd2c-4683-8abf-f1a34bbad737_end-->
+
+<!--72063b96-92fa-4b74-9457-b84b662155f9_begin-->
+
+#### Enable Health check for App Service  
+  
+Use health check for production workloads. Health check increases the availability of the application by rerouting requests away from unhealthy instances and replacing instances if the instances remain unhealthy. The health check path should check critical components of the application.  
+  
+**Potential benefits**: Enhanced reliability via automation  
+
+**Impact:** High
+  
+For more information, see [Monitor the health of App Service instances - Azure App Service](/azure/app-service/monitor-instances-health-check?tabs=dotnet)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 72063b96-92fa-4b74-9457-b84b662155f9  
+Subcategory: MonitoringAndAlerting
+
+<!--72063b96-92fa-4b74-9457-b84b662155f9_end-->
+
+<!--96d638d0-3d41-418f-bf21-a75f193c2f6e_begin-->
+
+#### Migrate to zone-supported App Service Environment  
+  
+Enable zoneRedundant in App Service Environment settings  
+  
+**Potential benefits**: Increases uptime for App Service Environments  
+
+**Impact:** High
+  
+For more information, see [App Service Environment Overview - Azure App Service Environment](https://aka.ms/WebHostingEnvironments)  
+
+ResourceType: microsoft.web/hostingenvironments  
+Recommendation ID: 96d638d0-3d41-418f-bf21-a75f193c2f6e  
+Subcategory: HighAvailability
+
+<!--96d638d0-3d41-418f-bf21-a75f193c2f6e_end-->
+
+<!--fac3022a-eda5-44b9-b54d-cb500d1d01dd_begin-->
+
+#### Use zone-supported App Service Plan  
+  
+Deploy App Service Plan with zoneRedundant set to true  
+  
+**Potential benefits**: Keeps web apps running across zones  
+
+**Impact:** High
+  
+For more information, see [Azure App Service Plans - Azure App Service](https://aka.ms/WebServerFarms)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: fac3022a-eda5-44b9-b54d-cb500d1d01dd  
+Subcategory: HighAvailability
+
+<!--fac3022a-eda5-44b9-b54d-cb500d1d01dd_end-->
 
 <!--articleBody-->

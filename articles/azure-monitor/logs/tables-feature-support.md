@@ -71,6 +71,9 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [ADXTableUsageStatistics](/azure/azure-monitor/reference/tables/adxtableusagestatistics) | |
 | [AegDeliveryFailureLogs](/azure/azure-monitor/reference/tables/aegdeliveryfailurelogs) | |
 | [AegPublishFailureLogs](/azure/azure-monitor/reference/tables/aegpublishfailurelogs) | |
+| [AGWAccessLogs](/azure/azure-monitor/reference/tables/agwaccesslogs) | |
+| [AGWPerformanceLogs](/azure/azure-monitor/reference/tables/agwperformancelogs) | |
+| [AGWFirewallLogs](/azure/azure-monitor/reference/tables/agwfirewalllogs) | |
 | [AirflowDagProcessingLogs](/azure/azure-monitor/reference/tables/airflowdagprocessinglogs) | |
 | [Alert](/azure/azure-monitor/reference/tables/alert) | |
 | [AlertEvidence](/azure/azure-monitor/reference/tables/alertevidence) | |
@@ -134,6 +137,18 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AWSCloudWatch](/azure/azure-monitor/reference/tables/awscloudwatch) | |
 | [AWSGuardDuty](/azure/azure-monitor/reference/tables/awsguardduty) | |
 | [AWSVPCFlow](/azure/azure-monitor/reference/tables/awsvpcflow) | |
+| [AZFWApplicationRule](/azure/azure-monitor/reference/tables/azfwapplicationrule) | |
+| [AZFWApplicationRuleAggregation](/azure/azure-monitor/reference/tables/azfwapplicationruleaggregation) | |
+| [AZFWDnsQuery](/azure/azure-monitor/reference/tables/azfwdnsquery) | |
+| [AZFWFatFlow](/azure/azure-monitor/reference/tables/azfwfatflow) | |
+| [AZFWFlowTrace](/azure/azure-monitor/reference/tables/azfwflowtrace) | |
+| [AZFWIdpsSignature](/azure/azure-monitor/reference/tables/azfwidpssignature) | |
+| [AZFWInternalFqdnResolutionFailure](/azure/azure-monitor/reference/tables/azfwinternalfqdnresolutionfailure) | |
+| [AZFWNatRule](/azure/azure-monitor/reference/tables/azfwnatrule) | |
+| [AZFWNatRuleAggregation](/azure/azure-monitor/reference/tables/azfwnatruleaggregation) | |
+| [AZFWNetworkRule](/azure/azure-monitor/reference/tables/azfwnetworkrule) | |
+| [AZFWNetworkRuleAggregation](/azure/azure-monitor/reference/tables/azfwnetworkruleaggregation) | |
+| [AZFWThreatIntel](/azure/azure-monitor/reference/tables/azfwthreatintel) | |
 | [AzureAssessmentRecommendation](/azure/azure-monitor/reference/tables/azureassessmentrecommendation) | |
 | [AzureDevOpsAuditing](/azure/azure-monitor/reference/tables/azuredevopsauditing) | |
 | [BehaviorAnalytics](/azure/azure-monitor/reference/tables/behavioranalytics) | |
@@ -204,7 +219,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [EmailEvents](/azure/azure-monitor/reference/tables/emailevents) | |
 | [EmailPostDeliveryEvents](/azure/azure-monitor/reference/tables/emailpostdeliveryevents) | |
 | [EmailUrlInfo](/azure/azure-monitor/reference/tables/emailurlinfo) | |
-| [Event](/azure/azure-monitor/reference/tables/event) | Partial support . Data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving from Diagnostics Extension  is collected through Azure storage. This path isn’t supported. |
+| [Event](/azure/azure-monitor/reference/tables/event) | Partial support . Data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving from Diagnostics Extension  is collected through Azure storage. This path isn't supported. |
 | [ExchangeAssessmentRecommendation](/azure/azure-monitor/reference/tables/exchangeassessmentrecommendation) | |
 | [ExchangeOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/exchangeonlineassessmentrecommendation) | |
 | [FailedIngestion](/azure/azure-monitor/reference/tables/failedingestion) | |
@@ -290,14 +305,13 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [SecurityBaseline](/azure/azure-monitor/reference/tables/securitybaseline) | |
 | [SecurityBaselineSummary](/azure/azure-monitor/reference/tables/securitybaselinesummary) | |
 | [SecurityDetection](/azure/azure-monitor/reference/tables/securitydetection) | |
-| [SecurityEvent](/azure/azure-monitor/reference/tables/securityevent) | Partial support – data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn’t supported. |
+| [SecurityEvent](/azure/azure-monitor/reference/tables/securityevent) | Partial support – data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn't supported. |
 | [SecurityIncident](/azure/azure-monitor/reference/tables/securityincident) | |
 | [SecurityIoTRawEvent](/azure/azure-monitor/reference/tables/securityiotrawevent) | |
 | [SecurityNestedRecommendation](/azure/azure-monitor/reference/tables/securitynestedrecommendation) | |
 | [SecurityRecommendation](/azure/azure-monitor/reference/tables/securityrecommendation) | |
 | [SecurityRegulatoryCompliance](/azure/azure-monitor/reference/tables/securityregulatorycompliance) | |
 | [SentinelHealth](/azure/azure-monitor/reference/tables/sentinelhealth) | |
-| ServiceMap | |
 | [SfBAssessmentRecommendation](/azure/azure-monitor/reference/tables/sfbassessmentrecommendation) | |
 | [SfBOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/sfbonlineassessmentrecommendation) | |
 | [SharePointOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/sharepointonlineassessmentrecommendation) | |
@@ -334,7 +348,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [SynapseSqlPoolRequestSteps](/azure/azure-monitor/reference/tables/synapsesqlpoolrequeststeps) | |
 | [SynapseSqlPoolSqlRequests](/azure/azure-monitor/reference/tables/synapsesqlpoolsqlrequests) | |
 | [SynapseSqlPoolWaits](/azure/azure-monitor/reference/tables/synapsesqlpoolwaits) | |
-| [Syslog](/azure/azure-monitor/reference/tables/syslog) | Partial support – data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn’t supported. |
+| [Syslog](/azure/azure-monitor/reference/tables/syslog) | Partial support – data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn't supported. |
 | [ThreatIntelligenceIndicator](/azure/azure-monitor/reference/tables/threatintelligenceindicator) | |
 | [TSIIngress](/azure/azure-monitor/reference/tables/tsiingress) | |
 | [UCClient](/azure/azure-monitor/reference/tables/ucclient) | |
@@ -349,7 +363,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [UpdateRunProgress](/azure/azure-monitor/reference/tables/updaterunprogress) | |
 | [UpdateSummary](/azure/azure-monitor/reference/tables/updatesummary) | |
 | [UrlClickEvents](/azure/azure-monitor/reference/tables/urlclickevents) | |
-| [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) | Partial support – data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn’t supported. |
+| [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) | Partial support – data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn't supported. |
 | [WaaSDeploymentStatus](/azure/azure-monitor/reference/tables/waasdeploymentstatus) | |
 | [WaaSInsiderStatus](/azure/azure-monitor/reference/tables/waasinsiderstatus) | |
 | [WaaSUpdateStatus](/azure/azure-monitor/reference/tables/waasupdatestatus) | |

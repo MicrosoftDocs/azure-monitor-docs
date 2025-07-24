@@ -11,8 +11,7 @@ ms.date: 12/25/2023
 
 This article includes samples of [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to create and configure service health alerts in Azure Monitor. 
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
-
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 ## Template for creating service health alert rules
 
@@ -24,7 +23,6 @@ Points to note:
 1. You can create service health alert rules only in the "Global" location.
 1. The "properties.incidentType", "properties.impactedServices[*].ServiceName" and "properties.impactedServices[*].ImpactedRegions[*].RegionName" clauses within the rule condition are optional. You can remove these clauses to be notified on events sent for all incident types, all services, and/or all regions, respectively.
 1. The service names used in the "properties.impactedServices[*].ServiceName" must be a valid Azure service name. A list of valid names can be retrieved at the [Resource Health Metadata List API](/rest/api/resourcehealth/metadata/list)
-
 
 ```json
 {
@@ -84,14 +82,14 @@ Points to note:
               "field": "properties.incidentType",
               "equals": "Incident"
             },
-			{                     
-			   "field": "properties.impactedServices[*].ServiceName",                     
+			{
+			   "field": "properties.impactedServices[*].ServiceName",
 			   "containsAny": [
                   "SQL Database",
-                  "SQL Managed Instance"    
-               ]                 
+                  "SQL Managed Instance"
+               ]
 			},
-            {                     
+            {
 				"field": "properties.impactedServices[*].ImpactedRegions[*].RegionName",
                 "containsAny": [
                    "Australia Central"
@@ -119,6 +117,5 @@ Points to note:
 
 ## Next steps
 
-- [Get other sample templates for Azure Monitor](../resource-manager-samples.md).
-- [Learn more about alert rules](./alerts-overview.md).
-
+* [Get other sample templates for Azure Monitor](../resource-manager-samples.md).
+* [Learn more about alert rules](./alerts-overview.md).

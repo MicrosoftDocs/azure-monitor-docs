@@ -1,8 +1,8 @@
 ---
 title: Send Azure service health alerts with OpsGenie using webhooks
 description: Get personalized notifications about service health events to your OpsGenie instance.
-ms.topic: conceptual
-ms.date: 06/10/2019
+ms.topic: how-to
+ms.date: 05/20/2025
 ---
    
 # Send Azure service health alerts with OpsGenie using webhooks
@@ -10,7 +10,7 @@ ms.date: 06/10/2019
 This article shows you how to set up Azure service health alerts with OpsGenie using a webhook. By using [OpsGenie](https://www.opsgenie.com/)'s Azure Service Health Integration, you can forward Azure Service Health alerts to OpsGenie. OpsGenie can determine the right people to notify based on on-call schedules, using email, text messages (SMS), phone calls, iOS & Android push notifications, and escalating alerts until the alert is acknowledged or closed.
 
 ## Creating a service health integration URL in OpsGenie
-1.  Make sure you have signed up for and are signed into your [OpsGenie](https://www.opsgenie.com/) account.
+1.  Make sure you're signed up and are signed into your [OpsGenie](https://www.opsgenie.com/) account.
 
 1.  Navigate to the **Integrations** section in OpsGenie.
 
@@ -24,7 +24,7 @@ This article shows you how to set up Azure service health alerts with OpsGenie u
 
 1.  Fill out the other fields like **Recipients**, **Enabled**, and **Suppress Notifications**.
 
-1.  Copy and save the **Integration URL**, which should already contain your `apiKey` appended to the end.
+1.  Copy and save the **Integration** URL, which should already contain your `apiKey` appended to the end.
 
     ![The "Integration URL" in OpsGenie](./media/webhook-alerts/opsgenie-integration-url.png)
 
@@ -32,9 +32,9 @@ This article shows you how to set up Azure service health alerts with OpsGenie u
 
 ## Create an alert using OpsGenie in the Azure portal
 ### For a new action group:
-1. Follow steps 1 through 8 in [Create an alert on a service health notification for a new action group by using the Azure portal](./alerts-activity-log-service-notifications-portal.md).
+1. Follow steps 1 through 8 in [Action Groups](./alerts-activity-log-service-notifications-portal.md).
 
-1. Define in the list of **Actions**:
+1. Define this data in the list of **Actions**:
 
     a. **Action Type:** *Webhook*
 

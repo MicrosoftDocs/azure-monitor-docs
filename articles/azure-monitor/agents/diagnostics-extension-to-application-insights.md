@@ -1,7 +1,7 @@
 ---
 title: Send Azure Diagnostics data to Application Insights
 description: Update the Azure Diagnostics public configuration to send data to Application Insights.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/14/2024
 ms.reviewer: JeffWo
 ---

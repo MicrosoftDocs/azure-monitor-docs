@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 06/24/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Container Registry
@@ -22,13 +22,15 @@ Premium registries provide the highest amount of included storage, concurrent op
 
 **Impact:** High
   
-For more information, see [Registry Service Tiers and Features - Azure Container Registry ](https://aka.ms/AAqwyv6)  
+For more information, see [Registry Service Tiers and Features - Azure Container Registry](https://aka.ms/AAqwyv6)  
 
 ResourceType: microsoft.containerregistry/registries  
 Recommendation ID: af0cdbce-c610-499b-9bd7-b169cdb1bb2e  
 Subcategory: HighAvailability
 
 <!--af0cdbce-c610-499b-9bd7-b169cdb1bb2e_end-->
+
+
 
 <!--dcfa2602-227e-4b6c-a60d-7b1f6514e690_begin-->
 

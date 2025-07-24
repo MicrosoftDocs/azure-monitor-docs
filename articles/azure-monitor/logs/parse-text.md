@@ -1,7 +1,7 @@
 ---
 title: Parse text data in Azure Monitor logs | Microsoft Docs
 description: This article describes options for parsing log data in Azure Monitor records when the data is ingested and when it's retrieved in a query and compares the relative advantages for each.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 08/12/2024
 
 ---

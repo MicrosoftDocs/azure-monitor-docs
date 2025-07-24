@@ -2,9 +2,8 @@
 ms.assetid: 
 title: Monitor Linux machines
 description: This article describes how it monitor Linux machines.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 06/10/2024
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance

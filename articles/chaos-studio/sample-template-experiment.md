@@ -5,9 +5,7 @@ services: chaos-studio
 author: prasha-microsoft 
 ms.topic: sample
 ms.date: 10/14/2024
-ms.author: abbyweisberg
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ms.custom: devx-track-arm-template
 ---
 

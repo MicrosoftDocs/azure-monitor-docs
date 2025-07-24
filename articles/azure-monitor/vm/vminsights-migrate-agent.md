@@ -1,7 +1,7 @@
 ---
 title: Migrate to Azure Monitor agent in VM Insights
 description: Learn how to migrate from Log Analytics agent to Azure Monitor agent for VM insights.
-ms.topic: conceptual
+ms.topic: upgrade-and-migration-article
 ms.reviewer: xpathak
 ms.date: 10/03/2024
 ms.custom: references_regions

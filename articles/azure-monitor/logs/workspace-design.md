@@ -1,7 +1,7 @@
 ---
 title: Design a Log Analytics workspace architecture
 description: The article describes the considerations and recommendations for customers preparing to deploy a workspace in Azure Monitor.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 08/15/2024
 ---
 
@@ -17,15 +17,17 @@ Here's a video about the fundamentals of Azure Monitor Logs and best practices a
 > [!VIDEO https://www.youtube.com/embed/7RBp9j0P_Ao?cc_load_policy=1&cc_lang_pref=auto]
 
 ## Design strategy
-Your design should always start with a single workspace to reduce the complexity of managing multiple workspaces and in querying data from them. There are no performance limitations from the amount of data in your workspace. Multiple services and data sources can send data to the same workspace. As you identify criteria to create more workspaces, your design should use the fewest number of workspace to meet your requirements.
+
+Your design should always start with a single workspace to reduce the complexity of managing multiple workspaces and in querying data from them. There are no performance limitations from the amount of data in your workspace. Multiple services and data sources can send data to the same workspace. As you identify criteria to create more workspaces, your design should use the fewest number of workspaces to meet your requirements.
 
 Designing a workspace configuration includes evaluation of multiple criteria. But some of the criteria might be in conflict. For example, you might be able to reduce egress charges by creating a separate workspace in each Azure region. Consolidating into a single workspace might allow you to reduce charges even more with a commitment tier. Evaluate each of the criteria independently. Consider your requirements and priorities to determine which design is most effective for your environment.
 
 ## Design criteria
+
 The following table presents criteria to consider when you design your workspace architecture. The sections that follow describe the criteria.
 
 | Criteria | Description |
-|:---|:---|
+|:---------|:------------|
 | [Operational and security data](#operational-and-security-data) | You may choose to combine operational data from Azure Monitor in the same workspace as security data from Microsoft Sentinel or separate each into their own workspace. Combining them gives you better visibility across all your data, while your security standards might require separating them so that your security team has a dedicated workspace. You may also have cost implications to each strategy. |
 | [Azure tenants](#azure-tenants) | If you have multiple Azure tenants, you'll usually create a workspace in each one. Several data sources can only send monitoring data to a workspace in the same Azure tenant. |
 | [Azure regions](#azure-regions) | Each workspace resides in a particular Azure region. You might have regulatory or compliance requirements to store data in specific locations. |
@@ -38,91 +40,102 @@ The following table presents criteria to consider when you design your workspace
 |[Resilience](#resilience)| To ensure that data in your workspace is available in the event of a region failure, you can ingest data into multiple workspaces in different regions.|
 
 ### Operational and security data
+
 The decision whether to combine your operational data from Azure Monitor in the same workspace as security data from Microsoft Sentinel or separate each into their own workspace depends on your security requirements and the potential cost implications for your environment.
 
 **Dedicated workspaces**
-Creating dedicated workspaces for Azure Monitor and Microsoft Sentinel will allow you to segregate ownership of data between operational and security teams. This approach may also help to optimize costs since when Microsoft Sentinel is enabled in a workspace, all data in that workspace is subject to Microsoft Sentinel pricing even if it's operational data collected by Azure Monitor. 
+
+Creating dedicated workspaces for Azure Monitor and Microsoft Sentinel will allow you to segregate ownership of data between operational and security teams. This approach may also help to optimize costs since when Microsoft Sentinel is enabled in a workspace, all data in that workspace is subject to Microsoft Sentinel pricing even if it's operational data collected by Azure Monitor.
 
 A workspace with Microsoft Sentinel gets three months of free data retention instead of 31 days. This scenario typically results in higher costs for operational data in a workspace without Microsoft Sentinel. See [Azure Monitor Logs pricing details](cost-logs.md#workspaces-with-microsoft-sentinel).
 
 
 **Combined workspace**
+
 Combining your data from Azure Monitor and Microsoft Sentinel in the same workspace gives you better visibility across all of your data allowing you to easily combine both in queries and workbooks. If access to the security data should be limited to a particular team, you can use [table level RBAC](../logs/manage-access.md#set-table-level-read-access) to block particular users from tables with security data or limit users to accessing the workspace using [resource-context](../logs/manage-access.md#access-mode).
 
 This configuration may result in cost savings if it helps you reach a [commitment tier](#commitment-tiers), which provides a discount to your ingestion charges. For example, consider an organization that has operational data and security data each ingesting about 50 GB per day. Combining the data in the same workspace would allow a commitment tier at 100 GB per day. That scenario would provide a 15% discount for Azure Monitor and a 50% discount for Microsoft Sentinel.
 
 If you create separate workspaces for other criteria, you'll usually create more workspace pairs. For example, if you have two Azure tenants, you might create four workspaces with an operational and security workspace in each tenant.
 
-- **If you use both Azure Monitor and Microsoft Sentinel:** Consider separating each in a dedicated workspace if required by your security team or if it results in a cost savings. Consider combining the two for better visibility of your combined monitoring data or if it helps you reach a commitment tier.
-- **If you use both Microsoft Sentinel and Microsoft Defender for Cloud:** Consider using the same workspace for both solutions to keep security data in one place.
+* **If you use both Azure Monitor and Microsoft Sentinel:** Consider separating each in a dedicated workspace if required by your security team or if it results in a cost savings. Consider combining the two for better visibility of your combined monitoring data or if it helps you reach a commitment tier.
+* **If you use both Microsoft Sentinel and Microsoft Defender for Cloud:** Consider using the same workspace for both solutions to keep security data in one place.
 
 ### Azure tenants
-Most resources can only send monitoring data to a workspace in the same Azure tenant. Virtual machines that use [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) or the [Log Analytics agents](../agents/log-analytics-agent.md) can send data to workspaces in separate Azure tenants. You might consider this scenario as a [service provider](#multiple-tenant-strategies).
 
-- **If you have a single Azure tenant:** Create a single workspace for that tenant.
-- **If you have multiple Azure tenants:** Create a workspace for each tenant. For other options including strategies for service providers, see [Multiple tenant strategies](#multiple-tenant-strategies).
+Most resources can only send monitoring data to a workspace in the same [Azure tenant](/entra/fundamentals/whatis). Virtual machines that use [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) or the [Log Analytics agents](../agents/log-analytics-agent.md) can send data to workspaces in separate Azure tenants. You might consider this scenario as a [service provider](#multiple-tenant-strategies).
+
+* **If you have a single Azure tenant:** Create a single workspace for that tenant.
+* **If you have multiple Azure tenants:** Create a workspace for each tenant. For other options including strategies for service providers, see [Multiple tenant strategies](#multiple-tenant-strategies).
 
 ### Azure regions
+
 Each Log Analytics workspace resides in a [particular Azure region](https://azure.microsoft.com/global-infrastructure/geographies/). You might have regulatory or compliance purposes for keeping data in a particular region. For example, an international company might locate a workspace in each major geographical region, such as the United States and Europe.
 
-- **If you have requirements for keeping data in a particular geography:** Create a separate workspace for each region with such requirements.
-- **If you don't have requirements for keeping data in a particular geography:** Use a single workspace for all regions.
-- **If you are sending data to a geography or region that outside of your workspace's region, whether or not the sending resource resides in Azure**: Consider using a workspace in the same  geography or region as your data.
+* **If you have requirements for keeping data in a particular geography:** Create a separate workspace for each region with such requirements.
+* **If you don't have requirements for keeping data in a particular geography:** Use a single workspace for all regions.
+* **If you are sending data to a geography or region that outside of your workspace's region, whether or not the sending resource resides in Azure**: Consider using a workspace in the same geography or region as your data.
 
 Also consider potential [bandwidth charges](https://azure.microsoft.com/pricing/details/bandwidth/) that might apply when you're sending data to a workspace from a resource in another region. These charges are usually minor relative to data ingestion costs for most customers. These charges typically result from sending data to the workspace from a virtual machine. Monitoring data from other Azure resources by using [diagnostic settings](../essentials/diagnostic-settings.md) doesn't [incur egress charges](../cost-usage.md#data-transfer-charges).
 
 Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator) to estimate the cost and determine which regions you need. Consider workspaces in multiple regions if bandwidth charges are significant.
 
-- **If bandwidth charges are significant enough to justify the extra complexity:** Create a separate workspace for each region with virtual machines.
-- **If bandwidth charges aren't significant enough to justify the extra complexity:** Use a single workspace for all regions.
+* **If bandwidth charges are significant enough to justify the extra complexity:** Create a separate workspace for each region with virtual machines.
+* **If bandwidth charges aren't significant enough to justify the extra complexity:** Use a single workspace for all regions.
 
 ### Data ownership
+
 You might have a requirement to segregate data or define boundaries based on ownership. For example, you might have different subsidiaries or affiliated companies that require delineation of their monitoring data.
 
-- **If you require data segregation:** Use a separate workspace for each data owner.
-- **If you don't require data segregation:** Use a single workspace for all data owners.
+* **If you require data segregation:** Use a separate workspace for each data owner.
+* **If you don't require data segregation:** Use a single workspace for all data owners.
 
 ### Split billing
+
 You might need to split billing between different parties or perform charge back to a customer or internal business unit. You can use [Azure Cost Management + Billing](../cost-usage.md#azure-cost-management--billing) to view charges by workspace. You can also use a log query to view [billable data volume by Azure resource, resource group, or subscription](analyze-usage.md#data-volume-by-azure-resource-resource-group-or-subscription). This approach might be sufficient for your billing requirements.
 
-- **If you don't need to split billing or perform charge back:** Use a single workspace for all cost owners.
-- **If you need to split billing or perform charge back:** Consider whether [Azure Cost Management + Billing](../cost-usage.md#azure-cost-management--billing) or a log query provides cost reporting that's granular enough for your requirements. If not, use a separate workspace for each cost owner.
+* **If you don't need to split billing or perform charge back:** Use a single workspace for all cost owners.
+* **If you need to split billing or perform charge back:** Consider whether [Azure Cost Management + Billing](../cost-usage.md#azure-cost-management--billing) or a log query provides cost reporting that's granular enough for your requirements. If not, use a separate workspace for each cost owner.
 
 ### Data retention
+
 You can configure default [data retention settings](data-retention-configure.md) for a workspace or [configure different settings for each table](data-retention-configure.md#configure-table-level-retention). You might require different settings for different sets of data in a particular table. If so, you need to separate that data into different workspaces, each with unique retention settings.
 
-- **If you can use the same retention settings for all data in each table:** Use a single workspace for all resources.
-- **If you require different retention settings for different resources in the same table:** Use a separate workspace for different resources.
+* **If you can use the same retention settings for all data in each table:** Use a single workspace for all resources.
+* **If you require different retention settings for different resources in the same table:** Use a separate workspace for different resources.
 
 ### Commitment tiers
+
 [Commitment tiers](../logs/cost-logs.md#commitment-tiers) provide a discount to your workspace ingestion costs when you commit to a specific amount of daily data. You might choose to consolidate data in a single workspace to reach the level of a particular tier. This same volume of data spread across multiple workspaces wouldn't be eligible for the same tier, unless you have a dedicated cluster.
 
 If you can commit to daily ingestion of at least 100 GB per day, you should implement a [dedicated cluster](../logs/cost-logs.md#dedicated-clusters) that provides extra functionality and performance. Dedicated clusters also allow you to combine the data from multiple workspaces in the cluster to reach the level of a commitment tier.
 
-- **If you'll ingest at least 100 GB per day across all resources:** Create a dedicated cluster and set the appropriate commitment tier.
-- **If you'll ingest at least 100 GB per day across resources:** Consider combining them into a single workspace to take advantage of a commitment tier.
+* **If you'll ingest at least 100 GB per day across all resources:** Create a dedicated cluster and set the appropriate commitment tier.
+* **If you'll ingest at least 100 GB per day across resources:** Consider combining them into a single workspace to take advantage of a commitment tier.
 
 ### Legacy agent limitations
+
 You should avoid sending duplicate data to multiple workspaces because of the extra charges, but you might have virtual machines connected to multiple workspaces. The most common scenario is an agent connected to separate workspaces for Azure Monitor and Microsoft Sentinel.
 
- [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and the [Log Analytics agent for Windows](../agents/log-analytics-agent.md) can connect to multiple workspaces. The [Log Analytics agent for Linux](../agents/log-analytics-agent.md) can only connect to a single workspace.
+[Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and the [Log Analytics agent for Windows](../agents/log-analytics-agent.md) can connect to multiple workspaces. The [Log Analytics agent for Linux](../agents/log-analytics-agent.md) can only connect to a single workspace.
 
-- **If you use the Log Analytics agent for Linux:** Migrate to [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) or ensure that your Linux machines only require access to a single workspace.
+* **If you use the Log Analytics agent for Linux:** Migrate to [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) or ensure that your Linux machines only require access to a single workspace.
 
 ### Data access control
+
 When you grant a user [access to a workspace](manage-access.md#azure-rbac), the user has access to all data in that workspace. This access is appropriate for a member of a central administration or security team who must access data for all resources. Access to the workspace is also determined by resource-context role-based access control (RBAC) and table-level RBAC.
 
 [Resource-context RBAC](manage-access.md#access-mode): By default, if a user has read access to an Azure resource, they inherit permissions to any of that resource's monitoring data sent to the workspace. This level of access allows users to access information about resources they manage without being granted explicit access to the workspace. If you need to block this access, you can change the [access control mode](manage-access.md#access-control-mode) to require explicit workspace permissions.
 
-- **If you want users to be able to access data for their resources:** Keep the default access control mode of **Use resource or workspace permissions**.
-- **If you want to explicitly assign permissions for all users:** Change the access control mode to **Require workspace permissions**.
+* **If you want users to be able to access data for their resources:** Keep the default access control mode of **Use resource or workspace permissions**.
+* **If you want to explicitly assign permissions for all users:** Change the access control mode to **Require workspace permissions**.
 
 [Table-level RBAC](manage-access.md#set-table-level-read-access): With table-level RBAC, you can grant or deny access to specific tables in the workspace. In this way, you can implement granular permissions required for specific situations in your environment.
 
 For example, you might grant access to only specific tables collected by Microsoft Sentinel to an internal auditing team. Or you might deny access to security-related tables to resource owners who need operational data related to their resources.
 
-- **If you don't require granular access control by table:** Grant the operations and security team access to their resources and allow resource owners to use resource-context RBAC for their resources.
-- **If you require granular access control by table:** Grant or deny access to specific tables by using table-level RBAC.
+* **If you don't require granular access control by table:** Grant the operations and security team access to their resources and allow resource owners to use resource-context RBAC for their resources.
+* **If you require granular access control by table:** Grant or deny access to specific tables by using table-level RBAC.
 
 For more information, see [Manage access to Microsoft Sentinel data by resource](/azure/sentinel/resource-context-rbac).
 
@@ -133,16 +146,18 @@ To ensure that critical data in your workspace is available in the event of a re
 This option requires managing integration with other services and products separately for each workspace. Even though the data will be available in the alternate workspace in case of failure, resources that rely on the data, such as alerts and workbooks, won't know to switch over to the alternate workspace. Consider storing ARM templates for critical resources with configuration for the alternate workspace in Azure DevOps, or as disabled policies that can quickly be enabled in a failover scenario.
 
 ## Work with multiple workspaces
+
 Many designs include multiple workspaces. For example, a central security operations team might use its own Microsoft Sentinel workspaces to manage centralized artifacts like analytics rules or workbooks.
 
 Both Azure Monitor and Microsoft Sentinel include features to assist you in analyzing this data across workspaces. For more information, see:
 
-- [Create a log query across multiple workspaces and apps in Azure Monitor](cross-workspace-query.md)
-- [Extend Microsoft Sentinel across workspaces and tenants](/azure/sentinel/extend-sentinel-across-workspaces-tenants)
+* [Create a log query across multiple workspaces and apps in Azure Monitor](cross-workspace-query.md)
+* [Extend Microsoft Sentinel across workspaces and tenants](/azure/sentinel/extend-sentinel-across-workspaces-tenants)
 
-When naming each workspace, we recommend including a meaningful indicator in the name so that you can easily identity the purpose of each workspace.
+When naming each workspace, we recommend including a meaningful indicator in the name so that you can easily identify the purpose of each workspace.
 
 ## Multiple tenant strategies
+
 Environments with multiple Azure tenants, including Microsoft service providers (MSPs), independent software vendors (ISVs), and large enterprises, often require a strategy where a central administration team has access to administer workspaces located in other tenants. Each of the tenants might represent separate customers or different business units.
 
 > [!NOTE]
@@ -151,55 +166,57 @@ Environments with multiple Azure tenants, including Microsoft service providers 
 Two basic strategies for this functionality are described in the following sections.
 
 ### Distributed architecture
+
 In a distributed architecture, a Log Analytics workspace is created in each Azure tenant. This option is the only one you can use if you're monitoring Azure services other than virtual machines.
 
 There are two options to allow service provider administrators to access the workspaces in the customer tenants:
 
-- Use [Azure Lighthouse](/azure/lighthouse/overview) to access each customer tenant. The service provider administrators are included in a Microsoft Entra user group in the service provider's tenant. This group is granted access during the onboarding process for each customer. The administrators can then access each customer's workspaces from within their own service provider tenant instead of having to sign in to each customer's tenant individually. For more information, see [Monitor customer resources at scale](/azure/lighthouse/how-to/monitor-at-scale).
-- Add individual users from the service provider as [Microsoft Entra guest users (B2B)](/azure/active-directory/external-identities/what-is-b2b). The customer tenant administrators manage individual access for each service provider administrator. The service provider administrators must sign in to the directory for each tenant in the Azure portal to access these workspaces.
+* Use [Azure Lighthouse](/azure/lighthouse/overview) to access each customer tenant. The service provider administrators are included in a Microsoft Entra user group in the service provider's tenant. This group is granted access during the onboarding process for each customer. The administrators can then access each customer's workspaces from within their own service provider tenant instead of having to sign in to each customer's tenant individually. For more information, see [Monitor customer resources at scale](/azure/lighthouse/how-to/monitor-at-scale).
+* Add individual users from the service provider as [Microsoft Entra guest users (B2B)](/azure/active-directory/external-identities/what-is-b2b). The customer tenant administrators manage individual access for each service provider administrator. The service provider administrators must sign in to the directory for each tenant in the Azure portal to access these workspaces.
 
 Advantages to this strategy:
 
-- Logs can be collected from all types of resources.
-- The customer can confirm specific levels of permissions with [Azure delegated resource management](/azure/lighthouse/concepts/architecture). Or the customer can manage access to the logs by using their own [Azure RBAC](/azure/role-based-access-control/overview).
-- Each customer can have different settings for their workspace, such as retention and data cap.
-- Isolation between customers for regulatory and compliance.
-- The charge for each workspace is included in the bill for the customer's subscription.
+* Logs can be collected from all types of resources.
+* The customer can confirm specific levels of permissions with [Azure delegated resource management](/azure/lighthouse/concepts/architecture). Or the customer can manage access to the logs by using their own [Azure RBAC](/azure/role-based-access-control/overview).
+* Each customer can have different settings for their workspace, such as retention and data cap.
+* Isolation between customers for regulatory and compliance.
+* The charge for each workspace is included in the bill for the customer's subscription.
 
 Disadvantages to this strategy:
 
-- Running a query over a large number of workspaces is slow and can't scale above 100 workspaces. This means that you can create a central visualization and data analytics but it will be slow if there are more than a few dozen workspaces. This situation is less acute if all workspaces are co-located on the same [dedicated cluster](logs-dedicated-clusters.md). See [here](cross-workspace-query.md) for more details on running queries across workspaces.
-- If customers aren't onboarded for Azure delegated resource management, service provider administrators must be provisioned in the customer directory. This requirement makes it more difficult for the service provider to manage many customer tenants at once.
-- When running a query on a workspace, the workspace admins might have visibility to the full text of the query via [query audit](query-audit.md).
+* Running a query over a large number of workspaces is slow and can't scale above 100 workspaces. This means that you can create a central visualization and data analytics but it will be slow if there are more than a few dozen workspaces. This situation is less acute if all workspaces are co-located on the same [dedicated cluster](logs-dedicated-clusters.md). See [here](cross-workspace-query.md) for more details on running queries across workspaces.
+* If customers aren't onboarded for Azure delegated resource management, service provider administrators must be provisioned in the customer directory. This requirement makes it more difficult for the service provider to manage many customer tenants at once.
+* When running a query on a workspace, the workspace admins might have visibility to the full text of the query via [query audit](query-audit.md).
 
 ### Centralized
+
 A single workspace is created in the service provider's subscription. This option can collect data from customer virtual machines and Azure PaaS services based on diagnostics settings. Agents installed on the virtual machines and PaaS services can be configured to send their logs to this central workspace.
 
 Advantages to this strategy:
 
-- It's easy to manage many customers.
-- The service provider has full ownership over the logs and the various artifacts, such as functions and saved queries.
-- A service provider can perform analytics across all of its customers.
+* It's easy to manage many customers.
+* The service provider has full ownership over the logs and the various artifacts, such as functions and saved queries.
+* A service provider can perform analytics across all of its customers.
 
 Disadvantages to this strategy:
 
-- Logs can only be collected from virtual machines with an agent or Azure PaaS services (via Azure Lighthouse delegation). It won't work with SaaS connectors, or Azure Service Fabric data sources.
-- It might be difficult to separate data between customers because their data shares a single workspace. Queries need to use the computer's fully qualified domain name or the Azure subscription ID.
-- All data from all customers will be stored in the same region with a single bill and the same retention and configuration settings.
+* Logs can only be collected from virtual machines with an agent or Azure PaaS services (via Azure Lighthouse delegation). It won't work with SaaS connectors, or Azure Service Fabric data sources.
+* It might be difficult to separate data between customers because their data shares a single workspace. Queries need to use the computer's fully qualified domain name or the Azure subscription ID.
+* All data from all customers will be stored in the same region with a single bill and the same retention and configuration settings.
 
 ### Hybrid
 In a hybrid model, each tenant has its own workspace. A mechanism is used to pull data into a central location for reporting and analytics. This data could include a small number of data types or a summary of the activity, such as daily statistics.
 
 There are several options to implement logs in a central location:
 
-- **Central workspace**: The service provider creates a workspace in its tenant and pulls data from the various workspaces using:
-    - A script that uses the [Query API](api/overview.md) with the [logs ingestion API](logs-ingestion-api-overview.md) to send the data from the tenant workspaces to the central workspace.
-    - [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to copy data to the central workspace.
-    - [Data export](logs-data-export.md) from the source workspace and re-ingestion to the central workspace. You can also create [summary rules](summary-rules.md) to export an aggregation of key data from the original workspaces into the central workspace.
-- **Power BI**: The tenant workspaces export data to Power BI by using the integration between the [Log Analytics workspace and Power BI](log-powerbi.md).
+* **Central workspace**: The service provider creates a workspace in its tenant and pulls data from the various workspaces using:
+    * A script that uses the [Query API](api/overview.md) with the [logs ingestion API](logs-ingestion-api-overview.md) to send the data from the tenant workspaces to the central workspace.
+    * [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to copy data to the central workspace.
+    * [Data export](logs-data-export.md) from the source workspace and re-ingestion to the central workspace. You can also create [summary rules](summary-rules.md) to export an aggregation of key data from the original workspaces into the central workspace.
+* **Power BI**: The tenant workspaces export data to Power BI by using the integration between the [Log Analytics workspace and Power BI](log-powerbi.md).
 
 ## Next steps
 
-- Learn more about [designing and configuring data access in a workspace](manage-access.md).
-- Get [sample workspace architectures for Microsoft Sentinel](/azure/sentinel/sample-workspace-designs).
-- Here's a video on designing the proper structure for your Log Analytics workspace: [ITOps Talk:Log Analytics workspace design deep dive](/shows/it-ops-talk/ops115-log-analytics-workspace-design-deep-dive)
+* Learn more about [designing and configuring data access in a workspace](manage-access.md).
+* Get [sample workspace architectures for Microsoft Sentinel](/azure/sentinel/sample-workspace-designs).
+* Here's a video on designing the proper structure for your Log Analytics workspace: [ITOps Talk:Log Analytics workspace design deep dive](/shows/it-ops-talk/ops115-log-analytics-workspace-design-deep-dive)

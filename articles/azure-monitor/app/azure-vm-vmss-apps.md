@@ -1,23 +1,22 @@
 ---
 title: Monitor performance on Azure VMs - Azure Application Insights
 description: Application performance monitoring for Azure virtual machines and virtual machine scale sets.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/05/2025
 ms.devlang: csharp
-# ms.devlang: csharp, java, javascript, python
 ms.custom: devx-track-azurepowershell
 ms.reviewer: abinetabate
 ---
 
 # Application Insights for Azure VMs and virtual machine scale sets
 
-This article explains how to enable Application Insights monitoring through autoinstrumentation for IIS-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/). It covers how to deploy the Application Insights Agent using a virtual machine extension, which [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net), and provides guidance for automating large-scale deployments with PowerShell.
+This article explains how to enable [Azure Monitor](../fundamentals/overview.md) [Application Insights](./app-insights-overview.md) monitoring through autoinstrumentation for IIS-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/). It covers how to deploy the Application Insights Agent using a virtual machine extension, which [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net), and provides guidance for automating large-scale deployments with PowerShell.
  
 > [!NOTE]
 > * For Java applications, use the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java), which [autocollects](./java-in-process-agent.md#autocollected-requests) the most popular libraries, frameworks, logs, and dependencies, along with many [other configurations](./java-standalone-config.md).
->
 > * Node.js and Python applications running on Azure VMs and Azure Virtual Machine Scale Sets don't support autoinstrumentation. Use the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) instead.
- 
+> * To monitor VM guests in addition to the applications hosted on them, see [VM guest data](/azure/virtual-machines/monitor-vm#vm-guest-data).
+
 For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
 ## Prerequisites
@@ -169,15 +168,6 @@ Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName -Name $vmss.Name -Virtu
 
 ---
 
-## Frequently asked questions
-
-### How can I disable client-side monitoring for ASP.NET Core apps?
-
-Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable it, define an environment variable in the server with the following information:
-
-* **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
-* **Value:** `false`
-
 ## Troubleshooting
 
 Find troubleshooting tips for the Application Insights Monitoring Agent extension for .NET applications running on Azure virtual machines and virtual machine scale sets.
@@ -193,9 +183,7 @@ If your extension deployed successfully but you're unable to see telemetry, it c
 * Conflicting DLLs in an app's bin directory
 * Conflict with IIS shared configuration
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
-
-
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ## Release notes
 
@@ -215,5 +203,7 @@ Added the ASP.NET Core autoinstrumentation feature.
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Application Insights for Azure VMs and virtual machine scale sets FAQ](application-insights-faq.yml#azure-vms-and-virtual-machine-scale-sets)
 * [Deploy your application on Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app).
 * [Application Insights availability tests](availability.md)
+* [Monitor VM guest data](/azure/virtual-machines/monitor-vm#vm-guest-data)

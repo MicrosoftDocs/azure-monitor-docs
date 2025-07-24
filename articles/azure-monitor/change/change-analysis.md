@@ -1,16 +1,13 @@
 ---
 title: Use Change Analysis (classic) | Microsoft Docs
 description: Use Azure Monitor Change Analysis (classic) to troubleshoot web app issues on live sites.
-ms.topic: conceptual
-ms.author: hannahhunter
-author: hhunter-ms
-ms.date: 09/12/2024
-ms.subservice: change-analysis
+ms.topic: article
+ms.date: 03/25/2025
 ---
 
 # Use Change Analysis (classic)
 
-[!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
+[!INCLUDE [transition](includes/change-analysis-is-moving.md)]
 
 Standard monitoring solutions might alert you to a live site issue, outage, or component failure, but they often don't explain the cause. Let's say your site worked five minutes ago, and now it's broken. What changed in the last five minutes?
 

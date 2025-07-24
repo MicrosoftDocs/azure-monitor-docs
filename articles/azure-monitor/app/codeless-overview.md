@@ -1,9 +1,9 @@
 ---
 title: Autoinstrumentation for Azure Monitor Application Insights
 description: Overview of autoinstrumentation for Azure Monitor Application Insights codeless application performance management.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-js
-ms.date: 08/12/2024
+ms.date: 07/30/2025
 ms.reviewer: abinetabate
 ---
 
@@ -46,7 +46,7 @@ Links are provided to more information for each supported scenario.
 |Azure Functions - basic | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md#distributed-tracing-for-python-function-apps) ¹ |
 |Azure Functions - dependencies | :x: | :x: | [ :white_check_mark: :link: ](monitor-functions.md) | :x: | :x: |
 |Azure Spring Apps | :x: | :x: | [ :white_check_mark: :link: ](/azure/spring-apps/enterprise/how-to-application-insights) | :x: | :x: |
-|Azure Kubernetes Service (AKS) | :x: | :x: | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
+|Azure Kubernetes Service (AKS) | :x: | :x: | [ :white_check_mark: :link: ](./kubernetes-codeless.md)² | [ :white_check_mark: :link: ](./kubernetes-codeless.md)² | :x: |
 |Azure VMs Windows | [ :white_check_mark: :link: ](azure-vm-vmss-apps.md) ² ³ | [ :white_check_mark: :link: ](azure-vm-vmss-apps.md) ² ³ | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
 |On-premises VMs Windows | [ :white_check_mark: :link: ](application-insights-asp-net-agent.md) ³ | [ :white_check_mark: :link: ](application-insights-asp-net-agent.md) ² ³ | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
 |Standalone agent - any environment | :x: | :x: | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
@@ -60,16 +60,9 @@ Links are provided to more information for each supported scenario.
 > [!NOTE]
 > Autoinstrumentation was known as "codeless attach" before October 2021.
 
-## Frequently asked questions
-
-#### Should the term "autoinstrumentation" be hyphenated?
-
-We follow the [Microsoft Style Guide](/style-guide/punctuation/dashes-hyphens/hyphens#prefixes) for product documentation published to the [Microsoft Learn](/) platform.
-
-In general, we don’t include a hyphen after the "auto" prefix.
-
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Autoinstrumentation FAQ](application-insights-faq.yml#autoinstrumentation)
 * [Application Insights overview](app-insights-overview.md)
 * [Application Insights overview dashboard](overview-dashboard.md)
 * [Application map](app-map.md)

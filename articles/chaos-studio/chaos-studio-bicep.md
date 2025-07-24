@@ -5,9 +5,7 @@ services: chaos-studio
 author: rsgel
 ms.topic: sample
 ms.date: 10/14/2024
-ms.author: abbyweisberg
 ms.reviewer: carlsonr
-ms.service: azure-chaos-studio
 ms.custom: devx-track-bicep
 ---
 

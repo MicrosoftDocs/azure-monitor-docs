@@ -1,8 +1,8 @@
 ---
 title: Monitor Kubernetes clusters using Azure services and cloud native tools
 description: Describes how to monitor the health and performance of the different layers of your Kubernetes environment using Azure Monitor and cloud native services in Azure.
-ms.topic: conceptual
-ms.date: 07/30/2024
+ms.topic: article
+ms.date: 04/25/2025
 ---
 
 # Monitor Kubernetes clusters using Azure services and cloud native tools
@@ -112,7 +112,7 @@ See [Default Prometheus metrics configuration in Azure Monitor](../essentials/pr
 > [!NOTE]
 > Use Grafana for your monitoring your Kubernetes environment if you have an existing investment in Grafana or if you prefer to use Grafana dashboards instead of Container insights to analyze your Prometheus data. If you don't want to use Grafana, then enable the [Prometheus experience in Container insights](./container-insights-experience-v2.md) so that you can use Container insights views with your Prometheus data.
 
-[Create an instance of Managed Grafana](/azure/managed-grafana/quickstart-managed-grafana-portal) and [link it to your Azure Monitor workspace](../essentials/azure-monitor-workspace-manage.md#link-a-grafana-workspace) so that you can use your Prometheus data as a data source. You can also manually perform this configuration using [add Azure Monitor managed service for Prometheus as data source](../essentials/prometheus-grafana.md). A variety of [prebuilt dashboards](../visualize/grafana-plugin.md#use-out-of-the-box-dashboards) are available for monitoring Kubernetes clusters including several that present similar information as Container insights views. 
+[Create an instance of Managed Grafana](/azure/managed-grafana/quickstart-managed-grafana-portal) and [link it to your Azure Monitor workspace](../essentials/azure-monitor-workspace-manage.md#link-a-grafana-workspace) so that you can use your Prometheus data as a data source. You can also manually perform this configuration using [add Azure Monitor managed service for Prometheus as data source](../essentials/prometheus-grafana.md). A variety of [prebuilt dashboards](../visualize/visualize-use-managed-grafana-how-to.md) are available for monitoring Kubernetes clusters including several that present similar information as Container insights views. 
 
 If you have an existing Grafana environment, then you can continue to use it and add Azure Monitor managed service for [Prometheus as a data source](https://grafana.com/docs/grafana/latest/datasources/prometheus/). You can also [add the Azure Monitor data source to Grafana](https://grafana.com/docs/grafana/latest/datasources/azure-monitor/) to use data collected by Container insights in custom Grafana dashboards. Perform this configuration if you want to focus on Grafana dashboards rather than using the Container insights views and reports.
 
@@ -179,7 +179,7 @@ Following are common scenarios for monitoring the cluster level components.
 - Under **Monitoring**, select **Workbooks**, then **Subnet IP Usage** to see the IP allocation and assignment on each node for a selected time-range.
 
 **Grafana dashboards**<br>
-- Use the [prebuilt dashboard](../visualize/grafana-plugin.md#use-out-of-the-box-dashboards) in Managed Grafana for **Kubelet** to see the health and performance of each.
+- Use the [prebuilt dashboard](../visualize/visualize-use-managed-grafana-how-to.md) in Managed Grafana for **Kubelet** to see the health and performance of each.
 - Use Grafana dashboards with [Prometheus metric values](../essentials/prometheus-metrics-scrape-default.md) related to disk such as `node_disk_io_time_seconds_total` and `windows_logical_disk_free_bytes` to monitor attached storage.
 - Multiple [Kubernetes dashboards](https://grafana.com/grafana/dashboards/?search=kubernetes) are available that visualize the performance and health of your nodes based on data stored in Prometheus.
 
@@ -211,7 +211,7 @@ Following are common scenarios for monitoring your managed Kubernetes components
 - Under **Reports**, use the **Kubelet** workbook to see the health and performance of each kubelet. For more information about these workbooks, see [Resource Monitoring workbooks](container-insights-reports.md#resource-monitoring-workbooks). 
 
 **Grafana**<br>
-- Use the [prebuilt dashboard](../visualize/grafana-plugin.md#use-out-of-the-box-dashboards) in Managed Grafana for **Kubelet** to see the health and performance of each kubelet.
+- Use the [prebuilt dashboard](../visualize/visualize-use-managed-grafana-how-to.md) in Managed Grafana for **Kubelet** to see the health and performance of each kubelet.
 - Use a dashboard such as [Kubernetes apiserver](https://grafana.com/grafana/dashboards/12006) for a complete view of the API server performance. This includes such values as request latency and workqueue processing time.
 
 **Log Analytics**<br>
@@ -251,7 +251,7 @@ Following are common scenarios for monitoring your Kubernetes objects and worklo
 - Under **Reports**, use the **Deployments** workbook to see deployment metrics. For more information, see [Deployment & HPA metrics with Container Insights](container-insights-deployment-hpa-metrics.md).
 
 **Grafana dashboards**<br>
-- Use the [prebuilt dashboards](../visualize/grafana-plugin.md#use-out-of-the-box-dashboards) in Managed Grafana for **Nodes** and **Pods** to view their health and performance.
+- Use the [prebuilt dashboards](../visualize/visualize-use-managed-grafana-how-to.md) in Managed Grafana for **Nodes** and **Pods** to view their health and performance.
 - Multiple [Kubernetes dashboards](https://grafana.com/grafana/dashboards/?search=kubernetes) are available that visualize the performance and health of your nodes based on data stored in Prometheus.
 
 

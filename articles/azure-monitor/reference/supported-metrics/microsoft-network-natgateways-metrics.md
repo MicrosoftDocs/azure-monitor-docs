@@ -2,10 +2,7 @@
 title: Supported metrics - Microsoft.Network/natgateways
 description: Reference for Microsoft.Network/natgateways metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
-ms.date: 02/18/2025
+ms.date: 04/28/2025
 ms.custom: Microsoft.Network/natgateways, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
@@ -19,6 +16,10 @@ The following table lists the metrics available for the Microsoft.Network/natgat
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
+  
+  
+  
+For a list of supported logs, see [Supported log categories - Microsoft.Network/natgateways](../supported-logs/microsoft-network-natgateways-logs.md)  
   
  
 

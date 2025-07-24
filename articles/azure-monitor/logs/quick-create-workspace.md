@@ -1,12 +1,13 @@
 ---
 title: Create Log Analytics workspaces
 description: Learn how to create a Log Analytics workspace to enable management solutions and data collection from your cloud and on-premises environments.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 08/12/2024
 ms.reviewer: yossiy
 
 # Customer intent: As a DevOps engineer or IT expert, I want to set up a workspace to collect logs from multiple data sources from Azure, on-premises, and third-party cloud deployments.
 ---
+
 # Create a Log Analytics workspace
 
 A Log Analytics workspace is a data store into which you can collect any type of log data from all of your Azure and non-Azure resources and applications. We recommend that you send all log data to one Log Analytics workspace, unless you have specific business needs that require you to create multiple workspaces, as described in [Design a Log Analytics workspace architecture](./workspace-design.md).  
@@ -38,7 +39,7 @@ Use the **Log Analytics workspaces** menu to create a workspace.
 1. Provide a name for the new **Log Analytics workspace**, such as *DefaultLAWorkspace*. This name must be unique per resource group.
 1. Select an available **Region**. For more information, see which [regions Log Analytics is available in](https://azure.microsoft.com/regions/services/). Search for Azure Monitor in the **Search for a product** box.
 
-   :::image type="content" source="media/quick-create-workspace/create-workspace.png" alt-text="Screenshot that shows the boxes that need to be populated on the Basics tab of the Create Log Analytics workspace screen.":::
+    :::image type="content" source="media/quick-create-workspace/create-workspace.png" alt-text="Screenshot that shows the boxes that need to be populated on the Basics tab of the Create Log Analytics workspace screen.":::
 
 1. Select **Review + Create** to review the settings. Then select **Create** to create the workspace. A default pricing tier of pay-as-you-go is applied. No charges will be incurred until you start collecting enough data. For more information about other pricing tiers, see [Log Analytics pricing details](https://azure.microsoft.com/pricing/details/log-analytics/).
 
@@ -83,7 +84,7 @@ For more information about Azure Monitor Logs in Azure CLI, see [Managing Azure 
 
 The following sample uses [Microsoft.OperationalInsights workspaces](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep&pivots=deployment-language-bicep) to create a Log Analytics workspace in Azure Monitor. For more information about Bicep, see [Bicep overview](/azure/azure-resource-manager/bicep/overview).
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 ### Bicep file
 
@@ -158,7 +159,7 @@ param heartbeatTableRetention = 30
 The following sample uses the [Microsoft.OperationalInsights workspaces](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep) template to create a Log Analytics workspace in Azure Monitor.
 For more information about Azure Resource Manager templates, see [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax).
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 ### Template file
 

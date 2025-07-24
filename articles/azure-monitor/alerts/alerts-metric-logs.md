@@ -1,7 +1,7 @@
 ---
 title: Create metric alerts in Azure Monitor Logs
 description: Get information about creating near-real time metric alerts on popular Log Analytics data.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/02/2025
 ms.reviewer: harelbr
 ---
@@ -59,7 +59,7 @@ You can create and manage metric alerts by using the Azure portal, Azure Resourc
 
 After you create metric alerts for logs for a specified Log Analytics workspace, they have all characteristics and functionalities of [metric alerts](alerts-types.md#metric-alerts), including payload schema, applicable quota limits, and billed price.
 
-For step-by-step details and samples, see [Create or edit a metric alert rule](./alerts-create-metric-alert-rule.yml). Follow the instructions for managing metric alerts and note the following considerations:
+For step-by-step details and samples, see [Create or edit a metric alert rule](./alerts-create-metric-alert-rule.md). Follow the instructions for managing metric alerts and note the following considerations:
 
 - The target for a metric alert must be a valid Log Analytics workspace.
 - The signal chosen for a metric alert for a selected Log Analytics workspace must be of type **Metric**.

@@ -1,7 +1,7 @@
 ---
 title: Manage Azure Monitor workbooks 
 description: Understand how to Manage Azure Workbooks
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/17/2024
 ---
 
@@ -13,15 +13,42 @@ This article describes how to manage Azure Workbooks in the Azure portal.
 Workbooks are shared resources. They require write access to the parent resource group to be saved.
 
 1. In the Azure portal, select the **Workbook** item from the resource's menu, and create or modify a workbook.
-2. Select **Save**.
+1. Select **Save**.
 1. Enter the **title**, **subscription**, **resource group**, and **location**.
+1. Optionally, choose to save to an **azure storage account**
+
+    This option allows you to save the workbook content into an Azure Storage account you control. You need to configure a managed identity to allow workbooks to read and write from that storage account.
+
+    For more information, see [Bring your own storage](workbooks-bring-your-own-storage.md).
 1. Select **Save**.
 
-By default, the workbook save options are auto-filled with the same subscription and resource group as the resource where you've opened Workbooks.
+## Autosave
+
+When you create or edit a workbook, the changes are saved locally every few minutes or perform actions that open other Azure portal views. The autosave feature is designed to help you avoid losing your work if you close the browser or your sign-in expires while you're away. Autosave saves locally into your browser storage; autosaves aren't saved as Azure resources or shared with other users. Autosaved workbooks appear as special items in the gallery to help you identify them. 
+
+:::image type="content" source="media/workbooks-manage/workbooks-autosaves.png" lightbox="media/workbooks-manage/workbooks-autosaves.png" alt-text="Screenshot that shows workbook gallery with autosave items.":::
+
+Autosaved workbooks can be opened and edited like any other workbook. If the autosave is for an already saved workbook, saving the autosave overwrites the existing workbook; if the autosave is a new workbook or from a template, it is saved as a new workbook.
+
+If you open a workbook or template that has a corresponding autosave, you get a prompt that indicates you might not be opening the most recent item, showing the autosave and when it was created, and the item you opened.
+
+:::image type="content" source="media/workbooks-manage/workbooks-autosave-prompt.png" lightbox="media/workbooks-manage/workbooks-autosave-prompt.png" alt-text="Screenshot that shows the autosave prompt.":::
+
+From the prompt, you can choose between the 3 options:
+1. open the autosave version of the item
+1. delete the autosave (and keep the content that was loaded)
+1. keep the item that was loaded, but doesn't delete the autosave
+
+### Limitations of autosave
+
+* Autosaved items are not saved into Azure or shared with other users. They're stored in browser local storage, so clearing your browser cache/storage may delete the autosaved content.
+* Only 5 autosaves are kept, across all galleries of workbooks. As you create or modify other workbooks, the oldest autosave is automatically replaced.
+* autosave does not attempt to save large workbook content larger than 100 kb.
+
 
 ## Share a workbook
 
-When you want to share a workbook or template, keep in mind that the person you want to share with must have permissions to access the workbook, as well as to all of the resources referenced in the workbook. They must have an Azure account, and at least a reader permission for the Workbooks resource and referenced resources, commonly from standard roles like **Workbook Reader**, **Monitoring Reader** or **Microsoft Sentinel Reader**, or by custom roles that have the **Microsoft.Insights/workbooks/read** action.
+When you want to share a workbook or template, keep in mind that the person you want to share with must have permissions to access the workbook, and to all of the resources referenced in the workbook. They must have an Azure account, and at least a reader permission for the Workbooks resource and referenced resources, commonly from standard roles like **Workbook Reader**, **Monitoring Reader** or **Microsoft Sentinel Reader**, or by custom roles that have the **Microsoft.Insights/workbooks/read** action.
 
 To share a workbook or workbook template:
 
@@ -42,21 +69,20 @@ To share a workbook or workbook template:
 ## Recover a deleted workbook
 When you delete an Azure Workbook, it is soft-deleted and can be recovered by using the recycle bin. After the soft-delete period, the workbook and its content are nonrecoverable.
 
-To use the recycle bin, from either the Azure Workbooks browse view, or from any workbook gallery view, select the **Open recycle bin** item from the toolbar. The recycle bin view will appear. The recycle bin will show workbooks that have been recently deleted and can be restored. Deleted workbooks are retained for approximately 90 days.
+To use the recycle bin, from either the Azure Workbooks browse view, or from any workbook gallery view, select the **Open recycle bin** item from the toolbar. The recycle bin view appears. The recycle bin shows workbooks that were recently deleted and can be restored. Deleted workbooks are retained for approximately 90 days.
 
-In the recycle bin view, use the Subscription and Resource Group filters to find the workbook you want to recover. Select the workbook, then select **Recover** from the toolbar. If the workbook was deleted as part of a Resource Group deletion, the Resource Group must be re-created first. Restoring a workbook will not restore a resource 
-group or any other resources that may have been referenced by the workbook.
+In the recycle bin view, use the Subscription and Resource Group filters to find the workbook you want to recover. Select the workbook, then select **Recover** from the toolbar. If the workbook was deleted as part of a Resource Group deletion, the Resource Group must be re-created first. Restoring a workbook does not restore a resource group or any other resources that are referenced by the workbook.
  
 > [!NOTE]
-> Workbooks that were saved using bring your own storage cannot be recovered with the recycle bin or by support. You may be able to recover the workbook content from the storage account if the storage account used has enabled soft delete. 
+> Workbooks that were saved using bring your own storage can't be recovered with the recycle bin or by support. You may be able to recover the workbook content from the storage account if the soft delete is enabled on the storage account. 
 
 ## Set up Auto refresh
 
 1. In the Azure portal, select the workbook.
-1. Select **Auto refresh**, and then to select from a list of intervals for the auto-refresh. The workbook will start refreshing after the selected time interval.
+1. Select **Auto refresh**, and then to select from a list of intervals for the autorefresh; the workbook refreshes after the selected time interval.
 
--  Auto refresh only applies when the workbook is in read mode. If a user sets an interval of 5 minutes and after 4 minutes switches to edit mode, refreshing doesn't occur if the user is still in edit mode. But if the user returns to read mode, the interval of 5 minutes resets and the workbook will be refreshed after 5 minutes.
--  Selecting **Auto refresh** in read mode also resets the interval. If a user sets the interval to 5 minutes and after 3 minutes the user selects **Auto refresh** to manually refresh the workbook, the **Auto refresh** interval resets and the workbook will be auto-refreshed after 5 minutes.
+-  Auto refresh only applies when the workbook is in read mode. If a user sets an interval of 5 minutes and after 4 minutes switches to edit mode, refreshing doesn't occur if the user is still in edit mode. But if the user returns to read mode, the interval of 5 minutes resets and the workbook refreshes after 5 minutes.
+-  Selecting **Auto refresh** in read mode also resets the interval. If a user sets the interval to 5 minutes and after 3 minutes the user selects **Auto refresh** to manually refresh the workbook, the **Auto refresh** interval resets and the workbook is refreshed after 5 minutes.
 - The **Auto refresh** setting isn't saved with the workbook. Every time a user opens a workbook, **Auto refresh** is **Off** and needs to be set again.
 - Switching workbooks and going out of the gallery clears the **Auto refresh** interval.
 
@@ -85,7 +111,7 @@ The versions tab contains a list of all the available versions of this workbook.
 
 ### Compare versions
 
-:::image type="content" source="media/workbooks-configurations/workbooks-compare-versions.png" alt-text="Screenshot that shows version comparison in the Compare Workbook Versions screen.":::
+:::image type="content" source="media/workbooks-configurations/workbooks-compare-versions.png" alt-text="Screenshot that shows version comparison in the Compared Workbook Versions screen.":::
 
 > [!NOTE]
 > Version history isn't available for [bring-your-own-storage](workbooks-bring-your-own-storage.md) workbooks.
@@ -104,15 +130,15 @@ To access pin mode, select **Edit** to enter editing mode. Select **Pin** on the
 :::image type="content" source="./media/workbooks-overview/pin-experience.png" alt-text="Screenshot that shows the Pin button." border="false":::
 
 > [!NOTE]
-> The state of the workbook is saved at the time of the pin. Pinned workbooks on a dashboard won't update if the underlying workbook is modified. To update a pinned workbook part, you must delete and re-pin that part.
+> The state of the workbook is saved at the time of the pin. Pinned workbooks on a dashboard do not update if the underlying workbook is modified. To update a pinned workbook part, you must delete and re-pin that part.
 
 ### Time ranges for pinned queries
 
 Pinned workbook query parts respect the dashboard's time range if the pinned item is configured to use a *TimeRange* parameter. The dashboard's time range value is used as the time range parameter's value. Any change of the dashboard time range causes the pinned item to update. If a pinned part is using the dashboard's time range, the subtitle of the pinned part updates to show the dashboard's time range whenever the time range changes.
 
-Pinned workbook parts using a time range parameter auto-refresh at a rate determined by the dashboard's time range. The last time the query ran appears in the subtitle of the pinned part.
+Pinned workbook parts using a time range parameter autorefresh at a rate determined by the dashboard's time range. The last time the query ran appears in the subtitle of the pinned part.
 
-If a pinned component has an explicitly set time range and doesn't use a time range parameter, that time range is always used for the dashboard, regardless of the dashboard's settings. The subtitle of the pinned part doesn't show the dashboard's time range. The query doesn't auto-refresh on the dashboard. The subtitle shows the last time the query executed.
+If a pinned component has an explicitly set time range and doesn't use a time range parameter, that time range is always used for the dashboard, regardless of the dashboard's settings. The subtitle of the pinned part doesn't show the dashboard's time range. The query doesn't autorefresh on the dashboard. The subtitle shows the last time the query executed.
 
 > [!NOTE]
 > Queries that use the *merge* data source aren't currently supported when pinning to dashboards.
@@ -123,5 +149,5 @@ Enable a trusted source or mark this workbook as trusted in this browser.
 
 | Control      | Definition |
 | ----------- | ----------- |
-| Mark workbook as trusted      | If enabled, this workbook can call any endpoint, whether the host is marked as trusted or not. A workbook is trusted if it's a new workbook, an existing workbook that's saved, or is explicitly marked as a trusted workbook.   |
+| Mark workbook as trusted      | If enabled, this workbook can call any endpoint, whether the host is marked as trusted or not. A workbook is trusted if it's a new workbook, an existing saved workbook, or is explicitly marked as a trusted workbook.   |
 | URL grid   | A grid to explicitly add trusted hosts.        |
