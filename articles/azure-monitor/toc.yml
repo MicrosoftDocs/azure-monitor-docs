@@ -434,12 +434,6 @@ items:
         - name: Use
           displayName: performance diagnostics, virtual machine, vm
           href: vm/performance-diagnostics-using.md
-        - name: Use Windows
-          displayName: performance diagnostics, virtual machine, vm
-          href: vm/performance-diagnostics-using-windows.md
-        - name: Use Linux
-          displayName: performance diagnostics, virtual machine, vm
-          href: vm/performance-diagnostics-using-linux.md
     - name: Deployment guide
       items:
       - name: Overview
