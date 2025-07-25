@@ -127,6 +127,8 @@ The following limitations apply to Azure Monitor managed service for Prometheus:
 
 ## Metric names, label names & label values
 
+Metrics scraping currently has the limitations in the following table:
+
 | Property | Limit |
 |:---|:---|
 | Label name length | Less than or equal to 511 characters. When this limit is exceeded for any time-series in a job, the entire scrape job fails, and metrics get dropped from that job before ingestion. You can see up=0 for that job and also target Ux shows the reason for up=0. |
