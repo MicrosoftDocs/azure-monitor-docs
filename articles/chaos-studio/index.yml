@@ -56,6 +56,8 @@ landingContent:
             url: chaos-studio-run-experiment.md
           - text: Schedule an experiment
             url: tutorial-schedule.md
+          - text: Measuring Experiment Impact with an Azure Monitor Workbook
+            url: chaos-studio-fault-metrics-and-dashboard.md
 
   - title: Chaos Agent
     linkLists:
