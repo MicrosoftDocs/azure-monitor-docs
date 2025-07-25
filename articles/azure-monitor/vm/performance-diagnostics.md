@@ -106,7 +106,7 @@ When you run an advanced performance analysis, you select traces to run in paral
 > [!Note]
 > This scenario can affect the system, and shouldn't be run on a live production system. If necessary, run this scenario in a dedicated maintenance window to avoid any problems. An increased workload that is caused by a trace or benchmark test can adversely affect the performance of your VM.
 
-[Linux](#tab/linux)
+### [Linux](#tab/linux)
 
 ### Quick performance analysis
 
@@ -178,7 +178,7 @@ The following categories of rules are currently supported:
 >
 >[`**`] /var/log/sysstat or /var/log/sa contains the System Activity Report (SAR) files that are collected by the sysstat package. If the sysstat package is not installed on the VM, the PerfInsights tool provides a recommendation to install it.
 
-
+---
 
 ## Permissions required
 
