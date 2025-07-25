@@ -89,7 +89,10 @@ Select the **Download report** button to download an HTML report that contains r
 
 
 ## Run Performance Diagnostics in standalone mode
+Using standalone mode, you can run performance diagnostics without installing the extension on the VM. This mode is useful for troubleshooting performance issues on non-Azure VMs or when you want to run diagnostics without modifying the VM configuration. You must log in interactively to the VM to run PerfInsights in standalone mode.
 
+
+### [Windows](#tab/windows   )
 
 1. Download [PerfInsights.zip](https://aka.ms/perfinsightsdownload).
 
@@ -124,31 +127,31 @@ Following are examples of running different [troubleshooting scenarios](#support
 
 - Run the performance analysis scenario for 5 mins:
 
-    ```console
-    PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics
-    ```
+```console
+PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics
+```
 
-    - Run the advanced scenario with Xperf and Performance counter traces for 5 mins:
+- Run the advanced scenario with Xperf and Performance counter traces for 5 mins:
 
-    ```console
-    PerfInsights /run advanced xp /d 300 /AcceptDisclaimerAndShareDiagnostics
-    ```
+```console
+PerfInsights /run advanced xp /d 300 /AcceptDisclaimerAndShareDiagnostics
+```
 
-    - Run the benchmark scenario for 5 mins:
+- Run the benchmark scenario for 5 mins:
 
-    ```console
-    PerfInsights /run benchmark /d 300 /AcceptDisclaimerAndShareDiagnostics
-    ```
+```console
+PerfInsights /run benchmark /d 300 /AcceptDisclaimerAndShareDiagnostics
+```
 
-    - Run the performance analysis scenario for 5 mins and upload the result zip file to the storage account:
+- Run the performance analysis scenario for 5 mins and upload the result zip file to the storage account:
 
-    ```console
-    PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics /sa <StorageAccountName> /sk <StorageAccountKey>
-    ```
+```console
+PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics /sa <StorageAccountName> /sk <StorageAccountKey>
+```
 
 
     
-    Before running a scenario, PerfInsights prompts the user to agree to share diagnostic information and to agree to the EULA. Use **/AcceptDisclaimerAndShareDiagnostics** option to skip these prompts.
+    Before running a scenario, PerfInsights prompts you to agree to share diagnostic information and to agree to the EULA. Use **/AcceptDisclaimerAndShareDiagnostics** option to skip these prompts.
     
     If you have an active support ticket with Microsoft and running PerfInsights per the request of the support engineer you are working with, make sure to provide the support ticket number using the **/sr** option.
     
@@ -158,7 +161,64 @@ Following are examples of running different [troubleshooting scenarios](#support
 
 When the traces or operations are completed, a new file appears in the same folder as PerfInsights. The name of the file is **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip.** You can send this file to the support agent for analysis or open the report inside the zip file to review findings and recommendations.
 
+### [Linux](#tab/linux)
+
+1. Download [PerfInsights.tar.gz](https://aka.ms/perfinsightslinuxdownload) to a folder on your virtual machine and extract the contents using the below commands from the terminal.
+
+   ```bash
+   wget https://download.microsoft.com/download/9/F/8/9F80419C-D60D-45F1-8A98-718855F25722/PerfInsights.tar.gz
+   ```
+
+   ```bash
+   tar xzvf PerfInsights.tar.gz
+   ```
+
+2. Navigate to the folder that contains `perfinsights.py` file, and then run `perfinsights.py` to view the available commandline parameters.
+
+    ```bash
+    cd <the path of PerfInsights folder>
+    sudo python perfinsights.py
+    ```
+
+    :::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-command-line.png" alt-text="Screenshot of PerfInsights Linux command-line output." lightbox="media/how-to-use-perfinsights-linux/perfinsights-linux-command-line.png":::
+
+    The basic syntax for running PerfInsights scenarios is:
+
+    ```bash
+    sudo python perfinsights.py -r <ScenarioName> -d [duration]<H | M | S> [AdditionalOptions]
+    ```
+
+    You can use the following example to run Quick performance analysis scenario for 1 minute and create the results under /tmp/output folder:
+
+    ```bash
+    sudo python perfinsights.py -r quick -d 1M -a -o /tmp/output
+    ```
+
+    You can use the following example to run performance analysis scenario for 5 mins and upload the result (stores in a TAR file) to the storage account:
+
+    ```bash
+    sudo python perfinsights.py -r vmslow -d 300S -a -t <StorageAccountName> -k <StorageAccountKey> -i <full resource Uri of the current VM>
+    ```
+
+    You can use the following example to run the HPC performance analysis scenario for 1 mins and upload the result TAR file to the storage account:
+
+    ```bash
+    sudo python perfinsights.py -r hpc -d 60S -a -t <StorageAccountName> -k <StorageAccountKey> -i <full resource Uri of the current VM>
+    ```
+
+    >[!Note]
+    >Before running a scenario, PerfInsights prompts the user to agree to share diagnostic information and to agree to the EULA. Use **-a or --accept-disclaimer-and-share-diagnostics** option to skip these prompts.
+    >
+    >If you have an active support ticket with Microsoft and running PerfInsights per the request of the support engineer you are working with, make sure to provide the support ticket number using the **-s or --support-request** option.
+
+When the run is completed, a new tar file appears in the same folder as PerfInsights unless no output folder is specified. The name of the file is **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.tar.gz.** You can send this file to the support agent for analysis or open the report inside the file to review findings and recommendations.
+
+---
+
+
 ## Review the diagnostics report
+
+### [Windows](#tab/windows)
 
 The **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip** file contains the HTML report that details the findings of PerfInsights. To review the report, expand the **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip** file, and then open **PerfInsights Report.html**.
 
@@ -203,6 +263,61 @@ The tabs for specific instances of SQL Server contain a general section that dis
 ### Diagnostic tab
 
 The **Diagnostic** tab contains information about top CPU, disk, and memory consumers on the computer during the Performance Diagnostics run. It also includes information about critical patches that the system might be missing, the task list, and important system events.
+
+### [Linux](#tab/linux)
+
+Within the **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.tar.gz** file, you can find an HTML report that details the findings of PerfInsights. To review the report, expand the **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.tar.gz** file, and then open the **PerfInsights Report.html** file.
+
+### Overview tab
+
+The **Overview** tab provides basic run details and virtual machine information. The **Findings** tab displays a summary of the recommendations from all the different sections of the PerfInsights report.
+
+:::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-overview.png" alt-text="Screenshot of the Overview tab of the PerfInsights Report.":::  
+
+:::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-findings-tab.png" alt-text="Screenshot of the Findings tab of the PerfInsights Report.":::
+
+> [!NOTE]
+> Findings categorized as high are known issues that might cause performance issues. Findings categorized as medium represent non-optimal configurations that do not necessarily cause performance issues. Findings categorized as low are informative statements only.
+
+Review the recommendations and links for all high and medium findings. Learn about how they can affect performance, and also about best practices for performance-optimized configurations.
+
+### CPU tab
+
+**CPU** tab provides information about system-wide CPU consumption during the PerfInsights run. Information about high CPU usage periods and top long running CPU consumers will be helpful to troubleshoot high CPU-related issues.
+
+:::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-cpu-tab.png" alt-text="Screenshot of PerfInsights Report CPU tab.":::
+
+### GPU tab
+
+**GPU** tab provides information about findings that will be helpful in troubleshooting GPU-related issues.
+
+:::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-gpu-tab.png" alt-text="Screenshot of PerfInsights Report GPU tab.":::
+
+### Network tab
+
+**Network** tab provides information about network configuration and status. Information about network-related findings, including InfiniBand issues in the HPC scenario, can be found here.
+
+:::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-network-tab.png" alt-text="Screenshot of Network tab.":::
+
+### Storage tab
+
+The **Findings** section displays various findings and recommendations related to storage.
+
+The **Block Devices** and other related sections such as **Partitions**, **LVM**, and **MDADM** tabs describe how block devices are configured and related to each other.
+
+:::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-storage-tab.png" alt-text="Screenshot of Storage tab.":::
+
+:::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-mdadm-config.png" alt-text="Screenshot of MDADM tab.":::
+
+### Linux tab
+
+The **Linux** tab contains information on the hardware and the operating system running in your VM. Details include a list of running processes and information about Guest Agent, PCI, CPU, GPU, Drivers, and LIS drivers.
+
+:::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-tab.png" alt-text="Screenshot of the Linux tab and the details.":::
+
+Or on a GPU-enabled VM:
+
+:::image type="content" source="media/how-to-use-perfinsights-linux/perfinsights-linux-linux-gpu-tab.png" alt-text="Screenshot of GPU tab under Linux tab and the details.":::
 
 ## References to the external tools used
 
