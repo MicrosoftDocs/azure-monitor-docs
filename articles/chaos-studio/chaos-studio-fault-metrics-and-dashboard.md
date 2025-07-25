@@ -1,5 +1,5 @@
 ---
-title: Measuring Fault Impact with an Azure Workbook
+title: Measure Fault Impact with an Azure Workbook
 description: Learn to troubleshoot common problems when you use Azure Chaos Studio.
 author: nikhilkaul-msft
 ms.reviewer: nikhilkaul
@@ -9,13 +9,13 @@ ms.custom: template-how-to
 ---
 
 
-# Measuring Fault Impact with an Azure Workbook
+# Measure fault impact with an Azure Monitor Workbook
 
 A chaos experiment is only useful if you can measure the impact. While you can view metrics on individual resources, a centralized dashboard using Azure Workbooks provides a "single pane of glass" view to correlate the fault with its impact across multiple resources. This workbook serves as a reusable tool for all chaos experiments.
 
 The ability to visualize the direct correlation between your chaos experiments and their impact on system metrics is crucial for understanding system resilience. Azure Workbooks offer a powerful, customizable solution that allows you to create dynamic dashboards that can be reused across different experiments, resource groups, and subscriptions. By centralizing your fault analysis in a single dashboard, you can quickly identify how different types of faults affect your infrastructure and applications, enabling you to make informed decisions about system improvements and disaster recovery planning.
 
-## Creating Your Fault Analysis Workbook
+## Create your fault analysis Workbook
 
 Follow these step-by-step instructions to create a reusable workbook for analyzing the impact of your chaos experiments:
 
@@ -49,11 +49,11 @@ Follow these step-by-step instructions to create a reusable workbook for analyzi
 
 You can now add more metric charts for other resource types (like App Service, AKS, Cosmos DB) by repeating steps 7-9 and changing the **Resource type**. This modular approach allows you to build a comprehensive dashboard that covers all the resources involved in your chaos experiments.
 
-## Recommended Metrics for Your Dashboard
+## Recommended Metrics for your dashboard
 
 To help you build an effective dashboard, the following table maps each fault in the Chaos Studio library to the key Azure Monitor metrics that reveal its impact.
 
-### Agent-Based Faults
+### Agent-Based faults
 *Target Resource: Virtual Machine / Virtual Machine Scale Set*
 
 | Fault Name | Recommended Azure Monitor Metrics | Notes |
@@ -69,7 +69,7 @@ To help you build an effective dashboard, the following table maps each fault in
 | **Time Change** | (No direct metric) | Validate impact by checking application or guest OS logs for time-skew errors. |
 | **Arbitrary stress-ng Stressor** | (Varies) | Use the metric that corresponds to the stressor you enabled. |
 
-### Azure Kubernetes Service (AKS) Faults
+### Azure Kubernetes Service (AKS) faults
 *Target Resource: AKS Cluster (Metrics typically viewed via Container Insights)*
 
 | Fault Name | Recommended Azure Monitor Metrics | Notes |
@@ -81,7 +81,7 @@ To help you build an effective dashboard, the following table maps each fault in
 | **DNS Chaos**    | Prometheus: `coredns_dns_request_failures_total`. <br> Application-level: `Dependency call failure rate`. | Best observed within the cluster's CoreDNS or at the application level. |
 | **HTTP Chaos**   | `ingress_controller_requests` (with status code dimension), `Http Server Errors`, `apiserver_current_inflight_requests` | Look for an increase in HTTP 5xx errors or failed requests. |
 
-### PaaS & Other Resource Faults
+### PaaS & other resource faults
 
 | Fault Category | Fault Name | Target Resource Type | Recommended Azure Monitor Metrics |
 | :--- | :--- | :--- | :--- |
