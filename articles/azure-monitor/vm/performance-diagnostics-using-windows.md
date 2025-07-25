@@ -23,32 +23,7 @@ ms.custom: sap:VM Performance
 
 
 ## Data collected
-Performance Diagnostics collected the information in the following table from Windows machines., depending on the performance scenario you're using.
 
-| Data collected | Quick performance analysis | Benchmarking | Performance analysis | Azure Files analysis | Advanced performance analysis |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| Information from event logs | Yes  | Yes  | Yes  | Yes  | Yes  |
-| System information  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Volume map  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Disk map    | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Running tasks     | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Storage reliability counters  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Storage information   | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Fsutil output     | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Filter driver info  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Netstat output    | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Network configuration   | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Firewall configuration  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| SQL Server configuration    | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Performance diagnostics traces *  | Yes  | Yes  | Yes  | Yes  | Yes  |
-| Performance counter trace **  |  |    | Yes  |  | Yes  |
-| SMB counter trace **  |  |    |    | Yes  |  |
-| SQL Server counter trace ** |  |    | Yes  |  | Yes  |
-| Xperf trace |  |    |    |  | Yes  |
-| StorPort trace    |  |    |    |  | Yes  |
-| Network trace     |  |    |    | Yes  | Yes  |
-| Diskspd benchmark trace *** |  | Yes  |    |  |  |
-| |  |   |   |  |  |
 
 ### Performance diagnostics trace (*)
 
@@ -109,13 +84,7 @@ Diskspd I/O workload tests (OS Disk [write] and pool drives [read/write])
 - This tool must be run on the VM that has the performance issue.
 
 - The following operating systems are supported:
-  - Windows Server 2022
-  - Windows Server 2019
-  - Windows Server 2016
-  - Windows Server 2012 R2
-  - Windows Server 2012
-  - Windows 11
-  - Windows 10
+
 
 #### Accessing SQL Server
 
