@@ -128,7 +128,7 @@ sections:
           - List impacted resources by event ID and subscription or tenant scope.
           - Get details for a specific impacted resource.
           - Query by subscription or tenant depending on your access level.
-          For more information see [Impacted Resources](/api/resourcehealth/impacted-resources/get?view=rest-resourcehealth) 
+          For more information see [Impacted Resources](./rest/api/resourcehealth/impacted-resources/get?view=rest-resourcehealth) 
           
 additionalContent: |
 
