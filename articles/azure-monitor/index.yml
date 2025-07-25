@@ -25,13 +25,15 @@ landingContent:
             url: fundamentals/data-sources.md
           - text: How do you collect data?
             url: data-collection/data-collection-rule-overview.md
-          - text: What is Azure Monitor Metrics?
-            url: metrics/data-platform-metrics.md
-          - text: What is Azure Monitor Logs?
-            url: logs/data-platform-logs.md
+          - text: What's new in Azure Monitor documentation?
+            url: /azure/whats-new.md
+#          - text: What is Azure Monitor Metrics?
+#            url: metrics/data-platform-metrics.md
+#          - text: What is Azure Monitor Logs?
+#            url: logs/data-platform-logs.md
 
 # Card
-  - title: Best practices for Azure Monitor
+  - title: Get started with Azure Monitor
     linkLists:
       - linkListType: get-started
         links:
@@ -57,28 +59,34 @@ landingContent:
             url: vm/monitor-virtual-machine.md
           - text: Monitor containers
             url: containers/container-insights-overview.md
+          - text: Monitor Kubernetes clusters
+            url: containers/kubernetes-monitoring-enable.md        
           - text: Multi-cloud monitoring
             url: fundamentals/best-practices-multicloud.md
-          - text: Migrate from SCOM
-            url: fundamentals/azure-monitor-operations-manager.md
-          - text: Migrate from Splunk to Azure Monitor Logs
-            url: logs/migrate-splunk-to-azure-monitor-logs.md
+#          - text: Migrate from SCOM
+#            url: fundamentals/azure-monitor-operations-manager.md
+#          - text: Migrate from Splunk to Azure Monitor Logs
+#            url: logs/migrate-splunk-to-azure-monitor-logs.md
 
 # Card 
   - title: Get started with Application Insights
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Create a resource
+          - text: Create an Application Insights resource
             url: app/create-workspace-resource.md
           - text: Auto-instrumentation overview
             url: app/codeless-overview.md
-          - text: Application Dashboard
-            url: app/overview-dashboard.md
-          - text: Availability tests
-            url: app/availability-overview.md
-          - text: Application map
+          - text: Enable OpenTelemetry in Application Insights
+            url: app/opentelemetry-enable.md        
+          - text: Application Insights Overview dashboard
+            url: app/overview-dashboard.md            
+          - text: Monitor your website's availability
+            url: app/availability.md
+          - text: Spot performance bottlenecks or failure hotspots
             url: app/app-map.md
+          - text: Investigate failures, performance, and transactions
+            url: app/failures-performance-transactions.md
 
  # Card
   - title: Get started with Azure Monitor Logs
@@ -95,8 +103,8 @@ landingContent:
             url: logs/log-analytics-workspace-insights-overview.md
           - text: Analyze data in Log Analytics
             url: logs/log-analytics-tutorial.md
-          - text: Get started with KQL log queries
-            url: logs/log-analytics-tutorial.md
+          - text: Log queries in Azure Monitor
+            url: logs/log-query-overview.md
 
  # Card
   - title: Metrics in Azure Monitor
@@ -105,6 +113,8 @@ landingContent:
         links:
           - text: Overview of Azure Monitor Metrics
             url: metrics/data-platform-metrics.md
+          - text: Analyze metrics with Azure Monitor metrics explorer
+            url: metrics/analyze-metrics.md        
           - text: Use custom metrics with Azure Monitor
             url: metrics/metrics-custom-overview.md
           - text: Azure Monitor managed service for Prometheus
@@ -113,8 +123,20 @@ landingContent:
             url: metrics/prometheus-grafana.md
           - text: Manage an Azure Monitor workspace
             url: metrics/azure-monitor-workspace-manage.md
-          - text: Query Prometheus metrics by using Azure workbooks
-            url: metrics/prometheus-workbooks.md
+
+ # Card
+  - title: Monitoring agents & data collection
+    linkLists: 
+      - linkListType: how-to-guide
+        links:
+          - text: Data collection rules (DCRs) in Azure Monitor
+            url: agents/data-collection-rule-overview.md
+          - text: Diagnostic settings in Azure Monitor
+            url: platform/diagnostic-settings.md
+          - text: Install and manage the Azure Monitor Agent
+            url: agents/azure-monitor-agent-manage.md
+          - text: Migrate to Azure Monitor Agent
+            url: vm/vminsights-migrate-agent.md
 
  # Card
   - title: Visualize monitoring data
