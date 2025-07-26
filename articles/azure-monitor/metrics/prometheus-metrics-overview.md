@@ -123,6 +123,8 @@ The following limitations apply to Azure Monitor managed service for Prometheus:
 
 [!INCLUDE [case sensitivity](includes/prometheus-case-sensitivity.md)]
 
+[!INCLUDE [duplicate timeseries](includes/prometheus-duplicate-timeseries.md)]
+
 ## Metric names, label names & label values
 
 Metrics scraping currently has the limitations in the following table:

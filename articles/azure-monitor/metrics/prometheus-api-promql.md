@@ -227,6 +227,8 @@ For more information on Prometheus metrics limits, see [Prometheus metrics](../f
 
 [!INCLUDE [prometheus-case-sensitivity.md](includes/prometheus-case-sensitivity.md)]
 
+[!INCLUDE [duplicate timeseries](includes/prometheus-duplicate-timeseries.md)]
+
 ## Frequently asked questions
 
 This section provides answers to common questions.
