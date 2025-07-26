@@ -9,16 +9,19 @@ ms.custom: references_regions, devx-track-arm-template, has-azure-ad-ps-ref, azu
 
 # Action groups
 
-When Azure Monitor data indicates that there might be a problem with your infrastructure or application, an alert is triggered. You can use an action group to send a notification such as a voice call, SMS, push, or email when the alert is triggered in addition to the alert itself. Action groups are a collection of notification preferences and actions. Azure Monitor, Azure Service Health, and Azure Advisor use action groups to notify users about the alert and take an action.
+When Azure Monitor detects a potential issue in your infrastructure or application, it triggers an alert. To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated actions.
+
+Action groups define who gets notified and what actions are taken when an alert fires. They support multiple notification types, including voice call, SMS, push notifications, email, and automated actions (for example, triggering a webhook or [Azure Function](/azure/azure-functions/functions-overview)). These groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
+
 This article shows you how to create and manage action groups.
+
+## Key facts about using action groups in alerts
 
 Each action is made up of:
 
-* **Type**: The sent notification or performed action. Examples include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
+* **Type**: The kind of notification or automation. Examples include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 * **Name**: A unique identifier within the action group.
-* **Details**: The corresponding details that vary by type.
-
-In general, an action group is a global service. Efforts to make them more available regionally are in development.
+* **Details**: Specific configuration based on the action type.
 
 Global requests from clients can be processed by action group services in any region. If one region of the action group service is down, the traffic is automatically routed and processed in other regions. As a global service, an action group helps provide a disaster recovery solution. Regional requests rely on availability zone redundancy to meet privacy requirements and offer a similar disaster recovery solution.
 
@@ -26,6 +29,9 @@ Global requests from clients can be processed by action group services in any re
 * Action groups are executed concurrently, in no specific order.
 * Multiple alert rules can use the same action group.
 * Action Groups are defined by the unique set of actions and the users to be notified. For example, if you want to notify User1, User2 and User3 by email for two different alert rules, you only need to create one action group which you can apply to both alert rules.
+
+> [!NOTE]
+> You can [manage your alert rules](alerts-manage-alert-rules.md) in the Azure portal, or using the Azure Command-Line Interface (CLI) or PowerShell.
 
 ## Create an action group in the Azure portal
 
@@ -45,9 +51,9 @@ Global requests from clients can be processed by action group services in any re
 
     * Select values for **Subscription** and **Resource group**.
     * Select the region.
-  
+
     > [!NOTE]
-    > Service Health Alerts are only supported in public clouds within the global region. For Action Groups to properly function in response to a Service Health Alert, the region of the action group must be set as *Global*.
+    > Service Health Alerts are only supported in public clouds within the global region. For Action groups to properly function in response to a Service Health Alert, the region of the action group must be set to *Global*.
 
     | Option | Behavior |
     | ------ | -------- |
@@ -105,9 +111,8 @@ Global requests from clients can be processed by action group services in any re
 1. Select **Review + create** to review your settings. This step quickly checks your inputs to make sure you entered all required information. If there are issues, they're reported here. After reviewing the settings, select **Create** to create the action group.
 
     :::image type="content" source="./media/action-groups/action-group-5-review.png" alt-text="Screenshot that shows the Review + create tab of the Create action group dialog. All configured values are visible.":::
-    
+
     > [!NOTE]
-    >
     > When you configure an action to notify a person by email or SMS, they receive a confirmation that indicates they were added to the action group.
 
 ### Test an action group in the Azure portal
@@ -149,7 +154,7 @@ The following table describes the role membership requirements that are needed f
 | Resource group contributor        | Supported             | Supported                                    | Not applicable                          |
 | Action group resource contributor | Supported             | Not applicable                               | Not applicable                          |
 | Azure Monitor contributor         | Supported             | Supported                                    | Not applicable                          |
-| Custom role <sup>1</sup>           | Supported             | Supported                                    | Not applicable                          |
+| Custom role <sup>1</sup>          | Supported             | Supported                                    | Not applicable                          |
 
 <sup>1</sup> The custom role must have the **Microsoft.Insights/ActionGroups/*** permission added, which will also allow the user to update and delete the action group. To add restrictions so the user can only test the action group, add the following under the **JSON** tab for the custom role:
 
@@ -399,7 +404,7 @@ If your primary email doesn't receive notifications, configure the email address
     1. At the top of the page, select **Edit properties**.
     1. Enter an email address.
     1. At the top of the page, select **Save**.
-    
+
     :::image type="content" source="media/action-groups/active-directory-add-primary-email.png" alt-text="Screenshot that shows a user profile page in the Azure portal. The Edit button and the Email box are called out." border="true":::
 
 You may have a limited number of email actions per action group. To check which limits apply to your situation, see [Azure Monitor service limits](../service-limits.md).
@@ -580,12 +585,12 @@ If you use the webhook action, your target webhook endpoint must be able to proc
     > * You must be assigned the [Microsoft Entra Application Administrator role](/azure/active-directory/roles/permissions-reference#all-roles) to run this script.
     >
     > * The service principal must be assigned an **owner role** of the Microsoft Entra application to be able to create, modify, or test the secure webhook action in the action group.
-   
+
 1. Configure the secure webhook action.
 
     1. Copy the `$myApp.ObjectId` value that's in the script.
     1. In the webhook action definition, in the **Object Id** box, enter the value that you copied.
-    
+
     :::image type="content" source="./media/action-groups/action-groups-secure-webhook.png" alt-text="Screenshot that shows the Secured Webhook dialog in the Azure portal with the Object ID box." border="true":::
 
 ### Secure webhook PowerShell script
