@@ -376,14 +376,16 @@ Select-AzSubscription -SubscriptionId $SubscriptionID
 #Grant access to the user at root scope "/"
 $user = Get-AzADUser -SignedIn
 
-New-AzRoleAssignment -Scope '/' -RoleDefinitionName 'Owner' -ObjectId $user.Id
+if ($(Get-AzRoleAssignment | Where-Object {$_.ObjectId -eq $user.Id -and $_.scope -eq "/" -and $_.RoleDefinitionName -eq "Owner"}).Count -eq 0) {
+    New-AzRoleAssignment -Scope '/' -RoleDefinitionName 'Owner' -ObjectId $user.Id
+}
 
 #Create the auth token
 $auth = Get-AzAccessToken
 
 $AuthenticationHeader = @{
     "Content-Type" = "application/json"
-    "Authorization" = "Bearer " + $auth.Token
+    "Authorization" = "Bearer " + $(ConvertFrom-SecureString $auth.Token -AsPlainText)
     }
 
 
