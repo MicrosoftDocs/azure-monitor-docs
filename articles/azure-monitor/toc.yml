@@ -433,7 +433,13 @@ items:
           href: vm/performance-diagnostics-install.md
         - name: Use
           displayName: performance diagnostics, virtual machine, vm
-          href: vm/performance-diagnostics-using.md
+          href: vm/performance-diagnostics-use.md
+        - name: Extension
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-extension.md
+        - name: Standalone
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-standalone.md
     - name: Deployment guide
       items:
       - name: Overview
