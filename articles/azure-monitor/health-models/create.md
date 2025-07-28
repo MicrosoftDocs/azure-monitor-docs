@@ -89,7 +89,7 @@ To change the service group associated with your health model, click the **Chang
 ### Signal definitions
 The signal definitions view is useful for understanding the signals that are available in the model and their current thresholds and for cleaning up any unused signals. It provides a list of all the [signal definitions](./designer.md#signal-definitions) in the health model and their thresholds.
 
-You can't add or edit signal definitions from this view, because that requires the context of an entity, but you can delete any signals that aren't used by any entities in the model (indicated by the green tick icon). Select any signal definitions to delete and click **Delete** at the top of the screen. This button will be disabled if any signals that are in use are selected.
+You can't add or edit signal definitions from this view, because that requires the context of an entity, but you can delete any signal definitions that aren't used by any entities in the model (indicated by the green tick icon). Select any signal definitions to delete and click **Delete** at the top of the screen. This button will be disabled if any signals that are in use are selected.
 
 :::image type="content" source="media/create/signal-definitions-view.png" lightbox="media/create/signal-definitions-view.png" alt-text="Screenshot of signal definitions view.":::
 
