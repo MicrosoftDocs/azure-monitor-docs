@@ -35,5 +35,3 @@ For more information, see [Create activity log alerts on service notifications](
 ## Next steps
 
 * Learn more about [activity log alerts](/azure/azure-monitor/alerts/alerts-types).
-
-
