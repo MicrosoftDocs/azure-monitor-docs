@@ -13,17 +13,11 @@ When Azure Monitor data indicates a potential issue in your infrastructure or ap
 
 Action groups define who gets notified and what actions are taken when an alert fires. They support multiple notification types, including voice call, SMS, push notifications, email, and automated actions (for example, triggering a webhook or [Azure Function](/azure/azure-functions/functions-overview)). These groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
 
-This article shows you how to create and manage action groups.
-
-## Key facts about using action groups in alerts
-
 Each action is made up of:
 
 * **Type**: The kind of notification or automation.
 * **Name**: A unique identifier within the action group.
 * **Details**: Specific configuration based on the action type.
-
-**Global availability and resilience**
 
 Global requests from clients can be processed by action group services in any region. If one region of the action group service is down, the traffic is automatically routed and processed in other regions. As a global service, an action group helps provide a disaster recovery solution.
 
@@ -37,6 +31,8 @@ Global requests from clients can be processed by action group services in any re
 * Multiple alert rules can use the same action group.
 * Action Groups are defined by the unique set of actions and the users to be notified.
     Example: To notify User1, User2 and User3 by email for two different alert rules, you only need to create one action group and apply it to both alert rules.
+
+This article shows you how to create and manage action groups.
 
 ## Create an action group in the Azure portal
 
@@ -211,7 +207,7 @@ To create an action group by using a Resource Manager template, you create a res
 **Template 1**
 
 This template describes how to create a Resource Manager template for an action group where the action definitions are hard-coded in the template.
-
+<br>
 <details>
 <summary>Expand to view the template</summary>
 
@@ -316,7 +312,7 @@ This template describes how to create a Resource Manager template for an action 
 **Template 2**
 
 This template describes how to create a template that takes the webhook configuration information as input parameters when the template is deployed.
-
+<br>
 <details>
 <summary>Expand to view the template</summary>
 
@@ -381,7 +377,7 @@ This template describes how to create a template that takes the webhook configur
   }
 }
 ```
-<details>
+</details>
 
 ## Manage action groups
 
