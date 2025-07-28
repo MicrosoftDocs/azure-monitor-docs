@@ -59,7 +59,7 @@ There are four types of availability tests:
    |---------|---------|-------------|
    | **Basic Information** | | |
    | | **URL** | The URL can be any webpage you want to test, but it must be visible from the public internet. The URL can include a query string. So, for example, you can exercise your database a little. If the URL resolves to a redirect, we follow it up to 10 redirects. |
-   | | **Parse dependent requests** | The test loads images, scripts, style files, and other resources from the webpage under test. It records the response time, including the time to retrieve these files. The test fails if it can't download all resources within the time-out. If you don't enable the option, the test only loads the file at the specified URL. Enabling it makes the check stricter, potentially failing in cases that manual browsing wouldn't catch. The test parses up to 15 dependent requests. |
+   | | **Parse dependent requests** | The test loads images, scripts, style files, and other resources from the webpage under test. It records the response time, including the time to retrieve these files. The test fails if it can't download all resources within the timeout. If you don't enable the option, the test only loads the file at the specified URL. Enabling it makes the check stricter, potentially failing in cases that manual browsing wouldn't catch. The test parses up to 15 dependent requests. |
    | | **Enable retries for availability test failures** | When the test fails, it retries after a short interval. A failure is reported only if three successive attempts fail. Subsequent tests are then performed at the usual test frequency. Retry is temporarily suspended until the next success. This rule is applied independently at each test location. *We recommend this option*. On average, about 80% of failures disappear on retry. |
    | | **Enable SSL certificate validity** | To confirm correct setup, verify the SSL certificate on your website. Make sure it's installed correctly, valid, trusted, and doesn't generate errors for users. The availability test only validates the SSL certificate on the *final redirected URL*. |
    | | **Proactive lifetime check** | This setting enables you to define a set time period before your SSL certificate expires. After it expires, your test will fail. |
@@ -395,7 +395,8 @@ You can use Log Analytics to view your availability results (`availabilityResult
 The following steps walk you through the process of creating [standard tests](#types-of-availability-tests) that replicate the functionality of your [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability). It allows you to more easily start using the advanced features of standard tests using your previously created URL ping tests.
 
 > [!IMPORTANT]
-> A cost is associated with running **[standard tests](#types-of-availability-tests)**. Once you create a standard test, you're charged for test executions. Refer to **[Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing)** before starting this process.
+> - A cost is associated with running **[standard tests](#types-of-availability-tests)**. Once you create a standard test, you're charged for test executions. Refer to **[Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing)** before starting this process.
+> - You can discover all classic URL ping tests with [Azure Resource Graph Explorer](#discover-url-ping-tests).
 
 #### Prerequisites
 
@@ -407,10 +408,12 @@ The following steps walk you through the process of creating [standard tests](#t
 
 Discover URL ping tests with the following query in [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).
 
-```azurepowershell
-Get-AzApplicationInsightsWebTest | `
-Where-Object { $_.WebTestKind -eq "ping" } | `
-Format-Table -Property ResourceGroupName,Name,WebTestKind,Enabled;
+```azureresourcegraph
+resources
+| where subscriptionId == "<subscriptionId>"
+| where ['type'] == "microsoft.insights/webtests"
+| extend testKind = tostring(properties.Kind)
+| where testKind == "ping"
 ```
 
 #### Begin migration
@@ -522,7 +525,7 @@ To manage access when your endpoints are outside Azure or when service tags aren
 
 [!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements.md)]
 > [!IMPORTANT]
-> TLS 1.3 is currently only available in the availability test regions NorthCentralUS, CentralUS, EastUS, SouthCentralUS, and WestUS
+> Transport Layer Security (TLS) 1.3 is currently only available in the availability test regions NorthCentralUS, CentralUS, EastUS, SouthCentralUS, and WestUS
 
 [!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements-deprecating.md)]
 
@@ -555,7 +558,7 @@ The overview page contains high-level information about your:
 * End-to-end outage instances
 * Application downtime
 
-Outage instances are determined from the moment a test begins to fail until it successfully passes again, according to your outage parameters. If a test starts failing at 8:00 AM and succeeds again at 10:00 AM, that entire period of data is considered the same outage. You can also investigate the longest outage that occurred over your reporting period.
+Outage instances are determined from the moment a test begins to fail until it successfully passes again, according to your outage parameters. If a test starts failing at 8:00 AM and succeeds again at 10:00 AM, that entire period of data is considered as the same outage. You can also investigate the longest outage that occurred over your reporting period.
 
 Some tests are linkable back to their Application Insights resource for further investigation. But that's only possible in the [workspace-based Application Insights resource](create-workspace-resource.md).
 
@@ -577,8 +580,8 @@ There are two more tabs next to the **Overview** page:
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [Availability tests FAQ](application-insights-faq.yml#availability-tests) and [TLS support for availability tests FAQ](application-insights-faq.yml#tls-support-for-availability-tests)
-* [Troubleshooting](troubleshoot-availability.md)
-* [Web tests Azure Resource Manager template](/azure/templates/microsoft.insights/webtests?tabs=json)
-* [Web test REST API](/rest/api/application-insights/web-tests)
+* Review frequently asked questions (FAQ), see [Availability tests FAQ](application-insights-faq.yml#availability-tests) and [TLS support for availability tests FAQ](application-insights-faq.yml#tls-support-for-availability-tests)
+* [Troubleshoot](/azure/azure-monitor/app-insights/availability/availability-monitoring-common-issues-faq) availability issues
+* Explore [Web tests Azure Resource Manager template](/azure/templates/microsoft.insights/webtests?tabs=json)
+* Learn about the [Web test REST API](/rest/api/application-insights/web-tests)
 
