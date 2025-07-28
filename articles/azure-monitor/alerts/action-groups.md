@@ -455,6 +455,9 @@ These replies are supported for SMS notifications. The recipient of the SMS can 
 You might have a limited number of Azure app actions per action group.
 
 ### Countries/Regions with SMS notification support
+<br><br>
+<details>
+<summary>Expand to view list</summary>
 
 | Country code | Country                                 |
 |:-------------|:----------------------------------------|
@@ -497,6 +500,8 @@ You might have a limited number of Azure app actions per action group.
 | 44           | United Kingdom                          |
 | 1            | United States                           |
 
+</details>
+
 ## Voice
 
 You might have a limited number of voice actions per action group. For important information about rate limits, see [Azure Monitor service limits](../service-limits.md).
@@ -505,6 +510,10 @@ You might have a limited number of voice actions per action group. For important
 > If you can't select your country/region code in the Azure portal, voice calls aren't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). In the meantime, as a workaround, configure your action group to call a webhook to a third-party voice call provider that offers support in your country/region. If a country is marked with an asterisk (\*), calls come from a USA based phone number.
 
 ### Countries/Regions with Voice notification support
+
+<br><br>
+<details>
+<summary>Expand to view list</summary>
 
 | Country code | Country               |
 |:-------------|:----------------------|
@@ -546,6 +555,8 @@ You might have a limited number of voice actions per action group. For important
 | 971          | United Arab Emirates* |
 | 44           | United Kingdom        |
 | 1            | United States         |
+
+</details>
 
 For information about pricing for supported countries/regions, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
@@ -715,10 +726,8 @@ To ensure you can continue using the runbook actions, you need to:
 
     :::image type="content" source="media/action-groups/action-group-runbook-add.png" alt-text="Screenshot of adding a runbook action to an action group.":::
 
-    ![Screenshot of configuring the runbook action.](media/action-groups/action-group-runbook-configure.png){width=50%}
-<!--
     :::image type="content" source="media/action-groups/action-group-runbook-configure.png" alt-text="Screenshot of configuring the runbook action.":::
--->
+
 1. Delete old runbook action which links to a *Run as account* runbook.
 
 1. Save the action group.
