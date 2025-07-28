@@ -4,7 +4,7 @@ description: Background and instructions for how to update alert rules or alert 
 ms.topic: how-to
 ms.custom: subject-moving-resources
 ms.date: 06/19/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Update alert rules or alert processing rules when their target resource moves to a different Azure region

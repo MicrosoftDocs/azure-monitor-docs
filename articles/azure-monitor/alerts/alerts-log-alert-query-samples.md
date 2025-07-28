@@ -3,7 +3,7 @@ title: Samples of Azure Monitor log search alert rule queries
 description: See examples of Azure monitor log search alert rule queries.
 ms.topic: reference
 ms.date: 01/04/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Sample log search alert queries that include ADX and ARG

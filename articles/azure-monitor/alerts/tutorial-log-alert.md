@@ -1,7 +1,7 @@
 ---
 title: Tutorial - Create a log search alert for an Azure resource
 description: Tutorial to create a log search alert for an Azure resource.
-ms.reviewer: nolavime
+ms.reviewer: 
 ms.topic: tutorial
 ms.date: 12/11/2024
 ---
