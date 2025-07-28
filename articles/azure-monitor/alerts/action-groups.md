@@ -572,7 +572,7 @@ Webhook action groups generally follow these rules when called:
 
 ### Configure authentication for Secure webhook
 
-The secure webhook action authenticates to the protected API by using a Service Principal instance in the Microsoft Entra tenant of the "AZNS AAD Webhook" Microsoft Entra application. To make the action group work, this Microsoft Entra Webhook Service Principal must be added as a member of a role on the target Microsoft Entra application that grants access to the target endpoint.
+The secure webhook action authenticates to the protected API by using a Service Principal instance in the Microsoft Entra tenant of the *AZNS AAD Webhook* Microsoft Entra application. To make the action group work, this Microsoft Entra Webhook Service Principal must be added as a member of a role on the target Microsoft Entra application that grants access to the target endpoint.
 
 For an overview of Microsoft Entra applications and service principals, see [Microsoft identity platform (v2.0) overview](/azure/active-directory/develop/v2-overview). Follow these steps to take advantage of the secure webhook functionality.
 
@@ -585,7 +585,7 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 
 1. Create a Microsoft Entra application for your protected web API. For more information, see [Protected web API: App registration](/azure/active-directory/develop/scenario-protected-web-api-app-registration). Configure your protected API to be called by a daemon app and expose application permissions, not delegated permissions.
 
-    > [!NOTE]
+    > [!TIP]
     > Configure your protected web API to accept V2.0 access tokens. For more information about this setting, see [Microsoft Entra app manifest](/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute).
 
 1. To enable the action group to use your Microsoft Entra application, use the PowerShell script that follows this procedure.
@@ -715,7 +715,7 @@ To ensure you can continue using the runbook actions, you need to:
 
     :::image type="content" source="media/action-groups/action-group-runbook-add.png" alt-text="Screenshot of adding a runbook action to an action group.":::
 
-    <img src="media/action-groups/action-group-runbook-configure.png" alt="Screenshot of configuring the runbook action." style="width:50%;" />
+    <img src="media/action-groups/action-group-runbook-configure.png" alt="Screenshot of configuring the runbook action." width="50%" border="1" />
 <!--
     :::image type="content" source="media/action-groups/action-group-runbook-configure.png" alt-text="Screenshot of configuring the runbook action.":::
 -->
