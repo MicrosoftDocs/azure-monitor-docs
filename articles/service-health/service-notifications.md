@@ -25,8 +25,10 @@ For more information on the various classes of service health notifications, see
 
 
 1. You can create an alert rule in two ways:
-    - Select **Create alert rules** from the Monitor screen. 
-    - Select **View Service health** to open the Azure Service Health portal.
+    - Directly in Azure Monitor:
+        - Select **Create alert rules** from the Monitor screen to create it directly in Azure. 
+    - In the Service Health portal:
+        1. Select **View Service health** to open the Azure Service Health portal.
         1. Select **Create service health alert**  and set up an alert to ensure you're notified for future service notifications. 
     
 For more information, see [Create activity log alerts on service notifications](./alerts-activity-log-service-notifications-portal.md).
