@@ -405,7 +405,7 @@ The following steps walk you through the process of creating [standard tests](#t
 
 #### Discover URL ping tests
 
-Discover [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) with the following query in [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).
+Discover URL ping tests with the following query in [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).
 
 ```azurepowershell
 Get-AzApplicationInsightsWebTest | `
@@ -413,7 +413,7 @@ Where-Object { $_.WebTestKind -eq "ping" } | `
 Format-Table -Property ResourceGroupName,Name,WebTestKind,Enabled;
 ```
 
-#### Get started
+#### Begin migration
 
 1. Connect to your subscription with Azure PowerShell (`Connect-AzAccount` + `Set-AzContext`).
 
