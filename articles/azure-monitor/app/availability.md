@@ -408,7 +408,7 @@ The following steps walk you through the process of creating [standard tests](#t
 
 Discover URL ping tests with the following query in [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).
 
-```azureresourcegraph
+```kusto
 resources
 | where subscriptionId == "<subscriptionId>"
 | where ['type'] == "microsoft.insights/webtests"
