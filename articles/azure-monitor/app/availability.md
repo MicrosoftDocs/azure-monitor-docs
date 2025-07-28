@@ -400,8 +400,18 @@ The following steps walk you through the process of creating [standard tests](#t
 #### Prerequisites
 
 > [!div class="checklist"]
-> * Any [URL ping test](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) within Application Insights
+> * [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability)
 > * [Azure PowerShell](/powershell/azure/get-started-azureps) access
+
+#### Discover URL ping tests
+
+Discover [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) with the following query in [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).
+
+```azurepowershell
+Get-AzApplicationInsightsWebTest | `
+Where-Object { $_.WebTestKind -eq "ping" } | `
+Format-Table -Property ResourceGroupName,Name,WebTestKind,Enabled;
+```
 
 #### Get started
 
