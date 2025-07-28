@@ -31,7 +31,7 @@ As part of the retirement process,
  
 ## Recommended action  
 
-Customers are recommeded to offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, we recommend considering a replacement solution from the Azure Marketplace. If applicable, customers can consider [using the Azure Monitor Agent for inventory tracking](https://learn.microsoft.com/azure/automation/change-tracking/manage-change-tracking-monitoring-agent?tabs=linux%2Csa-mi).  
+Customers are recommeded to offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, we recommend considering a replacement solution from the Azure Marketplace. If applicable, customers can consider [using the Azure Monitor Agent for inventory tracking](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent?tabs=linux%2Csa-mi).  
 
 ## Finding VMs currently using VM Insights map 
 
@@ -60,12 +60,12 @@ Resources
 )
 | sort by subscriptionId asc, resourceGroup asc, name asc
 ```
-To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see *[Quickstart: Run Resource Graph query using Azure portal](https://learn.microsoft.com/azure/governance/resource-graph/first-query-portal)*
+To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see *[Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal)*
 
 ## Disabling the VM Insights Map experience
 
 ### Removing Dependency Agent from a single VM 
-See the article on [Uninstall Dependency Agent](https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-dependency-agent#uninstall-dependency-agent) for steps to uninstall. 
+See the article on [Uninstall Dependency Agent](/azure/azure-monitor/vm/vminsights-dependency-agent#uninstall-dependency-agent) for steps to uninstall. 
 
 
 ## Key dates 
