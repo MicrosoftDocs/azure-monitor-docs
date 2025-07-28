@@ -581,7 +581,6 @@ There are two more tabs next to the **Overview** page:
 ## Next steps
 
 * Review frequently asked questions (FAQ), see [Availability tests FAQ](application-insights-faq.yml#availability-tests) and [TLS support for availability tests FAQ](application-insights-faq.yml#tls-support-for-availability-tests)
-* [Troubleshoot](/azure/azure-monitor/app-insights/availability/availability-monitoring-common-issues-faq) availability issues
+* [Troubleshoot](/troubleshoot/azure/azure-monitor/app-insights/availability/availability-monitoring-common-issues-faq) availability issues
 * Explore [Web tests Azure Resource Manager template](/azure/templates/microsoft.insights/webtests?tabs=json)
 * Learn about the [Web test REST API](/rest/api/application-insights/web-tests)
-
