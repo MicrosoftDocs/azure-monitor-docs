@@ -19,20 +19,22 @@ Each action is made up of:
 * **Name**: A unique identifier within the action group.
 * **Details**: Specific configuration based on the action type.
 
+This article shows you how to create and manage action groups.
+
+### Global availability and resilience
+
 Global requests from clients can be processed by action group services in any region. If one region of the action group service is down, the traffic is automatically routed and processed in other regions. As a global service, an action group helps provide a disaster recovery solution.
 
 > [!NOTE]
 > Regional requests rely on availability zone redundancy to meet privacy requirements and offer a similar disaster recovery solution.
 
-**Reusability and execution**
+### Reusability and execution
 
 * You can add up to five action groups to a single alert rule.
 * Action groups are executed concurrently, in no specific order.
 * Multiple alert rules can use the same action group.
-* Action Groups are defined by the unique set of actions and the users to be notified.
-    Example: To notify User1, User2 and User3 by email for two different alert rules, you only need to create one action group and apply it to both alert rules.
-
-This article shows you how to create and manage action groups.
+* Action Groups are defined by the unique set of actions and the users to be notified.<br>
+    **Example:** To notify User1, User2 and User3 by email for two different alert rules, you only need to create one action group and apply it to both alert rules.
 
 ## Create an action group in the Azure portal
 
