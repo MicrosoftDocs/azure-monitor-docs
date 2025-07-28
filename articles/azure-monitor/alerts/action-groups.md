@@ -9,7 +9,7 @@ ms.custom: references_regions, devx-track-arm-template, has-azure-ad-ps-ref, azu
 
 # Action groups
 
-When Azure Monitor detects a potential issue in your infrastructure or application, it triggers an alert. To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated actions.
+When Azure Monitor data indicates a potential issue in your infrastructure or application, it triggers an alert. To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated actions.
 
 Action groups define who gets notified and what actions are taken when an alert fires. They support multiple notification types, including voice call, SMS, push notifications, email, and automated actions (for example, triggering a webhook or [Azure Function](/azure/azure-functions/functions-overview)). These groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
 
@@ -19,19 +19,24 @@ This article shows you how to create and manage action groups.
 
 Each action is made up of:
 
-* **Type**: The kind of notification or automation. Examples include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
+* **Type**: The kind of notification or automation.
 * **Name**: A unique identifier within the action group.
 * **Details**: Specific configuration based on the action type.
 
-Global requests from clients can be processed by action group services in any region. If one region of the action group service is down, the traffic is automatically routed and processed in other regions. As a global service, an action group helps provide a disaster recovery solution. Regional requests rely on availability zone redundancy to meet privacy requirements and offer a similar disaster recovery solution.
+**Global availability and resilience**
 
-* You can add up to five action groups to an alert rule.
-* Action groups are executed concurrently, in no specific order.
-* Multiple alert rules can use the same action group.
-* Action Groups are defined by the unique set of actions and the users to be notified. For example, if you want to notify User1, User2 and User3 by email for two different alert rules, you only need to create one action group which you can apply to both alert rules.
+Global requests from clients can be processed by action group services in any region. If one region of the action group service is down, the traffic is automatically routed and processed in other regions. As a global service, an action group helps provide a disaster recovery solution.
 
 > [!NOTE]
-> You can [manage your alert rules](alerts-manage-alert-rules.md) in the Azure portal, or using the Azure Command-Line Interface (CLI) or PowerShell.
+> Regional requests rely on availability zone redundancy to meet privacy requirements and offer a similar disaster recovery solution.
+
+**Reusability and execution**
+
+* You can add up to five action groups to a single alert rule.
+* Action groups are executed concurrently, in no specific order.
+* Multiple alert rules can use the same action group.
+* Action Groups are defined by the unique set of actions and the users to be notified.
+    Example: To notify User1, User2 and User3 by email for two different alert rules, you only need to create one action group and apply it to both alert rules.
 
 ## Create an action group in the Azure portal
 
@@ -203,7 +208,12 @@ The basic steps are:
 
 To create an action group by using a Resource Manager template, you create a resource of the type `Microsoft.Insights/actionGroups`. Then you fill in all related properties. Here are two sample templates that create an action group.
 
-The first template describes how to create a Resource Manager template for an action group where the action definitions are hard-coded in the template. The second template describes how to create a template that takes the webhook configuration information as input parameters when the template is deployed.
+**Template 1**
+
+This template describes how to create a Resource Manager template for an action group where the action definitions are hard-coded in the template.
+
+<details>
+<summary>Expand to view the template</summary>
 
 ```json
 {
@@ -301,6 +311,14 @@ The first template describes how to create a Resource Manager template for an ac
   }
 }
 ```
+</details>
+
+**Template 2**
+
+This template describes how to create a template that takes the webhook configuration information as input parameters when the template is deployed.
+
+<details>
+<summary>Expand to view the template</summary>
 
 ```json
 {
@@ -363,6 +381,7 @@ The first template describes how to create a Resource Manager template for an ac
   }
 }
 ```
+<details>
 
 ## Manage action groups
 
@@ -605,6 +624,9 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 1. Save as *\*.ps1*
 1. Open the PowerShell command from your machine and run the *\*.ps1* script.
 
+<details>
+<summary>Expand to view the script</summary>
+
 ```PowerShell
 Write-Host "================================================================================================="
 $scopes = "Application.ReadWrite.All"
@@ -687,6 +709,7 @@ foreach ($role in $myAppRoles) { Write-Host $role.Value }
 
 Write-Host "================================================================================================="
 ```
+</details>
 
 ## Migrate Runbook action from "Run as account" to "Run as Managed Identity"
 
