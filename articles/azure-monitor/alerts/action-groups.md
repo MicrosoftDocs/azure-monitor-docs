@@ -715,7 +715,7 @@ To ensure you can continue using the runbook actions, you need to:
 
     :::image type="content" source="media/action-groups/action-group-runbook-add.png" alt-text="Screenshot of adding a runbook action to an action group.":::
 
-    <img src="media/action-groups/action-group-runbook-configure.png" alt="Screenshot of configuring the runbook action." width="50%" border="1" />
+    ![Screenshot of configuring the runbook action.](media/action-groups/action-group-runbook-configure.png){width=50%}
 <!--
     :::image type="content" source="media/action-groups/action-group-runbook-configure.png" alt-text="Screenshot of configuring the runbook action.":::
 -->
