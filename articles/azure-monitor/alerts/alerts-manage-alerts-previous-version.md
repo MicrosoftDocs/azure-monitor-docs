@@ -4,7 +4,7 @@ description: Use the Azure Monitor portal to manage log search alert rules creat
 ms.topic: how-to
 ms.date: 07/30/2024
 ms.custom: devx-track-azurepowershell
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Manage alert rules created in previous versions
