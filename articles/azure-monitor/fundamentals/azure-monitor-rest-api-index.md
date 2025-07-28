@@ -20,7 +20,7 @@ Organized by subject area.
 | ***Alerts Management and Action Groups*** |  |
 | [Action groups](/rest/api/monitor/action-groups) | Manages and lists [action groups](../alerts/action-groups.md). |
 | [Activity log alerts](/rest/api/monitor/activity-log-alerts) | Manages and lists [activity log alert rules](../alerts/alerts-types.md#activity-log-alerts). |
-| [Alert management](/rest/api/monitor/alertsmanagement/alerts) | Lists and updates [fired alerts](../alerts/alerts-overview.md). |
+| [Alert management](/rest/api/monitor/alertsmanagement/alert-processing-rules) | Lists and updates [fired alerts](../alerts/alerts-overview.md). |
 | [Alert processing rules](/rest/api/monitor/alertsmanagement/alert-processing-rules) | Manages and lists [alert processing rules](../alerts/alerts-processing-rules.md). |
 | [Metric alert baseline](/rest/api/monitor/baselines) | List the metric baselines used in alert rules with [dynamic thresholds](../alerts/alerts-dynamic-thresholds.md). |
 | [Metric alerts](/rest/api/monitor/metric-alerts) | Manages and lists [metric alert rules](../alerts/alerts-overview.md). |
