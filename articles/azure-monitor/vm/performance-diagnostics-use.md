@@ -10,6 +10,8 @@ ms.date: 05/02/2025
 
 **Applies to:** :heavy_check_mark: Windows VMs
 
+
+
 ## View insights
 Performance Diagnostics insights lists a combination of the insights identified by [continuous and on-demand diagnostics](./performance-diagnostics.md#performance-diagnostics-modes). You can view this report from three different locations in the Azure portal, depending on your troubleshooting workflow. You can view the Performance Diagnostics reports from multiple locations in the Azure portal. 
 
@@ -157,6 +159,9 @@ The **Linux** tab contains information on the hardware and the operating system 
 Or on a GPU-enabled VM:
 
 :::image type="content" source="media/performance-diagnostics-use/perfinsights-linux-linux-gpu-tab.png" lightbox="media/performance-diagnostics-use/perfinsights-linux-linux-gpu-tab.png" alt-text="Screenshot of GPU tab under Linux tab and the details.":::
+
+
+---
 
 ## References to the external tools used
 

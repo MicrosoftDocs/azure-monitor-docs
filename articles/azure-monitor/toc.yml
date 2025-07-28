@@ -437,9 +437,6 @@ items:
         - name: Extension
           displayName: performance diagnostics, virtual machine, vm
           href: vm/performance-diagnostics-extension.md
-        - name: Standalone
-          displayName: performance diagnostics, virtual machine, vm
-          href: vm/performance-diagnostics-standalone.md
     - name: Deployment guide
       items:
       - name: Overview
