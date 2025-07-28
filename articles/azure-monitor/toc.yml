@@ -428,10 +428,10 @@ items:
         - name: Overview
           displayName: performance diagnostics, virtual machine, vm
           href: vm/performance-diagnostics.md
-        - name: Install
+        - name: Install and run reports
           displayName: performance diagnostics, virtual machine, vm
           href: vm/performance-diagnostics-install.md
-        - name: Use
+        - name: Analyze data
           displayName: performance diagnostics, virtual machine, vm
           href: vm/performance-diagnostics-use.md
         - name: Extension
