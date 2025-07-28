@@ -10,26 +10,8 @@ ms.date: 05/02/2025
 
 **Applies to:** :heavy_check_mark: Windows VMs
 
-
-## Insights
-The **Impact** column indicates an impact level of High, Medium, or Low to indicate the potential for performance issues, based on factors such as misconfiguration, known problems, or issues that are reported by other users. You might not yet be experiencing one or more of the listed issues. For example, you might have SQL log files and database files on the same data disk. This condition has a high potential for bottlenecks and other performance issues if the database usage is high. However, you might not notice an issue if the usage is low.
-
-
-#### Accessing SQL Server
-
-If the VM has SQL Server instances installed on it, PerfInsights uses the account NT AUTHORITY\SYSTEM to access the SQL Server instances to collect configuration information and run rules. The account NT AUTHORITY\SYSTEM must be granted View Server State permission and Connect SQL permission for each instance, otherwise PerfInsights won't be able to connect to the SQL Server and the PerfInsights report won't show any SQL Server related information.
-
-#### Possible problems when you run the tool on production VMs
-
-- For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Xperf or Diskspd, the tool might adversely affect the performance of the VM. These scenarios shouldn't be run in a live production environment.
-
-- For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Diskspd, ensure that no other background activity interferes with the I/O workload.
-
-- By default, the tool uses the temporary storage drive to collect data. If tracing stays enabled for a longer time, the amount of data that is collected might be relevant. This can reduce the availability of space on the temporary disk, and can therefore affect any application that relies on this drive.
-
-
 ## View insights
-Performance Diagnostics insights lists a combination of the insights identified by the continuous and on-demand diagnostics. You can view this report from three different locations in the Azure portal, depending on your troubleshooting workflow. You can view the Performance Diagnostics reports from multiple locations in the Azure portal. 
+Performance Diagnostics insights lists a combination of the insights identified by [continuous and on-demand diagnostics](./performance-diagnostics.md#performance-diagnostics-modes). You can view this report from three different locations in the Azure portal, depending on your troubleshooting workflow. You can view the Performance Diagnostics reports from multiple locations in the Azure portal. 
 
 - From the menu for the virtual machine. In the **Help** section of the menu, select **Performance Diagnostics**.
 
@@ -59,7 +41,7 @@ Click on the name of an insight to open the **Performance diagnostics insights d
 
 ## View reports
 
-The **Performance Diagnostics reports** tab is available only in the [Performance diagnostics](#view-performance-diagnostics-insights) experience. It lists all the on-demand diagnostics reports that were run. The list indicates the type of analysis that was run, insights that were found, and their impact levels.
+The **Performance Diagnostics reports** tab is available only from the [Performance diagnostics](#view-performance-diagnostics-insights) option for the VM. It lists all the [on-demand diagnostics](./performance-diagnostics.md#performance-diagnostics-modes) reports that were run. The list indicates the type of analysis that was run, insights that were found, and their impact levels.
 
 :::image type="content" source="media/performance-diagnostics/select-report.png" alt-text="Screenshot of selecting a diagnostics report from the Performance Diagnostics screen." lightbox="media/performance-diagnostics/select-report.png":::
 
@@ -67,12 +49,11 @@ Select a row to view more details.
 
 :::image type="content" source="media/performance-diagnostics/performance-diagnostics-report-overview.png" alt-text="Screenshot of Performance Diagnostics report overview screen." lightbox="media/performance-diagnostics/performance-diagnostics-report-overview.png":::
 
-Select the **Download report** button to download an HTML report that contains richer diagnostics information, such as storage and network configuration, performance counters, traces, list of processes, and logs. The content depends on the selected analysis. For advanced troubleshooting, the report might contain additional information and interactive charts that are related to high CPU usage, high disk usage, and processes that consume excessive memory. For more information about the Performance Diagnostics report, see [Windows](how-to-use-perfinsights.md#review-the-diagnostics-report) or [Linux](../linux/how-to-use-perfinsights-linux.md#review-the-diagnostics-report).
-
+Select the **Download report** button to download an HTML report that contains richer diagnostics information, such as storage and network configuration, performance counters, traces, list of processes, and logs. The content depends on the selected analysis. For advanced troubleshooting, the report might contain additional information and interactive charts that are related to high CPU usage, high disk usage, and processes that consume excessive memory.
 
 
 > [!NOTE]
-> You can download Performance Diagnostics reports from the **Performance Diagnostics** screen within 30 days after you generate them. After 30 days, you might receive an error Message when you download a report from the **Performance Diagnostics** screen. To get a report after 30 days, go to the storage account, and download the report from a binary large object (BLOB) container that's named *azdiagextnresults*. You can view the storage account information by using the **Settings** button on the toolbar.
+> You can download Performance Diagnostics reports from the **Performance Diagnostics** screen within 30 days after you generate them. After 30 days, you might receive an error message. In this case, go to the storage account and download the report from the binary large object (BLOB) container named `azdiagextnresults`. 
 
 ## Review the diagnostics report
 
@@ -192,3 +173,22 @@ Or on a GPU-enabled VM:
 You can upload diagnostics logs and reports to Microsoft Support for further review. Support might request that you transmit the output that is generated by PerfInsights to assist with the troubleshooting process.
 
 [!INCLUDE [Azure Help Support](includes/azure-help-support.md)]
+
+
+
+## Insights
+The **Impact** column indicates an impact level of High, Medium, or Low to indicate the potential for performance issues, based on factors such as misconfiguration, known problems, or issues that are reported by other users. You might not yet be experiencing one or more of the listed issues. For example, you might have SQL log files and database files on the same data disk. This condition has a high potential for bottlenecks and other performance issues if the database usage is high. However, you might not notice an issue if the usage is low.
+
+
+#### Accessing SQL Server
+
+If the VM has SQL Server instances installed on it, PerfInsights uses the account NT AUTHORITY\SYSTEM to access the SQL Server instances to collect configuration information and run rules. The account NT AUTHORITY\SYSTEM must be granted View Server State permission and Connect SQL permission for each instance, otherwise PerfInsights won't be able to connect to the SQL Server and the PerfInsights report won't show any SQL Server related information.
+
+
+#### Possible problems when you run the tool on production VMs
+
+- For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Xperf or Diskspd, the tool might adversely affect the performance of the VM. These scenarios shouldn't be run in a live production environment.
+
+- For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Diskspd, ensure that no other background activity interferes with the I/O workload.
+
+- By default, the tool uses the temporary storage drive to collect data. If tracing stays enabled for a longer time, the amount of data that is collected might be relevant. This can reduce the availability of space on the temporary disk, and can therefore affect any application that relies on this drive.

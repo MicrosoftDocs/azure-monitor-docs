@@ -1,19 +1,8 @@
 ---
 title: Azure Performance Diagnostics (PerfInsights) VM Extension for Windows
 description: Introduces Azure Performance Diagnostics VM Extension for Windows.
-services: virtual-machines
-documentationcenter: ''
-author: JarrettRenshaw
-manager: dcscontentpm
-tags: ''
-ms.service: azure-virtual-machines
-ms.collection: windows
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 ms.date: 02/18/2025
-ms.author: jarrettr
-ms.custom: sap:VM Performance
 ---
 # Azure Performance Diagnostics (PerfInsights) VM Extension for Windows
 

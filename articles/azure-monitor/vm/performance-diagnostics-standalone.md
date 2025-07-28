@@ -16,7 +16,7 @@ ms.date: 05/02/2025
 Using standalone mode, you can run performance diagnostics without installing the extension on the VM. This mode is useful for troubleshooting performance issues on non-Azure VMs or when you want to run diagnostics without modifying the VM configuration. You must log in interactively to the VM to run PerfInsights in standalone mode.
 
 
-### [Windows](#tab/windows   )
+### [Windows](#tab/windows)
 
 ### Supported operating systems
 
@@ -62,27 +62,27 @@ Following are examples of running different [troubleshooting scenarios](#support
 
 - Run the performance analysis scenario for 5 mins:
 
-```console
-PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics
-```
+    ```console
+    PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics
+    ```
 
 - Run the advanced scenario with Xperf and Performance counter traces for 5 mins:
 
-```console
-PerfInsights /run advanced xp /d 300 /AcceptDisclaimerAndShareDiagnostics
-```
+    ```console
+    PerfInsights /run advanced xp /d 300 /AcceptDisclaimerAndShareDiagnostics
+    ```
 
 - Run the benchmark scenario for 5 mins:
 
-```console
-PerfInsights /run benchmark /d 300 /AcceptDisclaimerAndShareDiagnostics
-```
+    ```console
+    PerfInsights /run benchmark /d 300 /AcceptDisclaimerAndShareDiagnostics
+    ```
 
 - Run the performance analysis scenario for 5 mins and upload the result zip file to the storage account:
 
-```console
-PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics /sa <StorageAccountName> /sk <StorageAccountKey>
-```
+    ```console
+    PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics /sa <StorageAccountName> /sk <StorageAccountKey>
+    ```
 
 Before running a scenario, PerfInsights prompts you to agree to share diagnostic information and to agree to the EULA. Use **/AcceptDisclaimerAndShareDiagnostics** option to skip these prompts.
 
@@ -97,18 +97,18 @@ When the traces or operations are completed, a new file appears in the same fold
 ### [Linux](#tab/linux)
 
 ### Supported distributions
-  > [!NOTE]  
-  > Microsoft has only tested the versions that are listed in the table. If a version isn't listed in the table, then it isn't explicitly tested by Microsoft, but the version might still work.
 
-    | Distribution | Version |
-    |:---|:---|
-    | Oracle Linux Server | 6.10 [`*`], 7.3, 7.5, 7.6, 7.7, 7.8, 7.9 |
-    | RHEL | 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0 [`*`], 8.1, 8.2, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9 |
-    | Ubuntu | 16.04, 18.04, 20.04, 22.04 |
-    | Debian | 9, 10, 11 [`*`] |
-    | SLES | 12 SP5 [`*`], 15 SP1 [`*`], 15 SP2 [`*`], 15 SP3 [`*`], 15 SP4 [`*`], 15 SP5 [`*`], 15 SP6 [`*`] |
-    | AlmaLinux | 8.4, 8.5 |
-    | Azure Linux | 2.0, 3.0 |
+Microsoft has only tested the versions that are listed in the table. If a version isn't listed in the table, then it isn't explicitly tested by Microsoft, but the version might still work.
+
+  | Distribution | Version |
+  |:---|:---|
+  | Oracle Linux Server | 6.10 [`*`], 7.3, 7.5, 7.6, 7.7, 7.8, 7.9 |
+  | RHEL | 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0 [`*`], 8.1, 8.2, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9 |
+  | Ubuntu | 16.04, 18.04, 20.04, 22.04 |
+  | Debian | 9, 10, 11 [`*`] |
+  | SLES | 12 SP5 [`*`], 15 SP1 [`*`], 15 SP2 [`*`], 15 SP3 [`*`], 15 SP4 [`*`], 15 SP5 [`*`], 15 SP6 [`*`] |
+  | AlmaLinux | 8.4, 8.5 |
+  | Azure Linux | 2.0, 3.0 |
 
 ### Prerequisites
 - Python 3.6 or a later version, must be installed on the VM. 

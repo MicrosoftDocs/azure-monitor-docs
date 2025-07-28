@@ -1,7 +1,6 @@
 ---
 title: Install Performance Diagnostics on Azure virtual machines
 description: Install Performance Diagnostics to identify and troubleshoot performance issues on your Azure virtual machine (VM).
-tags: ''
 ms.topic: troubleshooting
 ms.date: 06/10/2025
 
@@ -12,6 +11,7 @@ ms.date: 06/10/2025
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
+[Performance Diagnostics](./performance-diagnostics.md) helps identify and troubleshoot performance issues on Azure virtual machines. This article describes how to install Performance Diagnostics on your Azure virtual machine (VM).
 
 ## Prerequisites
 
@@ -34,6 +34,8 @@ The following operating systems are currently supported for both on-demand and c
 * Windows Server 2012
 * Windows 11
 * Windows 10
+
+
 
 ### [Linux](#tab/linux)
 
@@ -58,7 +60,7 @@ The following distributions are currently supported for on-demand diagnostics.
 ---
 
 
-## Install and run Performance Diagnostics on your VM
+## Install Performance Diagnostics on a VM
 
 Performance Diagnostics installs a VM extension that runs a diagnostics tool, called PerfInsights. PerfInsights is available for both [Windows](how-to-use-perfinsights.md) and [Linux](../linux/how-to-use-perfinsights-linux.md).
 
@@ -76,25 +78,19 @@ You can install the Performance Diagnostics tool from multiple locations in the 
 
     :::image type="content" source="./media/performance-diagnostics/install-from-insights.png" alt-text="Screenshot of the Insights pane in the Azure portal that shows the Install Performance Diagnostics tile highlighted." lightbox="./media/performance-diagnostics/install-from-insights.png":::
 
-4. Select the options to install and run the tool. The table describes the available options.
+Each option displays the same set of options that you must configure before selecting **Apply** to install the tool. These options are described in the following table.
 
-    | Option | Description |
-    | ------ | ----------- |
-    | **Enable continuous diagnostics** | Get continuous, actionable insights into high resource usage by having data collected every five seconds and updates uploaded every five minutes to address performance issues promptly. Store insights in your preferred storage account. The storage account retains insights based on the account retention policies that you can configure to [manage the data lifecycle effectively](/azure/storage/blobs/lifecycle-management-policy-configure). You can disable continuous diagnostics at any time. |
-    | **Run on-demand diagnostics** | Get on-demand, actionable insights into high resource usage and various system configurations. Receive a downloadable report that provides comprehensive diagnostics data to address performance issues. Store insights and reports in your preferred storage account. The storage account retains insights that are based on the account retention policies that you can configure to [manage the data lifecycle effectively](/azure/storage/blobs/lifecycle-management-policy-configure). You can initiate on-demand diagnostics at any time by using the specific analysis type that you need:<br/><ul><li>**Performance analysis**<br/>Includes all checks in the **Quick analysis** scenario, and monitors high resource consumption. Use this version to troubleshoot general performance issues, such as high CPU, memory, and disk usage. This analysis takes 30 seconds to 15 minutes to run, depending on the selected duration. Learn more [Windows](how-to-use-perfinsights.md) or [Linux](../linux/how-to-use-perfinsights-linux.md)</li><br/><li>**Quick analysis**<br/>Checks for known issues, analyzes best practices, and collects diagnostics data. This analysis takes several minutes to run. Learn more for [Windows](how-to-use-perfinsights.md) or [Linux](../linux/how-to-use-perfinsights-linux.md)</li><br/><li>**Advanced performance analysis** [*Windows only*]<br/>Includes all checks in the **Performance analysis** scenario, and collects one or more of the traces, as listed in the following sections. Use this scenario to troubleshoot complex issues that require more traces. Running this scenario for longer periods increases the overall size of diagnostics output, depending on the size of the VM and the trace options that are selected. This analysis takes 30 seconds to 15 minutes to run, depending on the selected duration. [Learn more](./how-to-use-perfinsights.md)</li><br/><li>**Azure file analysis** [*Windows only*]<br/>Includes all checks in the **Performance analysis** scenario, and captures a network trace and Server Message Block (SMB) counters. Use this scenario to troubleshoot the performance of Azure files. This analysis takes 30 seconds to 15 minutes to run, depending on the selected duration. [Learn more](./how-to-use-perfinsights.md)</li></ul> |
-    | **Storage account** | Optionally, if you want to use a single storage account to store the Performance Diagnostics results for multiple VMs, you can select a storage account from the drop-down menu. If you don't specify a storage account, Performance Diagnostics uses the default diagnostics storage account or creates a new storage account. |
-    |[Authentication method](#authentication-methods)|Performance Diagnostics supports three authentication methods to write performance diagnostics data to the storage account. They are system-assigned managed identity (default), user-assigned managed identity and storage account access keys. If system-assigned managed identity is selected but not enabled for the VM, Performance Diagnostics attempts to enable it. If the current user lacks the necessary permissions, this operation might fail.|
+| Option | Description |
+|:---|:---|
+| **Enable continuous diagnostics** | Get continuous, actionable insights into high resource usage by having data collected every five seconds and updates uploaded every five minutes to address performance issues promptly. Store insights in your preferred storage account. The storage account retains insights based on the account retention policies that you can configure to [manage the data lifecycle effectively](/azure/storage/blobs/lifecycle-management-policy-configure). You can disable continuous diagnostics at any time. |
+| **Run on-demand diagnostics** | Runs an on-demand report when the installation is complete. You can choose to run any of these reports later. See the list of reports and their description at [On-demand diagnostics](./performance-diagnostics.md#on-demand-diagnostics). |
+| **Storage account** | Specify a storage account if you want to use a single account for multiple VMs. Otherwise the default diagnostics storage account or creates a new storage account. See [](#view-and-manage-storage-account-and-stored-data) |
+|[Authentication method](#authentication-methods)| Authentication method to use as described in [Authentication methods](#authentication-methods). |
 
-5. Review the legal terms and privacy policy, and select the corresponding checkbox to acknowledge acceptance (*required*).
 
-    > [!NOTE]
-    > To install and run Performance Diagnostics, you must agree to the legal terms and accept the privacy policy.
+A notification is displayed as Performance Diagnostics starts to install, and you'll receive a second notification when it completes. This typically takes about a minute. If you selected the **Run on-demand diagnostics** option, the selected performance analysis scenario is then run for the specified duration.
 
-6. Select **Apply** to apply the selected options and install the tool.
-
-    A notification is displayed as Performance Diagnostics starts to install. After the installation is completed, a second notification indicates that the installation is successful. If the **Run on-demand diagnostics** option is selected, the selected performance analysis scenario is then run for the specified duration.
-
-### Authentication methods
+## Authentication methods
 
 Performance Diagnostics supports [Managed Identities](/entra/identity/managed-identities-azure-resources/overview) and [Storage account access keys](/azure/storage/common/storage-account-keys-manage) as authentication methods to write performance diagnostics data to the storage account:
 
@@ -120,58 +116,40 @@ To change the authentication method, uninstall Performance Diagnostics and reins
 
 
 
-## View and manage storage account and stored data
+# View and manage storage account
 
-Performance Diagnostics stores all insights and reports in a storage account that you can [configure for short data retention](/azure/storage/blobs/lifecycle-management-policy-configure) to minimize costs.
+Performance Diagnostics stores all insights and reports in a binary large object (BLOB) container in a storage account that you can [configure for short data retention](/azure/storage/blobs/lifecycle-management-policy-configure) to minimize costs. You can use the same storage account for multiple VMs that use Performance Diagnostics or use a separate account for each VM.
 
-To ensure Performance Diagnostics functions correctly, you must enable the **Allow storage account key access** setting for the storage account. To enable this setting, follow these steps:
+To ensure Performance Diagnostics functions correctly, you must enable the **Allow storage account key access** setting for the storage account. To enable this setting, open the storage account in the Azure portal and select the **Configuration** menu item.
 
-1. Navigate to your storage account.
-2. In the storage account settings, locate the **Configuration** section.
-3. Find the **Allow storage account key access** option and set it to **Enabled**.
-4. Save your changes.
+:::image type="content" source="media/performance-diagnostics-install/storage-account-configuration.png" alt-text="Screenshot of the configuration settings for storage account." lightbox="media/performance-diagnostics-install/storage-account-configuration.png":::
 
-You can use the same storage account for multiple VMs that use Performance Diagnostics. When you change the storage account, the old reports and insights aren't deleted. However, they're no longer displayed in the list of diagnostics reports.
+If you change the storage account after installation, the old reports and insights aren't deleted, but they're no longer displayed in the list of diagnostics reports.
 
 > [!NOTE]
-> Performance Diagnostics stores insights in Azure tables and stores reports in a binary large object (BLOB) container.
->
-> If your storage account uses [private endpoints](/azure/storage/common/storage-private-endpoints), to make sure that Performance Diagnostics can store insights and reports in the storage account:
->
-> 1. Create separate private endpoints for Table and BLOB.
-> 1. Add DNS configuration to each separate private endpoint.
+> If your storage account uses [private endpoints](/azure/storage/common/storage-private-endpoints), ensure that you add DNS configuration to each separate private endpoint for Performance Diagnostics to access storage.
 
-### View diagnostics data stored in your account
+### View stored data
 
-> [!NOTE]
-> To view diagnostics data, make sure that you have all [required permissions](#permissions-required).
+To view diagnostics data, navigate to your storage account in the Azure portal and select **Storage browser**.
 
-To view diagnostics data:
+:::image type="content" source="media/performance-diagnostics/performance-diagnostics-storage-browser.png" alt-text="Screenshot of the storage account screen that shows the Performance Diagnostics insights and report files." lightbox="media/performance-diagnostics/performance-diagnostics-storage-browser.png":::
 
-1. Navigate to your storage account in the Azure portal.
-1. In the left-hand navigation menu, Select **Storage browser**.
+Performance Diagnostics stores reports in a binary large object (BLOB) container named `azdiagextnresults`, and insights in tables. Insights include:
 
-    :::image type="content" source="media/performance-diagnostics/performance-diagnostics-storage-browser.png" alt-text="Screenshot of the storage account screen that shows the Performance Diagnostics insights and report files." lightbox="media/performance-diagnostics/performance-diagnostics-storage-browser.png":::
+* All the insights and related information about the run
+* An output compressed file named `PerformanceDiagnostics_yyyy-MM-dd_hh-mm-ss-fff.zip` on Windows and a tar file named `PerformanceDiagnostics_yyyy-MM-dd_hh-mm-ss-fff.tar.gz` on Linux that contains log files
+* An HTML report
 
-    Performance Diagnostics stores reports in a binary large object (BLOB) container that's named **azdiagextnresults**, and insights in tables. Insights include:
+To download a report, select the container and then click **Download**.
 
-    * All the insights and related information about the run
-    * An output compressed (.zip) file (named **PerformanceDiagnostics_yyyy-MM-dd_hh-mm-ss-fff.zip**) on Windows and a tar file (named **PerformanceDiagnostics_yyyy-MM-dd_hh-mm-ss-fff.tar.gz**) on Linux that contains log files
-    * An HTML report
+### Change storage account
 
-1. To download a report, select **Blob containers** > **azdiagextnresults** > `<report name>` > **Download**.
-
-### Change storage accounts
-
-To change storage accounts in which the diagnostics insights and output are stored:
-
-1. In the Azure portal, open the **Performance diagnostics** experience from your VM.
-
-1. In the top toolbar, select **Settings** to open the **Performance diagnostic settings** screen.
+To change storage accounts, open **Performance diagnostics** from the Azure portal as described in [Install Performance Diagnostics on a VM](#install-performance-diagnostics-on-a-vm). Select **Settings** to open the **Performance diagnostic settings** screen.
 
     :::image type="content" source="media/performance-diagnostics/performance-diagnostics-settings.png" alt-text="Screenshot of the Performance Diagnostics screen toolbar that shows the Settings button highlighted." lightbox="media/performance-diagnostics/performance-diagnostics-settings.png":::
 
-1. Select **Change storage account** to select a different storage account.
+Select **Change storage account** to select a different storage account.
 
     :::image type="content" source="media/performance-diagnostics/change-storage-settings.png" alt-text="Screenshot of the Performance Diagnostics settings screen on which you can change storage accounts." lightbox="media/performance-diagnostics/change-storage-settings.png":::
 
@@ -182,3 +160,5 @@ Uninstalling Performance Diagnostics from a VM removes the VM extension but does
 To uninstall Performance Diagnostics, select the **Uninstall** button on the toolbar.
 
 :::image type="content" source="media/performance-diagnostics/uninstall-button.png" alt-text="Screenshot of the Performance Diagnostics screen toolbar that shows the Uninstall button highlighted." lightbox="media/performance-diagnostics/uninstall-button.png":::
+
+

@@ -12,9 +12,9 @@ ms.reviewer: poharjan
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
-Performance Diagnostics (PerfInsights) is a tool available for Azure virtual machines to identify and troubleshoot performance issues. It provides insights into high resource usage, such as high CPU, memory, and disk usage, and helps you understand the root cause of performance issues. 
+Performance Diagnostics (PerfInsights) helps identify and troubleshoot performance issues on Azure virtual machines. It provides insights into high resource usage such as high CPU, memory, and disk usage, and helps you understand the root cause of performance issues. 
 
-Run Performance Diagnostics directly from the Azure portal where you can review insights and a report about various logs, rich configuration, and diagnostics data. Use this information to diagnose your issue before contacting Microsoft Support.
+Run Performance Diagnostics directly from the Azure portal where you can review insights and reports about logs, configuration, and diagnostics data for the VM. Use this information to diagnose your issue before contacting Microsoft Support.
 
 Performance Diagnostics stores all insights and reports in a storage account that you can configure for short data retention to minimize costs.
 
@@ -24,9 +24,9 @@ Performance diagnostics operates in one of the following two modes:
 * **Continuous diagnostics** collects data at five-second intervals and reports actionable insights about high resource usage every five minutes. Continuous diagnostics is Generally Available (GA) for Windows VMs and in Public Preview for Linux VMs.
 * **On-demand diagnostics** helps you troubleshoot an ongoing performance issue by providing more in-depth data, insights, and recommendations that are based on data that's collected at a single moment. On-demand diagnostics is supported on both Windows and Linux.
 
-The following table compares the data provided by Continuous and On-demand Performance Diagnostics. For a complete list of all the collected diagnostics data, see **Data collected by Performance Diagnostics** on [Windows](./performance-diagnostics-using-windows.md#data-collected) or [Linux](./performance-diagnostics-using-linux.md#data-collected).
+The following table compares the data provided by Continuous and On-demand Performance Diagnostics. For a complete list of all the collected diagnostics data, see [Data collected](#data-collected).
 
-| | Continuous Performance Diagnostics | On-demand Performance Diagnostics |
+| | Continuous | On-demand |
 |:---|:---|:---|
 | **Availability**  | GA for Windows VMs<br>Public Preview for Linux VMs | GA for Windows<br>GA for Linux VMs |
 | **Insights generated** | Continuous actionable insights into high resource usage, such as high CPU, high memory, and high disk usage | On-demand actionable insights into high resource usage and various system configurations |
@@ -35,10 +35,7 @@ The following table compares the data provided by Continuous and On-demand Perfo
 
 ## Supported troubleshooting scenarios
 
-You can use Performance Diagnostics to troubleshoot various scenarios. The following sections describe common scenarios for using Continuous and On-Demand Performance Diagnostics to identify and troubleshoot performance issues.
-
-> [!NOTE]
-> For information about using PerfInsights across an Azure virtual machine scale set, see [PerfInsights and scale set VM instances](perfinsights-and-scale-set-vm-instances.md).
+The following sections describe common scenarios for using continuous and on-demand performance diagnostics to identify and troubleshoot performance issues.
 
 ### Continuous diagnostics
 
@@ -49,8 +46,11 @@ Continuous Performance diagnostics lets you identify high resource usage by moni
 - High disk usage: Detects high disk usage periods on physical disks, and shows the top disk usage consumers during those periods.
 
 ### On-demand diagnostics
+On-demand diagnostics provides different information between Windows and Linux VMs. The following sections describe the scenarios that are available for each platform.
 
 ### [Windows](#tab/windows)
+
+You can run the following on-demand reports from Windows machines:
 
 #### Quick analysis
 
@@ -108,6 +108,8 @@ When you run an advanced performance analysis, you select traces to run in paral
 
 ### [Linux](#tab/linux)
 
+You can run the following on-demand reports from Linux machines:
+
 ### Quick performance analysis
 
 This scenario collects basic information such as storage and hardware configuration of your virtual machine, various logs, including:
@@ -162,11 +164,9 @@ Each rule consists of the following:
 The following categories of rules are currently supported:
 
 - High resource usage:
-
   - High CPU usage: Detects high CPU usage periods, and shows the top CPU usage consumers during those periods.
   - High memory usage: Detects high memory usage periods, and shows the top memory usage consumers during those periods.
   - High disk usage: Detects high disk usage periods on physical disks, and shows the top disk usage consumers during those periods.
-
 - Storage: Detects specific storage configurations.
 - Memory: Detects specific memory configurations.
 - GPU: Detects specific GPU configurations.
@@ -181,6 +181,7 @@ The following categories of rules are currently supported:
 ---
 
 ## Permissions required
+The permissions in the following table are required to run Performance Diagnostics and view the reports. 
 
 | Action | Authentication type | Permissions required |
 |:-|:-|:-|
@@ -294,56 +295,40 @@ Information about the Linux virtual machine, operating system, block devices, hi
 
 ---
 
+## Performance impact
 
-## Frequently asked questions
+The following table shows the results of running 12-hour tests of continuous Performance Diagnostics on a range of Windows OS versions, Azure VMs of sizes, and CPU loads. These results show a minimal effect on system resources.
 
-**How do I share this data with Microsoft Support?**
-
-When you open a support ticket with Microsoft, it's important to share the Performance Diagnostics report from an on-demand Performance Diagnostics run. The Microsoft Support contact provides the option to upload the on-demand Performance Diagnostics report to a workspace. Use either of the following methods to download the on-demand Performance Diagnostics report:
-
-- Download the report from the Performance Diagnostics blade, as described in [View Performance Diagnostics reports](#view-performance-diagnostics-reports).
-- Download the report from the storage account, as described in [View and manage storage account and stored data](#view-and-manage-storage-account-and-stored-data).
-
-**How do I capture diagnostics data at the correct time?**
-
-We recommend that you run Continuous Performance Diagnostics to capture VM diagnostics data on an ongoing basis.
-
-The On-demand Performance Diagnostics run has the following stages:
-
-- Install or update the Performance Diagnostics VM extension
-- Run the diagnostics for the specified duration
-
-Currently, there's no easy way to know exactly when the VM extension installation is completed. It takes about 45 seconds to 1 minute to install the VM extension. After the VM extension is installed, you can run your repro steps to have On-demand Performance Diagnostics capture the correct set of data for troubleshooting.
-
-**Will Performance Diagnostics continue to work if I move my Azure VM across regions?**
-
-Azure VMs, and related network and storage resources, can be moved across regions by using Azure Resource Mover. However, moving VM extensions, including the Azure Performance Diagnostics VM extension, across regions isn't supported. You have to manually install the extension on the VM in the target region after you move the VM. For more information, see [Support matrix for moving Azure VMs between Azure regions](/azure/resource-mover/support-matrix-move-region-azure-vm).
-
-**What is the performance impact of enabling Continuous Performance Diagnostics?**
-
-We ran 12-hour tests of Continuous Performance Diagnostics on a range of Windows OS versions, Azure VMs of sizes, and CPU loads.
-
-The test results that are presented in this table show that Continuous Performance Diagnostics provides valuable insights by having a minimal effect on system resources.
-
-| OS version | VM size | CPU load | Avgerage CPU usage | 90th percentile CPU usage | 99th percentile CPU usage | Memory usage |
+| OS version | VM size | CPU load | Average CPU usage | 90th percentile CPU usage | 99th percentile CPU usage | Memory usage |
 ||:---|:---|:---|:---|:---|:---|
 | Windows Server 2019     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | 2% | 3% | 42-43 MB |
 | Windows Server 2016 SQL | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | 2% | 3% | 42-43 MB |
 | Windows Server 2019     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | 2% | 3% | 42-43 MB |
 | Windows Server 2022     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | <0.5% | 3% | 42-43 MB |
 
-**Rough calculations of storage costs**
 
-Continuous Performance Diagnostics stores insights in a table and a JSON file in a BLOB container. Given that each row is approximately 0.5 KB (kilobyte), and the report is approximately 9 KB before compression, two rows every five minutes plus the corresponding report upload equals 10 KB, or 0.00001 GB.
+## Storage costs
+Assuming steady stress on the VM, the storage cost for continuous performance diagnostics is estimated to be less than one cent per month, assuming that you use locally redundant storage. It stores insights in a table and a JSON file in a BLOB container. Each row is approximately 0.5 KB, and the report is approximately 9 KB before compression. Two rows every five minutes plus the corresponding report upload equals 10 KB, or 0.00001 GB.
 
 To calculate the storage cost:
 
-* Rows per month: 17,280
-* Size per row: 0.00001 GB
+- Rows per month: 17,280
+- Size per row: 0.00001 GB
+- **Total data size:** 17,280 x 0.000001 = 0.1728 GB
 
-**Total data size:** 17,280 x 0.000001 = 0.1728 GB
-**Data storage cost:** $0.1728 x  $0.045 = $0.007776 
+See [Azure Blob Storage pricing](https://azure.microsoft.com/pricing/details/storage/blobs/) for the latest prices. 
 
-Therefore, assuming steady stress on the VM, the storage cost is estimated to be less than one cent per month, assuming that you use locally redundant storage.
+## Moving VM across regions
+
+Azure VMs, and related network and storage resources, can be moved across regions by using Azure Resource Mover. However, moving VM extensions, including the Azure Performance Diagnostics VM extension, across regions isn't supported. You have to manually install the extension on the VM in the target region after you move the VM. For more information, see [Support matrix for moving Azure VMs between Azure regions](/azure/resource-mover/support-matrix-move-region-azure-vm).
+
+## Sharing diagnostics data with Microsoft Support
+
+When you open a support ticket with Microsoft, it's important to share the Performance Diagnostics report from an on-demand Performance Diagnostics run. The Microsoft Support contact provides the option to upload the on-demand Performance Diagnostics report to a workspace. Use either of the following methods to download the on-demand Performance Diagnostics report:
+
+- Download the report from the Performance Diagnostics blade, as described in [View Performance Diagnostics reports](#view-performance-diagnostics-reports).
+- Download the report from the storage account, as described in [View and manage storage account and stored data](#view-and-manage-storage-account-and-stored-data).
+
+
 
 [!INCLUDE [Azure Help Support](includes/azure-help-support.md)]
