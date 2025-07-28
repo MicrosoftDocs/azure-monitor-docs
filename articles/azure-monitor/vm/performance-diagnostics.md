@@ -46,140 +46,28 @@ Continuous Performance diagnostics lets you identify high resource usage by moni
 - High disk usage: Detects high disk usage periods on physical disks, and shows the top disk usage consumers during those periods.
 
 ### On-demand diagnostics
-On-demand diagnostics provides different information between Windows and Linux VMs. The following sections describe the scenarios that are available for each platform.
+On-demand diagnostics provides different information between Windows and Linux VMs. The following sections describe the scenarios that are available for each platform. For more details on each report, see [On-demand reports](./performance-diagnostics-use.md#on-demand-reports).
 
 ### [Windows](#tab/windows)
 
-You can run the following on-demand reports from Windows machines:
+| Report | Description |
+|:---|:---|
+| **Quick performance analysis** | Basic overview of the VM's configuration and performance including event logs, disk configuration, and network usage. |
+| **Benchmarking** | Runs a benchmark test (IOPS and MBPS) for all drives that are attached to the VM. |
+| **Performance analysis** | Checks for resource consumption, known issues, analyzes best practices, and collects diagnostics data. |
+| **Azure Files analysis** | Runs a special performance counter capture with a network trace. Includes all the Server Message Block (SMB) client shares counters. |
+| **Advanced performance analysis** | Select traces to run in parallel. |
 
-#### Quick analysis
-
-This scenario collects the disk configuration and other important information, including:
-
-- Event logs
-- Network status for all incoming and outgoing connections
-- Network and firewall configuration settings
-- Task list for all applications that are currently running on the system
-- Microsoft SQL Server database configuration settings (if VM is running SQL Server)
-- Storage reliability counters
-- Important Windows hotfixes
-- Installed filter drivers
-
-This is a passive collection of information that shouldn't affect the system.
-
->[!Note]
->This scenario is automatically included in each of the following scenarios.
-
-#### Benchmarking
-This scenario runs the [Diskspd](https://github.com/Microsoft/diskspd) benchmark test (IOPS and MBPS) for all drives that are attached to the VM.
-
-> [!Note]
-> This scenario can affect the system, and shouldn't be run on a live production system. If necessary, run this scenario in a dedicated maintenance window to avoid any problems. An increased workload that is caused by a trace or benchmark test can adversely affect the performance of your VM.
-
-#### Performance analysis
-This scenario runs a [performance counter](/windows/win32/perfctrs/performance-counters-portal) trace by using the counters that are specified in the `RuleEngineConfig.json file`. If the VM is identified as a server that is running SQL Server, a performance counter trace is run. It does so by using the counters that are found in the `RuleEngineConfig.json` file. This scenario also includes performance diagnostics data.
-
-#### Azure Files analysis
-This scenario runs a special performance counter capture together with a network trace. The capture includes all the Server Message Block (SMB) client shares counters. The following are some key SMB client share performance counters that are part of the capture:
-
-| **Type**     | **SMB client shares counter** |
-|--------------|-------------------------------|
-| IOPS         | Data Requests/sec             |
-|              | Read Requests/sec             |
-|              | Write Requests/sec            |
-| Latency      | Avg. sec/Data Request         |
-|              | Avg. sec/Read                 |
-|              | Avg. sec/Write                |
-| IO Size      | Avg. Bytes/Data Request       |
-|              | Avg. Bytes/Read               |
-|              | Avg. Bytes/Write              |
-| Throughput   | Data Bytes/sec                |
-|              | Read Bytes/sec                |
-|              | Write Bytes/sec               |
-| Queue Length | Avg. Read Queue Length        |
-|              | Avg. Write Queue Length       |
-|              | Avg. Data Queue Length        |
-
-#### Advanced performance analysis
-When you run an advanced performance analysis, you select traces to run in parallel. If you want, you can run them all (Performance Counter, Xperf, Network, and StorPort).  
-
-> [!Note]
-> This scenario can affect the system, and shouldn't be run on a live production system. If necessary, run this scenario in a dedicated maintenance window to avoid any problems. An increased workload that is caused by a trace or benchmark test can adversely affect the performance of your VM.
 
 ### [Linux](#tab/linux)
 
-You can run the following on-demand reports from Linux machines:
-
-### Quick performance analysis
-
-This scenario collects basic information such as storage and hardware configuration of your virtual machine, various logs, including:
-
-- Operating System information
-- PCI device information
-- General Guest OS logs
-- Configuration files
-- Storage information
-- Azure Virtual Machine Configuration (collected using [Azure Instance Metadata Service](/azure/virtual-machines/windows/instance-metadata-service))
-- List of running processes, Disk, Memory, and CPU usage
-- Networking information
-
-This is a passive collection of information that shouldn't affect the system.
-
->[!Note]
->Quick performance analysis scenario is automatically included in each of the following scenarios:
-
-### Performance analysis
-
-This scenario is similar to Quick performance analysis but allows capturing diagnostics information for longer duration.
-
-### HPC performance analysis
-
-This scenario is meant for troubleshooting issues on HPC size VMs, meaning H-Series and N-Series. It checks a VMs configuration against what the Azure HPC Platform team has tested and recommends. It also collects logs and diagnostics related to the status and configuration of the special hardware that is available on those VMs, including:
-
-- GPU Driver information
-- GPU hardware diagnostics
-- InfiniBand driver information and configuration
-- InfiniBand device diagnostics
-- Network configuration files
-- Performance tuning information
-
->[!Note]
->Some tools used by the HPC performance analysis scenario, such as cli commands that are packaged in with device drivers, are not present on all VMs. In such cases, those portions of the analysis will be skipped. Running this scenario does not install any software on VMs or make any other permanent changes.
-
->[!Note]
->Running the HPC scenario directly from the Azure Portal is not supported at this time, so PerfInsights must be downloaded and run from the command line to use it.
-
-
-
-### Performance diagnostics trace
-
-Runs a rule-based engine in the background to collect data and diagnose ongoing performance issues. Rules are displayed in the report under the Category -> Finding tab.
-
-Each rule consists of the following:
-
-- Finding: Description of the finding.
-- Recommendation: Recommendation on what action could be taken for the finding. There are also reference link(s) to documentation that provide more information on the finding and/or recommendation.
-- Impact Level: Represents the potential for having an impact on performance.
-
-The following categories of rules are currently supported:
-
-- High resource usage:
-  - High CPU usage: Detects high CPU usage periods, and shows the top CPU usage consumers during those periods.
-  - High memory usage: Detects high memory usage periods, and shows the top memory usage consumers during those periods.
-  - High disk usage: Detects high disk usage periods on physical disks, and shows the top disk usage consumers during those periods.
-- Storage: Detects specific storage configurations.
-- Memory: Detects specific memory configurations.
-- GPU: Detects specific GPU configurations.
-- Network: Detects specific network settings.
-- System: Detects specific system settings.
-
->[!Note]
->[`*`] PCI information is not yet collected on Debian and SLES distributions.
->
->[`**`] /var/log/sysstat or /var/log/sa contains the System Activity Report (SAR) files that are collected by the sysstat package. If the sysstat package is not installed on the VM, the PerfInsights tool provides a recommendation to install it.
+| Report | Description |
+|:---|:---|
+| **Quick performance analysis** | Basic overview of the VM's configuration and performance including event logs, disk configuration, and network usage. |
+| **Performance analysis** | Checks for resource consumption, known issues, analyzes best practices, and collects diagnostics data. |
+| **HPC performance analysis** | Checks a VMs configuration against what the Azure HPC Platform team has tested and recommends. Also collects logs and diagnostics related to the status and configuration of the special hardware that is available on those VMs. This report can only be run from the command line using the process described in [Run reports](./performance-diagnostics-install.md#run-reports). |
 
 ---
-
 
 ## Data collected
 

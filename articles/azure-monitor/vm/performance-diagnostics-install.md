@@ -105,6 +105,30 @@ Each option displays the same set of options that you must configure before sele
 
 A notification is displayed as Performance Diagnostics starts to install, and you'll receive a second notification when it completes. This typically takes about a minute. If you selected the **Run on-demand diagnostics** option, the selected performance analysis scenario is then run for the specified duration.
 
+## Install in standalone mode
+Using standalone mode, you can run performance diagnostics without installing the extension on the VM. This mode is useful for troubleshooting performance issues on non-Azure VMs or when you want to run diagnostics without modifying the VM configuration. You must log in interactively to the VM to run PerfInsights in standalone mode.
+
+### [Windows](#tab/windows)
+1. Download [PerfInsights.zip](https://aka.ms/perfinsightsdownload).
+
+2. Unblock the PerfInsights.zip file. To do this, right-click the PerfInsights.zip file, and select **Properties**. In the **General** tab, select **Unblock**, and then select **OK**. This action ensures that the tool runs without any other security prompts.  
+
+    :::image type="content" source="media/how-to-use-perfInsights/pi-unlock-file.png" alt-text="Screenshot of PerfInsights Properties, with Unblock highlighted.":::
+
+3. Expand the compressed PerfInsights.zip file to your temporary drive.
+
+### [Linux](#tab/linux)
+
+1. Download [PerfInsights.tar.gz](https://aka.ms/perfinsightslinuxdownload) to a folder on your virtual machine and extract the contents using the below commands from the terminal.
+
+   ```bash
+   wget https://download.microsoft.com/download/9/F/8/9F80419C-D60D-45F1-8A98-718855F25722/PerfInsights.tar.gz
+   ```
+
+   ```bash
+   tar xzvf PerfInsights.tar.gz
+   ```
+
 
 ## Run reports
 
@@ -220,30 +244,6 @@ sudo python perfinsights.py -r hpc -d 60S -a -t <StorageAccountName> -k <Storage
 When the run is completed, a new tar file appears in the same folder as PerfInsights unless no output folder is specified. The name of the file is **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.tar.gz.** You can send this file to the support agent for analysis or open the report inside the file to review findings and recommendations.
 
 ---
-
-## Install in standalone mode
-Using standalone mode, you can run performance diagnostics without installing the extension on the VM. This mode is useful for troubleshooting performance issues on non-Azure VMs or when you want to run diagnostics without modifying the VM configuration. You must log in interactively to the VM to run PerfInsights in standalone mode.
-
-### [Windows](#tab/windows)
-1. Download [PerfInsights.zip](https://aka.ms/perfinsightsdownload).
-
-2. Unblock the PerfInsights.zip file. To do this, right-click the PerfInsights.zip file, and select **Properties**. In the **General** tab, select **Unblock**, and then select **OK**. This action ensures that the tool runs without any other security prompts.  
-
-    :::image type="content" source="media/how-to-use-perfInsights/pi-unlock-file.png" alt-text="Screenshot of PerfInsights Properties, with Unblock highlighted.":::
-
-3. Expand the compressed PerfInsights.zip file to your temporary drive.
-
-### [Linux](#tab/linux)
-
-1. Download [PerfInsights.tar.gz](https://aka.ms/perfinsightslinuxdownload) to a folder on your virtual machine and extract the contents using the below commands from the terminal.
-
-   ```bash
-   wget https://download.microsoft.com/download/9/F/8/9F80419C-D60D-45F1-8A98-718855F25722/PerfInsights.tar.gz
-   ```
-
-   ```bash
-   tar xzvf PerfInsights.tar.gz
-   ```
 
 
 
