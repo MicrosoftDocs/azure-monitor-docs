@@ -455,7 +455,7 @@ These replies are supported for SMS notifications. The recipient of the SMS can 
 You might have a limited number of Azure app actions per action group.
 
 ### Countries/Regions with SMS notification support
-<br><br>
+
 <details>
 <summary>Expand to view list</summary>
 
@@ -511,7 +511,6 @@ You might have a limited number of voice actions per action group. For important
 
 ### Countries/Regions with Voice notification support
 
-<br><br>
 <details>
 <summary>Expand to view list</summary>
 
