@@ -138,17 +138,17 @@ There's no need to run continuous diagnostics manually. The Performance Diagnost
 
 ### On-demand diagnostics
 
+There are two methods to run on-demand diagnostics.
+
+If you installed the Performance Diagnostics extension on the VM, you can run diagnostics from the Azure portal. From the **Performance Diagnostics** option in the VM menu, select **Run diagnostics** and then select the report to run and its duration. 
+
 > [!WARNING]
-> ## Possible performance impact
+> #### Possible performance impact
 > Be aware of the following potential performance impacts on the VM when you run Performance Diagnostics.
 > 
 > - For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Xperf or Diskspd, the tool might adversely affect the performance of the VM. These scenarios shouldn't be run in a live production environment.
 > - For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Diskspd, ensure that no other background activity interferes with the I/O workload.
 > - By default, the tool uses the temporary storage drive to collect data. If tracing stays enabled for a longer time, the amount of data that is collected might be relevant. This can reduce the availability of space on the temporary disk, and can therefore affect any application that relies on this drive.
-
-There are two methods to run on-demand diagnostics.
-
-If you installed the Performance Diagnostics extension on the VM, you can run diagnostics from the Azure portal. From the **Performance Diagnostics** option in the VM menu, select **Run diagnostics** and then select the report to run and its duration. 
 
 If you installed the standalone version of PerfInsights, you can run on-demand diagnostics from the command line. 
 

@@ -8,7 +8,7 @@ ms.reviewer: poharjan
 # Customer intent: As a VM administrator or a DevOps engineer, I want to analyze and troubleshoot performance issues on my Azure virtual machine so that I can resolve these issues myself or share Performance Diagnostics information with Microsoft Support.
 ---
 
-# Troubleshoot performance issues on Azure virtual machines with Performance Diagnostics
+# Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance issues
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
