@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor features for Kubernetes monitoring
+title: Kubernetes monitoring in Azure Monitor
 description: Describes Container Insights and Managed Prometheus in Azure Monitor, which work together to monitor your Kubernetes clusters.
 ms.topic: article
 ms.custom: references_regions
@@ -7,7 +7,7 @@ ms.date: 02/05/2025
 ms.reviewer: viviandiec
 ---
 
-# Azure Monitor features for Kubernetes monitoring
+# Kubernetes monitoring in Azure Monitor
 
 [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) and Container Insights work together for complete monitoring of your Kubernetes environment. This article describes both features and the data they collect.
 
