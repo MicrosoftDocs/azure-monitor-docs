@@ -184,8 +184,11 @@ The following sample template creates a diagnostic setting to send all audit log
 }
 ```
 
-
 ---
+
+> [!WARNING] 
+> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the resource isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
+
 
    
 ## Category groups
@@ -211,10 +214,6 @@ Diagnostic settings don't currently support multi-dimensional metrics. Metrics w
 
 To work around the limitations for specific metrics, you can manually extract them by using the [Metrics REST API](/rest/api/monitor/metrics/list) and then import them into a Log Analytics workspace with the [Logs ingestion API](../logs/logs-ingestion-api-overview.md).
 
-
-
-## Deleting diagnostic settings
-Delete any diagnostic settings for a resource if you delete or rename that resource, or migrate it across resource groups or subscriptions. If you recreate this resource, any diagnostic settings for the deleted resource could be applied to the new one. This resumes the collection of resource logs as defined in the diagnostic setting. 
 
 ## Controlling costs
 There may be a cost for data collected by diagnostic settings. The cost depends on the destination you choose and the volume of data collected. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
