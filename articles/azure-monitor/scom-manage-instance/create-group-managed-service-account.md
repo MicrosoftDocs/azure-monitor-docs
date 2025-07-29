@@ -61,7 +61,9 @@ In that command:
 - `MSOMHSvc/ContosoLB.aquiladom.com`, `SMSOMHSvc/ContosoLB`, `MSOMSdkSvc/ContosoLB.aquiladom.com`, and `MSOMSdkSvc/ContosoLB` are service principal names.
 
 > [!NOTE]
-> If the gMSA name is longer than 14 characters, ensure that you set `SamAccountName` at less than 15 characters, including the `$` sign.
+> If the gMSA name is longer than 15 characters, ensure that you set the `-SamAccountName` parameter at 15 characters or less, excluding the `$` sign, to be compatible with older operating systems.
+>
+> Note: If the specified SAMAccountName string doesn't end with a `$`, one is appended if necessary.
 
 If the root key isn't effective, use the following command:
 
