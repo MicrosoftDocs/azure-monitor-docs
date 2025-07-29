@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor action groups
+title: Create and manage action groups in Azure Monitor
 description: Find out how to create and manage action groups. Learn about notifications and actions that action groups enable, such as email, webhooks, and Azure functions.
 ms.topic: how-to
 ms.date: 02/13/2025
@@ -9,23 +9,32 @@ ms.custom: references_regions, devx-track-arm-template, has-azure-ad-ps-ref, azu
 
 # Action groups
 
-When Azure Monitor data indicates that there might be a problem with your infrastructure or application, an alert is triggered. You can use an action group to send a notification such as a voice call, SMS, push, or email when the alert is triggered in addition to the alert itself. Action groups are a collection of notification preferences and actions. Azure Monitor, Azure Service Health, and Azure Advisor use action groups to notify users about the alert and take an action.
-This article shows you how to create and manage action groups.
+When Azure Monitor data indicates a potential issue in your infrastructure or application, it triggers an alert. To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated actions.
+
+Action groups define who gets notified and what actions are taken when an alert fires. They support multiple notification types, including voice call, SMS, push notifications, email, and automated actions (for example, triggering a webhook or [Azure Function](/azure/azure-functions/functions-overview)). These groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
 
 Each action is made up of:
 
-* **Type**: The sent notification or performed action. Examples include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
+* **Type**: The kind of notification or automation.
 * **Name**: A unique identifier within the action group.
-* **Details**: The corresponding details that vary by type.
+* **Details**: Specific configuration based on the action type.
 
-In general, an action group is a global service. Efforts to make them more available regionally are in development.
+This article shows you how to create and manage action groups.
 
-Global requests from clients can be processed by action group services in any region. If one region of the action group service is down, the traffic is automatically routed and processed in other regions. As a global service, an action group helps provide a disaster recovery solution. Regional requests rely on availability zone redundancy to meet privacy requirements and offer a similar disaster recovery solution.
+### Global availability and resilience
 
-* You can add up to five action groups to an alert rule.
+Global requests from clients can be processed by action group services in any region. If one region of the action group service is down, the traffic is automatically routed and processed in other regions. As a global service, an action group helps provide a disaster recovery solution.
+
+> [!NOTE]
+> Regional requests rely on availability zone redundancy to meet privacy requirements and offer a similar disaster recovery solution.
+
+### Reusability and execution
+
+* You can add up to five action groups to a single alert rule.
 * Action groups are executed concurrently, in no specific order.
 * Multiple alert rules can use the same action group.
-* Action Groups are defined by the unique set of actions and the users to be notified. For example, if you want to notify User1, User2 and User3 by email for two different alert rules, you only need to create one action group which you can apply to both alert rules.
+* Action Groups are defined by the unique set of actions and the users to be notified.<br>
+    **Example:** To notify User1, User2 and User3 by email for two different alert rules, you only need to create one action group and apply it to both alert rules.
 
 ## Create an action group in the Azure portal
 
@@ -35,19 +44,17 @@ Global requests from clients can be processed by action group services in any re
 
 1. Select **Alerts**, and then select **Action groups**.
 
-    :::image type="content" source="./media/action-groups/manage-action-groups.png" alt-text="Screenshot of the Alerts page in the Azure portal with the action groups button highlighter.":::
+    :::image type="content" source="media/action-groups/manage-action-groups.png" alt-text="Screenshot of the Alerts page in the Azure portal with the action groups button highlighter.":::
 
-1. Select **Create**.
-
-    :::image type="content" source="./media/action-groups/create-action-group.png" alt-text="Screenshot that shows the Action groups page in the Azure portal. The Create button is called out.":::
+1. Select **Create** from the top action bar.
 
 1. Configure basic action group settings. In the **Project details** section:
 
     * Select values for **Subscription** and **Resource group**.
     * Select the region.
-  
+
     > [!NOTE]
-    > Service Health Alerts are only supported in public clouds within the global region. For Action Groups to properly function in response to a Service Health Alert, the region of the action group must be set as *Global*.
+    > Service Health Alerts are only supported in public clouds within the global region. For Action groups to properly function in response to a Service Health Alert, the region of the action group must be set to *Global*.
 
     | Option | Behavior |
     | ------ | -------- |
@@ -58,7 +65,7 @@ Global requests from clients can be processed by action group services in any re
 
 1. In the **Instance details** section, enter values for **Action group name** and **Display name**. The display name is used in place of a full action group name when the group is used to send notifications.
 
-    :::image type="content" source="./media/action-groups/action-group-1-basics.png" alt-text="Screenshot that shows the Create action group dialog. Values are visible in the Subscription, Resource group, Action group name, and Display name boxes.":::
+    :::image type="content" source="media/action-groups/action-group-1-basics.png" alt-text="Screenshot that shows the Create action group dialog. Values are visible in the Subscription, Resource group, Action group name, and Display name boxes.":::
 
 1. Configure notifications. Select **Next: Notifications**, or select the **Notifications** tab at the top of the page.
 
@@ -96,18 +103,13 @@ Global requests from clients can be processed by action group services in any re
     | Secure webhook | When you use a secure webhook action, you must use Microsoft Entra ID to secure the connection between your action group and your endpoint, which is a protected web API. See [Configure authentication for Secure webhook](#configure-authentication-for-secure-webhook). Secure webhook doesn't support basic authentication. If you're using basic authentication, use the Webhook action. |
     | Webhook | If you use the webhook action, your target webhook endpoint must be able to process the various JSON payloads that different alert sources emit.<br><br>You can't pass security certificates through a webhook action. To use basic authentication, you must pass your credentials through the URI.<br>If the webhook endpoint expects a specific schema, for example, the Microsoft Teams schema, use the **Logic Apps** action type to manipulate the alert schema to meet the target webhook's expectations.<br><br>For information about the rules used for retrying webhook actions, see [Webhook](#webhook). |
 
-    :::image type="content" source="./media/action-groups/action-group-3-actions.png" alt-text="Screenshot that shows the Actions tab of the Create action group dialog. Several options are visible in the Action type list.":::
+    :::image type="content" source="media/action-groups/action-group-3-actions.png" alt-text="Screenshot that shows the Actions tab of the Create action group dialog. Several options are visible in the Action type list.":::
 
 1. (Optional) If you'd like to assign a key-value pair to the action group to categorize your Azure resources, select **Next: Tags** or the **Tags** tab. Otherwise, skip this step.
 
-    :::image type="content" source="./media/action-groups/action-group-4-tags.png" alt-text="Screenshot that shows the Tags tab of the Create action group dialog. Values are visible in the Name and Value boxes.":::
-
 1. Select **Review + create** to review your settings. This step quickly checks your inputs to make sure you entered all required information. If there are issues, they're reported here. After reviewing the settings, select **Create** to create the action group.
 
-    :::image type="content" source="./media/action-groups/action-group-5-review.png" alt-text="Screenshot that shows the Review + create tab of the Create action group dialog. All configured values are visible.":::
-    
     > [!NOTE]
-    >
     > When you configure an action to notify a person by email or SMS, they receive a confirmation that indicates they were added to the action group.
 
 ### Test an action group in the Azure portal
@@ -119,21 +121,19 @@ When you create or update an action group in the Azure portal, you can test the 
     > [!NOTE]
     > The action group must be created and saved before testing. If you're editing an existing action group, save the changes to the action group before testing.
 
-1. On the action group page, select **Test**.
-
-    :::image type="content" source="./media/action-groups/test-action-group.png" alt-text="Screenshot that shows the test action group page with the Test option.":::
+1. On the **Action groups** page, select an action group, then select **Test** from the top action bar.
 
 1. Select a sample type and the notification and action types that you want to test. Then select **Test**.
 
-    :::image type="content" source="./media/action-groups/test-sample-action-group.png" alt-text="Screenshot that shows the Test sample action group page with an email notification type and a webhook action type.":::
+    :::image type="content" source="media/action-groups/test-sample-action-group.png" alt-text="Screenshot that shows the Test sample action group page with an email notification type and a webhook action type.":::
 
 1. If you close the window or select **Back to test setup** while the test is running, the test is stopped, and you don't get test results.
 
-    :::image type="content" source="./media/action-groups/stop-running-test.png" alt-text="Screenshot that shows the Test Sample action group page. A dialog contains a Stop button and asks the user about stopping the test.":::
+    :::image type="content" source="media/action-groups/stop-running-test.png" alt-text="Screenshot that shows the Test Sample action group page. A dialog contains a Stop button and asks the user about stopping the test.":::
 
 1. When the test is finished, a test status of either **Success** or **Failed** appears. If the test failed and you want to get more information, select **View details**.
 
-    :::image type="content" source="./media/action-groups/test-sample-failed.png" alt-text="Screenshot that shows the Test sample action group page showing a test that failed.":::
+    :::image type="content" source="media/action-groups/test-sample-failed.png" alt-text="Screenshot that shows the Test sample action group page showing a test that failed.":::
     
     You can use the information in the **Error details** section to understand the issue. Then you can edit, save changes, and test the action group again.
     
@@ -149,7 +149,7 @@ The following table describes the role membership requirements that are needed f
 | Resource group contributor        | Supported             | Supported                                    | Not applicable                          |
 | Action group resource contributor | Supported             | Not applicable                               | Not applicable                          |
 | Azure Monitor contributor         | Supported             | Supported                                    | Not applicable                          |
-| Custom role <sup>1</sup>           | Supported             | Supported                                    | Not applicable                          |
+| Custom role <sup>1</sup>          | Supported             | Supported                                    | Not applicable                          |
 
 <sup>1</sup> The custom role must have the **Microsoft.Insights/ActionGroups/*** permission added, which will also allow the user to update and delete the action group. To add restrictions so the user can only test the action group, add the following under the **JSON** tab for the custom role:
 
@@ -198,7 +198,12 @@ The basic steps are:
 
 To create an action group by using a Resource Manager template, you create a resource of the type `Microsoft.Insights/actionGroups`. Then you fill in all related properties. Here are two sample templates that create an action group.
 
-The first template describes how to create a Resource Manager template for an action group where the action definitions are hard-coded in the template. The second template describes how to create a template that takes the webhook configuration information as input parameters when the template is deployed.
+**Template 1**
+
+This template describes how to create a Resource Manager template for an action group where the action definitions are hard-coded in the template.
+<br><br>
+<details>
+<summary>Expand to view the template</summary>
 
 ```json
 {
@@ -296,6 +301,14 @@ The first template describes how to create a Resource Manager template for an ac
   }
 }
 ```
+</details>
+
+**Template 2**
+
+This template describes how to create a template that takes the webhook configuration information as input parameters when the template is deployed.
+<br><br>
+<details>
+<summary>Expand to view the template</summary>
 
 ```json
 {
@@ -358,6 +371,7 @@ The first template describes how to create a Resource Manager template for an ac
   }
 }
 ```
+</details>
 
 ## Manage action groups
 
@@ -399,7 +413,7 @@ If your primary email doesn't receive notifications, configure the email address
     1. At the top of the page, select **Edit properties**.
     1. Enter an email address.
     1. At the top of the page, select **Save**.
-    
+
     :::image type="content" source="media/action-groups/active-directory-add-primary-email.png" alt-text="Screenshot that shows a user profile page in the Azure portal. The Edit button and the Email box are called out." border="true":::
 
 You may have a limited number of email actions per action group. To check which limits apply to your situation, see [Azure Monitor service limits](../service-limits.md).
@@ -442,6 +456,9 @@ You might have a limited number of Azure app actions per action group.
 
 ### Countries/Regions with SMS notification support
 
+<details>
+<summary>Expand to view list</summary>
+
 | Country code | Country                                 |
 |:-------------|:----------------------------------------|
 | 61           | Australia                               |
@@ -483,6 +500,8 @@ You might have a limited number of Azure app actions per action group.
 | 44           | United Kingdom                          |
 | 1            | United States                           |
 
+</details>
+
 ## Voice
 
 You might have a limited number of voice actions per action group. For important information about rate limits, see [Azure Monitor service limits](../service-limits.md).
@@ -491,6 +510,9 @@ You might have a limited number of voice actions per action group. For important
 > If you can't select your country/region code in the Azure portal, voice calls aren't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). In the meantime, as a workaround, configure your action group to call a webhook to a third-party voice call provider that offers support in your country/region. If a country is marked with an asterisk (\*), calls come from a USA based phone number.
 
 ### Countries/Regions with Voice notification support
+
+<details>
+<summary>Expand to view list</summary>
 
 | Country code | Country               |
 |:-------------|:----------------------|
@@ -533,6 +555,8 @@ You might have a limited number of voice actions per action group. For important
 | 44           | United Kingdom        |
 | 1            | United States         |
 
+</details>
+
 For information about pricing for supported countries/regions, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Webhook
@@ -558,7 +582,7 @@ Webhook action groups generally follow these rules when called:
 
 ### Configure authentication for Secure webhook
 
-The secure webhook action authenticates to the protected API by using a Service Principal instance in the Microsoft Entra tenant of the "AZNS AAD Webhook" Microsoft Entra application. To make the action group work, this Microsoft Entra Webhook Service Principal must be added as a member of a role on the target Microsoft Entra application that grants access to the target endpoint.
+The secure webhook action authenticates to the protected API by using a Service Principal instance in the Microsoft Entra tenant of the *AZNS AAD Webhook* Microsoft Entra application. To make the action group work, this Microsoft Entra Webhook Service Principal must be added as a member of a role on the target Microsoft Entra application that grants access to the target endpoint.
 
 For an overview of Microsoft Entra applications and service principals, see [Microsoft identity platform (v2.0) overview](/azure/active-directory/develop/v2-overview). Follow these steps to take advantage of the secure webhook functionality.
 
@@ -571,7 +595,7 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 
 1. Create a Microsoft Entra application for your protected web API. For more information, see [Protected web API: App registration](/azure/active-directory/develop/scenario-protected-web-api-app-registration). Configure your protected API to be called by a daemon app and expose application permissions, not delegated permissions.
 
-    > [!NOTE]
+    > [!TIP]
     > Configure your protected web API to accept V2.0 access tokens. For more information about this setting, see [Microsoft Entra app manifest](/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute).
 
 1. To enable the action group to use your Microsoft Entra application, use the PowerShell script that follows this procedure.
@@ -580,13 +604,13 @@ If you use the webhook action, your target webhook endpoint must be able to proc
     > * You must be assigned the [Microsoft Entra Application Administrator role](/azure/active-directory/roles/permissions-reference#all-roles) to run this script.
     >
     > * The service principal must be assigned an **owner role** of the Microsoft Entra application to be able to create, modify, or test the secure webhook action in the action group.
-   
+
 1. Configure the secure webhook action.
 
     1. Copy the `$myApp.ObjectId` value that's in the script.
     1. In the webhook action definition, in the **Object Id** box, enter the value that you copied.
-    
-    :::image type="content" source="./media/action-groups/action-groups-secure-webhook.png" alt-text="Screenshot that shows the Secured Webhook dialog in the Azure portal with the Object ID box." border="true":::
+
+    :::image type="content" source="media/action-groups/action-groups-secure-webhook.png" alt-text="Screenshot that shows the Secured Webhook dialog in the Azure portal with the Object ID box." border="true":::
 
 ### Secure webhook PowerShell script
 
@@ -599,6 +623,9 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 1. Replace your `tenantId` and the `ObjectID` in your App Registration.
 1. Save as *\*.ps1*
 1. Open the PowerShell command from your machine and run the *\*.ps1* script.
+<br><br>
+<details>
+<summary>Expand to view the script</summary>
 
 ```PowerShell
 Write-Host "================================================================================================="
@@ -682,6 +709,7 @@ foreach ($role in $myAppRoles) { Write-Host $role.Value }
 
 Write-Host "================================================================================================="
 ```
+</details>
 
 ## Migrate Runbook action from "Run as account" to "Run as Managed Identity"
 
@@ -690,13 +718,16 @@ Write-Host "====================================================================
 
 To ensure you can continue using the runbook actions, you need to:
 
-1. Edit the action group by adding a new action with action type "Automation Runbook" and choose the same runbook from the dropdown. (All 5 runbooks in the dropdown have been reconfigured at the backend to authenticate using Managed Identity instead of Run as account. System-assigned Managed Identity in Automation account would be enabled with VM Contributor role at the subscription level would be assigned automatically.)
+1. Edit the action group by adding a new action with action type *Automation Runbook* and choose the same runbook from the dropdown.
 
-    :::image type="content" source="./media/action-groups/action-group-runbook-add.png" alt-text="Screenshot of adding a runbook action to an action group.":::
+    > [!NOTE]
+    > All 5 runbooks in the dropdown have been reconfigured at the backend to authenticate using Managed Identity instead of Run as account. System-assigned Managed Identity in Automation account would be enabled with VM Contributor role at the subscription level would be assigned automatically.
 
-    :::image type="content" source="./media/action-groups/action-group-runbook-configure.png" alt-text="Screenshot of configuring the runbook action.":::
+    :::image type="content" source="media/action-groups/action-group-runbook-add.png" alt-text="Screenshot of adding a runbook action to an action group.":::
 
-1. Delete old runbook action which links to a "Run as account" runbook.
+    :::image type="content" source="media/action-groups/action-group-runbook-configure.png" alt-text="Screenshot of configuring the runbook action.":::
+
+1. Delete old runbook action which links to a *Run as account* runbook.
 
 1. Save the action group.
 
