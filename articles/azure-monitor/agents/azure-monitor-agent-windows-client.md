@@ -38,7 +38,7 @@ Here's a comparison between using the client installer and using the virtual mac
 | Device type | Supported? | Installation method | Additional information |
 |:------------|:-----------|:--------------------|:-----------------------|
 | Windows 11, 10 desktops, workstations | Yes | Client installer | Installs the agent by using a Windows MSI installer. |
-| Windows 11, 10 laptops | Yes | Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent *isn't yet optimized* for battery or network consumption). |
+| Windows 11, 10 laptops | Yes | Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent isn't yet optimized for battery, network consumption, or hibernation). |
 | VMs, scale sets | No | [VM extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) | Installs the agent by using the Azure extension framework. |
 | On-premises servers | No | [VM extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent by using the Azure extension framework, provided for on-premises by installing the Azure Arc agent. |
 
