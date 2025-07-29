@@ -187,7 +187,7 @@ The following sample template creates a diagnostic setting to send all audit log
 ---
 
 > [!WARNING] 
-> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the resource isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
+> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
 
 
    
