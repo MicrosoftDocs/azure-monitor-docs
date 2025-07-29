@@ -65,7 +65,7 @@ To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#vi
 ## Disabling the VM Insights Map experience
 
 ### Removing Dependency Agent from a single VM 
-See the article on [Uninstall Dependency Agent](/azure/azure-monitor/vm/vminsights-dependency-agent#uninstall-dependency-agent) for steps to uninstall. 
+See the article on [Uninstall Dependency Agent](vminsights-dependency-agent.md#uninstall-dependency-agent) for steps to uninstall. 
 
 
 ## Key dates 
