@@ -164,7 +164,7 @@ To view the results in a graph, select **Chart** on the results pane. Notice tha
 :::image type="content" source="media/log-analytics-tutorial/example-query-output-chart.png" alt-text="Screenshot that shows the query results chart." lightbox="media/log-analytics-tutorial/example-query-output-chart.png":::
 
 > [!TIP]
-> To learn how to pin these visuals to a shared dashboard, see [Create and share dashboards that visualize data in Azure Monitor Logs](./visualize/tutorial-logs-dashboards.md).
+> To learn how to pin these visuals to a shared dashboard, see [Create and share dashboards that visualize data in Azure Monitor Logs](../visualize/tutorial-logs-dashboards.md).
 
 ## Next steps
 
