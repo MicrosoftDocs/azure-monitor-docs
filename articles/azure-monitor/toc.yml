@@ -458,47 +458,55 @@ items:
       href: containers/best-practices-containers.md
     - name: Analyze and reduce costs
       href: containers/container-insights-cost.md
-    - name: Enable Container Insights and Managed Prometheus
+    - name: Install and configure
       items:
       - name: Onboard cluster
         href: containers/kubernetes-monitoring-enable.md
-      - name: Onboard hybrid cluster
-        href: containers/container-insights-hybrid-setup.md
-      - name: Prometheus based Container Insights
-        href: containers/container-insights-experience-v2.md
-      - name: Firewall requirements
-        displayName: Container insights, Prometheus
-        href: containers/kubernetes-monitoring-firewall.md
-      - name: Private Link
-        displayName: Container insights, Kubernetes
-        href: containers/kubernetes-monitoring-private-link.md
-      - name: Agent management
-        href: containers/container-insights-manage-agent.md
-      - name: Legacy authentication
-        href: containers/container-insights-authentication.md
-      - name: Supported region mappings
-        href: containers/container-insights-region-mapping.md
-      - name: Transition from Container monitoring solution
-        href: containers/container-insights-transition-solution.md
-    - name: Configure Container Insights (logs)
-      items:
       - name: Collect logs
         href: containers/container-insights-data-collection-configure.md
       - name: Filter logs
         href: containers/container-insights-data-collection-filter.md
+    - name: Advanced configuration
+      items:
+      - name: Data transformations
+        displayName: Container insights
+        href: containers/container-insights-transformations.md
+    - name: Maintenance
+      items:
+      - name: Agent management
+        href: containers/container-insights-manage-agent.md
+    - name: Legacy
+      items:
+      - name: Prometheus based Container Insights
+        href: containers/container-insights-experience-v2.md
+      - name: Legacy authentication
+        href: containers/container-insights-authentication.md
       - name: Container log schema
         href: containers/container-insights-logs-schema.md
+      - name: Transition from Container monitoring solution
+        href: containers/container-insights-transition-solution.md
+      - name: Authentication
+        href: containers/container-insights-authentication.md
+      - name: Send Prometheus metrics to Logs
+        href: containers/container-insights-prometheus-logs.md
+    - name: Reference
+      items:
+      - name: Firewall requirements
+        displayName: Container insights, Prometheus
+        href: containers/kubernetes-monitoring-firewall.md
+      - name: Supported region mappings
+        href: containers/container-insights-region-mapping.md
+    - name: Scenarios
+      items:
+      - name: Private Link
+        displayName: Container insights, Kubernetes
+        href: containers/kubernetes-monitoring-private-link.md    
       - name: Multitenant logging
         href: containers/container-insights-multitenant.md
       - name: High scale
         href: containers/container-insights-high-scale.md
       - name: Throttling
         href: containers/container-insights-throttling.md
-      - name: Data transformations
-        displayName: Container insights
-        href: containers/container-insights-transformations.md
-      - name: Authentication
-        href: containers/container-insights-authentication.md
     - name: Configure Prometheus (metrics)
       items:
       - name: Customize data collection
@@ -551,8 +559,6 @@ items:
       - name: Send to multiple metric workspaces
         displayName: Prometheus
         href: containers/prometheus-metrics-multiple-workspaces.md
-      - name: Send Prometheus metrics to Logs
-        href: containers/container-insights-prometheus-logs.md
     - name: Remote-write with Prometheus
       items:
       - name: Prometheus remote-write
