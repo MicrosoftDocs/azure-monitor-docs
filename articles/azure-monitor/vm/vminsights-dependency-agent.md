@@ -22,23 +22,16 @@ Dependency Agent collects data about processes running on the virtual machine an
 - Azure Monitor agent must be installed on the same machine.
 - Requires a connection from the virtual machine to the address 169.254.169.254. This address identifies the Azure metadata service endpoint.
 
-## Operating systems supported by VM Insights
+## Supported operating systems
 
-The following operating systems:
-- All operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
-- The Dependency Agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022, except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. 
-- For the Dependency Agent's Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
-- The Dependency Agent only supports x64 architectures.
+The Dependency agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022, except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. The Dependency Agent only supports x64 architectures.
 
-### Linux considerations
-
-Consider the following before you install Dependency agent for VM Insights on a Linux machine:
+Consider the following before you install Dependency agent on a Linux machine:
 
 - Only default and SMP Linux kernel releases are supported.
 - Nonstandard kernel releases, such as physical address extension (PAE) and Xen, aren't supported for any Linux distribution. For example, a system with the release string of *2.6.16.21-0.8-xen* isn't supported.
 - Custom kernels, including recompilations of standard kernels, aren't supported.
 - For Debian distros other than version 9.4, the Map feature isn't supported. The Performance feature is available only from the Azure Monitor menu. It isn't available directly from the left pane of the Azure VM.
-- CentOSPlus kernel is supported.
 - Installing Dependency agent taints the Linux kernel and you might lose support from your Linux distribution until the machine resets.
 
 The Linux kernel must be patched for the Spectre and Meltdown vulnerabilities. For more information, consult with your Linux distribution vendor. Run the following command to check for availability if Spectre/Meltdown has been mitigated:
