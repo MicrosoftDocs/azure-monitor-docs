@@ -499,6 +499,6 @@ When you remove a field in the query, the columns and data remain in the destina
 ## Related content
 
 - Learn more about [Azure Monitor Logs data plans](logs-table-plans.md).
-- Walk through a [tutorial on using KQL mode in Log Analytics](../logs/log-analytics-tutorial.md).
+- Walk through a [tutorial on using Log Analytics](../logs/log-analytics-tutorial.md).
 - Access the complete [reference documentation for KQL](/azure/kusto/query/).
 
