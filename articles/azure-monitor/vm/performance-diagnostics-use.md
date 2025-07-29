@@ -1,12 +1,12 @@
 ---
-title: Troubleshoot Windows virtual machine performance issues using the Performance Diagnostics (PerfInsights) CLI tool
+title: Analyze Performance Diagnostics insights and reports
 description: Learns how to use PerfInsights to troubleshoot Windows virtual machine (VM) performance problems.
 services: virtual-machines
 ms.topic: troubleshooting
 ms.date: 05/02/2025
 ---
 
-#  Analyze Performance Diagnostics data
+#  Analyze Performance Diagnostics insights and reports
 
 **Applies to:** :heavy_check_mark: Windows VMs
 

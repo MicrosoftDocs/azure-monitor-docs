@@ -1,5 +1,5 @@
 ---
-title: Install Performance Diagnostics on Azure virtual machines
+title: Run Performance Diagnostics reports on Azure virtual machines
 description: Install Performance Diagnostics to identify and troubleshoot performance issues on your Azure virtual machine (VM).
 ms.topic: troubleshooting
 ms.date: 06/10/2025
