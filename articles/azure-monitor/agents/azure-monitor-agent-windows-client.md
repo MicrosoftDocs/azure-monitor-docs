@@ -43,7 +43,9 @@ Here's a comparison between using the client installer and using the virtual mac
 | On-premises servers | No | [VM extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent by using the Azure extension framework, provided for on-premises by installing the Azure Arc agent. |
 
 > [!IMPORTANT] 
-> The Azure Monitor doesn't support hibernation. If the agent computer hibernates, you may lose monitoring data.
+> The Azure Monitor doesn't support hibernation. If the agent computer hibernates, you may lose monitoring data. This will typically result in an error message similar to the following.
+>
+> `Failed to post health report to https://global.handler.control.monitor.azure.com on first round of tries. No fallback will be attempted. Error: {"error":{"code":"TokenExpired","message":"IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/27/2024 4:41:52 PM', Current time (UTC): '12/30/2024 3:00:16 PM'."}}`
 
 ## Prerequisites
 
