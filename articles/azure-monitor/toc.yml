@@ -445,10 +445,10 @@ items:
         href: fundamentals/azure-monitor-operations-manager.md
       - name: Assess Operations Manager
         href: scom-manage-instance/scom-assessment.md
-  - name: Monitor containers
+  - name: Monitor Kubernetes clusters
     items:
-    - name: Azure Monitor features
-      displayName: containers, kubernetes
+    - name: Overview
+      displayName: containers, kubernetes, container insights
       href: containers/container-insights-overview.md
     - name: Full stack monitoring
       displayName: containers
