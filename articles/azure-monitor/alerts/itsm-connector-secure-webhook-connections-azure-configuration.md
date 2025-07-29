@@ -37,7 +37,7 @@ After your application is registered with Microsoft Entra ID, you can create wor
 
 Action groups provide a modular and reusable way of triggering actions for Azure alerts. You can use action groups with metric alerts, activity log alerts, and log search alerts in the Azure portal.
 
-To learn more about action groups, see [Create and manage action groups in the Azure portal](../alerts/action-groups.md).
+To learn more about action groups, see [Create and manage action groups](../alerts/action-groups.md).
 
 > [!NOTE]
 > To map the configuration items to the ITSM payload when you define a Log Search alerts query, the query result must be included in the **Configuration items**, with one of these labels:

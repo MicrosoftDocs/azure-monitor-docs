@@ -76,7 +76,7 @@ Click the alert rule to configure it.
 
 You can disable Smart Detection alert rule from the portal or using an [Azure Resource Manager template](proactive-arm-config.md#failure-anomalies-alert-rule).
 
-This alert rule is created with an associated [Action Group](./action-groups.md) named "Application Insights Smart Detection." By default, this action group contains Email Azure Resource Manager Role actions and sends notification to users who have  Monitoring Contributor or Monitoring Reader subscription Azure Resource Manager roles in your subscription.  You can remove, change or add the action groups that the rule triggers, as for any other Azure alert rule. Notifications sent from this alert rule follow the [common alert schema](./alerts-common-schema.md).
+This alert rule is created with an associated [action group](./action-groups.md) named "Application Insights Smart Detection." By default, this action group contains Email Azure Resource Manager Role actions and sends notification to users who have  Monitoring Contributor or Monitoring Reader subscription Azure Resource Manager roles in your subscription.  You can remove, change or add the action groups that the rule triggers, as for any other Azure alert rule. Notifications sent from this alert rule follow the [common alert schema](./alerts-common-schema.md).
 
 ## Delete alerts
 
