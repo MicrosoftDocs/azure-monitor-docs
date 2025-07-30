@@ -4812,7 +4812,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/distributed-tracing-telemetry-correlation.md",
-   "redirect_url": "/dotnet/api/microsoft.applicationinsights.extensibility.operationcorrelationtelemetryinitializer",
+   "redirect_url": "/azure/azure-monitor/app/app-map",
    "redirect_document_id": false
   },
   {
