@@ -8,7 +8,12 @@ ms.date: 08/14/2024
 
 # Analyze usage in a Log Analytics workspace
 
-Azure Monitor costs can vary significantly based on the volume of data being collected in your Log Analytics workspace. This volume is affected by the set of solutions using the workspace and the amount of data that each solution collects. This article provides guidance on analyzing your collected data to assist in controlling your data ingestion costs. It helps you determine the cause of higher-than-expected usage. It also helps you to predict your costs as you monitor more resources and configure different Azure Monitor features.
+Azure Monitor costs can vary significantly based on the volume of data being collected in your Log Analytics workspace. This volume is affected by the set of solutions using the workspace and the amount of data that each solution collects.
+
+This article provides guidance on analyzing your collected data to assist in controlling your data ingestion costs. It helps you:
+
+* Determine the cause of higher-than-expected usage.
+* Predict your costs as you monitor more resources and configure different Azure Monitor features.
 
 [!INCLUDE [azure-monitor-cost-optimization](../fundamentals/includes/azure-monitor-cost-optimization.md)]
 
@@ -16,7 +21,7 @@ Azure Monitor costs can vary significantly based on the volume of data being col
 
 Each Log Analytics workspace is charged as a separate service and contributes to the bill for your Azure subscription. The amount of data ingestion can be considerable, depending on the:
 
-* Set of insights and services enabled and their configuration.
+* Set of insights and services (for example, [Application Insights](../app/app-insights-overview.md), [Container Insights](../containers/container-insights-overview.md), [VM Insights](../vm/tutorial-monitor-vm-enable-insights.md)) enabled and their configuration.
 * Number and type of monitored resources.
 * Volume of data collected from each monitored resource.
 
@@ -90,6 +95,8 @@ Usage
 | sort by Solution asc, DataType asc
 ```
 
+See [Queries for the Usage table](../reference/queries/usage.md) for more example queries.
+
 ## Querying data volume from the events directly 
 
 You can use [log queries](log-query-overview.md) in [Log Analytics](log-analytics-overview.md) if you need deeper analysis into your collected data. Each table in a Log Analytics workspace has the following standard columns that can assist you in analyzing billable data:
@@ -108,6 +115,8 @@ Event
 | where _IsBillable == true
 | summarize count(), Bytes=sum(_BilledSize) by EventID, bin(TimeGenerated, 1d)
 ```
+
+See [Queries for the Event table](../reference/queries/event.md) for more example queries.
 
 ### Data volume by Azure resource, resource group, or subscription
 
@@ -194,6 +203,8 @@ SecurityEvent
 | order by AggregatedValue desc nulls last
 ```
 
+See [Queries for the SecurityEvent table](../reference/queries/securityevent.md) for more example queries.
+
 **Log Management** solution
 
 ```kusto
@@ -202,6 +213,8 @@ Usage
 | summarize AggregatedValue = count() by DataType
 | order by AggregatedValue desc nulls last
 ```
+
+See [Queries for the Usage table](../reference/queries/usage.md) for more example queries.
 
 **Perf** data type
 
@@ -214,6 +227,8 @@ Perf
 Perf 
 | summarize AggregatedValue = count() by CounterName
 ```
+
+See [Queries for the Perf table](../reference/queries/securityevent.md) for more example queries.
 
 **Event** data type
 
@@ -239,12 +254,16 @@ Syslog
 | summarize AggregatedValue = count() by ProcessName
 ```
 
+See [Queries for the Syslog table](../reference/queries/syslog.md) for more example queries.
+
 **AzureDiagnostics** data type
 
 ```kusto
 AzureDiagnostics 
 | summarize AggregatedValue = count() by ResourceProvider, ResourceId
 ```
+
+See [Queries for the AzureDiagnostics table](../reference/queries/azurediagnostics.md) for more example queries.
 
 ## Application Insights data
 
@@ -316,6 +335,8 @@ Heartbeat
 | summarize nodes = dcount(Computer) by bin(TimeGenerated, 1d)    
 | render timechart
 ```
+
+See [Queries for the Heartbeat table](../reference/queries/heartbeat.md) for more example queries.
 
 > [!WARNING]
 > Use [find](/azure/data-explorer/kusto/query/findoperator?pivots=azuremonitor) queries sparingly because scans across data types are [resource intensive](./query-optimization.md#query-details-pane) to execute. If you don't need results per subscription, resource group, or resource name, use the [Usage](/azure/azure-monitor/reference/tables/usage) table as in the preceding queries.
