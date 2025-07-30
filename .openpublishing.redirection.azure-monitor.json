@@ -5619,6 +5619,7 @@
    "source_path_from_root": "/articles/application-insights/app-insights-monitor-web-app-availability.md",
    "redirect_url": "/azure/azure-monitor/app/availability",
    "redirect_document_id": false
+  },
   {
    "source_path_from_root": "/articles/azure-monitor/app/app-insights-migrate-azure-endpoint-tests.md",
    "redirect_url": "/azure/azure-monitor/app/availability",
