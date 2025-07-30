@@ -544,7 +544,7 @@ Use [Azure Monitor metrics explorer](../essentials/analyze-metrics.md) to plot a
 
 :::image type="content" source="./media/javascript-react-plugin/chart.png" lightbox="./media/javascript-react-plugin/chart.png" alt-text="Screenshot that shows a chart that displays the custom metric React Component Engaged Time (seconds) split by Component Name":::
 
-You can also run [custom queries](../logs/log-analytics-tutorial.md) to divide Application Insights data to generate reports and visualizations as per your requirements. Here's an example of a custom query. Go ahead and paste it directly into the query editor to test it out.
+You can also run [custom queries](../logs/get-started-queries.md) to divide Application Insights data to generate reports and visualizations as per your requirements. Here's an example of a custom query. Go ahead and paste it directly into the query editor to test it out.
 
 ```Kusto
 customMetrics
