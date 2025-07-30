@@ -897,15 +897,6 @@ items:
         href: agents/azure-monitor-agent-troubleshoot-windows-arc.md
     - name: Legacy agents
       items:
-      - name: Log Analytics agent
-        items:
-        - name: VM Extension for Windows
-          href: /azure/virtual-machines/extensions/oms-windows
-          maintainContext: true
-        - name: VM Extension for Linux
-          href: /azure/virtual-machines/extensions/oms-linux
-          maintainContext: true
-        - name: LA Agent data sources
       - name: Azure Diagnostics extension
         items:
         - name: Overview
