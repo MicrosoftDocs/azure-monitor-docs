@@ -802,7 +802,7 @@ items:
       href: data-collection/data-collection-rule-samples.md 
     - name: Data collection endpoints
       href: data-collection/data-collection-endpoint-overview.md
-    - name: Edge pipeline configuration
+    - name: Azure Monitor pipeline
       href: data-collection/edge-pipeline-configure.md
     - name: Tutorials
       items:
