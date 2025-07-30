@@ -24,7 +24,7 @@ Contains all data plane packets that were matched with one or more IDPS signatur
 |**Categories**|Security|
 |**Solutions**| LogManagement|
 |**Basic log**|Yes|
-|**Ingestion-time transformation**|No|
+|**Ingestion-time transformation**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwidpssignature)|
 
 

@@ -44,7 +44,7 @@ A [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) is a da
 To address the data storage and consumption needs of various personas who use a Log Analytics workspace, you can:
 
 - [Define table plans](#table-plans) based on your data consumption and cost management needs.
-- [Manage low-cost long-term retention and interactive retention](../logs/data-retention-configure.md) for each table.
+- [Manage low-cost long-term retention and analytics retention](../logs/data-retention-configure.md) for each table.
 - [Manage access](../logs/manage-access.md) to the workspace and to specific tables.
 - [Use summary rules to aggregate data](../logs/summary-rules.md) to summarized tables. This lets you optimize data collected over time for actionable insights and use in ongoing analysis, dashboards, and business reports.
 - Create ready-to-run [saved queries](../logs/save-query.md), [visualizations](../best-practices-analysis.md#built-in-visualization-tools), and [alerts](../alerts/alerts-create-log-alert-rule.md) tailored to specific personas.  
@@ -90,7 +90,7 @@ The diagram and table below compare the Analytics, Basic, and Auxiliary table pl
 | [Search jobs](../logs/search-jobs.md)                  | ✅                                                            | ✅                                                            | ✅                                                            |
 | [Summary rules](../logs/summary-rules.md)              | ✅                                                            | ✅ KQL limited to a single table                              | ✅ KQL limited to a single table                              |
 | [Restore](../logs/restore.md)                          | ✅                                                            | ✅                                                            | ❌                                                            |
-| Interactive retention                                  | 30 days (90 days for Microsoft Sentinel and Application Insights).<br> Can be extended to up to two years at a prorated monthly long-term retention charge. | 30 days                                                      | 30 days                                                      |
+| Analytics retention                                  | 30 days (90 days for Microsoft Sentinel and Application Insights).<br> Can be extended to up to two years at a prorated monthly long-term retention charge. | Not Applicable      | Not Applicable                                                |
 | Total retention                                        | Up to 12 years                                               | Up to 12 years                                               | Up to 12 years                  |
 
 <sup>1</sup> Basic and Auxiliary table plans currently support Workbooks and Grafana.
@@ -123,7 +123,7 @@ Many of Azure Monitor's [ready-to-use, curated Insights experiences](../insights
 
 :::image type="content" source="../containers/media/container-insights-overview/azmon-containers-experience.png" lightbox="../containers/media/container-insights-overview/azmon-containers-experience.png" alt-text="A screenshot that shows the built-in Container Insights monitoring experience in Azure Monitor.":::
 
-You can also [create your own visualizations and reports](../best-practices-analysis.md#built-in-visualization-tools) using workbooks, dashboards, and Power BI.  
+[Create your own visualizations and reports](../best-practices-analysis.md#built-in-visualization-tools) using workbooks, dashboards, and Power BI.  
 
 > [!TIP]
 > Instead of running complex queries on large data sets or long time ranges, use [summary rules](../logs/summary-rules.md) to aggregate data for custom dashboards, workbooks, and reports. Summary rules aggregate data from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
@@ -159,7 +159,7 @@ These services store their data in Azure Monitor Logs so that it can be analyzed
 | Microsoft Sentinel | <ul><li>[Where Microsoft Sentinel data is stored](/azure/sentinel/geographical-availability-data-residency#where-microsoft-sentinel-data-is-stored)</li><li>[Design a Log Analytics workspace architecture](./workspace-design.md)</li><li>[Microsoft Sentinel sample workspace designs](/azure/sentinel/sample-workspace-designs)</li><li>[Prepare for multiple workspaces and tenants in Microsoft Sentinel](/azure/sentinel/prepare-multiple-workspaces)</li><li>[Enable Microsoft Sentinel on your Log Analytics workspace](/azure/sentinel/quickstart-onboard).</li><li>[Log management in Microsoft Sentinel](/azure/sentinel/log-plans)</li><li>[Microsoft Sentinel pricing](https://azure.microsoft.com/pricing/details/microsoft-sentinel/)</li><li>[Charges for workspaces with Microsoft Sentinel](./cost-logs.md#workspaces-with-microsoft-sentinel)</li></ul> |
 | Microsoft Defender for Cloud | <ul><li>[Continuously export Microsoft Defender for Cloud data](/azure/defender-for-cloud/continuous-export)</li><li>[Data consumption](/azure/defender-for-cloud/data-security#data-consumption)</li><li>[Frequently asked questions about Log Analytics workspaces used with Microsoft Defender for Cloud](/azure/defender-for-cloud/faq-data-collection-agents)</li><li>[Microsoft Defender for Cloud pricing](https://azure.microsoft.com/pricing/details/defender-for-cloud/)</li><li>[Charges for workspaces with Microsoft Defender for Cloud](./cost-logs.md#workspaces-with-microsoft-defender-for-cloud)</li></ul> |
 
-## Next steps
+## Related content
 
 - Learn about [log queries](./log-query-overview.md) to retrieve and analyze data from a Log Analytics workspace.
 - Learn about [metrics in Azure Monitor](../essentials/data-platform-metrics.md).

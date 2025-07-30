@@ -4,7 +4,7 @@ description: This article provides an explanation of how to delete ITSM connecto
 ms.topic: how-to
 ms.date: 12/11/2024
 ms.custom: references_regions
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Delete unused ITSM connectors

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Container Apps
@@ -10,24 +10,6 @@ ms.custom: Performance Azure Container Apps
   
 ---
   
-## Azure Container Apps  
-  
-<!--c5aa02ed-1fcb-4e31-b283-a14a666ff1c4_begin-->
-
-#### Azure Code Signing SDK Version  
-  
-Recommendation is to use the latest version: https://www.nuget.org/packages/Azure.CodeSigning.Sdk#versions-body-tab  
-  
-**Potential benefits**: Latest Version  
-
-**Impact:** Medium
-  
-For more information, see [NuGet Gallery](https://www.nuget.org/packages/Azure.CodeSigning.Sdk#versions-body-tab)  
-
-ResourceType: microsoft.app/containerapps  
-Recommendation ID: c5aa02ed-1fcb-4e31-b283-a14a666ff1c4  
-
-
-<!--c5aa02ed-1fcb-4e31-b283-a14a666ff1c4_end-->
+## Azure Container Apps
 
 <!--articleBody-->

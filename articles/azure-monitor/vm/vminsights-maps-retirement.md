@@ -25,19 +25,19 @@ Customers will still have access to existing VM Insights Map data ingested by De
 
 As part of the retirement process, 
 
-- No new Operating System versions will be added after 30 June 2025
-- Customers won't be able onboard new VMs from the Azure portal after 30 September 2025
+- No new Operating System versions will be added after 30 June 2025.
+- Customers won't be able onboard new VMs from the Azure portal after 30 September 2025. Other [onboarding methods](./vminsights-enable.md#enable-vm-insights) will still be available until the feature is no longer supported.
 
  
 ## Recommended action  
 
-Customers are recommeded to offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, we recommend considering a replacement solution from the Azure Marketplace. If applicable, customers can consider [using the Azure Monitor Agent for inventory tracking](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent?tabs=linux%2Csa-mi).  
+Customers are recommended to offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, we recommend considering a replacement solution from the Azure Marketplace. If applicable, customers can consider [using the Azure Monitor Agent for inventory tracking](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent).  
 
 ## Finding VMs currently using VM Insights map 
 
 ### Query for finding VMs
 
-The following query lists all the VMs that have Dependency Agent installed. The query provides all cloud VMs and Arc-connected VMs, on-premise VMs utilizing the Dependency Agent without Arc connectivity are not listed. 
+The following query lists all the VMs that have Dependency Agent installed. The query provides all cloud VMs and Arc-connected VMs, on-premises VMs utilizing the Dependency Agent without Arc connectivity are not listed. 
 
 ```AzureResourceGraph
 Resources
@@ -60,7 +60,8 @@ Resources
 )
 | sort by subscriptionId asc, resourceGroup asc, name asc
 ```
-To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see *[Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal)*
+
+To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal).
 
 ## Disabling the VM Insights Map experience
 
