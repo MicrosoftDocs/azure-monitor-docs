@@ -60,7 +60,6 @@ Resources
 )
 | sort by subscriptionId asc, resourceGroup asc, name asc
 ```
-
 To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal).
 
 ## Disabling the VM Insights Map experience
