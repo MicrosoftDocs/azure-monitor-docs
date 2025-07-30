@@ -15,7 +15,7 @@ This article provides guidance on analyzing your collected data to assist in con
 * Determine the cause of higher-than-expected usage.
 * Predict your costs as you monitor more resources and configure different Azure Monitor features.
 
-:::image source="media/analyze-usage/log-analytics-example.png" lightbox="media/analyze-usage/log-analytics-example.png" alt-text="Screenshot that shows an the output for an example query in Log Analytics.":::
+:::image source="media/analyze-usage/log-analytics-example.png" lightbox="media/analyze-usage/log-analytics-example.png" alt-text="Screenshot that shows the output for an example query in Log Analytics.":::
 
 [!INCLUDE [azure-monitor-cost-optimization](../fundamentals/includes/azure-monitor-cost-optimization.md)]
 
