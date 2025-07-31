@@ -4,7 +4,7 @@ description: This article provides an overview of IT Service Management Connecto
 ms.topic: how-to
 ms.date: 03/07/2024
 ms.custom: references_regions
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Connect Azure to ITSM tools by using IT Service Management

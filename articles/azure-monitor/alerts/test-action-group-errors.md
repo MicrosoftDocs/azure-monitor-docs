@@ -71,7 +71,7 @@ The error messages in this section are related to these **notifications**:
 
 ## See also
 
-* [Action Groups](action-groups.md)
+* [Action groups](action-groups.md)
 * [Common alert schema](./alerts-common-schema.md)
 * [Noncommon alert schema](./alerts-non-common-schema-definitions.md)
 * [Connect ServiceNow with IT Service Management Connector](./itsmc-connections-servicenow.md)

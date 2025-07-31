@@ -4,7 +4,7 @@ description: This article provides an overview of data synced from your ITSM pro
 ms.topic: article
 ms.date: 08/07/2024
 ms.custom: references_regions
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Data synced from your ITSM product

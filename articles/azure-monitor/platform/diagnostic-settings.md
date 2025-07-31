@@ -184,8 +184,11 @@ The following sample template creates a diagnostic setting to send all audit log
 }
 ```
 
-
 ---
+
+> [!WARNING] 
+> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
+
 
    
 ## Category groups
@@ -212,16 +215,22 @@ Diagnostic settings don't currently support multi-dimensional metrics. Metrics w
 To work around the limitations for specific metrics, you can manually extract them by using the [Metrics REST API](/rest/api/monitor/metrics/list) and then import them into a Log Analytics workspace with the [Logs ingestion API](../logs/logs-ingestion-api-overview.md).
 
 
-
-## Deleting diagnostic settings
-Delete any diagnostic settings for a resource if you delete or rename that resource, or migrate it across resource groups or subscriptions. If you recreate this resource, any diagnostic settings for the deleted resource could be applied to the new one. This resumes the collection of resource logs as defined in the diagnostic setting. 
-
 ## Controlling costs
 There may be a cost for data collected by diagnostic settings. The cost depends on the destination you choose and the volume of data collected. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
  
 Only collect the categories you require for each service. You might also not want to collect platform metrics from Azure resources because this data is already being collected in Metrics. Only configure your diagnostic data to collect metrics if you need metric data in the workspace for more complex analysis with log queries.
 
 Diagnostic settings don't allow granular filtering within a selected category. You can filter data for supported tables in a Log Analytics workspace using transformations. See [Transformations in Azure Monitor](../data-collection/data-collection-transformations.md) for details.
+
+## Time before telemetry gets to destination
+After you create a diagnostic setting, data should start flowing to your selected destinations within 90 minutes. When sending data to a Log Analytics workspace, the table is created automatically if it doesn't already exist. The table is only created when the first log records are received. If you get no information within 24 hours, then you might be experiencing one of the following issues:
+
+- No logs are being generated.
+- Something is wrong in the underlying routing mechanism.
+
+If you're experiencing an issue, disable the configuration and then reenable it. Contact Azure support through the Azure portal if you continue to have issues.
+
+
 
 ## Troubleshooting
 

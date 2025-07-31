@@ -17,31 +17,17 @@ This article explains how to configure remote write to send data from a self-man
 
 Self-managed Prometheus can run in Azure and non-Azure environments. The following are authentication options for remote write to an Azure Monitor workspace, based on the environment where Prometheus is running.
 
-### Azure-managed virtual machines, virtual machine scale sets, and Kubernetes clusters
-
-Use user-assigned managed identity authentication for services running self-managed Prometheus in an Azure environment. Azure-managed services include:
-
-* Azure Virtual Machines
-* Azure Virtual Machine Scale Sets
-* Azure Kubernetes Service (AKS)
-
-To set up remote write for Azure-managed resources, see [Remote write using user-assigned managed identity authentication](#remote-write-using-user-assigned-managed-identity-authentication) later in this article.
-
-### Virtual machines and Kubernetes clusters running in non-Azure environments
-
-If you have virtual machines or a Kubernetes cluster in non-Azure environments, or you onboarded to Azure Arc, install self-managed Prometheus and configure remote write by using Microsoft Entra application authentication. For more information, see [Remote write using Microsoft Entra application authentication](#remote-write-using-microsoft-entra-application-authentication) later in this article.
-
-Onboarding to Azure Arc-enabled servers allows you to manage and configure non-Azure virtual machines in Azure. For more information, see [Azure Arc-enabled servers](/azure/azure-arc/servers/overview) and [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview). Azure Arc-enabled servers support only Microsoft Entra authentication.
-
-> [!NOTE]
-> System-assigned managed identities aren't supported for remote write to Azure Monitor workspaces. Use a user-assigned managed identity or Microsoft Entra application authentication.
+| Azure-managed virtual machines, virtual machine scale sets, and Kubernetes clusters | Virtual machines and Kubernetes clusters running in non-Azure environments     |
+|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| Use either system-assigned or user-assigned managed identity authentication for services running self-managed Prometheus in an Azure environment. Azure-managed services include:<br><br>- Azure Virtual Machines<br>- Azure Virtual Machine Scale Sets<br>- Azure Kubernetes Service (AKS)<br><br>To set up remote write for Azure-managed resources, see [Remote write using managed identity authentication](#remote-write-using-system-assigned-managed-identity-authentication) later in this article. | If you have virtual machines or a Kubernetes cluster in non-Azure environments, or you onboarded to Azure Arc, install self-managed Prometheus and configure remote write by using Microsoft Entra application authentication. For more information, see [Remote write using Microsoft Entra application authentication](#remote-write-using-microsoft-entra-application-authentication) later in this article.<br><br> Onboarding to Azure Arc-enabled servers allows you to manage and configure non-Azure virtual machines in Azure. For more information, see [Azure Arc-enabled servers](/azure/azure-arc/servers/overview) and [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview). Azure Arc-enabled servers support only Microsoft Entra authentication. |
 
 ## Prerequisites
 
 ### Supported versions
 
-* Prometheus versions later than 2.45 are required for managed identity authentication.
-* Prometheus versions later than 2.48 are required for Microsoft Entra application authentication.
+* Prometheus versions 2.45 or later are required for user-assigned managed identity authentication.
+* Prometheus versions 2.48 or later are required for Microsoft Entra application authentication.
+* Prometheus versions 3.50 or later are required for system-assigned managed identity authentication.
 
 ### Azure Monitor workspace
 
@@ -53,9 +39,48 @@ Administrator permissions for the cluster or resource are required to complete t
 
 ## Set up authentication for remote write
 
-Depending on the environment where Prometheus is running, you can configure remote write to use a user-assigned managed identity or Microsoft Entra application authentication to send data to an Azure Monitor workspace.
+Depending on the environment where Prometheus is running, you can configure remote write to use a user-assigned or system-assigned managed identity or Microsoft Entra application authentication to send data to an Azure Monitor workspace.
 
-Use the Azure portal or the Azure CLI to create a user-assigned managed identity or Microsoft Entra application.
+Use the Azure portal or the Azure CLI to create a user-assigned managed identity or Microsoft Entra application. A system-assigned managed identity, when enabled, is automatically setup for an Azure VM or AKS cluster. This identity can be used to authenticate Prometheus remote-write from an Azure VM/VMSS or an AKS cluster.
+
+### [Remote write using a system-assigned managed identity](#tab/system-assigned-managed-identity)
+
+### Remote write using system-assigned managed identity authentication
+
+A system-assigned managed identity authentication can be used in case of Azure VM/VMSS or AKS. If your Prometheus service is running in a non-Azure environment, use Microsoft Entra application authentication.
+
+A system-assigned managed identity, when enabled, is automatically setup for an Azure resource. In case your Prometheus service is **running in an AKS cluster, you will need to use the system-assigned managed identity for the underlying VMSS of the cluster**.
+
+| Azure Kubernetes clusters | Azure VMs and VMSS   |
+|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| For Azure Kubernetes Service, the managed identity must be assigned to virtual machine scale sets. AKS creates a resource group that contains the virtual machine scale sets. The resource group name is in the format `MC_<resource group name>_<AKS cluster name>_<region>` and can be found in the **Settings** -> **Properties** -> **Infrastructure Resource Group** section of the AKS cluster.<br>For each virtual machine scale set in the resource group, enable system-assigned managed identity in the **Security** -> **Identity** section. | For Azure VM/VMSS, enable system-assigned managed identity in the **Security** -> **Identity** section of the VM/VMSS page. See [Configure system-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities#system-assigned-managed-identity) for more details. |
+
+Follow the steps below to use the system-assigned managed identity for Prometheus remote-write.
+
+#### Assign the Monitoring Metrics Publisher role to the application
+
+On the workspace's data collection rule, assign the Monitoring Metrics Publisher role to the managed identity:
+
+1. On the Azure Monitor workspace's overview pane, select the **Data collection rule** link.
+
+    :::image type="content" source="media/prometheus-remote-write-virtual-machines/select-data-collection-rule.png" lightbox="media/prometheus-remote-write-virtual-machines/select-data-collection-rule.png" alt-text="Screenshot that shows the link to a data collection rule on an Azure Monitor workspace pane.":::
+
+1. On the page for the data collection rule, select **Access control (IAM)**.
+
+1. Select **Add** > **Add role assignment**.
+
+    :::image type="content" source="media/prometheus-remote-write-virtual-machines/data-collection-rule-access-control.png" lightbox="media/prometheus-remote-write-virtual-machines/data-collection-rule-access-control.png" alt-text="Screenshot that shows adding a role assignment for a data collection rule.":::
+
+1. Search for and select **Monitoring Metrics Publisher**, and then select **Next**.
+
+    :::image type="content" source="media/prometheus-remote-write-virtual-machines/add-role-assignment.png" lightbox="media/prometheus-remote-write-virtual-machines/add-role-assignment.png" alt-text="Screenshot that shows the role assignment menu for a data collection rule.":::
+
+1. Select **Managed Identity**.
+
+1. Choose **Select members**.
+
+1. In the **Managed identity** dropdown list, select **System-assigned managed identity**, and then choose the VM/VMSS or the VMSS that hosts the AKS cluster.
+
 
 ### [Remote write using a user-assigned managed identity](#tab/managed-identity)
 
@@ -389,7 +414,10 @@ The `url` parameter specifies the metrics ingestion endpoint of the Azure Monito
 
 Use either `managed_identity` or `oauth` for Microsoft Entra application authentication, depending on your implementation. Remove the object that you're not using.
 
-Find your client ID for the managed identity by using the following Azure CLI command:
+> [!NOTE]
+> For system-assigned managed identity, leave the client ID field blank (client_id: "" or clientId: ""). 
+
+For user-assigned managed identity, find the client ID by using the following Azure CLI command:
 
 ```azurecli
 az identity list --resource-group <resource group name>
@@ -397,7 +425,7 @@ az identity list --resource-group <resource group name>
 
 For more information, see [az identity list](/cli/azure/identity#az-identity-list).
 
-To find your client for managed identity authentication in the portal, go to **Managed Identities** in the Azure portal and select the relevant identity name. Copy the value of **Client ID** from the managed identity's **Overview** pane.
+To find your client ID for managed identity authentication in the portal, go to **Managed Identities** in the Azure portal and select the relevant identity name. Copy the value of **Client ID** from the managed identity's **Overview** pane.
 
 :::image type="content" source="media/prometheus-remote-write-virtual-machines/find-clinet-id.png" lightbox="media/prometheus-remote-write-virtual-machines/find-clinet-id.png" alt-text="Screenshot that shows the client ID on the managed identity's overview pane.":::
 

@@ -1737,6 +1737,8 @@ items:
             href: tables/afsauditlogs.md
           - name: AGCAccessLogs
             href: tables/agcaccesslogs.md
+          - name: AGCFirewallLogs
+            href: tables/agcfirewalllogs.md
           - name: AGSGrafanaLoginEvents
             href: tables/agsgrafanaloginevents.md
           - name: AGSGrafanaUsageInsightsEvents
@@ -2731,6 +2733,10 @@ items:
             href: tables/microsoftpurviewinformationprotection.md
           - name: MicrosoftServicePrincipalSignInLogs
             href: tables/microsoftserviceprincipalsigninlogs.md
+          - name: MySqlAuditLogs
+            href: tables/mysqlauditlogs.md
+          - name: MySqlSlowLogs
+            href: tables/mysqlslowlogs.md
           - name: NCBMBreakGlassAuditLogs
             href: tables/ncbmbreakglassauditlogs.md
           - name: NCBMSecurityDefenderLogs
@@ -2739,6 +2745,8 @@ items:
             href: tables/ncbmsecuritylogs.md
           - name: NCBMSystemLogs
             href: tables/ncbmsystemlogs.md
+          - name: NCCIDRACLogs
+            href: tables/nccidraclogs.md
           - name: NCCKubernetesLogs
             href: tables/ncckuberneteslogs.md
           - name: NCCPlatformOperationsLogs
@@ -2817,6 +2825,20 @@ items:
             href: tables/operation.md
           - name: PFTitleAuditLogs
             href: tables/pftitleauditlogs.md
+          - name: PGSQLAutovacuumStats
+            href: tables/pgsqlautovacuumstats.md
+          - name: PGSQLDbTransactionsStats
+            href: tables/pgsqldbtransactionsstats.md
+          - name: PGSQLPgBouncer
+            href: tables/pgsqlpgbouncer.md
+          - name: PGSQLPgStatActivitySessions
+            href: tables/pgsqlpgstatactivitysessions.md
+          - name: PGSQLQueryStoreRuntime
+            href: tables/pgsqlquerystoreruntime.md
+          - name: PGSQLQueryStoreWaits
+            href: tables/pgsqlquerystorewaits.md
+          - name: PGSQLServerLogs
+            href: tables/pgsqlserverlogs.md
           - name: Perf
             href: tables/perf.md
           - name: PowerAppsActivity
@@ -3593,6 +3615,10 @@ items:
             href: queries/MicrosoftGraphActivityLogs.md
           - name: MicrosoftPurviewInformationProtection
             href: queries/MicrosoftPurviewInformationProtection.md
+          - name: MySqlAuditLogs
+            href: queries/MySqlAuditLogs.md
+          - name: MySqlSlowLogs
+            href: queries/MySqlSlowLogs.md
           - name: NGXOperationLogs
             href: queries/NGXOperationLogs.md
           - name: NGXSecurityLogs

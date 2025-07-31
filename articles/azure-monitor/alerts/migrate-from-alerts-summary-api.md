@@ -3,7 +3,7 @@ title: Use ARG queries to get a summary of your alerts
 description: Find out how to se ARG queries to migrate from the Azure Monitor alertsSummary API, which is being deprecated.
 ms.topic: how-to
 ms.date: 03/13/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Use ARG queries to get a summary of your alerts

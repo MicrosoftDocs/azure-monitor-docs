@@ -851,6 +851,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path_from_root": "/articles/azure-monitor/logs/troubleshooting.md",
+   "redirect_url": "/troubleshoot/azure/azure-monitor/welcome-azure-monitor",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/app/java-on-premises.md",
    "redirect_url": "/azure/azure-monitor/app/java-in-process-agent",
    "redirect_document_id": false
@@ -4422,12 +4427,12 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/monitor-web-app-availability.md",
-   "redirect_url": "/previous-versions/azure/azure-monitor/app/monitor-web-app-availability",
+   "redirect_url": "/azure/azure-monitor/app/availability",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/availability-multistep.md",
-   "redirect_url": "/previous-versions/azure/azure-monitor/app/availability-multistep",
+   "redirect_url": "/azure/azure-monitor/app/availability",
    "redirect_document_id": false
   },
   {
@@ -4812,7 +4817,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/distributed-tracing-telemetry-correlation.md",
-   "redirect_url": "/dotnet/api/microsoft.applicationinsights.extensibility.operationcorrelationtelemetryinitializer",
+   "redirect_url": "/azure/azure-monitor/app/app-map",
    "redirect_document_id": false
   },
   {
@@ -4832,7 +4837,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/sampling.md",
-   "redirect_url": "/previous-versions/azure/azure-monitor/app/sampling",
+   "redirect_url": "/azure/azure-monitor/app/opentelemetry-sampling",
    "redirect_document_id": false
   },
   {
@@ -4847,7 +4852,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/search-and-transaction-diagnostics.md",
-   "redirect_url": "/previous-versions/azure/azure-monitor/app/search-and-transaction-diagnostics-redirect",
+   "redirect_url": "/azure/azure-monitor/app/failures-performance-transactions?tabs=transaction-search",
    "redirect_document_id": false
   },
   {
@@ -5612,12 +5617,22 @@
   },
   {
    "source_path_from_root": "/articles/application-insights/app-insights-migrate-azure-endpoint-tests.md",
-   "redirect_url": "/azure/azure-monitor/app/monitor-web-app-availability",
+   "redirect_url": "/azure/azure-monitor/app/availability",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/application-insights/app-insights-monitor-web-app-availability.md",
-   "redirect_url": "/azure/azure-monitor/app/monitor-web-app-availability",
+   "redirect_url": "/azure/azure-monitor/app/availability",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/app/app-insights-migrate-azure-endpoint-tests.md",
+   "redirect_url": "/azure/azure-monitor/app/availability",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/app/app-insights-monitor-web-app-availability.md",
+   "redirect_url": "/azure/azure-monitor/app/availability",
    "redirect_document_id": false
   },
   {
