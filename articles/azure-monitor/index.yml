@@ -15,7 +15,7 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
 # Card 
-  - title: About Azure Monitor
+  - title: Azure Monitor
     linkLists:
       - linkListType: overview
         links:
@@ -55,7 +55,7 @@ landingContent:
             url: fundamentals/best-practices-multicloud.md
 
 # Card 
-  - title: Get started with Application Insights
+  - title: Application Insights
     linkLists:
       - linkListType: get-started
         links:
@@ -77,7 +77,7 @@ landingContent:
             url: app/failures-performance-transactions.md
 
  # Card
-  - title: Get started with Azure Monitor Logs
+  - title: Azure Monitor Logs
     linkLists: 
       - linkListType: get-started
         links:
@@ -97,7 +97,7 @@ landingContent:
             url: logs/log-query-overview.md
 
  # Card
-  - title: Get started with Metrics in Azure Monitor
+  - title: Metrics in Azure Monitor
     linkLists: 
       - linkListType: get-started
         links:
