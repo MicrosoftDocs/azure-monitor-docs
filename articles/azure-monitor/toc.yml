@@ -804,8 +804,6 @@ items:
       href: data-collection/data-collection-rule-samples.md
     - name: Data collection endpoints
       href: data-collection/data-collection-endpoint-overview.md
-    - name: Edge pipeline configuration
-      href: data-collection/edge-pipeline-configure.md
     - name: Tutorials
       items:
       - name: Workspace transformation in Azure portal
@@ -957,8 +955,6 @@ items:
         - name: Log Analytics Linux agent
           displayName: troubleshoot, troubleshooting
           href: agents/agent-linux-troubleshoot.md
-  - name: Custom metrics ingestion using REST
-    href: metrics/metrics-store-custom-rest-api.md
   - name: Logs ingestion API
     items:
     - name: Overview
@@ -986,6 +982,10 @@ items:
       href: logs/ingest-logs-event-hub.md
     - name: Stream monitoring data to Event Hubs
       href: platform/stream-monitoring-data-event-hubs.md
+  - name: Azure Monitor pipeline (preview)
+    href: data-collection/edge-pipeline-configure.md
+  - name: Custom metrics ingestion using REST
+    href: metrics/metrics-store-custom-rest-api.md
   - name: Troubleshoot
     href: logs/data-collection-troubleshoot.md
 - name: Data platform
