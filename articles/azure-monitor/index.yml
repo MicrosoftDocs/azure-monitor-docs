@@ -133,6 +133,16 @@ landingContent:
             url: vm/vminsights-migrate-agent.md
 
  # Card
+  - title: Respond to issues
+    linkLists: 
+      - linkListType: how-to-guide
+        links:
+          - text: Alerts 
+            url: alerts/alerts-overview.md
+          - text: Autoscale
+            url: autoscale/autoscale-overview.md
+
+ # Card
   - title: Visualize monitoring data
     linkLists: 
       - linkListType: how-to-guide
@@ -147,16 +157,6 @@ landingContent:
             url: logs/log-powerbi.md
           - text: Grafana
             url: visualize/visualize-grafana-overview.md
-
- # Card
-  - title: Respond to issues
-    linkLists: 
-      - linkListType: how-to-guide
-        links:
-          - text: Alerts 
-            url: alerts/alerts-overview.md
-          - text: Autoscale
-            url: autoscale/autoscale-overview.md
 
   # Card
   - title: Reference
