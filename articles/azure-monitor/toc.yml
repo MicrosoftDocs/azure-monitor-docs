@@ -460,10 +460,20 @@ items:
       href: containers/container-insights-cost.md
     - name: Install and configure
       items:
-      - name: Onboard cluster with portal
+      - name: Overview
+        href: containers/kubernetes-monitoring-enable.md      
+      - name: Azure portal
         href: containers/kubernetes-monitoring-enable-portal.md
-      - name: Onboard cluster
-        href: containers/kubernetes-monitoring-enable.md
+      - name: CLI
+        href: containers/kubernetes-monitoring-enable-cli.md
+      - name: Terraform
+        href: containers/kubernetes-monitoring-enable-terraform.md
+      - name: ARM template
+        href: containers/kubernetes-monitoring-enable-arm.md
+      - name: Azure Policy
+        href: containers/kubernetes-monitoring-enable-policy.md
+    - name: Configure
+      items:
       - name: Collect logs
         href: containers/container-insights-data-collection-configure.md
       - name: Filter logs

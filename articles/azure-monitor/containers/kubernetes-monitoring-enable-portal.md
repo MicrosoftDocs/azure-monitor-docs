@@ -11,6 +11,10 @@ ms.date: 03/11/2024
 
 As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable these features using the Azure portal.
 
+> [!NOTE]
+> See [Enable monitoring for Kubernetes clusters using CLI and templates](./kubernetes-monitoring-enable-portal.md) for instructions on how to enable monitoring using other methods.
+
+
 > [!IMPORTANT]
 > Kubernetes clusters generate a lot of log data, which can result in significant costs if you aren't selective about the logs that you collect. Before you enable monitoring for your cluster, see the following articles to ensure that your environment is optimized for cost and that you limit your log collection to only the data that you require:
 > 
@@ -42,7 +46,9 @@ To modify the configuration for an cluster that's already been onboarded, select
 :::image type="content" source="media/kubernetes-monitoring-enable-portal/monitor-settings.png" lightbox="media/kubernetes-monitoring-enable-portal/monitor-settings.png" alt-text="Screenshot of monitor settings option for an existing cluster.":::
 
 ## Configuration options
-Select the checkbox for each feature that you want to enable. When you enable a feature, the workspace where the data is collected will be displayed. You can change these selections by select **Advanced settings**. 
+The configuration options are the same regardless of the option used to enable monitoring. Select the checkbox for each feature that you want to enable. When you enable a feature, the workspace where the data is collected will be displayed. You can change the configuration details for each selections by selecting**Advanced settings**. 
+
+:::image type="content" source="media/kubernetes-monitoring-enable-portal/configuration-options.png" lightbox="media/kubernetes-monitoring-enable-portal/configuration-options.png" alt-text="Screenshot of configuration settings for a cluster.":::
 
 ## Managed Prometheus options
 The only option available for Managed Prometheus is the [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md) where the metrics are stored. You can select an existing workspace or create a new one. See [Design criteria](../metrics/azure-monitor-workspace-overview.md#design-criteria) for decision criteria on creating multiple workspaces.
@@ -58,14 +64,14 @@ For container logs, you must first select the [Log Analytics workspace](../logs/
 
 You also must select a logging profile, which defines which logs will be collected and at what frequency. The available profiles are listed in the following table. 
 
-    :::image type="content" source="media/container-insights-cost-config/cost-settings-onboarding.png" alt-text="Screenshot that shows the onboarding options." lightbox="media/container-insights-cost-config/cost-settings-onboarding.png" :::
+:::image type="content" source="media/container-insights-cost-config/cost-settings-onboarding.png" alt-text="Screenshot that shows the onboarding options." lightbox="media/container-insights-cost-config/cost-settings-onboarding.png" :::
 
-    | Cost preset | Collection frequency | Namespace filters | Syslog collection | Collected data |
-    | --- | --- | --- | --- | --- |
-    | Logs and Events (Default) | 1 m | None | Not enabled | ContainerLogV2<br>KubeEvents<br>KubePodInventory |
-    | Syslog | 1 m | None | Enabled by default | All standard container insights tables |
-    | Standard | 1 m | None | Not enabled | All standard container insights tables |
-    | Cost-optimized | 5 m | Excludes kube-system, gatekeeper-system, azure-arc | Not enabled | All standard container insights tables |
+| Cost preset | Collection frequency | Namespace filters | Syslog collection | Collected data |
+| --- | --- | --- | --- | --- |
+| Logs and Events (Default) | 1 m | None | Not enabled | ContainerLogV2<br>KubeEvents<br>KubePodInventory |
+| Syslog | 1 m | None | Enabled by default | All standard container insights tables |
+| Standard | 1 m | None | Not enabled | All standard container insights tables |
+| Cost-optimized | 5 m | Excludes kube-system, gatekeeper-system, azure-arc | Not enabled | All standard container insights tables |
 
 If you want to customize the settings, click **Edit collection settings**.
 
@@ -91,8 +97,13 @@ The **Collected data** option allows you to select the tables that are populated
 | Logs and events | ContainerLog or ContainerLogV2, KubeEvents, KubePodInventory | Recommended if you have enabled managed Prometheus metrics |
 | Workloads, Deployments, and HPAs | InsightsMetrics, KubePodInventory, KubeEvents, ContainerInventory, ContainerNodeInventory, KubeNodeInventory, KubeServices | |
 | Persistent Volumes | InsightsMetrics, KubePVInventory | |
-    
 
+
+## Verify deployment
+Within a few minutes after enabling monitoring, you should be able to use the following mmethods to verify that the monitoring features are enabled.
+
+- The cluster should move from the **Unmonitored clusters** view to the **Monitored clusters** view in Container insights.
+- The **Monitor** view for the cluster should start to populate with data and no longer provide an option to enable monitoring. This includes the Nodes, Workloads, and Containers tabs.
 
 
 ## Next steps
