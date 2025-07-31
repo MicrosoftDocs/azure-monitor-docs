@@ -214,7 +214,7 @@ Following is a sample JSON definition for a workspace transformation DCR.
 
 ## Optimize and monitor transformations
 
-Transformations run a KQL query against every record collected with the DCR, so it's important that they run efficiently. Transformation execution time contributes to overall [data ingestion latency](../logs/data-ingestion-time.md), and transformations that take excessive time to run can impact the performance of the data collection pipeline and result in data loss. Optimal transformations should take no more than 1 second to run. See [Optimize log queries in Azure Monitor](../logs/query-optimization.md) for guidance on testing your query before you implement it as a transformation and for recommendations on optimizing queries that don't run efficiently.
+Transformations run a KQL query against every record collected with the DCR, so it's important that they run efficiently. Transformation execution time contributes to overall [data ingestion latency](../logs/data-ingestion-time.md), and transformations that take excessive time to run can impact the performance of data collection and result in data loss. Optimal transformations should take no more than 1 second to run. See [Optimize log queries in Azure Monitor](../logs/query-optimization.md) for guidance on testing your query before you implement it as a transformation and for recommendations on optimizing queries that don't run efficiently.
 
 > [!IMPORTANT]
 > You may experience data loss if a transformation takes more than 20 seconds.
