@@ -25,21 +25,21 @@ There are multiple methods to onboard your cluster to Azure Monitor and to modif
 **Creating a new AKS cluster.**
 When you create a new AKS cluster in the portal, you can enable Container insights and Prometheus from the **Monitoring** tab.
 
-:::image type="content" source="media/container-insights-enable-portal/enable-new-cluster.png" lightbox="media/container-insights-enable-portal/enable-new-cluster.png" alt-text="Screenshot of Monitoring tab for new cluster." border="false":::
+:::image type="content" source="media/kubernetes-monitoring-enable-portal/enable-new-cluster.png" lightbox="media/kubernetes-monitoring-enable-portal/enable-new-cluster.png" alt-text="Screenshot of Monitoring tab for new cluster." border="false":::
 
 **From Container insights**
 Open Container insights from the **Containers** option in the **Monitor** menu. Click **Enable** next to a cluster to open configuration options.
 
-:::image type="content" source="media/container-insights-enable-portal/enable-unmonitored-clusters.png" lightbox="media/container-insights-enable-portal/enable-unmonitored-clusters.png" alt-text="Screenshot of unmonitored clusters view in Container insights." border="false":::
+:::image type="content" source="media/kubernetes-monitoring-enable-portal/enable-unmonitored-clusters.png" lightbox="media/kubernetes-monitoring-enable-portal/enable-unmonitored-clusters.png" alt-text="Screenshot of unmonitored clusters view in Container insights." border="false":::
 
 **From the cluster**
 Select **Monitor** from the cluster in the Azure portal to view various performance measurements for the container. You'll be prompted to enable monitoring for any elements that require it. This includes Prometheus for metrics, container logging for logs, and recommended alerts. The Nodes, Workloads, and Containers tabs will be completely disabled until Prometheus monitoring is enabled.
 
-:::image type="content" source="media/container-insights-enable-portal/enable-existing-cluster.png" lightbox="media/container-insights-enable-portal/enable-existing-cluster.png" alt-text="Screenshot of enabling monitoring for an existing cluster." border="false":::
+:::image type="content" source="media/kubernetes-monitoring-enable-portal/enable-existing-cluster.png" lightbox="media/kubernetes-monitoring-enable-portal/enable-existing-cluster.png" alt-text="Screenshot of enabling monitoring for an existing cluster." border="false":::
 
 To modify the configuration for an cluster that's already been onboarded, select **Monitor Settings**.
 
-:::image type="content" source="media/container-insights-enable-portal/monitor-settings.png" lightbox="media/container-insights-enable-portal/monitor-settings.png" alt-text="Screenshot of monitor settings option for an existing cluster." border="false":::
+:::image type="content" source="media/kubernetes-monitoring-enable-portal/monitor-settings.png" lightbox="media/kubernetes-monitoring-enable-portal/monitor-settings.png" alt-text="Screenshot of monitor settings option for an existing cluster." border="false":::
 
 ## Configuration options
 Select the checkbox for each feature that you want to enable. When you enable a feature, the workspace where the data is collected will be displayed. You can change these selections by select **Advanced settings**. 
