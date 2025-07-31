@@ -11,24 +11,20 @@ ms.date: 05/26/2024
 
 [Azure Monitor Logs](data-platform-logs.md) is based on [Azure Data Explorer](/azure/data-explorer/data-explorer-overview) and uses the same [Kusto Query Language (KQL)](/kusto/query/) to write log queries. This rich language is designed to be easy to read and author, which allows you to start writing queries with minimal guidance.
 
-Areas in Azure Monitor where you'll use queries include:
+Areas in Azure Monitor where you use queries include:
 
-* **[Log Analytics](../logs/log-analytics-overview.md)** - Use this primary tool in the Azure portal to edit log queries and interactively analyze their results. Even if you intend to use a log query elsewhere in Azure Monitor, you'll typically write and test it in Log Analytics before you copy it to its final location.
-
-* **[Log search alert rules](../alerts/alerts-overview.md)** - Proactively identify issues from data in your workspace. Each alert rule is based on a log query that's automatically run at regular intervals. The results are inspected to determine if an alert should be created.
-
-* **[Workbooks](../visualize/workbooks-overview.md)** - Include the results of log queries by using different visualizations in interactive visual reports in the Azure portal.
-
-* **[Azure dashboards](../visualize/tutorial-logs-dashboards.md)** - Pin the results of any query into an Azure dashboard, which allows you to visualize log and metric data together and optionally share with other Azure users.
-
-* **[Azure Logic Apps](/azure/connectors/connectors-azure-monitor-logs)** - Use the results of a log query in an automated workflow by using a logic app workflow.
-
-* **[PowerShell](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery)** - Use the results of a log query in a PowerShell script from a command line or an Azure Automation runbook that uses `Invoke-AzOperationalInsightsQuery`.
-
-* **[Log Analytics query API](/rest/api/loganalytics/query)** - Retrieve log data from the workspace from any REST API client. The API request includes a query that's run against Azure Monitor to determine the data to retrieve.
+| Area | Description |
+|------|-------------|
+| [Log Analytics](../logs/log-analytics-overview.md) | Use this primary tool in the Azure portal to edit log queries and interactively analyze their results. Even if you intend to use a log query elsewhere in Azure Monitor, you'll typically write and test it in Log Analytics before you copy it to its final location. |
+| [Log search alert rules](../alerts/alerts-overview.md) | Proactively identify issues from data in your workspace. Each alert rule is based on a log query that's automatically run at regular intervals. The results are inspected to determine if an alert should be created. |
+| [Workbooks](../visualize/workbooks-overview.md) | Include the results of log queries by using different visualizations in interactive visual reports in the Azure portal.
+| [Azure dashboards](../visualize/tutorial-logs-dashboards.md) | Pin the results of any query into an Azure dashboard, which allows you to visualize log and metric data together and optionally share with other Azure users. |
+| [Azure Logic Apps](/azure/connectors/connectors-azure-monitor-logs) | Use the results of a log query in an automated workflow by using a logic app workflow. |
+| [PowerShell](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) | Use the results of a log query in a PowerShell script from a command line or an Azure Automation runbook that uses `Invoke-AzOperationalInsightsQuery`. |
+| [Log Analytics query API](/rest/api/loganalytics/query) | Retrieve log data from the workspace from any REST API client. The API request includes a query that's run against Azure Monitor to determine the data to retrieve. |
 
 > [!IMPORTANT]
-> Starting July 1, 2025, querying log data and events requires TLS 1.2 or higher when using [query API endpoints for Log Analytics or Application Insights](../fundamentals/azure-monitor-network-access.md#logs-query-api-endpoints). For more information, see [Secure data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
+> Since July 1, 2025, querying log data and events requires TLS 1.2 or higher when using [query API endpoints for Log Analytics or Application Insights](../fundamentals/azure-monitor-network-access.md#logs-query-api-endpoints). For more information, see [Secure data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
 
 ### Azure Monitor query client libraries
 
