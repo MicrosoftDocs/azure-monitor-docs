@@ -9,7 +9,7 @@ ms.date: 01/08/2025
 
 # Get started with log queries in Azure Monitor Logs
 
-This article explains the fundamentals of writing log queries in Azure Monitor Logs, including how to:
+This article explains the fundamentals of writing log queries in [Azure Monitor Logs](data-platform-logs.md), including how to:
 
 * [Structure a query](#structure-a-query).
 * [Sort query results](#sort-results).
@@ -19,10 +19,17 @@ This article explains the fundamentals of writing log queries in Azure Monitor L
 * [Define and use custom fields](#define-and-use-custom-fields).
 * [Aggregate and group results](#aggregate-and-group-results).
 
-Where applicable, the article provides examples of querying data using both Kusto Query Language (KQL) and [Log Analytics simple mode](log-analytics-simple-mode.md).
+Where applicable, the article provides examples of querying data using both [Kusto Query Language (KQL)](/kusto/query/) and [Log Analytics simple mode](log-analytics-simple-mode.md).
 
-> [!NOTE]
-> If you're collecting data from at least one virtual machine, you can work through this exercise in your own environment. For other scenarios, use our [demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), which includes plenty of sample data.
+KQL mode allows you to write and customize advanced queries for full control and flexibility.
+
+:::image type="content" source="media/get-started-queries/kql-mode-ribbon.png" lightbox="media/get-started-queries/kql-mode-ribbon.png" alt-text="Screenshot shows the KQL mode ribbon.":::
+
+Simple mode provides a user-friendly interface where you select a table and apply filters to build queries without writing any code.
+
+:::image type="content" source="media/get-started-queries/simple-mode-ribbon.png" lightbox="media/get-started-queries/simple-mode-ribbon.png" alt-text="Screenshot shows the Simple mode ribbon.":::
+
+If you're collecting data from at least one virtual machine, you can work through this exercise in your own environment. For other scenarios, use our [demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), which includes plenty of sample data.
 
 ## Tutorial video
 
@@ -41,6 +48,9 @@ Queries can start with either a table name or the `search` command. It's a good 
 
 > [!NOTE]
 > KQL, which is used by Azure Monitor, is case sensitive. Language keywords are usually written in lowercase. When you use names of tables or columns in a query, be sure to use the correct case, as shown on the schema pane.
+
+> [!TIP]
+> Learn about [Best practices for KQL queries](/kusto/query/best-practices).
 
 ### Table-based queries
 
@@ -526,4 +536,3 @@ Occasionally, you might notice duplicate records in Azure Monitor Logs. This dup
 * To learn more about using string data in a log query, see [Work with strings in Azure Monitor log queries](/azure/data-explorer/kusto/query/samples?&pivots=azuremonitor#string-operations).
 * To learn more about aggregating data in a log query, see [Advanced aggregations in Azure Monitor log queries](/azure/data-explorer/write-queries#advanced-aggregations).
 * To learn how to join data from multiple tables, see [Joins in Azure Monitor log queries](/azure/data-explorer/kusto/query/samples?&pivots=azuremonitor#joins).
-* Get documentation on the entire Kusto Query Language in the [KQL language reference](/azure/kusto/query/).
