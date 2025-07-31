@@ -30,7 +30,9 @@ Areas in Azure Monitor where you'll use queries include:
 > [!IMPORTANT]
 > Starting July 1, 2025, querying log data and events requires TLS 1.2 or higher when using [query API endpoints for Log Analytics or Application Insights](../fundamentals/azure-monitor-network-access.md#logs-query-api-endpoints). For more information, see [Secure data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
 
-**Azure Monitor query client libraries**: Retrieve log data from the workspace via an idiomatic client library for the following ecosystems:
+### Azure Monitor query client libraries
+
+Retrieve log data from the workspace via an idiomatic client library for the following ecosystems:
 
 * [.NET](/dotnet/api/overview/azure/Monitor.Query-readme)
 * [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/query/azlogs)
