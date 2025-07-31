@@ -9,15 +9,17 @@ ms.date: 01/08/2025
 
 # Get started with log queries in Azure Monitor Logs
 
-This article explains the fundamentals of using log queries in [Azure Monitor Logs](data-platform-logs.md). Where applicable, it provides examples of querying data using both KQL mode and [Log Analytics simple mode](log-analytics-simple-mode.md).
+This article explains the fundamentals of using log queries in [Azure Monitor Logs](data-platform-logs.md). Where applicable, it provides examples of querying data using both KQL mode and [Log Analytics simple mode](log-analytics-simple-mode.md):
 
-* **KQL mode** - Allows you to write and customize advanced queries using [Kusto Query Language (KQL)](/kusto/query/).
+* **KQL mode** allows you to write and customize advanced queries using [Kusto Query Language (KQL)](/kusto/query/).
 
     :::image type="content" source="media/get-started-queries/kql-mode-ribbon.png" alt-text="Screenshot shows the KQL mode ribbon.":::
 
-* **Simple mode** - Provides a user-friendly interface where you select a table and apply filters to build queries.
+* **Simple mode** provides a user-friendly interface where you select a table and apply filters to build queries.
 
     :::image type="content" source="media/get-started-queries/simple-mode-ribbon.png" alt-text="Screenshot shows the Simple mode ribbon.":::
+
+For a more detailed comparison between KQL mode and Simple mode, see [Overview of Log Analytics in Azure Monitor](log-analytics-overview.md).
 
 If you're collecting data from at least one virtual machine, you can work through this exercise in your own environment. For other scenarios, use our [demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), which includes plenty of sample data.
 
