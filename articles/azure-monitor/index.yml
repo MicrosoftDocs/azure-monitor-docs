@@ -41,7 +41,7 @@ landingContent:
 # Card
   - title: Common scenarios
     linkLists:
-      - linkListType: how-to-guide
+      - linkListType: overview
         links:
           - text: Monitor applications
             url: app/app-insights-overview.md
@@ -99,16 +99,18 @@ landingContent:
  # Card
   - title: Get started with Metrics in Azure Monitor
     linkLists: 
-      - linkListType: how-to-guide
+      - linkListType: get-started
         links:
-          - text: Overview of Azure Monitor Metrics
+          - text: Azure Monitor Metrics
             url: metrics/data-platform-metrics.md
-          - text: Analyze metrics with Azure Monitor metrics explorer
-            url: metrics/analyze-metrics.md        
-          - text: Use custom metrics with Azure Monitor
-            url: metrics/metrics-custom-overview.md
           - text: Azure Monitor managed service for Prometheus
             url: metrics/prometheus-metrics-overview.md
+      - linkListType: how-to-guide
+        links:
+          - text: Analyze metrics with Azure Monitor metrics explorer
+            url: metrics/analyze-metrics.md
+          - text: Use custom metrics with Azure Monitor
+            url: metrics/metrics-custom-overview.md
           - text: Connect Grafana to Azure Monitor Prometheus metrics
             url: metrics/prometheus-grafana.md
           - text: Manage an Azure Monitor workspace
@@ -117,12 +119,14 @@ landingContent:
  # Card
   - title: Monitoring agents & data collection
     linkLists: 
-      - linkListType: how-to-guide
+      - linkListType: get-started
         links:
           - text: Data collection rules (DCRs) in Azure Monitor
             url: agents/data-collection-rule-overview.md
           - text: Diagnostic settings in Azure Monitor
             url: platform/diagnostic-settings.md
+      - linkListType: how-to-guide
+        links:            
           - text: Install and manage the Azure Monitor Agent
             url: agents/azure-monitor-agent-manage.md
           - text: Migrate to Azure Monitor Agent
