@@ -25,16 +25,6 @@ landingContent:
             url: fundamentals/data-sources.md
           - text: How do you collect data?
             url: data-collection/data-collection-rule-overview.md
-          - text: What's new in Azure Monitor documentation?
-            url: /azure/whats-new.md
-#          - text: What is Azure Monitor Metrics?
-#            url: metrics/data-platform-metrics.md
-#          - text: What is Azure Monitor Logs?
-#            url: logs/data-platform-logs.md
-
-# Card
-  - title: Get started with Azure Monitor
-    linkLists:
       - linkListType: get-started
         links:
           - text: Plan your implementation
@@ -63,24 +53,22 @@ landingContent:
             url: containers/kubernetes-monitoring-enable.md        
           - text: Multi-cloud monitoring
             url: fundamentals/best-practices-multicloud.md
-#          - text: Migrate from SCOM
-#            url: fundamentals/azure-monitor-operations-manager.md
-#          - text: Migrate from Splunk to Azure Monitor Logs
-#            url: logs/migrate-splunk-to-azure-monitor-logs.md
 
 # Card 
   - title: Get started with Application Insights
     linkLists:
+      - linkListType: get-started
+        links:
+          - text: Create a resource
+            url: app/create-workspace-resource.md
+          - text: Auto-instrumentation
+            url: app/codeless-overview.md
+          - text: Enable OpenTelemetry
+            url: app/opentelemetry-enable.md
+          - text: Overview dashboard
+            url: app/overview-dashboard.md
       - linkListType: how-to-guide
         links:
-          - text: Create an Application Insights resource
-            url: app/create-workspace-resource.md
-          - text: Auto-instrumentation overview
-            url: app/codeless-overview.md
-          - text: Enable OpenTelemetry in Application Insights
-            url: app/opentelemetry-enable.md        
-          - text: Application Insights Overview dashboard
-            url: app/overview-dashboard.md            
           - text: Monitor your website's availability
             url: app/availability.md
           - text: Spot performance bottlenecks or failure hotspots
@@ -91,12 +79,14 @@ landingContent:
  # Card
   - title: Get started with Azure Monitor Logs
     linkLists: 
-      - linkListType: how-to-guide
+      - linkListType: get-started
         links:
           - text: Set up a Log Analytics workspace
             url: logs/log-analytics-workspace-overview.md
           - text: Design a Log Analytics workspace architecture
             url: logs/workspace-design.md
+      - linkListType: how-to-guide
+        links:
           - text: Manage tables in a Log Analytics workspace
             url: logs/manage-logs-tables.md
           - text: Monitor workspaces with Log Analytics Workspace Insights
@@ -107,7 +97,7 @@ landingContent:
             url: logs/log-query-overview.md
 
  # Card
-  - title: Metrics in Azure Monitor
+  - title: Get started with Metrics in Azure Monitor
     linkLists: 
       - linkListType: how-to-guide
         links:
