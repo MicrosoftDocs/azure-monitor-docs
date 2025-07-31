@@ -460,6 +460,8 @@ items:
       href: containers/container-insights-cost.md
     - name: Install and configure
       items:
+      - name: Onboard cluster with portal
+        href: containers/kubernetes-monitoring-enable-portal.md
       - name: Onboard cluster
         href: containers/kubernetes-monitoring-enable.md
       - name: Collect logs
