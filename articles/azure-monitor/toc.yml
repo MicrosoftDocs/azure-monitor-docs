@@ -475,20 +475,6 @@ items:
       items:
       - name: Agent management
         href: containers/container-insights-manage-agent.md
-    - name: Legacy
-      items:
-      - name: Prometheus based Container Insights
-        href: containers/container-insights-experience-v2.md
-      - name: Legacy authentication
-        href: containers/container-insights-authentication.md
-      - name: Container log schema
-        href: containers/container-insights-logs-schema.md
-      - name: Transition from Container monitoring solution
-        href: containers/container-insights-transition-solution.md
-      - name: Authentication
-        href: containers/container-insights-authentication.md
-      - name: Send Prometheus metrics to Logs
-        href: containers/container-insights-prometheus-logs.md
     - name: Reference
       items:
       - name: Firewall requirements
@@ -507,7 +493,7 @@ items:
         href: containers/container-insights-high-scale.md
       - name: Throttling
         href: containers/container-insights-throttling.md
-    - name: Configure Prometheus (metrics)
+    - name: Configure metric collection
       items:
       - name: Customize data collection
         items:
@@ -517,7 +503,7 @@ items:
         - name: Custom configuration
           displayName: Prometheus
           href: containers/prometheus-metrics-scrape-configuration.md
-        - name: Configure collection using Service and Pod Monitor Custom Resources
+        - name: Configure collection using CRDs
           displayName: Prometheus
           href: containers/prometheus-metrics-scrape-crd.md
         - name: Create and validate custom scrape config
@@ -532,30 +518,31 @@ items:
         - name: Autoscale support
           displayName: Prometheus
           href: containers/prometheus-metrics-scrape-autoscaling.md
-      - name: Integrations
-        items:
-        - name: Set up exporters for common workloads
-          displayName: Prometheus
-          href: containers/prometheus-exporters.md
+        - name: Integrations
           items:
-          - name: Monitor Apache Kafka
+          - name: Set up exporters for common workloads
             displayName: Prometheus
-            href: containers/prometheus-kafka-integration.md
-          - name: Monitor Argo CD
+            href: containers/prometheus-exporters.md
+          - name: Exporters
+            items:
+            - name: Monitor Apache Kafka
+              displayName: Prometheus
+              href: containers/prometheus-kafka-integration.md
+            - name: Monitor Argo CD
+              displayName: Prometheus
+              href: containers/prometheus-argo-cd-integration.md
+            - name: Monitor Elastic Search
+              displayName: Prometheus
+              href: containers/prometheus-elasticsearch-integration.md
+            - name: Monitor Istio
+              displayName: Prometheus
+              href: containers/prometheus-istio-integration.md
+            - name: Monitor Nvidia GPU
+              displayName: Prometheus
+              href: containers/prometheus-dcgm-integration.md
+          - name: Scale using KEDA based on Prometheus metrics
             displayName: Prometheus
-            href: containers/prometheus-argo-cd-integration.md
-          - name: Monitor Elastic Search
-            displayName: Prometheus
-            href: containers/prometheus-elasticsearch-integration.md
-          - name: Monitor Istio
-            displayName: Prometheus
-            href: containers/prometheus-istio-integration.md
-          - name: Monitor Nvidia GPU
-            displayName: Prometheus
-            href: containers/prometheus-dcgm-integration.md
-        - name: Scale using KEDA based on Prometheus metrics
-          displayName: Prometheus
-          href: containers/integrate-keda.md
+            href: containers/integrate-keda.md
       - name: Send to multiple metric workspaces
         displayName: Prometheus
         href: containers/prometheus-metrics-multiple-workspaces.md
@@ -620,6 +607,20 @@ items:
         href: containers/prometheus-metrics-troubleshoot.md
       - name: Container insights
         href: containers/container-insights-troubleshoot.md
+    - name: Legacy
+      items:
+      - name: Prometheus based Container Insights
+        href: containers/container-insights-experience-v2.md
+      - name: Legacy authentication
+        href: containers/container-insights-authentication.md
+      - name: Container log schema
+        href: containers/container-insights-logs-schema.md
+      - name: Transition from Container monitoring solution
+        href: containers/container-insights-transition-solution.md
+      - name: Authentication
+        href: containers/container-insights-authentication.md
+      - name: Send Prometheus metrics to Logs
+        href: containers/container-insights-prometheus-logs.md
   - name: Monitor networks
     items:
     - name: Network Watcher

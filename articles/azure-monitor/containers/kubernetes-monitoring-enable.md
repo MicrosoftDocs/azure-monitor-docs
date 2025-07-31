@@ -15,7 +15,9 @@ This article describes how to enable complete monitoring of your Kubernetes clus
 - [Container insights](./container-insights-overview.md) for log collection
 - [Managed Grafana](/azure/managed-grafana/overview) for visualization.
 
-[Using the Azure portal](#enable-full-monitoring-with-azure-portal), you can enable all of the features at the same time. You can also enable them individually by using the Azure CLI, Azure Resource Manager template, Terraform, or Azure Policy. Each of these methods is described in this article.
+> [!NOTE]
+> See [Enable Kubernetes monitoring using the Azure portal](./kubernetes-monitoring-enable-portal.md) for instructions on how to enable monitoring using the Azure portal.
+
 
 > [!IMPORTANT]
 > Kubernetes clusters generate a lot of log data, which can result in significant costs if you aren't selective about the logs that you collect. Before you enable monitoring for your cluster, see the following articles to ensure that your environment is optimized for cost and that you limit your log collection to only the data that you require:
