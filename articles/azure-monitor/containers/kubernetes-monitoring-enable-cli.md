@@ -73,6 +73,7 @@ The following additional optional parameters are available for Azure Arc-enabled
 | `CloudEnvironment` | The cloud environment for the cluster. | `Azure.Cluster.Cloud` | yes |
 | `MountCATrustAnchorsDirectory` | Whether to mount CA trust anchors directory. | `true` | no |
 | `MountUbuntuCACertDirectory` | Whether to mount Ubuntu CA certificate directory. | `true` unless an `aks_edge` distro. | no |
+
 ---
 
 ## Container logs
