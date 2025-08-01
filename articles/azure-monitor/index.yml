@@ -85,16 +85,14 @@ landingContent:
             url: logs/log-analytics-workspace-overview.md
           - text: Design a Log Analytics workspace architecture
             url: logs/workspace-design.md
+          - text: Log Analytics Workspace Insights
+            url: logs/log-analytics-workspace-insights-overview.md
       - linkListType: how-to-guide
         links:
           - text: Analyze data in Log Analytics
             url: logs/log-analytics-tutorial.md
-          - text: Use log queries in Azure Monitor
-            url: logs/log-query-overview.md
           - text: Manage tables in a Log Analytics workspace
             url: logs/manage-logs-tables.md
-          - text: Monitor workspaces with Log Analytics Workspace Insights
-            url: logs/log-analytics-workspace-insights-overview.md
 
 
  # Card
@@ -106,12 +104,12 @@ landingContent:
             url: metrics/data-platform-metrics.md
           - text: Azure Monitor managed service for Prometheus
             url: metrics/prometheus-metrics-overview.md
+          - text: Custom metrics with Azure Monitor
+            url: metrics/metrics-custom-overview.md
       - linkListType: how-to-guide
         links:
           - text: Analyze metrics with Azure Monitor metrics explorer
             url: metrics/analyze-metrics.md
-          - text: Use custom metrics with Azure Monitor
-            url: metrics/metrics-custom-overview.md
           - text: Connect Grafana to Azure Monitor Prometheus metrics
             url: metrics/prometheus-grafana.md
           - text: Manage an Azure Monitor workspace
