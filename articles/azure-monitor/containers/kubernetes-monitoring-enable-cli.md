@@ -16,10 +16,14 @@ If you don't specify an existing Azure Monitor workspace in the following comman
 
 #### Prerequisites
 
-- Az CLI version of 2.49.0 or higher is required. 
+- Az CLI version of 2.51.0 or higher is required.
 - The aks-preview extension must be [uninstalled from AKS clusters](/cli/azure/azure-cli-extensions-overview) by using the command `az extension remove --name aks-preview`. 
+- 
 - The k8s-extension extension must be installed using the command `az extension add --name k8s-extension`.
-- The k8s-extension version 1.4.1 or higher is required. 
+- The k8s-extension version 1.4.3 or higher is required. 
+- Managed identity authentication is not supported for Arc-enabled Kubernetes clusters with ARO (Azure Red Hat Openshift) or Windows nodes. Use [legacy authentication]().
+  
+
 
 #### Optional parameters
 Each of the commands for AKS and Arc-Enabled Kubernetes allow the following optional parameters. The parameter name is different for each, but their use is the same.
@@ -73,6 +77,33 @@ The following additional optional parameters are available for Azure Arc-enabled
 | `CloudEnvironment` | The cloud environment for the cluster. | `Azure.Cluster.Cloud` | yes |
 | `MountCATrustAnchorsDirectory` | Whether to mount CA trust anchors directory. | `true` | no |
 | `MountUbuntuCACertDirectory` | Whether to mount Ubuntu CA certificate directory. | `true` unless an `aks_edge` distro. | no |
+
+## Container logs
+
+Use one of the following commands to enable monitoring of your AKS and Arc-enabled clusters. If you don't specify an existing Log Analytics workspace, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one will be created with a name in the format `DefaultWorkspace-<GUID>-<Region>`.
+
+> [!NOTE]
+> You can enable the **ContainerLogV2** schema for a cluster either using the cluster's Data Collection Rule (DCR) or ConfigMap. If both settings are enabled, the ConfigMap will take precedence. Stdout and stderr logs will only be ingested to the ContainerLog table when both the DCR and ConfigMap are explicitly set to off.
+
+
+#### AKS cluster
+
+```azurecli
+### Use default Log Analytics workspace
+az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name>
+
+### Use existing Log Analytics workspace
+az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id>
+
+### Use legacy authentication
+az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id> --enable-msi-auth-for-monitoring false
+```
+
+**Example**
+
+```azurecli
+az aks enable-addons --addon monitoring --name "my-cluster" --resource-group "my-resource-group" --workspace-resource-id "/subscriptions/my-subscription/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace"
+```
 
 
 ## Next steps

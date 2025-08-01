@@ -23,8 +23,9 @@ As described in [Kubernetes monitoring in Azure Monitor](./container-insights-ov
 > 
 > Therefore, the default scoping for the `Monitoring Reader` role is on the resource group. The role is applied on the same Azure Monitor workspace by inheritance, which is the expected behavior. After you deploy this Bicep template, the Grafana instance is given `Monitoring Reader` permissions for all the Azure Monitor workspaces in that resource group.
 
+## Prometheus
 
-## Retrieve required values for Grafana resource
+### Retrieve required values for Grafana resource
 If the Azure Managed Grafana instance is already linked to an Azure Monitor workspace, then you must include this list in the template. On the **Overview** page for the Azure Managed Grafana instance in the Azure portal, select **JSON view**, and copy the value of `azureMonitorWorkspaceIntegrations` which will look similar to the sample below. If it doesn't exist, then the instance hasn't been linked with any Azure Monitor workspace.
 
 ```json
@@ -42,7 +43,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 }
 ```
 
-## Download and edit template and parameter file
+### Download and edit template and parameter file
 
 1. Download the required files for the type of Kubernetes cluster you're working with.
 
@@ -146,6 +147,60 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
             }
         }
     ```
+
+4. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
+
+## Container logs
+
+
+Both ARM and Bicep templates are provided in this section.
+
+#### Prerequisites
+ 
+- The template must be deployed in the same resource group as the cluster.
+
+#### Download and install template
+
+1. Download and edit template and parameter file
+
+    **AKS cluster ARM**
+   - Template file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file)
+   - Parameter file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file)
+
+    **AKS  cluster Bicep**
+    - Template file (Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-template](https://aka.ms/enable-monitoring-msi-syslog-bicep-template)
+    - Parameter file (No Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters](https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters)
+    - Template file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-template](https://aka.ms/enable-monitoring-msi-bicep-template)
+    - Parameter file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-parameters](https://aka.ms/enable-monitoring-msi-bicep-parameters)
+
+    **Arc-enabled cluster ARM**
+    - Template file: [https://aka.ms/arc-k8s-azmon-extension-msi-arm-template](https://aka.ms/arc-k8s-azmon-extension-msi-arm-template)
+    - Parameter file: [https://aka.ms/arc-k8s-azmon-extension-msi-arm-template-params](https://aka.ms/arc-k8s-azmon-extension-msi-arm-template-params)
+    - Template file (legacy authentication): [https://aka.ms/arc-k8s-azmon-extension-arm-template](https://aka.ms/arc-k8s-azmon-extension-arm-template)
+    - Parameter file (legacy authentication): [https://aka.ms/arc-k8s-azmon-extension-arm-template-params](https://aka.ms/arc-k8s-azmon-extension-arm-template-params)
+
+2. Edit the following values in the parameter file. The same set of values are used for both the ARM and Bicep templates. Retrieve the resource ID of the resources from the **JSON View** of their **Overview** page.
+
+    | Parameter | Description |
+    |:---|:---|
+    | AKS: `aksResourceId`<br>Arc: `clusterResourceId`  | Resource ID of the cluster. |
+    | AKS: `aksResourceLocation`<br>Arc: `clusterRegion` | Location of the cluster. |
+    | AKS: `workspaceResourceId`<br>Arc: `workspaceResourceId` | Resource ID of the Log Analytics workspace. |
+    | Arc: `workspaceRegion` | Region of the Log Analytics workspace. |
+    | Arc: `workspaceDomain` | Domain of the Log Analytics workspace.<br>`opinsights.azure.com` for Azure public cloud<br>`opinsights.azure.us` for AzureUSGovernment. |
+    | AKS: `resourceTagValues` | Tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will be `MSCI-<clusterName>-<clusterRegion>` and this resource created in an AKS clusters resource group. For first time onboarding, you can set arbitrary tag values. |
+   | enableContainerLogV2                    | Flag to indicate whether to use ContainerLogV2 or not.                                                                 |
+   | enableRetinaNetworkFlowLogs             | Flag to indicate whether to enable Retina Network Flow Logs or not.                                   |
+   | enableSyslog                            | Flag to indicate to enable Syslog collection or not.                                                                   |
+   | syslogLevels                            | Log levels for Syslog collection                                                                                       |
+   | syslogFacilities                        | Facilities for Syslog collection                                                                                       |
+   | dataCollectionInterval                  | Data collection interval for applicable inventory and perf data collection. Default is 1m                              |
+   | namespaceFilteringModeForDataCollection | Data collection namespace filtering mode for applicable inventory and perf data collection. Default is off             |
+   | namespacesForDataCollection             | Namespaces for data collection for applicable for inventory and perf data collection.                                  |
+   | streams                                 | Streams for data collection.  For retina networkflow logs feature, include "Microsoft-RetinaNetworkFlowLogs"           |
+   | useAzureMonitorPrivateLinkScope         | Flag to indicate whether to configure Azure Monitor Private Link Scope or not.                                         |
+   | azureMonitorPrivateLinkScopeResourceId  |  Azure Resource ID of the Azure Monitor Private Link Scope.                                                            |
+
 
 4. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
 
