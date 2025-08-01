@@ -1,6 +1,6 @@
 ---
 title: Filter AKS control plane logs using workspace transformations in Azure Monitor
-description: Describes how to transform data using a DCR transformation in Container insights.
+description: Step by step guide to filter AKS control plane logs using workspace transformations in Azure Monitor.
 ms.topic: article
 ms.date: 05/14/2025
 ms.reviewer: aul
