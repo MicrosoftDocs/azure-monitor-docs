@@ -41,11 +41,11 @@ Select the **Issue name** link to open the tabs with the information you need.
 >
 >Query for last 90 days
 >Check the result: <br>
->    - `status` = `active`
->    - `incident type` = `maintenance`
->    - `impactMitigationTime` = `after today’s date`
+>    - status = `active`
+>    - incident type = `maintenance`
+>    - impactMitigationTime = `after today’s date`
 >
->For additional information regarding planned maintenance events from ARG, please refer to [Resource graph samples](resource-graph-samples.md)
+>For additional information regarding planned maintenance events from ARG, refer to [Resource graph sample queries](resource-graph-samples?tabs+azure-cli.md).
 
 ### Filtering and sorting
 At the top of each tab, there are several options of how to view the information on this page.
