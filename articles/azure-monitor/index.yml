@@ -104,7 +104,7 @@ landingContent:
             url: metrics/data-platform-metrics.md
           - text: Azure Monitor managed service for Prometheus
             url: metrics/prometheus-metrics-overview.md
-          - text: Custom metrics with Azure Monitor
+          - text: Custom metrics in Azure Monitor
             url: metrics/metrics-custom-overview.md
       - linkListType: how-to-guide
         links:
