@@ -3,7 +3,7 @@ title: View and access Security advisories
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 
 ms.topic: conceptual
-ms.date: 7/11/2025
+ms.date: 8/01/2025
 ---
 
 
@@ -30,7 +30,20 @@ Each advisory typically includes four key sections:
 - **Issue Updates** – A timeline of ongoing updates and the remediation steps.
 - **Impacted Resources** – Specific resources in your environment that are affected.
 
+Select the **Advisory name** link to open the tabs with the information you need.
 
+>[!Note]
+>Security advisories are displayed in the pane for up to 28 days if they are still active and if the `impactMitigationTime` is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
+>
+>You can view Security advisories from the past year using an ARG query as shown here.<br>
+>
+>Query for last 28 days <br>
+>Check the result: 
+>- status = `active`
+>- impactMitigationTime = `before today’s date`
+>- incident type = `informational` or `action required`
+>
+>For more information regarding Sercurity advisories from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 ## Who can view Security advisories? 
 
