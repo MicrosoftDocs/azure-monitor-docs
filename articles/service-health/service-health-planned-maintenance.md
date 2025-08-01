@@ -36,16 +36,15 @@ Each event includes the following information:
 
 Select the **Issue name** link to open the tabs with the information you need.
 >[!Note]
->Planned maintenance events are displayed for 90 days if they are still active. After that they are moved to the health history blade where they are displayed for 90 days. 
+>Planned maintenance events are displayed in the panel for 90 days if they are still active and if the `imptactMitigationTime` is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
 >
 >You can view planned maintenance events from the past year using an ARG query as shown here.<br>
 >
 >Query for last 90 days <br>
->Check the result:
->- impactMitigationTime = `after today’s date`    
+>Check the result: 
 >- status = `active`
 >- incident type = `maintenance`
->   
+>- impactMitigationTime = `after today’s date` 
 >
 >For additional information regarding planned maintenance events from ARG, refer to [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
