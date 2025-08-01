@@ -8,7 +8,7 @@ ms.reviewer: aul
 
 # Filter AKS control plane logs using workspace transformations in Azure Monitor
 
-This tutorial walks through configuration of a sample transformation in a workspace [data collection rule (DCR)](../data-collection/data-collection-rule-overview.md) using the Azure portal. [Transformations](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-transformations) in Azure Monitor allow you to filter or modify incoming data before it's sent to its destination. Workspace transformations provide support for [ingestion-time transformations](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-transformations) for workflows that don't yet use the [Azure Monitor data ingestion pipeline](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection).
+This tutorial walks through configuration of a sample transformation in a workspace [data collection rule (DCR)](../data-collection/data-collection-rule-overview.md) using the Azure portal. [Transformations](../data-collection/data-collection-transformations.md) in Azure Monitor allow you to filter or modify incoming data before it's sent to its destination. Workspace transformations provide support for [ingestion-time transformations](../data-collection/data-collection-transformations.md#workspace-transformation-dcr) for workflows that don't yet use DCRs.
 
 ## Workspace Transformation DCR
 A workspace transformation DCR is a special DCR attached to your workspace. It allows you to apply ingestion‑time KQL transforms to supported tables even when data is sent from diagnostic settings or other non‑DCR flows. You can define multiple transformation rules—one per table—in the same DCR. **[Learn More](../data-collection/data-collection-transformations.md#workspace-transformation-dcr)**.
@@ -59,7 +59,7 @@ This step is only required if you're not already collecting these logs. If your 
     - **KubernetesAuditAdmin**
     - **KubernetesControlPlane**
 
-    :::image type="content" source="media/control-plane-transformations/image1.png" lightbox="media/control-plane-transformations/image1.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
+    :::image type="content" source="media/control-plane-transformations/diagnostic-settings.png" lightbox="media/control-plane-transformations/diagnostic-settings.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
 
 7.  Click **Save**.
 
@@ -71,11 +71,11 @@ This step is only required if you're not already collecting these logs. If your 
 
 3.  If this is your first workspace transformation, you'll be prompted to create a new workspace transformation DCR. Give it a name, then click **Done** and **Next**.
 
-    :::image type="content" source="media/control-plane-transformations/image2.png" lightbox="media/control-plane-transformations/image2.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
+    :::image type="content" source="media/control-plane-transformations/workspace-dcr.png" lightbox="media/control-plane-transformations/workspace-dcr.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
 
 4.  Select **Next** to view sample data from the table. As you define the transformation, the result will be applied to the sample data. This allows you to evaluate the results before you apply it to  actual data. Select **Transformation editor** to define the transformation.
 
-    :::image type="content" source="media/control-plane-transformations/image3.png" lightbox="media/control-plane-transformations/image3.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
+    :::image type="content" source="media/control-plane-transformations/transformation-query.png" lightbox="media/control-plane-transformations/transformation-query.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
 
 5.  In the transformation editor:
 
