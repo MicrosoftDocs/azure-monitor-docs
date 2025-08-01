@@ -75,6 +75,69 @@ The following table describes the workspaces that are required to support Manage
 | Container insights | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter. |
 | Managed Grafana | [Azure Managed Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal#create-an-azure-managed-grafana-workspace) | [Link your Grafana workspace to your Azure Monitor workspace](/azure/managed-grafana/how-to-connect-azure-monitor-workspace) to make the Prometheus metrics collected from your cluster available to Grafana dashboards. |
 
+### Applicable tables and metrics for DCR
+The settings for **collection frequency** and **namespace filtering** in the DCR don't apply to all Container insights data. The following tables list the tables in the Log Analytics workspace used by Container insights and the metrics it collects along with the settings that apply to each. 
+
+| Table name | Interval? | Namespaces? | Remarks |
+|:---|:---:|:---:|:---|
+| ContainerInventory | Yes | Yes | |
+| ContainerNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable since Kubernetes Node isn't a namespace scoped resource |
+| KubeNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable Kubernetes Node isn't a namespace scoped resource |
+| KubePodInventory | Yes | Yes ||
+| KubePVInventory | Yes | Yes | |
+| KubeServices | Yes | Yes | |
+| KubeEvents | No | Yes | Data collection setting for interval isn't applicable for the Kubernetes Events |
+| Perf | Yes | Yes | Data collection setting for namespaces isn't applicable for the Kubernetes Node related metrics since the Kubernetes Node isn't a namespace scoped object. |
+| InsightsMetrics| Yes | Yes | Data collection settings are only applicable for the metrics collecting the following namespaces: container.azm.ms/kubestate, container.azm.ms/pv and container.azm.ms/gpu |
+
+> [!NOTE]
+> Namespace filtering does not apply to ama-logs agent records. As a result, even if the kube-system namespace is listed among excluded namespaces, records associated to ama-logs agent container will still be ingested. 
+
+| Metric namespace | Interval? | Namespaces? | Remarks |
+|:---|:---:|:---:|:---|
+| Insights.container/nodes| Yes | No | Node isn't a namespace scoped resource |
+|Insights.container/pods | Yes | Yes| |
+| Insights.container/containers | Yes | Yes | |
+| Insights.container/persistentvolumes | Yes | Yes | |
+
+## Resources provisioned
+
+When you enable monitoring, the following resources are created in your subscription:
+
+| Resource Name | Resource Type | Resource Group | Region/Location | Description |
+|:---|:---|:---|:---|:---|
+| `MSCI-<aksclusterregion>-<clustername>` | **Data Collection Rule** | Same as cluster | Same as Log Analytics workspace | This data collection rule is for log collection by Azure Monitor agent, which uses the Log Analytics workspace as destination, and is associated to the AKS cluster resource. |
+| `MSPROM-<aksclusterregion>-<clustername>` | **Data Collection Rule** | Same as cluster | Same as Azure Monitor workspace | This data collection rule is for prometheus metrics collection by metrics addon, which has the chosen Azure monitor workspace as destination, and also it is associated to the AKS cluster resource |
+| `MSPROM-<aksclusterregion>-<clustername>` | **Data Collection endpoint** | Same as cluster | Same as Azure Monitor workspace | This data collection endpoint is used by the above data collection rule for ingesting Prometheus metrics from the metrics addon|
+    
+When you create a new Azure Monitor workspace, the following additional resources are created as part of it
+
+| Resource Name | Resource Type | Resource Group | Region/Location | Description |
+|:---|:---|:---|:---|:---|
+| `<azuremonitor-workspace-name>` | **Data Collection Rule** | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCR created when you use OSS Prometheus server to Remote Write to Azure Monitor Workspace. |
+| `<azuremonitor-workspace-name>` | **Data Collection Endpoint** | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCE created when you use OSS Prometheus server to Remote Write to Azure Monitor Workspace.|
+
+
+The DCR created by Container insights is named *MSCI-\<cluster-region\>-\<cluster-name\>*. You can [view this DCR](../essentials/data-collection-rule-view.md) along with others in your subscription, and you can edit it using methods described in [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md). While you can directly modify the DCR for particular customizations, you can perform most required configuration using the methods described below. See [Data transformations in Container insights](./container-insights-transformations.md) for details on editing the DCR directly for more advanced configurations.
+
+
+
+## Differences between Windows and Linux clusters
+
+The main differences in monitoring a Windows Server cluster compared to a Linux cluster include:
+
+- Windows doesn't have a Memory RSS metric. As a result, it isn't available for Windows nodes and containers. The [Working Set](/windows/win32/memory/working-set) metric is available.
+- Disk storage capacity information isn't available for Windows nodes.
+- Only pod environments are monitored, not Docker environments.
+- With the preview release, a maximum of 30 Windows Server containers are supported. This limitation doesn't apply to Linux containers.
+
+>[!NOTE]
+> Container insights support for the Windows Server 2022 operating system is in preview.
+
+
+The containerized Linux agent (replicaset pod) makes API calls to all the Windows nodes on Kubelet secure port (10250) within the cluster to collect node and container performance-related metrics. Kubelet secure port (:10250) should be opened in the cluster's virtual network for both inbound and outbound for Windows node and container performance-related metrics collection to work.
+
+If you have a Kubernetes cluster with Windows nodes, review and configure the network security group and network policies to make sure the Kubelet secure port (:10250) is open for both inbound and outbound in the cluster's virtual network.
 
 
 ## Enable Windows metrics collection (preview)
@@ -149,7 +212,7 @@ kubectl apply -f ama-metrics-prometheus-config-configmap.yaml
 ## Verify deployment
 Use the [kubectl command line tool](/azure/aks/learn/quick-kubernetes-deploy-cli#connect-to-the-cluster) to verify that the agent is deployed properly.
 
-### Managed Prometheus
+### [Prometheus](#prometheus)
 
 **Verify that the DaemonSet was deployed properly on the Linux node pools**
 
@@ -195,7 +258,7 @@ ama-metrics-ksm-5fcf8dffcd      1         1         1       11h
 ```
 
 
-### Container insights
+### [Container logs](#container-logs)
 
 **Verify that the DaemonSets were deployed properly on the Linux node pools**
 
@@ -263,41 +326,8 @@ The command will return JSON-formatted information about the solution. The `addo
 }
 ```
 
+---
 
-## Resources provisioned
-
-When you enable monitoring, the following resources are created in your subscription:
-
-| Resource Name | Resource Type | Resource Group | Region/Location | Description |
-|:---|:---|:---|:---|:---|
-| `MSCI-<aksclusterregion>-<clustername>` | **Data Collection Rule** | Same as cluster | Same as Log Analytics workspace | This data collection rule is for log collection by Azure Monitor agent, which uses the Log Analytics workspace as destination, and is associated to the AKS cluster resource. |
-| `MSPROM-<aksclusterregion>-<clustername>` | **Data Collection Rule** | Same as cluster | Same as Azure Monitor workspace | This data collection rule is for prometheus metrics collection by metrics addon, which has the chosen Azure monitor workspace as destination, and also it is associated to the AKS cluster resource |
-| `MSPROM-<aksclusterregion>-<clustername>` | **Data Collection endpoint** | Same as cluster | Same as Azure Monitor workspace | This data collection endpoint is used by the above data collection rule for ingesting Prometheus metrics from the metrics addon|
-    
-When you create a new Azure Monitor workspace, the following additional resources are created as part of it
-
-| Resource Name | Resource Type | Resource Group | Region/Location | Description |
-|:---|:---|:---|:---|:---|
-| `<azuremonitor-workspace-name>` | **Data Collection Rule** | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCR created when you use OSS Prometheus server to Remote Write to Azure Monitor Workspace. |
-| `<azuremonitor-workspace-name>` | **Data Collection Endpoint** | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCE created when you use OSS Prometheus server to Remote Write to Azure Monitor Workspace.|
-    
-
-## Differences between Windows and Linux clusters
-
-The main differences in monitoring a Windows Server cluster compared to a Linux cluster include:
-
-- Windows doesn't have a Memory RSS metric. As a result, it isn't available for Windows nodes and containers. The [Working Set](/windows/win32/memory/working-set) metric is available.
-- Disk storage capacity information isn't available for Windows nodes.
-- Only pod environments are monitored, not Docker environments.
-- With the preview release, a maximum of 30 Windows Server containers are supported. This limitation doesn't apply to Linux containers.
-
->[!NOTE]
-> Container insights support for the Windows Server 2022 operating system is in preview.
-
-
-The containerized Linux agent (replicaset pod) makes API calls to all the Windows nodes on Kubelet secure port (10250) within the cluster to collect node and container performance-related metrics. Kubelet secure port (:10250) should be opened in the cluster's virtual network for both inbound and outbound for Windows node and container performance-related metrics collection to work.
-
-If you have a Kubernetes cluster with Windows nodes, review and configure the network security group and network policies to make sure the Kubelet secure port (:10250) is open for both inbound and outbound in the cluster's virtual network.
 
 
 
@@ -305,3 +335,23 @@ If you have a Kubernetes cluster with Windows nodes, review and configure the ne
 
 * If you experience issues while you attempt to onboard the solution, review the [Troubleshooting guide](container-insights-troubleshoot.md).
 * With monitoring enabled to collect health and resource utilization of your AKS cluster and workloads running on them, learn [how to use](container-insights-analyze.md) Container insights.
+
+
+
+## Extra
+
+>[!IMPORTANT]
+> In the commands in this section, when deploying on a Windows machine, the dataCollectionSettings field must be escaped. For example, dataCollectionSettings={\"interval\":\"1m\",\"namespaceFilteringMode\": \"Include\", \"namespaces\": [ \"kube-system\"]} instead of dataCollectionSettings='{"interval":"1m","namespaceFilteringMode": "Include", "namespaces": [ "kube-system"]}'
+
+
+
+> [!IMPORTANT]
+> AKS clusters must use either a system-assigned or user-assigned managed identity. If cluster is using a service principal, you must update the cluster to use a [system-assigned managed identity](/azure/aks/use-managed-identity#update-an-existing-aks-cluster-to-use-a-system-assigned-managed-identity) or a [user-assigned managed identity](/azure/aks/use-managed-identity#update-an-existing-cluster-to-use-a-user-assigned-managed-identity).
+
+
+
+
+## Share DCR with multiple clusters
+When you enable Container insights on a Kubernetes cluster, a new DCR is created for that cluster, and the DCR for each cluster can be modified independently. If you have multiple clusters with custom monitoring configurations, you may want to share a single DCR with multiple clusters. You can then make changes to a single DCR that are automatically implemented for any clusters associated with it.
+
+A DCR is associated with a cluster with a [data collection rule associates (DCRA)](../essentials/data-collection-rule-overview.md#data-collection-rule-associations-dcra). Use the [preview DCR experience](../essentials/data-collection-rule-view.md#preview-dcr-experience) to view and remove existing DCR associations for each cluster. You can then use this feature to add an association to a single DCR for multiple clusters.

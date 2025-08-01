@@ -458,7 +458,7 @@ items:
       href: containers/best-practices-containers.md
     - name: Analyze and reduce costs
       href: containers/container-insights-cost.md
-    - name: Install and configure
+    - name: Onboard cluster
       items:
       - name: Overview
         href: containers/kubernetes-monitoring-enable.md      
@@ -472,14 +472,10 @@ items:
         href: containers/kubernetes-monitoring-enable-arm.md
       - name: Azure Policy
         href: containers/kubernetes-monitoring-enable-policy.md
-    - name: Configure
+    - name: Filter logs
       items:
-      - name: Collect logs
-        href: containers/container-insights-data-collection-configure.md
-      - name: Filter logs
+      - name: ConfigMap
         href: containers/container-insights-data-collection-filter.md
-    - name: Advanced configuration
-      items:
       - name: Data transformations
         displayName: Container insights
         href: containers/container-insights-transformations.md
@@ -530,31 +526,31 @@ items:
         - name: Autoscale support
           displayName: Prometheus
           href: containers/prometheus-metrics-scrape-autoscaling.md
-        - name: Integrations
+      - name: Integrations
+        items:
+        - name: Set up exporters for common workloads
+          displayName: Prometheus
+          href: containers/prometheus-exporters.md
+        - name: Exporters
           items:
-          - name: Set up exporters for common workloads
+          - name: Monitor Apache Kafka
             displayName: Prometheus
-            href: containers/prometheus-exporters.md
-          - name: Exporters
-            items:
-            - name: Monitor Apache Kafka
-              displayName: Prometheus
-              href: containers/prometheus-kafka-integration.md
-            - name: Monitor Argo CD
-              displayName: Prometheus
-              href: containers/prometheus-argo-cd-integration.md
-            - name: Monitor Elastic Search
-              displayName: Prometheus
-              href: containers/prometheus-elasticsearch-integration.md
-            - name: Monitor Istio
-              displayName: Prometheus
-              href: containers/prometheus-istio-integration.md
-            - name: Monitor Nvidia GPU
-              displayName: Prometheus
-              href: containers/prometheus-dcgm-integration.md
-          - name: Scale using KEDA based on Prometheus metrics
+            href: containers/prometheus-kafka-integration.md
+          - name: Monitor Argo CD
             displayName: Prometheus
-            href: containers/integrate-keda.md
+            href: containers/prometheus-argo-cd-integration.md
+          - name: Monitor Elastic Search
+            displayName: Prometheus
+            href: containers/prometheus-elasticsearch-integration.md
+          - name: Monitor Istio
+            displayName: Prometheus
+            href: containers/prometheus-istio-integration.md
+          - name: Monitor Nvidia GPU
+            displayName: Prometheus
+            href: containers/prometheus-dcgm-integration.md
+        - name: Scale using KEDA based on Prometheus metrics
+          displayName: Prometheus
+          href: containers/integrate-keda.md
       - name: Send to multiple metric workspaces
         displayName: Prometheus
         href: containers/prometheus-metrics-multiple-workspaces.md
