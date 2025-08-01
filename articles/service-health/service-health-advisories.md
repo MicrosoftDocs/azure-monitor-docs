@@ -30,11 +30,11 @@ Select the **Issue name** link to open the tabs with the information you need.
 >
 >Query for last 28 days <br>
 >Check the result: 
-> - status = `active`>
+> - status = `active`
 > - impactMitigationTime = `after today’s date`
 >- incident type = `security`
 >
->For more information regarding Service healt advisories from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+>For more information regarding Service health advisories from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 
 ### Filtering and sorting
