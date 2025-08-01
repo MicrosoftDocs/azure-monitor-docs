@@ -37,7 +37,7 @@ Each event includes the following information:
 Select the **Issue name** link to open the tabs with the information you need.
 >[!Note]
 > Planned maintenance events are displayed for 90 days if they are still active. After that they are moved to the health history blade where they are displayed for 90  days. You can view planned maintenance events from the past year.<br>
-> If you want more information, use ARG to query events. Use this query:
+> If you want more information, use ARG to query events as shown here.
 >
 >Query for last 90 days <br>
 >Check the result: <br>
