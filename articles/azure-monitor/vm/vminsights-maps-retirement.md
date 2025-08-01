@@ -26,7 +26,7 @@ Customers will still have access to existing VM Insights Map data ingested by De
 As part of the retirement process, 
 
 - No new Operating System versions will be added after 30 June 2025.
-- No new Azure regions will be supported for Dependency Agent after 30 June 2025**
+- No new Azure regions will be supported for Dependency Agent after 30 June 2025
 - Customers won't be able onboard new VMs from the Azure portal after 30 September 2025. Other [onboarding methods](./vminsights-enable.md#enable-vm-insights) will still be available until the feature is no longer supported.
 
  
