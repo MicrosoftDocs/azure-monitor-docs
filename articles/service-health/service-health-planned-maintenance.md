@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 07/22/2025
+ms.date: 08/01/2025
 
 ---
 
@@ -35,6 +35,17 @@ Each event includes the following information:
 - Event tags
 
 Select the **Issue name** link to open the tabs with the information you need.
+>[!Note]
+> Planned maintenance events are displayed for 90 days if they are still active. After that they are moved to the health history blade where they are displayed for 90  days. You can view planned maintenance events from the past year.<br>
+> If you want more information, use ARG to query events. Use this query:
+>
+>Query for last 90 days
+>Check the result: <br>
+>    - `status` = `active`
+>    - `incident type` = `maintenance`
+>    - `impactMitigationTime` = `after today’s date`
+>
+>For additional information regarding planned maintenance events from ARG, please refer to [Resource graph samples](resource-graph-samples?tabs=azure-cli.md)
 
 ### Filtering and sorting
 At the top of each tab, there are several options of how to view the information on this page.
