@@ -87,14 +87,15 @@ landingContent:
             url: logs/workspace-design.md
       - linkListType: how-to-guide
         links:
+          - text: Analyze data in Log Analytics
+            url: logs/log-analytics-tutorial.md
+          - text: Use log queries in Azure Monitor
+            url: logs/log-query-overview.md
           - text: Manage tables in a Log Analytics workspace
             url: logs/manage-logs-tables.md
           - text: Monitor workspaces with Log Analytics Workspace Insights
             url: logs/log-analytics-workspace-insights-overview.md
-          - text: Analyze data in Log Analytics
-            url: logs/log-analytics-tutorial.md
-          - text: Log queries in Azure Monitor
-            url: logs/log-query-overview.md
+
 
  # Card
   - title: Metrics in Azure Monitor
@@ -121,9 +122,11 @@ landingContent:
     linkLists: 
       - linkListType: get-started
         links:
-          - text: Data collection rules (DCRs) in Azure Monitor
+          - text: Azure Monitor Agent
+            url: agents/azure-monitor-agent-overview.md
+          - text: Data collection rules (DCRs)
             url: agents/data-collection-rule-overview.md
-          - text: Diagnostic settings in Azure Monitor
+          - text: Diagnostic settings
             url: platform/diagnostic-settings.md
       - linkListType: how-to-guide
         links:            
