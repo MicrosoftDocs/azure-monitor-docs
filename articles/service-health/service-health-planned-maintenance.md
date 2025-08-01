@@ -42,7 +42,7 @@ Select the **Issue name** link to open the tabs with the information you need.
 >
 >Query for last 90 days <br>
 >Check the result:
->- impactMitigationTime = `after today’s date`>    
+>- impactMitigationTime = `after today’s date`    
 >- status = `active`
 >- incident type = `maintenance`
 >   
