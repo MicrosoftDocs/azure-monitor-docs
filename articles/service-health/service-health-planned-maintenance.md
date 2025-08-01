@@ -45,7 +45,7 @@ Select the **Issue name** link to open the tabs with the information you need.
 >    - `incident type` = `maintenance`
 >    - `impactMitigationTime` = `after today’s date`
 >
->For additional information regarding planned maintenance events from ARG, please refer to [Resource graph samples](resource-graph-samples?tabs=azure-cli.md)
+>For additional information regarding planned maintenance events from ARG, please refer to [Resource graph samples](resource-graph-samples.md)
 
 ### Filtering and sorting
 At the top of each tab, there are several options of how to view the information on this page.
