@@ -59,7 +59,7 @@ This step is only required if you're not already collecting these logs. If your 
     - **KubernetesAuditAdmin**
     - **KubernetesControlPlane**
 
-    :::image type="content" source="media/control-plane-transformations/diagnostic-settings.png" lightbox="media/control-plane-transformations/diagnostic-settings.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
+    :::image type="content" source="media/control-plane-transformations/diagnostic-settings.png" lightbox="media/control-plane-transformations/diagnostic-settings.png" alt-text="Screenshot of diagnostic setting for collecting control plane logs.":::
 
 7.  Click **Save**.
 
@@ -71,11 +71,11 @@ This step is only required if you're not already collecting these logs. If your 
 
 3.  If this is your first workspace transformation, you'll be prompted to create a new workspace transformation DCR. Give it a name, then click **Done** and **Next**.
 
-    :::image type="content" source="media/control-plane-transformations/workspace-dcr.png" lightbox="media/control-plane-transformations/workspace-dcr.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
+    :::image type="content" source="media/control-plane-transformations/workspace-data-collection-rule.png" lightbox="media/control-plane-transformations/workspace-data-collection-rule.png" alt-text="Screenshot of details for new workspace DCR.":::
 
 4.  Select **Next** to view sample data from the table. As you define the transformation, the result will be applied to the sample data. This allows you to evaluate the results before you apply it to  actual data. Select **Transformation editor** to define the transformation.
 
-    :::image type="content" source="media/control-plane-transformations/transformation-query.png" lightbox="media/control-plane-transformations/transformation-query.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
+    :::image type="content" source="media/control-plane-transformations/transformation-query.png" lightbox="media/control-plane-transformations/transformation-query.png" alt-text="Screenshot of transformation editor.":::
 
 5.  In the transformation editor:
 
