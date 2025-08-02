@@ -472,35 +472,13 @@ items:
         href: containers/kubernetes-monitoring-enable-arm.md
       - name: Azure Policy
         href: containers/kubernetes-monitoring-enable-policy.md
-    - name: Filter logs
+    - name: Configure log collection
       items:
       - name: ConfigMap
         href: containers/container-insights-data-collection-filter.md
       - name: Data transformations
         displayName: Container insights
         href: containers/container-insights-transformations.md
-    - name: Maintenance
-      items:
-      - name: Agent management
-        href: containers/container-insights-manage-agent.md
-    - name: Reference
-      items:
-      - name: Firewall requirements
-        displayName: Container insights, Prometheus
-        href: containers/kubernetes-monitoring-firewall.md
-      - name: Supported region mappings
-        href: containers/container-insights-region-mapping.md
-    - name: Scenarios
-      items:
-      - name: Private Link
-        displayName: Container insights, Kubernetes
-        href: containers/kubernetes-monitoring-private-link.md    
-      - name: Multitenant logging
-        href: containers/container-insights-multitenant.md
-      - name: High scale
-        href: containers/container-insights-high-scale.md
-      - name: Throttling
-        href: containers/container-insights-throttling.md
     - name: Configure metric collection
       items:
       - name: Customize data collection
@@ -571,6 +549,28 @@ items:
         - name: Troubleshoot remote-write
           displayName: Prometheus,remote-write
           href: containers/prometheus-remote-write-troubleshooting.md
+    - name: Maintenance
+      items:
+      - name: Agent management
+        href: containers/container-insights-manage-agent.md
+    - name: Reference
+      items:
+      - name: Firewall requirements
+        displayName: Container insights, Prometheus
+        href: containers/kubernetes-monitoring-firewall.md
+      - name: Supported region mappings
+        href: containers/container-insights-region-mapping.md
+    - name: Scenarios
+      items:
+      - name: Private Link
+        displayName: Container insights, Kubernetes
+        href: containers/kubernetes-monitoring-private-link.md    
+      - name: Multitenant logging
+        href: containers/container-insights-multitenant.md
+      - name: High scale
+        href: containers/container-insights-high-scale.md
+      - name: Throttling
+        href: containers/container-insights-throttling.md
     - name: Monitor
       items:
       - name: Monitor performance
