@@ -1,6 +1,6 @@
 ---
 title: Enable monitoring for Kubernetes clusters
-description: Learn how to enable Container insights and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster.
+description: Learn how to enable container logging and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul

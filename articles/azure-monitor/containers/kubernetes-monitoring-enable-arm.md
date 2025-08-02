@@ -1,6 +1,6 @@
 ---
 title: Enable monitoring for Kubernetes clusters using ARM
-description: Learn how to enable Container insights and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster using ARM templates.
+description: Learn how to enable container logging and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster using ARM templates.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul

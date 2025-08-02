@@ -554,23 +554,23 @@ items:
       - name: Send to multiple metric workspaces
         displayName: Prometheus
         href: containers/prometheus-metrics-multiple-workspaces.md
-    - name: Remote-write with Prometheus
-      items:
-      - name: Prometheus remote-write
-        displayName: Prometheus,remote-write, azure monitor
-        href: containers/prometheus-remote-write.md
-      - name: Managed identity authentication
-        displayName: Prometheus,remote-write
-        href: containers/prometheus-remote-write-managed-identity.md
-      - name: Microsoft Entra authentication
-        displayName: Prometheus,remote-write
-        href: containers/prometheus-remote-write-active-directory.md
-      - name: Microsoft Entra Workload ID authentication
-        displayName: Prometheus,remote-write
-        href: containers/prometheus-remote-write-azure-workload-identity.md
-      - name: Troubleshoot remote-write
-        displayName: Prometheus,remote-write
-        href: containers/prometheus-remote-write-troubleshooting.md
+      - name: Remote-write with Prometheus
+        items:
+        - name: Prometheus remote-write
+          displayName: Prometheus,remote-write, azure monitor
+          href: containers/prometheus-remote-write.md
+        - name: Managed identity authentication
+          displayName: Prometheus,remote-write
+          href: containers/prometheus-remote-write-managed-identity.md
+        - name: Microsoft Entra authentication
+          displayName: Prometheus,remote-write
+          href: containers/prometheus-remote-write-active-directory.md
+        - name: Microsoft Entra Workload ID authentication
+          displayName: Prometheus,remote-write
+          href: containers/prometheus-remote-write-azure-workload-identity.md
+        - name: Troubleshoot remote-write
+          displayName: Prometheus,remote-write
+          href: containers/prometheus-remote-write-troubleshooting.md
     - name: Monitor
       items:
       - name: Monitor performance
@@ -579,7 +579,6 @@ items:
         href: containers/container-insights-gpu-monitoring.md
       - name: Monitor cluster network
         href: containers/container-insights-network-monitoring.md
-        maintainContext: true
       - name: Monitor Deployments & HPAs
         href: containers/container-insights-deployment-hpa-metrics.md
       - name: Monitor Persistent Volumes (PVs)
