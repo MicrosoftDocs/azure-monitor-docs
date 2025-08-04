@@ -2,7 +2,7 @@
 title: Azure service health notifications
 description: Service health notifications allow you to view service health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 06/12/2025
+ms.date: 08/04/2025
 
 ---
 
@@ -29,7 +29,7 @@ eventName | The title of an event.
 level | The level of an event
 resourceProviderName | The name of the resource provider for the impacted resource.
 resourceType| The type of resource of the impacted resource.
-subStatus | Usually the HTTP status code of the corresponding REST call, but can also include other strings describing a substatus. For example: OK (HTTP Status Code: 200), Created (HTTP Status Code: 201), Accepted (HTTP Status Code: 202), No Content (HTTP Status Code: 204), Bad Request (HTTP Status Code: 400), Not Found (HTTP Status Code: 404), Conflict (HTTP Status Code: 409), Internal Server Error (HTTP Status Code: 500), Service Unavailable (HTTP Status Code: 503), and Gateway Timeout (HTTP Status Code: 504).
+subStatus | Usually the HTTP status code of the corresponding REST call, but can also include other strings describing a substatus. For example:<br> OK (HTTP Status Code: 200)<br> Created (HTTP Status Code: 201)<br> Accepted (HTTP Status Code: 202)<br> No Content (HTTP Status Code: 204)<br> Bad Request (HTTP Status Code: 400),<br> Not Found (HTTP Status Code: 404),<br> Conflict (HTTP Status Code: 409),<br> Internal Server Error (HTTP Status Code: 500)<br> Service Unavailable (HTTP Status Code: 503)<br> Gateway Timeout (HTTP Status Code: 504).
 eventTimestamp | Timestamp when the event was generated, and the Azure service processing the request corresponding to the event.
 submissionTimestamp | Timestamp when the event became available for querying.
 subscriptionId | The Azure subscription in which this event was logged.
