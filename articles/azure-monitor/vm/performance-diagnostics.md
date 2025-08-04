@@ -30,7 +30,7 @@ The following table compares the data provided by Continuous and On-demand Perfo
 |:---|:---|:---|
 | **Availability**  | GA for Windows VMs<br>Public Preview for Linux VMs | GA for Windows<br>GA for Linux VMs |
 | **Insights generated** | Continuous actionable insights into high resource usage, such as high CPU, high memory, and high disk usage | On-demand actionable insights into high resource usage and various system configurations |
-| **Data collection frequency** | Collects data every five seconds, updates are uploaded every five minutes | Collects data on demand for the selected duration of the on-demand run |
+| **Data collection frequency** | Collects data every five seconds. Updates are uploaded every five minutes. | Collects data on demand for the selected duration of the on-demand run |
 | **Reports generated** | Doesn't generate a report | Generates a report that has comprehensive diagnostics data |
 
 ## Supported troubleshooting scenarios

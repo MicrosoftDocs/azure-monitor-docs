@@ -246,7 +246,7 @@ Runs a rule-based engine in the background to collect data and diagnose ongoing 
 Each rule consists of the following:
 
 - Finding: Description of the finding.
-- Recommendation: Recommendation on what action could be taken for the finding. There are also reference link(s) to documentation that provide more information on the finding and/or recommendation.
+- Recommendation: Recommendation on what action could be taken for the finding. There are also reference link(s) to documentation that provides more information on the finding and/or recommendation.
 - Impact Level: Represents the potential for having an impact on performance.
 
 The following categories of rules are currently supported:
@@ -272,7 +272,7 @@ The following categories of rules are currently supported:
 ## Run reports
 
 ### Run continuous diagnostics
-There's no need to run continuous diagnostics manually. The Performance Diagnostics extension runs continuously on the VM and uploads the results. See [Install Performance Diagnostics on Azure virtual machines](./performance-diagnostics-install.md) for instructions on enabling and disabling continuous diagnostics.
+There's no need to run continuous diagnostics manually. The Performance Diagnostics extension runs continuously on the VM and uploads the results. See [Install Performance Diagnostics on Azure virtual machines](./performance-diagnostics-run.md) for instructions on enabling and disabling continuous diagnostics.
 
 ### Run on-demand diagnostics
 
