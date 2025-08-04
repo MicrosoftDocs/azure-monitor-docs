@@ -9,7 +9,7 @@ ms.date: 08/04/2025
 
 
 ### Create tenant-based Service Health alerts
-You can now select a tenant directory as the scope for your alert. For more information, see [Create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
+You can now select a tenant directory as the scope for your alert. For more information, see [Create Service Health alerts](alerts-activity-log-service-notifications-portal.md).
 
 
 
