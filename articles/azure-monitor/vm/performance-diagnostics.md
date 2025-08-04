@@ -200,7 +200,7 @@ Azure VMs, and related network and storage resources, can be moved across region
 
 When you open a support ticket with Microsoft, it's important to share the Performance Diagnostics report from an on-demand Performance Diagnostics run. The Microsoft Support contact provides the option to upload the on-demand Performance Diagnostics report to a workspace. Use either of the following methods to download the on-demand Performance Diagnostics report:
 
-- Download the report from the Performance Diagnostics blade, as described in [View Performance Diagnostics reports](#view-performance-diagnostics-reports).
+- Download the report from the Performance Diagnostics blade, as described in [Analyze Performance Diagnostics insights and reports](./performance-diagnostics-analyze.md).
 - Download the report from the storage account, as described in [View and manage storage account and stored data](#view-and-manage-storage-account-and-stored-data).
 
 

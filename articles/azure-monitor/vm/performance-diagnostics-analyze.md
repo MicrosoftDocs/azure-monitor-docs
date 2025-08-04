@@ -48,7 +48,7 @@ Click on the name of an insight to open the **Performance diagnostics insights d
 
 ## View reports
 
-The **Performance Diagnostics reports** tab is available only from the [Performance diagnostics](#view-performance-diagnostics-insights) option for the VM. It lists all the [on-demand diagnostics](./performance-diagnostics.md#performance-diagnostics-modes) reports that were run. The list indicates the type of analysis that was run, insights that were found, and their impact levels.
+The **Performance Diagnostics reports** tab is available only from the [Performance diagnostics](./performance-diagnostics-run.md#install-performance-diagnostics-on-a-vm) option for the VM. It lists all the [on-demand diagnostics](./performance-diagnostics.md#performance-diagnostics-modes) reports that were run. The list indicates the type of analysis that was run, insights that were found, and their impact levels.
 
 :::image type="content" source="/media/performance-diagnostics-analyze/select-report.png" alt-text="Screenshot of selecting a diagnostics report from the Performance Diagnostics screen." lightbox="/media/performance-diagnostics-analyze/select-report.png":::
 
