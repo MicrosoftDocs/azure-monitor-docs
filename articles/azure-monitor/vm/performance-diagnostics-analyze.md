@@ -153,7 +153,7 @@ The **Block Devices** and other related sections such as **Partitions**, **LVM**
 
 :::image type="content" source="media/performance-diagnostics-analyze/linux-storage-tab.png" lightbox="media/performance-diagnostics-analyze/linux-storage-tab.png" alt-text="Screenshot of Storage tab.":::
 
-:::image type="content" source="media/performance-diagnostics-analyze/linux-mdadm-config.png" lightbox="media/performance-diagnostics-analyze/linux-mdadm-config.png" alt-text="Screenshot of MDADM tab.":::
+:::image type="content" source="media/performance-diagnostics-analyze/linux-mdadm-tab.png" lightbox="media/performance-diagnostics-analyze/linux-mdadm-tab.png" alt-text="Screenshot of MDADM tab.":::
 
 ### Linux tab
 
