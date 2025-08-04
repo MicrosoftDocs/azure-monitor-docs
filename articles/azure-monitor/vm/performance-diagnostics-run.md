@@ -72,7 +72,7 @@ The permissions in the following table are required to run Performance Diagnosti
 | View Performance Diagnostics | Managed Identities (System-assigned and User-assigned) | An Azure role that includes the **Storage Table Data Reader** role on the storage account. |
 | Download Performance Diagnostics reports | All | An Azure role that includes the **Storage Table Data Reader** role and the **Storage Blob Data Reader** role on the storage account. |
 
-For detailed information about built-in roles for Azure Storage, refer to [Azure built-in roles for Storage](/azure/role-based-access-control/built-in-roles/storage). For more information about storage account settings, see [view and manage storage account and stored data](performance-diagnostics.md#view-and-manage-storage-account-and-stored-data).
+For detailed information about built-in roles for Azure Storage, refer to [Azure built-in roles for Storage](/azure/role-based-access-control/built-in-roles/storage). For more information about storage account settings, see [view and manage storage account and stored data](performance-diagnostics-run.md#view-and-manage-storage-account-and-stored-data).
 
 If the VM has SQL Server instances installed on it, PerfInsights uses the account NT AUTHORITY\SYSTEM to access the SQL Server instances to collect configuration information and run rules. The account NT AUTHORITY\SYSTEM must be granted View Server State permission and Connect SQL permission for each instance, otherwise PerfInsights won't be able to connect to the SQL Server and the PerfInsights report won't show any SQL Server related information.
 
@@ -101,7 +101,7 @@ Each option displays the same set of options that you must configure before sele
 |:---|:---|
 | **Enable continuous diagnostics** | Get continuous, actionable insights into high resource usage by having data collected every five seconds and updates uploaded every five minutes to address performance issues promptly. Store insights in your preferred storage account. The storage account retains insights based on the account retention policies that you can configure to [manage the data lifecycle effectively](/azure/storage/blobs/lifecycle-management-policy-configure). You can disable continuous diagnostics at any time. |
 | **Run on-demand diagnostics** | Runs an on-demand report when the installation is complete. You can choose to run any of these reports later. See the list of reports and their description at [On-demand diagnostics](./performance-diagnostics.md#on-demand-diagnostics). |
-| **Storage account** | Specify a storage account if you want to use a single account for multiple VMs. Otherwise the default diagnostics storage account or creates a new storage account. See [](#view-and-manage-storage-account-and-stored-data) |
+| **Storage account** | Specify a storage account if you want to use a single account for multiple VMs. Otherwise the default diagnostics storage account or creates a new storage account. See [view and manage storage account and stored data](performance-diagnostics-run.md#view-and-manage-storage-account-and-stored-data). |
 |[Authentication method](#authentication-methods)| Authentication method to use as described in [Authentication methods](#authentication-methods). |
 
 
@@ -115,7 +115,7 @@ Using standalone mode, you can run performance diagnostics without installing th
 
 2. Unblock the PerfInsights.zip file. To do this, right-click the PerfInsights.zip file, and select **Properties**. In the **General** tab, select **Unblock**, and then select **OK**. This action ensures that the tool runs without any other security prompts.  
 
-    :::image type="content" source="media/performance-diagnostics-run/pi-unlock-file.png" lightbox="media/performance-diagnostics-run/pi-unlock-file.png" alt-text="Screenshot of PerfInsights Properties, with Unblock highlighted.":::
+    :::image type="content" source="media/performance-diagnostics-run/unlock-file.png" lightbox="media/performance-diagnostics-run/unlock-file.png" alt-text="Screenshot of PerfInsights Properties, with Unblock highlighted.":::
 
 3. Expand the compressed PerfInsights.zip file to your temporary drive.
 
@@ -358,7 +358,7 @@ cd <the path of PerfInsights folder>
 sudo python perfinsights.py
 ```
 
-:::image type="content" source="media/performance-diagnostics-run/perfinsights-linux-command-line.png" alt-text="Screenshot of PerfInsights Linux command-line output." lightbox="media/performance-diagnostics-run/perfinsights-linux-command-line.png":::
+:::image type="content" source="media/performance-diagnostics-run/linux-command-line.png" alt-text="Screenshot of PerfInsights Linux command-line output." lightbox="media/performance-diagnostics-run/linux-command-line.png":::
 
 The basic syntax for running PerfInsights scenarios is:
 
@@ -427,7 +427,7 @@ Performance Diagnostics stores all insights and reports in a binary large object
 
 To ensure Performance Diagnostics functions correctly, you must enable the **Allow storage account key access** setting for the storage account. To enable this setting, open the storage account in the Azure portal and select the **Configuration** menu item.
 
-:::image type="content" source="performance-diagnostics-run/storage-account-configuration.png" alt-text="Screenshot of the configuration settings for storage account." lightbox="performance-diagnostics-run/storage-account-configuration.png":::
+:::image type="content" source="media/performance-diagnostics-run/storage-account-configuration.png" alt-text="Screenshot of the configuration settings for storage account." lightbox="performance-diagnostics-run/storage-account-configuration.png":::
 
 If you change the storage account after installation, the old reports and insights aren't deleted, but they're no longer displayed in the list of diagnostics reports.
 

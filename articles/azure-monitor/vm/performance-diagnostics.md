@@ -46,7 +46,7 @@ Continuous Performance diagnostics lets you identify high resource usage by moni
 - High disk usage: Detects high disk usage periods on physical disks, and shows the top disk usage consumers during those periods.
 
 ### On-demand diagnostics
-On-demand diagnostics provides different information between Windows and Linux VMs. The following sections describe the scenarios that are available for each platform. For more details on each report, see [On-demand reports](./performance-diagnostics-use.md#on-demand-reports).
+On-demand diagnostics provides different information between Windows and Linux VMs. The following sections describe the scenarios that are available for each platform. For more details on each report, see [On-demand reports](./performance-diagnostics-analyze.md#on-demand-reports).
 
 ### [Windows](#tab/windows)
 
@@ -65,7 +65,7 @@ On-demand diagnostics provides different information between Windows and Linux V
 |:---|:---|
 | **Quick performance analysis** | Basic overview of the VM's configuration and performance including event logs, disk configuration, and network usage. |
 | **Performance analysis** | Checks for resource consumption, known issues, analyzes best practices, and collects diagnostics data. |
-| **HPC performance analysis** | Checks a VMs configuration against what the Azure HPC Platform team has tested and recommends. Also collects logs and diagnostics related to the status and configuration of the special hardware that is available on those VMs. This report can only be run from the command line using the process described in [Run reports](./performance-diagnostics-install.md#run-reports). |
+| **HPC performance analysis** | Checks a VMs configuration against what the Azure HPC Platform team has tested and recommends. Also collects logs and diagnostics related to the status and configuration of the special hardware that is available on those VMs. This report can only be run from the command line using the process described in [Run reports](./performance-diagnostics-run.md#run-reports). |
 
 ---
 
@@ -200,8 +200,8 @@ Azure VMs, and related network and storage resources, can be moved across region
 
 When you open a support ticket with Microsoft, it's important to share the Performance Diagnostics report from an on-demand Performance Diagnostics run. The Microsoft Support contact provides the option to upload the on-demand Performance Diagnostics report to a workspace. Use either of the following methods to download the on-demand Performance Diagnostics report:
 
-- Download the report from the Performance Diagnostics blade, as described in [Analyze Performance Diagnostics insights and reports](./performance-diagnostics-analyze.md).
-- Download the report from the storage account, as described in [View and manage storage account and stored data](#view-and-manage-storage-account-and-stored-data).
+- Download the report from the Performance Diagnostics blade or storage account, as described in [Analyze Performance Diagnostics insights and reports](./performance-diagnostics-analyze.md).
+
 
 
 
