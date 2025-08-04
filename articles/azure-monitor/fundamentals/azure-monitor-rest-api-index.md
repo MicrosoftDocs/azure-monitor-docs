@@ -11,7 +11,7 @@ Organized by subject area.
 
 | Operation groups | Description |
 |------------------|-------------|
-| [Operations](/rest/api/monitor/alertsmanagement/operations) | Lists the available REST API operations for Azure Monitor. |
+| [Operations](/rest/api/monitor/) | Lists the available REST API operations for Azure Monitor. |
 | ***Activity Log*** |  |
 | [Activity log(s)](/rest/api/monitor/activity-logs) | Get a list of event entries in the [activity log](../essentials/platform-logs-overview.md). |
 | [(Activity log) event categories](/rest/api/monitor/event-categories) | Lists the types of Activity Log Entries. |
