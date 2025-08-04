@@ -430,10 +430,10 @@ items:
           href: vm/performance-diagnostics.md
         - name: Install and run reports
           displayName: performance diagnostics, virtual machine, vm
-          href: vm/performance-diagnostics-install.md
+          href: vm/performance-diagnostics-run.md
         - name: Analyze data
           displayName: performance diagnostics, virtual machine, vm
-          href: vm/performance-diagnostics-use.md
+          href: vm/performance-diagnostics-analyze.md
         - name: Extension
           displayName: performance diagnostics, virtual machine, vm
           href: vm/performance-diagnostics-extension.md
