@@ -46,7 +46,7 @@ Continuous Performance diagnostics lets you identify high resource usage by moni
 - High disk usage: Detects high disk usage periods on physical disks, and shows the top disk usage consumers during those periods.
 
 ### On-demand diagnostics
-On-demand diagnostics provides different information between Windows and Linux VMs. The following sections describe the scenarios that are available for each platform. For more details on each report, see [On-demand reports](./performance-diagnostics-analyze.md#on-demand-reports).
+On-demand diagnostics provides different information between Windows and Linux VMs. The following sections describe the scenarios that are available for each platform. For more details on each report, see [On-demand reports](./performance-diagnostics-run.md#on-demand-reports).
 
 ### [Windows](#tab/windows)
 

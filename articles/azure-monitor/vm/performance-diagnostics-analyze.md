@@ -70,9 +70,9 @@ The **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.zip** file contains the H
 
 ### Findings tab
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-overview-findings-tab.png" lightbox="media/how-to-use-perfInsights/pi-overview-findings-tab.png" alt-text="Screenshot of Findings tab under Overview tab of the PerfInsights Report.":::
+:::image type="content" source="media/performance-diagnostics-analyze/overview-findings-tab.png" lightbox="media/performance-diagnostics-analyze/overview-findings-tab.png" alt-text="Screenshot of Findings tab under Overview tab of the PerfInsights Report.":::
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-storage-findings-tab.png" lightbox="media/how-to-use-perfInsights/pi-storage-findings-tab.png" alt-text="Screenshot of Findings tab under Storage tab of the PerfInsights Report.":::
+:::image type="content" source="media/performance-diagnostics-analyze/storage-findings-tab.png" lightbox="media/performance-diagnostics-analyze/storage-findings-tab.png" alt-text="Screenshot of Findings tab under Storage tab of the PerfInsights Report.":::
 
 Each finding is assigned one of the following categories:
 
@@ -88,21 +88,21 @@ The **Disk Map** and **Volume Map** sections describe how logical volumes and ph
 
 In the physical disk perspective (Disk Map), the table shows all logical volumes that are running on the disk. In the following example, **PhysicalDrive2** runs two logical volumes created on multiple partitions (J and H):
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-disk-map.png" lightbox="media/how-to-use-perfInsights/pi-disk-map.png" alt-text="Screenshot of disk map section under Findings tab of the PerfInsights Report.":::
+:::image type="content" source="media/performance-diagnostics-analyze/disk-map.png" lightbox="media/performance-diagnostics-analyze/disk-map.png" alt-text="Screenshot of disk map section under Findings tab of the PerfInsights Report.":::
 
 In the volume perspective (Volume Map), the tables show all the physical disks under each logical volume. Notice that for RAID/Dynamic disks, you might run a logical volume on multiple physical disks. In the following example, *C:\\mount* is a mount point configured as *SpannedDisk* on physical disks 2 and 3:
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-volume-map.png" lightbox="media/how-to-use-perfInsights/pi-volume-map.png" alt-text="Screenshot of volume map section under Findings tab of the PerfInsights Report.":::
+:::image type="content" source="media/performance-diagnostics-analyze/volume-map.png" lightbox="media/performance-diagnostics-analyze/volume-map.png" alt-text="Screenshot of volume map section under Findings tab of the PerfInsights Report.":::
 
 ### SQL tab
 
 The report will include a **SQL** tab if the target VM hosts any SQL Server instances.
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-sql-tab.png" lightbox="media/how-to-use-perfInsights/pi-sql-tab.png" alt-text="Screenshot of SQL tab and the sub-tabs under it.":::
+:::image type="content" source="media/performance-diagnostics-analyze/sql-tab.png" lightbox="media/performance-diagnostics-analyze/sql-tab.png" alt-text="Screenshot of SQL tab and the sub-tabs under it.":::
 
 The **Findings** tab contains a list of all the SQL related performance issues found, along with the recommendations. In the following example, **PhysicalDrive0** (running the C drive) is displayed. This is because both the **modeldev** and **modellog** files are located on the C drive, and they are of different types (such as data file and transaction log, respectively).
 
-:::image type="content" source="media/how-to-use-perfInsights/pi-physical-drive-0.png" lightbox="media/how-to-use-perfInsights/pi-physical-drive-0.png" alt-text="Screenshot of modeldev and modellog files information.":::
+:::image type="content" source="media/performance-diagnostics-analyze/physical-drive-0.png" lightbox="media/performance-diagnostics-analyze/physical-drive-0.png" alt-text="Screenshot of modeldev and modellog files information.":::
 
 The tabs for specific instances of SQL Server contain a general section that displays basic information about the selected instance. The tabs also contain more sections for advanced information, including settings, configurations, and user options.
 
