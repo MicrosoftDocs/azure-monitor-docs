@@ -8,9 +8,8 @@ ms.date: 08/04/2025
 # What's new in Azure Service Health
 
 
-
 ### Create tenant-based Service Health alerts
-You can now select a tenant directory as the scope for your alert. For more information see [Create Service Healt alerts](alerts-activity-log-service-notifications-portal.md)
+You can now select a tenant directory as the scope for your alert. For more information, see [Create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
 
 
 
