@@ -21,15 +21,15 @@ You can view this report from three different locations in the Azure portal, dep
 
 - From the menu for the virtual machine. In the **Help** section of the menu, select **Performance Diagnostics**.
 
-    :::image type="content" source="/media/performance-diagnostics-analyze/view-from-performance-diagnostics.png" alt-text="Screenshot of the Performance Diagnostics experience in the Azure portal." lightbox="/media/performance-diagnostics-analyze/view-from-performance-diagnostics.png":::
+    :::image type="content" source="media/performance-diagnostics-analyze/view-from-performance-diagnostics.png" alt-text="Screenshot of the Performance Diagnostics experience in the Azure portal." lightbox="media/performance-diagnostics-analyze/view-from-performance-diagnostics.png":::
 
 - From the **Overview** page for the virtual machine. Select the **Monitoring** tab and then expand the **Insights** section.
 
-    :::image type="content" source="/media/performance-diagnostics-analyze/view-from-overview.png" alt-text="Screenshot of the Overview experience in the Azure portal." lightbox="/media/performance-diagnostics-analyze/view-from-overview.png":::
+    :::image type="content" source="media/performance-diagnostics-analyze/view-from-overview.png" alt-text="Screenshot of the Overview experience in the Azure portal." lightbox="media/performance-diagnostics-analyze/view-from-overview.png":::
 
 - From VM insights. Select **Virtual machines** from the **Insights** section of the **Monitor** menu and select the VM that you want to run diagnostics on. Select **Insights** and then the **Performance** tab.
 
-    :::image type="content" source="/media/performance-diagnostics-analyze/view-from-insights.png" alt-text="Screenshot of the Insights experience in the Azure portal." lightbox="/media/performance-diagnostics-analyze/view-from-insights.png":::
+    :::image type="content" source="media/performance-diagnostics-analyze/view-from-insights.png" alt-text="Screenshot of the Insights experience in the Azure portal." lightbox="media/performance-diagnostics-analyze/view-from-insights.png":::
 
 ---
 
@@ -38,11 +38,11 @@ Each of these methods displays the same data, although the **Performance Diagnos
 - Displays all insights in the selected time range. The other methods are limited to 300 rows.
 - Ability to group insights by category, insight, or recommendation.
 
-:::image type="content" source="/media/performance-diagnostics-analyze/insights-list-grouping.png" alt-text="Screenshot of the Insights tab on the Performance Diagnostics screen that shows results grouped by insight." lightbox="/media/performance-diagnostics-analyze/insights-list-grouping.png":::
+:::image type="content" source="media/performance-diagnostics-analyze/insights-list-grouping.png" alt-text="Screenshot of the Insights tab on the Performance Diagnostics screen that shows results grouped by insight." lightbox="media/performance-diagnostics-analyze/insights-list-grouping.png":::
 
 Click on the name of an insight to open the **Performance diagnostics insights details** context menu, which shows additional information, such as recommendations about what to do and links to relevant documentation. For an on-demand insight, you can also view or download the Performance Diagnostics report in the list by selecting **View all insights** or **Download report**, respectively.
 
-:::image type="content" source="/media/performance-diagnostics-analyze/performance-diagnostics-details.png" alt-text="Screenshot of the details screen on the Performance Diagnostics experience." lightbox="/media/performance-diagnostics-analyze/performance-diagnostics-details.png" :::
+:::image type="content" source="media/performance-diagnostics-analyze/performance-diagnostics-details.png" alt-text="Screenshot of the details screen on the Performance Diagnostics experience." lightbox="media/performance-diagnostics-analyze/performance-diagnostics-details.png" :::
 
 
 
@@ -50,11 +50,11 @@ Click on the name of an insight to open the **Performance diagnostics insights d
 
 The **Performance Diagnostics reports** tab is available only from the [Performance diagnostics](./performance-diagnostics-run.md#install-performance-diagnostics-on-a-vm) option for the VM. It lists all the [on-demand diagnostics](./performance-diagnostics.md#performance-diagnostics-modes) reports that were run. The list indicates the type of analysis that was run, insights that were found, and their impact levels.
 
-:::image type="content" source="/media/performance-diagnostics-analyze/select-report.png" alt-text="Screenshot of selecting a diagnostics report from the Performance Diagnostics screen." lightbox="/media/performance-diagnostics-analyze/select-report.png":::
+:::image type="content" source="media/performance-diagnostics-analyze/select-report.png" alt-text="Screenshot of selecting a diagnostics report from the Performance Diagnostics screen." lightbox="media/performance-diagnostics-analyze/select-report.png":::
 
 Select a row to view more details.
 
-:::image type="content" source="/media/performance-diagnostics-analyze/performance-diagnostics-report-overview.png" alt-text="Screenshot of Performance Diagnostics report overview screen." lightbox="/media/performance-diagnostics-analyze/performance-diagnostics-report-overview.png":::
+:::image type="content" source="media/performance-diagnostics-analyze/performance-diagnostics-report-overview.png" alt-text="Screenshot of Performance Diagnostics report overview screen." lightbox="media/performance-diagnostics-analyze/performance-diagnostics-report-overview.png":::
 
 Select the **Download report** button to download an HTML report that contains richer diagnostics information, such as storage and network configuration, performance counters, traces, list of processes, and logs. The content depends on the selected analysis. For advanced troubleshooting, the report might contain additional information and interactive charts that are related to high CPU usage, high disk usage, and processes that consume excessive memory.
 
