@@ -118,9 +118,9 @@ Within the **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.tar.gz** file, you
 
 The **Overview** tab provides basic run details and virtual machine information. The **Findings** tab displays a summary of the recommendations from all the different sections of the PerfInsights report.
 
-:::image type="content" source="media/performance-diagnostics-analyze/perfinsights-linux-overview.png" alt-text="Screenshot of the Overview tab of the PerfInsights Report.":::  
+:::image type="content" source="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-overview.png" alt-text="Screenshot of the Overview tab of the PerfInsights Report.":::  
 
-:::image type="content" source="media/performance-diagnostics-analyze/perfinsights-linux-findings-tab.png" alt-text="Screenshot of the Findings tab of the PerfInsights Report.":::
+:::image type="content" source="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-findings-tab.png" alt-text="Screenshot of the Findings tab of the PerfInsights Report.":::
 
 > [!NOTE]
 > Findings categorized as high are known issues that might cause performance issues. Findings categorized as medium represent non-optimal configurations that do not necessarily cause performance issues. Findings categorized as low are informative statements only.
@@ -131,19 +131,19 @@ Review the recommendations and links for all high and medium findings. Learn abo
 
 **CPU** tab provides information about system-wide CPU consumption during the PerfInsights run. Information about high CPU usage periods and top long running CPU consumers will be helpful to troubleshoot high CPU-related issues.
 
-:::image type="content" source="media/performance-diagnostics-analyze/perfinsights-linux-cpu-tab.png" lightbox="media/performance-diagnostics-analyze/perfinsights-linux-cpu-tab.png" alt-text="Screenshot of PerfInsights Report CPU tab.":::
+:::image type="content" source="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-cpu-tab.png" lightbox="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-cpu-tab.png" alt-text="Screenshot of PerfInsights Report CPU tab.":::
 
 ### GPU tab
 
 **GPU** tab provides information about findings that will be helpful in troubleshooting GPU-related issues.
 
-:::image type="content" source="media/performance-diagnostics-analyze/perfinsights-linux-gpu-tab.png" lightbox="media/performance-diagnostics-analyze/perfinsights-linux-gpu-tab.png" alt-text="Screenshot of PerfInsights Report GPU tab.":::
+:::image type="content" source="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-gpu-tab.png" lightbox="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-gpu-tab.png" alt-text="Screenshot of PerfInsights Report GPU tab.":::
 
 ### Network tab
 
 **Network** tab provides information about network configuration and status. Information about network-related findings, including InfiniBand issues in the HPC scenario, can be found here.
 
-:::image type="content" source="media/performance-diagnostics-analyze/perfinsights-linux-network-tab.png" lightbox="media/performance-diagnostics-analyze/perfinsights-linux-network-tab.png" alt-text="Screenshot of Network tab.":::
+:::image type="content" source="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-network-tab.png" lightbox="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-network-tab.png" alt-text="Screenshot of Network tab.":::
 
 ### Storage tab
 
@@ -151,19 +151,19 @@ The **Findings** section displays various findings and recommendations related t
 
 The **Block Devices** and other related sections such as **Partitions**, **LVM**, and **MDADM** tabs describe how block devices are configured and related to each other.
 
-:::image type="content" source="media/performance-diagnostics-analyze/perfinsights-linux-storage-tab.png" lightbox="media/performance-diagnostics-analyze/perfinsights-linux-storage-tab.png" alt-text="Screenshot of Storage tab.":::
+:::image type="content" source="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-storage-tab.png" lightbox="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-storage-tab.png" alt-text="Screenshot of Storage tab.":::
 
-:::image type="content" source="media/performance-diagnostics-analyze/perfinsights-linux-mdadm-config.png" lightbox="media/performance-diagnostics-analyze/perfinsights-linux-mdadm-config.png" alt-text="Screenshot of MDADM tab.":::
+:::image type="content" source="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-mdadm-config.png" lightbox="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-mdadm-config.png" alt-text="Screenshot of MDADM tab.":::
 
 ### Linux tab
 
 The **Linux** tab contains information on the hardware and the operating system running in your VM. Details include a list of running processes and information about Guest Agent, PCI, CPU, GPU, Drivers, and LIS drivers.
 
-:::image type="content" source="media/performance-diagnostics-analyze/perfinsights-linux-tab.png" lightbox="media/performance-diagnostics-analyze/perfinsights-linux-tab.png" alt-text="Screenshot of the Linux tab and the details.":::
+:::image type="content" source="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-tab.png" lightbox="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-tab.png" alt-text="Screenshot of the Linux tab and the details.":::
 
 Or on a GPU-enabled VM:
 
-:::image type="content" source="media/performance-diagnostics-analyze/perfinsights-linux-linux-gpu-tab.png" lightbox="media/performance-diagnostics-analyze/perfinsights-linux-linux-gpu-tab.png" alt-text="Screenshot of GPU tab under Linux tab and the details.":::
+:::image type="content" source="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-linux-gpu-tab.png" lightbox="media/performance-diagnostics-analyzemedia/performance-diagnostics-analyzelinux-linux-gpu-tab.png" alt-text="Screenshot of GPU tab under Linux tab and the details.":::
 
 
 ---
