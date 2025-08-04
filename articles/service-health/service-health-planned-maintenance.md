@@ -2,13 +2,13 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 08/01/2025
+ms.date: 08/04/2025
 
 ---
 
 # Planned maintenance
 
-The Planned Maintenance pane in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
+The Planned maintenance pane in Azure Service Health is a dedicated section within the Azure portal that helps you stay informed about upcoming maintenance activities that could affect your Azure resources. Here's a breakdown of its purpose and the information it provides:
 
 
 This pane is designed to provide you with advance notice of scheduled maintenance events that can affect your services. 
@@ -46,7 +46,7 @@ Select the **Issue name** link to open the tabs with the information you need.
 >- incident type = `maintenance`
 >- impactMitigationTime = `after today’s date` 
 >
->For additional information regarding planned maintenance events from ARG, refer to [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+>For more information regarding planned maintenance events from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 ### Filtering and sorting
 At the top of each tab, there are several options of how to view the information on this page.
