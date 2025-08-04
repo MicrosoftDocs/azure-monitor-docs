@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 07/28/2025
+ms.date: 08/04/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1348,6 +1348,7 @@ Microsoft.NetworkCloud/clusters
 
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [NCCIDRACLogs](./tables/nccidraclogs.md)
 - [NCCKubernetesLogs](./tables/ncckuberneteslogs.md)
 - [NCCPlatformOperationsLogs](./tables/nccplatformoperationslogs.md)
 - [NCCVMOrchestrationLogs](./tables/nccvmorchestrationlogs.md)
