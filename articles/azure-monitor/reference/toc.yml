@@ -2371,8 +2371,12 @@ items:
             href: tables/deviceconnectsession.md
           - name: DeviceCustomFileEvents
             href: tables/devicecustomfileevents.md
+          - name: DeviceCustomImageLoadEvents
+            href: tables/devicecustomimageloadevents.md
           - name: DeviceCustomNetworkEvents
             href: tables/devicecustomnetworkevents.md
+          - name: DeviceCustomProcessEvents
+            href: tables/devicecustomprocessevents.md
           - name: DeviceCustomScriptEvents
             href: tables/devicecustomscriptevents.md
           - name: DeviceEtw
@@ -2823,6 +2827,8 @@ items:
             href: tables/oktasystemlogs.md
           - name: Operation
             href: tables/operation.md
+          - name: OracleCloudDatabase
+            href: tables/oracleclouddatabase.md
           - name: PFTitleAuditLogs
             href: tables/pftitleauditlogs.md
           - name: PGSQLAutovacuumStats
