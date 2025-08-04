@@ -445,10 +445,10 @@ items:
         href: fundamentals/azure-monitor-operations-manager.md
       - name: Assess Operations Manager
         href: scom-manage-instance/scom-assessment.md
-  - name: Monitor containers
+  - name: Monitor Kubernetes clusters
     items:
-    - name: Azure Monitor features
-      displayName: containers, kubernetes
+    - name: Overview
+      displayName: containers, kubernetes, container insights
       href: containers/container-insights-overview.md
     - name: Full stack monitoring
       displayName: containers
@@ -482,10 +482,12 @@ items:
         href: containers/container-insights-transition-solution.md
     - name: Configure Container Insights (logs)
       items:
-      - name: Collect logs
+      - name: Collect container logs
         href: containers/container-insights-data-collection-configure.md
-      - name: Filter logs
+      - name: Filter container logs
         href: containers/container-insights-data-collection-filter.md
+      - name: Filter control plane logs
+        href: containers/control-plane-transformations.md
       - name: Container log schema
         href: containers/container-insights-logs-schema.md
       - name: Multitenant logging
