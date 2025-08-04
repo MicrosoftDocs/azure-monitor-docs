@@ -529,6 +529,9 @@ items:
         - name: Scale using KEDA based on Prometheus metrics
           displayName: Prometheus
           href: containers/integrate-keda.md
+      - name: Enable Windows metrics (preview)
+        displayName: Prometheutheus-metricss
+        href: container/enable-windows-metrics.md
       - name: Send to multiple metric workspaces
         displayName: Prometheus
         href: containers/prometheus-metrics-multiple-workspaces.md

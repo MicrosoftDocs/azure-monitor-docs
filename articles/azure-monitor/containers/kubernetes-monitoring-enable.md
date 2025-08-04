@@ -7,9 +7,15 @@ ms.reviewer: aul
 ms.date: 03/11/2024
 ---
 
-# Enable monitoring for Kubernetes clusters using CLI and templates
+# Enable monitoring for Kubernetes clusters in Azure Monitor
 
-As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. 
+As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes prerequisites and other considerations for enabling monitoring. For the detailed process of onboarding and configuring this monitoring, see the following articles depending on the technology you want to use to enable monitoring for your cluster.
+
+- [Azure portal](kubernetes-monitoring-enable-portal.md)
+- [Azure CLI](kubernetes-monitoring-enable-cli.md)
+- [Azure Resource Manager templates](kubernetes-monitoring-enable-arm.md)
+- [Azure Policy](kubernetes-monitoring-enable-policy.md)
+- [Terraform](kubernetes-monitoring-enable-terraform.md)
 
 > [!IMPORTANT]
 > Kubernetes clusters generate a lot of log data, which can result in significant costs if you aren't selective about the logs that you collect. Before you enable monitoring for your cluster, see the following articles to ensure that your environment is optimized for cost and that you limit your log collection to only the data that you require:
@@ -18,27 +24,19 @@ As described in [Kubernetes monitoring in Azure Monitor](./container-insights-ov
 >- [Best practices for monitoring Kubernetes with Azure Monitor](../best-practices-containers.md)<br>Best practices for monitoring Kubernetes clusters organized by the five pillars of the [Azure Well-Architected Framework](/azure/architecture/framework/), including cost optimization.
 >- [Cost optimization in Azure Monitor](../best-practices-cost.md)<br>Best practices for configuring all features of Azure Monitor to optimize your costs and limit the amount of data that you collect.
 
-
-## Onboarding options
-
-
-
-
-
-
 ## Supported clusters
 
-This article provides onboarding guidance for the following types of clusters. Any differences in the process for each type are noted in the relevant sections.
+The onboarding and configuration processes described in these articles support the following clusters. Any differences in the process for each type are noted in the relevant sections.
 
 - [Azure Kubernetes clusters (AKS)](/azure/aks/intro-kubernetes)
 - [Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/overview)
 
-## Prerequisites
-
-**Permissions**
+## Permissions required
 
 - You require at least [Contributor](/azure/role-based-access-control/built-in-roles#contributor) access to the cluster for onboarding.
 - You require [Monitoring Reader](../roles-permissions-security.md#monitoring-reader) or [Monitoring Contributor](../roles-permissions-security.md#monitoring-contributor) to view data after monitoring is enabled.
+
+## Prerequisites
 
 **Managed Prometheus prerequisites**
 
@@ -67,12 +65,12 @@ This article provides onboarding guidance for the following types of clusters. A
 
 ## Workspaces
 
-The following table describes the workspaces that are required to support Managed Prometheus and Container insights. You can create each workspace as part of the onboarding process or use an existing workspace. See [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on how many workspaces to create and where they should be placed. 
+The following table describes the workspaces that are required to support Managed Prometheus and container logging. You can create each workspace as part of the onboarding process or use an existing workspace. See [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on how many workspaces to create and where they should be placed. 
 
 | Feature | Workspace | Notes |
 |:---|:---|:---|
 | Managed Prometheus | [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md) | `Contributor` permission is enough for enabling the addon to send data to the Azure Monitor workspace. You will need `Owner` level permission to link your Azure Monitor Workspace to view metrics in Azure Managed Grafana. This is required because the user executing the onboarding step, needs to be able to give the Azure Managed Grafana System Identity `Monitoring Reader` role on the Azure Monitor Workspace to query the metrics. |
-| Container insights | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter. |
+| container logging | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter. |
 | Managed Grafana | [Azure Managed Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal#create-an-azure-managed-grafana-workspace) | [Link your Grafana workspace to your Azure Monitor workspace](/azure/managed-grafana/how-to-connect-azure-monitor-workspace) to make the Prometheus metrics collected from your cluster available to Grafana dashboards. |
 
 ### Applicable tables and metrics for DCR
@@ -140,74 +138,6 @@ The containerized Linux agent (replicaset pod) makes API calls to all the Window
 If you have a Kubernetes cluster with Windows nodes, review and configure the network security group and network policies to make sure the Kubelet secure port (:10250) is open for both inbound and outbound in the cluster's virtual network.
 
 
-## Enable Windows metrics collection (preview)
-
-> [!NOTE]
-> There is no CPU/Memory limit in windows-exporter-daemonset.yaml so it may over-provision the Windows nodes  
-> For more details see [Resource reservation](https://kubernetes.io/docs/concepts/configuration/windows-resource-management/#resource-reservation)
->   
-> As you deploy workloads, set resource memory and CPU limits on containers. This also subtracts from NodeAllocatable and helps the cluster-wide scheduler in determining which pods to place on which nodes.
-> Scheduling pods without limits may over-provision the Windows nodes and in extreme cases can cause the nodes to become unhealthy.
-
-
-As of version 6.4.0-main-02-22-2023-3ee44b9e of the Managed Prometheus addon container (prometheus_collector), Windows metric collection has been enabled for AKS clusters. Onboarding to the Azure Monitor Metrics add-on enables the Windows DaemonSet pods to start running on your node pools. Both Windows Server 2019 and Windows Server 2022 are supported. Follow these steps to enable the pods to collect metrics from your Windows node pools.
-
-1. Manually install windows-exporter on AKS nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors:
-
-   * `[defaults]`
-   * `container`
-   * `memory`
-   * `process`
-   * `cpu_info`
-   
-   For more collectors, please see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
-
-   Deploy the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Note that if there are any taints applied in the node, you will need to apply the appropriate tolerations.
-
-   ```
-       kubectl apply -f windows-exporter-daemonset.yaml
-   ```
-
-1. Apply the [ama-metrics-settings-configmap](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/configmaps/ama-metrics-settings-configmap.yaml) to your cluster. Set the `windowsexporter` and `windowskubeproxy` Booleans to `true`. For more information, see [Metrics add-on settings configmap](./prometheus-metrics-scrape-configuration.md#metrics-add-on-settings-configmap).
-1. Enable the recording rules that are required for the out-of-the-box dashboards:
-
-   * If onboarding using the CLI, include the option `--enable-windows-recording-rules`.
-   * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
-   * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This will add the required recording rules and is not an ARM operation on the cluster and does not impact current monitoring state of the cluster.
-
-1. [Only for Windows nodes in ARC-enabled clusters] If you are enabling Managed Prometheus for an ARC-enabled cluster, you can configure Managed Prometheus that is running on a Linux node within the cluster to scrape metrics from endpoints running on the Windows nodes. Add the following scrape job to [ama-metrics-prometheus-config-configmap.yaml](https://aka.ms/ama-metrics-prometheus-config-configmap) and apply the configmap to your cluster.
-
-```yaml
-  scrape_configs:
-    - job_name: windows-exporter
-      scheme: http
-      scrape_interval: 30s
-      label_limit: 63
-      label_name_length_limit: 511
-      label_value_length_limit: 1023
-      tls_config:
-        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-        insecure_skip_verify: true
-      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
-      kubernetes_sd_configs:
-      - role: node
-      relabel_configs:
-      - source_labels: [__meta_kubernetes_node_name]
-        target_label: instance
-      - action: keep
-        source_labels: [__meta_kubernetes_node_label_kubernetes_io_os]
-        regex: windows
-      - source_labels:
-        - __address__
-        action: replace
-        target_label: __address__
-        regex: (.+?)(\:\d+)?
-        replacement: $$1:9182
-```
-
-```AzureCLI
-kubectl apply -f ama-metrics-prometheus-config-configmap.yaml
-```
 
 ## Verify deployment
 Use the [kubectl command line tool](/azure/aks/learn/quick-kubernetes-deploy-cli#connect-to-the-cluster) to verify that the agent is deployed properly.

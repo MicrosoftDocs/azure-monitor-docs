@@ -9,7 +9,7 @@ ms.reviewer: viviandiec
 
 # Kubernetes monitoring in Azure Monitor
 
-Multiple features of [Azure Monitor](../fundamentals/overview.md) work together to provide complete monitoring of your [Azure Kubernetes (AKS)](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters. Container insights helps you onboard and configure each of these services and to view and analyze the data they collect in a consolidated view. This article provides an overview Container insights and the other Azure Monitor features that it works with to monitor your Kubernetes clusters. See [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md) to get started onboarding your cluster.
+Multiple features of [Azure Monitor](../fundamentals/overview.md) work together to provide complete monitoring of your [Azure Kubernetes (AKS)](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters. Container insights helps you onboard and configure each of these services and to view and analyze the data they collect in a consolidated view. This article provides an overview of Container insights and the other Azure Monitor features that it works with to monitor your Kubernetes clusters. See [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md) to get started onboarding your cluster.
 
 | Feature | Description |
 |:---|:---|
@@ -80,8 +80,6 @@ No. Container Insights don't support collection of Kubernetes audit logs.
 **Does Container Insights support pod sandboxing?**
 Yes, Container Insights supports pod sandboxing through support for Kata Containers. See [Pod Sandboxing (preview) with Azure Kubernetes Service (AKS)](/azure/aks/use-pod-sandboxing).
 
-**Is it possible for a single AKS cluster to use multiple Log Analytics workspaces in Container Insights?**
-Yes. Container Insights supports segregating logs across multiple Log Analytics Workspaces. See [Multitenant managed logging in Container insights (Preview)](../containers/container-insights-multitenant.md).
 
 ## Next steps
 
