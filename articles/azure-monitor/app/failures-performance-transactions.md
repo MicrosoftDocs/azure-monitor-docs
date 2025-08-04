@@ -528,6 +528,6 @@ This error indicates that the browser was unable to call into a required API or 
 
 * Learn more about using [Application Map](app-map.md) to spot performance bottlenecks and failure hotspots across all components of your application.
 * Learn more about using the [Availability view](availability-overview.md) to set up recurring tests to monitor availability and responsiveness for your application.
-* Learn how to [write complex queries in Analytics](../logs/log-analytics-tutorial.md) to gain deeper insights from your telemetry data.
+* Learn [how to use Log Analytics](../logs/log-analytics-tutorial.md) and [write complex queries](../logs/get-started-queries.md) to gain deeper insights from your telemetry data.
 * Learn how to [send logs and custom telemetry to Application Insights](asp-net-trace-logs.md) for more comprehensive monitoring.
 * For an introduction to monitoring uptime and responsiveness, see the [Availability overview](availability-overview.md).

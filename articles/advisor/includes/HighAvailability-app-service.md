@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 07/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -101,24 +101,6 @@ Recommendation ID: b30897cc-2c2e-4677-a2a1-107ae982ff49
 Subcategory: DisasterRecovery
 
 <!--b30897cc-2c2e-4677-a2a1-107ae982ff49_end-->
-
-<!--80efd6cb-dcee-491b-83a4-7956e9e058d5_begin-->
-
-#### Fix the backup storage settings of your App Service resource  
-  
-When an application has invalid storage settings, its backups fail. For details, see your application's backup history on your app management page.  
-  
-**Potential benefits**: Ensure business continuity  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: 80efd6cb-dcee-491b-83a4-7956e9e058d5  
-Subcategory: DisasterRecovery
-
-<!--80efd6cb-dcee-491b-83a4-7956e9e058d5_end-->
 
 <!--66d3137a-c4da-4c8a-b6b8-e03f5dfba66e_begin-->
 
