@@ -42,7 +42,7 @@ Each event in the Activity Log has a particular category that is described in th
 | [Policy](#policy-category) | Contains records of all effect action operations performed by Azure Policy. Examples of Policy events include _Audit_ and _Deny_. Every action taken by Policy is modeled as an operation on a resource. |
 
 > [!NOTE]
-> The documented schema represents a general structure but isn't strictly enforced across all data sources. Services like [Azure Resource Manager (ARM)](/azure/azure-resource-manager/management/overview) can emit additional fields depending on the environment (for example, national clouds), as well as custom fields. As a result, you may encounter schema variations, especially when ingesting logs across tenants or regions.
+> The documented schema represents a general structure but isn't strictly enforced across all data sources. Services like [Azure Resource Manager (ARM)](/azure/azure-resource-manager/management/overview) can emit additional fields depending on the environment (for example, national clouds), and custom fields. As a result, you may encounter schema variations, especially when ingesting logs across tenants or regions.
 
 ## Administrative category
 
@@ -423,7 +423,7 @@ This category contains the record of all activations of classic Azure alerts. An
 
 ### Properties field per alert type
 
-The properties field will contain different values depending on the source of the alert event. Two common alert event providers are Activity Log alerts and metric alerts.
+The properties field contains different values depending on the source of the alert event. Two common alert event providers are Activity Log alerts and metric alerts.
 
 #### Properties for Activity Log alerts
 
