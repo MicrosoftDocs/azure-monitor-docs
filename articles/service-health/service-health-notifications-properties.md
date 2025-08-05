@@ -24,7 +24,7 @@ There are various classes of service health notifications:
 >
 >After 90 days from the most recent published date, the event is archived into the Service Health History panel. You can still use ASH REST API to query the event >data based on its published date. 
 >
->For more information about using Azure Resource Graph (ARG) queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the >available queries.
+>For more information about using Azure Resource Graph (ARG) queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 
 
