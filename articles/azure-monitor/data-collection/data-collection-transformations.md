@@ -8,7 +8,7 @@ ms.reviwer: nikeist
 
 # Transformations in Azure Monitor
 
-Transformations in Azure Monitor allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. Transformations are performed in the cloud pipeline after the data source delivers the data and before it's sent to the destination. They're defined in a [data collection rule (DCR)](data-collection-rule-overview.md) and use a [Kusto Query Language (KQL) statement](data-collection-transformations-kql.md) that's applied individually to each entry in the incoming data.
+Transformations in Azure Monitor allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. Transformations are run after the data source delivers the data and before it's sent to the destination. They're defined in a [data collection rule (DCR)](data-collection-rule-overview.md) and use a [Kusto Query Language (KQL) statement](data-collection-transformations-kql.md) that's applied individually to each entry in the incoming data.
 
 The following diagram illustrates the transformation process for incoming data and shows a sample query that might be used. In this sample, only records where the `message` column contains the word `error` are collected.
 
@@ -48,9 +48,9 @@ While transformations themselves don't incur direct costs, the following scenari
 * If a transformation increases the size of the incoming data, such as by adding a calculated column, you're charged the standard ingestion rate for the extra data.
 * If a transformation reduces the ingested data by more than 50%, you're charged for the amount of filtered data above 50%.
 
-To calculate the data processing charge resulting from transformations, use the following formula:<br>[GB filtered out by transformations] - ([GB data ingested by pipeline] / 2). The following table shows examples.
+To calculate the data processing charge resulting from transformations, use the following formula:<br>[GB filtered out by transformations] - ([GB data ingested] / 2). The following table shows examples.
 
-| Data ingested by pipeline | Data dropped by transformation | Data ingested by Log Analytics workspace | Data processing charge | Ingestion charge |
+| Data ingested | Data dropped by transformation | Data ingested by Log Analytics workspace | Data processing charge | Ingestion charge |
 |:--------------------------|:------------------------------:|:----------------------------------------:|:----------------------:|:----------------:|
 | 20 GB                     | 12 GB                          | 8 GB                                     | 2 GB <sup>1</sup>      | 8 GB             |
 | 20 GB                     | 8 GB                           | 12 GB                                    | 0 GB                   | 12 GB            |

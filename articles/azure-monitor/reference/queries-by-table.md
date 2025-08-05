@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 06/12/2025
+ms.date: 07/28/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1458,6 +1458,11 @@ ms.reviewer: lualderm
 
 - [Find In KubeServices](./queries/KubeServices.md#find-in-kubeservices)
 
+## [LAJobLogs](./queries/LAJobLogs.md)
+
+- [Failed jobs](./queries/LAJobLogs.md#failed-jobs)
+- [Jobs in progress](./queries/LAJobLogs.md#jobs-in-progress)
+
 ## [LAQueryLogs](./queries/LAQueryLogs.md)
 
 - [Most Requested ResourceIds](./queries/LAQueryLogs.md#most-requested-resourceids)
@@ -1525,6 +1530,15 @@ ms.reviewer: lualderm
 ## [MicrosoftPurviewInformationProtection](./queries/MicrosoftPurviewInformationProtection.md)
 
 - [Microsoft Purview Information Protection events](./queries/MicrosoftPurviewInformationProtection.md#microsoft-purview-information-protection-events)
+
+## [MySqlAuditLogs](./queries/MySqlAuditLogs.md)
+
+- [Audit general events](./queries/MySqlAuditLogs.md#audit-general-events)
+- [Audit connection events](./queries/MySqlAuditLogs.md#audit-connection-events)
+
+## [MySqlSlowLogs](./queries/MySqlSlowLogs.md)
+
+- [Audit connection events](./queries/MySqlSlowLogs.md#audit-connection-events)
 
 ## [NGXOperationLogs](./queries/NGXOperationLogs.md)
 

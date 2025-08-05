@@ -340,7 +340,7 @@ This sample shows you how to use the Azure Resource Manager query control to lis
     - **Required**: `Checked`
     - **Get data from**: `Default Subscriptions`
 1. Select **Save**.
-1. Select **Add query** to create a query control, and use these settings. For this example, we're using the [Alerts Get All REST call](/rest/api/monitor/alertsmanagement/alerts/getall) to get a list of existing alerts for a subscription. For supported api-versions, see the [Azure REST API reference](/rest/api/azure/).
+1. Select **Add query** to create a query control, and use these settings. For this example, we're using the [Alerts Get All REST call](/rest/api/monitor/alertsmanagement/alert-processing-rules) to get a list of existing alerts for a subscription. For supported api-versions, see the [Azure REST API reference](/rest/api/azure/).
     - **Data source**: `Azure Resource Manager (Preview)`
     - **Http Method**: `GET`
     - **Path**: `/subscriptions/{Subscription:id}/providers/Microsoft.AlertsManagement/alerts`

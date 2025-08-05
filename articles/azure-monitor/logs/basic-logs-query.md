@@ -3,7 +3,7 @@ title: Query data in a Basic and Auxiliary table in Azure Monitor Logs
 description: This article explains how to query data from Basic and Auxiliary logs tables.
 ms.reviewer: adi.biran
 ms.topic: how-to
-ms.date: 07/21/2024
+ms.date: 07/21/2025
 ---
 
 # Query data in a Basic and Auxiliary table in Azure Monitor Logs
@@ -36,7 +36,9 @@ Queries of data in Basic or Auxiliary tables support all KQL [scalar](/azure/dat
 
 ### Time range
 
-Specify the time range in the query header in Log Analytics or in the API call. You can't specify the time range in the query body using a **where** statement.
+Specify the start and end datetime using the time range picker in Log Analytics or using time range syntax with an API call. If you specify the time range in the query, the union of the time range picker and the KQL time range is used.
+
+Auxiliary log tables support a time range for the total retention period. Basic log tables support a time range up to the past 30 days. If you need to find data between 30 days ago and the total retention period of the Basic table, use a search job. For more information, see [Search jobs in Basic tables](search-jobs.md).
 
 ### Query scope
 
@@ -44,7 +46,7 @@ Set the Log Analytics workspace as the scope of your query. You can't run querie
 
 ### Concurrent queries
 
-You can run two concurrent queries per user. 
+You can run two concurrent queries per user. For more information, see [Log Analytics query limits](../fundamentals/service-limits.md#user-query-throttling).
 
 ### Auxiliary log query performance
 
@@ -56,7 +58,7 @@ You can't [purge personal data](personal-data-mgmt.md#export-delete-or-purge-per
 
 ## Run a query on a Basic or Auxiliary table
 
-Running a query on Basic or Auxiliary tables is the same as querying any other table in Log Analytics. See [Get started with Azure Monitor Log Analytics](./log-analytics-tutorial.md) if you aren't familiar with this process.
+Running a query on Basic or Auxiliary tables follows the same steps as querying any other table in Log Analytics. For more information, see [Log Analytics tutorial](./log-analytics-tutorial.md).
 
 ### [Portal](#tab/portal-1)
 
@@ -64,15 +66,15 @@ In the Azure portal, select **Monitor** > **Logs** > **Tables**.
 
 In the list of tables, you can identify Basic and Auxiliary tables by their unique icon: 
 
-:::image type="content" source="./media/basic-logs-configure/table-icon.png" lightbox="./media/basic-logs-configure/table-icon.png" alt-text="Screenshot of the Basic Logs table icon in the table list." border="false":::
+:::image type="content" source="./media/basic-logs-query/table-icon.png" lightbox="./media/basic-logs-query/table-icon.png" alt-text="Screenshot of the Basic Logs table icon in the table list." border="false":::
 
 You can also hover over a table name for the table information view, which specifies that the table has the Basic or Auxiliary table plan:
 
-:::image type="content" source="./media/basic-logs-configure/table-info.png" lightbox="./media/basic-logs-configure/table-info.png" alt-text="Screenshot of the Basic Logs table indicator in the table details." border="false":::
+:::image type="content" source="./media/basic-logs-query/table-info.png" lightbox="./media/basic-logs-query/table-info.png" alt-text="Screenshot of the Basic Logs table indicator in the table details." border="false":::
 
 When you add a table to the query, Log Analytics identifies a Basic or Auxiliary table and aligns the authoring experience accordingly. 
 
-:::image type="content" source="./media/basic-logs-query/query-validator.png" lightbox="./media/basic-logs-query/query-validator.png" alt-text="Screenshot of Query on Basic Logs limitations.":::
+:::image type="content" source="./media/basic-logs-query/query-validator.png" lightbox="./media/basic-logs-query/query-validator.png" alt-text="Screenshot of query on Basic Logs limitations.":::
 
 ### [API](#tab/api-1)
 
@@ -103,6 +105,6 @@ The charge for a query on Basic and Auxiliary tables is based on the amount of d
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
-## Next steps
+## Related content
 
 * [Learn more about Azure Monitor Logs table plans](data-platform-logs.md#table-plans).

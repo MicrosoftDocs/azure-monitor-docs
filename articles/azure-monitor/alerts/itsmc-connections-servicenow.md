@@ -3,7 +3,7 @@ title: Connect ServiceNow with IT Service Management Connector
 description: Learn how to connect ServiceNow with the IT Service Management Connector (ITSMC) in Azure Monitor to centrally monitor and manage ITSM work items.
 ms.topic: how-to
 ms.date: 7/30/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Connect ServiceNow with IT Service Management Connector

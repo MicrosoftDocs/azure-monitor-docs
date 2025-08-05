@@ -14,7 +14,7 @@
     href: service-health-overview.md
   - name: What's new
     href: whats-new.md
-- name: How to guides
+- name: Overview
   items:
   - name: Azure Service Health
     items:
@@ -26,7 +26,7 @@
       href: service-health-event-tags.md
     - name: Service Health notifications
       href: service-health-notifications-properties.md
-    - name: How to view and access Security Advisories with elevated access
+    - name: View and access Security advisories
       href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
@@ -40,6 +40,8 @@
         href: alerts-activity-log-service-notifications-bicep.md
       - name: Create activity log alerts using ARM template
         href: alerts-activity-log-service-notifications-arm.md
+      - name: Deploy Service Health alert rules at scale using Azure Policy 
+        href: service-health-alert-deploy-policy.md
     - name: How to send alerts
       items:
       - name: Send alerts to outside systems via webhook

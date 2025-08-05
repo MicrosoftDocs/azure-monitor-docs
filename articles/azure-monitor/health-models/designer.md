@@ -192,7 +192,7 @@ The **Alerts** tab of the [entity editor](#entities) allows you to configure ale
 
 You can enable either the **Degraded** or **Unhealthy** state or both. The only configuration required is the **Severity** of the alert which aligns with the severity values of other Azure Monitor alerts. The alert will fire when the health state of the entity changes to the selected state. Only one alert will be created for the entity even if multiple signals match this severity.
 
-You can optionally select up to five [Action groups](../alerts/action-groups.md) to notify your team or take corrective action when the alert is created. 
+You can optionally select up to five [action groups](../alerts/action-groups.md) to notify your team or take corrective action when the alert is created. 
 
 :::image type="content" source="media/designer/entity-editor-alerts.png" lightbox="media/designer/entity-editor-alerts.png" alt-text="Screenshot of alert configuration in the entity editor.":::
 
