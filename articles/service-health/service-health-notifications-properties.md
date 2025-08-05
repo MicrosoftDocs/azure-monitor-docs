@@ -20,11 +20,11 @@ There are various classes of service health notifications:
 - **Billing:** Information about billing updates for users with subscription owner/contributor roles.
 
 > [!IMPORTANT]
-> Each of the communication categories(Incidents, Planned Maintenance, Health Advisories, Security advisories and Billing) have different logic which decides when an >Event would move from the dedicated category tab to Health History panel.
+> Each communication category panel - Incidents, Planned Maintenance, Health Advisories, Security Advisories, and Billing - uses distinct logic to determine event transitions. This logic determines when an event moves from its category tab to the Health History panel.
 >
->After 90 days from the most recent published date, the event is archived into the Service Health Health History panel. You can still use ASH REST API to query the event >data based on its published date. 
+>After 90 days from the most recent published date, the event is archived into the Service Health History panel. You can still use ASH REST API to query the event >data based on its published date. 
 >
->For more information about using ARG queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the >available queries.
+>For more information about using Azure Resource Graph (ARG) queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the >available queries.
 
 
 
@@ -80,4 +80,3 @@ Properties.communicationId | The communication this event is associated with.
 
 **Billing** (properties.incidentType == Billing)
 - Informational - Issues impacting billing updates. 
-
