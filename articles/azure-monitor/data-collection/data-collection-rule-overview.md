@@ -61,7 +61,7 @@ There are two fundamental ways that DCRs are specified for a particular data col
 Data collection rule associations (DCRAs) are used to associate a DCR with a monitored resource. This is a many-to-many relationship, where:
 
 * a single DCR can be associated with multiple resources.
-* a single resource can be associated with multiple DCRs.
+* a single resource can be associated with up to 30 DCRs.
 
 This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.
 
