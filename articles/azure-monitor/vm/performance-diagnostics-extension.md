@@ -4,7 +4,7 @@ description: Introduces Azure Performance Diagnostics VM Extension for Windows.
 ms.topic: troubleshooting
 ms.date: 02/18/2025
 ---
-# Azure Performance Diagnostics (PerfInsights) VM Extension for Windows
+# Azure Performance Diagnostics (PerfInsights) VM extension for Windows
 
 **Applies to:** :heavy_check_mark: Windows VMs
 
@@ -70,15 +70,15 @@ Specify the authentication type in the JSON file. If no authentication type is s
 | requestTimeUtc | 2017-09-28T22:08:53.736Z | Current Date Time in Utc. If you are using the portal to install this extension, you do not need to provide this value. |
 | resourceId | /subscriptions/{subscriptionId}<br>/resourceGroups/{resourceGroupName}<br>/providers/{resourceProviderNamespace}<br>/{resourceType}/{resourceName} | The unique identifier of a VM. |
 | storageAccountName | mystorageaccount | The name of the storage account to store the diagnostics logs and results. |
-| storageAccountKey | lDuVvxuZB28NNP…hAiRF3voADxLBTcc== | The key for the storage account. |
+| storageAccountKey | aB1cD2eF-3gH4iJ5kL6-mN7oP8qR= | The key for the storage account. |
 |authenticationType|systemmanagedidentity|The authentication type used to connect to the storage account. Valid values are `systemmanagedidentity`, `usermanagedidentity`, and `storagekeys`.|
-|managedIdentityClientId|f81d4afe-7ced-11d0-a765-00a0c91c6bf6|The client ID of the user-managed identity to be used for authenticating to the storage account.|
+|managedIdentityClientId|00001111-aaaa-2222-bbbb-3333cccc4444|The client ID of the user-managed identity to be used for authenticating to the storage account.|
 
 
 ## Remove the extension
 
 > [!NOTE]
-> We recommend uninstalling the extension through the performance diagnostics blade, as describe in [Uninstall performance diagnostics](performance-diagnostics-run.md#uninstall-performance-diagnostics).
+> We recommend uninstalling the extension through the performance diagnostics blade, as described in [Uninstall performance diagnostics](performance-diagnostics-run.md#uninstall-performance-diagnostics).
 
 To remove the extension from a virtual machine, follow these steps:
 

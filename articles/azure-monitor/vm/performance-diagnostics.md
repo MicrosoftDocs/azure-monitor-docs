@@ -73,7 +73,7 @@ On-demand diagnostics provides different information between Windows and Linux V
 
 ### [Windows](#tab/windows)
 
-Performance Diagnostics collected the information in the following table from Windows machines., depending on the performance scenario you're using.
+Performance Diagnostics collected the information in the following table from Windows machines depending on the performance scenario you're using.
 
 | Data collected | Quick performance analysis | Benchmarking | Performance analysis | Azure Files analysis | Advanced performance analysis |
 |:---|:---:|:---:|:---:|:---:|:---:|

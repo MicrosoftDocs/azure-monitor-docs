@@ -85,7 +85,7 @@ You can install the Performance Diagnostics tool from multiple locations in the 
 
 - From the menu for the virtual machine. In the **Help** section of the menu, select **Performance Diagnostics**. Select **Enable Performance Diagnostics**
 
-    :::image type="content" source="media/performance-diagnostics-run/open-performance-diagnostics.png" alt-text="Screenshot of the Performance dianostics pane in the Azure portal that shows the Enable Performance Diagnostics button highlighted." lightbox="media/performance-diagnostics-run/open-performance-diagnostics.png":::
+    :::image type="content" source="media/performance-diagnostics-run/open-performance-diagnostics.png" alt-text="Screenshot of the Performance diagnostics pane in the Azure portal that shows the Enable Performance Diagnostics button highlighted." lightbox="media/performance-diagnostics-run/open-performance-diagnostics.png":::
 
 - From the **Overview** page for the virtual machine. Select the **Monitoring** tab and then select **Install** at the bottom of the **Install Performance Diagnostics** tile.
 
@@ -121,15 +121,15 @@ Using standalone mode, you can run performance diagnostics without installing th
 
 ### [Linux](#tab/linux)
 
-1. Download [PerfInsights.tar.gz](https://aka.ms/perfinsightslinuxdownload) to a folder on your virtual machine and extract the contents using the below commands from the terminal.
+Download [PerfInsights.tar.gz](https://aka.ms/perfinsightslinuxdownload) to a folder on your virtual machine and extract the contents using the below commands from the terminal.
 
-   ```bash
-   wget https://download.microsoft.com/download/9/F/8/9F80419C-D60D-45F1-8A98-718855F25722/PerfInsights.tar.gz
-   ```
+```bash
+wget https://download.microsoft.com/download/9/F/8/9F80419C-D60D-45F1-8A98-718855F25722/PerfInsights.tar.gz
+```
 
-   ```bash
-   tar xzvf PerfInsights.tar.gz
-   ```
+```bash
+tar xzvf PerfInsights.tar.gz
+```
 
 ---
 
@@ -232,10 +232,10 @@ This scenario is meant for troubleshooting issues on HPC size VMs, meaning H-Ser
 - Performance tuning information
 
 >[!Note]
->Some tools used by the HPC performance analysis scenario, such as cli commands that are packaged in with device drivers, are not present on all VMs. In such cases, those portions of the analysis will be skipped. Running this scenario does not install any software on VMs or make any other permanent changes.
+>Some tools used by the HPC performance analysis scenario, such as CLI commands that are packaged in with device drivers, are not present on all VMs. In such cases, those portions of the analysis will be skipped. Running this scenario does not install any software on VMs or make any other permanent changes.
 
 >[!Note]
->Running the HPC scenario directly from the Azure Portal is not supported at this time, so PerfInsights must be downloaded and run from the command line to use it.
+>Running the HPC scenario directly from the Azure portal is not supported at this time, so PerfInsights must be downloaded and run from the command line to use it.
 
 
 
@@ -262,9 +262,8 @@ The following categories of rules are currently supported:
 - System: Detects specific system settings.
 
 >[!Note]
->[`*`] PCI information is not yet collected on Debian and SLES distributions.
->
->[`**`] /var/log/sysstat or /var/log/sa contains the System Activity Report (SAR) files that are collected by the sysstat package. If the sysstat package is not installed on the VM, the PerfInsights tool provides a recommendation to install it.
+>- PCI information is not currently collected on Debian and SLES distributions.
+>- /var/log/sysstat or /var/log/sa contains the System Activity Report (SAR) files that are collected by the sysstat package. If the sysstat package is not installed on the VM, the PerfInsights tool provides a recommendation to install it.
 
 ---
 
@@ -315,25 +314,25 @@ PerfInsights /list
 
 Following are examples of running different troubleshooting scenarios:
 
-- Run the performance analysis scenario for 5 mins:
+- Run the performance analysis scenario for 5 minutes:
 
 ```console
 PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics
 ```
 
-- Run the advanced scenario with Xperf and Performance counter traces for 5 mins:
+- Run the advanced scenario with Xperf and Performance counter traces for 5 minutes:
 
 ```console
 PerfInsights /run advanced xp /d 300 /AcceptDisclaimerAndShareDiagnostics
 ```
 
-- Run the benchmark scenario for 5 mins:
+- Run the benchmark scenario for 5 minutes:
 
 ```console
 PerfInsights /run benchmark /d 300 /AcceptDisclaimerAndShareDiagnostics
 ```
 
-- Run the performance analysis scenario for 5 mins and upload the result zip file to the storage account:
+- Run the performance analysis scenario for 5 minutes and upload the result zip file to the storage account:
 
 ```console
 PerfInsights /run vmslow /d 300 /AcceptDisclaimerAndShareDiagnostics /sa <StorageAccountName> /sk <StorageAccountKey>
@@ -372,13 +371,13 @@ You can use the following example to run Quick performance analysis scenario for
 sudo python perfinsights.py -r quick -d 1M -a -o /tmp/output
 ```
 
-You can use the following example to run performance analysis scenario for 5 mins and upload the result (stores in a TAR file) to the storage account:
+You can use the following example to run performance analysis scenario for 5 minutes and upload the result (stores in a TAR file) to the storage account:
 
 ```bash
 sudo python perfinsights.py -r vmslow -d 300S -a -t <StorageAccountName> -k <StorageAccountKey> -i <full resource Uri of the current VM>
 ```
 
-You can use the following example to run the HPC performance analysis scenario for 1 mins and upload the result TAR file to the storage account:
+You can use the following example to run the HPC performance analysis scenario for 1 minute and upload the result TAR file to the storage account:
 
 ```bash
 sudo python perfinsights.py -r hpc -d 60S -a -t <StorageAccountName> -k <StorageAccountKey> -i <full resource Uri of the current VM>
@@ -387,7 +386,7 @@ sudo python perfinsights.py -r hpc -d 60S -a -t <StorageAccountName> -k <Storage
 >[!Note]
 >Before running a scenario, PerfInsights prompts the user to agree to share diagnostic information and to agree to the EULA. Use **-a or --accept-disclaimer-and-share-diagnostics** option to skip these prompts.
 >
->If you have an active support ticket with Microsoft and running PerfInsights per the request of the support engineer you are working with, make sure to provide the support ticket number using the **-s or --support-request** option.
+>If you have an active support ticket with Microsoft and are running PerfInsights per the request of the support engineer you are working with, make sure to provide the support ticket number using the **-s or --support-request** option.
 
 When the run is completed, a new tar file appears in the same folder as PerfInsights unless no output folder is specified. The name of the file is **PerformanceDiagnostics\_yyyy-MM-dd\_hh-mm-ss-fff.tar.gz.** You can send this file to the support agent for analysis or open the report inside the file to review findings and recommendations.
 
