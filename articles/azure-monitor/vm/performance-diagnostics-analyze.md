@@ -1,6 +1,6 @@
 ---
 title: Analyze Performance Diagnostics insights and reports
-description: Learns how to open and analyze reports created by Azure performance diagnostics.
+description: Learn how to open and analyze reports created by Azure performance diagnostics.
 services: virtual-machines
 ms.topic: troubleshooting
 ms.date: 05/02/2025
