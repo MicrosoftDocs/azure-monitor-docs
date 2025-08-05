@@ -2,7 +2,7 @@
 title: Azure service health notifications
 description: Service health notifications allow you to view service health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 08/04/2025
+ms.date: 08/05/2025
 
 ---
 
@@ -17,6 +17,16 @@ There are various classes of service health notifications:
 - **Maintenance:** A planned maintenance activity that might affect one or more of the resources under your subscription.  
 - **Information:** Potential optimizations that might help improve your resource use. 
 - **Security:** Urgent security-related information regarding your solutions that run on Azure.
+- **Billing:** Information about billing updates for users with subscription owner/contributor roles.
+
+> [!IMPORTANT]
+> Each of the communication categories(Incidents, Planned Maintenance, Health Advisories, Security advisories and Billing) have different logic which decides when an >Event would move from the dedicated category tab to Health History panel.
+>
+>After 90 days from the most recent published date, the event is archived into the Service Health Health History panel. You can still use ASH REST API to query the event >data based on its published date. 
+>
+>For more information about using ARG queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the >available queries.
+
+
 
 Each service health notification includes details on the scope and impact to your resources. Details include:
 
@@ -67,3 +77,7 @@ Properties.communicationId | The communication this event is associated with.
 - Error - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.
 - Warning - Issues accessing specific services and/or specific regions are impacting a subset of customers.
 - Informational - Issues impacting management operations and/or latency, not impacting service availability.
+
+**Billing** (properties.incidentType == Billing)
+- Informational - Issues impacting billing updates. 
+
