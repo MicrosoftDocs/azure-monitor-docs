@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 08/04/2025
+ms.date: 08/05/2025
 
 ---
 
@@ -35,18 +35,11 @@ Each event includes the following information:
 - Event tags
 
 Select the **Issue name** link to open the tabs with the information you need.
+
 >[!Note]
->Planned maintenance events are displayed in the panel for 90 days if they are still active and if the `imptactMitigationTime` is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
+>Planned maintenance events are displayed in the panel for 90 days if they are still active and if the impact time is set in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
 >
->You can view planned maintenance events from the past year using an ARG query as shown here.<br>
->
->Query for last 90 days <br>
->Check the result: 
->- status = `active`
->- incident type = `maintenance`
->- impactMitigationTime = `after today’s date` 
->
->For more information regarding planned maintenance events from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+>For more information about Planned maintenance events using ARG queries, [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 ### Filtering and sorting
 At the top of each tab, there are several options of how to view the information on this page.
@@ -111,10 +104,11 @@ The tab for Impacted Resources displays the following information about any of y
 - **Subscription ID** - The subscription that owns the resource.
 - **Action** - A link to apply the update during a self-service window (for reboot-required updates).
 
+For more information about Impacted resources, see [Impacted Resources from Planned maintenance events](impacted-resources-planned-maintenance.md).
 
 
 ### Next steps:
 
-- [Impacted Resources from Planned maintenance events](impacted-resources-planned-maintenance.md)
+- [Service Health Frequently asked questions](service-health-faq.yml)
 - [Resource impact from Azure outages](impacted-resources-outage.md)
 - [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
