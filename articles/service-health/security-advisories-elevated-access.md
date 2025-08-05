@@ -3,7 +3,7 @@ title: View and access Security advisories
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 
 ms.topic: conceptual
-ms.date: 8/01/2025
+ms.date: 8/05/2025
 ---
 
 
@@ -33,17 +33,10 @@ Each advisory typically includes four key sections:
 Select the **Advisory name** link to open the tabs with the information you need.
 
 >[!Note]
->Security advisories are displayed in the pane for up to 28 days if they are still active and if the `impactMitigationTime` is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
+>Security advisories are displayed in the pane for up to 28 days if they are still active and if the impact time is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
 >
->You can view Security advisories from the past year using an ARG query as shown here.<br>
 >
->Query for last 28 days <br>
->Check the result: 
->- status = `active`
->- impactMitigationTime = `before today’s date`
->- incident type = `informational` or `action required`
->
->For more information regarding Sercurity advisories from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+>For more information about Sercurity advisories using ARG queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 ## Who can view Security advisories? 
 
@@ -87,7 +80,7 @@ Operation: POST
 
 #### Impacted Resources for Security advisories
 
-Customers authorized with the above-mentioned roles can use the following endpoints to access the list of resources impacted by a Security Incident.
+Customers authorized with the authorized roles, can use the following endpoints to access the list of resources impacted by a Security Incident.
 <!--- Available since API version 2022-05-01-->
 
  
