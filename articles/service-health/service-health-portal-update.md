@@ -26,20 +26,14 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 
 ### The retention of Service Health events
 Azure Service Health retains all event types in the Health History section of the portal for up to 90 days after they become inactive. These events are archived in the Health History once they're resolved or inactive. You can filter and review them by type, date, and impact.
-
-|Event category  |Retention duration  |
-|---------|---------|
-|Service issues | 90 days  |
-|Planned maintenance | 90 days |
-|Health advisories   | 90 days |
-|Security advisories |  90 days |
-|Billing updates    |  90 days  |
+> [!NOTE]
+> Active Service issues are only shown for the last 3 days. They are moved to the History pane though they are still active.
+> Data is stored for up to a year and can be accessed by an API query.
 
 - **Alerts**: Service Health alerts (for example, via email, webhook, Logic Apps) aren't subject to the 90-day limit because they're tied to your alerting infrastructure.
 - **Resource Health**: Resource Health events, like when a virtual machine (VM) goes offline aren’t part of Service Health. They’re saved for 90 days and viewed in a different section of the Azure portal.
 - **Saved Views**: Custom views in the Service Health portal are retained for 30 days unless actively used. 
 - **Metadata**: Tags and event levels remain in place until the event is resolved or archived.
-
 
 > [!NOTE]
 > If you use Azure Resource Graph queries to retrieve Service Health events, you might notice a different count compared to the Service Health UI. This outcome is expected. Resource Graph returns one record per subscription ID and tracking ID combination. On the Azure portal, updates are grouped under each tracking ID, so you might see fewer rows.
