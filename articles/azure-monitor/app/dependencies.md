@@ -14,7 +14,9 @@ A *dependency* is a component that's called by your application. It's typically 
 
 ## Automatically tracked dependencies
 
-This section links to lists of dependency calls that are automatically detected as dependencies without requiring any additional modification to your application's code. These dependencies are visualized in the Application Insights [Application map](app-map.md) and [Transaction diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) views. If your dependency isn't on the list, you can still track it manually, see [Manually tracking dependencies](#manually-tracking-dependencies).
+This section links to lists of dependency calls that are automatically detected as dependencies without requiring any additional modification to your application's code. These dependencies are visualized in the Application Insights [Application map](app-map.md) and [Transaction diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) views.
+
+If your dependency isn't on the list, you can still track it manually, see [Manually tracking dependencies](#manually-tracking-dependencies).
 
 # [OpenTelemetry](#tab/otel)
 
@@ -22,13 +24,21 @@ For a list of all autocollected dependencies, see the language-specific tabs in 
 
 # [Classic API](#tab/classic)
 
+| Language | Resource |
+|----------|----------|
+| **.NET** | For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies). |
+| **Node.js** | A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers). |
+| **Browser (JS)** | The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). |
+
+<!--
 * **.NET** - For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies).
-
 * **Node.js** - A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers).
-
 * **Browser (JS)** - The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest).
-
+-->
 ---
+
+> [!NOTE]
+> For webpages, the [Application Insights JavaScript SDK](javascript-sdk.md) automatically collects AJAX calls as dependencies.
 
 ### How does automatic dependency monitoring work?
 
@@ -56,40 +66,42 @@ Dependencies are automatically collected using one of the following techniques, 
 
 # [OpenTelemetry](#tab/otel)
 
-..., see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
+To learn how to manually track dependencies, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
 
 # [Classic API](#tab/classic)
 
+| Language | Resource |
+|----------|----------|
+| ASP.NET | [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#manually-tracking-dependencies) |
+| Node.js | [Monitor your Node.js services and apps with Application Insights](nodejs.md#track-your-dependencies) |
+| Browser (JS) | [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md) |
+<!--
 * ASP.NET - [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#manually-tracking-dependencies)
-
 * Node.js - [Monitor your Node.js services and apps with Application Insights](nodejs.md#track-your-dependencies)
-
-* JavaScript - [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md)
+* Browser (JS) - [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md)
+-->
 
 ---
 
-## Track AJAX calls from webpages
-
-For webpages, the [Application Insights JavaScript SDK](javascript-sdk.md) automatically collects AJAX calls as dependencies.
-
-## Advanced SQL tracking to get full SQL query
-
-> [!NOTE]
-> Azure Functions requires separate settings to enable SQL text collection. For more information, see [Enable SQL query collection](/azure/azure-functions/configure-monitoring#enable-sql-query-collection).
-
-...
-
 ## Where to find dependency data
 
+Understanding where your application interacts with external services is key to diagnosing performance issues and improving reliability. Dependency data provides visibility into these interactions, helping you trace requests across components and identify bottlenecks. The following tools and views in Application Insights make it easy to explore and analyze this data:
+
+| Views | Description |
+|-------|-------------|
+| [Application Map](app-map.md) | Visualizes dependencies between your app and neighboring components. |
+| [Transaction Diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) | Shows unified, correlated server data. |
+| [Browsers tab](javascript.md) | Shows AJAX calls from your users' browsers. |
+| [Failures and performance views](failures-performance-transactions.md) | Select from slow or failed requests to check their dependency calls. |
+| [Logs](#logs-analytics) | Can be used to query dependency data. |
+
+<!--
 * [Application Map](app-map.md) visualizes dependencies between your app and neighboring components.
-
 * [Transaction Diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) shows unified, correlated server data.
-
 * [Browsers tab](javascript.md) shows AJAX calls from your users' browsers.
-
 * Select from slow or failed requests to check their dependency calls.
-
 * [Analytics](#logs-analytics) can be used to query dependency data.
+-->
 
 ## Diagnose slow requests
 
@@ -165,9 +177,6 @@ Like every Application Insights SDK, the dependency collection module is also op
 
 ## Next steps
 
-* Review frequently asked questions (FAQ): [Dependency tracking FAQ](application-insights-faq.yml#dependency-tracking)
+* Review frequently asked questions in our [Dependency tracking FAQ](application-insights-faq.yml#dependency-tracking).
 * See the [data model](data-model-complete.md) for Application Insights.
 * Check out [platforms](app-insights-overview.md#supported-languages) supported by Application Insights.
-* Set up custom dependency tracking for [ASP.NET or ASP.NET Core](api-custom-events-metrics.md#trackdependency)
-* Set up custom dependency tracking for [Java](opentelemetry-add-modify.md?tabs=java#add-custom-spans).
-* Set up custom dependency tracking for [OpenCensus Python](/previous-versions/azure/azure-monitor/app/opencensus-python-dependency).
