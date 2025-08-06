@@ -2,7 +2,7 @@
 title: Azure service health notifications
 description: Service health notifications allow you to view service health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 08/05/2025
+ms.date: 08/06/2025
 
 ---
 
@@ -22,11 +22,11 @@ There are various classes of service health notifications:
 
 |**Event**  |**Severity levels** |**Event tags** |**When Event is moved to Health History panel**  | **Event details moved from Health History panel, but available through REST API** | **Event details achived and inaccessible through REST API**|
 |---------|---------|---------|---------|
-|**Service Issues** | - **Error** - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.<br> - **Warning** - Issues accessing specific services and/or specific regions are impacting a subset of customers.<br> - **Informational** - Issues impacting management operations and/or latency, not impacting service availability.      |         |  3 days       | 90 days from most recent published date| 1 year from most recent  published date   |
-|**Planned Maintenance**   | - **Warning** - Emergency Maintenance <br> - **Informational** - Standard Planned Maintenance | N/A         | Schedule's EndDate has passed<br> Or 50 days from Schedule's StartDate        |90 days from most recent published date   |1 year from most recent  published date    |
-|**Security**     |- **Warning** - Security advisory that affects existing services and might require administrator action<br> - **Informational** - Security advisory that affect existing services          |         |         | 90 days from most recent published date  | 1 year from most recent  published date   |
-|**Health Advisories**<br>-Action Required<br>- Informational<br>- Product Retirement notifications |- **Warning** - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement<br> - **Informational** - Administrator might be required to prevent impact to existing services. | Retirement         |         | 90 days from most recent published date  | 1 year from most recent  published date   |
-|**Billing**     |- **Informational** - Issues impacting billing updates   |         |         | 90 days from most recent published date  | 1 year from most recent  published date   |
+|**Service Issues** | **Error** - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.<br>**Warning** - Issues accessing specific services and/or specific regions are impacting a subset of customers.<br>**Informational** - Issues impacting management operations and/or latency, not impacting service availability.      |         |  3 days       | 90 days from most recent published date| 1 year from most recent  published date   |
+|**Planned Maintenance**   | **Warning** - Emergency Maintenance <br> **Informational** - Standard Planned Maintenance | N/A         | Schedule's EndDate has passed<br> Or 50 days from Schedule's StartDate        |90 days from most recent published date   |1 year from most recent  published date    |
+|**Security**     |**Warning** - Security advisory that affects existing services and might require administrator action<br>**Informational** - Security advisory that affect existing services          |         |         | 90 days from most recent published date  | 1 year from most recent  published date   |
+|**Health Advisories**<br>-Action Required<br>- Informational<br>- Product Retirement notifications |**Warning** - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement<br> -**Informational** - Administrator might be required to prevent impact to existing services. | Retirement         |         | 90 days from most recent published date  | 1 year from most recent  published date   |
+|**Billing**     |**Informational** - Issues impacting billing updates   |         |         | 90 days from most recent published date  | 1 year from most recent  published date   |
 
 
 > [!IMPORTANT]
