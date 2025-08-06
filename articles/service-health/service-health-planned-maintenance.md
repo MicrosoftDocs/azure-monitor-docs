@@ -51,7 +51,7 @@ Select the **Issue name** link to open the tabs with the information you need.
 >For more information about Planned maintenance events using ARG queries, [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 ### Command bar
-At the top of each tab, there is a command bar with several options of how to view the information displayed.
+At the top of each tab, there's a command bar with several options of how to view the information displayed.
 
  - **Download as a PDF**: Select to download and open a PDF with the information about this event.
 - **Track issue on mobile**: Select to open and point your mobile phone camera at the QR code.
@@ -99,7 +99,7 @@ The Impacted Services tab displays information about any of your services that a
 
 The Issues Updates tab displays all information notifications by the date they were entered.
 >[!TIP]
->Duplicate communications on this tab are removed if they are sent a short time apart.
+>Duplicate communications on this tab are removed if they're entered into the tab a short time apart.
 
 ### Impacted Resources tab
 
