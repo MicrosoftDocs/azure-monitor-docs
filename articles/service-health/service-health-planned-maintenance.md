@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 08/05/2025
+ms.date: 08/06/2025
 
 ---
 
@@ -24,6 +24,14 @@ Unlike unplanned outages, planned maintenance is scheduled and communicated ahea
 ## Get started with Planned maintenance 
 When you open the Planned maintenance pane, you see a list of maintenance events relevant to your subscriptions. 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-main.png" alt-text="Screenshot of current planned maintenance events." lightbox="./media/planned-maintenance/planned-maintenance-main.png":::
+
+>[!Note]
+>You can sort the displayed list of Planned maintenance events by Scope, Subscription, Region, Service and Event tags.
+>
+>There is an option on this panel to: 
+>- Create a service health alert
+>- Download the events as a CSV file
+
 Each event includes the following information:
 - Issue Name
 - Tracking ID
@@ -37,12 +45,12 @@ Each event includes the following information:
 Select the **Issue name** link to open the tabs with the information you need.
 
 >[!Note]
->Planned maintenance events are displayed in the panel for 90 days if they are still active and if the impact time is set in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
+>Planned maintenance events are displayed in the panel for 90 days if they are still active and if the `impactMitigationTime/endtime` is set in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
 >
 >For more information about Planned maintenance events using ARG queries, [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
-### Filtering and sorting
-At the top of each tab, there are several options of how to view the information on this page.
+### Command bar
+At the top of each tab, there is a command bar with several options of how to view the information displayed.
 
  - **Download as a PDF**: Select to download and open a PDF with the information about this event.
 - **Track issue on mobile**: Select to open and point your mobile phone camera at the QR code.
@@ -89,6 +97,8 @@ The Impacted Services tab displays information about any of your services that a
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-issue-updates.PNG" alt-text="Screenshot of Issue Updates tab." lightbox="media/planned-maintenance/planned-maintenance-issue-updates.png":::
 
 The Issues Updates tab displays all information notifications by the date they were entered.
+>[!TIP]
+>Duplicate communications on this tab are removed if they are sent a short time apart.
 
 ### Impacted Resources tab
 
