@@ -23,14 +23,14 @@ Unlike unplanned outages, planned maintenance is scheduled and communicated ahea
 
 ## Get started with Planned maintenance 
 When you open the Planned maintenance pane, you see a list of maintenance events relevant to your subscriptions. 
-:::image type="content" source="./media/planned-maintenance/planned-maintenance-main.png" alt-text="Screenshot of current planned maintenance events." lightbox="./media/planned-maintenance/planned-maintenance-main.png":::
 
->[!Note]
->You can sort the displayed list of Planned maintenance events by Scope, Subscription, Region, Service and Event tags.
->
->There is an option on this panel to: 
->- Create a service health alert
->- Download the events as a CSV file
+On the main panel you can sort the displayed list of Planned maintenance events by Scope, Subscription, Region, Service, and Event tags.
+
+There are options to: 
+- Create a service health alert
+- Download the events as a CSV file
+
+:::image type="content" source="./media/planned-maintenance/planned-maintenance-main.png" alt-text="Screenshot of current planned maintenance events." lightbox="./media/planned-maintenance/planned-maintenance-main.png":::
 
 Each event includes the following information:
 - Issue Name
@@ -41,6 +41,7 @@ Each event includes the following information:
 - End time
 - last updated 
 - Event tags
+
 
 Select the **Issue name** link to open the tabs with the information you need.
 
