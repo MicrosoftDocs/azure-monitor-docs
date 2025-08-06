@@ -68,6 +68,9 @@ Create a diagnostic setting to send activity log entries to other destinations f
 
 The information below provides further details on the different destinations that resources logs can be sent to.
 
+> [!NOTE]
+> The legacy method of exporting the activity log is log profiles. See [Legacy collection methods](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
+
 ## [Log Analytics workspace](#tab/log-analytics)
 
 Send the activity log to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) for the following functionality:
