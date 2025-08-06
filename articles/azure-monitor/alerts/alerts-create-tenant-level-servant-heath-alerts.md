@@ -15,6 +15,9 @@ This article shows you how to create tenant level service health alerts and prov
 1. In the Azure portal, navigate to **Monitor** \> **Service Health**.
 1. Select **Create service health alert**. A context pane will open.
 1. Under **Scope**, select the “Scope level” as Directory. The current directory will be displayed.
+
+:::image type="content" source="media/shared/tenant-level-service-health-alert-rules1.png" alt-text="tenant level alert interface in the azure portal":::
+
 1. Under the **Condition** section, select the services, regions, and event types you’re interested in monitoring.
 1. Under the **Details** section, name the alert rule and select where to save it.
 
@@ -22,8 +25,14 @@ This article shows you how to create tenant level service health alerts and prov
 
 1. In the Azure portal, navigate to **Monitor** \> **Alerts**.
 1. Select **Create** \> **Alert rule**. The alert rule creation wizard will open.
+
+:::image type="content" source="media/shared/tenant-level-service-health-alert-create-rule1.png" alt-text="tenant level alert interface in the azure portal":::
+
 1. In the **Scope** tab, select the “Scope level” as Directory. The current directory will be displayed.
 1. In the **Condition** section, select the services, regions, and event types you’re interested in monitoring.
+
+:::image type="content" source="media/shared/tenant-level-service-health-alert-rule.png" alt-text="tenant level alert interface in the azure portal":::
+
 1. Continue creating the alert rule.
 
 ## Troubleshoot
