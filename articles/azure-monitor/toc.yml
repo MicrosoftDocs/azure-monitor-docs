@@ -1331,6 +1331,8 @@ items:
       href: visualize/visualize-use-grafana-dashboards.md
     - name: Use managed Grafana
       href: visualize/visualize-use-managed-grafana-how-to.md
+    - name: Call Grafana APIs programmatically
+      href: visualize/visualize-call-grafana-api.md
   - name: Power BI
     href: logs/log-powerbi.md
 - name: Analyze
