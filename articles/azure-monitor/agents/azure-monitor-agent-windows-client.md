@@ -38,12 +38,14 @@ Here's a comparison between using the client installer and using the virtual mac
 | Device type | Supported? | Installation method | Additional information |
 |:------------|:-----------|:--------------------|:-----------------------|
 | Windows 11, 10 desktops, workstations | Yes | Client installer | Installs the agent by using a Windows MSI installer. |
-| Windows 11, 10 laptops | Yes | Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent *isn't yet optimized* for battery or network consumption). |
+| Windows 11, 10 laptops | Yes | Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent isn't yet optimized for battery, network consumption, or hibernation). |
 | VMs, scale sets | No | [VM extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) | Installs the agent by using the Azure extension framework. |
 | On-premises servers | No | [VM extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent by using the Azure extension framework, provided for on-premises by installing the Azure Arc agent. |
 
 > [!IMPORTANT] 
-> The Azure Monitor doesn't support hibernation. If the agent computer hibernates, you may lose monitoring data.
+> The Azure Monitor doesn't support hibernation. If the agent computer hibernates, you may lose monitoring data. This will typically result in an error message similar to the following.
+>
+> `Failed to post health report to https://global.handler.control.monitor.azure.com on first round of tries. No fallback will be attempted. Error: {"error":{"code":"TokenExpired","message":"IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/27/2024 4:41:52 PM', Current time (UTC): '12/30/2024 3:00:16 PM'."}}`
 
 ## Prerequisites
 
@@ -103,7 +105,7 @@ Here's a comparison between using the client installer and using the virtual mac
     | `INSTALLDIR` | Directory path where the agent binaries are installed. |
     | `DATASTOREDIR` | Directory path where the agent stores its operational logs and data. |
     | `PROXYUSE` | Must be set to `true` to use a proxy. |
-    | `PROXYADDRESS` | Set to the proxy address. `PROXYUSE` must be set to `true` to be correctly applied. |
+    | `PROXYADDRESS` | Set to the proxy address including the port number, in the format `Address:Port`. `PROXYUSE` must be set to `true` for this parameter to be correctly applied. |
     | `PROXYUSEAUTH` | Set to `true` if a proxy requires authentication. |
     | `PROXYUSERNAME` | Set to the proxy username. `PROXYUSE` and `PROXYUSEAUTH` must be set to `true`. |
     | `PROXYPASSWORD` | Set to the proxy password. `PROXYUSE` and `PROXYUSEAUTH` must be set to `true`. |

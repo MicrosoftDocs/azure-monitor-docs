@@ -148,7 +148,7 @@ If Container Insights is already enabled for your cluster, then you need to disa
 
 ## Monitor QoS metrics with Prometheus and Grafana 
 
-When the volume of logs generated is substantial, it can lead to throttling and log loss. See the *[Configure throttling for Container Insights](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-throttling)* article for guidance on configuring throttling parameters and monitoring for log loss. 
+When the volume of logs generated is substantial, it can lead to throttling and log loss. See the *[Configure throttling for Container Insights](/azure/azure-monitor/containers/container-insights-throttling)* article for guidance on configuring throttling parameters and monitoring for log loss. 
 
 ## Next steps
 

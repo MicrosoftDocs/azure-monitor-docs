@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/22/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network
@@ -83,24 +83,6 @@ Recommendation ID: 9411bc9f-d181-497c-b519-4154ae04fb00
 Subcategory: BusinessContinuity
 
 <!--9411bc9f-d181-497c-b519-4154ae04fb00_end-->
-
-<!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_begin-->
-
-#### Migrate away from Azure CDN from Edgio by January 15, 2025  
-  
-Migrate from Azure CDN Standard/Premium by Edgio before 15 January 2025 when the Edgio platform is scheduled to shut down. It's recommended to move to Azure Front Door for compatibility. Alternatively, consider using Azure Traffic Manager or Akamai CDN available in the Azure Marketplace.  
-  
-**Potential benefits**: Avoid downtime and ensure business continuity.  
-
-**Impact:** High
-  
-For more information, see [Azure updates ](https://azure.microsoft.com/updates?id=467688)  
-
-ResourceType: microsoft.cdn/profiles  
-Recommendation ID: 2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_end-->
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_begin-->
 

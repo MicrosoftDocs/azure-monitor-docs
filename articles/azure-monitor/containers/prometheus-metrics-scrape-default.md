@@ -65,7 +65,6 @@ The following metrics are collected by default from each default target. All oth
    - `container_memory_swap`
    - `container_cpu_cfs_throttled_periods_total`
    - `container_cpu_cfs_periods_total`
-   - `container_memory_usage_bytes`
    - `kubernetes_build_info"`
 
    **kubelet (job=kubelet)**<br>

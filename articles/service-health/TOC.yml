@@ -14,7 +14,7 @@
     href: service-health-overview.md
   - name: What's new
     href: whats-new.md
-- name: How to guides
+- name: Overview
   items:
   - name: Azure Service Health
     items:
@@ -22,9 +22,11 @@
       href: service-notifications.md
     - name: Filter Service Health notifications by event level
       href: metadata-filter.md
+    - name: Service Health event tags
+      href: service-health-event-tags.md
     - name: Service Health notifications
       href: service-health-notifications-properties.md
-    - name: How to view and access Security Advisories with elevated access
+    - name: View and access Security advisories
       href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
@@ -38,6 +40,8 @@
         href: alerts-activity-log-service-notifications-bicep.md
       - name: Create activity log alerts using ARM template
         href: alerts-activity-log-service-notifications-arm.md
+      - name: Deploy Service Health alert rules at scale using Azure Policy 
+        href: service-health-alert-deploy-policy.md
     - name: How to send alerts
       items:
       - name: Send alerts to outside systems via webhook
@@ -62,11 +66,11 @@
         href: resource-health-alert-arm-template-guide.md
     - name: Impacted Resources
       items:
-      - name: Impacted Resources Support for Outages
+      - name: Impacted Resources from Outages
         href: impacted-resources-outage.md
-      - name: Viewing Resources impacted by planned maintenance events
+      - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
-      - name: Viewing impacted resources from Azure security incidents
+      - name: Impacted Resources from Azure security incidents
         href: impacted-resources-security.md     
 - name: Reference
   items:

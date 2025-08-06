@@ -22,6 +22,8 @@
       href: chaos-studio-run-experiment.md
     - name: Schedule an experiment
       href: tutorial-schedule.md
+    - name: Measuring Experiment Impact with an Azure Monitor Workbook
+      href: chaos-studio-fault-metrics-and-dashboard.md
 - name: Samples
   items:
     - name: Azure REST API

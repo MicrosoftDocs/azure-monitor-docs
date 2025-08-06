@@ -72,12 +72,14 @@ The following sections describe the different views aside from the designer that
 ### Entities view
 The Entities view is useful for quickly finding and editing the signals and alerts for entities in the model. Use it as an alternative to the designer view when you want to focus on the entities and their properties rather than the visual layout of the model.
 
-The view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./designer.md#entity-properties) from this view as you can in the designer view by selecting an entity and clicking **Edit**.
+The view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./designer.md#entity-properties) from this view as you can in the designer view by clicking the entity link.
 
 :::image type="content" source="media/create/entities-view.png" lightbox="media/create/entities-view.png" alt-text="Screenshot of entities view.":::
 
 ### Discovery view
 The discovery view allows you to configure the service group and auto-discovery settings for the health model. This includes changing the identity used for accessing the service group.
+
+To change the service group associated with your health model, click the **Change** link and select a service group from the list. The tenant root service group cannot be used as model discovery scope.
 
 :::image type="content" source="media/create/discovery-view.png" lightbox="media/create/discovery-view.png" alt-text="Screenshot of discovery view.":::
 
@@ -85,9 +87,9 @@ The discovery view allows you to configure the service group and auto-discovery 
 > If you remove the service group for the health model, the health model will include only the root entity, and you'll receive a warning message that the health model will not be populated.
 
 ### Signal definitions
-The signal definitions view is useful for understanding the signals that are available in the model and their current thresholds and for cleaning up any unused signals. It provides a list of all the [signal definitions](./designer.md#signal-definitions) in the health model and their thresholds. It can be 
+The signal definitions view is useful for understanding the signals that are available in the model and their current thresholds and for cleaning up any unused signals. It provides a list of all the [signal definitions](./designer.md#signal-definitions) in the health model and their thresholds.
 
-You can't add or edit signal definitions from this view, but you can delete any signals that aren't used by any entities in the model. Select any entities to delete and click **Delete** at the top of the screen. This button will be disabled if any signals that are in use are selected.
+You can't add or edit signal definitions from this view, because that requires the context of an entity, but you can delete any signal definitions that aren't used by any entities in the model (indicated by the green tick icon). Select any signal definitions to delete and click **Delete** at the top of the screen. This button will be disabled if any signals that are in use are selected.
 
 :::image type="content" source="media/create/signal-definitions-view.png" lightbox="media/create/signal-definitions-view.png" alt-text="Screenshot of signal definitions view.":::
 

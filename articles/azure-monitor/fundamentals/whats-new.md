@@ -11,6 +11,20 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
 
+### June 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|AIOPS|[Issues and investigations](../aiops/aiops-issue-and-investigation-overview.md)|This powerful addition to Azure Monitor leverages AI to automate troubleshooting processes.|
+|Application-Insights|[Managed workspaces in Application Insights](../app/managed-workspaces.md)|Telemetry ingestion into classic resources stopped on June 15th, 2025.|
+|Fundamentals|[Azure Monitor with Network Security Perimeter scenarios](network-security-perimeter-scenarios.md)|New article with NSP configuration for common scenarios.|
+|Metrics|[Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md)|Removed preview tags.|
+|Health-Models|[Health models in Azure Monitor (preview)](../health-models/overview.md)|Public preview of new health models feature.|
+|Agents|[Azure Diagnostics extension overview ](../agents/diagnostics-extension-overview.md)|Added query to identify agents for migration.|
+|Metrics|[Migrate from Self-hosted Prometheus to Azure Monitor Managed Service for Prometheus](../metrics/prometheus-migrate.md?tabs=entra-application)|New article providing guidance for migration from self-hosted Prometheus.|
+|Platform|[Send Azure Monitor activity log data](../platform/activity-log.md?tabs=powershell)|Updated Send Azure Monitor activity log data.|
+|Visualizations|[Grafana Dashboards](../visualize/visualize-use-grafana-dashboards.md)|Azure Monitor dashboards with Grafana empower users to effortlessly create, edit, and share dynamic visualizations for monitoring data from Azure resources, enhancing operational insights and efficiency.|
+
 ### May 2025
 
 |Subservice | Article | Description |

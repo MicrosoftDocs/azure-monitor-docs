@@ -53,7 +53,7 @@ When you create a dashboard, it's private by default, so you're the only person 
 Choose a subscription and resource group for your dashboard to be published to. For convenience, you're guided toward a pattern where you place dashboards in a resource group called **dashboards**. Verify the subscription selected and then select **Publish**. Access to the information displayed in the dashboard is controlled with [Azure role-based access control](/azure/role-based-access-control/role-assignments-portal).
 
 ## Visualize a log query
-[Log Analytics](../logs/log-analytics-tutorial.md) is a dedicated portal used to work with log queries and their results. Features include the ability to edit a query on multiple lines and selectively execute code. Log Analytics also uses context-sensitive IntelliSense and Smart Analytics. 
+[Log Analytics](../logs/log-analytics-overview.md) is a dedicated portal used to work with log queries and their results. Features include the ability to edit a query on multiple lines and selectively execute code. Log Analytics also uses context-sensitive IntelliSense and Smart Analytics. 
 
 In this tutorial, you'll use Log Analytics to create a performance view in graphical form and save it for a future query. Then you'll pin it to the shared dashboard you created earlier.
 
@@ -83,6 +83,9 @@ Now that we have a query pinned to the dashboard, you'll notice that it has a ge
  Rename the query with a meaningful name that can be easily understood by anyone who views it. Select **Edit** to customize the title and subtitle for the tile, and then select **Update**. A banner appears that asks you to publish changes or discard. Select **Save a copy**.
 
 :::image type="content" source="media/tutorial-logs-dashboards/log-analytics-modify-dashboard-02.png" lightbox="media/tutorial-logs-dashboards/log-analytics-modify-dashboard-02.png" alt-text="Screenshot that shows a completed configuration of a sample dashboard.":::
+
+> [!TIP]
+> To learn more about using Log Analytics, see [Log Analytics tutorial](../logs/log-analytics-tutorial.md).
 
 ## Next steps
 In this tutorial, you learned how to create a dashboard in the Azure portal and add a log query to it. Follow this link to see prebuilt Log Analytics script samples.

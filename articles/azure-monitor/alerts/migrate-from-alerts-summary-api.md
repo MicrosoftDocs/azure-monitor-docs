@@ -3,14 +3,14 @@ title: Use ARG queries to get a summary of your alerts
 description: Find out how to se ARG queries to migrate from the Azure Monitor alertsSummary API, which is being deprecated.
 ms.topic: how-to
 ms.date: 03/13/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Use ARG queries to get a summary of your alerts
 
 Azure Resource Graph queries allow you to query your Azure data and can be used to get information about your Azure monitor alerts.
 
-The [alertsSummary API](/rest/api/monitor/alertsmanagement/alerts/get-summary) is being deprecated as of September 30,2026. Instead of the alertsSummary API, you can use Azure Resource Graph queries to get the same information.
+The [alertsSummary API](/rest/api/monitor/) is being deprecated as of September 30,2026. Instead of the alertsSummary API, you can use Azure Resource Graph queries to get the same information.
 
 Azure Resource Graph queries provide more functionality than the alertsSummary API, including: 
 * The ability to add new fields to the query that returns the alert summary.  

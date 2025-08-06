@@ -48,22 +48,5 @@ Recommendation ID: e6744163-0be2-4c17-83da-179a0af9d14f
 
 <!--e6744163-0be2-4c17-83da-179a0af9d14f_end-->
 
-<!--129d8c1e-a4d2-4bac-86ce-c7c2b2e37feb_begin-->
-
-#### Repurpose or delete idle virtual network gateways  
-  
-We noticed that your virtual network gateway has been idle for over 90 days. This gateway is being billed hourly. You may want to reconfigure this gateway, or delete it if you don't intend to use it anymore.  
-  
-**Potential benefits**: savings  
-
-**Impact:** Medium
-  
-  
-
-ResourceType: microsoft.network/virtualnetworkgateways  
-Recommendation ID: 129d8c1e-a4d2-4bac-86ce-c7c2b2e37feb  
-
-
-<!--129d8c1e-a4d2-4bac-86ce-c7c2b2e37feb_end-->
 
 <!--articleBody-->

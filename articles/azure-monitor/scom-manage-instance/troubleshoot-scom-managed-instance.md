@@ -143,7 +143,7 @@ Check the quota section on Azure portal and allocate more cores of type Standard
 
 **Cause**: This error might occur during the provisioning of System Center Operations Manager extension or System Center Operations Manager installation.
 
-**Resolution**: Check the [general troubleshooting](./troubleshoot-scom-managed-instance.md#general-troubleshooting), try to identify the issue, and resolve it accordingly.
+**Resolution**: Check the [general troubleshooting](#general-troubleshooting), try to identify the issue, and resolve it accordingly.
 
 ### Issue: Conflict
 
