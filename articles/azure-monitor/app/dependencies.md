@@ -24,11 +24,11 @@ For a list of all autocollected dependencies, see the language-specific tabs in 
 
 # [Classic API](#tab/classic)
 
-| Language | Resource |
-|----------|----------|
+| Language/Framework | Resource |
+|--------------------|----------|
 | **.NET** | For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies). |
 | **Node.js** | A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers). |
-| **Browser (JS)** | The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). |
+| **JavaScript (Browser)** | The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). |
 
 <!--
 * **.NET** - For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies).
@@ -70,11 +70,11 @@ To learn how to manually track dependencies, see [Add and modify Azure Monitor O
 
 # [Classic API](#tab/classic)
 
-| Language | Resource |
-|----------|----------|
-| ASP.NET | [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#manually-tracking-dependencies) |
-| Node.js | [Monitor your Node.js services and apps with Application Insights](nodejs.md#track-your-dependencies) |
-| Browser (JS) | [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md) |
+| Language/Framework | Resource |
+|--------------------|----------|
+| **ASP.NET** | [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#manually-tracking-dependencies) |
+| **Node.js** | [Monitor your Node.js services and apps with Application Insights](nodejs.md#track-your-dependencies) |
+| **JavaScript (Browser)** | [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md) |
 <!--
 * ASP.NET - [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#manually-tracking-dependencies)
 * Node.js - [Monitor your Node.js services and apps with Application Insights](nodejs.md#track-your-dependencies)
@@ -85,15 +85,15 @@ To learn how to manually track dependencies, see [Add and modify Azure Monitor O
 
 ## Where to find dependency data
 
-Understanding where your application interacts with external services is key to diagnosing performance issues and improving reliability. Dependency data provides visibility into these interactions, helping you trace requests across components and identify bottlenecks. The following tools and views in Application Insights make it easy to explore and analyze this data:
+The following tools and views in Application Insights make it easy to explore and analyze dependency telemetry:
 
 | Views | Description |
 |-------|-------------|
 | [Application Map](app-map.md) | Visualizes dependencies between your app and neighboring components. |
 | [Transaction Diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) | Shows unified, correlated server data. |
-| [Browsers tab](javascript.md) | Shows AJAX calls from your users' browsers. |
-| [Failures and performance views](failures-performance-transactions.md) | Select from slow or failed requests to check their dependency calls. |
-| [Logs](#logs-analytics) | Can be used to query dependency data. |
+| **Browser** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Shows AJAX calls from your users' browsers. |
+| **Server** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Select from slow or failed requests to check their dependency calls. For more information, see [Tracing from requests to dependencies](#tracing-from-requests-to-dependencies) and [Failed requests](#failed-requests). |
+| [Azure Monitor Logs](../logs/data-platform-logs.md) | Can be used to query dependency data. For more information, see [Logs (Analytics)](#logs-analytics). |
 
 <!--
 * [Application Map](app-map.md) visualizes dependencies between your app and neighboring components.
@@ -140,35 +140,31 @@ You can track dependencies in the [Kusto query language](/azure/kusto/query/). H
 * Find any failed dependency calls:
     
     ``` Kusto
-    
-        dependencies | where success != "True" | take 10
+    dependencies | where success != "True" | take 10
     ```
 
 * Find AJAX calls:
 
     ``` Kusto
-    
-        dependencies | where client_Type == "Browser" | take 10
+    dependencies | where client_Type == "Browser" | take 10
     ```
 
 * Find dependency calls associated with requests:
     
     ``` Kusto
-    
-        dependencies
-        | where timestamp > ago(1d) and  client_Type != "Browser"
-        | join (requests | where timestamp > ago(1d))
-          on operation_Id  
+    dependencies
+    | where timestamp > ago(1d) and  client_Type != "Browser"
+    | join (requests | where timestamp > ago(1d))
+        on operation_Id  
     ```
 
 * Find AJAX calls associated with page views:
     
     ``` Kusto 
-    
-        dependencies
-        | where timestamp > ago(1d) and  client_Type == "Browser"
-        | join (browserTimings | where timestamp > ago(1d))
-          on operation_Id
+    dependencies
+    | where timestamp > ago(1d) and  client_Type == "Browser"
+    | join (browserTimings | where timestamp > ago(1d))
+        on operation_Id
     ```
 
 ## Open-source SDK
