@@ -463,7 +463,7 @@ items:
     items:
     - name: Overview
       displayName: containers, kubernetes, container insights
-      href: containers/container-insights-overview.md
+      href: containers/kubernetes-monitoring-overview.md
     - name: Full stack monitoring
       displayName: containers
       href: containers/monitor-kubernetes.md
