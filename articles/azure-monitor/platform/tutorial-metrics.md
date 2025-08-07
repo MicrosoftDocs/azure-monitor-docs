@@ -6,10 +6,10 @@ ms.date: 05/21/2025
 ms.reviewer: priyamishra
 ---
 
-# Analyze metrics for an Azure resource
-Metrics are numerical values that are automatically collected at regular intervals and describe some aspect of a resource. For example, a metric might tell you the processor utilization of a virtual machine, the free space in a storage account, or the incoming traffic for a virtual network.
+# Analyze metrics for an Azure resource in Azure Monitor
+[Metrics](../metrics/data-platform-metrics.md) are numerical values that are collected at regular intervals and describe some aspect of an Azure resource. They are automatically collected for most Azure resources at no cost. For example, a metric might tell you the processor utilization of a virtual machine, the free space in a storage account, or the incoming traffic for a virtual network.
 
-Metrics explorer is a feature of Azure Monitor in the Azure portal. You can use it to create charts from metric values, visually correlate trends, and investigate spikes and dips in metric values. Use the metrics explorer to plot charts from metrics created by your Azure resources and investigate their health and utilization.
+[Metrics explorer](../metrics/metrics-explorer.md) is a feature of Azure Monitor in the Azure portal. You can use it to create charts from metric values, visually correlate trends, and investigate spikes and dips in metric values. Use the metrics explorer to plot charts from metrics created by your Azure resources and investigate their health and utilization.
 
 In this tutorial, you learn how to:
 
@@ -19,7 +19,7 @@ In this tutorial, you learn how to:
 > * Perform different aggregations of metric values.
 > * Modify the time range and granularity for the chart.
 
-The following video shows a more extensive scenario than the procedure outlined in this tutorial. If you're new to metrics, read this article first and then view the video to see more specifics.
+The following video shows a more extensive scenario than the procedure outlined in this tutorial.
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=01a767db-97ae-4ddf-b842-7fa5390bcf0d]
 

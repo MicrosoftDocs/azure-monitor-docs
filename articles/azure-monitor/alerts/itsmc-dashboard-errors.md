@@ -3,7 +3,7 @@ title: Connector status errors in the ITSMC dashboard
 description: Learn about common errors that exist in the IT Service Management Connector dashboard. 
 ms.topic: article
 ms.date: 08/06/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Connector status errors in the ITSMC dashboard
