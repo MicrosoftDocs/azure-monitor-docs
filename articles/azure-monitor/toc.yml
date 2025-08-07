@@ -1480,7 +1480,7 @@ items:
         - name: Set up a simple log search alert
           href: alerts/alerts-create-simple-alert.md
         - name: Set up a tentant level alert
-          href: alerts-create-tenant-level-service-heath-alerts.md
+          href: alerts/alerts-create-tenant-level-service-heath-alerts.md
         - name: Set up an activity log, service health or resource health alert
           href: alerts/alerts-create-activity-log-alert-rule.md
         - name: Set up a Prometheus alert
