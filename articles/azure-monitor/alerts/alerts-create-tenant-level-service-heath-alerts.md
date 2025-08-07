@@ -1,5 +1,5 @@
 ---
-title: Create tenant level service health alerts (preview)
+title: Create Tenant Level Service Health Alerts (preview)
 description: This article shows you how to create tenant level service health alerts in the Azure portal and provides some troubleshooting guidance.
 ms.topic: how-to
 ms.date: 08/05/2025
@@ -16,7 +16,7 @@ This article shows you how to create tenant level service health alerts in the A
 1. Select **Create service health alert**. A context pane opens.
 1. Under **Scope**, select the **Scope level** as Directory. The current directory is displayed.
 
-:::image type="content" source="media/shared/tenant-level-service-health-alert-rules1.png" alt-text="tenant level alert interface in the azure portal screenshot 1":::
+    :::image type="content" source="media/shared/tenant-level-service-health-alert-rules1.png" alt-text="Screenshot of tenant level alert interface in the azure portal screenshot 1":::
 
 1. Under the **Condition** section, select the services, regions, and event types you’re interested in monitoring.
 1. Under the **Details** section, name the alert rule and select where to save it.
@@ -26,12 +26,12 @@ This article shows you how to create tenant level service health alerts in the A
 1. In the Azure portal, navigate to **Monitor** \> **Alerts**.
 1. Select **Create** \> **Alert rule**. The alert rule creation wizard opens.
 
-:::image type="content" source="media/shared/tenant-level-service-health-alert-create-rule1.png" alt-text="tenant level alert interface in the azure portal screenshot 2":::
+    :::image type="content" source="media/shared/tenant-level-service-health-alert-create-rule1.png" alt-text="Screenshot of tenant level alert interface in the azure portal screenshot 2":::
 
 1. In the **Scope** tab, select the **Scope level** as Directory. The current directory is displayed.
 1. In the **Condition** section, select the services, regions, and event types you’re interested in monitoring.
 
-:::image type="content" source="media/shared/tenant-level-service-health-alert-create-rule.png" alt-text="tenant level alert interface in the azure portal screenshot 3":::
+    :::image type="content" source="media/shared/tenant-level-service-health-alert-create-rule.png" alt-text="Screenshot of tenant level alert interface in the azure portal screenshot 3":::
 
 1. Continue creating the alert rule.
 
