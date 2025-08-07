@@ -1,6 +1,6 @@
 ---
 title: Create tenant level service health alerts (preview)
-description: This article shows you how to create tenant level service health alerts.
+description: This article shows you how to create tenant level service health alerts in the Azure portal and provides some troubleshooting guidance.
 ms.topic: how-to
 ms.date: 08/05/2025
 ms.reviewer: harelbr
@@ -8,7 +8,7 @@ ms.reviewer: harelbr
 
 # Create tenant level service health alerts (preview)
 
-This article shows you how to create tenant level service health alerts and provides some troubleshooting guidance.
+This article shows you how to create tenant level service health alerts in the Azure portal and provides some troubleshooting guidance.
 
 ## Use the Azure portal
 
@@ -62,11 +62,11 @@ In the following example, the alert email contains a link to view the event in t
 
 **Recommendation**
 
-Users should open the Service Health page in the portal yo view tenant-level events.
+Users should open the Service Health page in the portal to view tenant-level events.
 
 ### **A tenant-level SH alert rule didn’t fire on subscription-level events**
 
-Tenant-level Service Health events only cover tenant related (that is, Microsoft Entra) issues. That means users shouldn’t expect to get both a tenant-level and subscription-level SH alerts for the same problem.
+Tenant-level Service Health events only cover tenant related issues. That means users shouldn’t expect to get both a tenant-level and subscription-level SH alerts for the same problem.
 
 **Recommendation**
 
@@ -74,7 +74,3 @@ Create separate alert rules with different scopes:
 
 -   A Service Health alert rule scoped to the tenant
 -   A Service Health alert rule scoped to the subscription. A separate alert rule is required for each subscription that customer would like to monitor.
-
-### **Getting help**
-
-If the troubleshooting steps provided don't help you to resolve the issue, search for [known issues](https://supportability.visualstudio.com/AzureMonitor/_search?text=Tags%3A%22AlertsAndActionGroups%22&type=workitem&pageSize=100&filters=Projects%7BAzureMonitor%7DWork%20Item%20Types%7BKnown%20Issue%7DStates%7BPublished%7D), or reach out for assistance in the [Alerting swarming channel](https://teams.microsoft.com/l/channel/19%3aae954770e1b4435eb09d50f8ef9ca366%40thread.tacv2/Alerts%252C%2520Action%2520Groups?groupId=2fb9049b-bc9c-4cca-a900-84f22c86116c&tenantId=72f988bf-86f1-41af-91ab-2d7cd011db47).
