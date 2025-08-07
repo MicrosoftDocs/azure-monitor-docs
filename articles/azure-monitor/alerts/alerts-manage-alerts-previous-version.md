@@ -102,7 +102,7 @@ The current alert rule wizard is different from the earlier experience:
     
     1. Use the [Mute actions](alerts-processing-rules.md) option if you want to suppress rule actions for a specified time after an alert is fired. The rule will still run and create alerts, but actions won't be triggered to prevent noise. The **Mute actions for** for value must be greater than the frequency of the alert to be effective.
     
-       :::image type="content" source="media/alerts-log/mute-actions.png" lightbox="media/alerts-log/mute-actions.png" alt-text="Screenshot that shows the 'Suppress alerts' option." border="false":::
+       :::image type="content" source="media/alerts-log/mute-actions.png" lightbox="media/alerts-log/mute-actions.png" alt-text="Screenshot that shows the 'Suppress alerts' option.":::
     
     1. To make alerts stateful, select **Automatically resolve alerts**.
     
