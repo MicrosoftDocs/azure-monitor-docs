@@ -465,9 +465,9 @@ For troubleshooting information, including "no data" scenarios and customizing l
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [Node.js FAQ](application-insights-faq.yml#node-js)
-* [Monitor your telemetry in the portal](./overview-dashboard.md)
-* [Write Analytics queries over your telemetry](../logs/log-analytics-tutorial.md)
+* To review frequently asked questions (FAQ), see [Node.js FAQ](application-insights-faq.yml#node-js).
+* [Monitor your telemetry in the portal](./overview-dashboard.md).
+* [Learn to use Log Analytics](../logs/log-analytics-tutorial.md) and [write analytics queries over your telemetry](../logs/get-started-queries.md).
 
 <!--references-->
 

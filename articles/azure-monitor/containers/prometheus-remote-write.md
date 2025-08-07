@@ -10,7 +10,7 @@ Azure Monitor managed service for Prometheus is intended to be a replacement for
 
 ## Architecture
 
-You can configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. Currently user-assigned managed identity or Microsoft Entra ID application are the supported authentication types using Prometheus remote-write configuration to ingest metrics to Azure Monitor Workspace.
+You can configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. Currently managed identity (system-assigned or user-assigned), and Microsoft Entra ID application are the supported authentication types using Prometheus remote-write configuration to ingest metrics to Azure Monitor Workspace.
 
 Azure Monitor also provides a reverse proxy container (Azure Monitor [side car container](/azure/architecture/patterns/sidecar)) that provides an abstraction for ingesting Prometheus remote write metrics and helps in authenticating packets.
 
@@ -19,8 +19,9 @@ We recommend configuring remote-write directly in your self-managed Prometheus c
 
 ## Supported versions
 
-- Prometheus versions greater than v2.45 are required for managed identity authentication.
-- Prometheus versions greater than v2.48 are required for Microsoft Entra ID application authentication. 
+- Prometheus versions greater than v2.45 are required for user-assigned managed identity authentication.
+- Prometheus versions greater than v2.48 are required for Microsoft Entra ID application authentication.
+- Prometheus versions v3.50 or greater are required for system-assigned managed identity authentication.
 
 
 ## Configure remote write
@@ -30,7 +31,7 @@ Configuring remote write depends on your cluster configuration and the type of a
 - Managed identity is recommended for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster. 
 - Microsoft Entra ID can be used for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster and is required for Kubernetes cluster running in another cloud or on-premises.
 
-For more information on configuring remote write for either user-assigned managed identity and Microsoft Entra ID application, see [Configure remote-write on Kubernetes for Prometheus Operator](../essentials/prometheus-remote-write-virtual-machines.md#prometheus-operator). This option can be used for self-managed Prometheus running in any environment.
+For more information on configuring remote write using either managed identity and Microsoft Entra ID application, see [Configure remote-write on Kubernetes for Prometheus Operator](../essentials/prometheus-remote-write-virtual-machines.md#prometheus-operator). This option can be used for self-managed Prometheus running in any environment.
 
 Remote write for Prometheus on Kubernetes clusters can also be configured using a side car container. See the following articles for more information on how to configure remote write for Kubernetes clusters using a side car container.
 
