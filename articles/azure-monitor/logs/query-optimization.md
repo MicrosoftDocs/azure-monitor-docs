@@ -36,7 +36,6 @@ After you run a query in Log Analytics, select **Query details** at the bottom r
 The following query performance indicators are available for every query that's executed:
 
 - [Total CPU](#total-cpu): Overall compute used to process the query across all compute nodes. It represents time used for computing, parsing, and data fetching.
-- [Data used for processed query](#data-used-for-processed-query): Overall data that was accessed to process the query. Influenced by the size of the target table, time span used, filters applied, and the number of columns referenced.
 - [Time span of the processed query](#time-span-of-the-processed-query): The gap between the newest and the oldest data that was accessed to process the query. Influenced by the explicit time range specified for the query.
 - [Age of processed data](#age-of-processed-data): The gap between now and the oldest data that was accessed to process the query. It highly influences the efficiency of data fetching.
 - [Number of workspaces](#number-of-workspaces): How many workspaces were accessed during the query processing based on implicit or explicit selection.
@@ -233,14 +232,6 @@ LogData
     " field9=" Field9: string
     " field10=" Field10: string *
 ```
-
-## Data used for processed query
-
-A critical factor in the processing of the query is the volume of data that's scanned and used for the query processing. Azure Data Explorer uses aggressive optimizations that dramatically reduce the data volume compared to other data platforms. Still, there are critical factors in the query that can affect the data volume that's used.
-
-A query that processes more than 2,000 KB of data is considered a query that consumes excessive resources. A query that's processing more than 20,000 KB of data is considered an abusive query and might be throttled.
-
-In Azure Monitor Logs, the `TimeGenerated` column is used as a way to index the data. Restricting the `TimeGenerated` values to as narrow a range as possible will improve query performance. The narrow range significantly limits the amount of data that has to be processed.
 
 ### Avoid unnecessary use of search and union operators
 
