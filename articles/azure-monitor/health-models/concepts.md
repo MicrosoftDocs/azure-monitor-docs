@@ -33,14 +33,29 @@ The health model includes a representation of the Azure resource and not the res
 
 The signals applied to each Azure resource entity are evaluated from the metrics or logs that are associated with the resource. The collection of this data is defined for the resource itself and not in the health model. The health model instead focuses how to interpret that data in the context of the role of the resource in the workload. 
 
-## Relationships
-A relationship represents the dependency of one entity on another. The primary function of relationships is to support health rollup as described in [Health states](#health-states). When the health model is created, a relationship is automatically created between the root entity and each Azure resource entity in the service group. These are currently the only relationships supported by Azure Monitor health models.
+### Health component
+A *health component* represent a unique application component that isn't represented in the service group. It can have its own signals, although it may just have a health state determined by the health of its propagation paths. Unlike the Azure resource entities which are automatically discovered from the service group, you manually add health components to the model.
 
+## Propagation paths
+A propagation path represents the propagation of [health](#health-states) from one entity to another. When the health model is created, a path is automatically created from each Azure resource entity in the service group to the root entity. You can create additional propagation paths between entities in the health model to define propagation of the health throughout the model. 
 
-### Health states
+## Signals
+The [health state](#health-states) of an entity in an Azure Monitor health model is determined by one or more *signals*. A signal is a value from a metric or a log query result that is periodically compared to threshold values associated with each health state for that entity.
+
+Each signal type uses a different type of data source that you must configure for each entity. The following table describes the different types of signals that can be used in a health model and their data sources. 
+
+| Signal type | Data source |
+|:---|:---|
+| Azure resource | Sample the value of a [platform metric](../essentials/data-platform-metrics.md) from a particular resource and compare against a numeric threshold. |
+| Log Analytics workspace | Run a [log query](../logs/queries.md) against a Log Analytics workspace and evaluate the results. |
+| Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results. |
+
+The health model doesn't collect data that signals use but instead relies on data that's already being collected for the Azure resources reference in the model. You must configure this data collection using other features of Azure Monitor. Since [platform metrics](../platform/tutorial-metrics.md) are automatically collected for all resources, data for Azure resource signals will always be available. See [Sources of monitoring data for Azure Monitor](../data-sources.md) for information on enabling data collection to support Log Analytics workspace and Azure Monitor workspace signals.
+
+## Health states
 The *health state* of an entity represents its ability to perform its required tasks. It may be fully functional and performing within an expected range, or it may have limited functionality or degraded performance, or it may not be functional at all. This article describes how health states are determined and how they roll up to parent entities in the health model. 
 
-The health state of an entity is determined by the [signals](#signals) that are associated with it, and it may be affected by the health states of its child entities. You can view the most current health state of your workflow and its components in addition to tracking the health of the model over time.
+The health state of an entity is determined by the [signals](#signals) that are associated with it, and it may be affected by the health states of any entities with propagation paths to it. You can view the most current health state of your workflow and its components in addition to tracking the health of the model over time.
 
 Azure Monitor health models use the health states in the following table to represent the health of each entity in the model. There's no objective definition of the thresholds that determine each of these health states, but you'll specify each according to the requirements of your particular workload and business. 
 
@@ -57,13 +72,15 @@ In the following example, the entity is set to a degraded state since one of its
 
 :::image type="content" source="media/concepts/health-signals.png" lightbox="media/concepts/health-signals.png" alt-text="Screenshot of an example entity showing the health state from different signals." border="false":::
 
-### Health rollup
+### Health propagation
 
-In addition to its own signals, the health state of the [root entity](#root-entity) entity is affected by its child entities. The following example shows the same root entity with multiple children in different health states. The health of the root is set to an unhealthy state since this is the worst state of all its children.
+In addition to its own signals, the health state of any entity in the model, including the root entity, is affected by any entities with a propagation path to it. The following example shows multiple entities in different health states propagating health the same root entity. The health of the root is set to an unhealthy state since this is the worst state of all its children.
 
+You may also use health rollup to consolidate the health of multiple entities. For example, you may want to track the health of a particular component of your application, or the resources in a particular region or business unit. In this case, you can add a [health component](#health-component) to your model that rolls up the health of the child entities you want to aggregate.
+
+The following example illustrates health propagation in a sample health model. The signals are shown for the event hub and storage account entities. Even though the signals for the event hub are healthy, its health state is unhealthy due to the unhealthy state of the storage account that it depends on. This unhealthy state is propagated to the root entity since its the worst state of the entities connected to the root.
 
 :::image type="content" source="media/concepts/health-signals-rollup.png" lightbox="media/concepts/health-signals-rollup.png" alt-text="Screenshot of an example entity showing the health state from a child entity." border="false":::
-
 
 ### Impact
 The *impact* of an entity determines how its health state is propagated to its parent. The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
@@ -84,21 +101,6 @@ The health objective for an entity is the target percentage of time this entity 
 Following is a history from [Entity details](./analyze-health.md#entity-details) for a sample entity showing health objective reporting.
 
 :::image type="content" source="media/concepts/health-objective.png" lightbox="media/concepts/health-objective.png" alt-text="Screenshot of an example health objective reporting.":::
-
-
-## Signals
-The [health state](#health-states) of an entity in an Azure Monitor health model is determined by one or more *signals*. A signal is a value from a metric or a log query result that is periodically compared to threshold values associated with each health state for that entity.
-
-Each signal type uses a different type of data source that you must configure for each entity. The following table describes the different types of signals that can be used in a health model and their data sources. 
-
-| Signal type | Data source |
-|:---|:---|
-| Azure resource | Sample the value of a [platform metric](../essentials/data-platform-metrics.md) from a particular resource and compare against a numeric threshold. |
-| Log Analytics workspace | Run a [log query](../logs/queries.md) against a Log Analytics workspace and evaluate the results. |
-| Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results. |
-
-The health model doesn't collect data that signals use but instead relies on data that's already being collected for the Azure resources reference in the model. You must configure this data collection using other features of Azure Monitor. Since [platform metrics](../platform/tutorial-metrics.md) are automatically collected for all resources, data for Azure resource signals will always be available. See [Sources of monitoring data for Azure Monitor](../data-sources.md) for information on enabling data collection to support Log Analytics workspace and Azure Monitor workspace signals.
-
 
 
 
