@@ -43,7 +43,7 @@ The current alert rule wizard is different from the earlier experience:<br>
 
 1. In the top action bar, select **Edit**.
 
-1. **Configure signal logic**
+1. **Configure signal logic**:
 
     1. In the **Condition** section, select the condition.
     
@@ -90,15 +90,15 @@ The current alert rule wizard is different from the earlier experience:<br>
     
     1. Select **Done**.
 
-1. **(Optional) Customize actions**
+1. (Optional) **Customize actions**:
 
     * **Custom email subject**: Overrides the *email subject* of email actions. You can't modify the body of the mail and this field *isn't for email addresses*.
 
     * **Include custom Json payload for webhook**: Overrides the webhook JSON used by action groups, assuming that the action group contains a webhook action. Learn more about [webhook actions for log search alerts](./alerts-log-webhook.md).
 
-    :::image type="content" source="media/alerts-log/customzie-actions.png" lightbox="media/alerts-log/customzie-actions.png" alt-text="Screenshot that shows the 'Customize actions' section." border="false":::
+    :::image type="content" source="media/alerts-log/customize-actions.png" lightbox="media/alerts-log/customize-actions.png" alt-text="Screenshot that shows the 'Customize actions' section." border="false":::
 
-1. **Alert rule details**
+1. Set **Alert rule details**:
 
     1. You can edit the rule **Description** and **Severity**. These details are used in all alert actions. You can also choose to not activate the alert rule on creation by selecting **Enable rule upon creation**.
     
