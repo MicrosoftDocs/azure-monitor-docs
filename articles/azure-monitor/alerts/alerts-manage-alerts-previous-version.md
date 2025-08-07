@@ -18,21 +18,17 @@ The current alert rule wizard is different from the earlier experience:
 * Previously, search results were included in the payload of the triggered alert and its associated notifications. The email included only 10 rows from the unfiltered results while the webhook payload contained 1,000 unfiltered results. To get detailed context information about the alert so that you can decide on the appropriate action:
 
     * We recommend using [dimensions](alerts-types.md#narrow-the-target-using-dimensions). Dimensions provide the column value that fired the alert, which gives you context for why the alert fired and how to fix the issue.
-
     * When you need to investigate in the logs, use the link in the alert to the search results in logs.
-
     * If you need the raw search results or for any other advanced customizations, [use Azure Logic Apps](alerts-logic-apps.md).
 
 * The new alert rule wizard doesn't support customization of the JSON payload.
 
     * Use custom properties in the [new API](/rest/api/monitor/scheduledqueryrule-2021-08-01/scheduled-query-rules/create-or-update#actions) to add static parameters and associated values to the webhook actions triggered by the alert.
-
     * For more advanced customizations, [use Azure Logic Apps](alerts-logic-apps.md).
 
 * The new alert rule wizard doesn't support customization of the email subject.
 
     * Customers often use the custom email subject to indicate the resource on which the alert fired, instead of using the Log Analytics workspace. Use the [new API](/rest/api/monitor/scheduledqueryrule-2021-08-01/scheduled-query-rules/create-or-update#actions) to trigger an alert of the desired resource by using the resource ID column.
-
     * For more advanced customizations, [use Azure Logic Apps](alerts-logic-apps.md).
 
 ## Manage alert rules created in previous versions in the Azure portal
@@ -41,64 +37,58 @@ The current alert rule wizard is different from the earlier experience:
 
 1. Under **Monitoring**, select **Alerts**.
 
-1. On the top bar, select **Alert rules**.
+1. In the top action bar, select **Alert rules**.
 
 1. Select the alert rule that you want to edit.
 
-1. In the **Condition** section, select the condition.
+1. In the top action bar, select **Edit**.
 
-1. The **Configure signal logic** pane opens with historical data for the query that appears as a graph. You can change the **Time range** of the chart to display data from the last six hours to last week.
+1. Configure signal logic:
 
-    If your query results contain summarized data or specific columns without the time column, the chart shows a single value.
-   
-    :::image type="content" source="media/alerts-log/alerts-edit-alerts-rule.png" lightbox="media/alerts-log/alerts-edit-alerts-rule.png" alt-text="Screenshot that shows the Configure signal logic pane.":::
-
-1. Edit the alert rule conditions by using these sections:
-
-    * **Search query**: In this section, you can modify your query.
-
-    * **Alert logic**: Log search alerts can be based on two types of [measures](./alerts-types.md#log-alerts):
-
-        1. **Number of results**: Count of records returned by the query.
-
-        1. **Metric measurement**: **Aggregate value** is calculated by using `summarize` grouped by the expressions chosen and the [bin()](/azure/data-explorer/kusto/query/binfunction) selection. For example:
-
-            ```Kusto
-            // Reported errors
-            union Event, Syslog // Event table stores Windows event records, Syslog stores Linux records
-            | where EventLevelName == "Error" // EventLevelName is used in the Event (Windows) records
-            or SeverityLevel== "err" // SeverityLevel is used in Syslog (Linux) records
-            | summarize AggregatedValue = count() by Computer, bin(TimeGenerated, 15m)
-            ```
-
-        For metric measurements alert logic, you can specify how to [split the alerts by dimensions](./alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) by using the **Aggregate on** option. The row grouping expression must be unique and sorted.
-        
-        The [bin()](/azure/data-explorer/kusto/query/binfunction) function can result in uneven time intervals, so the alert service automatically converts the [bin()](/azure/data-explorer/kusto/query/binfunction) function to a [binat()](/azure/data-explorer/kusto/query/binatfunction) function with appropriate time at runtime to ensure results with a fixed point.
-        
-        > [!NOTE]
-        > The **Split by alert dimensions** option is only available for the current scheduledQueryRules API. If you use the legacy [Log Analytics Alert API](./api-alerts.md), you'll need to switch. [Learn more about switching](./alerts-log-api-switch.md). Resource-centric alerting at scale is only supported in the API version `2021-08-01` and later.
-        
-        :::image type="content" source="media/alerts-log/aggregate-on.png" lightbox="media/alerts-log/aggregate-on.png" alt-text="Screenshot that shows Aggregate on.":::
-
-    * Choose the time range over which to assess the specified condition by using the **Period** option.
-
-1. When you're finished editing the conditions, select **Done**.
-
-1. Use the preview data to set the **Operator**, **Threshold value**, and **Frequency**.
-
-1. When using **Metric measurement**, set **Trigger Alert Based On** by using **Total** or **Consecutive breaches** to determine the number of condition breaches that trigger the alert.
-
-1. Select **Done**.
-
-1. You can edit the rule **Description** and **Severity**. These details are used in all alert actions. You can also choose to not activate the alert rule on creation by selecting **Enable rule upon creation**.
-
-1. Use the [Mute actions](alerts-processing-rules.md) option if you want to suppress rule actions for a specified time after an alert is fired. The rule will still run and create alerts, but actions won't be triggered to prevent noise. The **Mute actions** for value must be greater than the frequency of the alert to be effective.
-
-   :::image type="content" source="media/alerts-log/AlertsPreviewSuppress.png" lightbox="media/alerts-log/AlertsPreviewSuppress.png" alt-text="Screenshot that shows the Alert Details pane." border="false":::
-
-1. To make alerts stateful, select **Automatically resolve alerts (preview)**.
-
-1. Specify if the alert rule should trigger one or more [action groups](./action-groups.md) when the alert condition is met. For limits on the actions that can be performed, see [Azure Monitor service limits](../../azure-monitor/service-limits.md).
+    1. In the **Condition** section, select the condition.
+    
+    1. The **Configure signal logic** pane opens with historical data for the query that appears as a graph. You can change the **Time range** of the chart to display data from the last six hours to last week.
+    
+        If your query results contain summarized data or specific columns without the time column, the chart shows a single value.
+       
+        :::image type="content" source="media/alerts-log/alerts-edit-alerts-rule.png" lightbox="media/alerts-log/alerts-edit-alerts-rule.png" alt-text="Screenshot that shows the Configure signal logic pane.":::
+    
+    1. Edit the alert rule conditions by using these sections:
+    
+        * **Search query**: In this section, you can modify your query.
+    
+        * **Alert logic**: Log search alerts can be based on two types of [measures](./alerts-types.md#log-alerts):
+    
+            1. **Number of results**: Count of records returned by the query.
+    
+            1. **Metric measurement**: **Aggregate value** is calculated by using `summarize` grouped by the expressions chosen and the [bin()](/azure/data-explorer/kusto/query/binfunction) selection. For example:
+    
+                ```Kusto
+                // Reported errors
+                union Event, Syslog // Event table stores Windows event records, Syslog stores Linux records
+                | where EventLevelName == "Error" // EventLevelName is used in the Event (Windows) records
+                or SeverityLevel== "err" // SeverityLevel is used in Syslog (Linux) records
+                | summarize AggregatedValue = count() by Computer, bin(TimeGenerated, 15m)
+                ```
+    
+            For metric measurements alert logic, you can specify how to [split the alerts by dimensions](./alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) by using the **Aggregate on** option. The row grouping expression must be unique and sorted.
+            
+            The [bin()](/azure/data-explorer/kusto/query/binfunction) function can result in uneven time intervals, so the alert service automatically converts the [bin()](/azure/data-explorer/kusto/query/binfunction) function to a [binat()](/azure/data-explorer/kusto/query/binatfunction) function with appropriate time at runtime to ensure results with a fixed point.
+            
+            > [!NOTE]
+            > The **Split by alert dimensions** option is only available for the current scheduledQueryRules API. If you use the legacy [Log Analytics Alert API](./api-alerts.md), you'll need to switch. [Learn more about switching](./alerts-log-api-switch.md). Resource-centric alerting at scale is only supported in the API version `2021-08-01` and later.
+            
+            :::image type="content" source="media/alerts-log/aggregate-on.png" lightbox="media/alerts-log/aggregate-on.png" alt-text="Screenshot that shows Aggregate on.":::
+    
+        * Choose the time range over which to assess the specified condition by using the **Period** option.
+    
+    1. When you're finished editing the conditions, select **Done**.
+    
+    1. Use the preview data to set the **Operator**, **Threshold value**, and **Frequency**.
+    
+    1. When using **Metric measurement**, set **Trigger Alert Based On** by using **Total** or **Consecutive breaches** to determine the number of condition breaches that trigger the alert.
+    
+    1. Select **Done**.
 
 1. (Optional) Customize actions in log search alert rules:
 
@@ -107,6 +97,18 @@ The current alert rule wizard is different from the earlier experience:
     * **Include custom Json payload for webhook**: Overrides the webhook JSON used by action groups, assuming that the action group contains a webhook action. Learn more about [webhook actions for log search alerts](./alerts-log-webhook.md).
 
     :::image type="content" source="media/alerts-log/AlertsPreviewOverrideLog.png" lightbox="media/alerts-log/AlertsPreviewOverrideLog.png" alt-text="Screenshot that shows Action overrides for log search alerts." border="false":::
+
+1. Edit alert rule details:
+
+    1. You can edit the rule **Description** and **Severity**. These details are used in all alert actions. You can also choose to not activate the alert rule on creation by selecting **Enable rule upon creation**.
+    
+    1. Use the [Mute actions](alerts-processing-rules.md) option if you want to suppress rule actions for a specified time after an alert is fired. The rule will still run and create alerts, but actions won't be triggered to prevent noise. The **Mute actions** for value must be greater than the frequency of the alert to be effective.
+    
+       :::image type="content" source="media/alerts-log/AlertsPreviewSuppress.png" lightbox="media/alerts-log/AlertsPreviewSuppress.png" alt-text="Screenshot that shows the Alert Details pane." border="false":::
+    
+    1. To make alerts stateful, select **Automatically resolve alerts**.
+    
+    1. Specify if the alert rule should trigger one or more [action groups](./action-groups.md) when the alert condition is met. For limits on the actions that can be performed, see [Azure Monitor service limits](../../azure-monitor/service-limits.md).
 
 1. After you've finished editing all the alert rule options, select **Save**.
 
