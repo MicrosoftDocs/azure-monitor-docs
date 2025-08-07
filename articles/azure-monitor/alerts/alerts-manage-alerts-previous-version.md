@@ -13,7 +13,7 @@ This article describes the process of managing alert rules created in the previo
 
 ## Changes to the log search alert rule creation experience
 
-The current alert rule wizard is different from the earlier experience:
+The current alert rule wizard is different from the earlier experience:<br>
 
 * Previously, search results were included in the payload of the triggered alert and its associated notifications. The email included only 10 rows from the unfiltered results while the webhook payload contained 1,000 unfiltered results. To get detailed context information about the alert so that you can decide on the appropriate action:
 
@@ -21,12 +21,12 @@ The current alert rule wizard is different from the earlier experience:
     * When you need to investigate in the logs, use the link in the alert to the search results in logs.
     * If you need the raw search results or for any other advanced customizations, [use Azure Logic Apps](alerts-logic-apps.md).
 
-* The new alert rule wizard doesn't support customization of the JSON payload.
+* The new alert rule wizard doesn't support customization of the JSON payload.<br>
 
     * Use custom properties in the [new API](/rest/api/monitor/scheduledqueryrule-2021-08-01/scheduled-query-rules/create-or-update#actions) to add static parameters and associated values to the webhook actions triggered by the alert.
     * For more advanced customizations, [use Azure Logic Apps](alerts-logic-apps.md).
 
-* The new alert rule wizard doesn't support customization of the email subject.
+* The new alert rule wizard doesn't support customization of the email subject.<br>
 
     * Customers often use the custom email subject to indicate the resource on which the alert fired, instead of using the Log Analytics workspace. Use the [new API](/rest/api/monitor/scheduledqueryrule-2021-08-01/scheduled-query-rules/create-or-update#actions) to trigger an alert of the desired resource by using the resource ID column.
     * For more advanced customizations, [use Azure Logic Apps](alerts-logic-apps.md).
@@ -43,7 +43,7 @@ The current alert rule wizard is different from the earlier experience:
 
 1. In the top action bar, select **Edit**.
 
-1. Configure signal logic:
+1. **Configure signal logic**
 
     1. In the **Condition** section, select the condition.
     
@@ -90,21 +90,21 @@ The current alert rule wizard is different from the earlier experience:
     
     1. Select **Done**.
 
-1. (Optional) Customize actions in log search alert rules:
+1. **(Optional) Customize actions**
 
     * **Custom email subject**: Overrides the *email subject* of email actions. You can't modify the body of the mail and this field *isn't for email addresses*.
 
     * **Include custom Json payload for webhook**: Overrides the webhook JSON used by action groups, assuming that the action group contains a webhook action. Learn more about [webhook actions for log search alerts](./alerts-log-webhook.md).
 
-    :::image type="content" source="media/alerts-log/AlertsPreviewOverrideLog.png" lightbox="media/alerts-log/AlertsPreviewOverrideLog.png" alt-text="Screenshot that shows Action overrides for log search alerts." border="false":::
+    :::image type="content" source="media/alerts-log/customzie-actions.png" lightbox="media/alerts-log/customzie-actions.png" alt-text="Screenshot that shows the 'Customize actions' section." border="false":::
 
-1. Edit alert rule details:
+1. **Alert rule details**
 
     1. You can edit the rule **Description** and **Severity**. These details are used in all alert actions. You can also choose to not activate the alert rule on creation by selecting **Enable rule upon creation**.
     
     1. Use the [Mute actions](alerts-processing-rules.md) option if you want to suppress rule actions for a specified time after an alert is fired. The rule will still run and create alerts, but actions won't be triggered to prevent noise. The **Mute actions** for value must be greater than the frequency of the alert to be effective.
     
-       :::image type="content" source="media/alerts-log/AlertsPreviewSuppress.png" lightbox="media/alerts-log/AlertsPreviewSuppress.png" alt-text="Screenshot that shows the Alert Details pane." border="false":::
+       :::image type="content" source="media/alerts-log/mute-actions.png" lightbox="media/alerts-log/mute-actions.png" alt-text="Screenshot that shows the 'Suppress alerts' option." border="false":::
     
     1. To make alerts stateful, select **Automatically resolve alerts**.
     
