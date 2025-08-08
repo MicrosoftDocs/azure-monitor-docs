@@ -3,7 +3,7 @@ title: View and access Security advisories
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 
 ms.topic: conceptual
-ms.date: 8/05/2025
+ms.date: 8/08/2025
 ---
 
 
@@ -87,16 +87,18 @@ Customers authorized with the authorized roles, can use the following endpoints 
 **Subscription**
 
 ```HTTP
-https://management.azure.com/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2023-10-01-preview 
+https://management.azure.com/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2025-05-01 
 ```
 Operation: POST
+For more information see [Security Advisories Impacted Resources](https://learn.microsoft.com/en-us/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id?view=rest-resourcehealth-2025-05-01&tabs=HTTP)
 
 **Tenant**
 
 ```HTTP
-https://management.azure.com/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2023-10-01-preview
+https://management.azure.com/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2025-05-01
 ```
 Operation: POST
+For more information see [Security Advisories Impacted Resources](https://learn.microsoft.com/en-us/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id?view=rest-resourcehealth-2025-05-01&tabs=HTTP)
 
 #### Existing Events API Endpoint
 
