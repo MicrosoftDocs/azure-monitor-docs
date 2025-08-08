@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 07/21/2025
+ms.date: 08/04/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -72,6 +72,7 @@ Microsoft.ServiceNetworking/TrafficControllers
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AGCAccessLogs](./tables/agcaccesslogs.md)
+- [AGCFirewallLogs](./tables/agcfirewalllogs.md)
 
 ### Application Gateways  
 
@@ -318,6 +319,8 @@ Microsoft.DBForMySQL/flexibleServers
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [MySqlAuditLogs](./tables/mysqlauditlogs.md)
+- [MySqlSlowLogs](./tables/mysqlslowlogs.md)
 
 ### Azure Database for MySQL Servers  
 
@@ -334,6 +337,13 @@ Microsoft.DBForPostgreSQL/flexibleServers
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [PGSQLPgStatActivitySessions](./tables/pgsqlpgstatactivitysessions.md)
+- [PGSQLDbTransactionsStats](./tables/pgsqldbtransactionsstats.md)
+- [PGSQLQueryStoreRuntime](./tables/pgsqlquerystoreruntime.md)
+- [PGSQLQueryStoreWaits](./tables/pgsqlquerystorewaits.md)
+- [PGSQLAutovacuumStats](./tables/pgsqlautovacuumstats.md)
+- [PGSQLServerLogs](./tables/pgsqlserverlogs.md)
+- [PGSQLPgBouncer](./tables/pgsqlpgbouncer.md)
 
 ### Azure Database for PostgreSQL Servers  
 
@@ -1338,6 +1348,7 @@ Microsoft.NetworkCloud/clusters
 
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [NCCIDRACLogs](./tables/nccidraclogs.md)
 - [NCCKubernetesLogs](./tables/ncckuberneteslogs.md)
 - [NCCPlatformOperationsLogs](./tables/nccplatformoperationslogs.md)
 - [NCCVMOrchestrationLogs](./tables/nccvmorchestrationlogs.md)

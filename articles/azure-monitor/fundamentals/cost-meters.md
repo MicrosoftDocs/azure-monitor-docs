@@ -18,7 +18,7 @@ The following table lists the meters used to bill for data ingestion in your Log
 |--------------------------------|-----------------------|------------------------------------------------------|-----------------|
 | (any)                          | Azure Monitor         | Auxiliary Logs Data Ingestion                        | yes             |
 | (any)                          | Azure Monitor         | Basic Logs Data Ingestion                            | yes             |
-| Pay-as-you-go                  | Log Analytics         | Pay-as-you-go Data Ingestion                         | yes             |
+| Pay-as-you-go                  | Log Analytics         | Pay-as-you-go Data Ingestion or <br/> Analytics Logs Pay-as-you-go Data Ingestion (*new name*)                        | yes             |
 | 100 GB/day Commitment Tier     | Azure Monitor         | 100 GB Commitment Tier Capacity Reservation          | yes             |
 | 200 GB/day Commitment Tier     | Azure Monitor         | 200 GB Commitment Tier Capacity Reservation          | yes             |
 | 300 GB/day Commitment Tier     | Azure Monitor         | 300 GB Commitment Tier Capacity Reservation          | yes             |
@@ -48,9 +48,9 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 
 | ServiceName           | MeterName                                | Regional Meter? |
 |-----------------------|------------------------------------------|-----------------|
-| Log Analytics         | Pay-as-you-go Data Retention             | yes             |
+| Log Analytics         | Pay-as-you-go Data Retention or <br/> Analytics Logs Retention (*new name*)            | yes             |
 | Insight and Analytics | Standard Data Retention                  | no              |
-| Azure Monitor         | Data Archive                             | yes             |
+| Azure Monitor         | Data Archive or <br/> Long-term Retention (*new name*)                            | yes             |
 | Azure Monitor         | Search Queries Scanned                   | yes             |
 | Azure Monitor         | Search Jobs Scanned                      | yes             |
 | Azure Monitor         | Data Restore                             | yes             |

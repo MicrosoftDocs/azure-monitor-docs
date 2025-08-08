@@ -425,6 +425,20 @@ items:
           href: vm/vminsights-change-analysis.md
         - name: Visualize data with workbooks
           href: vm/vminsights-workbooks.md
+    - name: Performance diagnostics
+      items:
+        - name: Overview
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics.md
+        - name: Install and run reports
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-run.md
+        - name: Analyze data
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-analyze.md
+        - name: Extension
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-extension.md
     - name: Deployment guide
       items:
       - name: Overview
@@ -445,10 +459,10 @@ items:
         href: fundamentals/azure-monitor-operations-manager.md
       - name: Assess Operations Manager
         href: scom-manage-instance/scom-assessment.md
-  - name: Monitor containers
+  - name: Monitor Kubernetes clusters
     items:
-    - name: Azure Monitor features
-      displayName: containers, kubernetes
+    - name: Overview
+      displayName: containers, kubernetes, container insights
       href: containers/container-insights-overview.md
     - name: Full stack monitoring
       displayName: containers
@@ -482,10 +496,12 @@ items:
         href: containers/container-insights-transition-solution.md
     - name: Configure Container Insights (logs)
       items:
-      - name: Collect logs
+      - name: Collect container logs
         href: containers/container-insights-data-collection-configure.md
-      - name: Filter logs
+      - name: Filter container logs
         href: containers/container-insights-data-collection-filter.md
+      - name: Filter control plane logs
+        href: containers/control-plane-transformations.md
       - name: Container log schema
         href: containers/container-insights-logs-schema.md
       - name: Multitenant logging
@@ -804,8 +820,6 @@ items:
       href: data-collection/data-collection-rule-samples.md
     - name: Data collection endpoints
       href: data-collection/data-collection-endpoint-overview.md
-    - name: Edge pipeline configuration
-      href: data-collection/edge-pipeline-configure.md
     - name: Tutorials
       items:
       - name: Workspace transformation in Azure portal
@@ -897,15 +911,6 @@ items:
         href: agents/azure-monitor-agent-troubleshoot-windows-arc.md
     - name: Legacy agents
       items:
-      - name: Log Analytics agent
-        items:
-        - name: VM Extension for Windows
-          href: /azure/virtual-machines/extensions/oms-windows
-          maintainContext: true
-        - name: VM Extension for Linux
-          href: /azure/virtual-machines/extensions/oms-linux
-          maintainContext: true
-        - name: LA Agent data sources
       - name: Azure Diagnostics extension
         items:
         - name: Overview
@@ -966,8 +971,6 @@ items:
         - name: Log Analytics Linux agent
           displayName: troubleshoot, troubleshooting
           href: agents/agent-linux-troubleshoot.md
-  - name: Custom metrics ingestion using REST
-    href: metrics/metrics-store-custom-rest-api.md
   - name: Logs ingestion API
     items:
     - name: Overview
@@ -995,6 +998,10 @@ items:
       href: logs/ingest-logs-event-hub.md
     - name: Stream monitoring data to Event Hubs
       href: platform/stream-monitoring-data-event-hubs.md
+  - name: Azure Monitor pipeline (preview)
+    href: data-collection/edge-pipeline-configure.md
+  - name: Custom metrics ingestion using REST
+    href: metrics/metrics-store-custom-rest-api.md
   - name: Troubleshoot
     href: logs/data-collection-troubleshoot.md
 - name: Data platform
@@ -1324,6 +1331,8 @@ items:
       href: visualize/visualize-use-grafana-dashboards.md
     - name: Use managed Grafana
       href: visualize/visualize-use-managed-grafana-how-to.md
+    - name: Call Grafana APIs programmatically
+      href: visualize/visualize-call-grafana-api.md
   - name: Power BI
     href: logs/log-powerbi.md
 - name: Analyze
@@ -1472,6 +1481,8 @@ items:
           href: alerts/alerts-create-log-alert-rule.md
         - name: Set up a simple log search alert
           href: alerts/alerts-create-simple-alert.md
+        - name: Set up a tenant level alert
+          href: alerts/alerts-create-tenant-level-service-heath-alerts.md
         - name: Set up an activity log, service health or resource health alert
           href: alerts/alerts-create-activity-log-alert-rule.md
         - name: Set up a Prometheus alert
