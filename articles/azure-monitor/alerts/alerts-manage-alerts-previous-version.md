@@ -59,9 +59,9 @@ The current alert rule wizard is different from the earlier experience:
     
         * **Alert logic**: Log search alerts can be based on two types of [measures](./alerts-types.md#log-alerts):
     
-            1. **Number of results**: Count of records returned by the query.
+            - **Number of results**: Count of records returned by the query.
     
-            1. **Metric measurement**: **Aggregate value** is calculated by using `summarize` grouped by the expressions chosen and the [bin()](/azure/data-explorer/kusto/query/binfunction) selection. For example:
+            - **Metric measurement**: **Aggregate value** is calculated by using `summarize` grouped by the expressions chosen and the [bin()](/azure/data-explorer/kusto/query/binfunction) selection. For example:
     
                 ```Kusto
                 // Reported errors
