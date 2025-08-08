@@ -11,9 +11,7 @@ ms.date: 06/27/2025
 The **Designer** is the primary tool for visually configuring [Azure Monitor health models](./overview.md). This article provides the details of different operations and common tasks that you can perform in the designer. Before you read this article, you should be familiar with the [concepts of health models](./concepts.md).
 
 ## Canvas
-When you open the designer view, you're presented with the *canvas*, which is where you'll configure the [entities](./concepts.md#entities) that make up your health model.
-
-You can click and drag entities to move them around the canvas. You can also use the mouse wheel to zoom in and out of the canvas. The position of the entity doesn't affect its operation in any way. The layout is saved when you save the model and will be restored when you reopen the model with either the designer or the [Graph](./analyze-health.md#graph-view). Use the **Arrange** option to reposition the entities on the canvas in a more organized manner.
+When you open the designer view, you're presented with the *canvas*, which is where you'll configure the [entities](./concepts.md#entities) that make up your health model. A new health model will have a single [root entity](./concepts.md#root-entity) and an [Azure resource entity](./concepts.md#azure-resource-entity) for each member of the service group the health model is based on. Each Azure resource entity will be a direct child of the root entity, but you can modify these relationships.
 
 :::image type="content" source="media/designer/designer-canvas.png" lightbox="media/designer/designer-canvas.png" alt-text="Screenshot of a health model resource in the Azure portal with the Designer pane selected.":::
 
@@ -23,7 +21,9 @@ The following table describes the options available in the command bar in the de
 
 | Option | Description |
 |:-------|:------------|
+
 | Manage service group members | Launch service group management so you can add and remove members that will be included in the health model. It can take up to 5 minutes for a new member of a service group to appear in the health model. |
+| Add entity | Add a [generic entity](./concepts.md#generic-entity) to the canvas. |
 | Save changes | Sends all edits to the server for persistence and validation. Until you click **Save changes**, changes only exist in the browser. The save only applies to changes in the canvas such as rearranging entities. Any edits to an entity are saved when **Save** is clicked in the entity editor. |
 | Discard changes | Discards all changes up to the last save point. |
 | Undo | Undo the last change. |
@@ -34,15 +34,32 @@ The following table describes the options available in the command bar in the de
 
 ## Entities
 
-Entities are represented as nodes in the designer view. In addition to the name and resource type, each entity includes icons that identify the different types of monitoring that have been configured for it as shown in the following image. Click **Edit** on an entity to open the **Entity editor**, which allows you to configure the properties of the entity and to create and assign signals and alerts. 
+Entities are represented as nodes in the designer view. In addition to the name and resource type, each entity includes icons that identify the different types of monitoring that have been configured for it as shown in the following image. Click **Edit** on an entity to open the [Entity editor](#entity-properties), which allows you to configure the properties of the entity and to create and assign signals and alerts. 
 
 :::image type="content" source="media/designer/entity.png" lightbox="media/designer/entity.png" alt-text="Screenshot of an entity in the designer view with its icons identified.":::
 
 > [!NOTE]
 > You can also open the entity editor from the [entities view](#entities). 
 
+## Arranging entities
+
+You can click and drag entities to move them around the canvas. You can also use the mouse wheel to zoom in and out of the canvas. The position of the entity doesn't affect its operation in any way. The layout is saved when you save the model and will be restored when you reopen the model with either the designer or the [Graph](./analyze-health.md#graph-view). Use the **Arrange** option to reposition the entities on the canvas in a more organized manner.
+
+## Create an edit relationships
+To create a relationship between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents.
+
+To delete a relationship, click on it and either click **Delete** or press the delete key.
+
+
+## Add a generic entity
+
+Click **Add** in the designer to add a [generic entity](./concepts.md#generic-entity) to the model. A dialog opens with the [entity editor](#entity-properties) for the new entity. You can optionally configure properties and signals for the entity before saving it. Then position the entity where you want it on the canvas and create relationships between it and other entities in the model.
+
+:::image type="content" source="media/designer/toolbar-add.png" lightbox="media/designer/toolbar-add.png"  alt-text="Screenshot of add entity button on toolbar.":::
+
+
 ## Entity properties
-The **General** tab of the [entity editor](#entities) allows you to configure the properties of the entity described in the following table. 
+The **General** tab of the entity editor allows you to configure the properties of the entity described in the following table. 
 
 | Setting | Description |
 |:---|:---|
@@ -50,18 +67,19 @@ The **General** tab of the [entity editor](#entities) allows you to configure th
 | Display name | The name of the entity as it appears in the health model. This defaults to the name of the Azure resource but can be modified later. |
 | Kind | Azure resource type represented by the entity. This property can't be changed. |
 | Impact | Determines how the health state of this entity is propagated to its parent as described in [Impact](./concepts.md#impact). |
-| Icon | Icon to display in the health model. *Use associated resource icon* uses the icon from the resource type represented by the entity. |
+| Icon | Icon to display in the health model. *Use associated resource icon* uses the icon from the resource type represented by the entity. The icon is for display only. It doesn't affect the operation of the entity in any way. |
 | Health objective | The target health objective for this entity as described in [Health objective](./concepts.md#health-objective). This is an optional value. |
 | Canvas position | X and Y coordinates of the entity on the canvas. This is automatically set when you drag the entity around the canvas. You can also manually set these values to position the entity in a specific location. |
 | Labels | One of more optional name/value pairs to assign to the entity. Labels are used to group entities together for reporting and filtering purposes. You can use the same label on multiple entities. |
 
+
 ## Signals
-The **Signals** tab of the [entity editor](#entities) allows you to create or edit signals and assign to the entity. There is a section for each type of signal described in [Signals](./concepts.md#signals). If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable that type.
+The **Signals** tab of the [entity editor](#entities) allows you to create or edit signals and assign to the entity. There is a section for each type of signal described in [Signal details](#signal-details). If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable that type.
 
 :::image type="content" source="media/designer/signals-empty.png" lightbox="media/designer/signals-empty.png" alt-text="Screenshot of signals page for an entity.":::
 
 ### Data source
-When you add the first signal of a particular type to an entity, you must specify the data source for that signal type and the authentication that will be used to access it. The signals that are added to the entity will use this data source to apply their logic and compare to their threshold. Each entity can have only one data source for each signal type, but you can have multiple signals of that type that use the same data source. Each signal type uses a different type of data source that you must configure for each entity. 
+When you add the first signal of a particular type to an entity, you must specify the data source for that signal type and the authentication that will be used to access it. The signals that are added to the entity will use this data source to apply their logic and compare to their threshold. Each entity can have only one data source for each signal type, but you can have multiple signals of that type that use the same data source. Each signal type uses a different type of data source that you must configure for each entity. See the data source for each signal type in [Signals](./concepts.md#signals).
 
 ### Authentication setting
 The **Authentication setting** specifies the authentication setting used by the entity to access the data source. The managed identity you specified when you created the health model is used by default. You can create additional settings in the [Authentication settings](./create.md#authentication-settings) view.
