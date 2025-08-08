@@ -58,7 +58,7 @@ You can't [purge personal data](personal-data-mgmt.md#export-delete-or-purge-per
 
 ## Run a query on a Basic or Auxiliary table
 
-Running a query on Basic or Auxiliary tables follows the same steps as querying any other table in Log Analytics. For more information, see [Get started with Azure Monitor Log Analytics](./log-analytics-tutorial.md).
+Running a query on Basic or Auxiliary tables follows the same steps as querying any other table in Log Analytics. For more information, see [Log Analytics tutorial](./log-analytics-tutorial.md).
 
 ### [Portal](#tab/portal-1)
 
