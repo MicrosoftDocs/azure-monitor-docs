@@ -24,17 +24,10 @@ For a list of all autocollected dependencies, see the language-specific tabs in 
 
 # [Classic API](#tab/classic)
 
-| Language/Framework | Resource |
-|--------------------|----------|
-| **.NET** | For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies). |
-| **Node.js** | A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers). |
-| **JavaScript (Browser)** | The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). |
-
-<!--
 * **.NET** - For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies).
 * **Node.js** - A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers).
 * **Browser (JS)** - The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest).
--->
+
 ---
 
 > [!NOTE]
@@ -64,22 +57,24 @@ Dependencies are automatically collected using one of the following techniques, 
 
 ## Manually tracking dependencies
 
+You can manually track dependencies when automatic collection doesn’t meet your needs.
+
+> [!TIP]
+> For new projects, we recommend using OpenTelemetry for better flexibility and future compatibility.
+
 # [OpenTelemetry](#tab/otel)
 
 To learn how to manually track dependencies, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
 
 # [Classic API](#tab/classic)
 
+This approach applies to legacy scenarios where you’re using the Classic API instead of OpenTelemetry. The following resources provide language-specific guidance for implementing manual dependency tracking.
+
 | Language/Framework | Resource |
 |--------------------|----------|
 | **ASP.NET** | [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#manually-tracking-dependencies) |
 | **Node.js** | [Monitor your Node.js services and apps with Application Insights](nodejs.md#track-your-dependencies) |
 | **JavaScript (Browser)** | [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md) |
-<!--
-* ASP.NET - [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#manually-tracking-dependencies)
-* Node.js - [Monitor your Node.js services and apps with Application Insights](nodejs.md#track-your-dependencies)
-* Browser (JS) - [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md)
--->
 
 ---
 
