@@ -26,7 +26,7 @@ This article details what is communicated to users and where they can view infor
 In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Planned Maintenance** displays resources affected by a planned maintenance event. The following example of the Impacted Resources tab shows a planned maintenance event with impacted resources.
 
 
-:::image type="content" source="./media/impacted-resource-maintenance/grid-images.PNG" alt-text="Screenshot of planned maintenance impacted resources in Azure Service Health."lightbox="./media/impacted-resource-maintenance/grid-image.PNG":::
+:::image type="content" source="./media/impacted-resource-maintenance/grid-images.PNG" alt-text="Screenshot of planned maintenance impacted resources in Azure Service Health."Lightbox="./media/impacted-resource-maintenance/grid-image.PNG":::
 
 Service Health provides the following information on resources impacted by a planned maintenance event:
 
@@ -35,8 +35,8 @@ Service Health provides the following information on resources impacted by a pla
 |---------|---------|
 |**Resource Name**|The name of the resource impacted by the planned maintenance event.|
 |**Resource Type**|The type of resource impacted by the planned maintenance event.|
-|**Resource Group**|The Resource group which contains the impacted resource.|
-|**Region**|The Region which contains the impacted resource.|
+|**Resource Group**|The Resource group that contains the impacted resource.|
+|**Region**|The Region that contains the impacted resource.|
 |**Subscription ID**|The Unique ID for the subscription that contains the impacted resource.|
 |**Action(*)**|A link to the applied update page during Self-Service window (only for rebootful updates on compute resources).|
 |**Self-serve Maintenance Due Date(*)**|The due date for the Self-Service window when the the user applies the update (only for rebootful updates on compute resources).|
@@ -59,7 +59,7 @@ Customers can filter the results using these filters:
 #### Export to a CSV file
 The list of impacted resources can be exported as an Excel file by clicking on this option.
 
-:::image type="content" source="./media/impacted-resource-maintenance/details-csv.PNG" alt-text="Screenshot of export to csv button."lightbox="./media/impacted-resource-maintenance/details-csv.PNG":::
+:::image type="content" source="./media/impacted-resource-maintenance/details-csv.PNG" alt-text="Screenshot of export to csv button."Lightbox="./media/impacted-resource-maintenance/details-csv.PNG":::
 
 The CSV file includes the properties associated with each event and more details per event level. This file could be used as a static point in time snapshot for all the active events under the **Service Health** > **Planned maintenance** view. <br> These details are a subset of more event level information available through Service Health API, which could be integrated with Event Grid or other event automation solutions.
 
@@ -69,33 +69,31 @@ This table contains a short description of each of the column properties.
 
 | Column Property | Description |
 |-----------------|-------------|
-| **Title** | The Title of the published event. |
-| **TrackingId** | A unique identifier for each event, across different Service Health categories. |
-| **Impacted Services** | One or more services applicable to the published maintenance event. |
-| **Impact Start Time** | The Start Time in UTC for the event. There could be smaller work windows or timeframe within each event shared through update communications. |
-| **Impact End Time** | The End Time in UTC for the event. There could be smaller work windows or timeframe within each event shared through update communications. |
-| **Subscription(s)** | Any SubscriptionId's which are in the scope of the published event. |
-| **Estimated Impact Duration**\* | Estimated time in seconds for resource level impact. An event window could be for a broader timeframe (for example, several hours or sometimes even days). However, this field shows the estimated impact duration within the scheduled window. |
-| **Impact Type**\* | Predefined Impact types which are helpful in categorizing events based on how the service or resource level impact would be observed, during the event window. ***See more details on categories in the following section.*** |
-| **Recommendation**\* | Steps or recommended actions for users, based on the Impact Type. |
+| **ResourceGroup** | The name of the Resource Group |
+| **ResourceName** | The name of the Resource impacted. |
+| **ResourceType** | The type of Resource impacted. |
+| **Subscription** | Any SubscriptionId's that are in the scope of the published event. |
+| **Region** | The region where the affected resources are located. |
+| **Status** | The current status of the affected resource. |
+
 
 > [!NOTE]
-> Fields with an asterisk * are newly introduced properties which might be empty for some services, since they have yet to adopt the new layout.
+> Fields with an asterisk * are newly introduced properties that might be empty for some services, since they have yet to adopt the new layout.
 
 #### Maintenance Impact Type and Duration fields
 
 In our continuous quest to make the **Planned maintenance** notifications more reliable and predictable for customers, we recently added 3 new properties, specifically on the impact aspect for the published event. These properties are currently available through CSV export option or through Service Health API call.
 
 > [!NOTE]
-> We're enabling more services to include these fields as part of event publishing, however there's a subset of services which are in process of onboarding and these fields might show no value for their events.
+> We're enabling more services to include these fields as part of event publishing, however there's a subset of services that are in process of onboarding and these fields might show no value for their events.
 
 #### The impact on hosted services and end users
 
 The *Impact Type* property is the key to answering this common concern. The Azure Service Health portal includes a new "Impact Type" field for maintenance events, which quickly shows the expected impact during the scheduled time.
 
-We have a predefined set of categories which cover or represent different impact symptoms across Azure Services. There's a likelihood of minor overlap, as each service has its unique criteria on *Impact*, as per product design.
+We have a predefined set of categories that cover or represent different impact symptoms across Azure Services. There's a likelihood of minor overlap, as each service has its unique criteria on *Impact*, as per product design.
 
-This table provides more insight into possible values for the Impact Type property. The description columns show the mapping with industry standard terms like blackout, brownout, and grayout.
+This table provides more insight into possible values for the Impact Type property. The description columns show the mapping with industry standard terms like blackout, brownout, and gray out.
 
 | Impact Type Category | Description | Examples |
 |----------------------|-------------|----------|
@@ -112,6 +110,19 @@ This table provides more insight into possible values for the Impact Type proper
 The Impact Duration field would show a numeric value representing the time in seconds the event would affect the listed resource. Depending on the service resiliency and implementation design, this Duration field combined with Impact Type field should help in overall level of Impact users might expect.
 
 One key aspect to call out is the difference between the event StartTime/EndTime and the duration. While the event level fields like Start/End times represent the scheduled work window, the Impact duration field represents the actual *downtime* within that scheduled work window.
+
+
+### Access impacted resources programmatically via an API
+
+You can get information about outage-impacted resources programmatically by using the Events API. For details on how to access this data, see [API documentation](/rest/api/resourcehealth/2022-10-01/impacted-resources).
+
+### Frequently Asked Questions
+
+|Question|Answer|
+|--------|------|
+|Are the Impacted resources only available for 'Active' service health events?|Yes, the Azure portal shows Impacted resources only for Active events in Service Issues.|
+|Is there a retention period for impacted resources? |The retention period is 90 days in Azure Resource Graph.|
+
 
 ## Next steps
 
