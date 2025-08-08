@@ -1,6 +1,6 @@
 ### YamlMime:FAQ
 metadata:
-  title: Application Insights FAQ – Frequently Asked Questions
+  title: Application Insights FAQ - Frequently Asked Questions
   description: "Official FAQ for Azure Monitor Application Insights. Find answers to questions about using Application Insights with Azure Monitor."
   author: 
   ms.author: 
@@ -8,10 +8,9 @@ metadata:
   ms.topic: faq 
   ms.date: 05/23/2025
 
-title: "Application Insights FAQ – Frequently Asked Questions"
+title: "Application Insights FAQ - Frequently Asked Questions"
 summary: |
    Official FAQ for Azure Monitor Application Insights. Find answers to questions about using Application Insights with Azure Monitor.
-
 
 sections:
   - name: Overview
@@ -67,7 +66,13 @@ sections:
            * [Import to Log Analytics](../logs/data-collector-api.md)
            * [Log Analytics](../logs/data-collector-api.md)
            * [Logstash](../logs/data-collector-api.md)
-    
+
+      - question: Where does telemetry collected with traditional logging frameworks go?
+        answer: |
+          If you're using traditional logging frameworks such as Serilog, the log messages they emit are ingested by Application Insights as Trace telemetry. These entries are stored in the `traces` table in Application Insights or the `AppTraces` table in the connected Log Analytics workspace. This behavior is by design since. Trace logs are separate from other telemetry types like requests, dependencies, or exceptions.
+
+          If you're expecting to see these logs in other tables (for example, `requests` or `dependencies`), note that they won't appear there because those tables are reserved for specific telemetry types. To confirm where each telemetry type is stored, review the [Application Insights telemetry data model](data-model-complete.md#types-of-telemetry).
+
       - question: How many Application Insights resources should I deploy?
         answer: |
           To understand the number of Application Insights resources required to cover your application or components across environments, see the [Application Insights deployment planning guide](create-workspace-resource.md#how-many-application-insights-resources-should-i-deploy).  
