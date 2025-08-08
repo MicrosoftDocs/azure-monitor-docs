@@ -90,6 +90,7 @@ Customers authorized with the authorized roles, can use the following endpoints 
 https://management.azure.com/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2025-05-01 
 ```
 Operation: POST
+
 For more information see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id)
 
 **Tenant**
@@ -98,6 +99,7 @@ For more information see [Security Advisories Impacted Resources](/rest/api/reso
 https://management.azure.com/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2025-05-01
 ```
 Operation: POST
+
 For more information see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id)
 
 #### Existing Events API Endpoint
