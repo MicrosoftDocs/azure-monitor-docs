@@ -23,9 +23,9 @@ Azure Monitor brings together all your monitoring settings and data into one con
 
 :::image type="content" source="media/service-notifications/azure-main-service-health.png" alt-text="Screenshot Azure portal home page."  Lightbox="media/service-notifications/azure-main-service-health.png":::
 
-You can create an alert rule in two ways:
+You can create an alert rule in two ways:<br>
     1. Directly in Azure Monitor:
-        - Select **Create alert rules** from the Monitor screen to create it directly in Azure. 
+        - Select **Create alert rules** from the Monitor screen to create it directly in Azure.<br> 
     1. In the Service Health portal:
         1. Select **View Service health** to open the Azure Service Health portal.
         1. Select **Create service health alert**  and set up an alert to ensure you're notified for future service notifications. 
