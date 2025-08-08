@@ -53,7 +53,7 @@ Each signal type uses a different type of data source that you must configure fo
 The health model doesn't collect data that signals use but instead relies on data that's already being collected for the Azure resources reference in the model. You must configure this data collection using other features of Azure Monitor. Since [platform metrics](../platform/tutorial-metrics.md) are automatically collected for all resources, data for Azure resource signals will always be available. See [Sources of monitoring data for Azure Monitor](../data-sources.md) for information on enabling data collection to support Log Analytics workspace and Azure Monitor workspace signals.
 
 ## Health states
-The *health state* of an entity represents its ability to perform its required tasks. It may be fully functional and performing within an expected range, or it may have limited functionality or degraded performance, or it may not be functional at all. This article describes how health states are determined and how they roll up to parent entities in the health model. 
+The *health state* of an entity represents its ability to perform its required tasks. It may be fully functional and performing within an expected range, or it may have limited functionality or degraded performance, or it may not be functional at all. This article describes how health states are determined and how they propagate to other entities in the health model. 
 
 The health state of an entity is determined by the [signals](#signals) that are associated with it, and it may be affected by the health states of any entities with propagation paths to it. You can view the most current health state of your workflow and its components in addition to tracking the health of the model over time.
 
@@ -83,7 +83,7 @@ The following example illustrates health propagation in a sample health model. T
 :::image type="content" source="media/concepts/health-signals-rollup.png" lightbox="media/concepts/health-signals-rollup.png" alt-text="Screenshot of an example entity showing the health state from a child entity." border="false":::
 
 ### Impact
-The *impact* of an entity determines how its health state is propagated to its parent. The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
+The *impact* of an entity determines how its health state is propagated to . The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
 
 | Option | Description |
 |:-------|:------------|
@@ -120,8 +120,6 @@ The following table summarizes the differences between alert rules for Azure res
 | Always same alert criteria and severity for a particular resource. | Different alert criteria and severity for entities in different models representing the same resource. |
 
 You may have alert rules already defined for the Azure resources represented by your entities in the health model. These alert rules will continue to generate alerts so you may want to disable them if you create an alert rule for the health state of an entity.
-
-Alert rules in health models also provide an opportunity to alert a different audience at the root entity level. In the following example, alert rules that send an email to the operations team are created for the Azure resource entities since this is the team that will diagnose the problem and take corrective action. An alert rule on the root entity is created to send an email to the executive team for awareness of the application being unavailable.
 
 Alert rules in health models also provide an opportunity to create different alerts for different audiences. In the following example, alert rules that send an email to the operations team are created for the Azure resource entities since this is the team that will diagnose the problem and take corrective action. Alert rules that send an email to the business team are created for the health component since this is the team that will communicate the problem to the customers and make decisions about the business impact. Finally, an alert rule on the root entity is created to send an email to the executive team for awareness of the application being unavailable.
 
