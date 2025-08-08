@@ -2,7 +2,7 @@
 title: Azure service health notifications
 description: Service health notifications allow you to view service health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 08/06/2025
+ms.date: 08/08/2025
 
 ---
 
@@ -68,17 +68,22 @@ Properties.communicationId | The communication this event is associated with.
 
 ### Details on service health level information
 
-**Action Required** (properties.incidentType == ActionRequired)
+Service Health event type (properties.incidentType)
+
+**Health Advisory** (properties.incidentType == ActionRequired)
 - Informational - Administrator action is required to prevent impact to existing services.
     
-**Maintenance** (properties.incidentType == Maintenance)
+**Planned Maintenance** (properties.incidentType == Maintenance)
 - Warning - Emergency maintenance
 - Informational - Standard planned maintenance
 
-**Information** (properties.incidentType == Informational)
+**Health Advisory** (properties.incidentType == Informational)
 - Informational - Administrator might be required to prevent impact to existing services.
 
-**Security** (properties.incidentType == Security)
+**Health Advisory** (properties.incidentType == Retirement)
+- Retirement - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement.
+
+**Security Advisory** (properties.incidentType == Security)
 - Warning - Security advisory that affects existing services and might require administrator action.
 - Informational - Security advisory that affects existing services.
 
