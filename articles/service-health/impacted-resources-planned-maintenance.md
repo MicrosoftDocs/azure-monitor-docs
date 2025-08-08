@@ -93,7 +93,7 @@ The *Impact Type* property is the key to answering this common concern. The Azur
 
 We have a predefined set of categories that cover or represent different impact symptoms across Azure Services. There's a likelihood of minor overlap, as each service has its unique criteria on *Impact*, as per product design.
 
-This table provides more insight into possible values for the Impact Type property. The description columns show the mapping with industry standard terms like blackout, brownout, and grayout.
+This table provides more insight into possible values for the Impact Type property. The description columns show the mapping with industry standard terms like blackout, brownout, and gray out.
 
 | Impact Type Category | Description | Examples |
 |----------------------|-------------|----------|
