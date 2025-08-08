@@ -24,14 +24,18 @@ For a list of all autocollected dependencies, see the language-specific tabs in 
 
 # [Classic API](#tab/classic)
 
-* **.NET** - For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies).
-* **Node.js** - A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers).
-* **Browser (JS)** - The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest).
+The following resources provide language-specific information for automatically tracked dependencies.
 
----
+| Language/Framework | Resource |
+|--------------------|----------|
+| **.NET** | For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies). |
+| **Node.js** | A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers). |
+| **JavaScript (Browser)** | The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). |
 
 > [!NOTE]
 > For webpages, the [Application Insights JavaScript SDK](javascript-sdk.md) automatically collects AJAX calls as dependencies.
+
+---
 
 ### How does automatic dependency monitoring work?
 
@@ -84,19 +88,11 @@ The following tools and views in Application Insights make it easy to explore an
 
 | Views | Description |
 |-------|-------------|
-| [Application Map](app-map.md) | Visualizes dependencies between your app and neighboring components. |
-| [Transaction Diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) | Shows unified, correlated server data. |
-| **Browser** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Shows AJAX calls from your users' browsers. |
-| **Server** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Select from slow or failed requests to check their dependency calls. For more information, see [Tracing from requests to dependencies](#tracing-from-requests-to-dependencies) and [Failed requests](#failed-requests). |
-| [Azure Monitor Logs](../logs/data-platform-logs.md) | Can be used to query dependency data. For more information, see [Logs (Analytics)](#logs-analytics). |
-
-<!--
-* [Application Map](app-map.md) visualizes dependencies between your app and neighboring components.
-* [Transaction Diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) shows unified, correlated server data.
-* [Browsers tab](javascript.md) shows AJAX calls from your users' browsers.
-* Select from slow or failed requests to check their dependency calls.
-* [Analytics](#logs-analytics) can be used to query dependency data.
--->
+| [Application Map](app-map.md) | Offers a visual representation of your application's dependencies and their relationships with external services. |
+| [Transaction Diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) | Displays end-to-end transaction details, correlating server-side operations with dependency calls. |
+| **Browser** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Highlights AJAX calls from client browsers. |
+| **Server** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Lets you drill into slow or failed server requests and inspect related dependency calls.<br><br>See examples for [tracing from requests to dependencies](#tracing-from-requests-to-dependencies) and [failed requests associated with failed calls to dependencies](#failed-requests). |
+| [Azure Monitor Logs](../logs/data-platform-logs.md) | Enables advanced querying and analytics on dependency telemetry. For more information, see [examples to track dependencies using KQL](#logs-analytics). |
 
 ## Diagnose slow requests
 
