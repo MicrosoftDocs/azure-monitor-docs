@@ -98,7 +98,7 @@ For more information see [Security Advisories Impacted Resources](/rest/api/reso
 https://management.azure.com/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2025-05-01
 ```
 Operation: POST
-For more information see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id?view=rest-resourcehealth-2025-05-01&tabs=HTTP)
+For more information see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id)
 
 #### Existing Events API Endpoint
 
