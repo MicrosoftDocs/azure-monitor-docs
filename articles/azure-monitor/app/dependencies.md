@@ -47,7 +47,7 @@ Dependencies are automatically collected using one of the following techniques, 
 
 * In supported environments like [Azure App Services](codeless-app-service.md), [autoinstrumentation](codeless-overview.md) is available and enabled by default, injecting telemetry collectors at runtime without code changes.
 
-* In other environments, developers can manually configure instrumentation using the *Azure.Monitor.OpenTelemetry.\** packages and OpenTelemetry APIs to control which dependencies are tracked and how they are enriched or filtered.
+* In other environments, developers can manually configure instrumentation using the *Azure.Monitor.OpenTelemetry.\** packages and OpenTelemetry APIs to control which dependencies are tracked and how they're enriched or filtered.
 
 # [Classic API](#tab/classic)
 
@@ -61,7 +61,7 @@ Dependencies are automatically collected using one of the following techniques, 
 
 ## Manually tracking dependencies
 
-You can manually track dependencies when automatic collection doesn’t meet your needs.
+You can manually track dependencies when automatic collection doesn't meet your needs.
 
 > [!TIP]
 > For new projects, we recommend using OpenTelemetry for better flexibility and future compatibility.
@@ -72,7 +72,7 @@ To learn how to manually track dependencies, see [Add and modify Azure Monitor O
 
 # [Classic API](#tab/classic)
 
-This approach applies to legacy scenarios where you’re using the Classic API instead of OpenTelemetry. The following resources provide language-specific guidance for implementing manual dependency tracking.
+This approach applies to legacy scenarios where you're using the Classic API instead of OpenTelemetry. The following resources provide language-specific guidance for implementing manual dependency tracking.
 
 | Language/Framework | Resource |
 |--------------------|----------|
@@ -92,7 +92,7 @@ The following tools and views in Application Insights make it easy to explore an
 | [Transaction Diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) | Displays end-to-end transaction details, correlating server-side operations with dependency calls. |
 | **Browser** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Highlights AJAX calls from client browsers. |
 | **Server** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Lets you drill into slow or failed server requests and inspect related dependency calls.<br><br>See examples for [tracing from requests to dependencies](#tracing-from-requests-to-dependencies) and [failed requests associated with failed calls to dependencies](#failed-requests). |
-| [Azure Monitor Logs](../logs/data-platform-logs.md) | Enables advanced querying and analytics on dependency telemetry. For more information, see [examples to track dependencies using KQL](#logs-analytics). |
+| [Azure Monitor Logs](../logs/data-platform-logs.md) | Enables advanced querying and analytics on dependency telemetry.<br><br>See [examples to track dependencies using KQL](#logs-analytics). |
 
 ## Diagnose slow requests
 
