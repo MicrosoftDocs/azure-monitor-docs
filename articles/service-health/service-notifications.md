@@ -39,4 +39,4 @@ For more information, see [Create activity log alerts on service notifications](
 ## Next steps
 
 * Learn more about [activity log alerts](/azure/azure-monitor/alerts/alerts-types).
-* Learn more about Service Health notifications [Service Health notification updates](service-health-notifications-properties.md)
+* Learn more about Service Health notifications [Service Health notification updates](service-health-notifications-properties.md).
