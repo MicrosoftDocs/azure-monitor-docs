@@ -121,11 +121,9 @@ The following table summarizes the differences between alert rules for Azure res
 
 You may have alert rules already defined for the Azure resources represented by your entities in the health model. These alert rules will continue to generate alerts so you may want to disable them if you create an alert rule for the health state of an entity.
 
-
-### Alert from root entity
-
 Alert rules in health models also provide an opportunity to alert a different audience at the root entity level. In the following example, alert rules that send an email to the operations team are created for the Azure resource entities since this is the team that will diagnose the problem and take corrective action. An alert rule on the root entity is created to send an email to the executive team for awareness of the application being unavailable.
 
+Alert rules in health models also provide an opportunity to create different alerts for different audiences. In the following example, alert rules that send an email to the operations team are created for the Azure resource entities since this is the team that will diagnose the problem and take corrective action. Alert rules that send an email to the business team are created for the health component since this is the team that will communicate the problem to the customers and make decisions about the business impact. Finally, an alert rule on the root entity is created to send an email to the executive team for awareness of the application being unavailable.
 
 :::image type="content" source="media/concepts/alert-strategy.png" lightbox="media/concepts/alert-strategy.png" alt-text="Diagram of a health model with alert rules at different levels." border="false":::
 
