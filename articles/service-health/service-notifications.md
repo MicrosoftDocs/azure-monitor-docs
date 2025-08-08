@@ -29,9 +29,12 @@ For more information on the various classes of service health notifications, see
     - In the Service Health portal:
         1. Select **View Service health** to open the Azure Service Health portal.
         1. Select **Create service health alert**  and set up an alert to ensure you're notified for future service notifications. 
-        1. Select **+Create/Add activity log alert**, and set up an alert to ensure you're notified for future service notifications. For more information, see [Create activity log alerts on service notifications](./alerts-activity-log-service-notifications-portal.md).
+        1. Select **+Create/Add activity log alert**, and set up an alert to ensure you're notified for future service notifications.<br>        
+ 
+        For more information, see [Create activity log alerts on service notifications](./alerts-activity-log-service-notifications-portal.md).
 
 
 ## Next steps
 
 * Learn more about [activity log alerts](/azure/azure-monitor/alerts/alerts-types).
+* Learn more about Service Health notifications [Service Health notification updates](service-health-notifications-properties.md)
