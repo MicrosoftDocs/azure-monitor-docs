@@ -11,7 +11,7 @@ ms.date: 06/27/2025
 The **Designer** is the primary tool for visually configuring [Azure Monitor health models](./overview.md). This article provides the details of different operations and common tasks that you can perform in the designer. Before you read this article, you should be familiar with the [concepts of health models](./concepts.md).
 
 ## Canvas
-When you open the designer view, you're presented with the *canvas*, which is where you'll configure the [entities](./concepts.md#entities) that make up your health model. A new health model will have a single [root entity](./concepts.md#root-entity) and an [Azure resource entity](./concepts.md#azure-resource-entity) for each member of the service group the health model is based on. Each Azure resource entity will be a direct child of the root entity, but you can modify these relationships.
+When you open the designer view, you're presented with the *canvas*, which is where you'll configure the [entities](./concepts.md#entities) that make up your health model. A new health model will have a single [root entity](./concepts.md#root-entity) and an [Azure resource entity](./concepts.md#azure-resource-entity) for each member of the service group the health model is based on. Each Azure resource entity will be a direct child of the root entity, but you can modify these relationships as described below.
 
 :::image type="content" source="media/designer/designer-canvas.png" lightbox="media/designer/designer-canvas.png" alt-text="Screenshot of a health model resource in the Azure portal with the Designer pane selected.":::
 
@@ -21,7 +21,6 @@ The following table describes the options available in the command bar in the de
 
 | Option | Description |
 |:-------|:------------|
-
 | Manage service group members | Launch service group management so you can add and remove members that will be included in the health model. It can take up to 5 minutes for a new member of a service group to appear in the health model. |
 | Add entity | Add a [generic entity](./concepts.md#generic-entity) to the canvas. |
 | Save changes | Sends all edits to the server for persistence and validation. Until you click **Save changes**, changes only exist in the browser. The save only applies to changes in the canvas such as rearranging entities. Any edits to an entity are saved when **Save** is clicked in the entity editor. |
@@ -46,17 +45,12 @@ Entities are represented as nodes in the designer view. In addition to the name 
 You can click and drag entities to move them around the canvas. You can also use the mouse wheel to zoom in and out of the canvas. The position of the entity doesn't affect its operation in any way. The layout is saved when you save the model and will be restored when you reopen the model with either the designer or the [Graph](./analyze-health.md#graph-view). Use the **Arrange** option to reposition the entities on the canvas in a more organized manner.
 
 ## Create an edit relationships
-To create a relationship between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents.
-
-To delete a relationship, click on it and either click **Delete** or press the delete key.
+[Relationships](./concepts.md#relationship) determine health propagation between entities in the health model. To create a relationship between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents. To delete a relationship, click on it and either click **Delete** or press the delete key.
 
 
 ## Add a generic entity
 
-Click **Add** in the designer to add a [generic entity](./concepts.md#generic-entity) to the model. A dialog opens with the [entity editor](#entity-properties) for the new entity. You can optionally configure properties and signals for the entity before saving it. Then position the entity where you want it on the canvas and create relationships between it and other entities in the model.
-
-:::image type="content" source="media/designer/toolbar-add.png" lightbox="media/designer/toolbar-add.png"  alt-text="Screenshot of add entity button on toolbar.":::
-
+Click **Add** on the toolbar to add a generic entity to the model. A dialog opens with the [entity editor](#entity-properties) for the new entity. You can optionally configure properties and signals for the entity before saving it. Then position the entity where you want it on the canvas and create relationships between it and other entities in the model.
 
 ## Entity properties
 The **General** tab of the entity editor allows you to configure the properties of the entity described in the following table. 
