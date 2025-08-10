@@ -40,19 +40,21 @@ Entities are represented as nodes in the designer view. In addition to the name 
 > [!NOTE]
 > You can also open the entity editor from the [entities view](#entities). 
 
-## Arranging entities
+### Arranging entities
 
 You can click and drag entities to move them around the canvas. You can also use the mouse wheel to zoom in and out of the canvas. The position of the entity doesn't affect its operation in any way. The layout is saved when you save the model and will be restored when you reopen the model with either the designer or the [Graph](./analyze-health.md#graph-view). Use the **Arrange** option to reposition the entities on the canvas in a more organized manner.
 
-## Create an edit relationships
-[Relationships](./concepts.md#relationship) determine health propagation between entities in the health model. To create a relationship between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents. To delete a relationship, click on it and either click **Delete** or press the delete key.
+### Add a generic entity
+Click **Add** on the toolbar to add a generic entity to the model to represent some part of the application or workload that isn't an Azure resource. A dialog opens with the [entity editor](#entity-properties) for the new entity. You can optionally configure properties and signals for the entity before saving it. Then position the entity where you want it on the canvas and create relationships between it and other entities in the model.
 
+## Relationships
+[Relationships](./concepts.md#relationship) determine health propagation between entities in the health model. Every entity, except for the root, should be connected to at least one parent entity, either the root entity or another entity that propo
 
-## Add a generic entity
+To create a relationship between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents. To delete a relationship, click on it and either click **Delete** or press the delete key.
 
-Click **Add** on the toolbar to add a generic entity to the model. A dialog opens with the [entity editor](#entity-properties) for the new entity. You can optionally configure properties and signals for the entity before saving it. Then position the entity where you want it on the canvas and create relationships between it and other entities in the model.
 
 ## Entity properties
+
 The **General** tab of the entity editor allows you to configure the properties of the entity described in the following table. 
 
 | Setting | Description |
