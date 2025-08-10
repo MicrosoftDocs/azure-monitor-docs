@@ -10,7 +10,11 @@ ms.reviewer: harelbr
 
 This article shows you how to create tenant level service health alerts in the Azure portal and provides some troubleshooting guidance.
 
-## Use the Azure portal
+>[!NOTE]
+> Service Health events may be scoped at either the **tenant level** or the **subscription level**, depending on the nature of the event. To ensure full visibility into all relevant events, we recommend configuring alert rules at **both levels**.
+
+
+## Use the Azure service health page
 
 1. In the Azure portal, navigate to **Monitor** \> **Service Health**.
 1. Select **Create service health alert**. A context pane opens.
