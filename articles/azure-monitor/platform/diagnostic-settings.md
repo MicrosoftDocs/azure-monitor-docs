@@ -20,7 +20,9 @@ The following video walks through routing resource platform logs with diagnostic
 
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=2e9e11cc-fc03-4caa-8fee-4386abf454bc]
-> 
+
+> [!WARNING] 
+> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
 
 ## Sources
 
@@ -52,34 +54,25 @@ Any destinations used by the diagnostic setting must exist before the setting ca
 ## Create a diagnostic setting
 You can create a diagnostic setting using any of the following methods.
 
+> [!NOTE]
+> To create a diagnostic setting for the activity log, see [Export activity log](./activity-log.md#export-activity-log).
+
 ### [Azure portal](#tab/portal)
 Use the following steps to create a new diagnostic setting or edit an existing one in the Azure portal.
 
-1. Where you configure diagnostic settings in the Azure portal depends on the resource:
+1. Either select **Diagnostic settings** under the **Monitoring** section of a resource's menu or select **Diagnostic settings** under **Settings** on the Azure Monitor menu and then select the resource.
 
-    * For a single resource, select **Diagnostic settings** under **Monitoring** on the resource's menu.
-
-        :::image type="content" source="media/diagnostic-settings/menu-resource.png" alt-text="Screenshot that shows the Monitoring section of a resource menu in the Azure portal with Diagnostic settings highlighted." border="false":::
-
-    * For one or more resources, select **Diagnostic settings** under **Settings** on the Azure Monitor menu and then select the resource.
-
-        :::image type="content" source="media/diagnostic-settings/menu-monitor.png" alt-text="Screenshot that shows the Settings section in the Azure Monitor menu with Diagnostic settings highlighted."border="false":::
-
-    * For the activity log, select **Activity log** on the **Azure Monitor** menu and then select **Export Activity Logs**. Make sure you disable any [legacy configuration for the activity log](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
-
-        :::image type="content" source="media/diagnostic-settings/menu-activity-log.png" alt-text="Screenshot that shows the Azure Monitor menu with Activity log selected and Export activity logs highlighted in the Monitor-Activity log menu bar.":::
-
-1.  Select **Add diagnostic setting** to add a new setting or **Edit setting** to edit an existing one. You may need multiple diagnostic settings for a resource if you want to send to multiple destinations of the same type.
+2.  Select **Add diagnostic setting** to add a new setting or **Edit setting** to edit an existing one. You may need multiple diagnostic settings for a resource if you want to send to multiple destinations of the same type. The following example shows the settings for a key vault resource, but the screen is similar for other resources.
 
     :::image type="Add diagnostic setting - existing settings" source="media/diagnostic-settings/edit-setting.png" lightbox="media/diagnostic-settings/edit-setting.png" alt-text="Screenshot that shows adding a diagnostic setting for existing settings.":::
 
-1. Give your setting a descriptive name if it doesn't already have one. 
+3. Give your setting a descriptive name if it doesn't already have one. 
 
     :::image type="Add diagnostic setting" source="media/diagnostic-settings/setting-new-blank.png" lightbox="media/diagnostic-settings/setting-new-blank.png" alt-text="Screenshot that shows Diagnostic setting details.":::
 
-2. **Logs and metrics to route**: For logs, either choose a [category group](#category-groups) or select the individual checkboxes for each category of data you want to send to the destinations specified later. The list of categories varies for each Azure service. Select **AllMetrics** if you want to collect platform metrics.
+4. **Logs and metrics to route**: For logs, either choose a [category group](#category-groups) or select the individual checkboxes for each category of data you want to send to the destinations specified later. The list of categories varies for each Azure service. Select **AllMetrics** if you want to collect platform metrics.
 
-3. **Destination details**: Select the checkbox for each destination that should be included in the diagnostic settings and then provide the details for each. If you select Log Analytics workspace as a destination, then you may need to specify the collection mode. See [Collection mode](./resource-logs.md#collection-mode) for details.
+5. **Destination details**: Select the checkbox for each destination that should be included in the diagnostic settings and then provide the details for each. If you select Log Analytics workspace as a destination, then you may need to specify the collection mode. See [Collection mode](./resource-logs.md#collection-mode) for details.
 
 
 ### [PowerShell](#tab/powershell)
@@ -184,10 +177,13 @@ The following sample template creates a diagnostic setting to send all audit log
 }
 ```
 
----
+### [REST API template](#tab/rest)
 
-> [!WARNING] 
-> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
+To create or edit a diagnostic setting with the Azure Monitor REST API, see [Diagnostic Settings - Create Or Update](/rest/api/monitor/diagnostic-settings/create-or-update).
+
+```
+
+---
 
 
    

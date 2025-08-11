@@ -62,9 +62,14 @@ For an individual resource, select **Activity Logs Insights** from the **Workboo
 :::image type="content" source="media/activity-log/activity-log-resource-level.png" lightbox= "media/activity-log/activity-log-resource-level.png" alt-text="Screenshot that shows how to locate and open the Activity Logs Insights workbook on a resource level.":::
 
 ## Export activity log
-Create a diagnostic setting to send activity log entries to other destinations for additional retention time and functionality. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for the detailed steps to create a diagnostic setting.
+Create a diagnostic setting to send activity log entries to other destinations for additional retention time and functionality. 
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
+
+In the Azure portal, select **Activity log** on the **Azure Monitor** menu and then select **Export Activity Logs**. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for other details and other methods for creating diagnostic settings. Make sure you disable any [legacy configuration for the activity log](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
+
+:::image type="content" source="media/diagnostic-settings/menu-activity-log.png" alt-text="Screenshot that shows the Azure Monitor menu with Activity log selected and Export activity logs highlighted in the Monitor-Activity log menu bar.":::
+
 
 The information below provides further details on the different destinations that resources logs can be sent to.
 
