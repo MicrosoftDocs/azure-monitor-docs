@@ -18,6 +18,10 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 > [!NOTE]
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#syslog-events).
 
+## Create the DCR
+
+Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](/azure/azure-monitor/vm/data-collection).
+
 [!INCLUDE [configure-syslog-ama](~/reusable-content/ce-skilling/azure/includes/azure-monitor/agents/configure-syslog-ama.md)]
 
 ## Configure Syslog on the Linux agent
