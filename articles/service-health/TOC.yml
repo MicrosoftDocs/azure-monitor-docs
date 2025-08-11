@@ -18,7 +18,7 @@
   items:
   - name: Azure Service Health
     items:
-    - name: View Service Health notifications in the Azure portal
+    - name: View Service Health notifications from the Azure portal
       href: service-notifications.md
     - name: Filter Service Health notifications by event level
       href: metadata-filter.md
