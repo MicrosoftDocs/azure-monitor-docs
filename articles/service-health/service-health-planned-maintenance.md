@@ -21,8 +21,9 @@ The information enables you to:
 Unlike unplanned outages, planned maintenance is scheduled and communicated ahead of time to help minimize the effect.
 
 
-## Get started with Planned maintenance 
-When you open the Planned maintenance pane, you see a list of maintenance events relevant to your subscriptions. 
+## Get started with Planned maintenance
+
+When you open the Planned maintenance pane, you see a list of maintenance events relevant to your subscriptions.
 
 On the main panel you can sort the displayed list of Planned maintenance events by Scope, Subscription, Region, Service, and Event tags.
 
@@ -39,7 +40,7 @@ Each event includes the following information:
 - Regions
 - Start time
 - End time
-- Last updated 
+- Last updated
 - Event tags
 
 
@@ -51,6 +52,7 @@ Select the **Issue name** link to open the tabs with the information you need.
 >For more information about Planned maintenance events using ARG queries, [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 ### Command bar
+
 At the top of each tab, there's a command bar with several options of how to view the information displayed.
 
  - **Download as a PDF**: Select to download and open a PDF with the information about this event.
@@ -68,19 +70,19 @@ At the top of each tab, there's a command bar with several options of how to vie
 When you open the Planned maintenance event, it opens the Summary tab, which shows you a list of information about this event. 
 Each event includes:
 
-|Field    |Description  |
-|---------|---------|
-|Tracking ID     | The tracking ID of the event.       |
-|Shareable link    | Copy this link to share the information.       |
-|Impacted services    | A list of any services impacted by this event.        |
-|Impacted regions     | A list of all the regions impacted by this event and shown on the calendar.         |
-|Impacted subscriptions     | A list of any subscriptions impacted by this event.        |
-|Status    | The current status of this event.        |
-|Health event type   | The type of health event (Planned Maintence/Security)        |
-|Event tags     | The information that explains or names the nature and status of this event.           |
-|Start time     |The time the event started.         |
-| End time | The time the ends.   |
-|Last update   | The most current notification information about this event.    |
+|Field                  |Description  |
+|-----------------------|-------------|
+|Tracking ID            | The tracking ID of the event.                                               |
+|Shareable link         | Copy this link to share the information.                                    |
+|Impacted services      | A list of any services impacted by this event.                              |
+|Impacted regions       | A list of all the regions impacted by this event and shown on the calendar. |
+|Impacted subscriptions | A list of any subscriptions impacted by this event.                         |
+|Status                 | The current status of this event.                                           |
+|Health event type      | The type of health event (Planned Maintence/Security)                       |
+|Event tags             | The information that explains or names the nature and status of this event. |
+|Start time             | The time the event started.                                                 |
+|End time               | The time the event ended.                                                   |
+|Last update            | The most current notification information about this event.                 |
 
 
 
@@ -88,9 +90,9 @@ Each event includes:
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-impacted-services.PNG" alt-text="Screenshot of Impacted Services tab." lightbox="media/planned-maintenance/planned-maintenance-impacted-services.png":::
 
-The Impacted Services tab displays information about any of your services that are affected. 
+The Impacted Services tab displays information about any of your services that are affected.
 - Region
-- Status 
+- Status
 - Last update time
 
 ### Issue Updates tab
@@ -120,6 +122,7 @@ For more information about Impacted resources, see [Impacted Resources from Plan
 
 ### Next steps:
 
-- [Service Health Frequently asked questions](service-health-faq.yml)
-- [Resource impact from Azure outages](impacted-resources-outage.md)
-- [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
+- Read [Service Health Frequently asked questions](service-health-faq.yml)
+- Read [Resource impact from Azure outages](impacted-resources-outage.md)
+- Read [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
+- Read [Resource Health Frequently asked questions](resource-health-faq.yml)
