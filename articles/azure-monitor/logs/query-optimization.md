@@ -525,7 +525,7 @@ Query behaviors that can reduce parallelism include:
 
 ## Memory peak
 Memory peak is the maximum amount of RAM that the Azure Data Explorer engine observed while executing a query. It covers memory used for data loading (cache/hot reads), operator processing (for example, join, summarize, make-series), and temporary working sets. 
-It’s a leading indicator for runaway memory conditions that trigger protections such as runaway queries (E_RUNAWAY_QUERY, operator exceeded memory budget) and E_LOW_MEMORY_CONDITION. Monitoring Memory peak helps you catch these patterns early and tune queries before they hit related hard limits.
+It's a leading indicator for runaway memory conditions that trigger protections such as runaway queries (E_RUNAWAY_QUERY, operator exceeded memory budget) and E_LOW_MEMORY_CONDITION. Monitoring memory peak helps you catch these patterns early and tune queries before they hit related hard limits.
 
 ### How to reduce Memory Peak
 - Follow the same practices as desribed for [Total CPU](#total-cpu). Specifically, for each table of the query, apply early filtering of records and projection of columns.
