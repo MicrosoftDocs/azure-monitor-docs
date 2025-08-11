@@ -425,6 +425,20 @@ items:
           href: vm/vminsights-change-analysis.md
         - name: Visualize data with workbooks
           href: vm/vminsights-workbooks.md
+    - name: Performance diagnostics
+      items:
+        - name: Overview
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics.md
+        - name: Install and run reports
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-run.md
+        - name: Analyze data
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-analyze.md
+        - name: Extension
+          displayName: performance diagnostics, virtual machine, vm
+          href: vm/performance-diagnostics-extension.md
     - name: Deployment guide
       items:
       - name: Overview
@@ -1317,6 +1331,8 @@ items:
       href: visualize/visualize-use-grafana-dashboards.md
     - name: Use managed Grafana
       href: visualize/visualize-use-managed-grafana-how-to.md
+    - name: Call Grafana APIs programmatically
+      href: visualize/visualize-call-grafana-api.md
   - name: Power BI
     href: logs/log-powerbi.md
 - name: Analyze
@@ -1465,6 +1481,8 @@ items:
           href: alerts/alerts-create-log-alert-rule.md
         - name: Set up a simple log search alert
           href: alerts/alerts-create-simple-alert.md
+        - name: Set up a tenant level alert
+          href: alerts/alerts-create-tenant-level-service-heath-alerts.md
         - name: Set up an activity log, service health or resource health alert
           href: alerts/alerts-create-activity-log-alert-rule.md
         - name: Set up a Prometheus alert

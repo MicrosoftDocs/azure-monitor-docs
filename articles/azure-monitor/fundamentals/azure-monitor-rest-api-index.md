@@ -11,7 +11,7 @@ Organized by subject area.
 
 | Operation groups | Description |
 |------------------|-------------|
-| [Operations](/azure/azure-monitor/fundamentals/azure-monitor-rest-api-index) | Lists the available REST API operations for Azure Monitor. |
+| [Operations](/rest/api/monitor/) | Lists the available REST API operations for Azure Monitor. |
 | ***Activity Log*** |  |
 | [Activity log(s)](/rest/api/monitor/activity-logs) | Get a list of event entries in the [activity log](../essentials/platform-logs-overview.md). |
 | [(Activity log) event categories](/rest/api/monitor/event-categories) | Lists the types of Activity Log Entries. |
@@ -20,7 +20,7 @@ Organized by subject area.
 | ***Alerts Management and Action Groups*** |  |
 | [Action groups](/rest/api/monitor/action-groups) | Manages and lists [action groups](../alerts/action-groups.md). |
 | [Activity log alerts](/rest/api/monitor/activity-log-alerts) | Manages and lists [activity log alert rules](../alerts/alerts-types.md#activity-log-alerts). |
-| [Alert management](/azure/azure-monitor/fundamentals/azure-monitor-rest-api-index) | Lists and updates [fired alerts](../alerts/alerts-overview.md). |
+| [Alert management](/rest/api/monitor/alertsmanagement/alert-processing-rules) | Lists and updates [fired alerts](../alerts/alerts-overview.md). |
 | [Alert processing rules](/rest/api/monitor/alertsmanagement/alert-processing-rules) | Manages and lists [alert processing rules](../alerts/alerts-processing-rules.md). |
 | [Metric alert baseline](/rest/api/monitor/baselines) | List the metric baselines used in alert rules with [dynamic thresholds](../alerts/alerts-dynamic-thresholds.md). |
 | [Metric alerts](/rest/api/monitor/metric-alerts) | Manages and lists [metric alert rules](../alerts/alerts-overview.md). |

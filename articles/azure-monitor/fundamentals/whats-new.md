@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 04/03/2025
+ms.date: 08/31/2025
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +10,20 @@ ms.date: 04/03/2025
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
+
+### July 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Alerts|[Customize log search alert email subjects (preview)](../alerts/alerts-customize-email-subject-how-to.md)|Log search alert email subjects can now be customized.|
+|Application-Insights|[Application Insights for ASP.NET and ASP.NET Core applications](../app/asp-net.md)|Classic API SDK fundamentals for both ASP.NET and ASP.NET Core are now merged in one place.|
+|Application-Insights|[Metrics in Application Insights](../app/metrics-overview.md)|The documentation now clarifies that Azure Monitor Metrics and Workspaces ingest custom metrics at a fixed 60-second interval, regardless of how often they're sent, while Log Analytics records them at the actual send interval. We also introduced the OTEL_METRIC_EXPORT_INTERVAL environment variable, allowing configuration of the OpenTelemetry metric export interval, with a default of 60 seconds.|
+|Application-Insights|[Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry)|Clarified that when using Microsoft Entra ID for the Application Insights data collection endpoint, the application must also authenticate with Entra ID or telemetry will be rejected.|
+|Application-Insights|[Application Insights availability tests](../app/availability.md)|We published a query to discover deprecated URL ping tests with [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).|
+|Application-Insights|[Sampling in Azure Monitor Application Insights with OpenTelemetry](../app/opentelemetry-sampling.md)|All sampling links from the Azure portal now go directly to our OpenTelemetry guidance.|
+|Platform|[Azure Monitor activity log](../platform/activity-log.md)|Rewritten for clarity and to consolidate articles.|
+|Platform|[Resource logs in Azure Monitor](../platform/resource-logs.md)|Rewritten for clarity and to consolidate articles.|
+|Platform|[Diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md)|Rewritten for clarity and to consolidate articles.|
 
 ### June 2025
 
