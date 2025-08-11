@@ -99,7 +99,7 @@ You can use Resource Graph:
 * With [Azure PowerShell](/powershell/module/az.monitor/).
 * In the Azure portal.
 
-You can also use the [Alert Management REST API](/azure/azure-monitor/fundamentals/azure-monitor-rest-api-index) for lower-scale querying or to update fired alerts.
+You can also use the [Alert Management REST API](/rest/api/monitor/alertsmanagement/alert-processing-rules) for lower-scale querying or to update fired alerts.
 
 ## Next steps
 

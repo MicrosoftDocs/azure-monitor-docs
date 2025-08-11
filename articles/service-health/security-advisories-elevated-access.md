@@ -3,7 +3,7 @@ title: View and access Security advisories
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 
 ms.topic: conceptual
-ms.date: 7/11/2025
+ms.date: 8/08/2025
 ---
 
 
@@ -30,7 +30,13 @@ Each advisory typically includes four key sections:
 - **Issue Updates** – A timeline of ongoing updates and the remediation steps.
 - **Impacted Resources** – Specific resources in your environment that are affected.
 
+Select the **Advisory name** link to open the tabs with the information you need.
 
+>[!Note]
+>Security advisories are displayed in the pane for up to 28 days if they are still active and if the impact time is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
+>
+>
+>For more information about Sercurity advisories using ARG queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 ## Who can view Security advisories? 
 
@@ -74,23 +80,27 @@ Operation: POST
 
 #### Impacted Resources for Security advisories
 
-Customers authorized with the above-mentioned roles can use the following endpoints to access the list of resources impacted by a Security Incident.
+Customers authorized with the authorized roles, can use the following endpoints to access the list of resources impacted by a Security Incident.
 <!--- Available since API version 2022-05-01-->
 
  
 **Subscription**
 
 ```HTTP
-https://management.azure.com/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2023-10-01-preview 
+https://management.azure.com/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2025-05-01 
 ```
 Operation: POST
+
+For more information see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id)
 
 **Tenant**
 
 ```HTTP
-https://management.azure.com/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2023-10-01-preview
+https://management.azure.com/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2025-05-01
 ```
 Operation: POST
+
+For more information see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id)
 
 #### Existing Events API Endpoint
 
