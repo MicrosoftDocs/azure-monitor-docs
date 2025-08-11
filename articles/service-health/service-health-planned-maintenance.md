@@ -18,7 +18,7 @@ The information enables you to:
 - Coordinate internal change management processes
 - Use self-service update windows when available
 
-Unlike unplanned outages, planned maintenance is scheduled and communicated ahead of time to help minimize the impact.
+Unlike unplanned outages, planned maintenance is scheduled and communicated ahead of time to help minimize the effect.
 
 
 ## Get started with Planned maintenance 
