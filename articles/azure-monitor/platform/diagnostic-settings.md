@@ -181,7 +181,6 @@ The following sample template creates a diagnostic setting to send all audit log
 
 To create or edit a diagnostic setting with the Azure Monitor REST API, see [Diagnostic Settings - Create Or Update](/rest/api/monitor/diagnostic-settings/create-or-update).
 
-```
 
 ---
 
