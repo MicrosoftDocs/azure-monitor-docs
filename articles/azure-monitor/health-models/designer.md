@@ -48,7 +48,7 @@ You can click and drag entities to move them around the canvas. You can also use
 Click **Add** on the toolbar to add a generic entity to the model to represent some part of the application or workload that isn't an Azure resource. A dialog opens with the [entity editor](#entity-properties) for the new entity. You can optionally configure properties and signals for the entity before saving it. Then position the entity where you want it on the canvas and create relationships between it and other entities in the model.
 
 ## Relationships
-[Relationships](./concepts.md#relationship) determine health propagation between entities in the health model. Every entity, except for the root, should be connected to at least one parent entity, either the root entity or another entity that propo
+[Relationships](./concepts.md#relationship) determine health propagation between entities in the health model. Every entity, except for the root, should be connected to at least one parent entity. The parent is either the root entity or another entity that propagates to the root, either directly or through its own parent(s).
 
 To create a relationship between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents. 
 
@@ -97,6 +97,18 @@ When you click **Add a signal assignment** in the entity editor, the options wil
 - **Create new:** - Create a new metric signal definition. This allows you to define a custom metric signal for the entity that can be used with other entities of the same type.
 
 ### Signal details
+
+
+
+. The following table describes the different types of signals that can be used in a health model and their data sources. 
+
+| Signal type | Data source |
+|:---|:---|
+| Azure resource | Sample the value of a [platform metric](../essentials/data-platform-metrics.md) from a particular resource and compare against a numeric threshold. |
+| Log Analytics workspace | Run a [log query](../logs/queries.md) against a Log Analytics workspace and evaluate the results. |
+| Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results. |
+
+
 The details required for each signal will vary depending on its type.
 
 ### [Azure resource](#tab/azureresource)
