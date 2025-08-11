@@ -1,5 +1,5 @@
 ---
-title: Dependency tracking in Application Insights | Microsoft Docs
+title: Dependency Tracking in Application Insights | Microsoft Docs
 description: Monitor dependency calls from your on-premises or Azure web application with Application Insights.
 ms.topic: how-to
 ms.date: 01/31/2025
@@ -59,7 +59,7 @@ Dependencies are automatically collected using one of the following techniques, 
 
 ---
 
-## Manually tracking dependencies
+## Manually track dependencies
 
 You can manually track dependencies when automatic collection doesn't meet your needs.
 
@@ -98,7 +98,7 @@ The following tools and views in Application Insights make it easy to explore an
 
 Each request event is associated with the dependency calls, exceptions, and other events tracked while processing the request. So, if some requests are doing badly, you can find out whether it's because of slow responses from a dependency.
 
-### Tracing from requests to dependencies
+### Trace from requests to dependencies
 
 Select the left-hand **Performance** tab and select the **Dependencies** tab at the top.
 
