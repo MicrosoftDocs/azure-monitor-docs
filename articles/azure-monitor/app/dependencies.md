@@ -16,7 +16,7 @@ A *dependency* is a component that's called by your application. It's typically 
 
 This section links to lists of dependency calls that are automatically detected as dependencies without requiring any additional modification to your application's code. These dependencies are visualized in the Application Insights [Application map](app-map.md) and [Transaction diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) views.
 
-If your dependency isn't on the list, you can still track it manually, see [Manually tracking dependencies](#manually-tracking-dependencies).
+If your dependency isn't on the list, you can still track it manually, see [Manually track dependencies](#manually-track-dependencies).
 
 # [OpenTelemetry](#tab/otel)
 
@@ -91,7 +91,7 @@ The following tools and views in Application Insights make it easy to explore an
 | [Application Map](app-map.md) | Offers a visual representation of your application's dependencies and their relationships with external services. |
 | [Transaction Diagnostics](transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) | Displays end-to-end transaction details, correlating server-side operations with dependency calls. |
 | **Browser** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Highlights AJAX calls from client browsers. |
-| **Server** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Lets you drill into slow or failed server requests and inspect related dependency calls.<br><br>See examples for [tracing from requests to dependencies](#tracing-from-requests-to-dependencies) and [failed requests associated with failed calls to dependencies](#failed-requests). |
+| **Server** tab in [failures and performance views](failures-performance-transactions.md#analyze-client-side-performance-and-failures) | Lets you drill into slow or failed server requests and inspect related dependency calls.<br><br>See examples for [trace from requests to dependencies](#trace-from-requests-to-dependencies) and [failed requests associated with failed calls to dependencies](#failed-requests). |
 | [Azure Monitor Logs](../logs/data-platform-logs.md) | Enables advanced querying and analytics on dependency telemetry.<br><br>See [examples to track dependencies using KQL](#logs-analytics). |
 
 ## Diagnose slow requests
