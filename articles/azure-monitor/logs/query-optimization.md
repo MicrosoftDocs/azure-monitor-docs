@@ -49,7 +49,7 @@ This represents the time spent within the Azure Monitor Logs service itself, out
 
 3.	**Service Queue Time**
 This is the time the query spent waiting in the Azure Monitor Logs service queue before execution. If this value is populated (i.e., not N/A, which is the default), it suggests that the user has reached concurrency limits due to multiple simultaneous queries. A high queue time indicates that other concurrent queries may be resource-intensive and should be reviewed and optimized to reduce contention. See Azure Monitor service limits - Azure Monitor | Microsoft Learn.
-[Azure Monitor service limits - User query throttling](./service-limits.md#user-query-throttling)
+[Azure Monitor service limits - User query throttling](./fundamentals/service-limits.md#user-query-throttling)
 
 
 ## Query performance indicators
