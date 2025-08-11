@@ -12,7 +12,7 @@ ms.reviewer: mmcc
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
-This article describes how to enable and configure Application Insights for ASP.NET and ASP.NET Core applications. This procedure configures your application to send telemetry to [Application Insights](./app-insights-overview.md).
+This article describes how to enable and configure Application Insights for ASP.NET and ASP.NET Core applications. This procedure configures your application to send telemetry to [Application Insights](app-insights-overview.md).
 
 Application Insights can collect the following telemetry from your ASP.NET and ASP.NET Core applications:
 
@@ -56,7 +56,7 @@ Application Insights can collect the following telemetry from your ASP.NET and A
 
 # [ASP.NET](#tab/net)
 
-We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](./worker-service.md).
+We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](worker-service.md).
 
 1. Open Visual Studio.
 1. Select **Create a new project**.
@@ -81,7 +81,7 @@ This section guides you through automatically adding Application Insights to a t
 # [ASP.NET](#tab/net)
 
 > [!NOTE]
-> If you want to use the standalone ILogger provider for your ASP.NET application, use [Microsoft.Extensions.Logging.ApplicationInsight](./ilogger.md).
+> If you want to use the standalone ILogger provider for your ASP.NET application, use [Microsoft.Extensions.Logging.ApplicationInsight](ilogger.md).
 
 From within your ASP.NET web app project in Visual Studio:
 
@@ -116,7 +116,7 @@ From within your ASP.NET web app project in Visual Studio:
 
 1. After you add Application Insights to your project, check to confirm that you're using the latest stable release of the SDK. Go to **Project** > **Manage NuGet Packages** > **Microsoft.ApplicationInsights.AspNetCore**. If you need to, select **Update**.
 
-    :::image type="content" source="./media/asp-net-core/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
+    :::image type="content" source="media/asp-net-core/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
 
 ---
 
@@ -494,7 +494,7 @@ At this point, you successfully configured server-side application monitoring. I
         
         * `SET ApplicationInsights:ConnectionString = <Copy connection string from Application Insights Resource Overview>`
         * `SET APPLICATIONINSIGHTS_CONNECTION_STRING = <Copy connection string from Application Insights Resource Overview>`
-        * Typically, `APPLICATIONINSIGHTS_CONNECTION_STRING` is used in [Web Apps](./azure-web-apps.md?tabs=net). It can also be used in all places where this SDK is supported.
+        * Typically, `APPLICATIONINSIGHTS_CONNECTION_STRING` is used in [Web Apps](azure-web-apps.md?tabs=net). It can also be used in all places where this SDK is supported.
         
         > [!NOTE]
         > A connection string specified in code wins over the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`, which wins over other options.
@@ -519,7 +519,7 @@ Run your application and make requests to it. Telemetry should now flow to Appli
 
 ### Live metrics
 
-[Live metrics](./live-stream.md) can be used to quickly verify if application monitoring with Application Insights is configured correctly. Telemetry can take a few minutes to appear in the Azure portal, but the live metrics pane shows CPU usage of the running process in near real time. It can also show other telemetry like requests, dependencies, and traces.
+[Live metrics](live-stream.md) can be used to quickly verify if application monitoring with Application Insights is configured correctly. Telemetry can take a few minutes to appear in the Azure portal, but the live metrics pane shows CPU usage of the running process in near real time. It can also show other telemetry like requests, dependencies, and traces.
 
 > [!NOTE]
 > Live metrics are enabled by default when you onboard it by using the recommended instructions for .NET applications.
@@ -656,11 +656,131 @@ The default configuration collects `ILogger` `Warning` logs and more severe logs
 
 ### Dependencies
 
-Dependency collection is enabled by default. [Dependency tracking in Application Insights](asp-net-dependencies.md#automatically-tracked-dependencies) explains the dependencies that are automatically collected and also contains steps to do manual tracking.
+#### Automatically tracked dependencies
+
+Application Insights SDKs for .NET and .NET Core ship with `DependencyTrackingTelemetryModule`, which is a telemetry module that automatically collects dependencies. The module `DependencyTrackingTelemetryModule` is shipped as the [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/) NuGet package and brought automatically when you use either the `Microsoft.ApplicationInsights.Web` NuGet package or the `Microsoft.ApplicationInsights.AspNetCore` NuGet package.
+
+Currently, `DependencyTrackingTelemetryModule` tracks the following dependencies automatically:
+
+| Dependencies | Details |
+|--------------|---------|
+| HTTP/HTTPS | Local or remote HTTP/HTTPS calls. |
+| WCF calls| Only tracked automatically if HTTP-based bindings are used.|
+| SQL | Calls made with `SqlClient`. See the section [Advanced SQL tracking to get full SQL query](#advanced-sql-tracking-to-get-full-sql-query) for capturing SQL queries. |
+| [Azure Blob Storage, Table Storage, or Queue Storage](https://www.nuget.org/packages/WindowsAzure.Storage/) | Calls made with the Azure Storage client. |
+| [Azure Event Hubs client SDK](https://nuget.org/packages/Azure.Messaging.EventHubs) | Use the latest package: https://nuget.org/packages/Azure.Messaging.EventHubs. |
+| [Azure Service Bus client SDK](https://nuget.org/packages/Azure.Messaging.ServiceBus)| Use the latest package: https://nuget.org/packages/Azure.Messaging.ServiceBus. |
+| [Azure Cosmos DB](https://www.nuget.org/packages/Microsoft.Azure.Cosmos) | Tracked automatically if HTTP/HTTPS is used. Tracing for operations in direct mode with TCP are captured automatically using preview package >= [3.33.0-preview](https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.33.0-preview). For more details, visit the [documentation](/azure/cosmos-db/nosql/sdk-observability). |
+
+If the dependency isn't autocollected, you can track it manually with a [track dependency call](api-custom-events-metrics.md#trackdependency).
+
+For more information about how dependency tracking works, see [Dependency tracking in Application Insights](dependencies.md#how-does-automatic-dependency-monitoring-work).
+
+#### Set up automatic dependency tracking in console apps
+
+# [ASP.NET](#tab/net)
+
+To automatically track dependencies from .NET console apps, install the NuGet package `Microsoft.ApplicationInsights.DependencyCollector` and initialize `DependencyTrackingTelemetryModule`:
+
+```csharp
+    DependencyTrackingTelemetryModule depModule = new DependencyTrackingTelemetryModule();
+    depModule.Initialize(TelemetryConfiguration.Active);
+```
+
+# [ASP.NET Core](#tab/core)
+
+For .NET Core console apps, `TelemetryConfiguration.Active` is obsolete. See the guidance in the [Worker service documentation](worker-service.md) and the ASP.NET Core tabs in this article.
+
+---
+
+#### Manually tracking dependencies
+
+The following examples of dependencies, which aren't automatically collected, require manual tracking:
+
+* Azure Cosmos DB is tracked automatically only if [HTTP/HTTPS](/azure/cosmos-db/performance-tips#networking) is used. TCP mode won't be automatically captured by Application Insights for SDK versions older than [`2.22.0-Beta1`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/CHANGELOG.md#version-2220-beta1).
+* Redis
+
+For those dependencies not automatically collected by SDK, you can track them manually by using the [TrackDependency API](api-custom-events-metrics.md#trackdependency) that's used by the standard autocollection modules.
+
+**Example**
+
+If you build your code with an assembly that you didn't write yourself, you could time all the calls to it. This scenario would allow you to find out what contribution it makes to your response times.
+
+To have this data displayed in the dependency charts in Application Insights, send it by using `TrackDependency`:
+
+```csharp
+
+    var startTime = DateTime.UtcNow;
+    var timer = System.Diagnostics.Stopwatch.StartNew();
+    try
+    {
+        // making dependency call
+        success = dependency.Call();
+    }
+    finally
+    {
+        timer.Stop();
+        telemetryClient.TrackDependency("myDependencyType", "myDependencyCall", "myDependencyData",  startTime, timer.Elapsed, success);
+    }
+```
+
+Alternatively, `TelemetryClient` provides the extension methods `StartOperation` and `StopOperation`, which can be used to manually track dependencies as shown in [Outgoing dependencies tracking](custom-operations-tracking.md#outgoing-dependencies-tracking).
+
+#### Disabling the standard dependency tracking module
+
+# [ASP.NET](#tab/net)
+
+If you want to switch off the standard dependency tracking module, remove the reference to `DependencyTrackingTelemetryModule` in [ApplicationInsights.config](configuration-with-applicationinsights-config.md) for ASP.NET applications.
+
+# [ASP.NET Core](#tab/core)
+
+For ASP.NET Core applications, follow the instructions in [Application Insights for ASP.NET Core applications](#configure-or-remove-default-telemetrymodules).
+
+---
+
+#### Advanced SQL tracking to get full SQL query
+
+For SQL calls, the name of the server and database is always collected and stored as the name of the collected `DependencyTelemetry`. Another field, called data, can contain the full SQL query text.
+
+> [!NOTE]
+> Azure Functions requires separate settings to enable SQL text collection. For more information, see [Enable SQL query collection](/azure/azure-functions/configure-monitoring#enable-sql-query-collection).
+
+# [ASP.NET](#tab/net)
+
+For ASP.NET applications, the full SQL query text is collected with the help of byte code instrumentation, which requires using the instrumentation engine or by using the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package instead of the System.Data.SqlClient library. Platform-specific steps to enable full SQL Query collection are described in the following table.
+
+| Platform | Steps needed to get full SQL query |
+|----------|------------------------------------|
+| Web Apps in Azure App Service|In your web app control panel, [open the Application Insights pane](../../azure-monitor/app/azure-web-apps.md) and enable SQL Commands under .NET. |
+| IIS Server (Azure Virtual Machines, on-premises, and so on) | Either use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package or use the Application Insights Agent PowerShell Module to [install the instrumentation engine](../../azure-monitor/app/application-insights-asp-net-agent.md?tabs=api-reference#enable-instrumentationengine) and restart IIS. |
+| Azure Cloud Services | Add a [startup task to install StatusMonitor](../../azure-monitor/app/azure-web-apps-net-core.md).<br>Your app should be onboarded to the ApplicationInsights SDK at build time by installing NuGet packages for ASP.NET or ASP.NET Core applications. |
+| IIS Express | Use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package. |
+| WebJobs in Azure App Service| Use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package. |
+
+In addition to the preceding platform-specific steps, you *must also explicitly opt in to enable SQL command collection* by modifying the `applicationInsights.config` file with the following code:
+
+```xml
+<TelemetryModules>
+  <Add Type="Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule, Microsoft.AI.DependencyCollector">
+    <EnableSqlCommandTextInstrumentation>true</EnableSqlCommandTextInstrumentation>
+  </Add>
+```
+
+# [ASP.NET Core](#tab/core)
+
+For ASP.NET Core applications, It's now required to opt in to SQL Text collection by using:
+
+```csharp
+services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) => { module. EnableSqlCommandTextInstrumentation = true; });
+```
+
+---
+
+In the preceding cases, the proper way of validating that the instrumentation engine is correctly installed is by validating that the SDK version of collected `DependencyTelemetry` is `rddp`. Use of `rdddsd` or `rddf` indicates dependencies are collected via `DiagnosticSource` or `EventSource` callbacks, so the full SQL query won't be captured.
 
 ### Performance counters
 
-ASP.NET fully supports performance counters, while ASP.NET Core offers limited support depending on the SDK version and hosting environment. For more information, see [Counters for .NET in Application Insights](./asp-net-counters.md).
+ASP.NET fully supports performance counters, while ASP.NET Core offers limited support depending on the SDK version and hosting environment. For more information, see [Counters for .NET in Application Insights](asp-net-counters.md).
 
 ### Event counters
 
@@ -833,7 +953,7 @@ To learn how to use telemetry processors with ASP.NET applications, see [Filter 
 
 #### Add telemetry processors
 
-You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](./api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer). Use the following example:
+You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer). Use the following example:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -857,7 +977,7 @@ Application Insights automatically collects telemetry about specific workloads w
 By default, the following automatic-collection modules are enabled. These modules are responsible for automatically collecting telemetry. You can disable or configure them to alter their default behavior.
 
 * `RequestTrackingTelemetryModule`: Collects RequestTelemetry from incoming web requests.
-* `DependencyTrackingTelemetryModule`: Collects [DependencyTelemetry](./asp-net-dependencies.md) from outgoing HTTP calls and SQL calls.
+* `DependencyTrackingTelemetryModule`: Collects DependencyTelemetry from outgoing HTTP calls and SQL calls.
 * `PerformanceCollectorModule`: Collects Windows PerformanceCounters.
 * `QuickPulseTelemetryModule`: Collects telemetry to show in the live metrics pane.
 * `AppServicesHeartbeatTelemetryModule`: Collects heartbeats (which are sent as custom metrics), about the App Service environment where the application is hosted.
@@ -908,7 +1028,7 @@ In versions 2.12.2 and later, [`ApplicationInsightsServiceOptions`](#use-applica
 
 #### Configure a telemetry channel
 
-The default [telemetry channel](./telemetry-channels.md) is `ServerTelemetryChannel`. The following example shows how to override it.
+The default [telemetry channel](telemetry-channels.md) is `ServerTelemetryChannel`. The following example shows how to override it.
 
 ```csharp
 using Microsoft.ApplicationInsights.Channel;
@@ -948,17 +1068,17 @@ The preceding code sample prevents the sending of telemetry to Application Insig
 
 ## Add client-side monitoring
 
-The previous sections provided guidance on methods to automatically and manually configure server-side monitoring. To add client-side monitoring, use the [client-side JavaScript SDK](javascript.md). You can monitor any web page's client-side transactions by adding a [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) before the closing `</head>` tag of the page's HTML.
+The previous sections provided guidance on methods to automatically and manually configure server-side monitoring. To add client-side monitoring, use the [client-side JavaScript SDK](javascript.md). You can monitor any web page's client-side transactions by adding a [JavaScript (Web) SDK Loader Script](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) before the closing `</head>` tag of the page's HTML.
 
 Although it's possible to manually add the JavaScript (Web) SDK Loader Script to the header of each HTML page, we recommend that you instead add the JavaScript (Web) SDK Loader Script to a primary page. That action injects the JavaScript (Web) SDK Loader Script into all pages of a site.
 
 # [ASP.NET](#tab/net)
 
-For the template-based ASP.NET MVC app from this article, the file that you need to edit is *_Layout.cshtml*. You can find it under **Views** > **Shared**. To add client-side monitoring, open *_Layout.cshtml* and follow the [JavaScript (Web) SDK Loader Script-based setup instructions](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) from the article about client-side JavaScript SDK configuration.
+For the template-based ASP.NET MVC app from this article, the file that you need to edit is *_Layout.cshtml*. You can find it under **Views** > **Shared**. To add client-side monitoring, open *_Layout.cshtml* and follow the [JavaScript (Web) SDK Loader Script-based setup instructions](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) from the article about client-side JavaScript SDK configuration.
 
 # [ASP.NET Core](#tab/core)
 
-If your application has client-side components, follow the next steps to start collecting [usage telemetry](./usage.md) using JavaScript (Web) SDK Loader Script injection by configuration.
+If your application has client-side components, follow the next steps to start collecting [usage telemetry](usage.md) using JavaScript (Web) SDK Loader Script injection by configuration.
 
 1. In *_ViewImports.cshtml*, add injection:
 
@@ -983,10 +1103,10 @@ As an alternative to using `FullScript`, `ScriptBody` is available starting in A
 
 The *.cshtml* file names referenced earlier are from a default MVC application template. Ultimately, if you want to properly enable client-side monitoring for your application, the JavaScript (Web) SDK Loader Script must appear in the `<head>` section of each page of your application that you want to monitor. Add the JavaScript (Web) SDK Loader Script to *_Layout.cshtml* in an application template to enable client-side monitoring.
 
-If your project doesn't include *_Layout.cshtml*, you can still add [client-side monitoring](./website-monitoring.md) by adding the JavaScript (Web) SDK Loader Script to an equivalent file that controls the `<head>` of all pages within your app. Alternatively, you can add the JavaScript (Web) SDK Loader Script to multiple pages, but we don't recommend it.
+If your project doesn't include *_Layout.cshtml*, you can still add [client-side monitoring](website-monitoring.md) by adding the JavaScript (Web) SDK Loader Script to an equivalent file that controls the `<head>` of all pages within your app. Alternatively, you can add the JavaScript (Web) SDK Loader Script to multiple pages, but we don't recommend it.
 
 > [!NOTE]
-> JavaScript injection provides a default configuration experience. If you require [configuration](./javascript.md#configuration) beyond setting the connection string, you're required to remove autoinjection as described and manually add the [JavaScript SDK](./javascript.md#add-the-javascript-sdk).
+> JavaScript injection provides a default configuration experience. If you require [configuration](javascript.md#configuration) beyond setting the connection string, you're required to remove autoinjection as described and manually add the [JavaScript SDK](javascript.md#add-the-javascript-sdk).
 
 ---
 
@@ -1002,7 +1122,7 @@ There's a known issue in Visual Studio 2019: storing the instrumentation key or 
 
 [Read and contribute to the code](https://github.com/microsoft/ApplicationInsights-dotnet).
 
-For the latest updates and bug fixes, [consult the release notes](./release-notes.md).
+For the latest updates and bug fixes, [consult the release notes](release-notes.md).
 
 ## Release Notes
 
@@ -1015,9 +1135,9 @@ Our [Service Updates](https://azure.microsoft.com/updates/?service=application-i
 * Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * Add synthetic transactions to test that your website is available from all over the world with [availability monitoring](availability-overview.md).
 * [Configure sampling](sampling.md) to help reduce telemetry traffic and data storage costs.
-* [Explore user flows](./usage.md#user-flows) to understand how users move through your app.
-* [Configure a snapshot collection](./snapshot-debugger.md) to see the state of source code and variables at the moment an exception is thrown.
-* [Use the API](./api-custom-events-metrics.md) to send your own events and metrics for a detailed view of your app's performance and usage.
+* [Explore user flows](usage.md#user-flows) to understand how users move through your app.
+* [Configure a snapshot collection](snapshot-debugger.md) to see the state of source code and variables at the moment an exception is thrown.
+* [Use the API](api-custom-events-metrics.md) to send your own events and metrics for a detailed view of your app's performance and usage.
 
 ### [ASP.NET](#tab/net)
 
