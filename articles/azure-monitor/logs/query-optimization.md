@@ -531,7 +531,7 @@ It's a leading indicator for runaway memory conditions that trigger protections 
 - Follow the same practices as desribed for [Total CPU](#total-cpu). Specifically, for each table of the query, apply early filtering of records and projection of columns.
 - In many cases, operators such as [join](/azure/kusto/query/joinoperator?pivots=azuremonitor) and [summarize](/azure/kusto/query/summarizeoperator?pivots=azuremonitor) lead to high memory usage and can result in a runaway query. Consider using [shuffle](/azure/kusto/query/shufflequery?pivots=azuremonitor) when performance is problematic. The rule of thumb should be using shuffle when key (i.e. column being joined or summarized by) has high cardinality (An example is a column of public IP addresses), and avoid using it for keys with low cardinality (Such as a severity level of an event).
 - If using [join](/azure/kusto/query/joinoperator?pivots=azuremonitor), use best practices where applicable. See [Query best practices](/azure/kusto/query/best-practices).
-- Consider using sampling
+- Consider using sampling.
 
 ## Next steps
 
