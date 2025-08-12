@@ -79,8 +79,6 @@ New-AzRoleDefinition -Role $role
 
 ## Assign a role
 
-[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
-
 To assign a role, see [Assign Azure roles using Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
 
 For example, the following PowerShell script assigns a role to a specified user.
