@@ -29,9 +29,8 @@ You need to open some outgoing ports in your server's firewall to allow the Appl
 | Live Metrics | `live.applicationinsights.azure.com`<br>`rt.applicationinsights.microsoft.com`<br>`rt.services.visualstudio.com`<br><br>`{region}.livediagnostics.monitor.azure.com`<br><br>Example for `{region}`: `westus2` |Global<br>Global<br>Global<br><br>Regional<br> | 443 |
 
 > [!NOTE]
-> * Application Insights ingestion endpoints are IPv4 only.
->
-> * Azure Government uses the top-level domain `.us` instead of `.com`. [Compare Azure Public and Azure Government endpoints](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) for common Azure services.
+> - Application Insights ingestion now supports IPv6.
+> - Azure Government uses the top-level domain `.us` instead of `.com`. [Compare Azure Public and Azure Government endpoints](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) for common Azure services.
 
 ## Application Insights Agent
 
