@@ -3,13 +3,13 @@ title: View and access Security advisories
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 
 ms.topic: conceptual
-ms.date: 8/08/2025
+ms.date: 8/11/2025
 ---
 
 
 # View and access Security advisories
 
-The Security advisories pane in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions. 
+The Security advisories pane in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions.
 
 
 :::image type="content"source="./media/security-advisories/security-advisories-main.PNG"alt-text="Screenshot of Service Health Security Advisories pane."Lightbox="./media/security-advisories/security-advisories-main.PNG":::
@@ -19,7 +19,7 @@ The Security Advisories pane is used to communicate critical security events suc
 - Security incidents
 - Privacy breaches
 
-These advisories are distinct from general health or service issues, because they often involve sensitive information and require elevated access roles to view the full details. 
+These advisories are distinct from general health or service issues, because they often involve sensitive information and require elevated access roles to view the full details.
 
 :::image type="content"source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories summary tab."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
 
@@ -33,12 +33,12 @@ Each advisory typically includes four key sections:
 Select the **Advisory name** link to open the tabs with the information you need.
 
 >[!Note]
->Security advisories are displayed in the pane for up to 28 days if they are still active and if the impact time is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
+>Security advisories are displayed in the pane for up to 28 days if they are still active and if the impact time is in the future. After that they are moved to the health history panel where they are displayed for 90 days.
 >
 >
 >For more information about Sercurity advisories using ARG queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
-## Who can view Security advisories? 
+## Who can view Security advisories?
 
 Because the information in this tab is sensitive, specific Role-Based Access Control (RBAC) permissions are required to view security-impacted resources and sensitive details in the Azure portal or through APIs.
 
@@ -59,14 +59,14 @@ To access Security Advisories through APIs, you must update your code to use the
 
 The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details.
 
-For more information, see [Event- fetch Details by Tenant ID and Tracking ID](/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id)
+For more information, see [Event- fetch Details by Tenant ID and Tracking ID](/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id).
 
 The endpoints listed here return the security notification details for a specific event.
 
 ### New API endpoint details
 
 Users need to be authorized with the roles defined here to access the new endpoint.
-This endpoint returns the event object with all available properties for a specific event. 
+This endpoint returns the event object with all available properties for a specific event.
 
 <!--- Available since API version 2022-10-01-->
 
@@ -91,7 +91,7 @@ https://management.azure.com/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/
 ```
 Operation: POST
 
-For more information see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id)
+For more information, see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id).
 
 **Tenant**
 
@@ -100,7 +100,7 @@ https://management.azure.com/providers/microsoft.resourcehealth/events/{tracking
 ```
 Operation: POST
 
-For more information see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id)
+For more information, see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id).
 
 #### Existing Events API Endpoint
 
@@ -123,7 +123,7 @@ The following properties in the events object response aren't populated for sens
 
 ## Next steps
 
-* [Keep informed about Azure security events](stay-informed-security.md)
-* [Resource impact from Azure security incidents](impacted-resources-security.md)
-* [Resource Health frequently asked questions](resource-health-faq.yml)
-* [Service Health frequently asked questions](service-health-faq.yml)
+* Read [Keep informed about Azure security events](stay-informed-security.md)
+* Read [Resource impact from Azure security incidents](impacted-resources-security.md)
+* Read [Resource Health frequently asked questions](resource-health-faq.yml)
+* Read [Service Health frequently asked questions](service-health-faq.yml)
