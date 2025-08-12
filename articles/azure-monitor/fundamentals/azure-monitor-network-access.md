@@ -19,7 +19,8 @@ If you're using [Azure network security groups](/azure/virtual-network/network-s
 
 All Application Insights traffic represents outbound traffic except for availability monitoring and webhook action groups, which also require inbound firewall rules. You need to open the following outgoing ports in your server's firewall to allow the Application Insights SDK or Application Insights Agent to send data to the portal. 
 
-These endpoints support IPv4 and IPv6.
+> [!NOTE]
+> These endpoints support IPv4 and IPv6.
 
 | Purpose | Hostname | Type | Ports |
 |---------|-----|------|-------|
