@@ -117,6 +117,8 @@ For more information about the Basic and Auxiliary table plans, see [Azure Monit
 
 In addition to data ingestion, there's a charge for the retention of data in each Log Analytics workspace. You can set the retention period for the entire workspace or for each table. After this period, the data is either removed or kept in long-term retention. During the long-term retention period, you pay a reduced retention charge, and there's a charge to retrieve the data using a [search job](search-jobs.md). Use long-term retention to reduce your costs for data that you must store for compliance or occasional investigation.
 
+Billing for data retention happens daily (based on days in the UTC time zone). 
+
 [Deleting a custom table](create-custom-table.md#delete-a-table) doesn't remove data associated with that table, so interactive and long-term retention charges continue to apply. 
 
 For more information on data retention, including how to configure these settings and access data in long-term retention, see [Manage data retention in a Log Analytics workspace](data-retention-configure.md).
