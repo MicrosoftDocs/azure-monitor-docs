@@ -13,15 +13,13 @@ If your monitored application or infrastructure is behind a firewall, you need t
 
 Azure Monitor uses [service tags](/azure/virtual-network/service-tags-overview), which provide a more reliable and dynamic way to manage network access. Service tags are regularly updated and can be retrieved through an API, ensuring that you have the latest available IP address information without requiring manual updates.
 
-If you're using [Azure network security groups](/azure/virtual-network/network-security-groups-overview), you can manage access with [Azure network service tags](/azure/virtual-network/service-tags-overview). For hybrid or on-premises resources, you can download the equivalent IP address lists as [JSON files](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files), which are refreshed weekly. To cover all necessary exceptions, use the service tags `ActionGroup`, `ApplicationInsightsAvailability`, and `AzureMonitor`. For more information, see [Azure Service Tags Overview](/azure/virtual-network/service-tags-overview).
+If you're using [Azure network security groups](/azure/virtual-network/network-security-groups-overview), you can manage access with [Azure network service tags](/azure/virtual-network/service-tags-overview). For hybrid or on-premises resources, you can download the equivalent IP address lists as [JSON files](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files), which are refreshed weekly. To cover all necessary exceptions, use the service tags `ActionGroup`, `ApplicationInsightsAvailability`, and `AzureMonitor`. Service tags don't replace validation and authentication checks required for cross-tenant communications between a customer's Azure resource and other service tag resources. For more information, see [Azure Service Tags Overview](/azure/virtual-network/service-tags-overview).
 
-> [!NOTE]
-> * All Application Insights traffic represents outbound traffic except for availability monitoring and webhook action groups, which also require inbound firewall rules.
-> * Service tags don't replace validation/authentication checks required for cross-tenant communications between a customer's Azure resource and other service tag resources.
+## Application Insights ingestion outgoing ports
 
-## Outgoing ports
+All Application Insights traffic represents outbound traffic except for availability monitoring and webhook action groups, which also require inbound firewall rules. You need to open the following outgoing ports in your server's firewall to allow the Application Insights SDK or Application Insights Agent to send data to the portal. 
 
-You need to open some outgoing ports in your server's firewall to allow the Application Insights SDK or Application Insights Agent to send data to the portal.
+These endpoints support IPv4 and IPv6.
 
 | Purpose | Hostname | Type | Ports |
 |---------|-----|------|-------|
@@ -29,8 +27,7 @@ You need to open some outgoing ports in your server's firewall to allow the Appl
 | Live Metrics | `live.applicationinsights.azure.com`<br>`rt.applicationinsights.microsoft.com`<br>`rt.services.visualstudio.com`<br><br>`{region}.livediagnostics.monitor.azure.com`<br><br>Example for `{region}`: `westus2` |Global<br>Global<br>Global<br><br>Regional<br> | 443 |
 
 > [!NOTE]
-> - Application Insights ingestion now supports IPv6.
-> - Azure Government uses the top-level domain `.us` instead of `.com`. [Compare Azure Public and Azure Government endpoints](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) for common Azure services.
+> Azure Government uses the top-level domain `.us` instead of `.com`. [Compare Azure Public and Azure Government endpoints](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) for common Azure services.
 
 ## Application Insights Agent
 
