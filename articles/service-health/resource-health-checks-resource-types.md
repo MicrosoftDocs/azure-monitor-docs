@@ -2,7 +2,7 @@
 title: Supported Resource Types through Azure Resource Health | Microsoft Docs
 description: Supported Resource Types through Azure Resource health
 ms.topic: article
-ms.date: 05/05/2025
+ms.date: 08/12/2025
 ---
 
 # Resource types and health checks in Azure resource health
@@ -25,7 +25,7 @@ These checks help determine the availability, performance, and operational statu
 
 |Executed Checks|
 |---|
-| - Is the Api Management service up and running?|
+| - Is the API Management service up and running?|
 
 
 ## Microsoft.AppPlatform/Spring
@@ -473,7 +473,7 @@ These checks help determine the availability, performance, and operational statu
 
 |Executed Checks|
 |---|
-| - Can runtime operations like registration, installation, or send be performed on the namespace?|
+| - Can runtime operations like registration, installation, or send, be performed on the namespace?|
 
 ## Microsoft.OnlineExperimentation/workspaces (Preview)
 
@@ -589,7 +589,7 @@ These checks help determine the availability, performance, and operational statu
 
 |Executed Checks|
 |---|
-| - Is the server up and running?<br> - Has the server run out of memory?<br> - Is the server starting up?<br> - Is the server recovering?|
+| - Are there sign-in failures?<br> - This does **not** include sign-in failures related to a user-initiated stopped state, or an incorrect username/password.|
 
 ## Microsoft.SQL/servers/databases
 
@@ -661,4 +661,4 @@ These checks help determine the availability, performance, and operational statu
 ## Next Steps
 -  See [Introduction to Azure Service Health dashboard](service-health-overview.md) and [Introduction to Azure Resource Health](resource-health-overview.md) to understand more about them.
 -  [Frequently asked questions about Azure Resource Health](resource-health-faq.yml)
-- Set up alerts so you are notified of health issues. For more information, see [Configure Alerts for service health events](./alerts-activity-log-service-notifications-portal.md).
+- Set up alerts so you're notified of health issues. For more information, see [Configure Alerts for service health events](./alerts-activity-log-service-notifications-portal.md).
