@@ -82,6 +82,14 @@
       href: ./resource-graph-health-samples.md
     - name: Sample queries for Azure Service Health Impacted resources
       href: ./resource-graph-impacted-samples.md
+    - name: Azure Resource health REST API queries
+      href: /rest/api/resourcehealth/
+    - name: Service Health API queries
+      href: /rest/api/resourcehealth/events/
+    - name: Emerging Issues API queries
+      href: /rest/api/resourcehealth/emerging-issues/
+    - name: Resource Health API queries
+      href: /rest/api/resourcehealth/availability-statuses/
   - name: Access and permissions
     items: 
     - name: Tenant Roles with Admin access
