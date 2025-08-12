@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 08/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Container Apps
@@ -83,5 +83,23 @@ Recommendation ID: c692e862-953b-49fe-9c51-e5d2792c1cc1
 Subcategory: Other
 
 <!--c692e862-953b-49fe-9c51-e5d2792c1cc1_end-->
+
+<!--b7e00078-7703-4a0a-afac-1b403803ba62_begin-->
+
+#### Enable zone redundancy for the managed environment  
+  
+To maximize high availability, deploy application replicas across multiple zones within the region. Traffic is automatically distributed among these zones. For optimal resiliency, configure at least three application replicas and ensure the workload profile node count is at least three.  
+  
+**Potential benefits**: Protect apps & data from data center failures  
+
+**Impact:** High
+  
+  
+
+ResourceType: microsoft.app/managedenvironments  
+Recommendation ID: b7e00078-7703-4a0a-afac-1b403803ba62  
+Subcategory: HighAvailability
+
+<!--b7e00078-7703-4a0a-afac-1b403803ba62_end-->
 
 <!--articleBody-->

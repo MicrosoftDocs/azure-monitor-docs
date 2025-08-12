@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2025
+ms.date: 08/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -312,10 +312,47 @@ Deploy App Service Plan with zoneRedundant set to true
   
 For more information, see [Azure App Service Plans - Azure App Service](https://aka.ms/WebServerFarms)  
 
-ResourceType: microsoft.web/sites  
+ResourceType: microsoft.web/serverfarms  
 Recommendation ID: fac3022a-eda5-44b9-b54d-cb500d1d01dd  
 Subcategory: HighAvailability
 
 <!--fac3022a-eda5-44b9-b54d-cb500d1d01dd_end-->
+
+
+<!--bb557466-3ab7-44c3-87ac-d95759b9bfe3_begin-->
+
+#### Action Required: App Service Managed Certificates Impacted by MPIC Compliance  
+  
+To meet updated compliance standards, DigiCert has adopted Multi-Perspective Issuance Corroboration (MPIC) for certificate validation. As a result, App Service Managed Certificates can no longer be issued or renewed for apps that aren't publicly accessible starting July 28, 2025.  
+  
+**Potential benefits**: Maintain SSL continuity and avoid renewal failures  
+
+**Impact:** High
+  
+For more information, see [App Service Managed Certificate (ASMC) Changes – July 28, 2025 - Azure App Service](/azure/app-service/app-service-managed-certificate-changes-july-2025)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: bb557466-3ab7-44c3-87ac-d95759b9bfe3  
+Subcategory: undefined
+
+<!--bb557466-3ab7-44c3-87ac-d95759b9bfe3_end-->
+
+<!--7ca9b77c-53ea-402a-a1c9-085efd569ef4_begin-->
+
+#### App Service Managed Certificates: trafficmanager.net domains are no longer supported  
+  
+To meet updated compliance standards, DigiCert applies multi-perspective issuance corroboration for certificate validation. As a result, you cannot issue or renew App Service Managed Certificates for trafficmanager.net domains.  
+  
+**Potential benefits**: Maintain HTTPS support under new validation rules.  
+
+**Impact:** High
+  
+For more information, see [App Service Managed Certificate (ASMC) Changes – July 28, 2025 - Azure App Service](/azure/app-service/app-service-managed-certificate-changes-july-2025#scenario-3-site-relies-on-trafficmanagernet-domains-1)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 7ca9b77c-53ea-402a-a1c9-085efd569ef4  
+Subcategory: undefined
+
+<!--7ca9b77c-53ea-402a-a1c9-085efd569ef4_end-->
 
 <!--articleBody-->

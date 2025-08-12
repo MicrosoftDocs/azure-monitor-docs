@@ -2231,6 +2231,10 @@ items:
             href: tables/dsmdataclassificationlogs.md
           - name: DSMDataLabelingLogs
             href: tables/dsmdatalabelinglogs.md
+          - name: DataSetOutput
+            href: tables/datasetoutput.md
+          - name: DataSetRuns
+            href: tables/datasetruns.md
           - name: DataTransferOperations
             href: tables/datatransferoperations.md
           - name: DatabricksAccounts
@@ -2847,6 +2851,12 @@ items:
             href: tables/pgsqlserverlogs.md
           - name: Perf
             href: tables/perf.md
+          - name: PerfInsightsFindings
+            href: tables/perfinsightsfindings.md
+          - name: PerfInsightsImpactedResources
+            href: tables/perfinsightsimpactedresources.md
+          - name: PerfInsightsRun
+            href: tables/perfinsightsrun.md
           - name: PowerAppsActivity
             href: tables/powerappsactivity.md
           - name: PowerAutomateActivity
