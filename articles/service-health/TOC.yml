@@ -84,8 +84,6 @@
       href: ./resource-graph-impacted-samples.md
   - name: REST API
     items:   
-    - name: Resource health REST API
-      href: /rest/api/resourcehealth/
     - name: Service Health REST API
       href: /rest/api/resourcehealth/events/
     - name: Emerging Issues REST API
