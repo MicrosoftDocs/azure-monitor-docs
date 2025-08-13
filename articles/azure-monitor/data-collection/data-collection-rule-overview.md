@@ -33,7 +33,7 @@ The DCR collection process has either replaced or is in the process of replacing
 | Legacy method | DCR method | Description |
 |:--------------|:-----------|:------------|
 | [Log Analytics agent](../agents/log-analytics-agent.md) | [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) | The Azure Monitor agent is now used to monitor virtual machines (VMs) and Kubernetes clusters supporting [VM insights](../vm/vminsights-overview.md) and [Container insights](../containers/container-insights-overview.md). |
-| [Diagnostic settings](../platform/diagnostic-settings.md)<br>(metrics only) | [Metrics export](data-collection-metrics.md) | Diagnostic settings are still currently used to collect resource logs from Azure resources. Platform metrics can now be collected using Metrics export. |
+| [Diagnostic settings](../platform/diagnostic-settings.md)<br>(preview)(metrics only) | [Metrics export](data-collection-metrics.md) | Diagnostic settings are still currently used to collect resource logs from Azure resources. Platform metrics can now be collected using Metrics export. |
 | [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | The Logs ingestion API is used to send data to a Log Analytics workspace from any REST client. It replaces the Data Collector API which was less secure and less functional. |
 
 ## Data collection process
@@ -53,12 +53,13 @@ The data collection process supported by DCRs provides a common processing path 
 
 There are two fundamental ways that DCRs are specified for a particular data collection scenario as described in the following sections. Each scenario supports one of these methods, but not both.
 
-> [!NOTE]
-> [Workspace transformation DCRs](data-collection-transformations.md#workspace-transformation-dcr) are active as soon as they're created. They don't use either of the methods described in this section.
+| Scenarios | Description |
+|:---|:---|
+| Azure Monitor agent (AMA)<br>Event Hubs<br>platform metrics (preview) | [Data collection rule associations (DCRAs)](#data-collection-rule-associations-dcra) is created between the resource and the DCR. This is a many-to-many relationship, where a single DCR can be associated with multiple resources and a single resource can be associated with up to 30 DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements. |
+| [Direct ingestion](../logs/logs-ingestion-api-overview.md) | The DCR is specified in the API call that sends the data to Azure Monitor. |
+| [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformation-dcr) | DCR is active for the workspace as soon as it's created. |
 
-### Data collection rule associations (DCRA)
-
-Data collection rule associations (DCRAs) are used to associate a DCR with a monitored resource. This is a many-to-many relationship, where a single DCR can be associated with multiple resources and a single resource can be associated with up to 30 DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.
+## Scenarios
 
 #### Azure Monitor agent (AMA)
 The following diagram illustrates data collection for [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. The agent uses that information to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, any [transformation](#transformations) specified in the DCR are run to filter and modify the data and then sends the data to the specified workspace and table.
