@@ -215,37 +215,37 @@ To create a data collection rule in the Azure portal:
                 "location": "[resourceGroup().location]", 
                 "apiVersion": "2022-06-01",
                 "identity": {
-                                 "type": "systemAssigned"
-                  },
+                    "type": "systemAssigned"
+                },
                 "properties": {
                     "dataCollectionEndpointId": "[parameters('endpointResourceId')]",
                     "streamDeclarations": {
                         "Custom-MyEventHubStream": {
                             "columns": [
-                    {
-                        "name": "TimeGenerated",
-                        "type": "datetime"
-                    },
-                    {
-                        "name": "RawData",
-                        "type": "string"
-                    },
-                    {
-                        "name": "Properties",
-                        "type": "dynamic"
-                    }
-                ]
+                                {
+                                    "name": "TimeGenerated",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "name": "RawData",
+                                    "type": "string"
+                                },
+                                {
+                                    "name": "Properties",
+                                    "type": "dynamic"
+                                }
+                            ]
                         }
                     },
                     "dataSources": {
                         "dataImports": {
-                             "eventHub": {
-                                        "consumerGroup": "[parameters('consumerGroup')]",
-                                        "stream": "Custom-MyEventHubStream",
-                                        "name": "myEventHubDataSource1"
-                                                              }
-                                               }
-                   },
+                            "eventHub": {
+                                "consumerGroup": "[parameters('consumerGroup')]",
+                                "stream": "Custom-MyEventHubStream",
+                                "name": "myEventHubDataSource1"
+                            }
+                        }
+                    },
                     "destinations": {
                         "logAnalytics": [
                             {
@@ -298,21 +298,21 @@ To create a data collection rule in the Azure portal:
 To configure your data collection rule to support [user-assigned identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities), in the example above, replace:
 
 ```json
-    "identity": {
-                        "type": "systemAssigned"
-        },
+"identity": {
+    "type": "systemAssigned"
+},
 ``` 
 
 with:
 
 ```json
-    "identity": {
-            "type": "userAssigned",
-            "userAssignedIdentities": {
-                "<identity_resource_Id>": {
-                }
-            }
-        },
+"identity": {
+    "type": "userAssigned",
+    "userAssignedIdentities": {
+        "<identity_resource_Id>": {
+        }
+    }
+},
 ```
 
 To find the `<identity_resource_Id>` value, navigate to your user-assigned managed identity resource in the Azure portal, select **JSON** to open the **Resource JSON** screen and copy the managed identity's **Resource ID**. 

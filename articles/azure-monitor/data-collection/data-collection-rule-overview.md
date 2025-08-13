@@ -58,16 +58,22 @@ There are two fundamental ways that DCRs are specified for a particular data col
 
 ### Data collection rule associations (DCRA)
 
-Data collection rule associations (DCRAs) are used to associate a DCR with a monitored resource. This is a many-to-many relationship, where:
+Data collection rule associations (DCRAs) are used to associate a DCR with a monitored resource. This is a many-to-many relationship, where a single DCR can be associated with multiple resources and a single resource can be associated with up to 30 DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.
 
-* a single DCR can be associated with multiple resources.
-* a single resource can be associated with up to 30 DCRs.
-
-This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.
-
-For example, the following diagram illustrates data collection for [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. The agent uses that information to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, any [transformation](#transformations) specified in the DCR are run to filter and modify the data and then sends the data to the specified workspace and table.
+#### Azure Monitor agent (AMA)
+The following diagram illustrates data collection for [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. The agent uses that information to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, any [transformation](#transformations) specified in the DCR are run to filter and modify the data and then sends the data to the specified workspace and table.
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-virtual-machine.png" lightbox="media/data-collection-rule-overview/data-collection-virtual-machine.png" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
+
+#### Event hubs (Preview)
+The following diagram illustrates data collection from [Event Hubs](../logs/ingest-logs-event-hub.md). When data is received by the event hub, it's delivered to Azure Monitor and then transformed and sent to any destinations specified in the DCR.
+
+:::image type="content" source="media/data-collection-rule-overview/data-collection-event-hub.png" lightbox="media/data-collection-rule-overview/data-collection-event-hub.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
+
+#### Platform metrics (Preview)
+The following diagram illustrates collection of [platform metrics from Azure resources from Event Hubs](./data-collection-metrics.md). 
+
+:::image type="content" source="media/data-collection-rule-overview/data-collection-event-hub.png" lightbox="media/data-collection-rule-overview/data-collection-event-hub.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
 
 ### Direct ingestion
 
