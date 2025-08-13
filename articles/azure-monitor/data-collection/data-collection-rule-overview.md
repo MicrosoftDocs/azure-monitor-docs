@@ -11,6 +11,8 @@ ms.custom: references_regions
 
 Data collection rules (DCRs) are part of an [Extract, transform, and load (ETL)](/azure/architecture/data-guide/relational-data/etl)-like data collection process that improves on legacy data collection methods for Azure Monitor. This process uses a common data ingestion strategy for all data sources and a standard method of configuration that's more manageable and scalable than previous collection methods.
 
+For many monitoring scenarios, you don't need to understand how a DCR is created or assigned. You can simply use guidance in the Azure portal to enable and configure data collection, while Azure Monitor creates and configures the DCR for you. This article provides more details about how DCRs work to get you started on creating and configuring them manually so that you can customize the data collection process.
+
 Specific advantages of DCR-based data collection include:
 
 * Consistent method for configuration of different data sources.
@@ -47,32 +49,43 @@ The data collection process supported by DCRs provides a common processing path 
 
 :::image type="content" source="media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" lightbox="media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
 
+## Data collection rule associations (DCRAs)
+
+[Data collection rule associations (DCRAs)](#data-collection-rule-associations-dcra) are created between the resource and the DCR to enable certain data collection scenarios. This is a many-to-many relationship, where a single DCR can be associated with multiple resources and a single resource can be associated with up to 30 DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.
 
 
 ## Using a DCR
+Once a DCR is created, there are different methods to use it based on the data collection scenario. The following table lists the common scenarios and the method used to collect data in each case. Further details on each are provided below.
 
-There are two fundamental ways that DCRs are specified for a particular data collection scenario as described in the following sections. Each scenario supports one of these methods, but not both.
-
-| Scenarios | Description |
+| Scenario | Method |
 |:---|:---|
-| Azure Monitor agent (AMA)<br>Event Hubs<br>platform metrics (preview) | [Data collection rule associations (DCRAs)](#data-collection-rule-associations-dcra) is created between the resource and the DCR. This is a many-to-many relationship, where a single DCR can be associated with multiple resources and a single resource can be associated with up to 30 DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements. |
-| [Direct ingestion](../logs/logs-ingestion-api-overview.md) | The DCR is specified in the API call that sends the data to Azure Monitor. |
+| [Azure Monitor agent (AMA)](#azure-monitor-agent-ama) | Data collection rule association (DCRA) |
+| [Event hubs](#event-hubs-preview) | Data collection rule association (DCRA) |
+| [Platform metrics (preview)](#platform-metrics-preview) | Data collection rule association (DCRA) |
+| [Direct ingestion](#direct-ingestion) | DCR specified in the API call that sends the data to Azure Monitor. |
 | [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformation-dcr) | DCR is active for the workspace as soon as it's created. |
 
 ## Scenarios
+The following sections describe the common scenarios for using DCRs to collect data in Azure Monitor. They describe the details included in the DCR and the method used specify which DCR to use for that particular scenario. 
 
-#### Azure Monitor agent (AMA)
-The following diagram illustrates data collection for [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. The agent uses that information to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, any [transformation](#transformations) specified in the DCR are run to filter and modify the data and then sends the data to the specified workspace and table.
+### Azure Monitor agent (AMA)
+[Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) is used to collect data from virtual machines and Kubernetes clusters. The following diagram illustrates data collection for AMA running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. For a Kubernetes cluster, this would also include Prometheus metrics. The agent uses that information to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, any [transformation](#transformations) specified in the DCR are run to filter and modify the data and then sends the data to the specified workspace and table.
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-virtual-machine.png" lightbox="media/data-collection-rule-overview/data-collection-virtual-machine.png" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
 
 #### Event hubs (Preview)
-The following diagram illustrates data collection from [Event Hubs](../logs/ingest-logs-event-hub.md). When data is received by the event hub, it's delivered to Azure Monitor and then transformed and sent to any destinations specified in the DCR.
+The following diagram illustrates how data is ingested into a Log Analytics workspace directly from Event Hubs. When data is received by the event hub, it's delivered to Azure Monitor and then transformed and sent to any destinations specified in any DCRs associated with it. 
+
+See [Ingest events from Azure Event Hubs into Azure Monitor Logs (preview)](../logs/ingest-logs-event-hub.md) for details.
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-event-hub.png" lightbox="media/data-collection-rule-overview/data-collection-event-hub.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
 
 #### Platform metrics (Preview)
-The following diagram illustrates collection of [platform metrics from Azure resources from Event Hubs](./data-collection-metrics.md). 
+Platform metrics are automatically collected from Azure resources and sent to [Azure Monitor Metrics](../metrics/data-platform-metrics.md). The follow diagram shows the process of using a DCR to send this data to a Log Analytics workspace for analysis using log queries. This replaces the current method of using [diagnostic settings](../platform/diagnostic-settings.md) to perform this function.
+
+When the DCR is created, it specifies the workspace and table where the data should be sent. The DCR also includes a transformation that ensures the data is in the correct format for the target table. The DCR is then associated with the resource from which the platform metrics are collected.
+
+See [Metrics export through data collection rules](./data-collection-metrics.md) for details.
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-event-hub.png" lightbox="media/data-collection-rule-overview/data-collection-event-hub.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
 
