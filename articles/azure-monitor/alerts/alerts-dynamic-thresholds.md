@@ -142,8 +142,10 @@ Dynamic thresholds support most metrics, but the following metrics can't use dyn
 | Microsoft.Devices/IotHubs | ConnectedDeviceCount |
 | Microsoft.DocumentDB/databaseAccounts | CassandraConnectionClosures |
 | Microsoft.EventHub/clusters | Size |
-| Microsoft.EventHub/namespaces | Size |
 | Microsoft.EventHub/namespaces | CPU |
+| Microsoft.EventHub/namespaces | Memory Usage |
+| Microsoft.EventHub/namespaces | ReplicationLagCount |
+| Microsoft.EventHub/namespaces | Size |
 | Microsoft.IoTCentral/IoTApps | connectedDeviceCount |
 | Microsoft.IoTCentral/IoTApps | provisionedDeviceCount |
 | Microsoft.Kubernetes/connectedClusters | NodesCount |
