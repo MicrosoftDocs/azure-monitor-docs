@@ -19,9 +19,12 @@ To cover all necessary exceptions, use the service tags `ActionGroup`, `Applicat
 
 Each of the following Azure Monitor service sections require outbound traffic rules (destination) unless indicated otherwise. For example, availability monitoring and action group webhooks require inbound firewall rules (source).
 
+> [!NOTE]
+> Azure Government uses the top-level domain `.us` instead of `.com`. [Compare Azure Public and Azure Government endpoints](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) for common Azure services.
+
 ### Application Insights ingestion
 
-You need to open the following outbound ports in your firewall to allow the Application Insights SDK or Application Insights Agent to send data to the portal. 
+You need to open the following outbound ports in your firewall to allow the Application Insights SDK or Application Insights agent to send data to the portal.
 
 > [!NOTE]
 > These endpoints support IPv4 and IPv6.
@@ -31,12 +34,9 @@ You need to open the following outbound ports in your firewall to allow the Appl
 | Telemetry | `dc.applicationinsights.azure.com`<br>`dc.applicationinsights.microsoft.com`<br>`dc.services.visualstudio.com`<br><br>`{region}.in.applicationinsights.azure.com`<br><br> | Global<br>Global<br>Global<br><br>Regional<br> | 443 |
 | Live Metrics | `live.applicationinsights.azure.com`<br>`rt.applicationinsights.microsoft.com`<br>`rt.services.visualstudio.com`<br><br>`{region}.livediagnostics.monitor.azure.com`<br><br>An example `{region}` is `westus2` |Global<br>Global<br>Global<br><br>Regional<br> | 443 |
 
-> [!NOTE]
-> Azure Government uses the top-level domain `.us` instead of `.com`. [Compare Azure Public and Azure Government endpoints](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) for common Azure services.
+### Application Insights agent configuration
 
-### Application Insights Agent
-
-Application Insights Agent configuration is needed only when you're making changes.
+Application Insights agent configuration is needed only when you're making changes.
 
 | Purpose | Hostname | Ports |
 |---------|-----|-------|
@@ -51,7 +51,7 @@ Application Insights Agent configuration is needed only when you're making chang
 
 ### Availability tests
 
-Availability tests require inbound firewall access and are best configured with service tags custom headers. For more information on availability tests, see [Availability testing behind a firewall](../app/availability.md#testing-behind-a-firewall).
+Availability tests require inbound firewall access and are best configured with service tags and custom headers. For more information, see [Availability testing behind a firewall](../app/availability.md#testing-behind-a-firewall).
 
 ### Logs Query API endpoints
 
