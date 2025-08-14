@@ -140,7 +140,7 @@ See [IP addresses used by Azure Monitor](#outbound-traffic) to review our full l
 
 #### How do I reroute traffic from my server to a gateway on my intranet?
 
-Route traffic from your server to a gateway on your intranet by overwriting endpoints in your configuration. If the `Endpoint` properties aren't present in your config, these classes use the default values which are documented in [IP addresses used by Azure Monitor](#outgoing-ports).
+Route traffic from your server to a gateway on your intranet by overwriting endpoints in your configuration. If the `Endpoint` properties aren't present in your config, these classes use the default values which are documented in [IP addresses used by Azure Monitor](#outbound-traffic).
 
 Your gateway should route traffic to our endpoint's base address. In your configuration, replace the default values with `http://<your.gateway.address>/<relative path>`.
 
