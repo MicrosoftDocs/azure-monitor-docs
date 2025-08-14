@@ -14,8 +14,6 @@ ms.reviewer: aul
 This article describes how to connect your cluster to an existing Azure Monitor Private Link Scope (AMPLS). If you don't yet have an AMPLS, create one using the guidance at [Configure private link for Azure Monitor](../logs/private-link-configure.md).
 
 
-•	This article describes how to connect your cluster to an existing Azure Monitor Private Link Scope (AMPLS). If there is an AMPLS, please use it, otherwise, create an AMPLS. Please follow the guidance in Configure your private link to create and configure AMPLS.
-
 ## Managed Prometheus (Azure Monitor workspace)
 
 Follow the steps below to set up ingestion of Prometheus metrics from private AKS cluster into Azure Monitor Workspace.
