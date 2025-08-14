@@ -11,13 +11,17 @@ ms.reviewer: rofrenke
 
 If your monitored application or infrastructure is behind a firewall, you need to configure network access to allow communication with [Azure Monitor](overview.md) services.
 
-Azure Monitor uses [service tags](/azure/virtual-network/service-tags-overview), which provide a more reliable and dynamic way to manage network access. Service tags are regularly updated and can be retrieved through an API, ensuring that you have the latest available IP address information without requiring manual updates.
+Azure Monitor uses [service tags](/azure/virtual-network/service-tags-overview), which provide a dynamic way to manage network access, especially if you're using [Azure network security groups](/azure/virtual-network/network-security-groups-overview) or Azure firewall. For hybrid or on-premises resources, retrieve the equivalent IP address lists programmatically or download them as JSON files. For more information, see [Service tags on-premises](/azure/virtual-network/service-tags-overview#service-tags-on-premises).
 
-If you're using [Azure network security groups](/azure/virtual-network/network-security-groups-overview), you can manage access with [Azure network service tags](/azure/virtual-network/service-tags-overview). For hybrid or on-premises resources, you can download the equivalent IP address lists as [JSON files](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files), which are refreshed weekly. To cover all necessary exceptions, use the service tags `ActionGroup`, `ApplicationInsightsAvailability`, and `AzureMonitor`. Service tags don't replace validation and authentication checks required for cross-tenant communications between a customer's Azure resource and other service tag resources. For more information, see [Azure Service Tags Overview](/azure/virtual-network/service-tags-overview).
+To cover all necessary exceptions, use the service tags `ActionGroup`, `ApplicationInsightsAvailability`, and `AzureMonitor`. Service tags don't replace validation and authentication checks required for cross-tenant communications between a customer's Azure resource and other service tag resources.
 
-## Application Insights ingestion outgoing ports
+## Outbound traffic
 
-All Application Insights traffic represents outbound traffic except for availability monitoring and webhook action groups, which also require inbound firewall rules. You need to open the following outgoing ports in your server's firewall to allow the Application Insights SDK or Application Insights Agent to send data to the portal. 
+Each of the following Azure Monitor service sections require outbound traffic rules (destination) unless indicated otherwise. For example, availability monitoring and action group webhooks require inbound firewall rules (source).
+
+### Application Insights ingestion
+
+You need to open the following outbound ports in your firewall to allow the Application Insights SDK or Application Insights Agent to send data to the portal. 
 
 > [!NOTE]
 > These endpoints support IPv4 and IPv6.
@@ -25,12 +29,12 @@ All Application Insights traffic represents outbound traffic except for availabi
 | Purpose | Hostname | Type | Ports |
 |---------|-----|------|-------|
 | Telemetry | `dc.applicationinsights.azure.com`<br>`dc.applicationinsights.microsoft.com`<br>`dc.services.visualstudio.com`<br><br>`{region}.in.applicationinsights.azure.com`<br><br> | Global<br>Global<br>Global<br><br>Regional<br> | 443 |
-| Live Metrics | `live.applicationinsights.azure.com`<br>`rt.applicationinsights.microsoft.com`<br>`rt.services.visualstudio.com`<br><br>`{region}.livediagnostics.monitor.azure.com`<br><br>Example for `{region}`: `westus2` |Global<br>Global<br>Global<br><br>Regional<br> | 443 |
+| Live Metrics | `live.applicationinsights.azure.com`<br>`rt.applicationinsights.microsoft.com`<br>`rt.services.visualstudio.com`<br><br>`{region}.livediagnostics.monitor.azure.com`<br><br>An example `{region}` is `westus2` |Global<br>Global<br>Global<br><br>Regional<br> | 443 |
 
 > [!NOTE]
 > Azure Government uses the top-level domain `.us` instead of `.com`. [Compare Azure Public and Azure Government endpoints](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) for common Azure services.
 
-## Application Insights Agent
+### Application Insights Agent
 
 Application Insights Agent configuration is needed only when you're making changes.
 
@@ -45,11 +49,11 @@ Application Insights Agent configuration is needed only when you're making chang
 | Configuration | `login.live.com` | `443` |
 | Installation | `globalcdn.nuget.org`, `packages.nuget.org` ,`api.nuget.org/v3/index.json` `nuget.org`, `api.nuget.org`, `dc.services.vsallin.net` | `443` |
 
-## Availability tests
+### Availability tests
 
-For more information on availability tests, see [Private availability testing](../app/availability-private-test.md).
+Availability tests require inbound firewall access and are best configured with service tags custom headers. For more information on availability tests, see [Availability testing behind a firewall](../app/availability.md#testing-behind-a-firewall).
 
-## Logs Query API endpoints
+### Logs Query API endpoints
 
 Starting **July 1, 2025**,  Log Analytics enforces TLS 1.2 or higher for secure communication. For more information, see [Secure Logs data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
 
@@ -59,7 +63,7 @@ Starting **July 1, 2025**,  Log Analytics enforces TLS 1.2 or higher for secure 
 | [Log Analytics](../logs/api/overview.md) | `api.loganalytics.io`<br>`*.api.loganalytics.io`<br>`api.loganalytics.azure.com`</br>`api.monitor.azure.com`</br>`*.api.monitor.azure.com`</br>| 443 |
 | [Azure Data Explorer](/azure/data-explorer/query-monitor-data) | `ade.loganalytics.io`<br>`ade.applicationinsights.io`<br>`adx.monitor.azure.com`<br>`*.adx.monitor.azure.com`<br>`*.adx.applicationinsights.azure.com`<br>`adx.applicationinsights.azure.com`<br>`adx.loganalytics.azure.com`<br>`*.adx.loganalytics.azure.com` | 443 |
 
-## Logs Ingestion API endpoints
+### Logs Ingestion API endpoints
 
 Starting **March 1, 2026**,  Logs Ingestion enforces TLS 1.2 or higher for secure communication. For more information, see [Secure Logs data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).
 
@@ -67,16 +71,16 @@ Starting **March 1, 2026**,  Logs Ingestion enforces TLS 1.2 or higher for secur
 |---|---|---|
 | [Logs Ingestion API](../logs/logs-ingestion-api-overview.md) | `*.ingest.monitor.azure.com`</br>`prod.la.ingest.monitor.core.windows.NET`</br>`*.prod.la.ingestion.msftcloudes.com`</br>`prod.la.ingestion.msftcloudes.com`</br>`*.prod.la.ingest.monitor.core.windows.NET` | 443 |
 
-## Application Insights analytics
+### Application Insights analytics
 
 | Purpose | Hostname | Ports |
 |---------|-----|-------|
 | CDN (Content Delivery Network) | `applicationanalytics.azureedge.net` | 80,443 |
 | Media CDN | `applicationanalyticsmedia.azureedge.net` | 80,443 |
 
-The Application Insights team owns the *.applicationinsights.io domain.
+The Application Insights team also owns the *.applicationinsights.io domain.
 
-## Log Analytics portal
+### Log Analytics portal
 
 | Purpose | Hostname | Ports |
 |---------|-----|-------|
@@ -84,51 +88,28 @@ The Application Insights team owns the *.applicationinsights.io domain.
 
 The Log Analytics team owns the *.loganalytics.io domain.
 
-## Application Insights Azure portal extension
+### Application Insights Azure portal extension
 
 | Purpose | Hostname | Ports |
 |---------|-----|-------|
 | Application Insights extension | `stamp2.app.insightsportal.visualstudio.com` | 80,443 |
 | Application Insights extension CDN | `insightsportal-prod2-cdn.aisvc.visualstudio.com`<br>`insightsportal-prod2-asiae-cdn.aisvc.visualstudio.com`<br>`insightsportal-cdn-aimon.applicationinsights.io` | 80,443 |
 
-## Application Insights SDKs (Software Development Kits)
+### Application Insights SDKs (Software Development Kits)
 
 | Purpose | Hostname | Ports |
 |---------|-----|-------|
 | Application Insights JS SDK CDN | `az416426.vo.msecnd.net`<br>`js.monitor.azure.com` | 80,443 |
 
-## Action group webhooks
+### Action group webhooks
 
-You can query the list of IP addresses used by action groups by using the [Get-AzNetworkServiceTag PowerShell command](/powershell/module/az.network/Get-AzNetworkServiceTag).
+Webhooks require inbound network access. Eliminate the need to update firewall and network configurations by using the **ActionGroup** service tag. Alternatively, you can query the current list of IP addresses used by action groups with the [Get-AzNetworkServiceTag PowerShell command](/powershell/module/az.network/Get-AzNetworkServiceTag) or the other [Service tags on-premises](/azure/virtual-network/service-tags-overview#service-tags-on-premises) methods mentioned earlier.
 
-### Action group service tag
+Here's an example of an inbound security rule with an ActionGroup service tag:
 
-Managing changes to source IP addresses can be time consuming. Using *service tags* eliminates the need to update your configuration. A service tag represents a group of IP address prefixes from a specific Azure service. Microsoft manages the IP addresses and automatically updates the service tag as addresses change, which eliminates the need to update network security rules for an action group.
+:::image type="content" source="../alerts/media/action-groups/action-group-service-tag.png" alt-text="Screenshot that shows a completed inbound security rule with an ActionGroup service tag.":::
 
-1. In the Azure portal under **Azure Services**, search for **Network Security Group**.
-1. Select **Add** and create a network security group:
-
-    1. Add the resource group name, and then enter **Instance details** information.
-    1. Select **Review + Create**, and then select **Create**.
-   
-    :::image type="content" source="../alerts/media/action-groups/action-group-create-security-group.png" alt-text="Screenshot that shows how to create a network security group."border="true":::
-
-1. Go to **Resource Group**, and then select the network security group you created:
-
-    1. Select **Inbound security rules**.
-    1. Select **Add**.
-    
-    :::image type="content" source="../alerts/media/action-groups/action-group-add-service-tag.png" alt-text="Screenshot that shows how to add inbound security rules." border="true":::
-
-1. A new window opens in the right pane:
-
-    1. Under **Source**, enter **Service Tag**.
-    1. Under **Source service tag**, enter **ActionGroup**.
-    1. Select **Add**.
-    
-    :::image type="content" source="../alerts/media/action-groups/action-group-service-tag.png" alt-text="Screenshot that shows how to add a service tag." border="true":::
-
-## Application Insights Profiler for .NET
+### Application Insights Profiler for .NET
 
 | Purpose | Hostname | Ports |
 |---------|-----|-------|
@@ -136,7 +117,7 @@ Managing changes to source IP addresses can be time consuming. Using *service ta
 | Portal | `gateway.azureserviceprofiler.net`<br>`dataplane.diagnosticservices.azure.com` | 443 |
 | Storage | `*.core.windows.net` | 443 |
 
-## Snapshot Debugger
+### Snapshot Debugger
 
 > [!NOTE]
 > Application Insights Profiler for .NET and Snapshot Debugger share the same set of IP addresses.
@@ -155,7 +136,7 @@ This section provides answers to common questions.
 
 Yes, but you need to allow traffic to our services by either firewall exceptions or proxy redirects.
 
-See [IP addresses used by Azure Monitor](#outgoing-ports) to review our full list of services and IP addresses.
+See [IP addresses used by Azure Monitor](#outbound-traffic) to review our full list of services and IP addresses.
 
 #### How do I reroute traffic from my server to a gateway on my intranet?
 
@@ -170,4 +151,4 @@ If your product doesn't support service tags, take the following steps to ensure
 * Check the latest IP ranges in the [downloadable Azure IP ranges and service tags JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files), which updates weekly.
 * Review firewall logs for blocked requests and update your allowlist as needed.
 
-For more information, see [Azure Service Tags Overview](/azure/virtual-network/service-tags-overview).
+For more information, see [Azure Service Tags overview](/azure/virtual-network/service-tags-overview).
