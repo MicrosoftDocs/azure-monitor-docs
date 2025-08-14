@@ -71,6 +71,8 @@ The following sections describe the common scenarios for using DCRs to collect d
 ### Azure Monitor agent (AMA)
 [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) is used to collect data from virtual machines and Kubernetes clusters. The following diagram illustrates data collection for AMA running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. For a Kubernetes cluster, this would also include Prometheus metrics. The agent uses that information to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, any [transformation](#transformations) specified in the DCR are run to filter and modify the data and then sends the data to the specified workspace and table.
 
+See [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md) and [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) for details.
+
 :::image type="content" source="media/data-collection-rule-overview/data-collection-virtual-machine.png" lightbox="media/data-collection-rule-overview/data-collection-virtual-machine.png" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
 
 #### Event hubs (Preview)
@@ -90,10 +92,18 @@ See [Metrics export through data collection rules](./data-collection-metrics.md)
 :::image type="content" source="media/data-collection-rule-overview/data-collection-event-hub.png" lightbox="media/data-collection-rule-overview/data-collection-event-hub.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
 
 ### Direct ingestion
+With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using Logs ingestion API. Each API call specifies the DCR that processes its data. The DCR understands the structure of the incoming data, includes a [transformation](#transformations) that ensures the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
 
-With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using [Logs ingestion API](../logs/logs-ingestion-api-overview.md). Each API call specifies the DCR that processes its data. The DCR understands the structure of the incoming data, includes a [transformation](#transformations) that ensures the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
+See [Logs ingestion API](../logs/logs-ingestion-api-overview.md) for details.
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-direct-ingestion.png" lightbox="media/data-collection-rule-overview/data-collection-direct-ingestion.png" alt-text="Diagram that shows basic operation for DCR using Logs ingestion API." border="false":::
+
+### Workspace transformation DCR
+Workspace transformation DCRs provide transformations for data collection that doesn't use a DCR. They're applied directly to the Log Analytics workspace and are automatically activated when they're created.
+
+See [Workspace transformation DCR](../data-collection/data-collection-transformations.md) for details.
+
+:::image type="content" source="media/data-collection-rule-overview/data-collection-workspace-transformation.png" lightbox="media/data-collection-rule-overview/data-collection-workspace-transformation.png" alt-text="Diagram that shows basic operation of workspace transformation DCR." border="false":::
 
 ## Transformations
 

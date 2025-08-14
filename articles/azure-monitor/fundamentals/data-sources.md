@@ -78,10 +78,11 @@ Azure Kubernetes Service (AKS) clusters create the same activity logs and platfo
 
 ## Custom sources
 
-For any monitoring data that you can't collect with the other methods described in this article, you can use the APIs in the following table to send data to Azure Monitor. 
+For any monitoring data that you can't collect with the other methods described in this article, you can methods in the following table to send data to Azure Monitor. 
 
 | Data type | Description | Data collection method |
 |:----------|:------------|:-----------------------|
+| Logs | Collect data from Azure Event Hubs. | Create a data collection rule to define destination workspace and structure of incoming data. See [Ingest events from Azure Event Hubs into Azure Monitor Logs (preview)](../logs/ingest-logs-event-hub.md). |
 | Logs | Collect log data from any REST client and store in Log Analytics workspace. | Create a data collection rule to define destination workspace and any data transformations. See [Logs ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md). |
 | Metrics | Collect custom metrics for Azure resources from any REST client. | See [Send custom metrics for an Azure resource to the Azure Monitor metric store by using a REST API](../essentials/metrics-store-custom-rest-api.md). |
 
