@@ -81,7 +81,7 @@ Use one of the following methods to enable scraping of Prometheus metrics from y
 > 
 > - If you deploy using a template or Azure Policy, ensure that the Data Collection Endpoints, Data Collection Rules and the Data Collection Rule Associations are named `MSProm-<Location of Azure Monitor Workspace>-<Name of cluster resource>` or the onboarding process won't complete successfully.
 > 
-> - If you have a single Azure Monitor Resource that is private-linked, then Prometheus enablement won't work if the AKS cluster and Azure Monitor Workspace are in different regions. Create a new DCE and DCRA in the same cluster region. Associate the new DCE with the cluster and name the new DCRA as `configurationAccessEndpoint`. See [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
+> - If you have a single Azure Monitor Resource that is [private-linked](../logs/private-link-configure.md#connect-resources-to-the-ampls), then Prometheus enablement won't work if the AKS cluster and Azure Monitor Workspace are in different regions. Create a new DCE and DCRA in the same cluster region. Associate the new DCE with the cluster and name the new DCRA as `configurationAccessEndpoint`. See [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
 
 ### [CLI](#tab/cli)
 
@@ -359,7 +359,7 @@ After the policy is assigned to the subscription, whenever you create a new clus
 Use one of the following methods to enable Container insights on your cluster. Once this is complete, see [Configure agent data collection for Container insights](container-insights-data-collection-configmap.md) to customize your configuration to ensure that you aren't collecting more data than you require.
 
 > [!IMPORTANT] 
-> - If you have a single Azure Monitor Resource that is private-linked, you can't enable Container insights using the Azure portal. See [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
+> - If you have a single Azure Monitor Resource that is private-linked, you can't enable Container insights using the Azure portal. See [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md#container-insights-log-analytics-workspace).
 >
 > - To enable Container insights with network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
 
