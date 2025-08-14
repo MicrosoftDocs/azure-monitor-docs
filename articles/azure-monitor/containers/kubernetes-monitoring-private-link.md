@@ -11,7 +11,13 @@ ms.reviewer: aul
 
 [Azure Private Link](/azure/private-link/private-link-overview) enables you to access Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. An [Azure Monitor Private Link Scope (AMPLS)](../logs/private-link-security.md) connects a private endpoint to a set of Azure Monitor resources to define the boundaries of your monitoring network. Using private endpoints for Managed Prometheus/Container Insights and Azure Monitor workspace/Log Analytics Workspace you can allow clients on a virtual network (VNet) to securely ingest data over a Private Link.
 
-This article describes how to configure Container insights and Managed Prometheus to use private link for data ingestion from your Azure Kubernetes Service (AKS) cluster.
+This article describes how to connect your cluster to an existing Azure Monitor Private Link Scope (AMPLS). If you don't yet have an AMPKS, create one using the guidance at [Configure private link for Azure Monitor](../logs/private-link-configure.md).
+
+
+to use private link for data ingestion from your Azure Kubernetes Service (AKS) cluster.
+
+
+•	This article describes how to connect your cluster to an existing Azure Monitor Private Link Scope (AMPLS). If there is an AMPLS, please use it, otherwise, create an AMPLS. Please follow the guidance in Configure your private link to create and configure AMPLS.
 
 ## Managed Prometheus (Azure Monitor workspace)
 
