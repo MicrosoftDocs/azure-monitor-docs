@@ -19,22 +19,24 @@ Insert a few lines of code in your application to find out what users are doing 
 
 ## API summary
 
+
 The core API is uniform across all platforms, apart from a few variations like `GetMetric` (.NET only).
 
 | Method | Used for |
 |--------|----------|
-| [`TrackPageView`](#page-views) |Pages, screens, panes, or forms. |
-| [`TrackEvent`](#trackevent) |User actions and other events. Used to track user behavior or to monitor performance. |
-| [`GetMetric`](#getmetric) |Zero and multidimensional metrics, centrally configured aggregation, C# only. |
-| [`TrackMetric`](#trackmetric) |Performance measurements such as queue lengths not related to specific events. |
-| [`TrackException`](#trackexception) |Logging exceptions for diagnosis. Trace where they occur in relation to other events and examine stack traces. |
-| [`TrackRequest`](#trackrequest) |Logging the frequency and duration of server requests for performance analysis. |
-| [`TrackTrace`](#tracktrace) |Resource Diagnostic log messages. You can also capture third-party logs. |
-| [`TrackDependency`](#trackdependency) |Logging the duration and frequency of calls to external components that your app depends on. |
+| [`TrackPageView`](#page-views)   | Pages, screens, panes, or forms.   |
+| [`TrackEvent`](#trackevent)      | User actions and other events. Used to track user behavior or to monitor performance.   |
+| [`GetMetric`](#getmetric)        | Zero and multidimensional metrics, centrally configured aggregation, C# only.   |
+| [`TrackMetric`](#trackmetric)    | Performance measurements such as queue lengths not related to specific events.   |
+| [`TrackException`](#trackexception) | Logging exceptions for diagnosis. Trace where they occur in relation to other events and examine stack traces.   |
+| [`TrackRequest`](#trackrequest)  | Logging the frequency and duration of server requests for performance analysis.   |
+| [`TrackTrace`](#tracktrace)      | Resource Diagnostic log messages. You can also capture third-party logs.   |
+| [`TrackDependency`](#trackdependency) | Logging the duration and frequency of calls to external components that your app depends on.   |
 
 You can [attach properties and metrics](#properties) to most of these telemetry calls.
 
 ## <a name="prep"></a>Before you start
+
 
 If you don't have a reference on Application Insights SDK yet:
 
@@ -56,7 +58,9 @@ If you don't have a reference on Application Insights SDK yet:
 
     *Node.js:* `var applicationInsights = require("applicationinsights");`
 
+
 ## Get a TelemetryClient instance
+
 
 Get an instance of `TelemetryClient` (except in JavaScript in webpages):
 
@@ -90,6 +94,7 @@ private TelemetryClient telemetry = new TelemetryClient();
 var telemetry = applicationInsights.defaultClient;
 ```
 
+
 `TelemetryClient` is thread safe.
 
 For ASP.NET and Java projects, incoming HTTP requests are automatically captured. You might want to create more instances of `TelemetryClient` for other modules of your app. For example, you might have one `TelemetryClient` instance in your middleware class to report business logic events. You can set properties such as `UserId` and `DeviceId` to identify the machine. This information is attached to all events that the instance sends.
@@ -110,7 +115,9 @@ telemetry.getContext().getDevice().setId("...");
 
 In Node.js projects, you can use `new applicationInsights.TelemetryClient(instrumentationKey?)` to create a new instance. We recommend this approach only for scenarios that require isolated configuration from the singleton `defaultClient`.
 
+
 ## TrackEvent
+
 
 In Application Insights, a *custom event* is a data point that you can display in [Metrics Explorer](../essentials/metrics-charts.md) as an aggregated count and in [Diagnostic Search](./transaction-search-and-diagnostics.md?tabs=transaction-search) as individual occurrences. (It isn't related to MVC or other framework "events.")
 
@@ -148,14 +155,19 @@ telemetry.trackEvent("WinGame");
 telemetry.trackEvent({name: "WinGame"});
 ```
 
+
 ### Custom events in Log Analytics
+
 
 The telemetry is available in the `customEvents` table on the [Application Insights Logs tab](../logs/log-query-overview.md) or [usage experience](usage.md). Events might come from `trackEvent(..)` or the [Click Analytics Auto-collection plug-in](javascript-feature-extensions.md).
 
+
 If [sampling](./sampling.md) is in operation, the `itemCount` property shows a value greater than `1`. For example, `itemCount==10` means that of 10 calls to `trackEvent()`, the sampling process transmitted only one of them. To get a correct count of custom events, use code such as `customEvents | summarize sum(itemCount)`.
+
 
 > [!NOTE]
 > itemCount has a minimum value of one; the record itself represents an entry.
+
 
 ## GetMetric
 
