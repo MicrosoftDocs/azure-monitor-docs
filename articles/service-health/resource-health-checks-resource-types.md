@@ -589,7 +589,7 @@ These checks help determine the availability, performance, and operational statu
 
 |Executed Checks|
 |---|
-| - Are there sign-in failures?<br>This does **not** include sign-in failures related to a user-initiated stopped state, or an incorrect username/password.|
+| - Are there login failures?<br>This does **not** include login failures classified as user error (for example, stopped state, incorrect username/password).|
 
 ## Microsoft.SQL/servers/databases
 
