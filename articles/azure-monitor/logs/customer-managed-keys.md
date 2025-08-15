@@ -167,6 +167,7 @@ This step updates dedicated cluster storage with the key and version to use for 
 >[!IMPORTANT]
 >- Key rotation can be automatic or per explicit key version, see [Key rotation](#key-rotation) to determine suitable approach before updating the key identifier details in cluster.
 >- Cluster update should not include both identity and key identifier details in the same operation. If you need to update both, the update should be in two consecutive operations.
+>- If you're only enabling or changing CMK, use the REST API instead of CLI to avoid capacity reservation errors due to CLI's stateless behaviour.
 
 :::image type="content" source="media/customer-managed-keys/key-identifier-8bit.png" lightbox="media/customer-managed-keys/key-identifier-8bit.png" alt-text="Screenshot of Grant Key Vault permissions.":::
 
