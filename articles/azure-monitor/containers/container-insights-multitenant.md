@@ -36,12 +36,12 @@ When you enable the multitenancy feature through a ConfigMap, the Container Insi
 The following logic is used to determine how to process each log entry:
 
 * If there is a **ContainerLogV2Extension** DCR for the namespace of the log entry, that DCR is used to process the entry. This includes the Log Analytics workspace destination and any ingestion-time transformation.
-* If there isn't a **ContainerLogV2Extension** DCR for the namespace of the log entry, the default **ContainerInsights** DCR is used to process the entry.
+* If there isn't a **ContainerLogV2Extension** DCR for the namespace of the log entry, the default **ContainerInsights** DCR is used to process the entry. You can disable the default DCR ingestion with ConfigMap.
 
 ## Limitations
 
 * See [Limitations for high scale logs collection in Container Insights](container-insights-high-scale.md#limitations).
-* A maximum of 30 **ContainerLogV2Extension** DCR associations are supported per cluster. This limit does not apply if you're using the [Logs and Events](./container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-dcr) logs preset in container logs.
+* A maximum of 30 **ContainerLogV2Extension** DCR associations are supported per cluster.
 
 ## Prerequisites 
 

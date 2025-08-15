@@ -135,7 +135,7 @@ az aks create -g <resource-group-name> -n <cluster-name> enable-addons -a monito
 
 See [Create a private Azure Kubernetes Service (AKS) cluster](/azure/aks/private-clusters?tabs=azure-portal) for details on creating an AKS Private cluster. Use the additional parameters `--enable-high-scale-mode` and `--ampls-resource-id` to configure high log scale mode with Azure Monitor Private Link Scope Resource ID. 
 
-**ARC-enabled cluster **
+**ARC-enabled cluster**
 
 ```azurecli
 az k8s-extension create --name azuremonitor-containers --resource-group <resource-group-name>  --cluster-name <cluster-name>  --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers --configuration-settings amalogs.enableHighLogScaleMode=true logAnalyticsWorkspaceResourceID=<workspace-resource-id> 
