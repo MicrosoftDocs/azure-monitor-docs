@@ -43,7 +43,7 @@ To create a custom table, you need:
     ]
     ``` 
 
-    All tables in a Log Analytics workspace must have a `TimeGenerated` column, which is used to identify the ingestion time of the record. If it doesn't, he column will be added to the transformation in your DCR for the table. For information about the `TimeGenerated` format, see [supported datetime formats](/azure/data-explorer/kusto/query/scalar-data-types/datetime#supported-formats).
+    All tables in a Log Analytics workspace must have a `TimeGenerated` column, which is used to identify the ingestion time of the record. If the column is missing, it is added to the transformation in your DCR for the table. For information about the `TimeGenerated` format, see [supported datetime formats](/azure/data-explorer/kusto/query/scalar-data-types/datetime#supported-formats).
 
 ## Create a custom table
 
@@ -199,7 +199,7 @@ Use these rules when defining column names for custom tables:
 * Column names must start with a letter (A-Z or a-z).
 * After the first character, use only letters, digits, or underscores.
 * Don't use spaces, dots, dashes, or other punctuation in column names.
-* Non-ASCII letters (for example, Æ, É, Ö) are not supported in column names.
+* Non-ASCII letters (for example, Æ, É, Ö) aren't supported in column names.
 * Column names are case sensitive.
 * Column names must be 1 to 45 characters long.
 * Don't use names that conflict with system or reserved columns, including `id`, `BilledSize`,`IsBillable`, `InvalidTimeGenerated`, `TenantId`, `Title`, `Type`, `UniqueId`, `_ItemId`, `_ResourceGroup`, `_ResourceId`, `_SubscriptionId`, `_TimeReceived`.
