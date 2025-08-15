@@ -194,8 +194,18 @@ To delete a table using PowerShell:
 
 You can modify the schema of custom tables and add custom columns to, or delete columns from, a standard table.
 
-> [!NOTE]
-> Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. 
+Use these rules when defining column names for custom tables:
+ 
+* Column names must start with a letter (A-Z or a-z).
+* After the first character, use only letters, digits, or underscores.
+* Do not use spaces, dots, dashes, or other punctuation in column names.
+* Non-ASCII letters (for example, Æ, É, Ö) are not supported in column names.
+* Column names are case sensitive.
+* Column names must be 1 to 45 characters long.
+* Do not use names that conflict with system or reserved columns, including `id`, `BilledSize`,`IsBillable`, `InvalidTimeGenerated`, `TenantId`, `Title`, `Type`, `UniqueId`, `_ItemId`, `_ResourceGroup`, `_ResourceId`, `_SubscriptionId`, `_TimeReceived`.
+
+> [!IMPORTANT]
+> The schema rules for custom tables are stricter than [general Kusto identifier rules](/kusto/query/schema-entities/entity-names). Kusto can reference unusual property names with quoting in queries, but the custom table schema accepts only letters, digits, and underscores for column names.
 
 # [Portal](#tab/azure-portal-3)
 
