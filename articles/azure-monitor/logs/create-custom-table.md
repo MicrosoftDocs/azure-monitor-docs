@@ -21,7 +21,7 @@ To create a custom table, you need:
 
 * A Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
 * A [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md).
-* A JSON file with at least one record of sample for your custom table. This will look similar to the following:
+* A JSON file with at least one record of sample for your custom table, which looks similar to the following example:
 
     ```json
     [
@@ -43,7 +43,7 @@ To create a custom table, you need:
     ]
     ``` 
 
-    All tables in a Log Analytics workspace must have a column named `TimeGenerated`. If your sample data has a column named `TimeGenerated`, then this value will be used to identify the ingestion time of the record. If not, a `TimeGenerated` column will be added to the transformation in your DCR for the table. For information about the `TimeGenerated` format, see [supported datetime formats](/azure/data-explorer/kusto/query/scalar-data-types/datetime#supported-formats).
+    All tables in a Log Analytics workspace must have a `TimeGenerated` column, which is used to identify the ingestion time of the record. If it doesn't, he column will be added to the transformation in your DCR for the table. For information about the `TimeGenerated` format, see [supported datetime formats](/azure/data-explorer/kusto/query/scalar-data-types/datetime#supported-formats).
 
 ## Create a custom table
 
@@ -81,7 +81,7 @@ To create a custom table using the Azure portal:
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-browse-files.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-browse-files.png" alt-text="Screenshot showing custom log browse for files.":::
 
-    If your sample data doesn't include a `TimeGenerated` column, then you'll receive a message that a transformation is being created with this column.
+    If your sample data doesn't include a `TimeGenerated` column, you receive a message that a transformation is being created with this column.
 
 1. If you want to [transform log data before ingestion](../data-collection/data-collection-transformations.md) into your table:
 
@@ -112,7 +112,7 @@ To create a custom table, call the [Tables - Create Or Update API](/rest/api/log
 To create a custom table, run the [az monitor log-analytics workspace table create](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-create) command.
 # [PowerShell](#tab/azure-powershell-1)
 
-Use the [Tables - Update PATCH API](/rest/api/loganalytics/tables/update) to create a custom table with the PowerShell code below. This code creates a table called *MyTable_CL* with two columns. Modify this schema to collect a different table. 
+Use the [Tables - Update PATCH API](/rest/api/loganalytics/tables/update) to create a custom table with the following PowerShell code. This code creates a table called *MyTable_CL* with two columns. Modify this schema to collect a different table. 
 
 1. Select the **Cloud Shell** button in the Azure portal and ensure the environment is set to **PowerShell**.
 
@@ -198,11 +198,11 @@ Use these rules when defining column names for custom tables:
  
 * Column names must start with a letter (A-Z or a-z).
 * After the first character, use only letters, digits, or underscores.
-* Do not use spaces, dots, dashes, or other punctuation in column names.
+* Don't use spaces, dots, dashes, or other punctuation in column names.
 * Non-ASCII letters (for example, Æ, É, Ö) are not supported in column names.
 * Column names are case sensitive.
 * Column names must be 1 to 45 characters long.
-* Do not use names that conflict with system or reserved columns, including `id`, `BilledSize`,`IsBillable`, `InvalidTimeGenerated`, `TenantId`, `Title`, `Type`, `UniqueId`, `_ItemId`, `_ResourceGroup`, `_ResourceId`, `_SubscriptionId`, `_TimeReceived`.
+* Don't use names that conflict with system or reserved columns, including `id`, `BilledSize`,`IsBillable`, `InvalidTimeGenerated`, `TenantId`, `Title`, `Type`, `UniqueId`, `_ItemId`, `_ResourceGroup`, `_ResourceId`, `_SubscriptionId`, `_TimeReceived`.
 
 > [!IMPORTANT]
 > The schema rules for custom tables are stricter than [general Kusto identifier rules](/kusto/query/schema-entities/entity-names). Kusto can reference unusual property names with quoting in queries, but the custom table schema accepts only letters, digits, and underscores for column names.
