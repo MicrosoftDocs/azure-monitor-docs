@@ -1,13 +1,13 @@
 ---
-title: Multitenant managed logging in Container insights (Preview)
+title: Multitenant managed logging in Container insights
 description: Concepts and onboarding steps for multitenant logging in Container insights.
 ms.topic: article
 ms.custom: references_regions
-ms.date: 03/18/2025
+ms.date: 08/14/2025
 ms.reviewer: viviandiec
 ---
 
-# Multitenant managed logging in Container insights (Preview)
+# Multitenant managed logging in Container insights
 
 Multitenant logging in Container insights is useful for customers who operate shared cluster platforms using AKS. You may need the ability to configure container console log collection in a way that segregates logs by different teams so that each has access to the container logs of the containers running in K8s namespaces that they own and the ability to access the billing and management associated with the Azure Log analytics workspace. For example, container logs from infrastructure namespaces such as kube-system can be directed to a specific Log Analytics workspace for the infrastructure team, while each application team's container logs can be sent to their respective workspaces.
 
@@ -41,11 +41,11 @@ The following logic is used to determine how to process each log entry:
 ## Limitations
 
 * See [Limitations for high scale logs collection in Container Insights](container-insights-high-scale.md#limitations).
-* A maximum of 30 **ContainerLogV2Extension** DCR associations are supported per cluster.
+* A maximum of 30 **ContainerLogV2Extension** DCR associations are supported per cluster. This limit does not apply if you're using the [Logs and Events](./container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-dcr) logs preset in container logs.
 
 ## Prerequisites 
 
-* High log scale mode must be configured for the cluster using the guidance at [High scale logs collection in Container Insights (Preview)](container-insights-high-scale.md).
+* High log scale mode must be configured for the cluster using the guidance at [High scale logs collection in Container Insights](container-insights-high-scale.md).
 * A [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md) is created with the [DCR for each application or infrastructure team](#create-dcr-for-each-application-or-infrastructure-team). The **Logs Ingestion** endpoint of each DCE must be configured in the firewall as described in [Network firewall requirements for high scale logs collection in Container Insights](container-insights-high-scale.md#network-firewall-requirements).
 
 ## Enable multitenancy for the cluster
