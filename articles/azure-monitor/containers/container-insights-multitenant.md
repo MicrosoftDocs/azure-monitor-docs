@@ -77,7 +77,7 @@ The following logic is used to determine how to process each log entry:
 
 ### Create DCR for each application or infrastructure team
 
-Repeat the following steps to create a separate DCR for each application or infrastructure team. Each will include a set of K8s namespaces and a Log Analytics workspace destination.
+The following sections provide details on different methods to create a separate DCR for each application or infrastructure team. Each will include a set of K8s namespaces and a Log Analytics workspace destination.
 
 > [!TIP]
 > For multihoming, deploy a separate DCR template and parameter file for each Log Analytics workspace and include the same set of K8s namespaces. This will enable the same logs to be sent to multiple workspaces. For example, if you want to send logs for app-team-1, app-team-2 to both LAW1 and LAW2, 
@@ -85,24 +85,33 @@ Repeat the following steps to create a separate DCR for each application or infr
 > * Create DCR1 and include LAW1 for app-team-1 and app-team-2 namespaces
 > * Create DCR2 and include LAW2 for app-team-1 and app-team-2 namespaces
 
-1. Retrieve the following ARM template and parameter file.
+Each of the methods below use the same parameters in the following table.
 
+| Parameter Name | Description |
+|:---------------|:------------|
+| `aksResourceId` | Azure Resource ID of the AKS cluster |
+| `aksResourceLocation` | Azure Region of the AKS cluster |
+| `workspaceResourceId` | Azure Resource ID of the Log Analytics workspace |
+| `workspaceRegion` | Azure Region of the Log Analytics workspace |
+| `K8sNamespaces` | List of K8s namespaces for logs to be sent to the Log Analytics workspace defined in this parameter file. |
+| `resourceTagValues` | Azure Resource Tags to use on AKS, data collection rule (DCR), and data collection endpoint (DCE). |
+| `transformKql` | KQL filter for advance filtering using ingestion-time transformation. For example, to exclude the logs for a specific pod, use `source \| where PodName != '<podName>'`. See [Transformations in Azure Monitor](../data-collection/data-collection-transformations.md) for details. |
+| `useAzureMonitorPrivateLinkScope` | Indicates whether to configure Azure Monitor Private Link Scope. |
+| `azureMonitorPrivateLinkScopeResourceId` | Azure Resource ID of the Azure Monitor Private Link Scope. |
+
+### [ARM](#tab/arm)
+
+1. Retrieve one of the following ARM template and parameter file.
+
+    **AKS Cluster**
     Template: [https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-file](https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-file)<br>
     Parameter: [https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-parameter-file](https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-parameter-file)
 
-1. Edit the parameter file with values for the following values.
+    **Arc-enabled Cluster**
+    Template: [https://aka.ms/arc-enable-monitoring-multitenancy-template](https://aka.ms/arc-enable-monitoring-multitenancy-template)<br>
+    Parameter: [https://aka.ms/arc-enable-monitoring-multitenancy-template](https://aka.ms/arc-enable-monitoring-multitenancy-template)
 
-    | Parameter Name | Description |
-    |:---------------|:------------|
-    | `aksResourceId` | Azure Resource ID of the AKS cluster |
-    | `aksResourceLocation` | Azure Region of the AKS cluster |
-    | `workspaceResourceId` | Azure Resource ID of the Log Analytics workspace |
-    | `workspaceRegion` | Azure Region of the Log Analytics workspace |
-    | `K8sNamespaces` | List of K8s namespaces for logs to be sent to the Log Analytics workspace defined in this parameter file. |
-    | `resourceTagValues` | Azure Resource Tags to use on AKS, data collection rule (DCR), and data collection endpoint (DCE). |
-    | `transformKql` | KQL filter for advance filtering using ingestion-time transformation. For example, to exclude the logs for a specific pod, use `source \| where PodName != '<podName>'`. See [Transformations in Azure Monitor](../data-collection/data-collection-transformations.md) for details. |
-    | `useAzureMonitorPrivateLinkScope` | Indicates whether to configure Azure Monitor Private Link Scope. |
-    | `azureMonitorPrivateLinkScopeResourceId` | Azure Resource ID of the Azure Monitor Private Link Scope. |
+1. Edit the parameter file with values in the table above.
     
 1. Deploy the template using the parameter file with the following command.
 
@@ -110,6 +119,39 @@ Repeat the following steps to create a separate DCR for each application or infr
     az deployment group create --name AzureMonitorDeployment --resource-group <aksClusterResourceGroup> --template-file existingClusterOnboarding.json --parameters existingClusterParam.json
     ```
 
+### [Bicep](#tab/bicep)
+
+1. Retrieve the following ARM template and parameter file. 
+
+    Template:  [https://aka.ms/aks-enable-monitoring-multitenancy-template-bicep](https://aka.ms/aks-enable-monitoring-multitenancy-template-bicep)
+    Parameter:  [https://aka.ms/aks-enable-monitoring-multitenancy-template-parameter-bicep](https://aka.ms/aks-enable-monitoring-multitenancy-template-parameter-bicep)
+
+1. Edit the parameter file with values in the table above.
+
+3. Deploy the template using the parameter file with the following command. 
+
+    ```azurecli
+    az deployment group create --name AzureMonitorDeployment --resource-group <aksClusterResourceGroup> --template-file existingClusterOnboarding.bicep --parameters existingClusterParam.json 
+    ```dotnetcli
+    
+### [Terraform](#tab/terraform)
+
+1. Retrieve all the templates in [https://aka.ms/aks-enable-monitoring-multitenancy-templates-terraform ](https://aka.ms/aks-enable-monitoring-multitenancy-templates-terraform).
+
+2. Modify the `terraform.tfvars` file with the configuration values in the table above. 
+
+3. Initialize Terraform: 
+   `terraform init`
+
+4. Review the planned changes: 
+
+    `terraform plan` 
+
+5. Initialize Terraform: 
+
+    `terraform apply`
+
+---
 
 ## Disabling multitenant logging
 
