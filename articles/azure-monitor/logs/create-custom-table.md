@@ -1,5 +1,5 @@
 ---
-title: Add or delete tables and columns in Azure Monitor Logs
+title: Add or Delete Tables and Columns in Azure Monitor Logs
 description: Create a table with a custom schema to collect logs from any data source. 
 ms.reviewer: adi.biran
 ms.custom: devx-track-azurepowershell
