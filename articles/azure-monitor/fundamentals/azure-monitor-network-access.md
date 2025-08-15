@@ -78,7 +78,6 @@ Starting **March 1, 2026**,  Logs Ingestion enforces TLS 1.2 or higher for secur
 | CDN (Content Delivery Network) | `applicationanalytics.azureedge.net` | 80,443 |
 | Media CDN | `applicationanalyticsmedia.azureedge.net` | 80,443 |
 
-The Application Insights team also owns the *.applicationinsights.io domain.
 
 ### Log Analytics portal
 
