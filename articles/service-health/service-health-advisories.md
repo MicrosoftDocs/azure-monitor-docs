@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 8/04/2025
+ms.date: 8/15/2025
 ---
 
 # Health advisories 
@@ -25,15 +25,6 @@ Select the **Issue name** link to open the tabs with the information you need.
 
 >[!Note]
 >Service Health advisories are displayed in the pane for up to 28 days if they are still active and if the `impactMitigationTime` is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
->
->You can view Service health advisories from the past year using an ARG query as shown here.<br>
->
->Query for last 28 days <br>
->Check the result: 
-> - status = `active`
-> - impactMitigationTime = `after today’s date`
->- incident type = `security`
->
 >For more information regarding Service health advisories from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 
