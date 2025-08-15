@@ -15,12 +15,15 @@ ms.date: 06/10/2025
 
 ## Known issues
 
-### Existing user-assigned managed identitiesremoved from VM
+### Existing user-assigned managed identities removed from VM
 
-**Issue:** If system-assigned managed identity is disabled on a VM, installing Performance Diagnostics using system-assigned managed identity will unintentionally remove any existing user-assigned managed identities from the VM.<br><br>
-**Cause:** If system-assigned managed identity is disabled on a VM and the authentication method selected during installation is system-assigned managed identity, Performance Diagnostics attempts to enable the system-assigned managed identity with an ARM template deployment. ARM treats the identity property as a complete object rather than a partial update. Because the deployment template specified only `SystemAssigned` as the identity type, it overwrites any existing user-assigned managed identities. This results in the removal of all user-assigned managed identities since both identity types weren' t explicitly defined in the template. This issue does not occur if system-assigned managed identity is already enabled on the VM before installing Performance Diagnostics using system-assigned managed identity.<br><br>
-**Status:** The product team is actively working on a fix and will update the status once the fix is available.<br><br>
-**Workaround:** To install Performance Diagnostics using a system-assigned managed identity on a VM that already has user-assigned managed identities, you must enable the system-assigned managed identity on the VM before installation to avoid overwriting existing identities. Alternatively, you can install Performance Diagnostics using other authentication methods such as user-assigned managed identity or storage account access keys.
+**Issue** 
+If system-assigned managed identity is disabled on a VM, installing Performance Diagnostics using system-assigned managed identity will unintentionally remove any existing user-assigned managed identities from the VM.<br><br>
+**Cause** If system-assigned managed identity is disabled on a VM and the authentication method selected during installation is system-assigned managed identity, Performance Diagnostics attempts to enable the system-assigned managed identity with an ARM template deployment. ARM treats the identity property as a complete object rather than a partial update. Because the deployment template specified only `SystemAssigned` as the identity type, it overwrites any existing user-assigned managed identities. This results in the removal of all user-assigned managed identities since both identity types weren' t explicitly defined in the template. This issue does not occur if system-assigned managed identity is already enabled on the VM before installing Performance Diagnostics using system-assigned managed identity.<br><br>
+**Status**
+The product team is actively working on a fix and will update the status once the fix is available.<br><br>
+**Workaround**
+To install Performance Diagnostics using a system-assigned managed identity on a VM that already has user-assigned managed identities, you must enable the system-assigned managed identity on the VM before installation to avoid overwriting existing identities. Alternatively, you can install Performance Diagnostics using other authentication methods such as user-assigned managed identity or storage account access keys.
 
 ## Prerequisites
 
