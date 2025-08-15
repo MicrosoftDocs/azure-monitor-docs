@@ -111,7 +111,7 @@ After applying this configmap, `ama-logs-*` pods will get restarted automaticall
 Enable the Monitoring Add-on with high scale mode using the following Azure CLI commands to enable high scale logs mode for the Monitoring add-on depending on your AKS configuration.
 
 > [!NOTE]
-> Instead of CLI, you can use an ARM template to enable high scale mode for the Monitoring add-on. See [Enable Container Insights](kubernetes-monitoring-enable.md?tabs=arm#enable-container-insights) for guidance on enabling Container Insights using an ARM template. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Configure DCR with ARM templates](container-insights-data-collection-configure.md?tabs=arm#configure-dcr-with-arm-templates).
+> See [Enable Container Insights](kubernetes-monitoring-enable.md?tabs=arm#enable-container-insights) for guidance on enabling Container Insights other methods such as ARM, Bicep, and Terraform. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Configure DCR with ARM templates](container-insights-data-collection-configure.md?tabs=arm#configure-dcr-with-arm-templates).
 
 **Existing AKS cluster**
 
@@ -135,7 +135,7 @@ az aks create -g <resource-group-name> -n <cluster-name> enable-addons -a monito
 
 See [Create a private Azure Kubernetes Service (AKS) cluster](/azure/aks/private-clusters?tabs=azure-portal) for details on creating an AKS Private cluster. Use the additional parameters `--enable-high-scale-mode` and `--ampls-resource-id` to configure high log scale mode with Azure Monitor Private Link Scope Resource ID. 
 
-ARC cluster 
+**ARC-enabled cluster **
 
 ```azurecli
 az k8s-extension create --name azuremonitor-containers --resource-group <resource-group-name>  --cluster-name <cluster-name>  --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers --configuration-settings amalogs.enableHighLogScaleMode=true logAnalyticsWorkspaceResourceID=<workspace-resource-id> 

@@ -359,18 +359,17 @@ After the policy is assigned to the subscription, whenever you create a new clus
 Use one of the following methods to enable Container insights on your cluster. Once this is complete, see [Configure agent data collection for Container insights](container-insights-data-collection-configmap.md) to customize your configuration to ensure that you aren't collecting more data than you require.
 
 > [!IMPORTANT] 
+> Check the references below for configuration requirements for particular scenarios.
+> 
 > - If you have a single Azure Monitor Resource that is private-linked, you can't enable Container insights using the Azure portal. See [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md#container-insights-log-analytics-workspace).
 >
 > - To enable Container insights with network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
 >
-> - To enable [high scale mode](./container-insights-high-scale.md) for log collection, you must also update ConfigMap as described in [Update ConfigMap](./container-insights-high-scale.md#update-configmap).
+> - To enable high scale mode, follow the onboarding process at [Enable high scale mode for Monitoring add-on](./container-insights-high-scale.md#enable-high-scale-mode-for-monitoring-add-on). You must also ConfigMap as described in [Update ConfigMap](./container-insights-high-scale.md#update-configmap), and the DCR stream needs to be changed from `Microsoft-ContainerLogV2` to `Microsoft-ContainerLogV2-High1Scale`.
 
 ### [CLI](#tab/cli)
 
 Use one of the following commands to enable monitoring of your AKS and Arc-enabled clusters. If you don't specify an existing Log Analytics workspace, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one will be created with a name in the format `DefaultWorkspace-<GUID>-<Region>`.
-
-> [!IMPORTANT]
-> To enable high scale mode, follow the onboarding process at [Enable high scale mode for Monitoring add-on](./container-insights-high-scale.md#enable-high-scale-mode-for-monitoring-add-on).
 
 #### Prerequisites
 
