@@ -134,6 +134,8 @@ It runs a series of scenarios and displays the results.
 
 :::image type="content" source="media/agent-linux/ama-troubleshooter-interactive-mode.png" alt-text="Screenshot of the Bash window, which shows the result of the AgentTroubleshooter running with the -A option to output Troubleshooter results to the screen." lightbox="media/agent-linux/ama-troubleshooter-interactive-mode.png":::
 
+---
+
 ## Enabling automatic upgrade on VMSS appears in JSON but instances don't change
 
 When you enable *automatic extension upgrade* for `AzureMonitorLinuxAgent` on a Virtual Machine Scale Set, the flag first updates the scale set model. If your scale set's upgrade policy is set to *Manual*, this change doesn't propagate to existing instances until you apply the model update.
