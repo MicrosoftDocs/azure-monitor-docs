@@ -29,7 +29,7 @@ The following table lists the meters used to bill for data ingestion in your Log
 | 5000 GB/day Commitment Ties    | Azure Monitor         | 5,000 GB Commitment Tier Capacity Reservation         | yes             |
 | 10000 GB/day Commitment Tier   | Azure Monitor         | 10,000 GB Commitment Tier Capacity Reservation        | yes             |
 | 25000 GB/day Commitment Tier   | Azure Monitor         | 25,000 GB Commitment Tier Capacity Reservation        | yes             |
-| 50000 GB/day Commitment Ties   | Azure Monitor         | 50,000 GB Commitment Tier Capacity Reservation        | yes             |
+| 50000 GB/day Commitment Tier   | Azure Monitor         | 50,000 GB Commitment Tier Capacity Reservation        | yes             |
 | Per Node (legacy tier)         | Insight and Analytics | Standard Node                                        | no              |
 | Per Node (legacy tier)         | Insight and Analytics | Standard Data Overage per Node                       | no              |
 | Per Node (legacy tier)         | Insight and Analytics | Standard Data Included per Node                      | no              |
@@ -44,22 +44,29 @@ The **Standard Data Included per Node** meter is used both, for the Log Analytic
 
 The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the benefit from the [Microsoft Sentinel benefit for Microsoft 365 E5, A5, F5, and G5 customers](https://azure.microsoft.com/offers/sentinel-microsoft-365-offer/).
 
-## Other Azure Monitor logs meters
+## Log data retention
 
 | ServiceName           | MeterName                                | Regional Meter? |
 |-----------------------|------------------------------------------|-----------------|
 | Log Analytics         | Pay-as-you-go Data Retention or <br/> Analytics Logs Retention (*new name*)            | yes             |
-| Insight and Analytics | Standard Data Retention                  | no              |
 | Azure Monitor         | Data Archive or <br/> Long-term Retention (*new name*)                            | yes             |
-| Azure Monitor         | Search Queries Scanned                   | yes             |
-| Azure Monitor         | Search Jobs Scanned                      | yes             |
+| Insight and Analytics | Standard Data Retention | no              |
+
+**Pay-as-you-go Data Retention** (now **Analytics Logs Retention**) is interactive retention for workspaces in all modern pricing tiers (Pay-as-you-go and Commitment Tiers).  **Data Archive** (now **Long-term Retention**) is the meter for long-term data retention. **Standard Data Retention** is interactive retention for workspaces in the legacy Per Node and Standalone pricing tiers.  
+
+## Other Azure Monitor logs meters
+
+| ServiceName           | MeterName                                | Regional Meter? |
+|-----------------------|------------------------------------------|-----------------|
+| Azure Monitor         | [Search Queries Scanned](../logs/basic-logs-query.md)                   | yes             |
+| Azure Monitor         | [Search Jobs Scanned](../logs/search-jobs.md) | yes             |
 | Azure Monitor         | Data Restore                             | yes             |
 | Azure Monitor         | Log Analytics data export Data Exported  | yes             |
 | Azure Monitor         | Data Replication Data Replicated         | yes             |
-| Azure Monitor         | Log data ingestion and transformation GB | yes             |
-| Azure Monitor         | Platform Logs Data Processed             | yes             |
+| Azure Monitor         | Log data ingestion and transformation GB  <br/> Logs Processed GB (*new name*) | yes             |
+| Azure Monitor         | Platform Logs Data Processed            | yes             |
 
-**Pay-as-you-go Data Retention** is interactive retention for workspaces in all modern pricing tiers (Pay-as-you-go and Commitment Tiers).  **Standard Data Retention** is interactive retention for workspaces in the legacy Per Node and Standalone pricing tiers.  **Data Archive** is the meter for long-term data retention.
+
 
 ## Azure Monitor metrics meters:
 
