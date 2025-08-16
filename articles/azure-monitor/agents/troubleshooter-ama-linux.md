@@ -74,6 +74,7 @@ In addition, the following Python packages are required to run (all should be pr
 |xml.dom.minidom|yes|yes|
 
 ### Troubleshooter existence check
+
 Check for the existence of the AMA Agent Troubleshooter directory on the machine to be diagnosed to confirm the installation of the agent troubleshooter:
 
 ***/var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{version}***
@@ -91,6 +92,7 @@ If directory doesn't exist or the installation is failed, follow [Basic troubles
 If the directory exists, proceed to [Run the Troubleshooter](#run-the-troubleshooter).
 
 ## Run the Troubleshooter
+
 On the machine to be diagnosed, run the Agent Troubleshooter.
 
 **Log Mode** enables the collection of logs, which can then be compressed into .tgz format for export or review. **Interactive Mode** allows users to actively engage in troubleshooting scenarios and view the output directly within the shell.
@@ -131,6 +133,55 @@ It runs a series of scenarios and displays the results.
 > The interactive mode will **not** generate log files, but will **only** output results to the screen. Switch to log mode, if you need to generate log files.
 
 :::image type="content" source="media/agent-linux/ama-troubleshooter-interactive-mode.png" alt-text="Screenshot of the Bash window, which shows the result of the AgentTroubleshooter running with the -A option to output Troubleshooter results to the screen." lightbox="media/agent-linux/ama-troubleshooter-interactive-mode.png":::
+
+## Enabling automatic upgrade on VMSS appears in JSON but instances don't change
+
+When you enable *automatic extension upgrade* for `AzureMonitorLinuxAgent` on a Virtual Machine Scale Set, the flag first updates the scale set model. If your scale set's upgrade policy is set to *Manual*, this change doesn't propagate to existing instances until you apply the model update.
+
+### Fix
+
+Apply the latest model to instances.
+
+#### One time fix
+
+# [Portal](#tab/portal)
+
+1. Go to the **Azure portal**.
+1. Open your **Virtual Machine Scale Set**.
+1. Go to **Instances**.
+1. Select the intances to update.
+1. In the top menu bar, select **Upgrade** > **Apply latest model**.
+
+    This forces the current scale set model (including the updated `enableAutomaticUpgrade` flag) onto the selected instances.
+
+# [Programmatically](#tab/code)
+
+**Azure CLI**
+
+```azurecli
+az vmss update-instances -g <rg> -n <vmss> --instance-ids "*"
+```
+
+**PowerShell**
+
+```powershell
+Update-AzVmssInstance -ResourceGroupName <rg> -VMScaleSetName <vmss> -InstanceId "*"
+```
+
+---
+
+#### Ongoing fix
+
+Change upgrade policy to *Rolling* so future model changes flow automatically:
+
+**Azure CLI**
+
+```azurecli
+az vmss update -g <rg> -n <vmss> --set upgradePolicy.mode=Rolling
+```
+
+If specific VMs still don't update, check *Instance protection* (protect from scale set actions) and clear it if set.
+
 
 ---
 
