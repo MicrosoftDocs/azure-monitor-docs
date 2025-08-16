@@ -59,7 +59,7 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 | ServiceName           | MeterName                                | Regional Meter? |
 |-----------------------|------------------------------------------|-----------------|
 | Azure Monitor         | Search Queries Scanned                   | yes             |
-| Azure Monitor         | Search Jobs Scanned                      | yes             |
+| Azure Monitor         | [Search Jobs Scanned](../logs/search-job.md) | yes             |
 | Azure Monitor         | Data Restore                             | yes             |
 | Azure Monitor         | Log Analytics data export Data Exported  | yes             |
 | Azure Monitor         | Data Replication Data Replicated         | yes             |
