@@ -103,6 +103,13 @@ The first step is to update configmap for the cluster to instruct the Container 
     kubectl config set-context <cluster-name>
     kubectl apply -f <configmap_yaml_file.yaml>
     ```
+    
+    Example:
+    ```bash
+    kubectl config set-context my-cluster
+    kubectl apply -f container-azm-ms-agentconfig.yaml
+    ```
+
 
 After applying this configmap, `ama-logs-*` pods will get restarted automatically and configure the ama-logs daemonset pods to run in high scale mode. 
 

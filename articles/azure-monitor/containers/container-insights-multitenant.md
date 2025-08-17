@@ -36,7 +36,7 @@ When you enable the multitenancy feature through a ConfigMap, the Container Insi
 The following logic is used to determine how to process each log entry:
 
 * If there is a **ContainerLogV2Extension** DCR for the namespace of the log entry, that DCR is used to process the entry. This includes the Log Analytics workspace destination and any ingestion-time transformation.
-* If there isn't a **ContainerLogV2Extension** DCR for the namespace of the log entry, the default **ContainerInsights** DCR is used to process the entry. You can disable the default DCR ingestion with ConfigMap.
+* If there isn't a **ContainerLogV2Extension** DCR for the namespace of the log entry, the default **ContainerInsights** DCR is used to process the entry. You can disable the default DCR ingestion with the ConfigMap entry `disable_fallback_ingestion = false` under `[log_collection_settings.multi_tenancy]`.
 
 ## Limitations
 
@@ -67,6 +67,7 @@ The following logic is used to determine how to process each log entry:
         [log_collection_settings]
            [log_collection_settings.multi_tenancy]
             enabled = true 
+            disable_fallback_ingestion = false # If enabled, logs of the k8s namespaces for which ContainerLogV2Extension DCR is not configured will not be ingested to the default DCR.
 
 1. Apply the ConfigMap to the cluster with the following commands.
 
