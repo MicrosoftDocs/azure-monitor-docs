@@ -12,7 +12,7 @@ This article contains a reference of the billing meter names used by Azure Monit
 
 ## Log data ingestion
 
-The following table lists the meters used to bill for data ingestion in your Log Analytics workspaces, and whether the meter is regional. There's a different billing meter, `MeterId` in the export usage report for each region. Auxiliary Logs and Basic Logs table plans can be used when the workspace's pricing tier is Pay-as-you-go or any commitment tier, not any of the legacy pricing tiers.
+The following table lists the meters used to bill for data ingestion in your Log Analytics workspaces, and whether the meter is regional. There's a different billing meter, `MeterId` in the export usage report for each region. Auxiliary Logs and Basic Logs table plans can be used when the workspace's pricing tier is Pay-as-you-go or any commitment tier, not any of the legacy pricing tiers. 
 
 | Analytics Logs<br>Pricing tier | ServiceName           | MeterName                                            | Regional Meter? |
 |--------------------------------|-----------------------|------------------------------------------------------|-----------------|
