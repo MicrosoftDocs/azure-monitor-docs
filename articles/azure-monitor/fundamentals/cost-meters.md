@@ -65,7 +65,7 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 | Azure Monitor         | [Data Restore](../logs/restore.md)                             | yes             |
 | Azure Monitor         | [Log Analytics data export Data Exported](../logs/logs-data-export.md)  | yes             |
 | Azure Monitor         | [Data Replication Data Replicated](../logs/workspace-replication.md)         | yes             |
-| Azure Monitor         | [Log data ingestion and transformation GB  <br/> Logs Processed GB (*new name*)](../data-collection/data-collection-transformations.md) | yes             |
+| Azure Monitor         | [Log data ingestion and transformation GB  <br/> Logs Processed GB (*new name*)](../data-collection/data-collection-transformations.md) | yes  |
 | Azure Monitor         | [Platform Logs Data Processed](../fundamentals/data-sources.md)            | yes             |
 
 
