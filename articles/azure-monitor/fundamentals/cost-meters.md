@@ -33,7 +33,7 @@ The following table lists the meters used to bill for data ingestion in your Log
 | [Per Node](../logs/cost-logs.md#per-node-pricing-tier) (legacy tier)         | Insight and Analytics | Standard Node                                        | no              |
 | Per Node (legacy tier)         | Insight and Analytics | Standard Data Overage per Node                       | no              |
 | Per Node (legacy tier)         | Insight and Analytics | Standard Data Included per Node                      | no              |
-| [Standalone](../logs/cost-log.md#standalone-pricing-tier) (legacy tier)       | Log Analytics         | Pay-as-you-go Data Analyzed                          | no              |
+| [Standalone](../logs/cost-logs.md#standalone-pricing-tier) (legacy tier)       | Log Analytics         | Pay-as-you-go Data Analyzed                          | no              |
 | [Standard](../logs/cost-logs.md#standard-and-premium-pricing-tiers) (legacy tier)         | Log Analytics         | Standard Data Analyzed                               | no              |
 | [Premium](../logs/cost-logs.md#standard-and-premium-pricing-tiers) (legacy tier)          | Log Analytics         | Premium Data Analyzed                                | no              |
 | (any)                          | Azure Monitor         | Free Benefit - Microsoft 365 Defender Data Ingestion | yes             |
