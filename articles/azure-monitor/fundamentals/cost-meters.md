@@ -18,7 +18,7 @@ The following table lists the meters used to bill for data ingestion in your Log
 |--------------------------------|-----------------------|------------------------------------------------------|-----------------|
 | (any)                          | Azure Monitor         | [Auxiliary Logs Data Ingestion](../logs/cost-logs.md#basic-and-auxiliary-table-plans)                        | yes             |
 | (any)                          | Azure Monitor         | [Basic Logs Data Ingestion](../logs/cost-logs.md#basic-and-auxiliary-table-plans)                      | yes             |
-| Pay-as-you-go                  | Log Analytics         | Pay-as-you-go Data Ingestion or <br/> Analytics Logs Pay-as-you-go Data Ingestion (*new name*)                        | yes             |
+| [Pay-as-you-go](../logs/cost-logs.md#pricing-model)                  | Log Analytics         | Pay-as-you-go Data Ingestion or <br/> Analytics Logs Pay-as-you-go Data Ingestion (*new name*)                        | yes             |
 | [100 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)     | Azure Monitor         | 100 GB Commitment Tier Capacity Reservation          | yes             |
 | [200 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)     | Azure Monitor         | 200 GB Commitment Tier Capacity Reservation          | yes             |
 | [300 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)     | Azure Monitor         | 300 GB Commitment Tier Capacity Reservation          | yes             |
