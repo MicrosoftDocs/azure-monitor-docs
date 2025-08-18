@@ -2,7 +2,7 @@
 title: Azure Monitor endpoint access and firewall configuration | Microsoft Docs
 description: Ensure your Azure resources can connect to Azure Monitor by configuring firewall rules and understanding endpoint access requirements.
 ms.topic: reference
-ms.date: 07/01/2025
+ms.date: 08/18/2025
 ms.servce: azure-monitor
 ms.reviewer: rofrenke
 ---
@@ -11,7 +11,7 @@ ms.reviewer: rofrenke
 
 If your monitored application or infrastructure is behind a firewall, you need to configure network access to allow communication with [Azure Monitor](overview.md) services.
 
-Azure Monitor uses [service tags](/azure/virtual-network/service-tags-overview), which provide a dynamic way to manage network access, especially if you're using [Azure network security groups](/azure/virtual-network/network-security-groups-overview) or Azure firewall. For hybrid or on-premises resources, retrieve the equivalent IP address lists programmatically or download them as JSON files. For more information, see [Service tags on-premises](/azure/virtual-network/service-tags-overview#service-tags-on-premises).
+Azure Monitor uses [service tags](/azure/virtual-network/service-tags-overview), which provide a dynamic way to manage network access, especially if you're using [Azure network security groups](/azure/virtual-network/network-security-groups-overview), Azure firewall, or next generation firewalls (NGFW) that can implement service tags. For hybrid or on-premises resources, or network perimeter controls that don't support service tags, retrieve the equivalent IP address lists programmatically or download them as JSON files. For more information, see [Service tags on-premises](/azure/virtual-network/service-tags-overview#service-tags-on-premises).
 
 To cover all necessary exceptions, use the service tags `ActionGroup`, `ApplicationInsightsAvailability`, and `AzureMonitor`. Service tags don't replace validation and authentication checks required for cross-tenant communications between a customer's Azure resource and other service tag resources.
 
@@ -85,7 +85,6 @@ Starting **March 1, 2026**,  Logs Ingestion enforces TLS 1.2 or higher for secur
 |---------|-----|-------|
 | Portal | `portal.loganalytics.io` | 443 |
 
-The Log Analytics team owns the *.loganalytics.io domain.
 
 ### Application Insights Azure portal extension
 
@@ -102,7 +101,7 @@ The Log Analytics team owns the *.loganalytics.io domain.
 
 ### Action group webhooks
 
-Webhooks require inbound network access. Eliminate the need to update firewall and network configurations by using the **ActionGroup** service tag. Alternatively, you can query the current list of IP addresses used by action groups with the [Get-AzNetworkServiceTag PowerShell command](/powershell/module/az.network/Get-AzNetworkServiceTag) or the other [Service tags on-premises](/azure/virtual-network/service-tags-overview#service-tags-on-premises) methods mentioned earlier.
+Webhooks require inbound network access. Eliminate the need to update firewall and network configurations by using the **ActionGroup** service tag. Alternatively, you can query the current list of IP addresses used by action groups with the [Get-AzNetworkServiceTag PowerShell command](/powershell/module/az.network/Get-AzNetworkServiceTag) or the other [Service tags on-premises](/azure/virtual-network/service-tags-overview#service-tags-on-premises) methods.
 
 Here's an example of an inbound security rule with an ActionGroup service tag:
 
@@ -143,11 +142,3 @@ Route traffic from your server to a gateway on your intranet by overwriting endp
 
 Your gateway should route traffic to our endpoint's base address. In your configuration, replace the default values with `http://<your.gateway.address>/<relative path>`.
 
-#### What if my product doesn't support service tags?
-
-If your product doesn't support service tags, take the following steps to ensure full connectivity:
-
-* Check the latest IP ranges in the [downloadable Azure IP ranges and service tags JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files), which updates weekly.
-* Review firewall logs for blocked requests and update your allowlist as needed.
-
-For more information, see [Azure Service Tags overview](/azure/virtual-network/service-tags-overview).
