@@ -18,21 +18,21 @@ The following table lists the meters used to bill for data ingestion in your Log
 |--------------------------------|-----------------------|------------------------------------------------------|-----------------|
 | (any)                          | Azure Monitor         | [Auxiliary Logs Data Ingestion](../logs/cost-logs.md#basic-and-auxiliary-table-plans)                        | yes             |
 | (any)                          | Azure Monitor         | [Basic Logs Data Ingestion](../logs/cost-logs.md#basic-and-auxiliary-table-plans)                      | yes             |
-| Pay-as-you-go                  | Log Analytics         | Pay-as-you-go Data Ingestion or <br/> Analytics Logs Pay-as-you-go Data Ingestion (*new name*)                        | yes             |
-| 100 GB/day [Commitment Tier](../logs/cost-logs.md#commitment-tiers)     | Azure Monitor         | 100 GB Commitment Tier Capacity Reservation          | yes             |
-| 200 GB/day Commitment Tier     | Azure Monitor         | 200 GB Commitment Tier Capacity Reservation          | yes             |
-| 300 GB/day Commitment Tier     | Azure Monitor         | 300 GB Commitment Tier Capacity Reservation          | yes             |
-| 400 GB/day Commitment Tier     | Azure Monitor         | 400 GB Commitment Tier Capacity Reservation          | yes             |
-| 500 GB/day Commitment Tier     | Azure Monitor         | 500 GB Commitment Tier Capacity Reservation          | yes             |
-| 1000 GB/day Commitment Tier    | Azure Monitor         | 1,000 GB Commitment Tier Capacity Reservation         | yes             |
-| 2000 GB/day Commitment Tier    | Azure Monitor         | 2,000 GB Commitment Tier Capacity Reservation         | yes             |
-| 5000 GB/day Commitment Ties    | Azure Monitor         | 5,000 GB Commitment Tier Capacity Reservation         | yes             |
-| 10000 GB/day Commitment Tier   | Azure Monitor         | 10,000 GB Commitment Tier Capacity Reservation        | yes             |
-| 25000 GB/day Commitment Tier   | Azure Monitor         | 25,000 GB Commitment Tier Capacity Reservation        | yes             |
-| 50000 GB/day Commitment Tier   | Azure Monitor         | 50,000 GB Commitment Tier Capacity Reservation        | yes             |
+| [Pay-as-you-go](../logs/cost-logs.md#pricing-model)                  | Log Analytics         | Pay-as-you-go Data Ingestion or <br/> Analytics Logs Pay-as-you-go Data Ingestion (*new name*)                        | yes             |
+| [100 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)     | Azure Monitor         | 100 GB Commitment Tier Capacity Reservation          | yes             |
+| [200 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)     | Azure Monitor         | 200 GB Commitment Tier Capacity Reservation          | yes             |
+| [300 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)     | Azure Monitor         | 300 GB Commitment Tier Capacity Reservation          | yes             |
+| [400 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)     | Azure Monitor         | 400 GB Commitment Tier Capacity Reservation          | yes             |
+| [500 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)     | Azure Monitor         | 500 GB Commitment Tier Capacity Reservation          | yes             |
+| [1000 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)    | Azure Monitor         | 1000 GB Commitment Tier Capacity Reservation         | yes             |
+| [2000 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)    | Azure Monitor         | 2000 GB Commitment Tier Capacity Reservation         | yes             |
+| [5000 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)    | Azure Monitor         | 5000 GB Commitment Tier Capacity Reservation         | yes             |
+| [10000 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)   | Azure Monitor         | 10000 GB Commitment Tier Capacity Reservation        | yes             |
+| [25000 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)   | Azure Monitor         | 25000 GB Commitment Tier Capacity Reservation        | yes             |
+| [50000 GB/day Commitment Tier](../logs/cost-logs.md#commitment-tiers)   | Azure Monitor         | 50000 GB Commitment Tier Capacity Reservation        | yes             |
 | [Per Node](../logs/cost-logs.md#per-node-pricing-tier) (legacy tier)         | Insight and Analytics | Standard Node                                        | no              |
-| Per Node (legacy tier)         | Insight and Analytics | Standard Data Overage per Node                       | no              |
-| Per Node (legacy tier)         | Insight and Analytics | Standard Data Included per Node                      | no              |
+| [Per Node](../logs/cost-logs.md#per-node-pricing-tier) (legacy tier)         | Insight and Analytics | Standard Data Overage per Node                       | no              |
+| [Per Node](../logs/cost-logs.md#per-node-pricing-tier) (legacy tier)         | Insight and Analytics | Standard Data Included per Node                      | no              |
 | [Standalone](../logs/cost-logs.md#standalone-pricing-tier) (legacy tier)       | Log Analytics         | Pay-as-you-go Data Analyzed                          | no              |
 | [Standard](../logs/cost-logs.md#standard-and-premium-pricing-tiers) (legacy tier)         | Log Analytics         | Standard Data Analyzed                               | no              |
 | [Premium](../logs/cost-logs.md#standard-and-premium-pricing-tiers) (legacy tier)          | Log Analytics         | Premium Data Analyzed                                | no              |
@@ -64,9 +64,9 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 | Azure Monitor         | [Search Jobs Scanned](../logs/search-jobs.md) | yes             |
 | Azure Monitor         | [Data Restore](../logs/restore.md)                             | yes             |
 | Azure Monitor         | [Log Analytics data export Data Exported](../logs/logs-data-export.md)  | yes             |
-| Azure Monitor         | Data Replication Data Replicated         | yes             |
-| Azure Monitor         | Log data ingestion and transformation GB  <br/> Logs Processed GB (*new name*) | yes             |
-| Azure Monitor         | Platform Logs Data Processed            | yes             |
+| Azure Monitor         | [Data Replication Data Replicated](../logs/workspace-replication.md)         | yes             |
+| Azure Monitor         | [Log data ingestion and transformation GB  <br/> Logs Processed GB (*new name*)](../data-collection/data-collection-transformations.md) | yes  |
+| Azure Monitor         | [Platform Logs Data Processed](../fundamentals/data-sources.md)            | yes             |
 
 
 
