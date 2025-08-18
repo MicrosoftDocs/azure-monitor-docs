@@ -69,6 +69,8 @@ If you write your own client to send log data to your Log Analytics workspace, e
 
 * The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
 
+* A replicated workspace can't be deleted. To properly delete a workspace, first disable replication.
+
 * Microsoft Sentinel refreshes logs in the Watchlist and Threat Intelligence tables every 12 days. So, because only new logs are ingested to the replicated workspace, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary location.
 
 * The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents.
