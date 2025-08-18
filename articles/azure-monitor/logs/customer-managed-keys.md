@@ -217,10 +217,6 @@ Content-type: application/json
       "keyVaultUri": "https://key-vault-name.vault.azure.net",
       "keyName": "key-name",
       "keyVersion": ""
-  },
-  "sku": {
-    "name": "CapacityReservation",
-    "capacity": 100
   }
 }
 ```
