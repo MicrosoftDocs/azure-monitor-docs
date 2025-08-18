@@ -22,7 +22,7 @@ When you delete a Log Analytics workspace into a soft-delete state, a soft-delet
 After the soft-delete period, the workspace resource and its data are non-recoverable and queued for purge completely within 30 days. The workspace name is released and you can use it to create a new workspace.
 
 > [!NOTE]
-> A replicated workspace can't be deleted. To properly delete a workspace, first disable replication. For more information, see [Disable workspace replication](workspace-replications.md#disable-workspace-replication).
+> A replicated workspace can't be deleted. To properly delete a workspace, first disable replication. For more information, see [Disable workspace replication](workspace-replication.md#disable-workspace-replication).
 ><br><br>
 > If you want to override the soft-delete behavior and permanently delete your workspace, follow the steps in [Delete a workspace permanently](#delete-a-workspace-permanently). Use this method with caution since it's a non-recoverable operation.
 
