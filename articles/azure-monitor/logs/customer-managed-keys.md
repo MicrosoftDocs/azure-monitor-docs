@@ -206,7 +206,7 @@ Get-Job -Command "New-AzOperationalInsightsCluster*" | Format-List -Property *
 
 # [REST](#tab/rest)
 
-```rst
+```rest
 PATCH https://management.azure.com/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/Microsoft.OperationalInsights/clusters/cluster-name?api-version=2023-09-01
 Authorization: Bearer <token> 
 Content-type: application/json
@@ -217,10 +217,7 @@ Content-type: application/json
       "keyVaultUri": "https://key-vault-name.vault.azure.net",
       "keyName": "key-name",
       "keyVersion": ""
-  },
-  "sku": {
-    "name": "CapacityReservation",
-    "capacity": 100
+    }
   }
 }
 ```
