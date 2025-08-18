@@ -268,7 +268,7 @@ Search jobs are subject to the following considerations:
 * Optimized to query one table at a time.
 * Search date range is any period within the total retention.
 * Supports long running searches up to a 24-hour time-out.
-* Results are limited to one million records in the record set.
+* Results are limited to 100 million records in the record set.
 * Concurrent execution is limited to ten search jobs per workspace.
 * Limited to 200 search results tables per workspace.
 * Limited to 200 search job executions per day per workspace. 
