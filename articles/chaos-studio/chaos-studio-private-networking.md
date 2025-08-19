@@ -193,13 +193,13 @@ When using Chaos Studio with virtual network injection, the managed identity for
 
 ### Network Security Group (NSG) port requirements
 
-If you're using Network Security Groups to control traffic in your virtual network, you need to configure the following port rules:
+If you're using Network Security Groups to control traffic in your virtual network, you may need to add port rules.
 
 > [!IMPORTANT]
 > By default, all of the following communication is allowed, but if you have a stricter security posture, you may need to adjust NSG rules appropriately:
-> - `ChaosStudioRelaySubnet` and `ChaosStudioContainerSubnet` need two-way TCP communication over port 443 (each subnet needs to communicate with the other subnet)
-> - `ChaosStudioContainerSubnet` needs outbound connection to destination 'any' over port 443 and port range 9400-9599 for handshake purposes with the Azure Relay service
-> - `ChaosStudioContainerSubnet` needs to connect to AKS API server over port 443
+> - `ChaosStudioRelaySubnet` and `ChaosStudioContainerSubnet` need two-way TCP communication over port **443** (each subnet needs to communicate with the other subnet)
+> - `ChaosStudioContainerSubnet` needs outbound connection to destination 'any' over port **443** and port range **9400-9599** for handshake purposes with the Azure Relay service
+> - `ChaosStudioContainerSubnet` needs to connect to the AKS API server over port **443**
 
 **`ChaosStudioRelaySubnet`**: Uses Azure Relay's Hybrid Connection for secure tunneling between Chaos Studio and your private resources.
 
