@@ -30,7 +30,7 @@ To use Chaos Studio with virtual network injection, you must meet the following 
     1. Both subnets need at least `/28` for the size of the address space (in this case `/27` is larger than `/28`, for example). An example is an address prefix of `10.0.0.0/28` or `10.0.0.0/24`.
     1. The container subnet must be delegated to `Microsoft.ContainerInstance/containerGroups`.
     1. The subnets can be arbitrarily named, but we recommend `ChaosStudioContainerSubnet` and `ChaosStudioRelaySubnet`.
-    1. **Network Security Groups (NSG)**: If using NSGs to control traffic, ensure both subnets allow **port 443** for inbound and outbound traffic. See the [Permissions and security](#permissions-and-security) section for detailed port requirements.
+    1. **Network Security Groups (NSG)**: If using NSGs to control traffic, ensure both subnets allow the required ports for inbound and outbound traffic. See the [Permissions and security](#permissions-and-security) section for detailed port requirements.
 1. When you enable the desired resource as a target so that you can use it in Chaos Studio experiments, the following properties must be set:
     1. Set `properties.subnets.containerSubnetId` to the ID for the container subnet.
     1. Set `properties.subnets.relaySubnetId` to the ID for the relay subnet.
@@ -193,22 +193,19 @@ When using Chaos Studio with virtual network injection, the managed identity for
 
 ### Network Security Group (NSG) port requirements
 
-If you're using Network Security Groups to control traffic in your virtual network, you need to configure the following port rules:
+If you're using Network Security Groups to control traffic in your virtual network, you may need to add port rules.
 
-#### Relay subnet requirements
-The Relay subnet uses Azure Relay's Hybrid Connection for secure tunneling between Chaos Studio and your private resources. Configure the following rules:
+> [!IMPORTANT]
+> By default, all of the following communication is allowed, but if you have a stricter security posture, you may need to adjust NSG rules appropriately:
+> - `ChaosStudioRelaySubnet` and `ChaosStudioContainerSubnet` need two-way TCP communication over port **443** (each subnet needs to communicate with the other subnet)
+> - `ChaosStudioContainerSubnet` needs outbound connection to destination 'any' over port **443** and port range **9400-9599** for handshake purposes with the Azure Relay service
+> - `ChaosStudioContainerSubnet` needs to connect to the AKS API server over port **443**
 
-- **Inbound traffic**: Allow port **443** (HTTPS) - Required for receiving connections from Chaos Studio
-- **Outbound traffic**: Allow port **443** (HTTPS) - Required for establishing connections to Azure Relay service
+**`ChaosStudioRelaySubnet`**: Uses Azure Relay's Hybrid Connection for secure tunneling between Chaos Studio and your private resources.
 
-#### Container subnet requirements  
-The Container subnet hosts the containerized workloads that execute chaos experiments. Configure the following rules:
+**`ChaosStudioContainerSubnet`**: Hosts the containerized workloads that execute chaos experiments. It stands up a listener process that listens for hybrid connections.
 
-- **Inbound traffic**: Allow port **443** (HTTPS) - Required for the container to accept hybrid connection traffic
-- **Outbound traffic**: Allow port **443** (HTTPS) - Required for communicating with target resource data planes (for example, Kubernetes API endpoints for Chaos Mesh faults)
-
-> [!NOTE]
-> All communication uses standard HTTPS port 443, as documented in [Azure Relay port settings](/azure/azure-relay/relay-port-settings).
+Learn more about port requirements in the [Azure Relay port settings](/azure/azure-relay/relay-port-settings).
 
 
 ## Network and Security Configuration
