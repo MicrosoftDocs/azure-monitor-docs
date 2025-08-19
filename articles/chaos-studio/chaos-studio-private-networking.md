@@ -30,7 +30,7 @@ To use Chaos Studio with virtual network injection, you must meet the following 
     1. Both subnets need at least `/28` for the size of the address space (in this case `/27` is larger than `/28`, for example). An example is an address prefix of `10.0.0.0/28` or `10.0.0.0/24`.
     1. The container subnet must be delegated to `Microsoft.ContainerInstance/containerGroups`.
     1. The subnets can be arbitrarily named, but we recommend `ChaosStudioContainerSubnet` and `ChaosStudioRelaySubnet`.
-    1. **Network Security Groups (NSG)**: If using NSGs to control traffic, ensure both subnets allow **port 443** for inbound and outbound traffic. See the [Permissions and security](#permissions-and-security) section for detailed port requirements.
+    1. **Network Security Groups (NSG)**: If using NSGs to control traffic, ensure both subnets allow the required ports for inbound and outbound traffic. See the [Permissions and security](#permissions-and-security) section for detailed port requirements.
 1. When you enable the desired resource as a target so that you can use it in Chaos Studio experiments, the following properties must be set:
     1. Set `properties.subnets.containerSubnetId` to the ID for the container subnet.
     1. Set `properties.subnets.relaySubnetId` to the ID for the relay subnet.
