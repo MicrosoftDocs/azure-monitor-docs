@@ -141,34 +141,32 @@ items:
         items:
         - name: .NET
           items:
-          - name: ASP.NET (Core) App Monitoring
-            displayName: NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, c#, csharp
-            href: app/asp-net.md
-          - name: ILogger
-            displayName: ilogger, logging, log
-            href: app/ilogger.md
-          - name: Non-HTTP, console, and background apps
-            displayName: console, .NET, .NET Core, dotnet console, dotnet, c#, csharp, NET, worker, background, generic host
-            href: app/worker-service.md
-          - name: Advanced ASP.NET SDK topics
-            items:
-            - name: GetMetric
-              displayName: get metric, custom metrics, metrics, TrackMetric
-              href: app/get-metric.md
-            - name: ApplicationInsights.config
-              href: app/configuration-with-applicationinsights-config.md
-            - name: TelemetryChannels
-              displayName: in memory, server telemetry channel, channel, inmemory, servertelemetry
-              href: app/telemetry-channels.md
-            - name: Track custom operations in .NET SDK
-              displayName: correlation, dependency, dependencies, track dependency, OWIN, queue, service bus, background tasks, long running background tasks, outgoing dependency tracking, parallel operations, System.Diagnostics.Activity, System.Diagnostics.DiagnosticSource, StartOperation, StopOperation
-              href: app/custom-operations-tracking.md
-            - name: Performance and event counters
-              href: app/asp-net-counters.md
-            - name: Exceptions
-              href: app/asp-net-exceptions.md
-            - name: ASP.NET Dependencies
-              href: app/asp-net-dependencies.md
+            - name: ASP.NET (Core) App Monitoring
+              displayName: NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, c#, csharp
+              href: app/asp-net.md
+            - name: ILogger
+              displayName: ilogger, logging, log
+              href: app/ilogger.md
+            - name: Non-HTTP, console, and background apps
+              displayName: console, .NET, .NET Core, dotnet console, dotnet, c#, csharp, NET, worker, background, generic host
+              href: app/worker-service.md
+            - name: Advanced ASP.NET SDK topics
+              items:
+              - name: GetMetric
+                displayName: get metric, custom metrics, metrics, TrackMetric
+                href: app/get-metric.md
+              - name: ApplicationInsights.config
+                href: app/configuration-with-applicationinsights-config.md
+              - name: TelemetryChannels
+                displayName: in memory, server telemetry channel, channel, inmemory, servertelemetry
+                href: app/telemetry-channels.md
+              - name: Track custom operations in .NET SDK
+                href: app/custom-operations-tracking.md
+                displayName: correlation, dependency, dependencies, track dependency, OWIN, queue, service bus, background tasks, long running background tasks, outgoing dependency tracking, parallel operations, System.Diagnostics.Activity, System.Diagnostics.DiagnosticSource, StartOperation, StopOperation
+              - name: Performance and event counters
+                href: app/asp-net-counters.md
+              - name: Exceptions
+                href: app/asp-net-exceptions.md
         - name: Node.js
           href: app/nodejs.md
         - name: Python OpenCensus (retired)
@@ -311,6 +309,8 @@ items:
       - name: Geolocation and IP address handling
         displayName: geolocation, IP collection, IP tracking, IP storage
         href: app/ip-collection.md
+      - name: Dependencies
+        href: app/dependencies.md
       - name: Metrics
         href: app/metrics-overview.md
       - name: Microsoft Entra authentication
@@ -1496,6 +1496,8 @@ items:
           href: alerts/alerts-create-log-alert-rule.md
         - name: Set up a simple log search alert
           href: alerts/alerts-create-simple-alert.md
+        - name: Set up a tenant level alert
+          href: alerts/alerts-create-tenant-level-service-heath-alerts.md
         - name: Set up an activity log, service health or resource health alert
           href: alerts/alerts-create-activity-log-alert-rule.md
         - name: Set up a Prometheus alert

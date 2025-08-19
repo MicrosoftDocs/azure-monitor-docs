@@ -1238,6 +1238,8 @@ items:
             href: tables/microsoft-azureadgraph_tenants.md
           - name: microsoft.azuredatatransfer/connections
             href: tables/microsoft-azuredatatransfer_connections.md
+          - name: microsoft.azuremonitordiagnosticsagents/datacollection
+            href: tables/microsoft-azuremonitordiagnosticsagents-datacollection.md
           - name: microsoft.azureplaywrightservice/accounts
             href: tables/microsoft-azureplaywrightservice_accounts.md
           - name: microsoft.azuresphere/catalogs
@@ -1542,6 +1544,8 @@ items:
             href: tables/microsoft-workloadmonitor_monitors.md
           - name: nginx.nginxplus/nginxdeployments
             href: tables/nginx-nginxplus_nginxdeployments.md
+          - name: oracle.database/cloudvmclusters
+            href: tables/oracle-database-cloudvmclusters.md
       - name: Log Analytics tables by table name
         expanded: false
         items:
@@ -2231,6 +2235,10 @@ items:
             href: tables/dsmdataclassificationlogs.md
           - name: DSMDataLabelingLogs
             href: tables/dsmdatalabelinglogs.md
+          - name: DataSetOutput
+            href: tables/datasetoutput.md
+          - name: DataSetRuns
+            href: tables/datasetruns.md
           - name: DataTransferOperations
             href: tables/datatransferoperations.md
           - name: DatabricksAccounts
@@ -2847,6 +2855,12 @@ items:
             href: tables/pgsqlserverlogs.md
           - name: Perf
             href: tables/perf.md
+          - name: PerfInsightsFindings
+            href: tables/perfinsightsfindings.md
+          - name: PerfInsightsImpactedResources
+            href: tables/perfinsightsimpactedresources.md
+          - name: PerfInsightsRun
+            href: tables/perfinsightsrun.md
           - name: PowerAppsActivity
             href: tables/powerappsactivity.md
           - name: PowerAutomateActivity
@@ -3513,6 +3527,10 @@ items:
             href: queries/DCRLogErrors.md
           - name: DNSQueryLogs
             href: queries/DNSQueryLogs.md
+          - name: DataSetOutput
+            href: queries/DataSetOutput.md
+          - name: DataSetRuns
+            href: queries/DataSetRuns.md
           - name: DataTransferOperations
             href: queries/DataTransferOperations.md
           - name: DatabricksBudgetPolicyCentral
@@ -3653,8 +3671,24 @@ items:
             href: queries/OfficeActivity.md
           - name: OktaSystemLogs
             href: queries/OktaSystemLogs.md
+          - name: PGSQLAutovacuumStats
+            href: queries/PGSQLAutovacuumStats.md
+          - name: PGSQLDbTransactionsStats
+            href: queries/PGSQLDbTransactionsStats.md
+          - name: PGSQLPgBouncer
+            href: queries/PGSQLPgBouncer.md
+          - name: PGSQLPgStatActivitySessions
+            href: queries/PGSQLPgStatActivitySessions.md
+          - name: PGSQLQueryStoreRuntime
+            href: queries/PGSQLQueryStoreRuntime.md
+          - name: PGSQLQueryStoreWaits
+            href: queries/PGSQLQueryStoreWaits.md
+          - name: PGSQLServerLogs
+            href: queries/PGSQLServerLogs.md
           - name: Perf
             href: queries/Perf.md
+          - name: PerfInsightsImpactedResources
+            href: queries/PerfInsightsImpactedResources.md
           - name: PowerAppsActivity
             href: queries/PowerAppsActivity.md
           - name: PowerAutomateActivity

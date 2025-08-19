@@ -1,6 +1,6 @@
 ---
-title: High scale logs collection in Container Insights (Preview) 
-description: Enable high scale logs collection in Container Insights (Preview).
+title: High scale logs collection in Container Insights (Preview)
+description: Enable high scale logs collection in Container Insights.
 ms.topic: article
 ms.date: 08/06/2024
 ---
@@ -8,9 +8,6 @@ ms.date: 08/06/2024
 # High scale logs collection in Container Insights (Preview)
 
 High scale mode is a feature in Container Insights that enables you to collect container console (stdout & stderr) logs with high throughput from your Azure Kubernetes Service (AKS) cluster nodes. This feature enables you to collect up to 50,000 logs/sec per node.
-
-> [!NOTE]
-> This feature is currently in public preview. For additional information, read the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Overview
 
@@ -44,8 +41,8 @@ ContainerLogV2
 
 ## Prerequisites 
 
-* Azure CLI version 2.63.0 or higher.
-* AKS-preview CLI extension version must be 7.0.0b4 or higher if an aks-preview CLI extension is installed.
+* Azure CLI version 2.74.0 or higher.
+* Azure CLI k8s-extension version 1.6.7 or higher for if you are managing Azure Arc-enabled Kubernetes. 
 * Cluster schema must be [configured for ContainerLogV2](container-insights-logs-schema.md#enable-the-containerlogv2-schema).
 * If the default resource limits (CPU and memory) on ama-logs daemon set container doesn't meet your log scale requirements, contact the Microsoft support channel to increase the resource limits of your ama-logs container.
 
@@ -65,12 +62,11 @@ The endpoint is the **Logs Ingestion** endpoint from the data collection endpoin
 
 ## Limitations 
 
-The following scenarios aren't supported during the preview release. These will be addressed when the feature becomes generally available.
+The following scenarios aren't supported.
 
-* AKS Clusters with Arm64 nodes
-* Azure Arc-enabled Kubernetes
 * HTTP proxy with trusted certificate
-* Onboarding through Azure portal, Azure Policy, Terraform and Bicep 
+* Onboarding through Azure portal
+* Onboarding through Bicep, Terraform, Azure Policy for Azure Arc-enabled Kubernetes
 * Configuring through **Monitor Settings** in the AKS Insights portal experience
 * Automatic migration from existing Container Insights
 
@@ -107,6 +103,13 @@ The first step is to update configmap for the cluster to instruct the Container 
     kubectl config set-context <cluster-name>
     kubectl apply -f <configmap_yaml_file.yaml>
     ```
+    
+    Example:
+    ```bash
+    kubectl config set-context my-cluster
+    kubectl apply -f container-azm-ms-agentconfig.yaml
+    ```
+
 
 After applying this configmap, `ama-logs-*` pods will get restarted automatically and configure the ama-logs daemonset pods to run in high scale mode. 
 
@@ -115,7 +118,7 @@ After applying this configmap, `ama-logs-*` pods will get restarted automaticall
 Enable the Monitoring Add-on with high scale mode using the following Azure CLI commands to enable high scale logs mode for the Monitoring add-on depending on your AKS configuration.
 
 > [!NOTE]
-> Instead of CLI, you can use an ARM template to enable high scale mode for the Monitoring add-on. See [Enable Container Insights](kubernetes-monitoring-enable.md?tabs=arm#enable-container-insights) for guidance on enabling Container Insights using an ARM template. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Configure DCR with ARM templates](container-insights-data-collection-configure.md?tabs=arm#configure-dcr-with-arm-templates).
+> See [Enable Container Insights](kubernetes-monitoring-enable.md?tabs=arm#enable-container-insights) for guidance on enabling Container Insights other methods such as ARM, Bicep, and Terraform. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Configure DCR with ARM templates](container-insights-data-collection-configure.md?tabs=arm#configure-dcr-with-arm-templates).
 
 **Existing AKS cluster**
 
@@ -132,19 +135,25 @@ az aks enable-addons -a monitoring -g <resource-group-name> -n <cluster-name> --
 **New AKS cluster**
 
 ```azurecli
-az aks create -g <cluster-name> -n <cluster-name> enable-addons -a monitoring --enable-high-log-scale-mode
+az aks create -g <resource-group-name> -n <cluster-name> enable-addons -a monitoring --enable-high-log-scale-mode
 ```
 
 **New AKS Private cluster**
 
 See [Create a private Azure Kubernetes Service (AKS) cluster](/azure/aks/private-clusters?tabs=azure-portal) for details on creating an AKS Private cluster. Use the additional parameters `--enable-high-scale-mode` and `--ampls-resource-id` to configure high log scale mode with Azure Monitor Private Link Scope Resource ID. 
 
+**ARC-enabled cluster**
+
+```azurecli
+az k8s-extension create --name azuremonitor-containers --resource-group <resource-group-name>  --cluster-name <cluster-name>  --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers --configuration-settings amalogs.enableHighLogScaleMode=true logAnalyticsWorkspaceResourceID=<workspace-resource-id> 
+```
+
 ## Migration
 
 If Container Insights is already enabled for your cluster, then you need to disable it and then re-enable it with high scale mode.
 
 * Since high scale mode uses a different data pipeline, you must ensure that pipeline endpoints aren't blocked by a firewall or other network connections.
-* High scale mode requires a data collection endpoint (DCE) for ingestion in addition to the standard DCR for data collection. If you've created any DCRs that use `Microsoft.ContainerLogV2`, you must replace this with `Microsoft.ContainerLogV2-HighScale` or data will be duplicated. You should also create a DCE for ingestion and link it to the DCR if the DCR isn't already using one. Refer to Container Insights onboarding through Azure Resource Manager for reference for the dependencies. 
+* High scale mode requires a data collection endpoint (DCE) for ingestion in addition to the standard DCR for data collection. If you've created any DCRs that use `Microsoft-ContainerLogV2`, you must replace this with `Microsoft-ContainerLogV2-HighScale` or data will be duplicated. You should also create a DCE for ingestion and link it to the DCR if the DCR isn't already using one. Refer to Container Insights onboarding through Azure Resource Manager for reference for the dependencies. 
 
 ## Monitor QoS metrics with Prometheus and Grafana 
 

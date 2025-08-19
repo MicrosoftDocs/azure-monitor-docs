@@ -167,6 +167,7 @@ This step updates dedicated cluster storage with the key and version to use for 
 >[!IMPORTANT]
 >- Key rotation can be automatic or per explicit key version, see [Key rotation](#key-rotation) to determine suitable approach before updating the key identifier details in cluster.
 >- Cluster update should not include both identity and key identifier details in the same operation. If you need to update both, the update should be in two consecutive operations.
+>- If you're only enabling or changing CMK, use the REST API instead of the CLI. The cluster update CLI sends an update to capacity even when that property isn't used in the command, triggering thresholds for 30 day change or 500GB minimum.
 
 :::image type="content" source="media/customer-managed-keys/key-identifier-8bit.png" lightbox="media/customer-managed-keys/key-identifier-8bit.png" alt-text="Screenshot of Grant Key Vault permissions.":::
 
@@ -205,7 +206,7 @@ Get-Job -Command "New-AzOperationalInsightsCluster*" | Format-List -Property *
 
 # [REST](#tab/rest)
 
-```rst
+```rest
 PATCH https://management.azure.com/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/Microsoft.OperationalInsights/clusters/cluster-name?api-version=2023-09-01
 Authorization: Bearer <token> 
 Content-type: application/json
@@ -216,10 +217,7 @@ Content-type: application/json
       "keyVaultUri": "https://key-vault-name.vault.azure.net",
       "keyName": "key-name",
       "keyVersion": ""
-  },
-  "sku": {
-    "name": "CapacityReservation",
-    "capacity": 100
+    }
   }
 }
 ```
