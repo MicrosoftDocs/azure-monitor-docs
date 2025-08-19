@@ -14,5 +14,5 @@ ms.date: 08/18/2025
 
 # Log Analytics tables for microsoft.azuremonitordiagnosticsagents/datacollection  
 
-[!INCLUDE [table](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoft-azuremonitordiagnosticsagents_datacollection-include.md)]
+[!INCLUDE [table](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoft-azuremonitordiagnosticsagents-datacollection-include.md)]
 
