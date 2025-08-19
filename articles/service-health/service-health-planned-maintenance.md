@@ -132,18 +132,18 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 - Monitor the Planned Maintenance pane regularly.
 - Use the Resources tab to identify the affected services.
 - If you're eligible, use Maintenance Control to defer updates for critical workloads.
-1. What metadata is available for maintenance events?
-- The key fields help you assess the scope, timing, and severity of the events.
+2. What metadata is available for maintenance events?
+- These key fields help you assess the scope, timing, and severity of the events.
     - impactType
     - impactMitigationTime
     - eventSource
     - trackingId
     - status
-1. Can I automate maintenance tracking?
+3. Can I automate maintenance tracking?
 - Yes, with:
     - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
     - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
-1. How long is the maintenance history available?
+4. How long is the maintenance history available?
 - Active view: up to 90 days.
 - Health history: up to one year.
 
