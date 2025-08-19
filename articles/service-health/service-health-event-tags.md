@@ -2,7 +2,7 @@
 title: Service Health event tags
 description: Learn how to understand and use the event tags in Azure Service Health
 ms.topic: overview
-ms.date: 7/11/2025
+ms.date: 8/19/2025
 ---
 
 # Service Health event tags
@@ -11,6 +11,8 @@ ms.date: 7/11/2025
 This article explains the differences between event level and event tags in Azure Service Health. 
 
 **Event** tags are metadata labels that help users understand the nature of service health communications. 
+ 
+**Event Subtypes** tags give you more information about what aspect of that issue is involved.
 
 **Event level** tags categorize the severity of these events into informational, warning, and critical. 
 
@@ -19,12 +21,12 @@ Event tags help users understand the type of action required, while event levels
 :::image type="content" source="media/event-tags/event-tags-metadata.png" alt-text="Screenshot of pane with event level and event tags." lightbox="media/event-tags/event-tags-metadata.png":::
 
 
-## Event Tags
+## Event tags
 
 Event tags are metadata labels attached to individual service health communications to help you quickly understand the nature and status of an event. These tags are predefined and include:
 - **Action Recommended** – Indicates that user action is needed.
 - **False Positive** – Marks events that were later determined to be nonissues.
-- **Preliminary PIR** – Refers to post-incident reviews that provide an early summary of the root cause and resolution.
+- **Preliminary PIR** – Refers to Post-Incident Reviews (PIR) that provide an early summary of the root cause and resolution.
 - **Final PIR** – Refers to post-incident reviews that provide the final summaries of the root cause and resolution. 
 
 :::image type="content"source="./media/event-tags/event-tags-main.png"alt-text="Screenshot of pane with event tags." lightbox="media/event-tags/event-tags-main.png":::
@@ -32,6 +34,25 @@ Event tags are metadata labels attached to individual service health communicati
 These tags are visible on the Azure Service Health portal and are especially useful for customers managing many subscriptions, helping them filter and prioritize which events to focus on. 
 
 For example, tags like “Action Recommended” are often highlighted in red to draw attention.
+
+## Event Subtype tags
+
+Event subtypes are more granular classifications within each event type. They help further specify the nature of the event and can tell you specifically what aspect of that issue is involved.<br>
+
+For example:
+- A Health Advisory (event type) might have a Retirement (subtype) indicating a product is being phased out.
+- A Billing Update (event type) might have a Tax Change (subtype) indicating a change in tax policy affecting billing.
+
+|Event Type          |Example Subtypes                                                                         |
+|--------------------|-----------------------------------------------------------------------------------------|
+|Health Advisories   | Retirement, Action Required                                                             |
+|Billing Updates     | Tax Change, Foreign Exchange (FX) Rate Change, MeterID Change, Underbilling, Overbilling|
+<!--|Service Issues      | Outage, Latency, Degradation                                                        |
+|Planned Maintenance | Emergency Maintenance, Standard Maintenance                                             |
+|Security Advisories | Elevated Access, Vulnerability Patch                                                    |-->
+
+These subtypes can help you filter and automate responses.
+
 
 ## Event level tags
 
