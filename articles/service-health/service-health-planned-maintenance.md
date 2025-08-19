@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 08/11/2025
+ms.date: 08/19/2025
 
 ---
 
@@ -118,6 +118,34 @@ The tab for Impacted Resources displays the following information about any of y
 - **Action** - A link to apply the update during a self-service window (for reboot-required updates).
 
 For more information about Impacted resources, see [Impacted Resources from Planned maintenance events](impacted-resources-planned-maintenance.md).
+
+
+### Planned Maintenance FAQ
+
+The Planned Maintenance pane in Azure Service Health is a dedicated section within the Azure portal that provides visibility into upcoming maintenance activities that could affect your Azure resources. Here's how it happens and what best practices you should consider:
+
+1. What are the types of maintenance windows?
+- **Self-Service Maintenance window**: Updates can be manually initiated within approximately 35 days.
+- **Scheduled Maintenance window**: If not initiated, Azure Service Health automatically applies updates.
+- **Zero-Downtime Maintenance**: Azure limits disruption with live migration and cold starts.
+1. How can I prepare for maintenance?
+- Monitor the Planned Maintenance pane regularly.
+- Use the Resources tab to identify the affected services.
+- If you're eligible, use Maintenance Control to defer updates for critical workloads.
+1. What metadata is available for maintenance events?
+- The key fields help you assess the scope, timing, and severity of the events.
+    - impactType
+    - impactMitigationTime
+    - eventSource
+    - trackingId
+    - status
+1. Can I automate maintenance tracking?
+- Yes, with:
+    - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
+    - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
+1. How long is the maintenance history available?
+- Active view: up to 90 days.
+- Health history: up to one year.
 
 
 ### Next steps:
