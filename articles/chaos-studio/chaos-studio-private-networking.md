@@ -217,7 +217,7 @@ When operating in a secured environment, you may need to configure specific netw
 The Chaos Studio agent requires outbound access to the Azure Relay service. If you use a Network Security Group (NSG), Azure Firewall, or other network appliance to restrict outbound traffic, you must create rules to allow communication.
 
 *   **Standard Outbound Access:** For agents in networks with firewalls, you must allow outbound TCP traffic to the public endpoints of Azure Relay on ports **443, 5671, and 5672**.
-*   **Private Link Access:** If you are using an [Azure Relay private endpoint](https://learn.microsoft.com/azure/azure-relay/private-link-service) for the agent, you must also allow outbound TCP traffic on ports **9400-9599**. This is required for the private relay listener running on your virtual machine.
+*   **Private Link Access:** If you are using an [Azure Relay private endpoint](/azure/azure-relay/private-link-service) for the agent, you must also allow outbound TCP traffic on ports **9400-9599**. This is required for the private relay listener running on your virtual machine.
 
 In both scenarios, the agent initiates the connection, so no inbound port rules are required on your VM or NSG for the agent to function.
 
@@ -229,7 +229,7 @@ This is expected behavior on AKS clusters that have not explicitly disabled loca
 
 If your security policy requires that only Entra ID principals appear in audit logs, you must **disable local accounts on your AKS cluster**.
 
-For detailed instructions, refer to the official AKS documentation: [Disable local accounts with AKS-managed Microsoft Entra integration](https://learn.microsoft.com/azure/aks/manage-local-accounts-managed-azure-ad#disable-local-accounts)
+For detailed instructions, refer to the official AKS documentation: [Disable local accounts with AKS-managed Microsoft Entra integration](/azure/aks/manage-local-accounts-managed-azure-ad#disable-local-accounts)
 
 ## Limitations
 
