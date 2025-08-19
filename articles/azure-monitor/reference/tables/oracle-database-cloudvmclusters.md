@@ -14,5 +14,5 @@ ms.date: 08/18/2025
 
 # Log Analytics tables for oracle.database/cloudvmclusters  
 
-[!INCLUDE [table](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oracle-database_cloudvmclusters-include.md)]
+[!INCLUDE [table](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oracle-database-cloudvmclusters-include.md)]
 
