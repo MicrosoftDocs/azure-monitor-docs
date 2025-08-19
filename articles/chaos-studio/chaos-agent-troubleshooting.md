@@ -111,6 +111,39 @@ Look for error messages indicating connectivity or dependency issues.
    
 ---
 
+## Linux Memory Pressure Behavior
+
+When performing agent-based Physical Memory Pressure faults on Linux systems, you may observe that the actual memory pressure achieved is 5-10% lower than the configured target percentage. For example, if a test is configured to apply 80% memory pressure, the system might only experience between 70% and 75% in practice.
+
+### Why This Happens
+
+Linux memory management differs significantly from Windows, and several kernel-level behaviors can impact whether Chaos Studio and stress-ng can achieve the full configured memory pressure percentage:
+
+- **Page caching**: Linux uses available memory to cache disk I/O (called the page cache). This memory is technically "used" but is available for reclaim when needed. Tools like `free` will show high memory usage, but the `available` column reflects reclaimable memory.
+
+- **Swap behavior**: Even if swap is disabled, Linux may still avoid allocating memory aggressively to prevent system instability. If swap is enabled, the kernel may offload memory to disk, reducing the perceived pressure.
+
+- **Memory reclaiming by kernel threads**: The kernel uses background threads like `kswapd` to reclaim memory before it reaches critical thresholds. This can prevent Chaos Studio from pushing memory usage to the configured percentage.
+
+- **Kernel reservations**: The configured percentage is calculated from "what the kernel thinks it could still give to user space without swapping", which already excludes:
+  - Kernel-reserved pages
+  - Huge-page pools and crash-kernel reservations  
+  - Memory locked by other processes
+  - Most of the page cache that the kernel has decided it cannot reclaim quickly
+
+### Monitoring Memory During Experiments
+
+To get a better picture of what's happening during your memory pressure experiment, you can use these Linux tools:
+
+- **top**: Run `top -E g` and press `M` to sort processes by memory usage
+- **vmstat**: Shows memory statistics over time. See the [vmstat documentation](https://man7.org/linux/man-pages/man8/vmstat.8.html) for details
+- **pidstat**: Provides detailed process-level memory statistics
+- **swapon**: Check swap usage with `swapon --show` to see if the kernel is using swap space
+
+This behavior is particularly noticeable in Red Hat Enterprise Linux 8.x environments, though it can occur on other Linux distributions due to the underlying kernel memory management behaviors.
+
+---
+
 ## Other Common Errors and Solutions
 
 Some other issues and their accompanying solutions for the Chaos agent.
