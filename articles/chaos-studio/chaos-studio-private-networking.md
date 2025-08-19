@@ -197,23 +197,13 @@ If you're using Network Security Groups to control traffic in your virtual netwo
 
 > [!IMPORTANT]
 > By default, all of the following communication is allowed, but if you have a stricter security posture, you may need to adjust NSG rules appropriately:
-> - `ChaosStudioRelaySubnet` and `ChaosStudioContainerSubnet` need two-way TCP communication over port 443 
-> - `ChaosStudioContainerSubnet` needs outbound connection to destination 'any' over port range 9400-9599 for handshake purposes
+> - `ChaosStudioRelaySubnet` and `ChaosStudioContainerSubnet` need two-way TCP communication over port 443 (each subnet needs to communicate with the other subnet)
+> - `ChaosStudioContainerSubnet` needs outbound connection to destination 'any' over port 443 and port range 9400-9599 for handshake purposes with the Azure Relay service
 > - `ChaosStudioContainerSubnet` needs to connect to AKS API server over port 443
 
-#### Relay subnet requirements
-The Relay subnet uses Azure Relay's Hybrid Connection for secure tunneling between Chaos Studio and your private resources. Configure the following rules:
+**`ChaosStudioRelaySubnet`**: Uses Azure Relay's Hybrid Connection for secure tunneling between Chaos Studio and your private resources.
 
-- **Inbound traffic**: Allow port **443** (HTTPS) - Required for receiving connections from Chaos Studio
-- **Outbound traffic**: Allow port **443** (HTTPS) - Required for establishing connections to Azure Relay service
-
-#### Container subnet requirements  
-The Container subnet hosts the containerized workloads that execute chaos experiments. It stands up a listener process that listens for hybrid connections. Configure the following rules:
-
-- **Inbound traffic**: Allow port **443** (HTTPS) - Required for the container to accept hybrid connection traffic
-- **Outbound traffic**: 
-  - Allow port **443** (HTTPS) to destination 'any' - Required for communicating with target resource data planes (for example, Kubernetes API endpoints for Chaos Mesh faults)
-  - Allow port range **9400-9599** (TCP) to destination 'any' - Required for handshake purposes in listening to the Relay Hybrid Connection in the Relay subnet (see [Integrate Azure Relay with Azure Private Link Service](https://learn.microsoft.com/azure/azure-relay/private-link-service))
+**`ChaosStudioContainerSubnet`**: Hosts the containerized workloads that execute chaos experiments. It stands up a listener process that listens for hybrid connections.
 
 > [!NOTE]
 > All communication uses standard HTTPS port 443, as documented in [Azure Relay port settings](/azure/azure-relay/relay-port-settings).
