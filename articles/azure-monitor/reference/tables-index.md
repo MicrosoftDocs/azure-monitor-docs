@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 08/04/2025
+ms.date: 08/18/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -538,6 +538,16 @@ Microsoft.Insights/AutoscaleSettings
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AutoscaleEvaluationsLog](./tables/autoscaleevaluationslog.md)
 - [AutoscaleScaleActionsLog](./tables/autoscalescaleactionslog.md)
+
+### Azure Monitor Diagnostics Agents  
+
+Microsoft.AzureMonitorDiagnosticsAgents/DataCollection  
+
+- [DataSetRuns](./tables/datasetruns.md)
+- [DataSetOutput](./tables/datasetoutput.md)
+- [PerfInsightsRun](./tables/perfinsightsrun.md)
+- [PerfInsightsFindings](./tables/perfinsightsfindings.md)
+- [PerfInsightsImpactedResources](./tables/perfinsightsimpactedresources.md)
 
 ### Azure Monitor Workspace  
 
@@ -1105,12 +1115,15 @@ Microsoft.Network/LoadBalancers
 
 - [ALBHealthEvent](./tables/albhealthevent.md)
 - [AzureActivity](./tables/azureactivity.md)
+- [AzureMetrics](./tables/azuremetrics.md)
+- [AzureDiagnostics](./tables/azurediagnostics.md)
 
 ### Log Analytics workspaces  
 
 Microsoft.OperationalInsights/Workspaces  
 
 - [AzureMetrics](./tables/azuremetrics.md)
+- [Syslog](./tables/syslog.md)
 - [LAQueryLogs](./tables/laquerylogs.md)
 - [LASummaryLogs](./tables/lasummarylogs.md)
 - [AzureMetricsV2](./tables/azuremetricsv2.md)
@@ -1380,6 +1393,12 @@ Microsoft.OnlineExperimentation/workspaces
 - [OEWExperimentAssignmentSummary](./tables/oewexperimentassignmentsummary.md)
 - [OEWExperimentScorecards](./tables/oewexperimentscorecards.md)
 - [OEWExperimentScorecardMetricPairs](./tables/oewexperimentscorecardmetricpairs.md)
+
+### Oracle Cloud  
+
+Oracle.Database/cloudVmClusters  
+
+- [OracleCloudDatabase](./tables/oracleclouddatabase.md)
 
 ### Power BI Datasets  
 
