@@ -205,8 +205,7 @@ If you're using Network Security Groups to control traffic in your virtual netwo
 
 **`ChaosStudioContainerSubnet`**: Hosts the containerized workloads that execute chaos experiments. It stands up a listener process that listens for hybrid connections.
 
-> [!NOTE]
-> All communication uses standard HTTPS port 443, as documented in [Azure Relay port settings](/azure/azure-relay/relay-port-settings).
+Learn more about port requirements in the [Azure Relay port settings](/azure/azure-relay/relay-port-settings).
 
 
 ## Network and Security Configuration
