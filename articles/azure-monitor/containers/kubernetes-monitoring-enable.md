@@ -359,9 +359,13 @@ After the policy is assigned to the subscription, whenever you create a new clus
 Use one of the following methods to enable Container insights on your cluster. Once this is complete, see [Configure agent data collection for Container insights](container-insights-data-collection-configmap.md) to customize your configuration to ensure that you aren't collecting more data than you require.
 
 > [!IMPORTANT] 
+> Check the references below for configuration requirements for particular scenarios.
+> 
 > - If you have a single Azure Monitor Resource that is private-linked, you can't enable Container insights using the Azure portal. See [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md#container-insights-log-analytics-workspace).
 >
 > - To enable Container insights with network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
+>
+> - To enable high scale mode, follow the onboarding process at [Enable high scale mode for Monitoring add-on](./container-insights-high-scale.md#enable-high-scale-mode-for-monitoring-add-on). You must also ConfigMap as described in [Update ConfigMap](./container-insights-high-scale.md#update-configmap), and the DCR stream needs to be changed from `Microsoft-ContainerLogV2` to `Microsoft-ContainerLogV2-HighScale`.
 
 ### [CLI](#tab/cli)
 
@@ -374,7 +378,8 @@ Use one of the following commands to enable monitoring of your AKS and Arc-enabl
 - Azure k8s-extension version 1.3.7 or higher
 - Managed identity authentication is the default in k8s-extension version 1.43.0 or higher.
 - Managed identity authentication is not supported for Arc-enabled Kubernetes clusters with ARO (Azure Red Hat Openshift) or Windows nodes. Use legacy authentication.
-- For CLI version 2.54.0 or higher, the logging schema will be configured to [ContainerLogV2](container-insights-logs-schema.md) using [ConfigMap](container-insights-data-collection-configmap.md).
+- For CLI version 2.74.0 or higher, the logging schema will be configured to [ContainerLogV2](container-insights-logs-schema.md) using [ConfigMap](container-insights-data-collection-configmap.md).
+
 > [!NOTE]
 > You can enable the **ContainerLogV2** schema for a cluster either using the cluster's Data Collection Rule (DCR) or ConfigMap. If both settings are enabled, the ConfigMap will take precedence. Stdout and stderr logs will only be ingested to the ContainerLog table when both the DCR and ConfigMap are explicitly set to off.
 
@@ -490,17 +495,17 @@ Both ARM and Bicep templates are provided in this section.
     | Arc: `workspaceRegion` | Region of the Log Analytics workspace. |
     | Arc: `workspaceDomain` | Domain of the Log Analytics workspace.<br>`opinsights.azure.com` for Azure public cloud<br>`opinsights.azure.us` for AzureUSGovernment. |
     | AKS: `resourceTagValues` | Tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will be `MSCI-<clusterName>-<clusterRegion>` and this resource created in an AKS clusters resource group. For first time onboarding, you can set arbitrary tag values. |
-   | enableContainerLogV2                    | Flag to indicate whether to use ContainerLogV2 or not.                                                                 |
-   | enableRetinaNetworkFlowLogs             | Flag to indicate whether to enable Retina Network Flow Logs or not.                                   |
-   | enableSyslog                            | Flag to indicate to enable Syslog collection or not.                                                                   |
-   | syslogLevels                            | Log levels for Syslog collection                                                                                       |
-   | syslogFacilities                        | Facilities for Syslog collection                                                                                       |
-   | dataCollectionInterval                  | Data collection interval for applicable inventory and perf data collection. Default is 1m                              |
-   | namespaceFilteringModeForDataCollection | Data collection namespace filtering mode for applicable inventory and perf data collection. Default is off             |
-   | namespacesForDataCollection             | Namespaces for data collection for applicable for inventory and perf data collection.                                  |
-   | streams                                 | Streams for data collection.  For retina networkflow logs feature, include "Microsoft-RetinaNetworkFlowLogs"           |
-   | useAzureMonitorPrivateLinkScope         | Flag to indicate whether to configure Azure Monitor Private Link Scope or not.                                         |
-   | azureMonitorPrivateLinkScopeResourceId  |  Azure Resource ID of the Azure Monitor Private Link Scope.                                                            |
+   | enableContainerLogV2 | Flag to indicate whether to use ContainerLogV2 or not. |
+   | enableRetinaNetworkFlowLogs | Flag to indicate whether to enable Retina Network Flow Logs or not. |
+   | enableSyslog | Flag to indicate to enable Syslog collection or not. |
+   | syslogLevels  | Log levels for Syslog collection |
+   | syslogFacilities | Facilities for Syslog collection |
+   | dataCollectionInterval | Data collection interval for applicable inventory and perf data collection. Default is 1m |
+   | namespaceFilteringModeForDataCollection | Data collection namespace filtering mode for applicable inventory and perf data collection. Default is off. |
+   | namespacesForDataCollection | Namespaces for data collection for applicable for inventory and perf data collection. |
+   | streams | Streams for data collection. For retina networkflow logs feature, include `Microsoft-RetinaNetworkFlowLogs`. For high scale mode, replace the stream `Microsoft-ContainerLogV2` with `Microsoft-ContainerLogV2-HighScale` in the template. |
+   | useAzureMonitorPrivateLinkScope | Flag to indicate whether to configure Azure Monitor Private Link Scope or not. |
+   | azureMonitorPrivateLinkScopeResourceId  |  Azure Resource ID of the Azure Monitor Private Link Scope. |
 
 
 4. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
@@ -532,6 +537,10 @@ Both ARM and Bicep templates are provided in this section.
     | `resource_tag_values` | Match the existing tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will match `MSCI-<clusterName>-<clusterRegion>` and this resource is created in the same resource group as the AKS clusters. For first time onboarding, you can set the arbitrary tag values. |
     | `enabledContainerLogV2` | Set this parameter value to be true to use the default recommended ContainerLogV2. |
     | Cost optimization parameters | Refer to [Data collection parameters](container-insights-cost-config.md#data-collection-parameters) |
+    | `streams` | Streams for data collection. For retina networkflow logs feature, include `Microsoft-RetinaNetworkFlowLogs`. For high scale mode, replace the stream `Microsoft-ContainerLogV2` with `Microsoft-ContainerLogV2-HighScale` in the template.   |
+    | `use_azure_monitor_private_link_scope`  | Flag to indicate whether to configure Azure Monitor Private Link Scope.  |
+    | `azure_monitor_private_link_scope_resource_id` | Azure Resource ID of the Azure Monitor Private Link Scope. |
+    
 
 
 4.	Run `terraform init -upgrade` to initialize the Terraform deployment.
