@@ -1239,7 +1239,7 @@ items:
           - name: microsoft.azuredatatransfer/connections
             href: tables/microsoft-azuredatatransfer_connections.md
           - name: microsoft.azuremonitordiagnosticsagents/datacollection
-            href: tables/microsoft-azuremonitordiagnosticsagents_datacollection.md
+            href: tables/microsoft-azuremonitordiagnosticsagents-datacollection.md
           - name: microsoft.azureplaywrightservice/accounts
             href: tables/microsoft-azureplaywrightservice_accounts.md
           - name: microsoft.azuresphere/catalogs
@@ -1545,7 +1545,7 @@ items:
           - name: nginx.nginxplus/nginxdeployments
             href: tables/nginx-nginxplus_nginxdeployments.md
           - name: oracle.database/cloudvmclusters
-            href: tables/oracle-database_cloudvmclusters.md
+            href: tables/oracle-database-cloudvmclusters.md
       - name: Log Analytics tables by table name
         expanded: false
         items:
