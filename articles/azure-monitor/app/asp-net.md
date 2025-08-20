@@ -43,7 +43,7 @@ This article explains how to enable and configure [Application Insights](app-ins
 ## Prerequisites
 
 > [!div class="checklist"]
-> * An Azure subscripion. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/free/).
+> * An Azure subscription. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/free/).
 > * An [Application Insights workspace-based resource](create-workspace-resource.md).
 > * A functioning web application. If you don't have one already, see [Create a basic web app](#create-a-basic-web-app).
 > * The latest version of [Visual Studio](https://www.visualstudio.com/downloads/) with the following workloads:
@@ -52,7 +52,7 @@ This article explains how to enable and configure [Application Insights](app-ins
 
 ### Create a basic web app
 
-If you don't have a functioning web application yet, you can use the following guidance to create on.
+If you don't have a functioning web application yet, you can use the following guidance to create one.
 
 # [ASP.NET](#tab/net)
 
