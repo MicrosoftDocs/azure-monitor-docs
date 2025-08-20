@@ -1055,7 +1055,7 @@ Request details don't include the data sent to your app in a POST call. To have 
 * Insert code in your application to call [Microsoft.ApplicationInsights.TrackTrace()](./api-custom-events-metrics.md#tracktrace). Send the POST data in the message parameter. There's a limit to the permitted size, so you should try to send only the essential data.
 * When you investigate a failed request, find the associated traces.
 
-## <a name="exceptions"></a> Capture exceptions and related diagnostic data
+### Capture exceptions and related diagnostic data
 
 At first, you won't see in the portal all the exceptions that cause failures in your app. You'll see any browser exceptions, if you're using the [JavaScript SDK](./javascript.md) in your webpages. But most server exceptions are caught by IIS and you have to write a bit of code to see them.
 
@@ -1064,7 +1064,7 @@ You can:
 * **Log exceptions explicitly** by inserting code in exception handlers to report the exceptions.
 * **Capture exceptions automatically** by configuring your ASP.NET framework. The necessary additions are different for different types of framework.
 
-### Report exceptions explicitly
+#### Report exceptions explicitly
 
 The simplest way to report is to insert a call to `trackException()` in an exception handler.
 
