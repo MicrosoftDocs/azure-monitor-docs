@@ -661,7 +661,7 @@ Application Insights captures logs from ASP.NET Core and other .NET apps through
 > [!TIP]
 > * By default, the Application Insights provider only sends logs with a severity of `Warning` or higher. To include `Information` or lower-level logs, update the log level settings in `appsettings.json`.
 >
-> * The [`Microsoft.ApplicationInsights.WorkerService`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) NuGet package, used to enable Application Insights for background services, is out of scope. For more information, see [Application Insights for Worker Service apps](./worker-service.md).
+> * The [`Microsoft.ApplicationInsights.WorkerService`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) NuGet package, used to enable Application Insights for background services, is out of scope. For more information, see [Application Insights for Worker Service apps](worker-service.md).
 
 > [!NOTE]
 > To review frequently asked questions (FAQ), see [Logging with .NET FAQ](application-insights-faq.yml#logging-with--net).
@@ -937,9 +937,9 @@ For ASP.NET applications, the full SQL query text is collected with the help of 
 
 | Platform | Steps needed to get full SQL query |
 |----------|------------------------------------|
-| Web Apps in Azure App Service|In your web app control panel, [open the Application Insights pane](../../azure-monitor/app/azure-web-apps.md) and enable SQL Commands under .NET. |
-| IIS Server (Azure Virtual Machines, on-premises, and so on) | Either use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package or use the Application Insights Agent PowerShell Module to [install the instrumentation engine](../../azure-monitor/app/application-insights-asp-net-agent.md?tabs=api-reference#enable-instrumentationengine) and restart IIS. |
-| Azure Cloud Services | Add a [startup task to install StatusMonitor](../../azure-monitor/app/azure-web-apps-net-core.md).<br>Your app should be onboarded to the ApplicationInsights SDK at build time by installing NuGet packages for ASP.NET or ASP.NET Core applications. |
+| Web Apps in Azure App Service | In your web app control panel, [open the Application Insights pane](codeless-app-service.md) and enable SQL Commands under .NET. |
+| IIS Server (Azure Virtual Machines, on-premises, and so on) | Either use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package or use the Application Insights Agent PowerShell Module to [install the instrumentation engine](application-insights-asp-net-agent.md?tabs=api-reference#enable-instrumentationengine) and restart IIS. |
+| Azure Cloud Services | Add a [startup task to install StatusMonitor](codeless-app-service.md).<br>Your app should be onboarded to the ApplicationInsights SDK at build time by installing NuGet packages for ASP.NET or ASP.NET Core applications. |
 | IIS Express | Use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package. |
 | WebJobs in Azure App Service| Use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package. |
 
@@ -966,7 +966,7 @@ In the preceding cases, the proper way of validating that the instrumentation en
 
 ## Exceptions
 
-Exceptions in web applications can be reported with [Application Insights](./app-insights-overview.md). You can correlate failed requests with exceptions and other events on both the client and server so that you can quickly diagnose the causes. In this section, you learn how to set up exception reporting, report exceptions explicitly, diagnose failures, and more.
+Exceptions in web applications can be reported with [Application Insights](app-insights-overview.md). You can correlate failed requests with exceptions and other events on both the client and server so that you can quickly diagnose the causes. In this section, you learn how to set up exception reporting, report exceptions explicitly, diagnose failures, and more.
 
 ### Set up exception reporting
 
@@ -976,13 +976,13 @@ You can set up Application Insights to report exceptions that occur in either th
 
 To have exceptions reported from your server-side application, consider the following scenarios:
 
-* Add the [Application Insights Extension](./azure-web-apps.md) for Azure web apps.
-* Add the [Application Monitoring Extension](./azure-vm-vmss-apps.md) for Azure Virtual Machines and Azure Virtual Machine Scale Sets IIS-hosted apps.
-* Install [Application Insights SDK](./asp-net.md) in your app code, run [Application Insights Agent](./application-insights-asp-net-agent.md) for IIS web servers, or enable the [Java agent](./opentelemetry-enable.md?tabs=java) for Java web apps.
+* Add the [Application Insights Extension](codeless-app-service.md) for Azure web apps.
+* Add the [Application Monitoring Extension](azure-vm-vmss-apps.md) for Azure Virtual Machines and Azure Virtual Machine Scale Sets IIS-hosted apps.
+* [Add the Application Insights SDK](#add-application-insights-automatically-visual-studio) to your app code, run [Application Insights Agent](application-insights-asp-net-agent.md) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
 
 # [Client side](#tab/client)
 
-The JavaScript SDK provides the ability for client-side reporting of exceptions that occur in web browsers. To set up exception reporting on the client, see [Application Insights for webpages](./javascript-sdk.md).
+The JavaScript SDK provides the ability for client-side reporting of exceptions that occur in web browsers. To set up exception reporting on the client, see [Application Insights for webpages](javascript-sdk.md).
 
 # [Application frameworks](#tab/app)
 
@@ -1005,17 +1005,7 @@ With some application frameworks, more configuration is required. Consider the f
 
 Application Insights comes with a curated Application Performance Management experience to help you diagnose failures in your monitored applications.
 
-1. To start, in the Application Insights resource menu on the left, under **Investigate**, select the **Failures** option.
-
-    You see the failure rate trends for your requests, how many of them are failing, and how many users are affected. The **Overall** view shows some of the most useful distributions specific to the selected failing operation. You see the top three response codes, the top three exception types, and the top three failing dependency types.
-
-    :::image type="content" source="media/asp-net/failures.png" lightbox="media/asp-net/failures.png" alt-text="Screenshot that shows a failures triage view on the Operations tab.":::
-
-1. To review representative samples for each of these subsets of operations, select the corresponding link. As an example, to diagnose exceptions, you can select the count of a particular exception to be presented with the **End-to-end transaction details** tab.
-
-    :::image type="content" source="media/asp-net-exceptions/end-to-end.png" lightbox="media/asp-net/end-to-end.png" alt-text="Screenshot that shows the End-to-end transaction details tab.":::
-
-Alternatively, instead of looking at exceptions of a specific failing operation, you can start from the **Overall** view of exceptions by switching to the **Exceptions** tab at the top. Here you can see all the exceptions collected for your monitored app.
+For detailed instructions, see [Investigate failures, performance, and transactions with Application Insights](failures-performance-transactions.md).
 
 # [Visual Studio](#tab/vs)
 
@@ -1037,28 +1027,28 @@ To get diagnostic data specific to your app, you can insert code to send your ow
 
 Using the <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient?displayProperty=fullName>, you have several APIs available:
 
-* <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackEvent%2A?displayProperty=nameWithType> is typically used for monitoring usage patterns, but the data it sends also appears under **Custom Events** in diagnostic search. Events are named and can carry string properties and numeric metrics on which you can [filter your diagnostic searches](./transaction-search-and-diagnostics.md?tabs=transaction-search).
+* <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackEvent%2A?displayProperty=nameWithType> is typically used for monitoring usage patterns, but the data it sends also appears under **Custom Events** in diagnostic search. Events are named and can carry string properties and numeric metrics on which you can [filter your diagnostic searches](failures-performance-transactions.md?tabs=transaction-search).
 * <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackTrace%2A?displayProperty=nameWithType> lets you send longer data such as POST information.
 * <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackException%2A?displayProperty=nameWithType> sends exception details, such as stack traces to Application Insights.
 
-To see these events, on the left menu, open [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search). Select the dropdown menu **Event types**, and then choose **Custom Event**, **Trace**, or **Exception**.
+To see these events, on the left menu, open [Search](failures-performance-transactions.md?tabs=transaction-searchh). Select the dropdown menu **Event types**, and then choose **Custom Event**, **Trace**, or **Exception**.
 
 :::image type="content" source="media/asp-net/custom-events.png" lightbox="media/asp-net/custom-events.png" alt-text="Screenshot that shows the Search screen.":::
 
 > [!NOTE]
-> If your app generates large amounts of telemetry, the adaptive sampling module automatically reduces the volume sent to the portal by sending only a representative fraction of events. Events that are part of the same operation are selected or deselected as a group so that you can navigate between related events. For more information, see [Sampling in Application Insights](./sampling.md).
+> If your app generates large amounts of telemetry, the adaptive sampling module automatically reduces the volume sent to the portal by sending only a representative fraction of events. Events that are part of the same operation are selected or deselected as a group so that you can navigate between related events. For more information, see [Sampling in Application Insights](sampling.md).
 
 #### See request POST data
 
 Request details don't include the data sent to your app in a POST call. To have this data reported:
 
-* [Install the SDK](./asp-net.md) in your application project.
-* Insert code in your application to call [Microsoft.ApplicationInsights.TrackTrace()](./api-custom-events-metrics.md#tracktrace). Send the POST data in the message parameter. There's a limit to the permitted size, so you should try to send only the essential data.
+* [Add the Application Insights SDK](#add-application-insights-automatically-visual-studio) to your app code.
+* Insert code in your application to call [Microsoft.ApplicationInsights.TrackTrace()](api-custom-events-metrics.md#tracktrace). Send the POST data in the message parameter. There's a limit to the permitted size, so you should try to send only the essential data.
 * When you investigate a failed request, find the associated traces.
 
 ### Capture exceptions and related diagnostic data
 
-By default, not all exceptions that cause failures in your app appear in the portal. If you use the [JavaScript SDK](./javascript.md) in your webpages, you see browser exceptions. However, most server-side exceptions are intercepted by IIS, so you need to add some code to capture and report them.
+By default, not all exceptions that cause failures in your app appear in the portal. If you use the [JavaScript SDK](javascript-sdk.md) in your webpages, you see browser exceptions. However, most server-side exceptions are intercepted by IIS, so you need to add some code to capture and report them.
 
 You can:
 
@@ -1114,7 +1104,7 @@ catch (ex)
 
 ---
 
-The properties and measurements parameters are optional, but they're useful for [filtering and adding](./transaction-search-and-diagnostics.md?tabs=transaction-search) extra information. For example, if you have an app that can run several games, you could find all the exception reports related to a particular game. You can add as many items as you want to each dictionary.
+The properties and measurements parameters are optional, but they're useful for [filtering and adding](failures-performance-transactions.md?tabs=transaction-search) extra information. For example, if you have an app that can run several games, you could find all the exception reports related to a particular game. You can add as many items as you want to each dictionary.
 
 ### Browser exceptions
 
@@ -1478,7 +1468,7 @@ namespace WcfService4
 
 ### Exception performance counters
 
-If you [installed the Azure Monitor Application Insights Agent](./application-insights-asp-net-agent.md) on your server, you can get a chart of the exceptions rate measured by .NET. Both handled and unhandled .NET exceptions are included.
+If you [installed the Azure Monitor Application Insights Agent](application-insights-asp-net-agent.md) on your server, you can get a chart of the exceptions rate measured by .NET. Both handled and unhandled .NET exceptions are included.
 
 Open a metrics explorer tab and add a new chart. Under **Performance Counters**, select **Exception rate**.
 
