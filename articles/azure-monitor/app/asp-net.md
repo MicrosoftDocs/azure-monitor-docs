@@ -117,7 +117,7 @@ From within your ASP.NET web app project in Visual Studio:
 
 1. After you add Application Insights to your project, check to confirm that you're using the latest stable release of the SDK. Go to **Project** > **Manage NuGet Packages** > **Microsoft.ApplicationInsights.AspNetCore**. If you need to, select **Update**.
 
-    :::image type="content" source="media/asp-net-core/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
+    :::image type="content" source="media/asp-net/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
 
 ---
 
@@ -1009,11 +1009,11 @@ Application Insights comes with a curated Application Performance Management exp
 
     You see the failure rate trends for your requests, how many of them are failing, and how many users are affected. The **Overall** view shows some of the most useful distributions specific to the selected failing operation. You see the top three response codes, the top three exception types, and the top three failing dependency types.
 
-    :::image type="content" source="./media/asp-net-exceptions/failures0719.png" lightbox="./media/asp-net-exceptions/failures0719.png" alt-text="Screenshot that shows a failures triage view on the Operations tab.":::
+    :::image type="content" source="media/asp-net/failures.png" lightbox="media/asp-net/failures.png" alt-text="Screenshot that shows a failures triage view on the Operations tab.":::
 
 1. To review representative samples for each of these subsets of operations, select the corresponding link. As an example, to diagnose exceptions, you can select the count of a particular exception to be presented with the **End-to-end transaction details** tab.
 
-    :::image type="content" source="./media/asp-net-exceptions/end-to-end.png" lightbox="./media/asp-net-exceptions/end-to-end.png" alt-text="Screenshot that shows the End-to-end transaction details tab.":::
+    :::image type="content" source="media/asp-net-exceptions/end-to-end.png" lightbox="media/asp-net/end-to-end.png" alt-text="Screenshot that shows the End-to-end transaction details tab.":::
 
 Alternatively, instead of looking at exceptions of a specific failing operation, you can start from the **Overall** view of exceptions by switching to the **Exceptions** tab at the top. Here you can see all the exceptions collected for your monitored app.
 
@@ -1027,7 +1027,7 @@ Alternatively, instead of looking at exceptions of a specific failing operation,
 
     If CodeLens is enabled, you see data about the exceptions:
     
-    :::image type="content" source="./media/asp-net-exceptions/35.png" lightbox="./media/asp-net-exceptions/35.png" alt-text="Screenshot that shows CodeLens notification of exceptions.":::
+    :::image type="content" source="media/asp-net/codelens.png" lightbox="media/asp-net/codelens.png" alt-text="Screenshot that shows CodeLens notification of exceptions.":::
 
 ---
 
@@ -1043,7 +1043,7 @@ Using the <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient?displ
 
 To see these events, on the left menu, open [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search). Select the dropdown menu **Event types**, and then choose **Custom Event**, **Trace**, or **Exception**.
 
-:::image type="content" source="./media/asp-net-exceptions/customevents.png" lightbox="./media/asp-net-exceptions/customevents.png" alt-text="Screenshot that shows the Search screen.":::
+:::image type="content" source="media/asp-net/custom-events.png" lightbox="media/asp-net/custom-events.png" alt-text="Screenshot that shows the Search screen.":::
 
 > [!NOTE]
 > If your app generates large amounts of telemetry, the adaptive sampling module automatically reduces the volume sent to the portal by sending only a representative fraction of events. Events that are part of the same operation are selected or deselected as a group so that you can navigate between related events. For more information, see [Sampling in Application Insights](./sampling.md).
@@ -1068,23 +1068,6 @@ You can:
 #### Report exceptions explicitly
 
 The simplest way to report is to insert a call to `trackException()` in an exception handler.
-
-# [JavaScript](#tab/js)
-
-```javascript
-try
-{
-    // ...
-}
-catch (ex)
-{
-    appInsights.trackException(ex, "handler loc",
-    {
-        Game: currentGame.Name,
-        State: currentGame.State.ToString()
-    });
-}
-```
 
 # [C#](#tab/csharp)
 
@@ -1112,24 +1095,21 @@ catch (Exception ex)
 }
 ```
 
-# [Visual Basic](#tab/vb)
+# [JavaScript](#tab/js)
 
-```VB
-Dim telemetry = New TelemetryClient
-
-Try
-    ' ...
-Catch ex as Exception
-    ' Set up some properties:
-    Dim properties = New Dictionary (Of String, String)
-    properties.Add("Game", currentGame.Name)
-
-    Dim measurements = New Dictionary (Of String, Double)
-    measurements.Add("Users", currentGame.Users.Count)
-
-    ' Send the exception telemetry:
-    telemetry.TrackException(ex, properties, measurements)
-End Try
+```javascript
+try
+{
+    // ...
+}
+catch (ex)
+{
+    appInsights.trackException(ex, "handler loc",
+    {
+        Game: currentGame.Name,
+        State: currentGame.State.ToString()
+    });
+}
 ```
 
 ---
