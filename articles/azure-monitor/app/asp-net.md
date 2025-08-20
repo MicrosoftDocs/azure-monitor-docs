@@ -1,5 +1,5 @@
 ---
-title: Configure monitoring for ASP.NET and ASP.NET Core with Application Insights | Microsoft Docs
+title: Configure Monitoring for ASP.NET and ASP.NET Core with Application Insights | Microsoft Docs
 description: Monitor ASP.NET and ASP.NET Core web applications for availability, performance, and usage.
 ms.topic: how-to
 ms.devlang: csharp
@@ -12,9 +12,7 @@ ms.reviewer: mmcc
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
-This article describes how to enable and configure Application Insights for ASP.NET and ASP.NET Core applications. This procedure configures your application to send telemetry to [Application Insights](app-insights-overview.md).
-
-Application Insights can collect the following telemetry from your ASP.NET and ASP.NET Core applications:
+This article explains how to enable and configure [Application Insights](app-insights-overview.md) for ASP.NET and ASP.NET Core applications to send telemetry. Application Insights can collect the following telemetry from your apps:
 
 > [!div class="checklist"]
 > * Requests
@@ -34,7 +32,7 @@ Application Insights can collect the following telemetry from your ASP.NET and A
 
 | Supported | ASP.NET | ASP.NET Core |
 |-----------|---------|--------------|
-| **Operating system** | Windows | Windows, Linux, or Mac |
+| **Operating system** | Windows | Windows, Linux, or macOS |
 | **Hosting method** | In-process (IIS or IIS Express) | In process or out of process |
 | **Deployment method** | Web Deploy, MSI, or manual file copy | Framework dependent or self-contained |
 | **Web server** | Internet Information Services (IIS) | Internet Information Server (IIS) or Kestrel |
@@ -54,9 +52,12 @@ Application Insights can collect the following telemetry from your ASP.NET and A
 
 ### Create a basic web app
 
+If you don't have a functioning web application yet, you can use the following guidance to create on.
+
 # [ASP.NET](#tab/net)
 
-We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](worker-service.md).
+> [!NOTE]
+> We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](worker-service.md).
 
 1. Open Visual Studio.
 1. Select **Create a new project**.
@@ -80,9 +81,6 @@ This section guides you through automatically adding Application Insights to a t
 
 # [ASP.NET](#tab/net)
 
-> [!NOTE]
-> If you want to use the standalone ILogger provider for your ASP.NET application, use [Microsoft.Extensions.Logging.ApplicationInsight](ilogger.md).
-
 From within your ASP.NET web app project in Visual Studio:
 
 1. Select **Project** > **Add Application Insights Telemetry** > **Application Insights Sdk (local)** > **Next** > **Finish** > **Close**.
@@ -102,7 +100,10 @@ From within your ASP.NET web app project in Visual Studio:
 # [ASP.NET Core](#tab/core)
 
 > [!NOTE]
-> For Visual Studio for Mac, use the [manual guidance](#add-application-insights-manually-no-visual-studio). Only the Windows version of Visual Studio supports this procedure.
+> If you want to use the standalone ILogger provider for your ASP.NET application, use [Microsoft.Extensions.Logging.ApplicationInsight](ilogger.md).
+
+> [!IMPORTANT]
+> For Visual Studio for macOS, use the [manual guidance](#add-application-insights-manually-no-visual-studio). Only the Windows version of Visual Studio supports this procedure.
 
 From within your ASP.NET web app project in Visual Studio:
 
@@ -509,7 +510,7 @@ If you want to store the connection string in ASP.NET Core user secrets or retri
 
 In `Microsoft.ApplicationInsights.AspNetCore` version [2.15.0](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) and later, calling `services.AddApplicationInsightsTelemetry()` automatically reads the connection string from `Microsoft.Extensions.Configuration.IConfiguration` of the application. There's no need to explicitly provide `IConfiguration`.
 
-If `IConfiguration` has loaded configuration from multiple providers, then `services.AddApplicationInsightsTelemetry` prioritizes configuration from *appsettings.json*, irrespective of the order in which providers are added. Use the `services.AddApplicationInsightsTelemetry(IConfiguration)` method to read configuration from `IConfiguration` without this preferential treatment for *appsettings.json*.
+If `IConfiguration` loaded configuration from multiple providers, then `services.AddApplicationInsightsTelemetry` prioritizes configuration from *appsettings.json*, irrespective of the order in which providers are added. Use the `services.AddApplicationInsightsTelemetry(IConfiguration)` method to read configuration from `IConfiguration` without this preferential treatment for *appsettings.json*.
 
 ---
 
@@ -803,7 +804,7 @@ For more information, see [What Application Insights telemetry type is produced 
 ### Logging scopes
 
 > [!NOTE]
-> The following applies to ILogger scenarios (ASP.NET Core, console). It doesn’t apply to classic ASP.NET.
+> The following guidance applies to ILogger scenarios (ASP.NET Core and console only). *It doesn’t apply to classic ASP.NET.*
 
 `ApplicationInsightsLoggingProvider` supports [log scopes](/dotnet/core/extensions/logging#log-scopes), which are enabled by default. 
 
@@ -882,7 +883,7 @@ For .NET Core console apps, `TelemetryConfiguration.Active` is obsolete. See the
 
 The following examples of dependencies, which aren't automatically collected, require manual tracking:
 
-* Azure Cosmos DB is tracked automatically only if [HTTP/HTTPS](/azure/cosmos-db/performance-tips#networking) is used. TCP mode won't be automatically captured by Application Insights for SDK versions older than [`2.22.0-Beta1`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/CHANGELOG.md#version-2220-beta1).
+* Azure Cosmos DB is tracked automatically only if [HTTP/HTTPS](/azure/cosmos-db/performance-tips#networking) is used. TCP mode isn't automatically captured by Application Insights for SDK versions older than [`2.22.0-Beta1`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/CHANGELOG.md#version-2220-beta1).
 * Redis
 
 For those dependencies not automatically collected by SDK, you can track them manually by using the [TrackDependency API](api-custom-events-metrics.md#trackdependency) that's used by the standard autocollection modules.
@@ -961,15 +962,15 @@ services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o)
 
 ---
 
-In the preceding cases, the proper way of validating that the instrumentation engine is correctly installed is by validating that the SDK version of collected `DependencyTelemetry` is `rddp`. Use of `rdddsd` or `rddf` indicates dependencies are collected via `DiagnosticSource` or `EventSource` callbacks, so the full SQL query won't be captured.
+In the preceding cases, the proper way of validating that the instrumentation engine is correctly installed is by validating that the SDK version of collected `DependencyTelemetry` is `rddp`. Use of `rdddsd` or `rddf` indicates dependencies are collected via `DiagnosticSource` or `EventSource` callbacks, so the full SQL query isn't captured.
 
 ## Exceptions
 
-Exceptions in web applications can be reported with [Application Insights](./app-insights-overview.md). You can correlate failed requests with exceptions and other events on both the client and server so that you can quickly diagnose the causes. In this article, you'll learn how to set up exception reporting, report exceptions explicitly, diagnose failures, and more.
+Exceptions in web applications can be reported with [Application Insights](./app-insights-overview.md). You can correlate failed requests with exceptions and other events on both the client and server so that you can quickly diagnose the causes. In this section, you learn how to set up exception reporting, report exceptions explicitly, diagnose failures, and more.
 
 ### Set up exception reporting
 
-You can set up Application Insights to report exceptions that occur in either the server or the client. Depending on the platform your application is dependent on, you'll need the appropriate extension or SDK.
+You can set up Application Insights to report exceptions that occur in either the server or the client. Depending on the platform your application is dependent on, you need the appropriate extension or SDK.
 
 # [Server side](#tab/server)
 
@@ -996,7 +997,7 @@ With some application frameworks, more configuration is required. Consider the f
 ---
 
 > [!IMPORTANT]
-> This section is specifically focused on .NET Framework apps from a code example perspective. Some of the methods that work for .NET Framework are obsolete in the .NET Core SDK.
+> This section is focused on .NET Framework apps from a code example perspective. Some of the methods that work for .NET Framework are obsolete in the .NET Core SDK.
 
 ### Diagnose failures and exceptions
 
@@ -1006,7 +1007,7 @@ Application Insights comes with a curated Application Performance Management exp
 
 1. To start, in the Application Insights resource menu on the left, under **Investigate**, select the **Failures** option.
 
-    You'll see the failure rate trends for your requests, how many of them are failing, and how many users are affected. The **Overall** view shows some of the most useful distributions specific to the selected failing operation. You'll see the top three response codes, the top three exception types, and the top three failing dependency types.
+    You see the failure rate trends for your requests, how many of them are failing, and how many users are affected. The **Overall** view shows some of the most useful distributions specific to the selected failing operation. You see the top three response codes, the top three exception types, and the top three failing dependency types.
 
     :::image type="content" source="./media/asp-net-exceptions/failures0719.png" lightbox="./media/asp-net-exceptions/failures0719.png" alt-text="Screenshot that shows a failures triage view on the Operations tab.":::
 
@@ -1024,7 +1025,7 @@ Alternatively, instead of looking at exceptions of a specific failing operation,
 
 1. Select an exception report to show its stack trace. To open the relevant code file, select a line reference in the stack trace.
 
-    If CodeLens is enabled, you'll see data about the exceptions:
+    If CodeLens is enabled, you see data about the exceptions:
     
     :::image type="content" source="./media/asp-net-exceptions/35.png" lightbox="./media/asp-net-exceptions/35.png" alt-text="Screenshot that shows CodeLens notification of exceptions.":::
 
@@ -1045,7 +1046,7 @@ To see these events, on the left menu, open [Search](./transaction-search-and-di
 :::image type="content" source="./media/asp-net-exceptions/customevents.png" lightbox="./media/asp-net-exceptions/customevents.png" alt-text="Screenshot that shows the Search screen.":::
 
 > [!NOTE]
-> If your app generates a lot of telemetry, the adaptive sampling module will automatically reduce the volume that's sent to the portal by sending only a representative fraction of events. Events that are part of the same operation will be selected or deselected as a group so that you can navigate between related events. For more information, see [Sampling in Application Insights](./sampling.md).
+> If your app generates large amounts of telemetry, the adaptive sampling module automatically reduces the volume sent to the portal by sending only a representative fraction of events. Events that are part of the same operation are selected or deselected as a group so that you can navigate between related events. For more information, see [Sampling in Application Insights](./sampling.md).
 
 #### See request POST data
 
@@ -1057,7 +1058,7 @@ Request details don't include the data sent to your app in a POST call. To have 
 
 ### Capture exceptions and related diagnostic data
 
-At first, you won't see in the portal all the exceptions that cause failures in your app. You'll see any browser exceptions, if you're using the [JavaScript SDK](./javascript.md) in your webpages. But most server exceptions are caught by IIS and you have to write a bit of code to see them.
+By default, not all exceptions that cause failures in your app appear in the portal. If you use the [JavaScript SDK](./javascript.md) in your webpages, you see browser exceptions. However, most server-side exceptions are intercepted by IIS, so you need to add some code to capture and report them.
 
 You can:
 
@@ -1139,7 +1140,7 @@ The properties and measurements parameters are optional, but they're useful for 
 
 Most browser exceptions are reported.
 
-If your webpage includes script files from content delivery networks or other domains, ensure your script tag has the attribute `crossorigin="anonymous"` and that the server sends [CORS headers](https://enable-cors.org/). This behavior will allow you to get a stack trace and detail for unhandled JavaScript exceptions from these resources.
+If your webpage includes script files from content delivery networks or other domains, ensure your script tag has the attribute `crossorigin="anonymous"` and that the server sends [CORS headers](https://enable-cors.org/). This behavior allows you to get a stack trace and detail for unhandled JavaScript exceptions from these resources.
 
 ### Reuse your telemetry client
 
@@ -1164,7 +1165,7 @@ In the preceding example, the `TelemetryClient` is injected into the `ExampleCon
 
 ### Web forms
 
-For web forms, the HTTP Module will be able to collect the exceptions when there are no redirects configured with `CustomErrors`. However, when you have active redirects, add the following lines to the `Application_Error` function in *Global.asax.cs*.
+For web forms, the HTTP Module is able to collect the exceptions when there are no redirects configured with `CustomErrors`. However, when you have active redirects, add the following lines to the `Application_Error` function in *Global.asax.cs*.
 
 ```csharp
 void Application_Error(object sender, EventArgs e)
@@ -1181,7 +1182,7 @@ In the preceding example, the `_telemetryClient` is a class-scoped variable of t
 
 ### MVC
 
-Starting with Application Insights Web SDK version 2.6 (beta 3 and later), Application Insights collects unhandled exceptions thrown in the MVC 5+ controllers methods automatically. If you've previously added a custom handler to track such exceptions, you can remove it to prevent double tracking of exceptions.
+Starting with Application Insights Web SDK version 2.6 (beta 3 and later), Application Insights collects unhandled exceptions thrown in the MVC 5+ controllers methods automatically. If you previously added a custom handler to track such exceptions, you can remove it to prevent double tracking of exceptions.
 
 There are several scenarios when an exception filter can't correctly handle errors when exceptions are thrown:
 
@@ -1202,7 +1203,7 @@ If you use MVC 4 (and prior) of Application Insights Web SDK 2.5 (and prior), re
 <details>
 <summary><b>Expand to view instructions for prior versions</b></summary>
 
-If the [CustomErrors](/previous-versions/dotnet/netframework-4.0/h0hfz6fc(v=vs.100)) configuration is `Off`, exceptions will be available for the [HTTP Module](/previous-versions/dotnet/netframework-3.0/ms178468(v=vs.85)) to collect. However, if it's `RemoteOnly` (default), or `On`, the exception will be cleared and not available for Application Insights to automatically collect. You can fix that behavior by overriding the [System.Web.Mvc.HandleErrorAttribute class](/dotnet/api/system.web.mvc.handleerrorattribute) and applying the overridden class as shown for the different MVC versions here (see the [GitHub source](https://github.com/AppInsightsSamples/Mvc2UnhandledExceptions/blob/master/MVC2App/Controllers/AiHandleErrorAttribute.cs)):
+If the [CustomErrors](/previous-versions/dotnet/netframework-4.0/h0hfz6fc(v=vs.100)) configuration is `Off`, exceptions are available for the [HTTP Module](/previous-versions/dotnet/netframework-3.0/ms178468(v=vs.85)) to collect. However, if it's `RemoteOnly` (default), or `On`, the exception is cleared and not available for Application Insights to automatically collect. You can fix that behavior by overriding the [System.Web.Mvc.HandleErrorAttribute class](/dotnet/api/system.web.mvc.handleerrorattribute) and applying the overridden class as shown for the different MVC versions here (see the [GitHub source](https://github.com/AppInsightsSamples/Mvc2UnhandledExceptions/blob/master/MVC2App/Controllers/AiHandleErrorAttribute.cs)):
 
 ```csharp
 using System;
@@ -1286,7 +1287,7 @@ public class FilterConfig
 
 ### Web API
 
-Starting with Application Insights Web SDK version 2.6 (beta 3 and later), Application Insights collects unhandled exceptions thrown in the controller methods automatically for Web API 2+. If you've previously added a custom handler to track such exceptions, as described in the following examples, you can remove it to prevent double tracking of exceptions.
+Starting with Application Insights Web SDK version 2.6 (beta 3 and later), Application Insights collects unhandled exceptions thrown in the controller methods automatically for Web API 2+. If you previously added a custom handler to track such exceptions, as described in the following examples, you can remove it to prevent double tracking of exceptions.
 
 There are several cases that the exception filters can't handle. For example:
 
@@ -1497,7 +1498,7 @@ namespace WcfService4
 
 ### Exception performance counters
 
-If you've [installed the Azure Monitor Application Insights Agent](./application-insights-asp-net-agent.md) on your server, you can get a chart of the exceptions rate, measured by .NET. Both handled and unhandled .NET exceptions are included.
+If you [installed the Azure Monitor Application Insights Agent](./application-insights-asp-net-agent.md) on your server, you can get a chart of the exceptions rate, measured by .NET. Both handled and unhandled .NET exceptions are included.
 
 Open a metrics explorer tab, add a new chart. Under **Performance Counters**, select **Exception rate**.
 
