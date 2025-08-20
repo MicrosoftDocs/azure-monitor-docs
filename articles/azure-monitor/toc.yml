@@ -144,9 +144,6 @@ items:
             - name: ASP.NET (Core) App Monitoring
               displayName: NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, c#, csharp
               href: app/asp-net.md
-            - name: ILogger
-              displayName: ilogger, logging, log
-              href: app/ilogger.md
             - name: Non-HTTP, console, and background apps
               displayName: console, .NET, .NET Core, dotnet console, dotnet, c#, csharp, NET, worker, background, generic host
               href: app/worker-service.md
