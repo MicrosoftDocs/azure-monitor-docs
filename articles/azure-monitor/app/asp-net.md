@@ -193,7 +193,7 @@ This section guides you through manually adding Application Insights to a templa
           NOTE: performance counters configuration will be lost upon NuGet upgrade.
           
           The following placeholders are supported as InstanceName:
-            ??APP_WIN32_PROC?? - instance name of the application process  for Win32 counters.
+            ??APP_WIN32_PROC?? - instance name of the application process for Win32 counters.
             ??APP_W3SVC_PROC?? - instance name of the application IIS worker process for IIS/ASP.NET counters.
             ??APP_CLR_PROC?? - instance name of the application CLR process for .NET counters.
           -->
@@ -656,7 +656,12 @@ The preceding sample is for a console app, but the same code can be used in any 
 
 ## Custom metric collection
 
-The Azure Monitor Application Insights .NET and .NET Core SDKs have two different methods of collecting custom metrics: `TrackMetric()` and `GetMetric()`. The key difference between these two methods is local aggregation. The `TrackMetric()` method lacks preaggregation. The `GetMetric()` method has preaggregation. We recommend that you use aggregation, so `TrackMetric()` is no longer the preferred method of collecting custom metrics. This article walks you through using the `GetMetric()` method and some of the rationale behind how it works.
+The Azure Monitor Application Insights .NET and .NET Core SDKs have two different methods of collecting custom metrics:
+
+* The `TrackMetric()` method, which lacks preaggregation.
+* The `GetMetric()` method, which has preaggregation.
+
+We recommend to use aggregation, so `TrackMetric()` *is no longer the preferred method of collecting custom metrics*. This article walks you through using the `GetMetric()` method and some of the rationale behind how it works.
 
 <br>
 <details>
@@ -752,14 +757,14 @@ This single telemetry item represents an aggregate of 41 distinct metric measure
 
 If we examine our Application Insights resource in the **Logs (Analytics)** experience, the individual telemetry item would look like the following screenshot.
 
-:::image type="content" source="./media/get-metric/log-analytics.png" lightbox="./media/get-metric/log-analytics.png" alt-text="Screenshot that shows the Log Analytics query view.":::
+:::image type="content" source="media/asp-net/log-analytics.png" lightbox="media/asp-net/log-analytics.png" alt-text="Screenshot that shows the Log Analytics query view.":::
 
 > [!NOTE]
 > While the raw telemetry item didn't contain an explicit sum property/field once ingested, we create one for you. In this case, both the `value` and `valueSum` property represent the same thing.
 
-You can also access your custom metric telemetry in the [_Metrics_](../essentials/metrics-charts.md) section of the portal as both a [log-based and custom metric](pre-aggregated-metrics-log-metrics.md). The following screenshot is an example of a log-based metric.
+You can also access your custom metric telemetry in the [*Metrics*](../metrics/analyze-metrics.md) section of the portal as both a [log-based and custom metric](metrics-overview.md). The following screenshot is an example of a log-based metric.
 
-:::image type="content" source="./media/get-metric/metrics-explorer.png" lightbox="./media/get-metric/metrics-explorer.png" alt-text="Screenshot that shows the Metrics explorer view.":::
+:::image type="content" source="media/asp-net/metrics-explorer.png" lightbox="media/asp-net/metrics-explorer.png" alt-text="Screenshot that shows the Metrics explorer view.":::
 
 #### Cache metric reference for high-throughput usage
 
@@ -824,15 +829,15 @@ The examples in the previous section show zero-dimensional metrics. Metrics can 
 
 Running the sample code for at least 60 seconds results in three distinct telemetry items being sent to Azure. Each item represents the aggregation of one of the three form factors. As before, you can further examine in the **Logs (Analytics)** view.
 
-:::image type="content" source="./media/get-metric/log-analytics-multi-dimensional.png" lightbox="./media/get-metric/log-analytics-multi-dimensional.png" alt-text="Screenshot that shows the Log Analytics view of multidimensional metric.":::
+:::image type="content" source="media/asp-net/log-analytics-multi-dimensional.png" lightbox="media/asp-net/log-analytics-multi-dimensional.png" alt-text="Screenshot that shows the Log Analytics view of multidimensional metric.":::
 
 In the metrics explorer:
 
-:::image type="content" source="./media/get-metric/custom-metrics.png" lightbox="./media/get-metric/custom-metrics.png" alt-text="Screenshot that shows Custom metrics.":::
+:::image type="content" source="media/asp-net/custom-metrics.png" lightbox="media/asp-net/custom-metrics.png" alt-text="Screenshot that shows Custom metrics.":::
 
 Notice that you can't split the metric by your new custom dimension or view your custom dimension with the metrics view.
 
-:::image type="content" source="./media/get-metric/splitting-support.png" lightbox="./media/get-metric/splitting-support.png" alt-text="Screenshot that shows splitting support.":::
+:::image type="content" source="media/asp-net/splitting-support.png" lightbox="media/asp-net/splitting-support.png" alt-text="Screenshot that shows splitting support.":::
 
 By default, multidimensional metrics within the metric explorer aren't turned on in Application Insights resources.
 
@@ -845,11 +850,11 @@ After you've made that change and sent new multidimensional telemetry, you can s
 > [!NOTE]
 > Only newly sent metrics after the feature was turned on in the portal will have dimensions stored.
 
-:::image type="content" source="./media/get-metric/apply-splitting.png" lightbox="./media/get-metric/apply-splitting.png" alt-text="Screenshot that shows applying splitting.":::
+:::image type="content" source="media/asp-net/apply-splitting.png" lightbox="media/asp-net/apply-splitting.png" alt-text="Screenshot that shows applying splitting.":::
 
 View your metric aggregations for each `FormFactor` dimension.
 
-:::image type="content" source="./media/get-metric/formfactor.png" lightbox="./media/get-metric/formfactor.png" alt-text="Screenshot that shows form factors.":::
+:::image type="content" source="media/asp-net/formfactor.png" lightbox="media/asp-net/formfactor.png" alt-text="Screenshot that shows form factors.":::
 
 #### Use MetricIdentifier when there are more than three dimensions
 
@@ -1133,7 +1138,7 @@ In the Azure portal, go to Application Insights and run:
 
 ```kusto
 traces
-| where severityLevel >= 2   // 2=Warning, 1=Information, 0=Verbose
+| where severityLevel >= 2 // 2=Warning, 1=Information, 0=Verbose
 | take 50
 ```
 
@@ -1203,7 +1208,7 @@ To have this data displayed in the dependency charts in Application Insights, se
     finally
     {
         timer.Stop();
-        telemetryClient.TrackDependency("myDependencyType", "myDependencyCall", "myDependencyData",  startTime, timer.Elapsed, success);
+        telemetryClient.TrackDependency("myDependencyType", "myDependencyCall", "myDependencyData", startTime, timer.Elapsed, success);
     }
 ```
 
