@@ -10,20 +10,13 @@ ms.reviewer:
 
 You can override log search alert email subjects with static text, dynamic values extracted from the alert payload or a combination of both.
 
-This article explains how to customize log search alert email subjects in Azure Monitor by using dynamic values and ARM templates for personalized notifications.
+This article explains how to customize Log search alert email subjects in Azure Monitor by using an Azure Resource Manager template (ARM template) for personalized notifications.
 
 ## Prerequisites
 To create or edit an alert rule, you must have the following permissions:
 -	Read permission on the target resource of the alert rule.
 -	Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
 -	Read permission on any action group associated to the alert rule, if applicable.
-
-## Customize email subject in the Azure portal
-
-1. Create or edit a log search alert rule.
-1. On the Actions tab, after creating or selecting an existing Action group, use the Email subject section to add your own custom email subject.
-
-:::image type="content" source="media/common/custom-email-subject-ux.png" alt-text="Screenshot of UI for customizing email in Azure portal.":::
 
 ## Use an ARM template
 
@@ -76,4 +69,71 @@ This example creates an email subject containing the count of errors on the affe
 ```
 
 Result:
-7 errors found in ContosoApp
+7 errors found in ContosoApp.
+
+This example shows a complete Resource Manager template that creates a Log search alert rule with a custom email subject titled “This is a custom email subject”.
+
+```json
+{
+  "location": "eastus",
+  "properties": {
+    "description": "Performance rule",
+    "severity": 4,
+    "enabled": true,
+    "evaluationFrequency": "PT5M",
+    "scopes": [
+      "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/scopeResourceGroup1/providers/Microsoft.Compute/virtualMachines/vm1"
+    ],
+    "windowSize": "PT10M",
+    "criteria": {
+      "allOf": [
+        {
+          "query": "Perf | where ObjectName == \"Processor\"",
+          "timeAggregation": "Average",
+          "metricMeasureColumn": "% Processor Time",
+          "resourceIdColumn": "resourceId",
+          "dimensions": [
+            {
+              "name": "ComputerIp",
+              "operator": "Exclude",
+              "values": [
+                "192.168.1.1"
+              ]
+            },
+            {
+              "name": "OSType",
+              "operator": "Include",
+              "values": [
+                "*"
+              ]
+            }
+          ],
+          "operator": "GreaterThan",
+          "threshold": 70,
+          "failingPeriods": {
+            "numberOfEvaluationPeriods": 1,
+            "minFailingPeriodsToAlert": 1
+          }
+        }
+      ]
+    },
+    "muteActionsDuration": "",
+    "actions": {
+      "actionGroups": [
+        "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/scopeResourceGroup1/providers/microsoft.insights/actiongroups/myactiongroup"
+      ],
+      "customProperties": {
+        "key11": "value11",
+        "key12": "value12"
+      },
+     "actionProperties": {
+     "Email.Subject": "This is a custom email subject"
+     }
+    },
+    "autoMitigate": true,
+    "checkWorkspaceAlertsStorageConfigured": true,
+    "skipQueryValidation": true
+  }
+} 
+
+```
