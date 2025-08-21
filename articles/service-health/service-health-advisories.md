@@ -7,13 +7,13 @@ ms.date: 8/21/2025
 
 # Health advisories 
 
-The Health advisories pane in Azure Service Health is a key feature designed to help Azure users proactively manage their environments by showing nonincident issues that might require attention. This article provides a detailed explanation of its purpose and the information it provides.
+The Health advisories pane in Azure Service Health is a key feature designed to help you proactively manage upir environments by showing nonincident issues that might require attention. This article provides a detailed explanation of its purpose and the information it provides.
 
 :::image type="content"source="./media/service-health-advisories/health-advisories-main-tab.png" alt-text= "A screenshot of health advisories main pane with more information." Lightbox= "./media/service-health-advisories/health-advisories-main-tab.png":::
 
 ## Get started with Health advisories
 
-The Health advisories pane is used to notify users about important but noncritical issues that could affect their Azure resources. These issues aren't active service outages but rather informational or action-required events that could include:
+The Health advisories pane is used to notify you about important but noncritical issues that could affect your Azure resources. These issues aren't active service outages but rather informational or action-required events that could include:
 - Service retirements (for example, deprecated APIs or features)
 - Configuration issues (for example, misconfigured resources)
 - Upgrade requirements (for example, moving to a supported framework)
@@ -73,7 +73,7 @@ The Impacted Services section in Azure Service Health advisories outlines how a 
 
 :::image type="content"source="./media/service-health-advisories/health-advisories-issue-updates.png"alt-text="A screenshot of health advisories Issue Updates tab."Lightbox="./media/service-health-advisories/health-advisories-issue-updates.png":::
 
-The Issue Updates section in the Health advisories pane of Azure Service Health provides detailed, time-stamped progress reports and contextual updates about nonincident issues that could affect your Azure environment. It typically includes the following information:
+The Issue Updates section in the Health advisories pane provides detailed, time-stamped progress reports and contextual updates about nonincident issues that could affect your Azure environment. It typically includes the following information:
 - Chronological Updates: These updates track the progression of the advisory—detailing when it was initially identified, any modifications in scope or severity, and the point at which it was resolved or mitigated.
 - Contextual Details: Clarifications about the root cause, mitigation steps, or any changes in the recommended actions.
 - Status Transitions: Updates on whether the advisory is moved from “Active” to “Resolved” or “Scheduled.”
