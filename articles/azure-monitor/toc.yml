@@ -149,9 +149,6 @@ items:
               href: app/worker-service.md
             - name: Advanced ASP.NET SDK topics
               items:
-              - name: GetMetric
-                displayName: get metric, custom metrics, metrics, TrackMetric
-                href: app/get-metric.md
               - name: ApplicationInsights.config
                 href: app/configuration-with-applicationinsights-config.md
               - name: TelemetryChannels
