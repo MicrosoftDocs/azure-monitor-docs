@@ -32,6 +32,8 @@
       href: stay-informed-security.md
     - name: View Health advisories
       href: Service-health-advisories.md
+    - name: View Service Health history
+      href: Service-health-history-overview.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
     - name: How to create alerts
