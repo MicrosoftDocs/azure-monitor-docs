@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 8/15/2025
+ms.date: 8/21/2025
 ---
 
 # Health advisories 
@@ -42,7 +42,7 @@ At the top of each tab, there are several options of how to view the information
 
 ### Summary tab
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-summary.png"alt-text="A screenshot of health advisories summary tab." Lightbox= "./media/service-health-advisories/health-advisories-summary.png":::
+:::image type="content"source="./media/service-health-advisories/health-advisories-summary.png"alt-text="A screenshot of the health advisories summary tab." Lightbox= "./media/service-health-advisories/health-advisories-summary.png":::
 
 When you open the Health Advisories pane, you see a list of relevant advisories tailored to your subscriptions, services, and regions. Each advisory includes:
 
@@ -50,16 +50,16 @@ When you open the Health Advisories pane, you see a list of relevant advisories 
 |Field  |Description |
 |---------|---------|
 |Status   |Whether the advisory is active, resolved, or scheduled         |
-|Start/End time    |The period during which the advisory was, or will be active         |
-|Impacted services | The Azure services affected by the advisory        |
+|Start/End time    |The period during which the advisory was, or is active.         |
+|Impacted services | The Azure services affected by the advisory       |
 |Impacted regions  |The geographic regions where the advisory applies         |
-|Event level  | Tags to help users quickly assess the severity and urgency of the advisory. <br> - Informational <br>- Warning     |
+|Event level  | Tags to help users quickly assess the severity and urgency of the advisory <br> - Informational <br>- Warning     |
 |Event tags   | Tags to define the categorization of the advisory <br>- Action recommended<br> - Final Post Incident Review (PIR)<br> - Preliminary PIR<br> - False Positive        |
-|Last update  | Information entered to provide information as it is gathered         |
+|Last update  | Information entered to provide information as it is gathered        |
 
 ### Impacted Services tab
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-impacted-services.png"alt-text="A screenshot of health advisories Impacted Services tab." Lightbox="./media/service-health-advisories/health-advisories-impacted-services.png":::
+:::image type="content"source="./media/service-health-advisories/health-advisories-impacted-services.png"alt-text="A screenshot of the health advisories Impacted Services tab." Lightbox="./media/service-health-advisories/health-advisories-impacted-services.png":::
 
 The Impacted Services section in Azure Service Health advisories outlines how a given advisory can affect the specific Azure services. It typically includes the following information:
 
@@ -81,7 +81,7 @@ The Issue Updates section in the Health advisories pane of Azure Service Health 
 
 
 
-### Next steps:
+### More information:
 
 - [Resource Health overview](resource-health-overview.md)
 - [Service Health FAQs](service-health-faq.yml)
