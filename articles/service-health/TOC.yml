@@ -30,7 +30,7 @@
       href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
-    - name: View Health advisories
+    - name: View Service Health advisories
       href: Service-health-advisories.md
     - name: View Service Health history
       href: Service-health-history-overview.md
