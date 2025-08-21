@@ -8,7 +8,7 @@ ms.date: 08/21/2025
 
 # Release annotations
 
-Release annotations mark deployments and other significant events on Application Insights charts. Teams use these annotations to correlate changes with performance, failures, and usage.
+Release annotations mark deployments and other significant events on Application Insights charts. These annotations correlate changes with performance, failures, and usage.
 
 ## Automatic annotations with Azure Pipelines
 
@@ -21,7 +21,7 @@ Release annotations mark deployments and other significant events on Application
   | Task code                 | Task name                     | Versions     |
   |---------------------------|-------------------------------|--------------|
   | AzureAppServiceSettings   | Azure App Service Settings    | Any          |
-  | AzureRmWebAppDeployment   | Azure App Service deploy      | V3 and above |
+  | AzureRmWebAppDeployment   | Azure App Service             | V3+          |
   | AzureFunctionApp          | Azure Functions               | Any          |
   | AzureFunctionAppContainer | Azure Functions for container | Any          |
   | AzureWebAppContainer      | Azure Web App for Containers  | Any          |
@@ -139,7 +139,7 @@ Use the following PowerShell script to create a release annotation from any proc
 > [!NOTE]
 > Set **Category** to **Deployment** or annotations don't appear in the Azure portal.
 >
-> If you receive the error **The request contains an entity body but no Content-Type header**, remove the replace parameters from the line that assigns `$body`.
+> If you receive the error **The request contains an entity body but no Content-Type header**, remove the `replace` parameters from the line that assigns `$body`.
 
 Call the script and pass values for the parameters. The `-releaseProperties` parameter is optional.
 
