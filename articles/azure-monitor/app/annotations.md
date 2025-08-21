@@ -8,7 +8,7 @@ ms.date: 08/21/2025
 
 # Release annotations
 
-Release annotations mark deployments and other significant events on Application Insights charts. These annotations correlate changes with performance, failures, and usage.
+Release annotations mark deployments and other significant events on Application Insights charts, allowing correlation of changes with performance, failures, and usage.
 
 ## Automatic annotations with Azure Pipelines
 
@@ -170,7 +170,7 @@ Application Insights displays release annotations in the following experiences:
 
 The annotations markers at the top of charts provide more information.
 
-:::image type="content" source="media/annotations/annotation-marker.png" alt-text="A screenshot of a blue arrow pointing upwards towards a solid blue line" lightbox="media/annotations/annotation-marker.png":::
+:::image type="content" source="media/annotations/annotation-marker.png" alt-text="A screenshot of a blue arrow pointing upwards towards a solid blue line":::
 
 To enable annotations in a workbook, open **Advanced Settings** and then select **Show annotations**. Select any annotation marker to open release details such as requestor, source control branch, release pipeline, and environment.
 
