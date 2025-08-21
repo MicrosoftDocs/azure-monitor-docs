@@ -14,9 +14,10 @@ Release annotations mark deployments and other significant events on Application
 
 [Azure Pipelines](/azure/devops/pipelines) creates a release annotation during deployment when all the following conditions are true:
 
-- Link the target resource to Application Insights by using the `APPINSIGHTS_INSTRUMENTATIONKEY` app setting.
-- Keep the Application Insights resource in the same subscription as the target resource.
-- Use one of the following Azure DevOps tasks:
+> [!div class="checklist"]
+> - Link the target resource to Application Insights by using the `APPINSIGHTS_INSTRUMENTATIONKEY` app setting.
+> - Keep the Application Insights resource in the same subscription as the target resource.
+> - Use one of the following Azure DevOps tasks:
 
   | Task code                 | Task name                     | Versions     |
   |---------------------------|-------------------------------|--------------|
@@ -47,7 +48,7 @@ If you don't use the tasks in the previous section, add an inline script in the 
         "TriggerBy"="<Your name>" }
    ```
 
-   The following example shows metadata you can set in the optional `releaseProperties` argument by using build and release variables.
+   The following example shows metadata you can set in the optional `releaseProperties` argument by using build and release variables. Select **Save**.
 
    ```powershell
    -releaseProperties @{
@@ -64,8 +65,6 @@ If you don't use the tasks in the previous section, add an inline script in the 
     "SourceBranch"="$(Build.SourceBranch)";
     "TeamFoundationCollectionUri"="$(System.TeamFoundationCollectionUri)" }
    ```
-
-1. Select **Save**.
 
 ## Create release annotations with the Azure CLI
 
