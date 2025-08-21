@@ -9,35 +9,21 @@ ms.date: 03/11/2024
 
 # Enable monitoring for Kubernetes clusters using Terraform
 
-As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable these features using the Azure portal.
+As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable the following features using CLI:
+
+- Prometheus metrics
+- Container logging
+- Control plane logs
 
 ## Prerequisites
 
-- The Azure Monitor workspace and Azure Managed Grafana workspace must already be created.
-- The template needs to be deployed in the same resource group as the Azure Managed Grafana workspace.
+- Azure Monitor workspace and Log Analytics workspace must already exist.
 - Users with the User Access Administrator role in the subscription of the AKS cluster can enable the Monitoring Reader role directly by deploying the template.
-- If the Azure Managed Grafana instance is in a subscription other than the Azure Monitor Workspaces subscription, register the Azure Monitor Workspace subscription with the `Microsoft.Dashboard` resource provider by following [this documentation](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
 
-## Prometheus
-
-### Retrieve required values for a Grafana resource
-
-On the **Overview** page for the Azure Managed Grafana instance in the Azure portal, select **JSON view**.
-
-If you're using an existing Azure Managed Grafana instance that's already linked to an Azure Monitor workspace, you need the list of Grafana integrations. Copy the value of the `azureMonitorWorkspaceIntegrations` field. If it doesn't exist, the instance hasn't been linked with any Azure Monitor workspace. Update the `azure_monitor_workspace_integrations` block in `main.tf` with the list of grafana integrations.
-
-```.tf
-  azure_monitor_workspace_integrations {
-    resource_id  = var.monitor_workspace_id[var.monitor_workspace_id1, var.monitor_workspace_id2]
-  }
-```
-
-### Download and edit the templates
-
-If you're deploying a new AKS cluster using Terraform with managed Prometheus addon enabled, follow these steps:
+## Prometheus metrics
 
 1. Download all files under [AddonTerraformTemplate](https://aka.ms/AAkm357).
-2. Edit the variables in variables.tf file with the correct parameter values.
+2. Edit the variables in `variables.tf` file with the correct parameter values.
 3. Run `terraform init -upgrade` to initialize the Terraform deployment.
 4. Run `terraform plan -out main.tfplan` to initialize the Terraform deployment.
 5. Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
@@ -81,16 +67,16 @@ Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in 
 
 
 #### Existing AKS cluster
-1.	Import the existing cluster resource first with the command: ` terraform import azurerm_kubernetes_cluster.k8s <aksResourceId>`
-2.	Add the oms_agent add-on profile to the existing azurerm_kubernetes_cluster resource.
+1.	Import the existing cluster resource with the command: ` terraform import azurerm_kubernetes_cluster.k8s <aksResourceId>`
+2.	Add the oms_agent add-on profile to the existing `azurerm_kubernetes_cluster` resource.
     ```
     oms_agent {
         log_analytics_workspace_id = var.workspace_resource_id
         msi_auth_for_monitoring_enabled = true
       }
     ```
-3.	Copy the DCR and DCRA resources from the Terraform templates
-4.	Run `terraform plan -out main.tfplan` and make sure the change is adding the oms_agent property. Note: If the `azurerm_kubernetes_cluster` resource defined is different during terraform plan, the existing cluster will get destroyed and recreated.
+3.	Copy the DCR and DCRA resources from the Terraform templates.
+4.	Run `terraform plan -out main.tfplan` and make sure the change is adding the `oms_agent` property. If the `azurerm_kubernetes_cluster` resource defined is different during terraform plan, the existing cluster will get destroyed and recreated.
 5.	Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
 
 > [!TIP]

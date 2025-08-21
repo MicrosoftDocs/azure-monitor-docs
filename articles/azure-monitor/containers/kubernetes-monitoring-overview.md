@@ -9,9 +9,21 @@ ms.reviewer: viviandiec
 
 # Kubernetes monitoring in Azure Monitor
 
-Multiple features of [Azure Monitor](../fundamentals/overview.md) work together to provide complete monitoring of your [Azure Kubernetes (AKS)](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters.  This article provides an overview of these features and how they work together to monitor your Kubernetes clusters.
+Multiple features of [Azure Monitor](../fundamentals/overview.md) work together to provide complete monitoring of your [Azure Kubernetes (AKS)](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters.  This article provides an overview of these features and how you can leverage them to ensure the health and performance of your Kubernetes environment.
 
-The following diagram illustrates the value provided by the different services, while the table below describes them in more detail. Some of these features require configuration while others are enabled automatically. See [Enable monitoring for Kubernetes clusters in Azure Monitor](kubernetes-monitoring-enable.md) for onboarding and configuration options for those features that require it.
+## Get started monitoring a cluster
+Select the **Monitor** option from any AKS or Azure Arc-enabled Kubernetes cluster in the Azure portal to get an overview of various telemetry indicating the health and performance of the cluster's nodes, workloads, and containers. Several of these tiles may be disabled since the feature supporting them has not yet been enabled for the cluster. See [Enable monitoring for Kubernetes clusters in Azure Monitor](kubernetes-monitoring-enable.md) for details on different options to enable these features.
+
+:::image type="content" source="media/container-insights-overview/container-insights-single.png" lightbox="media/container-insights-overview/container-insights-single.png" alt-text="Screenshot of Container insights single cluster experience.":::
+
+## Container insights
+Access Container insights from the **Monitor** menu in the Azure portal or by selecting **View All Clusters** from the top of any cluster monitor view. This feature helps you onboard and configure the other features to collect data for your Kubernetes cluster. It provides a quick summary of all your monitored clusters and allows you to onboard unmonitored clusters and add functionality to clusters that are already onboarded. 
+
+:::image type="content" source="media/container-insights-overview/container-insights-multiple.png" lightbox="media/container-insights-overview/container-insights-multiple.png" alt-text="Screenshot of Container insights multiple cluster experience.":::
+
+## Additional features
+
+The following diagram illustrates the value provided by the different Azure Monitor features, while the table below describes each in more detail. Some of these features require configuration while others are enabled automatically. You can quickly enable these features using the Azure portal or enable them at scale and perform advanced configuration using a variety of other methods. See [Enable monitoring for Kubernetes clusters in Azure Monitor](kubernetes-monitoring-enable.md) for onboarding and configuration options for those features that require it.
 
 :::image type="content" source="media/container-insights-overview/kubernetes-monitoring-services.png" lightbox="media/container-insights-overview/kubernetes-monitoring-services.png" alt-text="Diagram of the different services that work together to monitor Kubernetes clusters." border="false":::
 
@@ -26,31 +38,12 @@ The following diagram illustrates the value provided by the different services, 
 | [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) | Visualize metrics and logs with Grafana dashboards at no additional cost. | No |
 
 
-## Monitor a cluster
-Select the **Monitor** option from any AKS or Azure Arc-enabled Kubernetes cluster in the Azure portal to get an overview of various telemetry indicating the health and performance of the cluster's nodes, workloads, and containers. Several of these tiles may be disabled since the feature supporting them has not yet been enabled for the cluster. See [Enable monitoring for Kubernetes clusters in Azure Monitor](kubernetes-monitoring-enable.md) for details on different options to enable these features.
-
-:::image type="content" source="media/container-insights-overview/container-insights-single.png" lightbox="media/container-insights-overview/container-insights-single.png" alt-text="Screenshot of Container insights single cluster experience.":::
-
-
-## Container insights
-Access Container insights from the **Monitor** menu in the Azure portal or by selecting **View All Clusters** from the top of any cluster monitor view. This feature helps you onboard and configure the other features to collect data for your Kubernetes cluster. It provides a quick summary of all your monitored clusters and allows you to onboard unmonitored clusters and add functionality to clusters that are already onboarded. 
-
-:::image type="content" source="media/container-insights-overview/container-insights-multiple.png" lightbox="media/container-insights-overview/container-insights-multiple.png" alt-text="Screenshot of Container insights multiple cluster experience.":::
-
-
-## Agent
-
-Container log collection and Managed Prometheus rely on a containerized [Azure Monitor agent](../agents/agents-overview.md) for Linux. This specialized agent collects performance and event data from all nodes in the cluster. The agent is deployed and registered with the specified workspaces when you enable these features. 
-
-Since March 1, 2023 Container Insights uses a Semver compliant agent version. The agent version is *mcr.microsoft.com/azuremonitor/containerinsights/ciprod:3.1.4* or later. When a new version of the agent is released, it's automatically upgraded on your managed Kubernetes clusters that are hosted on AKS. To track which versions are released, see [Agent release announcements](https://github.com/microsoft/Docker-Provider/blob/ci_prod/ReleaseNotes.md). 
-
-
-
- 
-## Data collection
-Kubernetes monitoring leverages the same data platform as other Azure Monitor features. Logs are collected in a [Log Analytics workspace](../logs/data-platform-logs.md) where you can analyze it using different features of Azure Monitor including [Log Analytics](../logs/log-analytics-overview.md) and [log alerts](../alerts/tutorial-log-alert.md). Managed Prometheus sends data to an [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md) where it can be analyzed with [PromQL queries](../metrics/metrics-explorer.md#azure-monitor-metrics-explorer-with-promql) or [Prometheus alerts](../alerts/prometheus-alerts.md). [Dashboards with Grafana](../visualize/visualize-grafana-overview.md) access all of this data together to visualize it using a variety of prebuilt or custom dashboards.
+## Other analysis and customization options
+Since Kubernetes monitoring features leverage the same data platform as other Azure Monitor features, you can use a variety of tools to perform advanced analysis and customization of your monitor data. Logs are collected in a [Log Analytics workspace](../logs/data-platform-logs.md) where you can analyze it using different features of Azure Monitor including [Log Analytics](../logs/log-analytics-overview.md) and [log alerts](../alerts/tutorial-log-alert.md). Managed Prometheus sends data to an [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md) where it can be analyzed with [PromQL queries](../metrics/metrics-explorer.md#azure-monitor-metrics-explorer-with-promql) or [Prometheus alerts](../alerts/prometheus-alerts.md). [Dashboards with Grafana](../visualize/visualize-grafana-overview.md) access all of this data together to visualize it using a variety of prebuilt or custom dashboards.
 
 :::image type="content" source="media/container-insights-overview/aks-monitor-data.png" lightbox="media/container-insights-overview/aks-monitor-data.png" alt-text="Diagram of collection of monitoring data from Kubernetes cluster using Container Insights and related services." border="false":::
+
+
 
 
 > [!NOTE]

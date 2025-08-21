@@ -1,5 +1,5 @@
 ---
-title: Enable monitoring for Kubernetes clusters using ARM
+title: Enable monitoring for Kubernetes clusters using ARM templates
 description: Learn how to enable container logging and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster using ARM templates.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
@@ -7,13 +7,17 @@ ms.reviewer: aul
 ms.date: 03/11/2024
 ---
 
-# Enable monitoring for Kubernetes clusters using ARM
+# Enable monitoring for Kubernetes clusters using ARM templates
 
-As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable these features using the Azure portal.
+As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable the following features using ARM templates:
+
+- Prometheus metrics
+- Container logging
+- Control plane logs
 
 ## Prerequisites
 
-- The Azure Monitor workspace and Azure Managed Grafana instance must already be created.
+- Azure Monitor workspace and Azure Managed Grafana instance must already be created.
 - The template must be deployed in the same resource group as the Azure Managed Grafana instance.
 - If the Azure Managed Grafana instance is in a subscription other than the Azure Monitor workspace subscription, register the Azure Monitor workspace subscription with the `Microsoft.Dashboard` resource provider using the guidance at [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
 - Users with the `User Access Administrator` role in the subscription of the AKS cluster can enable the `Monitoring Reader` role directly by deploying the template.
@@ -21,9 +25,9 @@ As described in [Kubernetes monitoring in Azure Monitor](./container-insights-ov
 > [!NOTE]
 > Currently in Bicep, there's no way to explicitly scope the `Monitoring Reader` role assignment on a string parameter "resource ID" for an Azure Monitor workspace like in an ARM template. Bicep expects a value of type `resource | tenant`. There is also no REST API [spec](https://github.com/Azure/azure-rest-api-specs) for an Azure Monitor workspace.
 > 
-> Therefore, the default scoping for the `Monitoring Reader` role is on the resource group. The role is applied on the same Azure Monitor workspace by inheritance, which is the expected behavior. After you deploy this Bicep template, the Grafana instance is given `Monitoring Reader` permissions for all the Azure Monitor workspaces in that resource group.
+> The default scoping for the `Monitoring Reader` role is on the resource group. The role is applied on the same Azure Monitor workspace by inheritance, which is the expected behavior. After you deploy this Bicep template, the Grafana instance is given `Monitoring Reader` permissions for all the Azure Monitor workspaces in that resource group.
 
-## Prometheus
+## Prometheus metrics
 
 ### Retrieve required values for Grafana resource
 If the Azure Managed Grafana instance is already linked to an Azure Monitor workspace, then you must include this list in the template. On the **Overview** page for the Azure Managed Grafana instance in the Azure portal, select **JSON view**, and copy the value of `azureMonitorWorkspaceIntegrations` which will look similar to the sample below. If it doesn't exist, then the instance hasn't been linked with any Azure Monitor workspace.
