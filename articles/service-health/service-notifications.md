@@ -21,7 +21,7 @@ In the [Azure portal](https://portal.azure.com), select **Monitor**.
 
 Azure Monitor brings together all your monitoring settings and data into one consolidated view.
 
-:::image type="content" source="media/service-notifications/azure-main-service-health.png" alt-text="Screenshot Azure portal home page."  Lightbox="media/service-notifications/azure-main-service-health.png":::
+:::image type="content" source="media/service-notifications/azure-main-service-health.png" alt-text="Screenshot of the Azure portal home page."  Lightbox="media/service-notifications/azure-main-service-health.png":::
 
 You can create an alert rule in two ways:<br>
 
