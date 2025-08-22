@@ -40,7 +40,9 @@ This article explains how to enable and configure [Application Insights](app-ins
 | **.NET version** | .NET Framework 4.6.1 and later | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview |
 | **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line |
 
-## Prerequisites
+## Get started
+
+### Prerequisites
 
 > [!div class="checklist"]
 > * An Azure subscription. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/free/).
@@ -75,7 +77,7 @@ If you don't have a functioning web application yet, you can use the following g
 
 ---
 
-## Add Application Insights automatically (Visual Studio)
+### Add Application Insights automatically (Visual Studio)
 
 This section guides you through automatically adding Application Insights to a template-based web app.
 
@@ -121,7 +123,7 @@ From within your ASP.NET web app project in Visual Studio:
 
 ---
 
-## Add Application Insights manually (no Visual Studio)
+### Add Application Insights manually (no Visual Studio)
 
 This section guides you through manually adding Application Insights to a template-based web app.
 
@@ -504,7 +506,7 @@ At this point, you successfully configured server-side application monitoring. I
     
         Provide a connection string as part of the `ApplicationInsightsServiceOptions` argument to `AddApplicationInsightsTelemetry` in your *program.cs* class.
 
-### User secrets and other configuration providers
+#### User secrets and other configuration providers
 
 If you want to store the connection string in ASP.NET Core user secrets or retrieve it from another configuration provider, you can use the overload with a `Microsoft.Extensions.Configuration.IConfiguration` parameter. An example parameter is `services.AddApplicationInsightsTelemetry(Configuration);`.
 
@@ -518,14 +520,27 @@ If `IConfiguration` loaded configuration from multiple providers, then `services
 
 Run your application and make requests to it. Telemetry should now flow to Application Insights. The Application Insights SDK automatically collects incoming web requests to your application, along with the following telemetry.
 
-## Live metrics
+## Explore your telemetry
+
+This section covers:
+
+* [Live metrics](#live-metrics)
+* [Traces (logs)](#traces-logs)
+* [Dependencies](#dependencies)
+* [Exceptions](#exceptions)
+* Metrics and counters
+    * [Custom metrics](#custom-metric-collection)
+    * [Performance counters](#performance-counters)
+    * [Event counters](#event-counters)
+
+### Live metrics
 
 [Live metrics](live-stream.md) can be used to quickly verify if application monitoring with Application Insights is configured correctly. Telemetry can take a few minutes to appear in the Azure portal, but the live metrics pane shows CPU usage of the running process in near real time. It can also show other telemetry like requests, dependencies, and traces.
 
 > [!NOTE]
 > Live metrics are enabled by default when you onboard it by using the recommended instructions for .NET applications.
 
-### Enable live metrics by using code for any .NET application
+#### Enable live metrics by using code for any .NET application
 
 # [ASP.NET](#tab/net)
 
@@ -654,309 +669,7 @@ The preceding sample is for a console app, but the same code can be used in any 
 
 ---
 
-## Custom metric collection
-
-The Azure Monitor Application Insights .NET and .NET Core SDKs have two different methods of collecting custom metrics:
-
-* The `TrackMetric()` method, which lacks preaggregation.
-* The `GetMetric()` method, which has preaggregation.
-
-We recommend to use aggregation, so `TrackMetric()` *is no longer the preferred method of collecting custom metrics*. This article walks you through using the `GetMetric()` method and some of the rationale behind how it works.
-
-<br>
-<details>
-<summary><b>Expand to learn more about preaggregating vs. non-preaggregating API</b></summary>
-
-The `TrackMetric()` method sends raw telemetry denoting a metric. It's inefficient to send a single telemetry item for each value. The `TrackMetric()` method is also inefficient in terms of performance because every `TrackMetric(item)` goes through the full SDK pipeline of telemetry initializers and processors.
-
-Unlike `TrackMetric()`, `GetMetric()` handles local preaggregation for you and then only submits an aggregated summary metric at a fixed interval of one minute. If you need to closely monitor some custom metric at the second or even millisecond level, you can do so while only incurring the storage and network traffic cost of only monitoring every minute. This behavior also greatly reduces the risk of throttling occurring because the total number of telemetry items that need to be sent for an aggregated metric are greatly reduced.
-
-In Application Insights, custom metrics collected via `TrackMetric()` and `GetMetric()` aren't subject to [sampling](./sampling.md). Sampling important metrics can lead to scenarios where alerting you might have built around those metrics could become unreliable. By never sampling your custom metrics, you can generally be confident that when your alert thresholds are breached, an alert fires. Because custom metrics aren't sampled, there are some potential concerns.
-
-Trend tracking in a metric every second, or at an even more granular interval, can result in:
-
-* **Increased data storage costs.** There's a cost associated with how much data you send to Azure Monitor. The more data you send, the greater the overall cost of monitoring.
-* **Increased network traffic or performance overhead.** In some scenarios, this overhead could have both a monetary and application performance cost.
-* **Risk of ingestion throttling.** Azure Monitor drops ("throttles") data points when your app sends a high rate of telemetry in a short time interval.
-
-Throttling is a concern because it can lead to missed alerts. The condition to trigger an alert could occur locally and then be dropped at the ingestion endpoint because of too much data being sent. We don't recommend using `TrackMetric()` for .NET and .NET Core unless you've implemented your own local aggregation logic. If you're trying to track every instance an event occurs over a given time period, you might find that [`TrackEvent()`](./api-custom-events-metrics.md#trackevent) is a better fit. Keep in mind that unlike custom metrics, custom events are subject to sampling. You can still use `TrackMetric()` even without writing your own local preaggregation. But if you do so, be aware of the pitfalls.
-
-In summary, we recommend `GetMetric()` because it does preaggregation, it accumulates values from all the `Track()` calls, and sends a summary/aggregate once every minute. The `GetMetric()` method can significantly reduce the cost and performance overhead by sending fewer data points while still collecting all relevant information.
-
-</details>
-
-### Get started with GetMetric
-
-For our examples, we're going to use a basic .NET Core 3.1 worker service application. If you want to replicate the test environment used with these examples, follow steps 1-6 in the [Monitoring worker service article](worker-service.md#net-core-worker-service-application). These steps add Application Insights to a basic worker service project template. The concepts apply to any general application where the SDK can be used, including web apps and console apps.
-
-#### Send metrics
-
-Replace the contents of your `worker.cs` file with the following code:
-
-```csharp
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.ApplicationInsights;
-
-namespace WorkerService3
-{
-    public class Worker : BackgroundService
-    {
-        private readonly ILogger<Worker> _logger;
-        private TelemetryClient _telemetryClient;
-
-        public Worker(ILogger<Worker> logger, TelemetryClient tc)
-        {
-            _logger = logger;
-            _telemetryClient = tc;
-        }
-
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {   // The following line demonstrates usages of GetMetric API.
-            // Here "computersSold", a custom metric name, is being tracked with a value of 42 every second.
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                _telemetryClient.GetMetric("ComputersSold").TrackValue(42);
-
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
-            }
-        }
-    }
-}
-```
-
-When you run the sample code, you see the `while` loop repeatedly executing with no telemetry being sent in the Visual Studio output window. A single telemetry item is sent by around the 60-second mark, which in our test looks like:
-
-```json
-Application Insights Telemetry: {"name":"Microsoft.ApplicationInsights.Dev.00000000-0000-0000-0000-000000000000.Metric", "time":"2019-12-28T00:54:19.0000000Z",
-"ikey":"00000000-0000-0000-0000-000000000000",
-"tags":{"ai.application.ver":"1.0.0.0",
-"ai.cloud.roleInstance":"Test-Computer-Name",
-"ai.internal.sdkVersion":"m-agg2c:2.12.0-21496",
-"ai.internal.nodeName":"Test-Computer-Name"},
-"data":{"baseType":"MetricData",
-"baseData":{"ver":2,"metrics":[{"name":"ComputersSold",
-"kind":"Aggregation",
-"value":1722,
-"count":41,
-"min":42,
-"max":42,
-"stdDev":0}],
-"properties":{"_MS.AggregationIntervalMs":"42000",
-"DeveloperMode":"true"}}}}
-```
-
-This single telemetry item represents an aggregate of 41 distinct metric measurements. Because we were sending the same value over and over again, we have a standard deviation (`stDev`) of `0` with identical maximum (`max`) and minimum (`min`) values. The `value` property represents a sum of all the individual values that were aggregated.
-
-> [!NOTE]
-> The `GetMetric` method doesn't support tracking the last value (for example, `gauge`) or tracking histograms or distributions.
-
-If we examine our Application Insights resource in the **Logs (Analytics)** experience, the individual telemetry item would look like the following screenshot.
-
-:::image type="content" source="media/asp-net/log-analytics.png" lightbox="media/asp-net/log-analytics.png" alt-text="Screenshot that shows the Log Analytics query view.":::
-
-> [!NOTE]
-> While the raw telemetry item didn't contain an explicit sum property/field once ingested, we create one for you. In this case, both the `value` and `valueSum` property represent the same thing.
-
-You can also access your custom metric telemetry in the [*Metrics*](../metrics/analyze-metrics.md) section of the portal as both a [log-based and custom metric](metrics-overview.md). The following screenshot is an example of a log-based metric.
-
-:::image type="content" source="media/asp-net/metrics-explorer.png" lightbox="media/asp-net/metrics-explorer.png" alt-text="Screenshot that shows the Metrics explorer view.":::
-
-#### Cache metric reference for high-throughput usage
-
-Metric values might be observed frequently in some cases. For example, a high-throughput service that processes 500 requests per second might want to emit 20 telemetry metrics for each request. The result means tracking 10,000 values per second. In such high-throughput scenarios, users might need to help the SDK by avoiding some lookups.
-
-For example, the preceding example performed a lookup for a handle for the metric `ComputersSold` and then tracked an observed value of `42`. Instead, the handle might be cached for multiple track invocations:
-
-```csharp
-//...
-
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            // This is where the cache is stored to handle faster lookup
-            Metric computersSold = _telemetryClient.GetMetric("ComputersSold");
-            while (!stoppingToken.IsCancellationRequested)
-            {
-
-                computersSold.TrackValue(42);
-
-                computersSold.TrackValue(142);
-
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(50, stoppingToken);
-            }
-        }
-
-```
-
-In addition to caching the metric handle, the preceding example also reduced `Task.Delay` to 50 milliseconds so that the loop would execute more frequently. The result is 772 `TrackValue()` invocations.
-
-### Multidimensional metrics
-
-The examples in the previous section show zero-dimensional metrics. Metrics can also be multidimensional. We currently support up to 10 dimensions.
-
- Here's an example of how to create a one-dimensional metric:
-
-```csharp
-//...
-
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            // This is an example of a metric with a single dimension.
-            // FormFactor is the name of the dimension.
-            Metric computersSold= _telemetryClient.GetMetric("ComputersSold", "FormFactor");
-
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                // The number of arguments (dimension values)
-                // must match the number of dimensions specified while GetMetric.
-                // Laptop, Tablet, etc are values for the dimension "FormFactor"
-                computersSold.TrackValue(42, "Laptop");
-                computersSold.TrackValue(20, "Tablet");
-                computersSold.TrackValue(126, "Desktop");
-
-
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(50, stoppingToken);
-            }
-        }
-
-```
-
-Running the sample code for at least 60 seconds results in three distinct telemetry items being sent to Azure. Each item represents the aggregation of one of the three form factors. As before, you can further examine in the **Logs (Analytics)** view.
-
-:::image type="content" source="media/asp-net/log-analytics-multi-dimensional.png" lightbox="media/asp-net/log-analytics-multi-dimensional.png" alt-text="Screenshot that shows the Log Analytics view of multidimensional metric.":::
-
-In the metrics explorer:
-
-:::image type="content" source="media/asp-net/custom-metrics.png" lightbox="media/asp-net/custom-metrics.png" alt-text="Screenshot that shows Custom metrics.":::
-
-Notice that you can't split the metric by your new custom dimension or view your custom dimension with the metrics view.
-
-:::image type="content" source="media/asp-net/splitting-support.png" lightbox="media/asp-net/splitting-support.png" alt-text="Screenshot that shows splitting support.":::
-
-By default, multidimensional metrics within the metric explorer aren't turned on in Application Insights resources.
-
-#### Enable multidimensional metrics
-
-To enable multidimensional metrics for an Application Insights resource, select **Usage and estimated costs** > **Custom Metrics** > **Enable alerting on custom metric dimensions** > **OK**. For more information, see [Custom metrics dimensions and preaggregation](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
-
-After you've made that change and sent new multidimensional telemetry, you can select **Apply splitting**.
-
-> [!NOTE]
-> Only newly sent metrics after the feature was turned on in the portal will have dimensions stored.
-
-:::image type="content" source="media/asp-net/apply-splitting.png" lightbox="media/asp-net/apply-splitting.png" alt-text="Screenshot that shows applying splitting.":::
-
-View your metric aggregations for each `FormFactor` dimension.
-
-:::image type="content" source="media/asp-net/formfactor.png" lightbox="media/asp-net/formfactor.png" alt-text="Screenshot that shows form factors.":::
-
-#### Use MetricIdentifier when there are more than three dimensions
-
-Currently, 10 dimensions are supported. More than three dimensions requires the use of `MetricIdentifier`:
-
-```csharp
-// Add "using Microsoft.ApplicationInsights.Metrics;" to use MetricIdentifier
-// MetricIdentifier id = new MetricIdentifier("[metricNamespace]","[metricId],"[dim1]","[dim2]","[dim3]","[dim4]","[dim5]");
-MetricIdentifier id = new MetricIdentifier("CustomMetricNamespace","ComputerSold", "FormFactor", "GraphicsCard", "MemorySpeed", "BatteryCapacity", "StorageCapacity");
-Metric computersSold  = _telemetryClient.GetMetric(id);
-computersSold.TrackValue(110,"Laptop", "Nvidia", "DDR4", "39Wh", "1TB");
-```
-
-### Custom metric configuration
-
-If you want to alter the metric configuration, you must make alterations in the place where the metric is initialized.
-
-#### Special dimension names
-
-Metrics don't use the telemetry context of the `TelemetryClient` used to access them. Using special dimension names available as constants in the `MetricDimensionNames` class is the best workaround for this limitation.
-
-Metric aggregates sent by the following `Special Operation Request Size` metric *won't* have `Context.Operation.Name` set to `Special Operation`. The `TrackMetric()` method or any other `TrackXXX()` method will have `OperationName` set correctly to `Special Operation`.
-
-``` csharp
-        //...
-        TelemetryClient specialClient;
-        private static int GetCurrentRequestSize()
-        {
-            // Do stuff
-            return 1100;
-        }
-        int requestSize = GetCurrentRequestSize()
-
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                //...
-                specialClient.Context.Operation.Name = "Special Operation";
-                specialClient.GetMetric("Special Operation Request Size").TrackValue(requestSize);
-                //...
-            }
-                   
-        }
-```
-
-In this circumstance, use the special dimension names listed in the `MetricDimensionNames` class to specify the `TelemetryContext` values.
-
-For example, when the metric aggregate resulting from the next statement is sent to the Application Insights cloud endpoint, its `Context.Operation.Name` data field will be set to `Special Operation`:
-
-```csharp
-_telemetryClient.GetMetric("Request Size", MetricDimensionNames.TelemetryContext.Operation.Name).TrackValue(requestSize, "Special Operation");
-```
-
-The values of this special dimension will be copied into `TelemetryContext` and won't be used as a *normal* dimension. If you want to also keep an operation dimension for normal metric exploration, you need to create a separate dimension for that purpose:
-
-```csharp
-_telemetryClient.GetMetric("Request Size", "Operation Name", MetricDimensionNames.TelemetryContext.Operation.Name).TrackValue(requestSize, "Special Operation", "Special Operation");
-```
-
-#### Dimension and time-series capping
-
-To prevent the telemetry subsystem from accidentally using up your resources, you can control the maximum number of data series per metric. The default limits are no more than 1,000 total data series per metric, and no more than 100 different values per dimension.
-
-> [!IMPORTANT]
-> Use low cardinal values for dimensions to avoid throttling.
-
- In the context of dimension and time series capping, we use `Metric.TrackValue(..)` to make sure that the limits are observed. If the limits are already reached, `Metric.TrackValue(..)` returns `False` and the value won't be tracked. Otherwise, it returns `True`. This behavior is useful if the data for a metric originates from user input.
-
-The `MetricConfiguration` constructor takes some options on how to manage different series within the respective metric and an object of a class implementing `IMetricSeriesConfiguration` that specifies aggregation behavior for each individual series of the metric:
-
-``` csharp
-var metConfig = new MetricConfiguration(seriesCountLimit: 100, valuesPerDimensionLimit:2,
-                new MetricSeriesConfigurationForMeasurement(restrictToUInt32Values: false));
-
-Metric computersSold = _telemetryClient.GetMetric("ComputersSold", "Dimension1", "Dimension2", metConfig);
-
-// Start tracking.
-computersSold.TrackValue(100, "Dim1Value1", "Dim2Value1");
-computersSold.TrackValue(100, "Dim1Value1", "Dim2Value2");
-
-// The following call gives 3rd unique value for dimension2, which is above the limit of 2.
-computersSold.TrackValue(100, "Dim1Value1", "Dim2Value3");
-// The above call does not track the metric, and returns false.
-```
-
-* `seriesCountLimit` is the maximum number of data time series a metric can contain. When this limit is reached, calls to `TrackValue()` that would normally result in a new series return `false`.
-* `valuesPerDimensionLimit` limits the number of distinct values per dimension in a similar manner.
-* `restrictToUInt32Values` determines whether or not only non-negative integer values should be tracked.
-
-Here's an example of how to send a message to know if cap limits are exceeded:
-
-```csharp
-if (! computersSold.TrackValue(100, "Dim1Value1", "Dim2Value3"))
-{
-// Add "using Microsoft.ApplicationInsights.DataContract;" to use SeverityLevel.Error
-_telemetryClient.TrackTrace("Metric value not tracked as value of one of the dimension exceeded the cap. Revisit the dimensions to ensure they are within the limits",
-SeverityLevel.Error);
-}
-```
-
-## Traces (logs)
+### Traces (logs)
 
 Application Insights captures logs from ASP.NET Core and other .NET apps through ILogger, and from classic ASP.NET (.NET Framework) through the classic SDK and adapters.
 
@@ -983,7 +696,7 @@ The Application Insights SDK for ASP.NET Core already collects ILogger logs by d
 
 If you only need log forwarding and not the full telemetry stack, you can use the [`Microsoft.Extensions.Logging.ApplicationInsights`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) provider package to capture logs.
 
-### Add ApplicationInsightsLoggerProvider
+#### Add ApplicationInsightsLoggerProvider
 
 1. Install the [`Microsoft.Extensions.Logging.ApplicationInsights`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights).
 
@@ -1056,7 +769,7 @@ For more information, see [Logging in ASP.NET Core](/aspnet/core/fundamentals/lo
 
 ---
 
-### Console application
+#### Console application
 
 To add Application Insights logging to console applications, first install the following NuGet packages:
 
@@ -1103,7 +816,7 @@ finally
 
 For more information, see [What Application Insights telemetry type is produced from ILogger logs? Where can I see ILogger logs in Application Insights?](application-insights-faq.yml#what-application-insights-telemetry-type-is-produced-from-ilogger-logs--where-can-i-see-ilogger-logs-in-application-insights).
 
-### Logging scopes
+#### Logging scopes
 
 > [!NOTE]
 > The following guidance applies to ILogger scenarios (ASP.NET Core and console only). *It doesn’t apply to classic ASP.NET.*
@@ -1128,7 +841,7 @@ using (_logger.BeginScope("hello scope"))
 }
 ```
 
-### Find your logs
+#### Find your logs
 
 ILogger logs appear as trace telemetry (table `traces` in Application Insights and `AppTraces` in Log Analytics).
 
@@ -1142,9 +855,9 @@ traces
 | take 50
 ```
 
-## Dependencies
+### Dependencies
 
-### Automatically tracked dependencies
+#### Automatically tracked dependencies
 
 Application Insights SDKs for .NET and .NET Core ship with `DependencyTrackingTelemetryModule`, which is a telemetry module that automatically collects dependencies. The module `DependencyTrackingTelemetryModule` is shipped as the [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/) NuGet package and brought automatically when you use either the `Microsoft.ApplicationInsights.Web` NuGet package or the `Microsoft.ApplicationInsights.AspNetCore` NuGet package.
 
@@ -1164,7 +877,7 @@ If the dependency isn't autocollected, you can track it manually with a [track d
 
 For more information about how dependency tracking works, see [Dependency tracking in Application Insights](dependencies.md#how-does-automatic-dependency-monitoring-work).
 
-### Set up automatic dependency tracking in console apps
+#### Set up automatic dependency tracking in console apps
 
 # [ASP.NET](#tab/net)
 
@@ -1181,7 +894,7 @@ For .NET Core console apps, `TelemetryConfiguration.Active` is obsolete. See the
 
 ---
 
-### Manually tracking dependencies
+#### Manually tracking dependencies
 
 The following examples of dependencies, which aren't automatically collected, require manual tracking:
 
@@ -1214,7 +927,7 @@ To have this data displayed in the dependency charts in Application Insights, se
 
 Alternatively, `TelemetryClient` provides the extension methods `StartOperation` and `StopOperation`, which can be used to manually track dependencies as shown in [Outgoing dependencies tracking](custom-operations-tracking.md#outgoing-dependencies-tracking).
 
-### Disabling the standard dependency tracking module
+#### Disabling the standard dependency tracking module
 
 # [ASP.NET](#tab/net)
 
@@ -1226,7 +939,7 @@ For ASP.NET Core applications, follow the instructions in [Application Insights 
 
 ---
 
-### Advanced SQL tracking to get full SQL query
+#### Advanced SQL tracking to get full SQL query
 
 For SQL calls, the name of the server and database is always collected and stored as the name of the collected `DependencyTelemetry`. Another field, called data, can contain the full SQL query text.
 
@@ -1266,11 +979,11 @@ services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o)
 
 In the preceding cases, the proper way of validating that the instrumentation engine is correctly installed is by validating that the SDK version of collected `DependencyTelemetry` is `rddp`. Use of `rdddsd` or `rddf` indicates dependencies are collected via `DiagnosticSource` or `EventSource` callbacks, so the full SQL query isn't captured.
 
-## Exceptions
+### Exceptions
 
 Exceptions in web applications can be reported with [Application Insights](app-insights-overview.md). You can correlate failed requests with exceptions and other events on both the client and server so that you can quickly diagnose the causes. In this section, you learn how to set up exception reporting, report exceptions explicitly, diagnose failures, and more.
 
-### Set up exception reporting
+#### Set up exception reporting
 
 You can set up Application Insights to report exceptions that occur in either the server or the client. Depending on the platform your application is dependent on, you need the appropriate extension or SDK.
 
@@ -1301,7 +1014,7 @@ With some application frameworks, more configuration is required. Consider the f
 > [!IMPORTANT]
 > This section is focused on .NET Framework apps from a code example perspective. Some of the methods that work for .NET Framework are obsolete in the .NET Core SDK.
 
-### Diagnose failures and exceptions
+#### Diagnose failures and exceptions
 
 # [Azure portal](#tab/portal)
 
@@ -1323,7 +1036,7 @@ For detailed instructions, see [Investigate failures, performance, and transacti
 
 ---
 
-### Custom tracing and log data
+#### Custom tracing and log data
 
 To get diagnostic data specific to your app, you can insert code to send your own telemetry data. Your custom telemetry or log data is displayed in diagnostic search alongside the request, page view, and other automatically collected data.
 
@@ -1340,7 +1053,7 @@ To see these events, on the left menu, open [Search](failures-performance-transa
 > [!NOTE]
 > If your app generates large amounts of telemetry, the adaptive sampling module automatically reduces the volume sent to the portal by sending only a representative fraction of events. Events that are part of the same operation are selected or deselected as a group so that you can navigate between related events. For more information, see [Sampling in Application Insights](sampling.md).
 
-#### See request POST data
+##### See request POST data
 
 Request details don't include the data sent to your app in a POST call. To have this data reported:
 
@@ -1348,7 +1061,7 @@ Request details don't include the data sent to your app in a POST call. To have 
 * Insert code in your application to call [Microsoft.ApplicationInsights.TrackTrace()](api-custom-events-metrics.md#tracktrace). Send the POST data in the message parameter. There's a limit to the permitted size, so you should try to send only the essential data.
 * When you investigate a failed request, find the associated traces.
 
-### Capture exceptions and related diagnostic data
+#### Capture exceptions and related diagnostic data
 
 By default, not all exceptions that cause failures in your app appear in the portal. If you use the [JavaScript SDK](javascript-sdk.md) in your webpages, you see browser exceptions. However, most server-side exceptions are intercepted by IIS, so you need to add some code to capture and report them.
 
@@ -1357,7 +1070,7 @@ You can:
 * **Log exceptions explicitly** by inserting code in exception handlers to report the exceptions.
 * **Capture exceptions automatically** by configuring your ASP.NET framework. The necessary additions are different for different types of framework.
 
-#### Report exceptions explicitly
+##### Report exceptions explicitly
 
 The simplest way to report is to insert a call to `trackException()` in an exception handler.
 
@@ -1408,13 +1121,13 @@ catch (ex)
 
 The properties and measurements parameters are optional, but they're useful for [filtering and adding](failures-performance-transactions.md?tabs=transaction-search) extra information. For example, if you have an app that can run several games, you could find all the exception reports related to a particular game. You can add as many items as you want to each dictionary.
 
-### Browser exceptions
+#### Browser exceptions
 
 Most browser exceptions are reported.
 
 If your webpage includes script files from content delivery networks or other domains, ensure your script tag has the attribute `crossorigin="anonymous"` and that the server sends [CORS headers](https://enable-cors.org/). This behavior allows you to get a stack trace and detail for unhandled JavaScript exceptions from these resources.
 
-### Reuse your telemetry client
+#### Reuse your telemetry client
 
 > [!NOTE]
 > We recommend that you instantiate the `TelemetryClient` once and reuse it throughout the life of an application.
@@ -1435,7 +1148,7 @@ public class ExampleController : ApiController
 
 In the preceding example, the `TelemetryClient` is injected into the `ExampleController` class.
 
-### Web forms
+#### Web forms
 
 For web forms, the HTTP Module is able to collect the exceptions when there are no redirects configured with `CustomErrors`. However, when you have active redirects, add the following lines to the `Application_Error` function in *Global.asax.cs*.
 
@@ -1452,7 +1165,7 @@ void Application_Error(object sender, EventArgs e)
 
 In the preceding example, the `_telemetryClient` is a class-scoped variable of type <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient>.
 
-### MVC
+#### MVC
 
 Starting with Application Insights Web SDK version 2.6 (beta 3 and later), Application Insights collects unhandled exceptions thrown in the MVC 5+ controllers methods automatically. If you previously added a custom handler to track such exceptions, you can remove it to prevent double tracking of exceptions.
 
@@ -1467,7 +1180,7 @@ There are several scenarios when an exception filter can't correctly handle erro
 
 All exceptions *handled* by application still need to be tracked manually. Unhandled exceptions originating from controllers typically result in a 500 "Internal Server Error" response. If such response is manually constructed as a result of a handled exception, or no exception at all, it's tracked in corresponding request telemetry with `ResultCode` 500. However, the Application Insights SDK is unable to track a corresponding exception.
 
-#### Prior versions support
+##### Prior versions support
 
 If you use MVC 4 (and prior) of Application Insights Web SDK 2.5 (and prior), refer to the following examples to track exceptions.
 
@@ -1557,7 +1270,7 @@ public class FilterConfig
 
 </details>
 
-### Web API
+#### Web API
 
 Starting with Application Insights Web SDK version 2.6 (beta 3 and later), Application Insights collects unhandled exceptions thrown in the controller methods automatically for Web API 2+. If you previously added a custom handler to track such exceptions, as described in the following examples, you can remove it to prevent double tracking of exceptions.
 
@@ -1572,7 +1285,7 @@ There are several cases that the exception filters can't handle. For example:
 
 All exceptions *handled* by application still need to be tracked manually. Unhandled exceptions originating from controllers typically result in a 500 "Internal Server Error" response. If such a response is manually constructed as a result of a handled exception, or no exception at all, it's tracked in a corresponding request telemetry with `ResultCode` 500. However, the Application Insights SDK can't track a corresponding exception.
 
-#### Prior versions support
+##### Prior versions support
 
 If you use Web API 1 (and earlier) of Application Insights Web SDK 2.5 (and earlier), refer to the following examples to track exceptions.
 
@@ -1698,7 +1411,7 @@ As alternatives, you could:
 
 </details>
 
-### WCF
+#### WCF
 
 Add a class that extends `Attribute` and implements `IErrorHandler` and `IServiceBehavior`.
 
@@ -1768,7 +1481,7 @@ namespace WcfService4
 
 [Sample](https://github.com/AppInsightsSamples/WCFUnhandledExceptions)
 
-### Exception performance counters
+#### Exception performance counters
 
 If you [installed the Azure Monitor Application Insights Agent](application-insights-asp-net-agent.md) on your server, you can get a chart of the exceptions rate measured by .NET. Both handled and unhandled .NET exceptions are included.
 
@@ -1778,36 +1491,328 @@ The .NET Framework calculates the rate by counting the number of exceptions in a
 
 This count is different from the Exceptions count calculated by the Application Insights portal counting `TrackException` reports. The sampling intervals are different, and the SDK doesn't send `TrackException` reports for all handled and unhandled exceptions.
 
-## Performance counters
+### Custom metric collection
 
-ASP.NET fully supports performance counters, while ASP.NET Core offers limited support depending on the SDK version and hosting environment. For more information, see [Counters for .NET in Application Insights](asp-net-counters.md).
+The Azure Monitor Application Insights .NET and .NET Core SDKs have two different methods of collecting custom metrics:
 
-## Event counters
+* The `TrackMetric()` method, which lacks preaggregation.
+* The `GetMetric()` method, which has preaggregation.
 
-Application Insights supports collecting EventCounters with its `EventCounterCollectionModule`, which is enabled by default for ASP.NET Core. To learn how to configure the list of counters to be collected, see [Counters for .NET in Application Insights](asp-net-counters.md).
+We recommend to use aggregation, so `TrackMetric()` *is no longer the preferred method of collecting custom metrics*. This article walks you through using the `GetMetric()` method and some of the rationale behind how it works.
 
-## Enrich data through HTTP
+<br>
+<details>
+<summary><b>Expand to learn more about preaggregating vs. non-preaggregating API</b></summary>
 
-# [ASP.NET](#tab/net)
+The `TrackMetric()` method sends raw telemetry denoting a metric. It's inefficient to send a single telemetry item for each value. The `TrackMetric()` method is also inefficient in terms of performance because every `TrackMetric(item)` goes through the full SDK pipeline of telemetry initializers and processors.
+
+Unlike `TrackMetric()`, `GetMetric()` handles local preaggregation for you and then only submits an aggregated summary metric at a fixed interval of one minute. If you need to closely monitor some custom metric at the second or even millisecond level, you can do so while only incurring the storage and network traffic cost of only monitoring every minute. This behavior also greatly reduces the risk of throttling occurring because the total number of telemetry items that need to be sent for an aggregated metric are greatly reduced.
+
+In Application Insights, custom metrics collected via `TrackMetric()` and `GetMetric()` aren't subject to [sampling](./sampling.md). Sampling important metrics can lead to scenarios where alerting you might have built around those metrics could become unreliable. By never sampling your custom metrics, you can generally be confident that when your alert thresholds are breached, an alert fires. Because custom metrics aren't sampled, there are some potential concerns.
+
+Trend tracking in a metric every second, or at an even more granular interval, can result in:
+
+* **Increased data storage costs.** There's a cost associated with how much data you send to Azure Monitor. The more data you send, the greater the overall cost of monitoring.
+* **Increased network traffic or performance overhead.** In some scenarios, this overhead could have both a monetary and application performance cost.
+* **Risk of ingestion throttling.** Azure Monitor drops ("throttles") data points when your app sends a high rate of telemetry in a short time interval.
+
+Throttling is a concern because it can lead to missed alerts. The condition to trigger an alert could occur locally and then be dropped at the ingestion endpoint because of too much data being sent. We don't recommend using `TrackMetric()` for .NET and .NET Core unless you've implemented your own local aggregation logic. If you're trying to track every instance an event occurs over a given time period, you might find that [`TrackEvent()`](./api-custom-events-metrics.md#trackevent) is a better fit. Keep in mind that unlike custom metrics, custom events are subject to sampling. You can still use `TrackMetric()` even without writing your own local preaggregation. But if you do so, be aware of the pitfalls.
+
+In summary, we recommend `GetMetric()` because it does preaggregation, it accumulates values from all the `Track()` calls, and sends a summary/aggregate once every minute. The `GetMetric()` method can significantly reduce the cost and performance overhead by sending fewer data points while still collecting all relevant information.
+
+</details>
+
+#### Get started with GetMetric
+
+For our examples, we're going to use a basic .NET Core 3.1 worker service application. If you want to replicate the test environment used with these examples, follow steps 1-6 in the [Monitoring worker service article](worker-service.md#net-core-worker-service-application). These steps add Application Insights to a basic worker service project template. The concepts apply to any general application where the SDK can be used, including web apps and console apps.
+
+##### Send metrics
+
+Replace the contents of your `worker.cs` file with the following code:
 
 ```csharp
-var requestTelemetry = HttpContext.Current?.Items["Microsoft.ApplicationInsights.RequestTelemetry"] as RequestTelemetry;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.ApplicationInsights;
 
-if (requestTelemetry != null)
+namespace WorkerService3
 {
-    requestTelemetry.Properties["myProp"] = "someData";
+    public class Worker : BackgroundService
+    {
+        private readonly ILogger<Worker> _logger;
+        private TelemetryClient _telemetryClient;
+
+        public Worker(ILogger<Worker> logger, TelemetryClient tc)
+        {
+            _logger = logger;
+            _telemetryClient = tc;
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {   // The following line demonstrates usages of GetMetric API.
+            // Here "computersSold", a custom metric name, is being tracked with a value of 42 every second.
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                _telemetryClient.GetMetric("ComputersSold").TrackValue(42);
+
+                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                await Task.Delay(1000, stoppingToken);
+            }
+        }
+    }
 }
 ```
 
-# [ASP.NET Core](#tab/core)
+When you run the sample code, you see the `while` loop repeatedly executing with no telemetry being sent in the Visual Studio output window. A single telemetry item is sent by around the 60-second mark, which in our test looks like:
 
-```csharp
-HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
+```json
+Application Insights Telemetry: {"name":"Microsoft.ApplicationInsights.Dev.00000000-0000-0000-0000-000000000000.Metric", "time":"2019-12-28T00:54:19.0000000Z",
+"ikey":"00000000-0000-0000-0000-000000000000",
+"tags":{"ai.application.ver":"1.0.0.0",
+"ai.cloud.roleInstance":"Test-Computer-Name",
+"ai.internal.sdkVersion":"m-agg2c:2.12.0-21496",
+"ai.internal.nodeName":"Test-Computer-Name"},
+"data":{"baseType":"MetricData",
+"baseData":{"ver":2,"metrics":[{"name":"ComputersSold",
+"kind":"Aggregation",
+"value":1722,
+"count":41,
+"min":42,
+"max":42,
+"stdDev":0}],
+"properties":{"_MS.AggregationIntervalMs":"42000",
+"DeveloperMode":"true"}}}}
 ```
 
----
+This single telemetry item represents an aggregate of 41 distinct metric measurements. Because we were sending the same value over and over again, we have a standard deviation (`stDev`) of `0` with identical maximum (`max`) and minimum (`min`) values. The `value` property represents a sum of all the individual values that were aggregated.
 
-## Configure the Application Insights SDK
+> [!NOTE]
+> The `GetMetric` method doesn't support tracking the last value (for example, `gauge`) or tracking histograms or distributions.
+
+If we examine our Application Insights resource in the **Logs (Analytics)** experience, the individual telemetry item would look like the following screenshot.
+
+:::image type="content" source="media/asp-net/log-analytics.png" lightbox="media/asp-net/log-analytics.png" alt-text="Screenshot that shows the Log Analytics query view.":::
+
+> [!NOTE]
+> While the raw telemetry item didn't contain an explicit sum property/field once ingested, we create one for you. In this case, both the `value` and `valueSum` property represent the same thing.
+
+You can also access your custom metric telemetry in the [*Metrics*](../metrics/analyze-metrics.md) section of the portal as both a [log-based and custom metric](metrics-overview.md). The following screenshot is an example of a log-based metric.
+
+:::image type="content" source="media/asp-net/metrics-explorer.png" lightbox="media/asp-net/metrics-explorer.png" alt-text="Screenshot that shows the Metrics explorer view.":::
+
+##### Cache metric reference for high-throughput usage
+
+Metric values might be observed frequently in some cases. For example, a high-throughput service that processes 500 requests per second might want to emit 20 telemetry metrics for each request. The result means tracking 10,000 values per second. In such high-throughput scenarios, users might need to help the SDK by avoiding some lookups.
+
+For example, the preceding example performed a lookup for a handle for the metric `ComputersSold` and then tracked an observed value of `42`. Instead, the handle might be cached for multiple track invocations:
+
+```csharp
+//...
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            // This is where the cache is stored to handle faster lookup
+            Metric computersSold = _telemetryClient.GetMetric("ComputersSold");
+            while (!stoppingToken.IsCancellationRequested)
+            {
+
+                computersSold.TrackValue(42);
+
+                computersSold.TrackValue(142);
+
+                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                await Task.Delay(50, stoppingToken);
+            }
+        }
+
+```
+
+In addition to caching the metric handle, the preceding example also reduced `Task.Delay` to 50 milliseconds so that the loop would execute more frequently. The result is 772 `TrackValue()` invocations.
+
+#### Multidimensional metrics
+
+The examples in the previous section show zero-dimensional metrics. Metrics can also be multidimensional. We currently support up to 10 dimensions.
+
+ Here's an example of how to create a one-dimensional metric:
+
+```csharp
+//...
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            // This is an example of a metric with a single dimension.
+            // FormFactor is the name of the dimension.
+            Metric computersSold= _telemetryClient.GetMetric("ComputersSold", "FormFactor");
+
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                // The number of arguments (dimension values)
+                // must match the number of dimensions specified while GetMetric.
+                // Laptop, Tablet, etc are values for the dimension "FormFactor"
+                computersSold.TrackValue(42, "Laptop");
+                computersSold.TrackValue(20, "Tablet");
+                computersSold.TrackValue(126, "Desktop");
+
+
+                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                await Task.Delay(50, stoppingToken);
+            }
+        }
+
+```
+
+Running the sample code for at least 60 seconds results in three distinct telemetry items being sent to Azure. Each item represents the aggregation of one of the three form factors. As before, you can further examine in the **Logs (Analytics)** view.
+
+:::image type="content" source="media/asp-net/log-analytics-multi-dimensional.png" lightbox="media/asp-net/log-analytics-multi-dimensional.png" alt-text="Screenshot that shows the Log Analytics view of multidimensional metric.":::
+
+In the metrics explorer:
+
+:::image type="content" source="media/asp-net/custom-metrics.png" lightbox="media/asp-net/custom-metrics.png" alt-text="Screenshot that shows Custom metrics.":::
+
+Notice that you can't split the metric by your new custom dimension or view your custom dimension with the metrics view.
+
+:::image type="content" source="media/asp-net/splitting-support.png" lightbox="media/asp-net/splitting-support.png" alt-text="Screenshot that shows splitting support.":::
+
+By default, multidimensional metrics within the metric explorer aren't turned on in Application Insights resources.
+
+##### Enable multidimensional metrics
+
+To enable multidimensional metrics for an Application Insights resource, select **Usage and estimated costs** > **Custom Metrics** > **Enable alerting on custom metric dimensions** > **OK**. For more information, see [Custom metrics dimensions and preaggregation](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
+
+After you've made that change and sent new multidimensional telemetry, you can select **Apply splitting**.
+
+> [!NOTE]
+> Only newly sent metrics after the feature was turned on in the portal will have dimensions stored.
+
+:::image type="content" source="media/asp-net/apply-splitting.png" lightbox="media/asp-net/apply-splitting.png" alt-text="Screenshot that shows applying splitting.":::
+
+View your metric aggregations for each `FormFactor` dimension.
+
+:::image type="content" source="media/asp-net/formfactor.png" lightbox="media/asp-net/formfactor.png" alt-text="Screenshot that shows form factors.":::
+
+##### Use MetricIdentifier when there are more than three dimensions
+
+Currently, 10 dimensions are supported. More than three dimensions requires the use of `MetricIdentifier`:
+
+```csharp
+// Add "using Microsoft.ApplicationInsights.Metrics;" to use MetricIdentifier
+// MetricIdentifier id = new MetricIdentifier("[metricNamespace]","[metricId],"[dim1]","[dim2]","[dim3]","[dim4]","[dim5]");
+MetricIdentifier id = new MetricIdentifier("CustomMetricNamespace","ComputerSold", "FormFactor", "GraphicsCard", "MemorySpeed", "BatteryCapacity", "StorageCapacity");
+Metric computersSold  = _telemetryClient.GetMetric(id);
+computersSold.TrackValue(110,"Laptop", "Nvidia", "DDR4", "39Wh", "1TB");
+```
+
+#### Custom metric configuration
+
+If you want to alter the metric configuration, you must make alterations in the place where the metric is initialized.
+
+##### Special dimension names
+
+Metrics don't use the telemetry context of the `TelemetryClient` used to access them. Using special dimension names available as constants in the `MetricDimensionNames` class is the best workaround for this limitation.
+
+Metric aggregates sent by the following `Special Operation Request Size` metric *won't* have `Context.Operation.Name` set to `Special Operation`. The `TrackMetric()` method or any other `TrackXXX()` method will have `OperationName` set correctly to `Special Operation`.
+
+``` csharp
+        //...
+        TelemetryClient specialClient;
+        private static int GetCurrentRequestSize()
+        {
+            // Do stuff
+            return 1100;
+        }
+        int requestSize = GetCurrentRequestSize()
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                //...
+                specialClient.Context.Operation.Name = "Special Operation";
+                specialClient.GetMetric("Special Operation Request Size").TrackValue(requestSize);
+                //...
+            }
+                   
+        }
+```
+
+In this circumstance, use the special dimension names listed in the `MetricDimensionNames` class to specify the `TelemetryContext` values.
+
+For example, when the metric aggregate resulting from the next statement is sent to the Application Insights cloud endpoint, its `Context.Operation.Name` data field will be set to `Special Operation`:
+
+```csharp
+_telemetryClient.GetMetric("Request Size", MetricDimensionNames.TelemetryContext.Operation.Name).TrackValue(requestSize, "Special Operation");
+```
+
+The values of this special dimension will be copied into `TelemetryContext` and won't be used as a *normal* dimension. If you want to also keep an operation dimension for normal metric exploration, you need to create a separate dimension for that purpose:
+
+```csharp
+_telemetryClient.GetMetric("Request Size", "Operation Name", MetricDimensionNames.TelemetryContext.Operation.Name).TrackValue(requestSize, "Special Operation", "Special Operation");
+```
+
+##### Dimension and time-series capping
+
+To prevent the telemetry subsystem from accidentally using up your resources, you can control the maximum number of data series per metric. The default limits are no more than 1,000 total data series per metric, and no more than 100 different values per dimension.
+
+> [!IMPORTANT]
+> Use low cardinal values for dimensions to avoid throttling.
+
+ In the context of dimension and time series capping, we use `Metric.TrackValue(..)` to make sure that the limits are observed. If the limits are already reached, `Metric.TrackValue(..)` returns `False` and the value won't be tracked. Otherwise, it returns `True`. This behavior is useful if the data for a metric originates from user input.
+
+The `MetricConfiguration` constructor takes some options on how to manage different series within the respective metric and an object of a class implementing `IMetricSeriesConfiguration` that specifies aggregation behavior for each individual series of the metric:
+
+``` csharp
+var metConfig = new MetricConfiguration(seriesCountLimit: 100, valuesPerDimensionLimit:2,
+                new MetricSeriesConfigurationForMeasurement(restrictToUInt32Values: false));
+
+Metric computersSold = _telemetryClient.GetMetric("ComputersSold", "Dimension1", "Dimension2", metConfig);
+
+// Start tracking.
+computersSold.TrackValue(100, "Dim1Value1", "Dim2Value1");
+computersSold.TrackValue(100, "Dim1Value1", "Dim2Value2");
+
+// The following call gives 3rd unique value for dimension2, which is above the limit of 2.
+computersSold.TrackValue(100, "Dim1Value1", "Dim2Value3");
+// The above call does not track the metric, and returns false.
+```
+
+* `seriesCountLimit` is the maximum number of data time series a metric can contain. When this limit is reached, calls to `TrackValue()` that would normally result in a new series return `false`.
+* `valuesPerDimensionLimit` limits the number of distinct values per dimension in a similar manner.
+* `restrictToUInt32Values` determines whether or not only non-negative integer values should be tracked.
+
+Here's an example of how to send a message to know if cap limits are exceeded:
+
+```csharp
+if (! computersSold.TrackValue(100, "Dim1Value1", "Dim2Value3"))
+{
+// Add "using Microsoft.ApplicationInsights.DataContract;" to use SeverityLevel.Error
+_telemetryClient.TrackTrace("Metric value not tracked as value of one of the dimension exceeded the cap. Revisit the dimensions to ensure they are within the limits",
+SeverityLevel.Error);
+}
+```
+
+### Performance counters
+
+ASP.NET fully supports performance counters, while ASP.NET Core offers limited support depending on the SDK version and hosting environment. For more information, see [Counters for .NET in Application Insights](asp-net-counters.md).
+
+### Event counters
+
+Application Insights supports collecting EventCounters with its `EventCounterCollectionModule`, which is enabled by default for ASP.NET Core. To learn how to configure the list of counters to be collected, see [Counters for .NET in Application Insights](asp-net-counters.md).
+
+## Configure and tune the SDK
+
+This section covers:
+
+* [Configure the Application Insighs SDK](#configure-the-application-insights-sdk)
+* [Telemetry initializers](#telemetry-initializers)
+* [Telemetry processor](#telemetry-processors)
+* [Sampling](#sampling)
+* [Configure or remove default TelemetryModules](#configure-or-remove-default-telemetrymodules)
+* [Enrich and correlate over HTTP](#enrich-data-through-http)
+
+### Configure the Application Insights SDK
 
 You can customize the Application Insights SDK for ASP.NET and ASP.NET Core to change the default configuration.
 
@@ -1824,13 +1829,13 @@ This article describes the sections you see in the configuration file, how they 
 > [!NOTE]
 > The `ApplicationInsights.config` and .xml instructions don't apply to the .NET Core SDK. To configure .NET Core applications, follow the instructions in [Application Insights for ASP.NET Core applications](./asp-net-core.md).
 
-### Telemetry modules (ASP.NET)
+#### Configure telemetry modules
 
 Each telemetry module collects a specific type of data and uses the core API to send the data. The modules are installed by different NuGet packages, which also add the required lines to the .config file.
 
 There's a node in the configuration file for each module. To disable a module, delete the node or comment it out.
 
-### Dependency tracking
+#### Configure dependency tracking
 
 [Dependency tracking](./asp-net-dependencies.md) collects telemetry about calls your app makes to databases and external services and databases. To allow this module to work in an IIS server, you need to [install Application Insights Agent](./application-insights-asp-net-agent.md).
 
@@ -1841,35 +1846,35 @@ You can also write your own dependency tracking code by using the [TrackDependen
 
 Dependencies can be autocollected without modifying your code by using agent-based (codeless) attach. To use it in Azure web apps, enable the [Application Insights extension](azure-web-apps.md). To use it in an Azure VM or an Azure virtual machine scale set, enable the [Application Monitoring extension for VMs and virtual machine scale sets](azure-vm-vmss-apps.md).
 
-### Performance collector
+#### Configure performance collector
 
 The performance collector [collects system performance counters](./asp-net-counters.md), such as CPU, memory, and network load from IIS installations. You can specify which counters to collect, including performance counters you've set up yourself.
 
 * `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`
 * [Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet package
 
-### Application Insights diagnostics telemetry
+#### Application Insights diagnostics telemetry
 
 The `DiagnosticsTelemetryModule` class reports errors in the Application Insights instrumentation code itself. Examples are if the code can't access performance counters or if `ITelemetryInitializer` throws an exception. Trace telemetry tracked by this module appears in the [Diagnostic Search](./transaction-search-and-diagnostics.md?tabs=transaction-search).
 
 * `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`
 * [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you only install this package, the ApplicationInsights.config file isn't automatically created.
 
-### Developer mode
+#### Developer mode
 
 The `DeveloperModeWithDebuggerAttachedTelemetryModule` class forces the Application Insights `TelemetryChannel` to send data immediately, one telemetry item at a time, when a debugger is attached to the application process. This design reduces the amount of time between the moment when your application tracks telemetry and when it appears in the Application Insights portal. It causes significant overhead in CPU and network bandwidth.
 
 * `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`
 * [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet package
 
-### Web request tracking
+#### Web request tracking
 
 Web request tracking reports the [response time and result code](../../azure-monitor/app/asp-net.md) of HTTP requests.
 
 * `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`
 * [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package
 
-### Exception tracking
+#### Exception tracking
 
 The `ExceptionTrackingTelemetryModule` class tracks unhandled exceptions in your web app. For more information, see [Failures and exceptions](./asp-net-exceptions.md).
 
@@ -1879,35 +1884,35 @@ The `ExceptionTrackingTelemetryModule` class tracks unhandled exceptions in your
 * `Microsoft.ApplicationInsights.WindowsServer.UnhandledExceptionTelemetryModule`: Tracks unhandled exceptions for worker roles, Windows services, and console applications.
 * [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet package.
 
-### EventSource tracking
+#### EventSource tracking
 
 The `EventSourceTelemetryModule` class allows you to configure EventSource events to be sent to Application Insights as traces. For information on tracking EventSource events, see [Using EventSource events](./asp-net-trace-logs.md#use-eventsource-events).
 
 * `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`
 * [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener)
 
-#### ETW event tracking
+##### ETW event tracking
 
 The `EtwCollectorTelemetryModule` class allows you to configure events from ETW providers to be sent to Application Insights as traces. For information on tracking ETW events, see [Using ETW events](../../azure-monitor/app/asp-net-trace-logs.md#use-etw-events).
 
 * `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`
 * [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector)
 
-#### Microsoft.ApplicationInsights
+##### Microsoft.ApplicationInsights
 
 The `Microsoft.ApplicationInsights` package provides the [core API](/dotnet/api/microsoft.applicationinsights) of the SDK. The other telemetry modules use this API. You can also [use it to define your own telemetry](./api-custom-events-metrics.md).
 
 * No entry in ApplicationInsights.config.
 * [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you just install this NuGet, no .config file is generated.
 
-### Telemetry channel
+#### Telemetry channel
 
 The [telemetry channel](telemetry-channels.md) manages buffering and transmission of telemetry to the Application Insights service.
 
 * `Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel` is the default channel for web applications. It buffers data in memory and employs retry mechanisms and local disk storage for more reliable telemetry delivery.
 * `Microsoft.ApplicationInsights.InMemoryChannel` is a lightweight telemetry channel. It's used if no other channel is configured.
 
-### Telemetry initializers (ASP.NET)
+#### Configure telemetry initializers
 
 Telemetry initializers set context properties that are sent along with every item of telemetry.
 
@@ -1933,13 +1938,13 @@ The standard initializers are all set either by the web or WindowsServer NuGet p
 
 For .NET applications running in Azure Service Fabric, you can include the `Microsoft.ApplicationInsights.ServiceFabric` NuGet package. This package includes a `FabricTelemetryInitializer` property, which adds Service Fabric properties to telemetry items. For more information, see the [GitHub page](https://github.com/Microsoft/ApplicationInsights-ServiceFabric/blob/master/README.md) about the properties added by this NuGet package.
 
-### Telemetry processors
+#### Telemetry processors
 
 Telemetry processors can filter and modify each telemetry item before it's sent from the SDK to the portal.
 
 You can [write your own telemetry processors](./api-filtering-sampling.md#filtering).
 
-#### Adaptive sampling telemetry processor (from 2.0.0-beta3)
+##### Adaptive sampling telemetry processor (from 2.0.0-beta3)
 
 This functionality is enabled by default. If your app sends considerable telemetry, this processor removes some of it.
 
@@ -1957,7 +1962,7 @@ The parameter provides the target that the algorithm tries to achieve. Each inst
 
 Learn more about [sampling](./sampling.md).
 
-#### Fixed-rate sampling telemetry processor (from 2.0.0-beta1)
+##### Fixed-rate sampling telemetry processor (from 2.0.0-beta1)
 
 There's also a standard [sampling telemetry processor](./api-filtering-sampling.md) (from 2.0.1):
 
@@ -1974,7 +1979,7 @@ There's also a standard [sampling telemetry processor](./api-filtering-sampling.
 
 ```
 
-### Connection String
+#### Connection String
 
 This setting determines the Application Insights resource in which your data appears. Typically, you create a separate resource, with a separate connection string, for each of your applications.
 
@@ -2009,7 +2014,7 @@ If you want to send a specific set of events to a different resource, you can se
 
 To get a new key, [create a new resource in the Application Insights portal](./create-workspace-resource.md).
 
-### ApplicationId Provider
+#### ApplicationId Provider
 
 _The provider is available starting in v2.6.0_.
 
@@ -2017,7 +2022,7 @@ The purpose of this provider is to look up an application ID based on a connecti
 
 This functionality is available by setting `TelemetryConfiguration.ApplicationIdProvider` either in code or in the config file.
 
-#### Interface: IApplicationIdProvider
+##### Interface: IApplicationIdProvider
 
 ```csharp
 public interface IApplicationIdProvider
@@ -2028,7 +2033,7 @@ public interface IApplicationIdProvider
 
 We provide two implementations in the [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) SDK: `ApplicationInsightsApplicationIdProvider` and `DictionaryApplicationIdProvider`.
 
-#### ApplicationInsightsApplicationIdProvider
+##### ApplicationInsightsApplicationIdProvider
 
 This wrapper is for our Profile API. It throttles requests and cache results.
 
@@ -2054,7 +2059,7 @@ This class has an optional property `ProfileQueryEndpoint`. By default, it's set
 TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApplicationIdProvider();
 ```
 
-#### DictionaryApplicationIdProvider
+##### DictionaryApplicationIdProvider
 
 This static provider relies on your configured instrumentation key/application ID pairs.
 
@@ -2090,7 +2095,7 @@ TelemetryConfiguration.Active.ApplicationIdProvider = new DictionaryApplicationI
 };
 ```
 
-### Configure snapshot collection for ASP.NET applications
+#### Configure snapshot collection
 
 Configure a [snapshot collection for ASP.NET applications](snapshot-debugger-vm.md#configure-snapshot-collection-for-aspnet-applications).
 
@@ -2101,7 +2106,7 @@ In ASP.NET Core applications, all configuration changes are made in the `Configu
 > [!NOTE]
 > In ASP.NET Core applications, changing configuration by modifying `TelemetryConfiguration.Active` isn't supported.
 
-### Use ApplicationInsightsServiceOptions
+#### Use ApplicationInsightsServiceOptions
 
 You can modify a few common settings by passing `ApplicationInsightsServiceOptions` to `AddApplicationInsightsTelemetry`, as in this example:
 
@@ -2139,7 +2144,7 @@ This table has the full list of `ApplicationInsightsServiceOptions` settings:
 
 For the most current list, see the [configurable settings in `ApplicationInsightsServiceOptions`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs).
 
-### Configuration recommendation for Microsoft.ApplicationInsights.AspNetCore SDK 2.15.0 and later
+#### Configuration recommendation for Microsoft.ApplicationInsights.AspNetCore SDK 2.15.0 and later
 
 In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore/2.15.0) and later, configure every setting available in `ApplicationInsightsServiceOptions`, including `ConnectionString`. Use the application's `IConfiguration` instance. The settings must be under the section `ApplicationInsights`, as shown in the following example. The following section from *appsettings.json* configures the connection string and disables adaptive sampling and performance counter collection.
 
@@ -2157,21 +2162,7 @@ If `builder.Services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Cor
 
 ---
 
-## Sampling
-
-# [ASP.NET](#tab/net)
-
-To learn how to configure sampling for ASP.NET applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-
-# [ASP.NET Core](#tab/core)
-
-The Application Insights SDK for ASP.NET Core supports both fixed-rate and adaptive sampling. By default, adaptive sampling is enabled.
-
-For more information, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-
----
-
-## Telemetry initializers
+### Telemetry initializers
 
 To enrich telemetry with additional information or to override telemetry properties set by the standard telemetry modules, use telemetry initializers.
 
@@ -2181,7 +2172,7 @@ To learn how to use telemetry initializers with ASP.NET applications, see [Filte
 
 # [ASP.NET Core](#tab/core)
 
-### Add telemetry initializers
+#### Add telemetry initializers
 
 Add any new `TelemetryInitializer` to the `DependencyInjection` container as shown in the following code. The SDK automatically picks up any `TelemetryInitializer` that's added to the `DependencyInjection` container.
 
@@ -2196,7 +2187,7 @@ var app = builder.Build();
 > [!NOTE]
 > `builder.Services.AddSingleton<ITelemetryInitializer, MyCustomTelemetryInitializer>();` works for simple initializers. For others, `builder.Services.AddSingleton(new MyCustomTelemetryInitializer() { fieldName = "myfieldName" });` is required.
 
-### Remove telemetry initializers
+#### Remove telemetry initializers
 
 By default, telemetry initializers are present. To remove all or specific telemetry initializers, use the following sample code *after* calling `AddApplicationInsightsTelemetry()`.
 
@@ -2222,7 +2213,7 @@ var app = builder.Build();
 
 ---
 
-## Telemetry processors
+### Telemetry processors
 
 # [ASP.NET](#tab/net)
 
@@ -2230,7 +2221,7 @@ To learn how to use telemetry processors with ASP.NET applications, see [Filter 
 
 # [ASP.NET Core](#tab/core)
 
-### Add telemetry processors
+#### Add telemetry processors
 
 You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer). Use the following example:
 
@@ -2249,7 +2240,21 @@ var app = builder.Build();
 
 ---
 
-## Configure or remove default TelemetryModules
+### Sampling
+
+# [ASP.NET](#tab/net)
+
+To learn how to configure sampling for ASP.NET applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+
+# [ASP.NET Core](#tab/core)
+
+The Application Insights SDK for ASP.NET Core supports both fixed-rate and adaptive sampling. By default, adaptive sampling is enabled.
+
+For more information, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+
+---
+
+### Configure or remove default TelemetryModules
 
 Application Insights automatically collects telemetry about specific workloads without requiring manual tracking by user.
 
@@ -2305,7 +2310,7 @@ var app = builder.Build();
 
 In versions 2.12.2 and later, [`ApplicationInsightsServiceOptions`](#use-applicationinsightsserviceoptions) includes an easy option to disable any of the default modules.
 
-### Configure a telemetry channel
+#### Configure a telemetry channel
 
 The default [telemetry channel](telemetry-channels.md) is `ServerTelemetryChannel`. The following example shows how to override it.
 
@@ -2326,7 +2331,7 @@ var app = builder.Build();
 > [!NOTE]
 > If you want to flush the buffer, see [Flushing data](api-custom-events-metrics.md#flushing-data). For example, you might need to flush the buffer if you're using the SDK in an application that shuts down.
 
-### Disable telemetry dynamically
+#### Disable telemetry dynamically
 
 If you want to disable telemetry conditionally and dynamically, you can resolve the `TelemetryConfiguration` instance with an ASP.NET Core dependency injection container anywhere in your code and set the `DisableTelemetry` flag on it.
 
@@ -2342,6 +2347,27 @@ var app = builder.Build();
 ```
 
 The preceding code sample prevents the sending of telemetry to Application Insights. It doesn't prevent any automatic collection modules from collecting telemetry. If you want to remove a particular autocollection module, see [Remove the telemetry module](#configure-or-remove-default-telemetrymodules).
+
+---
+
+### Enrich data through HTTP
+
+# [ASP.NET](#tab/net)
+
+```csharp
+var requestTelemetry = HttpContext.Current?.Items["Microsoft.ApplicationInsights.RequestTelemetry"] as RequestTelemetry;
+
+if (requestTelemetry != null)
+{
+    requestTelemetry.Properties["myProp"] = "someData";
+}
+```
+
+# [ASP.NET Core](#tab/core)
+
+```csharp
+HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
+```
 
 ---
 
