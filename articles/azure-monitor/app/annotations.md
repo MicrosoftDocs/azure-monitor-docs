@@ -15,9 +15,6 @@ Release annotations mark deployments and other significant events on Application
 [Azure Pipelines](/azure/devops/pipelines) creates a release annotation during deployment when all the following conditions are true:
 
 > [!div class="checklist"]
-[Azure Pipelines](/azure/devops/pipelines) creates a release annotation during deployment when all the following conditions are true:
-
-> [!div class="checklist"]
 > - The target resource links to Application Insights through the `APPINSIGHTS_INSTRUMENTATIONKEY` app setting.
 > - The Application Insights resource is in the same subscription as the target resource.
 > - The deployment uses one of the following Azure Pipelines tasks:
@@ -166,8 +163,7 @@ Application Insights displays release annotations in the following experiences:
 
 [Investigate failures, performance, and transactions with Application Insights](failures-performance-transactions.md&tabs=performance-view)
 
-- [**Performance**](failures-performance-transactions.md&tabs=performance-view)
-- [**Failures**](failures-performance-transactions.md&tabs=failures-view)
+- [**Performance and Failures**](failures-performance-transactions.md)
 - [**Usage**](usage.md)
 - [**Workbooks**](../visualize/best-practices-visualize.md) (for any time-series visualization)
 
