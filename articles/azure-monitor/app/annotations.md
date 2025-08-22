@@ -161,8 +161,6 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
 
 Application Insights displays release annotations in the following experiences:
 
-[Investigate failures, performance, and transactions with Application Insights](failures-performance-transactions.md&tabs=performance-view)
-
 - [**Performance and Failures**](failures-performance-transactions.md)
 - [**Usage**](usage.md)
 - [**Workbooks**](../visualize/best-practices-visualize.md) (for any time-series visualization)
