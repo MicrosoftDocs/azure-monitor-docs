@@ -137,8 +137,6 @@ Use the following PowerShell script to create a release annotation from any proc
 
 > [!NOTE]
 > Set **Category** to **Deployment** or annotations don't appear in the Azure portal.
->
-> If you receive the error **The request contains an entity body but no Content-Type header**, remove the `replace` parameters from the line that assigns `$body`.
 
 Call the script and pass values for the parameters. The `-releaseProperties` parameter is optional.
 
@@ -163,24 +161,13 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
 
 Application Insights displays release annotations in the following experiences:
 
-- **Performance**
-- **Failures**
-- **Usage**
-- **Workbooks** (for any time-series visualization)
+- [**Performance**](/azure/azure-monitor/app/failures-performance-transactions&tabs=performance-view)
+- [**Failures**](/azure/azure-monitor/app/failures-performance-transactions&tabs=failures-view)
+- [**Usage**](/azure/azure-monitor/app/usage)
+- [**Workbooks**](/azure/azure-monitor/visualize/best-practices-visualize) (for any time-series visualization)
 
 The annotations markers at the top of charts provide more information.
 
 :::image type="content" source="media/annotations/annotation-marker.png" alt-text="A screenshot of a blue arrow pointing upwards towards a solid blue line":::
 
 To enable annotations in a workbook, open **Advanced Settings** and then select **Show annotations**. Select any annotation marker to open release details such as requestor, source control branch, release pipeline, and environment.
-
-## Release annotations by using API keys (deprecated)
-
-> [!IMPORTANT]
-> Annotations that use API keys are deprecated. Use the Azure CLI approach in this article.
-
-Previously, teams installed the **Application Insights Release Annotations** Azure DevOps extension and configured an **Application ID** and an API key with **Write annotations** permission. The task supported only Windows-based agents. To transition:
-
-1. Uninstall the Release Annotations extension from your Azure DevOps organization.
-1. Remove the **Application Insights Release Annotation** task from pipelines.
-1. Create annotations by using Azure Pipelines tasks or the Azure CLI script in this article.
