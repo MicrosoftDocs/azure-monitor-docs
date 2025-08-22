@@ -455,6 +455,8 @@ items:
         href: scom-manage-instance/scom-assessment.md
   - name: Monitor Kubernetes clusters
     items:
+    - name: Quickstart
+      href: containers/kubernetes-monitoring-quickstart.md
     - name: Overview
       displayName: containers, kubernetes, container insights
       href: containers/kubernetes-monitoring-overview.md
@@ -572,7 +574,7 @@ items:
           href: containers/container-insights-transformations.md
         - name: Multitenant logging
           href: containers/container-insights-multitenant.md
-        - name: High scale collectionS
+        - name: High scale collection
           href: containers/container-insights-high-scale.md
         - name: Throttling
           href: containers/container-insights-throttling.md

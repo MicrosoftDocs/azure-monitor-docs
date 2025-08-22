@@ -82,7 +82,7 @@ AKS clusters must first disable monitoring and then upgrade to managed identity.
 
 
 ## Enable legacy authentication
-If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable.md#enable-container-insights) which has examples of different options for enabling Container insights.
+If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable-cli.md) which has examples of different options for enabling Container insights.
 
 
 ## Next steps

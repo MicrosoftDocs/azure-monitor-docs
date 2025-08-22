@@ -42,9 +42,7 @@ The simplest way to filter data is using the logs presets in the Azure portal fr
 :::image type="content" source="media/container-insights-cost-config/collected-data-options.png" alt-text="Screenshot that shows the collected data options." lightbox="media/container-insights-cost-config/collected-data-options.png" :::
 
 > [!TIP]
-> If you've configured your cluster to use the Prometheus experience for Container insights, then you can disable **Performance** collection since performance data is being collected by Prometheus.
-
-For details on selecting a logs preset, see [Configure DCR with Azure portal](./container-insights-data-collection-configure.md#configure-dcr-with-azure-portal)
+> If you've enabled collection of Prometheus metrics for your cluster, then you can disable **Performance** collection since performance data is being collected by Prometheus. For details on selecting a logs preset, see [Container log options](./kubernetes-monitoring-enable-portal.md#container-log-options).
 
 ### Filtering options
 After you've chosen an appropriate logs preset, you can filter additional data using the different methods in the following table. Each option will allow you to filter data based on different criteria. When you're done with your configuration, you should only be collecting data that you require for analysis and alerting.
