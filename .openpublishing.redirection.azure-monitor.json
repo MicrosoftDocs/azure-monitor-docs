@@ -8548,6 +8548,11 @@
    "source_path": "articles/azure-monitor/app/get-metric.md",
    "redirect_url": "/azure/azure-monitor/app/asp-net",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/configuration-with-applicationinsights-config.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
   }
  ]
 }
