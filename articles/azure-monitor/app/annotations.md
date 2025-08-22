@@ -165,7 +165,7 @@ Application Insights displays release annotations in the following experiences:
 - [**Usage**](usage.md)
 - [**Workbooks**](../visualize/best-practices-visualize.md) (for any time-series visualization)
 
-The annotations markers at the top of charts provide more information.
+The following annotation marker appears at the top of charts and provides more information.
 
 :::image type="content" source="media/annotations/annotation-marker.png" alt-text="A screenshot of a blue arrow pointing upwards towards a solid blue line":::
 
