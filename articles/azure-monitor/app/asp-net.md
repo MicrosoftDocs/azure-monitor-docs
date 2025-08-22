@@ -23,7 +23,7 @@ This article explains how to enable and configure [Application Insights](app-ins
 > * Heartbeats
 > * Custom events & metrics *(requires manual instrumentation)*
 > * Page views *(requires JavaScript SDK for webpages)*
-> * Availability tests *(requires manually setting up availability tests)*
+> * Availability tests *(requires [manually setting up availability tests](availability.md))*
 
 ## Supported scenarios
 
@@ -40,7 +40,7 @@ This article explains how to enable and configure [Application Insights](app-ins
 | **.NET version** | .NET Framework 4.6.1 and later | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview |
 | **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line |
 
-## Get started
+## Add Application Insights
 
 ### Prerequisites
 
@@ -522,7 +522,7 @@ Run your application and make requests to it. Telemetry should now flow to Appli
 
 ## Explore your telemetry
 
-This section covers:
+#### In this section
 
 * [Live metrics](#live-metrics)
 * [Traces (logs)](#traces-logs)
@@ -1803,7 +1803,7 @@ Application Insights supports collecting EventCounters with its `EventCounterCol
 
 ## Configure and tune the SDK
 
-This section covers:
+#### In this section
 
 * [Configure the Application Insighs SDK](#configure-the-application-insights-sdk)
 * [Telemetry initializers](#telemetry-initializers)
