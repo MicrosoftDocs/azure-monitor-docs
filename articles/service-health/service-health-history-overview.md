@@ -17,7 +17,7 @@ To view past health events that affected your Azure resources, select the Health
 
 When you open the Health History pane, you can see detailed information about each historical event, including the type of event, its impact, and the actions taken to resolve it.
 
-Select the **Issue name** link to open the tabs with the complete information about each event. For instance, if you click on the link for a Service issue Event type, it opens the page with all the information in the Service issue pane. 
+Select the **Issue name** link to open the tabs with the complete information about each event. For instance, if you select on the link for a Service issue Event type, it opens the page with all the information in the Service issue pane. 
 
 The information on this pane includes:
 - Issue Name
