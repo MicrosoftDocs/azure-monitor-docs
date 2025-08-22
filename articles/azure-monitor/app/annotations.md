@@ -15,9 +15,12 @@ Release annotations mark deployments and other significant events on Application
 [Azure Pipelines](/azure/devops/pipelines) creates a release annotation during deployment when all the following conditions are true:
 
 > [!div class="checklist"]
-> - Link the target resource to Application Insights by using the `APPINSIGHTS_INSTRUMENTATIONKEY` app setting.
-> - Keep the Application Insights resource in the same subscription as the target resource.
-> - Use one of the following Azure DevOps tasks:
+[Azure Pipelines](/azure/devops/pipelines) creates a release annotation during deployment when all the following conditions are true:
+
+> [!div class="checklist"]
+> - The target resource links to Application Insights through the `APPINSIGHTS_INSTRUMENTATIONKEY` app setting.
+> - The Application Insights resource is in the same subscription as the target resource.
+> - The deployment uses one of the following Azure Pipelines tasks:
 
   | Task code                 | Task name                     | Versions     |
   |---------------------------|-------------------------------|--------------|
