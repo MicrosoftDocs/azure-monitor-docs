@@ -472,6 +472,12 @@ items:
       href: containers/best-practices-containers.md
     - name: Analyze and reduce costs
       href: containers/container-insights-cost.md
+    - name: Container Insights
+      items:
+      - name: Overview
+        href: containers/container-insights-overview.md
+      - name: Analyze monitoring data
+        href: containers/container-insights-analyze.md
     - name: Onboard cluster
       items:
       - name: Overview
@@ -486,7 +492,7 @@ items:
         href: containers/kubernetes-monitoring-enable-arm.md
       - name: Azure Policy
         href: containers/kubernetes-monitoring-enable-policy.md
-    - name: Configure collection
+    - name: Configure data collection
       items:
       - name: Metrics
         items:
@@ -565,31 +571,25 @@ items:
         items:
         - name: ConfigMap
           href: containers/container-insights-data-collection-filter.md
+        - name: Container log schema
+          href: containers/container-insights-logs-schema.md
         - name: Data transformations
           displayName: Container insights
           href: containers/container-insights-transformations.md
+        - name: Multitenant logging
+          href: containers/container-insights-multitenant.md
+        - name: High scale collectionS
+          href: containers/container-insights-high-scale.md
+        - name: Throttling
+          href: containers/container-insights-throttling.md
     - name: Agent management
       href: containers/container-insights-manage-agent.md
-    - name: Reference
+    - name: Analyze data
       items:
-      - name: Firewall requirements
-        displayName: Container insights, Prometheus
-        href: containers/kubernetes-monitoring-firewall.md
-      - name: Supported region mappings
-        href: containers/container-insights-region-mapping.md
-    - name: Scenarios
-      items:
- 
-      - name: Multitenant logging
-        href: containers/container-insights-multitenant.md
-      - name: High scale
-        href: containers/container-insights-high-scale.md
-      - name: Throttling
-        href: containers/container-insights-throttling.md
-    - name: Monitor
-      items:
-      - name: Monitor performance
-        href: containers/container-insights-analyze.md
+      - name: Analysis options
+        href: containers/kubernetes-analyze.md
+      - name: Workbooks
+        href: containers/kubernetes-workbooks.md
       - name: Monitor GPU performance
         href: containers/container-insights-gpu-monitoring.md
       - name: Monitor cluster network
@@ -600,8 +600,6 @@ items:
         href: containers/container-insights-persistent-volumes.md
       - name: Monitor Syslog
         href: containers/container-insights-syslog.md
-      - name: Reports tab
-        href: containers/container-insights-reports.md
       - name: Log queries
         href: containers/container-insights-log-query.md
     - name: View live data
@@ -629,20 +627,23 @@ items:
         href: containers/prometheus-metrics-troubleshoot.md
       - name: Container insights
         href: containers/container-insights-troubleshoot.md
-    - name: Legacy
+    - name: Legacy topics
       items:
-      - name: Prometheus based Container Insights
+      - name: Send Prometheus metrics to Logs
+        href: containers/container-insights-prometheus-logs.md
+      - name: Switch to Prometheus visualizations
         href: containers/container-insights-experience-v2.md
       - name: Legacy authentication
         href: containers/container-insights-authentication.md
-      - name: Container log schema
-        href: containers/container-insights-logs-schema.md
-      - name: Transition from Container monitoring solution
+      - name: Container monitoring solution
         href: containers/container-insights-transition-solution.md
-      - name: Authentication
-        href: containers/container-insights-authentication.md
-      - name: Send Prometheus metrics to Logs
-        href: containers/container-insights-prometheus-logs.md
+    - name: Reference
+      items:
+      - name: Firewall requirements
+        displayName: Container insights, Prometheus
+        href: containers/kubernetes-monitoring-firewall.md
+      - name: Supported region mappings
+        href: containers/container-insights-region-mapping.md
   - name: Monitor networks
     items:
     - name: Network Watcher

@@ -8543,6 +8543,11 @@
    "source_path": "articles/azure-monitor/platform/activity-log-insights.md",
    "redirect_url": "/azure/azure-monitor/platform/activity-log#activity-log-insights",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/container-insights-reports",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-workbooks",
+   "redirect_document_id": false
   }
  ]
 }

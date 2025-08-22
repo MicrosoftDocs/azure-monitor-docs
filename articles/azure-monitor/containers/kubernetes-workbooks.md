@@ -1,33 +1,25 @@
 ---
-title: Reports in Container insights
-description: This article describes reports that are available to analyze data collected by Container insights.
+title: Kubernetes workbooks in Azure Monitor
+description: This article describes workbooks in Azure Monitor available to analyze monitoring data for Kubernetes clusters.
 ms.topic: article
-ms.date: 07/26/2024
+ms.date: 08/21/2025
 ms.reviewer: aul
 ---
 
-# Reports in Container insights
-Reports in Container insights are recommended out-of-the-box for [Azure workbooks](../visualize/workbooks-overview.md). This article describes the different workbooks that are available and how to access them.
+# Kubernetes workbooks in Azure Monitor
+A variety of [Azure Monitor workbooks](../visualize/workbooks-overview.md) are available to analyze the data collected by your Kubernetes clusters. This article describes the different workbooks that are available and how to access them.
 
 > [!NOTE]
-> The **Reports** tab will not be available if you enable the [Prometheus experience for Container insights](./container-insights-experience-v2.md). You can still access the workbooks from the **Workbooks** page for the cluster.
-
-
-> [!NOTE]
-> The workbooks on the Reports tab may not function as expected if the [data being collected in Container insights is configured and filtered](./container-insights-data-collection-configure.md
-).
->
-> :::image type="content" source="media/container-insights-reports/workbooks-page.png" alt-text="Screenshot of workbook option for a cluster." lightbox="media/container-insights-reports/workbooks-page.png":::
+> Workbooks may not function as expected if you've filtered data collected for your cluster. 
 
 ## View workbooks
-On the **Azure Monitor** menu in the Azure portal, select **Containers**. In the **Monitoring** section, select **Insights**, choose a particular cluster, and then select the **Reports** tab. You can also view them from the [workbook gallery](../visualize/workbooks-overview.md#the-gallery) in Azure Monitor.
-<!-- convertborder later -->
+In the menu for your cluster in the Azure portal, select **Workbooks** in the **Monitoring** section. The **Kubernetes services** section lists the different Kubernetes workbooks available.
+
 :::image type="content" source="media/container-insights-reports/reports-page.png" lightbox="media/container-insights-reports/reports-page.png" alt-text="Screenshot that shows the Reports page." border="false":::
 
 
 ## Cluster Optimization Workbook
-The Cluster Optimization Workbook provides multiple analyzers that give you a quick view of the health and performance of your Kubernetes cluster. It has multiple analyzers that each provide different information related to your cluster. The workbook requires no configuration once Container insights has been enabled on the cluster.
-
+The Cluster Optimization Workbook provides multiple analyzers that give you a quick view of the health and performance of your Kubernetes cluster. It has multiple analyzers that each provide different information related to your cluster. The workbook requires no configuration once Prometheus metrics and log collection has been enabled on the cluster.
 
 
 ### Liveness Probe Failures
