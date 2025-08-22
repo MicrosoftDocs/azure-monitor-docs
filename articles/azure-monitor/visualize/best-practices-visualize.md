@@ -29,9 +29,9 @@ Azure workbooks are ideal for Azure managed hybrid and edge environments, includ
 
 [Grafana](https://grafana.com/) is an open platform that excels in operational dashboards. It allows you to combine data queries, query results, and perform open-ended client-side data processing. Grafana has plug-ins and dashboard templates for application performance monitoring (APM) tools such as Dynatrace, New Relic, and AppDynamics. It also has AWS CloudWatch and GCP BigQuery plug-ins for multicloud monitoring.
 
-You have two options for using Grafana with Azure, Dashboards with Grafana and Azure Managed Grafana. 
+You have two options for using Grafana with Azure, Dashboards with Grafana and Azure Managed Grafana.
 
-[Dashboards with Grafana (Preview)](visualize-use-grafana-overview.md) is available in the Azure portal for no additional cost. This option supports Azure Monitor and Azure Managed Prometheus. It uses the current user authentication. Grafana OSS features are included. If you are only using data sources provided by Azure, this is your best and easiest option.
+**Dashboards with Grafana (Preview)** is available in the Azure portal for no additional cost. This option supports Azure Monitor and Azure Managed Prometheus. It uses the current user authentication. Grafana OSS features are included. If you are only using data sources provided by Azure, this is your best and easiest option.
 
 To understand the workflow for Dashboards with Grafana, see [Use Azure Monitor Dashboards with Grafana (Preview)](visualize-use-grafana-dashboards.md).
 
@@ -42,7 +42,9 @@ However, if you want to:
 - use private networking
 - use managed identity authentication, service pricipal methods
 
-Azure Managed Grafana is the correct choice.
+**Azure Managed Grafana** is the correct choice.
+
+For an overview of each choice, see [Visualize with Grafana](visualize-grafana-overview.md).
 
 [Azure Managed Grafana](/azure/managed-grafana/overview) optimizes this experience for Azure-native data stores such as Azure Monitor and Azure Data Explorer. You can easily connect to any resource in your subscription and view all resulting telemetry in a familiar Grafana dashboard. It integrates into the Azure Monitor portal and includes out-of-the-box dashboards for Azure resources and also supports pinning charts from Azure Monitor metrics and logs to Grafana dashboards. See [Visualize with Grafana](../visualize/visualize-grafana-overview.md) to get started.
 
