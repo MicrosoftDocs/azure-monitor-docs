@@ -161,10 +161,10 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
 
 Application Insights displays release annotations in the following experiences:
 
-- [**Performance**](/azure/azure-monitor/app/failures-performance-transactions&tabs=performance-view)
-- [**Failures**](/azure/azure-monitor/app/failures-performance-transactions&tabs=failures-view)
-- [**Usage**](/azure/azure-monitor/app/usage)
-- [**Workbooks**](/azure/azure-monitor/visualize/best-practices-visualize) (for any time-series visualization)
+- [**Performance**](./failures-performance-transactions.md&tabs=performance-view)
+- [**Failures**](./failures-performance-transactions.md&tabs=failures-view)
+- [**Usage**](./usage.md)
+- [**Workbooks**](../visualize/best-practices-visualize.md) (for any time-series visualization)
 
 The annotations markers at the top of charts provide more information.
 
