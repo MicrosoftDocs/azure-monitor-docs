@@ -60,7 +60,7 @@ To add more detailed information for the service health alert, select **Advanced
 ### Create a tenant-level alert
 >[!IMPORTANT]
 >The option to select a tenant directory is currently in preview mode.
-1. To set your alert for a tenant directory select **Directory (preview)** from the scope drop-down menu.
+To set your alert for a tenant directory select **Directory (preview)** from the scope drop-down menu.
 
 :::image type="content"source="./media/alerts-activity-log-service-notifications/service-health-blades-1.png"alt-text="A screenshot of the Health alerts tab for tenant-level alerts."Lightbox="./media/alerts-activity-log-service-notifications/service-health-blades-1.png":::
 
