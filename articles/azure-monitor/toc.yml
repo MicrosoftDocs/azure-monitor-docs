@@ -149,8 +149,6 @@ items:
               href: app/worker-service.md
             - name: Advanced ASP.NET SDK topics
               items:
-              - name: ApplicationInsights.config
-                href: app/configuration-with-applicationinsights-config.md
               - name: TelemetryChannels
                 displayName: in memory, server telemetry channel, channel, inmemory, servertelemetry
                 href: app/telemetry-channels.md
