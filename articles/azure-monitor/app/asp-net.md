@@ -2195,7 +2195,7 @@ For more information, see [Sampling in Application Insights](/previous-versions/
 
 ### Telemetry channels
 
-Telemetry channels are an integral part of the [Application Insights SDKs](./app-insights-overview.md). They manage buffering and transmission of telemetry to the Application Insights service. The .NET and .NET Core versions of the SDKs have two built-in telemetry channels: `InMemoryChannel` and `ServerTelemetryChannel`. This article describes each channel and shows how to customize channel behavior.
+Telemetry channels are an integral part of the [Application Insights SDKs](app-insights-overview.md). They manage buffering and transmission of telemetry to the Application Insights service. The .NET and .NET Core versions of the SDKs have two built-in telemetry channels: `InMemoryChannel` and `ServerTelemetryChannel`. This article describes each channel and shows how to customize channel behavior.
 
 > [!NOTE]
 > To review frequently asked questions (FAQ), see [Telemetry channels FAQ](application-insights-faq.yml#telemetry-channels)
@@ -2218,7 +2218,7 @@ The Application Insights .NET and .NET Core SDKs ship with two built-in channels
 
     This channel is part of the larger Microsoft.ApplicationInsights NuGet package and is the default channel that the SDK uses when nothing else is configured.
 
-* `ServerTelemetryChannel`: A more advanced channel that has retry policies and the capability to store data on a local disk. This channel retries sending telemetry if transient errors occur. This channel also uses local disk storage to keep items on disk during network outages or high telemetry volumes. Because of these retry mechanisms and local disk storage, this channel is considered more reliable. We recommend it for all production scenarios. This channel is the default for [ASP.NET](./asp-net.md) and [ASP.NET Core](./asp-net-core.md) applications that are configured according to the official documentation. This channel is optimized for server scenarios with long-running processes. The [`Flush()`](#which-channel-should-i-use) method that's implemented by this channel isn't synchronous.
+* `ServerTelemetryChannel`: A more advanced channel that has retry policies and the capability to store data on a local disk. This channel retries sending telemetry if transient errors occur. This channel also uses local disk storage to keep items on disk during network outages or high telemetry volumes. Because of these retry mechanisms and local disk storage, this channel is considered more reliable. We recommend it for all production scenarios. This channel is the default for ASP.NET and ASP.NET Core applications that are configured according to the official documentation. This channel is optimized for server scenarios with long-running processes. The [`Flush()`](#which-channel-should-i-use) method that's implemented by this channel isn't synchronous.
 
     This channel is shipped as the Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel NuGet package and is acquired automatically when you use either the Microsoft.ApplicationInsights.Web or Microsoft.ApplicationInsights.AspNetCore NuGet package.
 
@@ -2490,7 +2490,7 @@ The *.cshtml* file names referenced earlier are from a default MVC application t
 If your project doesn't include *_Layout.cshtml*, you can still add [client-side monitoring](website-monitoring.md) by adding the JavaScript (Web) SDK Loader Script to an equivalent file that controls the `<head>` of all pages within your app. Alternatively, you can add the JavaScript (Web) SDK Loader Script to multiple pages, but we don't recommend it.
 
 > [!NOTE]
-> JavaScript injection provides a default configuration experience. If you require [configuration](javascript.md#configuration) beyond setting the connection string, you're required to remove autoinjection as described and manually add the [JavaScript SDK](javascript.md#add-the-javascript-sdk).
+> JavaScript injection provides a default configuration experience. If you require [configuration](javascript-sdk-configuration.md) beyond setting the connection string, you're required to remove autoinjection as described and manually add the [JavaScript SDK](javascript-sdk.md).
 
 ---
 
