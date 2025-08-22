@@ -33,7 +33,7 @@ However, if you want to:
 - use open-source or other external data sources
 - audit usage logs
 - use private networking
-- use managed identity authentication or service pricipal methods
+- use managed identity authentication or service principal methods
 
 **Azure Managed Grafana** is the correct choice.
 

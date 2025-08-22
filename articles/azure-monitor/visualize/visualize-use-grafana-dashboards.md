@@ -6,7 +6,7 @@ ms.reviewer: kayodeprinceMS
 ms.date: 08/22/2025
 ---
 
-# Use Azure Monitor Dashboards with Grafana (Preview)
+# Use Azure Monitor dashboards with Grafana (preview)
 
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
