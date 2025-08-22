@@ -6,7 +6,11 @@ ms.reviewer: kayodeprinceMS
 ms.date: 05/06/2025
 ---
 
-# Use Azure Monitor dashboards with Grafana
+# Use Azure Monitor dashboards with Grafana (Preview)
+
+> [!IMPORTANT]
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
 This article explains how to use Azure Monitor dashboards with Grafana. It covers creating, editing, importing, and sharing dashboards for monitoring data.
 
 ## Prerequisites

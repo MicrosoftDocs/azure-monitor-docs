@@ -4796,18 +4796,8 @@
    "redirect_document_id": false
   },
   {
-   "source_path_from_root": "/articles/azure-monitor/app/annotations.md",
-   "redirect_url": "/azure/azure-monitor/app/release-and-work-item-insights?tabs=release-annotations",
-   "redirect_document_id": false
-  },
-  {
    "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-nodejs-exporter.md",
    "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable?tabs=nodejs",
-   "redirect_document_id": false
-  },
-  {
-   "source_path_from_root": "/articles/azure-monitor/app/work-item-integration.md",
-   "redirect_url": "/azure/azure-monitor/app/release-and-work-item-insights?tabs=work-item-integration",
    "redirect_document_id": false
   },
   {
@@ -5293,11 +5283,6 @@
   {
    "source_path_from_root": "/articles/application-insights/app-insights-analytics-troubleshooting.md",
    "redirect_url": "/azure/azure-monitor/app/analytics-troubleshooting",
-   "redirect_document_id": false
-  },
-  {
-   "source_path_from_root": "/articles/application-insights/app-insights-annotations.md",
-   "redirect_url": "/azure/azure-monitor/app/annotations",
    "redirect_document_id": false
   },
   {
@@ -7979,6 +7964,11 @@
    "redirect_url": "/previous-versions/azure/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings",
    "redirect_document_id": false
   },
+    {
+   "source_path": "articles/azure-monitor/app/release-and-work-item-insights.md",
+   "redirect_url": "/azure/azure-monitor/app/annotations",
+   "redirect_document_id": false
+  },
   {
    "source_path": "articles/azure-monitor/reference/queries/appenvspringappconsolelogs.md",
    "redirect_url": "/azure/azure-monitor/reference",
@@ -8547,6 +8537,21 @@
   {
    "source_path": "articles/azure-monitor/containers/container-insights-reports",
    "redirect_url": "/azure/azure-monitor/containers/kubernetes-workbooks",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/ilogger.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/asp-net-exceptions.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/get-metric.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
    "redirect_document_id": false
   }
  ]

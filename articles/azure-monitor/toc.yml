@@ -144,17 +144,11 @@ items:
             - name: ASP.NET (Core) App Monitoring
               displayName: NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, c#, csharp
               href: app/asp-net.md
-            - name: ILogger
-              displayName: ilogger, logging, log
-              href: app/ilogger.md
             - name: Non-HTTP, console, and background apps
               displayName: console, .NET, .NET Core, dotnet console, dotnet, c#, csharp, NET, worker, background, generic host
               href: app/worker-service.md
             - name: Advanced ASP.NET SDK topics
               items:
-              - name: GetMetric
-                displayName: get metric, custom metrics, metrics, TrackMetric
-                href: app/get-metric.md
               - name: ApplicationInsights.config
                 href: app/configuration-with-applicationinsights-config.md
               - name: TelemetryChannels
@@ -165,8 +159,6 @@ items:
                 displayName: correlation, dependency, dependencies, track dependency, OWIN, queue, service bus, background tasks, long running background tasks, outgoing dependency tracking, parallel operations, System.Diagnostics.Activity, System.Diagnostics.DiagnosticSource, StartOperation, StopOperation
               - name: Performance and event counters
                 href: app/asp-net-counters.md
-              - name: Exceptions
-                href: app/asp-net-exceptions.md
         - name: Node.js
           href: app/nodejs.md
         - name: Python OpenCensus (retired)
@@ -203,8 +195,10 @@ items:
         href: app/live-stream.md
       - name: Usage (user behavior analytics)
         href: app/usage.md
-      - name: Release and work item insights
-        href: app/release-and-work-item-insights.md
+      - name: Release annotations
+        href: app/annotations.md
+      - name: Work item integration
+        href: app/work-item-integration.md
     - name: Code analysis
       items:
       - name: Code Optimizations
