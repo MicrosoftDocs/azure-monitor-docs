@@ -7,9 +7,9 @@ ms.date: 08/21/2025
 
 # Work item integration
 
-Work item integration lets you create issues, bugs, or tasks in GitHub or Azure DevOps directly from Application Insights experiences. Templates embed Kusto Query Language (KQL) queries and workbook content so that new work items include relevant telemetry.
+Work item integration lets you create issues, bugs, or tasks in [GitHub](https://github.com) or [Azure DevOps](https://azure.microsoft.com/products/devops) directly from Application Insights experiences. Templates embed [Kusto Query Language (KQL)](/kusto/query) queries and workbook content so that new work items include relevant telemetry.
 
-Work item integration offers the following features compared to classic integration:
+Work item integration offers the following features:
 
 > [!div class="checklist"]
 > - Repository icons that differentiate between GitHub and Azure DevOps workbooks.
@@ -31,7 +31,7 @@ Work item integration offers the following features compared to classic integrat
 
 ## Create a work item
 
-You can use a template from **End-to-end transaction details**, which you can open from **Performance**, **Failures**, **Availability**, and other tabs.
+You can use a template from **End-to-end transaction details**, which you can open from [**Performance**, **Failures**](failures-performance-transactions.md), [**Availability**](availability.md), and other tabs.
 
 1. Open **End-to-end transaction details**, select an event, select **Create work item**, and then choose a template.
 1. A new browser tab opens in your tracking system. In Azure DevOps, you can create a bug or task. In GitHub, you can create an issue in your repository. The work item is prepopulated with contextual information from Application Insights.
@@ -41,16 +41,3 @@ You can use a template from **End-to-end transaction details**, which you can op
 1. Open **Work Items** under **Configure**, and then select the pencil icon next to the workbook to update.
 1. Select **Edit** in the top toolbar.
 1. To standardize workbook deployment across environments, use Azure Resource Manager templates and create multiple configurations for different scenarios.
-
-## Classic work item integration
-
-1. In your Application Insights resource, open **Work Items** under **Configure**.
-1. Select **Switch to Classic**, fill out the fields, and authorize.
-1. Create a work item by opening **End-to-end transaction details**, selecting an event, and then selecting **Create work item (Classic)**.
-
-### Migrate to the new integration
-
-To migrate, delete the classic configuration and then create a new template.
-
-1. In your Application Insights resource, open **Work Items** under **Configure**, select **Switch to Classic**, and then select **Delete**.
-1. Create and configure a new template by using the steps in [Create and configure a work item template](#create-and-configure-a-work-item-template).
