@@ -27,7 +27,7 @@ Work item integration offers the following features:
 1. Set default work item properties in the template. Properties include assignee, iteration path, and projects. Available properties depend on your tracking system.
 
 > [!NOTE]
-> For on-premises Azure DevOps environments, use a placeholder URL such as `https://dev.azure.com/test/test` when you create the template. After creation, update the URL and its validation rule in the generated [Azure workbook](/azure/azure-monitor/visualize/workbooks-create-workbook).
+> For on-premises [Azure DevOps](/azure/devops/user-guide/what-is-azure-devops) environments, use a placeholder URL such as `https://dev.azure.com/test/test` when you create the template. After creation, update the URL and its validation rule in the generated [Azure workbook](/azure/azure-monitor/visualize/workbooks-create-workbook).
 
 ## Create a work item
 
@@ -40,4 +40,4 @@ You can use a template from **End-to-end transaction details**, which you can op
 
 1. Open **Work Items** under **Configure**, and then select the pencil icon next to the workbook to update.
 1. Select **Edit** in the top toolbar.
-1. To standardize workbook deployment across environments, use Azure Resource Manager templates and create multiple configurations for different scenarios.
+1. To standardize workbook deployment across environments, use [Azure Resource Manager (ARM)](/azure/azure-resource-manager/management/overview) templates and create multiple configurations for different scenarios.
