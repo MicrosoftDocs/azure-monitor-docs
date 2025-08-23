@@ -12,12 +12,12 @@ Work item integration lets you create issues, bugs, or tasks in [GitHub](https:/
 Work item integration offers the following features:
 
 > [!div class="checklist"]
-> - Repository icons that differentiate between GitHub and Azure DevOps workbooks.
-> - The Application Insights resource is in the same subscription as the target resource.
+> - Repository icons that differentiate between [GitHub](https://github.com) and [Azure DevOps](/azure/devops/user-guide/what-is-azure-devops)DevOps workbooks.
+> - The [Application Insights](app-insights-overview.md) resource is in the same subscription as the target resource.
 > - Multiple configurations for any number of repositories or work items.
-> - Deployment by using Azure Resource Manager templates.
-> - Pre-built and customizable KQL queries that add Application Insights data to work items.
-> - Customizable workbook templates.
+> - Deployment by using [Azure Resource Manager (ARM)](/azure/azure-resource-manager/management/overview) templates.
+> - Pre-built and customizable [Kusto Query Language (KQL)](/kusto/query) queries that add [Application Insights](app-insights-overview.md) data to work items.
+> - Customizable [workbook](../visualize/best-practices-visualize.md) templates.
 
 ## Create and configure a work item template
 
