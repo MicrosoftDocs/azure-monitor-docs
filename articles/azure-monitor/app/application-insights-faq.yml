@@ -69,9 +69,9 @@ sections:
 
       - question: Where does telemetry collected with traditional logging frameworks go?
         answer: |
-          If you're using traditional logging frameworks such as Serilog, the log messages they emit are ingested by Application Insights as Trace telemetry. These entries are stored in the `traces` table in Application Insights or the `AppTraces` table in the connected Log Analytics workspace. This behavior is by design since. Trace logs are separate from other telemetry types like requests, dependencies, or exceptions.
+          When using logging frameworks like Serilog, log messages are ingested by Application Insights as *Trace telemetry* and stored in the `traces` table (or `AppTraces` in Log Analytics). This is by design, since tables like `requests`, `dependencies`, and `exceptions` are reserved for their respective telemetry types.
 
-          If you're expecting to see these logs in other tables (for example, `requests` or `dependencies`), note that they won't appear there because those tables are reserved for specific telemetry types. To confirm where each telemetry type is stored, review the [Application Insights telemetry data model](data-model-complete.md#types-of-telemetry).
+          For details, see the [Application Insights telemetry data model](data-model-complete.md#types-of-telemetry).
 
       - question: How many Application Insights resources should I deploy?
         answer: |
