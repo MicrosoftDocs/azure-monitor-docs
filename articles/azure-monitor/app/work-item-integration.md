@@ -7,7 +7,7 @@ ms.date: 08/21/2025
 
 # Work item integration
 
-Work item integration lets you create issues, bugs, or tasks in [GitHub](https://github.com) or [Azure DevOps](https://azure.microsoft.com/products/devops) directly from Application Insights experiences. Templates embed [Kusto Query Language (KQL)](/kusto/query) queries and workbook content so that new work items include relevant telemetry.
+Work item integration lets you create issues, bugs, or tasks in [GitHub](https://github.com) or [Azure DevOps](/azure/devops/user-guide/what-is-azure-devops) directly from [Application Insights](app-insights-overview.md) experiences. Templates embed [Kusto Query Language (KQL)](/kusto/query) queries and [workbook](../visualize/best-practices-visualize.md) content so that new work items include relevant telemetry.
 
 Work item integration offers the following features:
 
@@ -34,10 +34,10 @@ Work item integration offers the following features:
 You can use a template from **End-to-end transaction details**, which you can open from [**Performance**, **Failures**](failures-performance-transactions.md), [**Availability**](availability.md), and other tabs.
 
 1. Open **End-to-end transaction details**, select an event, select **Create work item**, and then choose a template.
-1. A new browser tab opens in your tracking system. In Azure DevOps, you can create a bug or task. In GitHub, you can create an issue in your repository. The work item is prepopulated with contextual information from Application Insights.
+1. A new browser tab opens in your tracking system. In [Azure DevOps](/azure/devops/user-guide/what-is-azure-devops), you can create a bug or task. In GitHub, you can create an issue in your repository. The work item is prepopulated with contextual information from [Application Insights](app-insights-overview.md).
 
 ## Edit a template
 
-1. Open **Work Items** under **Configure**, and then select the pencil icon next to the workbook to update.
+1. Open **Work Items** under **Configure**, and then select the pencil icon next to the [workbook](../visualize/best-practices-visualize.md) to update.
 1. Select **Edit** in the top toolbar.
 1. To standardize workbook deployment across environments, use [Azure Resource Manager (ARM)](/azure/azure-resource-manager/management/overview) templates and create multiple configurations for different scenarios.
