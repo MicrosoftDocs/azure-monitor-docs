@@ -438,7 +438,10 @@ with tracer.start_as_current_span("hello with aad client secret identity"):
 
 ## Query Application Insights using Microsoft Entra authentication
 
-You can submit a query request by using the Azure Monitor Application Insights endpoint `https://api.applicationinsights.io`. To access the endpoint, you must authenticate through Microsoft Entra ID.
+You can submit a query request by using the Azure Monitor Application Insights endpoint `https://api.applicationinsights.io`. To access the endpoint, you must authenticate through Microsoft Entra ID.  
+> [!NOTE]
+> If using Azure US Government cloud, the endpoint is https://api.applicationinsights.us. Replace this URL in all below examples.
+
 
 ### Set up authentication
 
