@@ -21,8 +21,8 @@ Work item integration offers the following features:
 
 ## Create and configure a work item template
 
-1. Open your Application Insights resource. Under **Configure**, open **Work Items**, and then select **Create a new template**.
-1. Alternatively, start from **End-to-end transaction details** when no template exists. Select an event, select **Create a work item**, and then select **Start with a workbook template**.
+1. Open your [Application Insights](app-insights-overview.md) resource. Under **Configure**, open **Work Items**, and then select **Create a new template**.
+1. Alternatively, start from [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience) when no template exists. Select an event, select **Create a work item**, and then select **Start with a workbook template**.
 1. After you select **Create a new template**, choose your tracking systems, name the workbook, link to your tracking system, and choose a region for template storage. The URL parameters are the default URLs for your repositories, for example, `https://github.com/myusername/reponame` or `https://dev.azure.com/{org}/{project}`.
 1. Set default work item properties in the template. Properties include assignee, iteration path, and projects. Available properties depend on your tracking system.
 
@@ -31,9 +31,9 @@ Work item integration offers the following features:
 
 ## Create a work item
 
-You can use a template from **End-to-end transaction details**, which you can open from [**Performance**, **Failures**](failures-performance-transactions.md), [**Availability**](availability.md), and other tabs.
+You can use a template from [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience), which you can open from [**Performance**, **Failures**](failures-performance-transactions.md), [**Availability**](availability.md), and other tabs.
 
-1. Open **End-to-end transaction details**, select an event, select **Create work item**, and then choose a template.
+1. Open [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience), select an event, select **Create work item**, and then choose a template.
 1. A new browser tab opens in your tracking system. In [Azure DevOps](/azure/devops/user-guide/what-is-azure-devops), you can create a bug or task. In GitHub, you can create an issue in your repository. The work item is prepopulated with contextual information from [Application Insights](app-insights-overview.md).
 
 ## Edit a template
