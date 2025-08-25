@@ -455,11 +455,11 @@ items:
         href: scom-manage-instance/scom-assessment.md
   - name: Monitor Kubernetes clusters
     items:
-    - name: Quickstart
-      href: containers/kubernetes-monitoring-quickstart.md
     - name: Overview
       displayName: containers, kubernetes, container insights
       href: containers/kubernetes-monitoring-overview.md
+    - name: Quickstart
+      href: containers/kubernetes-monitoring-quickstart.md
     - name: Full stack monitoring
       displayName: containers
       href: containers/monitor-kubernetes.md
@@ -468,12 +468,8 @@ items:
       href: containers/best-practices-containers.md
     - name: Analyze and reduce costs
       href: containers/container-insights-cost.md
-    - name: Container Insights
-      items:
-      - name: Overview
-        href: containers/container-insights-overview.md
-      - name: Analyze monitoring data
-        href: containers/container-insights-analyze.md
+    - name: Analyze monitoring data
+      href: containers/container-insights-analyze.md
     - name: Onboard cluster
       items:
       - name: Overview

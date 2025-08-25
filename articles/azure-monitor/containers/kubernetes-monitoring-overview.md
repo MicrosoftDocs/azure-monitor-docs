@@ -11,19 +11,13 @@ ms.reviewer: viviandiec
 
 Multiple features of [Azure Monitor](../fundamentals/overview.md) work together to provide complete monitoring of your [Azure Kubernetes (AKS)](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters.  This article provides an overview of these features and how you can leverage them to ensure the health and performance of your Kubernetes environment.
 
-## Get started monitoring a cluster
-Select the **Monitor** option from any AKS or Azure Arc-enabled Kubernetes cluster in the Azure portal to get an overview of various telemetry indicating the health and performance of the cluster's nodes, workloads, and containers. Several of these tiles may be disabled since the feature supporting them has not yet been enabled for the cluster. See [Enable monitoring for Kubernetes clusters in Azure Monitor](kubernetes-monitoring-enable.md) for details on different options to enable these features.
+> [!TIP]
+> To quickly get started monitoring your cluster, see [Quickstart monitoring a Kubernetes cluster in Azure Monitor](kubernetes-monitoring-quickstart.md). This article provides more details about the different features that you enable to provide a complete monitoring solution.
 
-:::image type="content" source="media/container-insights-overview/container-insights-single.png" lightbox="media/container-insights-overview/container-insights-single.png" alt-text="Screenshot of Container insights single cluster experience.":::
 
-## Container insights
-Access Container insights from the **Monitor** menu in the Azure portal or by selecting **View All Clusters** from the top of any cluster monitor view. This feature helps you onboard and configure the other features to collect data for your Kubernetes cluster. It provides a quick summary of all your monitored clusters and allows you to onboard unmonitored clusters and add functionality to clusters that are already onboarded. 
+The following diagram illustrates the value provided by the different Azure Monitor features, while the table below describes each in more detail. Container insights ties the different features together to provide a unified monitoring experience for your Kubernetes clusters.
 
-:::image type="content" source="media/container-insights-overview/container-insights-multiple.png" lightbox="media/container-insights-overview/container-insights-multiple.png" alt-text="Screenshot of Container insights multiple cluster experience.":::
-
-## Additional features
-
-The following diagram illustrates the value provided by the different Azure Monitor features, while the table below describes each in more detail. Some of these features require configuration while others are enabled automatically. You can quickly enable these features using the Azure portal or enable them at scale and perform advanced configuration using a variety of other methods. See [Enable monitoring for Kubernetes clusters in Azure Monitor](kubernetes-monitoring-enable.md) for onboarding and configuration options for those features that require it.
+Some of these features require configuration while others are enabled automatically. You can quickly enable these features using the Azure portal or enable them at scale and perform advanced configuration using a variety of other methods. See [Enable monitoring for Kubernetes clusters in Azure Monitor](kubernetes-monitoring-enable.md) for onboarding and configuration options for those features that require it.
 
 :::image type="content" source="media/container-insights-overview/kubernetes-monitoring-services.png" lightbox="media/container-insights-overview/kubernetes-monitoring-services.png" alt-text="Diagram of the different services that work together to monitor Kubernetes clusters." border="false":::
 
@@ -36,6 +30,9 @@ The following diagram illustrates the value provided by the different Azure Moni
 | Container log collection | Collect logs from containers and workloads. | Yes |
 | Control plane log collection | Control plane logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. Create a [diagnostic setting](../platform/diagnostic-settings-overview.md) to collect these logs. | Yes |
 | [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) | Visualize metrics and logs with Grafana dashboards at no additional cost. | No |
+
+
+## Onboarding
 
 
 ## Other analysis and customization options
@@ -80,3 +77,7 @@ Yes, Container Insights supports pod sandboxing through support for Kata Contain
 
 
 
+## Container insights
+Access Container insights from the **Monitor** menu in the Azure portal or by selecting **View All Clusters** from the top of any cluster monitor view. This feature helps you onboard and configure the other features to collect data for your Kubernetes cluster. It provides a quick summary of all your monitored clusters and allows you to onboard unmonitored clusters and add functionality to clusters that are already onboarded. 
+
+:::image type="content" source="media/container-insights-overview/container-insights-multiple.png" lightbox="media/container-insights-overview/container-insights-multiple.png" alt-text="Screenshot of Container insights multiple cluster experience.":::

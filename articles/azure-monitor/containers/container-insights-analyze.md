@@ -2,29 +2,89 @@
 title: Analyze the health and status of your Kubernetes cluster with Container insights
 description: This article describes how you can view and analyze the performance of a Kubernetes cluster with Container insights.
 ms.topic: article
-ms.date: 08/19/2024
+ms.date: 08/25/2025
 ms.reviewer: viviandiec
 ---
 
 # Analyze the health and status of your Kubernetes cluster with Container insights
 
-Use the workbooks, performance charts, and health status in Container insights to monitor the workload of Kubernetes clusters hosted on Azure Kubernetes Service (AKS), Azure Stack, or another environment. This article helps you understand how to use Azure Monitor to help you quickly assess, investigate, and resolve detected issues.
+Container insights provides a set of views in the Azure portal that combine performance and log data collected from your Kubernetes cluster to help you analyze its health and performance. This article describes the different views available and how to interact with and interpret the data they present.
+
+## Multi-cluster view
+To open the Container insights multi-cluster view, select **Containers** from the **Insights** section of the **Monitor** menu in the Azure portal. This view shows the health status of all monitored Kubernetes clusters deployed across resource groups in your subscriptions. This views allows you to quickly identify clusters that are in a critical or unhealthy state and also helps you to enable and configure monitoring for all clusters in your environment. See [Enable Kubernetes monitoring using the Azure portal](./kubernetes-monitoring-enable-portal.md) for details.
+
+:::image type="content" source="./media/container-insights-analyze/azmon-containers-multiview.png" alt-text="Screenshot that shows an Azure Monitor multi-cluster dashboard example." lightbox="media/container-insights-analyze/azmon-containers-multiview.png":::
+
+>[!NOTE]
+>Azure Stack (Preview) and Non-Azure (Preview) are no longer supported in this view.
+
+Select the the **Nodes** column to open the **Nodes** tab in the single-cluster view for that cluster. Openb== the **Controllers** tab for the cluster with an appropriate filters by selecting the the **User pods** or **System pods** column.
+
+The following table describes the different health statuses displayed in this view. Health state calculates the overall cluster status as the *worst of* the three states. If any of the three states is **Unknown**, the overall cluster state shows **Unknown**.
+
+| Status | Description |
+|:---|:---|
+| Healthy | No issues are detected for the VM, and it's functioning as required.
+| Warning | One or more issues are detected that must be addressed or the health condition could become critical. |
+| Critical | One or more critical issues are detected that must be addressed to restore normal operational state as expected. |
+| Unauthorized | User doesn't have required permissions to read data in the workspace or Data Collection Rule collecting the data. |
+| Not found | Either the workspace, the resource group, or subscription that contains the workspace was deleted. |
+| Enable recording rules | Enable [Prometheus recording rules](prometheus-metrics-scrape-default.md#prometheus-visualization-recording-rules) to unlock higher performance data and Prometheus visualizations.
+| Misconfigured | Something went wrong.
+| Error | An error occurred while attempting to read data from the workspace.
+| No data | Data hasn't reported to the workspace for the last 30 minutes.
+| Unknown | If the service wasn't able to make a connection with the node or pod, the status changes to an Unknown state.
+| Pending | Monitoring configuration for Arc-enabled clusters typically takes around 5 minutes. If the cluster is disconnected from Azure, this process may be delayed. 
+| Pending for X hours | Monitoring configuration for the Arc-enabled cluster is taking longer than expected.
+| Failed | Monitoring configuration for the Arc-enabled cluster was unsuccessful.
+
+The following table provides a breakdown of the calculation that controls the health states for a monitored cluster on the multi-cluster view.
+
+| Monitored cluster |Status |Availability |
+|-------|-------|-----------------|
+|**User pod**| Healthy<br>Warning<br>Critical<br>Unknown |100%<br>90 - 99%<br><90%<br>Not reported in last 30 minutes |
+|**System pod**| Healthy<br>Warning<br>Critical<br>Unknown |100%<br>N/A<br>100%<br>Not reported in last 30 minutes |
+|**Node** | Healthy<br>Warning<br>Critical<br>Unknown | >85%<br>60 - 84%<br><60%<br>Not reported in last 30 minutes |
 
 
-## Analyze nodes, controllers, and container health
+## Single cluster view
+To open the single cluster view in Container insights, either select a cluster from the multi-cluster view or select **Monitor** from a cluster's menu. This view provides multiple tabs that allow you to drill down on the health and performance of the selected cluster.
 
-Select the **Nodes**, **Controllers**, and **Containers** tabs to view a list of these resources for the cluster. You can filter the view by **Time range** of the collected data or by node or namespace by selecting **Add Filter**.
+### Options
 
-Select an item to open a property pane automatically displays on the right side of the page that shows the properties of the item selected. When a Linux node is selected, the **Local Disk Capacity** section also shows the available disk space and the percentage used for each disk presented to the node.
+:::image type="content" source="./media/container-insights-analyze/visualization-setting.png" alt-text="Screenshot that shows the visualization setting for COntainer insights single cluster view." lightbox="media/container-insights-analyze/visualization-setting.png":::
 
-From this pane, you also can view Kubernetes container logs (stdout/stderror), events, and pod metrics by selecting the **Live Events** tab at the top of the pane. For more information about this feature, see [How to view Kubernetes logs, events, and pod metrics in real time](container-insights-livedata-overview.md).
+| Option | Description |
+|:---|:---|
+| Visualization | Allows you to select which data source is used to populate the view. **Managed Prometheus visualizations** is the preferred setting which uses Prometheus metrics stored in an Azure Monitor workspace. These are enabled when you [enable Managed Prometheus](./kubernetes-monitoring-enable.md#prometheus) for the cluster. **Log Analytics visualizations** uses performance data stored in a Log Analytics workspace. You may not be collecting this data if you aren't collect performance data in your [logging profile](./kubernetes-monitoring-enable-portal.md#container-log-options). This option won't be available if Managed Prometheus isn't enabled for the cluster. |
+| Refresh | Refreshes the data in the view. |
+| Monitor settings | Opens the monitoring configuration settings for the cluster. See [Enable Kubernetes monitoring using the Azure portal](./kubernetes-monitoring-enable-portal.md) for details. |
+| View Grafana | Displays a list of any Managed Grafana instances for linked to the Azure Monitor workspace for the cluster. You can either open dashboards for the instance or view the instance's configuration. |
+| Recommended alerts | Configure recommended alerts for the cluster. See [Create recommended alerts for Kubernetes clusters](./kubernetes-monitoring-recommended-alerts.md) for details. |
+| View all clusters | Open the [multi-cluster view](#multi-cluster-view). |
+
+
+### Overview tab
+The **Overview** tab provides a set of tiles showing the health and performance of that cluster. Several of these tiles may be disabled if you haven't enabled certain features of monitoring. In this case, the tile will offer an option to launch the onboarding process for the cluster. See [Enable Kubernetes monitoring using the Azure portal](./kubernetes-monitoring-enable.md) for details.
+
+### Nodes, Controllers, and Containers tabs
+The **Nodes**, **Controllers**, and **Containers** tabs display a list of these resources for the cluster. The tabs will be disabled if you aren't collecting performance data for the cluster. In this case, the tab will offer an option to launch the onboarding process for the cluster. See [Enable Kubernetes monitoring using the Azure portal](./kubernetes-monitoring-enable.md) for details.
+
+
+
+
+
+
+Filter the view by **Time range** of the collected data or by node or namespace by selecting **Add Filter**.
+
+Select any item to open a property pane that shows the properties of the item selected. When a Linux node is selected, the **Local Disk Capacity** section also shows the available disk space and the percentage used for each disk presented to the node. From this pane, you also can view Kubernetes container logs (stdout/stderror), events, and pod metrics by selecting the **Live Events** tab at the top of the pane. For more information about this feature, see [How to view Kubernetes logs, events, and pod metrics in real time](container-insights-livedata-overview.md).
 
 To view log data for the selected resource  based on predefined log searches, select **View Events in Log Analytics**. For more information on this data and log queries, see [How to query logs from Container insights](container-insights-log-query.md).
 
 
 ### Nodes tab
 
-The information that's presented when you view the **Nodes** tab is described in the following table.
+The following table describes the columns in the **Nodes** tab.
 
 | Column | Description |
 |--------|-------------|
@@ -37,7 +97,7 @@ The information that's presented when you view the **Nodes** tab is described in
 | Controller | Only for containers and pods. It shows which controller it resides in. Not all pods are in a controller, so some might display **N/A**. |
 | Trend Min&nbsp;%, Avg&nbsp;%, 50th&nbsp;%, 90th&nbsp;%, 95th&nbsp;%, Max&nbsp;% | Bar graph trend represents the average percentile metric percentage of the controller. |
 
-The row hierarchy in the **Nodes** tab follows the Kubernetes object model. Expand the node to view its pods. If more than one container is grouped to a pod, they're displayed as the last row in the hierarchy. You also can view how many non-pod-related workloads are running on the host if the host has processor or memory pressure.
+The row hierarchy in the **Nodes** tab follows the Kubernetes object model. Expand a node to view its pods. If more than one container is grouped to a pod, they're displayed as the last row in the hierarchy. You also can view how many non-pod-related workloads are running on the host if the host has processor or memory pressure.
 
 :::image type="content" source="./media/container-insights-analyze/containers-nodes-view.png" alt-text="Screenshot that shows an example of the Kubernetes Node hierarchy in the performance view." lightbox="media/container-insights-analyze/containers-nodes-view.png":::
 
@@ -52,8 +112,6 @@ Azure Container Instances virtual nodes that run the Linux OS are shown after th
 From an expanded node, you can drill down from the pod or container that runs on the node to the controller to view performance data filtered for that controller. Select the value under the **Controller** column for the specific node.
 
 :::image type="content" source="./media/container-insights-analyze/drill-down-node-controller.png" alt-text="Screenshot that shows the drill-down from node to controller in the performance view." lightbox="media/container-insights-analyze/drill-down-node-controller.png":::
-
-### Controllers and containers tabs
 
 Select **Controllers** or **Containers** at the top of the page to review the status and resource utilization for those objects. To review memory utilization, in the **Metric** dropdown list, select **Memory RSS** or **Memory working set**. **Memory RSS** is supported only for Kubernetes version 1.8 and later. Otherwise, you view values for **Min&nbsp;%** as *NaN&nbsp;%*, which is a numeric data type value that represents an undefined or unrepresentable value.
 
@@ -78,8 +136,6 @@ In the next example, for the first node in the list, *aks-nodepool1-*, the value
 
 This information can help you quickly identify whether you have a proper balance of containers between nodes in your cluster.
 
-
-
 The workload after expanding a node named **Other process**. It represents non-containerized processes that run on your node, and includes:
 
 * Self-managed or managed Kubernetes non-containerized processes.
@@ -89,6 +145,8 @@ The workload after expanding a node named **Other process**. It represents non-c
 * Other non-Kubernetes workloads running on node hardware or a VM.
 
 It's calculated by *Total usage from CAdvisor* - *Usage from containerized process*.
+
+### Controllers tab
 
 In the selector, select **Controllers**.
 
@@ -131,6 +189,8 @@ The icons in the status field indicate the online status of the containers.
 
 The status icon displays a count based on what the pod provides. It shows the worst two states. When you hover over the status, it displays a rollup status from all pods in the container. If there isn't a ready state, the status value displays **(0)**.
 
+### Containers tab
+
 In the selector, select **Containers**.
 
 :::image type="content" source="./media/container-insights-analyze/containers-containers-tab.png" alt-text="Screenshot that shows selecting Containers." lightbox="media/container-insights-analyze/containers-containers-tab.png":::
@@ -142,6 +202,7 @@ Here you can view the performance health of your AKS and Container Instances con
 From a container, you can drill down to a pod or node to view performance data filtered for that object. Select the value under the **Pod** or **Node** column for the specific container.
 
 :::image type="content" source="./media/container-insights-analyze/drill-down-container-node.png" alt-text="Screenshot that shows an example drill-down from node to containers in the performance view." lightbox="media/container-insights-analyze/drill-down-controller-node.png":::
+
 
 The information that's displayed when you view containers is described in the following table.
 
