@@ -2294,7 +2294,7 @@ To get a new key, [create a new resource in the Application Insights portal](cre
 
 ### ApplicationId Provider
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET](#tab/net)
 
 *The provider is available starting in v2.6.0*.
 
@@ -2393,21 +2393,7 @@ Configure a [snapshot collection for ASP.NET applications](snapshot-debugger-vm.
 
 ---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## ASP.NET Core
+<!-- ASP.NET Core -->
 
 #### Use ApplicationInsightsServiceOptions
 
@@ -2462,8 +2448,6 @@ In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nug
 ```
 
 If `builder.Services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 6.0 or `services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 3.1 and earlier is used, it overrides the settings from `Microsoft.Extensions.Configuration.IConfiguration`.
-
----
 
 ### Sampling
 
