@@ -2,7 +2,7 @@
 title: Azure Monitor overview
 description: Overview of Microsoft services and functionalities that contribute to a complete monitoring strategy for your Azure services and applications.
 ms.topic: overview
-ms.date: 07/15/2024
+ms.date: 08/25/2025
 ---
 
 # Azure Monitor overview
@@ -232,6 +232,10 @@ More integrations not shown in the diagram that may be of interest.
 
 > [!NOTE]
 > There are many more third party companies that integrate with Azure and Azure Monitor at various levels. Use your favorite search engine to locate them.
+
+## Azure Monitor and the adaptive cloud approach
+
+Azure Monitor is part of Microsoft’s [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach. This approach helps organizations run and manage apps and systems across many environments, including Azure, other clouds, on-premises datacenters, and edge locations. Azure Monitor supports this approach by collecting and analyzing data from all these environments in one place. It helps you understand how your systems are working, find problems quickly, and improve performance and reliability everywhere your apps run.
 
 ## Frequently asked questions
 
