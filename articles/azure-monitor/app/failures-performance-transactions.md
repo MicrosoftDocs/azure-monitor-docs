@@ -81,13 +81,13 @@ All experiences allow you to filter telemetry by time range. In addition, each e
 
 ### [Failures view](#tab/failures-view)
 
-You can select which service (Cloud Role Name) or machine/container (Cloud Role Instance) to view from the **Roles** filter menu. This allows you to isolate issues or performance trends within specific parts of your application.
+You can select which service (Cloud Role Name) or machine/container (Cloud Role Instance) to view from the **Roles** filter menu. This action allows you to isolate issues or performance trends within specific parts of your application.
 
 To learn how to set the *Cloud Role Name* and the *Cloud Role Instance*, see [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
 
 ### [Performance view](#tab/performance-view)
 
-You can select which service (Cloud Role Name) or machine/container (Cloud Role Instance) to view from the **Roles** filter menu. This allows you to isolate issues or performance trends within specific parts of your application.
+You can select which service (Cloud Role Name) or machine/container (Cloud Role Instance) to view from the **Roles** filter menu. This action allows you to isolate issues or performance trends within specific parts of your application.
 
 To learn how to set the *Cloud Role Name* and the *Cloud Role Instance*, see [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
 
@@ -180,7 +180,7 @@ You can use the following search expressions:
 
 ### Use analytics data
 
-All data collected by Application Insights is stored in [Log Analytics](../logs/log-analytics-overview.md), which provides a rich query language to analyze the requests that generated the exception you're investigating.
+All data collected by Application Insights is stored in [Log Analytics](../logs/log-analytics-overview.md). It provides a rich query language to analyze the requests that generated the exception you're investigating.
 
 > [!TIP]
 > [Simple mode](../logs/log-analytics-simple-mode.md) in Log Analytics offers an intuitive point-and-click interface for analyzing and visualizing log data.
@@ -189,7 +189,7 @@ All data collected by Application Insights is stored in [Log Analytics](../logs/
 
     :::image type="content" source="media/failures-performance-transactions/logs-view-go-to.png" lightbox="media/failures-performance-transactions/logs-view-go-to.png" alt-text="Screenshot of the top action bar with the 'View in logs' button highlighted.":::
 
-1. This takes you to the **Logs** view, where you can further modify the query or select a different one from the sidebar.
+1. This action takes you to the **Logs** view, where you can further modify the query or select a different one from the sidebar.
 
     :::image type="content" source="media/failures-performance-transactions/logs-view.png" lightbox="media/failures-performance-transactions/logs-view.png" alt-text="Screenshot showing the 'Logs' view.":::
 
@@ -208,13 +208,13 @@ To investigate the root cause of an error or exception, you can drill into the p
 	:::image type="content" source="media/failures-performance-transactions/failures-view-drill-into.png" lightbox="media/failures-performance-transactions/failures-view-drill-into.png" alt-text="Screenshot showing the 'Failures' view with the 'Drill into' button highlighted.":::
 
 	> [!NOTE]
-	> The **Suggested** samples have related telemetry from all components, even if sampling was in effect in any of them.
+	> The **Suggested** samples contain related telemetry from all components, even if sampling is in effect in any of them.
 
 ### [Performance view](#tab/performance-view)
 
 To investigate the root cause of a performance issue, you can drill into the problematic operation for a detailed end-to-end transaction details view that includes dependencies and exception details.
 
-1. Select an operation to view the **Distribution of durations** for different requests of that operation, and additional **Insights**.
+1. Select an operation to view the **Distribution of durations** for different requests of that operation, and other **Insights**.
 
 1. Under **Drill into**, select the button with the number of filtered results to view a list of sample operations.
 
@@ -223,7 +223,7 @@ To investigate the root cause of a performance issue, you can drill into the pro
 	:::image type="content" source="media/failures-performance-transactions/performance-view-drill-into.png" lightbox="media/failures-performance-transactions/performance-view-drill-into.png" alt-text="Screenshot showing the 'Performance' view with the 'Drill into' button highlighted.":::
 
 	> [!NOTE]
-	> The **Suggested** samples have related telemetry from all components, even if sampling was in effect in any of them.
+	> The **Suggested** samples contain related telemetry from all components, even if sampling is in effect in any of them.
 
 ### [Transaction search](#tab/transaction-search)
 
@@ -275,7 +275,7 @@ This chart provides a timeline with horizontal bars during requests and dependen
 * The top row on this chart represents the entry point. It's the incoming request to the first component called in this transaction. The duration is the total time taken for the transaction to complete.
 * Any calls to external dependencies are simple noncollapsible rows, with icons that represent the dependency type.
 * Calls to other components are collapsible rows. Each row corresponds to a specific operation invoked at the component.
-* By default, the request, dependency, or exception that you selected appears to the side. Select any row to see its [details](/azure/azure-monitor/app/failures-performance-transactions?tabs=details#transaction-diagnostics-experience).
+* By default, the request, dependency, or exception that you selected appears to the side. To see its [details](/azure/azure-monitor/app/failures-performance-transactions?tabs=details#transaction-diagnostics-experience), select any row.
 
 > [!NOTE]
 > Calls to other components have two rows. One row represents the outbound call (dependency) from the caller component. The other row corresponds to the inbound request at the called component. The leading icon and distinct styling of the duration bars help differentiate between them.
@@ -513,16 +513,15 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
 
 Application Insights displays release annotations in the following experiences:
 
-- [**Performance and Failures**](failures-performance-transactions.md)
+- [**Performance and Failures**](#investigate-failures-performance-and-transactions-with-application-insights)
 - [**Usage**](usage.md)
 - [**Workbooks**](../visualize/best-practices-visualize.md) (for any time-series visualization)
 
-The following annotation marker appears at the top of charts and provides more information.
+Annotations are visualized as markers at the top of charts.
 
-:::image type="content" source="media/annotations/annotation-marker.png" alt-text="A screenshot of a blue arrow pointing upwards towards a solid blue line":::
+:::image type="content" source="./media/annotations.png" alt-text="A screenshot of an exceptions chart with annotations" lightbox="./media/annotations.png":::
 
 To enable annotations in a workbook, open **Advanced Settings** and then select **Show annotations**. Select any annotation marker to open release details such as requestor, source control branch, release pipeline, and environment.
-
 
 ## Frequently asked questions
 
@@ -596,7 +595,7 @@ Potential reasons:
 * Are the other components instrumented with Application Insights?
 * Are they using the latest stable Application Insights SDK?
 * If these components are separate Application Insights resources, validate you have [access](../roles-permissions-security.md).
-If you do have access and the components are instrumented with the latest Application Insights SDKs, let us know via the feedback channel in the upper-right corner.
+If you do have access and the components are instrumented with the latest Application Insights Software Development Kits (SDKs), let us know via the feedback channel in the upper-right corner.
 </details>
 
 <br>
@@ -628,9 +627,9 @@ This behavior is by design. All the related items, across all components, are al
 <details>
 <summary><b>Is there a way to see fewer events per transaction when I use the Application Insights JavaScript SDK?</b></summary>
 
-The transaction diagnostics experience shows all telemetry in a [single operation](distributed-trace-data.md#data-model-for-telemetry-correlation) that shares an [Operation ID](data-model-complete.md#context). By default, the Application Insights SDK for JavaScript creates a new operation for each unique page view. In a single-page application (SPA), only one page view event is generated and a single Operation ID is used for all telemetry generated. As a result, many events might be correlated to the same operation.
+The transaction diagnostics experience shows all telemetry in a [single operation](distributed-trace-data.md#data-model-for-telemetry-correlation) that shares an [Operation ID](data-model-complete.md#context). By default, the Application Insights SDK for JavaScript creates a new operation for each unique page view. In a single-page application (SPA), only one page view event is created and a single Operation ID is used for all telemetry generated. As a result, many events might be correlated to the same operation.
 
-In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript.md#single-page-applications) so that a page view is generated every time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
+In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript.md#single-page-applications) so that the system creates a page view each time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
 </details>
 
 <br>
@@ -648,7 +647,8 @@ If all calls were instrumented, in process is the likely root cause for the time
 <details>
 <summary><b>What if I see the message "Error retrieving data" while navigating Application Insights in the Azure portal?</b></summary>
 
-This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate DNS or other network related issues from the client machine where the API calls are failing. If the portal error continues and needs to be investigated further, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior, then open a support case from the Azure portal.
+This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate Domain Name System (DNS) or other network related issues from the client machine where the API calls are failing. If the portal error continues, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected behavior. Then open a support case from the Azure portal.
+
 </details>
 
 <!--
