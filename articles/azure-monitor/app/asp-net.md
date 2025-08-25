@@ -1805,14 +1805,13 @@ Application Insights supports collecting EventCounters with its `EventCounterCol
 
 #### In this section
 
-* [Configure the Application Insighs SDK](#configure-the-application-insights-sdk)
+* [Telemetry channels](#telemetry-channels)
+* [Telemetry modules](#telemetry-modules)
+* [Disable telemetry](#disable-telemetry)
 * [Telemetry initializers](#telemetry-initializers)
 * [Telemetry processor](#telemetry-processors)
 * [Sampling](#sampling)
-* [Configure or remove default TelemetryModules](#configure-or-remove-default-telemetrymodules)
 * [Enrich and correlate over HTTP](#enrich-data-through-http)
-
-### Configure the Application Insights SDK
 
 You can customize the Application Insights SDK for ASP.NET and ASP.NET Core to change the default configuration.
 
@@ -1820,223 +1819,14 @@ You can customize the Application Insights SDK for ASP.NET and ASP.NET Core to c
 
 The Application Insights .NET SDK consists of many NuGet packages. The [core package](https://www.nuget.org/packages/Microsoft.ApplicationInsights) provides the API for sending telemetry to the Application Insights. [More packages](https://www.nuget.org/packages?q=Microsoft.ApplicationInsights) provide telemetry *modules* and *initializers* for automatically tracking telemetry from your application and its context. By adjusting the configuration file, you can enable or disable telemetry modules and initializers. You can also set parameters for some of them.
 
-The configuration file is named `ApplicationInsights.config` or `ApplicationInsights.xml`. The name depends on the type of your application. It's automatically added to your project when you [install most versions of the SDK](app-insights-overview.md). By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. When it's compiled, it's copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server](application-insights-asp-net-agent.md). The configuration file is ignored if the [extension for Azure websites](codeless-app-service.md) or the [extension for Azure VMs and virtual machine scale sets](azure-vm-vmss-apps.md) is used.
+The configuration file is named `ApplicationInsights.config` or `ApplicationInsights.xml`. The name depends on the type of your application. It's automatically added to your project when you [install most versions of the SDK](app-insights-overview.md).
+
+By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. When it's compiled, it's copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server](application-insights-asp-net-agent.md).
+
+> [!IMPORTANT]
+> The configuration file is ignored if the [extension for Azure websites](codeless-app-service.md) or the [extension for Azure VMs and virtual machine scale sets](azure-vm-vmss-apps.md) is used.
 
 There isn't an equivalent file to control the [SDK in a webpage](javascript-sdk.md).
-
-This article describes the sections you see in the configuration file, how they control the components of the SDK, and which NuGet packages load those components.
-
-#### Telemetry modules
-
-Each telemetry module collects a specific type of data and uses the core API to send the data. The modules are installed by different NuGet packages, which also add the required lines to the .config file.
-
-There's a node in the configuration file for each module. To disable a module, delete the node or comment it out.
-
-| Module | Description |
-|--------|-------------|
-| Dependency tracking:<br>`DependencyCollector` | Collects telemetry about calls your app makes to databases and external services and databases. To allow this module to work in an IIS server, you need to [install Application Insights Agent](application-insights-asp-net-agent.md). You can also write your own dependency tracking code by using the [TrackDependency API](api-custom-events-metrics.md#trackdependency).<br><br>• `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>• [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) NuGet package<br><br>Dependencies can be autocollected without modifying your code by using agent-based (codeless) attach. To use it in Azure web apps, enable the [Application Insights extension](codeless-app-service.md). To use it in an Azure VM or an Azure virtual machine scale set, enable the [Application Monitoring extension for VMs and virtual machine scale sets](azure-vm-vmss-apps.md). |
-| Performance collector:<br>`PerformanceCollectorModule` | [Collects system performance counters](asp-net-counters.md), such as CPU, memory, and network load from IIS installations. You can specify which counters to collect, including performance counters you've set up yourself.<br><br>• `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`<br>• [Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet package |
-| Diagnostic telemetry:<br>`DiagnosticsTelemetryModule` | Reports errors in the Application Insights instrumentation code itself. Examples are if the code can't access performance counters or if `ITelemetryInitializer` throws an exception. Trace telemetry tracked by this module appears in the [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search).<br><br>• `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>• [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you only install this package, the ApplicationInsights.config file isn't automatically created. |
-| Developer mode:<br>`DeveloperModeWithDebuggerAttachedTelemetryModule` | Forces the Application Insights `TelemetryChannel` to send data immediately, one telemetry item at a time, when a debugger is attached to the application process. This design reduces the amount of time between the moment when your application tracks telemetry and when it appears in the Application Insights portal. It causes significant overhead in CPU and network bandwidth.<br><br>• `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`<br>• [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet package |
-| Web request tracking:<br>`Web.RequestTrackingTelemetryModule` | Reports the response time and result code of HTTP requests.<br><br>• `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`<br>• [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package |
-| Exception tracking:<br>`ExceptionTrackingTelemetryModule` | Tracks unhandled exceptions in your web app. For more information, see [Failures and exceptions](#exceptions).<br><br>• `Microsoft.ApplicationInsights.Web.ExceptionTrackingTelemetryModule`.<br>• [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package.<br>• `Microsoft.ApplicationInsights.WindowsServer.UnobservedExceptionTelemetryModule`: Tracks unobserved task. exceptions.<br>• `Microsoft.ApplicationInsights.WindowsServer.UnhandledExceptionTelemetryModule`: Tracks unhandled exceptions for worker roles, Windows services, and console applications.<br>• [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet package. |
-| EventSource tracking:<br>`EventSourceTelemetryModule` | Allows you to configure EventSource events to be sent to Application Insights as traces. For information on tracking EventSource events, see [Using EventSource events](asp-net-trace-logs.md#use-eventsource-events).<br><br>• `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`<br>• [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener) |
-| ETW event tracking:<br>`EtwCollectorTelemetryModule` | Allows you to configure events from ETW providers to be sent to Application Insights as traces. For information on tracking ETW events, see [Using ETW events](asp-net-trace-logs.md#use-etw-events).<br><br>• `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br>• [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
-| Application Insights package:<br>`Microsoft.ApplicationInsights` | Provides the [core API](/dotnet/api/microsoft.applicationinsights) of the SDK. The other telemetry modules use this API. You can also [use it to define your own telemetry](api-custom-events-metrics.md).<br><br>• No entry in ApplicationInsights.config.<br>• [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you just install this NuGet, no .config file is generated. |
-
-#### Telemetry channel
-
-The [telemetry channel](telemetry-channels.md) manages buffering and transmission of telemetry to the Application Insights service.
-
-* `Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel` is the default channel for web applications. It buffers data in memory and employs retry mechanisms and local disk storage for more reliable telemetry delivery.
-* `Microsoft.ApplicationInsights.InMemoryChannel` is a lightweight telemetry channel. It's used if no other channel is configured.
-
-#### Telemetry initializers
-
-Telemetry initializers set context properties that are sent along with every item of telemetry.
-
-You can [write your own initializers](api-filtering-sampling.md#add-properties) to set context properties.
-
-The standard initializers are all set either by the web or WindowsServer NuGet packages:
-
-| Initializer | Description |
-|-------------|-------------|
-| `AccountIdTelemetryInitializer` | Sets the `AccountId` property. |
-| `AuthenticatedUserIdTelemetryInitializer` | Sets the `AuthenticatedUserId` property as set by the JavaScript SDK. |
-| `AzureRoleEnvironmentTelemetryInitializer` | Updates the `RoleName` and `RoleInstance` properties of the `Device` context for all telemetry items with information extracted from the Azure runtime environment. |
-| `BuildInfoConfigComponentVersionTelemetryInitializer` | Updates the `Version` property of the `Component` context for all telemetry items with the value extracted from the `BuildInfo.config` file produced by MS Build. |
-| `ClientIpHeaderTelemetryInitializer` | Updates the `Ip` property of the `Location` context of all telemetry items based on the `X-Forwarded-For` HTTP header of the request. |
-| `DeviceTelemetryInitializer` | Updates the following properties of the `Device` context for all telemetry items:<br><br>• `Type` is set to `PC`.<br>• `Id` is set to the domain name of the computer where the web application is running.<br>• `OemName` is set to the value extracted from the `Win32_ComputerSystem.Manufacturer` field by using WMI.<br>• `Model` is set to the value extracted from the `Win32_ComputerSystem.Model` field by using WMI.<br>• `NetworkType` is set to the value extracted from the `NetworkInterface` property.<br>• `Language` is set to the name of the `CurrentCulture` property. |
-| `DomainNameRoleInstanceTelemetryInitializer` | Updates the `RoleInstance` property of the `Device` context for all telemetry items with the domain name of the computer where the web application is running. |
-| `OperationNameTelemetryInitializer` | Udates the `Name` property of `RequestTelemetry` and the `Name` property of the `Operation` context of all telemetry items based on the HTTP method, and the names of the ASP.NET MVC controller and action invoked to process the request. |
-| `OperationIdTelemetryInitializer` or `OperationCorrelationTelemetryInitializer` | Updates the `Operation.Id` context property of all telemetry items tracked while handling a request with the automatically generated `RequestTelemetry.Id`. |
-| `SessionTelemetryInitializer` | Updates the `Id` property of the `Session` context for all telemetry items with value extracted from the `ai_session` cookie generated by the `ApplicationInsights` JavaScript instrumentation code running in the user's browser. |
-| `SyntheticTelemetryInitializer` or `SyntheticUserAgentTelemetryInitializer` | Updates the `User`, `Session`, and `Operation` context properties of all telemetry items tracked when handling a request from a synthetic source, such as an availability test or search engine bot. By default, [metrics explorer](../metrics/analyze-metrics.md) doesn't display synthetic telemetry.<br><br>The `<Filters>` set identifying properties of the requests. |
-| `UserTelemetryInitializer` | Updates the `Id` and `AcquisitionDate` properties of the `User` context for all telemetry items with values extracted from the `ai_user` cookie generated by the Application Insights JavaScript instrumentation code running in the user's browser. |
-| `WebTestTelemetryInitializer` | Sets the user ID, session ID, and synthetic source properties for HTTP requests that come from [availability tests](availability.md).<br><br>The `<Filters>` set identifying properties of the requests. |
-
-For .NET applications running in Azure Service Fabric, you can include the `Microsoft.ApplicationInsights.ServiceFabric` NuGet package. This package includes a `FabricTelemetryInitializer` property, which adds Service Fabric properties to telemetry items. For more information, see the [GitHub page](https://github.com/Microsoft/ApplicationInsights-ServiceFabric/blob/master/README.md) about the properties added by this NuGet package.
-
-#### Telemetry processors
-
-Telemetry processors can filter and modify each telemetry item before it's sent from the SDK to the portal.
-
-You can [write your own telemetry processors](api-filtering-sampling.md#filtering).
-
-##### Adaptive sampling telemetry processor (from 2.0.0-beta3)
-
-This functionality is enabled by default. If your app sends considerable telemetry, this processor removes some of it.
-
-```xml
-
-    <TelemetryProcessors>
-      <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.AdaptiveSamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
-        <MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>
-      </Add>
-    </TelemetryProcessors>
-
-```
-
-The parameter provides the target that the algorithm tries to achieve. Each instance of the SDK works independently. So, if your server is a cluster of several machines, the actual volume of telemetry will be multiplied accordingly.
-
-Learn more about [sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-
-##### Fixed-rate sampling telemetry processor (from 2.0.0-beta1)
-
-There's also a standard [sampling telemetry processor](api-filtering-sampling.md) (from 2.0.1):
-
-```xml
-
-    <TelemetryProcessors>
-     <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.SamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
-
-     <!-- Set a percentage close to 100/N where N is an integer. -->
-     <!-- E.g. 50 (=100/2), 33.33 (=100/3), 25 (=100/4), 20, 1 (=100/100), 0.1 (=100/1000) -->
-     <SamplingPercentage>10</SamplingPercentage>
-     </Add>
-   </TelemetryProcessors>
-
-```
-
-#### Connection String
-
-This setting determines the Application Insights resource in which your data appears. Typically, you create a separate resource, with a separate connection string, for each of your applications.
-
-See [Connection strings in Application Insights](connection-strings.md#code-samples) for code samples.
-
-If you want to set the connection string dynamically, for example, to send results from your application to different resources, you can omit the connection string from the configuration file and set it in code instead.
-
-To set the connection string for all instances of `TelemetryClient`, including standard telemetry modules, do this step in an initialization method, such as global.aspx.cs in an ASP.NET service:
-
-```csharp
-using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.ApplicationInsights;
-
-    protected void Application_Start()
-    {
-        TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
-        configuration.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
-        var telemetryClient = new TelemetryClient(configuration);
-
-```
-
-If you want to send a specific set of events to a different resource, you can set the key for a specific telemetry client:
-
-```csharp
-
-    var tc = new TelemetryClient();
-    tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
-    tc.TrackEvent("myEvent");
-    // ...
-
-```
-
-To get a new key, [create a new resource in the Application Insights portal](create-workspace-resource.md).
-
-#### ApplicationId Provider
-
-_The provider is available starting in v2.6.0_.
-
-The purpose of this provider is to look up an application ID based on a connection string. The application ID is included in `RequestTelemetry` and `DependencyTelemetry` and is used to determine correlation in the portal.
-
-This functionality is available by setting `TelemetryConfiguration.ApplicationIdProvider` either in code or in the config file.
-
-##### Interface: IApplicationIdProvider
-
-```csharp
-public interface IApplicationIdProvider
-{
-    bool TryGetApplicationId(string instrumentationKey, out string applicationId);
-}
-```
-
-We provide two implementations in the [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) SDK: `ApplicationInsightsApplicationIdProvider` and `DictionaryApplicationIdProvider`.
-
-##### ApplicationInsightsApplicationIdProvider
-
-This wrapper is for our Profile API. It throttles requests and cache results.
-
-This provider is added to your config file when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
-
-This class has an optional property `ProfileQueryEndpoint`. By default, it's set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`. If you need to configure a proxy for this configuration, we recommend that you proxy the base address and include `"/api/profiles/{0}/appId"`. A `{0}` is substituted at runtime per request with the instrumentation key.
-
-**Example configuration via ApplicationInsights.config**
-
-```xml
-<ApplicationInsights>
-    ...
-    <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights">
-        <ProfileQueryEndpoint>https://dc.services.visualstudio.com/api/profiles/{0}/appId</ProfileQueryEndpoint>
-    </ApplicationIdProvider>
-    ...
-</ApplicationInsights>
-```
-
-**Example configuration via code**
-
-```csharp
-TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApplicationIdProvider();
-```
-
-##### DictionaryApplicationIdProvider
-
-This static provider relies on your configured instrumentation key/application ID pairs.
-
-This class has the `Defined` property, which is a `Dictionary<string,string>` of instrumentation key/application ID pairs.
-
-This class has the optional property `Next`, which can be used to configure another provider to use when a connection string is requested that doesn't exist in your configuration.
-
-**Example configuration via ApplicationInsights.config**
-
-```xml
-<ApplicationInsights>
-    ...
-    <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.DictionaryApplicationIdProvider, Microsoft.ApplicationInsights">
-        <Defined>
-            <Type key="InstrumentationKey_1" value="ApplicationId_1"/>
-            <Type key="InstrumentationKey_2" value="ApplicationId_2"/>
-        </Defined>
-        <Next Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights" />
-    </ApplicationIdProvider>
-    ...
-</ApplicationInsights>
-```
-
-**Example configuration via code**
-
-```csharp
-TelemetryConfiguration.Active.ApplicationIdProvider = new DictionaryApplicationIdProvider{
- Defined = new Dictionary<string, string>
-    {
-        {"InstrumentationKey_1", "ApplicationId_1"},
-        {"InstrumentationKey_2", "ApplicationId_2"}
-    }
-};
-```
-
-#### Configure snapshot collection
-
-Configure a [snapshot collection for ASP.NET applications](snapshot-debugger-vm.md#configure-snapshot-collection-for-aspnet-applications).
 
 # [ASP.NET Core](#tab/core)
 
@@ -2044,152 +1834,6 @@ In ASP.NET Core applications, all configuration changes are made in the `Configu
 
 > [!NOTE]
 > In ASP.NET Core applications, changing configuration by modifying `TelemetryConfiguration.Active` isn't supported.
-
-#### Use ApplicationInsightsServiceOptions
-
-You can modify a few common settings by passing `ApplicationInsightsServiceOptions` to `AddApplicationInsightsTelemetry`, as in this example:
-
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
-
-// Disables adaptive sampling.
-aiOptions.EnableAdaptiveSampling = false;
-
-// Disables live metrics (also known as QuickPulse).
-aiOptions.EnableQuickPulseMetricStream = false;
-
-builder.Services.AddApplicationInsightsTelemetry(aiOptions);
-var app = builder.Build();
-```
-
-This table has the full list of `ApplicationInsightsServiceOptions` settings:
-
-| Setting                                    | Description                                            | Default |
-|--------------------------------------------|--------------------------------------------------------|---------|
-| EnablePerformanceCounterCollectionModule   | Enable/Disable `PerformanceCounterCollectionModule`.   | True    |
-| EnableRequestTrackingTelemetryModule       | Enable/Disable `RequestTrackingTelemetryModule`.       | True    |
-| EnableEventCounterCollectionModule         | Enable/Disable `EventCounterCollectionModule`.         | True    |
-| EnableDependencyTrackingTelemetryModule    | Enable/Disable `DependencyTrackingTelemetryModule`.    | True    |
-| EnableAppServicesHeartbeatTelemetryModule  | Enable/Disable `AppServicesHeartbeatTelemetryModule`.  | True    |
-| EnableAzureInstanceMetadataTelemetryModule | Enable/Disable `AzureInstanceMetadataTelemetryModule`. | True    |
-| EnableQuickPulseMetricStream               | Enable/Disable LiveMetrics feature.                    | True    |
-| EnableAdaptiveSampling                     | Enable/Disable Adaptive Sampling.                      | True    |
-| EnableHeartbeat | Enable/Disable the heartbeats feature. It periodically (15-min default) sends a custom metric named `HeartbeatState` with information about the runtime like .NET version and Azure environment information, if applicable. | True |
-| AddAutoCollectedMetricExtractor | Enable/Disable the `AutoCollectedMetrics extractor`. This telemetry processor sends preaggregated metrics about requests/dependencies before sampling takes place. | True |
-| RequestCollectionOptions.TrackExceptions | Enable/Disable reporting of unhandled exception tracking by the request collection module. | False in `netstandard2.0` (because exceptions are tracked with `ApplicationInsightsLoggerProvider`). True otherwise. |
-| EnableDiagnosticsTelemetryModule | Enable/Disable `DiagnosticsTelemetryModule`. Disabling causes the following settings to be ignored: `EnableHeartbeat`, `EnableAzureInstanceMetadataTelemetryModule`, and `EnableAppServicesHeartbeatTelemetryModule`. | True |
-
-For the most current list, see the [configurable settings in `ApplicationInsightsServiceOptions`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs).
-
-#### Configuration recommendation for Microsoft.ApplicationInsights.AspNetCore SDK 2.15.0 and later
-
-In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore/2.15.0) and later, configure every setting available in `ApplicationInsightsServiceOptions`, including `ConnectionString`. Use the application's `IConfiguration` instance. The settings must be under the section `ApplicationInsights`, as shown in the following example. The following section from *appsettings.json* configures the connection string and disables adaptive sampling and performance counter collection.
-
-```json
-{
-    "ApplicationInsights": {
-    "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-    "EnableAdaptiveSampling": false,
-    "EnablePerformanceCounterCollectionModule": false
-    }
-}
-```
-
-If `builder.Services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 6.0 or `services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 3.1 and earlier is used, it overrides the settings from `Microsoft.Extensions.Configuration.IConfiguration`.
-
----
-
-### Telemetry initializers
-
-To enrich telemetry with additional information or to override telemetry properties set by the standard telemetry modules, use telemetry initializers.
-
-# [ASP.NET](#tab/net)
-
-To learn how to use telemetry initializers with ASP.NET applications, see [Filter and preprocess telemetry in the Application Insights SDK](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
-
-# [ASP.NET Core](#tab/core)
-
-#### Add telemetry initializers
-
-Add any new `TelemetryInitializer` to the `DependencyInjection` container as shown in the following code. The SDK automatically picks up any `TelemetryInitializer` that's added to the `DependencyInjection` container.
-
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddSingleton<ITelemetryInitializer, MyCustomTelemetryInitializer>();
-
-var app = builder.Build();
-```
-
-> [!NOTE]
-> `builder.Services.AddSingleton<ITelemetryInitializer, MyCustomTelemetryInitializer>();` works for simple initializers. For others, `builder.Services.AddSingleton(new MyCustomTelemetryInitializer() { fieldName = "myfieldName" });` is required.
-
-#### Remove telemetry initializers
-
-By default, telemetry initializers are present. To remove all or specific telemetry initializers, use the following sample code *after* calling `AddApplicationInsightsTelemetry()`.
-
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddApplicationInsightsTelemetry();
-
-// Remove a specific built-in telemetry initializer
-var tiToRemove = builder.Services.FirstOrDefault<ServiceDescriptor>
-                    (t => t.ImplementationType == typeof(AspNetCoreEnvironmentTelemetryInitializer));
-if (tiToRemove != null)
-{
-    builder.Services.Remove(tiToRemove);
-}
-
-// Remove all initializers
-// This requires importing namespace by using Microsoft.Extensions.DependencyInjection.Extensions;
-builder.Services.RemoveAll(typeof(ITelemetryInitializer));
-
-var app = builder.Build();
-```
-
----
-
-### Telemetry processors
-
-# [ASP.NET](#tab/net)
-
-To learn how to use telemetry processors with ASP.NET applications, see [Filter and preprocess telemetry in the Application Insights SDK](api-filtering-sampling.md#filtering).
-
-# [ASP.NET Core](#tab/core)
-
-#### Add telemetry processors
-
-You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer). Use the following example:
-
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-// ...
-builder.Services.AddApplicationInsightsTelemetry();
-builder.Services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
-
-// If you have more processors:
-builder.Services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
-
-var app = builder.Build();
-```
-
----
-
-### Sampling
-
-# [ASP.NET](#tab/net)
-
-To learn how to configure sampling for ASP.NET applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-
-# [ASP.NET Core](#tab/core)
-
-The Application Insights SDK for ASP.NET Core supports both fixed-rate and adaptive sampling. By default, adaptive sampling is enabled.
-
-For more information, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
 ---
 
@@ -2283,6 +1927,27 @@ public void ConfigureServices(IServiceCollection services)
 > [!IMPORTANT]
 > Configuring the channel by using `TelemetryConfiguration.Active` isn't supported for ASP.NET Core applications.
 
+<!-- From other doc -->
+
+The default [telemetry channel](telemetry-channels.md) is `ServerTelemetryChannel`. The following example shows how to override it.
+
+```csharp
+using Microsoft.ApplicationInsights.Channel;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Use the following to replace the default channel with InMemoryChannel.
+// This can also be applied to ServerTelemetryChannel.
+builder.Services.AddSingleton(typeof(ITelemetryChannel), new InMemoryChannel() {MaxTelemetryBufferCapacity = 19898 });
+
+builder.Services.AddApplicationInsightsTelemetry();
+
+var app = builder.Build();
+```
+
+> [!NOTE]
+> If you want to flush the buffer, see [Flushing data](api-custom-events-metrics.md#flushing-data). For example, you might need to flush the buffer if you're using the SDK in an application that shuts down.
+
 ---
 
 #### Configuration in code for console applications
@@ -2333,7 +1998,21 @@ Use `Flush()` when:
 
 Avoid using `Flush()` in long-running applications such as web services. The SDK automatically manages buffering and transmission. Calling `Flush()` unnecessarily can cause performance problems and won't guarantee all data is sent, especially when using `ServerTelemetryChannel`, which doesn't flush synchronously.
 
-### Configure or remove default TelemetryModules
+<!-- FROM OTHER DOC
+# [ASP.NET](#tab/net)
+
+The [telemetry channel](telemetry-channels.md) manages buffering and transmission of telemetry to the Application Insights service.
+
+* `Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel` is the default channel for web applications. It buffers data in memory and employs retry mechanisms and local disk storage for more reliable telemetry delivery.
+* `Microsoft.ApplicationInsights.InMemoryChannel` is a lightweight telemetry channel. It's used if no other channel is configured.
+
+# [ASP.NET Core](#tab/core)
+
+-->
+
+---
+
+### Telemetry modules
 
 Application Insights automatically collects telemetry about specific workloads without requiring manual tracking by user.
 
@@ -2341,15 +2020,38 @@ By default, the following automatic-collection modules are enabled. These module
 
 * `RequestTrackingTelemetryModule`: Collects RequestTelemetry from incoming web requests.
 * `DependencyTrackingTelemetryModule`: Collects DependencyTelemetry from outgoing HTTP calls and SQL calls.
-* `PerformanceCollectorModule`: Collects Windows PerformanceCounters.
-* `QuickPulseTelemetryModule`: Collects telemetry to show in the live metrics pane.
-* `AppServicesHeartbeatTelemetryModule`: Collects heartbeats (which are sent as custom metrics), about the App Service environment where the application is hosted.
-* `AzureInstanceMetadataTelemetryModule`: Collects heartbeats (which are sent as custom metrics), about the Azure VM environment where the application is hosted.
 * `EventCounterCollectionModule`: Collects [EventCounters](asp-net-counters.md). This module is a new feature and is available in SDK version 2.8.0 and later.
 
 # [ASP.NET](#tab/net)
 
-To learn how to configure or remove telemetry modules for ASP.NET application, see [Configure the Application Insights SDK with ApplicationInsights.config or .xml](configuration-with-applicationinsights-config.md#telemetry-modules-aspnet).
+* `PerformanceCollectorModule`: Collects Windows PerformanceCounters.
+* `QuickPulseTelemetryModule`: Collects telemetry to show in the live metrics pane.
+* `AppServicesHeartbeatTelemetryModule`: Collects heartbeats (which are sent as custom metrics), about the App Service environment where the application is hosted.
+* `AzureInstanceMetadataTelemetryModule`: Collects heartbeats (which are sent as custom metrics), about the Azure VM environment where the application is hosted.
+
+# [ASP.NET Core](#tab/core)
+
+...
+
+---
+
+# [ASP.NET](#tab/net)
+
+Each telemetry module collects a specific type of data and uses the core API to send the data. The modules are installed by different NuGet packages, which also add the required lines to the .config file.
+
+There's a node in the configuration file for each module. To disable a module, delete the node or comment it out.
+
+| Module | Description |
+|--------|-------------|
+| Dependency tracking:<br>`DependencyCollector` | Collects telemetry about calls your app makes to databases and external services and databases. To allow this module to work in an IIS server, you need to [install Application Insights Agent](application-insights-asp-net-agent.md). You can also write your own dependency tracking code by using the [TrackDependency API](api-custom-events-metrics.md#trackdependency).<br><br>• `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>• [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) NuGet package<br><br>Dependencies can be autocollected without modifying your code by using agent-based (codeless) attach. To use it in Azure web apps, enable the [Application Insights extension](codeless-app-service.md). To use it in an Azure VM or an Azure virtual machine scale set, enable the [Application Monitoring extension for VMs and virtual machine scale sets](azure-vm-vmss-apps.md). |
+| Performance collector:<br>`PerformanceCollectorModule` | [Collects system performance counters](asp-net-counters.md), such as CPU, memory, and network load from IIS installations. You can specify which counters to collect, including performance counters you've set up yourself.<br><br>• `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`<br>• [Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet package |
+| Diagnostic telemetry:<br>`DiagnosticsTelemetryModule` | Reports errors in the Application Insights instrumentation code itself. Examples are if the code can't access performance counters or if `ITelemetryInitializer` throws an exception. Trace telemetry tracked by this module appears in the [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search).<br><br>• `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>• [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you only install this package, the ApplicationInsights.config file isn't automatically created. |
+| Developer mode:<br>`DeveloperModeWithDebuggerAttachedTelemetryModule` | Forces the Application Insights `TelemetryChannel` to send data immediately, one telemetry item at a time, when a debugger is attached to the application process. This design reduces the amount of time between the moment when your application tracks telemetry and when it appears in the Application Insights portal. It causes significant overhead in CPU and network bandwidth.<br><br>• `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`<br>• [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet package |
+| Web request tracking:<br>`Web.RequestTrackingTelemetryModule` | Reports the response time and result code of HTTP requests.<br><br>• `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`<br>• [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package |
+| Exception tracking:<br>`ExceptionTrackingTelemetryModule` | Tracks unhandled exceptions in your web app. For more information, see [Failures and exceptions](#exceptions).<br><br>• `Microsoft.ApplicationInsights.Web.ExceptionTrackingTelemetryModule`.<br>• [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package.<br>• `Microsoft.ApplicationInsights.WindowsServer.UnobservedExceptionTelemetryModule`: Tracks unobserved task. exceptions.<br>• `Microsoft.ApplicationInsights.WindowsServer.UnhandledExceptionTelemetryModule`: Tracks unhandled exceptions for worker roles, Windows services, and console applications.<br>• [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet package. |
+| EventSource tracking:<br>`EventSourceTelemetryModule` | Allows you to configure EventSource events to be sent to Application Insights as traces. For information on tracking EventSource events, see [Using EventSource events](asp-net-trace-logs.md#use-eventsource-events).<br><br>• `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`<br>• [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener) |
+| ETW event tracking:<br>`EtwCollectorTelemetryModule` | Allows you to configure events from ETW providers to be sent to Application Insights as traces. For information on tracking ETW events, see [Using ETW events](asp-net-trace-logs.md#use-etw-events).<br><br>• `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br>• [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
+| Application Insights package:<br>`Microsoft.ApplicationInsights` | Provides the [core API](/dotnet/api/microsoft.applicationinsights) of the SDK. The other telemetry modules use this API. You can also [use it to define your own telemetry](api-custom-events-metrics.md).<br><br>• No entry in ApplicationInsights.config.<br>• [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you just install this NuGet, no .config file is generated. |
 
 # [ASP.NET Core](#tab/core)
 
@@ -2389,28 +2091,15 @@ var app = builder.Build();
 
 In versions 2.12.2 and later, [`ApplicationInsightsServiceOptions`](#use-applicationinsightsserviceoptions) includes an easy option to disable any of the default modules.
 
-#### Configure a telemetry channel
+---
 
-The default [telemetry channel](telemetry-channels.md) is `ServerTelemetryChannel`. The following example shows how to override it.
+### Disable telemetry
 
-```csharp
-using Microsoft.ApplicationInsights.Channel;
+# [ASP.NET](#tab/net)
 
-var builder = WebApplication.CreateBuilder(args);
+...
 
-// Use the following to replace the default channel with InMemoryChannel.
-// This can also be applied to ServerTelemetryChannel.
-builder.Services.AddSingleton(typeof(ITelemetryChannel), new InMemoryChannel() {MaxTelemetryBufferCapacity = 19898 });
-
-builder.Services.AddApplicationInsightsTelemetry();
-
-var app = builder.Build();
-```
-
-> [!NOTE]
-> If you want to flush the buffer, see [Flushing data](api-custom-events-metrics.md#flushing-data). For example, you might need to flush the buffer if you're using the SDK in an application that shuts down.
-
-#### Disable telemetry dynamically
+# [ASP.NET Core](#tab/core)
 
 If you want to disable telemetry conditionally and dynamically, you can resolve the `TelemetryConfiguration` instance with an ASP.NET Core dependency injection container anywhere in your code and set the `DisableTelemetry` flag on it.
 
@@ -2426,6 +2115,377 @@ var app = builder.Build();
 ```
 
 The preceding code sample prevents the sending of telemetry to Application Insights. It doesn't prevent any automatic collection modules from collecting telemetry. If you want to remove a particular autocollection module, see [Remove the telemetry module](#configure-or-remove-default-telemetrymodules).
+
+### Telemetry initializers
+
+To enrich telemetry with additional information or to override telemetry properties set by the standard telemetry modules, use telemetry initializers.
+
+# [ASP.NET](#tab/net)
+
+Telemetry initializers set context properties that are sent along with every item of telemetry.
+
+You can [write your own initializers](api-filtering-sampling.md#add-properties) to set context properties.
+
+The standard initializers are all set either by the web or WindowsServer NuGet packages:
+
+| Initializer | Description |
+|-------------|-------------|
+| `AccountIdTelemetryInitializer` | Sets the `AccountId` property. |
+| `AuthenticatedUserIdTelemetryInitializer` | Sets the `AuthenticatedUserId` property as set by the JavaScript SDK. |
+| `AzureRoleEnvironmentTelemetryInitializer` | Updates the `RoleName` and `RoleInstance` properties of the `Device` context for all telemetry items with information extracted from the Azure runtime environment. |
+| `BuildInfoConfigComponentVersionTelemetryInitializer` | Updates the `Version` property of the `Component` context for all telemetry items with the value extracted from the `BuildInfo.config` file produced by MS Build. |
+| `ClientIpHeaderTelemetryInitializer` | Updates the `Ip` property of the `Location` context of all telemetry items based on the `X-Forwarded-For` HTTP header of the request. |
+| `DeviceTelemetryInitializer` | Updates the following properties of the `Device` context for all telemetry items:<br><br>• `Type` is set to `PC`.<br>• `Id` is set to the domain name of the computer where the web application is running.<br>• `OemName` is set to the value extracted from the `Win32_ComputerSystem.Manufacturer` field by using WMI.<br>• `Model` is set to the value extracted from the `Win32_ComputerSystem.Model` field by using WMI.<br>• `NetworkType` is set to the value extracted from the `NetworkInterface` property.<br>• `Language` is set to the name of the `CurrentCulture` property. |
+| `DomainNameRoleInstanceTelemetryInitializer` | Updates the `RoleInstance` property of the `Device` context for all telemetry items with the domain name of the computer where the web application is running. |
+| `OperationNameTelemetryInitializer` | Udates the `Name` property of `RequestTelemetry` and the `Name` property of the `Operation` context of all telemetry items based on the HTTP method, and the names of the ASP.NET MVC controller and action invoked to process the request. |
+| `OperationIdTelemetryInitializer` or `OperationCorrelationTelemetryInitializer` | Updates the `Operation.Id` context property of all telemetry items tracked while handling a request with the automatically generated `RequestTelemetry.Id`. |
+| `SessionTelemetryInitializer` | Updates the `Id` property of the `Session` context for all telemetry items with value extracted from the `ai_session` cookie generated by the `ApplicationInsights` JavaScript instrumentation code running in the user's browser. |
+| `SyntheticTelemetryInitializer` or `SyntheticUserAgentTelemetryInitializer` | Updates the `User`, `Session`, and `Operation` context properties of all telemetry items tracked when handling a request from a synthetic source, such as an availability test or search engine bot. By default, [metrics explorer](../metrics/analyze-metrics.md) doesn't display synthetic telemetry.<br><br>The `<Filters>` set identifying properties of the requests. |
+| `UserTelemetryInitializer` | Updates the `Id` and `AcquisitionDate` properties of the `User` context for all telemetry items with values extracted from the `ai_user` cookie generated by the Application Insights JavaScript instrumentation code running in the user's browser. |
+| `WebTestTelemetryInitializer` | Sets the user ID, session ID, and synthetic source properties for HTTP requests that come from [availability tests](availability.md).<br><br>The `<Filters>` set identifying properties of the requests. |
+
+> [!NOTE]
+> For .NET applications running in Azure Service Fabric, you can include the `Microsoft.ApplicationInsights.ServiceFabric` NuGet package. This package includes a `FabricTelemetryInitializer` property, which adds Service Fabric properties to telemetry items. For more information, see the [GitHub page](https://github.com/Microsoft/ApplicationInsights-ServiceFabric/blob/master/README.md) about the properties added by this NuGet package.
+
+To learn how to use telemetry initializers with ASP.NET applications, see [Filter and preprocess telemetry in the Application Insights SDK](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
+
+# [ASP.NET Core](#tab/core)
+
+#### Add telemetry initializers
+
+Add any new `TelemetryInitializer` to the `DependencyInjection` container as shown in the following code. The SDK automatically picks up any `TelemetryInitializer` that's added to the `DependencyInjection` container.
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<ITelemetryInitializer, MyCustomTelemetryInitializer>();
+
+var app = builder.Build();
+```
+
+> [!NOTE]
+> `builder.Services.AddSingleton<ITelemetryInitializer, MyCustomTelemetryInitializer>();` works for simple initializers. For others, `builder.Services.AddSingleton(new MyCustomTelemetryInitializer() { fieldName = "myfieldName" });` is required.
+
+#### Remove telemetry initializers
+
+By default, telemetry initializers are present. To remove all or specific telemetry initializers, use the following sample code *after* calling `AddApplicationInsightsTelemetry()`.
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApplicationInsightsTelemetry();
+
+// Remove a specific built-in telemetry initializer
+var tiToRemove = builder.Services.FirstOrDefault<ServiceDescriptor>
+                    (t => t.ImplementationType == typeof(AspNetCoreEnvironmentTelemetryInitializer));
+if (tiToRemove != null)
+{
+    builder.Services.Remove(tiToRemove);
+}
+
+// Remove all initializers
+// This requires importing namespace by using Microsoft.Extensions.DependencyInjection.Extensions;
+builder.Services.RemoveAll(typeof(ITelemetryInitializer));
+
+var app = builder.Build();
+```
+
+---
+
+### Telemetry processors
+
+# [ASP.NET](#tab/net)
+
+Telemetry processors can filter and modify each telemetry item before it's sent from the SDK to the portal.
+
+To learn how to use telemetry processors with ASP.NET applications, see [Filter and preprocess telemetry in the Application Insights SDK](api-filtering-sampling.md#filtering). <!-- SAME SAME -->
+
+You can [write your own telemetry processors](api-filtering-sampling.md#filtering). <!-- SAME SAME -->
+
+#### Adaptive sampling telemetry processor (from 2.0.0-beta3)
+
+This functionality is enabled by default. If your app sends considerable telemetry, this processor removes some of it.
+
+```xml
+
+    <TelemetryProcessors>
+      <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.AdaptiveSamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
+        <MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>
+      </Add>
+    </TelemetryProcessors>
+
+```
+
+The parameter provides the target that the algorithm tries to achieve. Each instance of the SDK works independently. So, if your server is a cluster of several machines, the actual volume of telemetry will be multiplied accordingly.
+
+Learn more about [sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+
+#### Fixed-rate sampling telemetry processor (from 2.0.0-beta1)
+
+There's also a standard [sampling telemetry processor](api-filtering-sampling.md) (from 2.0.1):
+
+```xml
+
+    <TelemetryProcessors>
+     <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.SamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
+
+     <!-- Set a percentage close to 100/N where N is an integer. -->
+     <!-- E.g. 50 (=100/2), 33.33 (=100/3), 25 (=100/4), 20, 1 (=100/100), 0.1 (=100/1000) -->
+     <SamplingPercentage>10</SamplingPercentage>
+     </Add>
+   </TelemetryProcessors>
+
+```
+
+# [ASP.NET Core](#tab/core)
+
+#### Add telemetry processors
+
+You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer). Use the following example:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// ...
+builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
+
+// If you have more processors:
+builder.Services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
+
+var app = builder.Build();
+```
+
+---
+
+### Connection String
+
+This setting determines the Application Insights resource in which your data appears. Typically, you create a separate resource, with a separate connection string, for each of your applications.
+
+See [Connection strings in Application Insights](connection-strings.md#code-samples) for code samples.
+
+If you want to set the connection string dynamically, for example, to send results from your application to different resources, you can omit the connection string from the configuration file and set it in code instead.
+
+# [ASP.NET](#tab/net)
+
+To set the connection string for all instances of `TelemetryClient`, including standard telemetry modules, do this step in an initialization method, such as global.aspx.cs in an ASP.NET service:
+
+```csharp
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights;
+
+    protected void Application_Start()
+    {
+        TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
+        configuration.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+        var telemetryClient = new TelemetryClient(configuration);
+
+```
+
+If you want to send a specific set of events to a different resource, you can set the key for a specific telemetry client:
+
+```csharp
+
+    var tc = new TelemetryClient();
+    tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+    tc.TrackEvent("myEvent");
+    // ...
+
+```
+
+To get a new key, [create a new resource in the Application Insights portal](create-workspace-resource.md).
+
+# [ASP.NET Core](#tab/core)
+
+
+
+
+---
+
+### ApplicationId Provider
+
+# [ASP.NET Core](#tab/core)
+
+*The provider is available starting in v2.6.0*.
+
+The purpose of this provider is to look up an application ID based on a connection string. The application ID is included in `RequestTelemetry` and `DependencyTelemetry` and is used to determine correlation in the portal.
+
+This functionality is available by setting `TelemetryConfiguration.ApplicationIdProvider` either in code or in the config file.
+
+#### Interface: IApplicationIdProvider
+
+```csharp
+public interface IApplicationIdProvider
+{
+    bool TryGetApplicationId(string instrumentationKey, out string applicationId);
+}
+```
+
+We provide two implementations in the [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) SDK: `ApplicationInsightsApplicationIdProvider` and `DictionaryApplicationIdProvider`.
+
+#### ApplicationInsightsApplicationIdProvider
+
+This wrapper is for our Profile API. It throttles requests and cache results.
+
+This provider is added to your config file when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
+
+This class has an optional property `ProfileQueryEndpoint`. By default, it's set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`. If you need to configure a proxy for this configuration, we recommend that you proxy the base address and include `"/api/profiles/{0}/appId"`. A `{0}` is substituted at runtime per request with the instrumentation key.
+
+**Example configuration via ApplicationInsights.config**
+
+```xml
+<ApplicationInsights>
+    ...
+    <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights">
+        <ProfileQueryEndpoint>https://dc.services.visualstudio.com/api/profiles/{0}/appId</ProfileQueryEndpoint>
+    </ApplicationIdProvider>
+    ...
+</ApplicationInsights>
+```
+
+**Example configuration via code**
+
+```csharp
+TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApplicationIdProvider();
+```
+
+#### DictionaryApplicationIdProvider
+
+This static provider relies on your configured instrumentation key/application ID pairs.
+
+This class has the `Defined` property, which is a `Dictionary<string,string>` of instrumentation key/application ID pairs.
+
+This class has the optional property `Next`, which can be used to configure another provider to use when a connection string is requested that doesn't exist in your configuration.
+
+**Example configuration via ApplicationInsights.config**
+
+```xml
+<ApplicationInsights>
+    ...
+    <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.DictionaryApplicationIdProvider, Microsoft.ApplicationInsights">
+        <Defined>
+            <Type key="InstrumentationKey_1" value="ApplicationId_1"/>
+            <Type key="InstrumentationKey_2" value="ApplicationId_2"/>
+        </Defined>
+        <Next Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights" />
+    </ApplicationIdProvider>
+    ...
+</ApplicationInsights>
+```
+
+**Example configuration via code**
+
+```csharp
+TelemetryConfiguration.Active.ApplicationIdProvider = new DictionaryApplicationIdProvider{
+ Defined = new Dictionary<string, string>
+    {
+        {"InstrumentationKey_1", "ApplicationId_1"},
+        {"InstrumentationKey_2", "ApplicationId_2"}
+    }
+};
+```
+
+# [ASP.NET Core](#tab/core)
+
+
+
+---
+
+### Configure snapshot collection
+
+# [ASP.NET](#tab/net)
+
+Configure a [snapshot collection for ASP.NET applications](snapshot-debugger-vm.md#configure-snapshot-collection-for-aspnet-applications).
+
+# [ASP.NET Core](#tab/core)
+
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## ASP.NET Core
+
+#### Use ApplicationInsightsServiceOptions
+
+You can modify a few common settings by passing `ApplicationInsightsServiceOptions` to `AddApplicationInsightsTelemetry`, as in this example:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
+
+// Disables adaptive sampling.
+aiOptions.EnableAdaptiveSampling = false;
+
+// Disables live metrics (also known as QuickPulse).
+aiOptions.EnableQuickPulseMetricStream = false;
+
+builder.Services.AddApplicationInsightsTelemetry(aiOptions);
+var app = builder.Build();
+```
+
+This table has the full list of `ApplicationInsightsServiceOptions` settings:
+
+| Setting                                    | Description                                            | Default |
+|--------------------------------------------|--------------------------------------------------------|---------|
+| EnablePerformanceCounterCollectionModule   | Enable/Disable `PerformanceCounterCollectionModule`.   | True    |
+| EnableRequestTrackingTelemetryModule       | Enable/Disable `RequestTrackingTelemetryModule`.       | True    |
+| EnableEventCounterCollectionModule         | Enable/Disable `EventCounterCollectionModule`.         | True    |
+| EnableDependencyTrackingTelemetryModule    | Enable/Disable `DependencyTrackingTelemetryModule`.    | True    |
+| EnableAppServicesHeartbeatTelemetryModule  | Enable/Disable `AppServicesHeartbeatTelemetryModule`.  | True    |
+| EnableAzureInstanceMetadataTelemetryModule | Enable/Disable `AzureInstanceMetadataTelemetryModule`. | True    |
+| EnableQuickPulseMetricStream               | Enable/Disable LiveMetrics feature.                    | True    |
+| EnableAdaptiveSampling                     | Enable/Disable Adaptive Sampling.                      | True    |
+| EnableHeartbeat | Enable/Disable the heartbeats feature. It periodically (15-min default) sends a custom metric named `HeartbeatState` with information about the runtime like .NET version and Azure environment information, if applicable. | True |
+| AddAutoCollectedMetricExtractor | Enable/Disable the `AutoCollectedMetrics extractor`. This telemetry processor sends preaggregated metrics about requests/dependencies before sampling takes place. | True |
+| RequestCollectionOptions.TrackExceptions | Enable/Disable reporting of unhandled exception tracking by the request collection module. | False in `netstandard2.0` (because exceptions are tracked with `ApplicationInsightsLoggerProvider`). True otherwise. |
+| EnableDiagnosticsTelemetryModule | Enable/Disable `DiagnosticsTelemetryModule`. Disabling causes the following settings to be ignored: `EnableHeartbeat`, `EnableAzureInstanceMetadataTelemetryModule`, and `EnableAppServicesHeartbeatTelemetryModule`. | True |
+
+For the most current list, see the [configurable settings in `ApplicationInsightsServiceOptions`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs).
+
+#### Configuration recommendation for Microsoft.ApplicationInsights.AspNetCore SDK 2.15.0 and later
+
+In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore/2.15.0) and later, configure every setting available in `ApplicationInsightsServiceOptions`, including `ConnectionString`. Use the application's `IConfiguration` instance. The settings must be under the section `ApplicationInsights`, as shown in the following example. The following section from *appsettings.json* configures the connection string and disables adaptive sampling and performance counter collection.
+
+```json
+{
+    "ApplicationInsights": {
+    "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+    "EnableAdaptiveSampling": false,
+    "EnablePerformanceCounterCollectionModule": false
+    }
+}
+```
+
+If `builder.Services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 6.0 or `services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 3.1 and earlier is used, it overrides the settings from `Microsoft.Extensions.Configuration.IConfiguration`.
+
+---
+
+### Sampling
+
+# [ASP.NET](#tab/net)
+
+To learn how to configure sampling for ASP.NET applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+
+# [ASP.NET Core](#tab/core)
+
+The Application Insights SDK for ASP.NET Core supports both fixed-rate and adaptive sampling. By default, adaptive sampling is enabled.
+
+For more information, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
 ---
 
