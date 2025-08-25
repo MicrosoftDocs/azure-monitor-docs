@@ -7964,7 +7964,7 @@
    "redirect_url": "/previous-versions/azure/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings",
    "redirect_document_id": false
   },
-    {
+  {
    "source_path": "articles/azure-monitor/app/release-and-work-item-insights.md",
    "redirect_url": "/azure/azure-monitor/app/annotations",
    "redirect_document_id": false
@@ -8479,7 +8479,7 @@
    "redirect_url": "/azure/azure-monitor/app/dependencies",
    "redirect_document_id": false
   },
-  {    
+  {
    "source_path": "articles/azure-monitor/fundamentals/getting-started.md",
    "redirect_url": "/azure/azure-monitor/platform/monitor-azure-resource",
    "redirect_document_id": false
@@ -8552,6 +8552,16 @@
   {
    "source_path": "articles/azure-monitor/app/configuration-with-applicationinsights-config.md",
    "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azuremonitordiagnosticsagents-datacollection.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/oracle-database-cloudvmclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   }
  ]
