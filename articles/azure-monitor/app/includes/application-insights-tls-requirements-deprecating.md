@@ -8,8 +8,7 @@ ms.date: 05/01/2025
 > [!IMPORTANT]
 > To improve security, Azure blocks the following TLS configurations for Application Insights on May 1, 2025. This change is part of the [Azure-wide legacy TLS retirement](https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/):
 >
-> - TLS 1.0 and TLS 1.1 protocol versions  
-> - Legacy TLS 1.2 and TLS 1.3 cipher suites  
+> - Legacy TLS 1.2 and TLS 1.3 cipher suites
 > - Legacy TLS elliptical curves
 
 #### TLS 1.0 and TLS 1.1
