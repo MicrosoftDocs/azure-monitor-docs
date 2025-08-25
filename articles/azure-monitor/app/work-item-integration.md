@@ -46,7 +46,7 @@ Use a template from [**End-to-end transaction details**](failures-performance-tr
 > [!NOTE]
 > The first time you select **Create work item**, you're prompted to link Application Insights to your Azure DevOps organization and project.
 
-:::image type="content" source="media/work-item-integration/transaction-view-create-work-item.png" alt-text="A screenshot of the end-to-end transaction details view with a button to create a work item" lightbox="media/work-item-integration/transaction-view-create-work-item.png":::
+:::image type="content" source="media/work-item-integration/transaction-view-create-work-item.png" alt-text="A screenshot of the end-to-end transaction details view with a button to create a work item." lightbox="media/work-item-integration/transaction-view-create-work-item.png":::
 
 1. Open [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience), select an event, and then choose **Create work item**.
 1. Pick a template. If no template exists, select **Start with a workbook template** to create one.
