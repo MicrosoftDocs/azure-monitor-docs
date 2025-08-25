@@ -39,12 +39,19 @@ To create the work item itself, you need sufficient permission in the target sys
 > [!NOTE]
 > For on-premises [Azure DevOps](/azure/devops/user-guide/what-is-azure-devops) environments, use a placeholder URL such as `https://dev.azure.com/test/test` when you create the template. After creation, open the generated [Azure workbook](/azure/azure-monitor/visualize/workbooks-create-workbook), edit the repository URL text parameter, and add a validation rule (regular expression) that matches your Azure DevOps Server host, for example `^https://devops\.contoso\.corp/.*$`.
 
-## Create a work item
+## Create work items
 
 Use a template from [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience), which is available from [**Performance**, **Failures**](failures-performance-transactions.md), [**Availability**](availability.md), and other tabs.
 
-1. Open [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience), select an event, select **Create work item**, and then choose a template.
-1. A new browser tab opens in your tracking system. In [Azure DevOps](/azure/devops/user-guide/what-is-azure-devops), create a bug or task. In GitHub, create an issue in your repository. The work item is prepopulated with contextual information from [Application Insights](app-insights-overview.md).
+> [!NOTE]
+> The first time you select **Create work item**, you're prompted to link Application Insights to your Azure DevOps organization and project.
+
+:::image type="content" source="media/work-item-integration/transaction-view-create-work-item.png" alt-text="A screenshot of the end-to-end transaction details view with a button to create a work item." lightbox="media/work-item-integration/transaction-view-create-work-item.png":::
+
+1. Open [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience), select an event, and then choose **Create work item**.
+1. Pick a template. If no template exists, select **Start with a workbook template** to create one.
+1. Complete the **New Work Item** pane. Application Insights prepopulates contextual data from the selected event, for example exception details, operation name, and a link back to the transaction. Add any extra information you need, then save.
+1. A new browser tab opens in your tracking system. In [Azure DevOps](/azure/devops/user-guide/what-is-azure-devops), create a bug or task. In GitHub, create an issue in your repository. The work item includes the context from Application Insights.
 
 ## Edit a template
 
@@ -54,5 +61,5 @@ Use a template from [**End-to-end transaction details**](failures-performance-tr
 
 ## Troubleshooting
 
-- **Create work item** doesn't appear in **End-to-end transaction details**: First create a template or start with **Start with a workbook template** from the **Create a work item** flow.
-- On-premises Azure DevOps URL is rejected: To match your host, update the workbook's repository URL text parameter and its validation rule (regular expression).
+- **Create work item** doesn't appear in **End-to-end transaction details**. First create a template or start with **Start with a workbook template** from the **Create a work item** flow.
+- On-premises Azure DevOps URL is rejected. To match your host, update the workbook's repository URL text parameter and its validation rule (regular expression).
