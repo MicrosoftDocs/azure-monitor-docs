@@ -11,10 +11,6 @@ ms.date: 05/01/2025
 > - Legacy TLS 1.2 and TLS 1.3 cipher suites
 > - Legacy TLS elliptical curves
 
-#### TLS 1.0 and TLS 1.1
-
-TLS 1.0 and TLS 1.1 are being retired.
-
 #### TLS 1.2 and TLS 1.3
 
 | Version | Cipher suites | Elliptical curves |
