@@ -1999,41 +1999,21 @@ Use `Flush()` when:
 Avoid using `Flush()` in long-running applications such as web services. The SDK automatically manages buffering and transmission. Calling `Flush()` unnecessarily can cause performance problems and won't guarantee all data is sent, especially when using `ServerTelemetryChannel`, which doesn't flush synchronously.
 
 <!-- FROM OTHER DOC
-# [ASP.NET](#tab/net)
+
+ASP.NET:
 
 The [telemetry channel](telemetry-channels.md) manages buffering and transmission of telemetry to the Application Insights service.
 
 * `Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel` is the default channel for web applications. It buffers data in memory and employs retry mechanisms and local disk storage for more reliable telemetry delivery.
 * `Microsoft.ApplicationInsights.InMemoryChannel` is a lightweight telemetry channel. It's used if no other channel is configured.
 
-# [ASP.NET Core](#tab/core)
-
 -->
-
----
 
 ### Telemetry modules
 
 Application Insights automatically collects telemetry about specific workloads without requiring manual tracking by user.
 
 By default, the following automatic-collection modules are enabled. These modules are responsible for automatically collecting telemetry. You can disable or configure them to alter their default behavior.
-
-
-# [ASP.NET](#tab/net) 
-
-
-
-# [ASP.NET Core](#tab/core)
-
-...
-
----
-
-# [ASP.NET](#tab/net)
-
-Each telemetry module collects a specific type of data and uses the core API to send the data. The modules are installed by different NuGet packages, which also add the required lines to the .config file.
-
-There's a node in the configuration file for each module. To disable a module, delete the node or comment it out.
 
 | Module | Description |
 |--------|-------------|
@@ -2056,6 +2036,10 @@ There's a node in the configuration file for each module. To disable a module, d
 | Live Metrics collector:<br>`QuickPulseTelemetryModule` | Collects telemetry to show in the live metrics pane. |
 | Heartbeats collector (App Service)<br>`AppServicesHeartbeatTelemetryModule` | Collects heartbeats (which are sent as custom metrics), about the App Service environment where the application is hosted. |
 | Heartbeats collectors (VM)<br>`AzureInstanceMetadataTelemetryModule` | Collects heartbeats (which are sent as custom metrics), about the Azure VM environment where the application is hosted. |
+
+# [ASP.NET](#tab/net)
+
+Each telemetry module collects a specific type of data and uses the core API to send the data. The modules are installed by different NuGet packages, which also add the required lines to the .config file.
 
 # [ASP.NET Core](#tab/core)
 
@@ -2101,7 +2085,7 @@ In versions 2.12.2 and later, [`ApplicationInsightsServiceOptions`](#use-applica
 
 # [ASP.NET](#tab/net)
 
-...
+There's a node in the configuration file for each module. To disable a module, delete the node or comment it out.
 
 # [ASP.NET Core](#tab/core)
 
