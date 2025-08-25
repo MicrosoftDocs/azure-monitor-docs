@@ -519,7 +519,7 @@ Application Insights displays release annotations in the following experiences:
 
 Annotations are visualized as markers at the top of charts.
 
-:::image type="content" source="media/failures-performance-transactions/annotations.png" alt-text="A screenshot of an exceptions chart with annotations" lightbox="media/failures-performance-transactions/annotations.png":::
+:::image type="content" source="media/failures-performance-transactions/annotations.png" alt-text="A screenshot of an exceptions chart with annotations." lightbox="media/failures-performance-transactions/annotations.png":::
 
 To enable annotations in a workbook, open **Advanced Settings** and then select **Show annotations**. Select any annotation marker to open release details such as requestor, source control branch, release pipeline, and environment.
 
