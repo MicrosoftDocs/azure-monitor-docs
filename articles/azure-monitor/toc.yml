@@ -193,8 +193,6 @@ items:
         href: app/live-stream.md
       - name: Usage (user behavior analytics)
         href: app/usage.md
-      - name: Release annotations
-        href: app/annotations.md
       - name: Work item integration
         href: app/work-item-integration.md
     - name: Code analysis
