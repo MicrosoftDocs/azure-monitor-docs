@@ -21,7 +21,7 @@ Work item integration includes the following features:
 > - Provide customizable [workbook](../visualize/best-practices-visualize.md) templates.
 
 > [!NOTE]
-> [Release annotations](annotations.md) require the Application Insights resource and the target resource to be in the same subscription. This requirement does not apply to creating work items in GitHub or Azure DevOps.
+> [Release annotations](annotations.md) require the Application Insights resource and the target resource to be in the same subscription. This requirement doesn't apply to creating work items in GitHub or Azure DevOps.
 
 ## Permissions
 
@@ -33,7 +33,7 @@ To create the work item itself, you need sufficient permission in the target sys
 
 1. Open your [Application Insights](app-insights-overview.md) resource. Under **Configure**, open **Work Items**, and then select **Create a new template**.
 1. Or, start from [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience) when no template exists. Select an event, select **Create a work item**, and then select **Start with a workbook template**.
-1. After you select **Create a new template**, choose your tracking system, name the workbook, link to your tracking system, and choose a region for template storage. Enter the default repository URL, such as `https://github.com/myusername/reponame` or `https://dev.azure.com/{org}/{project}`. The selected region is the Azure location of the saved workbook resource. It does not change where Application Insights data is stored or queried.
+1. After you select **Create a new template**, choose your tracking system, name the workbook, link to your tracking system, and choose a region for template storage. Enter the default repository URL, such as `https://github.com/myusername/reponame` or `https://dev.azure.com/{org}/{project}`. The selected region is the Azure location of the saved workbook resource. It doesn't change where Application Insights data is stored or queried.
 1. Set default work item properties in the template. Properties include assignee, iteration path, and projects. Available properties depend on your tracking system.
 
 > [!NOTE]
@@ -44,7 +44,7 @@ To create the work item itself, you need sufficient permission in the target sys
 Use a template from [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience), which is available from [**Performance**, **Failures**](failures-performance-transactions.md), [**Availability**](availability.md), and other tabs.
 
 > [!NOTE]
-> The first time you select **Create work item**, you are prompted to link Application Insights to your Azure DevOps organization and project.
+> The first time you select **Create work item**, you're prompted to link Application Insights to your Azure DevOps organization and project.
 
 :::image type="content" source="media/work-item-integration/transaction-view-create-work-item.png" alt-text="A screenshot of the end-to-end transaction details view with a button to create a work item" lightbox="media/work-item-integration/transaction-view-create-work-item.png":::
 
@@ -61,5 +61,5 @@ Use a template from [**End-to-end transaction details**](failures-performance-tr
 
 ## Troubleshooting
 
-- **Create work item** does not appear in **End-to-end transaction details**. First create a template or start with **Start with a workbook template** from the **Create a work item** flow.
+- **Create work item** doesn't appear in **End-to-end transaction details**. First create a template or start with **Start with a workbook template** from the **Create a work item** flow.
 - On-premises Azure DevOps URL is rejected. To match your host, update the workbook's repository URL text parameter and its validation rule (regular expression).
