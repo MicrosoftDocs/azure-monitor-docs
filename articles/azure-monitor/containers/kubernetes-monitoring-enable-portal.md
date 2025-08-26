@@ -4,7 +4,7 @@ description: Learn how to enable container logging and Managed Prometheus on an 
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
-ms.date: 03/11/2024
+ms.date: 08/25/2025
 ---
 
 # Enable Kubernetes monitoring using the Azure portal

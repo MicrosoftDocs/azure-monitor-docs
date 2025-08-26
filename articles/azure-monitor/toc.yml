@@ -466,10 +466,6 @@ items:
     - name: Best practices
       displayName: containers, kubernetes
       href: containers/best-practices-containers.md
-    - name: Analyze and reduce costs
-      href: containers/container-insights-cost.md
-    - name: Analyze monitoring data
-      href: containers/container-insights-analyze.md
     - name: Onboard cluster
       items:
       - name: Overview
@@ -484,7 +480,27 @@ items:
         href: containers/kubernetes-monitoring-enable-arm.md
       - name: Azure Policy
         href: containers/kubernetes-monitoring-enable-policy.md
-    - name: Configure data collection
+      - name: Disable monitoring
+        href: containers/kubernetes-monitoring-disable.md
+    - name: Analyze data
+      items:
+      - name: Container insights
+        href: containers/container-insights-analyze.md
+      - name: Workbooks
+        href: containers/kubernetes-workbooks.md
+      - name: Monitor GPU performance
+        href: containers/container-insights-gpu-monitoring.md
+      - name: Monitor cluster network
+        href: containers/container-insights-network-monitoring.md
+      - name: Monitor Deployments & HPAs
+        href: containers/container-insights-deployment-hpa-metrics.md
+      - name: Monitor Persistent Volumes (PVs)
+        href: containers/container-insights-persistent-volumes.md
+      - name: Monitor Syslog
+        href: containers/container-insights-syslog.md
+      - name: Log queries
+        href: containers/container-insights-log-query.md
+    - name: Customize data collection
       items:
       - name: Metrics
         items:
@@ -574,53 +590,44 @@ items:
           href: containers/container-insights-high-scale.md
         - name: Throttling
           href: containers/container-insights-throttling.md
+    - name: Optimize costs
+      items:
+      - name: Analyze and reduce costs
+        href: containers/container-insights-cost.md
+      - name: Cost-effective Alerts
+        href: containers/cost-effective-alerting.md
     - name: Agent management
       href: containers/container-insights-manage-agent.md
-    - name: Analyze data
-      items:
-      - name: Analysis options
-        href: containers/kubernetes-analyze.md
-      - name: Workbooks
-        href: containers/kubernetes-workbooks.md
-      - name: Monitor GPU performance
-        href: containers/container-insights-gpu-monitoring.md
-      - name: Monitor cluster network
-        href: containers/container-insights-network-monitoring.md
-      - name: Monitor Deployments & HPAs
-        href: containers/container-insights-deployment-hpa-metrics.md
-      - name: Monitor Persistent Volumes (PVs)
-        href: containers/container-insights-persistent-volumes.md
-      - name: Monitor Syslog
-        href: containers/container-insights-syslog.md
-      - name: Log queries
-        href: containers/container-insights-log-query.md
     - name: View live data
       items:
-      - name: Live Data overview
+      - name: Overview
         href: containers/container-insights-livedata-overview.md
-      - name: Setup
+      - name: Enable live data
         href: containers/container-insights-livedata-setup.md
-      - name: View cluster metrics
-        href: containers/container-insights-livedata-metrics.md
     - name: Alerting
       items:
       - name: Metric alert rules
         href: containers/kubernetes-metric-alerts.md
-      - name: Log alert rules
-        displayName: Container insights
-        href: containers/container-insights-log-alerts.md
-      - name: Cost-effective Alerts
-        href: containers/cost-effective-alerting.md
-    - name: Disable monitoring
-      href: containers/kubernetes-monitoring-disable.md
     - name: Troubleshooting
       items:
       - name: Prometheus
         href: containers/prometheus-metrics-troubleshoot.md
       - name: Container insights
         href: containers/container-insights-troubleshoot.md
+    - name: Reference
+      items:
+      - name: Firewall requirements
+        displayName: Container insights, Prometheus
+        href: containers/kubernetes-monitoring-firewall.md
+      - name: Supported region mappings
+        href: containers/container-insights-region-mapping.md
     - name: Legacy topics
       items:
+      - name: View cluster metrics
+        href: containers/container-insights-livedata-metrics.md
+      - name: Log alert rules
+        displayName: Container insights
+        href: containers/container-insights-log-alerts.md
       - name: Send Prometheus metrics to Logs
         href: containers/container-insights-prometheus-logs.md
       - name: Switch to Prometheus visualizations
@@ -629,13 +636,6 @@ items:
         href: containers/container-insights-authentication.md
       - name: Container monitoring solution
         href: containers/container-insights-transition-solution.md
-    - name: Reference
-      items:
-      - name: Firewall requirements
-        displayName: Container insights, Prometheus
-        href: containers/kubernetes-monitoring-firewall.md
-      - name: Supported region mappings
-        href: containers/container-insights-region-mapping.md
   - name: Monitor networks
     items:
     - name: Network Watcher
