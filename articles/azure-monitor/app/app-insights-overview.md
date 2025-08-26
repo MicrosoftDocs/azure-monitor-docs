@@ -90,7 +90,7 @@ For more information about instrumenting applications to enable Application Insi
 #### Application Insights SDK (Classic API)
 
 > [!NOTE]
-> Review [Should I use OpenTelemetry or the Application Insights SDK](application-insights-faq.md#should-i-use-opentelemetry-or-the-application-insights-sdk) before considering instrumentation with the Classic API.
+> Review [Should I use OpenTelemetry or the Application Insights SDK](application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-sdk) before considering instrumentation with the Classic API.
 
 * [ASP.NET Core](./asp-net-core.md)
 * [ASP.NET](./asp-net.md)
