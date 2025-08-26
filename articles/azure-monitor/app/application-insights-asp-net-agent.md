@@ -2,7 +2,7 @@
 title: Deploy Application Insights Agent
 description: Learn how to use Application Insights Agent to monitor website performance. It works with ASP.NET web apps hosted on-premises, in Virtual Machines (VMs), or on Azure.
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 09/25/2025
 ms.reviewer: abinetabate
 ---
 
@@ -429,7 +429,7 @@ Enable-ApplicationInsightsMonitoring -InstrumentationKeyMap `
 ```
 
 
-* **MachineFilter** is a required C# regex of the computer or VM name.
+* **MachineFilter** is a required C# regex of the computer or virtual machine (VM) name.
     * '.*' matches all
     * 'ComputerName' matches only computers with the exact name specified.
 * **AppFilter** is a required C# regex of the IIS Site Name. You can get a list of sites on your server by running the command [get-iissite](/powershell/module/iisadministration/get-iissite).

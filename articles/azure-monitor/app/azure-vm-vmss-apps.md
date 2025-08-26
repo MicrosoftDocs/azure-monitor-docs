@@ -2,13 +2,13 @@
 title: Monitor performance on Azure Virtual Machines (VMs) - Azure Application Insights
 description: Application performance monitoring for Azure virtual machines and virtual machine scale sets.
 ms.topic: how-to
-ms.date: 02/05/2025
+ms.date: 09/25/2025
 ms.devlang: csharp
 ms.custom: devx-track-azurepowershell
 ms.reviewer: abinetabate
 ---
 
-# Application Insights for Azure VMs and virtual machine scale sets
+# Application Insights for Azure virtual machines (VMs) and virtual machine scale sets
 
 Enable [Azure Monitor](../fundamentals/overview.md) [Application Insights](./app-insights-overview.md) monitoring through [autoinstrumentation](codeless-overview.md) for Internet Information Server (IIS)-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/). Deploy the Application Insights Agent with a virtual machine extension. The agent [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net). Use PowerShell to automate large-scale deployments.
 
