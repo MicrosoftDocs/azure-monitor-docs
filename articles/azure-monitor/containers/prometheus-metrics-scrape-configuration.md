@@ -14,8 +14,9 @@ This article provides instructions on customizing metrics scraping for a Kuberne
 
 Four different configmaps can be configured to provide scrape configuration and other settings for the metrics add-on. All config-maps should be applied to `kube-system` namespace for any cluster.
 
-> [! NOTE]
+> [!NOTE]
 > None of the four configmaps exist by default in the cluster when Managed Prometheus is enabled. Depending on what needs to be customized, you need to deploy any or all of these four configmaps with the same name specified, in `kube-system` namespace. AMA-Metrics pods will pick up these configmaps after you deploy them to `kube-system` namespace, and will restart in 2-3 minutes to apply the configuration settings specified in the configmap(s). 
+
 
 1. [`ama-metrics-settings-configmap`](https://aka.ms/azureprometheus-addon-settings-configmap)
    This config map has below simple settings that can be configured. You can take the configmap from the above git hub repo, change the settings are required and apply/deploy the configmap to `kube-system` namespace for your cluster
@@ -31,13 +32,11 @@ Four different configmaps can be configured to provide scrape configuration and 
 3. [`ama-metrics-prometheus-config-node`](https://aka.ms/azureprometheus-addon-ds-configmap) (**Advanced**)
     This config map can be used to provide Prometheus scrape config for addon DaemonSet that runs on every **Linux** node in the cluster, and any node level targets on each node can be scraped by providing scrape jobs in this configmap. When you use this configmap, you can use `$NODE_IP` variable in your scrape config, which gets substituted by corresponding  node's ip address in DaemonSet pod running on each node. This way you get access to scrape anything that runs on that node from the metrics addon DaemonSet. **Please be careful when you use discoveries in scrape config in this node level config map, as every node in the cluster will setup & discover the target(s) and will collect redundant metrics**.
     You can take the sample configmap from the above git hub repo, add scrape jobs that you  would need and apply/deploy the config map to `kube-system` namespace for your cluster
-
 4. [`ama-metrics-prometheus-config-node-windows`](https://aka.ms/azureprometheus-addon-ds-configmap-windows) (**Advanced**)
     This config map can be used to provide Prometheus scrape config for addon DaemonSet that runs on every **Windows** node in the cluster, and node level targets on each node can be scraped by providing scrape jobs in this configmap. When you use this configmap, you can use `$NODE_IP` variable in your scrape config, which will be substituted by corresponding  node's ip address in DaemonSet pod running on each node. This way you get access to scrape anything that runs on that node from the metrics addon DaemonSet. **Please be careful when you use discoveries in scrape config in this node level config map, as every node in the cluster will setup & discover the target(s) and will collect redundant metrics**.
     You can take the sample configmap from the above git hub repo, add scrape jobs that you  would need and apply/deploy the config map to `kube-system` namespace for your cluster
 
 ## Custom Resource Definitions
-
 The Azure Monitor metrics add-on supports scraping Prometheus metrics using Prometheus - Pod Monitors and Service Monitors, similar to the OSS Prometheus operator. Enabling the add-on will deploy the Pod and Service Monitor custom resource definitions to allow you to create your own custom resources. 
 Follow the instructions to [create and apply custom resources](prometheus-metrics-scrape-crd.md) on your cluster.
 
@@ -46,7 +45,6 @@ Follow the instructions to [create and apply custom resources](prometheus-metric
 The [ama-metrics-settings-configmap](https://aka.ms/azureprometheus-addon-settings-configmap) can be downloaded, edited, and applied to the cluster to customize the out-of-the-box features of the metrics add-on.
 
 ### Enable and disable default targets
-
 The following table has a list of all the default targets that the Azure Monitor metrics add-on can scrape by default and whether it's initially enabled. Default targets are scraped every 30 seconds. A replica is deployed to scrape cluster-wide targets such as kube-state-metrics. A DaemonSet is also deployed to scrape node-wide targets such as kubelet.
 
 | Key | Type | Enabled | Pod | Description |
@@ -62,10 +60,9 @@ The following table has a list of all the default targets that the Azure Monitor
 | windowskubeproxy | bool | `false` | Windows DaemonSet | Scrape windows-kube-proxy in every node in the K8s cluster without any extra scrape config.<br>Windows only. |
 | prometheuscollectorhealth | bool | `false` | Linux replica | Scrape information about the prometheus-collector container, such as the amount and size of time series scraped. |
 
-If you want to turn on the scraping of the default targets that aren't enabled by default, edit the [configmap](https://aka.ms/azureprometheus-addon-settings-configmap) `ama-metrics-settings-configmap` to update the targets listed under `default-scrape-settings-enabled` to `true` . Apply the configmap to your cluster.
+If you want to turn on the scraping of the default targets that aren't enabled by default, edit the [configmap](https://aka.ms/azureprometheus-addon-settings-configmap) `ama-metrics-settings-configmap` to update the targets listed under `default-scrape-settings-enabled` to `true`. Apply the configmap to your cluster.
 
 ### Enable pod annotation-based scraping
-
 To scrape application pods without needing to create a custom Prometheus config, annotations can be added to the pods. The annotation `prometheus.io/scrape: "true"` is required for the pod to be scraped. The annotations `prometheus.io/path` and `prometheus.io/port` indicate the path and port that the metrics are hosted at on the pod. The annotations for a pod that is hosting metrics at `<pod IP>:8080/metrics` would be:
 
 ```yaml
@@ -76,20 +73,19 @@ metadata:
     prometheus.io/port: '8080'
 ```
 
-Scraping these pods with specific annotations is disabled by default. To enable, in the `ama-metrics-settings-configmap` , add the regex for the namespace(s) of the pods with annotations you wish to scrape as the value of the field `podannotationnamespaceregex` .
+Scraping these pods with specific annotations is disabled by default. To enable, in the `ama-metrics-settings-configmap` , add the regex for the namespace(s) of the pods with annotations you wish to scrape as the value of the field `podannotationnamespaceregex`.
 
-For example, the following setting scrapes pods with annotations only in the namespaces `kube-system` and `my-namespace` :
+For example, the following setting scrapes pods with annotations only in the namespaces `kube-system` and `my-namespace`:
 
 ```yaml
 pod-annotation-based-scraping: |-
     podannotationnamespaceregex = "kube-system|my-namespace"
 ```
 
-> [! WARNING]
+> [!WARNING]
 > Scraping the pod annotations from many namespaces can generate a very large volume of metrics depending on the number of pods that have annotations.
 
 ### Customize metrics collected by default targets
-
 By default, for all the default targets, only minimal metrics used in the default recording rules, alerts, and Grafana dashboards are ingested as described in [minimal-ingestion-profile](prometheus-metrics-scrape-configuration-minimal.md). To collect all metrics from default targets, update the keep-lists in the settings configmap under `default-targets-metrics-keep-list` , and set `minimalingestionprofile` to `false` .
 
 To allowlist more metrics in addition to default metrics that are listed to be allowed, for any default targets, edit the settings under `default-targets-metrics-keep-list` for the corresponding job you want to change.
@@ -101,32 +97,31 @@ kubelet = "metricX|metricY"
 apiserver = "mymetric.*"
 ```
 
-> [! NOTE]
-> If you use quotation marks or backslashes in the regex, you need to escape them by using a backslash like the examples `"test\'smetric\"s\""` and `testbackslash\\*` .
+> [!NOTE]
+> If you use quotation marks or backslashes in the regex, you need to escape them by using a backslash like the examples `"test\'smetric\"s\""` and `testbackslash\\*`.
 
-To further customize the default jobs to change properties like collection frequency or labels, disable the corresponding default target by setting the configmap value for the target to `false` . Then apply the job by using a custom configmap. For details on custom configuration, see [Customize scraping of Prometheus metrics in Azure Monitor](#configure-custom-prometheus-scrape-jobs).
+To further customize the default jobs to change properties like collection frequency or labels, disable the corresponding default target by setting the configmap value for the target to `false`. Then apply the job by using a custom configmap. For details on custom configuration, see [Customize scraping of Prometheus metrics in Azure Monitor](#configure-custom-prometheus-scrape-jobs).
 
 ### Cluster alias
 
-The cluster label appended to every time series scraped uses the last part of the full AKS or Azure Arc-enabled Kubernetes cluster's Azure Resource Manager resource ID. For example, if the resource ID is `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-name/providers/Microsoft.ContainerService/managedClusters/myclustername` , the cluster label is `myclustername` .
+The cluster label appended to every time series scraped uses the last part of the full AKS or Azure Arc-enabled Kubernetes cluster's Azure Resource Manager resource ID. For example, if the resource ID is `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-name/providers/Microsoft.ContainerService/managedClusters/myclustername`, the cluster label is `myclustername`.
 
 To override the cluster label in the time series scraped, update the setting `cluster_alias` to any string under `prometheus-collector-settings` in the [configmap](https://aka.ms/azureprometheus-addon-settings-configmap) `ama-metrics-settings-configmap` . You can create this configmap if it doesn't exist in the cluster or you can edit the existing one if it already exists in your cluster.
 
 The new label also shows up in the cluster parameter dropdown in the Grafana dashboards instead of the default one.
 
-> [! NOTE]
+> [!NOTE]
 > Only alphanumeric characters are allowed. Any other characters are replaced with `_` . This change is to ensure that different components that consume this label adhere to the basic alphanumeric convention.
 > If you are enabling recording and alerting rules, please make sure to use the cluster alias name in the cluster name parameter of the rule onboarding template for the rules to work.
 
 ### Debug mode
 
-> [! WARNING]
+> [!WARNING]
 > This mode can affect performance and should only be enabled for a short time for debugging purposes.
 
-To view every metric that's being scraped for debugging purposes, the metrics add-on agent can be configured to run in debug mode by updating the setting `enabled` to `true` under the `debug-mode` setting in the [configmap](https://aka.ms/azureprometheus-addon-settings-configmap) `ama-metrics-settings-configmap` . You can either create this configmap or edit an existing one. For more information, see the [Debug mode section in Troubleshoot collection of Prometheus metrics](prometheus-metrics-troubleshoot.md#debug-mode).
+To view every metric that's being scraped for debugging purposes, the metrics add-on agent can be configured to run in debug mode by updating the setting `enabled` to `true` under the `debug-mode` setting in the [configmap](https://aka.ms/azureprometheus-addon-settings-configmap) `ama-metrics-settings-configmap`. You can either create this configmap or edit an existing one. For more information, see the [Debug mode section in Troubleshoot collection of Prometheus metrics](prometheus-metrics-troubleshoot.md#debug-mode).
 
 ### Scrape interval settings
-
 To update the scrape interval settings for any target, you can update the duration in the setting `default-targets-scrape-interval-settings` for that target in the [configmap](https://aka.ms/azureprometheus-addon-settings-configmap) `ama-metrics-settings-configmap` . You have to set the scrape intervals in the correct format specified in [this website](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file). Otherwise, the default value of 30 seconds is applied to the corresponding targets. For example - If you want to update the scrape interval for the `kubelet` job to `60s` then you can update the following section in the YAML:
 
 ```
@@ -145,7 +140,7 @@ default-targets-scrape-interval-settings: |-
     podannotations = "30s"
 ```
 
-Apply the YAML using the following command: `kubectl apply -f .\ama-metrics-settings-configmap.yaml` .
+Apply the YAML using the following command: `kubectl apply -f .\ama-metrics-settings-configmap.yaml`.
 
 ## Configure custom Prometheus scrape jobs
 
@@ -160,7 +155,6 @@ The configuration format is similar to [Prometheus configuration file](https://p
 Learn some tips from examples in this section.
 
 ### [Configuration using CRD for custom scrape config](#tab/CRDConfig)
-
 Use the [Pod and Service Monitor templates](https://github.com/Azure/prometheus-collector/tree/main/otelcollector/customresources) and follow the API specification to create your custom resources([PodMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md)). **Note** that the only change required to the existing OSS CRs for being picked up by the Managed Prometheus is the API group - **azmonitoring.coreos.com/v1**. See [here](prometheus-metrics-scrape-crd.md) to learn more
 
 ### [Configuration file for custom scrape config](#tab/ConfigFile)
@@ -185,11 +179,10 @@ See the [Apply config file](prometheus-metrics-scrape-validate.md#deploy-config-
 
 ---
 
-> [! NOTE]
+> [!NOTE]
 > When custom scrape configuration fails to apply because of validation errors, default scrape configuration continues to be used.
 
 ## Global settings
-
 The configuration format for global settings is the same as supported by [OSS prometheus configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) 
 
 ```yaml
@@ -203,30 +196,24 @@ scrape_configs:
   - <job-x>
   - <job-y>
 ```
-
 The settings provided in the global section apply to all scrape jobs (both jobs in Configmap and Custom resources) but are overridden if they are specified in the individual jobs.
 
-> [! NOTE]
+> [!NOTE]
 > If you want to use global settings that apply to all the scrape jobs, and only have [Custom Resources](prometheus-metrics-scrape-crd.md) you would still need to create a configmap with just the global settings(Settings for each of these in the custom resources will override the ones in the global section)
 
 ## Scrape configs
-
 ### [Scrape Configs using CRD](#tab/CRDScrapeConfig)
-
 Currently, the supported methods of target discovery for custom resources are pod and service monitor
 
 #### Pod and Service Monitors
-
 Targets discovered using pod and service monitors have different `__meta_*` labels depending on what monitor is used. You can use the labels in the `relabelings` section to filter targets or replace labels for the targets.
 
 See the [Pod and Service Monitor examples](https://github.com/Azure/prometheus-collector/tree/main/otelcollector/deploy/example-custom-resources) of pod and service monitors.
 
 ### Relabelings
-
 The `relabelings` section is applied at the time of target discovery and applies to each target for the job. The following examples show ways to use `relabelings` .
 
 #### Add a label
-
 Add a new label called `example_label` with the value `example_value` to every metric of the job. Use `__address__` as the source label only because that label always exists and adds the label for every target of the job.
 
 ```yaml
@@ -271,7 +258,7 @@ relabelings:
   targetLabel: instance
 ```
 
-> [! NOTE]
+> [!NOTE]
 > If you have relabeling configs, ensure that the relabeling does not filter out the targets, and the labels configured correctly match the targets.
 
 ### Metric Relabelings
@@ -307,7 +294,6 @@ metricRelabelings:
 ```
 
 #### Rename metrics
-
 Metric renaming isn't supported.
 
 #### Filter metrics by labels
@@ -346,7 +332,6 @@ metricRelabelings:
 ```
 
 ### [Scrape Configs using Config file](#tab/ConfigFileScrapeConfig)
-
 Currently, the supported methods of target discovery for a [scrape config](https://aka.ms/azureprometheus-promioconfig-scrape) are either [ `static_configs` ](https://aka.ms/azureprometheus-promioconfig-static) or [ `kubernetes_sd_configs` ](https://aka.ms/azureprometheus-promioconfig-sdk8s) for specifying or discovering targets.
 
 #### Static config
@@ -361,17 +346,14 @@ scrape_configs:
 ```
 
 #### Kubernetes Service Discovery config
-
 Targets discovered using [ `kubernetes_sd_configs` ](https://aka.ms/azureprometheus-promioconfig-sdk8s) each have different `__meta_*` labels depending on what role is specified. You can use the labels in the `relabel_configs` section to filter targets or replace labels for the targets.
 
 See the [Prometheus examples](https://aka.ms/azureprometheus-promsampleossconfig) of scrape configs for a Kubernetes cluster.
 
 ### Relabel configs
-
 The `relabel_configs` section is applied at the time of target discovery and applies to each target for the job. The following examples show ways to use `relabel_configs` .
 
 #### Add a label
-
 Add a new label called `example_label` with the value `example_value` to every metric of the job. Use `__address__` as the source label only because that label always exists and adds the label for every target of the job.
 
 ```yaml
@@ -383,7 +365,7 @@ relabel_configs:
 
 #### Use Kubernetes Service Discovery labels
 
-If a job is using [ `kubernetes_sd_configs` ](https://aka.ms/azureprometheus-promioconfig-sdk8s) to discover targets, each role has associated `__meta_*` labels for metrics. The `__*` labels are dropped after discovering the targets. To filter by using them at the metrics level, first keep them using `relabel_configs` by assigning a label name. Then use `metric_relabel_configs` to filter.
+If a job is using [`kubernetes_sd_configs`](https://aka.ms/azureprometheus-promioconfig-sdk8s) to discover targets, each role has associated `__meta_*` labels for metrics. The `__*` labels are dropped after discovering the targets. To filter by using them at the metrics level, first keep them using `relabel_configs` by assigning a label name. Then use `metric_relabel_configs` to filter.
 
 ```yaml
 # Use the kubernetes namespace as a label called 'kubernetes_namespace'
@@ -449,7 +431,6 @@ metric_relabel_configs:
 ```
 
 #### Rename metrics
-
 Metric renaming isn't supported.
 
 #### Filter metrics by labels
@@ -487,12 +468,10 @@ metric_relabel_configs:
   regex: '.+'
 ```
 
-> [! NOTE]
->  
+> [!NOTE]
+> 
 > If you wish to add labels to all the jobs in your custom configuration, explicitly add labels using metrics_relabel_configs for each job. Global external labels are not supported via configmap based prometheus configuration.
->  
-
-```yaml
+>```yaml
 > relabel_configs:
 > - source_labels: [__address__]
 >   target_label: example_label
@@ -504,7 +483,6 @@ metric_relabel_configs:
 ---
 
 ### Basic Authentication and Bearer Tokens
-
 ### [Scrape Configs using ConfigMap](#tab/ConfigFileScrapeConfigBasicAuth)
 
 If using username, password or credentials as plaintext in the scrape configuration, no additional changes are required. The values specified in the configuration will be used for scraping.
@@ -515,8 +493,6 @@ If using the username_file or password_file (or any _file configuration settings
    
    The name of the key `password1` can be anything as long as it matches the file name in the `password_file` filepath in the Prometheus scrape config in the next step. The value for the key needs to be base64-encoded.
    
-   
-
 ```yaml
    apiVersion: v1
    kind: Secret
@@ -527,9 +503,8 @@ If using the username_file or password_file (or any _file configuration settings
    data:
      password1: <base64-encoded-string>
    ```
-
    
-   The `ama-metrics-mtls-secret` secret is mounted on to the `ama-metrics` pods at the path `/etc/prometheus/certs/` and is made available to the Prometheus scraper. The key ( `password1` in the above example) will be the file name. The value is base64 decoded and added as the contents of the file within the container.
+   The `ama-metrics-mtls-secret` secret is mounted on to the `ama-metrics` pods at the path `/etc/prometheus/certs/` and is made available to the Prometheus scraper. The key (`password1` in the above example) will be the file name. The value is base64 decoded and added as the contents of the file within the container.
    
 2. Then, in the custom scrape config in the configmap, provide the filepath:
 
@@ -576,9 +551,7 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 1. Create a secret in the `kube-system` namespace named `ama-metrics-mtls-secret`. Each key-value pair specified in the data section of the secret object will be mounted as a separate file in this /etc/prometheus/certs location with file names that are the same as the keys specified in the data section. The secret values should be base64-encoded.
 
    Below is an example YAML of a secret:
-
    
-
 ```yaml
    apiVersion: v1
    kind: Secret
@@ -596,14 +569,11 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
    The `ama-metrics-mtls-secret` secret is mounted on to the `ama-metrics` pods at the path `/etc/prometheus/certs/` and is made available to the Prometheus scraper. The key ( `password1` in the above example) will be the file name. The value is base64 decoded and added as the contents of the file within the container.
 
 2. Then, in the Prometheus config, PodMonitor, or ServiceMonitor, provide the filepath:
-   
 
 ### [Scrape Configs using ConfigMap](#tab/ConfigFileScrapeConfigTLSAuth)
 
    - To provide the TLS config setting in a configmap, follow the below example:
    
-   
-
 ```yaml
    tls_config:
       # CA certificate to validate API server certificate with.
@@ -620,8 +590,6 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 ### [Scrape Config using CRD (Pod/Service Monitor)](#tab/CRDScrapeConfigTLSAuth)
 
    - To provide the TLS config setting for a PodMonitor or ServiceMonitor, follow the below example:
-   
-   
 
 ```yaml
     tlsConfig:
@@ -645,8 +613,6 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 ### Basic Auth and TLS
 
    If you want to use both basic auth or bearer token (file based credentials) and TLS authentication settings in your configmap/CRD, ensure that the secret `ama-metrics-mtls-secret` includes all the keys under the data section with their corresponding base64-encoded values, as shown below:
-   
-   
 
 ```yaml
    apiVersion: v1
@@ -663,18 +629,16 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
    ```
 
 ### Note
-
-> [! NOTE]
+> [!NOTE]
 >  
 > The `/etc/prometheus/certs/` path is mandatory, but `password1` can be any string and needs to match the key for the data in the secret created above. This is because the secret `ama-metrics-mtls-secret` is mounted in the path `/etc/prometheus/certs/` within the container.
 >
 > The base64-encoded value is automatically decoded by the ama-metrics pods when the secret is mounted as file.
 >
 > Ensure secret name is `ama-metrics-mtls-secret` and it is in `kube-system` namespace.
->  
+> 
 > The secret should be created first, and then the configmap, PodMonitor, or ServiceMonitor should be created in `kube-system` namespace. The order of secret creation matters. When there's no secret but a configmap, PodMonitor, or ServiceMonitor pointing to the secret, the following error will be in the ama-metrics prometheus-collector container logs: `no file found for cert....`
 
->  
 > To read more on TLS configuration settings, please follow this [Configurations](https://aka.ms/tlsconfigsetting).
 
 ## Next steps
