@@ -156,6 +156,7 @@ Learn some tips from examples in this section.
 ### [Configuration using CRD for custom scrape config](#tab/CRDConfig)
 Use the [Pod and Service Monitor templates](https://github.com/Azure/prometheus-collector/tree/main/otelcollector/customresources) and follow the API specification to create your custom resources([PodMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md)). **Note** that the only change required to the existing OSS CRs for being picked up by the Managed Prometheus is the API group - **azmonitoring.coreos.com/v1**. See [here](prometheus-metrics-scrape-crd.md) to learn more
 
+
 ### [Configuration file for custom scrape config](#tab/ConfigFile)
 
 The configuration format is the same as the [Prometheus configuration file](https://aka.ms/azureprometheus-promioconfig). Currently, the following sections are supported:
@@ -199,6 +200,7 @@ The settings provided in the global section apply to all scrape jobs (both jobs 
 
 > [!NOTE]
 > If you want to use global settings that apply to all the scrape jobs, and only have [Custom Resources](prometheus-metrics-scrape-crd.md) you would still need to create a configmap with just the global settings(Settings for each of these in the custom resources will override the ones in the global section)
+
 
 ## Scrape configs
 ### [Scrape Configs using CRD](#tab/CRDScrapeConfig)
@@ -330,6 +332,7 @@ metricRelabelings:
   regex: '.+'
 ```
 
+
 ### [Scrape Configs using Config file](#tab/ConfigFileScrapeConfig)
 Currently, the supported methods of target discovery for a [scrape config](https://aka.ms/azureprometheus-promioconfig-scrape) are either [`static_configs`](https://aka.ms/azureprometheus-promioconfig-static) or [`kubernetes_sd_configs`](https://aka.ms/azureprometheus-promioconfig-sdk8s) for specifying or discovering targets.
 
@@ -346,7 +349,7 @@ scrape_configs:
 
 #### Kubernetes Service Discovery config
 
-Targets discovered using [ `kubernetes_sd_configs` ](https://aka.ms/azureprometheus-promioconfig-sdk8s) each have different `__meta_*` labels depending on what role is specified. You can use the labels in the `relabel_configs` section to filter targets or replace labels for the targets.
+Targets discovered using [`kubernetes_sd_configs`](https://aka.ms/azureprometheus-promioconfig-sdk8s) each have different `__meta_*` labels depending on what role is specified. You can use the labels in the `relabel_configs` section to filter targets or replace labels for the targets.
 
 See the [Prometheus examples](https://aka.ms/azureprometheus-promsampleossconfig) of scrape configs for a Kubernetes cluster.
 
@@ -495,7 +498,7 @@ If using the username_file or password_file (or any _file configuration settings
    
    The name of the key `password1` can be anything as long as it matches the file name in the `password_file` filepath in the Prometheus scrape config in the next step. The value for the key needs to be base64-encoded.
    
-  ```yaml
+   ```yaml
    apiVersion: v1
    kind: Secret
    metadata:
@@ -515,7 +518,7 @@ If using the username_file or password_file (or any _file configuration settings
    
    
 
-  ```yaml
+   ```yaml
    # Sets the `Authorization` header on every scrape request with the
    # configured username and password.
    basic_auth:
@@ -528,7 +531,7 @@ If using the username_file or password_file (or any _file configuration settings
    
    
 
-  ```yaml
+   ```yaml
    # Sets the `Authorization` header on every scrape request with the bearer token
    # read from the configured file. It is mutually exclusive with `bearer_token`.
    bearer_token_file: /etc/prometheus/certs/password1
@@ -546,6 +549,7 @@ Scraping targets using basic auth or bearer tokens is supported using PodMonitor
 If you are using both file based credentials for basic auth (username_file, password_file or credentials_file) and TLS auth, refer to the [section](#basic-auth-and-tls) below.
 For more details, refer to the [note section](#note) below.
 
+
 ### TLS-based scraping
 
 If you want to scrape Prometheus metrics from an https endpoint, the Prometheus config, PodMonitor, or ServiceMonitor should have the `scheme` set to `https` and extra TLS settings. 
@@ -554,7 +558,7 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 
    Below is an example YAML of a secret:
    
-```yaml
+   ```yaml
    apiVersion: v1
    kind: Secret
    metadata:
@@ -576,7 +580,7 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 
    - To provide the TLS config setting in a configmap, follow the below example:
    
-  ```yaml
+   ```yaml
    tls_config:
       # CA certificate to validate API server certificate with.
       ca_file: /etc/prometheus/certs/<certfile>
@@ -590,10 +594,9 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
    ```
 
 ### [Scrape Config using CRD (Pod/Service Monitor)](#tab/CRDScrapeConfigTLSAuth)
-
    - To provide the TLS config setting for a PodMonitor or ServiceMonitor, follow the below example:
 
-  ```yaml
+   ```yaml
     tlsConfig:
       ca:
         secret:
@@ -616,7 +619,7 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 
    If you want to use both basic auth or bearer token (file based credentials) and TLS authentication settings in your configmap/CRD, ensure that the secret `ama-metrics-mtls-secret` includes all the keys under the data section with their corresponding base64-encoded values, as shown below:
 
-  ```yaml
+   ```yaml
    apiVersion: v1
    kind: Secret
    metadata:
