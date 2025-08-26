@@ -2,7 +2,7 @@
 title: Application Insights OpenTelemetry observability overview
 description: Learn how Azure Monitor Application Insights integrates with OpenTelemetry (OTel) for comprehensive application observability.
 ms.topic: overview
-ms.date:09/25/2025
+ms.date: 09/25/2025
 
 #customer intent: As a developer or site reliability engineer, I want to use OpenTelemetry (OTel), often searched as 'Open Telemetry', with Application Insights so that I can collect, analyze, and monitor application telemetry in a standardized way for improved observability and performance diagnostics.
 
