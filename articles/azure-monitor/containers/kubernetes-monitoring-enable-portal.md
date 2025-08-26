@@ -9,7 +9,7 @@ ms.date: 08/25/2025
 
 # Enable Kubernetes monitoring using the Azure portal
 
-As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable the following features using the Azure portal:
+As described in [Kubernetes monitoring in Azure Monitor](./ckubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable the following features using the Azure portal:
 
 - Prometheus metrics
 - Container logging
@@ -49,7 +49,7 @@ The configuration options are the same regardless of the option used to enable m
 ## Managed Prometheus options
 The only option available for Managed Prometheus is the [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md) where the metrics are stored. You can select an existing workspace or create a new one. See [Workspaces](./kubernetes-monitoring-enable.md#workspaces) for more details about the Azure Monitor workspace.
 
-For advanced configuration of Prometheus metrics, see []().
+For advanced configuration of Prometheus metrics, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](./prometheus-metrics-scrape-configuration.md).
 
 ## Container log options
 For container logs, you must first select the [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where the metrics are stored. You can select an existing workspace or create a new one. See [Workspaces](./kubernetes-monitoring-enable.md#workspaces) for more details about the Log Analytics workspace.

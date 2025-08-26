@@ -1,7 +1,7 @@
 ---
 title: Enable monitoring for Kubernetes clusters using Terraform
 description: Learn how to enable container logging and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster using Terraform
-ms.topic: how-tos
+ms.topic: article
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
 ms.date: 08/25/2025

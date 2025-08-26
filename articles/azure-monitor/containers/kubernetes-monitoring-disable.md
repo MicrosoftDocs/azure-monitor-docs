@@ -9,7 +9,7 @@ ms.reviewer: aul
 
 # Disable monitoring of your Kubernetes cluster
 
-Use the following methods to disable collection of [Prometheus metrics](#disable-prometheus-metrics) or [log collection](#disable-log-collection) from your Kubernetes cluster.
+Use the following methods to disable collection of [Prometheus metrics](#disable-prometheus-metrics) or [log collection](#disable-log-collection-and-remove-agent) from your Kubernetes cluster.
 
 ## Required permissions
 

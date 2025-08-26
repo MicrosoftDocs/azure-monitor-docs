@@ -228,4 +228,3 @@ The following table describes the columns in the **Containers** tab.
 
 - See [Create performance alerts with Container insights](./container-insights-log-alerts.md) to learn how to create alerts for high CPU and memory utilization to support your DevOps or operational processes and procedures.
 - See [Log query examples](container-insights-log-query.md) to see predefined queries and examples to evaluate or customize to alert, visualize, or analyze your clusters.
-- See [Monitor cluster health](./container-insights-overview.md) to learn about viewing the health status of your Kubernetes cluster.
