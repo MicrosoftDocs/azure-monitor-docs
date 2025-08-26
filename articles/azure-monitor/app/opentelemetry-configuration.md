@@ -402,7 +402,7 @@ useAzureMonitor(options);
 
 ### [Python](#tab/python)
 
-Rate-limited sampling is available starting from version 3.4.0. Configure sampling using the following environment variables:
+Rate-limited sampling is available starting from `azure-monitor-opentelemetry` version 1.8.0. Configure sampling using the following environment variables:
 
 - **`OTEL_TRACES_SAMPLER`**: Specifies the sampler type
   - `microsoft.fixed.percentage` for Application Insights sampler
@@ -414,7 +414,7 @@ Rate-limited sampling is available starting from version 3.4.0. Configure sampli
 **Alternative configuration**: Use the `configure_azure_monitor()` function with the `traces_per_second` attribute to enable RateLimitedSampler.
 
 > [!NOTE]
-> Environment variable configuration takes precedence over function parameters. If neither environment variables nor `traces_per_second` are specified, `configure_azure_monitor()` defaults to ApplicationInsightsSampler for compatibility with Application Insights SDKs.
+> Sampling configuration via environment variables will have precedence over the sampling exporter/distro options. If neither environment variables nor `traces_per_second` are specified, `configure_azure_monitor()` defaults to ApplicationInsightsSampler for compatibility with Application Insights SDKs.
 
 #### ApplicationInsightsSampler example
 ```
