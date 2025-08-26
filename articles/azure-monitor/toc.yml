@@ -188,7 +188,7 @@ items:
         href: app/availability.md
       - name: Failures, performance, and transactions
         href: app/failures-performance-transactions.md
-      - name: Live Metric stream
+      - name: Live metric stream
         displayName: live, quickpulse, quick pulse, live metrics
         href: app/live-stream.md
       - name: Usage (user behavior analytics)
