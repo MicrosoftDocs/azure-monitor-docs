@@ -480,7 +480,6 @@ metric_relabel_configs:
 >   target_label: example_label
 >   replacement: 'example_value'
 > ```
-
 >
 
 ---
@@ -516,8 +515,6 @@ If using the username_file or password_file (or any _file configuration settings
    #### Basic Auth
    The `username` field should contain the actual username string. The `password_file` field should contain the path to the file that contains the password.
    
-   
-
    ```yaml
    # Sets the `Authorization` header on every scrape request with the
    # configured username and password.
@@ -528,8 +525,6 @@ If using the username_file or password_file (or any _file configuration settings
 
    #### Bearer Token
    The `bearer_token_file` field should contain the path to the file that contains the token.
-   
-   
 
    ```yaml
    # Sets the `Authorization` header on every scrape request with the bearer token
@@ -570,12 +565,9 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
      <keyfile>: base64_key_content 
    ```
 
-      
-
    The `ama-metrics-mtls-secret` secret is mounted on to the `ama-metrics` pods at the path `/etc/prometheus/certs/` and is made available to the Prometheus scraper. The key ( `password1` in the above example) will be the file name. The value is base64 decoded and added as the contents of the file within the container.
 
 2. Then, in the Prometheus config, PodMonitor, or ServiceMonitor, provide the filepath:
-
 ### [Scrape Configs using ConfigMap](#tab/ConfigFileScrapeConfigTLSAuth)
 
    - To provide the TLS config setting in a configmap, follow the below example:
@@ -594,6 +586,7 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
    ```
 
 ### [Scrape Config using CRD (Pod/Service Monitor)](#tab/CRDScrapeConfigTLSAuth)
+
    - To provide the TLS config setting for a PodMonitor or ServiceMonitor, follow the below example:
 
    ```yaml
@@ -635,7 +628,7 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 
 ### Note
 > [!NOTE]
->  
+> 
 > The `/etc/prometheus/certs/` path is mandatory, but `password1` can be any string and needs to match the key for the data in the secret created above. This is because the secret `ama-metrics-mtls-secret` is mounted in the path `/etc/prometheus/certs/` within the container.
 >
 > The base64-encoded value is automatically decoded by the ama-metrics pods when the secret is mounted as file.
@@ -643,7 +636,7 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 > Ensure secret name is `ama-metrics-mtls-secret` and it is in `kube-system` namespace.
 > 
 > The secret should be created first, and then the configmap, PodMonitor, or ServiceMonitor should be created in `kube-system` namespace. The order of secret creation matters. When there's no secret but a configmap, PodMonitor, or ServiceMonitor pointing to the secret, the following error will be in the ama-metrics prometheus-collector container logs: `no file found for cert....`
-
+>
 > To read more on TLS configuration settings, please follow this [Configurations](https://aka.ms/tlsconfigsetting).
 
 ## Next steps
