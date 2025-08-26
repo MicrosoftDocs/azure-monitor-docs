@@ -119,7 +119,7 @@ The following limitations apply to Azure Monitor managed service for Prometheus:
 
 * The minimum frequency for scraping and storing metrics is 1 second.
 * During node updates, you might experience gaps that last 1 to 2 minutes in some metric collections from the cluster-level collector. This gap is due to a regular action from Azure Kubernetes Service to update the nodes in your cluster. This behavior doesn't affect recommended alert rules.
-* Managed Prometheus for Windows nodes isn't automatically enabled. To enable monitoring for Windows nodes and pods in your clusters, see [Enable Windows metrics collection (preview)](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview).
+* Managed Prometheus for Windows nodes isn't automatically enabled. To enable monitoring for Windows nodes and pods in your clusters, see [Enable Windows metrics collection (preview)](../containers/enable-windows-metrics.md).
 
 [!INCLUDE [case sensitivity](includes/prometheus-case-sensitivity.md)]
 
@@ -151,7 +151,7 @@ Following are links to Prometheus documentation:
 
 * [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md)
 * [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md)
-* [Enable Windows metrics collection (preview)](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview)
+* [Enable Windows metrics collection (preview)](../containers/enable-windows-metrics.md)
 * [Configure Azure Monitor managed service for Prometheus rule groups](prometheus-rule-groups.md)
 * [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](../containers/prometheus-metrics-scrape-configuration.md)
 * [Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot.md)
