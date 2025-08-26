@@ -402,16 +402,31 @@ useAzureMonitor(options);
 
 ### [Python](#tab/python)
 
-The `configure_azure_monitor()` function automatically utilizes
-ApplicationInsightsSampler for compatibility with Application Insights SDKs and
-to sample your telemetry. The `OTEL_TRACES_SAMPLER_ARG` environment variable can be used to specify
-the sampling rate, with a valid range of 0 to 1, where 0 is 0% and 1 is 100%.
-For example, a value of 0.1 means 10% of your traces are sent.
+Rate-limited sampling is available starting from version 3.4.0. Configure sampling using the following environment variables:
 
+- **`OTEL_TRACES_SAMPLER`**: Specifies the sampler type
+  - `microsoft.fixed.percentage` for Application Insights sampler
+  - `microsoft.rate_limited` for Rate Limited sampler
+- **`OTEL_TRACES_SAMPLER_ARG`**: Defines the sampling rate
+  - **ApplicationInsightsSampler**: Valid range 0 to 1 (0 = 0%, 1 = 100%)
+  - **RateLimitedSampler**: Maximum traces per second (e.g., 0.5 = one trace every two seconds, 5.0 = five traces per second)
+
+**Alternative configuration**: Use the `configure_azure_monitor()` function with the `traces_per_second` attribute to enable RateLimitedSampler.
+
+> [!NOTE]
+> Environment variable configuration takes precedence over function parameters. If neither environment variables nor `traces_per_second` are specified, `configure_azure_monitor()` defaults to ApplicationInsightsSampler for compatibility with Application Insights SDKs.
+
+#### ApplicationInsightsSampler example
 ```
+export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
 export OTEL_TRACES_SAMPLER_ARG=0.1
 ```
 
+#### RateLimitedSampler example
+```
+export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
+export OTEL_TRACES_SAMPLER_ARG=0.5
+```
 ---
 
 > [!TIP]
