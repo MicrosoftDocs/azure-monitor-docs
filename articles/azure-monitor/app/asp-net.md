@@ -2014,7 +2014,7 @@ The [telemetry channel](telemetry-channels.md) manages buffering and transmissio
 Application Insights automatically collects telemetry about specific workloads without requiring manual tracking by user.
 
 By default, the following automatic-collection modules are enabled. These modules are responsible for automatically collecting telemetry. You can disable or configure them to alter their default behavior.
-
+<!--
 | Module | Description |
 |--------|-------------|
 | Dependency tracking:<br>`DependencyTrackingTelemetryModule` | Collects telemetry about calls your app makes to databases and external services and databases. To allow this module to work in an IIS server, you need to [install Application Insights Agent](application-insights-asp-net-agent.md). You can also write your own dependency tracking code by using the [TrackDependency API](api-custom-events-metrics.md#trackdependency).<br><br>• `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>• [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) NuGet package<br><br>Dependencies can be autocollected without modifying your code by using agent-based (codeless) attach. To use it in Azure web apps, enable the [Application Insights extension](codeless-app-service.md). To use it in an Azure VM or an Azure virtual machine scale set, enable the [Application Monitoring extension for VMs and virtual machine scale sets](azure-vm-vmss-apps.md). |
@@ -2036,6 +2036,24 @@ By default, the following automatic-collection modules are enabled. These module
 | Live Metrics collector:<br>`QuickPulseTelemetryModule` | Collects telemetry to show in the live metrics pane. |
 | Heartbeats collector (App Service)<br>`AppServicesHeartbeatTelemetryModule` | Collects heartbeats (which are sent as custom metrics), about the App Service environment where the application is hosted. |
 | Heartbeats collectors (VM)<br>`AzureInstanceMetadataTelemetryModule` | Collects heartbeats (which are sent as custom metrics), about the Azure VM environment where the application is hosted. |
+-->
+
+| Area / Module family | ASP.NET (class) | ASP.NET Core (equivalent) | Description |
+|----------------------|-----------------|---------------------------|-------------|
+| Request tracking | `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule` (aka `RequestTrackingTelemetryModule` / `Web.RequestTrackingTelemetryModule`) | Built-in request tracking via ASP.NET Core AI integration (no separate module class) | Collects request telemetry (response time and result code) for incoming web requests. |
+| Dependency tracking | `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule` (DependencyCollector) | Same functionality via Dependency Collector on ASP.NET Core | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). In IIS, to allow this module to work, install Application Insights Agent. You can also track via TrackDependency API. Supports agent-based (codeless) attach (App Service extension; VM/VMSS Monitoring extension). |
+| Performance counters | `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule` (PerformanceCollectorModule) | Windows-only; on cross‑platform use `EventCounterCollectionModule` | Collects Windows Performance Counters (CPU, memory, network load, etc., from IIS installs). You can specify which counters (including custom ones). |
+| Live Metrics (QuickPulse) | `QuickPulseTelemetryModule` | Live Metrics enabled in ASP.NET Core AI integration (no separate module class) | Collects telemetry for the Live Metrics ("QuickPulse") pane. |
+| App Services heartbeat | `AppServicesHeartbeatTelemetryModule` | Same (applies when hosted on Azure App Service) | Sends heartbeats (as custom metrics) with details about the App Service environment. |
+| Azure VM heartbeat | `AzureInstanceMetadataTelemetryModule` | Same (applies when hosted on Azure VM/VMSS) | Sends heartbeats (as custom metrics) with details about the Azure VM environment. |
+| EventCounters | `EventCounterCollectionModule` (SDK ≥ 2.8.0) | Same | Collects .NET EventCounters. Recommended for ASP.NET Core and cross‑platform in place of Windows perf counters. |
+| Diagnostics telemetry | `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule` | Same | Reports errors in the AI instrumentation code itself (e.g., cannot access performance counters, ITelemetryInitializer throws). Trace telemetry appears in Diagnostic Search. |
+| Developer mode (debugger attached)| `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule` | Same behavior available; class is part of Windows Server package | Forces TelemetryChannel to send items immediately (one at a time) when a debugger is attached, reducing time-to-portal at the cost of CPU and network overhead. |
+| Exception tracking – Web | `Microsoft.ApplicationInsights.Web.ExceptionTrackingTelemetryModule` | Automatic exception tracking in ASP.NET Core AI integration (no separate module class) | Tracks unhandled exceptions in your web app. See Failures & Exceptions for details. |
+| Exception tracking – Unobserved/Unhandled (non-web) | `Microsoft.ApplicationInsights.WindowsServer.UnobservedExceptionTelemetryModule` and `Microsoft.ApplicationInsights.WindowsServer.UnhandledExceptionTelemetryModule` | Similar behavior via ASP.NET Core runtime/integration; class names above are Windows Server–specific | Tracks unobserved task exceptions and unhandled exceptions for worker roles, Windows services, and console applications. |
+| EventSource tracking | `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule` | Same | Sends configured EventSource events to Application Insights as traces. |
+| ETW collector | `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule` | Windows-only (ETW) | Sends configured ETW provider events to Application Insights as traces. |
+| Core API (not a module) | —<br>(`Microsoft.ApplicationInsights package`) | —<br> | Core SDK API used by other telemetry components and for custom telemetry. Installing this package alone does not create ApplicationInsights.config. |
 
 # [ASP.NET](#tab/net)
 
