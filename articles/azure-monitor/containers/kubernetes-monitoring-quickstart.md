@@ -1,6 +1,6 @@
 ---
-title: Kubernetes monitoring in Azure Monitor
-description: Describes Container Insights and Managed Prometheus in Azure Monitor, which work together to monitor your Kubernetes clusters.
+title: Quickstart monitoring a Kubernetes cluster in Azure Monitor
+description: Quickly enable monitoring and for your Kubernetes cluster with Azure Monitor using the Azure portal.
 ms.topic: article
 ms.custom: references_regions
 ms.date: 02/05/2025

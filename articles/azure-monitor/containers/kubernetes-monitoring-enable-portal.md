@@ -9,7 +9,7 @@ ms.date: 08/25/2025
 
 # Enable Kubernetes monitoring using the Azure portal
 
-As described in [Kubernetes monitoring in Azure Monitor](./ckubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable the following features using the Azure portal:
+As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable the following features using the Azure portal:
 
 - Prometheus metrics
 - Container logging
@@ -93,7 +93,7 @@ The **Collected data** option allows you to select the tables that are populated
 ## Enable control plane logs
 Control plane logs must be enabled separately from Prometheus metrics and container logging. You can send these logs to the same Log Analytics workspace as your container logs, but they aren't accessible from the **Monitor** menu for the cluster. Instead, you can access them using queries in [Log Analytics](../logs/log-analytics-overview.md) and use them for [log alerts](../alerts/alerts-log-query.md).
 
-Control plan logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. To collect these logs, create a [diagnostic setting](../platform/diagnostic-settings-overview.md) for the cluster. 
+Control plan logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. To collect these logs, create a [diagnostic setting](../platform/diagnostic-settings.md) for the cluster. 
 
 Select **Diagnostic settings** from the **Monitoring** section of the menu for the cluster. Then select **+ Add diagnostic setting**.
 

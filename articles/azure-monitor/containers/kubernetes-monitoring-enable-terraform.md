@@ -9,7 +9,7 @@ ms.date: 08/25/2025
 
 # Enable monitoring for Kubernetes clusters using Terraform
 
-As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable the following features using CLI:
+As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes how to enable the following features using CLI:
 
 - Prometheus metrics
 - Container logging

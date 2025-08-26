@@ -9,7 +9,7 @@ ms.date: 08/25/2025
 
 # Enable Azure Monitor features for Kubernetes clusters
 
-As described in [Kubernetes monitoring in Azure Monitor](./container-insights-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. To quickly enable full monitoring for a single cluster, you can often just jump to one of the following articles that describes how to enable monitoring using different methods:
+As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. To quickly enable full monitoring for a single cluster, you can often just jump to one of the following articles that describes how to enable monitoring using different methods:
 
 - [Azure portal](kubernetes-monitoring-enable-portal.md)
 - [Azure CLI](kubernetes-monitoring-enable-cli.md)
@@ -72,7 +72,7 @@ The following workspaces are required for onboarding of Kubernetes monitoring fe
 
 | Feature | Workspace | Reference |
 |:---|:---|:---|
-| Managed Prometheus | Azure Monitor workspace | [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace) |   |
+| Managed Prometheus | Azure Monitor workspace | [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace) |
 | Container log collection  | Log Analytics workspace | [Create a Log Analytics workspace](../logs/quick-create-workspace.md) |
 
 You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.
@@ -88,19 +88,6 @@ Both container log collection and Managed Prometheus rely on a containerized [Az
 > [!NOTE]
 > Since March 1, 2023 Container Insights uses a Semver compliant agent version. The agent version is *mcr.microsoft.com/azuremonitor/containerinsights/ciprod:3.1.4* or later. When a new version of the agent is released, it's automatically upgraded on your managed Kubernetes clusters that are hosted on AKS. To track which versions are released, see [Agent release announcements](https://github.com/microsoft/Docker-Provider/blob/ci_prod/ReleaseNotes.md). 
 
-
-## Resources provisioned
-
-When you enable Kubernetes monitoring features, the following resources are created in your subscription. In many cases, you don't need to interact with these resources directly, but you may need to if you want to perform advanced configurations or if you want to implement strategies to deploy and manage your Kubernetes environment at scale.
-
-
-
-| Resource Name | Resource Type | Resource Group | Region/Location | Description |
-|:---|:---|:---|:---|:---|
-| `MSPROM-<aksclusterregion>-<clustername>` | **Data Collection Rule** | Same as cluster | Same as Azure Monitor workspace | This data collection rule is for prometheus metrics collection by metrics addon, which has the chosen Azure monitor workspace as destination, and also it is associated to the cluster resource. |
-| `MSPROM-<aksclusterregion>-<clustername>` | **Data Collection endpoint** | Same as cluster | Same as Azure Monitor workspace | This data collection endpoint is used by the above data collection rule for ingesting Prometheus metrics from the metrics addon|
-| `<azuremonitor-workspace-name>` | **Data Collection Rule** | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCR created when you use OSS Prometheus server to Remote Write to Azure Monitor Workspace. |
-| `<azuremonitor-workspace-name>` | **Data Collection Endpoint** | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCE created when you use OSS Prometheus server to Remote Write to Azure Monitor Workspace.|
 
 ### Applicable tables and metrics for DCR
 The settings for **collection frequency** and **namespace filtering** in the DCR don't apply to all Container insights data. The following tables list the tables in the Log Analytics workspace used by Container insights and the metrics it collects along with the settings that apply to each. 
@@ -146,6 +133,7 @@ When you create a new Azure Monitor workspace, the following additional resource
 | `<azuremonitor-workspace-name>` | [Data Collection endpoint](../data-collection/data-collection-endpoint-overview.md) | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCE to be used if you use Remote Write from a Prometheus server. |
 
 **Log collection**
+
 | Resource Name | Resource Type | Resource Group | Region/Location | Description |
 |:---|:---|:---|:---|:---|
 | `MSCI-<aksclusterregion>-<clustername>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | Same as cluster | Same as Log Analytics workspace | Associated with the AKS cluster resource, defines configuration of logs collection by the Azure Monitor agent. |

@@ -33,7 +33,7 @@ To set up ingestion of Managed Prometheus metrics from virtual network using pri
 
 ### Prerequisites
 
-A [private AKS cluster](/azure/aks/private-clusters) with Managed Prometheus enabled. As part of Managed Prometheus enablement, you also have an Azure Monitor Workspace that is set up. For more information, see [Enable Managed Prometheus in AKS](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
+A [private AKS cluster](/azure/aks/private-clusters) with Managed Prometheus enabled. As part of Managed Prometheus enablement, you also have an Azure Monitor Workspace that is set up. For more information, see [Enable Managed Prometheus in AKS](./kubernetes-monitoring-enable.md).
 
 ### Set up data ingestion from private AKS cluster to Azure Monitor Workspace
 
@@ -138,7 +138,7 @@ Use the following steps to set up remote write for a Kubernetes cluster over a p
 Data for Container insights, is stored in a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md), so you must make this workspace accessible over a private link.
 
 > [!NOTE]
-> This section describes how to enable private link for Container insights using CLI. For details on using an ARM template, see [Enable Container insights](kubernetes-monitoring-enable.md?tabs=arm#enable-container-insights) and note the parameters `useAzureMonitorPrivateLinkScope` and `azureMonitorPrivateLinkScopeResourceId`.
+> This section describes how to enable private link for Container insights using CLI. For details on using an ARM template, see [Enable Container insightsusing ARM template](kubernetes-monitoring-enable-arm.md) and note the parameters `useAzureMonitorPrivateLinkScope` and `azureMonitorPrivateLinkScopeResourceId`.
 
 ### Prerequisites
 

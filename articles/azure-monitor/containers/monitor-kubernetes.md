@@ -79,7 +79,7 @@ The following table lists the Azure services for the platform engineer to monito
 
 | Service | Description |
 |:---|:---|
-| [Container Insights](container-insights-overview.md) | Azure service for AKS and Azure Arc-enabled Kubernetes clusters that use a containerized version of the [Azure Monitor agent](../agents/agents-overview.md) to collect stdout/stderr logs, performance metrics, and Kubernetes events from each node in your cluster. You can view the data in the Azure portal or query it using [Log Analytics](../logs/log-analytics-overview.md). Configure the [Prometheus experience](./container-insights-experience-v2.md) to use Container insights views with Prometheus data.  |
+| [Container Insights](./kubernetes-monitoring-overview.md) | Azure service for AKS and Azure Arc-enabled Kubernetes clusters that use a containerized version of the [Azure Monitor agent](../agents/agents-overview.md) to collect stdout/stderr logs, performance metrics, and Kubernetes events from each node in your cluster. You can view the data in the Azure portal or query it using [Log Analytics](../logs/log-analytics-overview.md). Configure the [Prometheus experience](./container-insights-experience-v2.md) to use Container insights views with Prometheus data.  |
 | [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) | [Prometheus](https://prometheus.io) is a cloud-native metrics solution from the Cloud Native Compute Foundation and the most common tool used for collecting and analyzing metric data from Kubernetes clusters. Azure Monitor managed service for Prometheus is a fully managed solution that's compatible with the Prometheus query language (PromQL) and Prometheus alerts and integrates with Azure Managed Grafana for visualization. This service supports your investment in open source tools without the complexity of managing your own Prometheus environment. |
 | [Azure Arc-enabled Kubernetes](container-insights-enable-arc-enabled-clusters.md) | Allows you to attach to Kubernetes clusters running in other clouds so that you can manage and configure them in Azure. With the Arc agent installed, you can monitor AKS and hybrid clusters together using the same methods and tools, including Container insights and Prometheus. |
 | [Azure Managed Grafana](/azure/managed-grafana/overview) | Fully managed implementation of [Grafana](https://grafana.com/), which is an open-source data visualization platform commonly used to present Prometheus and other data. Multiple predefined Grafana dashboards are available for monitoring Kubernetes and full-stack troubleshooting.|
@@ -99,7 +99,7 @@ Enable scraping of Prometheus metrics by Azure Monitor managed service for Prome
 
 - Select the option **Enable Prometheus metrics** when you [create an AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal).
 - Select the option **Enable Prometheus metrics** when you enable Container insights on an existing [AKS cluster](container-insights-enable-aks.md) or [Azure Arc-enabled Kubernetes cluster](container-insights-enable-arc-enabled-clusters.md).
-- Enable for an existing [AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) or [Arc-enabled Kubernetes cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
+- Enable for an existing [AKS cluster](../containers/kubernetes-monitoring-enable.md) or [Arc-enabled Kubernetes cluster](../containers/kubernetes-monitoring-enable.md).
 
 
 If you already have a Prometheus environment that you want to use for your AKS clusters, then enable Azure Monitor managed service for Prometheus and then use remote-write to send data to your existing Prometheus environment. You can also [use remote-write to send data from your existing self-managed Prometheus environment to Azure Monitor managed service for Prometheus](../essentials/prometheus-remote-write.md). 
@@ -175,7 +175,7 @@ Following are common scenarios for monitoring the cluster level components.
 **Container insights**<br>
 - Use the **Cluster** view to see the performance of the nodes in your cluster, including CPU and memory utilization.
 - Use the **Nodes** view to see the health of each node and the health and performance of the pods running on them. For more information on analyzing node health and performance, see [Monitor your Kubernetes cluster performance with Container Insights](container-insights-analyze.md).
-- Under **Reports**, use the **Node Monitoring** workbooks to analyze disk capacity, disk IO, and GPU usage. For more information about these workbooks, see [Node Monitoring workbooks](container-insights-reports.md#node-monitoring-workbooks).
+- Under **Reports**, use the **Node Monitoring** workbooks to analyze disk capacity, disk IO, and GPU usage. For more information about these workbooks, see [Node Monitoring workbooks](kubernetes-workbooks.md#node-monitoring-workbooks).
 - Under **Monitoring**, select **Workbooks**, then **Subnet IP Usage** to see the IP allocation and assignment on each node for a selected time-range.
 
 **Grafana dashboards**<br>
@@ -208,7 +208,7 @@ Following are common scenarios for monitoring your managed Kubernetes components
 
 **Container insights**<br>
 - Under **Monitoring**, select **Metrics** to view the **Inflight Requests** counter.
-- Under **Reports**, use the **Kubelet** workbook to see the health and performance of each kubelet. For more information about these workbooks, see [Resource Monitoring workbooks](container-insights-reports.md#resource-monitoring-workbooks). 
+- Under **Reports**, use the **Kubelet** workbook to see the health and performance of each kubelet. For more information about these workbooks, see [Resource Monitoring workbooks](kubernetes-workbooks.md#resource-monitoring-workbooks). 
 
 **Grafana**<br>
 - Use the [prebuilt dashboard](../visualize/visualize-use-managed-grafana-how-to.md) in Managed Grafana for **Kubelet** to see the health and performance of each kubelet.
@@ -247,7 +247,7 @@ Following are common scenarios for monitoring your Kubernetes objects and worklo
 
 **Container insights**<br>
 - Use the **Nodes** and **Controllers** views to see the health and performance of the pods running on them and drill down to the health and performance of their containers.
-- Use the **Containers** view to see the health and performance for the containers. For more information on analyzing container health and performance, see [Monitor your Kubernetes cluster performance with Container Insights](container-insights-analyze.md#analyze-nodes-controllers-and-container-health).
+- Use the **Containers** view to see the health and performance for the containers. For more information on analyzing container health and performance, see [Analyze Kubernetes cluster data with Container insights](container-insights-analyze.md).
 - Under **Reports**, use the **Deployments** workbook to see deployment metrics. For more information, see [Deployment & HPA metrics with Container Insights](container-insights-deployment-hpa-metrics.md).
 
 **Grafana dashboards**<br>
