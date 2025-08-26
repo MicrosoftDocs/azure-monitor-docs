@@ -2132,7 +2132,8 @@ Populate the `user ID` field in the `requests`, `dependencies`, or `exceptions` 
     ```java
     import io.opentelemetry.api.trace.Span;
     
-    Span.current().setAttribute("enduser.id", "myuser");
+    Span.current().setAttribute("enduser.id", "myuser"); // (user_AuthenticatedId)
+    Span.current().setAttribute("enduser.pseudo.id", "myuser"); // (user_Id)
     ```
 
 ##### [Java native](#tab/java-native)
@@ -2144,7 +2145,8 @@ Set `user_Id` in your code:
 ```java
 import io.opentelemetry.api.trace.Span;
 
-Span.current().setAttribute("enduser.id", "myuser");
+Span.current().setAttribute("enduser.id", "myuser"); // (user_AuthenticatedId)
+Span.current().setAttribute("enduser.pseudo.id", "myuser"); // (user_Id)
 ```
 
 ##### [Node.js](#tab/nodejs)
