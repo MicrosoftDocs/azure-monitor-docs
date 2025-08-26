@@ -832,7 +832,7 @@ You can create a single installation script for several computers by setting `Ma
 
 ### Start-ApplicationInsightsMonitoringTrace
 
-Collects [Event Tracing for Windows (ETW) events](https://learn.microsoft.com/windows/win32/etw/event-tracing-portal) that the codeless attach runtime emits. Use this cmdlet as a simpler alternative to running [PerfView](https://github.com/microsoft/perfview).
+Collects [Event Tracing for Windows (ETW) events](/windows/win32/etw/event-tracing-portal) that the codeless attach runtime emits. Use this cmdlet as a simpler alternative to running [PerfView](https://github.com/microsoft/perfview).
 
 Events are printed to the console in real time and also written to an `.etl` file. You can open the `.etl` file with PerfView for deeper analysis.
 
