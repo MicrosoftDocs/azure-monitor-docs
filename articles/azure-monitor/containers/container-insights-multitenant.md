@@ -27,7 +27,7 @@ The multitenant logging feature in Container insights supports the following sce
 
 ## How it works
 
-Container insights use a [data collection rule (DCR)](../data-collection/data-collection-rule-overview.md) to define the data collection settings for your AKS cluster. A default **ContainerInsights** Extension DCR is created automatically when you [enable Container insights](kubernetes-monitoring-enable.md#container-insights). This DCR is a singleton meaning there is one DCR per Kubernetes cluster.
+Container insights uses a [data collection rule (DCR)](../data-collection/data-collection-rule-overview.md) to define the data collection settings for your AKS cluster. A default **ContainerInsights** Extension DCR is created automatically when you [enable Container insights](kubernetes-monitoring-enable.md). This DCR is a singleton meaning there is one DCR per Kubernetes cluster.
 
 For multitenant logging, Container Insights adds support for [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs, which are used to define collection of container logs for K8s namespaces. Multiple [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
 
@@ -270,4 +270,4 @@ Perform the following steps to troubleshoot issues with multitenant logging in C
 
 ## Next steps
 
-* Read more about [Container insights](container-insights-overview.md).
+* Read more about [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md).

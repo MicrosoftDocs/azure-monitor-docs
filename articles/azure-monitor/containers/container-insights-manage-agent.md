@@ -156,7 +156,7 @@ If you manually enabled Container Insights using custom methods such as HELM or 
 5.	Disable Container insights to clean all related resources using the guidance at [Disable Container insights on your Kubernetes cluster](../containers/kubernetes-monitoring-disable.md)
 
 
-6.	Re-onboard to Container insights using the guidance at [Enable Container insights on your Kubernetes cluster](kubernetes-monitoring-enable.md#enable-container-insights)
+6.	Re-onboard to Container insights using the guidance at [Enable Container insights on your Kubernetes cluster](kubernetes-monitoring-enable.md)
 
 
 

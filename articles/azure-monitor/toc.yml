@@ -469,17 +469,21 @@ items:
     - name: Onboard cluster
       items:
       - name: Overview
-        href: containers/kubernetes-monitoring-enable.md      
-      - name: Azure portal
-        href: containers/kubernetes-monitoring-enable-portal.md
-      - name: CLI
-        href: containers/kubernetes-monitoring-enable-cli.md
-      - name: Terraform
-        href: containers/kubernetes-monitoring-enable-terraform.md
-      - name: ARM template
-        href: containers/kubernetes-monitoring-enable-arm.md
-      - name: Azure Policy
-        href: containers/kubernetes-monitoring-enable-policy.md
+        href: containers/kubernetes-monitoring-enable.md
+      - name: Onboarding methods
+      - items:
+        - name: Azure portal
+          href: containers/kubernetes-monitoring-enable-portal.md
+        - name: CLI
+          href: containers/kubernetes-monitoring-enable-cli.md
+        - name: Terraform
+          href: containers/kubernetes-monitoring-enable-terraform.md
+        - name: ARM template
+          href: containers/kubernetes-monitoring-enable-arm.md
+        - name: Azure Policy
+          href: containers/kubernetes-monitoring-enable-policy.md
+      - name: Agent management
+        href: containers/container-insights-manage-agent.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
     - name: Analyze data
@@ -500,6 +504,12 @@ items:
         href: containers/container-insights-syslog.md
       - name: Log queries
         href: containers/container-insights-log-query.md
+      - name: View live data
+        items:
+        - name: Overview
+          href: containers/container-insights-livedata-overview.md
+        - name: Enable live data
+          href: containers/container-insights-livedata-setup.md
     - name: Customize data collection
       items:
       - name: Metrics
@@ -596,14 +606,6 @@ items:
         href: containers/container-insights-cost.md
       - name: Cost-effective Alerts
         href: containers/cost-effective-alerting.md
-    - name: Agent management
-      href: containers/container-insights-manage-agent.md
-    - name: View live data
-      items:
-      - name: Overview
-        href: containers/container-insights-livedata-overview.md
-      - name: Enable live data
-        href: containers/container-insights-livedata-setup.md
     - name: Alerting
       items:
       - name: Metric alert rules

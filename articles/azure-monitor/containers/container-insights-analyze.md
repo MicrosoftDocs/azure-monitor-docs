@@ -60,7 +60,7 @@ To open the single cluster view in Container insights, either select a cluster f
 | Refresh | Refreshes the data in the view. |
 | Monitor settings | Opens the monitoring configuration settings for the cluster. See [Enable Kubernetes monitoring using the Azure portal](./kubernetes-monitoring-enable-portal.md) for details. |
 | View Grafana | Displays a list of any Managed Grafana instances for linked to the Azure Monitor workspace for the cluster. You can either open dashboards for the instance or view the instance's configuration. |
-| Recommended alerts | Configure recommended alerts for the cluster. See [Create recommended alerts for Kubernetes clusters](./kubernetes-monitoring-recommended-alerts.md) for details. |
+| Recommended alerts | Configure recommended alerts for the cluster. See [Create recommended alerts for Kubernetes clusters](./kubernetes-metric-alerts.md) for details. |
 | View all clusters | Open the [multi-cluster view](#multi-cluster-view). |
 
 ### Filtering data

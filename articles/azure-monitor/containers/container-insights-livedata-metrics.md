@@ -9,6 +9,9 @@ ms.reviewer: aul
 
 # View metrics in real time
 
+> [!NOTE]
+> This article describes viewing live metrics in the [classic Container insights experience](./container-insights-analyze.md#single-cluster-view). This option is not available in the Managed Prometheus experience. You can view live metrics from Container insights using the guidance at []().
+
 With Container insights Live Data, you can visualize metrics about node and pod state in a cluster in real time. The feature emulates direct access to the `kubectl top nodes`, `kubectl get pods --all-namespaces`, and `kubectl get nodes` commands to call, parse, and visualize the data in performance charts that are included with this insight.
 
 This article provides a detailed overview and helps you understand how to use this feature.
