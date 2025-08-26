@@ -9,7 +9,10 @@ ms.date: 08/25/2025
 
 # Enable Azure Monitor features for Kubernetes clusters
 
-As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. To quickly enable full monitoring for a single cluster, you can often just jump to one of the following articles that describes how to enable monitoring using different methods:
+As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes particular prerequisites and other considerations for enabling these features. 
+
+> [!TIP]
+> To quickly enable full monitoring for a single cluster, you can often just jump to one of the following articles that describes how to enable monitoring using different methods:
 
 - [Azure portal](kubernetes-monitoring-enable-portal.md)
 - [Azure CLI](kubernetes-monitoring-enable-cli.md)
@@ -17,15 +20,14 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 - [Azure Policy](kubernetes-monitoring-enable-policy.md)
 - [Terraform](kubernetes-monitoring-enable-terraform.md)
 
-This article describes particular prerequisites and other considerations for enabling these features. 
 
 
 ## Supported clusters
 
-The onboarding and configuration processes described in these articles support the following clusters. Any differences in the process for each type are noted in the relevant sections.
+The onboarding and configuration processes described in this articles support the following clusters. Any differences in the process for each type are noted in the relevant sections.
 
 - [Azure Kubernetes clusters (AKS)](/azure/aks/intro-kubernetes)
-- [Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/validation-program)
+- [Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes)
   - AKS on Azure Local
   - AKS Edge Essentials
   - Canonical
@@ -36,12 +38,17 @@ The onboarding and configuration processes described in these articles support t
   - SUSE Rancher K3s
   - VMware (TKG)
 
-The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations. For ARC-enabled clusters with Windows nodes, you can setup Azure Managed Prometheus on a Linux node within the cluster, and configure scraping metrics from metrics endpoints running on the Windows nodes.
-
+The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations. For Arc-enabled clusters with Windows nodes, you can setup Managed Prometheus on a Linux node within the cluster, and configure scraping metrics from metrics endpoints running on the Windows nodes.
  
 * Red Hat Openshift distributions, including Azure Red Hat OpenShift (ARO)
 * Windows nodes
 
+ARM64 nodes on AKSare supported. See [Cluster requirements](/azure/azure-arc/kubernetes/system-requirements#cluster-requirements) for the details of Azure Arc-enabled clusters that support ARM64 nodes.
+
+## Security
+
+- Container Insights supports FIPS enabled Linux and Windows node pools starting with Agent version 3.1.17 (Linux)  & Win-3.1.17 (Windows).
+- Starting with Agent version 3.1.17 (Linux) and Win-3.1.17 (Windows), Container Insights agents images (both Linux and Windows) are signed and  for Windows agent,  binaries inside the container are signed as well
 
 ## Permissions required
 
@@ -81,6 +88,12 @@ If you're connecting an existing cluster to a Log Analytics workspace in another
 
 See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter.
 
+## Grafana
+Grafana dashboards are used for visualizing metrics and logs collected from your Kubernetes clusters. This was done using Managed Grafana which required creation of a Grafana instance. With the introduction of [Dashboards with Grafana (preview)](../visualize/visualize-grafana-overview.md), you can now visualize metrics and logs with Grafana dashboards with no configuration and no additional cost. This feature doesn't require creation of a Grafana instance. 
+
+> [!NOTE]
+> Configuration in the Azure portal still includes Managed Grafana as a standard option. If you want to use the preview of Dashboards with Grafana instead, you can disable the option to enable Managed Grafana.
+
 ## Agent
 
 Both container log collection and Managed Prometheus rely on a containerized [Azure Monitor agent](../agents/agents-overview.md) for Linux. This specialized agent collects performance and event data from all nodes in the cluster. This agent is deployed and registered with the specified workspaces when you enable these features. 
@@ -88,31 +101,6 @@ Both container log collection and Managed Prometheus rely on a containerized [Az
 > [!NOTE]
 > Since March 1, 2023 Container Insights uses a Semver compliant agent version. The agent version is *mcr.microsoft.com/azuremonitor/containerinsights/ciprod:3.1.4* or later. When a new version of the agent is released, it's automatically upgraded on your managed Kubernetes clusters that are hosted on AKS. To track which versions are released, see [Agent release announcements](https://github.com/microsoft/Docker-Provider/blob/ci_prod/ReleaseNotes.md). 
 
-
-### Applicable tables and metrics for DCR
-The settings for **collection frequency** and **namespace filtering** in the DCR don't apply to all Container insights data. The following tables list the tables in the Log Analytics workspace used by Container insights and the metrics it collects along with the settings that apply to each. 
-
-| Table name | Interval? | Namespaces? | Remarks |
-|:---|:---:|:---:|:---|
-| ContainerInventory | Yes | Yes | |
-| ContainerNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable since Kubernetes Node isn't a namespace scoped resource |
-| KubeNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable Kubernetes Node isn't a namespace scoped resource |
-| KubePodInventory | Yes | Yes ||
-| KubePVInventory | Yes | Yes | |
-| KubeServices | Yes | Yes | |
-| KubeEvents | No | Yes | Data collection setting for interval isn't applicable for the Kubernetes Events |
-| Perf | Yes | Yes | Data collection setting for namespaces isn't applicable for the Kubernetes Node related metrics since the Kubernetes Node isn't a namespace scoped object. |
-| InsightsMetrics| Yes | Yes | Data collection settings are only applicable for the metrics collecting the following namespaces: container.azm.ms/kubestate, container.azm.ms/pv and container.azm.ms/gpu |
-
-> [!NOTE]
-> Namespace filtering does not apply to ama-logs agent records. As a result, even if the kube-system namespace is listed among excluded namespaces, records associated to ama-logs agent container will still be ingested. 
-
-| Metric namespace | Interval? | Namespaces? | Remarks |
-|:---|:---:|:---:|:---|
-| Insights.container/nodes| Yes | No | Node isn't a namespace scoped resource |
-|Insights.container/pods | Yes | Yes| |
-| Insights.container/containers | Yes | Yes | |
-| Insights.container/persistentvolumes | Yes | Yes | |
 
 ## Resources provisioned
 
@@ -150,7 +138,6 @@ There are some differences in monitoring a Windows Server cluster compared to a 
 >[!NOTE]
 > Support for the Windows Server 2022 operating system is in preview.
 
-
 The containerized Linux agent (replicaset pod) makes API calls to all the Windows nodes on Kubelet secure port (10250) within the cluster to collect node and container performance-related metrics. Kubelet secure port (:10250) should be opened in the cluster's virtual network for both inbound and outbound for Windows node and container performance-related metrics collection to work.
 
 If you have a Kubernetes cluster with Windows nodes, review and configure the network security group and network policies to make sure the Kubelet secure port (:10250) is open for both inbound and outbound in the cluster's virtual network.
@@ -159,6 +146,31 @@ If you have a Kubernetes cluster with Windows nodes, review and configure the ne
 When you enable Container insights on a Kubernetes cluster, a new DCR is created for that cluster, and the DCR for each cluster can be modified independently. If you have multiple clusters with custom monitoring configurations, you may want to share a single DCR with multiple clusters. You can then make changes to a single DCR that are automatically implemented for any clusters associated with it.
 
 A DCR is associated with a cluster with a [data collection rule associates (DCRA)](../essentials/data-collection-rule-overview.md#data-collection-rule-associations-dcra). Use the [preview DCR experience](../essentials/data-collection-rule-view.md#preview-dcr-experience) to view and remove existing DCR associations for each cluster. You can then use this feature to add an association to a single DCR for multiple clusters.
+
+### Applicable tables and metrics for DCR
+The settings for **collection frequency** and **namespace filtering** in the DCR don't apply to all Container insights data. The following tables list the tables in the Log Analytics workspace used by Container insights and the metrics it collects along with the settings that apply to each. 
+
+| Table name | Interval? | Namespaces? | Remarks |
+|:---|:---:|:---:|:---|
+| ContainerInventory | Yes | Yes | |
+| ContainerNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable since Kubernetes Node isn't a namespace scoped resource |
+| KubeNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable Kubernetes Node isn't a namespace scoped resource |
+| KubePodInventory | Yes | Yes ||
+| KubePVInventory | Yes | Yes | |
+| KubeServices | Yes | Yes | |
+| KubeEvents | No | Yes | Data collection setting for interval isn't applicable for the Kubernetes Events |
+| Perf | Yes | Yes | Data collection setting for namespaces isn't applicable for the Kubernetes Node related metrics since the Kubernetes Node isn't a namespace scoped object. |
+| InsightsMetrics| Yes | Yes | Data collection settings are only applicable for the metrics collecting the following namespaces: container.azm.ms/kubestate, container.azm.ms/pv and container.azm.ms/gpu |
+
+> [!NOTE]
+> Namespace filtering does not apply to ama-logs agent records. As a result, even if the kube-system namespace is listed among excluded namespaces, records associated to ama-logs agent container will still be ingested. 
+
+| Metric namespace | Interval? | Namespaces? | Remarks |
+|:---|:---:|:---:|:---|
+| Insights.container/nodes| Yes | No | Node isn't a namespace scoped resource |
+|Insights.container/pods | Yes | Yes| |
+| Insights.container/containers | Yes | Yes | |
+| Insights.container/persistentvolumes | Yes | Yes | |
 
 ## Cost control
  Kubernetes clusters generate a lot of log data, which can result in significant costs if you aren't selective about the logs that you collect. Before you enable monitoring for your cluster, see the following articles to ensure that your environment is optimized for cost and that you limit your log collection to only the data that you require:
@@ -172,7 +184,7 @@ A DCR is associated with a cluster with a [data collection rule associates (DCRA
 ## Verify deployment
 Once you complete the onboarding process, you can verify that the agent and selected features were deployed successfully using the [kubectl command line tool](/azure/aks/learn/quick-kubernetes-deploy-cli#connect-to-the-cluster).
 
-### [Prometheus](#prometheus)
+### Prometheus
 
 **Verify that the DaemonSet was deployed properly on the Linux node pools**
 
@@ -218,7 +230,7 @@ ama-metrics-ksm-5fcf8dffcd      1         1         1       11h
 ```
 
 
-### [Container logs](#container-logs)
+### Log collection
 
 **Verify that the DaemonSets were deployed properly on the Linux node pools**
 

@@ -13,7 +13,6 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 
 - Prometheus metrics
 - Container logging
-- Control plane logs
 
 ## Prerequisites
 
@@ -85,6 +84,8 @@ Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in 
 > - WorkspaceID needs to match the format `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
 > - If resource group already exists, run `terraform import azurerm_resource_group.rg /subscriptions/<Subscription_ID>/resourceGroups/<Resource_Group_Name>` before terraform plan
 
+
+## Control plane logs
 
 ## Next steps
 

@@ -26,6 +26,8 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 
 Use one of the following commands to enable collection of Prometheus metrics from your AKS and Arc-enabled clusters. If you don't specify an existing Azure Monitor workspace in the following commands, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one with a name in the format `DefaultAzureMonitorWorkspace-<mapped_region>` will be created in a resource group with the name `DefaultRG-<cluster_region>`. See [Workspaces](./kubernetes-monitoring-enable.md#workspaces) for more details about the Azure Monitor workspace.
 
+> [!NOTE]
+> The following commands include Managed Grafana, although this is being replaced as the default visualization experience by [Dashboards with Grafana](../visualize/visualize-grafana-overview.md). This experience doesn't require any configuration.
 
 ### [AKS cluster](#tab/aks)
 Use the `-enable-azure-monitor-metrics` option `az aks create` or `az aks update` (depending whether you're creating a new cluster or updating an existing cluster) to install the metrics add-on that scrapes Prometheus metrics.
@@ -36,6 +38,9 @@ az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --reso
 
 ### Use existing Azure Monitor workspace
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --azure-monitor-workspace-resource-id <workspace-name-resource-id>
+
+### Use an existing Azure Monitor workspace and link with an existing Grafana workspace
+az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --azure-monitor-workspace-resource-id <azure-monitor-workspace-name-resource-id> --grafana-resource-id  <grafana-workspace-name-resource-id>
 
 ### Use optional parameters
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --ksm-metric-labels-allow-list "namespaces=[k8s-label-1,k8s-label-n]" --ksm-metric-annotations-allow-list "pods=[k8s-annotation-1,k8s-annotation-n]"
@@ -56,6 +61,10 @@ az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name
 
 ## Use existing Azure Monitor workspace
 az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers.Metrics --configuration-settings azure-monitor-workspace-resource-id=<workspace-name-resource-id>
+
+### Use an existing Azure Monitor workspace and link with an existing Grafana workspace
+az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers.Metrics --configuration-settings azure-monitor-workspace-resource-id=<workspace-name-resource-id> grafana-resource-id=<grafana-workspace-name-resource-id>
+
 
 ### Use optional parameters
 az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers.Metrics --configuration-settings azure-monitor-workspace-resource-id=<workspace-name-resource-id> grafana-resource-id=<grafana-workspace-name-resource-id> AzureMonitorMetrics.KubeStateMetrics.MetricAnnotationsAllowList="pods=[k8s-annotation-1,k8s-annotation-n]" AzureMonitorMetrics.KubeStateMetrics.MetricLabelsAllowlist "namespaces=[k8s-label-1,k8s-label-n]"
@@ -89,11 +98,13 @@ Use one of the following commands to enable collection of container logs from yo
 
 ### [AKS cluster](#tab/aks)
 
+See [Log configuration file](#log-configuration-file) below for details about the configuration file used in the following commands.
+
 #### New AKS cluster
 
 Use the following command to create a new AKS cluster with monitoring enabled. This assumes a configuration file named **dataCollectionSettings.json**.
 
-```azcli
+```azurecli
 az aks create -g <clusterResourceGroup> -n <clusterName> --enable-managed-identity --node-count 1 --enable-addons monitoring --data-collection-settings dataCollectionSettings.json --generate-ssh-keys 
 ```
 
@@ -120,7 +131,7 @@ az aks enable-addons --addon monitoring --name "my-cluster" --resource-group "my
 
 Use the following command to add a new configuration to an existing cluster with Container insights enabled. This assumes a configuration file named **dataCollectionSettings.json**.
 
-```azcli    
+```azurecli    
 # get the configured log analytics workspace resource id
 az aks show -g <clusterResourceGroup> -n <clusterName> | grep -i "logAnalyticsWorkspaceResourceID"
 
@@ -132,6 +143,8 @@ az aks enable-addons -a monitoring -g <clusterResourceGroup> -n <clusterName> --
 ```
 
 ### [Arc-enabled cluster](#tab/arc)
+
+See [Log configuration file](#log-configuration-file) below for details about the data collection settings used in the following commands.
 
 ```azurecli
 ### Use default Log Analytics workspace
@@ -237,6 +250,26 @@ When you specify the tables to collect using CLI or ARM, you specify a stream na
 | Microsoft-Perf | Perf |
 
 <sup>1</sup> You shouldn't use both Microsoft-ContainerLogV2 and Microsoft-ContainerLogV2-HighScale in the same DCR. This will result in duplicate data.
+
+## Enable control plane logs
+Control plane logs must be enabled separately from Prometheus metrics and container logging. You can send these logs to the same Log Analytics workspace as your container logs, but they aren't accessible from the **Monitor** menu for the cluster. Instead, you can access them using queries in [Log Analytics](../logs/log-analytics-overview.md) and use them for [log alerts](../alerts/alerts-log-query.md).
+
+Control plane logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. To collect these logs, create a [diagnostic setting](../platform/diagnostic-settings.md) for the cluster. Use the [az monitor diagnostic-settings create](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create) command to create a diagnostic setting with the [Azure CLI](/cli/azure/monitor). See the documentation for this command for descriptions of its parameters.
+
+The following example creates a diagnostic setting that sends all Kubernetes categories to a Log Analytics workspace. This includes [resource-specific mode](resource-logs.md#resource-specific) to send the logs to specific tables listed in [Supported resource logs for Microsoft.ContainerService/fleets](/azure/aks/monitor-aks-reference#resource-logs).
+
+```azurecli
+az monitor diagnostic-settings create \
+--name 'Collect control plane logs' \
+--resource  /subscriptions/<subscription ID>/resourceGroups/<resource group name>/providers/Microsoft.ContainerService/managedClusters/<cluster-name> \
+--workspace /subscriptions/<subscription ID>/resourcegroups/<resource group name>/providers/microsoft.operationalinsights/workspaces/<log analytics workspace name> \
+--logs '[{"category": "karpenter-events","enabled": true},{"category": "kube-audit","enabled": true},
+{"category": "kube-apiserver","enabled": true},{"category": "kube-audit-admin","enabled": true},{"category": "kube-controller-manager","enabled": true},{"category": "kube-scheduler","enabled": true},{"category": "cluster-autoscaler","enabled": true},{"category": "cloud-controller-manager","enabled": true},{"category": "guard","enabled": true},{"category": "csi-azuredisk-controller","enabled": true},{"category": "csi-azurefile-controller","enabled": true},{"category": "csi-snapshot-controller","enabled": true},{"category": "fleet-member-agent","enabled": true},{"category": "fleet-member-net-controller-manager","enabled": true},{"category": "fleet-mcs-controller-manager","enabled": true}]'
+--metrics '[{"category": "AllMetrics","enabled": true}]' \
+--export-to-resource-specific true
+```
+
+
 
 ## Next steps
 

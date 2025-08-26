@@ -462,7 +462,7 @@ items:
     - name: Best practices
       displayName: containers, kubernetes
       href: containers/best-practices-containers.md
-    - name: Onboard cluster
+    - name: Enable monitoring
       items:
       - name: Overview
         href: containers/kubernetes-monitoring-enable.md

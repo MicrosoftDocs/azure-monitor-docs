@@ -15,6 +15,9 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 - Container logging
 - Control plane logs
 
+> [!NOTE]
+> The current ARM templates include Managed Grafana, although this is being replaced as the default visualization experience by [Dashboards with Grafana](../visualize/visualize-grafana-overview.md). If you want to use this new experience, which requires no configuration, you modify the ARM templates to remove the Grafana configuration.
+
 ## Prerequisites
 
 - Azure Monitor workspace and Azure Managed Grafana instance must already be created.
@@ -229,6 +232,126 @@ When you specify the tables to collect using CLI or ARM, you specify a stream na
 | Microsoft-Perf | Perf |
 
 <sup>1</sup> You shouldn't use both Microsoft-ContainerLogV2 and Microsoft-ContainerLogV2-HighScale in the same DCR. This will result in duplicate data.
+
+## Enable control plane logs
+Control plane logs must be enabled separately from Prometheus metrics and container logging. You can send these logs to the same Log Analytics workspace as your container logs, but they aren't accessible from the **Monitor** menu for the cluster. Instead, you can access them using queries in [Log Analytics](../logs/log-analytics-overview.md) and use them for [log alerts](../alerts/alerts-log-query.md).
+
+Control plane logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. To collect these logs, create a [diagnostic setting](../platform/diagnostic-settings.md) for the cluster. Use the [az monitor diagnostic-settings create](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create) command to create a diagnostic setting with the [Azure CLI](/cli/azure/monitor). See the documentation for this command for descriptions of its parameters.
+
+The following example creates a diagnostic setting that sends all Kubernetes categories to a Log Analytics workspace. The entry `"logAnalyticsDestinationType": "Dedicated"` specifies [resource-specific mode](resource-logs.md#resource-specific) to send the logs to specific tables listed in [Supported resource logs for Microsoft.ContainerService/fleets](/azure/aks/monitor-aks-reference#resource-logs).
+
+**Template file**
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "scope": {
+        "type": "string"
+    },
+    "workspaceId": {
+        "type": "string"
+    },
+    "settingName": {
+        "type": "string"
+    }
+},
+    "resources": [
+        {
+            "type": "Microsoft.Insights/diagnosticSettings",
+            "apiVersion": "2021-05-01-preview",
+            "scope": "[parameters('scope')]",
+            "name": "[parameters('settingName')]",
+            "properties": {
+                "workspaceId": "[parameters('workspaceId')]",
+                "logAnalyticsDestinationType": "Dedicated",
+                "logs": [
+                    {
+                        "category": "karpenter-events",
+                        "enabled": true
+                    },
+                    {
+                        "category": "kube-audit",
+                        "enabled": true
+                    },
+                    {
+                        "category": "kube-apiserver",
+                        "enabled": true
+                    },
+                    {
+                        "category": "kube-audit-admin",
+                        "enabled": true
+                    },
+                    {
+                        "category": "kube-controller-manager",
+                        "enabled": true
+                    },
+                    {
+                        "category": "kube-scheduler",
+                        "enabled": true
+                    },
+                    {
+                        "category": "cluster-autoscaler",
+                        "enabled": true
+                    },
+                    {
+                        "category": "cloud-controller-manager",
+                        "enabled": true
+                    },
+                    {
+                        "category": "guard",
+                        "enabled": true
+                    },
+                    {
+                        "category": "csi-azuredisk-controller",
+                        "enabled": true
+                    },
+                    {
+                        "category": "csi-azurefile-controller",
+                        "enabled": true
+                    },
+                    {
+                        "category": "csi-snapshot-controller",
+                        "enabled": true
+                    },
+                    {
+                        "category": "fleet-member-agent",
+                        "enabled": true
+                    },
+                    {
+                        "category": "fleet-member-net-controller-manager",
+                        "enabled": true
+                    },
+                    {
+                        "category": "fleet-mcs-controller-manager",
+                        "enabled": true
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+**Parameter file**
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "settingName": {
+            "value": "Collect control plane logs"
+        },
+        "workspaceId": {
+            "value": "/subscriptions/<subscription id>/resourcegroups/<resourcegroup name>/providers/microsoft.operationalinsights/workspaces/<workspace name>"
+        },
+        "scope": {
+            "value": "Microsoft.ContainerService/managedClusters/<resourceName>"
+        }
+    }
+}
+```
 
 
 
