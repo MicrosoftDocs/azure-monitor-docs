@@ -74,7 +74,7 @@ Azure Kubernetes Service (AKS) clusters create the same activity logs and platfo
 | Data type | Description | Data collection method |
 |:----------|:------------|:-----------------------|
 | Cluster Metrics | Usage and performance data for the cluster, nodes, deployments, and workloads. | Enable managed Prometheus for the cluster to send cluster metrics to an [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md). See [Enable Prometheus and Grafana](../containers/kubernetes-monitoring-enable.md) for onboarding and [Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md) for a list of metrics that are collected by default. |
-| Logs | Standard Kubernetes logs including events for the cluster, nodes, deployments, and workloads. | Enable Container insights for the cluster to send container logs to a Log Analytics workspace. See [Enable Container insights](../containers/kubernetes-monitoring-enable.md#enable-container-insights) for onboarding and [Configure data collection in Container insights using data collection rule](../containers/container-insights-data-collection-dcr.md) to configure which logs are collected. |
+| Logs | Standard Kubernetes logs including events for the cluster, nodes, deployments, and workloads. | Enable Container insights for the cluster to send container logs to a Log Analytics workspace. See [Enable Container insights](../containers/kubernetes-monitoring-enable.md) for onboarding and [Configure data collection in Container insights using data collection rule](../containers/container-insights-data-collection-dcr.md) to configure which logs are collected. |
 
 ## Custom sources
 

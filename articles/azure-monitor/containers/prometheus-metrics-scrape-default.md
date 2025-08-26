@@ -209,7 +209,7 @@ Two default jobs can be run for Windows that scrape metrics required for the das
 - `kube-proxy-windows` (`job=kube-proxy-windows`)
 
 > [!NOTE]
-> This requires applying or updating the `ama-metrics-settings-configmap` configmap and installing `windows-exporter` on all Windows nodes. For more information, see the [enablement document](kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview).
+> This requires applying or updating the `ama-metrics-settings-configmap` configmap and installing `windows-exporter` on all Windows nodes. For more information, see the [enablement document](./enable-windows-metrics.md).
 
 ## Metrics scraped for Windows
 

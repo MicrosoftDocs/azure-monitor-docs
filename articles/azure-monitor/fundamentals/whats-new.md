@@ -443,7 +443,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Telemetry processors (preview) - Azure Monitor Application Insights for Java](../app/java-standalone-telemetry-processors.md)|Sample metrics filters have been added.|
 |Application-Insights|[Log-based and preaggregated metrics in Application Insights](../app/pre-aggregated-metrics-log-metrics.md)|We've clarified how custom metrics work.|
 |Containers|[Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md)|Added default targets for Control Plane to minimal ingestion profile|
-|Containers|[Azure Monitor features for Kubernetes monitoring](../containers/container-insights-overview.md)|Rewritten to focus on role of log collection and added agent details.|
+|Containers|[Azure Monitor features for Kubernetes monitoring](../containers/kubernetes-monitoring-overview.md)|Rewritten to focus on role of log collection and added agent details.|
 |Containers|[Configure data collection in Container insights using ConfigMap](../containers/container-insights-data-collection-configmap.md)|New article to consolidate ConfigMap configuration of all cluster configurations.|
 |Containers|[Configure data collection in Container insights using data collection rule](../containers/container-insights-data-collection-dcr.md)|New article to consolidate DCR configuration of all cluster configurations.|
 |Containers|[Container insights log schema](../containers/container-insights-logs-schema.md)|Combine Prometheus and Container insights|
@@ -556,7 +556,7 @@ Application-Insights|[Application Insights overview](../app/app-insights-overvie
 Containers|[Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot.md)|Added the *Troubleshoot using PowerShell script* section.|
 Containers|[Monitor Kubernetes clusters using Azure services and cloud native tools](../containers/monitor-kubernetes.md)|Updated previous scenario for hybrid Kubernetes clusters and managed Prometheus.|
 Containers|[Monitor Azure Kubernetes Service (AKS)](/azure/aks/monitor-aks)|New article providing simplified introduction to monitoring AKS cluster.|
-Containers|[Container insights overview](../containers/container-insights-overview.md)|Rewritten for to include new features and managed services.|
+Containers|[Container insights overview](../containers/kubernetes-monitoring-overview.md)|Rewritten for to include new features and managed services.|
 Essentials|[Send Prometheus metrics to Log Analytics workspace with Container insights](../containers/container-insights-prometheus-logs.md)|Updated to simplify article to only legacy method of sending Prometheus metrics to Log Analytics workspace.|
 Essentials|[Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md)|Updated to include additional onboarding methods.|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../metrics/prometheus-rule-groups.md)|Expanded "Limiting rules to a specific cluster"|
@@ -822,7 +822,7 @@ Application-Insights|[Sampling in Application Insights](../app/sampling.md)|Upda
 Application-Insights|[Availability alerts](../app/availability-alerts.md)|Rewritten with new guidance and screenshots.|
 Change-Analysis|[Tutorial: Track a web app outage by using Change Analysis](../change/tutorial-outages.md)|Changed tutorial content to reflect changes to repo and removed and replaced sections.|
 Containers|[Configure Azure CNI networking in Azure Kubernetes Service](/azure/aks/configure-azure-cni)|Added steps to enable IP subnet usage.|
-Containers|[Reports in Container insights](../containers/container-insights-reports.md)|Updated to reflect the steps to enable IP subnet usage.|
+Containers|[Reports in Container insights](../containers/kubernetes-workbooks.md)|Updated to reflect the steps to enable IP subnet usage.|
 Essentials|[Best practices for data collection rule creation and management in Azure Monitor](../data-collection/data-collection-rule-best-practices.md)|New article.|
 Essentials|[Configure self-managed Grafana to use Azure Monitor managed service for Prometheus (preview) with Azure Active Directory](../metrics/prometheus-grafana.md)|New article: Configured self-managed Grafana to use Azure Monitor managed service for Prometheus (preview) with Azure Active Directory.|
 Logs|[Azure Monitor SCOM Managed Instance (preview)](../vm/scom-managed-instance-overview.md)|New article.|
@@ -892,7 +892,7 @@ Application-insights|[Application monitoring for Azure App Service and ASP.NET](
 Application-insights|[Geolocation and IP address handling](../app/ip-collection.md)| Updated geolocation lookup information.|
 Containers|[Metric alert rules in Container insights (preview)](../containers/container-insights-metric-alerts.md)|Updated to include Container insights metric alerts.|
 Containers|[Custom metrics collected by Container insights](/previous-versions/azure/azure-monitor/containers/container-insights-custom-metrics)|New article.|
-Containers|[Overview of Container insights in Azure Monitor](../containers/container-insights-overview.md)|Rewritten to simplify onboarding options.|
+Containers|[Overview of Container insights in Azure Monitor](../containers/kubernetes-monitoring-overview.md)|Rewritten to simplify onboarding options.|
 Containers|[Enable Container insights for Azure Kubernetes Service cluster](../containers/container-insights-enable-aks.md?tabs=azure-cli)|Updated to combine new and existing clusters.|
 Containers Prometheus|[Query logs from Container insights](../containers/container-insights-log-query.md)|Updated to include log queries for Prometheus data.|
 Containers Prometheus|[Collect Prometheus metrics with Container insights](../containers/container-insights-prometheus.md?tabs=cluster-wide)|Updated to include Azure Monitor managed service for Prometheus.|
@@ -1098,7 +1098,7 @@ Visualizations|[Azure Workbooks](../visualize/workbooks-overview.md)|New video t
 
 | Article | Description |
 |:---|:---|
-|[Overview of Container insights](../containers/container-insights-overview.md)|Added information about deprecation of Docker support.|
+|[Overview of Container insights](../containers/kubernetes-monitoring-overview.md)|Added information about deprecation of Docker support.|
 |[Enable Container insights](../containers/container-insights-onboard.md)|Updated all Container insights content for new support of managed identity authentication by using Azure Monitor Agent.|
 
 #### Essentials

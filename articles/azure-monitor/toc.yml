@@ -467,7 +467,7 @@ items:
       - name: Overview
         href: containers/kubernetes-monitoring-enable.md
       - name: Onboarding methods
-      - items:
+        items:
         - name: Azure portal
           href: containers/kubernetes-monitoring-enable-portal.md
         - name: CLI
@@ -560,7 +560,7 @@ items:
             href: containers/integrate-keda.md
         - name: Enable Windows metrics (preview)
           displayName: Prometheutheus-metricss
-          href: container/enable-windows-metrics.md
+          href: containers/enable-windows-metrics.md
         - name: Send to multiple metric workspaces
           displayName: Prometheus
           href: containers/prometheus-metrics-multiple-workspaces.md
