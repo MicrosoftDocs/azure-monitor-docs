@@ -2,7 +2,7 @@
 title: Deploy Application Insights Agent
 description: Learn how to use Application Insights Agent to monitor website performance. It works with ASP.NET web apps hosted on-premises, in Virtual Machines (VMs), or on Azure.
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date:09/25/2025
 ms.reviewer: abinetabate
 ---
 

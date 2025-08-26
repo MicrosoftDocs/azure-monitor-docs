@@ -2,7 +2,7 @@
 title: Work item integration with Application Insights
 description: Create templates that open prepopulated work items in GitHub or Azure DevOps with contextual data from Application Insights.
 ms.topic: how-to
-ms.date: 08/21/2025
+ms.date:09/25/2025
 ---
 
 # Work item integration
