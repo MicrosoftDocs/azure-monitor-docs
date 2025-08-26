@@ -429,7 +429,7 @@ Enable-ApplicationInsightsMonitoring -InstrumentationKeyMap `
 ```
 
 
-* **MachineFilter** is a required C# regex of the computer or VM name.
+* **MachineFilter** is a required C# regex of the computer or virtual machine (VM) name.
     * '.*' matches all
     * 'ComputerName' matches only computers with the exact name specified.
 * **AppFilter** is a required C# regex of the IIS Site Name. You can get a list of sites on your server by running the command [get-iissite](/powershell/module/iisadministration/get-iissite).
