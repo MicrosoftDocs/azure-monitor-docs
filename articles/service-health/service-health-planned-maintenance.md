@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 08/19/2025
+ms.date: 08/26/2025
 
 ---
 
@@ -128,22 +128,22 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 - **Self-Service Maintenance window**: Updates can be manually initiated within approximately 35 days.
 - **Scheduled Maintenance window**: If not initiated, Azure Service Health automatically applies updates.
 - **Zero-Downtime Maintenance**: Azure limits disruption with live migration and cold starts.
-1. How can I prepare for maintenance?
+2. How can I prepare for maintenance?
 - Monitor the Planned Maintenance pane regularly.
 - Use the Resources tab to identify the affected services.
 - If you're eligible, use Maintenance Control to defer updates for critical workloads.
-2. What metadata is available for maintenance events?
-- These key fields help you assess the scope, timing, and severity of the events.
+3. What metadata is available for maintenance events?<br>
+  These key fields help you assess the scope, timing, and severity of the events.
     - impactType
     - impactMitigationTime
     - eventSource
     - trackingId
     - status
-3. Can I automate maintenance tracking?
-- Yes, with:
+4. Can I automate maintenance tracking?<br>
+  Yes, with:
     - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
     - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
-4. How long is the maintenance history available?
+5. How long is the maintenance history available?
 - Active view: up to 90 days.
 - Health history: up to one year.
 
