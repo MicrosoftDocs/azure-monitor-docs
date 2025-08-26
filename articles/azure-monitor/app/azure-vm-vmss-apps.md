@@ -111,7 +111,7 @@ Remove-AzVMExtension -ResourceGroupName "<myVmResourceGroup>" -VMName "<myVmName
 
 ### instrumentationKeyMap (extension settings)
 
-[!INCLUDE [instrumentationkeymap](includes/instrumentationkeymap.md)]
+[!INCLUDE [instrumentationkeymap](includes/instrumentation-key-map.md)]
 
 **Where it goes for the VM and Virtual Machine Scale Sets extension**
 

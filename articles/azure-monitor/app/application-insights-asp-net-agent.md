@@ -822,10 +822,78 @@ You can create a single installation script for several computers by setting `Ma
 > [!IMPORTANT]
 > Apps match rules in the order you provide them. Specify the most specific rules first and the most generic rules last.
 
-[!INCLUDE [instrumentationkeymap](includes/instrumentationkeymap.md)]
+[!INCLUDE [instrumentationkeymap](includes/instrumentation-key-map.md)]
 
 **This cmdlet's map shape**
 
 - Supply `-InstrumentationKeyMap` as a PowerShell array of hashtables.
 - For this cmdlet, set the target resource per rule with `InstrumentationSettings=@{ InstrumentationKey = '<ikey>' }`.
 - If you want a single resource for all apps on the machine, use `-ConnectionString` or `-InstrumentationKey` instead.
+
+### Start-ApplicationInsightsMonitoringTrace
+
+Collects [Event Tracing for Windows (ETW) events](https://learn.microsoft.com/windows/win32/etw/event-tracing-portal) that the codeless attach runtime emits. Use this cmdlet as a simpler alternative to running [PerfView](https://github.com/microsoft/perfview).
+
+Events are printed to the console in real time and also written to an `.etl` file. You can open the `.etl` file with PerfView for deeper analysis.
+
+This cmdlet runs until it reaches the timeout, the default is 5 minutes, or until you stop it manually with `Ctrl + C`.
+
+#### Examples
+
+##### How to collect events
+
+Use this flow when you need to investigate why an IIS app isn't being instrumented.
+
+The codeless attach runtime emits ETW events when IIS starts and when your app starts.
+
+1. In an administrative command prompt, run `iisreset /stop` to stop IIS and all web apps.  
+2. Begin tracing by running this cmdlet.
+3. In an administrative command prompt, run `iisreset /start` to start IIS.  
+4. Trigger startup by browsing to your app.
+5. After the app finishes loading, press `Ctrl + C` to stop, or allow the timeout to end the session.
+
+##### What events to collect
+
+You can choose which event sources to include:
+
+1. `-CollectSdkEvents` collects events from the Application Insights SDK.  
+2. `-CollectRedfieldEvents` collects events from Application Insights Agent and the Redfield runtime, which is useful for IIS and app startup diagnostics.  
+3. Collect both sets by specifying both switches.
+4. If you don't specify a switch, both sets are collected by default.
+
+#### Parameters
+
+##### -MaxDurationInMinutes
+
+Optional. Sets how long to collect before timing out. The default is 5 minutes.
+
+##### -LogDirectory
+
+Optional. Directory where the `.etl` file should be written. By default, the file is created under the module PowerShell directory. The full path is shown when the session starts.
+
+##### -CollectSdkEvents
+
+Optional. Include Application Insights SDK events.
+
+##### -CollectRedfieldEvents
+
+Optional. Include events from Application Insights Agent and the Redfield runtime.
+
+##### -Verbose
+
+Common parameter. Outputs detailed logs.
+
+#### Output
+
+##### Example of application startup logs
+
+```powershell
+Start-ApplicationInsightsMonitoringTrace -CollectRedfieldEvents
+Starting...
+Log File: C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\logs\20190627_144217_ApplicationInsights_ETW_Trace.etl
+Tracing enabled, waiting for events.
+Tracing will timeout in 5 minutes. Press CTRL+C to cancel.
+2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Resolved variables to: MicrosoftAppInsights_ManagedHttpModulePath='C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.RedfieldIISModule.dll', MicrosoftAppInsights_ManagedHttpModuleType='Microsoft.ApplicationInsights.RedfieldIISModule.RedfieldIISModule'
+2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Resolved variables to: MicrosoftDiagnosticServices_ManagedHttpModulePath2='', MicrosoftDiagnosticServices_ManagedHttpModuleType2=''
+2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Environment variable 'MicrosoftDiagnosticServices_ManagedHttpModulePath2' or 'MicrosoftDiagnosticServices_ManagedHttpModuleType2' is null, skipping managed dll loading
+```
