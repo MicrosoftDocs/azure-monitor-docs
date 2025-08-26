@@ -2015,6 +2015,48 @@ Application Insights automatically collects telemetry about specific workloads w
 
 By default, the following automatic-collection modules are enabled. These modules are responsible for automatically collecting telemetry. You can disable or configure them to alter their default behavior.
 
+
+# [ASP.NET](#tab/net)
+
+| Area | Description |
+|------|-------------|
+| Request tracking | Collects request telemetry (response time and result code) for incoming web requests.<br><br>• `Microsoft.ApplicationInsights.WebRequestTrackingTelemetryModule`<br>• [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package |
+| Dependency tracking | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls).<br><br>To allow this module to work in IIS, [install Application Insights Agent](application-insights-asp-net-agent.md).<br><br>To write your own dependency tracking code, use the [TrackDependency API](api-custom-events-metrics.md#trackdependency).<br><br>Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VM/VMSS monitoring](azure-vm-vmss-apps.md).<br><br>• `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>• [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet package |
+| Performance counters | Collects Windows Performance Counters (CPU, memory, network load, etc., from IIS installs). You can specify which counters (including custom ones). For more information, see [Collects system performance counters](asp-net-counters.md).<br><br>• `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`<br>• [Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet package |
+| EventCounters | Collects [.NET EventCounters](asp-net-counters.md). Recommended for ASP.NET Core and cross‑platform in place of Windows perf counters.<br><br>• `EventCounterCollectionModule` (SDK ≥ 2.8.0) |
+| Live Metrics (QuickPulse) | Collects telemetry for the Live Metrics pane.<br><br>• `QuickPulseTelemetryModule` |
+| Heartbeats collector (App Service) | Sends heartbeats (as custom metrics) with details about the App Service environment.<br><br>• `AppServicesHeartbeatTelemetryModule` |
+| Heartbeats collector (VM/VMSS) | Sends heartbeats (as custom metrics) with details about the Azure VM environment.<br><br>• `AzureInstanceMetadataTelemetryModule` |
+| Diagnostics telemetry | Reports errors in the AI instrumentation code itself (for example, can't access performance counters, `ITelemetryInitializer` throws an exception). Trace telemetry appears in [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search).<br><br>• `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>• [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package.<br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
+| Developer mode (debugger attached) | Forces `TelemetryChannel` to send items immediately (one at a time) when a debugger is attached. This design reduces the amount of time between the moment when your application tracks telemetry and when it appears in the Application Insights portal. **Warning:** Causes significant overhead in CPU and network bandwidth.<br><br>• `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`<br>• [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet package |
+| Exception tracking – Web | Tracks unhandled exceptions in your web app.<br><br>For more information, see [Failures and exceptions](#exceptions).<br><br>• `Microsoft.ApplicationInsights.Web.ExceptionTrackingTelemetryModule`<br>• [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package. |
+| Exception tracking – Unobserved/Unhandled (non-web) | Tracks unobserved task exceptions and unhandled exceptions for worker roles, Windows services, and console applications.<br><br>• `Microsoft.ApplicationInsights.WindowsServer.UnobservedExceptionTelemetryModule`<br>• `Microsoft.ApplicationInsights.`<br>`WindowsServer.UnhandledExceptionTelemetryModule`<br><br>• [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet package |
+| EventSource tracking | Sends configured [EventSource events](#) to Application Insights as traces.<br><br>• `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`<br>• [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener) |
+| ETW collector | Sends configured ETW provider events to Application Insights as traces. For more information, see [Using ETW events](#).<br><br>• `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br><br>• [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
+| Core API (not a module) | [Core API](/dotnet/api/microsoft.applicationinsights) used by other telemetry components and for [custom telemetry](api-custom-events-metrics.md).<br><br>• `Microsoft.ApplicationInsights package`<br>• [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package<br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
+
+# [ASP.NET Core](#tab/core)
+
+| Area | Description |
+|------|-------------|
+| Request tracking | Built-in request tracking via ASP.NET Core AI integration (no separate module class). |
+| Dependency tracking | Via Dependency Collector. |
+| Performance counters | Windows-only! On cross‑platform, use `EventCounterCollectionModule`. |
+| EventCounters | Collects [.NET EventCounters](asp-net-counters.md). Recommended for ASP.NET Core and cross‑platform in place of Windows perf counters. |
+| Live Metrics (QuickPulse) | Live Metrics enabled in ASP.NET Core AI integration (no separate module class) |
+| Heartbeats collector (App Service) | Sends heartbeats (as custom metrics) with details about the App Service environment. |
+| Heartbeats collector (VM/VMSS) | Sends heartbeats (as custom metrics) with details about the Azure VM environment. |
+| Diagnostics telemetry |  |
+| Developer mode (debugger attached) | Same behavior available; class is part of Windows Server package |
+| Exception tracking – Web | Automatic exception tracking in ASP.NET Core AI integration (no separate module class) |
+| Exception tracking – Unobserved/Unhandled (non-web) | Similar behavior via ASP.NET Core runtime/integration; class names above are Windows Server–specific |
+| EventSource tracking |  |
+| ETW collector |  Windows-only (ETW) |
+| Core API (not a module) |  |
+
+---
+
+<!--
 | ASP.NET (class) | ASP.NET Core (equivalent) | Description |
 |-----------------|---------------------------|-------------|
 | Request tracking<br><br>• `Microsoft.ApplicationInsights.WebRequestTrackingTelemetryModule`<br>• [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet package | Built-in request tracking via ASP.NET Core AI integration (no separate module class) | Collects request telemetry (response time and result code) for incoming web requests. |
@@ -2031,6 +2073,7 @@ By default, the following automatic-collection modules are enabled. These module
 | EventSource tracking<br><br>• `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`<br>• [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener) | Same | Sends configured [EventSource events](#) to Application Insights as traces. |
 | ETW collector<br><br>• `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br><br>• [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) | Windows-only (ETW) | Sends configured ETW provider events to Application Insights as traces. For more information, see [Using ETW events](#). |
 | Core API (not a module)<br><br>• `Microsoft.ApplicationInsights package`<br>• [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package<br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. | — | [Core API](/dotnet/api/microsoft.applicationinsights) used by other telemetry components and for [custom telemetry](api-custom-events-metrics.md). |
+-->
 
 # [ASP.NET](#tab/net)
 
