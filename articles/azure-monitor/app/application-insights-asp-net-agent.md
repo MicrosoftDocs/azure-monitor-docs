@@ -1,6 +1,6 @@
 ---
 title: Deploy Application Insights Agent
-description: Learn how to use Application Insights Agent to monitor website performance. It works with ASP.NET web apps hosted on-premises, in VMs, or on Azure.
+description: Learn how to use Application Insights Agent to monitor website performance. It works with ASP.NET web apps hosted on-premises, in Virtual Machines (VMs), or on Azure.
 ms.topic: how-to
 ms.date: 01/31/2025
 ms.reviewer: abinetabate
@@ -8,14 +8,13 @@ ms.reviewer: abinetabate
 
 # Deploy Azure Monitor Application Insights Agent for on-premises servers
 
-Application Insights Agent (formerly named Status Monitor V2) is a PowerShell module published to the [PowerShell Gallery](https://www.powershellgallery.com/packages/Az.ApplicationMonitor).
-It replaces Status Monitor.
-Telemetry is sent to the Azure portal, where you can [monitor](./app-insights-overview.md) your app.
+Application Insights Agent is a PowerShell module published to the [PowerShell Gallery](https://www.powershellgallery.com/packages/Az.ApplicationMonitor).
+It replaces Status Monitor. Telemetry is sent to the Azure portal, where you can [monitor](./app-insights-overview.md) your app.
 
-For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
+For a complete list of supported [autoinstrumentation](codeless-overview.md) scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
 > [!NOTE]
-> The module currently supports codeless instrumentation of ASP.NET and ASP.NET Core web apps hosted with IIS. Use an SDK to instrument Java and Node.js applications.
+> The module currently supports codeless instrumentation of ASP.NET and ASP.NET Core web apps hosted with Internet Information Server (IIS). Use an SDK to instrument Java and Node.js applications.
 
 > [!NOTE]
 > Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable client-side monitoring, define an environment variable in the server with the following information:
@@ -52,9 +51,7 @@ Use PowerShell Gallery for download and installation.
 To enable monitoring, you must have a connection string. A connection string is displayed on the **Overview** pane of your Application Insights resource. For more information, see [Connection strings](./connection-strings.md?tabs=net#find-your-connection-string).
 
 > [!NOTE]
-> As of April 2020, PowerShell Gallery has deprecated TLS 1.1 and 1.0.
->
-> For more prerequisites that you might need, see [PowerShell Gallery TLS support](https://devblogs.microsoft.com/powershell/powershell-gallery-tls-support).
+> For more prerequisites that you might need, see [PowerShell Gallery Transport Layer Security (TLS) support](https://devblogs.microsoft.com/powershell/powershell-gallery-tls-support).
 
 Run PowerShell as an admin.
 
@@ -299,7 +296,7 @@ For more information, see [Installing a PowerShell Module](/powershell/scripting
 If you're installing the module into any other directory, manually import the module by using [Import-Module](/powershell/module/microsoft.powershell.core/import-module).
 
 > [!IMPORTANT]
-> DLLs will install via relative paths.
+> Dynamic link libraries (DLLs) install via relative paths.
 > Store the contents of the package in your intended runtime directory and confirm that access permissions allow read but not write.
 
 1. Change the extension to ".zip" and extract the contents of the package into your intended installation directory.
@@ -345,14 +342,14 @@ This tab describes the following cmdlets, which are members of the [Az.Applicati
 > [!IMPORTANT]
 > This cmdlet requires a PowerShell session with Admin permissions and an elevated execution policy. For more information, see [Run PowerShell as administrator with an elevated execution policy](?tabs=detailed-instructions#run-powershell-as-admin-with-an-elevated-execution-policy).
 > * This cmdlet requires that you review and accept our license and privacy statement.
-> * The instrumentation engine adds additional overhead and is off by default.
+> * The instrumentation engine adds more overhead and is off by default.
 
 ### Enable-InstrumentationEngine
 
 Enables the instrumentation engine by setting some registry keys.
 Restart IIS for the changes to take effect.
 
-The instrumentation engine can supplement data collected by the .NET SDKs.
+The instrumentation engine can supplement data collected by the .NET Software Development Kits (SDKs).
 It collects events and messages that describe the execution of a managed process. These events and messages include dependency result codes, HTTP verbs, and [SQL command text](asp-net-dependencies.md#advanced-sql-tracking-to-get-full-sql-query).
 
 Enable the instrumentation engine if:
@@ -399,7 +396,7 @@ After you enable monitoring, we recommend that you use [Live Metrics](live-strea
 
 ##### Example with a single connection string
 
-In this example, all apps on the current computer are assigned a single connection string.
+In this example, all apps on the current computer are provided with a single connection string.
 
 ```powershell
 Enable-ApplicationInsightsMonitoring -ConnectionString 'InstrumentationKey=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/'
@@ -407,7 +404,7 @@ Enable-ApplicationInsightsMonitoring -ConnectionString 'InstrumentationKey=xxxxx
 
 ##### Example with a single instrumentation key
 
-In this example, all apps on the current computer are assigned a single instrumentation key.
+In this example, all apps on the current computer are provided with a single instrumentation key.
 
 ```powershell
 Enable-ApplicationInsightsMonitoring -InstrumentationKey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -431,30 +428,6 @@ Enable-ApplicationInsightsMonitoring -InstrumentationKeyMap `
         ` @{MachineFilter='.*';AppFilter='.*';InstrumentationSettings=@{InstrumentationKey='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxdefault'}})
 ```
 
-> [!NOTE]
-> The naming of AppFilter in this context can be confusing, `AppFilter` sets the application name regex filter (HostingEnvironment.SiteName in the case of .NET on IIS). `VirtualPathFilter` sets the virtual path regex filter (HostingEnvironment.ApplicationVirtualPath in the case of .NET on IIS). To instrument a single app you would use the VirtualPathFilter as follows: `Enable-ApplicationInsightsMonitoring -InstrumentationKeyMap @(@{VirtualPathFilter="^/MyAppName$"; InstrumentationSettings=@{InstrumentationKey='<your ikey>'}})`
-
-#### Parameters
-
-##### -ConnectionString
-
-**Required.** Use this parameter to supply a single connection string for use by all apps on the target computer.
-
-##### -InstrumentationKey
-
-**Required.** Use this parameter to supply a single instrumentation key for use by all apps on the target computer.
-
-##### -InstrumentationKeyMap
-
-**Required.** Use this parameter to supply multiple instrumentation keys and a mapping of the instrumentation keys used by each app.
-You can create a single installation script for several computers by setting `MachineFilter`.
-
-> [!IMPORTANT]
-> Apps matches against rules in the order that the rules are provided. So you should specify the most specific rules first and the most generic rules last.
-
-###### Schema
-
-`@(@{MachineFilter='.*';AppFilter='.*';InstrumentationSettings=@{InstrumentationKey='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'}})`
 
 * **MachineFilter** is a required C# regex of the computer or VM name.
     * '.*' matches all
@@ -672,9 +645,9 @@ In this example:
 
 * **Machine Identifier** is an anonymous ID used to uniquely identify your server. If you create a support request, we need this ID to find logs for your server.
 * **Default Web Site** is Stopped in IIS
-* **DemoWebApp111** has been started in IIS, but hasn't received any requests. This report shows that there's no running process (ProcessId: not found).
+* IIS shows **DemoWebApp111** as started, but the app doesn't receive any requests. The report shows no running process (ProcessId: not found).
 * **DemoWebApp222** is running and is being monitored (Instrumented: true). Based on the user configuration, Instrumentation Key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx123 was matched for this site.
-* **DemoWebApp333** has been manually instrumented using the Application Insights SDK. Application Insights Agent detected the SDK and doesn't monitor this site.
+* **DemoWebApp333** is manually instrumented using the Application Insights SDK. Application Insights Agent detects the SDK and doesn't monitor this site.
 
 * The presence of `AppAlreadyInstrumented : true` signifies that the Application Insights agent identified a [conflicting dll](/troubleshoot/azure/azure-monitor/app-insights/agent/status-monitor-v2-troubleshoot) loaded in the web application, assumed that the web app is manually instrumented, and the agent has backed-off and isn't instrumenting this process.
 
@@ -791,9 +764,9 @@ It downloads external tools to determine if the necessary DLLs are loaded into t
 
 If this process fails for any reason, you can run these commands manually:
 
-* iisreset.exe /status
-* [handle64.exe](/sysinternals/downloads/handle) -p w3wp | findstr /I "InstrumentationEngine AI. ApplicationInsights"
-* [listdlls64.exe](/sysinternals/downloads/listdlls) w3wp | findstr /I "InstrumentationEngine AI ApplicationInsights"
+* ```iisreset.exe /status```
+* ```[handle64.exe](/sysinternals/downloads/handle) -p w3wp | findstr /I "InstrumentationEngine AI. ApplicationInsights"```
+* ```[listdlls64.exe](/sysinternals/downloads/listdlls) w3wp | findstr /I "InstrumentationEngine AI ApplicationInsights"```
 
 ##### -Force
 
@@ -810,7 +783,7 @@ Restart IIS for your changes to take effect.
 #### Examples
 
 ##### Example with a single instrumentation key
-In this example, all apps on the current computer are assigned a single instrumentation key.
+In this example, all apps on the current computer are provided with a single instrumentation key.
 
 ```powershell
 Enable-ApplicationInsightsMonitoring -InstrumentationKey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -847,190 +820,12 @@ Enable-ApplicationInsightsMonitoring -InstrumentationKeyMap `
 You can create a single installation script for several computers by setting `MachineFilter`.
 
 > [!IMPORTANT]
-> Apps matches against rules in the order that the rules are provided. So you should specify the most specific rules first and the most generic rules last.
+> Apps match rules in the order you provide them. Specify the most specific rules first and the most generic rules last.
 
-###### Schema
-`@(@{MachineFilter='.*';AppFilter='.*';InstrumentationKey='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'})`
+[!INCLUDE [instrumentationkeymap](includes/instrumentationkeymap.md)]
 
-* **MachineFilter** is a required C# regex of the computer or VM name.
-    * '.*' matches all
-    * 'ComputerName' matches only computers with the specified name.
-* **AppFilter** is a required C# regex of the computer or VM name.
-    * '.*' matches all
-    * 'ApplicationName' matches only IIS apps with the specified name.
-* **InstrumentationKey** is required to enable monitoring of the apps that match the preceding two filters.
-    * Leave this value null if you want to define rules to exclude monitoring.
+**This cmdlet's map shape**
 
-##### -Verbose
-
-**Common parameter.** Use this switch to display detailed logs.
-
-#### Output
-
-By default, no output.
-
-###### Example verbose output from setting the config file via -InstrumentationKey
-
-```
-VERBOSE: Operation: InstallWithIkey
-VERBOSE: InstrumentationKeyMap parsed:
-Filters:
-0)InstrumentationKey: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx AppFilter: .* MachineFilter: .*
-VERBOSE: set config file
-VERBOSE: Config File Path:
-C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\applicationInsights.ikey.config
-```
-
-###### Example verbose output from setting the config file via -InstrumentationKeyMap
-
-```
-VERBOSE: Operation: InstallWithIkeyMap
-VERBOSE: InstrumentationKeyMap parsed:
-Filters:
-0)InstrumentationKey: AppFilter: WebAppExclude MachineFilter: .*
-1)InstrumentationKey: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx2 AppFilter: WebAppTwo MachineFilter: .*
-2)InstrumentationKey: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxdefault AppFilter: .* MachineFilter: .*
-VERBOSE: set config file
-VERBOSE: Config File Path:
-C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\applicationInsights.ikey.config
-```
-
-### Start-ApplicationInsightsMonitoringTrace
-
-Collects [ETW Events](/windows/desktop/etw/event-tracing-portal) from the codeless attach runtime.
-This cmdlet is an alternative to running [PerfView](https://github.com/microsoft/perfview).
-
-Events are collected, printed to the console in real-time, and saved to an ETL file. You can open the output ETL file with [PerfView](https://github.com/microsoft/perfview) for further investigation.
-
-This cmdlet runs until it reaches the timeout duration (default 5 minutes) or is stopped manually (`Ctrl + C`).
-
-#### Examples
-
-##### How to collect events
-
-Normally we would ask that you collect events to investigate why your application isn't being instrumented.
-
-The codeless attach runtime emits ETW events when IIS starts up and when your application starts up.
-
-To collect these events:
-
-1. In a cmd console with admin privileges, execute `iisreset /stop` to stop IIS and all web apps.
-1. Execute this cmdlet
-1. In a cmd console with admin privileges, execute `iisreset /start` to start IIS.
-1. Try to browse to your app.
-1. After your app finishes loading, you can manually stop it (`Ctrl + C`) or wait for the timeout.
-
-##### What events to collect
-
-You have three options when collecting events:
-1. Use the switch `-CollectSdkEvents` to collect events emitted from the Application Insights SDK.
-1. Use the switch `-CollectRedfieldEvents` to collect events emitted by Application Insights Agent and the Redfield Runtime. These logs are helpful when diagnosing IIS and application startup.
-1. Use both switches to collect both event types.
-1. By default, if no switch is specified both event types are collected.
-
-#### Parameters
-
-##### -MaxDurationInMinutes
-
-**Optional.** Use this parameter to set how long this script should collect events. Default is 5 minutes.
-
-##### -LogDirectory
-
-**Optional.** Use this switch to set the output directory of the ETL file.
-By default, this file is created in the PowerShell Modules directory.
-The full path is displayed during script execution.
-
-##### -CollectSdkEvents
-
-**Optional.** Use this switch to collect Application Insights SDK events.
-
-##### -CollectRedfieldEvents
-
-**Optional.** Use this switch to collect events from Application Insights Agent and the Redfield runtime.
-
-##### -Verbose
-
-**Common parameter.** Use this switch to output detailed logs.
-
-#### Output
-
-##### Example of application startup logs
-
-```powershell
-Start-ApplicationInsightsMonitoringTrace -CollectRedfieldEvents
-Starting...
-Log File: C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\logs\20190627_144217_ApplicationInsights_ETW_Trace.etl
-Tracing enabled, waiting for events.
-Tracing will timeout in 5 minutes. Press CTRL+C to cancel.
-
-2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Resolved variables to: MicrosoftAppInsights_ManagedHttpModulePath='C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.RedfieldIISModule.dll', MicrosoftAppInsights_ManagedHttpModuleType='Microsoft.ApplicationInsights.RedfieldIISModule.RedfieldIISModule'
-2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Resolved variables to: MicrosoftDiagnosticServices_ManagedHttpModulePath2='', MicrosoftDiagnosticServices_ManagedHttpModuleType2=''
-2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Environment variable 'MicrosoftDiagnosticServices_ManagedHttpModulePath2' or 'MicrosoftDiagnosticServices_ManagedHttpModuleType2' is null, skipping managed dll loading
-2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace MulticastHttpModule.constructor, success, 70 ms
-2:42:31 PM EVENT: Microsoft-ApplicationInsights-RedfieldIISModule Trace Current assembly 'Microsoft.ApplicationInsights.RedfieldIISModule, Version=2.8.18.27202, Culture=neutral, PublicKeyToken=f23a46de0be5d6f3' location 'C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.RedfieldIISModule.dll'
-2:42:31 PM EVENT: Microsoft-ApplicationInsights-RedfieldIISModule Trace Matched filter '.*'~'STATUSMONITORTE', '.*'~'DemoWithSql'
-2:42:31 PM EVENT: Microsoft-ApplicationInsights-RedfieldIISModule Trace Lightup assembly calculated path: 'C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.Redfield.Lightup.dll'
-2:42:31 PM EVENT: Microsoft-ApplicationInsights-FrameworkLightup Trace Loaded applicationInsights.config from assembly's resource Microsoft.ApplicationInsights.Redfield.Lightup, Version=2.8.18.27202, Culture=neutral, PublicKeyToken=f23a46de0be5d6f3/Microsoft.ApplicationInsights.Redfield.Lightup.ApplicationInsights-recommended.config
-2:42:34 PM EVENT: Microsoft-ApplicationInsights-FrameworkLightup Trace Successfully attached ApplicationInsights SDK
-2:42:34 PM EVENT: Microsoft-ApplicationInsights-RedfieldIISModule Trace RedfieldIISModule.LoadLightupAssemblyAndGetLightupHttpModuleClass, success, 2687 ms
-2:42:34 PM EVENT: Microsoft-ApplicationInsights-RedfieldIISModule Trace RedfieldIISModule.CreateAndInitializeApplicationInsightsHttpModules(lightupHttpModuleClass), success
-2:42:34 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace ManagedHttpModuleHelper, multicastHttpModule.Init() success, 3288 ms
-2:42:35 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Resolved variables to: MicrosoftAppInsights_ManagedHttpModulePath='C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.RedfieldIISModule.dll', MicrosoftAppInsights_ManagedHttpModuleType='Microsoft.ApplicationInsights.RedfieldIISModule.RedfieldIISModule'
-2:42:35 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Resolved variables to: MicrosoftDiagnosticServices_ManagedHttpModulePath2='', MicrosoftDiagnosticServices_ManagedHttpModuleType2=''
-2:42:35 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Environment variable 'MicrosoftDiagnosticServices_ManagedHttpModulePath2' or 'MicrosoftDiagnosticServices_ManagedHttpModuleType2' is null, skipping managed dll loading
-2:42:35 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace MulticastHttpModule.constructor, success, 0 ms
-2:42:35 PM EVENT: Microsoft-ApplicationInsights-RedfieldIISModule Trace RedfieldIISModule.CreateAndInitializeApplicationInsightsHttpModules(lightupHttpModuleClass), success
-2:42:35 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace ManagedHttpModuleHelper, multicastHttpModule.Init() success, 0 ms
-Timeout Reached. Stopping...
-```
-
-### [Release notes](#tab/release-notes)
-
-The release note updates are listed here.
-
-### 2.0.0
-
-* Updated the Application Insights .NET/.NET Core SDK to `2.21.0-redfield`
-
-### 2.0.0-beta3
-
-* Updated the Application Insights .NET/.NET Core SDK to `2.20.1-redfield`
-* Enabled SQL query collection
-
-### 2.0.0-beta2
-
-Updated the Application Insights .NET/.NET Core SDK to `2.18.1-redfield`
-
-### 2.0.0-beta1
-
-Added the ASP.NET Core autoinstrumentation feature
-
----
-
-## Troubleshooting
-
-See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/status-monitor-v2-troubleshoot).
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
-
-## Next steps
-
-Review frequently asked questions (FAQ): 
-* [Deploying Application Insights Agent for on-premises servers FAQ](application-insights-faq.yml#deploying-application-insights-agent-for-on-premises-servers)
-
-View your telemetry:
-
-* [Explore metrics](../essentials/metrics-charts.md) to monitor performance and usage.
-* [Search events and logs](./transaction-search-and-diagnostics.md?tabs=transaction-search) to diagnose problems.
-* [Use Log Analytics](../logs/log-query-overview.md) for more advanced queries.
-* [Create dashboards](./overview-dashboard.md).
-
-Add more telemetry:
-
-* [Availability overview](availability-overview.md)
-* [Add web client telemetry](./javascript.md) to see exceptions from webpage code and to enable trace calls.
-* [Add the Application Insights SDK to your code](./asp-net.md) so that you can insert trace and log calls.
-
-Do more with Application Insights Agent:
-
-* [Troubleshoot](status-monitor-v2-troubleshoot.md) Application Insights Agent.
+- Supply `-InstrumentationKeyMap` as a PowerShell array of hashtables.
+- For this cmdlet, set the target resource per rule with `InstrumentationSettings=@{ InstrumentationKey = '<ikey>' }`.
+- If you want a single resource for all apps on the machine, use `-ConnectionString` or `-InstrumentationKey` instead.
