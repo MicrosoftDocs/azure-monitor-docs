@@ -35,7 +35,7 @@ Azure Monitor managed service for Prometheus collects data from AKS and Azure Ar
 
 To enable Azure Monitor managed service for Prometheus, you must create an [Azure Monitor workspace](azure-monitor-workspace-overview.md) to store the metrics. You can then onboard services that collect Prometheus metrics:
 
-* To collect Prometheus metrics from your Kubernetes cluster, see [Enable Prometheus and Grafana](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
+* To collect Prometheus metrics from your Kubernetes cluster, see [Enable Prometheus and Grafana](../containers/kubernetes-monitoring-enable.md).
 * To configure remote write to collect data from a self-managed Prometheus server, see [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md).
 
 To enable managed Prometheus for Microsoft Azure air-gapped clouds, contact support.

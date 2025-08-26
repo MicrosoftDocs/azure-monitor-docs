@@ -8,7 +8,7 @@ ms.reviewer: aul
 
 # Default Prometheus metrics configuration in Azure Monitor
 
-This article lists the default targets, dashboards, and recording rules when you [configure Prometheus metrics to be scraped](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes.
+This article lists the default targets, dashboards, and recording rules when you [configure Prometheus metrics to be scraped](kubernetes-monitoring-enable.md) from an Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes.
 
 ## Minimal ingestion profile
 `Minimal ingestion profile` is a setting that helps reduce ingestion volume of metrics, as only metrics used by default dashboards, default recording rules & default alerts are collected. For addon based collection, `Minimal ingestion profile` setting is enabled by default. You can modify collection to enable collecting more metrics, as specified below.
@@ -275,7 +275,7 @@ The following default dashboards are automatically provisioned and configured by
 
 ## Recording rules
 
-The following default recording rules are automatically configured by Azure Monitor managed service for Prometheus when you [configure Prometheus metrics to be scraped from an Azure Kubernetes Service (AKS) cluster](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana). Source code for these recording rules can be found in [this GitHub repository](https://aka.ms/azureprometheus-mixins). These are the standard open source recording rules used in the dashboards above.
+The following default recording rules are automatically configured by Azure Monitor managed service for Prometheus when you [configure Prometheus metrics to be scraped from an Azure Kubernetes Service (AKS) cluster](kubernetes-monitoring-enable.md). Source code for these recording rules can be found in [this GitHub repository](https://aka.ms/azureprometheus-mixins). These are the standard open source recording rules used in the dashboards above.
 
 - `cluster:node_cpu:ratio_rate5m`
 - `namespace_cpu:kube_pod_container_resource_requests:sum`

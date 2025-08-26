@@ -8,7 +8,7 @@ ms.reviewer: aul
 
 # Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus
 
-This article provides instructions on customizing metrics scraping for a Kubernetes cluster with the [metrics addon](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) in Azure Monitor.
+This article provides instructions on customizing metrics scraping for a Kubernetes cluster with the metrics addon in Azure Monitor.
 
 ## Configmaps
 

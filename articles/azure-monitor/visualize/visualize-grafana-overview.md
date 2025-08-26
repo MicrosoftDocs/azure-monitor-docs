@@ -63,7 +63,7 @@ The following is a list of related managed Grafana documentation. For general in
 
 ### Containers
 - [Monitor Kubernetes](../containers/monitor-kubernetes.md)
-- [Enable monitoring for Kubernetes clusters, Enable Prometheus, and Grafana](../containers/kubernetes-monitoring-enable.md?tabs=cli#enable-prometheus-and-grafana)
+- [Enable monitoring for Kubernetes clusters, Enable Prometheus, and Grafana](../containers/kubernetes-monitoring-enable.md?tabs=cli)
 - [Default Grafana dashboard configuration for Prometheus](../containers/prometheus-metrics-scrape-default.md#dashboards)
 - [Container insights log schema, Install Grafana dashboard](../containers/container-insights-logs-schema.md#install-grafana-dashboard)
 - Importing specific Grafana dashboards

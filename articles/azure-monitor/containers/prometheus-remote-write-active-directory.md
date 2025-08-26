@@ -182,7 +182,7 @@ For verification and troubleshooting information, see [Troubleshooting remote wr
 
 ## Next steps
 
-- [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+- [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md)
 - [Learn more about Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md)
 - [Remote write in Azure Monitor managed service for Prometheus](prometheus-remote-write.md)
 - [Send Prometheus data to Azure Monitor by using managed identity authentication](./prometheus-remote-write-managed-identity.md)

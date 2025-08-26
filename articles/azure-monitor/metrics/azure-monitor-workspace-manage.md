@@ -83,7 +83,7 @@ resource workspace 'microsoft.monitor/accounts@2021-06-03-preview' = {
 
 When you create an Azure Monitor workspace, a new resource group is created. The resource group name has the following format: `MA_<azure-monitor-workspace-name>_<location>_managed`, where the tokenized elements are lowercased. The resource group contains both a data collection endpoint and a data collection rule with the same name as the workspace. The resource group and its resources are automatically deleted when you delete the workspace.
  
-To connect your Azure Monitor managed service for Prometheus to your Azure Monitor workspace, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+To connect your Azure Monitor managed service for Prometheus to your Azure Monitor workspace, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md)
 
 
 ## Delete an Azure Monitor workspace
@@ -163,7 +163,7 @@ Output
 
 ### [Resource Manager](#tab/resource-manager)
 
-To set up an Azure monitor workspace as a data source for Grafana using a Resource Manager template, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md?tabs=arm#enable-prometheus-and-grafana).
+To set up an Azure monitor workspace as a data source for Grafana using a Resource Manager template, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md?tabs=arm).
 
 ---
 

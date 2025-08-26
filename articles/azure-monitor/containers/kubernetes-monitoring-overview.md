@@ -28,7 +28,7 @@ Some of these features require configuration while others are enabled automatica
 | [Platform metrics]() | Metrics automatically collected for the cluster at no cost. | No |
 | [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) | Collect and analyze metrics for cluster nodes, workloads, and containers.  | Yes |
 | Container log collection | Collect logs from containers and workloads. | Yes |
-| Control plane log collection | Control plane logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. Create a [diagnostic setting](../platform/diagnostic-settings-overview.md) to collect these logs. | Yes |
+| Control plane log collection | Control plane logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. Create a [diagnostic setting](../platform/diagnostic-settings.md) to collect these logs. | Yes |
 | [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) | Visualize metrics and logs with Grafana dashboards at no additional cost. | No |
 
 
