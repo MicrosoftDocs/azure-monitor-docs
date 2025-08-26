@@ -4792,7 +4792,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/continuous-monitoring.md",
-   "redirect_url": "/azure/azure-monitor/app/release-and-work-item-insights?tabs=continuous-monitoring",
+   "redirect_url": "/previous-versions/azure/azure-monitor/app/continuous-monitoring",
    "redirect_document_id": false
   },
   {
@@ -7964,9 +7964,14 @@
    "redirect_url": "/previous-versions/azure/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings",
    "redirect_document_id": false
   },
-    {
+  {
    "source_path": "articles/azure-monitor/app/release-and-work-item-insights.md",
-   "redirect_url": "/azure/azure-monitor/app/annotations",
+   "redirect_url": "/azure/azure-monitor/app/work-item-integration",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/annotations.md",
+   "redirect_url": "/azure/azure-monitor/app/failures-performance-transactions#release-annotations",
    "redirect_document_id": false
   },
   {
@@ -8557,6 +8562,11 @@
   {
    "source_path": "articles/azure-monitor/containers/container-insights-data-collection-configure.md",
    "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-enable",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/configuration-with-applicationinsights-config.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
    "redirect_document_id": false
   }
  ]

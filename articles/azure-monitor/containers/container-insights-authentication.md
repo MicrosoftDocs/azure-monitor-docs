@@ -16,6 +16,45 @@ This article describes how to migrate to managed identity authentication if you 
 > [!IMPORTANT]
 > If you have a cluster with legacy authentication and Log Analytics workspace keys are rotated, then monitoring data will stop flowing to the Log Analytics workspace. You must disable and then reenable the Container insights addon to get monitoring data to start flowing again with the new rotated workspace keys.  You should migrate to Container insights managed identity authentication which doesn't use Log Analytics workspace keys.
 
+## Find clusters using Legacy authentication
+
+The following queries lists the clusters using legacy authentication in Container Insights. To run the queries, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal).
+
+**Query for  AKS clusters**   
+
+```AzureResourceGraph
+resources        
+| where type =~ 'Microsoft.ContainerService/managedClusters'       
+| project id, name, aksproperties = parse_json(tolower(properties)), location, identity        
+| extend isEnabled = aksproperties.addonprofiles.omsagent.enabled         
+| extend workspaceResourceId = iif(isEnabled == true, aksproperties.addonprofiles.omsagent.config.loganalyticsworkspaceresourceid, '')        
+| extend useAADAuth  = aksproperties.addonprofiles.omsagent.config.useaadauth  
+| where isEnabled =~ "true" and useAADAuth != true 
+| extend parts = split(tostring(id), "/")
+| extend subscriptionId = parts[2], AKSClusterName = parts[-1], resourceGroupName = parts[4] 
+| project AKSClusterName, resourceGroupName, subscriptionId, location, AKSClusterId = tolower(id), workspaceResourceId 
+
+```
+**Query for on-prem clusters i.e. clusters using Arc.**
+
+```AzureResourceGraph
+KubernetesConfigurationResources          
+| where type =~ "Microsoft.KubernetesConfiguration/extensions"           
+| extend properties = parse_json(tolower(properties))           
+| extend extensionType = properties.extensiontype            
+| where extensionType in~ ('microsoft.azuremonitor.containers')           
+| extend omsagentUseAADAuth = tostring(properties.configurationsettings.["omsagent.useaadauth"])           
+| extend amalogsUseAADAuth = tostring(properties.configurationsettings.["amalogs.useaadauth"])            
+| extend useAADAuth = iff(omsagentUseAADAuth == 'true' or amalogsUseAADAuth == 'true', 'true', 'false')            
+| extend workspaceResourceId = tostring(properties.configurationsettings.loganalyticsworkspaceresourceid)            
+| extend resourceId = tolower(split(id, "/providers/Microsoft.KubernetesConfiguration")[0]) 
+| where useAADAuth != "true"
+| extend parts = split(tostring(resourceId), "/")
+| extend subscriptionId = parts[2], ClusterName = parts[-1], ResourceGroupName = parts[4] 
+| project ClusterName, ResourceGroupName,resourceId, subscriptionId, workspaceResourceId
+
+```
+
 ## Migrate to managed identity authentication
 
 If you enabled Container insights before managed identity authentication was available, you can use the following methods to migrate your clusters.
@@ -27,6 +66,8 @@ You can migrate to Managed Identity authentication from the *Monitor settings* p
 :::image type="content" source="./media/container-insights-authentication/monitor-settings.png" alt-text="Screenshot that shows the settings panel." lightbox="media/container-insights-authentication/monitor-settings.png":::
 
 If you don't see the *Use managed identity* option, you are using an SPN cluster. In that case, you must use command line tools to migrate. See other tabs for migration instructions and templates.
+
+
 
 ## [Azure CLI](#tab/cli)
 
@@ -87,3 +128,4 @@ If you require legacy authentication, see [Enable Container insights](kubernetes
 
 ## Next steps
 If you experience issues when you upgrade the agent, review the [troubleshooting guide](container-insights-troubleshoot.md) for support.
+
