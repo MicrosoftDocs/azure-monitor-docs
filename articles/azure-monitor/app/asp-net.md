@@ -975,7 +975,7 @@ In addition to the preceding platform-specific steps, you *must also explicitly 
 
 # [ASP.NET Core](#tab/core)
 
-For ASP.NET Core applications, It's now required to opt in to SQL Text collection by using:
+For ASP.NET Core applications, It's required to opt in to SQL Text collection by using:
 
 ```csharp
 services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) => { module. EnableSqlCommandTextInstrumentation = true; });
@@ -1514,7 +1514,7 @@ The `TrackMetric()` method sends raw telemetry denoting a metric. It's inefficie
 
 Unlike `TrackMetric()`, `GetMetric()` handles local preaggregation for you and then only submits an aggregated summary metric at a fixed interval of one minute. If you need to closely monitor some custom metric at the second or even millisecond level, you can do so while only incurring the storage and network traffic cost of only monitoring every minute. This behavior also greatly reduces the risk of throttling occurring because the total number of telemetry items that need to be sent for an aggregated metric are greatly reduced.
 
-In Application Insights, custom metrics collected via `TrackMetric()` and `GetMetric()` aren't subject to [sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api). Sampling important metrics can lead to scenarios where alerting you might have built around those metrics could become unreliable. By never sampling your custom metrics, you can generally be confident that when your alert thresholds are breached, an alert fires. Because custom metrics aren't sampled, there are some potential concerns.
+In Application Insights, custom metrics collected via `TrackMetric()` and `GetMetric()` aren't subject to [sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api). Sampling important metrics can lead to scenarios where alerts built around those metrics become unreliable. By never sampling your custom metrics, you can generally be confident that when your alert thresholds are breached, an alert fires. Because custom metrics aren't sampled, there are some potential concerns.
 
 Trend tracking in a metric every second, or at an even more granular interval, can result in:
 
@@ -1829,7 +1829,7 @@ The Application Insights .NET SDK consists of many NuGet packages. The [core pac
 
 The configuration file is named `ApplicationInsights.config` or `ApplicationInsights.xml`. The name depends on the type of your application. It's automatically added to your project when you [install most versions of the SDK](app-insights-overview.md).
 
-By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. When it's compiled, it's copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server](application-insights-asp-net-agent.md).
+By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. After compiling, it gets copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server](application-insights-asp-net-agent.md).
 
 > [!IMPORTANT]
 > The configuration file is ignored if the [extension for Azure websites](codeless-app-service.md) or the [extension for Azure VMs and virtual machine scale sets](azure-vm-vmss-apps.md) is used.
@@ -1971,9 +1971,9 @@ TelemetryConfiguration.Active.TelemetryChannel = serverTelemetryChannel;
 
 #### Operational details of ServerTelemetryChannel
 
-`ServerTelemetryChannel` stores arriving items in an in-memory buffer. The items are serialized, compressed, and stored into a `Transmission` instance once every 30 seconds, or when 500 items have been buffered. A single `Transmission` instance contains up to 500 items and represents a batch of telemetry that's sent over a single HTTPS call to the Application Insights service.
+`ServerTelemetryChannel` stores arriving items in an in-memory buffer. The items are serialized, compressed, and stored into a `Transmission` instance once every 30 seconds, or when 500 items are buffered. A single `Transmission` instance contains up to 500 items and represents a batch of telemetry that's sent over a single HTTPS call to the Application Insights service.
 
-By default, a maximum of 10 `Transmission` instances can be sent in parallel. If telemetry is arriving at faster rates, or if the network or the Application Insights back end is slow, `Transmission` instances are stored in memory. The default capacity of this in-memory `Transmission` buffer is 5 MB. When the in-memory capacity has been exceeded, `Transmission` instances are stored on local disk up to a limit of 50 MB.
+By default, a maximum of 10 `Transmission` instances can be sent in parallel. If telemetry is arriving at faster rates, or if the network or the Application Insights back end is slow, `Transmission` instances are stored in memory. The default capacity of this in-memory `Transmission` buffer is 5 MB. When the in-memory capacity is exceeded, `Transmission` instances are stored on local disk up to a limit of 50 MB.
 
 `Transmission` instances are stored on local disk also when there are network problems. Only those items that are stored on a local disk survive an application crash. They're sent whenever the application starts again. If network issues persist, `ServerTelemetryChannel` uses an exponential backoff logic ranging from 10 seconds to 1 hour before retrying to send telemetry.
 
@@ -2395,7 +2395,7 @@ To get a new connection string, [create a new resource in the Application Insigh
 
 # [ASP.NET Core](#tab/core)
 
-In ASP.NET Core, configure this in `Program.cs` during application startup using the `TelemetryConfiguratio`n from the dependency injection (DI) container:
+In ASP.NET Core, configure the connection string in `Program.cs` during application startup using the `TelemetryConfiguration` from the dependency injection (DI) container:
 
 ```csharp
 using Microsoft.ApplicationInsights.Extensibility;
@@ -2452,7 +2452,7 @@ We provide two implementations in the [Microsoft.ApplicationInsights](https://ww
 
 This wrapper is for our Profile API. It throttles requests and cache results. This provider is automatically included when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
 
-The class exposes an optional property called `ProfileQueryEndpoint`. By default, this is set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`.
+The class exposes an optional property called `ProfileQueryEndpoint`. By default, it's set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`.
 
 If you need to configure a proxy, we recommend proxying the base address and ensuring the path includes `/api/profiles/{0}/appId`. At runtime, `{0}` is replaced with the instrumentation key for each request.
 
