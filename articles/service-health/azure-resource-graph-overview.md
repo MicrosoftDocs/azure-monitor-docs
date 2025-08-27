@@ -7,7 +7,7 @@ ms.date: 08/27/2025
 ---
 # Azure Resource Graph tables overview
 
-Azure Resource Graph (ARG) provides a way to query Azure resources across subscriptions using Kusto Query Language (KQL). 
+Azure Resource Graph (ARG) provides a way for you to query Azure resources across your subscriptions using Kusto Query Language (KQL). 
 This article gives a detailed breakdown of the fields commonly found in ARG tables, especially the fields that are relevant to Azure Service Health and governance scenarios.
 
 Use the Service Health table to query:
@@ -20,10 +20,10 @@ For more information on the HealthResources table, see [VM availability informat
  
 
 
-|         |         |Table                                                       |Type of value in the table  | Description |
-|---------|---------|------------------------------------------------------------------|---------|-----|
-|Service Health     | Service Health Event<br>Service Health Impacted Resources | ServiceHealthResources<br>ServiceHealthResources  | microsoft.resourcehealth/events<br>microsoft.resourcehealth/events/impactedresources  | Service Health events such as outages, planned maintenance, or other incidents.<br>The specific Azure resources affected by those events.|
-|Resource Health    | Resource Health (only virtual machines)        | HealthResources        | microsoft.resourcehealth/availabilitystatuses, microsoft.resourcehealth/resourceannotations  | VM health monitoring, diagnostics|
+| Query       |Tables                                                  |Value type                  | Information |
+|---------|------------------------------------------------------------|----------------------------|-------------|
+| Service Health Event<br>Service Health Impacted Resources | ServiceHealthResources<br>ServiceHealthResources  | microsoft.resourcehealth/events<br>microsoft.resourcehealth/events/impactedresources  | Service Health events such as outages, planned maintenance, or other incidents.<br>The specific Azure resources affected by those events.|
+| Resource Health (only virtual machines)        | HealthResources        | microsoft.resourcehealth/availabilitystatuses, microsoft.resourcehealth/resourceannotations  | VM health monitoring, diagnostics|
 
 
 This table shows the core fields in the ARG table for the Service Health, Impacted Resources, and Resource Health queries that represent the metadata about Azure resources.
@@ -52,7 +52,7 @@ This table shows the core fields in the ARG table for the Service Health, Impact
 
 ## Service Health
 
-Through the **Servicehealthresources** query, the data results contain information about the resources under your subscription.<br> These notifications are a subclass of activity log events and can also be found in the activity log. <br>Service health notifications can be informational or actionable, depending on the class (EventType and EventSubtype).
+Through the **Servicehealthresources** query, the data results contain information about the resources under your subscription.<br> These notifications are a subclass of activity log events and can also be found in the [Azure activity log](/azure-monitor/essentials/platform-logs-overview). <br>Service health notifications can be informational or actionable, depending on the class (EventType and EventSubtype).
 
 ### Servicehealthresources properties
 
@@ -62,7 +62,7 @@ Through the **Servicehealthresources** query, the data results contain informati
 The values in the `properties` field are used for querying Azure Service Health events.
 
 The structure is dynamic and is populated based on the `EventType` and `EventSubType`.<br>
-There are some common properties that exist across all the different event types, but everything under `properties` should be considered dynamic based on the event type. <br>
+There are some common properties that exist across all the different event types, but everything under `properties` should be considered dynamic based on the event type.<br>
 
 These fields are used together to track, filter, and analyze service health events across your Azure environment. <br>For example, you can query for all `Critical ServiceIssue` events in a specific location that are still `Active`.
 
@@ -108,9 +108,9 @@ Access control should be utilized to ensure only users who need to see the data 
 
 - **Governance & Monitoring**: Combine `EventType`, `Severity`, and `Status` that monitors ongoing issues and assess their impact.
 - **Filtering & Alerting**: Use `SubscriptionId`, and `Impact` that filters events relevant to specific teams or workloads.
-- **Historical Analysis**: Use `ImpactStartTime` and `impactMitigationTime` to understand event timelines and Service Level Agreement (SLA) implications.
+- **Historical Analysis**: Use `ImpactStartTime` and `ImpactMitigationTime` to understand event timelines and Service Level Agreement (SLA) implications.
 - **REST API Integration**: These fields are exposed through the [Azure Service Health REST API](/events/list-by-subscription-id), allowing programmatic access and automation.
-- **Filter and Scope Events**: `SubscriptionId`, `impact`, and `PlatformInitiated` help narrow down which resources are affected and how.
+- **Filter and Scope Events**: `SubscriptionId`, `Impact`, and `PlatformInitiated` help narrow down which resources are affected and how.
 - **Track and Analyze**: `LastUpdateTime`, `Header`, and `EventTags` support monitoring and historical analysis.
 - **Support Financial and Compliance Workflows**: `BillingId` and `CurrencyType` are essential for billing-related events and audits.
 
