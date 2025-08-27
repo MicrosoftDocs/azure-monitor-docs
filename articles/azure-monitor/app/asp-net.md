@@ -941,13 +941,7 @@ Alternatively, `TelemetryClient` provides the extension methods `StartOperation`
 
 #### Disabling the standard dependency tracking module
 
-# [ASP.NET](#tab/net)
-
-If you want to switch off the standard dependency tracking module, remove the reference to `DependencyTrackingTelemetryModule` in [ApplicationInsights.config](configuration-with-applicationinsights-config.md) for ASP.NET applications.
-
-# [ASP.NET Core](#tab/core)
-
-For ASP.NET Core applications, follow the instructions in [Application Insights for ASP.NET Core applications](#configure-or-remove-default-telemetrymodules).
+For more information, see [telemetry modules](#telemetry-modules).
 
 ---
 
@@ -1510,7 +1504,7 @@ The Azure Monitor Application Insights .NET and .NET Core SDKs have two differen
 * The `TrackMetric()` method, which lacks preaggregation.
 * The `GetMetric()` method, which has preaggregation.
 
-We recommend to use aggregation, so `TrackMetric()` *is no longer the preferred method of collecting custom metrics*. This article walks you through using the `GetMetric()` method and some of the rationale behind how it works.
+We recommend using aggregation, so `TrackMetric()` *is no longer the preferred method of collecting custom metrics*. This article walks you through using the `GetMetric()` method and some of the rationale behind how it works.
 
 <br>
 <details>
@@ -1528,7 +1522,7 @@ Trend tracking in a metric every second, or at an even more granular interval, c
 * **Increased network traffic or performance overhead.** In some scenarios, this overhead could have both a monetary and application performance cost.
 * **Risk of ingestion throttling.** Azure Monitor drops ("throttles") data points when your app sends a high rate of telemetry in a short time interval.
 
-Throttling is a concern because it can lead to missed alerts. The condition to trigger an alert could occur locally and then be dropped at the ingestion endpoint because of too much data being sent. We don't recommend using `TrackMetric()` for .NET and .NET Core unless you've implemented your own local aggregation logic. If you're trying to track every instance an event occurs over a given time period, you might find that [`TrackEvent()`](api-custom-events-metrics.md#trackevent) is a better fit. Keep in mind that unlike custom metrics, custom events are subject to sampling. You can still use `TrackMetric()` even without writing your own local preaggregation. But if you do so, be aware of the pitfalls.
+Throttling is a concern because it can lead to missed alerts. The condition to trigger an alert could occur locally and then be dropped at the ingestion endpoint because of too much data being sent. We don't recommend using `TrackMetric()` for .NET and .NET Core unless you implemented your own local aggregation logic. If you're trying to track every instance an event occurs over a given time period, you might find that [`TrackEvent()`](api-custom-events-metrics.md#trackevent) is a better fit. Keep in mind that unlike custom metrics, custom events are subject to sampling. You can still use `TrackMetric()` even without writing your own local preaggregation. But if you do so, be aware of the pitfalls.
 
 In summary, we recommend `GetMetric()` because it does preaggregation, it accumulates values from all the `Track()` calls, and sends a summary/aggregate once every minute. The `GetMetric()` method can significantly reduce the cost and performance overhead by sending fewer data points while still collecting all relevant information.
 
@@ -1578,7 +1572,7 @@ namespace WorkerService3
 }
 ```
 
-When you run the sample code, you see the `while` loop repeatedly executing with no telemetry being sent in the Visual Studio output window. A single telemetry item is sent by around the 60-second mark, which in our test looks like:
+When you run the sample code, you see the `while` loop repeatedly executing with no telemetry being sent in the Visual Studio output window. A single telemetry item is sent around the 60-second mark, which in our test looks like:
 
 ```json
 Application Insights Telemetry: {"name":"Microsoft.ApplicationInsights.Dev.00000000-0000-0000-0000-000000000000.Metric", "time":"2019-12-28T00:54:19.0000000Z",
@@ -1676,7 +1670,7 @@ The examples in the previous section show zero-dimensional metrics. Metrics can 
 
 ```
 
-Running the sample code for at least 60 seconds results in three distinct telemetry items being sent to Azure. Each item represents the aggregation of one of the three form factors. As before, you can further examine in the **Logs (Analytics)** view.
+Running the sample code for at least 60-seconds results in three distinct telemetry items being sent to Azure. Each item represents the aggregation of one of the three form factors. As before, you can further examine in the **Logs (Analytics)** view.
 
 :::image type="content" source="media/asp-net/log-analytics-multi-dimensional.png" lightbox="media/asp-net/log-analytics-multi-dimensional.png" alt-text="Screenshot that shows the Log Analytics view of multidimensional metric.":::
 
@@ -1694,10 +1688,10 @@ By default, multidimensional metrics within the metric explorer aren't turned on
 
 To enable multidimensional metrics for an Application Insights resource, select **Usage and estimated costs** > **Custom Metrics** > **Enable alerting on custom metric dimensions** > **OK**. For more information, see [Custom metrics dimensions and preaggregation](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
 
-After you've made that change and sent new multidimensional telemetry, you can select **Apply splitting**.
+After you made that change and sent new multidimensional telemetry, you can select **Apply splitting**.
 
 > [!NOTE]
-> Only newly sent metrics after the feature was turned on in the portal will have dimensions stored.
+> Only newly sent metrics after the feature was turned on in the portal have dimensions stored.
 
 :::image type="content" source="media/asp-net/apply-splitting.png" lightbox="media/asp-net/apply-splitting.png" alt-text="Screenshot that shows applying splitting.":::
 
@@ -1725,7 +1719,7 @@ If you want to alter the metric configuration, you must make alterations in the 
 
 Metrics don't use the telemetry context of the `TelemetryClient` used to access them. Using special dimension names available as constants in the `MetricDimensionNames` class is the best workaround for this limitation.
 
-Metric aggregates sent by the following `Special Operation Request Size` metric *won't* have `Context.Operation.Name` set to `Special Operation`. The `TrackMetric()` method or any other `TrackXXX()` method will have `OperationName` set correctly to `Special Operation`.
+Metric aggregates sent by the following `Special Operation Request Size` metric *don't* have `Context.Operation.Name` set to `Special Operation`. The `TrackMetric()` method or any other `TrackXXX()` method has `OperationName` set correctly to `Special Operation`.
 
 ``` csharp
         //...
@@ -1752,13 +1746,13 @@ Metric aggregates sent by the following `Special Operation Request Size` metric 
 
 In this circumstance, use the special dimension names listed in the `MetricDimensionNames` class to specify the `TelemetryContext` values.
 
-For example, when the metric aggregate resulting from the next statement is sent to the Application Insights cloud endpoint, its `Context.Operation.Name` data field will be set to `Special Operation`:
+For example, when the metric aggregate resulting from the next statement is sent to the Application Insights cloud endpoint, its `Context.Operation.Name` data field is set to `Special Operation`:
 
 ```csharp
 _telemetryClient.GetMetric("Request Size", MetricDimensionNames.TelemetryContext.Operation.Name).TrackValue(requestSize, "Special Operation");
 ```
 
-The values of this special dimension will be copied into `TelemetryContext` and won't be used as a *normal* dimension. If you want to also keep an operation dimension for normal metric exploration, you need to create a separate dimension for that purpose:
+The values of this special dimension is copied into `TelemetryContext` and isn't used as a *normal* dimension. If you want to also keep an operation dimension for normal metric exploration, you need to create a separate dimension for that purpose:
 
 ```csharp
 _telemetryClient.GetMetric("Request Size", "Operation Name", MetricDimensionNames.TelemetryContext.Operation.Name).TrackValue(requestSize, "Special Operation", "Special Operation");
@@ -1771,7 +1765,7 @@ To prevent the telemetry subsystem from accidentally using up your resources, yo
 > [!IMPORTANT]
 > Use low cardinal values for dimensions to avoid throttling.
 
- In the context of dimension and time series capping, we use `Metric.TrackValue(..)` to make sure that the limits are observed. If the limits are already reached, `Metric.TrackValue(..)` returns `False` and the value won't be tracked. Otherwise, it returns `True`. This behavior is useful if the data for a metric originates from user input.
+ In the context of dimension and time series capping, we use `Metric.TrackValue(..)` to make sure that the limits are observed. If the limits are already reached, `Metric.TrackValue(..)` returns `False` and the value isn't tracked. Otherwise, it returns `True`. This behavior is useful if the data for a metric originates from user input.
 
 The `MetricConfiguration` constructor takes some options on how to manage different series within the respective metric and an object of a class implementing `IMetricSeriesConfiguration` that specifies aggregation behavior for each individual series of the metric:
 
@@ -1822,6 +1816,8 @@ Application Insights supports collecting EventCounters with its `EventCounterCol
 * [Disable telemetry](#disable-telemetry)
 * [Telemetry initializers](#telemetry-initializers)
 * [Telemetry processor](#telemetry-processors)
+* [ApplicationId Provider](#applicationinsightsapplicationidprovider)
+* [Snapshot collection](#configure-snapshot-collection)
 * [Sampling](#sampling)
 * [Enrich and correlate over HTTP](#enrich-data-through-http)
 
@@ -1860,7 +1856,7 @@ Telemetry channels are an integral part of the [Application Insights SDKs](app-i
 
 Telemetry channels are responsible for buffering telemetry items and sending them to the Application Insights service, where they're stored for querying and analysis. A telemetry channel is any class that implements the [`Microsoft.ApplicationInsights.ITelemetryChannel`](/dotnet/api/microsoft.applicationinsights.channel.itelemetrychannel) interface.
 
-The `Send(ITelemetry item)` method of a telemetry channel is called after all telemetry initializers and telemetry processors are called. So, any items dropped by a telemetry processor won't reach the channel. The `Send()` method doesn't ordinarily send the items to the back end instantly. Typically, it buffers them in memory and sends them in batches for efficient transmission.
+The `Send(ITelemetry item)` method of a telemetry channel is called after all telemetry initializers and telemetry processors are called. So, any items dropped by a telemetry processor doesn't reach the channel. The `Send()` method doesn't ordinarily send the items to the back end instantly. Typically, it buffers them in memory and sends them in batches for efficient transmission.
 
 Avoid calling `Flush()` unless it's critical to send buffered telemetry immediately. Use it only in scenarios like application shutdown, exception handling, or when using short-lived processes such as background jobs or command-line tools. In web applications or long-running services, the SDK handles telemetry sending automatically. Calling `Flush()` unnecessarily can cause performance problems.
 
@@ -1990,9 +1986,11 @@ For the full list of configurable settings for each channel, see:
 
 Here are the most commonly used settings for `ServerTelemetryChannel`:
 
-* `MaxTransmissionBufferCapacity`: The maximum amount of memory, in bytes, used by the channel to buffer transmissions in memory. When this capacity is reached, new items are stored directly to local disk. The default value is 5 MB. Setting a higher value leads to less disk usage, but remember that items in memory will be lost if the application crashes.
-* `MaxTransmissionSenderCapacity`: The maximum number of `Transmission` instances that will be sent to Application Insights at the same time. The default value is 10. This setting can be configured to a higher number, which we recommend when a huge volume of telemetry is generated. High volume typically occurs during load testing or when sampling is turned off.
-* `StorageFolder`: The folder that's used by the channel to store items to disk as needed. In Windows, either %LOCALAPPDATA% or %TEMP% is used if no other path is specified explicitly. In environments other than Windows, you must specify a valid location or telemetry won't be stored to local disk.
+* `MaxTransmissionBufferCapacity`: The maximum amount of memory, in bytes, used by the channel to buffer transmissions in memory. When this capacity is reached, new items are stored directly to local disk. The default value is 5 MB. Setting a higher value leads to less disk usage, but remember that items in memory are lost if the application crashes.
+
+* `MaxTransmissionSenderCapacity`: The maximum number of `Transmission` instances that are sent to Application Insights at the same time. The default value is 10. This setting can be configured to a higher number, which we recommend when a huge volume of telemetry is generated. High volume typically occurs during load testing or when sampling is turned off.
+
+* `StorageFolder`: The folder that's used by the channel to store items to disk as needed. In Windows, either %LOCALAPPDATA% or %TEMP% is used if no other path is specified explicitly. In environments other than Windows, you must specify a valid location or telemetry isn't stored to local disk.
 
 #### Which channel should I use?
 
@@ -2008,7 +2006,7 @@ Use `Flush()` when:
 * You're in an exception handler and need to guarantee telemetry is delivered.
 * You're writing a short-lived process like a background job or CLI tool that exits quickly.
 
-Avoid using `Flush()` in long-running applications such as web services. The SDK automatically manages buffering and transmission. Calling `Flush()` unnecessarily can cause performance problems and won't guarantee all data is sent, especially when using `ServerTelemetryChannel`, which doesn't flush synchronously.
+Avoid using `Flush()` in long-running applications such as web services. The SDK automatically manages buffering and transmission. Calling `Flush()` unnecessarily can cause performance problems and doesn't guarantee all data is sent, especially when using `ServerTelemetryChannel`, which doesn't flush synchronously.
 
 ### Telemetry modules
 
@@ -2103,7 +2101,7 @@ Use the `TelemetryModules` section in *ApplicationInsights.config* to configure,
 
 # [ASP.NET Core](#tab/core)
 
-**Option 1: Configure telemetry modules using ConfigureTelemetryModule<T>**
+**Option 1: Configure telemetry modules using ConfigureTelemetryModule**
 
 To configure any default `TelemetryModule`, use the extension method `ConfigureTelemetryModule<T>` on `IServiceCollection`, as shown in the following example:
 
@@ -2216,7 +2214,7 @@ builder.Services.Configure<TelemetryConfiguration>(x => x.DisableTelemetry = tru
 var app = builder.Build();
 ```
 
-The preceding code sample prevents the sending of telemetry to Application Insights. It doesn't prevent any automatic collection modules from collecting telemetry. If you want to remove a particular autocollection module, see [Remove the telemetry module](#configure-or-remove-default-telemetrymodules).
+The preceding code sample prevents the sending of telemetry to Application Insights. It doesn't prevent any automatic collection modules from collecting telemetry. If you want to remove a particular autocollection module, see [telemetry modules](#telemetry-modules).
 
 ---
 
@@ -2318,7 +2316,7 @@ This functionality is enabled by default. If your app sends considerable telemet
 
 ```
 
-The parameter provides the target that the algorithm tries to achieve. Each instance of the SDK works independently. So, if your server is a cluster of several machines, the actual volume of telemetry will be multiplied accordingly.
+The parameter provides the target that the algorithm tries to achieve. Each instance of the SDK works independently. So, if your server is a cluster of several machines, the actual volume of telemetry is multiplied accordingly.
 
 Learn more about [sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
