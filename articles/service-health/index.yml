@@ -25,7 +25,7 @@ landingContent:
           - text: Azure status page 
             url: azure-status-overview.md
           - text: Service Health portal
-            url: service-health-overview.md
+            url: service-health-portal-update.md
           - text: Resource Health overview
             url: resource-health-overview.md
       - linkListType: video
