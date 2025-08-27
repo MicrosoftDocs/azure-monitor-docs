@@ -1752,7 +1752,7 @@ For example, when the metric aggregate resulting from the next statement is sent
 _telemetryClient.GetMetric("Request Size", MetricDimensionNames.TelemetryContext.Operation.Name).TrackValue(requestSize, "Special Operation");
 ```
 
-The values of this special dimension is copied into `TelemetryContext` and isn't used as a *normal* dimension. If you want to also keep an operation dimension for normal metric exploration, you need to create a separate dimension for that purpose:
+The value of this special dimension is copied into `TelemetryContext` and isn't used as a *normal* dimension. If you want to also keep an operation dimension for normal metric exploration, you need to create a separate dimension for that purpose:
 
 ```csharp
 _telemetryClient.GetMetric("Request Size", "Operation Name", MetricDimensionNames.TelemetryContext.Operation.Name).TrackValue(requestSize, "Special Operation", "Special Operation");
@@ -1816,7 +1816,7 @@ Application Insights supports collecting EventCounters with its `EventCounterCol
 * [Disable telemetry](#disable-telemetry)
 * [Telemetry initializers](#telemetry-initializers)
 * [Telemetry processor](#telemetry-processors)
-* [ApplicationId Provider](#applicationinsightsapplicationidprovider)
+* [ApplicationId Provider](#applicationid-provider)
 * [Snapshot collection](#configure-snapshot-collection)
 * [Sampling](#sampling)
 * [Enrich and correlate over HTTP](#enrich-data-through-http)
@@ -2061,7 +2061,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 
 # [ASP.NET](#tab/net)
 
-Use the `TelemetryModules` section in *ApplicationInsights.config* to configure, add, or remove modules. The example below:
+Use the `TelemetryModules` section in *ApplicationInsights.config* to configure, add, or remove modules. The following examples:
 
 * Configure `DependencyTrackingTelemetryModule` (enable W3C header injection).
 * Configure `EventCounterCollectionModule` (clear defaults and add a single counter).
