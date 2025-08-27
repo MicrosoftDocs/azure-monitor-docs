@@ -423,9 +423,11 @@ Tables related to Application Insights resources also keep data for 90 days at n
 
 ## Pricing model
 
-The charge for adding analytics retention and long-term retention is calculated based on the volume of data you retain, in GB, and the number or days for which you retain the data. Log data that has `_IsBillable == false` isn't subject to ingestion or retention charges. 
+Analytics and long-term retention is calculated based on the GB volume of data and the number of days data is retained. Billing for data retention happens daily (based on days in the UTC time zone). Log data that has `_IsBillable == false` isn't subject to ingestion or retention charges. 
 
-For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
+For more information, see the following articles:
+- [Retention billing](./cost-logs.md#log-data-retention). 
+- [Azure Monitor retention pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Related content
 

@@ -4,7 +4,7 @@ description: This article explains what Azure Monitor issue and investigation is
 ms.topic: how-to
 ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.date: 05/08/2025
+ms.date: 08/27/2025
 ms.custom: references_regions
 ---
 
@@ -115,6 +115,7 @@ These are the supported Azure regions for issues and investigation services:
 | eastasia                               |
 | eastus                                 |
 | eastus2euap                            |
+| southcentralus                         |
 | uksouth                                |
 | westeurope                             |
 
