@@ -48,11 +48,14 @@ This table shows the core fields in the ARG table for the Service Health, Impact
 |extendedLocation| Extended location details (for example, custom locations)                  |
 
 
-
-
 ## Service Health
 
-Through the **Servicehealthresources** query, the data results contain information about the resources under your subscription.<br> These notifications are a subclass of activity log events and can also be found in the [Azure activity log](/azure-monitor/essentials/platform-logs-overview). <br>Service health notifications can be informational or actionable, depending on the class (EventType and EventSubtype).
+The **ServiceHealthResources** queries returns data about resources within your subscriptions that are affected by service health events.<br>
+
+These notifications are a subclass of activity log events and can also be found in the [Azure activity log](/azure-monitor/essentials/platform-logs-overview). <br>
+
+Depending on the event classification, **EventType** and **EventSubtype** service health notifications could be either informational or actionable.
+
 
 ### Servicehealthresources properties
 
@@ -61,7 +64,6 @@ Through the **Servicehealthresources** query, the data results contain informati
 
 The values in the `properties` field are used for querying Azure Service Health events.
 
-The structure is dynamic and is populated based on the `EventType` and `EventSubType`.<br>
 There are some common properties that exist across all the different event types, but everything under `properties` should be considered dynamic based on the event type.<br>
 
 These fields are used together to track, filter, and analyze service health events across your Azure environment. <br>For example, you can query for all `Critical ServiceIssue` events in a specific location that are still `Active`.
@@ -76,17 +78,17 @@ This table lists all the properties you can use in your Service Health and Impac
 |`Status`                         | Current status of the event: Active or Resolved                              |
 |`EventLevel`                     | Severity: Informational, Warning, Critical, Error                            |
 |`Level`                          | Often mirrors EventLevel and is used for UI rendering                        |
-|`EventSource`                    | Indicates the source system that generated the event (ServiceHealthResources or HealthResources) |
+|`EventSource`                    | Indicates the source system that generated the event as ServiceHealthResources or HealthResources |
 |`TrackingId`                     | Unique identifier for the event                                              |
 |`Title`                          | Title of the event                                                           |
-|`Summary`                        | Summary description of the event                                             |
+|`Summary`                        | Description of the event                                                     |
 |`Priority`                       | Priority level assigned to the event                                         |
 |`ImpactStartTime`                | When the event causing the impact began                                      |
 |`ImpactMitigationTime`           | When mitigation is expected or completed                                     |
 |`Impact`                         | Description of the impact on services                                        |
-|`RecommendedActions`             | Suggested actions for users/admins                                           |     
+|`RecommendedActions`             | Suggested actions for users and/or admins                                    |     
 |`ExternalIncidentId`             | Incident ID used externally (for example in ServiceNow)                      |
-|`PlatformInitiated`              | Indicates if the Azure platform triggers the event (for example, automated mitigation or system-triggered maintenance)|     
+|`PlatformInitiated`              | Indicates if the Azure platform triggers the event (for example, an automated mitigation or system-triggered maintenance)|     
 |`SubscriptionId`                 | The unique identifier of the Azure subscription affected by the event        |
 |`LastUpdateTime`                 | Timestamp of the most recent update to the event                             |     
 |`CurrencyType`                   | The currency used in billing-related events (for example, USD, EUR)           |
@@ -102,7 +104,7 @@ This table lists all the properties you can use in your Service Health and Impac
 >Fields like `isEventSensitive` might be empty or omitted unless the event is security-related.<br> 
 >The `EventSubType` is often empty unless the event is a billing or retirement advisory. <br>For more information, see [Service Health event tags](service-health-event-tags.md) and [Filter notifications using Event Level](/azure/service-health/metadata-filter).
 
-Access control should be utilized to ensure only users who need to see the data are able to access it. For more information, see [Security Elevated Access](security-advisories-elevated-access.md).
+Access control should be utilized to ensure only users who need to see the data are able to access it. For more information, see [View and access Security advisories](security-advisories-elevated-access.md).
 
 **How These Fields Work Together**
 
@@ -118,9 +120,9 @@ Access control should be utilized to ensure only users who need to see the data 
 ## Impacted Resources
 :::image type="content"source="./media/resource-graph-overview/impacted-resources-properties.png"alt-text="Screenshot of the fields shown in the Impacted Resources properties column."Lightbox="./media/resource-graph-overview/impacted-resources-properties.png":::
 
-The **ImpactedResources** table in Azure Resource Graph (ARG) is found in the ServiceHealthResources table and identifies which Azure resources experience service events such as outages, planned maintenance, or security advisories.
+The **ImpactedResources** table in Azure Resource Graph (ARG) is located in the ServiceHealthResources table and identifies which Azure resources experience service events such as outages, planned maintenance, or security advisories.
 
-These core fields are typically found in the properties fields of the impacted resource queries.
+These core fields are typically found in the properties fields of the Impacted Resource queries.
 
 |Field name           |Description |
 |---------------------|---------|
@@ -150,6 +152,8 @@ These core fields are typically found in the properties fields of the impacted r
 ## Resource Health
 
 The **HealthResources** table in Azure Resource Graph (ARG) provides detailed information about the health status of your Azure resources, especially virtual machines. 
+
+
 
 ### HealthResources properties
 
