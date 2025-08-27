@@ -472,10 +472,10 @@ items:
           href: containers/kubernetes-monitoring-enable-portal.md
         - name: CLI
           href: containers/kubernetes-monitoring-enable-cli.md
-        - name: Terraform
-          href: containers/kubernetes-monitoring-enable-terraform.md
         - name: ARM template
           href: containers/kubernetes-monitoring-enable-arm.md
+        - name: Terraform
+          href: containers/kubernetes-monitoring-enable-terraform.md
         - name: Azure Policy
           href: containers/kubernetes-monitoring-enable-policy.md
       - name: Agent management

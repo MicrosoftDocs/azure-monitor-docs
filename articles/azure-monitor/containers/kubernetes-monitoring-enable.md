@@ -13,12 +13,12 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 
 > [!TIP]
 > To quickly enable full monitoring for a single cluster, you can often just jump to one of the following articles that describes how to enable monitoring using different methods:
-
-- [Azure portal](kubernetes-monitoring-enable-portal.md)
-- [Azure CLI](kubernetes-monitoring-enable-cli.md)
-- [Azure Resource Manager templates](kubernetes-monitoring-enable-arm.md)
-- [Azure Policy](kubernetes-monitoring-enable-policy.md)
-- [Terraform](kubernetes-monitoring-enable-terraform.md)
+>
+>- [Azure portal](kubernetes-monitoring-enable-portal.md)
+>- [Azure CLI](kubernetes-monitoring-enable-cli.md)
+>- [Azure Resource Manager templates](kubernetes-monitoring-enable-arm.md)
+>- [Azure Policy](kubernetes-monitoring-enable-policy.md)
+>- [Terraform](kubernetes-monitoring-enable-terraform.md)
 
 
 
