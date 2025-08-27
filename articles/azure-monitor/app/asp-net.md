@@ -2063,7 +2063,43 @@ Each telemetry module collects a specific type of data and uses the core API to 
 
 # [ASP.NET](#tab/net)
 
-...
+Use the `TelemetryModules` section in *ApplicationInsights.config* to configure, add, or remove modules. The example below:
+
+* Configure `DependencyTrackingTelemetryModule` (enable W3C header injection).
+* Configure `EventCounterCollectionModule` (clear defaults and add a single counter).
+* Disable perf‑counter collection by removing `PerformanceCollectorModule`.
+
+```xml
+<ApplicationInsights>
+  <TelemetryModules>
+
+    <!-- Dependency tracking -->
+    <Add Type="Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule, Microsoft.AI.DependencyCollector">
+      <!-- Match Core example: enable W3C header injection -->
+      <EnableW3CHeadersInjection>true</EnableW3CHeadersInjection>
+    </Add>
+
+    <!-- EventCounterCollectionModule: add a single counter (if you use event counters) -->
+    <Add Type="Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.EventCounterCollectionModule, Microsoft.AI.PerfCounterCollector">
+      <Counters>
+        <!-- Mirrors Core example: only collect 'gen-0-size' from System.Runtime -->
+        <Add ProviderName="System.Runtime" CounterName="gen-0-size" />
+      </Counters>
+    </Add>
+
+    <!-- PerformanceCollectorModule (classic Windows performance counters).
+         To DISABLE perf-counter collection, do NOT include this module.
+         If it already exists in your file, remove or comment it out.
+         Example of the line you would remove:
+    <Add Type="Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule, Microsoft.AI.PerfCounterCollector" />
+    -->
+
+  </TelemetryModules>
+</ApplicationInsights>
+```
+
+> [!NOTE]
+> The exact set of modules present in your `ApplicationInsights.config` depends on which SDK packages you installed.
 
 # [ASP.NET Core](#tab/core)
 
@@ -2102,8 +2138,6 @@ if (performanceCounterService != null)
 
 var app = builder.Build();
 ```
-
-, [`ApplicationInsightsServiceOptions`](#use-applicationinsightsserviceoptions) includes an easy option to disable any of the default modules.
 
 **Option 2: Configure telemetry modules using ApplicationInsightsServiceOptions**
 
@@ -2221,8 +2255,6 @@ To learn how to use telemetry initializers with ASP.NET applications, see [Filte
 
 # [ASP.NET Core](#tab/core)
 
-#### Add telemetry initializers
-
 Add any new `TelemetryInitializer` to the `DependencyInjection` container as shown in the following code. The SDK automatically picks up any `TelemetryInitializer` that's added to the `DependencyInjection` container.
 
 ```csharp
@@ -2309,8 +2341,6 @@ There's also a standard [sampling telemetry processor](api-filtering-sampling.md
 
 # [ASP.NET Core](#tab/core)
 
-#### Add telemetry processors
-
 You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer). Use the following example:
 
 ```csharp
@@ -2363,12 +2393,40 @@ If you want to send a specific set of events to a different resource, you can se
 
 ```
 
-To get a new key, [create a new resource in the Application Insights portal](create-workspace-resource.md).
+To get a new connection string, [create a new resource in the Application Insights portal](create-workspace-resource.md).
 
 # [ASP.NET Core](#tab/core)
 
+In ASP.NET Core, configure this in `Program.cs` during application startup using the `TelemetryConfiguratio`n from the dependency injection (DI) container:
 
+```csharp
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights;
 
+var builder = WebApplication.CreateBuilder(args);
+
+// Add Application Insights
+builder.Services.AddApplicationInsightsTelemetry();
+
+var app = builder.Build();
+
+// Resolve TelemetryConfiguration from DI and set the connection string
+var config = app.Services.GetRequiredService<TelemetryConfiguration>();
+config.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+
+app.Run();
+```
+
+If you want to send a specific set of events to a different resource, you can create a new `TelemetryClient` instance and set its connection string explicitly:
+
+```csharp
+using Microsoft.ApplicationInsights;
+
+var tc = new TelemetryClient();
+tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+tc.TrackEvent("myEvent");
+// ...
+```
 
 ---
 
@@ -2394,11 +2452,11 @@ We provide two implementations in the [Microsoft.ApplicationInsights](https://ww
 
 #### ApplicationInsightsApplicationIdProvider
 
-This wrapper is for our Profile API. It throttles requests and cache results.
+This wrapper is for our Profile API. It throttles requests and cache results. This provider is automatically included when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
 
-This provider is automatically included when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
+The class exposes an optional property called `ProfileQueryEndpoint`. By default, this is set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`.
 
-The class exposes an optional property called `ProfileQueryEndpoint`. By default, this is set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`. If you need to configure a proxy, we recommend proxying the base address and ensuring the path includes `/api/profiles/{0}/appId`. At runtime, `{0}` is replaced with the instrumentation key for each request.
+If you need to configure a proxy, we recommend proxying the base address and ensuring the path includes `/api/profiles/{0}/appId`. At runtime, `{0}` is replaced with the instrumentation key for each request.
 
 # [ASP.NET](#tab/net)
 
