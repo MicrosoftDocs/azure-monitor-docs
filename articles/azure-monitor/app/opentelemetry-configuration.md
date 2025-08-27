@@ -385,20 +385,48 @@ For Quarkus native applications, review the [Quarkus OpenTelemetry documentation
 
 ### [Node.js](#tab/nodejs)
 
-The sampler expects a sample rate of between 0 and 1 inclusive. A rate of 0.1 means approximately 10% of your traces are sent.
+Rate-limited sampling is available starting from `azure-monitor-opentelemetry-exporter` version 1.0.0-beta.32. Configure sampling using the following environment variables:
 
+- **`OTEL_TRACES_SAMPLER`**: Specifies the sampler type
+  - `microsoft.fixed.percentage` for Application Insights sampler
+  - `microsoft.rate_limited` for Rate Limited sampler
+- **`OTEL_TRACES_SAMPLER_ARG`**: Defines the sampling rate
+  - **ApplicationInsightsSampler**: The sampler expects a sample rate of between 0 and 1 inclusive. A rate of 0.1 means approximately 10% of your traces are sent.
+  - **RateLimitedSampler**: Maximum traces per second (e.g., 0.5 = one trace every two seconds, 5.0 = five traces per second)
+
+**Alternative configuration** 
 ```typescript
 // Import the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions class from the @azure/monitor-opentelemetry package.
 const { useAzureMonitor, AzureMonitorOpenTelemetryOptions } = require("@azure/monitor-opentelemetry");
 
-// Create a new AzureMonitorOpenTelemetryOptions object and set the samplingRatio property to 0.1.
+// Create a new AzureMonitorOpenTelemetryOptions object and set the samplingRatio property to 0.1 to enable ApplicationInsightsSampler
 const options: AzureMonitorOpenTelemetryOptions = {
   samplingRatio: 0.1
+};
+
+// OR to enable RateLimitedSampler, set the tracesPerSecond property to 0.5.
+const options: AzureMonitorOpenTelemetryOptions = {
+  tracesPerSecond: 0.5
 };
 
 // Enable Azure Monitor integration using the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions object.
 useAzureMonitor(options);
 ```
+
+#### ApplicationInsightsSampler example
+```
+export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
+export OTEL_TRACES_SAMPLER_ARG=0.3
+```
+
+#### RateLimitedSampler example
+```
+export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
+export OTEL_TRACES_SAMPLER_ARG=1.5
+```
+
+> [!NOTE]
+> Sampling configuration via environment variables will have precedence over the sampling exporter/distro options. If neither environment variables nor `tracePerSecond` are specified, sampling defaults to ApplicationInsightsSampler.
 
 ### [Python](#tab/python)
 
