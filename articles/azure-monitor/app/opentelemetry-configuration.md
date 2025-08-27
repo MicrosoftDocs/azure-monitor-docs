@@ -414,7 +414,7 @@ Rate-limited sampling is available starting from `azure-monitor-opentelemetry` v
 **Alternative configuration**: Use the `configure_azure_monitor()` function with the `traces_per_second` attribute to enable RateLimitedSampler.
 
 > [!NOTE]
-> Sampling configuration via environment variables will have precedence over the sampling exporter/distro options. If neither environment variables nor `traces_per_second` are specified, `configure_azure_monitor()` defaults to ApplicationInsightsSampler for compatibility with Application Insights SDKs.
+> Sampling configuration via environment variables will have precedence over the sampling exporter/distro options. If neither environment variables nor `traces_per_second` are specified, `configure_azure_monitor()` defaults to ApplicationInsightsSampler.
 
 #### ApplicationInsightsSampler example
 ```
