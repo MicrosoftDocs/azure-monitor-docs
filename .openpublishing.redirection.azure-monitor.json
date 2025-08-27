@@ -8560,6 +8560,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/app/telemetry-channels.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/reference/tables/microsoft-azuremonitordiagnosticsagents-datacollection.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
