@@ -14,7 +14,7 @@ Whether you create a new AKS cluster in your Azure subscription, or add an Arc-e
 ## View default monitoring data
 Go to one of your Kubernetes clusters in the Azure portal and select the **Monitor** option to get an overview of various telemetry indicating the health and performance of the cluster's nodes, workloads, and containers. Scroll through this screen and inspect the different tiles that provide information about the cluster. Several of the tiles may be disabled since the feature supporting them has not yet been enabled for the cluster. The ones that are populated with data are accessing platform metrics which are automatically collected for the cluster. If the tiles aren't disabled then you may have enabled monitoring when you created the cluster.
 
-:::image type="content" source="media/kubernetes-monitoring-quickstart/container-insights-single.png" lightbox="media/kubernetes-monitoring-quickstart/single-cluster-view.png" alt-text="Screenshot of Container insights single cluster experience.":::
+:::image type="content" source="media/kubernetes-monitoring-quickstart/single-cluster-view.png" lightbox="media/kubernetes-monitoring-quickstart/single-cluster-view.png" alt-text="Screenshot of Container insights single cluster experience.":::
 
 Select the **Nodes**, **Controllers**, and **Containers** and notice that these tabs are disable and provide an option to enable Managed Prometheus. 
 
