@@ -2,7 +2,7 @@
 title: Create Service Health alerts for Azure service notifications in Azure portal
 description: Learn how to use the Azure portal to set up Service Health alerts.
 ms.topic: quickstart
-ms.date: 05/27/2025
+ms.date: 08/21/2025
 
 ---
 
@@ -15,16 +15,17 @@ Service Health notifications are stored in the [Azure activity log](../azure-mon
 
 ## Key features of Service Health alerts
 
-Alerts are based on the type of notification, affected subscription, services, and regions. They're created using the Azure portal’s Service Health interface. <br>
+Alerts are based on the type of notification, affected subscription, tenant directories, services, and regions. They're created using the Azure portal’s Service Health interface. <br>
 You can choose or create an "action group" to define who receives the alert. Alerts are only supported in public clouds within the global region.
 Advanced options allow for more detailed configurations, including webhook notifications for integration with external systems.
 
- You receive an alert when Azure sends Service Health notifications to your Azure subscription. You can configure the alert based on
+ You receive an alert when Azure sends Service Health notifications to your Azure subscription or tenant directory. You can configure the alert based on:
 
 - The class of service health notification (Service issues, Planned maintenance, Health advisories, Security advisories)
 - The subscription that is affected
 - The services that are affected
 - The regions that are affected
+- The tenant directories that are affected
 
 
 > [!NOTE]
@@ -52,10 +53,22 @@ For information on how to configure service health notification alerts by using 
     
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
 
-
 To add more detailed information for the service health alert, select **Advanced Options** which opens the page **Create an alert rule**, where you can start entering your data.
 
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png"alt-text="Screenshot of the Create service health alert command."Lightbox="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png":::
+
+### Create a tenant-level alert
+>[!IMPORTANT]
+>The option to select a tenant directory is currently in preview mode.
+To set your alert for a tenant directory select **Directory (preview)** from the scope drop-down menu.
+
+:::image type="content"source="./media/alerts-activity-log-service-notifications/service-health-blades-1.png"alt-text="A screenshot of the Health alerts tab for tenant-level alerts."Lightbox="./media/alerts-activity-log-service-notifications/service-health-blades-1.png":::
+
+To add more detailed information for the service health alert, select **Advanced Options** which opens the page **Create an alert rule**, where you can start entering your data.
+
+Under the **Details** tab, select the subscription and resource group where the alert group is to be saved.
+
+:::image type="content"source="./media/alerts-activity-log-service-notifications/service-health-details.png"alt-text="Screenshot of the Details tab in Create service health alert command."Lightbox="./media/alerts-activity-log-service-notifications/service-health-details.png":::
 
 Learn how to [Configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md). 
 

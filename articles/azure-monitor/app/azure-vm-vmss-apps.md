@@ -1,17 +1,17 @@
 ---
-title: Monitor performance on Azure VMs - Azure Application Insights
+title: Monitor performance on Azure Virtual Machines (VMs) - Azure Application Insights
 description: Application performance monitoring for Azure virtual machines and virtual machine scale sets.
 ms.topic: how-to
-ms.date: 02/05/2025
+ms.date: 09/25/2025
 ms.devlang: csharp
 ms.custom: devx-track-azurepowershell
 ms.reviewer: abinetabate
 ---
 
-# Application Insights for Azure VMs and virtual machine scale sets
+# Application Insights for Azure virtual machines (VMs) and virtual machine scale sets
 
-This article explains how to enable [Azure Monitor](../fundamentals/overview.md) [Application Insights](./app-insights-overview.md) monitoring through autoinstrumentation for IIS-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/). It covers how to deploy the Application Insights Agent using a virtual machine extension, which [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net), and provides guidance for automating large-scale deployments with PowerShell.
- 
+Enable [Azure Monitor](../fundamentals/overview.md) [Application Insights](./app-insights-overview.md) monitoring through [autoinstrumentation](codeless-overview.md) for Internet Information Server (IIS)-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/). Deploy the Application Insights Agent with a virtual machine extension. The agent [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net). Use PowerShell to automate large-scale deployments.
+
 > [!NOTE]
 > * For Java applications, use the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java), which [autocollects](./java-in-process-agent.md#autocollected-requests) the most popular libraries, frameworks, logs, and dependencies, along with many [other configurations](./java-standalone-config.md).
 > * Node.js and Python applications running on Azure VMs and Azure Virtual Machine Scale Sets don't support autoinstrumentation. Use the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) instead.
@@ -109,6 +109,32 @@ Remove-AzVMExtension -ResourceGroupName "<myVmResourceGroup>" -VMName "<myVmName
 
 ---
 
+### instrumentationKeyMap (extension settings)
+
+[!INCLUDE [instrumentationkeymap](includes/instrumentation-key-map.md)]
+
+**Where it goes for the VM and Virtual Machine Scale Sets extension**
+
+Place the map under `redfieldConfiguration.instrumentationKeyMap.filters` in the extension's public settings (`-SettingString` for VMs, `-Setting` for Virtual Machine Scale Sets). Property names are lower camel case. Set the target resource per rule with `instrumentationSettings.connectionString`.
+
+```json
+{
+  "redfieldConfiguration": {
+    "instrumentationKeyMap": {
+      "filters": [
+        {
+          "machineFilter": ".*",
+          "appFilter": ".*",
+          "instrumentationSettings": {
+            "connectionString": "<your-APPLICATIONINSIGHTS_CONNECTION_STRING>"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
 ## Enable monitoring for virtual machine scale sets
 
 You can use the Azure portal or PowerShell to enable monitoring for virtual machine scale sets.
@@ -170,9 +196,9 @@ Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName -Name $vmss.Name -Virtu
 
 ## Troubleshooting
 
-Find troubleshooting tips for the Application Insights Monitoring Agent extension for .NET applications running on Azure virtual machines and virtual machine scale sets.
+Use these troubleshooting tips for the Application Insights Monitoring Agent extension. The tips apply to .NET applications on Azure Virtual Machines and Azure Virtual Machine Scale Sets.
 
-If you're having trouble deploying the extension, review the execution output that's logged to files found in the following directories:
+If you have trouble deploying the extension, review the execution output that the extension logs to files in the following directories:
 
 ```Windows
 C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.ApplicationMonitoringWindows\<version>\
@@ -180,7 +206,7 @@ C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.ApplicationMonitoringWi
 
 If your extension deployed successfully but you're unable to see telemetry, it could be one of the following issues covered in [Agent troubleshooting](/troubleshoot/azure/azure-monitor/app-insights/status-monitor-v2-troubleshoot#known-issues):
 
-* Conflicting DLLs in an app's bin directory
+* Conflicting dynamic link libraries (DLLs) in an app's bin directory
 * Conflict with IIS shared configuration
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
