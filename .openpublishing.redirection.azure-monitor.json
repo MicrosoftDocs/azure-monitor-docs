@@ -8484,7 +8484,7 @@
    "redirect_url": "/azure/azure-monitor/app/dependencies",
    "redirect_document_id": false
   },
-  {    
+  {
    "source_path": "articles/azure-monitor/fundamentals/getting-started.md",
    "redirect_url": "/azure/azure-monitor/platform/monitor-azure-resource",
    "redirect_document_id": false
@@ -8557,6 +8557,16 @@
   {
    "source_path": "articles/azure-monitor/app/configuration-with-applicationinsights-config.md",
    "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azuremonitordiagnosticsagents-datacollection.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/oracle-database-cloudvmclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   }
  ]
