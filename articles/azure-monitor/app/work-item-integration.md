@@ -20,9 +20,6 @@ Work item integration includes the following features:
 > - Include prebuilt and customizable [Kusto Query Language (KQL)](/kusto/query) queries that add [Application Insights](app-insights-overview.md) data to work items.
 > - Provide customizable [workbook](../visualize/best-practices-visualize.md) templates.
 
-> [!NOTE]
-> [Release annotations](annotations.md) require the Application Insights resource and the target resource to be in the same subscription. This requirement doesn't apply to creating work items in GitHub or Azure DevOps.
-
 ## Permissions
 
 To create or edit a work item template, use an Azure role with `Microsoft.Insights/workbooks/write`, such as **Workbook Contributor** or **Monitoring Contributor**.  
