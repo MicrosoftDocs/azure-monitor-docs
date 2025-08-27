@@ -16,7 +16,7 @@ Use the Service Health table to query:
 
 Use the Resource Health table to query:
 -  Resource Health properties (microsoft.resourcehealth/availabilitystatuses and microsoft.resourcehealth/resourceannotations)<br>
-For more information on the HealthResources table, see [VM availability information in Azure Resource Graph](azure/virtual-machines/resource-graph-availability/).
+For more information on the HealthResources table, see [VM availability information in Azure Resource Graph](/azure/virtual-machines/resource-graph-availability/).
  
 
 
@@ -69,8 +69,8 @@ These fields are used together to track, filter, and analyze service health even
 This table lists all the properties you can use in your Service Health and Impacted Resources queries.
 
 
-|Property                      |Description                                                                   |
-|-------------------|--------------------------------------------------------------------------------------------|
+|Property                         |Description                                                                   |
+|---------------------------------|------------------------------------------------------------------------------------------|
 |`EventType`                      | High-level classification: ServiceIssue, PlannedMaintenance, HealthAdvisory, Billing, SecurityAdvisory, EmergingIssues, and Post Incident Review (PIR)       |
 |`EventSubType`                   | Specific subtype: Retirement, TaxChanges, PriceChanges, MeterIDChanges, ForeignExchangeRateChange, UnauthorizedPartyAbuse, Underbilling, and Overbilling        |
 |`Status`                         | Current status of the event: Active or Resolved                              |
