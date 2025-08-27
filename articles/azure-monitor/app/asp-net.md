@@ -2014,9 +2014,11 @@ Avoid using `Flush()` in long-running applications such as web services. The SDK
 
 Application Insights automatically collects telemetry about specific workloads without requiring manual tracking by user.
 
-By default, the following automatic-collection modules are enabled. These modules are responsible for automatically collecting telemetry. You can disable or configure them to alter their default behavior.
+By default, the following automatic-collection modules are enabled. You can disable or configure them to alter their default behavior.
 
 # [ASP.NET](#tab/net)
+
+Each telemetry module collects a specific type of data and uses the core API to send the data. The modules are installed by different NuGet packages, which also add the required lines to the .config file.
 
 | Area | Description |
 |------|-------------|
@@ -2054,13 +2056,18 @@ By default, the following automatic-collection modules are enabled. These module
 | **ETW collector** |  Windows-only (ETW). Sends configured ETW provider events to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
 | **Core API (not a module)** | Core API used by other telemetry components and for custom telemetry.<br><br>**Module:** `Microsoft.ApplicationInsights package`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) |
 
+
 ---
+
+#### Configure telemetry modules
 
 # [ASP.NET](#tab/net)
 
-Each telemetry module collects a specific type of data and uses the core API to send the data. The modules are installed by different NuGet packages, which also add the required lines to the .config file.
+...
 
 # [ASP.NET Core](#tab/core)
+
+**Option 1: Configure telemetry modules using ConfigureTelemetryModule<T>**
 
 To configure any default `TelemetryModule`, use the extension method `ConfigureTelemetryModule<T>` on `IServiceCollection`, as shown in the following example:
 
@@ -2096,11 +2103,11 @@ if (performanceCounterService != null)
 var app = builder.Build();
 ```
 
-In versions 2.12.2 and later, [`ApplicationInsightsServiceOptions`](#use-applicationinsightsserviceoptions) includes an easy option to disable any of the default modules.
+, [`ApplicationInsightsServiceOptions`](#use-applicationinsightsserviceoptions) includes an easy option to disable any of the default modules.
 
-#### Use ApplicationInsightsServiceOptions
+**Option 2: Configure telemetry modules using ApplicationInsightsServiceOptions**
 
-You can modify a few common settings by passing `ApplicationInsightsServiceOptions` to `AddApplicationInsightsTelemetry`, as in this example:
+In SDK versions 2.12.2 and later, you can modify a few common settings by passing `ApplicationInsightsServiceOptions` to `AddApplicationInsightsTelemetry`, as in this example:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -2367,13 +2374,12 @@ To get a new key, [create a new resource in the Application Insights portal](cre
 
 ### ApplicationId Provider
 
-# [ASP.NET](#tab/net)
-
-*The provider is available starting in v2.6.0*.
+> [!NOTE]
+> For ASP.NET, this provider is available starting in SDK v2.6.0*.
 
 The purpose of this provider is to look up an application ID based on a connection string. The application ID is included in `RequestTelemetry` and `DependencyTelemetry` and is used to determine correlation in the portal.
 
-This functionality is available by setting `TelemetryConfiguration.ApplicationIdProvider` either in code or in the config file.
+This functionality is available by setting `TelemetryConfiguration.ApplicationIdProvider`.
 
 #### Interface: IApplicationIdProvider
 
@@ -2390,9 +2396,11 @@ We provide two implementations in the [Microsoft.ApplicationInsights](https://ww
 
 This wrapper is for our Profile API. It throttles requests and cache results.
 
-This provider is added to your config file when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
+This provider is automatically included when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
 
-This class has an optional property `ProfileQueryEndpoint`. By default, it's set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`. If you need to configure a proxy for this configuration, we recommend that you proxy the base address and include `"/api/profiles/{0}/appId"`. A `{0}` is substituted at runtime per request with the instrumentation key.
+The class exposes an optional property called `ProfileQueryEndpoint`. By default, this is set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`. If you need to configure a proxy, we recommend proxying the base address and ensuring the path includes `/api/profiles/{0}/appId`. At runtime, `{0}` is replaced with the instrumentation key for each request.
+
+# [ASP.NET](#tab/net)
 
 **Example configuration via ApplicationInsights.config**
 
@@ -2412,6 +2420,34 @@ This class has an optional property `ProfileQueryEndpoint`. By default, it's set
 TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApplicationIdProvider();
 ```
 
+# [ASP.NET Core](#tab/core)
+
+> [NOTE]
+> In ASP.NET Core, there is no *ApplicationInsights.config* file. Configuration is done through dependency injection (DI) in *Program.cs* or *Startup.cs*.
+
+You can override the default provider or customize its `ProfileQueryEndpoint`.
+
+```csharp
+using Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add Application Insights
+builder.Services.AddApplicationInsightsTelemetry();
+
+// Replace default provider with custom configuration
+builder.Services.AddSingleton<IApplicationIdProvider>(sp =>
+    new ApplicationInsightsApplicationIdProvider
+    {
+        ProfileQueryEndpoint = "https://custom-proxy/api/profiles/{0}/appId"
+    });
+
+var app = builder.Build();
+app.Run();
+```
+
+---
+
 #### DictionaryApplicationIdProvider
 
 This static provider relies on your configured instrumentation key/application ID pairs.
@@ -2419,6 +2455,8 @@ This static provider relies on your configured instrumentation key/application I
 This class has the `Defined` property, which is a `Dictionary<string,string>` of instrumentation key/application ID pairs.
 
 This class has the optional property `Next`, which can be used to configure another provider to use when a connection string is requested that doesn't exist in your configuration.
+
+# [ASP.NET](#tab/net)
 
 **Example configuration via ApplicationInsights.config**
 
@@ -2450,35 +2488,38 @@ TelemetryConfiguration.Active.ApplicationIdProvider = new DictionaryApplicationI
 
 # [ASP.NET Core](#tab/core)
 
+```csharp
+using Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId;
 
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApplicationInsightsTelemetry();
+
+// Register DictionaryApplicationIdProvider
+builder.Services.AddSingleton<IApplicationIdProvider>(sp =>
+    new DictionaryApplicationIdProvider
+    {
+        Defined = new Dictionary<string, string>
+        {
+            { "InstrumentationKey_1", "ApplicationId_1" },
+            { "InstrumentationKey_2", "ApplicationId_2" }
+        },
+        Next = new ApplicationInsightsApplicationIdProvider() // optional fallback
+    });
+
+var app = builder.Build();
+app.Run();
+```
 
 ---
 
 ### Configure snapshot collection
 
-# [ASP.NET](#tab/net)
-
-Configure a [snapshot collection for ASP.NET applications](snapshot-debugger-vm.md#configure-snapshot-collection-for-aspnet-applications).
-
-# [ASP.NET Core](#tab/core)
-
-
-
----
+To learn how to configure snapshot collection for ASP.NET and ASP.NET Core applications, see [Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Cloud Services, and Virtual Machines](snapshot-debugger-vm.md).
 
 ### Sampling
 
-# [ASP.NET](#tab/net)
-
-To learn how to configure sampling for ASP.NET applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-
-# [ASP.NET Core](#tab/core)
-
-The Application Insights SDK for ASP.NET Core supports both fixed-rate and adaptive sampling. By default, adaptive sampling is enabled.
-
-For more information, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-
----
+To learn how to configure sampling for ASP.NET  and ASP.NET Core applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
 ### Enrich data through HTTP
 
