@@ -2,7 +2,7 @@
 title: Azure Resource Graph Overview
 description: Learn about the Azure Resource Graph table properties.
 ms.topic: concept-article
-ms.date: 08/27/2025
+ms.date: 08/28/2025
 
 ---
 # Azure Resource Graph tables overview
@@ -57,7 +57,7 @@ These notifications are a subclass of activity log events and can also be found 
 Depending on the event classification, **EventType** and **EventSubtype** service health notifications could be either informational or actionable.
 
 
-### Servicehealthresources properties
+### Service Health Event properties (microsoft.resourcehealth/events)
 
 
 :::image type="content"source="./media/resource-graph-overview/service-health-properties.png"alt-text="Screenshot of the fields shown in the Service Health properties column."Lightbox="./media/resource-graph-overview/service-health-properties.png":::
@@ -86,6 +86,7 @@ This table lists all the properties you can use in your Service Health and Impac
 |`ImpactStartTime`                | When the event causing the impact began                                      |
 |`ImpactMitigationTime`           | When mitigation is expected or completed                                     |
 |`Impact`                         | Description of the impact on services                                        |
+|`Region`                         | Which regions and services are impacted |
 |`RecommendedActions`             | Suggested actions for users and/or admins                                    |     
 |`ExternalIncidentId`             | Incident ID used externally (for example in ServiceNow)                      |
 |`PlatformInitiated`              | Indicates if the Azure platform triggers the event (for example, an automated mitigation or system-triggered maintenance)|     
@@ -112,7 +113,7 @@ Access control should be utilized to ensure only users who need to see the data 
 - **Filtering & Alerting**: Use `SubscriptionId`, and `Impact` that filters events relevant to specific teams or workloads.
 - **Historical Analysis**: Use `ImpactStartTime` and `ImpactMitigationTime` to understand event timelines and Service Level Agreement (SLA) implications.
 - **REST API Integration**: These fields are exposed through the [Azure Service Health REST API](/events/list-by-subscription-id), allowing programmatic access and automation.
-- **Filter and Scope Events**: `SubscriptionId`, `Impact`, and `PlatformInitiated` help narrow down which resources are affected and how.
+- **Filter and Scope Events**: `SubscriptionId`, `Impact`, `TrackingId`, and `PlatformInitiated` help narrow down which resources are affected and how.
 - **Track and Analyze**: `LastUpdateTime`, `Header`, and `EventTags` support monitoring and historical analysis.
 - **Support Financial and Compliance Workflows**: `BillingId` and `CurrencyType` are essential for billing-related events and audits.
 
@@ -120,22 +121,8 @@ Access control should be utilized to ensure only users who need to see the data 
 ## Impacted Resources
 :::image type="content"source="./media/resource-graph-overview/impacted-resources-properties.png"alt-text="Screenshot of the fields shown in the Impacted Resources properties column."Lightbox="./media/resource-graph-overview/impacted-resources-properties.png":::
 
-The **ImpactedResources** table in Azure Resource Graph (ARG) is located in the ServiceHealthResources table and identifies which Azure resources experience service events such as outages, planned maintenance, or security advisories.
+When the `type` column in the ServiceHealthResources table is set to **microsoft.resourcehealth/events/impactedresources** it opens the query to search for information about the impacted resources by Service Health events such as outages, planned maintenance, or security advisories.
 
-These core fields are typically found in the properties fields of the Impacted Resource queries.
-
-|Field name           |Description |
-|---------------------|---------|
-|`Id`                 | Full Azure Resource Manager (ARM) ID of the impacted resource        |
-|`name`               | Name of the impacted resource        |
-|`type`               | Always "microsoft.resourcehealth/events/impactedresources"         |
-|`subscriptionId`     | Subscription ID where the impacted resource resides        |
-|`resourceGroup`      | Resource group of the impacted resource        |
-|`location`           | Azure region of the impacted resource        |
-|`targetResourceType` | Type of the impacted resource (for example, Microsoft.Compute/virtualMachines)         |
-|`targetResourceId`   | Full resource ID of the impacted resource |
-|`resourceName`       | Name of the impacted resource |
-|`properties`         | JSON object with more metadata |
 
 ### Impacted Resources properties
 
@@ -147,6 +134,14 @@ These core fields are typically found in the properties fields of the Impacted R
 |`targetResourceId`   | Full resource ID |
 |`targetRegion`       | Region of the impacted resource        |
 |`systemData`         | Metadata about who created or modified the entry       |
+|`maintenanceStartTime`  |When the event causing the impact began  |
+|`maintenanceEndTime`  |When the event causing the impact ended  |
+|`targetResourceType`  | Type of the impacted resource (for example, Microsoft.Compute/virtualMachines) |
+|`targetResourceId`  | Full resource ID of the impacted resource  |
+|`resourceGroup`  |Name of the Resource Group  |
+|`targetRegion`  |Region of the impacted resource  |
+|`staus`  |Current status of the event  |
+|`info`  |  |
 
 
 ## Resource Health
