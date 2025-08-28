@@ -1813,7 +1813,7 @@ Windows provides various [performance counters](/windows/desktop/perfctrs/about-
 
 Your application supports performance counter collection if it runs under Internet Information Server (IIS) on an on-premises host or a virtual machine with administrative access. Applications running as Azure Web Apps can't directly access performance counters, but Application Insights collects a subset of available counters.
 
-> [TIP]
+> [!TIP]
 > Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a counter goes outside a specified limit.
 
 #### Prerequisites
@@ -1996,7 +1996,7 @@ To review frequently asked questions (FAQ), see [Performance counters FAQ](appli
 
 While users can publish any custom event counters to meet their needs, [.NET](/dotnet/fundamentals/) publishes a set of these counters by default. This document walks through the steps required to collect and view event counters (system defined or user defined) in Azure Application Insights.
 
-> [TIP]
+> [!TIP]
 > Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a counter goes outside a specified limit.
 > To set an alert, open the **Alerts** pane and select **Add Alert**.
 
