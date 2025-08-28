@@ -8573,6 +8573,16 @@
    "source_path": "articles/azure-monitor/reference/tables/oracle-database-cloudvmclusters.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/asp-net-counters.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/oracle-database-exadbvmclusters-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
   }
  ]
 }

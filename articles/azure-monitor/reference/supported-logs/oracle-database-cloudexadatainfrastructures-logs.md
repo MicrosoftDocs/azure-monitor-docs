@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.DesktopVirtualization/repositoryfolders
-description: Reference for Microsoft.DesktopVirtualization/repositoryfolders in Azure Monitor Logs.
+title: Supported log categories - Oracle.Database/cloudExadataInfrastructures
+description: Reference for Oracle.Database/cloudExadataInfrastructures in Azure Monitor Logs.
 ms.topic: generated-reference
 ms.date: 08/28/2025
-ms.custom: Microsoft.DesktopVirtualization/repositoryfolders, arm
+ms.custom: Oracle.Database/cloudExadataInfrastructures, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,12 +12,12 @@ ms.custom: Microsoft.DesktopVirtualization/repositoryfolders, arm
 
 
 
-# Supported logs for Microsoft.DesktopVirtualization/repositoryfolders  
-The following table lists the types of logs available for the Microsoft.DesktopVirtualization/repositoryfolders resource type.
+# Supported logs for Oracle.Database/cloudExadataInfrastructures  
+The following table lists the types of logs available for the Oracle.Database/cloudExadataInfrastructures resource type.
   
 
   
-[!INCLUDE [Microsoft.DesktopVirtualization/repositoryfolders](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-desktopvirtualization-repositoryfolders-logs-include.md)]  
+[!INCLUDE [Oracle.Database/cloudExadataInfrastructures](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/oracle-database-cloudexadatainfrastructures-logs-include.md)]  
   
 
 ## Next Steps
