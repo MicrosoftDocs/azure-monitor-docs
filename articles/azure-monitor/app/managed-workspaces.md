@@ -64,8 +64,6 @@ Delete the Application Insights resource that owns the managed workspace. Azure 
 > [!NOTE]
 > The managed workspace shows **Deny assignments** in the Azure portal. These deny assignments don't prevent deletion of the resource group that contains the managed workspace. Resource group deletion completes and removes the workspace.
 
-![Deny assignments on the workspace don't block deleting the resource group.](./screenshot.png)
-
 ## Automatically migrated classic resources
 
 Beginning in April 2025, classic Application Insights resources are automatically migrated to workspace-based resources. As part of the migration:
