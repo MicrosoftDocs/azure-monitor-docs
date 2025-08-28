@@ -1,25 +1,25 @@
 ---
-title: Supported metrics - Oracle.Database/exadbVmClusters
-description: Reference for Oracle.Database/exadbVmClusters metrics in Azure Monitor.
+title: Supported metrics - Microsoft.NetApp/scaleAccounts/scaleCapacityPools
+description: Reference for Microsoft.NetApp/scaleAccounts/scaleCapacityPools metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Oracle.Database/exadbVmClusters, naam
+ms.date: 08/28/2025
+ms.custom: Microsoft.NetApp/scaleAccounts/scaleCapacityPools, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Oracle.Database/exadbVmClusters
+# Supported metrics for Microsoft.NetApp/scaleAccounts/scaleCapacityPools
   
-The following table lists the metrics available for the Oracle.Database/exadbVmClusters resource type.  
+The following table lists the metrics available for the Microsoft.NetApp/scaleAccounts/scaleCapacityPools resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
  
 
-[!INCLUDE [Oracle.Database/exadbVmClusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/oracle-database-exadbvmclusters-metrics-include.md)]  
+[!INCLUDE [Microsoft.NetApp/scaleAccounts/scaleCapacityPools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-netapp-scaleaccounts-scalecapacitypools-metrics-include.md)]  
 
 
 
