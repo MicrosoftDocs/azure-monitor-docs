@@ -1815,6 +1815,7 @@ Your application supports performance counter collection if it runs under Intern
 
 > [!TIP]
 > Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a counter goes outside a specified limit.
+> To set an alert, open the **Alerts** pane and select **Add Alert**.
 
 #### Prerequisites
 
