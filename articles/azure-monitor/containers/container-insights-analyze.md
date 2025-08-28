@@ -2,7 +2,7 @@
 title: Monitor your Kubernetes cluster performance with Container insights
 description: This article describes how you can view and analyze the performance of a Kubernetes cluster with Container insights.
 ms.topic: article
-ms.date: 08/19/2024
+ms.date: 08/19/2025
 ms.reviewer: viviandiec
 ---
 
