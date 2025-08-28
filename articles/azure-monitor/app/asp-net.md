@@ -1798,7 +1798,7 @@ SeverityLevel.Error);
 
 ## Counters in Application Insights
 
-[Azure Monitor](..\overview.md) [Application Insights](app-insights-overview.md) supports performance counters and event counters. This guide provides an overview of both, including their purpose, configuration, and usage in .NET applications.
+[Application Insights](app-insights-overview.md) supports performance counters and event counters. This guide provides an overview of both, including their purpose, configuration, and usage in .NET applications.
 
 ### Overview
 
@@ -1815,7 +1815,6 @@ Your application supports performance counter collection if it runs under Intern
 
 > [TIP]
 > Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a counter goes outside a specified limit.
-> To set an alert, open the **Alerts** pane and select **Add Alert**.
 
 #### Prerequisites
 
@@ -1846,14 +1845,6 @@ Default counters for ASP.NET web applications:
 
 # [ASP.NET Core](#tab/core)
 
-> [NOTE]
-> Support for performance counters in ASP.NET Core is limited:
->
-> * [SDK](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) versions 2.4.1 and later collect performance counters if the application is running in Azure Web Apps (Windows).
-> * SDK versions 2.7.1 and later collect performance counters if the application is running in Windows and targets `NETSTANDARD2.0` or later.
-> * For applications that target the .NET Framework, all versions of the SDK support performance counters.
-> * SDK versions 2.8.0 and later support the CPU/Memory counter in Linux. No other counter is supported in Linux. To get system counters in Linux (and other non-Windows environments), use event counters.
-
 Default counters for ASP.NET Core web applications:
 
 * % Process\\Processor Time
@@ -1862,6 +1853,14 @@ Default counters for ASP.NET Core web applications:
 * Process\\Private Bytes
 * Process\\IO Data Bytes/sec
 * Processor(_Total)\\% Processor Time
+
+> [!NOTE]
+> Support for performance counters in ASP.NET Core is limited:
+>
+> * [SDK](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) versions 2.4.1 and later collect performance counters if the application is running in Azure Web Apps (Windows).
+> * SDK versions 2.7.1 and later collect performance counters if the application is running in Windows and targets `NETSTANDARD2.0` or later.
+> * For applications that target the .NET Framework, all versions of the SDK support performance counters.
+> * SDK versions 2.8.0 and later support the CPU/Memory counter in Linux. No other counter is supported in Linux. To get system counters in Linux (and other non-Windows environments), use event counters.
 
 ---
 
