@@ -2,7 +2,7 @@
 title: Configure Container insights data collection
 description: Details on configuring data collection in Azure Monitor Container insights after you enable it on your Kubernetes cluster.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 08/25/2025
 ms.reviewer: aul
 ---
 
