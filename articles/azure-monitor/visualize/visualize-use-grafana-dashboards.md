@@ -92,16 +92,18 @@ Using the Grafana website window or tab, navigate to the dashboard you want to i
 Dashboards that you import or create require RBAC access configuration to share them with specific people or groups.
 
 1. Open the dashboard.
-1. Select **Share**. The Share Dashboard pane opens. Copy the link to the dashboard to your clipboard.
-1. Review Share options
-    1. **People with this link can edit** - Enabling this option creates a link that opens the dashboard in the standard view including an option to edit for users with required dashboard write permissions. Disabling this option creates a link that opens the dashboard in a view-only mode for all users.
-    1. **Lock time range** - If the dashboard is using a relative time range e.g. *now-30m to now*, enabling this option converts the time range in the link to an absolute time range. This enables link recipients to view the same absolute time range as used when shared.
-    1. **Keep variables** - If the dashboard includes variables, enabling this option retains the current values of the variables and includes them in the generated link.
-1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is required for viewing the dashboard. **Contributor** is required to edit the dashboard. The link recipient will also need access to any data source(s) used in the content of this Grafana dashboard. 'Monitoring Reader' role is required for Azure Monitor data and 'Monitoring Data Reader' is required for Prometheus data.
+2. Select **Share**. The Share Dashboard pane opens. Copy the link to the dashboard to your clipboard.
+3. Review Share options
+- **People with this link can edit** - Enabling this option creates a link that opens the dashboard in the standard view and provides the ability to edit for users with the required dashboard write permissions. Disabling this option creates a link that opens the dashboard in a view-only mode for all users.
+- **Lock time range** - If the dashboard is using a relative time range e.g. *now-30m to now*, enabling this option converts the time range in the link to an absolute time range. This enables link recipients to view the same absolute time range as used when shared.
+- **Keep variables** - If the dashboard includes variables, enabling this option retains the current values of the variables and includes them in the generated link.
+4. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is required for viewing the dashboard. **Contributor** is required to edit the dashboard. The link recipient will also need access to any data source(s) used in the content of this Grafana dashboard. 'Monitoring Reader' role is required for Azure Monitor data and 'Monitoring Data Reader' is required for Prometheus data.
 > [!NOTE]
-> Microsoft.Dashboard/dashboard/read and Microsoft.Dashboard/dashboard/write can also be used to assign with more fine-grained permissions.
-1.	Copy the link to the dashboard to your clipboard.
-1. Paste the link into your preferred communication method to share it with the intended people or groups.
+> Microsoft.Dashboard/dashboard/read and Microsoft.Dashboard/dashboard/write can also be used to assign permissions with more fine-grained control.
+5.	Copy the link to the dashboard to your clipboard.
+6. Paste the link into your preferred communication method to share it with the intended people or groups.
+
+
 
 ## Use dashboards with Azure Kubernetes Service (AKS)
 
