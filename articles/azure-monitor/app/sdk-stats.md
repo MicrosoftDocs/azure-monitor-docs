@@ -7,7 +7,7 @@ ms.date: 08/29/2025
 
 # SDK Stats workbooks for Application Insights (Preview)
 
-Use SDK Stats workbooks to monitor how Application Insights SDKs and agents export telemetry to the Breeze ingestion endpoint. These workbooks visualize internal custom metrics that the SDKs publish.
+Use SDK Stats [workbooks](../visualize/workbooks-overview.md) to monitor how [Application Insights](app-insights-overview.md) SDKs and agents export telemetry to the Breeze ingestion endpoint. These workbooks visualize internal custom metrics that the SDKs publish.
 
 > [!NOTE]
 > SDK Stats workbooks add new visualizations. They don't replace existing Application Insights workbooks.
@@ -19,27 +19,32 @@ SDK stats are per-process counters that the Application Insights SDKs and agents
 The SDK publishes three metrics:
 
 - `preview.item.success.count`
-- `preview.item.dropped.count`  <!-- TODO: Confirm that the final metric name is **preview.item.dropped.count** (current implementation) rather than **preview.item.drop.count** from an earlier spec. -->
+- `preview.item.dropped.count`
 - `preview.item.retry.count`
 
-SDK stats appear as **custom metrics** that you can use in Workbooks, query in Log Analytics through the `customMetrics` table, and plot in Metrics explorer.
+SDK stats appear as **custom metrics** that you can use in Workbooks, query in [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table, and plot in [Metrics explorer](../metrics/metrics-explorer.md).
 
 **Dimensions**
 
 These metrics include dimensions in `customDimensions` and standard Application Insights dimensions for slicing:
 
-| Dimension key | Description |
-| --- | --- |
-| `telemetry_type` | Telemetry type associated with the count. Values align with Application Insights tables such as `REQUEST`, `DEPENDENCY`, `EXCEPTION`, `TRACE`, `CUSTOM_EVENT`, and `AVAILABILITY`. |
-| `drop.code`, `drop.reason` | Code and short reason for dropped items. The code is either an HTTP status from Breeze or a client code such as `CLIENT_EXCEPTION`. |
-| `retry.code`, `retry.reason` | Code and short reason for scheduled retries. The code is either an HTTP status from Breeze or a client code such as `CLIENT_TIMEOUT`. |
-| `telemetry_success` | For `REQUEST` and `DEPENDENCY`, the telemetry item's `success` value at export time (`true` or `false`). |
-| `language`, `version` | SDK or agent language and version. |
-| `compute.type` | Compute environment such as `aks`, `appsvc`, `functions`, `springcloud`, `vm`, or `unknown`. <!-- TODO: Confirm the serialized key name in payloads is `computeType` while the logical dimension name is `compute.type`. --> |
-| `sdkVersion` | SDK version string also available in tags. |
-| `cloud_RoleName`, `cloud_RoleInstance` | Resource dimensions you can use to slice by service and instance. |
+| Dimension key                          | Description                                                                                                                                                                                                                  |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `telemetry_type`                       | Telemetry type associated with the count. Values align with Application Insights tables such as `REQUEST`, `DEPENDENCY`, `EXCEPTION`, `TRACE`, `CUSTOM_EVENT`, and `AVAILABILITY`.                                           |
+| `drop.code`, `drop.reason`             | Code and short reason for dropped items. The code is either an HTTP status from Breeze or a client code such as `CLIENT_EXCEPTION`.                                                                                          |
+| `retry.code`, `retry.reason`           | Code and short reason for scheduled retries. The code is either an HTTP status from Breeze or a client code such as `CLIENT_TIMEOUT`.                                                                                        |
+| `telemetry_success`                    | For `REQUEST` and `DEPENDENCY`, the telemetry item's `success` value at export time (`true` or `false`).                                                                                                                     |
+| `language`, `version`                  | SDK or agent language and version.                                                                                                                                                                                           |
+| `compute.type`                         | Compute environment such as `aks`, `appsvc`, `functions`, `springcloud`, `vm`, or `unknown`. <!-- TODO: Confirm the serialized key name in payloads is `computeType` while the logical dimension name is `compute.type`. --> |
+| `sdkVersion`                           | SDK version string also available in tags.                                                                                                                                                                                   |
+| `cloud_RoleName`, `cloud_RoleInstance` | Resource dimensions you can use to slice by service and instance.                                                                                                                                                            |
 
 Each metric row represents an **aggregated count** for the export interval.
+
+## Prerequisites
+
+> [!div class="checklist"]
+> - An [instrumented](opentelemetry-enable.md) Node.js or Python application.
 
 ## Open the SDK Stats workbook
 
@@ -67,7 +72,11 @@ The workbook focuses on a concise set of charts that keep outcomes in context:
 
 Current coverage requires **opt-in** and is limited to the following SDKs:
 
-- **Node.js** and **Python**. Enable by setting the environment variable `APPLICATIONINSIGHTS_SDKSTATS_ENABLED_PREVIEW=true` in the application process environment. <!-- TODO: Confirm whether this applies to Node.js only or also the browser JavaScript SDK. -->
+> [!div class="checklist"]
+> - **Node.js**
+> - **Python**
+
+Enable by setting the environment variable `APPLICATIONINSIGHTS_SDKSTATS_ENABLED_PREVIEW=true` in the application process environment.
 
 **Export interval**
 
@@ -155,13 +164,13 @@ customMetrics
 ```
 
 > [!TIP]
-> Pair the 402 alert with guidance on daily cap configuration and options to reduce ingestion. <!-- TODO: Insert link to the official daily cap article. -->
+> Pair the 402 alert with guidance on [daily cap](opentelemetry-sampling.md#set-a-daily-cap) configuration and options to reduce ingestion.
 
 ## Troubleshooting
 
 ### Diagnose drops and retries
 
-- **Daily cap or over quota**: Look for spikes where `drop.code == "402"`. Adjust the daily cap or reduce ingestion. <!-- TODO: Add link to daily cap doc. -->
+- **Daily cap or over quota**: Look for spikes where `drop.code == "402"`. Adjust the [daily cap](opentelemetry-sampling.md#set-a-daily-cap) or reduce ingestion.
 - **Throttling from Breeze**: Look for rises in `drop.code == "429"` and high retry counts. Reduce batch rates and respect `Retry-After` headers.
 - **Local buffer pressure**: Look for `CLIENT_PERSISTENCE_CAPACITY` drops or high retry with stable success. Right-size buffers and validate disk and quotas.
 - **Invalid telemetry**: Look for `400` drops and `InvalidTelemetry` reasons. Validate payload size and schema.
@@ -172,45 +181,45 @@ The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.rea
 
 #### Client-side drop codes
 
-| drop.code | Description |
-| --- | --- |
-| `CLIENT_EXCEPTION` | Items dropped due to exceptions or when Breeze doesn't return a response. |
-| `CLIENT_READONLY` | Items dropped because the file system is read-only. |
-| `CLIENT_PERSISTENCE_CAPACITY` | Items dropped because disk persistence capacity is exceeded. |
-| `CLIENT_STORAGE_DISABLED` | Items that would be retried but local storage is disabled. |
-| `*NON_RETRYABLE_STATUS_CODE` | Items dropped when Breeze returns a non-retryable status such as `401` or `403`. |
+| drop.code                     | Description                                                                      |
+| ----------------------------- | -------------------------------------------------------------------------------- |
+| `CLIENT_EXCEPTION`            | Items dropped due to exceptions or when Breeze doesn't return a response.        |
+| `CLIENT_READONLY`             | Items dropped because the file system is read-only.                              |
+| `CLIENT_PERSISTENCE_CAPACITY` | Items dropped because disk persistence capacity is exceeded.                     |
+| `CLIENT_STORAGE_DISABLED`     | Items that would be retried but local storage is disabled.                       |
+| `*NON_RETRYABLE_STATUS_CODE`  | Items dropped when Breeze returns a non-retryable status such as `401` or `403`. |
 
 **drop.reason** complements `drop.code` with low-cardinality categories such as **Timeout exception**, **Network exception**, **Storage exception**, and **Client exception**. <!-- TODO: Replace with the final canonical list and casing from the spec. -->
 
 #### Client-side retry codes
 
-| retry.code | Description |
-| --- | --- |
-| `CLIENT_EXCEPTION` | Items scheduled for retry due to runtime exceptions such as network or DNS failures (excluding timeouts). |
-| `CLIENT_TIMEOUT` | Items scheduled for retry because a timeout occurred. |
-| `*RETRYABLE_STATUS_CODE` | Items scheduled for retry because Breeze returned a retryable HTTP status code. |
+| retry.code               | Description                                                                                               |
+| ------------------------ | --------------------------------------------------------------------------------------------------------- |
+| `CLIENT_EXCEPTION`       | Items scheduled for retry due to runtime exceptions such as network or DNS failures (excluding timeouts). |
+| `CLIENT_TIMEOUT`         | Items scheduled for retry because a timeout occurred.                                                     |
+| `*RETRYABLE_STATUS_CODE` | Items scheduled for retry because Breeze returned a retryable HTTP status code.                           |
 
 **retry.reason** uses the same categorization approach as **drop.reason**.
 
 #### Breeze HTTP responses
 
-| HTTP status from Breeze | Typical reason | SDK action |
-| --- | --- | --- |
-| `200 OK` | All items accepted. | Count items as success. |
-| `206 Partial Content` | Some items accepted, some rejected. | Count accepted items as success and rejected items as dropped. |
-| `307` or `308 Redirect` | Redirect to a stamp-specific endpoint. | Follow redirects (up to 10). Update the ingestion endpoint. Drop if redirects continue beyond the limit. |
-| `400 Bad Request` | Invalid telemetry or unsupported schema; also used in some Azure AD misconfiguration cases. | Drop invalid items. <!-- TODO: Confirm guidance for Azure AD misrouting that returns 400 but would succeed on the correct API. --> |
-| `401 Unauthorized` | Authentication error or Azure AD token lacks required permissions. | Retry with backoff. |
-| `402 Payment Required` | Daily quota exceeded. | Drop new items until the cap window resets. No `Retry-After` is present. <!-- TODO: Confirm guidance for previously persisted items during the cap window. --> |
-| `403 Forbidden` | Misconfigured permissions or endpoint/resource mapping. | Retry with backoff after configuration is corrected. |
-| `404 Stamp-specific endpoint required` | Connection string points to a different region than the resource. | Drop and update the connection string. |
-| `405 Method Not Allowed` | HTTP method isn't allowed. | Persist and retry later. |
-| `408 Request Timeout` | Network timeout. | Retry with exponential backoff. |
-| `413 Payload Too Large` | Batch size too large. | Split the batch, persist if supported, and retry. |
-| `429 Too Many Requests` | Throttling with `Retry-After`. | Persist and retry after the indicated interval. |
-| `439 Daily Quota Exceeded (deprecated)` | Legacy form of over-quota. | Drop the items. |
-| `5xx Server Error` | Transient service issue. | Persist and retry with exponential backoff. |
-| Other | Not recognized. | Drop the items. |
+| HTTP status from Breeze                 | Typical reason                                                                              | SDK action                                                                                                                                                     |
+| --------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `200 OK`                                | All items accepted.                                                                         | Count items as success.                                                                                                                                        |
+| `206 Partial Content`                   | Some items accepted, some rejected.                                                         | Count accepted items as success and rejected items as dropped.                                                                                                 |
+| `307` or `308 Redirect`                 | Redirect to a stamp-specific endpoint.                                                      | Follow redirects (up to 10). Update the ingestion endpoint. Drop if redirects continue beyond the limit.                                                       |
+| `400 Bad Request`                       | Invalid telemetry or unsupported schema; also used in some Azure AD misconfiguration cases. | Drop invalid items. <!-- TODO: Confirm guidance for Azure AD misrouting that returns 400 but would succeed on the correct API. -->                             |
+| `401 Unauthorized`                      | Authentication error or Azure AD token lacks required permissions.                          | Retry with backoff.                                                                                                                                            |
+| `402 Payment Required`                  | Daily quota exceeded.                                                                       | Drop new items until the cap window resets. No `Retry-After` is present. <!-- TODO: Confirm guidance for previously persisted items during the cap window. --> |
+| `403 Forbidden`                         | Misconfigured permissions or endpoint/resource mapping.                                     | Retry with backoff after configuration is corrected.                                                                                                           |
+| `404 Stamp-specific endpoint required`  | Connection string points to a different region than the resource.                           | Drop and update the connection string.                                                                                                                         |
+| `405 Method Not Allowed`                | HTTP method isn't allowed.                                                                  | Persist and retry later.                                                                                                                                       |
+| `408 Request Timeout`                   | Network timeout.                                                                            | Retry with exponential backoff.                                                                                                                                |
+| `413 Payload Too Large`                 | Batch size too large.                                                                       | Split the batch, persist if supported, and retry.                                                                                                              |
+| `429 Too Many Requests`                 | Throttling with `Retry-After`.                                                              | Persist and retry after the indicated interval.                                                                                                                |
+| `439 Daily Quota Exceeded (deprecated)` | Legacy form of over-quota.                                                                  | Drop the items.                                                                                                                                                |
+| `5xx Server Error`                      | Transient service issue.                                                                    | Persist and retry with exponential backoff.                                                                                                                    |
+| Other                                   | Not recognized.                                                                             | Drop the items.                                                                                                                                                |
 
 Items scheduled for retry aren't counted as dropped unless the exporter abandons them or the retry buffer overflows. Retry counts never decrement; retries represent attempts, not final state.
 
