@@ -4,7 +4,7 @@ description: Overview of log queries in Azure Monitor Log Analytics including di
 ms.subservice: logs
 ms.topic: article
 ms.reviewer: ilanawaitser
-ms.date: 12/28/2023
+ms.date: 08/29/2025
 ---
 
 # Use queries in Log Analytics
