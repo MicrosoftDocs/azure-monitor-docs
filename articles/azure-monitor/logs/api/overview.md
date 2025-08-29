@@ -4,6 +4,7 @@ description: This article describes the REST API that makes the data collected b
 ms.date: 09/17/2024
 ms.topic: concept-article
 ---
+
 # Azure Monitor Log Analytics API overview
 
 The Log Analytics Query API is a REST API that you can use to query the full set of data collected by Azure Monitor logs. You can use the same query language that's used throughout the service. Use this API to retrieve data, build new visualizations of your data, and extend the capabilities of Log Analytics.
@@ -11,6 +12,7 @@ The Log Analytics Query API is a REST API that you can use to query the full set
 ## Log Analytics API authentication
 
 You must authenticate to access the Log Analytics API:
+
 - To query your workspaces, you must use [Microsoft Entra authentication](/azure/active-directory/fundamentals/active-directory-whatis).
 - To quickly explore the API without using Microsoft Entra authentication, you can use an API key to query sample data in a non-production environment.
 
@@ -19,9 +21,10 @@ You must authenticate to access the Log Analytics API:
 ### Microsoft Entra authentication for workspace data
 
 The Log Analytics API supports Microsoft Entra authentication with three different [Microsoft Entra ID OAuth2](/azure/active-directory/develop/active-directory-protocols-oauth-code) flows:
-- Authorization code
-- Implicit
-- Client credentials
+
+* Authorization code
+* Implicit
+* Client credentials
 
 The authorization code flow and implicit flow both require at least one user interactive sign-in to your application. If you need a non-interactive flow, use the client credentials flow.
 
@@ -41,15 +44,22 @@ For information about query limits, see the [Query API section of this webpage](
 ## Try the Log Analytics API
 
 To try the API without writing any code, you can use:
-  - Your favorite client such as [Bruno](https://www.usebruno.com/) or [Insomnia](https://insomnia.rest/) to manually generate queries with a user interface.
-  - [cURL](https://curl.haxx.se/) from the command line. Then pipe the output into [jsonlint](https://github.com/zaach/jsonlint) to get readable JSON.
+
+* Your favorite client such as [Bruno](https://www.usebruno.com/) or [Insomnia](https://insomnia.rest/) to manually generate queries with a user interface.
+* [cURL](https://curl.haxx.se/) from the command line. Then pipe the output into [jsonlint](https://github.com/zaach/jsonlint) to get readable JSON.
 
 Instead of calling the REST API directly, you can use the idiomatic Azure Monitor Query client libraries:
 
-- [.NET](/dotnet/api/overview/azure/Monitor.Query-readme)
-- [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/query/azlogs)
-- [Java](/java/api/overview/azure/monitor-query-readme)
-- [JavaScript](/javascript/api/overview/azure/monitor-query-readme)
-- [Python](/python/api/overview/azure/monitor-query-readme)
+* [.NET](/dotnet/api/overview/azure/Monitor.Query-readme)
+* [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/query/azlogs)
+* [Java](/java/api/overview/azure/monitor-query-readme)
+* [JavaScript](/javascript/api/overview/azure/monitor-query-readme)
+* [Python](/python/api/overview/azure/monitor-query-readme)
 
 Each client library is a wrapper around the REST API that allows you to retrieve log data from the workspace.
+
+## Related content
+
+* [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md)
+* [Logs Ingestion API in Azure Monitor](../logs-ingestion-api-overview.md)
+* [Copy and transform data from and to a REST endpoint by using Azure Data Factory](/azure/data-factory/connector-rest?tabs=data-factory)
