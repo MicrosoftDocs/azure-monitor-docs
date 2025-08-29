@@ -1035,7 +1035,7 @@ For detailed instructions, see [Investigate failures, performance, and transacti
 1. Select an exception report to show its stack trace. To open the relevant code file, select a line reference in the stack trace.
 
     If CodeLens is enabled, you see data about the exceptions:
-    
+
     :::image type="content" source="media/asp-net/codelens.png" lightbox="media/asp-net/codelens.png" alt-text="Screenshot that shows CodeLens notification of exceptions.":::
 
 ---
@@ -1705,7 +1705,7 @@ Currently, 10 dimensions are supported. More than three dimensions requires the 
 // Add "using Microsoft.ApplicationInsights.Metrics;" to use MetricIdentifier
 // MetricIdentifier id = new MetricIdentifier("[metricNamespace]","[metricId],"[dim1]","[dim2]","[dim3]","[dim4]","[dim5]");
 MetricIdentifier id = new MetricIdentifier("CustomMetricNamespace","ComputerSold", "FormFactor", "GraphicsCard", "MemorySpeed", "BatteryCapacity", "StorageCapacity");
-Metric computersSold  = _telemetryClient.GetMetric(id);
+Metric computersSold = _telemetryClient.GetMetric(id);
 computersSold.TrackValue(110,"Laptop", "Nvidia", "DDR4", "39Wh", "1TB");
 ```
 
@@ -1981,8 +1981,8 @@ public async Task Enqueue(CloudQueue queue, string message)
 
 To reduce the amount of telemetry your application reports or if you don't want to track the `Enqueue` operation for other reasons, use the `Activity` API directly:
 
-- Create (and start) a new `Activity` instead of starting the Application Insights operation. You do *not* need to assign any properties on it except the operation name.
-- Serialize `yourActivity.Id` into the message payload instead of `operation.Telemetry.Id`. You can also use `Activity.Current.Id`.
+* Create (and start) a new `Activity` instead of starting the Application Insights operation. You do *not* need to assign any properties on it except the operation name.
+* Serialize `yourActivity.Id` into the message payload instead of `operation.Telemetry.Id`. You can also use `Activity.Current.Id`.
 
 ###### Dequeue
 
@@ -1996,7 +1996,7 @@ public async Task<MessagePayload> Dequeue(CloudQueue queue)
     var operation = telemetryClient.StartOperation<DependencyTelemetry>("dequeue " + queue.Name);
     operation.Telemetry.Type = "Azure queue";
     operation.Telemetry.Data = "Dequeue " + queue.Name;
-    
+
     try
     {
         var message = await queue.GetMessageAsync();
@@ -2190,7 +2190,7 @@ public async Task RunAllTasks()
 }
 ```
 
-## ApplicationInsights operations vs. System.Diagnostics.Activity
+#### ApplicationInsights operations vs. System.Diagnostics.Activity
 
 `System.Diagnostics.Activity` represents the distributed tracing context and is used by frameworks and libraries to create and propagate context inside and outside of the process and correlate telemetry items. `Activity` works together with `System.Diagnostics.DiagnosticSource` as the notification mechanism between the framework/library to notify about interesting events like incoming or outgoing requests and exceptions.
 
@@ -2594,7 +2594,7 @@ The following section from [ApplicationInsights.config](configuration-with-appli
     <TelemetrySinks>
         <Add Name="default">
             <TelemetryProcessors>
-                <!-- Telemetry processors omitted for brevity  -->
+                <!-- Telemetry processors omitted for brevity -->
             </TelemetryProcessors>
             <TelemetryChannel Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel, Microsoft.AI.ServerTelemetryChannel">
                 <StorageFolder>d:\temp\applicationinsights</StorageFolder>
@@ -2739,7 +2739,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | **Exception tracking (Web)** | Automatic exception tracking in ASP.NET Core Application Insights integration<br><br>**Module:** *No separate module class.*<br>**NuGet:** [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) |
 | **Exception tracking (Unobserved/Unhandled)** | Similar behavior via ASP.NET Core runtime/integration; class names are Windows Server–specific.<br><br>**NuGet:** [Microsoft.ApplicationInsights.WindowsServer](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
 | **EventSource tracking** | Sends configured EventSource events to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener) |
-| **ETW collector** |  Windows-only (ETW). Sends configured ETW provider events to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
+| **ETW collector** | Windows-only (ETW). Sends configured ETW provider events to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
 | **Core API (not a module)** | Core API used by other telemetry components and for custom telemetry.<br><br>**Module:** `Microsoft.ApplicationInsights package`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) |
 
 
@@ -3263,7 +3263,7 @@ To learn how to configure snapshot collection for ASP.NET and ASP.NET Core appli
 
 ### Sampling
 
-To learn how to configure sampling for ASP.NET  and ASP.NET Core applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+To learn how to configure sampling for ASP.NET and ASP.NET Core applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
 ### Enrich data through HTTP
 
