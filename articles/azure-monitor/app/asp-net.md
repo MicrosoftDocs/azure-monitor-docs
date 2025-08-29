@@ -1803,11 +1803,7 @@ Application Insights SDKs automatically track incoming HTTP requests and calls t
 
 There's a class of application patterns that can't be supported generically. Proper monitoring of such patterns requires manual code instrumentation. This article covers a few patterns that might require manual instrumentation, such as custom queue processing and running long-running background tasks.
 
-This section provides guidance on how to track custom operations with the Application Insights SDK. This documentation is relevant for:
-
-* Application Insights for ASP.NET version 2.4+.
-* Application Insights for ASP.NET Core version 2.1+.
-* Application Insights for .NET (also known as Base SDK) version 2.4+.
+This section provides guidance on how to track custom operations with the Application Insights SDK.
 
 #### Overview
 
@@ -1828,6 +1824,10 @@ On a high level, the task is to create `RequestTelemetry` and set known properti
 ##### HTTP request in Owin self-hosted app
 
 In this example, trace context is propagated according to the [HTTP Protocol for Correlation](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/HttpCorrelationProtocol.md). You should expect to receive headers that are described there.
+
+<br>
+<details>
+<summary><b>Expand to view code</b></summary>
 
 ```csharp
 public class ApplicationInsightsMiddleware : OwinMiddleware
@@ -1904,6 +1904,8 @@ public class ApplicationInsightsMiddleware : OwinMiddleware
 }
 ```
 
+</details>
+
 The HTTP Protocol for Correlation also declares the `Correlation-Context` header. It's omitted here for simplicity.
 
 #### Queue instrumentation
@@ -1927,7 +1929,7 @@ The Storage queue has an HTTP API. All calls to the queue are tracked by the App
 
 You also might want to correlate the Application Insights operation ID with the Storage request ID. For information on how to set and get a Storage request client and a server request ID, see [Monitor, diagnose, and troubleshoot Azure Storage](/azure/storage/common/storage-monitoring-diagnosing-troubleshooting#end-to-end-tracing).
 
-###### Enqueue
+# [Enqueue](#tab/enqueue)
 
 Because Storage queues support the HTTP API, all operations with the queue are automatically tracked by Application Insights. In many cases, this instrumentation should be enough. To correlate traces on the consumer side with producer traces, you must pass some correlation context similarly to how we do it in the HTTP Protocol for Correlation.
 
@@ -1984,7 +1986,7 @@ To reduce the amount of telemetry your application reports or if you don't want 
 * Create (and start) a new `Activity` instead of starting the Application Insights operation. You do *not* need to assign any properties on it except the operation name.
 * Serialize `yourActivity.Id` into the message payload instead of `operation.Telemetry.Id`. You can also use `Activity.Current.Id`.
 
-###### Dequeue
+# [Dequeue](#tab/dequeue)
 
 Similarly to `Enqueue`, an actual HTTP request to the Storage queue is automatically tracked by Application Insights. The `Enqueue` operation presumably happens in the parent context, such as an incoming request context. Application Insights SDKs automatically correlate such an operation, and its HTTP part, with the parent request and other telemetry reported in the same scope.
 
@@ -2018,7 +2020,7 @@ public async Task<MessagePayload> Dequeue(CloudQueue queue)
 }
 ```
 
-###### Process
+# [Process](#tab/process)
 
 In the following example, an incoming message is tracked in a manner similar to an incoming HTTP request:
 
@@ -2050,6 +2052,8 @@ public async Task Process(MessagePayload message)
     }
 }
 ```
+
+---
 
 Similarly, other queue operations can be instrumented. A peek operation should be instrumented in a similar way as a dequeue operation. Instrumenting queue management operations isn't necessary. Application Insights tracks operations such as HTTP, and in most cases, it's enough.
 
@@ -2485,7 +2489,7 @@ To get a chart of a specific counter (for example: `ThreadPool Completed Work It
 customMetrics 
 | where name contains "System.Runtime|ThreadPool Completed Work Item Count"
 | where timestamp >= ago(1h)
-| summarize  avg(value) by cloud_RoleInstance, bin(timestamp, 1m)
+| summarize avg(value) by cloud_RoleInstance, bin(timestamp, 1m)
 | render timechart
 ```
 
