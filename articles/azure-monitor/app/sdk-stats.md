@@ -1,6 +1,6 @@
 ---
 title: SDK Stats workbooks for Azure Monitor Application Insights (Preview)
-description: Use SDK Stats workbooks to visualize telemetry export success, dropped counts, retry counts, and drop reasons produced by the Azure Monitor SDKs and agents.
+description: Use SDK Stats workbooks to visualize telemetry export success, dropped counts, retry counts, and drop reasons produced by the Azure Monitor Software Development Kits (SDKs) and agents.
 ms.topic: how-to
 ms.date: 08/29/2025
 ---
@@ -11,6 +11,12 @@ Use SDK Stats [workbooks](../visualize/workbooks-overview.md) to monitor how [Ap
 
 > [!NOTE]
 > SDK Stats workbooks add new visualizations. They don't replace existing Application Insights workbooks.
+
+## Prerequisites
+
+> [!div class="checklist"]
+> - An [instrumented](opentelemetry-enable.md) Node.js or Python application.
+> - An environment variable set to [opt-in](#enable-and-configure-sdk-stats).
 
 ## SDK stats overview
 
@@ -41,11 +47,6 @@ These metrics include dimensions in `customDimensions` and standard Application 
 
 Each metric row represents an **aggregated count** for the export interval.
 
-## Prerequisites
-
-> [!div class="checklist"]
-> - An [instrumented](opentelemetry-enable.md) Node.js or Python application.
-
 ## Open the SDK Stats workbook
 
 Open your Application Insights resource, then open **Workbooks** and select **SDK Stats (Preview)**. The experience uses a **single workbook** with a simplified set of visuals.
@@ -64,7 +65,7 @@ Use the filters at the top of the workbook to scope the view:
 
 The workbook focuses on a concise set of charts that keep outcomes in context:
 
-- **Export outcomes over time**. Plots `success`, `retry`, and `dropped` counts together.
+- **Export outcomes over time**. Plots counts of `success`, `retry`, and `dropped` together.
 - **Failure ratio**. Shows `dropped / success` on the selected time grain.
 - **Time-bucket drilldown**. Selecting a bucket opens a breakdown view with top drop reasons and codes for that period. <!-- TODO: Confirm the exact drilldown fields and titles used in the template. -->
 
@@ -164,7 +165,7 @@ customMetrics
 ```
 
 > [!TIP]
-> Pair the 402 alert with guidance on [daily cap](opentelemetry-sampling.md#set-a-daily-cap) configuration and options to reduce ingestion.
+> Pair the 402 alert with [daily cap](opentelemetry-sampling.md#set-a-daily-cap) guidance so responders can adjust the cap or reduce ingestion.
 
 ## Troubleshooting
 
@@ -177,7 +178,7 @@ customMetrics
 
 ### Drop reasons and Breeze response codes
 
-The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.reason` and `retry.code` for scheduled retries. The values below describe common cases.
+The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.reason` and `retry.code` for scheduled retries. The following values describe common cases.
 
 #### Client-side drop codes
 
@@ -187,39 +188,39 @@ The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.rea
 | `CLIENT_READONLY`             | Items dropped because the file system is read-only.                              |
 | `CLIENT_PERSISTENCE_CAPACITY` | Items dropped because disk persistence capacity is exceeded.                     |
 | `CLIENT_STORAGE_DISABLED`     | Items that would be retried but local storage is disabled.                       |
-| `*NON_RETRYABLE_STATUS_CODE`  | Items dropped when Breeze returns a non-retryable status such as `401` or `403`. |
+| `*NON_RETRYABLE_STATUS_CODE`  | Items dropped when Breeze returns a nonretryable status such as `401` or `403`.  |
 
 **drop.reason** complements `drop.code` with low-cardinality categories such as **Timeout exception**, **Network exception**, **Storage exception**, and **Client exception**. <!-- TODO: Replace with the final canonical list and casing from the spec. -->
 
 #### Client-side retry codes
 
-| retry.code               | Description                                                                                               |
-| ------------------------ | --------------------------------------------------------------------------------------------------------- |
-| `CLIENT_EXCEPTION`       | Items scheduled for retry due to runtime exceptions such as network or DNS failures (excluding timeouts). |
-| `CLIENT_TIMEOUT`         | Items scheduled for retry because a timeout occurred.                                                     |
-| `*RETRYABLE_STATUS_CODE` | Items scheduled for retry because Breeze returned a retryable HTTP status code.                           |
+| retry.code               | Description                                                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `CLIENT_EXCEPTION`       | Items scheduled for retry due to runtime exceptions such as network or Domain Name System (DNS) failures (excluding timeouts). |
+| `CLIENT_TIMEOUT`         | Items scheduled for retry because a timeout occurred.                                                                          |
+| `*RETRYABLE_STATUS_CODE` | Items scheduled for retry because Breeze returned a retryable HTTP status code.                                                |
 
 **retry.reason** uses the same categorization approach as **drop.reason**.
 
 #### Breeze HTTP responses
 
-| HTTP status from Breeze                 | Typical reason                                                                              | SDK action                                                                                                                                                     |
-| --------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `200 OK`                                | All items accepted.                                                                         | Count items as success.                                                                                                                                        |
-| `206 Partial Content`                   | Some items accepted, some rejected.                                                         | Count accepted items as success and rejected items as dropped.                                                                                                 |
-| `307` or `308 Redirect`                 | Redirect to a stamp-specific endpoint.                                                      | Follow redirects (up to 10). Update the ingestion endpoint. Drop if redirects continue beyond the limit.                                                       |
-| `400 Bad Request`                       | Invalid telemetry or unsupported schema; also used in some Azure AD misconfiguration cases. | Drop invalid items. <!-- TODO: Confirm guidance for Azure AD misrouting that returns 400 but would succeed on the correct API. -->                             |
-| `401 Unauthorized`                      | Authentication error or Azure AD token lacks required permissions.                          | Retry with backoff.                                                                                                                                            |
-| `402 Payment Required`                  | Daily quota exceeded.                                                                       | Drop new items until the cap window resets. No `Retry-After` is present. <!-- TODO: Confirm guidance for previously persisted items during the cap window. --> |
-| `403 Forbidden`                         | Misconfigured permissions or endpoint/resource mapping.                                     | Retry with backoff after configuration is corrected.                                                                                                           |
-| `404 Stamp-specific endpoint required`  | Connection string points to a different region than the resource.                           | Drop and update the connection string.                                                                                                                         |
-| `405 Method Not Allowed`                | HTTP method isn't allowed.                                                                  | Persist and retry later.                                                                                                                                       |
-| `408 Request Timeout`                   | Network timeout.                                                                            | Retry with exponential backoff.                                                                                                                                |
-| `413 Payload Too Large`                 | Batch size too large.                                                                       | Split the batch, persist if supported, and retry.                                                                                                              |
-| `429 Too Many Requests`                 | Throttling with `Retry-After`.                                                              | Persist and retry after the indicated interval.                                                                                                                |
-| `439 Daily Quota Exceeded (deprecated)` | Legacy form of over-quota.                                                                  | Drop the items.                                                                                                                                                |
-| `5xx Server Error`                      | Transient service issue.                                                                    | Persist and retry with exponential backoff.                                                                                                                    |
-| Other                                   | Not recognized.                                                                             | Drop the items.                                                                                                                                                |
+| HTTP status from Breeze                 | Typical reason                                                                                     | SDK action                                                                                                                                                     |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `200 OK`                                | All items accepted.                                                                                | Count items as success.                                                                                                                                        |
+| `206 Partial Content`                   | Some items accepted, some rejected.                                                                | Count accepted items as success and rejected items as dropped.                                                                                                 |
+| `307` or `308 Redirect`                 | Redirect to a stamp-specific endpoint.                                                             | Follow redirects (up to 10). Update the ingestion endpoint. Drop if redirects continue beyond the limit.                                                       |
+| `400 Bad Request`                       | Invalid telemetry or unsupported schema; also used in some Microsoft Entra misconfiguration cases. | Drop invalid items. <!-- TODO: Confirm guidance for Azure AD misrouting that returns 400 but would succeed on the correct API. -->                             |
+| `401 Unauthorized`                      | Authentication error or Microsoft Entra token lacks required permissions.                          | Retry with backoff.                                                                                                                                            |
+| `402 Payment Required`                  | Daily quota exceeded.                                                                              | Drop new items until the cap window resets. No `Retry-After` is present. <!-- TODO: Confirm guidance for previously persisted items during the cap window. --> |
+| `403 Forbidden`                         | Misconfigured permissions or endpoint/resource mapping.                                            | Retry with backoff after configuration is corrected.                                                                                                           |
+| `404 Stamp-specific endpoint required`  | Connection string points to a different region than the resource.                                  | Drop and update the connection string.                                                                                                                         |
+| `405 Method Not Allowed`                | HTTP method isn't allowed.                                                                         | Persist and retry later.                                                                                                                                       |
+| `408 Request Timeout`                   | Network timeout.                                                                                   | Retry with exponential backoff.                                                                                                                                |
+| `413 Payload Too Large`                 | Batch size too large.                                                                              | Split the batch, persist if supported, and retry.                                                                                                              |
+| `429 Too Many Requests`                 | Throttling with `Retry-After`.                                                                     | Persist and retry after the indicated interval.                                                                                                                |
+| `439 Daily Quota Exceeded (deprecated)` | Legacy form of over-quota.                                                                         | Drop the items.                                                                                                                                                |
+| `5xx Server Error`                      | Transient service issue.                                                                           | Persist and retry with exponential backoff.                                                                                                                    |
+| Other                                   | Not recognized.                                                                                    | Drop the items.                                                                                                                                                |
 
 Items scheduled for retry aren't counted as dropped unless the exporter abandons them or the retry buffer overflows. Retry counts never decrement; retries represent attempts, not final state.
 
@@ -227,7 +228,7 @@ Items scheduled for retry aren't counted as dropped unless the exporter abandons
 
 - The SDK increments counters as it evaluates and exports telemetry, then sends the counters as `customMetrics` records on an interval.
 - The exporter records `preview.item.success.count` for items Breeze accepts, `preview.item.dropped.count` for dropped items, and `preview.item.retry.count` for scheduled retries.
-- Items that retry and later succeed still contribute to success when they're sent.
+- Retried items that later succeed count toward success when the exporter sends them.
 
 ### How SDK stats relate to logs
 
@@ -252,7 +253,7 @@ Estimated records per hour per instance ≈
 
 The default interval is **15 minutes** (`interval_seconds = 900`). Configure a different interval with `APPLICATIONINSIGHTS_SDKSTATS_EXPORT_INTERVAL`.
 
-### KQL samples
+### Kusto Query Language (KQL) samples
 
 **Export outcomes vs. time**
 
