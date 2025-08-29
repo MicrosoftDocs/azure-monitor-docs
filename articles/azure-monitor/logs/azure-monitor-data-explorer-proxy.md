@@ -49,6 +49,7 @@ Cross-service queries aren't supported in the following scenarios:
   
 ### Azure Resource Graph cross-service query considerations
 
+- The `arg` portion of the query only returns the first 1,000 records. Keep this in mind if combining with a `join` as there may be missing records if the limit is reached.
 - The `join` operator lets you combine data from one Azure Resource Graph table with one table in your Log Analytics workspace.
 - Azure Monitor doesn't return Azure Resource Graph query errors.
 - The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors. For example, a valid query might give an error like this, "The name \<valid name> does not refer to any known column, table, variable or function."
