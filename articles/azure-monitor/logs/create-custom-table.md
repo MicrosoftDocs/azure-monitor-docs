@@ -4,7 +4,7 @@ description: Create a table with a custom schema to collect logs from any data s
 ms.reviewer: adi.biran
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to 
-ms.date: 01/28/2024
+ms.date: 08/29/2025
 # Customer intent: As a Log Analytics workspace administrator, I want to manage table schemas and be able create a table with a custom schema to store logs from an Azure or non-Azure data source.
 ---
 
