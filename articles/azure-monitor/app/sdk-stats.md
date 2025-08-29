@@ -9,6 +9,10 @@ ms.date: 08/29/2025
 
 Use the SDK Stats [workbook](../visualize/workbooks-overview.md) to monitor how [Application Insights](app-insights-overview.md) SDKs and agents export [telemetry](data-model-complete.md) to the [ingestion endpoint](app-insights-overview.md#logic-model). The workbook visualizes internal custom metrics that the SDKs publish.
 
+> [!IMPORTANT]
+> The preview features are provided without a service-level agreement, and are not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. 
+> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
 ## Prerequisites
 
 > [!div class="checklist"]
@@ -34,8 +38,8 @@ These metrics include dimensions in `customDimensions` and standard Application 
 | Dimension key                          | Description                                                                                                                                                                                                                  |
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `telemetry_type`                       | Telemetry type associated with the count. Values align with Application Insights tables such as `REQUEST`, `DEPENDENCY`, `EXCEPTION`, `TRACE`, `CUSTOM_EVENT`, and `AVAILABILITY`.                                           |
-| `drop.code`, `drop.reason`             | Code and short reason for dropped items. The code is either an HTTP status from ingestion or a client code such as `CLIENT_EXCEPTION`.                                                                                       |
-| `retry.code`, `retry.reason`           | Code and short reason for scheduled retries. The code is either an HTTP status from ingestion or a client code such as `CLIENT_TIMEOUT`.                                                                                     |
+| `drop.code`, `drop.reason`             | Code and short reason for dropped items. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_EXCEPTION`.                                                                          |
+| `retry.code`, `retry.reason`           | Code and short reason for scheduled retries. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_TIMEOUT`.                                                                        |
 | `telemetry_success`                    | For `REQUEST` and `DEPENDENCY`, the telemetry item's `success` value at export time (`true` or `false`).                                                                                                                     |
 | `language`, `version`                  | SDK or agent language and version.                                                                                                                                                                                           |
 | `compute.type`                         | Compute environment such as `aks`, `appsvc`, `functions`, `springcloud`, `vm`, or `unknown`. <!-- TODO: Confirm the serialized key name in payloads is `computeType` while the logical dimension name is `compute.type`. --> |
@@ -207,7 +211,7 @@ customMetrics
 
 - Stats aggregate over export intervals while log tables store individual items. Counts across different time grains can differ.
 - Stats reflect items after the SDK applies sampling and processors.
-- Ingestion can accept part of a batch and reject the rest, which records success and drop counts for the same interval.
+- The ingestion endpoint can accept part of a batch and reject the rest, which records success and drop counts for the same interval.
 - Retried items are sent after the initial attempt, so arrival time can differ from event time.
 - Over quota (`402`) drops mean the application telemetry doesn't appear in logs during the cap window.
 
@@ -245,23 +249,23 @@ Use the retry series to spot transient delivery issues and to decide what to che
 ### Diagnose drops and retries
 
 - **Daily cap or over quota**: Look for spikes where `drop.code == "402"`. Adjust the [daily cap](opentelemetry-sampling.md#set-a-daily-cap) or reduce ingestion.
-- **Throttling from ingestion**: Look for rises in `drop.code == "429"` and high retry counts. Reduce batch rates and respect `Retry-After` headers.
+- **Throttling from the ingestion endpoint**: Look for rises in `drop.code == "429"` and high retry counts. Reduce batch rates and respect `Retry-After` headers.
 - **Local buffer pressure**: Look for `CLIENT_PERSISTENCE_CAPACITY` drops or high retry with stable success. Right-size buffers and validate disk and quotas.
 - **Invalid telemetry**: Look for `400` drops and `InvalidTelemetry` reasons. Validate payload size and schema.
 
-### Drop reasons and ingestion response codes
+### Drop reasons and ingestion endpoint response codes
 
 The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.reason` and `retry.code` for scheduled retries. The following values describe common cases.
 
 #### Client-side drop codes
 
-| drop.code                     | Description                                                                        |
-| ----------------------------- | ---------------------------------------------------------------------------------- |
-| `CLIENT_EXCEPTION`            | Items dropped due to exceptions or when ingestion doesn't return a response.       |
-| `CLIENT_READONLY`             | Items dropped because the file system is read-only.                                |
-| `CLIENT_PERSISTENCE_CAPACITY` | Items dropped because disk persistence capacity is exceeded.                       |
-| `CLIENT_STORAGE_DISABLED`     | Items that would be retried but local storage is disabled.                         |
-| `*NON_RETRYABLE_STATUS_CODE`  | Items dropped when ingestion returns a nonretryable status such as `401` or `403`. |
+| drop.code                     | Description                                                                                     |
+| ----------------------------- | ----------------------------------------------------------------------------------------------- |
+| `CLIENT_EXCEPTION`            | Items dropped due to exceptions or when the ingestion endpoint doesn't return a response.       |
+| `CLIENT_READONLY`             | Items dropped because the file system is read-only.                                             |
+| `CLIENT_PERSISTENCE_CAPACITY` | Items dropped because disk persistence capacity is exceeded.                                    |
+| `CLIENT_STORAGE_DISABLED`     | Items that would be retried but local storage is disabled.                                      |
+| `*NON_RETRYABLE_STATUS_CODE`  | Items dropped when the ingestion endpoint returns a nonretryable status such as `401` or `403`. |
 
 **drop.reason** complements `drop.code` with low-cardinality categories such as **Timeout exception**, **Network exception**, **Storage exception**, and **Client exception**. <!-- TODO: Replace with the final canonical list and casing from the spec. -->
 
@@ -271,13 +275,13 @@ The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.rea
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | `CLIENT_EXCEPTION`       | Items scheduled for retry due to runtime exceptions such as network or Domain Name System (DNS) failures (excluding timeouts). |
 | `CLIENT_TIMEOUT`         | Items scheduled for retry because a timeout occurred.                                                                          |
-| `*RETRYABLE_STATUS_CODE` | Items scheduled for retry because ingestion returned a retryable HTTP status code.                                             |
+| `*RETRYABLE_STATUS_CODE` | Items scheduled for retry because the ingestion endpoint returned a retryable HTTP status code.                                |
 
 **retry.reason** uses the same categorization approach as **drop.reason**.
 
 #### Ingestion HTTP responses
 
-| HTTP status from ingestion              | Typical reason                                                                                     | SDK action                                                                                                                                                     |
+| HTTP status from the ingestion endpoint | Typical reason                                                                                     | SDK action                                                                                                                                                     |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `200 OK`                                | All items accepted.                                                                                | Count items as success.                                                                                                                                        |
 | `206 Partial Content`                   | Some items accepted, some rejected.                                                                | Count accepted items as success and rejected items as dropped.                                                                                                 |
