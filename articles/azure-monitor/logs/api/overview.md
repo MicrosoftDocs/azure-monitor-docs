@@ -58,8 +58,8 @@ Instead of calling the REST API directly, you can use the idiomatic Azure Monito
 
 Each client library is a wrapper around the REST API that allows you to retrieve log data from the workspace.
 
-## Related content
+## Next steps
 
-* [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md)
-* [Logs Ingestion API in Azure Monitor](../logs-ingestion-api-overview.md)
-* [Copy and transform data from and to a REST endpoint by using Azure Data Factory](/azure/data-factory/connector-rest?tabs=data-factory)
+* Discover available endpoints and operations in [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md)
+* Learn how to bring data into Azure Monitor by checking out [Logs Ingestion API in Azure Monitor](../logs-ingestion-api-overview.md).
+* [Copy and transform data from and to a REST endpoint by using Azure Data Factory](/azure/data-factory/connector-rest?tabs=data-factory) to integrate Log Analytics queries into your pipelines.
