@@ -10,7 +10,7 @@ ms.date: 08/29/2025
 Use the SDK Stats [workbook](../visualize/workbooks-overview.md) to monitor how [Application Insights](app-insights-overview.md) SDKs and agents export [telemetry](data-model-complete.md) to the [ingestion endpoint](app-insights-overview.md#logic-model). The workbook visualizes internal custom metrics that the SDKs publish.
 
 > [!IMPORTANT]
-> The preview features are provided without a service-level agreement, and are not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. 
+> The preview features are provided without a service-level agreement, and aren't recommended for production workloads. 
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites

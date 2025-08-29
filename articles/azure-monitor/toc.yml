@@ -186,7 +186,7 @@ items:
       - name: Live metric stream
         displayName: live, quickpulse, quick pulse, live metrics
         href: app/live-stream.md
-      - name: SDK Stats
+      - name: SDK Stats (Preview)
         href: app/sdk-stats.md
       - name: Usage (user behavior analytics)
         href: app/usage.md
