@@ -66,18 +66,6 @@ The workbook focuses on a concise set of charts that keep outcomes in context:
 - **Failure ratio**. Shows `dropped / success` on the selected time grain.
 - **Time-bucket drilldown**. Selecting a bucket opens a breakdown view with top drop reasons and codes for that period. <!-- TODO: Confirm the exact drilldown fields and titles used in the template. -->
 
-#### Interpret the Retry metric
-
-Use the retry series to spot transient delivery issues and to decide what to check next.
-
-- **What it is**. `preview.item.retry.count` records attempts that the exporter schedules for retry. Retries represent attempts, not final state, and never decrement.
-- **Does a rising line mean data loss**. No. A rising retry count by itself doesn't mean loss. Items count as success when the exporter sends them later. Use the dropped series to determine loss.
-- **How to investigate**. Split by `retry.code` and review common codes:
-  - `408`, `5xx`: network or service issues that usually recover. Expect success to catch up with low drops.
-  - `429`: throttling. Expect retries until the `Retry-After` window ends. Consider reducing batch rates.
-  - `401`, `403`: authentication or permission errors. Fix credentials or roles.
-- **What to do next**. If retries keep rising and success doesn't recover, check the **Dropped by reason and code** view. Look for `402` (quota), `401/403` (auth), or client exceptions such as storage issues.
-
 ## Enable and configure SDK stats
 
 Current coverage requires **opt-in** and is limited to the following SDKs:
@@ -173,9 +161,86 @@ customMetrics
 | project dropped_402
 ```
 
+### Kusto Query Language (KQL) samples
+
+**Export outcomes vs. time**
+
+```kusto
+let g = 15m; // align with export interval for clearer charts
+customMetrics
+| where name in ("preview.item.success.count", "preview.item.dropped.count", "preview.item.retry.count")
+| summarize 
+    success = sumif(todouble(value), name == "preview.item.success.count"),
+    dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
+    retry   = sumif(todouble(value), name == "preview.item.retry.count")
+    by bin(timestamp, g)
+```
+
+**Ratios over time**
+
+```kusto
+let g = 15m;
+customMetrics
+| where name in ("preview.item.dropped.count", "preview.item.success.count", "preview.item.retry.count")
+| summarize 
+    success = sumif(todouble(value), name == "preview.item.success.count"),
+    dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
+    retry   = sumif(todouble(value), name == "preview.item.retry.count")
+    by bin(timestamp, g)
+| extend failure_ratio = dropped / iff(success == 0.0, 1.0, success)
+| extend retry_to_success_ratio = iff(retry == 0.0, 1.0, success / retry)
+| project timestamp, failure_ratio, retry_to_success_ratio
+```
+
+**Drop reasons summary with code**
+
+```kusto
+customMetrics
+| where name == "preview.item.dropped.count"
+| extend drop_reason = tostring(customDimensions["drop.reason"]),
+        drop_code   = tostring(customDimensions["drop.code"])
+| summarize total_dropped = sum(todouble(value)) by drop_reason, drop_code
+| order by total_dropped desc
+```
+
+## How SDK stats relate to logs
+
+- Stats aggregate over export intervals while log tables store individual items. Counts across different time grains can differ.
+- Stats reflect items after the SDK applies sampling and processors.
+- Breeze can accept part of a batch and reject the rest, which records success and drop counts for the same interval.
+- Retried items are sent after the initial attempt, so arrival time can differ from event time.
+- Over quota (`402`) drops mean the application telemetry doesn't appear in logs during the cap window.
+
+## Cost and data volume
+
+SDK stats send aggregated `customMetrics` records. The workload publishes counters instead of every telemetry item, so the data volume stays low relative to application telemetry. The records bill as standard Application Insights data ingestion for `customMetrics`.
+
+**Planning formula**
+
+```
+Estimated records per hour per instance ≈
+  (#metrics emitted per interval)
+  × (3600 / interval_seconds)
+  × (distinct dimension combinations you use)
+```
+
+The default interval is **15 minutes** (`interval_seconds = 900`). Configure a different interval with `APPLICATIONINSIGHTS_SDKSTATS_EXPORT_INTERVAL`.
+
 ## Troubleshoot telemetry issues with SDK Stats
 
 Use this section to apply insights from the workbook to diagnose unexpected telemetry behaviors.
+
+#### Interpret the Retry metric
+
+Use the retry series to spot transient delivery issues and to decide what to check next.
+
+- **What it is**. `preview.item.retry.count` records attempts that the exporter schedules for retry. Retries represent attempts, not final state, and never decrement.
+- **Does a rising line mean data loss**. No. A rising retry count by itself doesn't mean loss. Items count as success when the exporter sends them later. Use the dropped series to determine loss.
+- **How to investigate**. Split by `retry.code` and review common codes:
+  - `408`, `5xx`: network or service issues that usually recover. Expect success to catch up with low drops.
+  - `429`: throttling. Expect retries until the `Retry-After` window ends. Consider reducing batch rates.
+  - `401`, `403`: authentication or permission errors. Fix credentials or roles.
+- **What to do next**. If retries keep rising and success doesn't recover, check the **Dropped by reason and code** view. Look for `402` (quota), `401/403` (auth), or client exceptions such as storage issues.
 
 ### Diagnose drops and retries
 
@@ -231,68 +296,3 @@ The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.rea
 | Other                                   | Not recognized.                                                                                    | Drop the items.                                                                                                                                                |
 
 Items scheduled for retry aren't counted as dropped unless the exporter abandons them or the retry buffer overflows. Retry counts never decrement; retries represent attempts, not final state. Retried items that later succeed count toward success when the exporter sends them.
-
-### How SDK stats relate to logs
-
-- Stats aggregate over export intervals while log tables store individual items. Counts across different time grains can differ.
-- Stats reflect items after the SDK applies sampling and processors.
-- Breeze can accept part of a batch and reject the rest, which records success and drop counts for the same interval.
-- Retried items are sent after the initial attempt, so arrival time can differ from event time.
-- Over quota (`402`) drops mean the application telemetry doesn't appear in logs during the cap window.
-
-### Cost and data volume
-
-SDK stats send aggregated `customMetrics` records. The workload publishes counters instead of every telemetry item, so the data volume stays low relative to application telemetry. The records bill as standard Application Insights data ingestion for `customMetrics`.
-
-**Planning formula**
-
-```
-Estimated records per hour per instance ≈
-  (#metrics emitted per interval)
-  × (3600 / interval_seconds)
-  × (distinct dimension combinations you use)
-```
-
-The default interval is **15 minutes** (`interval_seconds = 900`). Configure a different interval with `APPLICATIONINSIGHTS_SDKSTATS_EXPORT_INTERVAL`.
-
-### Kusto Query Language (KQL) samples
-
-**Export outcomes vs. time**
-
-```kusto
-let g = 15m; // align with export interval for clearer charts
-customMetrics
-| where name in ("preview.item.success.count", "preview.item.dropped.count", "preview.item.retry.count")
-| summarize 
-    success = sumif(todouble(value), name == "preview.item.success.count"),
-    dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
-    retry   = sumif(todouble(value), name == "preview.item.retry.count")
-    by bin(timestamp, g)
-```
-
-**Ratios over time**
-
-```kusto
-let g = 15m;
-customMetrics
-| where name in ("preview.item.dropped.count", "preview.item.success.count", "preview.item.retry.count")
-| summarize 
-    success = sumif(todouble(value), name == "preview.item.success.count"),
-    dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
-    retry   = sumif(todouble(value), name == "preview.item.retry.count")
-    by bin(timestamp, g)
-| extend failure_ratio = dropped / iff(success == 0.0, 1.0, success)
-| extend retry_to_success_ratio = iff(retry == 0.0, 1.0, success / retry)
-| project timestamp, failure_ratio, retry_to_success_ratio
-```
-
-**Drop reasons summary with code**
-
-```kusto
-customMetrics
-| where name == "preview.item.dropped.count"
-| extend drop_reason = tostring(customDimensions["drop.reason"]),
-        drop_code   = tostring(customDimensions["drop.code"])
-| summarize total_dropped = sum(todouble(value)) by drop_reason, drop_code
-| order by total_dropped desc
-```
