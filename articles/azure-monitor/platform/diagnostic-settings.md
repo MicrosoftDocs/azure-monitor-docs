@@ -184,7 +184,10 @@ To create or edit a diagnostic setting with the Azure Monitor REST API, see [Dia
 
 ---
 
-
+> [!NOTE]
+> Diagnostic settings in Azure only export data generated after the diagnostic setting is enabled.
+> Historical data that was created before the diagnostic setting was configured will not be exported.
+> To ensure you capture all necessary logs moving forward, enable diagnostic settings as early as possible.
    
 ## Category groups
 
