@@ -7,7 +7,7 @@ ms.date: 08/29/2025
 
 # SDK Stats for Application Insights (Preview)
 
-Use the SDK Stats [workbook](../visualize/workbooks-overview.md) to monitor how [Application Insights](app-insights-overview.md) SDKs and agents export telemetry to the ingestion endpoint. The workbook visualizes internal custom metrics that the SDKs publish.
+Use the SDK Stats [workbook](../visualize/workbooks-overview.md) to monitor how [Application Insights](app-insights-overview.md) SDKs and agents export [telemetry](data-model-complete.md) to the [ingestion endpoint](app-insights-overview.md#logic-model). The workbook visualizes internal custom metrics that the SDKs publish.
 
 ## Prerequisites
 
