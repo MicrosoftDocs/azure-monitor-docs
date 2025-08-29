@@ -1,16 +1,13 @@
 ---
-title: SDK Stats workbooks for Azure Monitor Application Insights (Preview)
-description: Use SDK Stats workbooks to visualize telemetry export success, dropped counts, retry counts, and drop reasons produced by the Azure Monitor Software Development Kits (SDKs) and agents.
+title: SDK Stats for Azure Monitor Application Insights (Preview)
+description: Use SDK Stats to visualize telemetry export success, dropped counts, retry counts, and drop reasons produced by the Azure Monitor Software Development Kits (SDKs) and agents.
 ms.topic: how-to
 ms.date: 08/29/2025
 ---
 
-# SDK Stats workbooks for Application Insights (Preview)
+# SDK Stats for Application Insights (Preview)
 
-Use SDK Stats [workbooks](../visualize/workbooks-overview.md) to monitor how [Application Insights](app-insights-overview.md) SDKs and agents export telemetry to the Breeze ingestion endpoint. These workbooks visualize internal custom metrics that the SDKs publish.
-
-> [!NOTE]
-> SDK Stats workbooks add new visualizations. They don't replace existing Application Insights workbooks.
+Use the SDK Stats [workbook](../visualize/workbooks-overview.md) to monitor how [Application Insights](app-insights-overview.md) SDKs and agents export telemetry to the ingestion endpoint. The workbook visualizes internal custom metrics that the SDKs publish.
 
 ## Prerequisites
 
@@ -69,6 +66,18 @@ The workbook focuses on a concise set of charts that keep outcomes in context:
 - **Failure ratio**. Shows `dropped / success` on the selected time grain.
 - **Time-bucket drilldown**. Selecting a bucket opens a breakdown view with top drop reasons and codes for that period. <!-- TODO: Confirm the exact drilldown fields and titles used in the template. -->
 
+#### Interpret the Retry metric
+
+Use the retry series to spot transient delivery issues and to decide what to check next.
+
+- **What it is**. `preview.item.retry.count` records attempts that the exporter schedules for retry. Retries represent attempts, not final state, and never decrement.
+- **Does a rising line mean data loss**. No. A rising retry count by itself doesn't mean loss. Items count as success when the exporter sends them later. Use the dropped series to determine loss.
+- **How to investigate**. Split by `retry.code` and review common codes:
+  - `408`, `5xx`: network or service issues that usually recover. Expect success to catch up with low drops.
+  - `429`: throttling. Expect retries until the `Retry-After` window ends. Consider reducing batch rates.
+  - `401`, `403`: authentication or permission errors. Fix credentials or roles.
+- **What to do next**. If retries keep rising and success doesn't recover, check the **Dropped by reason and code** view. Look for `402` (quota), `401/403` (auth), or client exceptions such as storage issues.
+
 ## Enable and configure SDK stats
 
 Current coverage requires **opt-in** and is limited to the following SDKs:
@@ -77,7 +86,7 @@ Current coverage requires **opt-in** and is limited to the following SDKs:
 > - **Node.js**
 > - **Python**
 
-Enable by setting the environment variable `APPLICATIONINSIGHTS_SDKSTATS_ENABLED_PREVIEW=true` in the application process environment.
+Enable by setting the environment variable `APPLICATIONINSIGHTS_SDKSTATS_ENABLED_PREVIEW=true` in the application process environment and restarting the application.
 
 **Export interval**
 
@@ -164,10 +173,9 @@ customMetrics
 | project dropped_402
 ```
 
-> [!TIP]
-> Pair the 402 alert with [daily cap](opentelemetry-sampling.md#set-a-daily-cap) guidance so responders can adjust the cap or reduce ingestion.
+## Troubleshoot telemetry issues with SDK Stats
 
-## Troubleshooting
+Use this section to apply insights from the workbook to diagnose unexpected telemetry behaviors.
 
 ### Diagnose drops and retries
 
@@ -222,20 +230,14 @@ The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.rea
 | `5xx Server Error`                      | Transient service issue.                                                                           | Persist and retry with exponential backoff.                                                                                                                    |
 | Other                                   | Not recognized.                                                                                    | Drop the items.                                                                                                                                                |
 
-Items scheduled for retry aren't counted as dropped unless the exporter abandons them or the retry buffer overflows. Retry counts never decrement; retries represent attempts, not final state.
-
-### How the counters are collected
-
-- The SDK increments counters as it evaluates and exports telemetry, then sends the counters as `customMetrics` records on an interval.
-- The exporter records `preview.item.success.count` for items Breeze accepts, `preview.item.dropped.count` for dropped items, and `preview.item.retry.count` for scheduled retries.
-- Retried items that later succeed count toward success when the exporter sends them.
+Items scheduled for retry aren't counted as dropped unless the exporter abandons them or the retry buffer overflows. Retry counts never decrement; retries represent attempts, not final state. Retried items that later succeed count toward success when the exporter sends them.
 
 ### How SDK stats relate to logs
 
 - Stats aggregate over export intervals while log tables store individual items. Counts across different time grains can differ.
 - Stats reflect items after the SDK applies sampling and processors.
 - Breeze can accept part of a batch and reject the rest, which records success and drop counts for the same interval.
-- Retried items can send later than the event time.
+- Retried items are sent after the initial attempt, so arrival time can differ from event time.
 - Over quota (`402`) drops mean the application telemetry doesn't appear in logs during the cap window.
 
 ### Cost and data volume
