@@ -2,7 +2,7 @@
 title: Query across resources with Azure Monitor  
 description: Query and correlated data from multiple Log Analytics workspaces, applications, or resources using the `workspace()`, `app()`, and `resource()` Kusto Query Language (KQL) expressions.
 ms.topic: how-to
-ms.date: 12/28/2023
+ms.date: 08/29/2025
 # Customer intent: As a data analyst, I want to write KQL queries that correlate data from multiple Log Analytics workspaces, applications, or resources, to enable my analysis.
 
 ---
