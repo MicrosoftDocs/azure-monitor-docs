@@ -3170,7 +3170,7 @@ TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApp
 
 # [ASP.NET Core](#tab/core)
 
-> [NOTE]
+> [!NOTE]
 > In ASP.NET Core, there is no *ApplicationInsights.config* file. Configuration is done through dependency injection (DI) in *Program.cs* or *Startup.cs*.
 
 You can override the default provider or customize its `ProfileQueryEndpoint`.
