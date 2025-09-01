@@ -9,7 +9,7 @@ ms.date: 09/05/2025
 
 SDK stats provide health metrics for [Application Insights](app-insights-overview.md) SDKs and agents about telemetry sent to the [ingestion endpoint](app-insights-overview.md#logic-model).
 
-SDK stats appear as **custom metrics** that you can use to:
+SDK stats appear as **custom metrics** you can use to:
 
 > [!div class="checklist"]
 > - Visualize in [Workbooks](../visualize/workbooks-overview.md)
@@ -57,19 +57,6 @@ These metrics include dimensions in `customDimensions` and standard Application 
 
 Each metric row represents an **aggregated count** for the export interval.
 
-## How collection works
-
-The SDK increments counters as it evaluates and exports telemetry. The SDK sends the counters on a regular interval as `customMetrics` records. Each record aggregates counts for the interval and includes the dimensions listed earlier.
-
-High-level flow:
-
-1. The application creates telemetry and the SDK applies sampling and processors.
-2. The exporter sends a batch of telemetry to Breeze.
-3. The exporter records `preview.item.success.count` for items Breeze accepts.
-4. The exporter records `preview.item.dropped.count` for items the exporter drops, including `drop.reason` and `drop.code`.
-5. When Breeze returns a transient error, the exporter schedules items for retry and increments `preview.item.retry.count`. If a later attempt succeeds, those items contribute to the success counters at send time.
-6. The SDK publishes the aggregated counters as `customMetrics` at fixed intervals.
-
 ## Enable and configure SDK stats
 
 Current coverage requires **opt in** and is limited to the following SDKs:
@@ -113,99 +100,6 @@ The workbook focuses on a concise set of charts that keep outcomes in context:
 - **Time-bucket drilldown**. Selecting a bucket opens a breakdown view with top drop reasons and codes for that period. <!-- TODO: Confirm the exact drilldown fields and titles used in the template. -->
 - **Export outcomes over time**. Plots counts of `success`, `retry`, and `dropped` together.
 
-#### Interpret the Retry metric
-
-Use the retry series to spot transient delivery issues and decide what to check next.
-
-- **What it is**. `preview.item.retry.count` records attempts that the exporter schedules for retry. Retries represent attempts, not final state, and never decrement.
-- **Does a rising line mean data loss**. No. A rising retry count by itself doesn't mean loss. Items count as success when the exporter sends them later. Use the dropped series to determine loss.
-- **How to investigate**. Split by `retry.code` and review common codes:
-  - `408`, `5xx`: network or service issues that usually recover. Expect success to catch up with low drops.
-  - `429`: throttling. Expect retries until the `Retry-After` window ends. Consider reducing batch rates.
-  - `401`, `403`: authentication or permission errors. Fix credentials or roles.
-- **What to do next**. If retries keep rising and success doesn't recover, check **Dropped by reason and code**. Look for `402` (quota), `401/403` (auth), or client exceptions such as storage issues.
-
-## Use SDK stats outside Workbooks
-
-You can use these metrics across Azure Monitor tools and external systems.
-
-### Metrics explorer
-
-Chart these custom metrics in Metrics explorer.
-
-1. Open your Application Insights resource.
-2. Open **Metrics**.
-3. Select the **Custom metrics** namespace.
-4. Select `preview.item.success.count`, `preview.item.dropped.count`, or `preview.item.retry.count`.
-5. Split by `cloud_RoleName`, `cloud_RoleInstance`, `telemetry_type`, or `sdkVersion` as needed.
-
-<!-- TODO: Confirm the exact metrics namespace label in Metrics explorer. -->
-
-### Power BI
-
-Use the **Azure Monitor Logs** connector to bring these metrics into Power BI.
-
-```kusto
-// Failure and retry ratios by hour
-let window = 14d;
-let g = 1h;
-customMetrics
-| where timestamp >= ago(window)
-| where name in ("preview.item.success.count", "preview.item.dropped.count", "preview.item.retry.count")
-| summarize 
-    success = sumif(todouble(value), name == "preview.item.success.count"),
-    dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
-    retry   = sumif(todouble(value), name == "preview.item.retry.count")
-    by bin(timestamp, g)
-| extend failure_ratio = dropped / iff(success == 0.0, 1.0, success)
-| extend retry_to_success_ratio = iff(retry == 0.0, 1.0, success / retry)
-| order by timestamp asc
-```
-
-```kusto
-// Dropped items by reason
-let window = 14d;
-let g = 1h;
-customMetrics
-| where timestamp >= ago(window)
-| where name == "preview.item.dropped.count"
-| extend drop_reason = tostring(customDimensions["drop.reason"])
-| summarize dropped = sum(todouble(value)) by bin(timestamp, g), drop_reason
-| order by timestamp asc
-```
-
-### Alerts
-
-Create log alerts that monitor ratios or specific codes.
-
-```kusto
-// Failure ratio over 5 minutes
-let window = 5m;
-customMetrics
-| where timestamp >= ago(window)
-| where name in ("preview.item.success.count", "preview.item.dropped.count")
-| summarize 
-    success = sumif(todouble(value), name == "preview.item.success.count"),
-    dropped = sumif(todouble(value), name == "preview.item.dropped.count")
-| extend failure_ratio = dropped / iff(success == 0.0, 1.0, success)
-| project failure_ratio
-```
-
-```kusto
-// Over-quota daily cap (HTTP 402) in the last 10 minutes
-let window = 10m;
-customMetrics
-| where timestamp >= ago(window)
-| where name == "preview.item.dropped.count"
-| extend drop_code = tostring(customDimensions["drop.code"])
-| summarize dropped_402 = sum(todouble(value)) by drop_code
-| where drop_code == "402" and dropped_402 > 0
-| project dropped_402
-```
-
-> [!TIP]
-> Pair the 402 alert with [daily cap](opentelemetry-sampling.md#set-a-daily-cap) guidance so responders can adjust the cap or reduce ingestion.
-
 ## Cost and data volume
 
 SDK stats send aggregated `customMetrics` records. The workload publishes counters instead of every telemetry item, so the data volume stays low relative to application telemetry. The records bill as standard Application Insights data ingestion for `customMetrics`, and they follow your retention settings. The exporter sends the counters on the existing ingestion channel.
@@ -223,7 +117,7 @@ Default interval is **15 minutes** (`interval_seconds = 900`). Configure a diffe
 
 ## Troubleshooting
 
-Use this section to **leverage insights from the workbook** to diagnose unexpected telemetry behaviors. This section doesn't cover workbook errors or portal UI issues.
+Use this section to **leverage insights from the workbook** to diagnose unexpected telemetry behaviors.
 
 ### Diagnose drops and retries
 
@@ -231,6 +125,18 @@ Use this section to **leverage insights from the workbook** to diagnose unexpect
 - **Throttling from the ingestion endpoint**: Look for rises in `drop.code == "429"` and high retry counts. Reduce batch rates and respect `Retry-After` headers.
 - **Local buffer pressure**: Look for `CLIENT_PERSISTENCE_CAPACITY` drops or high retry with stable success. Right-size buffers and validate disk and quotas.
 - **Invalid telemetry**: Look for `400` drops and `InvalidTelemetry` reasons. Validate payload size and schema.
+
+### Interpret the retry metric
+
+Use the retry series to spot transient delivery issues and decide what to check next.
+
+- **What it is**. `preview.item.retry.count` records attempts that the exporter schedules for retry. Retries represent attempts, not final state, and never decrement.
+- **Does a rising line mean data loss**. No. A rising retry count by itself doesn't mean loss. Items count as success when the exporter sends them later. Use the dropped series to determine loss.
+- **How to investigate**. Split by `retry.code` and review common codes:
+  - `408`, `5xx`: network or service issues that usually recover. Expect success to catch up with low drops.
+  - `429`: throttling. Expect retries until the `Retry-After` window ends. Consider reducing batch rates.
+  - `401`, `403`: authentication or permission errors. Fix credentials or roles.
+- **What to do next**. If retries keep rising and success doesn't recover, check **Dropped by reason and code**. Look for `402` (quota), `401/403` (auth), or client exceptions such as storage issues.
 
 ### Drop reasons and ingestion endpoint response codes
 
@@ -278,33 +184,71 @@ The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.rea
 | `5xx Server Error`                      | Transient service issue.                                                                           | Persist and retry with exponential backoff.                                                                                                                    |
 | Other                                   | Not recognized.                                                                                    | Drop the items.                                                                                                                                                |
 
-**How the counters are collected**
+## Frequently asked questions
 
-- The SDK increments counters as it evaluates and exports telemetry, then sends the counters as `customMetrics` records on an interval.
-- The exporter records `preview.item.success.count` for items the ingestion endpoint accepts, `preview.item.dropped.count` for dropped items, and `preview.item.retry.count` for scheduled retries.
-- Retried items that later succeed count toward success when the exporter sends them.
+<details>
+<summary><b>How are counters collected?</b></summary>
 
-### Kusto Query Language (KQL) samples
+The SDK updates counters as it evaluates and exports telemetry. It sends the counters at a regular interval as `customMetrics` records. Each record aggregates counts for the interval and includes the dimensions described earlier.
 
-**Export outcomes vs. time**
+1. The application creates telemetry. The SDK applies sampling and processors.
+2. The exporter sends a batch of telemetry to the ingestion endpoint.
+3. The exporter increments `preview.item.success.count` for items the ingestion endpoint accepts.
+4. The exporter increments `preview.item.dropped.count` for items it drops and sets `drop.reason` and `drop.code`.
+5. If the ingestion endpoint returns a transient error, the exporter schedules items for retry and increments `preview.item.retry.count`. Retried items that later succeed count as success when the exporter sends them.
+6. At each interval, the SDK publishes the aggregated counters to the `customMetrics` table.
+
+> **Note**  
+> Retry counts represent attempts and never decrement.
+</details>
+
+<details>
+<summary><b>How can I use SDK stats with alerts?</b></summary>
+
+Create log alerts that monitor ratios or specific codes.
 
 ```kusto
-let g = 15m; // align with export interval for clearer charts
+// Failure ratio over 5 minutes
+let window = 5m;
 customMetrics
-| where name in ("preview.item.success.count", "preview.item.dropped.count", "preview.item.retry.count")
+| where timestamp >= ago(window)
+| where name in ("preview.item.success.count", "preview.item.dropped.count")
 | summarize 
     success = sumif(todouble(value), name == "preview.item.success.count"),
-    dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
-    retry   = sumif(todouble(value), name == "preview.item.retry.count")
-    by bin(timestamp, g)
+    dropped = sumif(todouble(value), name == "preview.item.dropped.count")
+| extend failure_ratio = dropped / iff(success == 0.0, 1.0, success)
+| project failure_ratio
 ```
 
-**Ratios over time**
+```kusto
+// Over-quota daily cap (HTTP 402) in the last 10 minutes
+let window = 10m;
+customMetrics
+| where timestamp >= ago(window)
+| where name == "preview.item.dropped.count"
+| extend drop_code = tostring(customDimensions["drop.code"])
+| summarize dropped_402 = sum(todouble(value)) by drop_code
+| where drop_code == "402" and dropped_402 > 0
+| project dropped_402
+```
+
+> [!TIP]
+> Pair the 402 alert with [daily cap](opentelemetry-sampling.md#set-a-daily-cap) guidance so responders can adjust the cap or reduce ingestion.
+
+</details>
+
+<details>
+<summary><b>How can I use SDK stats with PowerBI?</b></summary>
+
+Use the **Azure Monitor Logs** connector to bring these metrics into Power BI.
 
 ```kusto
-let g = 15m;
+// Failure and retry ratios by hour
+let window = 14d;
+let g = 1h;
 customMetrics
-| where name in ("preview.item.dropped.count", "preview.item.success.count", "preview.item.retry.count")
+| where timestamp >= ago(window)
+| where name in ("preview.item.success.count", "preview.item.dropped.count", "preview.item.retry.count")
 | summarize 
     success = sumif(todouble(value), name == "preview.item.success.count"),
     dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
@@ -312,71 +256,131 @@ customMetrics
     by bin(timestamp, g)
 | extend failure_ratio = dropped / iff(success == 0.0, 1.0, success)
 | extend retry_to_success_ratio = iff(retry == 0.0, 1.0, success / retry)
-| project timestamp, failure_ratio, retry_to_success_ratio
-```
-
-**Request and dependency analysis over time (replicate the stacked bars)**
-
-```kusto
-let g = 15m;
-// Successful request/dependency telemetry: sent vs dropped
-let sent_success = (requests
-| where success == true
-| summarize c = count() by bin(timestamp, g)
-| union (dependencies | where success == true | summarize c = count() by bin(timestamp, g))
-| summarize sent = sum(c) by timestamp);
-let dropped_success = (customMetrics
-| where name == "preview.item.dropped.count"
-| extend telemetry_type = tostring(customDimensions["telemetry_type"]),
-        telemetry_success = tostring(customDimensions["telemetry_success"])
-| where telemetry_type in ("REQUEST","DEPENDENCY") and telemetry_success == "true"
-| summarize dropped = sum(todouble(value)) by bin(timestamp, g));
-sent_success
-| join kind=fullouter dropped_success on timestamp
-| project timestamp, ["Successful - Sent"] = todouble(sent), ["Successful - Dropped"] = todouble(dropped)
-| order by timestamp asc;
-
-// Failed request/dependency telemetry: sent vs dropped
-let sent_failed = (requests
-| where success == false
-| summarize c = count() by bin(timestamp, g)
-| union (dependencies | where success == false | summarize c = count() by bin(timestamp, g))
-| summarize sent = sum(c) by timestamp);
-let dropped_failed = (customMetrics
-| where name == "preview.item.dropped.count"
-| extend telemetry_type = tostring(customDimensions["telemetry_type"]),
-        telemetry_success = tostring(customDimensions["telemetry_success"])
-| where telemetry_type in ("REQUEST","DEPENDENCY") and telemetry_success == "false"
-| summarize dropped = sum(todouble(value)) by bin(timestamp, g));
-sent_failed
-| join kind=fullouter dropped_failed on timestamp
-| project timestamp, ["Failed - Sent"] = todouble(sent), ["Failed - Dropped"] = todouble(dropped)
 | order by timestamp asc
 ```
 
-**Drop reasons summary with code**
-
 ```kusto
+// Dropped items by reason
+let window = 14d;
+let g = 1h;
 customMetrics
+| where timestamp >= ago(window)
 | where name == "preview.item.dropped.count"
-| extend drop_reason = tostring(customDimensions["drop.reason"]),
-        drop_code   = tostring(customDimensions["drop.code"])
-| summarize total_dropped = sum(todouble(value)) by drop_reason, drop_code
-| order by total_dropped desc
+| extend drop_reason = tostring(customDimensions["drop.reason"])
+| summarize dropped = sum(todouble(value)) by bin(timestamp, g), drop_reason
+| order by timestamp asc
 ```
 
-## Frequently asked questions
+</details>
 
 <details>
-<summary><b>Why do SDK stats counts differ from logs?</b></summary>
+<summary><b>How can I use SDK stats in Metrics Explorer?</b></summary>
+
+Chart these custom metrics in Metrics explorer.
+
+1. Open your Application Insights resource.
+2. Open **Metrics**.
+3. Select the **Custom metrics** namespace.
+4. Select `preview.item.success.count`, `preview.item.dropped.count`, or `preview.item.retry.count`.
+5. Split by `cloud_RoleName`, `cloud_RoleInstance`, `telemetry_type`, or `sdkVersion` as needed.
+
+<!-- TODO: Confirm the exact metrics namespace label in Metrics explorer. -->
+
+</details>
+
+<details>
+<summary><b>How do SDK stats counts differ from logs?</b></summary>
 
 Don't expect these counters to equal item counts in tables such as `requests` or `dependencies`. Differences occur for several reasons:
 
 - **Aggregation timing**. Stats aggregate over intervals and batches. Logs store individual items, so counts across different time grains can drift.
-- **Sampling and processors**. Stats count items after the SDK applies sampling and any processors that drop or modify telemetry. Logs reflect what Breeze accepted.
-- **Partial successes**. Breeze can accept part of a batch and reject the rest. The exporter records accepted items as success and rejected items as dropped in the same interval.
+- **Sampling and processors**. Stats count items after the SDK applies sampling and any processors that drop or modify telemetry. Logs reflect what the ingestion endpoint accepted.
+- **Partial successes**. The ingestion endpoint can accept part of a batch and reject the rest. The exporter records accepted items as success and rejected items as dropped in the same interval.
 - **Local buffering**. When the exporter retries, it can send buffered items later. The time that stats assign dropped, retried, or successful counts don't always match the event time of the original telemetry.
-- **Over quota or daily cap**. When the resource exceeds its daily cap, Breeze returns an error and the exporter records drops. The corresponding application telemetry doesn't appear in logs during the cap window.
+- **Over quota or daily cap**. When the resource exceeds its daily cap, the ingestion endpoint returns an error and the exporter records drops. The corresponding application telemetry doesn't appear in logs during the cap window.
 - **Scope**. Stats cover exporter behavior. Logs cover end-to-end telemetry, including fields that don't affect exporter success.
+
+</details>
+
+<summary><b>What are some Kusto Query Language (KQL) reference samples?</b></summary>
+
+- **Export outcomes vs. time**
+
+    ```kusto
+    let g = 15m; // align with export interval for clearer charts
+    customMetrics
+    | where name in ("preview.item.success.count", "preview.item.dropped.count", "preview.item.retry.count")
+    | summarize 
+        success = sumif(todouble(value), name == "preview.item.success.count"),
+        dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
+        retry   = sumif(todouble(value), name == "preview.item.retry.count")
+        by bin(timestamp, g)
+    ```
+
+- **Ratios over time**
+
+    ```kusto
+    let g = 15m;
+    customMetrics
+    | where name in ("preview.item.dropped.count", "preview.item.success.count", "preview.item.retry.count")
+    | summarize 
+        success = sumif(todouble(value), name == "preview.item.success.count"),
+        dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
+        retry   = sumif(todouble(value), name == "preview.item.retry.count")
+        by bin(timestamp, g)
+    | extend failure_ratio = dropped / iff(success == 0.0, 1.0, success)
+    | extend retry_to_success_ratio = iff(retry == 0.0, 1.0, success / retry)
+    | project timestamp, failure_ratio, retry_to_success_ratio
+    ```
+
+- **Request and dependency analysis over time (replicate the stacked bars)**
+
+    ```kusto
+    let g = 15m;
+    // Successful request/dependency telemetry: sent vs dropped
+    let sent_success = (requests
+    | where success == true
+    | summarize c = count() by bin(timestamp, g)
+    | union (dependencies | where success == true | summarize c = count() by bin(timestamp, g))
+    | summarize sent = sum(c) by timestamp);
+    let dropped_success = (customMetrics
+    | where name == "preview.item.dropped.count"
+    | extend telemetry_type = tostring(customDimensions["telemetry_type"]),
+            telemetry_success = tostring(customDimensions["telemetry_success"])
+    | where telemetry_type in ("REQUEST","DEPENDENCY") and telemetry_success == "true"
+    | summarize dropped = sum(todouble(value)) by bin(timestamp, g));
+    sent_success
+    | join kind=fullouter dropped_success on timestamp
+    | project timestamp, ["Successful - Sent"] = todouble(sent), ["Successful - Dropped"] = todouble(dropped)
+    | order by timestamp asc;
+    
+    // Failed request/dependency telemetry: sent vs dropped
+    let sent_failed = (requests
+    | where success == false
+    | summarize c = count() by bin(timestamp, g)
+    | union (dependencies | where success == false | summarize c = count() by bin(timestamp, g))
+    | summarize sent = sum(c) by timestamp);
+    let dropped_failed = (customMetrics
+    | where name == "preview.item.dropped.count"
+    | extend telemetry_type = tostring(customDimensions["telemetry_type"]),
+            telemetry_success = tostring(customDimensions["telemetry_success"])
+    | where telemetry_type in ("REQUEST","DEPENDENCY") and telemetry_success == "false"
+    | summarize dropped = sum(todouble(value)) by bin(timestamp, g));
+    sent_failed
+    | join kind=fullouter dropped_failed on timestamp
+    | project timestamp, ["Failed - Sent"] = todouble(sent), ["Failed - Dropped"] = todouble(dropped)
+    | order by timestamp asc
+    ```
+
+- **Drop reasons summary with code**
+
+    ```kusto
+    customMetrics
+    | where name == "preview.item.dropped.count"
+    | extend drop_reason = tostring(customDimensions["drop.reason"]),
+            drop_code   = tostring(customDimensions["drop.code"])
+    | summarize total_dropped = sum(todouble(value)) by drop_reason, drop_code
+    | order by total_dropped desc
+    ```
 
 </details>
