@@ -13,6 +13,10 @@ Use the SDK Stats [workbook](../visualize/workbooks-overview.md) to visualize th
 
 The metrics include counts for item success, drops, and retries. They also include drop reasons and retry reasons. Use these metrics to monitor delivery and troubleshoot missing or unexpected telemetry.
 
+> [!IMPORTANT]
+> The preview features are provided without a service-level agreement, and aren't recommended for production workloads. 
+> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
 ## Prerequisites
 
 > [!div class="checklist"]
@@ -29,7 +33,7 @@ The SDK publishes three metrics:
 - `preview.item.dropped.count`
 - `preview.item.retry.count`
 
-SDK stats appear as **custom metrics** that you can use in Workbooks, query in [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table, and plot in [Metrics explorer](../metrics/metrics-explorer.md).
+SDK stats appear as **custom metrics** that you can use in [workbooks](../visualize/workbooks-overview.md), query in [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table, and plot in [Metrics explorer](../metrics/metrics-explorer.md).
 
 **Dimensions**
 
