@@ -57,6 +57,19 @@ These metrics include dimensions in `customDimensions` and standard Application 
 
 Each metric row represents an **aggregated count** for the export interval.
 
+## How collection works
+
+The SDK increments counters as it evaluates and exports telemetry. The SDK sends the counters on a regular interval as `customMetrics` records. Each record aggregates counts for the interval and includes the dimensions listed earlier.
+
+High-level flow:
+
+1. The application creates telemetry and the SDK applies sampling and processors.
+2. The exporter sends a batch of telemetry to Breeze.
+3. The exporter records `preview.item.success.count` for items Breeze accepts.
+4. The exporter records `preview.item.dropped.count` for items the exporter drops, including `drop.reason` and `drop.code`.
+5. When Breeze returns a transient error, the exporter schedules items for retry and increments `preview.item.retry.count`. If a later attempt succeeds, those items contribute to the success counters at send time.
+6. The SDK publishes the aggregated counters as `customMetrics` at fixed intervals.
+
 ## Enable and configure SDK stats
 
 Current coverage requires **opt in** and is limited to the following SDKs:
@@ -192,6 +205,21 @@ customMetrics
 
 > [!TIP]
 > Pair the 402 alert with [daily cap](opentelemetry-sampling.md#set-a-daily-cap) guidance so responders can adjust the cap or reduce ingestion.
+
+## Cost and data volume
+
+SDK stats send aggregated `customMetrics` records. The workload publishes counters instead of every telemetry item, so the data volume stays low relative to application telemetry. The records bill as standard Application Insights data ingestion for `customMetrics`, and they follow your retention settings. The exporter sends the counters on the existing ingestion channel.
+
+**Planning formula**
+
+```
+Estimated records per hour per instance ≈
+  (#metrics emitted per interval)
+  × (3600 / interval_seconds)
+  × (distinct dimension combinations you use)
+```
+
+Default interval is **15 minutes** (`interval_seconds = 900`). Configure a different interval with `APPLICATIONINSIGHTS_SDKSTATS_EXPORT_INTERVAL`.
 
 ## Troubleshooting
 
@@ -336,3 +364,19 @@ customMetrics
 | summarize total_dropped = sum(todouble(value)) by drop_reason, drop_code
 | order by total_dropped desc
 ```
+
+## Frequently asked questions
+
+<details>
+<summary><b>Why do SDK stats counts differ from logs?</b></summary>
+
+Don't expect these counters to equal item counts in tables such as `requests` or `dependencies`. Differences occur for several reasons:
+
+- **Aggregation timing**. Stats aggregate over intervals and batches. Logs store individual items, so counts across different time grains can drift.
+- **Sampling and processors**. Stats count items after the SDK applies sampling and any processors that drop or modify telemetry. Logs reflect what Breeze accepted.
+- **Partial successes**. Breeze can accept part of a batch and reject the rest. The exporter records accepted items as success and rejected items as dropped in the same interval.
+- **Local buffering**. When the exporter retries, it can send buffered items later. The time that stats assign dropped, retried, or successful counts don't always match the event time of the original telemetry.
+- **Over quota or daily cap**. When the resource exceeds its daily cap, Breeze returns an error and the exporter records drops. The corresponding application telemetry doesn't appear in logs during the cap window.
+- **Scope**. Stats cover exporter behavior. Logs cover end-to-end telemetry, including fields that don't affect exporter success.
+
+</details>
