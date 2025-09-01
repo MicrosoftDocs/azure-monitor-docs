@@ -136,52 +136,6 @@ It runs a series of scenarios and displays the results.
 
 ---
 
-## Enabling automatic upgrade on VMSS appears in JSON but instances don't change
-
-When you enable *automatic extension upgrade* for `AzureMonitorLinuxAgent` on a VMSS, the flag first updates the scale set model. If your scale set's upgrade policy is set to *Manual*, this change doesn't propagate to existing instances until you apply the model update.
-
-To apply the latest model:
-
-# [Portal](#tab/portal)
-
-1. Go to the **Azure portal**.
-1. Open your **Virtual Machine Scale Set**.
-1. Go to **Instances**.
-1. Select the intances to update.
-1. In the top menu bar, select **Upgrade** > **Apply latest model**.
-
-    This forces the current scale set model (including the updated `enableAutomaticUpgrade` flag) onto the selected instances.
-
-# [Azure CLI](#tab/cli)
-
-Run the following command:
-
-```azurecli
-az vmss update-instances -g <rg> -n <vmss> --instance-ids "*"
-```
-
-# [PowerShell](#tab/ps)
-
-Run the following command:
-
-```powershell
-Update-AzVmssInstance -ResourceGroupName <rg> -VMScaleSetName <vmss> -InstanceId "*"
-```
-
----
-
-> [!TIP]
-> You can change upgrade policy to *Rolling* so future model changes flow automatically by running the following CLI command:
-> 
-> ```azurecli
-> az vmss update -g <rg> -n <vmss> --set upgradePolicy.mode=Rolling
-> ```
-
-If specific VMs still don't update, check *Instance protection* (protect from scale set actions) and clear it if set.
-
-
----
-
 ## Frequently Asked Questions
 
 ### Can I copy the Troubleshooter from a newer agent to an older agent and run it on the older agent to diagnose issues with the older agent?
