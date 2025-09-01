@@ -7,9 +7,16 @@ ms.date: 09/05/2025
 
 # SDK Stats for Application Insights (Preview)
 
-SDK Stats provides export‑health metrics for how [Application Insights](app-insights-overview.md) SDKs and agents send telemetry to the [ingestion endpoint](app-insights-overview.md#logic-model).
+SDK Stats provides health metrics for how [Application Insights](app-insights-overview.md) SDKs and agents send telemetry to the [ingestion endpoint](app-insights-overview.md#logic-model).
 
-Use the SDK Stats [workbook](../visualize/workbooks-overview.md) to visualize these custom metrics, and also query them in [Log Analytics](../logs/log-analytics-overview.md), chart them in [Metrics explorer](../metrics/metrics-explorer.md), and drive [alerts](../alerts/alerts-overview.md) or [Power BI](/power-bi/fundamentals/power-bi-overview) reports.
+SDK stats appear as **custom metrics** that you can:
+
+> [!div class="checklist"]
+> - Visualize in [Workbooks](../visualize/workbooks-overview.md)
+> - Query in [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table
+> - Plot in [Metrics explorer](../metrics/metrics-explorer.md)
+> - Trigger [alerts](../alerts/alerts-overview.md)
+> - Use in [Power BI](/power-bi/fundamentals/power-bi-overview) reports
 
 The metrics include counts for item success, drops, and retries. They also include drop reasons and retry reasons. Use these metrics to monitor delivery and troubleshoot missing or unexpected telemetry.
 
@@ -32,8 +39,6 @@ The SDK publishes three metrics:
 - `preview.item.success.count`
 - `preview.item.dropped.count`
 - `preview.item.retry.count`
-
-SDK stats appear as **custom metrics** that you can use in [workbooks](../visualize/workbooks-overview.md), query in [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table, and plot in [Metrics explorer](../metrics/metrics-explorer.md).
 
 **Dimensions**
 
