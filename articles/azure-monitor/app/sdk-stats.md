@@ -202,6 +202,8 @@ The SDK updates counters as it evaluates and exports telemetry. It sends the cou
 > Retry counts represent attempts and never decrement.
 </details>
 
+<br>
+
 <details>
 <summary><b>How can I use SDK stats with alerts?</b></summary>
 
@@ -236,6 +238,8 @@ customMetrics
 > Pair the 402 alert with [daily cap](opentelemetry-sampling.md#set-a-daily-cap) guidance so responders can adjust the cap or reduce ingestion.
 
 </details>
+
+<br>
 
 <details>
 <summary><b>How can I use SDK stats with PowerBI?</b></summary>
@@ -273,6 +277,8 @@ customMetrics
 
 </details>
 
+<br>
+
 <details>
 <summary><b>How can I use SDK stats in Metrics Explorer?</b></summary>
 
@@ -287,6 +293,8 @@ Chart these custom metrics in Metrics explorer.
 <!-- TODO: Confirm the exact metrics namespace label in Metrics explorer. -->
 
 </details>
+
+<br>
 
 <details>
 <summary><b>How do SDK stats counts differ from logs?</b></summary>
@@ -304,83 +312,83 @@ Don't expect these counters to equal item counts in tables such as `requests` or
 
 <summary><b>What are some Kusto Query Language (KQL) reference samples?</b></summary>
 
-- **Export outcomes vs. time**
+**Export outcomes vs. time**
 
-    ```kusto
-    let g = 15m; // align with export interval for clearer charts
-    customMetrics
-    | where name in ("preview.item.success.count", "preview.item.dropped.count", "preview.item.retry.count")
-    | summarize 
-        success = sumif(todouble(value), name == "preview.item.success.count"),
-        dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
-        retry   = sumif(todouble(value), name == "preview.item.retry.count")
-        by bin(timestamp, g)
-    ```
+```kusto
+let g = 15m; // align with export interval for clearer charts
+customMetrics
+| where name in ("preview.item.success.count", "preview.item.dropped.count", "preview.item.retry.count")
+| summarize 
+    success = sumif(todouble(value), name == "preview.item.success.count"),
+    dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
+    retry   = sumif(todouble(value), name == "preview.item.retry.count")
+    by bin(timestamp, g)
+```
 
-- **Ratios over time**
+**Ratios over time**
 
-    ```kusto
-    let g = 15m;
-    customMetrics
-    | where name in ("preview.item.dropped.count", "preview.item.success.count", "preview.item.retry.count")
-    | summarize 
-        success = sumif(todouble(value), name == "preview.item.success.count"),
-        dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
-        retry   = sumif(todouble(value), name == "preview.item.retry.count")
-        by bin(timestamp, g)
-    | extend failure_ratio = dropped / iff(success == 0.0, 1.0, success)
-    | extend retry_to_success_ratio = iff(retry == 0.0, 1.0, success / retry)
-    | project timestamp, failure_ratio, retry_to_success_ratio
-    ```
+```kusto
+let g = 15m;
+customMetrics
+| where name in ("preview.item.dropped.count", "preview.item.success.count", "preview.item.retry.count")
+| summarize 
+    success = sumif(todouble(value), name == "preview.item.success.count"),
+    dropped = sumif(todouble(value), name == "preview.item.dropped.count"),
+    retry   = sumif(todouble(value), name == "preview.item.retry.count")
+    by bin(timestamp, g)
+| extend failure_ratio = dropped / iff(success == 0.0, 1.0, success)
+| extend retry_to_success_ratio = iff(retry == 0.0, 1.0, success / retry)
+| project timestamp, failure_ratio, retry_to_success_ratio
+```
 
-- **Request and dependency analysis over time (replicate the stacked bars)**
+**Request and dependency analysis over time (replicate the stacked bars)**
 
-    ```kusto
-    let g = 15m;
-    // Successful request/dependency telemetry: sent vs dropped
-    let sent_success = (requests
-    | where success == true
-    | summarize c = count() by bin(timestamp, g)
-    | union (dependencies | where success == true | summarize c = count() by bin(timestamp, g))
-    | summarize sent = sum(c) by timestamp);
-    let dropped_success = (customMetrics
-    | where name == "preview.item.dropped.count"
-    | extend telemetry_type = tostring(customDimensions["telemetry_type"]),
-            telemetry_success = tostring(customDimensions["telemetry_success"])
-    | where telemetry_type in ("REQUEST","DEPENDENCY") and telemetry_success == "true"
-    | summarize dropped = sum(todouble(value)) by bin(timestamp, g));
-    sent_success
-    | join kind=fullouter dropped_success on timestamp
-    | project timestamp, ["Successful - Sent"] = todouble(sent), ["Successful - Dropped"] = todouble(dropped)
-    | order by timestamp asc;
-    
-    // Failed request/dependency telemetry: sent vs dropped
-    let sent_failed = (requests
-    | where success == false
-    | summarize c = count() by bin(timestamp, g)
-    | union (dependencies | where success == false | summarize c = count() by bin(timestamp, g))
-    | summarize sent = sum(c) by timestamp);
-    let dropped_failed = (customMetrics
-    | where name == "preview.item.dropped.count"
-    | extend telemetry_type = tostring(customDimensions["telemetry_type"]),
-            telemetry_success = tostring(customDimensions["telemetry_success"])
-    | where telemetry_type in ("REQUEST","DEPENDENCY") and telemetry_success == "false"
-    | summarize dropped = sum(todouble(value)) by bin(timestamp, g));
-    sent_failed
-    | join kind=fullouter dropped_failed on timestamp
-    | project timestamp, ["Failed - Sent"] = todouble(sent), ["Failed - Dropped"] = todouble(dropped)
-    | order by timestamp asc
-    ```
+```kusto
+let g = 15m;
+// Successful request/dependency telemetry: sent vs dropped
+let sent_success = (requests
+| where success == true
+| summarize c = count() by bin(timestamp, g)
+| union (dependencies | where success == true | summarize c = count() by bin(timestamp, g))
+| summarize sent = sum(c) by timestamp);
+let dropped_success = (customMetrics
+| where name == "preview.item.dropped.count"
+| extend telemetry_type = tostring(customDimensions["telemetry_type"]),
+        telemetry_success = tostring(customDimensions["telemetry_success"])
+| where telemetry_type in ("REQUEST","DEPENDENCY") and telemetry_success == "true"
+| summarize dropped = sum(todouble(value)) by bin(timestamp, g));
+sent_success
+| join kind=fullouter dropped_success on timestamp
+| project timestamp, ["Successful - Sent"] = todouble(sent), ["Successful - Dropped"] = todouble(dropped)
+| order by timestamp asc;
 
-- **Drop reasons summary with code**
+// Failed request/dependency telemetry: sent vs dropped
+let sent_failed = (requests
+| where success == false
+| summarize c = count() by bin(timestamp, g)
+| union (dependencies | where success == false | summarize c = count() by bin(timestamp, g))
+| summarize sent = sum(c) by timestamp);
+let dropped_failed = (customMetrics
+| where name == "preview.item.dropped.count"
+| extend telemetry_type = tostring(customDimensions["telemetry_type"]),
+        telemetry_success = tostring(customDimensions["telemetry_success"])
+| where telemetry_type in ("REQUEST","DEPENDENCY") and telemetry_success == "false"
+| summarize dropped = sum(todouble(value)) by bin(timestamp, g));
+sent_failed
+| join kind=fullouter dropped_failed on timestamp
+| project timestamp, ["Failed - Sent"] = todouble(sent), ["Failed - Dropped"] = todouble(dropped)
+| order by timestamp asc
+```
 
-    ```kusto
-    customMetrics
-    | where name == "preview.item.dropped.count"
-    | extend drop_reason = tostring(customDimensions["drop.reason"]),
-            drop_code   = tostring(customDimensions["drop.code"])
-    | summarize total_dropped = sum(todouble(value)) by drop_reason, drop_code
-    | order by total_dropped desc
-    ```
+**Drop reasons summary with code**
+
+```kusto
+customMetrics
+| where name == "preview.item.dropped.count"
+| extend drop_reason = tostring(customDimensions["drop.reason"]),
+        drop_code   = tostring(customDimensions["drop.code"])
+| summarize total_dropped = sum(todouble(value)) by drop_reason, drop_code
+| order by total_dropped desc
+```
 
 </details>
