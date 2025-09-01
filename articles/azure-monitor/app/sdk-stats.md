@@ -7,9 +7,9 @@ ms.date: 09/05/2025
 
 # SDK stats for Application Insights (Preview)
 
-SDK stats provide health metrics for how [Application Insights](app-insights-overview.md) SDKs and agents send telemetry to the [ingestion endpoint](app-insights-overview.md#logic-model).
+SDK stats provide health metrics for [Application Insights](app-insights-overview.md) SDKs and agents about telemetry sent to the [ingestion endpoint](app-insights-overview.md#logic-model).
 
-SDK stats appear as **custom metrics** that allow you to:
+SDK stats appear as **custom metrics** that you can use to:
 
 > [!div class="checklist"]
 > - Visualize in [Workbooks](../visualize/workbooks-overview.md)
@@ -75,13 +75,13 @@ Use the filters at the top of the workbook to scope the view:
 
 The workbook focuses on a concise set of charts that keep outcomes in context:
 
-- **Export outcomes over time**. Plots counts of `success`, `retry`, and `dropped` together.
 - **Failure ratio**. Shows `dropped / success` on the selected time grain.
 - **Request and dependency analysis over time**. Splits request and dependency telemetry by the item’s `success` value, then shows **Sent** versus **Dropped** in separate bar charts:
   - **Successful telemetry over time**. Compares items that the application recorded as successful and that the exporter **sent** to Application Insights with items in the same category that the exporter **dropped**. Use this view to confirm steady delivery of successful operations.
   - **Failed telemetry over time**. Compares items that the application recorded as failed and that the exporter **sent** with items in the same category that the exporter **dropped**. Spikes in **Failed – Dropped** often indicate transient service issues, throttling, or configuration problems.
   - Use **Drop Reason**, **Drop Code**, and **SDK Version** filters to isolate causes. For example, if **Failed – Dropped** rises, check for `429` throttling or `401/403` authentication problems.
 - **Time-bucket drilldown**. Selecting a bucket opens a breakdown view with top drop reasons and codes for that period. <!-- TODO: Confirm the exact drilldown fields and titles used in the template. -->
+- **Export outcomes over time**. Plots counts of `success`, `retry`, and `dropped` together.
 
 #### Interpret the Retry metric
 
