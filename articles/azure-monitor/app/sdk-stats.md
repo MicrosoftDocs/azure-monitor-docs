@@ -1,22 +1,22 @@
 ---
-title: SDK Stats for Azure Monitor Application Insights (Preview)
-description: Use SDK Stats to visualize telemetry export success, dropped counts, retry counts, and drop reasons produced by the Azure Monitor Software Development Kits (SDKs) and agents.
+title: SDK stats for Azure Monitor Application Insights (Preview)
+description: Use SDK stats to visualize telemetry export success, dropped counts, retry counts, and drop reasons produced by the Azure Monitor Software Development Kits (SDKs) and agents.
 ms.topic: how-to
 ms.date: 09/05/2025
 ---
 
-# SDK Stats for Application Insights (Preview)
+# SDK stats for Application Insights (Preview)
 
-SDK Stats provides health metrics for how [Application Insights](app-insights-overview.md) SDKs and agents send telemetry to the [ingestion endpoint](app-insights-overview.md#logic-model).
+SDK stats provide health metrics for how [Application Insights](app-insights-overview.md) SDKs and agents send telemetry to the [ingestion endpoint](app-insights-overview.md#logic-model).
 
-SDK stats appear as **custom metrics** that you can:
+SDK stats appear as **custom metrics** that allow you to:
 
 > [!div class="checklist"]
 > - Visualize in [Workbooks](../visualize/workbooks-overview.md)
 > - Query in [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table
 > - Plot in [Metrics explorer](../metrics/metrics-explorer.md)
 > - Trigger [alerts](../alerts/alerts-overview.md)
-> - Use in [Power BI](/power-bi/fundamentals/power-bi-overview) reports
+> - Chart in [Power BI](/power-bi/fundamentals/power-bi-overview)
 
 The metrics include counts for item success, drops, and retries. They also include drop reasons and retry reasons. Use these metrics to monitor delivery and troubleshoot missing or unexpected telemetry.
 
@@ -57,9 +57,9 @@ These metrics include dimensions in `customDimensions` and standard Application 
 
 Each metric row represents an **aggregated count** for the export interval.
 
-## Open the SDK Stats workbook
+## Open the SDK stats workbook
 
-Open your Application Insights resource, then open **Workbooks** and select **SDK Stats (Preview)**. The experience uses a **single workbook** with a simplified set of visuals.
+Open your Application Insights resource, then open **Workbooks** and select **SDK stats (Preview)**. The experience uses a **single workbook** with a simplified set of visuals.
 
 ### Filters
 
@@ -110,7 +110,7 @@ Enable by setting the environment variable `APPLICATIONINSIGHTS_SDKSTATS_ENABLED
 - The default export interval is **15 minutes**.
 - Configure a different interval in seconds with `APPLICATIONINSIGHTS_SDKSTATS_EXPORT_INTERVAL`.
 
-You don't need to deploy any workbook resources. The SDK Stats template appears in the **Workbooks** gallery under your Application Insights resource.
+You don't need to deploy any workbook resources. The SDK stats template appears in the **Workbooks** gallery under your Application Insights resource.
 
 ## Use SDK stats outside Workbooks
 
