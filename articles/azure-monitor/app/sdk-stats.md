@@ -57,6 +57,23 @@ These metrics include dimensions in `customDimensions` and standard Application 
 
 Each metric row represents an **aggregated count** for the export interval.
 
+## Enable and configure SDK stats
+
+Current coverage requires **opt in** and is limited to the following SDKs:
+
+> [!div class="checklist"]
+> - **Node.js**
+> - **Python**
+
+Enable by setting the environment variable `APPLICATIONINSIGHTS_SDKSTATS_ENABLED_PREVIEW=true` in the application process environment and restarting the application.
+
+**Export interval**
+
+- The default export interval is **15 minutes**.
+- Configure a different interval in seconds with `APPLICATIONINSIGHTS_SDKSTATS_EXPORT_INTERVAL`.
+
+You don't need to deploy any workbook resources. The SDK stats template appears in the **Workbooks** gallery under your Application Insights resource.
+
 ## Open the SDK stats workbook
 
 Open your Application Insights resource, then open **Workbooks** and select **SDK stats (Preview)**. The experience uses a **single workbook** with a simplified set of visuals.
@@ -94,23 +111,6 @@ Use the retry series to spot transient delivery issues and decide what to check 
   - `429`: throttling. Expect retries until the `Retry-After` window ends. Consider reducing batch rates.
   - `401`, `403`: authentication or permission errors. Fix credentials or roles.
 - **What to do next**. If retries keep rising and success doesn't recover, check **Dropped by reason and code**. Look for `402` (quota), `401/403` (auth), or client exceptions such as storage issues.
-
-## Enable and configure SDK stats
-
-Current coverage requires **opt in** and is limited to the following SDKs:
-
-> [!div class="checklist"]
-> - **Node.js**
-> - **Python**
-
-Enable by setting the environment variable `APPLICATIONINSIGHTS_SDKSTATS_ENABLED_PREVIEW=true` in the application process environment and restarting the application.
-
-**Export interval**
-
-- The default export interval is **15 minutes**.
-- Configure a different interval in seconds with `APPLICATIONINSIGHTS_SDKSTATS_EXPORT_INTERVAL`.
-
-You don't need to deploy any workbook resources. The SDK stats template appears in the **Workbooks** gallery under your Application Insights resource.
 
 ## Use SDK stats outside Workbooks
 
