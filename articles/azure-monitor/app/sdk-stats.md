@@ -42,8 +42,8 @@ These metrics include dimensions in `customDimensions` and standard Application 
 | Dimension key                          | Description                                                                                                                                                                                                                  |
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `telemetry_type`                       | Telemetry type associated with the count. Values align with Application Insights tables such as `REQUEST`, `DEPENDENCY`, `EXCEPTION`, `TRACE`, `CUSTOM_EVENT`, and `AVAILABILITY`.                                           |
-| `drop.code`, `drop.reason`             | Code and short reason for dropped items. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_EXCEPTION`.                                                                                          |
-| `retry.code`, `retry.reason`           | Code and short reason for scheduled retries. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_TIMEOUT`.                                                                                        |
+| `drop.code`, `drop.reason`             | Code and short reason for dropped items. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_EXCEPTION`.                                                                          |
+| `retry.code`, `retry.reason`           | Code and short reason for scheduled retries. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_TIMEOUT`.                                                                        |
 | `telemetry_success`                    | For `REQUEST` and `DEPENDENCY`, the telemetry item's `success` value at export time (`true` or `false`).                                                                                                                     |
 | `language`, `version`                  | SDK or agent language and version.                                                                                                                                                                                           |
 | `compute.type`                         | Compute environment such as `aks`, `appsvc`, `functions`, `springcloud`, `vm`, or `unknown`. <!-- TODO: Confirm the serialized key name in payloads is `computeType` while the logical dimension name is `compute.type`. --> |
@@ -205,12 +205,12 @@ The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.rea
 
 #### Client-side drop codes
 
-| drop.code                     | Description                                                                     |
-| ----------------------------- | ------------------------------------------------------------------------------- |
+| drop.code                     | Description                                                                                     |
+| ----------------------------- | ----------------------------------------------------------------------------------------------- |
 | `CLIENT_EXCEPTION`            | Items dropped due to exceptions or when the ingestion endpoint doesn't return a response.       |
-| `CLIENT_READONLY`             | Items dropped because the file system is read-only.                             |
-| `CLIENT_PERSISTENCE_CAPACITY` | Items dropped because disk persistence capacity is exceeded.                    |
-| `CLIENT_STORAGE_DISABLED`     | Items that would be retried but local storage is disabled.                      |
+| `CLIENT_READONLY`             | Items dropped because the file system is read-only.                                             |
+| `CLIENT_PERSISTENCE_CAPACITY` | Items dropped because disk persistence capacity is exceeded.                                    |
+| `CLIENT_STORAGE_DISABLED`     | Items that would be retried but local storage is disabled.                                      |
 | `*NON_RETRYABLE_STATUS_CODE`  | Items dropped when the ingestion endpoint returns a nonretryable status such as `401` or `403`. |
 
 **drop.reason** complements `drop.code` with low-cardinality categories such as **Timeout exception**, **Network exception**, **Storage exception**, and **Client exception**. <!-- TODO: Replace with the final canonical list and casing from the spec. -->
@@ -221,13 +221,13 @@ The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.rea
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
 | `CLIENT_EXCEPTION`       | Items scheduled for retry due to runtime exceptions such as network or Domain Name System (DNS) failures, excluding timeouts. |
 | `CLIENT_TIMEOUT`         | Items scheduled for retry because a timeout occurred.                                                                         |
-| `*RETRYABLE_STATUS_CODE` | Items scheduled for retry because the ingestion endpoint returned a retryable HTTP status code.                                               |
+| `*RETRYABLE_STATUS_CODE` | Items scheduled for retry because the ingestion endpoint returned a retryable HTTP status code.                               |
 
 **retry.reason** uses the same categorization approach as **drop.reason**.
 
 #### Ingestion endpoint HTTP responses
 
-| HTTP status from the ingestion endpoint                 | Typical reason                                                                                     | SDK action                                                                                                                                                     |
+| HTTP status from the ingestion endpoint | Typical reason                                                                                     | SDK action                                                                                                                                                     |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `200 OK`                                | All items accepted.                                                                                | Count items as success.                                                                                                                                        |
 | `206 Partial Content`                   | Some items accepted, some rejected.                                                                | Count accepted items as success and rejected items as dropped.                                                                                                 |
