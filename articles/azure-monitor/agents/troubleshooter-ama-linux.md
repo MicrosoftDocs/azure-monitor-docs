@@ -138,13 +138,9 @@ It runs a series of scenarios and displays the results.
 
 ## Enabling automatic upgrade on VMSS appears in JSON but instances don't change
 
-When you enable *automatic extension upgrade* for `AzureMonitorLinuxAgent` on a Virtual Machine Scale Set, the flag first updates the scale set model. If your scale set's upgrade policy is set to *Manual*, this change doesn't propagate to existing instances until you apply the model update.
+When you enable *automatic extension upgrade* for `AzureMonitorLinuxAgent` on a VMSS, the flag first updates the scale set model. If your scale set's upgrade policy is set to *Manual*, this change doesn't propagate to existing instances until you apply the model update.
 
-### Fix
-
-Apply the latest model to instances.
-
-#### One time fix
+To apply the latest model:
 
 # [Portal](#tab/portal)
 
@@ -156,15 +152,17 @@ Apply the latest model to instances.
 
     This forces the current scale set model (including the updated `enableAutomaticUpgrade` flag) onto the selected instances.
 
-# [Programmatically](#tab/code)
+# [Azure CLI](#tab/cli)
 
-**Azure CLI**
+Run the following command:
 
 ```azurecli
 az vmss update-instances -g <rg> -n <vmss> --instance-ids "*"
 ```
 
-**PowerShell**
+# [PowerShell](#tab/ps)
+
+Run the following command:
 
 ```powershell
 Update-AzVmssInstance -ResourceGroupName <rg> -VMScaleSetName <vmss> -InstanceId "*"
@@ -172,15 +170,12 @@ Update-AzVmssInstance -ResourceGroupName <rg> -VMScaleSetName <vmss> -InstanceId
 
 ---
 
-#### Ongoing fix
-
-Change upgrade policy to *Rolling* so future model changes flow automatically:
-
-**Azure CLI**
-
-```azurecli
-az vmss update -g <rg> -n <vmss> --set upgradePolicy.mode=Rolling
-```
+> [!TIP]
+> You can change upgrade policy to *Rolling* so future model changes flow automatically by running the following CLI command:
+> 
+> ```azurecli
+> az vmss update -g <rg> -n <vmss> --set upgradePolicy.mode=Rolling
+> ```
 
 If specific VMs still don't update, check *Instance protection* (protect from scale set actions) and clear it if set.
 
