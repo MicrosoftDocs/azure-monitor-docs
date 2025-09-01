@@ -335,12 +335,8 @@ The short delay Azure Monitor adds accounts for ingestion latency - or the time 
 
 For example: 
 
-- You create a summary rule with a bin size of 30 minutes at 14:44. 
-
-  The rule creates the first aggregation shortly after 15:00 - for example, at 15:04 - for data logged between 14:30 and 15:00. 
-- You create a summary rule with a bin size of 720 minutes (12 hours) at 14:44. 
-
-  The rule creates the first aggregation at 16:12 - 72 minutes (10% of the 720 bin size) after 13:00 - for data logged between 03:00 and 15:00. 
+- You create a summary rule with a bin size of 30 minutes at 14:44. The first aggregation is generated at 15:04, which is the next whole hour plus 4 minutes delay.
+- You create a summary rule with a bin size of 720 minutes at 14:44. The first aggregation is generated at 16:12, which is the next whole hour plus 72 minutes (10% of the 720 bin size) delay. 
 
 Use the `binStartTime` and `binDelay` parameters to change the timing of the first aggregation and the delay Azure Monitor adds before each aggregation.
 
