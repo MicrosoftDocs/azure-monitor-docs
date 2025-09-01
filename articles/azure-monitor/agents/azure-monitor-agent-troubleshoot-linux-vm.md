@@ -114,7 +114,7 @@ For more information on how to troubleshoot syslog issues with Azure Monitor Age
 
 If after checking basic troubleshooting steps you don't see the Azure Monitor Agent emitting logs or find **'Failed to get MSI token from IMDS endpoint'** errors in `/var/opt/microsoft/azuremonitoragent/log/mdsd.err` log file, it's likely `syslog` user isn't a member of the group `himds`. Add `syslog` user to `himds` user group if the user isn't a member of this group. Create user `syslog` and the group `syslog`, if necessary, and make sure that the user is in that group. For more information check out Azure Arc-enabled server authentication requirements [here](/azure/azure-arc/servers/managed-identity-authentication).
 
-## Enabling automatic upgrade on VMSS appears in JSON but instances don't change
+## Issues with automatic upgrades on VMSS
 
 When you enable *automatic extension upgrade* for `AzureMonitorLinuxAgent` on a VMSS, the flag first updates the scale set model. If your scale set's upgrade policy is set to *Manual*, this change doesn't propagate to existing instances until you apply the model update.
 
@@ -127,8 +127,6 @@ You can apply the latest model in the Azure portal or programmatically.
 1. Go to **Instances**.
 1. Select the intances to update.
 1. In the top menu bar, select **Upgrade** > **Apply latest model**.
-
-    This forces the current scale set model (including the updated `enableAutomaticUpgrade` flag) onto the selected instances.
 
 # [Azure CLI](#tab/cli)
 
@@ -147,6 +145,8 @@ Update-AzVmssInstance -ResourceGroupName <rg> -VMScaleSetName <vmss> -InstanceId
 ```
 
 ---
+
+This forces the current scale set model (including the updated `enableAutomaticUpgrade` flag) onto the selected instances.
 
 > [!TIP]
 > You can change upgrade policy to *Rolling* so future model changes flow automatically by running the following CLI command:

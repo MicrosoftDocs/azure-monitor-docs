@@ -74,7 +74,6 @@ In addition, the following Python packages are required to run (all should be pr
 |xml.dom.minidom|yes|yes|
 
 ### Troubleshooter existence check
-
 Check for the existence of the AMA Agent Troubleshooter directory on the machine to be diagnosed to confirm the installation of the agent troubleshooter:
 
 ***/var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{version}***
@@ -92,7 +91,6 @@ If directory doesn't exist or the installation is failed, follow [Basic troubles
 If the directory exists, proceed to [Run the Troubleshooter](#run-the-troubleshooter).
 
 ## Run the Troubleshooter
-
 On the machine to be diagnosed, run the Agent Troubleshooter.
 
 **Log Mode** enables the collection of logs, which can then be compressed into .tgz format for export or review. **Interactive Mode** allows users to actively engage in troubleshooting scenarios and view the output directly within the shell.
