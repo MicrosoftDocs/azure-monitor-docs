@@ -11,7 +11,7 @@ SDK Stats provides export‑health metrics for how [Application Insights](app-in
 
 Use the SDK Stats [workbook](../visualize/workbooks-overview.md) to visualize these custom metrics, and also query them in [Log Analytics](../logs/log-analytics-overview.md), chart them in [Metrics explorer](../metrics/metrics-explorer.md), and drive [alerts](../alerts/alerts-overview.md) or [Power BI](/power-bi/fundamentals/power-bi-overview) reports.
 
-The metrics cover item success, dropped, and retry counts—with drop and retry reasons so you can monitor delivery and troubleshoot missing or unexpected telemetry.
+The metrics include counts for item success, drops, and retries. They also include drop reasons and retry reasons. Use these metrics to monitor delivery and troubleshoot missing or unexpected telemetry.
 
 ## Prerequisites
 
