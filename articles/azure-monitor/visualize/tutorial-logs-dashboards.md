@@ -84,6 +84,11 @@ Now that we have a query pinned to the dashboard, you'll notice that it has a ge
 
 :::image type="content" source="media/tutorial-logs-dashboards/log-analytics-modify-dashboard-02.png" lightbox="media/tutorial-logs-dashboards/log-analytics-modify-dashboard-02.png" alt-text="Screenshot that shows a completed configuration of a sample dashboard.":::
 
+> [!NOTE]
+> **Multi-scope pinning**: You can pin queries to a dashboard from multiple resources, but only if they are of the **same resource type**.
+>
+> **Edit mode limitation**: Changing the query scope while the dashboard tile is in *Edit* mode is **not supported**.
+
 > [!TIP]
 > To learn more about using Log Analytics, see [Log Analytics tutorial](../logs/log-analytics-tutorial.md).
 
