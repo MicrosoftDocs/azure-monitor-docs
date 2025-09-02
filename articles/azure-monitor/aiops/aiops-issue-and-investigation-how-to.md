@@ -4,22 +4,29 @@ description: This article helps guide you through getting started with Azure Mon
 ms.topic: how-to
 ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.date: 05/05/2025
+ms.date: 09/02/2025
 ---
 
 # Use Azure Monitor issues and investigations (preview)
 
-This article helps guide you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provide next steps to mitigate and resolve problems with Azure resources.
-
-> [!NOTE]
-> For preview, investigation only supports Application Insights resource alert. 
+This article guides you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provides next steps to mitigate and resolve problems with Azure resources.
 
 ## Prerequisites
 
 - Read the [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md).
 - Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigations.
 - Identify an alert fired on an Application Insights resource to investigate.
-- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the resource you’re investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+- Be sure that the subscription you want to investigate is associated with an Azure Monitor Workspace (AMW).
+- Give the users performing the association `Write` permission to the AMW.
+- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the AMW you’re investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+
+### Associate an AMW in the Azure portal
+
+Associating a subscription with an Azure Monitor Workspace is required:
+
+1. If the alert’s target resource subscription isn’t already linked to an AMW, you’ll see a message indicating that an Azure Monitor Workspace is required. The **Select an Azure Monitor workspace** screen will appear.
+1. Select an existing Azure Monitor Workspace or create a new one as needed.
+1. After confirming your selection, the Issue page will reload and the investigation will automatically start running.
 
 ## Ways to start an investigation on an alert
 
