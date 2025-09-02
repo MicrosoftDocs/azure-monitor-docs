@@ -2,7 +2,7 @@
 title: High scale logs collection in Container Insights (Preview)
 description: Enable high scale logs collection in Container Insights.
 ms.topic: article
-ms.date: 08/06/2024
+ms.date: 08/06/2025
 ---
 
 # High scale logs collection in Container Insights (Preview)

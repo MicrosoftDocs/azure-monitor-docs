@@ -18,7 +18,7 @@
   items:
   - name: Azure Service Health
     items:
-    - name: View Service Health notifications in the Azure portal
+    - name: View Service Health notifications from the Azure portal
       href: service-notifications.md
     - name: Filter Service Health notifications by event level
       href: metadata-filter.md
@@ -30,6 +30,8 @@
       href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
+    - name: View Health advisories
+      href: Service-health-advisories.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
     - name: How to create alerts
@@ -74,14 +76,22 @@
         href: impacted-resources-security.md     
 - name: Reference
   items:
-  - name: Queries
+  - name: Resource Graph
     items:  
-    - name: Sample queries for Azure Service Health
+    - name: Sample queries for Service Health
       href: ./resource-graph-samples.md
-    - name: Sample queries for Azure Resource Health
+    - name: Sample queries for Resource Health
       href: ./resource-graph-health-samples.md
-    - name: Sample queries for Azure Service Health Impacted resources
+    - name: Sample queries for Impacted resources
       href: ./resource-graph-impacted-samples.md
+  - name: REST API
+    items:   
+    - name: Service Health REST API
+      href: /rest/api/resourcehealth/events/
+    - name: Emerging Issues REST API
+      href: /rest/api/resourcehealth/emerging-issues/
+    - name: Resource Health REST API
+      href: /rest/api/resourcehealth/availability-statuses/
   - name: Access and permissions
     items: 
     - name: Tenant Roles with Admin access

@@ -21,6 +21,8 @@ items:
             href: supported-metrics/microsoft-app-jobs-metrics.md
           - name: Microsoft.App/managedEnvironments
             href: supported-metrics/microsoft-app-managedenvironments-metrics.md
+          - name: Microsoft.App/sessionpools
+            href: supported-metrics/microsoft-app-sessionpools-metrics.md
           - name: Microsoft.AppConfiguration/configurationStores
             href: supported-metrics/microsoft-appconfiguration-configurationstores-metrics.md
           - name: Microsoft.AppPlatform/spring
@@ -81,6 +83,8 @@ items:
             href: supported-metrics/microsoft-codesigning-codesigningaccounts-metrics.md
           - name: Microsoft.CognitiveServices/accounts
             href: supported-metrics/microsoft-cognitiveservices-accounts-metrics.md
+          - name: Microsoft.CognitiveServices/accounts/projects
+            href: supported-metrics/microsoft-cognitiveservices-accounts-projects-metrics.md
           - name: Microsoft.Communication/CommunicationServices
             href: supported-metrics/microsoft-communication-communicationservices-metrics.md
           - name: Microsoft.Compute/cloudservices
@@ -243,6 +247,8 @@ items:
             href: supported-metrics/microsoft-managednetworkfabric-l3isolationdomains-metrics.md
           - name: Microsoft.ManagedNetworkFabric/networkDevices
             href: supported-metrics/microsoft-managednetworkfabric-networkdevices-metrics.md
+          - name: Microsoft.ManagedNetworkFabric/networkFabrics
+            href: supported-metrics/microsoft-managednetworkfabric-networkfabrics-metrics.md
           - name: Microsoft.Maps/accounts
             href: supported-metrics/microsoft-maps-accounts-metrics.md
           - name: Microsoft.MessagingConnectors/connectors
@@ -265,8 +271,14 @@ items:
             href: supported-metrics/microsoft-netapp-netappaccounts-metrics.md
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-metrics.md
+          - name: Microsoft.NetApp/netAppAccounts/capacityPools/caches
+            href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-caches-metrics.md
           - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
             href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics.md
+          - name: Microsoft.NetApp/scaleAccounts/scaleCapacityPools
+            href: supported-metrics/microsoft-netapp-scaleaccounts-scalecapacitypools-metrics.md
+          - name: Microsoft.NetApp/scaleAccounts/scaleCapacityPools/scaleVolumes
+            href: supported-metrics/microsoft-netapp-scaleaccounts-scalecapacitypools-scalevolumes-metrics.md
           - name: Microsoft.Network/applicationgateways
             href: supported-metrics/microsoft-network-applicationgateways-metrics.md
           - name: Microsoft.Network/azureFirewalls
@@ -461,8 +473,6 @@ items:
             href: supported-metrics/oracle-database-autonomousdatabases-metrics.md
           - name: Oracle.Database/cloudVmClusters
             href: supported-metrics/oracle-database-cloudvmclusters-metrics.md
-          - name: Oracle.Database/exadbVmClusters
-            href: supported-metrics/oracle-database-exadbvmclusters-metrics.md
           - name: Private.MessagingConnectors/connectors
             href: supported-metrics/private-messagingconnectors-connectors-metrics.md
           - name: Wandisco.Fusion/migrators
@@ -577,9 +587,10 @@ items:
             displayName: Advanced Messaging Logs,Operational Authentication Logs,Call
               Automation Events Summary Logs,Operational Call Automation
               Logs,Call Automation Media Streaming features usage information
-              Logs,Call Client Media Stats Time Series Logs,Call Client
-              Operations Logs,Service Side Request and Outcome Logs,Call Closed
-              Captions Logs,Call Diagnostics Logs,Call Diagnostics Logs with
+              Logs,Call Client Media Stats Time Series Compressed Logs,Call
+              Client Media Stats Time Series Logs,Call Client Operations
+              Logs,Service Side Request and Outcome Logs,Call Closed Captions
+              Logs,Call Diagnostics Logs,Call Diagnostics Logs with
               versioning,Calling Metrics Logs,Operational Call Recording
               Logs,Call Recording Summary Logs,Call Summary Logs,Call Summary
               Logs with versioning,Call Survey Logs,Operational Chat Logs,Email
@@ -593,6 +604,10 @@ items:
           - name: Microsoft.Compute/virtualMachines
             href: supported-logs/microsoft-compute-virtualmachines-logs.md
             displayName: SoftwareUpdateProfile,SoftwareUpdates
+          - name: Microsoft.ConfidentialLedger/Ledgers
+            href: supported-logs/microsoft-confidentialledger-ledgers-logs.md
+            displayName: Azure Confidential Ledger activity Logs with UserId,Azure
+              Confidential Ledger UDE/UDF logs
           - name: Microsoft.ConfidentialLedger/ManagedCCF
             href: supported-logs/microsoft-confidentialledger-managedccf-logs.md
             displayName: CCF Application Logs
@@ -626,9 +641,10 @@ items:
           - name: Microsoft.ContainerService/managedClusters
             href: supported-logs/microsoft-containerservice-managedclusters-logs.md
             displayName: Kubernetes Cloud Controller Manager,Kubernetes Cluster
-              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,fleet-mcs-controller-manager,fleet-member-agent,fleet-member-net-controller-manager,guard,Kubernetes
-              API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes
-              Controller Manager,Kubernetes Scheduler
+              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,fleet-mcs-controller-manager,fleet-member-agent,fleet-member-net-controller-manager,guard,Node
+              Auto Provisioning,Kubernetes API Server,Kubernetes
+              Audit,Kubernetes Audit Admin Logs,Kubernetes Controller
+              Manager,Kubernetes Scheduler
           - name: Microsoft.CustomProviders/resourceproviders
             href: supported-logs/microsoft-customproviders-resourceproviders-logs.md
             displayName: Audit logs for MiniRP calls
@@ -730,7 +746,7 @@ items:
               pools,Checkpoint,Connection,Connection Graphics Data Logs
               Preview,Error,HostRegistration,Management,Network Data
               Logs,Session Host Management Activity Logs
-          - name: Microsoft.DesktopVirtualization/repositoryFolders
+          - name: Microsoft.DesktopVirtualization/repositoryfolders
             href: supported-logs/microsoft-desktopvirtualization-repositoryfolders-logs.md
             displayName: Management
           - name: Microsoft.DesktopVirtualization/scalingplans
@@ -827,7 +843,7 @@ items:
             href: supported-logs/microsoft-insights-components-logs.md
             displayName: Availability results,Browser
               timings,Dependencies,Events,Exceptions,Metrics,Page
-              views,Performance counters,Requests,System events,Traces
+              views,Performance counters,Requests,System events,Traces,Resources
           - name: Microsoft.Insights/datacollectionrules
             href: supported-logs/microsoft-insights-datacollectionrules-logs.md
             displayName: Log Errors
@@ -973,16 +989,17 @@ items:
           - name: Microsoft.NetworkCloud/bareMetalMachines
             href: supported-logs/microsoft-networkcloud-baremetalmachines-logs.md
             displayName: Security - Defender,Security - Break Glass Audit,Security -
-              Critical,Security - Debug,Security - Error,Security -
-              Info,Security - Notice,Security - Warning,System - Critical,System
-              - Debug,System - Error,System - Info,System - Notice,System -
-              Warning
+              Audit,Security - Critical,Security - Debug,Security -
+              Error,Security - Info,Security - Notice,Security - Warning,System
+              - Critical,System - Debug,System - Error,System - Info,System -
+              Notice,System - Warning
           - name: Microsoft.NetworkCloud/clusterManagers
             href: supported-logs/microsoft-networkcloud-clustermanagers-logs.md
             displayName: Cluster Manager Deploy or Upgrade Logs
           - name: Microsoft.NetworkCloud/clusters
             href: supported-logs/microsoft-networkcloud-clusters-logs.md
-            displayName: Kubernetes Logs,Platform Operation Logs,VM Orchestration Logs
+            displayName: Kubernetes Logs,IDRAC Container Logs,Platform Operation Logs,VM
+              Orchestration Logs
           - name: Microsoft.NetworkCloud/kubernetesClusters
             href: supported-logs/microsoft-networkcloud-kubernetesclusters-logs.md
             displayName: Tenant Operation Logs
@@ -1009,14 +1026,14 @@ items:
               Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend
               Service Logs,Register Service Logs,Reservoir DDMS Server
               Logs,Schema Service Logs,Search Extensions Service Logs,Search
-              Service Logs,Storage Service Logs,Unit Service Logs,WellDelivery
-              Service Logs,Workflow Service Logs
+              Service Logs,Storage Service Logs,Unit Service Logs,Wellbore
+              Service Logs,WellDelivery Service Logs,Workflow Service Logs
           - name: Microsoft.OpenLogisticsPlatform/Workspaces
             href: supported-logs/microsoft-openlogisticsplatform-workspaces-logs.md
             displayName: Supply Chain Entity Operations,Supply Chain Event logs
           - name: Microsoft.OperationalInsights/workspaces
             href: supported-logs/microsoft-operationalinsights-workspaces-logs.md
-            displayName: Audit,Summary Logs
+            displayName: Audit,Job Logs,Summary Logs
           - name: Microsoft.Orbital/geocatalogs
             href: supported-logs/microsoft-orbital-geocatalogs-logs.md
             displayName: Audit Logs,Ingestion Logs
@@ -1200,10 +1217,16 @@ items:
           - name: NGINX.NGINXPLUS/nginxDeployments
             href: supported-logs/nginx-nginxplus-nginxdeployments-logs.md
             displayName: NGINX Logs,NGINX Security Logs,NGINX Upstream Update Logs
+          - name: Oracle.Database/cloudExadataInfrastructures
+            href: supported-logs/oracle-database-cloudexadatainfrastructures-logs.md
+            displayName: Creation Events,Critical events,Delete Events,Information
+              Events,Maintenance Events,Update Events
           - name: Oracle.Database/cloudVmClusters
             href: supported-logs/oracle-database-cloudvmclusters-logs.md
-            displayName: Add Virtual Machine events,Creation Events,Delete Events,Terminate
-              Virtual Machine Events,Update Events
+            displayName: Add Virtual Machine Events,Database Backup Events,Creation
+              Events,Database Critical Events,Delete and Terminate Events,System
+              Health Events,Database Information Events,Database Restore
+              Events,Terminate Virtual Machine Events,Update Events
   - name: Azure Monitor Log Analytics tables
     href: ./tables-index.md
     items:
@@ -1239,7 +1262,7 @@ items:
           - name: microsoft.azuredatatransfer/connections
             href: tables/microsoft-azuredatatransfer_connections.md
           - name: microsoft.azuremonitordiagnosticsagents/datacollection
-            href: tables/microsoft-azuremonitordiagnosticsagents-datacollection.md
+            href: tables/microsoft-azuremonitordiagnosticsagents_datacollection.md
           - name: microsoft.azureplaywrightservice/accounts
             href: tables/microsoft-azureplaywrightservice_accounts.md
           - name: microsoft.azuresphere/catalogs
@@ -1545,7 +1568,7 @@ items:
           - name: nginx.nginxplus/nginxdeployments
             href: tables/nginx-nginxplus_nginxdeployments.md
           - name: oracle.database/cloudvmclusters
-            href: tables/oracle-database-cloudvmclusters.md
+            href: tables/oracle-database_cloudvmclusters.md
       - name: Log Analytics tables by table name
         expanded: false
         items:

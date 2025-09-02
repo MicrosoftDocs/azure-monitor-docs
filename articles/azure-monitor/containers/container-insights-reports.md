@@ -2,7 +2,7 @@
 title: Reports in Container insights
 description: This article describes reports that are available to analyze data collected by Container insights.
 ms.topic: article
-ms.date: 07/26/2024
+ms.date: 08/25/2025
 ms.reviewer: aul
 ---
 

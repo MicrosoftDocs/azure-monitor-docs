@@ -4792,22 +4792,12 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/continuous-monitoring.md",
-   "redirect_url": "/azure/azure-monitor/app/release-and-work-item-insights?tabs=continuous-monitoring",
-   "redirect_document_id": false
-  },
-  {
-   "source_path_from_root": "/articles/azure-monitor/app/annotations.md",
-   "redirect_url": "/azure/azure-monitor/app/release-and-work-item-insights?tabs=release-annotations",
+   "redirect_url": "/previous-versions/azure/azure-monitor/app/continuous-monitoring",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-nodejs-exporter.md",
    "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable?tabs=nodejs",
-   "redirect_document_id": false
-  },
-  {
-   "source_path_from_root": "/articles/azure-monitor/app/work-item-integration.md",
-   "redirect_url": "/azure/azure-monitor/app/release-and-work-item-insights?tabs=work-item-integration",
    "redirect_document_id": false
   },
   {
@@ -5293,11 +5283,6 @@
   {
    "source_path_from_root": "/articles/application-insights/app-insights-analytics-troubleshooting.md",
    "redirect_url": "/azure/azure-monitor/app/analytics-troubleshooting",
-   "redirect_document_id": false
-  },
-  {
-   "source_path_from_root": "/articles/application-insights/app-insights-annotations.md",
-   "redirect_url": "/azure/azure-monitor/app/annotations",
    "redirect_document_id": false
   },
   {
@@ -7980,6 +7965,16 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/app/release-and-work-item-insights.md",
+   "redirect_url": "/azure/azure-monitor/app/work-item-integration",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/annotations.md",
+   "redirect_url": "/azure/azure-monitor/app/failures-performance-transactions#release-annotations",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/reference/queries/appenvspringappconsolelogs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
@@ -8489,7 +8484,7 @@
    "redirect_url": "/azure/azure-monitor/app/dependencies",
    "redirect_document_id": false
   },
-  {    
+  {
    "source_path": "articles/azure-monitor/fundamentals/getting-started.md",
    "redirect_url": "/azure/azure-monitor/platform/monitor-azure-resource",
    "redirect_document_id": false
@@ -8551,6 +8546,46 @@
   },
   {
    "source_path": "articles/azure-monitor/app/asp-net-exceptions.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/get-metric.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/configuration-with-applicationinsights-config.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/telemetry-channels.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azuremonitordiagnosticsagents-datacollection.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/oracle-database-cloudvmclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/asp-net-counters.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/oracle-database-exadbvmclusters-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/custom-operations-tracking.md",
    "redirect_url": "/azure/azure-monitor/app/asp-net",
    "redirect_document_id": false
   }
