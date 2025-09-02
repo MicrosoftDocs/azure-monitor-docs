@@ -41,7 +41,7 @@ A finding contains a summary that can include:
 - **Next steps.** Suggestions for continuing the investigation or mitigating the problems.
 - **Evidence.** Evidence is the data justifying the finding, such as anomalies, diagnostics insights, health data, resource changes, related resources, and related alerts.
 
-> [!Note]
+> [!NOTE]
 > Up to five findings are displayed and all other anomalies are grouped into **Additional data**.
 
 ## Evidence types

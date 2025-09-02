@@ -34,8 +34,8 @@ There are two ways to start an investigation on an alert:
 
 1.  From the home page in the Azure portal:
     1.  From the home page in the [Azure portal](https://portal.azure.com/), select **Monitor** \> **Alerts**.
-    2.  From the **Alerts** page, select the alert that you want to investigate.
-    3.  In the alert details pane, select **Investigate (preview)**.
+    1.  From the **Alerts** page, select the alert that you want to investigate.
+    1.  In the alert details pane, select **Investigate (preview)**.
     
     :::image type="content" source="media/investigate-an-alert.png" alt-text="Screenshot of alerts screen with investigate an alert link." lightbox="media/investigate-an-alert.png":::
 
@@ -74,13 +74,13 @@ An investigation will present findings based on the evidence it analyzed. To inv
 ### Change the impact time of the investigation
 
 1.  Select the **Overview** tab.
-2.  Select **impact time** and adjust it. Changing the time of the investigation will automatically start a new investigation.
+1.  Select **impact time** and adjust it. Changing the time of the investigation will automatically start a new investigation.
 
 ### Change the resources included in the investigation
 
 1.  Select the **Resources** tab.
-2.  Select **Edit resources**.
-3.  Select the additional resources you want to include in the investigation. A new investigation will begin.
+1.  Select **Edit resources**.
+1.  Select the additional resources you want to include in the investigation. A new investigation will begin.
 
 ## Related content
 
