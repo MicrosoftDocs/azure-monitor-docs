@@ -4,7 +4,6 @@ description: Use machine learning to improve your ability to predict IT needs an
 ms.reviewer: ilanawaitser
 ms.topic: concept-article
 ms.date: 09/02/2025
-ms.reviewer: enauerman
 ms.collection: ce-skilling-ai-copilot
 ms.update-cycle: 180-days
 
