@@ -179,11 +179,11 @@ These fields provide the actual health information:
 ## Troubleshooting
 
 **Question**<br>
-Why are the `maintenanceStartTime`, `maintenanceEndTime`, and `info` showing as empty in my ARG query results?<br>
+Why are the `maintenanceStartTime`, `maintenanceEndTime`, and `info` showing as null in my ARG query results?<br>
 **Answer**<br>
-These fields might appear empty in ARG queries for microsoft.resourcehealth/events due to several factors. Understanding the fields can help you interpret the data more accurately:
+These fields can appear null in ARG queries for microsoft.resourcehealth events due to several factors. Understanding the fields can help you interpret the data more accurately.
 -  **Event type dependency**:<br>
-Only PlannedMaintenance events include maintenance timing details. Other types like ServiceIssue or SecurityAdvisory don't use those fields, so they're null.
+Only Planned Maintenance events include maintenance timing details. Other event types like Service Issue or Security Advisory don't use those fields, so they're null.
 - **Incomplete ingestion data**: Sometimes the upstream ingestion pipeline from Azure Change Management or partners might not populate the maintenance timing fields, especially during rapid incident responses or edge cases.
 - **Event lifecycle and access control**:<br>
     - Newly created or early-stage events might not have the full details to populate the fields or confirmed maintenance windows. 
