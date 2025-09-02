@@ -2,7 +2,7 @@
 title: Supported Resource log categories for Azure Monitor
 description: Understand the supported services and event schemas for Azure Monitor resource logs.
 ms.topic: generated-reference
-ms.date: 08/28/2025
+ms.date: 09/01/2025
 
 # NOTE This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 ---
@@ -84,6 +84,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.EventHub <a name="microsofteventhub"></a>|[clusters](./supported-metrics/Microsoft-EventHub-clusters-metrics.md)<br>[Namespaces](./supported-metrics/Microsoft-EventHub-Namespaces-metrics.md)<br>|[Namespaces](./supported-logs/Microsoft-EventHub-Namespaces-logs.md)<br>|
 |Microsoft. <br>HardwareSecurityModules <a name="microsofthardwaresecuritymodules"></a>|N/A|[cloudHsmClusters](./supported-logs/Microsoft-HardwareSecurityModules-cloudHsmClusters-logs.md)<br>|
 |Microsoft.HealthcareApis <a name="microsofthealthcareapis"></a>|[services](./supported-metrics/Microsoft-HealthcareApis-services-metrics.md)<br>[workspaces/dicomservices](./supported-metrics/Microsoft-HealthcareApis-workspaces-dicomservices-metrics.md)<br>[workspaces/fhirservices](./supported-metrics/Microsoft-HealthcareApis-workspaces-fhirservices-metrics.md)<br>[workspaces/iotconnectors](./supported-metrics/Microsoft-HealthcareApis-workspaces-iotconnectors-metrics.md)<br>|[services](./supported-logs/Microsoft-HealthcareApis-services-logs.md)<br>[workspaces/dicomservices](./supported-logs/Microsoft-HealthcareApis-workspaces-dicomservices-logs.md)<br>[workspaces/fhirservices](./supported-logs/Microsoft-HealthcareApis-workspaces-fhirservices-logs.md)<br>[workspaces/iotconnectors](./supported-logs/Microsoft-HealthcareApis-workspaces-iotconnectors-logs.md)<br>|
+|Microsoft.HealthcareInterop <a name="microsofthealthcareinterop"></a>|[fhirQueryFlatFileBatchChannels](./supported-metrics/Microsoft-HealthcareInterop-fhirQueryFlatFileBatchChannels-metrics.md)<br>|[fhirQueryFlatFileBatchChannels](./supported-logs/Microsoft-HealthcareInterop-fhirQueryFlatFileBatchChannels-logs.md)<br>|
 |Microsoft.HealthDataAIServices <a name="microsofthealthdataaiservices"></a>|N/A|[deidServices](./supported-logs/Microsoft-HealthDataAIServices-deidServices-logs.md)<br>|
 |microsoft.insights <a name="microsoftinsights"></a>|[autoscalesettings](./supported-metrics/microsoft-insights-autoscalesettings-metrics.md)<br>[components](./supported-metrics/microsoft-insights-components-metrics.md)<br>|[autoscalesettings](./supported-logs/microsoft-insights-autoscalesettings-logs.md)<br>[components](./supported-logs/microsoft-insights-components-logs.md)<br>|
 |Microsoft.Insights <a name="microsoftinsights"></a>|[datacollectionrules](./supported-metrics/Microsoft-Insights-datacollectionrules-metrics.md)<br>|[datacollectionrules](./supported-logs/Microsoft-Insights-datacollectionrules-logs.md)<br>|
