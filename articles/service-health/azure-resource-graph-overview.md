@@ -2,7 +2,7 @@
 title: Azure Resource Graph Overview
 description: Learn about the Azure Resource Graph table properties.
 ms.topic: concept-article
-ms.date: 08/28/2025
+ms.date: 09/02/2025
 
 ---
 # Azure Resource Graph tables overview
@@ -176,7 +176,23 @@ These fields provide the actual health information:
 - **Governance & Reporting**: `location`, `subscriptionId`, and `resourceGroup` allow filtering and aggregation across environments.
 - **Automation**: `recommendedActions` can be used to trigger automated remediation workflows.
 
+## Troubleshooting
 
+**Question**<br>
+Why are the `maintenanceStartTime`, `maintenanceEndTime`, and `info` showing as empty in my ARG query results?<br>
+**Answer**<br>
+These fields might appear empty in ARG queries for microsoft.resourcehealth/events due to several factors. Understanding the fields can help you interpret the data more accurately:
+-  **Event type dependency**:<br>
+Only PlannedMaintenance events include maintenance timing details. Other types like ServiceIssue or SecurityAdvisory don't use those fields, so they're null.
+- **Incomplete ingestion data**: Sometimes the upstream ingestion pipeline from Azure Change Management or partners might not populate the maintenance timing fields, especially during rapid incident responses or edge cases.
+- **Event lifecycle and access control**:<br>
+    - Newly created or early-stage events might not have the full details to populate the fields or confirmed maintenance windows. 
+    - Some sensitive events require elevated permissions to view complete data. Without the right access, the fields appear blank.
+- **Event history and recommendations**:
+    - Filter for PlannedMaintenance events.
+    - Confirm your role and access permissions.
+    - Check the event status.
+    - Report any consistent data gaps through the appropriate support channels.
 
 
 
