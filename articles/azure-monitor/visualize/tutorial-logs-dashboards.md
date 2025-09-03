@@ -57,11 +57,6 @@ Choose a subscription and resource group for your dashboard to be published to. 
 
 In this tutorial, you'll use Log Analytics to create a performance view in graphical form and save it for a future query. Then you'll pin it to the shared dashboard you created earlier.
 
-> [!NOTE]
-> **Multi-scope pinning**: You can pin queries to a dashboard from multiple resources, but only if they are of the *same resource type*.
->
-> **Edit mode limitation**: Changing the query scope while the dashboard tile is in **Edit** mode is *not supported*.
-
 Open Log Analytics by selecting **Logs** on the Azure Monitor menu. It starts with a new blank query.
 <!-- convertborder later -->
 :::image type="content" source="media/tutorial-logs-dashboards/homepage.png" lightbox="media/tutorial-logs-dashboards/homepage.png" alt-text="Screenshot that shows the home page." border="false":::
@@ -80,6 +75,11 @@ Save the query by selecting **Save**.
 :::image type="content" source="media/tutorial-logs-dashboards/save-query.png" lightbox="media/tutorial-logs-dashboards/save-query.png" alt-text="Screenshot that shows how to save a query and pin it to a dashboard.":::
 
 In the **Save Query** control panel, provide a name such as **Azure VMs - Processor Utilization** and a category such as **Dashboards**. Select **Save**. This way you can create a library of common queries that you can use and modify. Finally, pin this query to the shared dashboard you created earlier. Select the **Pin to dashboard** button in the upper-right corner of the page and then select the dashboard name.
+
+> [!NOTE]
+> **Multi-scope pinning**: You can pin queries to a dashboard from multiple resources, but only if they are of the *same resource type*.
+>
+> **Edit mode limitation**: Changing the query scope while the dashboard tile is in **Edit** mode is *not supported*.
 
 Now that we have a query pinned to the dashboard, you'll notice that it has a generic title and comment underneath it.
 
