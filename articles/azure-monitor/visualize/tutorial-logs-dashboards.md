@@ -57,6 +57,11 @@ Choose a subscription and resource group for your dashboard to be published to. 
 
 In this tutorial, you'll use Log Analytics to create a performance view in graphical form and save it for a future query. Then you'll pin it to the shared dashboard you created earlier.
 
+> [!NOTE]
+> **Multi-scope pinning**: You can pin queries to a dashboard from multiple resources, but only if they are of the *same resource type*.
+>
+> **Edit mode limitation**: Changing the query scope while the dashboard tile is in **Edit** mode is *not supported*.
+
 Open Log Analytics by selecting **Logs** on the Azure Monitor menu. It starts with a new blank query.
 <!-- convertborder later -->
 :::image type="content" source="media/tutorial-logs-dashboards/homepage.png" lightbox="media/tutorial-logs-dashboards/homepage.png" alt-text="Screenshot that shows the home page." border="false":::
@@ -83,11 +88,6 @@ Now that we have a query pinned to the dashboard, you'll notice that it has a ge
  Rename the query with a meaningful name that can be easily understood by anyone who views it. Select **Edit** to customize the title and subtitle for the tile, and then select **Update**. A banner appears that asks you to publish changes or discard. Select **Save a copy**.
 
 :::image type="content" source="media/tutorial-logs-dashboards/log-analytics-modify-dashboard-02.png" lightbox="media/tutorial-logs-dashboards/log-analytics-modify-dashboard-02.png" alt-text="Screenshot that shows a completed configuration of a sample dashboard.":::
-
-> [!NOTE]
-> **Multi-scope pinning**: You can pin queries to a dashboard from multiple resources, but only if they are of the **same resource type**.
->
-> **Edit mode limitation**: Changing the query scope while the dashboard tile is in *Edit* mode is **not supported**.
 
 > [!TIP]
 > To learn more about using Log Analytics, see [Log Analytics tutorial](../logs/log-analytics-tutorial.md).
