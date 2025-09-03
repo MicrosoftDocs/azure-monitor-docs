@@ -70,7 +70,7 @@ You can get information about outage-impacted resources programmatically followi
 # [API Query](#tab/API)
 
 1. Get the `recommendationId` for the event using the Recommendation Metadata API.
-For more information, see [Recommendation Metadata - List - REST API](GET https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}).
+For more information, see [Recommendation Metadata - List - REST API](/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}).
 
 ### URI Parameters
 
@@ -246,7 +246,7 @@ For more information, see [Recommendation Metadata - List - REST API](GET https:
 ```
 # [ARG Query](#tab/ARG)
 
-Use the ID to fetch impacted resources from ARG.
+2. Use the ID to fetch impacted resources from ARG.
 
 ```dotnetcli
 advisorresources
