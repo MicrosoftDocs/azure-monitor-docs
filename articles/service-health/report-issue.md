@@ -19,7 +19,7 @@ See [Request access](https://aka.ms/ImpactRP/RequestAccess).
 To report a single issue, you must have the correct permission.
 
 >[!NOTE]
->This button isn't available on the Billing panel.
+>This option to report an issue isn't available on the Billing panel.
 
 ## How to report a resource-level issue
 
