@@ -2,7 +2,7 @@
 title: Service Health event tags
 description: Learn how to understand and use the event tags in Azure Service Health
 ms.topic: overview
-ms.date: 8/19/2025
+ms.date: 9/03/2025
 ---
 
 # Service Health event tags
