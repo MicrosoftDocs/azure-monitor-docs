@@ -1,12 +1,11 @@
 ---
-title: Collect data from virtual machine client with Azure Monitor
+title:  Remove Dependency Agent from Azure Virtual Machines and Virtual Machine Scale Sets
 description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
 ms.topic: article
 ms.date: 02/26/2025
-ms.reviewer: jeffwo
 ---
 
-# Collect data from virtual machine client with Azure Monitor
+# Remove Dependency Agent from Azure Virtual Machines and Virtual Machine Scale Sets
 
 Azure Monitor automatically collects host metrics and activity logs from your Azure and Arc-enabled virtual machines. To collect metrics and logs from the client operating system and its workloads though, you need to create [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) that specify what you want to collect and where to send it. This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients.
 
