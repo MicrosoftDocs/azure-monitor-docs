@@ -41,10 +41,13 @@ Service Health provides the following information on resources impacted by a Ret
 
 ### Filter the results
 
+
 You can filter the results through:
 - **Region**
 - **Subscription ID**
 - **Resource Type**
+
+:::image type="content"source="./media/impacted-retirements/impacted-retirements-filter.png"alt-text="Screenshot of filters."Lightbox="./media/impacted-retirements/impacted-retirements-filter.png":::
 
 ### Export to CSV file
 
@@ -246,7 +249,7 @@ For more information, see [Recommendation Metadata - List - REST API](/rest/api/
 ```
 # [ARG Query](#tab/ARG)
 
-2. Use the ID to fetch impacted resources from ARG.
+2. Use the ID to fetch impacted resources from Axure Resource Graph (ARG).
 
 ```dotnetcli
 advisorresources
