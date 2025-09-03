@@ -16,15 +16,15 @@ To support of the experience of viewing Impacted Resources, Service Health has f
 This article details what is communicated to users and where they can view information about their impacted resources.
 
 >[!NOTE]
->Impacted resources for retirements may take up to 2 weeks to appear after the event is published.
+>Impacted resources for retirements could take up to two weeks to appear after the event is published.
 
 ## Viewing impacted resources for Retirements in the Service Health portal
 
 In the Azure portal, the **Impacted Resources** tab located in the **Health Advisories** panel displays the resources affected by a retirement event. The example here illustrates how the tab highlights a retirement scenario with impacted resources.
 
-:::image type="content"source="./media/impacted-retirements/impacted-retirements-health-advisory.png"alt-text="Screenshot of Health advirories panel."Lightbox="./media/impacted-retirements/impacted-retirements-health-advisory.png":::
+:::image type="content"source="./media/impacted-retirements/impacted-retirements-health-advisory.png"alt-text="Screenshot of Health advisories panel."Lightbox="./media/impacted-retirements/impacted-retirements-health-advisory.png":::
 
-They are shown in the Impacted Resources tab.
+They're shown in the Impacted Resources tab.
 
 :::image type="content"source="./media/impacted-retirements/impacted-retirements-migrate-data.png"alt-text="Screenshot of Impacted Resources tab."Lightbox="./media/impacted-retirements/impacted-retirements-migrate-data.png":::
 
