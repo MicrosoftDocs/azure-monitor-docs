@@ -609,7 +609,7 @@ items:
                 displayName: Container insights, Prometheus
               - name: Supported region mappings
                 href: containers/container-insights-region-mapping.md
-          - name: Classic topics
+          - name: Classic experience
             items:
               - name: View cluster metrics
                 href: containers/container-insights-livedata-metrics.md
