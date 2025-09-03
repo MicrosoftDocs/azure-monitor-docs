@@ -66,6 +66,9 @@ The CSV file contains the following fields:
 ### Access impacted resources programmatically via an API
 
 You can get information about outage-impacted resources programmatically following these steps.
+
+# [API Query](#tab/API)
+
 1. Get the `recommendationId` for the event using the Recommendation Metadata API.
 For more information, see [Recommendation Metadata - List - REST API](GET https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}).
 
@@ -240,5 +243,21 @@ For more information, see [Recommendation Metadata - List - REST API](GET https:
         }
     ]
 }
+```
+# [ARG Query](#tab/ARG)
+
+Use the ID to fetch impacted resources from ARG.
+
+```dotnetcli
+advisorresources
+| where type == "microsoft.advisor/recommendations"
+| where properties.recommendationTypeId == "7e570000-n78d-yh67-2xzc4-v16005e1k" //use the Id fetched from above
+| extend resourceId = tolower(properties.resourceMetadata.resourceId)
+| project resourceId 
+| join kind=inner (
+    resources
+    | extend region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type 
+) on resourceId
+| project region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type 
 ```
 
