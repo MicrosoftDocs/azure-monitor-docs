@@ -1,18 +1,18 @@
 ---
-title: Configure Monitoring for ASP.NET and ASP.NET Core with Application Insights | Microsoft Docs
-description: Monitor ASP.NET and ASP.NET Core web applications for availability, performance, and usage.
+title: Application Insights for ASP.NET, ASP.NET Core and Worker Service (non-HTTP) applications | Microsoft Docs
+description: Monitor ASP.NET, ASP.NET Core, and Worker Service applications for availability, performance, and usage.
 ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp
-ms.date: 08/28/2025
+ms.date: 09/05/2025
 ms.reviewer: mmcc
 ---
 
-# Application Insights for ASP.NET and ASP.NET Core applications
+# Application Insights for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
-This article explains how to enable and configure [Application Insights](app-insights-overview.md) for ASP.NET and ASP.NET Core applications to send telemetry. Application Insights can collect the following telemetry from your apps:
+This article explains how to enable and configure [Application Insights](app-insights-overview.md) for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications. Application Insights can collect the following telemetry from your apps:
 
 > [!div class="checklist"]
 > * Requests
@@ -28,17 +28,17 @@ This article explains how to enable and configure [Application Insights](app-ins
 ## Supported scenarios
 
 > [!NOTE]
-> The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) can monitor your applications no matter where or how they run. If your application is running and has network connectivity to Azure, telemetry can be collected. Application Insights monitoring is supported everywhere .NET Core is supported.
+> The Application Insights [SDK for ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) and [SDK for Worker Service](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService)can monitor your applications no matter where or how they run. If your application is running and has network connectivity to Azure, telemetry can be collected.
 
-| Supported | ASP.NET | ASP.NET Core |
-|-----------|---------|--------------|
-| **Operating system** | Windows | Windows, Linux, or macOS |
-| **Hosting method** | In-process (IIS or IIS Express) | In process or out of process |
-| **Deployment method** | Web Deploy, MSI, or manual file copy | Framework dependent or self-contained |
-| **Web server** | Internet Information Services (IIS) | Internet Information Server (IIS) or Kestrel |
-| **Hosting platform** | Azure App Service (Windows), Azure Virtual Machines, or on-premises servers | The Web Apps feature of Azure App Service, Azure Virtual Machines, Docker, and Azure Kubernetes Service (AKS) |
-| **.NET version** | .NET Framework 4.6.1 and later | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview |
-| **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line |
+| Supported | ASP.NET | ASP.NET Core | Worker Service |
+|-----------|---------|--------------|----------------|
+| **Operating system** | Windows | Windows, Linux, or macOS | Windows, Linux, or macOS |
+| **Hosting method** | In-process (IIS or IIS Express) | In process or out of process | Console or background service (runs as a process, typically via `dotnet` CLI or as a Windows Service/Linux daemon) |
+| **Deployment method** | Web Deploy, MSI, or manual file copy | Framework dependent or self-contained | Framework dependent or self-contained |
+| **Web server** | Internet Information Services (IIS) | Internet Information Server (IIS) or Kestrel | Not applicable (no web server; non-HTTP workloads) |
+| **Hosting platform** | Azure App Service (Windows), Azure Virtual Machines, or on-premises servers | The Web Apps feature of Azure App Service, Azure Virtual Machines, Docker, and Azure Kubernetes Service (AKS) | Azure Virtual Machines, Azure Kubernetes Service (AKS), containers, or any environment where .NET Core is supported |
+| **.NET version** | .NET Framework 4.6.1 and later | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview |
+| **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line | Visual Studio, Visual Studio Code, or command line |
 
 ## Add Application Insights
 
