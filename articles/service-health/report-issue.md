@@ -2,7 +2,7 @@
 title: Report an issue in Azure Service Health 
 description: Learn how to access and report an issue in Azure Service Health.
 ms.topic: overview
-ms.date: 09/02/2025
+ms.date: 09/03/2025
 ---
 
 # How to report an Issue in Azure Service Health
@@ -39,16 +39,16 @@ To report an issue, follow these steps.
     - Impact start date and time.
 4. Select **Submit**.
 
-When your issue is reported you should see this message. 
+When your issue is reported, you should see this message. 
 :::image type="content" source="media/report-issue/report-an-issue-success.png" alt-text="Screenshot of the message your report is a success." lightbox="media/report-issue/report-an-issue-success.png":::
 
-If an outage is found you will see it on the portal.
+If an outage is found, you see it on the portal.
 
 If you get this error, it means you don’t have permission. See [Request access](https://aka.ms/ImpactRP/RequestAccess).
 
 :::image type="content" source="media/report-issue/report-an-issue-error.png" alt-text="Screenshot of the message you don't have access." lightbox="media/report-issue/report-an-issue-error.png":::
 
-## How to report a service-level issues
+## How to report service-level issues
 
 The steps to report an issue about Multiple resources is the same a reporting a single resource issue. The difference is that you don’t need the same permission.
 
