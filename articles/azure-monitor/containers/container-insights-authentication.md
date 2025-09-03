@@ -520,7 +520,7 @@ The shell script below is the recommeded migration method for bulk migration of 
         for cluster in "${failed_clusters[@]}"; do
             echo "  ✗ $cluster"
         done 
-    ```
+        ```
 
 ---
 
@@ -531,6 +531,7 @@ If you require legacy authentication, see [Enable Container insights](kubernetes
 
 ## Next steps
 If you experience issues when you upgrade the agent, review the [troubleshooting guide](container-insights-troubleshoot.md) for support.
+
 
 
 
