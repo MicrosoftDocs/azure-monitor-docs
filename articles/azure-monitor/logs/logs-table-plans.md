@@ -3,7 +3,7 @@ title: Select a table plan based on data usage in a Log Analytics workspace
 description: Use the Auxiliary, Basic, and Analytics Logs plans to reduce costs and take advantage of advanced analytics capabilities in Azure Monitor Logs.
 ms.reviewer: adi.biran
 ms.topic: how-to
-ms.date: 07/04/2024
+ms.date: 08/29/2025
 
 # Customer intent: As a Log Analytics workspace administrator, I want to manage configure the plans of tables in my Log Analytics workspace so that I pay less for data I use less frequently.
 ---

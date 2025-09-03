@@ -203,6 +203,8 @@ items:
             href: supported-metrics/microsoft-healthcareapis-workspaces-fhirservices-metrics.md
           - name: Microsoft.HealthcareApis/workspaces/iotconnectors
             href: supported-metrics/microsoft-healthcareapis-workspaces-iotconnectors-metrics.md
+          - name: Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels
+            href: supported-metrics/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-metrics.md
           - name: Microsoft.HealthModel/healthmodels
             href: supported-metrics/microsoft-healthmodel-healthmodels-metrics.md
           - name: Microsoft.HybridContainerService/provisionedClusters
@@ -832,6 +834,9 @@ items:
             displayName: FHIR Audit logs
           - name: Microsoft.HealthcareApis/workspaces/iotconnectors
             href: supported-logs/microsoft-healthcareapis-workspaces-iotconnectors-logs.md
+            displayName: Diagnostic logs
+          - name: Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels
+            href: supported-logs/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-logs.md
             displayName: Diagnostic logs
           - name: Microsoft.HealthDataAIServices/deidServices
             href: supported-logs/microsoft-healthdataaiservices-deidservices-logs.md
