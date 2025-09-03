@@ -70,7 +70,7 @@ You can get information about outage-impacted resources programmatically followi
 # [API Query](#tab/API)
 
 1. Get the `recommendationId` for the event using the Recommendation Metadata API.
-For more information, see [Recommendation Metadata - List - REST API](/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}).
+For more information, see [Recommendation Metadata - List - REST API](/api/advisor/recommendation-metadata/list).
 
 ### URI Parameters
 
