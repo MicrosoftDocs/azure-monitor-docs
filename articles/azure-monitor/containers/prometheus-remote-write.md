@@ -5,12 +5,25 @@ ms.topic: how-to
 ms.date: 09/16/2024
 ---
 
-# Azure Monitor managed service for Prometheus remote write
-Azure Monitor managed service for Prometheus is intended to be a replacement for self managed Prometheus so you don't need to manage a Prometheus server in your Kubernetes clusters. You may also choose to use the managed service to centralize data from self-managed Prometheus clusters for long term data retention and to create a centralized view across your clusters. In this case, you can use [remote_write](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) to send data from your self-managed Prometheus into the Azure managed service.
+# Connect self-managed Prometheus to Azure Monitor managed service for Prometheus
+Azure Monitor managed service for Prometheus is intended to be a replacement for self managed Prometheus so you don't need to manage a Prometheus server in your Kubernetes clusters. There may be scenarios though where you want to continue to use self-managed Prometheus in your Kubernetes clusters while also sending data to Managed Prometheus for long term data retention and to create a centralized view across your clusters. 
+
+
 
 ## Architecture
 
-You can configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. Currently managed identity (system-assigned or user-assigned), and Microsoft Entra ID application are the supported authentication types using Prometheus remote-write configuration to ingest metrics to Azure Monitor Workspace.
+[Remote_write](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) is a feature in Prometheus that allows you to send metrics from a local Prometheus instance to remote storage or to another Prometheus instance. You can configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace.
+
+:::image type="content" source="media/prometheus-remote-write/overview.png" alt-text="Diagram showing use of remote-write to send metrics from local Prometheus to Managed Prometheus." lightbox="media/prometheus-remote-write/overview.png"  border="false":::
+
+
+## Authentication types
+
+- Managed identity is recommended for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster. 
+- Microsoft Entra ID can be used for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster and is required for Kubernetes cluster running in another cloud or on-premises.
+
+
+ Currently managed identity (system-assigned or user-assigned), and Microsoft Entra ID application are the supported authentication types using Prometheus remote-write configuration to ingest metrics to Azure Monitor Workspace.
 
 Azure Monitor also provides a reverse proxy container (Azure Monitor [side car container](/azure/architecture/patterns/sidecar)) that provides an abstraction for ingesting Prometheus remote write metrics and helps in authenticating packets.
 
@@ -38,11 +51,6 @@ Remote write for Prometheus on Kubernetes clusters can also be configured using 
 - [Send Prometheus data from AKS to Azure Monitor using side car container with managed identity authentication](/azure/azure-monitor/containers/prometheus-remote-write-managed-identity)
 - [Send Prometheus data from AKS to Azure Monitor using side car container with Microsoft Entra ID authentication](/azure/azure-monitor/containers/prometheus-remote-write-active-directory)
 - [Send Prometheus data to Azure Monitor using side car container with Microsoft Entra ID Workload ID authentication](/azure/azure-monitor/containers/prometheus-remote-write-azure-workload-identity)
-
-## Remote write from Virtual Machines and Virtual Machine Scale sets 
-
-You can send Prometheus data from Virtual Machines and Virtual Machines Scale Sets to Azure Monitor workspaces using remote write. The servers can be Azure-managed or in any other environment. For more information, see [Send Prometheus metrics from Virtual Machines to an Azure Monitor workspace](/azure/azure-monitor/essentials/prometheus-remote-write-virtual-machines).
-
 
 ## Verify remote write is working correctly
 

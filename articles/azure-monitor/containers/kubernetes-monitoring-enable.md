@@ -103,28 +103,8 @@ Both container log collection and Managed Prometheus rely on a containerized [Az
 
 
 ## Resources provisioned
+When you enable monitoring, [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) and [data collection endpoints (DCEs)](../data-collection/data-collection-endpoint-overview.md) are created in your subscription that define collection of your container logs and Prometheus metrics. You may not need to interact with these resources directly, but you will need them to perform advanced configurations or if you want to implement strategies to deploy and manage your Kubernetes environment at scale. See [Container insights DCRs](./container-insights-data-collection-configure.md#container-insights-dcrs) for details on these resources.
 
-When you enable monitoring, the following resources are created in your subscription. You may not need to interact with these resources directly, but you will need them to perform advanced configurations or if you want to implement strategies to deploy and manage your Kubernetes environment at scale.
-
-**Managed Prometheus**
-
-| Resource Name | Resource Type | Resource Group | Region/Location | Description |
-|:---|:---|:---|:---|:---|
-| `MSPROM-<aksclusterregion>-<clustername>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | Same as cluster | Same as Azure Monitor workspace | Associated with the AKS cluster resource, defines configuration of prometheus metrics collection by metrics addon. |
-| `MSPROM-<aksclusterregion>-<clustername>` | [Data Collection endpoint](../data-collection/data-collection-endpoint-overview.md) | Same as cluster | Same as Azure Monitor workspace | Used by the DCR for ingesting Prometheus metrics from the metrics addon. |
-    
-When you create a new Azure Monitor workspace, the following additional resources are created.
-
-| Resource Name | Resource Type | Resource Group | Region/Location | Description |
-|:---|:---|:---|:---|:---|
-| `<azuremonitor-workspace-name>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCR to be used if you use Remote Write from a Prometheus server. |
-| `<azuremonitor-workspace-name>` | [Data Collection endpoint](../data-collection/data-collection-endpoint-overview.md) | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCE to be used if you use Remote Write from a Prometheus server. |
-
-**Log collection**
-
-| Resource Name | Resource Type | Resource Group | Region/Location | Description |
-|:---|:---|:---|:---|:---|
-| `MSCI-<aksclusterregion>-<clustername>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | Same as cluster | Same as Log Analytics workspace | Associated with the AKS cluster resource, defines configuration of logs collection by the Azure Monitor agent. |
 
 ## Differences between Windows and Linux clusters
 
@@ -142,10 +122,7 @@ The containerized Linux agent (replicaset pod) makes API calls to all the Window
 
 If you have a Kubernetes cluster with Windows nodes, review and configure the network security group and network policies to make sure the Kubelet secure port (:10250) is open for both inbound and outbound in the cluster's virtual network.
 
-## Share DCR with multiple clusters
-When you enable Container insights on a Kubernetes cluster, a new DCR is created for that cluster, and the DCR for each cluster can be modified independently. If you have multiple clusters with custom monitoring configurations, you may want to share a single DCR with multiple clusters. You can then make changes to a single DCR that are automatically implemented for any clusters associated with it.
 
-A DCR is associated with a cluster with a [data collection rule associates (DCRA)](../essentials/data-collection-rule-overview.md#data-collection-rule-associations-dcra). Use the [preview DCR experience](../essentials/data-collection-rule-view.md#preview-dcr-experience) to view and remove existing DCR associations for each cluster. You can then use this feature to add an association to a single DCR for multiple clusters.
 
 ### Applicable tables and metrics for DCR
 The settings for **collection frequency** and **namespace filtering** in the DCR don't apply to all Container insights data. The following tables list the tables in the Log Analytics workspace used by Container insights and the metrics it collects along with the settings that apply to each. 
