@@ -7,18 +7,9 @@ ms.date: 09/05/2025
 
 # SDK stats for Application Insights (Preview)
 
-[Application Insights](app-insights-overview.md) offers SDK stats [metrics](metrics-overview.md) to monitor for and troubleshoot missing or unexpected telemetry. When telemetry doesn't reach the [ingestion endpoint](app-insights-overview.md#logic-model), SDK stats help you see when delivery falls short and take action to improve it.
+[Application Insights](app-insights-overview.md) offers SDK stats [custom metrics](metrics-overview.md) to monitor for and troubleshoot missing or unexpected telemetry. When telemetry doesn't reach the [ingestion endpoint](app-insights-overview.md#logic-model), SDK stats help you see when delivery falls short and take action to improve it.
 
-SDK stats appear as **custom metrics** you can use to:
-
-> [!div class="checklist"]
-> - Visualize in [Workbooks](../visualize/workbooks-overview.md)
-> - Query in [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table
-> - Plot in [Metrics explorer](../metrics/metrics-explorer.md)
-> - Trigger [alerts](../alerts/alerts-overview.md)
-> - Chart in [Power BI](/power-bi/fundamentals/power-bi-overview)
-
-The metrics include counts for item success, drops, and retries. They also include drop reasons and retry reasons. Use these metrics to monitor delivery and troubleshoot missing or unexpected telemetry.
+The custom metrics include counts for item success, drops, and retries. They also include drop reasons and retry reasons. Use these metrics to monitor delivery and troubleshoot missing or unexpected telemetry.
 
 > [!IMPORTANT]
 > The preview features are provided without a service-level agreement, and aren't recommended for production workloads. 
@@ -28,6 +19,7 @@ The metrics include counts for item success, drops, and retries. They also inclu
 
 > [!div class="checklist"]
 > - An [instrumented](opentelemetry-enable.md) Node.js or Python application.
+> - The OpenTelemetry distro 1.13.0+ or Application Insights Classic API SDK 3.10.0+.
 > - An environment variable set to [opt in](#enable-and-configure-sdk-stats).
 
 ## SDK stats overview
@@ -39,6 +31,9 @@ The SDK publishes three metrics:
 - `preview.item.success.count`
 - `preview.item.dropped.count`
 - `preview.item.retry.count`
+
+> [!NOTE]
+> Retry counts represent attempts and never decrement.
 
 **Dimensions**
 
@@ -71,6 +66,7 @@ Enable by setting the environment variable `APPLICATIONINSIGHTS_SDKSTATS_ENABLED
 
 - The default export interval is **15 minutes**.
 - Configure a different interval in seconds with `APPLICATIONINSIGHTS_SDKSTATS_EXPORT_INTERVAL`.
+- The minimum interval is one second.
 
 You don't need to deploy any workbook resources. The SDK stats template appears in the **Workbooks** gallery under your Application Insights resource.
 
@@ -184,7 +180,19 @@ The exporter sets `drop.reason` and `drop.code` for dropped items and `retry.rea
 | `5xx Server Error`                      | Transient service issue.                                                                           | Persist and retry with exponential backoff.                                                                                                                    |
 | Other                                   | Not recognized.                                                                                    | Drop the items.                                                                                                                                                |
 
-## Kusto Query Language (KQL) reference samples
+## Use SDK stats with Azure Monitor
+
+You can use SDK stats custom metrics with other Azure Monitor features.
+
+> - [Azure Data Explorer](/azure/data-explorer/data-explorer-overview)
+> - [Workbooks](../visualize/workbooks-overview.md)
+> - [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table
+> - [Alerts](../alerts/alerts-overview.md)
+> - [Power BI](/power-bi/fundamentals/power-bi-overview)
+
+### Azure Data Explorer
+
+The following are [Kusto Query Language (KQL)](/kusto/query/) reference samples.
 
 **Export outcomes vs. time**
 
@@ -265,28 +273,7 @@ customMetrics
 | order by total_dropped desc
 ```
 
-## Frequently asked questions
-
-<details>
-<summary><b>How are counters collected?</b></summary>
-
-The SDK updates counters as it evaluates and exports telemetry. It sends the counters at a regular interval as `customMetrics` records. Each record aggregates counts for the interval and includes the dimensions described earlier.
-
-1. The application creates telemetry. The SDK applies sampling and processors.
-2. The exporter sends a batch of telemetry to the ingestion endpoint.
-3. The exporter increments `preview.item.success.count` for items the ingestion endpoint accepts.
-4. The exporter increments `preview.item.dropped.count` for items it drops and sets `drop.reason` and `drop.code`.
-5. If the ingestion endpoint returns a transient error, the exporter schedules items for retry and increments `preview.item.retry.count`. Retried items that later succeed count as success when the exporter sends them.
-6. At each interval, the SDK publishes the aggregated counters to the `customMetrics` table.
-
-> **Note**  
-> Retry counts represent attempts and never decrement.
-</details>
-
-<br>
-
-<details>
-<summary><b>How can I use SDK stats with alerts?</b></summary>
+### Alerts
 
 Create log alerts that monitor ratios or specific codes.
 
@@ -318,14 +305,9 @@ customMetrics
 > [!TIP]
 > Pair the 402 alert with [daily cap](opentelemetry-sampling.md#set-a-daily-cap) guidance so responders can adjust the cap or reduce ingestion.
 
-</details>
+## PowerBI
 
-<br>
-
-<details>
-<summary><b>How can I use SDK stats with PowerBI?</b></summary>
-
-Use the **Azure Monitor Logs** connector to bring these metrics into Power BI.
+Use the **Azure Monitor Logs** connector to bring these metrics into [Power BI](/power-bi/fundamentals/power-bi-overview).
 
 ```kusto
 // Failure and retry ratios by hour
@@ -356,26 +338,7 @@ customMetrics
 | order by timestamp asc
 ```
 
-</details>
-
-<br>
-
-<details>
-<summary><b>How can I use SDK stats in Metrics Explorer?</b></summary>
-
-Chart these custom metrics in Metrics explorer.
-
-1. Open your Application Insights resource.
-2. Open **Metrics**.
-3. Select the **Custom metrics** namespace.
-4. Select `preview.item.success.count`, `preview.item.dropped.count`, or `preview.item.retry.count`.
-5. Split by `cloud_RoleName`, `cloud_RoleInstance`, `telemetry_type`, or `sdkVersion` as needed.
-
-<!-- TODO: Confirm the exact metrics namespace label in Metrics explorer. -->
-
-</details>
-
-<br>
+## Frequently asked questions
 
 <details>
 <summary><b>How do SDK stats counts differ from logs?</b></summary>
