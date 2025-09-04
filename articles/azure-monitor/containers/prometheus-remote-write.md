@@ -6,90 +6,27 @@ ms.date: 09/16/2024
 ---
 
 # Connect self-managed Prometheus to Azure Monitor managed service for Prometheus
-Azure Monitor managed service for Prometheus is intended to be a replacement for self managed Prometheus so you don't need to manage a Prometheus server in your Kubernetes clusters. There may be scenarios though where you want to continue to use self-managed Prometheus in your Kubernetes clusters while also sending data to Managed Prometheus for long term data retention and to create a centralized view across your clusters. 
-
+Azure Monitor managed service for Prometheus is intended to be a replacement for self managed Prometheus so you don't need to manage a Prometheus server in your Kubernetes clusters. There may be scenarios though where you want to continue to use self-managed Prometheus in your Kubernetes clusters while also sending data to Managed Prometheus for long term data retention and to create a centralized view across your clusters. This may be a temporary solution while you migrate to Managed Prometheus or a long term solution if you have specific requirements for self-managed Prometheus.
 
 
 ## Architecture
+[Remote_write](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) is a feature in Prometheus that allows you to send metrics from a local Prometheus instance to remote storage or to another Prometheus instance. Use this feature to send metrics from self-managed Prometheus running in your Kubernetes cluster to an Azure Monitor workspace used by Managed Prometheus.
 
-[Remote_write](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) is a feature in Prometheus that allows you to send metrics from a local Prometheus instance to remote storage or to another Prometheus instance. You can configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace.
+The following diagram illustrates this strategy. A data collection rule (DCR) in Azure Monitor provides an endpoint for the self-managed Prometheus to send metrics to and defines the Azure Monitor workspace where the data will be sent.
 
 :::image type="content" source="media/prometheus-remote-write/overview.png" alt-text="Diagram showing use of remote-write to send metrics from local Prometheus to Managed Prometheus." lightbox="media/prometheus-remote-write/overview.png"  border="false":::
 
 
 ## Authentication types
+The configuration requirements for remote-write depend on the authentication type used to connect to the Azure Monitor workspace. The following table describes the supported authentication types. The details for each configuration are described in the linked articles.
 
-- Managed identity is recommended for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster. 
-- Microsoft Entra ID can be used for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster and is required for Kubernetes cluster running in another cloud or on-premises.
-
-
- Currently managed identity (system-assigned or user-assigned), and Microsoft Entra ID application are the supported authentication types using Prometheus remote-write configuration to ingest metrics to Azure Monitor Workspace.
-
-Azure Monitor also provides a reverse proxy container (Azure Monitor [side car container](/azure/architecture/patterns/sidecar)) that provides an abstraction for ingesting Prometheus remote write metrics and helps in authenticating packets.
-
-We recommend configuring remote-write directly in your self-managed Prometheus config running in your environment. The Azure Monitor side car container can be used in case your preferred authentication is not supported through directly configuration.
+| Type | Clusters supported | Configuration |
+|:---|:---|:---|
+| [Managed identity](./prometheus-remote-write-managed-identity.md) | Azure Kubernetes service (AKS)<br>Azure Arc-enabled Kubernetes cluster | Remote-write configuration added to self-managed Prometheus config. |
+| [Microsoft Entra ID](./prometheus-remote-write-active-directory.md) | Azure Kubernetes service (AKS)<br>Azure Arc-enabled Kubernetes cluster<br>Cluster running in another cloud or on-premises. | Remote-write configuration added to self-managed Prometheus config. |
+| [Microsoft Entra ID Workload Identity](./prometheus-remote-write-azure-workload-identity.md) | Recommended for AKS and Azure Arc-enabled Kubernetes cluster. | Azure Monitor [side car container](/azure/architecture/patterns/sidecar) required to provide an abstraction for ingesting Prometheus remote write metrics and helps in authenticating packets. |
 
 
-## Supported versions
-
-- Prometheus versions greater than v2.45 are required for user-assigned managed identity authentication.
-- Prometheus versions greater than v2.48 are required for Microsoft Entra ID application authentication.
-- Prometheus versions v3.50 or greater are required for system-assigned managed identity authentication.
-
-
-## Configure remote write
-
-Configuring remote write depends on your cluster configuration and the type of authentication that you use.
-
-- Managed identity is recommended for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster. 
-- Microsoft Entra ID can be used for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster and is required for Kubernetes cluster running in another cloud or on-premises.
-
-For more information on configuring remote write using either managed identity and Microsoft Entra ID application, see [Configure remote-write on Kubernetes for Prometheus Operator](../essentials/prometheus-remote-write-virtual-machines.md#prometheus-operator). This option can be used for self-managed Prometheus running in any environment.
-
-Remote write for Prometheus on Kubernetes clusters can also be configured using a side car container. See the following articles for more information on how to configure remote write for Kubernetes clusters using a side car container.
-
-- [Send Prometheus data from AKS to Azure Monitor using side car container with managed identity authentication](/azure/azure-monitor/containers/prometheus-remote-write-managed-identity)
-- [Send Prometheus data from AKS to Azure Monitor using side car container with Microsoft Entra ID authentication](/azure/azure-monitor/containers/prometheus-remote-write-active-directory)
-- [Send Prometheus data to Azure Monitor using side car container with Microsoft Entra ID Workload ID authentication](/azure/azure-monitor/containers/prometheus-remote-write-azure-workload-identity)
-
-## Verify remote write is working correctly
-
-Use the following methods to verify that Prometheus data is being sent into your Azure Monitor workspace.
-
-### Kubectl commands
-
-Use the following command to view logs from the side car container. Remote write data is flowing if the output has nonzero value for `avgBytesPerRequest` and `avgRequestDuration`.
-
-```azurecli
-kubectl logs <Prometheus-Pod-Name> <Azure-Monitor-Side-Car-Container-Name> --namespace <namespace-where-Prometheus-is-running>
-# example: kubectl logs prometheus-prometheus-kube-prometheus-prometheus-0 prom-remotewrite --namespace monitoring
-```
-
-The output from this command has the following format:
-
-```
-time="2022-11-02T21:32:59Z" level=info msg="Metric packets published in last 1 minute" avgBytesPerRequest=19713 avgRequestDurationInSec=0.023 failedPublishing=0 successfullyPublished=122
-```
-
-
-### Azure Monitor metrics explorer with PromQL
-
-To check if the metrics are flowing to the Azure Monitor workspace, from your Azure Monitor workspace in the Azure portal, select **Metrics**. Use the metrics explorer to query the metrics that you're expecting from the self-managed Prometheus environment. For more information, see [Metrics explorer](/azure/azure-monitor/essentials/metrics-explorer).
-
-
-### Prometheus explorer in Azure Monitor Workspace
-
-Prometheus Explorer provides a convenient way to interact with Prometheus metrics within your Azure environment, making monitoring and troubleshooting more efficient. To use the Prometheus explorer, from to your Azure Monitor workspace in the Azure portal and select **Prometheus Explorer** to query the metrics that you're expecting from the self-managed Prometheus environment.
-For more information, see [Prometheus explorer](/azure/azure-monitor/essentials/prometheus-workbooks).
-
-### Grafana
-
-Use PromQL queries in Grafana and verify that the results return expected data. For more information on configuring Grafana for Azure managed service for Prometheus, see [Use Azure Monitor managed service for Prometheus as data source for Grafana using managed system identity](../essentials/prometheus-grafana.md) 
-
-
-## Troubleshoot remote write 
-
-If remote data isn't appearing in your Azure Monitor workspace, see [Troubleshoot remote write](../containers/prometheus-remote-write-troubleshooting.md) for common issues and solutions. 
 
 ## Release notes
 

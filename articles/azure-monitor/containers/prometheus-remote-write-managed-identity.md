@@ -24,7 +24,9 @@ This article applies to the following cluster configurations:
 
 ### Supported versions
 
-Prometheus versions greater than v2.45 are required for managed identity authentication.
+- Prometheus versions greater than v2.45 are required for user-assigned managed identity authentication.
+- Prometheus versions v3.50 or greater are required for system-assigned managed identity authentication.
+
 
 ### Azure Monitor workspace
 
@@ -151,3 +153,43 @@ For verification and troubleshooting information, see [Troubleshooting remote wr
 - [Send Prometheus data to Azure Monitor by using Microsoft Entra authentication](./prometheus-remote-write-active-directory.md)
 - [Send Prometheus data to Azure Monitor by using Microsoft Entra Workload ID (preview) authentication](./prometheus-remote-write-azure-workload-identity.md)
 - [Send Prometheus data to Azure Monitor by using Microsoft Entra pod-managed identity (preview) authentication](./prometheus-remote-write-azure-ad-pod-identity.md)
+
+
+
+## Verify remote write is working correctly
+
+Use the following methods to verify that Prometheus data is being sent into your Azure Monitor workspace.
+
+### Kubectl commands
+
+Use the following command to view logs from the side car container. Remote write data is flowing if the output has nonzero value for `avgBytesPerRequest` and `avgRequestDuration`.
+
+```azurecli
+kubectl logs <Prometheus-Pod-Name> <Azure-Monitor-Side-Car-Container-Name> --namespace <namespace-where-Prometheus-is-running>
+# example: kubectl logs prometheus-prometheus-kube-prometheus-prometheus-0 prom-remotewrite --namespace monitoring
+```
+
+The output from this command has the following format:
+
+```
+time="2022-11-02T21:32:59Z" level=info msg="Metric packets published in last 1 minute" avgBytesPerRequest=19713 avgRequestDurationInSec=0.023 failedPublishing=0 successfullyPublished=122
+```
+
+### Azure Monitor metrics explorer with PromQL
+
+To check if the metrics are flowing to the Azure Monitor workspace, from your Azure Monitor workspace in the Azure portal, select **Metrics**. Use the metrics explorer to query the metrics that you're expecting from the self-managed Prometheus environment. For more information, see [Metrics explorer](/azure/azure-monitor/essentials/metrics-explorer).
+
+
+### Prometheus explorer in Azure Monitor Workspace
+
+Prometheus Explorer provides a convenient way to interact with Prometheus metrics within your Azure environment, making monitoring and troubleshooting more efficient. To use the Prometheus explorer, from to your Azure Monitor workspace in the Azure portal and select **Prometheus Explorer** to query the metrics that you're expecting from the self-managed Prometheus environment.
+For more information, see [Prometheus explorer](/azure/azure-monitor/essentials/prometheus-workbooks).
+
+### Grafana
+
+Use PromQL queries in Grafana and verify that the results return expected data. For more information on configuring Grafana for Azure managed service for Prometheus, see [Use Azure Monitor managed service for Prometheus as data source for Grafana using managed system identity](../essentials/prometheus-grafana.md) 
+
+
+## Troubleshoot remote write 
+
+If remote data isn't appearing in your Azure Monitor workspace, see [Troubleshoot remote write](../containers/prometheus-remote-write-troubleshooting.md) for common issues and solutions. 
