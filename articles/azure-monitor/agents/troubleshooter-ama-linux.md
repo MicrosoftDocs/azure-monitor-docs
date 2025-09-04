@@ -20,6 +20,12 @@ The Azure Monitor Agent (AMA) Troubleshooter is designed to help identify issues
 
 ## Prerequisites
 
+### Public Endpoint requirement
+
+The Linux AMA Troubleshooter requires access to the following public endpoint to function correctly: `https://docs.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-extension-versions`
+
+This URL is used by the tool to retrieve the latest Azure Monitor Agent (AMA) version information. Ensure that outbound connectivity to this endpoint is allowed from the environment where the tool is being executed. Lack of access may result in timeouts or failures during troubleshooting.
+
 ### Python requirement
 The Linux AMA Troubleshooter requires **Python 2.6+** or any **Python 3** version installed on the machine.
 

@@ -39,7 +39,7 @@ In addition, Azure Monitor OpenTelemetry Distro-based automatic instrumentation 
 
 **Azure SDKs** are instrumented with OpenTelemetry APIs to power end-to-end observability. All supported languages are instrumented to emit OpenTelemetry HTTP and/or Messaging Tracing Semantics; .NET and Java are being instrumented to emit OpenTelemetry HTTP Metrics Semantics.
 
-- [Azure SDK semantic conventions](https://github.com/Azure/azure-sdk/blob/main/docs/tracing/distributed-tracing-conventions.md)
+- [Azure SDK semantic conventions](https://github.com/Azure/azure-sdk/blob/main/docs/observability/opentelemetry-conventions.md)
 - [Tracing in the Azure SDK for Java](/azure/developer/java/sdk/tracing)
 - [Azure Cosmos DB SDK observability](/azure/cosmos-db/nosql/sdk-observability)
 

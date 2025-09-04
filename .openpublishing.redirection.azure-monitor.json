@@ -5150,6 +5150,11 @@
    "redirect_url": "/azure/monitoring/monitoring-container-insights-overview",
    "redirect_document_id": false
   },
+    {
+   "source_path_from_root": "/articles/monitoring/monitoring-container-insights-overview.md",
+   "redirect_url": "/azure/azure-monitor/containers/container-insights-overview",
+   "redirect_document_id": false
+  },
   {
    "source_path_from_root": "/articles/monitoring/monitoring-walkthrough-servicemap.md",
    "redirect_url": "/azure/monitoring/monitoring-service-map",
@@ -6008,6 +6013,11 @@
   {
    "source_path_from_root": "/articles/monitoring/monitoring-kubernetes-monitoring-overview.md",
    "redirect_url": "/azure/azure-monitor/insights/container-insights-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/insights/container-insights-overview.md",
+   "redirect_url": "/azure/azure-monitor/containers/container-insights-overview",
    "redirect_document_id": false
   },
   {
@@ -8579,7 +8589,7 @@
    "redirect_url": "/azure/azure-monitor/containers/kubernetes-workbooks",
    "redirect_document_id": false
   },
-   {
+  {
    "source_path": "articles/azure-monitor/app/telemetry-channels.md",
    "redirect_url": "/azure/azure-monitor/app/asp-net",
    "redirect_document_id": false
@@ -8602,6 +8612,11 @@
   {
    "source_path": "articles/azure-monitor/reference/supported-metrics/oracle-database-exadbvmclusters-metrics.md",
    "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/custom-operations-tracking.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
    "redirect_document_id": false
   }
  ]

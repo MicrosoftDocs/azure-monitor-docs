@@ -147,11 +147,6 @@ items:
                       - name: Non-HTTP, console, and background apps
                         href: app/worker-service.md
                         displayName: console, .NET, .NET Core, dotnet console, dotnet, c#, csharp, NET, worker, background, generic host
-                      - name: Advanced ASP.NET SDK topics
-                        items:
-                          - name: Track custom operations in .NET SDK
-                            href: app/custom-operations-tracking.md
-                            displayName: correlation, dependency, dependencies, track dependency, OWIN, queue, service bus, background tasks, long running background tasks, outgoing dependency tracking, parallel operations, System.Diagnostics.Activity, System.Diagnostics.DiagnosticSource, StartOperation, StopOperation
                   - name: Node.js
                     href: app/nodejs.md
                   - name: Python OpenCensus (retired)
@@ -503,96 +498,94 @@ items:
                     href: containers/container-insights-livedata-setup.md
           - name: Customize data collection
             items:
-            - name: Overview
-              href: containers/container-insights-data-collection-configure.md
-            - name: Metrics
-              items:
-                - name: Customize data collection
-                  items:
-                    - name: Default configuration
-                      href: containers/prometheus-metrics-scrape-default.md
-                      displayName: Prometheus
-                    - name: Custom configuration
-                      href: containers/prometheus-metrics-scrape-configuration.md
-                      displayName: Prometheus
-                    - name: Configure collection using CRDs
-                      href: containers/prometheus-metrics-scrape-crd.md
-                      displayName: Prometheus
-                    - name: Create and validate custom scrape config
-                      href: containers/prometheus-metrics-scrape-validate.md
-                      displayName: Prometheus
-                    - name: Minimal ingestion profile
-                      href: containers/prometheus-metrics-scrape-configuration-minimal.md
-                      displayName: Prometheus
-                    - name: High scale
-                      href: containers/prometheus-metrics-scrape-scale.md
-                      displayName: Prometheus
-                    - name: Autoscale support
-                      href: containers/prometheus-metrics-scrape-autoscaling.md
-                      displayName: Prometheus
-                - name: Integrations
-                  items:
-                    - name: Set up exporters for common workloads
-                      href: containers/prometheus-exporters.md
-                      displayName: Prometheus
-                    - name: Exporters
-                      items:
-                        - name: Monitor Apache Kafka
-                          href: containers/prometheus-kafka-integration.md
-                          displayName: Prometheus
-                        - name: Monitor Argo CD
-                          href: containers/prometheus-argo-cd-integration.md
-                          displayName: Prometheus
-                        - name: Monitor Elastic Search
-                          href: containers/prometheus-elasticsearch-integration.md
-                          displayName: Prometheus
-                        - name: Monitor Istio
-                          href: containers/prometheus-istio-integration.md
-                          displayName: Prometheus
-                        - name: Monitor Nvidia GPU
-                          href: containers/prometheus-dcgm-integration.md
-                          displayName: Prometheus
-                    - name: Scale using KEDA based on Prometheus metrics
-                      href: containers/integrate-keda.md
-                      displayName: Prometheus
-                - name: Enable Windows metrics (preview)
-                  href: containers/enable-windows-metrics.md
-                  displayName: Prometheutheus-metricss
-                - name: Send to multiple metric workspaces
-                  href: containers/prometheus-metrics-multiple-workspaces.md
-                  displayName: Prometheus
-                - name: Remote-write with Prometheus
-                  items:
-                    - name: Prometheus remote-write
-                      href: containers/prometheus-remote-write.md
-                      displayName: Prometheus,remote-write, azure monitor
-                    - name: Managed identity authentication
-                      href: containers/prometheus-remote-write-managed-identity.md
-                      displayName: Prometheus,remote-write
-                    - name: Microsoft Entra authentication
-                      href: containers/prometheus-remote-write-active-directory.md
-                      displayName: Prometheus,remote-write
-                    - name: Microsoft Entra Workload ID authentication
-                      href: containers/prometheus-remote-write-azure-workload-identity.md
-                      displayName: Prometheus,remote-write
-                    - name: Troubleshoot remote-write
-                      href: containers/prometheus-remote-write-troubleshooting.md
-                      displayName: Prometheus,remote-write
-            - name: Logs
-              items:
-                - name: ConfigMap
-                  href: containers/container-insights-data-collection-filter.md
-                - name: Container log schema
-                  href: containers/container-insights-logs-schema.md
-                - name: Data transformations
-                  href: containers/container-insights-transformations.md
-                  displayName: Container insights
-                - name: Multitenant logging
-                  href: containers/container-insights-multitenant.md
-                - name: High scale collection
-                  href: containers/container-insights-high-scale.md
-                - name: Throttling
-                  href: containers/container-insights-throttling.md
+              - name: Metrics
+                items:
+                  - name: Customize data collection
+                    items:
+                      - name: Default configuration
+                        href: containers/prometheus-metrics-scrape-default.md
+                        displayName: Prometheus
+                      - name: Custom configuration
+                        href: containers/prometheus-metrics-scrape-configuration.md
+                        displayName: Prometheus
+                      - name: Configure collection using CRDs
+                        href: containers/prometheus-metrics-scrape-crd.md
+                        displayName: Prometheus
+                      - name: Create and validate custom scrape config
+                        href: containers/prometheus-metrics-scrape-validate.md
+                        displayName: Prometheus
+                      - name: Minimal ingestion profile
+                        href: containers/prometheus-metrics-scrape-configuration-minimal.md
+                        displayName: Prometheus
+                      - name: High scale
+                        href: containers/prometheus-metrics-scrape-scale.md
+                        displayName: Prometheus
+                      - name: Autoscale support
+                        href: containers/prometheus-metrics-scrape-autoscaling.md
+                        displayName: Prometheus
+                  - name: Integrations
+                    items:
+                      - name: Set up exporters for common workloads
+                        href: containers/prometheus-exporters.md
+                        displayName: Prometheus
+                      - name: Exporters
+                        items:
+                          - name: Monitor Apache Kafka
+                            href: containers/prometheus-kafka-integration.md
+                            displayName: Prometheus
+                          - name: Monitor Argo CD
+                            href: containers/prometheus-argo-cd-integration.md
+                            displayName: Prometheus
+                          - name: Monitor Elastic Search
+                            href: containers/prometheus-elasticsearch-integration.md
+                            displayName: Prometheus
+                          - name: Monitor Istio
+                            href: containers/prometheus-istio-integration.md
+                            displayName: Prometheus
+                          - name: Monitor Nvidia GPU
+                            href: containers/prometheus-dcgm-integration.md
+                            displayName: Prometheus
+                      - name: Scale using KEDA based on Prometheus metrics
+                        href: containers/integrate-keda.md
+                        displayName: Prometheus
+                  - name: Enable Windows metrics (preview)
+                    href: containers/enable-windows-metrics.md
+                    displayName: Prometheutheus-metricss
+                  - name: Send to multiple metric workspaces
+                    href: containers/prometheus-metrics-multiple-workspaces.md
+                    displayName: Prometheus
+                  - name: Remote-write with Prometheus
+                    items:
+                      - name: Prometheus remote-write
+                        href: containers/prometheus-remote-write.md
+                        displayName: Prometheus,remote-write, azure monitor
+                      - name: Managed identity authentication
+                        href: containers/prometheus-remote-write-managed-identity.md
+                        displayName: Prometheus,remote-write
+                      - name: Microsoft Entra authentication
+                        href: containers/prometheus-remote-write-active-directory.md
+                        displayName: Prometheus,remote-write
+                      - name: Microsoft Entra Workload ID authentication
+                        href: containers/prometheus-remote-write-azure-workload-identity.md
+                        displayName: Prometheus,remote-write
+                      - name: Troubleshoot remote-write
+                        href: containers/prometheus-remote-write-troubleshooting.md
+                        displayName: Prometheus,remote-write
+              - name: Logs
+                items:
+                  - name: ConfigMap
+                    href: containers/container-insights-data-collection-filter.md
+                  - name: Container log schema
+                    href: containers/container-insights-logs-schema.md
+                  - name: Data transformations
+                    href: containers/container-insights-transformations.md
+                    displayName: Container insights
+                  - name: Multitenant logging
+                    href: containers/container-insights-multitenant.md
+                  - name: High scale collection
+                    href: containers/container-insights-high-scale.md
+                  - name: Throttling
+                    href: containers/container-insights-throttling.md
           - name: Optimize costs
             items:
               - name: Analyze and reduce costs
@@ -616,7 +609,7 @@ items:
                 displayName: Container insights, Prometheus
               - name: Supported region mappings
                 href: containers/container-insights-region-mapping.md
-          - name: Legacy topics
+          - name: Classic experience
             items:
               - name: View cluster metrics
                 href: containers/container-insights-livedata-metrics.md

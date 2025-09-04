@@ -81,7 +81,7 @@ If you want to customize the settings, click **Edit collection settings**. Each 
 | Enable Syslog collection | Enables Syslog collection from the cluster. |
 
 
-The **Collected data** option allows you to select the tables that are populated for the cluster. The tables are grouped by the most common scenarios. To specify individual tables, see []().
+The **Collected data** option allows you to select the tables that are populated for the cluster. The tables are grouped by the most common scenarios. 
 
 :::image type="content" source="media/container-insights-cost-config/collected-data-options.png" alt-text="Screenshot that shows the collected data options." lightbox="media/container-insights-cost-config/collected-data-options.png" :::
 
