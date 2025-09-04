@@ -47,7 +47,7 @@ When your issue is reported, you should see this message.
 
 If an outage is found, you see it on the portal.
 
-If you get this error, it means you don’t have permission. See [Request access](https://aka.ms/ImpactRP/RequestAccess).
+If you get this error, it means you don’t have permission.
 
 :::image type="content" source="media/report-issue/report-an-issue-error.png" alt-text="Screenshot of the message you don't have access." lightbox="media/report-issue/report-an-issue-error.png":::
 
