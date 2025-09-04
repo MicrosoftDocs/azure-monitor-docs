@@ -48,7 +48,7 @@ This example creates an email subject containing the count of errors on the affe
 
 ## Use an ARM template
 
-To create an alert rule with a customized email subject, use a template from the [Resource Manager template samples for log search alerts](resource-manager-alerts-log.md). Be sure to use the latest API version. Use the template from the [Resource Manager template sample for simple log search alert rules](resource-manager-alerts-simple-log-search-alerts.md) for Simple log search alert rules. Add an `actionProperties` object and include the `Email.Subject` property. 
+To create an alert rule with a customized email subject, use a template from the [Resource Manager template samples for log search alerts](resource-manager-alerts-log.md). Be sure to use API version 2023-12-01 or newer. Use the template from the [Resource Manager template sample for simple log search alert rules](resource-manager-alerts-simple-log-search-alerts.md) for Simple log search alert rules. Add an `actionProperties` object and include the `Email.Subject` property. 
 
 ### Sample template
 
