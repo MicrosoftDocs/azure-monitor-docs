@@ -11,7 +11,7 @@ metadata:
 title: Migrate from Azure Monitor SCOM Managed Instance - Frequently asked questions
 summary: This article answers frequently asked questions about Migrations from Azure Monitor SCOM Managed Instance.
 sections:
-  - name:
+  - name: Migration issues
     questions:
       - question: How long will SCOM Managed Instance be supported?
         answer: |

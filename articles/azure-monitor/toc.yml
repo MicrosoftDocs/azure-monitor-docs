@@ -668,14 +668,11 @@ items:
       - name: Migrate from SCOM Managed Instance
         items:
         - name: Migrate to System Center Operations Manager 
-          href: scom-manage-instance/register-scom-managed-instance-resource-provider.md
-          href: migrate-to-operations-manager.md
+          href: scom-manage-instance/migrate-to-operations-manager.md
         - name: Migrate to Azure Monitor
-          href: scom-manage-instance/register-scom-managed-instance-resource-provider.md
-          href: migrate-to-azure-monitor.md
+          href: scom-manage-instance/migrate-to-azure-monitor.md
         - name: Migration FAQs
-          href: scom-manage-instance/register-scom-managed-instance-resource-provider.md
-          href: migration-faq-scom-manage-instance.md
+          href: scom-manage-instance/migration-faq-scom-manage-instance.md
       - name: Create SCOM Managed Instance
         items:
         - name: Step 1. Register the SCOM Managed Instance resource provider
