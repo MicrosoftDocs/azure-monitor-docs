@@ -7,7 +7,7 @@ ms.date: 09/05/2025
 
 # SDK stats for Application Insights (Preview)
 
-SDK stats provide health metrics for [Application Insights](app-insights-overview.md) SDKs and agents about telemetry sent to the [ingestion endpoint](app-insights-overview.md#logic-model).
+[Application Insights](app-insights-overview.md) offers SDK stats [metrics](metrics-overview.md) to monitor for and troubleshoot missing or unexpected telemetry. When telemetry doesn't reach the [ingestion endpoint](app-insights-overview.md#logic-model), SDK stats help you see when delivery falls short and take action to improve it.
 
 SDK stats appear as **custom metrics** you can use to:
 
