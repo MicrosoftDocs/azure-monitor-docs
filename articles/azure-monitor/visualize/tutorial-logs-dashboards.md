@@ -76,6 +76,11 @@ Save the query by selecting **Save**.
 
 In the **Save Query** control panel, provide a name such as **Azure VMs - Processor Utilization** and a category such as **Dashboards**. Select **Save**. This way you can create a library of common queries that you can use and modify. Finally, pin this query to the shared dashboard you created earlier. Select the **Pin to dashboard** button in the upper-right corner of the page and then select the dashboard name.
 
+> [!NOTE]
+> **Multi-scope pinning**: You can pin queries to a dashboard from multiple resources, but only if they are of the *same resource type*.
+>
+> **Edit mode limitation**: Changing the query scope while the dashboard tile is in **Edit** mode is *not supported*.
+
 Now that we have a query pinned to the dashboard, you'll notice that it has a generic title and comment underneath it.
 
 :::image type="content" source="media/tutorial-logs-dashboards/log-analytics-modify-dashboard-01.png" lightbox="media/tutorial-logs-dashboards/log-analytics-modify-dashboard-01.png" alt-text="Screenshot that shows an Azure dashboard sample.":::
