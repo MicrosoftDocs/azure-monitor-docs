@@ -2,7 +2,7 @@
 title: Report an issue in Azure Service Health 
 description: Learn how to access and report an issue in Azure Service Health.
 ms.topic: overview
-ms.date: 09/03/2025
+ms.date: 09/04/2025
 ---
 
 # How to report an Issue in Azure Service Health
@@ -13,13 +13,16 @@ When you submit an issue, our team reviews the submitted report and if an outage
 ## Access permission
 
 You don’t  need to be a subscription owner or an administrator to report service-level issues.<br>
-To create resource-level impact reports, if you’re not an administrator, you need to have Microsoft.Impact registered to your subscription.
-See [Request access](https://aka.ms/ImpactRP/RequestAccess).
+To generate resource-level impact reports, ensure the following prerequisites are met:
+
+1. **Register the Microsoft.Impact resource provider** in your Azure subscription.
+1. **Role assignment**: If you're not a subscription administrator, the Impact Reporter role must be assigned to you on the subscription where the resource is located.
+
 
 To report a single issue, you must have the correct permission.
 
 >[!NOTE]
->This button isn't available on the Billing panel.
+>This option isn't available on the Billing panel.
 
 ## How to report a resource-level issue
 
