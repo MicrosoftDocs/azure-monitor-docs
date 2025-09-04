@@ -16,8 +16,6 @@ You must have the *Issue Contributor, Monitoring Contributor, or Contributor* ro
 
 If you don't have permission, you won't be able to create an issue or run an investigation, and you should consult with your system administrator.
 
-:::image type="content" source="media/diagnostics-and-troubleshooting-no-access.png" alt-text="Screenshot of no access." lightbox="media/diagnostics-and-troubleshooting-no-access.png":::
-
 ## Lack of associated Azure Monitor Workspace (AMW)
 You must have an AMW associated to the subscription you are investigating. Consult with your system administrator to create the association. See [Associate an Azure Monitor Workspace with a subscription](aiops-issue-and-investigation-how-to.md#associate-an-amw-in-the-azure-portal).
 
