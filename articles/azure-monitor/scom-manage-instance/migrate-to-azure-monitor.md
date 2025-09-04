@@ -67,3 +67,4 @@ To migrate to Azure Monitor DCRs, follow these steps:
 8. **Decommission SCOM MI**
 
    Once the on-premises setup is stable, delete SCOM Managed Instance resources to avoid unnecessary costs. Deleting a SCOM Managed Instance is a matter of deleting the Azure resource groups where the SCOM Managed Instance resources are deployed. For any issues, see [frequently asked questions](/azure/azure-monitor/scom-managed-instance-faq#what-is-the-procedure-to-delete-an-instance-).
+
