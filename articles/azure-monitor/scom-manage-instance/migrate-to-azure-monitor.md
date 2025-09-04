@@ -25,9 +25,9 @@ This article explains how to migrate from Azure Monitor SCOM Managed Instance to
 - Retraining staff to be more familiar with Azure Monitor terminology and Azure models as compared to on-premises models.
 - Review the cost implications of moving away from System Center Operations Manager on-premises licensing to Pay-As-You-Go Azure and Azure Monitor pricing.
 
-## Best practices for a smooth migration
+## Best practices
 
-- **Plan thoroughly**: Start with a comprehensive inventory and gap analysis of your SCOM Manage Instance environment versus the target platform (o\On-premises or Data collection rule based).
+- **Plan thoroughly**: Start with a comprehensive inventory and gap analysis of your SCOM Managed Instance environment versus the target platform (on-premises or Data collection rule based).
 - **Pilot first**: Conduct a pilot migration for a subset of resources to validate your migration approach and identify issues ahead of full-scale rollout.
 - **Leverage Microsoft resources**: Microsoft provides migration guides, reference architectures, and support channels to assist with your transition.
 - **Plan for training**: Ensure your IT team is equipped with skills for managing the chosen platform, especially if moving to Data collection rules and Azure Monitor.
@@ -36,13 +36,13 @@ This article explains how to migrate from Azure Monitor SCOM Managed Instance to
 
 To migrate to Azure Monitor DCRs, follow these steps:
 
-1. **Assess Current Monitoring Requirements**
+1. **Assess current monitoring requirements**
    
-   Manually determine an inventory of all management packs, monitored agents, customizations, and integrations. Use PowerShell scripts or the System Center Operations Manager console to export configurations. You can export the Management packs into a list using the guide [here](/system-center/scom/manage-mp-import-remove-delete?view=sc-om-2025&preserve-view=true).
+   Manually determine an inventory of all management packs, monitored agents, customizations, and integrations. Use PowerShell scripts or the System Center Operations Manager console to export configurations. You can export the management packs into a list using the guide [here](/system-center/scom/manage-mp-import-remove-delete?view=sc-om-2025&preserve-view=true).
 
-2. **Map to Azure Monitor Equivalents**
+2. **Map to Azure Monitor equivalents**
 
-   Match SCOM Managed Instance features to Azure Monitor components such as metrics, logs, alerts, workbooks. Some System Center Operations Manager features may not have direct equivalents; plan for workarounds or enhancements. Follow the guidance on [how to determine equivalent capabilities](/azure/azure-monitor/fundamentals/overview).
+   Match SCOM Managed Instance features to Azure Monitor components such as metrics, logs, alerts, and workbooks. Some System Center Operations Manager features may not have direct equivalents; plan for workarounds or enhancements. Follow the guidance on [how to determine equivalent capabilities](/azure/azure-monitor/fundamentals/overview).
 
 3. **Author Data Collection Rules (DCRs)**
 
@@ -52,19 +52,19 @@ To migrate to Azure Monitor DCRs, follow these steps:
 
    Install AMA on target resources such as Virtual machines and servers. Configure it to use the DCRs created. Follow the guidance on [how to deploy Azure Monitor agent](/azure/azure-monitor/agents/azure-monitor-agent-overview).
 
-5. **Migrate Alerts**
+5. **Migrate alerts**
 
-   Recreate SCOM Managed Instance alerts using Azure Monitor's alerting framework (metric alerts, log query alerts). Follow the guidance on how to [Migrate alerts](/azure/azure-monitor/fundamentals/data-platform).
+   Recreate SCOM Managed Instance alerts using Azure Monitor's alerting framework (metric alerts, and log query alerts). Follow the guidance on how to [Migrate alerts](/azure/azure-monitor/fundamentals/data-platform).
 
-6. **Build Dashboards and Results**
+6. **Build dashboards and results**
 
    Use Azure Workbooks to visualize health, performance, and alerting. Replicate System Center Operations Manager dashboards where possible. Follow the guidance on [how to visualize data](/azure/azure-monitor/visualize/best-practices-visualize).
 
-7. **Reconnect Integrations**
+7. **Reconnect integrations**
 
    Map the alert rules in System Center Operations Manager on-premises to Azure Monitor alert rules, along with all ITSM and other integrations. Follow the guidance on [how to Map the alert rules](/azure/azure-monitor/alerts/alerts-common-schema).
 
-8. **Decommission SCOM MI**
+8. **Decommission SCOM Managed Instance**
 
    Once the on-premises setup is stable, delete SCOM Managed Instance resources to avoid unnecessary costs. Deleting a SCOM Managed Instance is a matter of deleting the Azure resource groups where the SCOM Managed Instance resources are deployed. For any issues, see [frequently asked questions](/azure/azure-monitor/scom-manage-instance/scom-managed-instance-faq#what-is-the-procedure-to-delete-an-instance-).
 

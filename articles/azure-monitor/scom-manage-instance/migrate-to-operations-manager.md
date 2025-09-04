@@ -30,29 +30,29 @@ To migrate to System Center Operations Manager, follow these steps:
 
 1. **Assess current SCOM Managed Instance environment**
 
-   Manually determine an inventory of all management packs, monitored agents, customizations, and integrations. Use PowerShell scripts or the System Center Operations Manager console to export configurations. You can export the Management packs into a list using the guide [here](/system-center/scom/manage-mp-import-remove-delete?view=sc-om-2025&preserve-view=true).
+   Manually determine an inventory of all management packs, monitored agents, customizations, and integrations. Use PowerShell scripts or the System Center Operations Manager console to export configurations. You can export the management packs into a list using the guide [here](/system-center/scom/manage-mp-import-remove-delete?view=sc-om-2025&preserve-view=true).
 
-2. **Prepare Infrastructure for On-premises deployment**
+2. **Prepare infrastructure for On-premises deployment**
 
    Based on your requirements and current SCOM Managed Instance infrastructure, plan your System Center Operations Manager on-premises deployment using the guidance [here](/system-center/scom/manage-mp-import-remove-delete?view=sc-om-2025&preserve-view=true).
 
-3. **Install System Center Operations Manager Components**
+3. **Install System Center Operations Manager components**
 
    Deploy management servers, SQL Server databases, web console, and reporting services. Follow this guidance on installation [here](/system-center/scom/deploy-overview?view=sc-om-2025&preserve-view=true).
 
-4. **Import or Re-author Management packs**
+4. **Import or Re-author management packs**
 
-   Import existing Management packs or re-author them if compatibility issues arise. Ensure to test Management packs in a staging environment before deploying them in a production environment. Follow this guidance on [how to import management packs](/system-center/scom/manage-mp-import-remove-delete?view=sc-om-2025&preserve-view=true).
+   Import existing management packs or re-author them if compatibility issues arise. Ensure to test management packs in a staging environment before deploying them in a production environment. Follow this guidance on [how to import management packs](/system-center/scom/manage-mp-import-remove-delete?view=sc-om-2025&preserve-view=true).
 
-5. **Reconfigure Agents**
+5. **Reconfigure agents**
 
-   Point the existing SCOM Managed Instance agents to the System Center Operations Manager on-premises management servers. This may involve redeployment or updating agent settings via PowerShell. Follow this guidance on [how to upgrade agents in a parallel deplyment](/system-center/scom/deploy-upgrade-agents-parallel?view=sc-om-2025&preserve-view=true).
+   Point the existing SCOM Managed Instance agents to the System Center Operations Manager on-premises management servers. This may involve redeployment or updating agent settings via PowerShell. Follow this guidance on [how to upgrade agents in a parallel deployment](/system-center/scom/deploy-upgrade-agents-parallel?view=sc-om-2025&preserve-view=true).
 
-6. **Re-establish Integrations**
+6. **Re-establish integrations**
 
    Reconnect integrations such as ticketing systems, dashboards, and automation workflows. Validate connectivity and data flow. Follow this guidance on [Monitoring scenarios](/system-center/scom/manage-monitoring-scenarios?view=sc-om-2025&preserve-view=true).
 
-7. **Test and validate Setup**
+7. **Test and validate setup**
 
    Perform end-to-end testing of alerts, dashboards, and reports. Confirm that monitoring logic behaves as expected. Include application owners and IT stakeholders in validation. Use synthetic transactions where applicable.
 

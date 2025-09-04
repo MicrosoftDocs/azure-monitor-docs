@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Migrate from Azure Monitor SCOM Managed Instance - FAQ
-  description: This article answers frequently asked questions about Migration from Azure Monitor SCOM Managed Instance.
+  description: This article answers frequently asked questions about migration from Azure Monitor SCOM Managed Instance.
   ms.date: 09/03/2025
   ms.topic: faq
   ms.service: azure-monitor
@@ -9,7 +9,7 @@ metadata:
   author: jyothisuri
   ms.author: jsuri
 title: Migrate from Azure Monitor SCOM Managed Instance - Frequently asked questions
-summary: This article answers frequently asked questions about Migrations from Azure Monitor SCOM Managed Instance.
+summary: This article answers frequently asked questions about migration from Azure Monitor SCOM Managed Instance.
 sections:
   - name: Migration issues
     questions:
@@ -18,7 +18,7 @@ sections:
           Refer to Microsoft's official documentation and announcements for the precise timeline regarding support and deprecation milestones. Plan to complete migration before support ends to avoid risks and interruptions.
       - question: Can I run both SCOM Managed Instance and my new platform in parallel?
         answer: |
-          Yes, during migration it is common to operate both environments concurrently to ensure a smooth cutover, but minimize this period to reduce complexity and cost.
+          Yes, during migration it is common to operate both environments concurrently to ensure a smooth cutover but minimize this period to reduce complexity and cost.
       - question: Are there tools to automate migration?
         answer: |
           Microsoft and third-party vendors may offer scripts and migration aids to help export/import management packs, reconfigure agents, or automate parts of the process. Evaluate available resources relevant to your specific scenario.
@@ -28,8 +28,3 @@ sections:
           - If your organization or company has partnered with Microsoft or works with Microsoft representatives, such as cloud solution architects (CSAs) or customer success account managers (CSAMs), contact them for additional resources for migration.
           - If you have a support plan and you need technical help, create a support request in the Azure portal.
 
-additionalContent: |
-  ## Next steps
-  Read the other FAQs:
-
-  [SCOM Managed Instance overview](overview.md)
