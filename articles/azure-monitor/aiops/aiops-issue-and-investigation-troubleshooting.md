@@ -29,7 +29,7 @@ When an investigation is run, you might receive a *No findings* result. This res
 
 The feature depends on OpenAI for the text generation to function correctly. Occasionally, OpenAI might experience problems. If you encounter a screen indicating a problem with OpenAI, try refreshing the page and running the investigation again from the beginning. In the meantime, you can still review the anomalies detected without the summary, which can help identify potential issues even if the summary functionality is unavailable.
 
-:::image type="content" source="media/troubleshooting-openai-failure.png" alt-text="Screenshot of openai failure." lightbox="media/troubleshooting-openai-failure.png":::
+:::image type="content" source="media/troubleshooting-openai-failure.png" alt-text="Screenshot of OpenAI failure." lightbox="media/troubleshooting-openai-failure.png":::
 
 ## Related content
 
