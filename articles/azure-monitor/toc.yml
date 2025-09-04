@@ -672,7 +672,7 @@ items:
         - name: Migrate to Azure Monitor
           href: scom-manage-instance/migrate-to-azure-monitor.md
         - name: Migration FAQs
-          href: scom-manage-instance/migration-faq-scom-manage-instance.md
+          href: scom-manage-instance/migration-faq-scom-manage-instance.yml
       - name: Create SCOM Managed Instance
         items:
         - name: Step 1. Register the SCOM Managed Instance resource provider
