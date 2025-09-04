@@ -1,6 +1,6 @@
 ---
 title: Convert System Center Operations Manager management packs into Data Collection Rules
-description: This article provides step-by-step guidance to extract monitoring logic from SCOM management packs and convert them into Azure Monitor Data Collection Rules, alert rules, and deployment artifacts for cloud-based infrastructure monitoring.
+description: This article explains how to convert a System Center Operations Manager management pack such as the Active directory or SQL management pack into Data Collection Rules (DCR) in Azure Monitor.
 ms.topic: how-to
 author: jyothisuri
 ms.author: jsuri
@@ -10,7 +10,6 @@ ms.subservice: operations-manager-managed-instance
 ---
 
 # Convert System Center Operations Manager Management packs into Data Collection Rules
-
 
 This article explains how to convert a System Center Operations Manager management pack such as the Active directory or SQL management pack into Data Collection Rules (DCR) in Azure Monitor.
 
@@ -184,11 +183,11 @@ To extract rules and monitors from System Center Operations Manager Management p
    .\Export-SCOM-MP-RulesMonitors-GenericCSV.ps1 -MPNameMatch "*SQL*"
    ```
 
-   **Common parameters**:
+   **Common parameters**
 
-   - **-OutputDir** — Output folder for CSVs (default is C:\Report).
-   - **-ManagementServer** — System Center Operations Manager management server FQDN or hostname (default is localhost).
-   - **-MPNameMatch** — Wildcard or name for the management pack (e.g., *SQL*, *Exchange*, *Active Directory*).
+   - **-OutputDir**: Output folder for CSVs (default is C:\Report).
+   - **-ManagementServer**: System Center Operations Manager management server FQDN or hostname (default is localhost).
+   - **-MPNameMatch**: Wildcard or name for the management pack (for example, *SQL*, *Exchange*, *Active Directory*).
 
    **Example for exporting all rules and monitors from all MPs**
 
@@ -204,7 +203,7 @@ To extract rules and monitors from System Center Operations Manager Management p
 
 5. **Retrieve CSV files**
 
-   Check the output directory (e.g., C:\Report) for CSV files named with the management pack and timestamp, such as: 
+   Check the output directory (for example, C:\Report) for CSV files named with the management pack and timestamp, such as: 
    - Microsoft.SQLServer.Rules_20250717_072236.csv
    - Microsoft.SQLServer.Monitors_20250717_072236.csv
 
@@ -216,11 +215,11 @@ To extract rules and monitors from System Center Operations Manager Management p
 
 Run the following prompt in an LLM (such as ChatGPT) and keep the two CSV files that you generated from the PowerShell script handy:
 
-*I am an IT Administrator responsible for monitoring our organization's infrastructure.*
+*I'm an IT Administrator responsible for monitoring our organization's infrastructure.*
 
 *Context:*
 
-*We currently use System Center Operations Manager (SCOM) 2019 to monitor our on-premises Active Directory (AD) environment. As part of our modernization strategy, we are migrating to Azure Monitor to leverage cloud-native capabilities. Our goal is to replicate the monitoring logic defined in the existing SCOM Active Directory Management Pack (MP) within Azure Monitor.*
+*We currently use System Center Operations Manager (SCOM) 2019 to monitor our on-premises Active Directory (AD) environment. As part of our modernization strategy, we're migrating to Azure Monitor to use cloud-native capabilities. Our goal is to replicate the monitoring logic defined in the existing SCOM Active Directory Management Pack (MP) within Azure Monitor.*
 
 *Data provided:*
 
@@ -238,7 +237,7 @@ Run the following prompt in an LLM (such as ChatGPT) and keep the two CSV files 
 
 *1. Azure Monitor Configuration Plan*
 
-   *a. Analyze the SCOM configuration and map each component to its Azure Monitor equivalent (e.g., DCRs, alert rules, workbooks).*
+   *a. Analyze the SCOM configuration and map each component to its Azure Monitor equivalent (for example, DCRs, alert rules, workbooks).*
 
    *b. Highlight any gaps or limitations in Azure Monitor compared to SCOM and suggest alternatives.*
    
@@ -250,7 +249,7 @@ Run the following prompt in an LLM (such as ChatGPT) and keep the two CSV files 
 
    *c. Define a custom log table (ADMonitoring_CL) for structured output from custom scripts.*
 
-   *d. Include a KQL transformation to parse event data into structured columns (e.g., ScriptName, Result, Message).*
+   *d. Include a KQL transformation to parse event data into structured columns (for example, ScriptName, Result, Message).*
 
 *3.	Alerting Strategy*
 
@@ -262,11 +261,11 @@ Run the following prompt in an LLM (such as ChatGPT) and keep the two CSV files 
 
    *ii. Scheduled Query Rules for event-based and script-based monitoring.*
 
-   *c. Map SCOM alert severities (e.g., Warning, Error) to Azure Monitor severities (e.g., Sev 2, Sev 1).*
+   *c. Map SCOM alert severities (for example, Warning, Error) to Azure Monitor severities (for example, Severity 2, Severity 1).*
 
 *4.	Custom Script Equivalents*
 
-   *a. Identify monitors using script-based logic (e.g., AD Replication, Trust Monitoring).*
+   *a. Identify monitors using script-based logic (for example, AD Replication, Trust Monitoring).*
 
    *b. Generate equivalent PowerShell scripts to run on domain controllers.*
 
@@ -302,6 +301,6 @@ Run the following prompt in an LLM (such as ChatGPT) and keep the two CSV files 
 
 *7.	Gap Analysis*
 
-   *a. List any SCOM features that cannot be directly replicated in Azure Monitor (e.g., auto-resolution tasks, dependency monitors).*
+   *a. List any SCOM features that can't be directly replicated in Azure Monitor (for example, autoresolution tasks, dependency monitors).*
 
-   *b. Recommend Azure-native alternatives (e.g., Automation Runbooks, Connection Monitor).*
+   *b. Recommend Azure-native alternatives (for example, Automation Runbooks, Connection Monitor).*
