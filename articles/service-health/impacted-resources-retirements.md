@@ -84,7 +84,7 @@ For more information, see [Recommendation Metadata - List - REST API](/rest/api/
 
 #### Sample response
 
-```
+```json
 {
     "value": [
         {
