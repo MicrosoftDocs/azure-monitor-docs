@@ -73,7 +73,9 @@
       - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
       - name: Impacted Resources from Azure security incidents
-        href: impacted-resources-security.md     
+        href: impacted-resources-security.md
+      - name: Impacted Resources from Azure retirements
+        href: impacted-resources-retirements.md   
 - name: Reference
   items:
   - name: Resource Graph
