@@ -263,18 +263,5 @@ advisorresources
 ) on resourceId
 | project region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type 
 ```
-```dotnetcli
-
-advisorresources
-| where type == "microsoft.advisor/recommendations"
-| where properties.recommendationTypeId == "7e570000-n78d-yh67-2xzc4-v16005e1k"  // Use the correct recommendation type ID
-| extend resourceId = tolower(properties.resourceMetadata.resourceId)
-| project resourceId
-| join kind=inner (
-    resources
-    | extend resourceId = tolower(id), region = location, resourceName = name, resourceGroup, subscriptionId, resourceType = type
-) on resourceId
-| project region, resourceId, resourceName, resourceGroup, subscriptionId, resourceType
-```
 
 
