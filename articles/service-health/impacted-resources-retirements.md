@@ -68,11 +68,11 @@ The CSV file contains the following fields:
 
 ### Access impacted resources programmatically via an API
 
-You can get information about outage-impacted resources programmatically following either one of these steps.
+You can get information about outage-impacted resources programmatically following these steps.
 
 # [API Query](#tab/API)
 
-Get the `recommendationId` for the event using the Recommendation Metadata API.
+1. Get the `recommendationId` for the event using the Recommendation Metadata API.
 For more information, see [Recommendation Metadata - List - REST API](/rest/api/advisor/recommendation-metadata/list).
 
 ### URI Parameters
@@ -249,7 +249,7 @@ For more information, see [Recommendation Metadata - List - REST API](/rest/api/
 ```
 # [ARG Query](#tab/ARG)
 
-Use the ID to fetch impacted resources from Axure Resource Graph (ARG).
+2. Use the ID to fetch impacted resources from Axure Resource Graph (ARG).
 
 ```dotnetcli
 advisorresources
