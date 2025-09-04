@@ -304,3 +304,4 @@ Run the following prompt in an LLM (such as ChatGPT) and keep the two CSV files 
    *a. List any SCOM features that can't be directly replicated in Azure Monitor (for example, autoresolution tasks, dependency monitors).*
 
    *b. Recommend Azure-native alternatives (for example, Automation Runbooks, Connection Monitor).*
+
