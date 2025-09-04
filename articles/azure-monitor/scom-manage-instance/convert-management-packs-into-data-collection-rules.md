@@ -1,5 +1,5 @@
 ---
-title: Convert System Center Operations Manager Management packs into Data Collection Rules
+title: Convert System Center Operations Manager management packs into Data Collection Rules
 description: This article provides step-by-step guidance to extract monitoring logic from SCOM management packs and convert them into Azure Monitor Data Collection Rules, alert rules, and deployment artifacts for cloud-based infrastructure monitoring.
 ms.topic: how-to
 author: jyothisuri
