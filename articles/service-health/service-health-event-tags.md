@@ -2,13 +2,13 @@
 title: Service Health event tags
 description: Learn how to understand and use the event tags in Azure Service Health
 ms.topic: overview
-ms.date: 8/19/2025
+ms.date: 9/4/2025
 ---
 
 # Service Health event tags
 
 
-This article explains the differences between event level and event tags in Azure Service Health. 
+This article explains the differences between Event level, Even Subtypes, and Event tags in Azure Service Health. 
 
 **Event** tags are metadata labels that help users understand the nature of service health communications. 
  
