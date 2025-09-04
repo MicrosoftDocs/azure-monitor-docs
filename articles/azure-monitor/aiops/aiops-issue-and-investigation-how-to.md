@@ -4,7 +4,7 @@ description: This article helps guide you through getting started with Azure Mon
 ms.topic: how-to
 ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.date: 09/02/2025
+ms.date: 09/04/2025
 ---
 
 # Use Azure Monitor issues and investigations (preview)
@@ -16,7 +16,7 @@ This article guides you through getting started with Azure Monitor issues and in
 - Read the [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md).
 - Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigations.
 - Identify an alert fired on an Application Insights resource to investigate.
-- Be sure that the subscription you want to investigate is associated with an Azure Monitor Workspace (AMW).
+- Be sure that the subscription containing the investigated resource is associated with an Azure Monitor Workspace (AMW).
 - Give the users performing the association `Write` permission to the AMW.
 - Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the AMW you’re investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
