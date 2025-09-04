@@ -21,8 +21,6 @@ If you don't have permission, you won't be able to create an issue or run an inv
 ## Lack of associated Azure Monitor Workspace (AMW)
 You must have an AMW associated to the subscription you are investigating. Consult with your system administrator to create the association. See [Associate an Azure Monitor Workspace with a subscription](aiops-issue-and-investigation-how-to.md#associate-an-amw-in-the-azure-portal).
 
-:::image type="content" source="media/issues-investigations-error-message.png" alt-text="Azure Monitor Workspace is required for investigation error message displayed in the Azure portal. The screen shows a warning icon and the message Azure Monitor Workspace is required for an investigation. Below the message are buttons to set up a workspace or set as Default AMW. The environment is a web portal with a neutral and informative tone.":::
-
 ## No findings
 
 When an investigation is run, you might receive a *No findings* result. This result isn't a problem – it just means the investigation didn't detect any anomalies in the metrics, logs, or other monitored data. It's important to remember that this result doesn't necessarily indicate the absence of underlying issues, but rather that the current data doesn't reveal any obvious problems.
