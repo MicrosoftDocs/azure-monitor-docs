@@ -11,7 +11,7 @@ ms.subservice: operations-manager-managed-instance
 
 # Migrate from Azure Monitor SCOM Managed Instance to Azure Monitor Data Collection Rules
 
-Organizations embracing cloud-native architectures, leveraging Azure for infrastructure, or seeking to consolidate monitoring into a single pane of glass can benefit from Azure Monitor and its Data collection rules driven data collection.
+Organizations embracing cloud-native architectures, leveraging Azure for infrastructure, or seeking to consolidate monitoring into a single pane of glass can benefit from Azure Monitor and its Data Collection Rules driven data collection.
 
 This article explains how to migrate from Azure Monitor SCOM Managed Instance to Azure Monitor Data Collection Rules.
 
@@ -23,14 +23,14 @@ This article explains how to migrate from Azure Monitor SCOM Managed Instance to
 
 - The potential need to re-author complex management pack logic as custom queries and DCRs.
 - Retraining staff to be more familiar with Azure Monitor terminology and Azure models as compared to on-premises models.
-- Review the cost implications of moving away from System Center Operations Manager on-premises licensing to Pay-As-You-Go Azure and Azure Monitor pricing.
+- Review the cost implications of moving away from System Center Operations Manager on-premises licensing to pay-as-you-go Azure and Azure Monitor pricing.
 
 ## Best practices
 
 - **Plan thoroughly**: Start with a comprehensive inventory and gap analysis of your SCOM Managed Instance environment versus the target platform (on-premises or Data collection rule based).
 - **Pilot first**: Conduct a pilot migration for a subset of resources to validate your migration approach and identify issues ahead of full-scale rollout.
 - **Leverage Microsoft resources**: Microsoft provides migration guides, reference architectures, and support channels to assist with your transition.
-- **Plan for training**: Ensure your IT team is equipped with skills for managing the chosen platform, especially if moving to Data collection rules and Azure Monitor.
+- **Plan for training**: Ensure your IT team is equipped with skills for managing the chosen platform, especially if moving to Data Collection Rules and Azure Monitor.
 
 ## Migrate to Azure Monitor DCRs
 
