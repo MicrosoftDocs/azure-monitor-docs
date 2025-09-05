@@ -5,7 +5,7 @@ ms.topic: overview
 ms.date: 09/04/2025
 ---
 
-# How to report an Issue in Azure Service Health (Preview)
+# How to Report an Issue in Azure Service Health (Preview)
 
 Even if there are no active issues shown in the Service Health portal, you can now report a service-level or resource-level impact. This tool allows you to notify Microsoft about an issue even when it isn't identified as part of a broader outage.<br>
 When you submit an issue, our team reviews the submitted report, and if an outage is identified you see it on the Azure Service Health portal. For more information, see [Azure Impact Reporting](/azure/azure-impact-reporting).
