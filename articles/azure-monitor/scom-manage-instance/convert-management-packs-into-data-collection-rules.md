@@ -225,9 +225,9 @@ Run the following prompt in an LLM (such as ChatGPT) and keep the two CSV files 
 
  I have attached two CSV files that export our active System Center Operations Manager configuration:
 
-         - File-One.csv: Contains data collection rules (performance counters, event logs).
+ - File-One.csv: Contains data collection rules (performance counters, event logs).
 
-         - File-Two.csv: Contains monitors that trigger alerts based on collected data or custom logic.
+ - File-Two.csv: Contains monitors that trigger alerts based on collected data or custom logic.
 
 *Task:*
 
