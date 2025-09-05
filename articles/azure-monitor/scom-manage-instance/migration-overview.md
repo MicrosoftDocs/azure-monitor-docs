@@ -22,6 +22,3 @@ You can either migrate to System Center Operations Manager (on-premises) or Azur
 - [Migrate to System Center Operations Manager](migrate-to-operations-manager.md)  
 - [Migration to Azure Monitor](migrate-to-azure-monitor.md)  
 
-## Next steps
-
-- [FAQs](migration-faq-scom-manage-instance.md)
