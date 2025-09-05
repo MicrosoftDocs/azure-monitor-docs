@@ -150,12 +150,32 @@ The exporter sets `retry.code` for items it schedules to send later. Retries ind
 | `CLIENT_TIMEOUT`         | The exporter timed out waiting for a response.                                            | Increase timeout if appropriate. Investigate network latency and server responsiveness.                         |
 | `*RETRYABLE_STATUS_CODE` | The ingestion endpoint returned a retryable HTTP status (for example `408`, `429`, `5xx`). | Expect eventual recovery. Reduce send rate or sampling when throttled. Watch for `Retry-After` and honor it.    |
 
-**How to read retries**
+#### How to interpret retries
 
-- **What the metric is**. `preview.item.retry.count` records attempts that the exporter schedules for retry. Retries represent attempts, not final state, and never decrement.
-- **Does a rising line mean data loss**. No. A rising retry count by itself doesn't mean loss. Items count as success when the exporter sends them later. Use the dropped series to determine loss.
-- **Investigate**. Split by `retry.code` and review common codes: `408` and `5xx` usually recover, `429` indicates throttling and respects `Retry-After`, and `401` or `403` indicate authentication or permission errors.
-- **If success does not recover**. If retries keep rising and success doesn't recover, check the drop codes. Look for `402` (quota), `401` or `403` (auth), or client exceptions such as storage issues.
+The `preview.item.retry.count` counter increases whenever the exporter schedules telemetry to be sent again. It reflects **attempts**, not final outcomes. The counter never decreases. Use it together with the **success** and **dropped** series to understand delivery health.
+
+##### Interpret trends
+
+- A rising retry line by itself doesn't mean data loss. Items can later be sent successfully.
+- Compare retries with **success**. If success recovers after a spike in retries, the issue was likely transient.
+- Compare retries with **dropped**. If retries rise while dropped stays near zero, the exporter is buffering and recovering.
+- Persistent high retries with flat or falling success signals a blocking issue. See [**If success does not recover**](#if-success-doesnt-recover).
+
+##### Investigate by code
+
+Split the retry metric by `retry.code` to identify why attempts are being retried.
+
+| `retry.code`            | What it usually means                                              | What to check or do next                                                                 |
+|-------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `CLIENT_TIMEOUT`        | The exporter timed out waiting for a response.                    | Increase client timeout if appropriate. Check latency, proxies, and firewall rules.     |
+| `CLIENT_EXCEPTION`      | Network or runtime error prevented delivery.                      | Review exporter logs. Verify DNS, TLS, proxy, and outbound network configuration.        |
+| `408`                   | Request timed out at the ingestion endpoint.                      | Investigate network path and latency. Consider smaller batches or higher send frequency. |
+| `429`                   | Throttled by ingestion, often with `Retry-After`.                 | Reduce send rate or increase sampling. Honor `Retry-After` before retrying.              |
+| `5xx`                   | Transient service issue at ingestion.                             | Expect recovery. Continue to retry with backoff. Check Azure status if it persists.      |
+
+##### If success doesn't recover
+
+If retries continue to climb and **success** doesn't recover, pivot to **drop codes** to find the blocker. Start with configuration and quota issues such as `402` (daily cap), `401` or `403` (authentication or permission), and client storage problems like `CLIENT_PERSISTENCE_CAPACITY`, `CLIENT_READONLY`, or `CLIENT_STORAGE_DISABLED`. Fix the underlying cause, then confirm that **dropped** returns to zero and **success** rises on the next intervals.
 
 ## Cost and data volume
 
