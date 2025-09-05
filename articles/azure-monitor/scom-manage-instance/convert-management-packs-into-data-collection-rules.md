@@ -219,11 +219,11 @@ Run the following prompt in an LLM (such as ChatGPT) and keep the two CSV files 
 
 *Context:*
 
-    We currently use System Center Operations Manager 2019 to monitor our on-premises Active Directory (AD) environment. As part of our modernization strategy, we're migrating to Azure Monitor to use cloud-native capabilities. Our goal is to replicate the monitoring logic defined in the existing System Center Operations Manager Active Directory Management Pack (MP) within Azure Monitor.
+ We currently use System Center Operations Manager 2019 to monitor our on-premises Active Directory (AD) environment. As part of our modernization strategy, we're migrating to Azure Monitor to use cloud-native capabilities. Our goal is to replicate the monitoring logic defined in the existing System Center Operations Manager Active Directory Management Pack (MP) within Azure Monitor.
 
 *Data provided:*
 
-    I have attached two CSV files that export our active System Center Operations Manager configuration:
+ I have attached two CSV files that export our active System Center Operations Manager configuration:
 
          - File-One.csv: Contains data collection rules (performance counters, event logs).
 
@@ -231,76 +231,76 @@ Run the following prompt in an LLM (such as ChatGPT) and keep the two CSV files 
 
 *Task:*
 
-    Act as an Azure Monitor expert and generate a complete migration plan and corresponding deployment artifacts to replicate our System Center Operations Manager based monitoring in Azure Monitor.
+ Act as an Azure Monitor expert and generate a complete migration plan and corresponding deployment artifacts to replicate our System Center Operations Manager based monitoring in Azure Monitor.
 
 *Required deliverables:*
 
-    1. Azure Monitor Configuration Plan
+ 1. Azure Monitor Configuration Plan
 
-         a. Analyze the System Center Operations Manager configuration and map each component to its Azure Monitor equivalent (for example, DCRs, alert rules, workbooks).
+    a. Analyze the System Center Operations Manager configuration and map each component to its Azure Monitor equivalent (for example, DCRs, alert rules, workbooks).
 
-         b. Highlight any gaps or limitations in Azure Monitor compared to System Center Operations Manager and suggest alternatives.
+    b. Highlight any gaps or limitations in Azure Monitor compared to System Center Operations Manager and suggest alternatives.
    
-    2. Data collection rule (DCR)
+ 2. Data collection rule (DCR)
 
-         a. Create a unified DCR to collect all specified performance counters and Windows Event Logs.
+    a. Create a unified DCR to collect all specified performance counters and Windows Event Logs.
 
-         b. Use XPath queries for event filtering to optimize ingestion.
+    b. Use XPath queries for event filtering to optimize ingestion.
 
-         c. Define a custom log table (ADMonitoring_CL) for structured output from custom scripts.
+    c. Define a custom log table (ADMonitoring_CL) for structured output from custom scripts.
 
-         d. Include a KQL transformation to parse event data into structured columns (for example, ScriptName, Result, Message).
+    d. Include a KQL transformation to parse event data into structured columns (for example, ScriptName, Result, Message).
 
-    3.	Alerting Strategy
+ 3.	Alerting Strategy
 
-         a. For each System Center Operations Manager monitor, create a corresponding Azure Monitor alert rule.
+    a. For each System Center Operations Manager monitor, create a corresponding Azure Monitor alert rule.
 
-         b. Use:
+    b. Use:
 
-             i. Metric Alerts with dynamic thresholds for performance counters.
+       i. Metric Alerts with dynamic thresholds for performance counters.
 
-             ii. Scheduled Query Rules for event-based and script-based monitoring.
+       ii. Scheduled Query Rules for event-based and script-based monitoring.
 
-         c. Map System Center Operations Manager alert severities (for example, Warning, Error) to Azure Monitor severities (for example, Severity 2, Severity 1).
+    c. Map System Center Operations Manager alert severities (for example, Warning, Error) to Azure Monitor severities (for example, Severity 2, Severity 1).
 
-    4.	Custom Script Equivalents
+ 4.	Custom Script Equivalents
 
-         a. Identify monitors using script-based logic (for example, AD Replication, Trust Monitoring).
+    a. Identify monitors using script-based logic (for example, AD Replication, Trust Monitoring).
 
-         b. Generate equivalent PowerShell scripts to run on domain controllers.
+    b. Generate equivalent PowerShell scripts to run on domain controllers.
 
-         c. Scripts must:
+    c. Scripts must:
 
-             i. Include robust error handling.
+       i. Include robust error handling.
 
-             ii. Log output to the Windows Application Event Log using source ADMonitoringScript.
+       ii. Log output to the Windows Application Event Log using source ADMonitoringScript.
 
-             iii. Format output in XML or key-value pairs for parsing by the DCR.
+       iii. Format output in XML or key-value pairs for parsing by the DCR.
 
-    5.	Visualization
+ 5.	Visualization
 
-         a. Create an Azure Workbook template that replicates System Center Operations Manager health views.
+    a. Create an Azure Workbook template that replicates System Center Operations Manager health views.
 
-         b. Visualize key metrics such as CPU/Memory usage, replication status, and trust health.
+    b. Visualize key metrics such as CPU/Memory usage, replication status, and trust health.
 
-    6.	Deployment Artifacts
+ 6.	Deployment Artifacts
 
-         a. Package all configurations into a parameterized Bicep template (main.bicep).
+    a. Package all configurations into a parameterized Bicep template (main.bicep).
 
-         b. Include PowerShell scripts as separate .ps1 files.
+    b. Include PowerShell scripts as separate .ps1 files.
 
-         c. Provide a README.md with:
+    c. Provide a README.md with:
 
-             i. Deployment instructions
+       i. Deployment instructions
 
-             ii. Prerequisites
+       ii. Prerequisites
 
-             iii. Agent configuration steps
+       iii. Agent configuration steps
 
-             iv. Scheduled task setup for script execution
+       iv. Scheduled task setup for script execution
 
-    7.	Gap Analysis
+ 7.	Gap Analysis
 
-         a. List any System Center Operations Manager features that can't be directly replicated in Azure Monitor (for example, autoresolution tasks, dependency monitors).
+    a. List any System Center Operations Manager features that can't be directly replicated in Azure Monitor (for example, autoresolution tasks, dependency monitors).
 
-         b. Recommend Azure-native alternatives (for example, Automation Runbooks, Connection Monitor).
+    b. Recommend Azure-native alternatives (for example, Automation Runbooks, Connection Monitor).
