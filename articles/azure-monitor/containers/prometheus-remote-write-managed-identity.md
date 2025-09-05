@@ -24,10 +24,10 @@ This article applies to the following cluster configurations:
 
 ### Supported versions
 
+Prometheus versions greater than v2.45 are required for managed identity authentication.
 - Prometheus versions greater than v2.45 are required for user-assigned managed identity authentication.
+- Prometheus versions greater than v2.48 are required for Microsoft Entra ID application authentication.
 - Prometheus versions v3.50 or greater are required for system-assigned managed identity authentication.
-
-
 ### Azure Monitor workspace
 
 This article covers sending Prometheus metrics to an Azure Monitor workspace. To create an Azure monitor workspace, see [Manage an Azure Monitor workspace](/azure/azure-monitor/essentials/azure-monitor-workspace-manage#create-an-azure-monitor-workspace).
