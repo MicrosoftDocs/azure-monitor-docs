@@ -7,7 +7,7 @@ ms.date: 09/05/2025
 
 # SDK stats for Application Insights (Preview)
 
-[Application Insights](app-insights-overview.md) offers SDK stats [custom metrics](metrics-overview.md) that help you monitor and troubleshoot missing or unexpected telemetry. When telemetry doesn't reach the [ingestion endpoint](app-insights-overview.md#logic-model), SDK stats help you identify what happened and what to do next.
+[Application Insights](app-insights-overview.md) offers SDK stats [custom metrics](metrics-overview.md) that help you monitor and troubleshoot missing or unexpected telemetry behaviors. When telemetry doesn't reach the [ingestion endpoint](app-insights-overview.md#logic-model), SDK stats help you identify what happened and what to do next.
 
 These custom metrics include counts for item success, drops, and retries. They also include **drop codes** and **retry codes** that explain the cause and guide next steps.
 
@@ -352,13 +352,20 @@ customMetrics
 
 ### Metrics explorer
 
-Chart these custom metrics in Metrics explorer.
+Chart these SDK stats in **Metrics**.
 
 1. Open your Application Insights resource.
 2. Open **Metrics**.
-3. Select the **Custom metrics** namespace.
-4. Select `preview.item.success.count`, `preview.item.dropped.count`, or `preview.item.retry.count`.
-5. Split by `cloud_RoleName`, `cloud_RoleInstance`, `telemetry_type`, or `sdkVersion` as needed.
+3. For **Metric Namespace**, select **Log-based metrics**.
+4. For **Metric**, choose one of:
+   - `preview.item.success.count`
+   - `preview.item.dropped.count`
+   - `preview.item.retry.count`
+5. (Optional) Set **Aggregation** to **Sum** for time‑grain totals.
+6. Use **Split by** to investigate. Common splits:
+   - **drop.reason**, **drop.code**  
+   - **telemetry_type**, **sdkVersion**  
+   - **cloud_RoleName**, **cloud_RoleInstance**
 
 ## How do SDK stats counts differ from logs?
 
