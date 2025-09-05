@@ -667,6 +667,8 @@ items:
       items:
       - name: Migrate from SCOM Managed Instance
         items:
+        - name: Overview
+          href: scom-manage-instance/migration-overview.md
         - name: Migrate to System Center Operations Manager 
           href: scom-manage-instance/migrate-to-operations-manager.md
         - name: Migrate to Azure Monitor
