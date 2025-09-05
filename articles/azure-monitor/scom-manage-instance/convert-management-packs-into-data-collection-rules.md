@@ -9,9 +9,9 @@ ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ---
 
-# Convert System Center Operations Manager Management packs into Data Collection Rules
+# Convert System Center Operations Manager management packs into Data Collection Rules
 
-This article explains how to convert a System Center Operations Manager management pack such as the Active directory or SQL management pack into Data Collection Rules (DCR) in Azure Monitor.
+This article explains how to convert a System Center Operations Manager management pack such as the Active Directory or SQL management pack into Data Collection Rules (DCR) in Azure Monitor.
 
 You can use DCRs along with VM insights and baseline alerts to replicate the functionality that System Center Operations Manager management packs offer in Azure Monitor. This involves the extraction of the rules and monitors of the management pack you want to convert and then passing the configuration files along with a prompt into an existing LLM to create the configurations. You can apply and implement the configurations in an existing Azure Monitor setup and test the functionality.
 
@@ -27,7 +27,7 @@ Before you begin, ensure you meet the following prerequisites:
 - System Center Operations Manager Administrator rights to run these commands.
 - Access to the virtual machine (RDP or console access).
 
-To extract rules and monitors from System Center Operations Manager Management packs, follow these steps:
+To extract rules and monitors from System Center Operations Manager management packs, follow these steps:
 
 1. **Prepare script**
    

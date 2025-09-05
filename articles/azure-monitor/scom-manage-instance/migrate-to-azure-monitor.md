@@ -17,7 +17,10 @@ This article explains how to migrate from Azure Monitor SCOM Managed Instance to
 
 ## Data Collection Rules (DCRs)
 
-[Data Collection Rules](/azure/azure-monitor/data-collection/data-collection-rule-overview) are at the heart of Azure Monitor's modern data ingestion framework. DCRs define what telemetry to collect from which resources, how to transform or filter it, and where it must be sent (For example, Log Analytics workspace, storage, and event hubs).
+[Data Collection Rules](/azure/azure-monitor/data-collection/data-collection-rule-overview) are at the heart of Azure Monitor's modern data ingestion framework. DCRs define the following:
+
+- Type of telemetry to be collected from different resources
+- How to transform or filter the telemetry data and send it to appropriate locations (For example, Log Analytics workspace, storage, and event hubs).
 
 ## Limitations
 
@@ -66,5 +69,5 @@ To migrate to Azure Monitor DCRs, follow these steps:
 
 8. **Decommission SCOM Managed Instance**
 
-   Once the on-premises setup is stable, delete SCOM Managed Instance resources to avoid unnecessary costs. Deleting a SCOM Managed Instance is a matter of deleting the Azure resource groups where the SCOM Managed Instance resources are deployed. For any issues, see [frequently asked questions](/azure/azure-monitor/scom-manage-instance/scom-managed-instance-faq#what-is-the-procedure-to-delete-an-instance-).
+   Once the on-premises setup is stable, delete SCOM Managed Instance resources to avoid unnecessary costs. Deleting a SCOM Managed Instance is nothing but deleting the Azure resource groups where the SCOM Managed Instance resources are deployed. For any issues, see [frequently asked questions](/azure/azure-monitor/scom-manage-instance/scom-managed-instance-faq#what-is-the-procedure-to-delete-an-instance-).
 
