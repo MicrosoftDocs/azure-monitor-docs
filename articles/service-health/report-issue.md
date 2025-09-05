@@ -26,6 +26,10 @@ To report a single issue, you must have the correct permission.
 
 ## How to report a resource-level issue
 
+>[!NOTE]
+> For resource-level impacts the start time must be within the last 10 days.
+
+
 To report an issue, follow these steps.
 1. Select **Report an Issue**.
 
@@ -43,7 +47,7 @@ To report an issue, follow these steps.
 4. Select **Submit**.
 
 When your issue is reported, you should see this message. 
-:::image type="content" source="media/report-issue/report-an-issue-success.png" alt-text="Screenshot of the message your report is a success." lightbox="media/report-issue/report-an-issue-success.png":::
+:::image type="content" source="media/report-issue/report-an-issue-success.png" alt-text="Screenshot of the message your report on a resource issue is a success." lightbox="media/report-issue/report-an-issue-success-service.png":::
 
 If an outage is found, you see it on the portal.
 
@@ -62,9 +66,13 @@ The steps to report an issue about Multiple resources is the same a reporting a 
 2. Fill out the required fields.
 1. Select **Submit**.
 
+When your issue is reported, you should see this message. 
+:::image type="content" source="media/report-issue/report-an-issue-success-service-level.png" alt-text="Screenshot of the message your service issue report is a success." lightbox="media/report-issue/report-an-issue-success-service-level.png":::
 
 ## What to expect after you submit an issue
-*Informtion to be added here...*
+You will recieve a notification within 4 hours.
+
+For more information about reporting see [Azure Impact reporting](azure/azure-impact-reporting/view-impact-insights).
 
 ## For more information
 
