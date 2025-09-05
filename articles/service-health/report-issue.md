@@ -26,8 +26,6 @@ To report a single issue, you must have the correct permission.
 
 ## How to report a resource-level issue
 
->[!NOTE]
-> For resource-level impacts the start time must be within the last 10 days.
 
 
 To report an issue, follow these steps.
@@ -44,6 +42,10 @@ To report an issue, follow these steps.
     - Impacted resource
     - What is the business impact?
     - Impact start date and time.
+
+>[!NOTE]
+> For resource-level impacts the start time must be within the last 10 days.
+
 4. Select **Submit**.
 
 When your issue is reported, you should see this message. 
