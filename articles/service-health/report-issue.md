@@ -72,7 +72,7 @@ When your issue is reported, you should see this message.
 :::image type="content" source="media/report-issue/report-an-issue-success-service-level.png" alt-text="Screenshot of the message your service issue report is a success." lightbox="media/report-issue/report-an-issue-success-service-level.png":::
 
 ## What to expect after you submit an issue
-You receive a notification that the issue is received.
+You will receive a notification that the issue is received.
 
 For more information about reporting, see [Azure Impact reporting](/azure/azure-impact-reporting/view-impact-insights).
 
