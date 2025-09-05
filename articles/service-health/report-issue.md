@@ -7,7 +7,7 @@ ms.date: 09/04/2025
 
 # How to report an Issue in Azure Service Health
 
-You can now report a service-level or resource-level issue in the Service Health portal if you don't see any ongoing issues and would like to report an impact. <br>
+If there are no active issues shown in the Service Health portal, you can now report a service-level or resource-level impact. This tool allows you to notify Microsoft about an issue even when it isn't identified as part of a broader outage.<br>
 When you submit an issue, our team reviews the submitted report, and if an outage is identified you see it on the Azure Service Health portal. For more information, see [Azure Impact Reporting](/azure/azure-impact-reporting).
 
 ## Access permission
@@ -47,7 +47,7 @@ To report an issue, follow these steps.
 4. Select **Submit**.
 
 When your issue is reported, you should see this message. 
-:::image type="content" source="media/report-issue/report-an-issue-success.png" alt-text="Screenshot of the message your report on a resource issue is a success." lightbox="media/report-issue/report-an-issue-success-service.png":::
+:::image type="content" source="media/report-issue/report-an-issue-success.png" alt-text="Screenshot of the message your report on a resource issue is a success." lightbox="media/report-issue/report-an-issue-success.png":::
 
 If an outage is found, you see it on the portal.
 
@@ -70,9 +70,9 @@ When your issue is reported, you should see this message.
 :::image type="content" source="media/report-issue/report-an-issue-success-service-level.png" alt-text="Screenshot of the message your service issue report is a success." lightbox="media/report-issue/report-an-issue-success-service-level.png":::
 
 ## What to expect after you submit an issue
-You will recieve a notification within 4 hours.
+You receive a notification within 4 hours.
 
-For more information about reporting see [Azure Impact reporting](azure/azure-impact-reporting/view-impact-insights).
+For more information about reporting, see [Azure Impact reporting](/azure/azure-impact-reporting/view-impact-insights).
 
 ## For more information
 
