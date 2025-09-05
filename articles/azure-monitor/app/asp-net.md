@@ -47,14 +47,14 @@ This article explains how to enable and configure [Application Insights](app-ins
 > [!div class="checklist"]
 > * An Azure subscription. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/free/).
 > * An [Application Insights workspace-based resource](create-workspace-resource.md).
-> * A functioning web application. If you don't have one already, see [Create a basic web app](#create-a-basic-web-app).
+> * A functioning application. If you don't have one already, see [Create a basic application](#create-a-basic-application).
 > * The latest version of [Visual Studio](https://www.visualstudio.com/downloads/) with the following workloads:
 >     * ASP.NET and web development
 >     * Azure development
 
-### Create a basic web app
+### Create a basic application
 
-If you don't have a functioning web application yet, you can use the following guidance to create one.
+If you don't have a functioning web or console application yet, you can use the following guidance to create one.
 
 # [ASP.NET](#tab/net)
 
@@ -74,6 +74,10 @@ If you don't have a functioning web application yet, you can use the following g
 1. Choose **ASP.NET Core Web App (Razor Pages)** with **C#** and select **Next**.
 1. Enter a **Project name**, then select **Create**.
 1. Choose a **Framework** (LTS or STS), then select **Create**.
+
+# [Worker Service](#tab/worker)
+
+...
 
 ---
 
@@ -120,6 +124,10 @@ From within your ASP.NET web app project in Visual Studio:
 1. After you add Application Insights to your project, check to confirm that you're using the latest stable release of the SDK. Go to **Project** > **Manage NuGet Packages** > **Microsoft.ApplicationInsights.AspNetCore**. If you need to, select **Update**.
 
     :::image type="content" source="media/asp-net/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
+
+# [Worker Service](#tab/worker)
+
+...
 
 ---
 
@@ -526,11 +534,312 @@ In `Microsoft.ApplicationInsights.AspNetCore` version [2.15.0](https://www.nuget
 
 If `IConfiguration` loaded configuration from multiple providers, then `services.AddApplicationInsightsTelemetry` prioritizes configuration from *appsettings.json*, irrespective of the order in which providers are added. Use the `services.AddApplicationInsightsTelemetry(IConfiguration)` method to read configuration from `IConfiguration` without this preferential treatment for *appsettings.json*.
 
+# [Worker Service](#tab/worker)
+
+#### In this section
+
+* [Use Application Insights SDK for Worker Service](#use-application-insights-sdk-for-worker-service)
+* [.NET Core Worker Service application](#net-core-worker-service-application)
+* [ASP.NET Core background tasks with hosted services](#aspnet-core-background-tasks-with-hosted-services)
+* [.NET Core/.NET Framework console application](#net-corenet-framework-console-application)
+
+#### Use Application Insights SDK for Worker Service
+
+1. Install the [Microsoft.ApplicationInsights.WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) package to the application.
+
+   The following snippet shows the changes that must be added to your project's `.csproj` file:
+    
+    ```xml
+        <ItemGroup>
+            <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.22.0" />
+        </ItemGroup>
+    ```
+
+1. Configure the connection string in the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable or in configuration (`appsettings.json`).
+
+   :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot displaying Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
+
+1. Retrieve an `ILogger` instance or `TelemetryClient` instance from the Dependency Injection (DI) container by calling `serviceProvider.GetRequiredService<TelemetryClient>();` or by using Constructor Injection. This step triggers setting up of `TelemetryConfiguration` and autocollection modules.
+
+Specific instructions for each type of application are described in the following sections.
+
+#### .NET Core Worker Service application
+
+The full example is shared at the [NuGet website](https://github.com/microsoft/ApplicationInsights-dotnet/tree/develop/examples/WorkerService).
+
+1. [Download and install the .NET SDK](https://dotnet.microsoft.com/download).
+1. Create a new Worker Service project either by using a Visual Studio new project template or the command line `dotnet new worker`.
+1. Add the [Microsoft.ApplicationInsights.WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) package to the application.
+
+1. Add `services.AddApplicationInsightsTelemetryWorkerService();` to the `CreateHostBuilder()` method in your `Program.cs` class, as in this example:
+
+    ```csharp
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddHostedService<Worker>();
+                    services.AddApplicationInsightsTelemetryWorkerService();
+                });
+    ```
+
+1. Modify your `Worker.cs` as per the following example:
+
+    ```csharp
+        using Microsoft.ApplicationInsights;
+        using Microsoft.ApplicationInsights.DataContracts;
+    
+        public class Worker : BackgroundService
+        {
+            private readonly ILogger<Worker> _logger;
+            private TelemetryClient _telemetryClient;
+            private static HttpClient _httpClient = new HttpClient();
+    
+            public Worker(ILogger<Worker> logger, TelemetryClient tc)
+            {
+                _logger = logger;
+                _telemetryClient = tc;
+            }
+    
+            protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+            {
+                while (!stoppingToken.IsCancellationRequested)
+                {
+                    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+    
+                    using (_telemetryClient.StartOperation<RequestTelemetry>("operation"))
+                    {
+                        _logger.LogWarning("A sample warning message. By default, logs with severity Warning or higher is captured by Application Insights");
+                        _logger.LogInformation("Calling bing.com");
+                        var res = await _httpClient.GetAsync("https://bing.com");
+                        _logger.LogInformation("Calling bing completed with status:" + res.StatusCode);
+                        _telemetryClient.TrackEvent("Bing call event completed");
+                    }
+    
+                    await Task.Delay(1000, stoppingToken);
+                }
+            }
+        }
+    ```
+
+1. Set up the connection string.
+
+    :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
+
+    > [!NOTE]
+    > We recommend that you specify the connection string in configuration. The following code sample shows how to specify a connection string in `appsettings.json`. Make sure `appsettings.json` is copied to the application root folder during publishing.
+
+    ```json
+        {
+            "ApplicationInsights":
+            {
+                "ConnectionString" : "InstrumentationKey=00000000-0000-0000-0000-000000000000;"
+            },
+            "Logging":
+            {
+                "LogLevel":
+                {
+                    "Default": "Warning"
+                }
+            }
+        }
+    ```
+
+Alternatively, specify the connection string in the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable.
+
+Typically, `APPLICATIONINSIGHTS_CONNECTION_STRING` specifies the connection string for applications deployed to web apps as web jobs.
+
+> [!NOTE]
+> A connection string specified in code takes precedence over the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`, which takes precedence over other options.
+
+#### ASP.NET Core background tasks with hosted services
+
+[This document](/aspnet/core/fundamentals/host/hosted-services?tabs=visual-studio) describes how to create background tasks in an ASP.NET Core application.
+
+The full example is shared at this [GitHub page](https://github.com/microsoft/ApplicationInsights-dotnet/tree/develop/examples/BackgroundTasksWithHostedService).
+
+1. Install the [Microsoft.ApplicationInsights.WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) package to the application.
+1. Add `services.AddApplicationInsightsTelemetryWorkerService();` to the `ConfigureServices()` method, as in this example:
+
+    ```csharp
+        public static async Task Main(string[] args)
+        {
+            var host = new HostBuilder()
+                .ConfigureAppConfiguration((hostContext, config) =>
+                {
+                    config.AddJsonFile("appsettings.json", optional: true);
+                })
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddLogging();
+                    services.AddHostedService<TimedHostedService>();
+    
+                    // connection string is read automatically from appsettings.json
+                    services.AddApplicationInsightsTelemetryWorkerService();
+                })
+                .UseConsoleLifetime()
+                .Build();
+    
+            using (host)
+            {
+                // Start the host
+                await host.StartAsync();
+    
+                // Wait for the host to shutdown
+                await host.WaitForShutdownAsync();
+            }
+        }
+    ```
+
+    The following code is for `TimedHostedService`, where the background task logic resides:
+
+    ```csharp
+        using Microsoft.ApplicationInsights;
+        using Microsoft.ApplicationInsights.DataContracts;
+    
+        public class TimedHostedService : IHostedService, IDisposable
+        {
+            private readonly ILogger _logger;
+            private Timer _timer;
+            private TelemetryClient _telemetryClient;
+            private static HttpClient httpClient = new HttpClient();
+    
+            public TimedHostedService(ILogger<TimedHostedService> logger, TelemetryClient tc)
+            {
+                _logger = logger;
+                this._telemetryClient = tc;
+            }
+    
+            public Task StartAsync(CancellationToken cancellationToken)
+            {
+                _logger.LogInformation("Timed Background Service is starting.");
+    
+                _timer = new Timer(DoWork, null, TimeSpan.Zero,
+                    TimeSpan.FromSeconds(1));
+    
+                return Task.CompletedTask;
+            }
+    
+            private void DoWork(object state)
+            {
+                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+    
+                using (_telemetryClient.StartOperation<RequestTelemetry>("operation"))
+                {
+                    _logger.LogWarning("A sample warning message. By default, logs with severity Warning or higher is captured by Application Insights");
+                    _logger.LogInformation("Calling bing.com");
+                    var res = httpClient.GetAsync("https://bing.com").GetAwaiter().GetResult();
+                    _logger.LogInformation("Calling bing completed with status:" + res.StatusCode);
+                    _telemetryClient.TrackEvent("Bing call event completed");
+                }
+            }
+        }
+    ```
+
+1. Set up the connection string.
+   Use the same `appsettings.json` from the preceding [.NET](/dotnet/fundamentals/) Worker Service example.
+
+#### .NET Core/.NET Framework console application
+
+As mentioned in the beginning of this article, the new package can be used to enable Application Insights telemetry from even a regular console application. This package targets [`netstandard2.0`](/dotnet/standard/net-standard), so it can be used for console apps in [.NET Core](/dotnet/fundamentals/) or higher, and [.NET Framework](/dotnet/framework/) or higher.
+
+The full example is shared at this [GitHub page](https://github.com/microsoft/ApplicationInsights-dotnet/tree/main/examples/ConsoleApp).
+
+1. Install the [Microsoft.ApplicationInsights.WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) package to the application.
+
+1. Modify *Program.cs* as shown in the following example:
+
+    ```csharp
+        using Microsoft.ApplicationInsights;
+        using Microsoft.ApplicationInsights.DataContracts;
+        using Microsoft.ApplicationInsights.WorkerService;
+        using Microsoft.Extensions.DependencyInjection;
+        using Microsoft.Extensions.Logging;
+        using System;
+        using System.Net.Http;
+        using System.Threading.Tasks;
+    
+        namespace WorkerSDKOnConsole
+        {
+            class Program
+            {
+                static async Task Main(string[] args)
+                {
+                    // Create the DI container.
+                    IServiceCollection services = new ServiceCollection();
+    
+                    // Being a regular console app, there is no appsettings.json or configuration providers enabled by default.
+                    // Hence instrumentation key/ connection string and any changes to default logging level must be specified here.
+                    services.AddLogging(loggingBuilder => loggingBuilder.AddFilter<Microsoft.Extensions.Logging.ApplicationInsights.ApplicationInsightsLoggerProvider>("Category", LogLevel.Information));
+                    services.AddApplicationInsightsTelemetryWorkerService((ApplicationInsightsServiceOptions options) => options.ConnectionString = "InstrumentationKey=<instrumentation key here>");
+    
+                    // To pass a connection string
+                    // - aiserviceoptions must be created
+                    // - set connectionstring on it
+                    // - pass it to AddApplicationInsightsTelemetryWorkerService()
+    
+                    // Build ServiceProvider.
+                    IServiceProvider serviceProvider = services.BuildServiceProvider();
+    
+                    // Obtain logger instance from DI.
+                    ILogger<Program> logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+    
+                    // Obtain TelemetryClient instance from DI, for additional manual tracking or to flush.
+                    var telemetryClient = serviceProvider.GetRequiredService<TelemetryClient>();
+    
+                    var httpClient = new HttpClient();
+    
+                    while (true) // This app runs indefinitely. Replace with actual application termination logic.
+                    {
+                        logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+    
+                        // Replace with a name which makes sense for this operation.
+                        using (telemetryClient.StartOperation<RequestTelemetry>("operation"))
+                        {
+                            logger.LogWarning("A sample warning message. By default, logs with severity Warning or higher is captured by Application Insights");
+                            logger.LogInformation("Calling bing.com");                    
+                            var res = await httpClient.GetAsync("https://bing.com");
+                            logger.LogInformation("Calling bing completed with status:" + res.StatusCode);
+                            telemetryClient.TrackEvent("Bing call event completed");
+                        }
+    
+                        await Task.Delay(1000);
+                    }
+    
+                    // Explicitly call Flush() followed by sleep is required in console apps.
+                    // This is to ensure that even if application terminates, telemetry is sent to the back-end.
+                    telemetryClient.Flush();
+                    Task.Delay(5000).Wait();
+                }
+            }
+        }
+    ```
+
+This console application also uses the same default `TelemetryConfiguration`. It can be customized in the same way as the examples in earlier sections.
+
 ---
 
 ### Verify Application Insights receives telemetry
 
+# [ASP.NET](#tab/net)
+
 Run your application and make requests to it. Telemetry should now flow to Application Insights. The Application Insights SDK automatically collects incoming web requests to your application, along with the following telemetry.
+
+# [ASP.NET Core](#tab/core)
+
+Run your application and make requests to it. Telemetry should now flow to Application Insights. The Application Insights SDK automatically collects incoming web requests to your application, along with the following telemetry.
+
+# [Worker Service](#tab/worker)
+
+Run your application. The workers from all the preceding examples make an HTTP call every second to bing.com and also emit few logs by using `ILogger`. These lines are wrapped inside the `StartOperation` call of `TelemetryClient`, which is used to create an operation. In this example, `RequestTelemetry` is named "operation."
+
+Application Insights collects these ILogger logs, with a severity of Warning or above by default, and dependencies. They're correlated to `RequestTelemetry` with a parent-child relationship. Correlation also works across process/network boundaries. For example, if the call was made to another monitored component, it's correlated to this parent as well.
+
+This custom operation of `RequestTelemetry` can be thought of as the equivalent of an incoming web request in a typical web application. It isn't necessary to use an operation, but it fits best with the [Application Insights correlation data model](distributed-trace-data.md). `RequestTelemetry` acts as the parent operation and every telemetry generated inside the worker iteration is treated as logically belonging to the same operation.
+
+This approach also ensures all the telemetry generated, both automatic and manual, has the same `operation_id`. Because sampling is based on `operation_id`, the sampling algorithm either keeps or drops all the telemetry from a single iteration.
+
+---
 
 ## Configure telemetry
 
