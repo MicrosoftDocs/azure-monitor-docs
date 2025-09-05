@@ -11,7 +11,7 @@ ms.date: 09/05/2025
 
 These custom metrics include counts for item success, drops, and retries. They also include **drop codes** and **retry codes** that explain the cause and guide next steps.
 
-Visualization is provided in the SDK stats [default workbook](#open-the-sdk-stats-workbook).
+Visualization is provided in the [SDK stats workbook](#open-the-sdk-stats-workbook).
 
 > [!IMPORTANT]
 > The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
@@ -41,16 +41,16 @@ The SDK publishes three metrics:
 
 These metrics include dimensions in `customDimensions` and standard Application Insights dimensions for slicing:
 
-| Dimension key                          | Description                                                                                                                                                                          |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `telemetry_type`                       | Telemetry type associated with the count. Values align with Application Insights tables such as `REQUEST`, `DEPENDENCY`, `EXCEPTION`, `TRACE`, `CUSTOM_EVENT`, and `AVAILABILITY`.   |
-| `drop.code`, `drop.reason`             | Code and short reason for dropped items. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_EXCEPTION`.                                  |
-| `retry.code`, `retry.reason`           | Code and short reason for scheduled retries. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_TIMEOUT`.                                |
-| `telemetry_success`                    | For `REQUEST` and `DEPENDENCY`, the telemetry item's `success` value at export time (`true` or `false`).                                                                             |
-| `language`, `version`                  | SDK or agent language and version.                                                                                                                                                   |
-| `compute.type`                         | Compute environment such as `aks`, `appsvc`, `functions`, `springcloud`, `vm`, or `unknown`.                                                                                         |
-| `sdkVersion`                           | SDK version string also available in tags.                                                                                                                                           |
-| `cloud_RoleName`, `cloud_RoleInstance` | Resource dimensions you can use to slice by service and instance.                                                                                                                    |
+| Dimension key                          | Description                                                                                                                                                                        |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `telemetry_type`                       | Telemetry type associated with the count. Values align with Application Insights tables such as `REQUEST`, `DEPENDENCY`, `EXCEPTION`, `TRACE`, `CUSTOM_EVENT`, and `AVAILABILITY`. |
+| `drop.code`, `drop.reason`             | Code and short reason for dropped items. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_EXCEPTION`.                                |
+| `retry.code`, `retry.reason`           | Code and short reason for scheduled retries. The code is either an HTTP status from the ingestion endpoint or a client code such as `CLIENT_TIMEOUT`.                              |
+| `telemetry_success`                    | For `REQUEST` and `DEPENDENCY`, the telemetry item's `success` value at export time (`true` or `false`).                                                                           |
+| `language`, `version`                  | SDK or agent language and version.                                                                                                                                                 |
+| `compute.type`                         | Compute environment such as `aks`, `appsvc`, `functions`, `springcloud`, `vm`, or `unknown`.                                                                                       |
+| `sdkVersion`                           | SDK version string also available in tags.                                                                                                                                         |
+| `cloud_RoleName`, `cloud_RoleInstance` | Resource dimensions you can use to slice by service and instance.                                                                                                                  |
 
 Each metric row represents an **aggregated count** for the export interval. Total **attempted** in a time slice equals `success + dropped` for that slice.
 
@@ -101,7 +101,7 @@ The workbook focuses on a concise set of charts that keep outcomes in context:
 
 ## Troubleshooting unexpected telemetry behaviors
 
-This single section brings together diagnosis and troubleshooting guidance. Use the codes to determine what happened and what to do next. When useful, the workbook callouts indicate where to look first.
+Use the codes to determine what happened and what to do next. [Workbook](#open-the-sdk-stats-workbook) callouts indicate where to look first.
 
 ### Diagnose drop codes
 
@@ -112,43 +112,43 @@ The exporter sets `drop.code` for items it couldn't deliver. Use the following g
 
 #### Client drop codes
 
-| drop.code                     | What it means in practice                                                                                   | What you should do next                                                                                                                  |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_EXCEPTION`            | Items were dropped because the exporter hit an exception or received no response.                           | Check app and exporter logs. Verify Domain Name System (DNS), Transport Layer Security (TLS), proxy, firewall, and outbound internet rules. Validate endpoint reachability from the host. |
-| `CLIENT_READONLY`             | Local persistence couldn't write because the file system is read only.                                     | Point persistence to a writable path. Fix container or virtual machine (VM) permissions. Consider disabling disk persistence if not allowed in the environment. |
-| `CLIENT_PERSISTENCE_CAPACITY` | Local persistence was full and new items couldn't be buffered.                                             | Increase disk quota or storage size. Reduce batch size or ingestion rate. Consider [sampling](opentelemetry-sampling.md).                 |
-| `CLIENT_STORAGE_DISABLED`     | Local persistence is disabled. Items that needed buffering couldn't be saved and were dropped.             | Enable local storage or scale out to reduce pressure.                                                                                    |
-| `*NON_RETRYABLE_STATUS_CODE`  | The ingestion endpoint returned a nonretryable status such as `400`, `401`, `403`, or `404`.               | Use the HTTP code tables to correct configuration, credentials, or telemetry schema, then redeploy.                               |
+| drop.code                     | What it means in practice                                                                      | What you should do next                                                                                                                                                                   |
+| ----------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLIENT_EXCEPTION`            | Items were dropped because the exporter hit an exception or received no response.              | Check app and exporter logs. Verify Domain Name System (DNS), Transport Layer Security (TLS), proxy, firewall, and outbound internet rules. Validate endpoint reachability from the host. |
+| `CLIENT_READONLY`             | Local persistence couldn't write because the file system is read only.                         | Point persistence to a writable path. Fix container or virtual machine (VM) permissions. Consider disabling disk persistence if not allowed in the environment.                           |
+| `CLIENT_PERSISTENCE_CAPACITY` | Local persistence was full and new items couldn't be buffered.                                 | Increase disk quota or storage size. Reduce batch size or ingestion rate. Consider [sampling](opentelemetry-sampling.md).                                                                 |
+| `CLIENT_STORAGE_DISABLED`     | Local persistence is disabled. Items that needed buffering couldn't be saved and were dropped. | Enable local storage or scale out to reduce pressure.                                                                                                                                     |
+| `*NON_RETRYABLE_STATUS_CODE`  | The ingestion endpoint returned a nonretryable status such as `400`, `401`, `403`, or `404`.   | Use the HTTP code tables to correct configuration, credentials, or telemetry schema, then redeploy.                                                                                       |
 
 #### Ingestion endpoint HTTP status codes
 
-| HTTP status | Typical reason                                                                                     | What you should do next                                                                                                      |
-| ----------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `200 OK`    | All items accepted.                                                                                | No action needed.                                                                                                           |
-| `206 Partial Content` | Some items accepted and others rejected.                                                          | Inspect exporter logs for per-item errors. Validate schema and sizes. Reduce batch size if payloads are near size limits.   |
-| `307` or `308 Redirect` | Redirect to a stamp specific endpoint.                                                           | Allow redirects in your environment. Update the connection string to the correct region if redirects are persistent.        |
-| `400 Bad Request` | Invalid telemetry or unsupported schema. In some cases, Microsoft Entra misconfiguration can surface as 400. | Validate payload sizes and schema. Fix connection string or token audience if misrouted.                                     |
-| `401 Unauthorized` | Authentication failed or token lacks required permissions.                                             | Fix connection string or credentials. Ensure the identity has correct roles and token scope for Application Insights.       |
-| `402 Payment Required` | Daily cap exceeded.                                                                               | Adjust the [daily cap](opentelemetry-sampling.md#set-a-daily-cap), reduce ingestion, or increase sampling. Wait for reset.  |
-| `403 Forbidden` | Permission or mapping is incorrect.                                                                       | Correct role assignments or endpoint mapping. Confirm resource and connection string belong to the same environment.        |
-| `404 Not Found` | Connection string points to the wrong region or resource.                                                 | Update the connection string to the correct resource and region.                                                             |
-| `405 Method Not Allowed` | The request method isn't permitted.                                                              | Upgrade the SDK and confirm only supported methods are used.                                                                 |
-| `408 Request Timeout` | Network timeout.                                                                                    | Check network latency and firewall rules. Increase client timeout if appropriate.                                            |
-| `413 Payload Too Large` | Batch payload exceeded size limits.                                                                | Lower the max batch size. Consider sending more frequent, smaller batches.                                                   |
-| `429 Too Many Requests` | Throttling with `Retry-After`.                                                                    | Reduce send rate. Respect `Retry-After`. Increase sampling or scale out.                                                     |
-| `439 Daily Quota Exceeded` *(deprecated)* | Legacy quota signal.                                                                        | Same as 402. Prefer to monitor 402 going forward.                                                                            |
-| `5xx Server Error` | Transient service issue.                                                                               | Expect recovery. If it persists beyond a few minutes, check Azure status and open a support case with timestamps and regions. |
-| Other        | Not recognized.                                                                                               | Capture correlation identifiers (IDs) from logs and open a support case.                                                                   |
+| HTTP status                               | Typical reason                                                                                               | What you should do next                                                                                                       |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `200 OK`                                  | All items accepted.                                                                                          | No action needed.                                                                                                             |
+| `206 Partial Content`                     | Some items accepted and others rejected.                                                                     | Inspect exporter logs for per-item errors. Validate schema and sizes. Reduce batch size if payloads are near size limits.     |
+| `307` or `308 Redirect`                   | Redirect to a stamp specific endpoint.                                                                       | Allow redirects in your environment. Update the connection string to the correct region if redirects are persistent.          |
+| `400 Bad Request`                         | Invalid telemetry or unsupported schema. In some cases, Microsoft Entra misconfiguration can surface as 400. | Validate payload sizes and schema. Fix connection string or token audience if misrouted.                                      |
+| `401 Unauthorized`                        | Authentication failed or token lacks required permissions.                                                   | Fix connection string or credentials. Ensure the identity has correct roles and token scope for Application Insights.         |
+| `402 Payment Required`                    | Daily cap exceeded.                                                                                          | Adjust the [daily cap](opentelemetry-sampling.md#set-a-daily-cap), reduce ingestion, or increase sampling. Wait for reset.    |
+| `403 Forbidden`                           | Permission or mapping is incorrect.                                                                          | Correct role assignments or endpoint mapping. Confirm resource and connection string belong to the same environment.          |
+| `404 Not Found`                           | Connection string points to the wrong region or resource.                                                    | Update the connection string to the correct resource and region.                                                              |
+| `405 Method Not Allowed`                  | The request method isn't permitted.                                                                          | Upgrade the SDK and confirm only supported methods are used.                                                                  |
+| `408 Request Timeout`                     | Network timeout.                                                                                             | Check network latency and firewall rules. Increase client timeout if appropriate.                                             |
+| `413 Payload Too Large`                   | Batch payload exceeded size limits.                                                                          | Lower the max batch size. Consider sending more frequent, smaller batches.                                                    |
+| `429 Too Many Requests`                   | Throttling with `Retry-After`.                                                                               | Reduce send rate. Respect `Retry-After`. Increase sampling or scale out.                                                      |
+| `439 Daily Quota Exceeded` *(deprecated)* | Legacy quota signal.                                                                                         | Same as 402. Prefer to monitor 402 going forward.                                                                             |
+| `5xx Server Error`                        | Transient service issue.                                                                                     | Expect recovery. If it persists beyond a few minutes, check Azure status and open a support case with timestamps and regions. |
+| Other                                     | Not recognized.                                                                                              | Capture correlation identifiers (IDs) from logs and open a support case.                                                      |
 
 ### Diagnose retry codes
 
 The exporter sets `retry.code` for items it schedules to send later. Retries indicate a delivery attempt that didn't succeed yet, not a final drop.
 
-| retry.code               | What it means in practice                                                                 | What you should do next                                                                                         |
-| ------------------------ | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `CLIENT_EXCEPTION`       | A runtime exception such as network failure prevented delivery.                           | Check DNS, proxies, TLS, and firewall. Review exporter logs for exception details.                              |
-| `CLIENT_TIMEOUT`         | The exporter timed out waiting for a response.                                            | Increase timeout if appropriate. Investigate network latency and server responsiveness.                         |
-| `*RETRYABLE_STATUS_CODE` | The ingestion endpoint returned a retryable HTTP status (for example `408`, `429`, `5xx`). | Expect eventual recovery. Reduce send rate or sampling when throttled. Watch for `Retry-After` and honor it.    |
+| retry.code               | What it means in practice                                                                  | What you should do next                                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `CLIENT_EXCEPTION`       | A runtime exception such as network failure prevented delivery.                            | Check DNS, proxies, TLS, and firewall. Review exporter logs for exception details.                           |
+| `CLIENT_TIMEOUT`         | The exporter timed out waiting for a response.                                             | Increase timeout if appropriate. Investigate network latency and server responsiveness.                      |
+| `*RETRYABLE_STATUS_CODE` | The ingestion endpoint returned a retryable HTTP status (for example `408`, `429`, `5xx`). | Expect eventual recovery. Reduce send rate or sampling when throttled. Watch for `Retry-After` and honor it. |
 
 #### How to interpret retries
 
@@ -165,13 +165,13 @@ The `preview.item.retry.count` counter increases whenever the exporter schedules
 
 Split the retry metric by `retry.code` to identify why attempts are being retried.
 
-| `retry.code`            | What it usually means                                              | What to check or do next                                                                 |
-|-------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| `CLIENT_TIMEOUT`        | The exporter timed out waiting for a response.                    | Increase client timeout if appropriate. Check latency, proxies, and firewall rules.     |
-| `CLIENT_EXCEPTION`      | Network or runtime error prevented delivery.                      | Review exporter logs. Verify DNS, TLS, proxy, and outbound network configuration.        |
-| `408`                   | Request timed out at the ingestion endpoint.                      | Investigate network path and latency. Consider smaller batches or higher send frequency. |
-| `429`                   | Throttled by ingestion, often with `Retry-After`.                 | Reduce send rate or increase sampling. Honor `Retry-After` before retrying.              |
-| `5xx`                   | Transient service issue at ingestion.                             | Expect recovery. Continue to retry with backoff. Check Azure status if it persists.      |
+| `retry.code`       | What it usually means                             | What to check or do next                                                                 |
+| ------------------ | ------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `CLIENT_TIMEOUT`   | The exporter timed out waiting for a response.    | Increase client timeout if appropriate. Check latency, proxies, and firewall rules.      |
+| `CLIENT_EXCEPTION` | Network or runtime error prevented delivery.      | Review exporter logs. Verify DNS, TLS, proxy, and outbound network configuration.        |
+| `408`              | Request timed out at the ingestion endpoint.      | Investigate network path and latency. Consider smaller batches or higher send frequency. |
+| `429`              | Throttled by ingestion, often with `Retry-After`. | Reduce send rate or increase sampling. Honor `Retry-After` before retrying.              |
+| `5xx`              | Transient service issue at ingestion.             | Expect recovery. Continue to retry with backoff. Check Azure status if it persists.      |
 
 ##### If success doesn't recover
 
@@ -360,10 +360,7 @@ Chart these custom metrics in Metrics explorer.
 4. Select `preview.item.success.count`, `preview.item.dropped.count`, or `preview.item.retry.count`.
 5. Split by `cloud_RoleName`, `cloud_RoleInstance`, `telemetry_type`, or `sdkVersion` as needed.
 
-## Frequently asked questions
-
-<details>
-<summary><b>How do SDK stats counts differ from logs?</b></summary>
+## How do SDK stats counts differ from logs?
 
 Don't expect these counters to equal item counts in tables such as `requests` or `dependencies`. Differences occur for several reasons:
 
@@ -373,5 +370,3 @@ Don't expect these counters to equal item counts in tables such as `requests` or
 - **Local buffering**. When the exporter retries, it can send buffered items later. The time that stats assign dropped, retried, or successful counts doesn't always match the event time of the original telemetry.
 - **Over quota or daily cap**. When the resource exceeds its daily cap, the ingestion endpoint returns an error and the exporter records drops. The corresponding application telemetry doesn't appear in logs during the cap window.
 - **Scope**. Stats cover exporter behavior. Logs cover end to end telemetry, including fields that don't affect exporter success.
-
-</details>
