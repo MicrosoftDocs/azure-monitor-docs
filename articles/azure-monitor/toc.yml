@@ -671,7 +671,7 @@ items:
           href: scom-manage-instance/migrate-to-operations-manager.md
         - name: Migrate to Azure Monitor
           href: scom-manage-instance/migrate-to-azure-monitor.md
-        - name: Convert management packs into Data Collection Rules
+        - name: Convert management packs into data collection rules
           href: scom-manage-instance/convert-management-packs-into-data-collection-rules.md
         - name: Migration FAQs
           href: scom-manage-instance/migration-faq-scom-manage-instance.yml

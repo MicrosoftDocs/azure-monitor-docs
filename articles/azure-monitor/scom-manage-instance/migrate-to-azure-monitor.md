@@ -15,9 +15,9 @@ Organizations embracing cloud-native architectures, leveraging Azure for infrast
 
 This article explains how to migrate from Azure Monitor SCOM Managed Instance to Azure Monitor Data Collection Rules.
 
-## Data Collection Rules (DCRs)
+## Data collection rules (DCRs)
 
-[Data Collection Rules](/azure/azure-monitor/data-collection/data-collection-rule-overview) are at the heart of Azure Monitor's modern data ingestion framework. DCRs define the following:
+[Data collection rules](/azure/azure-monitor/data-collection/data-collection-rule-overview) are at the heart of Azure Monitor's modern data ingestion framework. DCRs define the following:
 
 - Type of telemetry to be collected from different resources
 - How to transform or filter the telemetry data and send it to appropriate locations (For example, Log Analytics workspace, storage, and event hubs).
