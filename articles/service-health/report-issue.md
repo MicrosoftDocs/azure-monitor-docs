@@ -7,7 +7,7 @@ ms.date: 09/04/2025
 
 # How to report an Issue in Azure Service Health (Preview)
 
-If there are no active issues shown in the Service Health portal, you can now report a service-level or resource-level impact. This tool allows you to notify Microsoft about an issue even when it isn't identified as part of a broader outage.<br>
+Even if there are no active issues shown in the Service Health portal, you can now report a service-level or resource-level impact. This tool allows you to notify Microsoft about an issue even when it isn't identified as part of a broader outage.<br>
 When you submit an issue, our team reviews the submitted report, and if an outage is identified you see it on the Azure Service Health portal. For more information, see [Azure Impact Reporting](/azure/azure-impact-reporting).
 
 ## Access permission
@@ -51,7 +51,7 @@ To report an issue, follow these steps.
 When your issue is reported, you should see this message. 
 :::image type="content" source="media/report-issue/report-an-issue-success.png" alt-text="Screenshot of the message your report on a resource issue is a success." lightbox="media/report-issue/report-an-issue-success.png":::
 
-If an outage is found, you see it on the portal.
+If an outage is found, you will see it on the portal.
 
 If you get this error, it means you don’t have permission.
 
