@@ -196,11 +196,11 @@ The default interval is **15 minutes** (`interval_seconds = 900`). Configure a d
 
 You can use SDK stats custom metrics with other Azure Monitor features.
 
-> - [Azure Data Explorer](/azure/data-explorer/data-explorer-overview)
-> - [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table
-> - [Alerts](../alerts/alerts-overview.md)
-> - [Power BI](/power-bi/fundamentals/power-bi-overview)
-> - [Metrics explorer](../metrics/analyze-metrics.md)
+- [Azure Data Explorer](/azure/data-explorer/data-explorer-overview)
+- [Log Analytics](../logs/log-analytics-overview.md) through the `customMetrics` table
+- [Alerts](../alerts/alerts-overview.md)
+- [Power BI](/power-bi/fundamentals/power-bi-overview)
+- [Metrics explorer](../metrics/analyze-metrics.md)
 
 ### Azure Data Explorer
 
