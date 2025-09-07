@@ -21,9 +21,9 @@ To create or edit an alert rule, you must have the following permissions:
 ## Customize email subject in the Azure portal
 
 1. [Create or edit a Log search alert rule](alerts-create-log-alert-rule.md).
-2. On the **Actions** tab, after creating or selecting an existing Action group, use the **Email subject** section to add your own custom email subject. 
+1. On the **Actions** tab, after creating or selecting an existing Action group, use the **Email subject** section to add your own custom email subject.   
 
-   [!INCLUDE [alerts-wizard-actions](includes/alerts-wizard-actions.md)] 
+:::image type="content" source="media/common/custom-email-subject-ux.png" alt-text="Screenshot of UI for customizing email in Azure portal.":::
 
 ## Using dynamic values
 
