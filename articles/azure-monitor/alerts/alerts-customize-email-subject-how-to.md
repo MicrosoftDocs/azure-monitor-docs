@@ -21,9 +21,9 @@ To create or edit an alert rule, you must have the following permissions:
 ## Customize email subject in the Azure portal
 
 1. [Create or edit a Log search alert rule](alerts-create-log-alert-rule.md).
-2. On the **Actions** tab, after creating or selecting an existing Action group, use the **Email subject** section to add your own custom email subject. 
+1. On the **Actions** tab, after creating or selecting an existing Action group, use the **Email subject** section to add your own custom email subject.   
 
-   [!INCLUDE [alerts-wizard-actions](includes/alerts-wizard-actions.md)] 
+:::image type="content" source="media/common/custom-email-subject-ux.png" alt-text="Screenshot of UI for customizing email in Azure portal.":::
 
 ## Using dynamic values
 
@@ -48,7 +48,7 @@ This example creates an email subject containing the count of errors on the affe
 
 ## Use an ARM template
 
-To create an alert rule with a customized email subject, use a template from the [Resource Manager template samples for log search alerts](resource-manager-alerts-log.md). Be sure to use the latest API version. Use the template from the [Resource Manager template sample for simple log search alert rules](resource-manager-alerts-simple-log-search-alerts.md) for Simple log search alert rules. Add an `actionProperties` object and include the `Email.Subject` property. 
+To create an alert rule with a customized email subject, use a template from the [Resource Manager template samples for log search alerts](resource-manager-alerts-log.md). Be sure to use API version 2023-12-01 or newer. Use the template from the [Resource Manager template sample for simple log search alert rules](resource-manager-alerts-simple-log-search-alerts.md) for Simple log search alert rules. Add an `actionProperties` object and include the `Email.Subject` property. 
 
 ### Sample template
 

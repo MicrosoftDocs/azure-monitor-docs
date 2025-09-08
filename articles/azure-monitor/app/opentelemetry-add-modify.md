@@ -472,7 +472,7 @@ The following table represents the currently supported custom telemetry types:
 
 ### Add custom metrics
 
-In this context, the custom metrics term refers to manually instrumenting your code to collect extra metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
+In this context, the custom metrics term refers to manually instrumenting your code to collect extra metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect. To learn more about using metrics, see [Metrics in Application Insights](metrics-overview.md).
 
 The OpenTelemetry API offers six metric "instruments" to cover various metric scenarios and you need to pick the correct "Aggregation Type" when visualizing metrics in Metrics Explorer. This requirement is true when using the OpenTelemetry Metric API to send metrics and when using an instrumentation library.
 
