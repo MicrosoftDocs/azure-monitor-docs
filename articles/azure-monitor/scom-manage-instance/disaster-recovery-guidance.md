@@ -4,7 +4,7 @@ title: Disaster Recovery guidance – Azure Monitor SCOM Managed Instance
 description: This article provides information to review in advance of application deployment.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 01/09/2025
+ms.date: 09/08/2025
 ms.custom: references_regions, engagement-fy24
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -12,6 +12,8 @@ ms.topic: how-to
 ---
 
 # Disaster Recovery guidance – Azure Monitor SCOM Managed Instance
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 Azure Monitor SCOM Managed Instance provides an industry leading high availability monitoring service. It also provides business continuity capabilities that you can perform for quick disaster recovery in the event of a regional outage. This article provides information to review in advance of application deployment.
 

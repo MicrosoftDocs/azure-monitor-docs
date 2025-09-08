@@ -4,7 +4,7 @@ title: Use Managed identities for Azure with Azure Monitor SCOM Managed Instance
 description: This article describes how to use Managed identities for Azure with Azure Monitor SCOM Managed Instance.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 05/24/2024
+ms.date: 09/08/2025
 ms.custom: UpdateFrequency.5
 ms.update-cycle: 180-days
 ms.service: azure-monitor
@@ -13,6 +13,8 @@ ms.topic: article
 ---
 
 # Use Managed identities for Azure with Azure Monitor SCOM Managed Instance
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 A common challenge when building cloud applications is how to securely manage the credentials in your code for authenticating various services without saving them locally on a developer workstation or in source control. 
 
