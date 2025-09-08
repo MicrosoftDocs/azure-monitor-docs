@@ -4,7 +4,8 @@ title: Azure Monitor SCOM Managed Instance activity log
 description: This article provides information on how to view the activity log.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 05/22/2024
+ms.date: 09/08/2025
+ms.update-cycle: 1825
 ms.custom: engagement-fy24
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance

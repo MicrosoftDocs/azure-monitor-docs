@@ -4,7 +4,8 @@ title: Scale Azure Monitor SCOM Managed Instance
 description: This article provides information on how to scale your Azure Monitor SCOM Managed Instance.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 05/22/2024
+ms.date: 09/08/2025
+ms.update-cycle: 1825
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: how-to
