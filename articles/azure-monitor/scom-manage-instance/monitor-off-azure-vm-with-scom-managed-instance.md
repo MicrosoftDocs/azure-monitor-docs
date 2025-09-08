@@ -4,7 +4,8 @@ title: Monitor Off-Azure Virtual machines with Azure Monitor SCOM Managed Instan
 description: This article describes how it monitor Azure and Off-Azure virtual machines with SCOM Managed Instance.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 07/17/2024
+ms.date: 09/08/2025
+ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: how-to

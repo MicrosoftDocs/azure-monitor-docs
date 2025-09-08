@@ -4,7 +4,8 @@ title: Customizations on Azure Monitor SCOM Managed Instance management servers
 description: This article describes about the Customizations on Azure Monitor SCOM Managed Instance management servers.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 05/22/2024
+ms.date: 09/08/2025
+ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: concept-article

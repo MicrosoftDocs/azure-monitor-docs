@@ -4,7 +4,8 @@ description: You can use the System Center Operations Manager Health Check solut
 ms.topic: how-to
 author: bwren
 ms.author: bwren
-ms.date: 07/26/2024
+ms.date: 09/08/2025
+ms.update-cycle: 1825-days
 ms.reviewer: shijain
 ---
 
