@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 09/01/2025
+ms.date: 09/08/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1505,7 +1505,7 @@ ms.reviewer: lualderm
 - [Find all entries where value is active](./queries/MNFDeviceUpdates.md#find-all-entries-where-value-is-active)
 - [Find all entries where value is up](./queries/MNFDeviceUpdates.md#find-all-entries-where-value-is-up)
 - [Find all events of the type VxlanVlanToVniVlan](./queries/MNFDeviceUpdates.md#find-all-events-of-the-type-vxlanvlantovnivlan)
-- [Find all entries where afisafiname is not of the type L2VPN_EVPN](./queries/MNFDeviceUpdates.md#find-all-entries-where-afisafiname-is-not-of-the-type-l2vpn_evpn)
+- [Find all entries where afisafiname is not of the type L2VPN_EVPN](./queries/MNFDeviceUpdates.md#find-all-entries-where-afisafiname-is-not-of-the-type-l2vpn-evpn)
 - [Find all entries where network instance name is of the type workload-mgmt](./queries/MNFDeviceUpdates.md#find-all-entries-where-network-instance-name-is-of-the-type-workload-mgmt)
 
 ## [MNFSystemSessionHistoryUpdates](./queries/MNFSystemSessionHistoryUpdates.md)
@@ -2081,4 +2081,3 @@ ms.reviewer: lualderm
 - [Analyze logs from Azure storage with Log Analytics](/azure/azure-monitor/essentials/resource-logs#send-to-log-analytics-workspace)
 - [Learn more about resource logs](/azure/azure-monitor/essentials/platform-logs-overview)
 - [Change resource log diagnostic settings using the Azure Monitor REST API](/rest/api/monitor/diagnosticsettings)
-
