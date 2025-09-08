@@ -2,7 +2,7 @@
 title: Impacted Resources from Azure Retirements
 description: This article details where to find information from Azure Service Health impacted resources from retirements.
 ms.topic: article
-ms.date: 9/04/2025
+ms.date: 9/08/2025
 
 ---
 
@@ -49,7 +49,7 @@ You can filter the results through:
 
 :::image type="content"source="./media/impacted-retirements/impacted-retirements-filter.png"alt-text="Screenshot of filters."Lightbox="./media/impacted-retirements/impacted-retirements-filter.png":::
 
-### Export to CSV file
+### Export to a CSV file
 
 Select the **Export to CSV** to export the list of impacted resources to an Excel file.
 
@@ -66,23 +66,23 @@ The CSV file contains the following fields:
 |**Subscription**    | Any `SubscriptionId`'s that are in the scope of the published event.          |
 |**Region**          | The location where the affected resources are located.        |
 
-### Access impacted resources programmatically via an API
+### Access impacted resources programmatically
 
-You can get information about outage-impacted resources programmatically following these steps.
+Follow these steps to get information about retirement-impacted resources.
 
-# [API Query](#tab/API)
+**Step 1. Use API Query**
 
-1. Get the `recommendationId` for the event using the Recommendation Metadata API.
+Get the Id for the event using the Recommendation Metadata API.
 For more information, see [Recommendation Metadata - List - REST API](/rest/api/advisor/recommendation-metadata/list).
 
-### URI Parameters
+**URI Parameters***
 
 |Name        |In          |Required |Type  | Description |
 |------------|------------|---------|---------|-----|
 |**api-version** | query  | True    | string  |The version of the API to be used with the client request.<br>Example: 2025-05-01|
 |**$filter**     | query  |         | string  | Example:<br>`- $filter= trackingIds/any`(t: t eq ' TEST-123')  |
 
-#### Sample response
+**Sample response**
 
 ```json
 {
@@ -247,9 +247,9 @@ For more information, see [Recommendation Metadata - List - REST API](/rest/api/
     ]
 }
 ```
-# [ARG Query](#tab/ARG)
+**Step 2. Use ARG Query**
 
-2. Use the ID to fetch impacted resources from Axure Resource Graph (ARG).
+Use the ID to fetch impacted resources from Azure Resource Graph (ARG).
 
 ```dotnetcli
 advisorresources
@@ -263,5 +263,16 @@ advisorresources
 ) on resourceId
 | project region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type 
 ```
+### Frequently Asked Questions
+
+|Question|Answer|
+|--------|------|
+|Are the Impacted resources only available for 'Active' service health events?|Yes, the Azure portal shows Impacted resources only for Active events in Service Issues.|
 
 
+## For more information
+
+* [Introduction to the Azure Service Health dashboard](service-health-overview.md)
+* [Introduction to Azure Resource Health](resource-health-overview.md)
+* [Resource Health frequently asked questions](resource-health-faq.yml)
+* [Service Health frequently asked questions](service-health-faq.yml)
