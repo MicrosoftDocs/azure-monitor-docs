@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file with retirement banner of Azure Monitor SCOM Managed Instance
+title: Include file
+description: Include file with retirement banner of Azure Monitor SCOM Managed Instance
 author: jyothisuri
 ms.author: jsuri
 ms.date:  09/08/2025
