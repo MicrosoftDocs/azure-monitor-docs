@@ -75,6 +75,10 @@ Follow these steps to get information about retirement-impacted resources.
 Get the Id for the event using the Recommendation Metadata API.
 For more information, see [Recommendation Metadata - List - REST API](/rest/api/advisor/recommendation-metadata/list).
 
+``
+GET https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}
+``
+
 **URI Parameters***
 
 |Name        |In          |Required |Type  | Description |
@@ -105,7 +109,7 @@ For more information, see [Recommendation Metadata - List - REST API](/rest/api/
                         "recommendationImpact": "Medium",
                         "supportedResourceType": "microsoft.network/loadbalancers",
                         "recommendationSubCategory": "ServiceUpgradeAndRetirement",
-                        "id": "7e570000-n78d-yh67-2xzc4-v16005e1k", //invalid random guid
+                        "id": "7e570000-n78d-yh67-2xzc4-v16005e1k",
                         "displayName": "Azure Basic Load Balancer is being retired",
                         "properties": [
                             {
@@ -267,7 +271,7 @@ advisorresources
 
 |Question|Answer|
 |--------|------|
-|Are the Impacted resources only available for 'Active' service health events?|Yes, the Azure portal shows Impacted resources only for Active events in Service Issues.|
+|Are the Impacted resources only available for 'Active' retirement events?|Yes, the Azure portal supports impacted resources only for Active Retirements and support for other advisories will be added later on.|
 
 
 ## For more information
