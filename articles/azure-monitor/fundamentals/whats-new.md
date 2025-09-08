@@ -11,6 +11,22 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
 
+### August 2025
+
+https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/visualize-use-grafana-dashboards
+
+|Subservice | Article | Description |
+|---|---|---|
+|Alerts|[Create tenant level service health alerts (preview)](../alerts/alerts-create-tenant-level-service-heath-alerts.md)|We announced the public preview of tenant-level service health alerts, enabling customers to create alerts at the tenant scope, along with updated guidance on issues and investigations by region.|
+|Application-Insights|[Release annotations](../app/failures-performance-transactions.md?tabs=failures-view%2Cresults-list#release-annotations)|Release annotations are now documented alongside the related experiences for better discoverability.|
+|Application-Insights|[Work item integration](../app/work-item-integration.md)|Information about work item integration has been deduplicated and made available in one place.|
+|Application-Insights|[`InstrumentationKeyMap`](../app/application-insights-asp-net-agent.md)|We clarified and added to `InstrumentationKeyMap` information across [Deploy Application Insights Agent](../app/application-insights-asp-net-agent.md) and [Monitor performance on VMs](../app/azure-vm-vmss-apps.md).|
+|Fundamentals|[Configure Azure Monitor with Network Security Perimeter](network-security-perimeter.md)|We published this article to support [General Availability (GA) of Network Security Perimeter](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/general-availability-of-azure-monitor-network-security-perimeter-features/4440307).|
+|Fundamentals|[Azure Monitor endpoint access and firewall configuration](azure-monitor-network-access.md)|We improved the technical accuracy and included new information about adding IPv6 support for App Insights ingestion endpoints.|
+|Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|We updated the search job record limit.|
+|Logs|[Optimize log queries in Azure Monitor](../logs/query-optimization.md#query-details-pane)|Information about the details pane has been updated.|
+|Visualizations|[Use Azure Monitor dashboards with Grafana (preview)](../visualize/visualize-use-grafana-dashboards.md)|We updated documentation to make the free, Azure-integrated Grafana with Dashboards the primary recommendation for customers who don’t require deep Grafana integrations.|
+
 ### July 2025
 
 |Subservice | Article | Description |
