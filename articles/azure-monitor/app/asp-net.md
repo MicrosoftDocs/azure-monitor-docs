@@ -50,14 +50,14 @@ This article explains how to enable and configure [Application Insights](app-ins
 > [!div class="checklist"]
 > * An Azure subscription. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/free/).
 > * An [Application Insights workspace-based resource](create-workspace-resource.md).
-> * A functioning application. If you don't have one already, see [Create a basic application](#create-a-basic-application).
+> * A functioning application. If you don't have one already, see [Create a basic web application](#create-a-basic-web-application).
 > * The latest version of [Visual Studio](https://www.visualstudio.com/downloads/) with the following workloads:
 >     * ASP.NET and web development
 >     * Azure development
 
-### Create a basic application
+### Create a basic web application
 
-If you don't have a functioning web or console application yet, you can use the following guidance to create one.
+If you don't have a functioning web application yet, you can use the following guidance to create one.
 
 # [ASP.NET](#tab/net)
 
@@ -77,10 +77,6 @@ If you don't have a functioning web or console application yet, you can use the 
 1. Choose **ASP.NET Core Web App (Razor Pages)** with **C#** and select **Next**.
 1. Enter a **Project name**, then select **Create**.
 1. Choose a **Framework** (LTS or STS), then select **Create**.
-
-# [Worker Service](#tab/worker)
-
-...
 
 ---
 
@@ -128,17 +124,13 @@ From within your ASP.NET web app project in Visual Studio:
 
     :::image type="content" source="media/asp-net/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
 
-# [Worker Service](#tab/worker)
-
-...
-
 ---
 
 ### Add Application Insights manually (no Visual Studio)
 
 This section guides you through manually adding Application Insights to a template-based web app.
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 1. Add the following NuGet packages and their dependencies to your project: 
 
@@ -462,7 +454,7 @@ This section guides you through manually adding Application Insights to a templa
 
 At this point, you successfully configured server-side application monitoring. If you run your web app, you see telemetry begin to appear in Application Insights.
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 1. Install the [Application Insights SDK NuGet package for ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore).
 
@@ -537,7 +529,7 @@ In `Microsoft.ApplicationInsights.AspNetCore` version [2.15.0](https://www.nuget
 
 If `IConfiguration` loaded configuration from multiple providers, then `services.AddApplicationInsightsTelemetry` prioritizes configuration from *appsettings.json*, irrespective of the order in which providers are added. Use the `services.AddApplicationInsightsTelemetry(IConfiguration)` method to read configuration from `IConfiguration` without this preferential treatment for *appsettings.json*.
 
-# [Worker Service](#tab/worker)
+# [Worker Service](#tab/worker-1)
 
 #### In this section
 
@@ -824,15 +816,15 @@ This console application also uses the same default `TelemetryConfiguration`. It
 
 ### Verify Application Insights receives telemetry
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 Run your application and make requests to it. Telemetry should now flow to Application Insights. The Application Insights SDK automatically collects incoming web requests to your application, along with the following telemetry.
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 Run your application and make requests to it. Telemetry should now flow to Application Insights. The Application Insights SDK automatically collects incoming web requests to your application, along with the following telemetry.
 
-# [Worker Service](#tab/worker)
+# [Worker Service](#tab/worker-1)
 
 Run your application. The workers from all the preceding examples make an HTTP call every second to bing.com and also emit few logs by using `ILogger`. These lines are wrapped inside the `StartOperation` call of `TelemetryClient`, which is used to create an operation. In this example, `RequestTelemetry` is named "operation."
 
@@ -864,7 +856,7 @@ This approach also ensures all the telemetry generated, both automatic and manua
 
 #### Enable live metrics by using code for any .NET application
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 To manually configure live metrics:
 
@@ -928,7 +920,7 @@ namespace LiveMetricsDemo
 }
 ```
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 To manually configure live metrics:
 
@@ -989,7 +981,7 @@ The preceding sample is for a console app, but the same code can be used in any 
 > [!NOTE]
 > The default configuration collects `ILogger` `Warning` logs and more severe logs. For more information, see [How do I customize ILogger logs collection?](application-insights-faq.yml#how-do-i-customize-ilogger-logs-collection).
 
-# [Worker Service](#tab/worker)
+# [Worker Service](#tab/worker-1)
 
 Logs emitted via `ILogger` with the severity Warning or greater are automatically captured. To change this behavior, explicitly override the logging configuration for the provider `ApplicationInsights`, as shown in the following code. The following configuration allows Application Insights to capture all `Information` logs and more severe logs.
 
@@ -3610,15 +3602,15 @@ To learn how to configure snapshot collection for ASP.NET and ASP.NET Core appli
 
 ### Sampling
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 To learn how to configure sampling for ASP.NET applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 To learn how to configure sampling for ASP.NET Core applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
-# [Worker Service](#tab/worker)
+# [Worker Service](#tab/worker-1)
 
 The Application Insights SDK for Worker Service supports both [fixed-rate sampling](sampling.md#fixed-rate-sampling) and [adaptive sampling](sampling.md#adaptive-sampling). Adaptive sampling is enabled by default. Sampling can be disabled by using the `EnableAdaptiveSampling` option in [ApplicationInsightsServiceOptions](#use-applicationinsightsserviceoptions).
 
