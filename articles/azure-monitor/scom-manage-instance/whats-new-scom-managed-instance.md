@@ -5,7 +5,7 @@ description: This article provides details of what's new in each version of Azur
 author: jyothisuri
 ms.author: jsuri
 ms.date: 09/08/2025
-ms.update-cycle: 1825
+ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: whats-new
