@@ -13,8 +13,6 @@ This article lists significant changes to Azure Monitor documentation.
 
 ### August 2025
 
-https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/visualize-use-grafana-dashboards
-
 |Subservice | Article | Description |
 |---|---|---|
 |Alerts|[Create tenant level service health alerts (preview)](../alerts/alerts-create-tenant-level-service-heath-alerts.md)|We announced the public preview of tenant-level service health alerts, enabling customers to create alerts at the tenant scope, along with updated guidance on issues and investigations by region.|
