@@ -4,13 +4,15 @@ title: About Azure Monitor SCOM Managed Instance
 description: This article describes about Azure Monitor SCOM Managed Instance.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 02/14/2025
+ms.date: 09/08/2025
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: overview
 ---
 
 # About Azure Monitor SCOM Managed Instance
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 This article provides you with a quick service overview of Azure Monitor SCOM Managed Instance.
 

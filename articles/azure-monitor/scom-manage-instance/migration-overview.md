@@ -6,10 +6,12 @@ ms.author: jsuri
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: overview
-ms.date: 09/05/2025
+ms.date: 09/08/2025
 ---
 
 # Overview of migration from Azure Monitor SCOM Managed Instance
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 This article provides guidance to migrate from Azure Monitor SCOM Managed Instance to System Center Operations Manager (on-premises) or Azure Monitor.    
 

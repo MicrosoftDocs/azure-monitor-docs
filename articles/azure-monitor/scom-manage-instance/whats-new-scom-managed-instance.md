@@ -4,13 +4,15 @@ title: What's new in Azure Monitor SCOM Managed Instance
 description: This article provides details of what's new in each version of Azure Monitor SCOM Managed Instance.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 10/29/2024
+ms.date: 09/08/2025
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: whats-new
 ---
 
 # What's new in Azure Monitor SCOM Managed Instance 
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 This article provides details of what's new in each version of Azure Monitor SCOM Managed Instance.
 
