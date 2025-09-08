@@ -140,13 +140,8 @@ items:
       - name: Application Insights SDK (Classic API)
         items:
         - name: .NET
-          items:
-            - name: ASP.NET (Core) App Monitoring
-              displayName: NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, c#, csharp
-              href: app/asp-net.md
-            - name: Non-HTTP, console, and background apps
-              displayName: console, .NET, .NET Core, dotnet console, dotnet, c#, csharp, NET, worker, background, generic host
-              href: app/worker-service.md
+          displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp
+          href: app/dot-net.md
         - name: Node.js
           href: app/nodejs.md
         - name: Python OpenCensus (retired)

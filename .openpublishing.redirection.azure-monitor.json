@@ -8588,6 +8588,16 @@
    "source_path": "articles/azure-monitor/app/custom-operations-tracking.md",
    "redirect_url": "/azure/azure-monitor/app/asp-net",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/worker-service.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/asp-net.md",
+   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_document_id": false
   }
  ]
 }

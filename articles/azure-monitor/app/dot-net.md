@@ -41,6 +41,8 @@ This article explains how to enable and configure [Application Insights](app-ins
 | **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line | Visual Studio, Visual Studio Code, or command line |
 
 > [!NOTE]
+> The Application Insights SDK for Worker Service can be used in the newly introduced [.NET Core Worker Service](https://devblogs.microsoft.com/aspnet/dotnet-core-workers-in-azure-container-instances), [background tasks in ASP.NET Core](/aspnet/core/fundamentals/host/hosted-services), and console apps like .NET Core and .NET Framework.
+>
 > The Worker Service SDK doesn't do any telemetry collection by itself. Instead, it brings in other well-known Application Insights auto collectors like [DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/), [PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector/), and [ApplicationInsightsLoggingProvider](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights). This SDK exposes extension methods on `IServiceCollection` to enable and configure telemetry collection.
 
 ## Add Application Insights
@@ -2848,9 +2850,9 @@ To review frequently asked questions (FAQ), see [Event counters FAQ](application
 * [Sampling](#sampling)
 * [Enrich and correlate over HTTP](#enrich-data-through-http)
 
-You can customize the Application Insights SDK for ASP.NET and ASP.NET Core to change the default configuration.
+You can customize the Application Insights SDK for ASP.NET, ASP.NET Core, and Worker Service to change the default configuration.
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 The Application Insights .NET SDK consists of many NuGet packages. The [core package](https://www.nuget.org/packages/Microsoft.ApplicationInsights) provides the API for sending telemetry to the Application Insights. [More packages](https://www.nuget.org/packages?q=Microsoft.ApplicationInsights) provide telemetry *modules* and *initializers* for automatically tracking telemetry from your application and its context. By adjusting the configuration file, you can enable or disable telemetry modules and initializers. You can also set parameters for some of them.
 
@@ -2863,12 +2865,21 @@ By default, when you use the automated experience from the Visual Studio templat
 
 There isn't an equivalent file to control the [SDK in a webpage](javascript-sdk.md).
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 In ASP.NET Core applications, all configuration changes are made in the `ConfigureServices()` method of your *Startup.cs* class, unless otherwise directed.
 
 > [!NOTE]
 > In ASP.NET Core applications, changing configuration by modifying `TelemetryConfiguration.Active` isn't supported.
+
+# [Worker Service](#tab/worker-1)
+
+The default `TelemetryConfiguration` used by the Worker Service SDK is similar to the automatic configuration used in an ASP.NET or ASP.NET Core application, minus the telemetry initializers used to enrich telemetry from `HttpContext`.
+
+You can customize the Application Insights SDK for Worker Service to change the default configuration. Users of the Application Insights ASP.NET Core SDK might be familiar with changing configuration by using ASP.NET Core built-in [dependency injection](/aspnet/core/fundamentals/dependency-injection). The Worker Service SDK is also based on similar principles. Make almost all configuration changes in the `ConfigureServices()` section by calling appropriate methods on `IServiceCollection`, as detailed in the next section.
+
+> [!NOTE]
+> When you use the Worker Service SDK, changing configuration by modifying `TelemetryConfiguration.Active` isn't supported and changes won't be reflected.
 
 ---
 
@@ -2982,6 +2993,23 @@ var app = builder.Build();
 
 > [!NOTE]
 > If you want to flush the buffer, see [Flushing data](api-custom-events-metrics.md#flushing-data). For example, you might need to flush the buffer if you're using the SDK in an application that shuts down.
+
+# [Worker Service](#tab/worker-1)
+
+The default channel is `ServerTelemetryChannel`. You can override it as the following example shows:
+
+```csharp
+using Microsoft.ApplicationInsights.Channel;
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // Use the following to replace the default channel with InMemoryChannel.
+        // This can also be applied to ServerTelemetryChannel.
+        services.AddSingleton(typeof(ITelemetryChannel), new InMemoryChannel() {MaxTelemetryBufferCapacity = 19898 });
+
+        services.AddApplicationInsightsTelemetryWorkerService();
+    }
+```
 
 ---
 
@@ -3185,16 +3213,16 @@ var app = builder.Build();
 
 This table has the full list of `ApplicationInsightsServiceOptions` settings:
 
-| Setting                                    | Description                                            | Default |
-|--------------------------------------------|--------------------------------------------------------|---------|
-| EnablePerformanceCounterCollectionModule   | Enable/Disable `PerformanceCounterCollectionModule`.   | True    |
-| EnableRequestTrackingTelemetryModule       | Enable/Disable `RequestTrackingTelemetryModule`.       | True    |
-| EnableEventCounterCollectionModule         | Enable/Disable `EventCounterCollectionModule`.         | True    |
-| EnableDependencyTrackingTelemetryModule    | Enable/Disable `DependencyTrackingTelemetryModule`.    | True    |
-| EnableAppServicesHeartbeatTelemetryModule  | Enable/Disable `AppServicesHeartbeatTelemetryModule`.  | True    |
-| EnableAzureInstanceMetadataTelemetryModule | Enable/Disable `AzureInstanceMetadataTelemetryModule`. | True    |
-| EnableQuickPulseMetricStream               | Enable/Disable LiveMetrics feature.                    | True    |
-| EnableAdaptiveSampling                     | Enable/Disable Adaptive Sampling.                      | True    |
+| Setting | Description | Default |
+|---------|-------------|---------|
+| EnablePerformanceCounterCollectionModule | Enable/Disable `PerformanceCounterCollectionModule`. | True |
+| EnableRequestTrackingTelemetryModule | Enable/Disable `RequestTrackingTelemetryModule`. | True |
+| EnableEventCounterCollectionModule | Enable/Disable `EventCounterCollectionModule`. | True |
+| EnableDependencyTrackingTelemetryModule | Enable/Disable `DependencyTrackingTelemetryModule`. | True |
+| EnableAppServicesHeartbeatTelemetryModule | Enable/Disable `AppServicesHeartbeatTelemetryModule`. | True |
+| EnableAzureInstanceMetadataTelemetryModule | Enable/Disable `AzureInstanceMetadataTelemetryModule`. | True |
+| EnableQuickPulseMetricStream | Enable/Disable LiveMetrics feature. | True |
+| EnableAdaptiveSampling | Enable/Disable Adaptive Sampling. | True |
 | EnableHeartbeat | Enable/Disable the heartbeats feature. It periodically (15-min default) sends a custom metric named `HeartbeatState` with information about the runtime like .NET version and Azure environment information, if applicable. | True |
 | AddAutoCollectedMetricExtractor | Enable/Disable the `AutoCollectedMetrics extractor`. This telemetry processor sends preaggregated metrics about requests/dependencies before sampling takes place. | True |
 | RequestCollectionOptions.TrackExceptions | Enable/Disable reporting of unhandled exception tracking by the request collection module. | False in `netstandard2.0` (because exceptions are tracked with `ApplicationInsightsLoggerProvider`). True otherwise. |
@@ -3217,6 +3245,81 @@ In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nug
 ```
 
 If `builder.Services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 6.0 or `services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 3.1 and earlier is used, it overrides the settings from `Microsoft.Extensions.Configuration.IConfiguration`.
+
+# [Worker Service](#tab/worker-1)
+
+**Option 1: Configure telemetry modules using ConfigureTelemetryModule**
+
+Application Insights uses telemetry modules to automatically collect telemetry about specific workloads without requiring manual tracking.
+
+The following autocollection modules are enabled by default. These modules are responsible for automatically collecting telemetry. You can disable or configure them to alter their default behavior.
+
+* `DependencyTrackingTelemetryModule`
+* `PerformanceCollectorModule`
+* `QuickPulseTelemetryModule`
+* `AppServicesHeartbeatTelemetryModule` (There's currently an issue involving this telemetry module. For a temporary workaround, see [GitHub Issue 1689](https://github.com/microsoft/ApplicationInsights-dotnet/issues/1689).)
+* `AzureInstanceMetadataTelemetryModule`
+
+To configure any default telemetry module, use the extension method `ConfigureTelemetryModule` on `IServiceCollection`, as shown in the following example:
+
+```csharp
+    using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPulse;
+    using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector;
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddApplicationInsightsTelemetryWorkerService();
+
+            // The following configures QuickPulseTelemetryModule.
+            // Similarly, any other default modules can be configured.
+            services.ConfigureTelemetryModule<QuickPulseTelemetryModule>((module, o) =>
+            {
+                module.AuthenticationApiKey = "keyhere";
+            });
+
+            // The following removes PerformanceCollectorModule to disable perf-counter collection.
+            // Similarly, any other default modules can be removed.
+            var performanceCounterService = services.FirstOrDefault<ServiceDescriptor>
+                                        (t => t.ImplementationType == typeof(PerformanceCollectorModule));
+            if (performanceCounterService != null)
+            {
+                services.Remove(performanceCounterService);
+            }
+    }
+```
+
+**Option 2: Configure telemetry modules using ApplicationInsightsServiceOptions**
+
+You can modify a few common settings by passing `ApplicationInsightsServiceOptions` to `AddApplicationInsightsTelemetryWorkerService`, as in this example:
+
+```csharp
+using Microsoft.ApplicationInsights.WorkerService;
+
+public void ConfigureServices(IServiceCollection services)
+{
+    var aiOptions = new ApplicationInsightsServiceOptions();
+    // Disables adaptive sampling.
+    aiOptions.EnableAdaptiveSampling = false;
+
+    // Disables live metrics (also known as QuickPulse).
+    aiOptions.EnableQuickPulseMetricStream = false;
+    services.AddApplicationInsightsTelemetryWorkerService(aiOptions);
+}
+```
+
+The `ApplicationInsightsServiceOptions` in this SDK is in the namespace `Microsoft.ApplicationInsights.WorkerService` as opposed to `Microsoft.ApplicationInsights.AspNetCore.Extensions` in the ASP.NET Core SDK.
+
+The following table lists commonly used settings in `ApplicationInsightsServiceOptions`.
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| EnableQuickPulseMetricStream | Enable/Disable the live metrics feature. | True |
+| EnableAdaptiveSampling | Enable/Disable Adaptive Sampling. | True |
+| EnableHeartbeat | Enable/Disable the Heartbeats feature, which periodically (15-min default) sends a custom metric named "HeartBeatState" with information about the runtime like .NET version and Azure environment, if applicable. | True |
+| AddAutoCollectedMetricExtractor | Enable/Disable the AutoCollectedMetrics extractor, which is a telemetry processor that sends preaggregated metrics about Requests/Dependencies before sampling takes place. | True |
+| EnableDiagnosticsTelemetryModule | Enable/Disable `DiagnosticsTelemetryModule`. Disabling this setting causes the following settings to be ignored: `EnableHeartbeat`, `EnableAzureInstanceMetadataTelemetryModule`, and `EnableAppServicesHeartbeatTelemetryModule`. | True |
+
+For the most up-to-date list, see the [configurable settings in `ApplicationInsightsServiceOptions`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs).
 
 ---
 
@@ -3242,6 +3345,23 @@ var app = builder.Build();
 ```
 
 The preceding code sample prevents the sending of telemetry to Application Insights. It doesn't prevent any automatic collection modules from collecting telemetry. If you want to remove a particular autocollection module, see [telemetry modules](#telemetry-modules).
+
+# [Worker Service](#tab/worker-1)
+
+If you want to disable telemetry conditionally and dynamically, you can resolve the `TelemetryConfiguration` instance with an ASP.NET Core dependency injection container anywhere in your code and set the `DisableTelemetry` flag on it.
+
+```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddApplicationInsightsTelemetryWorkerService();
+    }
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, TelemetryConfiguration configuration)
+    {
+        configuration.DisableTelemetry = true;
+        ...
+    }
+```
 
 ---
 
@@ -3317,11 +3437,49 @@ builder.Services.RemoveAll(typeof(ITelemetryInitializer));
 var app = builder.Build();
 ```
 
+# [Worker Service](#tab/worker-1)
+
+Use [telemetry initializers](./api-filtering-sampling.md#addmodify-properties-itelemetryinitializer) when you want to define properties that are sent with all telemetry.
+
+Add any new telemetry initializer to the `DependencyInjection` container and the SDK automatically adds them to `TelemetryConfiguration`.
+
+```csharp
+    using Microsoft.ApplicationInsights.Extensibility;
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddSingleton<ITelemetryInitializer, MyCustomTelemetryInitializer>();
+        services.AddApplicationInsightsTelemetryWorkerService();
+    }
+```
+
+#### Remove telemetry initializers
+
+Telemetry initializers are present by default. To remove all or specific telemetry initializers, use the following sample code *after* calling `AddApplicationInsightsTelemetryWorkerService()`.
+
+```csharp
+   public void ConfigureServices(IServiceCollection services)
+   {
+        services.AddApplicationInsightsTelemetryWorkerService();
+        // Remove a specific built-in telemetry initializer.
+        var tiToRemove = services.FirstOrDefault<ServiceDescriptor>
+                            (t => t.ImplementationType == typeof(AspNetCoreEnvironmentTelemetryInitializer));
+        if (tiToRemove != null)
+        {
+            services.Remove(tiToRemove);
+        }
+
+        // Remove all initializers.
+        // This requires importing namespace by using Microsoft.Extensions.DependencyInjection.Extensions;
+        services.RemoveAll(typeof(ITelemetryInitializer));
+   }
+```
+
 ---
 
 ### Telemetry processors
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 Telemetry processors can filter and modify each telemetry item before it's sent from the SDK to the portal.
 
@@ -3364,7 +3522,7 @@ There's also a standard [sampling telemetry processor](api-filtering-sampling.md
 
 ```
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer). Use the following example:
 
@@ -3379,6 +3537,20 @@ builder.Services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetry
 builder.Services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
 
 var app = builder.Build();
+```
+
+# [Worker Service](#tab/worker-1)
+
+You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](./api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer) to allow for more direct control over what's included or excluded from the telemetry you send to Application Insights. Use the following example:
+
+```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddApplicationInsightsTelemetryWorkerService();
+        services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
+        // If you have more processors:
+        services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
+    }
 ```
 
 ---
