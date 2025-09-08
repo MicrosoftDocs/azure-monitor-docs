@@ -75,9 +75,9 @@ Follow these steps to get information about retirement-impacted resources.
 Get the Id for the event using the Recommendation Metadata API.
 For more information, see [Recommendation Metadata - List - REST API](/rest/api/advisor/recommendation-metadata/list).
 
-``
-GET https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}
-``
+```http
+| GET https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}
+```
 
 **URI Parameters***
 
