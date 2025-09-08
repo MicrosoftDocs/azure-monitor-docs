@@ -79,7 +79,7 @@ For more information, see [Recommendation Metadata - List - REST API](/rest/api/
 | GET https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}
 ```
 
-**URI Parameters***
+**URI Parameters**
 
 |Name        |In          |Required |Type  | Description |
 |------------|------------|---------|---------|-----|
