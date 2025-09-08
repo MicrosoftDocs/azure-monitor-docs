@@ -1010,6 +1010,8 @@ items:
               - name: Overview
                 href: metrics/prometheus-metrics-overview.md
                 displayName: Prometheus
+              - name: Technical details
+                href: metrics/prometheus-metrics-details.md
               - name: Migrate from self-hosted Prometheus
                 href: metrics/prometheus-migrate.md
                 displayName: Prometheus migrate

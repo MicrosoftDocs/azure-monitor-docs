@@ -7,7 +7,7 @@ ms.reviewer: aul
 ms.date: 08/25/2025
 ---
 
-# Enable Azure Monitor features for Kubernetes clusters
+# Enable monitoring for Kubernetes clusters
 
 As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes particular prerequisites and other considerations for enabling these features. 
 
