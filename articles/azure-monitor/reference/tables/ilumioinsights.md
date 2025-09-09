@@ -13,7 +13,7 @@ ms.date: 08/04/2025
 
 # IlumioInsights
 
-Ilumio Insights data connector provides the capability to ingest audit and event logs from the Ilumio Insight API into Microsoft Sentinel. The data connector is built on Microsoft Sentinel Codeless Connector Platform and uses the Ilumio Insight API to fetch the events. The connector supports DCR-based [ingestion time transformations](https://docs.microsoft.com/azure/azure-monitor/logs/custom-logs-overview) that parses the received security event data into a custom columns so that queries don't need to parse it again, thus resulting in better performance.
+Ilumio Insights data connector provides the capability to ingest audit and event logs from the Ilumio Insight API into Microsoft Sentinel. The data connector is built on Microsoft Sentinel Codeless Connector Platform and uses the Ilumio Insight API to fetch the events. The connector supports DCR-based [ingestion time transformations](/azure/azure-monitor/logs/custom-logs-overview) that parses the received security event data into a custom columns so that queries don't need to parse it again, thus resulting in better performance.
 
 
 ## Table attributes
