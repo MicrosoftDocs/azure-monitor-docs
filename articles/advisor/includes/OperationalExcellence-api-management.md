@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence API Management
@@ -101,5 +101,23 @@ Recommendation ID: 580a50ee-8300-4678-9a16-a946c948778b
 
 
 <!--580a50ee-8300-4678-9a16-a946c948778b_end-->
+
+<!--d6c54614-97fe-4f55-85cf-adb49ca7ccd3_begin-->
+
+#### Use private networking options for requests to Azure API Management endpoints for Azure backend APIs  
+  
+The Azure API Management service sends requests over a public network to one or more backends hosted on Azure. The platform recommends using a virtual network or Private Link to improve the security of Azure backend APIs.  
+  
+**Potential benefits**: Improve service stability and network security  
+
+**Impact:** Medium
+  
+For more information, see [Azure API Management with an Azure virtual network](/azure/api-management/virtual-network-concepts)  
+
+ResourceType: microsoft.apimanagement/service  
+Recommendation ID: d6c54614-97fe-4f55-85cf-adb49ca7ccd3  
+
+
+<!--d6c54614-97fe-4f55-85cf-adb49ca7ccd3_end-->
 
 <!--articleBody-->
