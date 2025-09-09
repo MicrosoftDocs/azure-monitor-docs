@@ -85,7 +85,7 @@ Send the activity log to a [Log Analytics workspace](../logs/log-analytics-works
 - Access activity log data with [Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview).
 - Retain activity log data for longer than 90 days.
 
-There are data ingestion or retention charges for activity logs for the default retention period of 90 days. You can [increase the retention period](../logs/data-retention-configure.md) to up to 12 years.
+There is no data ingestion charges for activity logs. Retention charges for activity logs are only applied to the period extended past the default retention period of 90 days. You can [increase the retention period](../logs/data-retention-configure.md) to up to 12 years.
 
 Activity log data in a Log Analytics workspace is stored in a table called [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity). The structure of this table varies depending on the [category of the log entry](activity-log-schema.md).
 
