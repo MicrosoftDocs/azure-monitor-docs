@@ -35,13 +35,13 @@ This article explains how to enable and configure [Application Insights](app-ins
 | **Operating system** | Windows | Windows, Linux, or macOS | Windows, Linux, or macOS |
 | **Hosting method** | In-process (IIS or IIS Express) | In process or out of process | Console or background service (runs as a process, typically via `dotnet` CLI or as a Windows Service/Linux daemon) |
 | **Deployment method** | Web Deploy, MSI, or manual file copy | Framework dependent or self-contained | Framework dependent or self-contained |
-| **Web server** | Internet Information Services (IIS) | Internet Information Server (IIS) or Kestrel | Not applicable (no web server; non-HTTP workloads) |
+| **Web server** | Internet Information Services (IIS) | Internet Information Server (IIS) or Kestrel | Not applicable (no web server; designed for non-HTTP workloads such as messaging, background tasks, and console apps) |
 | **Hosting platform** | Azure App Service (Windows), Azure Virtual Machines, or on-premises servers | The Web Apps feature of Azure App Service, Azure Virtual Machines, Docker, and Azure Kubernetes Service (AKS) | Azure Virtual Machines, Azure Kubernetes Service (AKS), containers, or any environment where .NET Core is supported |
 | **.NET version** | .NET Framework 4.6.1 and later | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview |
 | **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line | Visual Studio, Visual Studio Code, or command line |
 
 > [!NOTE]
-> The Application Insights SDK for Worker Service can be used in the newly introduced [.NET Core Worker Service](https://devblogs.microsoft.com/aspnet/dotnet-core-workers-in-azure-container-instances), [background tasks in ASP.NET Core](/aspnet/core/fundamentals/host/hosted-services), and console apps like .NET Core and .NET Framework.
+> A worker service is a long-running backgrond application that executes tasks outside of an HTTP request/response pipeline. The Application Insights SDK for Worker Service can be used in the newly introduced [.NET Core Worker Service](https://devblogs.microsoft.com/aspnet/dotnet-core-workers-in-azure-container-instances), [background tasks in ASP.NET Core](/aspnet/core/fundamentals/host/hosted-services), and console apps like .NET Core and .NET Framework. 
 >
 > The Worker Service SDK doesn't do any telemetry collection by itself. Instead, it brings in other well-known Application Insights auto collectors like [DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/), [PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector/), and [ApplicationInsightsLoggingProvider](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights). This SDK exposes extension methods on `IServiceCollection` to enable and configure telemetry collection.
 
@@ -62,9 +62,6 @@ This article explains how to enable and configure [Application Insights](app-ins
 If you don't have a functioning web application yet, you can use the following guidance to create one.
 
 # [ASP.NET](#tab/net)
-
-> [!NOTE]
-> We use an [MVC application](/aspnet/core/tutorials/first-mvc-app) example. If you're using the [Worker Service](/aspnet/core/fundamentals/host/hosted-services#worker-service-template), use the instructions in [Application Insights for Worker Service applications](worker-service.md).
 
 1. Open Visual Studio.
 1. Select **Create a new project**.
@@ -1028,7 +1025,7 @@ Application Insights captures logs from ASP.NET Core and other .NET apps through
 > [!TIP]
 > * By default, the Application Insights provider only sends logs with a severity of `Warning` or higher. To include `Information` or lower-level logs, update the log level settings in `appsettings.json`.
 >
-> * The [`Microsoft.ApplicationInsights.WorkerService`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) NuGet package, used to enable Application Insights for background services, is out of scope. For more information, see [Application Insights for Worker Service apps](worker-service.md).
+> * The [`Microsoft.ApplicationInsights.WorkerService`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) NuGet package, used to enable Application Insights for background services, is out of scope.
 
 > [!NOTE]
 > To review frequently asked questions (FAQ), see [Logging with .NET FAQ](application-insights-faq.yml#logging-with--net).
@@ -1272,7 +1269,7 @@ To have this data displayed in the dependency charts in Application Insights, se
     }
 ```
 
-Alternatively, `TelemetryClient` provides the extension methods `StartOperation` and `StopOperation`, which can be used to manually track dependencies as shown in [Outgoing dependencies tracking](custom-operations-tracking.md#outgoing-dependencies-tracking).
+Alternatively, `TelemetryClient` provides the extension methods `StartOperation` and `StopOperation`, which can be used to manually track dependencies as shown in [Outgoing dependencies tracking](#outgoing-dependencies-tracking).
 
 #### Disabling the standard dependency tracking module
 
@@ -1299,7 +1296,7 @@ For ASP.NET applications, the full SQL query text is collected with the help of 
 | IIS Express | Use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package. |
 | WebJobs in Azure App Service| Use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package. |
 
-In addition to the preceding platform-specific steps, you *must also explicitly opt in to enable SQL command collection* by modifying the `applicationInsights.config` file with the following code:
+In addition to the preceding platform-specific steps, you *must also explicitly opt in to enable SQL command collection* by modifying the `ApplicationInsights.config` file with the following code:
 
 ```xml
 <TelemetryModules>
@@ -1865,7 +1862,7 @@ In summary, we recommend `GetMetric()` because it does preaggregation, it accumu
 
 #### Get started with GetMetric
 
-For our examples, we're going to use a basic .NET Core 3.1 worker service application. If you want to replicate the test environment used with these examples, follow steps 1-6 in the [Monitoring worker service article](worker-service.md#net-core-worker-service-application). These steps add Application Insights to a basic worker service project template. The concepts apply to any general application where the SDK can be used, including web apps and console apps.
+For our examples, we're going to use a basic .NET Core 3.1 worker service application. If you want to replicate the test environment used with these examples, follow steps 1-6 under [.NET Core Worker Service application](#net-core-worker-service-application). These steps add Application Insights to a basic worker service project template. The concepts apply to any general application where the SDK can be used, including web apps and console apps.
 
 ##### Send metrics
 
@@ -2138,7 +2135,7 @@ SeverityLevel.Error);
 
 Application Insights SDKs automatically track incoming HTTP requests and calls to dependent services, such as HTTP requests and SQL queries. Tracking and correlation of requests and dependencies give you visibility into the whole application's responsiveness and reliability across all microservices that combine this application.
 
-There's a class of application patterns that can't be supported generically. Proper monitoring of such patterns requires manual code instrumentation. This article covers a few patterns that might require manual instrumentation, such as custom queue processing and running long-running background tasks.
+There's a class of application patterns that can't be supported generically. Proper monitoring of such patterns requires manual code instrumentation. This section covers a few patterns that might require manual instrumentation, such as custom queue processing and running long-running background tasks.
 
 This section provides guidance on how to track custom operations with the Application Insights SDK.
 
@@ -2746,7 +2743,7 @@ While users can publish any custom event counters to meet their needs, [.NET](/d
 
 #### Using Application Insights to collect EventCounters
 
-Application Insights supports collecting `EventCounters` with its `EventCounterCollectionModule`, which is part of the newly released NuGet package [Microsoft.ApplicationInsights.EventCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventCounterCollector). `EventCounterCollectionModule` is automatically enabled when using either [AspNetCore](asp-net-core.md) or [WorkerService](worker-service.md). `EventCounterCollectionModule` collects counters with a nonconfigurable collection frequency of 60 seconds. There are no special permissions required to collect EventCounters. For ASP.NET Core applications, you also want to add the [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) package.
+Application Insights supports collecting `EventCounters` with its `EventCounterCollectionModule`, which is part of the newly released NuGet package [Microsoft.ApplicationInsights.EventCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventCounterCollector). `EventCounterCollectionModule` is automatically enabled when using either [AspNetCore](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) or [WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService). `EventCounterCollectionModule` collects counters with a nonconfigurable collection frequency of 60 seconds. There are no special permissions required to collect EventCounters. For ASP.NET Core applications, you also want to add the [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) package.
 
 ```dotnetcli
 dotnet add package Microsoft.ApplicationInsights.EventCounterCollector
@@ -2755,13 +2752,13 @@ dotnet add package Microsoft.ApplicationInsights.AspNetCore
 
 #### Default counters collected
 
-Starting with 2.15.0 version of either [AspNetCore SDK](asp-net-core.md) or [WorkerService SDK](worker-service.md), no counters are collected by default. The module itself is enabled, so users can add the desired counters to collect them.
+Starting with 2.15.0 version of either [AspNetCore SDK](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) or [WorkerService SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService), no counters are collected by default. The module itself is enabled, so users can add the desired counters to collect them.
 
 To get a list of well known counters published by the .NET Runtime, see [Available Counters](/dotnet/core/diagnostics/event-counters#available-counters) document.
 
 #### Customizing counters to be collected
 
-The following example shows how to add/remove counters. This customization would be done as part of your application service configuration after Application Insights telemetry collection is enabled using either `AddApplicationInsightsTelemetry()` or `AddApplicationInsightsWorkerService()`. Following is an example code from an ASP.NET Core application. For other type of applications, refer to [this](worker-service.md#configure-or-remove-default-telemetry-modules) document.
+The following example shows how to add/remove counters. This customization would be done as part of your application service configuration after Application Insights telemetry collection is enabled using either `AddApplicationInsightsTelemetry()` or `AddApplicationInsightsWorkerService()`. Following is an example code from an ASP.NET Core application. For other type of applications, refer to [configure telemetry modules](#configure-telemetry-modules).
 
 ```csharp
 using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;
@@ -2885,7 +2882,7 @@ You can customize the Application Insights SDK for Worker Service to change the 
 
 ### Telemetry channels
 
-Telemetry channels are an integral part of the [Application Insights SDKs](app-insights-overview.md). They manage buffering and transmission of telemetry to the Application Insights service. The .NET and .NET Core versions of the SDKs have two built-in telemetry channels: `InMemoryChannel` and `ServerTelemetryChannel`. This article describes each channel and shows how to customize channel behavior.
+Telemetry channels are an integral part of the [Application Insights SDKs](app-insights-overview.md). They manage buffering and transmission of telemetry to the Application Insights service. The .NET and .NET Core versions of the SDKs have two built-in telemetry channels: `InMemoryChannel` and `ServerTelemetryChannel`. This section describes each channel and shows how to customize channel behavior.
 
 > [!NOTE]
 > To review frequently asked questions (FAQ), see [Telemetry channels FAQ](application-insights-faq.yml#telemetry-channels)
@@ -2938,7 +2935,7 @@ serverTelemetryChannel.StorageFolder = @"d:\temp\applicationinsights";
 
 **Option 2: Configuration in ApplicationInsights.config**
 
-The following section from [ApplicationInsights.config](configuration-with-applicationinsights-config.md) shows the `ServerTelemetryChannel` channel configured with `StorageFolder` set to a custom location:
+The following section from *ApplicationInsights.config* shows the `ServerTelemetryChannel` channel configured with `StorageFolder` set to a custom location:
 
 ```xml
     <TelemetrySinks>
@@ -2975,7 +2972,7 @@ public void ConfigureServices(IServiceCollection services)
 
 #### Overriding ServerTelemetryChannel
 
-The default [telemetry channel](telemetry-channels.md) is `ServerTelemetryChannel`. The following example shows how to override it.
+The default [telemetry channel](#telemetry-channels) is `ServerTelemetryChannel`. The following example shows how to override it.
 
 ```csharp
 using Microsoft.ApplicationInsights.Channel;
@@ -3078,7 +3075,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | **Request tracking** | Collects request telemetry (response time, result code) for incoming web requests.<br><br>**Module:** `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) |
 | **Dependency tracking** | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). To work in IIS, [install Application Insights Agent](application-insights-asp-net-agent.md). You can also write custom dependency tracking using [TrackDependency API](api-custom-events-metrics.md#trackdependency). Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VM/VMSS monitoring](azure-vm-vmss-apps.md).<br><br>**Module:** `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
 | **Performance counters** | Collects Windows Performance Counters (CPU, memory, network load from IIS installs). Specify which counters (including custom ones). For more information, see [Collects system performance counters](asp-net-counters.md).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`<br>**NuGet:**[Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
-| **Event counters** | Collects [.NET EventCounters](asp-net-counters.md). Recommended for ASP.NET Core and cross‑platform in place of Windows perf counters.<br><br>**Module:** `EventCounterCollectionModule` (SDK ≥ 2.8.0) |
+| **Event counters** | Collects [.NET EventCounters](#event-counters). Recommended for ASP.NET Core and cross‑platform in place of Windows perf counters.<br><br>**Module:** `EventCounterCollectionModule` (SDK ≥ 2.8.0) |
 | **Live Metrics (QuickPulse)** | Collects telemetry for Live Metrics pane.<br><br>**Module:** `QuickPulseTelemetryModule` |
 | **Heartbeats (App Service)** | Sends heartbeats and custom metrics for App Service environment.<br><br>**Module:** `AppServicesHeartbeatTelemetryModule` |
 | **Heartbeats (VM/VMSS)** | Sends heartbeats and custom metrics for Azure VM environment.<br><br>**Module:** `AzureInstanceMetadataTelemetryModule` |
@@ -3895,7 +3892,7 @@ Use this sample if you have a [.NET](/dotnet/fundamentals/) Worker Service appli
 
 See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
 
-There's a known issue in Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *applicationinsights.config* file to work around this bug. This article is designed to avoid this issue entirely, by not using user secrets.
+There's a known issue in Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *Applicationinsights.config* file to work around this bug. This article is designed to avoid this issue entirely, by not using user secrets.
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
