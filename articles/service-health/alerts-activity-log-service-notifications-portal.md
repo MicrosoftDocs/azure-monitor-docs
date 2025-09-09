@@ -48,14 +48,18 @@ For information on how to configure service health notification alerts by using 
 1. In the [portal](https://portal.azure.com/), select **View service health**.
 
 :::image type="content"source="media/alerts-activity-log-service-notifications/home-service-health.png"alt-text="A screenshot of Azur Portal with link to open Service Health."Lightbox="media/alerts-activity-log-service-notifications/home-service-health.png":::
-  
-1. In the **Service Issues** section, select **Create service health alert** to open a new window where you fill in the information required to create the alert. Follow the steps in the [create a new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md?tabs=activity-log).
+
+
+1. In the **Service Issues** panel, select **Create service health alert** to open a new window where you fill in the information required to create the alert. Follow the steps in the [create a new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md?tabs=activity-log).
     
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
 
 To add more detailed information for the service health alert, select **Advanced Options** which opens the page **Create an alert rule**, where you can start entering your data.
 
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png"alt-text="Screenshot of the Create service health alert command."Lightbox="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png":::
+
+> [!NOTE]
+> The option to create a Service Health alert is available on all the panels except Billing.
 
 ### Create a tenant-level alert
 >[!IMPORTANT]
