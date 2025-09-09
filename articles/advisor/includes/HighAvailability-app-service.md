@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/12/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -354,5 +354,23 @@ Recommendation ID: 7ca9b77c-53ea-402a-a1c9-085efd569ef4
 Subcategory: undefined
 
 <!--7ca9b77c-53ea-402a-a1c9-085efd569ef4_end-->
+
+<!--42702f7a-06af-4cca-80b6-6b058e22b12f_begin-->
+
+#### Upgrade PHP to a newer, supported version  
+  
+Extended support for PHP 8.1 is ending. Apps hosted on App Service continue to run. Future security updates aren't available. The platform no longer provides customer service for PHP 8.1.  
+  
+**Potential benefits**: Continued support for applications on Azure App Service  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=Php-81-extension)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 42702f7a-06af-4cca-80b6-6b058e22b12f  
+Subcategory: undefined
+
+<!--42702f7a-06af-4cca-80b6-6b058e22b12f_end-->
 
 <!--articleBody-->
