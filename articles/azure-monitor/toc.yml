@@ -558,9 +558,6 @@ items:
                   displayName: Prometheus
                 - name: Remote-write with Prometheus
                   items:
-                    - name: Prometheus remote-write
-                      href: containers/prometheus-remote-write.md
-                      displayName: Prometheus,remote-write, azure monitor
                     - name: Managed identity authentication
                       href: containers/prometheus-remote-write-managed-identity.md
                       displayName: Prometheus,remote-write
@@ -569,9 +566,6 @@ items:
                       displayName: Prometheus,remote-write
                     - name: Microsoft Entra Workload ID authentication
                       href: containers/prometheus-remote-write-azure-workload-identity.md
-                      displayName: Prometheus,remote-write
-                    - name: Troubleshoot remote-write
-                      href: containers/prometheus-remote-write-troubleshooting.md
                       displayName: Prometheus,remote-write
             - name: Logs
               items:
@@ -1017,10 +1011,10 @@ items:
               - name: Migrate from self-hosted Prometheus
                 href: metrics/prometheus-migrate.md
                 displayName: Prometheus migrate
-              - name: Prometheus remote-write from virtual machines
-                href: metrics/prometheus-remote-write-virtual-machines.md
+              - name: Integrate with self-hosted Prometheus
+                href: metrics/prometheus-remote-write-configure.md
                 displayName: Prometheus remote-write
-              - name: Connect Grafana to Azure Monitor Prometheus metrics
+              - name: Connect Grafana
                 href: metrics/prometheus-grafana.md
                 displayName: Prometheus Grafana
               - name: Azure Monitor workspace

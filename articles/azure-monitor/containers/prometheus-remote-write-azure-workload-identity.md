@@ -1,5 +1,5 @@
 ---
-title: Set up Prometheus remote write by using Microsoft Entra Workload ID authentication
+title: Set up Prometheus remote write using Microsoft Entra Workload ID authentication
 description: Learn how to set up remote write in Azure Monitor managed service for Prometheus. Use Microsoft Entra Workload ID (preview) authentication to send data from a self-managed Prometheus server to your Azure Monitor workspace.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
@@ -7,9 +7,9 @@ ms.date: 4/18/2024
 ms.reviewer: rapadman
 ---
 
-# Send Prometheus data to Azure Monitor by using Microsoft Entra Workload ID authentication
+# Send Prometheus data to Azure Monitor using Microsoft Entra Workload ID authentication
 
-This article describes how to set up [remote write](prometheus-remote-write.md) to send data from your Azure Monitor managed Prometheus cluster by using Microsoft Entra Workload ID authentication.
+This article describes how to set up [remote write](../metrics/prometheus-metrics-overview.md) to send data from your Azure Monitor managed Prometheus cluster using Microsoft Entra Workload ID authentication.
 
 ## Prerequisites
 

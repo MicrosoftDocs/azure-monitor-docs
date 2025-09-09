@@ -8,7 +8,7 @@ ms.date: 4/18/2024
 # Send Prometheus data to Azure Monitor using managed identity authentication
 
 > [!IMPORTANT]
-> This article describes how to set up remote write in Azure Monitor managed service for Prometheus using managed identity authentication and a side car container provided by Azure Monitor. You can use remote write with managed identity without using a sidecar using the guidance at [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write-configure.md).
+> This article describes how to set up [remote write in Azure Monitor managed service for Prometheus](../metrics/prometheus-metrics-overview.md) using managed identity authentication and a side car container provided by Azure Monitor. You can use remote write with managed identity without using a sidecar using the guidance at [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write-configure.md).
 
 This article describes how to set up [remote write](prometheus-remote-write.md) to send data from a self-managed Prometheus server running in your Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes cluster by using managed identity authentication and a side car container provided by Azure Monitor. You can either use an existing identity that's created by AKS or [create your own](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). Both options are described here.
 
