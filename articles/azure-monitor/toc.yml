@@ -561,10 +561,10 @@ items:
                     - name: Managed identity authentication
                       href: containers/prometheus-remote-write-managed-identity.md
                       displayName: Prometheus,remote-write
-                    - name: Microsoft Entra authentication
+                    - name: Entra authentication
                       href: containers/prometheus-remote-write-active-directory.md
                       displayName: Prometheus,remote-write
-                    - name: Microsoft Entra Workload ID authentication
+                    - name: Entra Workload ID authentication
                       href: containers/prometheus-remote-write-azure-workload-identity.md
                       displayName: Prometheus,remote-write
             - name: Logs

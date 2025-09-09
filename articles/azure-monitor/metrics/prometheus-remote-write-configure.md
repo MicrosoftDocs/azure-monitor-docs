@@ -31,7 +31,7 @@ The configuration requirements for remote-write depend on the authentication typ
 
 ## Azure Monitor workspace
 
-Your Azure Monitor workspace must be created before you can configure remote-write. If you don't already have one, see [Manage an Azure Monitor workspace](azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace).
+Your Azure Monitor workspace must be created before you can configure remote-write. This automatically enables Managed prometheus. If you don't already have one, see [Manage an Azure Monitor workspace](azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace). 
 
 
 ## Create identity for authentication
@@ -39,110 +39,67 @@ Before you can configure remote-write, you must create the identity that you'll 
 
 ### [System-assigned Managed identity](#tab/system-managed-identity)
 
-**Azure VM/VMSS**
-Select **Identity** under the **Settings** section of the menu for the VM/VMSS in the Azure portal to verify whether system-assigned managed identity is enabled. Ifnot, you can enable it from this page. See [Configure system-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities#system-assigned-managed-identity) for details on enabling system-assigned managed identity in Azure VM/VMSS.
+You don't directly create a system-assigned managed identity but instead enable it for an Azure virtual machine or virtual machine scale set. For an Azure VM, you can enable the identity when you create the VM or enable it later from its **Identity** page in the Azure portal. For a VMSS, you must enable it after creation. For the different options to enable system-managed identity, see [Configure managed identities on Azure virtual machines (VMs)](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities) and [Configure managed identities for Azure resources on a virtual machine scale set](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities-scale-sets).
 
-You can also enable system-assigned managed identity for an Azure VM using the following CLI command:
+:::image type="content" source="media/prometheus-remote-write-configure/enable-system-assigned-managed-identity.png" lightbox="media/prometheus-remote-write-configure/enable-system-assigned-managed-identity.png" alt-text="Screenshot that shows the screen to enable system-assigned managed identity for an Azure VM.":::
 
-```azurecli
-az vm identity assign --resource-group <resource-group-name> --name <vm-name>
-```
+For an AKS cluster, the managed identity must be assigned to virtual machine scale sets in the cluster. AKS creates a resource group that contains the virtual machine scale sets. Access this resource group from the **Properties** page in the cluster's menu in the Azure portal. Click on **Infrastructure Resource Group** to view list the resources in this resource group. You must enable system managed identity for each virtual machine scale set in the resource group.
 
-**AKS**
-For AKS, the managed identity must be assigned to virtual machine scale sets in the cluster. AKS creates a resource group that contains the virtual machine scale sets. Select **Properties** in the **Settings** section of the menu for the AKS cluster in the Azure portal, and the **Infrastructure resource group** will list this resource group. Select this resource group to view its virtual machine scale sets. Enable system-assigned managed identity for each from **Identity** in the **Settings** section of their menu in the Azure portal.
-
-You can also enable system-assigned managed identity for an ASK cluster using the following CLI command:
-
-```azurecli
-az aks update --resource-group <resource-group-name> --name <cluster-name> --enable-managed-identity
-```
+:::image type="content" source="media/prometheus-remote-write-configure/infrastructure-resource-group.png" lightbox="media/prometheus-remote-write-configure/infrastructure-resource-group.png" alt-text="Screenshot that shows the infrastructure resource group for an AKS cluster.":::
 
 
 ### [User-assigned Managed identity](#tab/user-managed-identity)
 
-**Azure portal**
+Create a user-assigned managed identity from the **Managed Identities** menu in the Azure portal. See [Manage user-assigned managed identities](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) for different methods to create a user-assigned managed identity.
 
-1. Complete the steps to [Create a user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#create-a-user-assigned-managed-identity)
-2. Note the Application (client) ID which you'll need to configure remote-write.
+Note the **Client ID** of the user-assigned managed identity. You'll need this value later to configure remote-write.
 
-**CLI**
-
-```azurecli
-# Create the managed identity
-az identity create --name <identity name> --resource-group <resource group name>
-
-# Assign to VM
-az vm identity assign -g <resource group name> -n <virtual machine name> --identities <user assigned identity resource ID>
-
-# Assign to VMSS
-az vmss identity assign -g <resource group name> -n <scale set name> --identities <user assigned identity resource ID>
-
-# Assign to AKS cluster
-az aks update --resource-group <cluster-rg> --name <cluster-name> --assign-identity <uami-resource-id>
-```
+:::image type="content" source="media/prometheus-remote-write-configure/user-assigned-managed-identity.png" lightbox="media/prometheus-remote-write-configure/user-assigned-managed-identity.png" alt-text="Screenshot that shows the details of a user-assigned managed identity.":::
 
 
 ### [Entra ID](#tab/entra-id)
 
-**Azure portal**
+Create an Entra ID from the **Entra ID > App registrations** menu in the Azure portal. See [Register an application with Microsoft Entra ID](/azure/active-directory/develop/quickstart-register-app) for more details and [Create an Azure service principal with Azure CLI](/cli/azure/azure-cli-sp-tutorial-1) and [Use Azure PowerShell to create a service principal with a certificate](/entra/identity-platform/howto-authenticate-service-principal-powershell) for different methods to create an Entra ID.
 
-1. Complete the steps to [register an application with Microsoft Entra ID](/azure/active-directory/develop/howto-create-service-principal-portal) and create a service principal. Follow the option to create a [client secret](/azure/active-directory/develop/howto-create-service-principal-portal#option-3-create-a-new-client-secret).
-2. Note the following values which you'll need to configure remote-write:
-   - Application (client) ID
-   - Directory (tenant) ID
-   - Client secret value
+Note the **Application (client) ID** and **Directory (tenant) ID** of the Entra ID application. You'll need these values later to configure remote-write.
 
-**CLI**
+:::image type="content" source="media/prometheus-remote-write-configure/app-registration.png" lightbox="media/prometheus-remote-write-configure/app-registration.png" alt-text="Screenshot that shows the details of an Entra ID.":::
 
-```azurecli
-az ad sp create-for-rbac --name <application name> --role "Monitoring Metrics Publisher" --scopes <azure monitor workspace data collection rule Id>
-```
+Follow the guidance at [Option 3: Create a new client secret](/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) to create a client secret for the Entra ID application. Note the **Value** of the client secret. You'll need this value later to configure remote-write.
+
+:::image type="content" source="media/prometheus-remote-write-configure/client-secret.png" lightbox="media/prometheus-remote-write-configure/client-secret.png" alt-text="Screenshot that shows the client secret for an Entra ID.":::
+
 ---
 
 ## Assign roles
-Once the identity that you're going to use is created, it needs to be given access to the data collection rule (DCR) associated with the Azure Monitor workspace that will receive the remote-write data. The DCR is automatically created when you create the workspace. You'll specify this identity in the remote-write configuration for the cluster or VM.
-
-### [System-assigned Managed identity](#tab/managed-identity)
+Once the identity that you're going to use is created, it needs to be given access to the data collection rule (DCR) associated with the Azure Monitor workspace that will receive the remote-write data. This DCR is automatically created when you create the workspace. You'll specify this identity in the remote-write configuration for the cluster or VM.
 
 1. On the Azure Monitor workspace's overview pane, select the Data collection rule link. This opens the data collection rule (DCR) that is associated with the workspace.
-2. On the page for the data collection rule, select **Access control (IAM)**.
-3. Select **Add**  and then **Add role assignment**.
+
+    :::image type="content" source="media/prometheus-remote-write-configure/azure-monitor-workspace-data-collection-rule.png" lightbox="media/prometheus-remote-write-configure/azure-monitor-workspace-data-collection-rule.png" alt-text="Screenshot that shows the DCR link for an Azure Monitor workspace.":::
+
+2. On the page for the data collection rule, select **Access control (IAM)**. Select **Add**  and then **Add role assignment**.
+
+    :::image type="content" source="media/prometheus-remote-write-configure/data-collection-rule-access-control.png" lightbox="media/prometheus-remote-write-configure/data-collection-rule-access-control.png" alt-text="Screenshot that shows the Access Control page for a DCR.":::
+
 4. Select the **Monitoring Metrics Publisher** role, and then select **Next**.
-5. Select **Managed Identity** and then **Select members**.
-6. In the **Managed identity** dropdown, select **Kubernetes service** in the **System-assigned managed identity** section.
-7. Select your cluster from the list, and then choose **Select**.
-8. Select **Review + assign** to complete the role assignment.
+  
+    :::image type="content" source="media/prometheus-remote-write-configure/add-role-assignment.png" lightbox="media/prometheus-remote-write-configure/add-role-assignment.png" alt-text="Screenshot that shows adding a role assignment to a DCR.":::
 
-```azurecli
-az role assignment create --role "Monitoring Metrics Publisher" --assignee <managed identity client ID> --scope <data collection rule resource ID>
-```
+5. Select the identity to be assigned the role.
+   1. For system-assigned managed identity, select **Managed identity** and then **Select members**. In the **Managed identity** dropdown, select the VM/VMSS or each of the VMSS in the AKS cluster.
 
-### [User-assigned Managed identity](#tab/managed-identity)
+    :::image type="content" source="media/prometheus-remote-write-configure/select-members-system-managed-identity.png" lightbox="media/prometheus-remote-write-configure/select-members-system-managed-identity.png" alt-text="Screenshot that shows selection of system-assigned managed identity members.":::
 
-1. On the Azure Monitor workspace's overview pane, select the Data collection rule link. This opens the data collection rule (DCR) that is associated with the workspace.
-2. On the page for the data collection rule, select **Access control (IAM)**.
-3. Select **Add** and then **Add role assignment**.
-4. Select the **Monitoring Metrics Publisher** role, and then select **Next**.
-6. Select **Managed identity**, and then choose **Select members**. 
-7. In the **Managed identity** dropdown, select **User-assigned managed identity** section. Select the identity that you created, and then choose **Select**.
-8. Select **Review + assign** to complete the role assignment.
+   2. For user-assigned managed identity, select **User-assigned managed identity** section. Select the identity that you created.
 
-```azurecli
-az role assignment create --role "Monitoring Metrics Publisher" --assignee <managed identity client ID> --scope <data collection rule resource ID>
-```
+    :::image type="content" source="media/prometheus-remote-write-configure/select-members-user-managed-identity.png" lightbox="media/prometheus-remote-write-configure/select-members-user-managed-identity.png" alt-text="Screenshot that shows selection of managed identity members.":::
 
-### [Entra ID](#tab/entra-id)
+   3. For Entra ID, select **User, group, or service principal**, and then **Select members**. Select the application that you created, and then choose **Select**.
 
-1. On the Azure Monitor workspace's overview pane, select the Data collection rule link. This opens the data collection rule (DCR) that is associated with the workspace.
-2. On the page for the data collection rule, select **Access control (IAM)**.
-3. Select **Add**  and then **Add role assignment**.
-4. Select the **Monitoring Metrics Publisher** role, and then select **Next**.
-5. Select **User, group, or service principal**, and then choose **Select members**. Select the application that you created, and then choose **Select**.
-6. Select **Review + assign** to complete the role assignment.
+    :::image type="content" source="media/prometheus-remote-write-configure/select-members-entra-id.png" lightbox="media/prometheus-remote-write-configure/select-members-entra-id.png" alt-text="Screenshot that shows selection of Entra ID members.":::
 
-```azurecli
-az role assignment create --role "Monitoring Metrics Publisher" --assignee-object-id <sp-object-id> --assignee-principal-type ServicePrincipal --scope <data collection rule resource ID>
-```
+8. Select **Select** to confirm your selection and then **Review + assign** to complete the role assignment.
 
 ---
 
