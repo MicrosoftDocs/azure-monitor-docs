@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Kubernetes Service (AKS)
@@ -101,5 +101,23 @@ Recommendation ID: deb97441-d830-49f6-b9a5-9d04306abde9
 
 
 <!--deb97441-d830-49f6-b9a5-9d04306abde9_end-->
+
+<!--e32c5e70-515f-45aa-90e7-94fb4fdb1b6c_begin-->
+
+#### Use Uptime SLA  
+  
+The cluster uses the Free tier and has more than 10 nodes. The Kubernetes Control Plane on the Free tier comes with limited resources and isn't intended for production use or any cluster with 10 or more nodes. To avoid performance issues, upgrade to the Standard tier.  
+  
+**Potential benefits**: High Availability for cluster  
+
+**Impact:** High
+  
+For more information, see [Azure Kubernetes Service (AKS) Free, Standard, and Premium pricing tiers for cluster management - Azure Kubernetes Service](/azure/aks/free-standard-pricing-tiers)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: e32c5e70-515f-45aa-90e7-94fb4fdb1b6c  
+
+
+<!--e32c5e70-515f-45aa-90e7-94fb4fdb1b6c_end-->
 
 <!--articleBody-->
