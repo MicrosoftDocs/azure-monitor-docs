@@ -1,5 +1,5 @@
 ---
-title: Application Insights for ASP.NET, ASP.NET Core and Worker Service (non-HTTP) applications | Microsoft Docs
+title: Application Insights for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications | Microsoft Docs
 description: Monitor ASP.NET, ASP.NET Core, and Worker Service applications for availability, performance, and usage.
 ms.topic: how-to
 ms.devlang: csharp
@@ -41,7 +41,7 @@ This article explains how to enable and configure [Application Insights](app-ins
 | **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line | Visual Studio, Visual Studio Code, or command line |
 
 > [!NOTE]
-> A worker service is a long-running backgrond application that executes tasks outside of an HTTP request/response pipeline. The Application Insights SDK for Worker Service can be used in the newly introduced [.NET Core Worker Service](https://devblogs.microsoft.com/aspnet/dotnet-core-workers-in-azure-container-instances), [background tasks in ASP.NET Core](/aspnet/core/fundamentals/host/hosted-services), and console apps like .NET Core and .NET Framework. 
+> A worker service is a long-running background application that executes tasks outside of an HTTP request/response pipeline. The Application Insights SDK for Worker Service can be used in the newly introduced [.NET Core Worker Service](https://devblogs.microsoft.com/aspnet/dotnet-core-workers-in-azure-container-instances), [background tasks in ASP.NET Core](/aspnet/core/fundamentals/host/hosted-services), and console apps like .NET Core and .NET Framework. 
 >
 > The Worker Service SDK doesn't do any telemetry collection by itself. Instead, it brings in other well-known Application Insights auto collectors like [DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/), [PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector/), and [ApplicationInsightsLoggingProvider](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights). This SDK exposes extension methods on `IServiceCollection` to enable and configure telemetry collection.
 
@@ -2033,7 +2033,7 @@ View your metric aggregations for each `FormFactor` dimension.
 
 ##### Use MetricIdentifier when there are more than three dimensions
 
-Currently, 10 dimensions are supported. More than three dimensions requires the use of `MetricIdentifier`:
+Currently, 10 dimensions are supported. Using more than three dimensions requires the use of `MetricIdentifier`:
 
 ```csharp
 // Add "using Microsoft.ApplicationInsights.Metrics;" to use MetricIdentifier
@@ -2249,7 +2249,7 @@ The [W3C Trace Context](https://www.w3.org/TR/trace-context/) and [HTTP Protocol
 > [!NOTE]
 > Cross-component tracing isn't supported for queues yet.
 >
-> With HTTP, if your producer and consumer send telemetry to different Application Insights resources, transaction diagnostics experience and Application Map show transactions and map end-to-end. In the case of queues, this capability isn't supported yet.
+> With HTTP, if your producer and consumer send telemetry to different Application Insights resources, transaction diagnostics experience and Application Map show transactions and map end-to-end. For queues, this capability isn't supported yet.
 
 ##### Service Bus queue
 
@@ -2317,7 +2317,7 @@ public async Task Enqueue(CloudQueue queue, string message)
 
 To reduce the amount of telemetry your application reports or if you don't want to track the `Enqueue` operation for other reasons, use the `Activity` API directly:
 
-* Create (and start) a new `Activity` instead of starting the Application Insights operation. You do *not* need to assign any properties on it except the operation name.
+* Create (and start) a new `Activity` instead of starting the Application Insights operation. You *don't* need to assign any properties on it except the operation name.
 * Serialize `yourActivity.Id` into the message payload instead of `operation.Telemetry.Id`. You can also use `Activity.Current.Id`.
 
 # [Dequeue](#tab/dequeue)
@@ -2532,7 +2532,7 @@ public async Task RunAllTasks()
 
 `System.Diagnostics.Activity` represents the distributed tracing context and is used by frameworks and libraries to create and propagate context inside and outside of the process and correlate telemetry items. `Activity` works together with `System.Diagnostics.DiagnosticSource` as the notification mechanism between the framework/library to notify about interesting events like incoming or outgoing requests and exceptions.
 
-Activities are first-class citizens in Application Insights. Automatic dependency and request collection rely heavily on them along with `DiagnosticSource` events. If you created `Activity` in your application, it wouldn't result in Application Insights telemetry being created. Application Insights needs to receive `DiagnosticSource` events and know the events names and payloads to translate `Activity` into telemetry.
+Activities are top-level features in Application Insights. Automatic dependency and request collection rely heavily on them along with `DiagnosticSource` events. If you created `Activity` in your application, it wouldn't result in Application Insights telemetry being created. Application Insights needs to receive `DiagnosticSource` events, and know the event names and payloads to translate `Activity` into telemetry.
 
 Each Application Insights operation (request or dependency) involves `Activity`. When `StartOperation` is called, it creates `Activity` underneath. `StartOperation` is the recommended way to track request or dependency telemetries manually and ensure everything is correlated.
 
@@ -3675,7 +3675,7 @@ TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApp
 # [ASP.NET Core](#tab/core)
 
 > [!NOTE]
-> In ASP.NET Core, there is no *ApplicationInsights.config* file. Configuration is done through dependency injection (DI) in *Program.cs* or *Startup.cs*.
+> In ASP.NET Core, there's no *ApplicationInsights.config* file. Configuration is done through dependency injection (DI) in *Program.cs* or *Startup.cs*.
 
 You can override the default provider or customize its `ProfileQueryEndpoint`.
 
@@ -3781,7 +3781,7 @@ To learn how to configure sampling for ASP.NET Core applications, see [Sampling 
 
 # [Worker Service](#tab/worker-1)
 
-The Application Insights SDK for Worker Service supports both [fixed-rate sampling](sampling.md#fixed-rate-sampling) and [adaptive sampling](sampling.md#adaptive-sampling). Adaptive sampling is enabled by default. Sampling can be disabled by using the `EnableAdaptiveSampling` option in [ApplicationInsightsServiceOptions](#use-applicationinsightsserviceoptions).
+The Application Insights SDK for Worker Service supports both [fixed-rate sampling](sampling.md#fixed-rate-sampling) and [adaptive sampling](sampling.md#adaptive-sampling). Adaptive sampling is enabled by default. Sampling can be disabled by using the `EnableAdaptiveSampling` option in [ApplicationInsightsServiceOptions](#configure-telemetry-modules).
 
 To configure other sampling settings, you can use the following example:
 
