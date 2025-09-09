@@ -1,5 +1,5 @@
 ---
-title: Remote-write in Azure Monitor Managed Service for Prometheus
+title: Connect self-managed Prometheus to Azure Monitor managed service for Prometheus
 description: Describes how to configure remote-write to send data from self-managed Prometheus running in your AKS cluster or Azure Arc-enabled Kubernetes cluster 
 ms.topic: how-to
 ms.date: 09/16/2024
@@ -23,9 +23,11 @@ The configuration requirements for remote-write depend on the authentication typ
 | Type | Clusters supported |
 |:---|:---|
 | System-assigned managed identity | Azure Kubernetes service (AKS)<br>Azure VM/VMSS |
-| User-assigned managed identity | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes<br>Azure VM/VMSS<br>Arc-enabled servers |
+| User-assigned managed identity | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes<br>Azure VM/VMSS |
 | Microsoft Entra ID | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes cluster<br>Cluster running in another cloud or on-premises<br>Azure VM/VMSS<br>Arc-enabled servers<br>VM running in another cloud or on-premises|
-| Microsoft Entra ID Workload Identity | Azure Kubernetes service (AKS)<br>Azure Arc-enabled Kubernetes cluster | Azure Monitor [side car container](/azure/architecture/patterns/sidecar) is required to provide an abstraction for ingesting Prometheus remote write metrics and helps in authenticating packets. See [Send Prometheus data to Azure Monitor by using Microsoft Entra Workload ID authentication](./prometheus-remote-write-azure-workload-identity.md) for configuration. |
+
+> [!NOTE]
+>  You can also use authentication with Microsoft Entra ID Workload Identity, but you must use a [side car container](/azure/architecture/patterns/sidecar) to provide an abstraction for ingesting Prometheus remote write metrics and helps in authenticating packets. See [Send Prometheus data to Azure Monitor using Microsoft Entra Workload ID authentication](./prometheus-remote-write-azure-workload-identity.md) for configuration. |
 
 ## Azure Monitor workspace
 
@@ -33,6 +35,7 @@ Your Azure Monitor workspace must be created before you can configure remote-wri
 
 
 ## Create identity for authentication
+Before you can configure remote-write, you must create the identity that you'll use to authenticate to the Azure Monitor workspace. The following sections describe how to create each type of identity if you aren't reusing an existing one.
 
 ### [System-assigned Managed identity](#tab/system-managed-identity)
 
@@ -97,7 +100,7 @@ az ad sp create-for-rbac --name <application name> --role "Monitoring Metrics Pu
 ---
 
 ## Assign roles
-Once the identity that you're going to use is created, it needs to be given access to the data collection rule (DCR) associated with the Azure Monitor workspace that will receive the remote-write data. You'll specify this identity in the remote-write configuration for the cluster or VM.
+Once the identity that you're going to use is created, it needs to be given access to the data collection rule (DCR) associated with the Azure Monitor workspace that will receive the remote-write data. The DCR is automatically created when you create the workspace. You'll specify this identity in the remote-write configuration for the cluster or VM.
 
 ### [System-assigned Managed identity](#tab/managed-identity)
 
@@ -144,11 +147,14 @@ az role assignment create --role "Monitoring Metrics Publisher" --assignee-objec
 ---
 
 
-## Configure remote-write in self-managed Prometheus
-The final step is to add remote write to the configuration of your self-managed Prometheus server. In addition to details for the identity that you created, you'll also need the metrics ingestion endpoint for the Azure Monitor workspace. Get this value from the **Overview** page for your Azure Monitor workspace in the Azure portal.
+## Configure remote-write in configuration file
+The final step is to add remote write to the [configuration file](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) for your self-managed Prometheus server. In addition to details for the identity that you created, you'll also need the metrics ingestion endpoint for the Azure Monitor workspace. Get this value from the **Overview** page for your Azure Monitor workspace in the Azure portal.
 
 :::image type="content" source="media/prometheus-remote-write-virtual-machines/metrics-ingestion-endpoint.png" lightbox="media/prometheus-remote-write-virtual-machines/metrics-ingestion-endpoint.png" alt-text="Screenshot that shows the metrics ingestion endpoint for an Azure Monitor workspace.":::
 
+The `remote-write` section of the Prometheus configuration file will look similar to the following example, depending on the authentication type that you are using.
+
+**Managed identity**
 
 ```azurecli
 remote_write:   
@@ -157,38 +163,36 @@ remote_write:
       cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
       managed_identity:  
         client_id: "<client-id of the managed identity>"
-      oauth:  
-        client_id: "<client-id from the Entra app>"
-        client_secret: "<client secret from the Entra app>"
-        tenant_id: "<Azure subscription tenant Id>"
 ```
+
+**Entra ID**
 
 ```azurecli
 remote_write:   
   - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
     azuread:
       cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
-      managed_identity:  
-        client_id: "<client-id of the managed identity>"
       oauth:  
         client_id: "<client-id from the Entra app>"
         client_secret: "<client secret from the Entra app>"
         tenant_id: "<Azure subscription tenant Id>"
 ```
 
-**VM/VMSS**
+## Apply configuration file updates
 
+### Virtual Machine
+For a virtual machine, the configuration file will be `promtheus.yml` unless you specify a different one using `prometheus --config.file <path-to-config-file>` when starting the Prometheus server.
 
-## Configure remote-write in self-managed Prometheus
-Remote write is configured in the Prometheus configuration file `prometheus.yml`.
+### Kubernetes cluster
+For a Kubernetes cluster, the configuration file is typically stored in a ConfigMap. Following is a sample ConfigMap that includes a remote-write configuration using managed identity  for self-managed Prometheus running in a Kubernetes cluster. 
 
 ```yml
-  GNU nano 6.4                                                                                             prometheus.yaml                                                                                                       
+  GNU nano 6.4
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: prometheus-server-conf
-  namespace: monitoring
+  name: prometheus-server-conf # must match what your pod mounts
+  namespace: monitoring  # adjust to your namespace
 data:
   prometheus.yml: |-
    global:
@@ -203,23 +207,63 @@ data:
          - targets: ["localhost:9090"]
 
    remote_write:
-     - url: "https://aks-amw-0mi2.eastus-1.metrics.ingest.monitor.azure.com/dataCollectionRules/dcr-17695c1c649c4ff6a8b5fbdd64f96bdd/streams/Microsoft-PrometheusMetrics/api/v1/write?api-version=2023-04-24"
+     - url: "https://aks-amw-0mi2.eastus-1.metrics.ingest.monitor.azure.com/dataCollectionRules/dcr-00000000000000000000000000000000/streams/Microsoft-PrometheusMetrics/api/v1/write?api-version=2023-04-24"
        azuread:
          cloud: 'AzurePublic'
          managed_identity:
-         #  client_id: "381a840f-f3c9-426b-9259-d868b14d9b38"
-           client_id: ""
-         #oauth:
-         #  client_id: "8e547ddf-a7de-46ed-9269-5526a55d3211"
+           client_id: "00001111-aaaa-2222-bbbb-3333cccc4444"
 ```
 
+Use the following command  to apply the configuration file updates.
 
+```bash
+kubectl apply -f <configmap-file-name>.yaml
+```
 
-| Authentication | 
+Restart Prometheus to pick up the new configuration. If you are using a deployment, you can restart the pods by running the following command:
+
+```bash
+kubectl -n monitoring rollout restart deploy <prometheus-deployment-name>
+```
 
 ## Release notes
 
 For detailed release notes on the remote write side car image, please refer to the [remote write release notes](https://github.com/Azure/prometheus-collector/blob/main/REMOTE-WRITE-RELEASENOTES.md).
+
+## Troubleshoot
+
+**HTTP 403 error in the Prometheus log**
+
+It takes about 30 minutes for the assignment of the role to take effect. During this time, you may see an HTTP 403 error in the Prometheus log. Check that you have configured the managed identity or Microsoft Entra ID application correctly with the `Monitoring Metrics Publisher` role on the workspace's DCR. If the configuration is correct, wait 30 minutes for the role assignment to take effect.
+
+
+**No Kubernetes data is flowing**
+
+If remote data isn't flowing, run the following command to find errors in the remote write container.
+
+```azurecli
+kubectl --namespace <Namespace> describe pod <Prometheus-Pod-Name>
+```
+
+
+**Container restarts repeatedly**
+
+A container regularly restarting is likely due to misconfiguration of the container. Run the following command to view the configuration values set for the container. Verify the configuration values especially `AZURE_CLIENT_ID` and `IDENTITY_TYPE`.
+
+```azureccli
+kubectl get pod <Prometheus-Pod-Name> -o json | jq -c  '.spec.containers[] | select( .name | contains("<Azure-Monitor-Side-Car-Container-Name>"))'
+```
+
+The output from this command has the following format:
+
+```
+{"env":[{"name":"INGESTION_URL","value":"https://my-azure-monitor-workspace.eastus2-1.metrics.ingest.monitor.azure.com/dataCollectionRules/dcr-00000000000000000/streams/Microsoft-PrometheusMetrics/api/v1/write?api-version=2021-11-01-preview"},{"name":"LISTENING_PORT","value":"8081"},{"name":"IDENTITY_TYPE","value":"userAssigned"},{"name":"AZURE_CLIENT_ID","value":"00000000-0000-0000-0000-00000000000"}],"image":"mcr.microsoft.com/azuremonitor/prometheus/promdev/prom-remotewrite:prom-remotewrite-20221012.2","imagePullPolicy":"Always","name":"prom-remotewrite","ports":[{"containerPort":8081,"name":"rw-port","protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"kube-api-access-vbr9d","readOnly":true}]}
+```
+
+
+**Ingestion quotas and limits**
+
+When configuring Prometheus remote write to send data to an Azure Monitor workspace, you typically begin by using the remote write endpoint displayed on the Azure Monitor workspace overview page. This endpoint involves a system-generated Data Collection Rule (DCR) and Data Collection Endpoint (DCE). These resources have ingestion limits. For more information on ingestion limits, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics). When setting up remote write for multiple clusters sending data to the same endpoint, you might reach these limits. Consider [Remote write tuning](https://prometheus.io/docs/practices/remote_write/) to adjust configuration settings for better performance. If you still see data drops, consider creating additional DCRs and DCEs to distribute the ingestion load across multiple endpoints. This approach helps optimize performance and ensures efficient data handling. For more information about creating DCRs and DCEs, see [how to create custom Data collection endpoint(DCE) and custom Data collection rule(DCR) for an existing Azure monitor workspace(AMW) to ingest Prometheus metrics](https://aka.ms/prometheus/remotewrite/dcrartifacts).
 
 
 ## Next steps
