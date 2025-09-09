@@ -47,10 +47,9 @@ For information on how to configure service health notification alerts by using 
 ## Create a Service Health alert in the Azure portal
 1. In the [portal](https://portal.azure.com/), select **View service health**.
 
-:::image type="content"source="media/alerts-activity-log-service-notifications/home-service-health.png"alt-text="A screenshot of Azur Portal with link to open Service Health."Lightbox="media/alerts-activity-log-service-notifications/home-service-health.png":::
+:::image type="content"source="media/alerts-activity-log-service-notifications/home-service-health.png"alt-text="A screenshot of Azur portal with link to open Service Health."Lightbox="media/alerts-activity-log-service-notifications/home-service-health.png":::
 
-
-1. In the **Service Issues** panel, select **Create service health alert** to open a new window where you fill in the information required to create the alert. Follow the steps in the [create a new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md?tabs=activity-log).
+2. In the **Service Issues** panel, select **Create service health alert** to open a new window where you fill in the information required to create the alert. Follow the steps in the [create a new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md?tabs=activity-log).
     
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
 
