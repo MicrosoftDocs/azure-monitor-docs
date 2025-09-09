@@ -6,12 +6,10 @@ ms.author: jsuri
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: overview
-ms.date: 09/08/2025
+ms.date: 09/09/2025
 ---
 
 # Overview of migration from Azure Monitor SCOM Managed Instance
-
-[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 This article provides guidance to migrate from Azure Monitor SCOM Managed Instance to System Center Operations Manager (on-premises) or Azure Monitor.    
 
@@ -20,7 +18,7 @@ SCOM Managed Instance is a cloud-based alternative for System Center Operations 
 > [!Note]
 > - On September 30th, 2025, Azure Monitor SCOM Managed Instance is deprecated. If you are still using Azure Monitor SCOM Managed Instance, we recommend that you migrate to System Center Operations Manager (on-premises) or Azure Monitor. For more information, see the FAQs on deprecation.      
 
-You can either migrate to System Center Operations Manager (on-premises) or Azure monitor which are explained in detail in the following links:
+To migrate to System Center Operations Manager (on-premises) or Azure monitor, follow these links:
 - [Migrate to System Center Operations Manager](migrate-to-operations-manager.md)  
 - [Migration to Azure Monitor](migrate-to-azure-monitor.md)  
 

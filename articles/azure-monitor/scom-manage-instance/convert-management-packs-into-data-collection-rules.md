@@ -4,7 +4,7 @@ description: This article explains how to convert a System Center Operations Man
 ms.topic: how-to
 author: jyothisuri
 ms.author: jsuri
-ms.date: 09/04/2025
+ms.date: 09/09/2025
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ---
@@ -13,17 +13,17 @@ ms.subservice: operations-manager-managed-instance
 
 This article explains how to convert a System Center Operations Manager management pack into data collection rules (DCR) in Azure Monitor.
 
-You can use DCRs along with VM insights and baseline alerts to replicate the functionality that System Center Operations Manager management packs offer in Azure Monitor. This involves the extraction of the rules and monitors of the management pack you want to convert and then passing the configuration files along with a prompt into an existing LLM to create the configurations. You can apply and implement the configurations in an existing Azure Monitor setup and test the functionality.
+You can use DCRs with VM insights and baseline alerts to replicate the functionality that System Center Operations Manager management packs offer in Azure Monitor. This involves the extraction of the rules and monitors of the management pack you want to convert and then passing the configuration files with a prompt into an existing LLM to create the configurations. You can apply and implement the configurations in an existing Azure Monitor setup and test the functionality.
 
 ## Extract rules and monitors from System Center Operations Manager management packs
 
-### Export System Center Operations Manager rules/monitors from a VM hosting Operations Manager
+### Export rules/monitors from System Center Operations Manager manangement server
 
 #### Prerequisites
 
 Before you begin, ensure you meet the following prerequisites:
 
-- System Center Operations Manager console and the PowerShell modules installed on the VM (this is usually the case on System Center Operations Manager management servers).
+- System Center Operations Manager console and the PowerShell modules installed on the VM (this is usually available on System Center Operations Manager management servers).
 - System Center Operations Manager Administrator rights to run these commands.
 - Access to the virtual machine (RDP or console access).
 
@@ -31,7 +31,7 @@ To extract rules and monitors from System Center Operations Manager management p
 
 1. **Prepare script**
    
-   **Copy the script** into a file on the VM and save the file as *Export-SCOM-MP-RulesMonitors-GenericCSV.ps1*.
+   **Copy the script** into a file on the management server and save the file as *Export-SCOM-MP-RulesMonitors-GenericCSV.ps1*.
 
    For example,
 
@@ -169,7 +169,7 @@ To extract rules and monitors from System Center Operations Manager management p
 
 2. **Open PowerShell as administrator**
 
-   On the VM, right-click the PowerShell icon and select **Run as administrator**.
+   On the management server, right-click the PowerShell icon and select **Run as administrator**.
 
 3. **Set the execution policy**
 

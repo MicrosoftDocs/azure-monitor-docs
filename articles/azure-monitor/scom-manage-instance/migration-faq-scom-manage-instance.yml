@@ -2,7 +2,7 @@
 metadata:
   title: Migrate from Azure Monitor SCOM Managed Instance - FAQ
   description: This article answers frequently asked questions about migration from Azure Monitor SCOM Managed Instance.
-  ms.date: 09/03/2025
+  ms.date: 09/09/2025
   ms.topic: faq
   ms.service: azure-monitor
   ms.subservice: operations-manager-managed-instance
@@ -15,7 +15,7 @@ sections:
     questions:
       - question: How long will SCOM Managed Instance be supported?
         answer: |
-          Refer to Microsoft's official documentation and announcements for the precise timeline regarding support and deprecation milestones. To avoid risks and interruptions, we recommend you to plan and complete the migration before support ends.
+          Azure Monitor SCOM Managed Instance will be fully deprecated by 30 September 2026. To avoid risks and interruptions, we recommend you to plan and complete the migration before support ends.
       - question: Can I run both SCOM Managed Instance and my new platform in parallel?
         answer: |
           Yes. During migration, it is common to operate both environments concurrently to ensure a smooth cutover but minimize this period to reduce complexity and cost.
