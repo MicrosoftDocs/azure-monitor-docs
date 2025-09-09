@@ -2918,7 +2918,7 @@ You configure a telemetry channel by setting it to the active telemetry configur
 
 The following sections show examples of configuring the `StorageFolder` setting for the channel in various application types. `StorageFolder` is just one of the configurable settings. For the full list of configuration settings, see the [Configurable settings in channels](#configurable-settings-in-channels) section later in this article.
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 **Option 1: Configuration in code**
 
@@ -2953,7 +2953,7 @@ The following section from [ApplicationInsights.config](configuration-with-appli
     </TelemetrySinks>
 ```
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 Modify the `ConfigureServices` method of the `Startup.cs` class as shown here:
 
@@ -3114,7 +3114,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 
 #### Configure telemetry modules
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 Use the `TelemetryModules` section in *ApplicationInsights.config* to configure, add, or remove modules. The following examples:
 
@@ -3154,7 +3154,7 @@ Use the `TelemetryModules` section in *ApplicationInsights.config* to configure,
 > [!NOTE]
 > The exact set of modules present in your `ApplicationInsights.config` depends on which SDK packages you installed.
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 **Option 1: Configure telemetry modules using ConfigureTelemetryModule**
 
@@ -3325,11 +3325,11 @@ For the most up-to-date list, see the [configurable settings in `ApplicationInsi
 
 ### Disable telemetry
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 There's a node in the configuration file for each module. To disable a module, delete the node or comment it out.
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 If you want to disable telemetry conditionally and dynamically, you can resolve the `TelemetryConfiguration` instance with an ASP.NET Core dependency injection container anywhere in your code and set the `DisableTelemetry` flag on it.
 
@@ -3369,7 +3369,7 @@ If you want to disable telemetry conditionally and dynamically, you can resolve 
 
 To enrich telemetry with additional information or to override telemetry properties set by the standard telemetry modules, use telemetry initializers.
 
-# [ASP.NET](#tab/net)
+# [ASP.NET](#tab/net-1)
 
 Telemetry initializers set context properties that are sent along with every item of telemetry.
 
@@ -3398,7 +3398,7 @@ The standard initializers are all set either by the web or WindowsServer NuGet p
 
 To learn how to use telemetry initializers with ASP.NET applications, see [Filter and preprocess telemetry in the Application Insights SDK](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
 
-# [ASP.NET Core](#tab/core)
+# [ASP.NET Core](#tab/core-1)
 
 Add any new `TelemetryInitializer` to the `DependencyInjection` container as shown in the following code. The SDK automatically picks up any `TelemetryInitializer` that's added to the `DependencyInjection` container.
 
