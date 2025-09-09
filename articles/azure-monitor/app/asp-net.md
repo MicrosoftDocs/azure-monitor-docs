@@ -28,7 +28,7 @@ This article explains how to enable and configure [Application Insights](app-ins
 ## Supported scenarios
 
 > [!NOTE]
-> The Application Insights [SDK for ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) and [SDK for Worker Service](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService)can monitor your applications no matter where or how they run. If your application is running and has network connectivity to Azure, telemetry can be collected.
+> The Application Insights [SDK for ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) and [SDK for Worker Service](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) can monitor your applications no matter where or how they run. If your application is running and has network connectivity to Azure, telemetry can be collected.
 
 | Supported | ASP.NET | ASP.NET Core | Worker Service |
 |-----------|---------|--------------|----------------|
@@ -41,7 +41,7 @@ This article explains how to enable and configure [Application Insights](app-ins
 | **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line | Visual Studio, Visual Studio Code, or command line |
 
 > [!NOTE]
-> A worker service is a long-running background application that executes tasks outside of an HTTP request/response pipeline. The Application Insights SDK for Worker Service can be used in the newly introduced [.NET Core Worker Service](https://devblogs.microsoft.com/aspnet/dotnet-core-workers-in-azure-container-instances), [background tasks in ASP.NET Core](/aspnet/core/fundamentals/host/hosted-services), and console apps like .NET Core and .NET Framework. 
+> A worker service is a long-running background application that executes tasks outside of an HTTP request/response pipeline. The [Application Insights SDK for Worker Service](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) can be used in the newly introduced [.NET Core Worker Service](https://devblogs.microsoft.com/aspnet/dotnet-core-workers-in-azure-container-instances), [background tasks in ASP.NET Core](/aspnet/core/fundamentals/host/hosted-services), and console apps like .NET Core and .NET Framework. 
 >
 > The Worker Service SDK doesn't do any telemetry collection by itself. Instead, it brings in other well-known Application Insights auto collectors like [DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/), [PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector/), and [ApplicationInsightsLoggingProvider](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights). This SDK exposes extension methods on `IServiceCollection` to enable and configure telemetry collection.
 
