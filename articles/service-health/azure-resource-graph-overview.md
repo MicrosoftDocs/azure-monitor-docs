@@ -170,7 +170,7 @@ You can use this query to:
 - **Improve SLA tracking**: Attribute failures to specific causes for business impact analysis.
 - **Build dashboards**: Visualize health annotations alongside other resource metadata.
 
-For more information about these tables, see [VM availability resource graph](azure/virtual-machines/resource-graph-availability).
+For more information about these tables, see [VM availability resource graph](/azure/virtual-machines/resource-graph-availability).
 
 ### HealthResources properties
 
