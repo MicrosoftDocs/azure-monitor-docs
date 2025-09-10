@@ -22,7 +22,7 @@ The following video walks through routing resource platform logs with diagnostic
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=2e9e11cc-fc03-4caa-8fee-4386abf454bc]
 
 > [!WARNING] 
-> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
+> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. For some resource types this would resume the collection of resource logs as defined in the diagnostic setting. 
 
 ## Sources
 
