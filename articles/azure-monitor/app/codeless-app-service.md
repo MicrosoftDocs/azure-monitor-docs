@@ -129,19 +129,16 @@ Application Insights for Node.js is integrated with Azure App Service on Linux -
 >
 > * [Live Metrics](live-stream.md) isn't available for autoinstrumented Python applications running on Azure App Service. To use this feature, manually instrument your application with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) instead.
 
-Application Insights for Python integrates with code-based Linux Azure App Service. The integration is GA for Deploy as Code and in public preview for Deploy as Container. The integration adds the Python SDK, which is in GA. It instruments popular Python libraries in your code, letting you automatically gather and correlate dependencies, logs, and metrics. To see which calls and metrics are collected, see [Python libraries](#python-libraries)
+Application Insights for Python integrates with code-based Linux Azure App Service Deploy as Code. Integration with Deploy as Container is not currently available. The integration is GA and adds the Python SDK, which is in GA. It instruments popular Python libraries in your code, letting you automatically gather and correlate dependencies, logs, and metrics. To see which calls and metrics are collected, see [Python libraries](#python-libraries)
 
 Logging telemetry is collected at the level of the root logger. To learn more about Python's native logging hierarchy, visit the [Python logging documentation](https://docs.python.org/3/library/logging.html).
 
 ### Prerequisites
 
 > [!div class="checklist"]
-> * Python version 3.12 or earlier.
+> * Python versions 3.8-3.13
 > * Linux OS
-> * Autoinstrummentation for App Service Publish as Code is in General Availability (GA). However, Autoinstrumentation for App Service Publish as Container is still in Preview.
-
-> [!IMPORTANT]
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> * App Service must be Deployed as Code. Custom containers aren't supported.
 
 ### Autoinstrumentation in the Azure portal
 
