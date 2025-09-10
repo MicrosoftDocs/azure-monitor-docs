@@ -2,7 +2,7 @@
 title: Azure Resource Graph Overview
 description: Learn about the Azure Resource Graph table properties.
 ms.topic: concept-article
-ms.date: 09/02/2025
+ms.date: 09/10/2025
 
 ---
 # Azure Resource Graph tables overview
@@ -52,7 +52,7 @@ This table shows the core fields in the ARG table for the Service Health, Impact
 
 The **ServiceHealthResources** queries returns data about resources within your subscriptions that are affected by service health events.<br>
 
-These notifications are a subclass of activity log events and can also be found in the [Azure activity log](/azure-monitor/essentials/platform-logs-overview). <br>
+These notifications are a subclass of activity log events and can also be found in the [Azure activity log](/azure/azure-monitor/platform/activity-log). <br>
 
 Depending on the event classification, **EventType** and **EventSubtype** service health notifications could be either informational or actionable.
 
