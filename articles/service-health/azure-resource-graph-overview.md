@@ -216,6 +216,8 @@ Only Planned Maintenance events include maintenance timing details. Other event 
     - Check the event status.
     - Report any consistent data gaps through the appropriate support channels.
 
+If the `maintenanceStartTime`, `maintenanceEndTime`, or `info` are showing null in the ARG query results, you should check the Planned maintenance pane.
+:::image type="content"source="./media/resource-graph-overview/resource-health-null-fields.png"alt-text="Screenshot of the Planned maintenance pane."Lightbox="./media/resource-graph-overview/resource-health-null-fields.png":::
 
 
 For more information about queries, see:<br> 
