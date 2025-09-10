@@ -15,14 +15,14 @@ This article guides you through getting started with Azure Monitor issues and in
 
 - Read the [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md).
 - Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigations.
-- Identify an alert fired on an Application Insights resource to investigate.
 - Be sure that the subscription containing the investigated resource is associated with an Azure Monitor Workspace (AMW).
-- Give the users performing the association `Write` permission to the AMW.
 - Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the AMW you’re investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ### Associate an AMW in the Azure portal
+> [!NOTE]
+> This is a one-time step required for each subscription you'd like to investigate, and should be performed by a user with the Contributor role on the associated subscription.
 
-Associating a subscription with an Azure Monitor Workspace is required:
+Associating a subscription with an Azure Monitor Workspace is required to create issues and run investigations:
 
 1. If the alert’s target resource subscription isn’t already linked to an AMW, you’ll see a message indicating that an Azure Monitor Workspace is required. The **Select an Azure Monitor workspace** screen will appear.
 1. Select an existing Azure Monitor Workspace or create a new one as needed.
@@ -85,5 +85,6 @@ An investigation will present findings based on the evidence it analyzed. To inv
 ## Related content
 
 - [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
+
 - [Azure Monitor issues and investigations (preview) responsible use](aiops-issue-and-investigation-responsible-use.md)
 - [Azure Monitor issues and investigations (preview) troubleshooting](aiops-issue-and-investigation-troubleshooting.md)
