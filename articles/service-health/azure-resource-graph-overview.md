@@ -146,9 +146,31 @@ When the `type` column in the ServiceHealthResources table is set to **microsoft
 
 ## Resource Health
 
-The **HealthResources** table in Azure Resource Graph (ARG) provides detailed information about the health status of your Azure resources, especially virtual machines. 
+There are two types in the **HealthResources** table in Azure Resource Graph (ARG) that provides detailed information about the health status of your Azure resources, especially virtual machines.
+
+`microsoft.resourcehealth/availabilitystatuses`
+This table provides the latest availability status of Azure resources—primarily virtual machines (VMs)—based on health checks performed by the Azure platform.
+
+You can use this query to:
+- **Track VM Health across your environment**: Get a consolidated view of the health status of virtual machines across all subscriptions or resource groups.
+- **Diagnose issues quickly**: Identify which VMs are marked as Unavailable or Degraded, and investigate the underlying causes.
+- **Audit downtime sources**: Determine whether service interruptions are caused by platform-initiated events (like maintenance) or customer actions.
+- **Create operational dashboards**: Visualize real-time health data to monitor service-level agreements (SLAs) and maintain operational awareness.
+- **Add context with annotations**: Combine this table with `resourceannotations` to understand the reasons behind availability changes, such as restarts or outages.
 
 
+`microsoft.resourcehealth/resourceannotations`
+This table provides detailed annotations about changes in the availability of Azure resources—especially virtual machines (VMs). It adds context such as failure attribution, downtime analysis, and impact metadata. These fields help you understand why a VM's availability changed, whether it was due to platform maintenance, customer actions, or unexpected failures.
+
+You can use this query to:
+
+- **Investigate VM downtime**: Understand the root cause of availability changes.
+- **Correlate health events**: Join with `availabilitystatuses` to get both status and context.
+- **Audit platform actions**: Identify whether Azure initiated a restart or shutdown.
+- **Improve SLA tracking**: Attribute failures to specific causes for business impact analysis.
+- **Build dashboards**: Visualize health annotations alongside other resource metadata.
+
+For more information about these tables, see [VM availability resource graph](azure/virtual-machines/resource-graph-availability).
 
 ### HealthResources properties
 
@@ -196,7 +218,7 @@ Only Planned Maintenance events include maintenance timing details. Other event 
 
 
 
-For information about queries see:<br> 
+For more information about queries, see:<br> 
 - [Service Health sample queries](resource-graph-samples.md)
 - [Resource health sample queries](resource-graph-health-samples.md)
 - [Impacted Resources sample queries](resource-graph-impacted-samples.md)
