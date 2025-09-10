@@ -136,7 +136,7 @@ Logging telemetry is collected at the level of the root logger. To learn more ab
 ### Prerequisites
 
 > [!div class="checklist"]
-> * Python versions 3.8-3.13
+> * Python versions 3.9-3.13
 > * Linux OS
 > * App Service must be Deployed as Code. Custom containers aren't supported.
 
