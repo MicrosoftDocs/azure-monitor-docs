@@ -7,13 +7,76 @@ ms.reviewer: aul
 ms.date: 08/25/2025
 ---
 
-# Enable Kubernetes monitoring using the Azure portal
+# Enable Kubernetes monitoring for AKS cluster
 
 As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) clusters. This article describes how to enable the following features using the Azure portal:
 
 - Prometheus metrics
 - Container logging
 - Control plane logs
+
+## Prerequisites
+
+### [CLI](#cli)
+- Az CLI version 2.51.0 or higher
+- k8s-extension version 1.4.3 or higher
+- The aks-preview extension must be [uninstalled from AKS clusters](/cli/azure/azure-cli-extensions-overview) by using the command `az extension remove --name aks-preview`. 
+- Managed identity authentication is not supported for Arc-enabled Kubernetes clusters with ARO (Azure Red Hat Openshift) or Windows nodes. Use [legacy authentication](./container-insights-authentication.md).
+
+
+
+
+## Enable Prometheus metrics and container logging
+
+
+
+### [CLI](#cli)
+Use the command `az aks create` or `az aks update` depending whether you're creating a new cluster or updating an existing cluster to enable Prometheus metrics and container logging with CLI. 
+
+Use one of the following commands to enable collection of Prometheus metrics from your AKS and Arc-enabled clusters. If you don't specify an existing Azure Monitor workspace in the following commands, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one with a name in the format `DefaultAzureMonitorWorkspace-<mapped_region>` will be created in a resource group with the name `DefaultRG-<cluster_region>`. See [Workspaces](./kubernetes-monitoring-enable.md#workspaces) for more details about the Azure Monitor workspace.
+
+
+
+
+Use the `-enable-azure-monitor-metrics` option `az aks create` or `az aks update` (depending whether you're creating a new cluster or updating an existing cluster) to install the metrics add-on that scrapes Prometheus metrics.
+
+> [!NOTE]
+> The following commands include Managed Grafana, although this is being replaced as the default visualization experience by [Dashboards with Grafana](../visualize/visualize-grafana-overview.md). This experience doesn't require any configuration.
+
+
+
+
+```azurecli
+### Use default Azure Monitor workspace
+az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group>
+
+### Use existing Azure Monitor workspace
+az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --azure-monitor-workspace-resource-id <workspace-name-resource-id>
+
+### Use an existing Azure Monitor workspace and link with an existing Grafana workspace
+az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --azure-monitor-workspace-resource-id <azure-monitor-workspace-name-resource-id> --grafana-resource-id  <grafana-workspace-name-resource-id>
+
+### Use optional parameters
+az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --ksm-metric-labels-allow-list "namespaces=[k8s-label-1,k8s-label-n]" --ksm-metric-annotations-allow-list "pods=[k8s-annotation-1,k8s-annotation-n]"
+```
+
+
+
+Each of the commands for AKS clusters allow the following optional parameters.
+
+| Parameter | Description |
+|:---|:---|
+| `ksm-metric-annotations-allow-list` | Comma-separated list of Kubernetes annotations keys used in the resource's `kube_resource_annotations` metric. For example, kube_pod_annotations is the annotations metric for the pods resource. By default, this metric contains only name and namespace labels. To include more annotations, provide a list of resource names in their plural form and Kubernetes annotation keys that you want to allow for them. A single `*` can be provided for each resource to allow any annotations, but this has severe performance implications. For example, `pods=[kubernetes.io/team,...],namespaces=[kubernetes.io/team],...`. |
+| `ksm-metric-labels-allow-list` | Comma-separated list of more Kubernetes label keys that is used in the resource's kube_resource_labels metric kube_resource_labels metric. For example, kube_pod_labels is the labels metric for the pods resource. By default this metric contains only name and namespace labels. To include more labels, provide a list of resource names in their plural form and Kubernetes label keys that you want to allow for them A single `*` can be provided for each resource to allow any labels, but i this has severe performance implications. For example, `pods=[app],namespaces=[k8s-label-1,k8s-label-n,...],...`. |
+| `enable-windows-recording-rules` | Lets you enable the recording rule groups required for proper functioning of the Windows dashboards. |
+
+
+
+
+
+
+
+
 
 ## Portal configuration options
 
@@ -112,6 +175,38 @@ Within a few minutes after enabling monitoring, you should be able to use the fo
 - The cluster should move from the **Unmonitored clusters** view to the **Monitored clusters** view in Container insights multi-cluster view.
 - The **Monitor** view for the cluster should start to populate with data and no longer provide an option to enable monitoring. This includes the **Nodes**, **Workloads**, and **Containers** tabs.
 - For further validation options, see [Verify deployment](./kubernetes-monitoring-enable.md#verify-deployment).
+
+
+
+
+
+
+### Stream values
+When you specify the tables to collect using CLI or ARM, you specify a stream name that corresponds to a particular table in the Log Analytics workspace. The following table lists the stream name for each table.
+
+> [!NOTE]
+> If you're familiar with the [structure of a data collection rule](../essentials/data-collection-rule-structure.md), the stream names in this table are specified in the [Data flows](../essentials/data-collection-rule-structure.md#data-flows) section of the DCR.
+
+| Stream | Container insights table |
+| --- | --- |
+| Microsoft-ContainerInventory | ContainerInventory |
+| Microsoft-ContainerLog | ContainerLog |
+| Microsoft-ContainerLogV2 | ContainerLogV2 |
+| Microsoft-ContainerLogV2-HighScale | ContainerLogV2 (High scale mode)<sup>1</sup> |
+| Microsoft-ContainerNodeInventory | ContainerNodeInventory |
+| Microsoft-InsightsMetrics | InsightsMetrics |
+| Microsoft-KubeEvents | KubeEvents |
+| Microsoft-KubeMonAgentEvents | KubeMonAgentEvents |
+| Microsoft-KubeNodeInventory | KubeNodeInventory |
+| Microsoft-KubePodInventory | KubePodInventory |
+| Microsoft-KubePVInventory | KubePVInventory |
+| Microsoft-KubeServices | KubeServices |
+| Microsoft-Perf | Perf |
+
+<sup>1</sup> You shouldn't use both Microsoft-ContainerLogV2 and Microsoft-ContainerLogV2-HighScale in the same DCR. This will result in duplicate data.
+
+
+
 
 
 ## Next steps
