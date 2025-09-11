@@ -841,6 +841,7 @@ This approach also ensures all the telemetry generated, both automatic and manua
 
 * [Live metrics](#live-metrics)
 * [Traces (logs)](#traces-logs)
+* [Distributed tracing](#distributed-tracing)
 * [Dependencies](#dependencies)
 * [Exceptions](#exceptions)
 * [Custom metrics](#custom-metric-collection)
@@ -1203,6 +1204,20 @@ traces
 | where severityLevel >= 2 // 2=Warning, 1=Information, 0=Verbose
 | take 50
 ```
+
+[!INCLUDE [Distributed tracing](./includes/application-insights-distributed-trace-data.md)]
+
+#### Enable W3C distributed tracing support
+
+W3C TraceContext-based distributed tracing is enabled by default in all recent .NET Framework/.NET Core SDKs, along with backward compatibility with legacy `Request-Id` protocol.
+
+#### Telemetry correlation
+
+Correlation is handled by default when onboarding an app. No special actions are required.
+
+.NET runtime supports distributed with the help of [Activity](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) and [DiagnosticSource](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)
+
+The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to collect and correlate telemetry.
 
 ### Dependencies
 
@@ -2841,11 +2856,11 @@ To review frequently asked questions (FAQ), see [Event counters FAQ](application
 * [Telemetry modules](#telemetry-modules)
 * [Disable telemetry](#disable-telemetry)
 * [Telemetry initializers](#telemetry-initializers)
+* [Enrich data through HTTP](#enrich-data-through-http)
 * [Telemetry processor](#telemetry-processors)
 * [ApplicationId Provider](#applicationid-provider)
 * [Snapshot collection](#configure-snapshot-collection)
 * [Sampling](#sampling)
-* [Telemetry correlation and distributed tracing](#telemetry-correlation-and-distributed-tracing)
 
 You can customize the Application Insights SDK for ASP.NET, ASP.NET Core, and Worker Service to change the default configuration.
 
@@ -3474,6 +3489,27 @@ Telemetry initializers are present by default. To remove all or specific telemet
 
 ---
 
+### Enrich data through HTTP
+
+# [ASP.NET](#tab/net)
+
+```csharp
+var requestTelemetry = HttpContext.Current?.Items["Microsoft.ApplicationInsights.RequestTelemetry"] as RequestTelemetry;
+
+if (requestTelemetry != null)
+{
+    requestTelemetry.Properties["myProp"] = "someData";
+}
+```
+
+# [ASP.NET Core](#tab/core)
+
+```csharp
+HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
+```
+
+---
+
 ### Telemetry processors
 
 # [ASP.NET](#tab/net-1)
@@ -3812,41 +3848,6 @@ var app = builder.Build();
 
 ---
 
-[!INCLUDE [Telemetry correlation and distributed tracing](./includes/application-insights-distributed-trace-data.md)]
-
-#### Enable W3C distributed tracing support
-
-W3C TraceContext-based distributed tracing is enabled by default in all recent .NET Framework/.NET Core SDKs, along with backward compatibility with legacy `Request-Id` protocol.
-
-### Telemetry correlation
-
-Correlation is handled by default when onboarding an app. No special actions are required.
-
-.NET runtime supports distributed with the help of [Activity](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) and [DiagnosticSource](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)
-
-The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to collect and correlate telemetry.
-
-#### Enrich data through HTTP
-
-# [ASP.NET](#tab/net)
-
-```csharp
-var requestTelemetry = HttpContext.Current?.Items["Microsoft.ApplicationInsights.RequestTelemetry"] as RequestTelemetry;
-
-if (requestTelemetry != null)
-{
-    requestTelemetry.Properties["myProp"] = "someData";
-}
-```
-
-# [ASP.NET Core](#tab/core)
-
-```csharp
-HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
-```
-
----
-
 ## Add client-side monitoring
 
 The previous sections provided guidance on methods to automatically and manually configure server-side monitoring. To add client-side monitoring, use the [client-side JavaScript SDK](javascript.md). You can monitor any web page's client-side transactions by adding a [JavaScript (Web) SDK Loader Script](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) before the closing `</head>` tag of the page's HTML.
@@ -3931,7 +3932,6 @@ Our [Service Updates](https://azure.microsoft.com/updates/?service=application-i
 * Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * See the [data model](data-model-complete.md) for Application Insights types and data model.
 * Add synthetic transactions to test that your website is available from all over the world with [availability monitoring](availability-overview.md).
-* Learn the basics of [telemetry correlation](distributed-trace-data.md) in Application Insights.
 * Check the [System.Diagnostics.Activity User Guide](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) to see how we correlate telemetry.
 * [Configure a snapshot collection](snapshot-debugger.md) to see the state of source code and variables at the moment an exception is thrown.
 * [Use the API](api-custom-events-metrics.md) to send your own events and metrics for a detailed view of your app's performance and usage.

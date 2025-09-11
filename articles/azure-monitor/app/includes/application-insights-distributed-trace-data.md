@@ -3,7 +3,7 @@ ms.topic: include
 ms.date: 12/07/2024
 ---
 
-### Telemetry correlation and distributed tracing
+### Distributed tracing
 
 Modern cloud and [microservices](https://azure.com/microservices) architectures have enabled simple, independently deployable services that reduce costs while increasing availability and throughput. However, it has made overall systems more difficult to reason about and debug. Distributed tracing solves this problem by providing a performance profiler that works like call stacks for cloud and microservices architectures.
 
