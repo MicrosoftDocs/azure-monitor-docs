@@ -97,6 +97,10 @@ You can configure your alerts so that an alert is triggered when specified condi
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="Screenshot that shows Health alerts filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
 
+
+> [!NOTE] 
+> Learn how to deploy alerts at scale through [Deploy Service health alerts at scale using Azure Policy](service-health-alert-deploy-policy.md).
+
 ### Manage your account and information
 
 #### Tenant and subscription access
@@ -110,6 +114,9 @@ This distinction ensures that users can effectively manage and monitor Azure ser
 The **Service issues**, **Health advisories**, **Security advisories**, and **Health history** panes show events at both the **Tenant** and **Subscription** levels. For more information about roles, see [Role-based access control (RBAC) for security incident resource impact](impacted-resources-security.md).  
 
 :::image type="content" source="media/service-health-portal-update/service-issue-window-2.png" alt-text="A screenshot of the Service issues user interface that highlights Tenant and Subscription checkboxes." lightbox="media/service-health-portal-update/service-issue-window-2.png":::
+
+> [!NOTE] 
+> You can also create an alert at the tenant level. See [Create tenant level service health alerts (preview)](../azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts.md).
 
 #### Filtering and sorting the information
 
