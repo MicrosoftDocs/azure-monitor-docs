@@ -75,6 +75,14 @@ Select **Billing updates** from the left menu to see billing updates. Only users
 
 :::image type="content" source="media/service-health-portal-update/in-portal-billing-blade.png" alt-text="A screenshot of the Billing updates window." lightbox="media/service-health-portal-update/in-portal-billing-blade.png":::
 
+
+### View the history of all your Service Health events
+
+Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents and configure alerts.
+
+:::image type="content" source="media/service-health-portal-update/services-issue-health-history.png" alt-text="A screenshot of the health history window." lightbox="media/service-health-portal-update/services-issue-health-history.png":::
+
+
 ### See and manage your resource health
 
 Select **Resource health** from the left menu to find out if your resource is running as expected. You can select links that open directly to information about the health of your selected resource. For more information, see [Resource health overview](resource-health-overview.md).
