@@ -1,25 +1,75 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 04/11/2025
+ms.date: 09/03/2025
 
 ---
 
-| Service name <br />&#9492; Retiring feature | Retirement date | Impacted Resources available? |
-|:--- |:--- |:--- |
-| Azure AI Vision <br />&#9500; Computer Vision API v1.0 <br />&#9500; Computer Vision API v2.0 <br />&#9500; Computer Vision API v2.1 <br />&#9500; Computer Vision API v3.0 <br />&#9492; Computer Vision API v3.1 | September 13, 2026 |  |
-| AKS-Engine <br />&#9492; Monitoring Support | September 14, 2026 |  |
-| Azure Functions <br />&#9492; Version 1.x runtime | September 14, 2026 |  |
-| Azure Monitor <br />&#9492; HTTP Data Collector API | September 14, 2026 |  |
-| Azure Maps <br />&#9492; Gen1 price tier | September 15, 2026 | :white_check_mark: |
-| Azure Maps <br />&#9492; Render v1 APIs | September 17, 2026 |  |
-| Azure Maps <br />&#9492; Web SDK Map Controls v1.xx | September 19, 2026 |  |
-| Azure Health Data Services <br />&#9492; SMART on FHIR proxy | September 21, 2026 |  |
-| Application Insights <br />&#9492; Single URL Ping Test | September 30, 2026 |  |
-| Azure API for FHIR <br />&#9492; Entire service | September 30, 2026 | :white_check_mark: |
-| Azure Container Registry <br />&#9492; 2017-01-01-(GA) API | September 30, 2026 |  |
-| Azure Maps <br />&#9492; Web SDK v2 Subversion (v2.0 - v2.0.32) | September 30, 2026 |  |
-| Azure Monitor <br />&#9492; Alerts - GetAlertSummary API | September 30, 2026 |  |
-| Azure Virtual Desktop <br />&#9492; Classic | September 30, 2026 |  |
-| Service Bus <br />&#9500; com.microsoft.azure.servicebus <br />&#9500; Microsoft.Azure.ServiceBus <br />&#9492; WindowsAzure.ServiceBus | September 30, 2026 |  |
-| VPN Gateway <br />&#9492; VPNs without availability zones | September 30, 2026 |  |
+##### September 13, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure AI Vision | Computer Vision API v1.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure AI Vision | Computer Vision API v2.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure AI Vision | Computer Vision API v2.1  | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure AI Vision | Computer Vision API v3.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure AI Vision | Computer Vision API v3.1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 14 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | AKS-Engine | Monitoring Support | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Functions | Version 1.x runtime | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Monitor | HTTP Data Collector API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+
+##### September 15, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Maps | Gen1 price tier | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Monitor | Legacy Azure Activity logs solution | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 17, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Maps | Render v1 APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 19, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Maps | Web SDK Map Controls v1.xx | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 21, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Health Data Services | SMART on FHIR proxy | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+
+##### September 30, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Application Insights | Single URL Ping Test | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure API for FHIR | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Container Registry | 2017-01-01-(GA) API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure FXT Edge Filer | Entire service | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Maps | Web SDK v2 Subversion (v2.0 - v2.0.32) | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Monitor | Alerts - GetAlertSummary API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Monitor | ContainerLog table | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Virtual Desktop | Classic | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Service Bus | com.microsoft.azure.servicebus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Service Bus | Microsoft.Azure.ServiceBus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Service Bus | WindowsAzure.ServiceBus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Speech | Speaker Recognition | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | VPN Gateway | Non-availability zones VPNs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

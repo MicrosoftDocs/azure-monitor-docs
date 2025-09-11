@@ -1,18 +1,47 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 04/11/2025
+ms.date: 09/03/2025
 
 ---
 
-| Service name <br />&#9492; Retiring feature | Retirement date | Impacted Resources available? |
-|:--- |:--- |:--- |
-| Azure Document Intelligence <br />&#9492; Studio v2.1 | September 15, 2027 |  |
-| Azure Site Recovery <br />&#9492; Classic Alerts | September 22, 2027 |  |
-| Azure Sphere <br />&#9492; Public API | September 26, 2027 |  |
-| Azure Automanage <br />&#9492; Best Practices | September 30, 2027 |  |
-| Azure Automation <br />&#9492; State Configuration (DSC) | September 30, 2027 |  |
-| Azure CDN <br />&#9492; Standard from Microsoft (classic) | September 30, 2027 |  |
-| Azure Kubernetes Service <br />&#9492; Open Service Mesh add-on | September 30, 2027 |  |
-| Azure Load Balancer <br />&#9492; Inbound NAT rule v1 | September 30, 2027 |  |
-| Azure SQL <br />&#9492; Data Sync | September 30, 2027 |  |
+##### September 15, 2027
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Document Intelligence | Studio v2.1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 17, 2027
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure SQL | Automated patching for SQL VMs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 22, 2027
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Site Recovery | Classic Alerts | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 26, 2027
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Sphere | Public API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 30, 2027
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Automanage | Best Practices | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Automation | State Configuration (DSC) | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure CDN | Standard from Microsoft (classic) | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Kubernetes Service | Open Service Mesh add-on | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Load Balancer | Inbound NAT rule V1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure SQL | Data Sync | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Network Watcher | NSG Flow Logs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |

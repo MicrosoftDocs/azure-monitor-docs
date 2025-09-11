@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -286,13 +286,14 @@ The server has enable_indexscan server parameter set to off. Turn on enable_inde
 
 **Impact:** Medium
   
-  
+For more information, see [Query Tuning / Planner Method Configuration server parameters - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/server-parameters-table-query-tuning-planner-method-configuration?pivots=postgresql-17#enable_indexscan)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 6772abda-0192-4e70-bfeb-409c7e7cf73c  
 
 
 <!--6772abda-0192-4e70-bfeb-409c7e7cf73c_end-->
+
 
 
 <!--bb641db9-591e-4a7e-b4f0-6d9409d646fe_begin-->
@@ -342,12 +343,31 @@ The server's table stats are reset. Run ANALYZE on the databases. It collects st
 
 **Impact:** High
   
-For more information, see [Autovacuum tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#what-is-autovacuum)  
+For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#what-is-autovacuum)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 278ffae3-fa57-463b-a9f6-4b04a8b320b0  
 
 
 <!--278ffae3-fa57-463b-a9f6-4b04a8b320b0_end-->
+
+
+<!--ed0b346c-26a6-4c2b-850b-32a449d94e56_begin-->
+
+#### Review the server for pooler recommendation  
+  
+The server has high client connection errors, frequent disconnects, and high idle connections with CPU/connection spikes and workload anomalies. Enable PgBouncer to stabilize and improve performance.  
+  
+**Potential benefits**: Enable PgBouncer to improve server performance  
+
+**Impact:** High
+  
+For more information, see [PgBouncer in Azure Database for PostgreSQL flexible server - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/concepts-pgbouncer)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: ed0b346c-26a6-4c2b-850b-32a449d94e56  
+
+
+<!--ed0b346c-26a6-4c2b-850b-32a449d94e56_end-->
 
 <!--articleBody-->

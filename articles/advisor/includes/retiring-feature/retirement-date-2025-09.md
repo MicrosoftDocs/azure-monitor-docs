@@ -1,35 +1,76 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 04/11/2025
+ms.date: 09/03/2025
 
 ---
 
-| Service name <br />&#9492; Retiring feature | Retirement date | Impacted Resources available? |
-|:--- |:--- |:--- |
-| Azure Machine Learning  <br />&#9492; Data Drift | September 1, 2025 |  |
-| Azure Monitor <br />&#9492; Diagnostic Settings Storage Retention | September 15, 2025 |  |
-| Azure Database for MariaDB <br />&#9492; Entire service | September 19, 2025 | :white_check_mark: |
-| Azure Purview <br />&#9492; Data Sharing | September 26, 2025 |  |
-| Application Insights <br />&#9500; API Key <br />&#9492; Java 2.x SDK | September 30, 2025 |  |
-| Azure Active Directory <br />&#9492; Legacy MFA and SSPR policies for authentication | September 30, 2025 |  |
-| Azure Batch <br />&#9500; Low Priority VMs <br />&#9492; NCv3 VM Family Support | September 30, 2025 |  |
-| Azure Batch pools <br />&#9492; Default outbound access for Simplified node communication pool without public IP addresses | September 30, 2025 |  |
-| Azure Database for MySQL <br />&#9492; MySQL v5.7 | September 30, 2025 |  |
-| Azure Disks <br />&#9492; Unmanaged Disks | September 30, 2025 |  |
-| Azure Functions <br />&#9492; Proxy support | September 30, 2025 |  |
-| Azure HPC Cache <br />&#9492; Entire service | September 30, 2025 | :white_check_mark: |
-| Azure Load Balancer <br />&#9492; Basic Load Balancer | September 30, 2025 |  |
-| Azure Machine Learning <br />&#9492; CLI v1 | September 30, 2025 |  |
-| Azure Maps <br />&#9500; Creator Service API 2023-03-01-preview <br />&#9500; Creator Service API v2 <br />&#9500; Data Registry 2023-06-01 <br />&#9500; Spatial API 2022-08-01 <br />&#9492; Spatial API v1 | September 30, 2025 |  |
-| Azure Monitor <br />&#9492; ITSM connector for ServiceNow Alerts | September 30, 2025 |  |
-| Azure Remote Rendering <br />&#9492; Entire service | September 30, 2025 | :white_check_mark: |
-| Azure Service Map <br />&#9492; Entire Service | September 30, 2025 |  |
-| Azure SQL <br />&#9492; Microsoft.SQL 2014-04-01 stable APIs | September 30, 2025 |  |
-| Azure SQL Edge <br />&#9492; Entire service | September 30, 2025 |  |
-| Azure vFXT <br />&#9492; Entire service | September 30, 2025 |  |
-| Microsoft Defender for Cloud <br />&#9492; Microsoft Actions and Compliance Offerings | September 30, 2025 |  |
-| Public IP address <br />&#9492; Basic SKU | September 30, 2025 |  |
-| Speech <br />&#9500; Intent Recognition <br />&#9492; Speaker Recognition | September 30, 2025 |  |
-| Virtual Machines <br />&#9500; Default outbound access <br />&#9500; Standard_NC6s_v3 <br />&#9500; Standard_NC12s_v3 <br />&#9492; Standard_NC24s_v3 | September 30, 2025 |  |
-| VPN Gateway <br />&#9500; High-Performance SKU <br />&#9492; Standard SKU | September 30, 2025 | :white_check_mark: |
+##### September 1, 2025
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Machine Learning  | Data Drift | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 15, 2025
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Monitor | Diagnostic Settings Storage Retention | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 19, 2025
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Database for MariaDB | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+
+##### September 26, 2025
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Purview | Data Sharing | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### September 30, 2025
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Application Insights | API Key | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Application Insights | Java 2.x SDK | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Active Directory | Legacy MFA and SSPR policies for authentication | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Batch | Low Priority VMs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Batch | NCv3 VM Family Support | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Batch pools | Default outbound access for Simplified node communication pool without public IP addresses | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Container Apps | Add-ons | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Database for MySQL | MySQL v5.7 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Disks | Unmanaged Disks | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Functions | Proxy support | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure HPC Cache | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Load Balancer | Basic Load Balancer | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Machine Learning | CLI v1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Maps | Creator Service API 2023-03-01-preview | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Maps | Creator Service API v2 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Maps | Data Registry 2023-06-01 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Maps | Spatial API 2022-08-01 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Maps | Spatial API v1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Monitor | ITSM connector for ServiceNow Alerts | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Remote Rendering | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Service Map | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Sphere | Public API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Sphere | Public API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure SQL | Microsoft.SQL 2014-04-01 stable APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure SQL Edge | Entire service | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure vFXT | Entire service | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Microsoft Defender for Cloud | Microsoft Actions and Compliance Offerings | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Public IP address | Basic SKU | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Speech | Intent Recognition | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Speech | Speaker Recognition | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Virtual Machines | Default outbound access | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Virtual Machines | Standard_NC6s_v3 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual Machines | Standard_NC12s_v3 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual Machines | Standard_NC24s_v3 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | VPN Gateway | High-Performance SKUs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | VPN Gateway | Standard SKUs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
