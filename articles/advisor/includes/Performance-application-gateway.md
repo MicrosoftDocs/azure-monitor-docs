@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Application Gateway
@@ -227,5 +227,23 @@ Recommendation ID: ad65c036-7bb0-4f2e-9059-e4bea4799412
 
 
 <!--ad65c036-7bb0-4f2e-9059-e4bea4799412_end-->
+
+<!--ef4da732-f541-4109-bc0e-465c68b6c7eb_begin-->
+
+#### A minimum subnet size of /24 is recommended for Application Gateway v2 subnets  
+  
+Application Gateway (Standard_v2 or WAF_v2 SKU) can support up to 125 instances (125 instance IP addresses + 1 private frontend IP configuration + 5 Azure reserved). A minimum subnet size of /24 is recommended.  
+  
+**Potential benefits**: Enough room for scalability  
+
+**Impact:** High
+  
+For more information, see [Azure Application Gateway infrastructure configuration](https://aka.ms/appgw/infra)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: ef4da732-f541-4109-bc0e-465c68b6c7eb  
+
+
+<!--ef4da732-f541-4109-bc0e-465c68b6c7eb_end-->
 
 <!--articleBody-->

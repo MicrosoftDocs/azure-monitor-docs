@@ -11,14 +11,14 @@ ms.reviewer: aul
 
 Container Insights defaults to managed identity authentication, which has a monitoring agent that uses the [cluster's managed identity](/azure/aks/use-managed-identity) to send data to Azure Monitor. It replaced the legacy certificate-based local authentication and removed the requirement of adding a Monitoring Metrics Publisher role to the cluster.
 
-This article describes how to migrate to managed identity authentication if you enabled Container insights using legacy authentication method and also how to enable legacy authentication if you have that requirement.
+This article describes how to migrate to managed identity authentication if you enabled Container insights using legacy authentication method, and also how to enable legacy authentication if you have that requirement.
 
 > [!IMPORTANT]
-> If you have a cluster with legacy authentication and Log Analytics workspace keys are rotated, then monitoring data will stop flowing to the Log Analytics workspace. You must disable and then reenable the Container insights addon to get monitoring data to start flowing again with the new rotated workspace keys.  You should migrate to Container insights managed identity authentication which doesn't use Log Analytics workspace keys.
+> If you have a cluster with legacy authentication and Log Analytics workspace keys are rotated, then monitoring data will stop flowing to the Log Analytics workspace. You must disable and then reenable the Container insights addon to get monitoring data to start flowing again with the new rotated workspace keys.  You should migrate to Container insights managed identity authentication, which doesn't use Log Analytics workspace keys.
 
 ## Find clusters using Legacy authentication
 
-The following queries lists the clusters using legacy authentication in Container Insights. To run the queries, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal).
+The following queries list the clusters using legacy authentication in Container Insights. To run the queries, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal).
 
 **Query for  AKS clusters**   
 
@@ -119,13 +119,27 @@ AKS clusters must first disable monitoring and then upgrade to managed identity.
     az k8s-extension create --name azuremonitor-containers --cluster-name \<cluster-name\> --resource-group \<resource-group\> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers --configuration-settings amalogs.useAADAuth=true logAnalyticsWorkspaceResourceID=\<workspace-resource-id\> 
     ```
 
+
+## [Shell script](#tab/script)
+
+This shell script is the recommended migration method for bulk migration of multiple machines. Make sure your cluster network meets [our firewall requirements](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-firewall) before running the script. 
+
+[Download the script file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/troubleshoot/cluster-migration/migrate-to-container-insights-msi.sh) directly from our Github repository. The first 30 lines of the script describe how to run it. 
+
+
 ---
 
 
 ## Enable legacy authentication
-If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable-cli.md) which has examples of different options for enabling Container insights.
+If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable.md#enable-container-insights), which has examples of different options for enabling Container insights.
 
 
 ## Next steps
 If you experience issues when you upgrade the agent, review the [troubleshooting guide](container-insights-troubleshoot.md) for support.
+
+
+
+
+
+
 
