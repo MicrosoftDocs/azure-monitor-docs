@@ -33,7 +33,7 @@ In a microservices environment, traces from components can go to different stora
 
 When the number of storage items is large, you need a hint about where to look next. The Application Insights data model defines two fields to solve this problem: `request.source` and `dependency.target`. The first field identifies the component that initiated the dependency request. The second field identifies which component returned the response of the dependency call.
 
-For information on querying from multiple disparate instances, see [Query data across Log Analytics workspaces, applications, and resources in Azure Monitor](../logs/cross-workspace-query.md).
+For information on querying from multiple disparate instances, see [Query data across Log Analytics workspaces, applications, and resources in Azure Monitor](../../logs/cross-workspace-query.md).
 
 #### Example
 
