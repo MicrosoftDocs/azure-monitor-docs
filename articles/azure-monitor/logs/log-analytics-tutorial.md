@@ -157,7 +157,7 @@ To view the results in a graph, select **Chart** on the results pane. Notice tha
 
 :::image type="content" source="media/log-analytics-tutorial/example-query-output-chart.png" alt-text="Screenshot that shows the query results chart." lightbox="media/log-analytics-tutorial/example-query-output-chart.png":::
 
-In this example, we see the requst duration spiking at 4:00 PM. To get notified when such spikes occur, you can create an alert rule by opening the context menu (**...**) in the navigation bar and selecting **+ New alert rule**. For more information, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert).
+In this example, we see the requst duration spiking at 4:00 PM. To get notified when such spikes occur, you can create an alert rule by opening the context menu (**...**) in the action bar and selecting **+ New alert rule**. For more information, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md).
 
 > [!NOTE]
 > Creating an alert rule is not supported in the demo environment.
