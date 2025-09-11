@@ -147,7 +147,7 @@ Review their descriptions in your IDE's built-in type hinting or [applicationins
 > [!NOTE]
 > By default, `setAutoCollectConsole` is configured to *exclude* calls to `console.log` and other console methods. Only calls to supported third-party loggers (for example, winston and bunyan) will be collected. You can change this behavior to include calls to `console` methods by using `setAutoCollectConsole(true, true)`.
 
-[!INCLUDE [Telemetry correlation and distributed tracing](./includes/application-insights-distributed-trace-data.md)]
+[!INCLUDE [Distributed tracing](./includes/application-insights-distributed-trace-data.md)]
 
 ### Sampling
 

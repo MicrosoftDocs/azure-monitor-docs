@@ -91,7 +91,7 @@ For instructions on how to add SDK configuration, see [Add SDK configuration](./
 | throttleMgrCfg<br><br>Set throttle mgr configuration by key.<br><br>This configuration field is only available in version 3.0.3 and later. | `{[key: number]: IThrottleMgrConfig}` | undefined |
 | userCookiePostfix<br><br>An optional value that is used as name postfix for user cookie name. If undefined, no postfix is added on user cookie name. | string | undefined |
 
-[!INCLUDE [Telemetry correlation and distributed tracing](./includes/application-insights-distributed-trace-data.md)]
+[!INCLUDE [Distributed tracing](./includes/application-insights-distributed-trace-data.md)]
 
 #### Enable W3C distributed tracing support
 
