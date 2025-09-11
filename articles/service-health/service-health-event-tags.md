@@ -51,7 +51,7 @@ For example:
 |Planned Maintenance | Emergency Maintenance, Standard Maintenance                                             |
 |Security Advisories | Elevated Access, Vulnerability Patch                                                    |-->
 
-These subtypes can help you filter and automate responses.
+These subtypes can help you filter information and set up automatic replies or actions based on specific criteria.
 
 
 ## Event level tags
