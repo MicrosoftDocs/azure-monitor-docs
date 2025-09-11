@@ -1,82 +1,82 @@
 ---
-title: Query Prometheus metrics using Azure workbooks
-description: Query Prometheus metrics in the portal using Azure Workbooks.
+title: Query Prometheus Metrics by Using Azure Workbooks
+description: Query Prometheus metrics in the portal by using Azure workbooks.
 ms.topic: how-to
 ms.date: 09/23/2024
 ---
 
-# Query Prometheus metrics using Azure workbooks
+# Query Prometheus metrics by using Azure workbooks
 
-Create dashboards powered by Azure Monitor managed service for Prometheus using [Azure Workbooks](../visualize/workbooks-overview.md).
-This article introduces workbooks for Azure Monitor workspaces and shows you how to query Prometheus metrics using Azure workbooks and the Prometheus query language (PromQL).
+Create dashboards powered by Azure Monitor managed service for Prometheus by using [Azure workbooks](../visualize/workbooks-overview.md).
+This article introduces workbooks for Azure Monitor workspaces and shows you how to query Prometheus metrics by using Azure workbooks and Prometheus Query Language (PromQL).
 
-You can also query Prometheus metrics using PromQL from the metrics explorer in an Azure Monitor workspace. For more information, see [Azure Monitor metrics explorer with PromQL (Preview)](metrics-explorer.md).
+You can also query Prometheus metrics by using PromQL from the metrics explorer in an Azure Monitor workspace. For more information, see [Azure Monitor metrics explorer with PromQL (preview)](metrics-explorer.md).
 
 ## Prerequisites
 
-To query Prometheus metrics from an Azure Monitor workspace, you need the following:
+To query Prometheus metrics from an Azure Monitor workspace:
 
-* An Azure Monitor workspace. To create an Azure Monitor workspace, see [Create an Azure Monitor Workspace](azure-monitor-workspace-overview.md?tabs=azure-portal.md).
-* Your Azure Monitor workspace must be [collecting Prometheus metrics](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an AKS cluster, or from a Virtual Machine or Virtual Machine Scale Set. For more information, see [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md).
-* The user must be assigned role that can perform the **microsoft.monitor/accounts/read** operation on the Azure Monitor workspace.
+* You need an Azure Monitor workspace. For more information, see [Create an Azure Monitor workspace](azure-monitor-workspace-overview.md?tabs=azure-portal.md).
+* Your Azure Monitor workspace must be [collecting Prometheus metrics](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an Azure Kubernetes Service (AKS) cluster or from a virtual machine or virtual machine scale set. For more information, see [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md).
+* The user must be assigned a role that can perform the `microsoft.monitor/accounts/read` operation on the Azure Monitor workspace.
 
-## Prometheus Explorer workbook
+## Prometheus explorer workbook
 
-Azure Monitor workspaces include an exploration workbook to query your Prometheus metrics. 
+Azure Monitor workspaces include an exploration workbook to query your Prometheus metrics.
 
-1. From the Azure Monitor workspace overview page, select **Prometheus explorer**
+1. On the **Overview** page for the Azure Monitor workspace, select **Prometheus explorer**.
 
-:::image type="content" source="media/prometheus-workbooks/prometheus-explorer-menu.png" lightbox="media/prometheus-workbooks/prometheus-explorer-menu.png" alt-text="Screenshot that shows Azure Monitor workspace menu selection.":::
+   :::image type="content" source="media/prometheus-workbooks/prometheus-explorer-menu.png" lightbox="media/prometheus-workbooks/prometheus-explorer-menu.png" alt-text="Screenshot that shows Azure Monitor workspace menu selection.":::
+
+1. On the **Workbooks** menu item, and in the Azure Monitor workspace gallery, select the **Prometheus Explorer** workbook tile.
+
+   :::image type="content" source="media/prometheus-workbooks/prometheus-gallery.png" lightbox="media/prometheus-workbooks/prometheus-gallery.png" alt-text="Screenshot that shows the Azure Monitor workspace gallery.":::
+
+    A workbook has the following input options:
     
-1. Or the **Workbooks** menu item, and in the Azure Monitor workspace gallery, select the **Prometheus Explorer** workbook tile.
-
-:::image type="content" source="media/prometheus-workbooks/prometheus-gallery.png" lightbox="media/prometheus-workbooks/prometheus-gallery.png" alt-text="Screenshot that shows Azure Monitor workspace gallery.":::
-
-A workbook has the following input options:
-
-* **Time Range**. Select the period of time that you want to include in your query. Select **Custom** to set a start and end time.
-* **PromQL**. Enter the PromQL query to retrieve your data. For more information about PromQL, see [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/#querying-prometheus).
-* **Graph**, **Grid**, and **Dimensions** tabs. Switch between a graphic, tabular, and dimensional view of the query output.
-
-:::image type="content" source="media/prometheus-workbooks/prometheus-explorer.png" lightbox="media/prometheus-workbooks/prometheus-explorer.png" alt-text="Screenshot that shows PromQL explorer.":::
+    * **Time Range**: Select the period of time that you want to include in your query. Select **Custom** to set a start and end time.
+    * **PromQL**: Enter the PromQL query to retrieve your data. For more information about PromQL, see [Query Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/#querying-prometheus).
+    * **Graph, Grid, Dimensions**: Use the tabs to switch between a graphic, tabular, and dimensional view of the query output.
+    
+    :::image type="content" source="media/prometheus-workbooks/prometheus-explorer.png" lightbox="media/prometheus-workbooks/prometheus-explorer.png" alt-text="Screenshot that shows the PromQL explorer.":::
 
 ## Create a Prometheus workbook
 
-Workbooks support many visualizations and Azure integrations. For more information about Azure Workbooks, see [Creating an Azure Workbook](../visualize/workbooks-create-workbook.md).  
+Workbooks support many visualizations and Azure integrations. For more information about Azure workbooks, see [Create an Azure workbook](../visualize/workbooks-create-workbook.md).
 
 1. From your Azure Monitor workspace, select **Workbooks**.
 
 1. Select **New**.
 
-1. In the new workbook, select **Add**, and select **Add query** from the dropdown.
+1. In the new workbook, select **Add**, and then select **Add query** from the dropdown list.
 
-:::image type="content" source="media/prometheus-workbooks/prometheus-workspace-add-query.png" lightbox="media/prometheus-workbooks/prometheus-workspace-add-query.png" alt-text="A screenshot showing the add content dropdown in a blank workspace.":::
+   :::image type="content" source="media/prometheus-workbooks/prometheus-workspace-add-query.png" lightbox="media/prometheus-workbooks/prometheus-workspace-add-query.png" alt-text="Screenshot that shows the Add dropdown list in a blank workspace.":::
 
-1. Azure Workbooks use [data sources](../visualize/workbooks-data-sources.md#prometheus) to set the source scope the data they present. To query Prometheus metrics, select the  **Data source** dropdown, and choose **Prometheus** .
+1. Azure workbooks use [data sources](../visualize/workbooks-data-sources.md#prometheus) to set the source scope for the data they present. To query Prometheus metrics, select the **Data source** dropdown list and choose **Prometheus** .
 
-1. From the **Azure Monitor workspace** dropdown, select your workspace.
+1. From the **Azure Monitor workspace** dropdown list, select your workspace.
 
-1. Select your query type from **Prometheus query type** dropdown.
+1. From the **Prometheus query type** dropdown list, select your query type.
 
-1. Write your PromQL query in the **Prometheus Query** field. 
+1. Enter your PromQL query in the **Prometheus (Preview) Query** field.
 
-1. Select **Run Query** button.
+1. Select **Run Query**.
 
-1. Select the **Done Editing** at the bottom of the section and save your work
+1. Select **Done Editing** and save your work.
 
-:::image type="content" source="media/prometheus-workbooks/prometheus-query.png" lightbox="media/prometheus-workbooks/prometheus-query.png" alt-text="Screenshot that shows sample PromQL query.":::
+   :::image type="content" source="media/prometheus-workbooks/prometheus-query.png" lightbox="media/prometheus-workbooks/prometheus-query.png" alt-text="Screenshot that shows a sample PromQL query.":::
 
 ## Troubleshooting
 
-If you receive a message stating that "You currently do not have any Prometheus data ingested to this Azure Monitor workspace":
+If you receive the message "You currently do not have any Prometheus data ingested to this Azure Monitor workspace," then:
 
-* Verify that you have turned on metrics collection in the Monitored clusters blade of your Azure Monitor workspace.
+* Verify that you turned on metrics collection on the **Monitored clusters** pane of your Azure Monitor workspace.
 
-If your workbook query doesn't return data and returns with the message "You do not have query access":
+If your workbook query doesn't return data and returns with the message "You do not have query access," then:
 
-* Check that you have sufficient permissions to perform **microsoft.monitor/accounts/read** assigned through Access Control (IAM) in your Azure Monitor workspace.
-* Confirm if your Networking settings support query access. You might need to enable private access through your private endpoint or change settings to allow public access.
-* If you have ad block enabled in your browser, you might need to pause or disable and refresh the workbook in order to view data.
+* Check that you have sufficient permissions to perform `microsoft.monitor/accounts/read` assigned through the **Access control (IAM)** option in your Azure Monitor workspace.
+* Confirm if your **Networking** settings support query access. You might need to enable private access through your private endpoint or change settings to allow public access.
+* Check if you have an ad blocker enabled in your browser. If you do, you might need to pause or disable and then refresh the workbook to view data.
 
 ## Frequently asked questions
 
@@ -88,10 +88,10 @@ This section provides answers to common questions.
 
 [!INCLUDE [prometheus-faq-i-see-gaps-in-metric-data](includes/prometheus-faq-i-see-gaps-in-metric-data.md)]
 
-## Next steps
+## Related content
 
-* [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+* [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
 * [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md)
-* [Azure Monitor metrics explorer with PromQL (Preview)](metrics-explorer.md)
+* [Azure Monitor metrics explorer with PromQL (preview)](metrics-explorer.md)
 * [Azure Monitor workspace](azure-monitor-workspace-overview.md)
-* [Use Azure Monitor managed service for Prometheus as data source for Grafana using managed system identity](prometheus-grafana.md)
+* [Use Azure Monitor managed service for Prometheus as a data source for Grafana by using managed system identity](prometheus-grafana.md)

@@ -12,7 +12,6 @@ ms.reviewer: shseth
 
 Azure Monitor is based on a [common monitoring data platform](data-platform.md) that allows different types of data from multiple types of resources to be analyzed together using a common set of tools. Currently, different sources of data for Azure Monitor use different methods to deliver their data, and each typically require different types of configuration. This article describes common sources of monitoring data collected by Azure Monitor and their data collection methods. Use this article as a starting point to understand the option for collecting different types of data being generated in your environment.
 
-:::image type="content" source="media/overview/overview-simple-20230707-opt.svg" alt-text="Diagram that shows an overview of Azure Monitor. Data sources send data to a data platform, and Azure Monitor features use the collected data." border="false" lightbox="media/overview/overview-blowout-20230707-opt.svg":::
 
 > [!IMPORTANT]
 > There is a cost for collecting and retaining most types of data in Azure Monitor. To minimize your cost, ensure that you don't collect any more data than you require and that your environment is configured to optimize your costs. See [Cost optimization in Azure Monitor](best-practices-cost.md) for a summary of recommendations.

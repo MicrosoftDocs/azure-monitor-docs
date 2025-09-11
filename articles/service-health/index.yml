@@ -1,14 +1,14 @@
 ### YamlMime:Landing
 
 title: Azure Service Health documentation
-summary: Azure Service Health is a suite of experiences that provide personalized guidance and support when issues in Azure services are or may affect you in the future. Azure Service Health is composed of Azure status, the service health service, and Resource Health. 
+summary: Azure Service Health helps you stay informed and get support when Azure services are having issues that affect you now, or could cause issues in the future. Azure Service Health includes three main components - Azure Status, Service Health, and Resource Health. 
 
 metadata:
   title: Azure Service Health documentation
   description: Azure Service Health is a suite of experiences that provide personalized guidance and support when issues in Azure services affect you. Azure Service Health can notify you, help you understand the effect of an issue, and keep you updated as the issue resolves. Azure Service Health also can help you prepare for planned maintenance and changes that could affect the availability of your resources.
   ms.service: azure-service-health
   ms.topic: landing-page
-  ms.date: 01/06/2025
+  ms.date: 07/01/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
@@ -20,19 +20,55 @@ landingContent:
     linkLists:
       - linkListType: overview
         links:
-          - text: Azure Service Health service
+          - text: Azure Service Health overview
             url: overview.md
-          - text: Azure status  
+          - text: Azure status page 
             url: azure-status-overview.md
-          - text: Service health portal
-            url: service-health-overview.md
-          - text: Resource Health
+          - text: Service Health portal
+            url: service-health-portal-update.md
+          - text: Resource Health overview
             url: resource-health-overview.md
       - linkListType: video
         links:
           - text: Video introduction to Azure Service Health
             url: https://learn-video.azurefd.net/vod/player?id=08a7fcb5-7367-4a10-a345-3cd70ef13d8c
   
+# Card 
+  - title: Get started with Azure Service Health
+    linkLists:
+      - linkListType: get-started 
+        links:
+          - text: View and manage Service Health notifications
+            url: service-notifications.md
+          - text: View and manage Security Advisories
+            url: security-advisories-elevated-access.md
+          - text: View Service Health notifications by event level
+            url: metadata-filter.md
+          - text: Configure alerts for service health alerts
+            url: ./alerts-activity-log-service-notifications-portal.md
+          - text: Learn about subscription and tenant accounts
+            url: subscription-vs-tenant.md
+      - linkListType: video
+        links:
+          - text: Video introduction on how to create Service Health alerts
+            url: https://learn.microsoft.com/_themes/docs.theme/master/en-us/_themes/global/video-embed-one-stream.html?id=771688cf-0348-44c4-ba48-f36bcd0aba3f
+
+# Card 
+  - title: Get started with Azure Resource Health
+    linkLists:
+      - linkListType: get-started 
+        links:
+          - text: Resource Health types
+            url: resource-health-checks-resource-types.md
+          - text: How to configure Resource Health alerts
+            url: resource-health-alert-monitor-guide.md
+          - text: The impact on resources due to Outages
+            url: impacted-resources-outage.md
+          - text: The impact on resources from planned maintenance events
+            url: impacted-resources-planned-maintenance.md
+          - text: The impact on resources from Azure security incidents
+            url: impacted-resources-security.md
+
   # Card 
   - title: Get notified
     linkLists:

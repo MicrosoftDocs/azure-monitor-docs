@@ -4,7 +4,7 @@ description: Full list of available performance recommendations in Advisor.
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 05/12/2025
+ms.date: 09/09/2025
 ---
 
 # Performance recommendations
@@ -50,6 +50,8 @@ The performance recommendations in Azure Advisor can help improve the speed and 
 
 [!INCLUDE [Performance-azure-kubernetes-service-(aks).md](./includes/Performance-azure-kubernetes-service-(aks).md)]
 
+[!INCLUDE [Performance-azure-monitor.md](./includes/Performance-azure-monitor.md)]
+
 [!INCLUDE [Performance-azure-netapp-files.md](./includes/Performance-azure-netapp-files.md)]
 
 [!INCLUDE [Performance-azure-sql-database.md](./includes/Performance-azure-sql-database.md)]
@@ -67,6 +69,8 @@ The performance recommendations in Azure Advisor can help improve the speed and 
 [!INCLUDE [Performance-content-delivery-network.md](./includes/Performance-content-delivery-network.md)]
 
 [!INCLUDE [Performance-data-factory.md](./includes/Performance-data-factory.md)]
+
+[!INCLUDE [Performance-event-hubs.md](./includes/Performance-event-hubs.md)]
 
 [!INCLUDE [Performance-hdinsight.md](./includes/Performance-hdinsight.md)]
 

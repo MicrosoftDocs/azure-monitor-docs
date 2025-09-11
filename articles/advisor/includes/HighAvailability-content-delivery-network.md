@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/22/2025
+ms.date: 08/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network
@@ -34,19 +34,20 @@ Subcategory: BusinessContinuity
 
 #### Re-validate domain ownership for the Azure Front Door managed certificate renewal  
   
-Azure Front Door (AFD) can't automatically renew the managed certificate because the domain isn't CNAME mapped to AFD endpoint. For the managed certificate to be automatically renewed, revalidate domain ownership.  
+Azure Front Door cannot automatically renew the managed certificate because the domain isn't CNAME mapped to the AFD endpoint. To automatically renew the managed certificate, revalidate domain ownership.  
   
-**Potential benefits**: undefined  
+**Potential benefits**: Ensure service availability.  
 
 **Impact:** High
   
-For more information, see [How to add a custom domain - Azure Front Door ](/azure/frontdoor/standard-premium/how-to-add-custom-domain#domain-validation-state)  
+For more information, see [How to add a custom domain - Azure Front Door](/azure/frontdoor/standard-premium/how-to-add-custom-domain#domain-validation-state)  
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: bfe85fd2-ee53-4c35-8781-7790da2107e1  
-Subcategory: BusinessContinuity
+Subcategory: undefined
 
 <!--bfe85fd2-ee53-4c35-8781-7790da2107e1_end-->
+
 
 <!--2c057605-4707-4d3e-bbb0-a7fe9b6a626b_begin-->
 
@@ -83,24 +84,6 @@ Recommendation ID: 9411bc9f-d181-497c-b519-4154ae04fb00
 Subcategory: BusinessContinuity
 
 <!--9411bc9f-d181-497c-b519-4154ae04fb00_end-->
-
-<!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_begin-->
-
-#### Migrate away from Azure CDN from Edgio by January 15, 2025  
-  
-Migrate from Azure CDN Standard/Premium by Edgio before 15 January 2025 when the Edgio platform is scheduled to shut down. It's recommended to move to Azure Front Door for compatibility. Alternatively, consider using Azure Traffic Manager or Akamai CDN available in the Azure Marketplace.  
-  
-**Potential benefits**: Avoid downtime and ensure business continuity.  
-
-**Impact:** High
-  
-For more information, see [Azure updates ](https://azure.microsoft.com/updates?id=467688)  
-
-ResourceType: microsoft.cdn/profiles  
-Recommendation ID: 2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_end-->
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_begin-->
 
@@ -173,5 +156,23 @@ Recommendation ID: 5185d64e-46fd-4ed2-8633-6d81f5e3ca59
 Subcategory: Other
 
 <!--5185d64e-46fd-4ed2-8633-6d81f5e3ca59_end-->
+
+<!--600a3187-48dd-495b-a9e8-320f83571b01_begin-->
+
+#### Switch from managed certificates to BYOC by August 15, 2025 or migrate to AFD Standard/Premium  
+  
+Starting 15 August 2025, Azure CDN will no longer support - new domain onboarding, new profile creation or Switching from BYOC to managed certificates. Existing managed certificates will auto-renew by 15 August 2025, valid until April 14, 2026, after which managed certs will no longer be supported.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=498522)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 600a3187-48dd-495b-a9e8-320f83571b01  
+Subcategory: undefined
+
+<!--600a3187-48dd-495b-a9e8-320f83571b01_end-->
 
 <!--articleBody-->

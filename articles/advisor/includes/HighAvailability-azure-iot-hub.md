@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/27/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure IoT Hub
@@ -10,25 +10,7 @@ ms.custom: HighAvailability Azure IoT Hub
   
 ---
   
-## Azure IoT Hub  
-  
-<!--51b1fad8-4838-426f-9871-107bc089677b_begin-->
-
-#### Upgrade Microsoft Edge device runtime to a supported version for IoT Hub  
-  
-When Edge devices use outdated versions, performance degradation might occur. We recommend you upgrade to the latest supported version of the Azure IoT Edge runtime.  
-  
-**Potential benefits**: Ensure business continuity with latest supported version for your Edge devices  
-
-**Impact:** Medium
-  
-For more information, see [Update IoT Edge version on devices ](https://aka.ms/IOTEdgeSDKCheck)  
-
-ResourceType: microsoft.devices/iothubs  
-Recommendation ID: 51b1fad8-4838-426f-9871-107bc089677b  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--51b1fad8-4838-426f-9871-107bc089677b_end-->
+## Azure IoT Hub
 
 <!--d448c687-b808-4143-bbdc-02c35478198a_begin-->
 

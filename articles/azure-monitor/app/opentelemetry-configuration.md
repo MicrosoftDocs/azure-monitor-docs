@@ -2,7 +2,7 @@
 title: Configuring OpenTelemetry in Application Insights
 description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
 ms.topic: how-to
-ms.date: 03/23/2025
+ms.date: 06/30/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -789,7 +789,7 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
 
 ### [Java](#tab/java)
 
-The Application Insights Java Agent does not support OTLP.
+The Application Insights Java Agent doesn't support OTLP.
 For more information about supported configurations, see the [Java supplemental documentation](java-standalone-config.md).
 
 ### [Java native](#tab/java-native)
@@ -1027,3 +1027,22 @@ useAzureMonitor(options);
 ### [Python](#tab/python)
 
 We're actively working in the OpenTelemetry community to support redaction.
+
+---
+
+## Metric export interval
+
+You can configure the metric export interval using the `OTEL_METRIC_EXPORT_INTERVAL` environment variable.
+
+```shell
+OTEL_METRIC_EXPORT_INTERVAL=60000
+```
+
+The default value is `60000` milliseconds (60 seconds). This setting controls how often the OpenTelemetry SDK exports metrics.
+
+[!INCLUDE [application-insights-metrics-interval](includes/application-insights-metrics-interval.md)]
+
+For reference, see the following OpenTelemetry specifications:
+
+- [Environment variable definitions](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#periodic-exporting-metricreader)
+- [Periodic exporting metric reader](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#periodic-exporting-metricreader)

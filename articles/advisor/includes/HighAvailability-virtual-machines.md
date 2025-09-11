@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -14,21 +14,22 @@ ms.custom: HighAvailability Virtual Machines
   
 <!--02cfb5ef-a0c1-4633-9854-031fbda09946_begin-->
 
-#### Improve data reliability by using Managed Disks  
+#### Improve data reliability using Managed Disks  
   
-Virtual machines in an Availability Set with disks that share either storage accounts or storage scale units aren't resilient to single storage scale unit failures during outages. Migrate to Azure Managed Disks to ensure that the disks of different VMs in the Availability Set are sufficiently isolated to avoid a single point of failure.  
+VMs in an Availability Set sharing storage accounts or scale units risk downtime from single-unit failures. Use Azure Managed Disks to isolate VM disks across units and eliminate single points of failure.  
   
 **Potential benefits**: Ensure business continuity through data resilience  
 
 **Impact:** High
   
-  
+For more information, see [Overview of Azure Disk Storage - Azure Virtual Machines](https://aka.ms/manageddiskintroduction)  
 
 ResourceType: microsoft.compute/availabilitysets  
 Recommendation ID: 02cfb5ef-a0c1-4633-9854-031fbda09946  
 Subcategory: HighAvailability
 
 <!--02cfb5ef-a0c1-4633-9854-031fbda09946_end-->
+
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_begin-->
 
@@ -56,34 +57,16 @@ Virtual machines are resilient to regional outages when replication to another r
   
 **Potential benefits**: Ensure business continuity during an Azure region outage.  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Set up Azure VM disaster recovery to a secondary region with Azure Site Recovery - Azure Site Recovery](https://aka.ms/azure-site-recovery-dr-azure-vms)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: ed651749-cd37-4fd5-9897-01b416926745  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_end-->
 
-
-<!--bcfeb92b-fe93-4cea-adc6-e747055518e9_begin-->
-
-#### Update your outbound connectivity protocol to Service Tags for Azure Site Recovery  
-  
-IP address-based allowlisting is a vulnerable way to control outbound connectivity for firewalls, Service Tags are a good  alternative. We highly recommend the use of Service Tags, to allow connectivity to Azure Site Recovery services for the machines.  
-  
-**Potential benefits**: Ensures better security, stability and resiliency than hard coded IP Addresses  
-
-**Impact:** High
-  
-For more information, see [About networking in Azure VM disaster recovery with Azure Site Recovery - Azure Site Recovery ](https://aka.ms/azure-site-recovery-using-service-tags)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: bcfeb92b-fe93-4cea-adc6-e747055518e9  
-Subcategory: Other
-
-<!--bcfeb92b-fe93-4cea-adc6-e747055518e9_end-->
 
 <!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_begin-->
 
@@ -475,9 +458,10 @@ For more information, see [Tutorial to run an Azure VM disaster recovery drill w
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 01c715f6-426a-47d3-87be-9f26e2ab2d8e  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_end-->
+
 
 <!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_begin-->
 
@@ -496,5 +480,23 @@ Recommendation ID: 4175946b-cd53-4a37-9e9a-0f8a418ef6ac
 Subcategory: HighAvailability
 
 <!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_end-->
+
+<!--00e4ac6c-afa3-4578-a021-5f15e18850a2_begin-->
+
+#### Align location of resource and resource group  
+  
+Move virtual machines to the same region as the related resource group. This way, Azure Resource Manager stores metadata related to all resources within the group in one region. By co-locating, you reduce the chance of being affected by region unavailability.  
+  
+**Potential benefits**: Reduce the impact of regional outages  
+
+**Impact:** Medium
+  
+For more information, see [What is Azure Resource Manager? - Azure Resource Manager](/azure/azure-resource-manager/management/overview#which-location-should-i-use-for-my-resource-group)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 00e4ac6c-afa3-4578-a021-5f15e18850a2  
+Subcategory: HighAvailability
+
+<!--00e4ac6c-afa3-4578-a021-5f15e18850a2_end-->
 
 <!--articleBody-->

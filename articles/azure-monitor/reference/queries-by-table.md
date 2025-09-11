@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 06/12/2025
+ms.date: 09/08/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1235,6 +1235,14 @@ ms.reviewer: lualderm
 
 - [DNS queries by virtual network and return code](./queries/DNSQueryLogs.md#dns-queries-by-virtual-network-and-return-code)
 
+## [DataSetOutput](./queries/DataSetOutput.md)
+
+- [Latest Data Collection Rule Conditional Data Set Output](./queries/DataSetOutput.md#latest-data-collection-rule-conditional-data-set-output)
+
+## [DataSetRuns](./queries/DataSetRuns.md)
+
+- [Latest Data Collection Rule Conditional Data Set Output](./queries/DataSetRuns.md#latest-data-collection-rule-conditional-data-set-output)
+
 ## [DataTransferOperations](./queries/DataTransferOperations.md)
 
 - [Discovered object](./queries/DataTransferOperations.md#discovered-object)
@@ -1458,6 +1466,11 @@ ms.reviewer: lualderm
 
 - [Find In KubeServices](./queries/KubeServices.md#find-in-kubeservices)
 
+## [LAJobLogs](./queries/LAJobLogs.md)
+
+- [Failed jobs](./queries/LAJobLogs.md#failed-jobs)
+- [Jobs in progress](./queries/LAJobLogs.md#jobs-in-progress)
+
 ## [LAQueryLogs](./queries/LAQueryLogs.md)
 
 - [Most Requested ResourceIds](./queries/LAQueryLogs.md#most-requested-resourceids)
@@ -1525,6 +1538,15 @@ ms.reviewer: lualderm
 ## [MicrosoftPurviewInformationProtection](./queries/MicrosoftPurviewInformationProtection.md)
 
 - [Microsoft Purview Information Protection events](./queries/MicrosoftPurviewInformationProtection.md#microsoft-purview-information-protection-events)
+
+## [MySqlAuditLogs](./queries/MySqlAuditLogs.md)
+
+- [Audit general events](./queries/MySqlAuditLogs.md#audit-general-events)
+- [Audit connection events](./queries/MySqlAuditLogs.md#audit-connection-events)
+
+## [MySqlSlowLogs](./queries/MySqlSlowLogs.md)
+
+- [Audit connection events](./queries/MySqlSlowLogs.md#audit-connection-events)
 
 ## [NGXOperationLogs](./queries/NGXOperationLogs.md)
 
@@ -1602,6 +1624,50 @@ ms.reviewer: lualderm
 
 - [Okta SSO Successful logins](./queries/OktaSystemLogs.md#okta-sso-successful-logins)
 
+## [PGSQLAutovacuumStats](./queries/PGSQLAutovacuumStats.md)
+
+- [Bloat ratio](./queries/PGSQLAutovacuumStats.md#bloat-ratio)
+- [Vacuum statistics](./queries/PGSQLAutovacuumStats.md#vacuum-statistics)
+- [Analyze statistics](./queries/PGSQLAutovacuumStats.md#analyze-statistics)
+
+## [PGSQLDbTransactionsStats](./queries/PGSQLDbTransactionsStats.md)
+
+- [Transactions and multixacts health](./queries/PGSQLDbTransactionsStats.md#transactions-and-multixacts-health)
+
+## [PGSQLPgBouncer](./queries/PGSQLPgBouncer.md)
+
+- [Error Logs](./queries/PGSQLPgBouncer.md#error-logs)
+
+## [PGSQLPgStatActivitySessions](./queries/PGSQLPgStatActivitySessions.md)
+
+- [Longest sessions](./queries/PGSQLPgStatActivitySessions.md#longest-sessions)
+- [Longest transactions](./queries/PGSQLPgStatActivitySessions.md#longest-transactions)
+- [Sessions with long queries](./queries/PGSQLPgStatActivitySessions.md#sessions-with-long-queries)
+
+## [PGSQLQueryStoreRuntime](./queries/PGSQLQueryStoreRuntime.md)
+
+- [Query execution exceeding a threshold](./queries/PGSQLQueryStoreRuntime.md#query-execution-exceeding-a-threshold)
+- [Slowest queries](./queries/PGSQLQueryStoreRuntime.md#slowest-queries)
+- [Query counts](./queries/PGSQLQueryStoreRuntime.md#query-counts)
+
+## [PGSQLQueryStoreWaits](./queries/PGSQLQueryStoreWaits.md)
+
+- [Wait event trends](./queries/PGSQLQueryStoreWaits.md#wait-event-trends)
+- [Top wait events](./queries/PGSQLQueryStoreWaits.md#top-wait-events)
+
+## [PGSQLServerLogs](./queries/PGSQLServerLogs.md)
+
+- [Error messages](./queries/PGSQLServerLogs.md#error-messages)
+- [Fatal messages](./queries/PGSQLServerLogs.md#fatal-messages)
+- [Detect deadlocks](./queries/PGSQLServerLogs.md#detect-deadlocks)
+- [Server restarts](./queries/PGSQLServerLogs.md#server-restarts)
+- [Connections received](./queries/PGSQLServerLogs.md#connections-received)
+- [Connections authorized](./queries/PGSQLServerLogs.md#connections-authorized)
+- [Connections failures](./queries/PGSQLServerLogs.md#connections-failures)
+- [Lock contention](./queries/PGSQLServerLogs.md#lock-contention)
+- [Autovacuum events](./queries/PGSQLServerLogs.md#autovacuum-events)
+- [Audit logs](./queries/PGSQLServerLogs.md#audit-logs)
+
 ## [Perf](./queries/Perf.md)
 
 - [Non-RDMA activity](./queries/Perf.md#non-rdma-activity)
@@ -1620,6 +1686,10 @@ ms.reviewer: lualderm
 - [Container memory](./queries/Perf.md#container-memory)
 - [Instances Avg CPU usage growth from last week](./queries/Perf.md#instances-avg-cpu-usage-growth-from-last-week)
 - [Find In Perf](./queries/Perf.md#find-in-perf)
+
+## [PerfInsightsImpactedResources](./queries/PerfInsightsImpactedResources.md)
+
+- [PerfInsights Impacted Resources Details](./queries/PerfInsightsImpactedResources.md#perfinsights-impacted-resources-details)
 
 ## [PowerAppsActivity](./queries/PowerAppsActivity.md)
 
@@ -2011,3 +2081,4 @@ ms.reviewer: lualderm
 - [Analyze logs from Azure storage with Log Analytics](/azure/azure-monitor/essentials/resource-logs#send-to-log-analytics-workspace)
 - [Learn more about resource logs](/azure/azure-monitor/essentials/platform-logs-overview)
 - [Change resource log diagnostic settings using the Azure Monitor REST API](/rest/api/monitor/diagnosticsettings)
+

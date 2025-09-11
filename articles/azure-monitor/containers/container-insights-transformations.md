@@ -1,12 +1,12 @@
 ---
-title: Data transformations in Container insights
+title: Data transformations in Container insights in Azure Monitor
 description: Describes how to transform data using a DCR transformation in Container insights.
 ms.topic: article
 ms.date: 05/14/2025
 ms.reviewer: aul
 ---
 
-# Data transformations in Container insights
+# Filter and transform container logs using data transformations in Azure Monitor
 
 This article describes how to implement data transformations in Container insights. [Transformations](../essentials/data-collection-transformations.md) in Azure Monitor allow you to modify or filter data before it's ingested in your Log Analytics workspace. They allow you to perform such actions as filtering out data collected from your cluster to save costs or processing incoming data to assist in your data queries.
 

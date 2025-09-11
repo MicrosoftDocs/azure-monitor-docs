@@ -26,8 +26,6 @@ Azure Advisor helps you optimize and reduce your overall Azure spend by identify
 
 [!INCLUDE [Cost-azure-data-explorer.md](./includes/Cost-azure-data-explorer.md)]
 
-[!INCLUDE [Cost-azure-database-for-mariadb.md](./includes/Cost-azure-database-for-mariadb.md)]
-
 [!INCLUDE [Cost-azure-database-for-mysql.md](./includes/Cost-azure-database-for-mysql.md)]
 
 [!INCLUDE [Cost-azure-databricks.md](./includes/Cost-azure-databricks.md)]
@@ -37,8 +35,6 @@ Azure Advisor helps you optimize and reduce your overall Azure spend by identify
 [!INCLUDE [Cost-azure-monitor.md](./includes/Cost-azure-monitor.md)]
 
 [!INCLUDE [Cost-azure-site-recovery.md](./includes/Cost-azure-site-recovery.md)]
-
-[!INCLUDE [Cost-azure-spring-apps.md](./includes/Cost-azure-spring-apps.md)]
 
 [!INCLUDE [Cost-azure-synapse-analytics.md](./includes/Cost-azure-synapse-analytics.md)]
 

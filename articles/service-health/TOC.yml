@@ -14,23 +14,29 @@
     href: service-health-overview.md
   - name: What's new
     href: whats-new.md
-- name: How to guides
+- name: Overview
   items:
   - name: Azure Service Health
     items:
-    - name: View Service Health notifications in the Azure portal
+    - name: View Service Health notifications from the Azure portal
       href: service-notifications.md
     - name: Filter Service Health notifications by event level
       href: metadata-filter.md
+    - name: Service Health event tags
+      href: service-health-event-tags.md
     - name: Service Health notifications
       href: service-health-notifications-properties.md
-    - name: How to view and access Security Advisories with elevated access
+    - name: View and access Security advisories
       href: security-advisories-elevated-access.md
     - name: View and manage Azure security issues
       href: stay-informed-security.md
+    - name: View Health advisories
+      href: Service-health-advisories.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
-    - name: Planned Maintenance overview
+    - name: How to Report an issue
+      href: report-issue.md
+    - name: View and access Planned maintence
       href: service-health-planned-maintenance.md
     - name: How to create alerts
       items:
@@ -40,6 +46,8 @@
         href: alerts-activity-log-service-notifications-bicep.md
       - name: Create activity log alerts using ARM template
         href: alerts-activity-log-service-notifications-arm.md
+      - name: Deploy Service Health alert rules at scale using Azure Policy 
+        href: service-health-alert-deploy-policy.md
     - name: How to send alerts
       items:
       - name: Send alerts to outside systems via webhook
@@ -64,18 +72,30 @@
         href: resource-health-alert-arm-template-guide.md
     - name: Impacted Resources
       items:
-      - name: Impacted Resources Support for Outages
+      - name: Impacted Resources from Outages
         href: impacted-resources-outage.md
-      - name: Viewing Resources impacted by planned maintenance events
+      - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
-      - name: Viewing impacted resources from Azure security incidents
+      - name: Impacted Resources from Azure security incidents
         href: impacted-resources-security.md     
 - name: Reference
   items:
-  - name: Queries
+  - name: Resource Graph
     items:  
-    - name: Azure Resource Graph queries
+    - name: Sample queries for Service Health
       href: ./resource-graph-samples.md
+    - name: Sample queries for Resource Health
+      href: ./resource-graph-health-samples.md
+    - name: Sample queries for Impacted resources
+      href: ./resource-graph-impacted-samples.md
+  - name: REST API
+    items:   
+    - name: Service Health REST API
+      href: /rest/api/resourcehealth/events/
+    - name: Emerging Issues REST API
+      href: /rest/api/resourcehealth/emerging-issues/
+    - name: Resource Health REST API
+      href: /rest/api/resourcehealth/availability-statuses/
   - name: Access and permissions
     items: 
     - name: Tenant Roles with Admin access
@@ -86,6 +106,8 @@
   items:
     - name: Resource Health FAQ
       href: resource-health-faq.yml
+    - name: Service Health FAQ
+      href: service-health-faq.yml
 - name: External Resources
   items:
   - name: Azure Roadmap

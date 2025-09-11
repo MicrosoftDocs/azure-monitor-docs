@@ -10,17 +10,19 @@ ms.reviewer: vitalyg
 
 In Azure Monitor, [metrics](data-platform-metrics.md) are a series of measured values and counts that are collected and stored over time. Metrics can be standard (also called *platform*) or custom. The Azure platform provides standard metrics. These metrics reflect the health and usage statistics of your Azure resources.
 
-In addition to standard metrics, your application emits extra *custom* performance indicators or business-related metrics. Custom metrics can be emitted by any application or Azure resource and collected by using [Azure Monitor Insights](../visualize/insights-overview.md), agents running on virtual machines, or [OpenTelemetry](../app/opentelemetry-enable.md).
+:::image source="./media/analyze-metrics/metrics-explorer-example.png" lightbox="./media/analyze-metrics/metrics-explorer-example.png" alt-text="Screenshot that shows the metrics explorer in Azure Monitor.":::
 
-Azure Monitor metrics explorer is a component of the Azure portal that helps you plot charts, visually correlate trends, and investigate spikes and dips in metrics values. You can use metrics explorer to investigate the health and utilization of your resources.
+In addition to standard metrics, your application emits extra *custom* performance indicators or business-related metrics. [Custom metrics](metrics-custom-overview.md) can be emitted by any application or Azure resource and collected by using [Azure Monitor Insights](../visualize/insights-overview.md), agents running on virtual machines (for example, [Azure Monitor Agent](../agents/azure-monitor-agent-manage.md)), or [OpenTelemetry](../app/opentelemetry-enable.md).
+
+Azure Monitor [metrics explorer](metrics-explorer.md) is a component of the Azure portal that helps you plot charts, visually correlate trends, and investigate spikes and dips in metrics values. You can use metrics explorer to investigate the health and utilization of your resources.
 
 Watch the following video for an overview of creating and working with metrics charts in Azure Monitor metrics explorer.
-
+<br><br>
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=01a767db-97ae-4ddf-b842-7fa5390bcf0d]
 
 ## Create a metric chart using PromQL
 
-You can now create charts using Prometheus query language (PromQL) for metrics stored in an Azure Monitor workspace. For more information, see [Metrics explorer with PromQL (Preview)](metrics-explorer.md).
+You can now create charts using Prometheus query language (PromQL) for metrics stored in an [Azure Monitor workspace](azure-monitor-workspace-overview.md). For more information, see [Metrics explorer with PromQL (Preview)](metrics-explorer.md).
 
 ## Create a metric chart
 
@@ -362,7 +364,7 @@ This section provides answers to common questions.
 
 ### Why are metrics from the guest OS of my Azure virtual machine not showing up in metrics explorer?
 
-[Platform metrics](../platform/monitor-azure-resource.md#monitoring-data) are collected automatically for Azure resources. You must perform some configuration, though, to collect metrics from the guest OS of a virtual machine. For a Windows Virtual Machine, install the diagnostic extension and configure the Azure Monitor sink as described in [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md). For Linux, install the Telegraf agent as described in [Collect custom metrics for a Linux VM with the InfluxData Telegraf agent](../agents/collect-custom-metrics-linux-telegraf.md).
+[Platform metrics](../platform/monitor-azure-resource.md#metrics) are collected automatically for Azure resources. You must perform some configuration, though, to collect metrics from the guest OS of a virtual machine. For a Windows Virtual Machine, install the diagnostic extension and configure the Azure Monitor sink as described in [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md). For Linux, install the Telegraf agent as described in [Collect custom metrics for a Linux VM with the InfluxData Telegraf agent](../agents/collect-custom-metrics-linux-telegraf.md).
 
 [!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
 

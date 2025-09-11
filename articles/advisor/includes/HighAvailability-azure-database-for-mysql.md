@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/08/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for MySQL
@@ -106,5 +106,41 @@ Recommendation ID: f51c5bce-c771-42c0-97c8-5c6676bad17c
 Subcategory: HighAvailability
 
 <!--f51c5bce-c771-42c0-97c8-5c6676bad17c_end-->
+
+<!--5dd0cbbb-61a6-497c-a498-50fe19c7f5d1_begin-->
+
+#### Enable HA with zone redundancy  
+  
+Set highAvailability.mode to ZoneRedundant  
+  
+**Potential benefits**: Maintains DB access during zone failures  
+
+**Impact:** High
+  
+For more information, see [Azure Database for MySQL - Flexible Server Overview - Azure Database for MySQL](https://aka.ms/MysqlFlexibleServers)  
+
+ResourceType: microsoft.dbformysql/flexibleservers  
+Recommendation ID: 5dd0cbbb-61a6-497c-a498-50fe19c7f5d1  
+Subcategory: HighAvailability
+
+<!--5dd0cbbb-61a6-497c-a498-50fe19c7f5d1_end-->
+
+<!--c317d906-e24a-4f6d-8cd7-389bd6bc602c_begin-->
+
+#### Enable geo-backup on MySQL server for improved disaster recovery and regional resilience  
+  
+Our monitoring shows geo-backup isn't enabled on your Azure Database for MySQL server. Without it, you cannot restore data in a different region during a regional outage. Enable geo-backup to meet disaster recovery best practices and ensure business continuity.  
+  
+**Potential benefits**: Improves disaster recovery and regional resilience  
+
+**Impact:** Medium
+  
+For more information, see [Backup and Restore - Azure Database for MySQL](https://aka.ms/mysql-geo-restore)  
+
+ResourceType: microsoft.dbformysql/flexibleservers  
+Recommendation ID: c317d906-e24a-4f6d-8cd7-389bd6bc602c  
+Subcategory: null
+
+<!--c317d906-e24a-4f6d-8cd7-389bd6bc602c_end-->
 
 <!--articleBody-->

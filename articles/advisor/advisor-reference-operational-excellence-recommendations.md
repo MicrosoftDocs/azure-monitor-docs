@@ -4,7 +4,7 @@ description: Operational excellence recommendations
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 04/22/2025
+ms.date: 09/09/2025
 ---
 
 # Operational Excellence recommendations
@@ -71,6 +71,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-content-delivery-network.md](./includes/OperationalExcellence-content-delivery-network.md)]
 
+[!INCLUDE [OperationalExcellence-event-hubs.md](./includes/OperationalExcellence-event-hubs.md)]
+
 [!INCLUDE [OperationalExcellence-key-vault.md](./includes/OperationalExcellence-key-vault.md)]
 
 [!INCLUDE [OperationalExcellence-media-services.md](./includes/OperationalExcellence-media-services.md)]
@@ -78,6 +80,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 [!INCLUDE [OperationalExcellence-microsoft.apicenter.md](./includes/OperationalExcellence-microsoft.apicenter.md)]
 
 [!INCLUDE [OperationalExcellence-microsoft.kubernetesruntime.md](./includes/OperationalExcellence-microsoft.kubernetesruntime.md)]
+
+[!INCLUDE [OperationalExcellence-service-bus.md](./includes/OperationalExcellence-service-bus.md)]
 
 [!INCLUDE [OperationalExcellence-sql-server-on-azure-virtual-machines.md](./includes/OperationalExcellence-sql-server-on-azure-virtual-machines.md)]
 

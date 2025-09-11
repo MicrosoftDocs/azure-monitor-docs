@@ -4,7 +4,7 @@ description: Use recommendations for retirement and upgrade of a service
 ms.topic: upgrade-and-migration-article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 04/11/2025
+ms.date: 09/03/2025
 
 ---
 
@@ -18,10 +18,12 @@ Azure services periodically undergo a retirement and upgrade journey, necessitat
 
 ## Access recommendations
 
-The **Service Upgrade and Retirement** subcategory of recommendations under **Reliability** category, includes both upgrade and retirement recommendations. The upgrade and retirement recommendations are a superset of the [retirement updates provided using customer communication](https://azure.microsoft.com/updates "Azure Updates | Microsoft Azure"). The recommendations intended for upgrades but not associated with any retirements will have 'Retirement Date' and 'Retiring Feature' values marked as N/A or null.
+The **Service Upgrade and Retirement** subcategory of recommendations under **Reliability** category, includes both upgrade and retirement recommendations. The upgrade and retirement recommendations are a superset of the [retirement updates provided using customer communication](https://azure.microsoft.com/updates "Azure Updates | Microsoft Azure"). The recommendations intended for upgrades but not associated with any retirements have **Retirement Date** and **Retiring Feature** values marked as `N/A` or null.
 
-Previously, [retirement recommendations were only available through Advisor workbooks](./advisor-workbook-service-retirement.md "Service Retirement workbook | Azure Advisor | Microsoft Learn") that are in preview mode. Now, you also have access to the information using the native user experience in Azure Advisor and Azure Advisor REST API requests. Based on your requirements and comfort, choose your route. <br>
-NOTE - Only recommendations with available impacted resources information will be displayed in the portal UI, and the API response will reflect the same. For more information about impacted Resources, see [Coverage of Services](#coverage-of-services).
+Previously, [retirement recommendations were only available through Advisor workbooks](./advisor-workbook-service-retirement.md "Service Retirement workbook | Azure Advisor | Microsoft Learn") that are in preview mode. Now, you also have access to the information using the native user experience in Azure Advisor and Azure Advisor REST API requests. Based on your requirements and comfort, choose your route.
+
+> [!NOTE]
+> Only recommendations with available **Impacted resources** information are displayed in Advisor panes. The Advisor API response provides the same information. For more information about **Impacted resources**, see [Coverage of Services](#coverage-of-services).
 
 ### [Recommendations pane](#tab/portal)
 
@@ -60,8 +62,11 @@ To get a list of all of the upgrade and retirement recommendations, [use the `Re
 The following code sample uses `2025-01-01`  for the `api-version`.
 
 ```https
-https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter=recommendationCategory eq 'HighAvailability' and recommendationControl eq 'ServiceUpgradeAndRetirement'
+https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter=recommendationCategory eq 'HighAvailability' and recommendationSubCategory eq 'ServiceUpgradeAndRetirement'
 ```
+
+>[!NOTE]
+> `recommendationControl` is a legacy filter property and is planned for deprecation in the future. Use `recommendationSubCategory` for filtering recommendation subcategory.
 
 #### Sample Recommendation Metadata - List API response
 
@@ -88,8 +93,11 @@ To get list of **Impacted Resources** in a subscription by the retirement and re
 The following code sample uses `2025-01-01`  for the `api-version`.
 
 ```https
-https://management.azure.com/subscriptions/<Subscription-Id-Guid>/providers/Microsoft.Advisor/recommendations?api-version=2025-01-01&$filter=Category eq 'HighAvailability' and Control eq 'ServiceUpgradeAndRetirement'
+https://management.azure.com/subscriptions/<Subscription-Id-Guid>/providers/Microsoft.Advisor/recommendations?api-version=2025-01-01&$filter=Category eq 'HighAvailability' and SubCategory eq 'ServiceUpgradeAndRetirement'
 ```
+
+>[!NOTE]
+> `recommendationControl` is a legacy filter property and is planned for deprecation in the future. Use `recommendationSubCategory` for filtering recommendation subcategory.
 
 #### Sample Recommendations - List API response
 
@@ -101,17 +109,17 @@ Add the following filter to get more information like `learnMoreLink`, details o
 $expand=ibiza,details
 ```
 
-### [All retirements using Azure Resource Graph query](#tab/resource-graph-query)
+### [All retirements using [!INCLUDE [Azure Resource Graph](./includes/inline-reusable-text/azure-resource-graph.md)] query](#tab/resource-graph-query)
 
-The retirement recommendations are available in the native user experience in Advisor and accessible using Azure Resource Graph. To get the list of **Impacted Resources**, [use an Azure Resource Graph query](/azure/governance/resource-graph/samples/samples-by-category?tabs=azure-cli#azure-advisor "Azure Advisor - Azure Resource Graph sample queries by category | Azure Resource Graph | Microsoft Learn").
+The retirement recommendations are available in the native user experience in Advisor and accessible using [!INCLUDE [Azure Resource Graph](./includes/inline-reusable-text/azure-resource-graph.md)]. To get the list of **Impacted Resources**, [use an Azure Resource Graph query](/azure/governance/resource-graph/samples/samples-by-category?tabs=azure-cli#azure-advisor "Azure Advisor - Azure Resource Graph sample queries by category | Azure Resource Graph | Microsoft Learn").
 
-#### Sample Azure Resource Graph query
+#### Sample [!INCLUDE [Azure Resource Graph](./includes/inline-reusable-text/azure-resource-graph.md)] query
 
 ```azurecli
 advisorresources
 | where type == "microsoft.advisor/recommendations"
 | where properties.category == "HighAvailability"
-| where properties.extendedProperties.recommendationControl == "ServiceUpgradeAndRetirement"
+| where properties.extendedProperties.recommendationSubCategory == "ServiceUpgradeAndRetirement"
 | extend retirementFeatureName = properties.extendedProperties.retirementFeatureName
 | extend retirementDate = properties.extendedProperties.retirementDate
 | extend resourceId = properties.resourceMetadata.resourceId
@@ -171,6 +179,10 @@ Based on your need, use any of the listed ways to get the required information.
 
 ### [Retiring in 2026](#tab/service-retire-2026)
 
+#### Retiring February 2026
+
+[!INCLUDE [Table for retiring February 2026](./includes/retiring-feature/retirement-date-2026-02.md)]
+
 #### Retiring March 2026
 
 [!INCLUDE [Table for retiring March 2026](./includes/retiring-feature/retirement-date-2026-03.md)]
@@ -178,6 +190,14 @@ Based on your need, use any of the listed ways to get the required information.
 #### Retiring April 2026
 
 [!INCLUDE [Table for retiring April 2026](./includes/retiring-feature/retirement-date-2026-04.md)]
+
+#### Retiring May 2026
+
+[!INCLUDE [Table for retiring May 2026](./includes/retiring-feature/retirement-date-2026-05.md)]
+
+#### Retiring June 2026
+
+[!INCLUDE [Table for retiring June 2026](./includes/retiring-feature/retirement-date-2026-06.md)]
 
 #### Retiring August 2026
 
@@ -212,6 +232,10 @@ Based on your need, use any of the listed ways to get the required information.
 #### Retiring June 2027
 
 [!INCLUDE [Table for retiring June 2027](./includes/retiring-feature/retirement-date-2027-06.md)]
+
+#### Retiring July 2027
+
+[!INCLUDE [Table for retiring July 2027](./includes/retiring-feature/retirement-date-2027-07.md)]
 
 #### Retiring September 2027
 
@@ -261,7 +285,7 @@ For more information about Advisor REST API, see the following articles.
 
 *   [Recommendation Metadata - List](/rest/api/advisor/recommendation-metadata/list?tabs=HTTP#code-try-0 "Recommendation Metadata - List | Azure Advisor REST API | Microsoft Learn")
 
-For more information about Azure communication and Azure Resource Graph, see the following articles.
+For more information about Azure communication and [!INCLUDE [Azure Resource Graph](./includes/inline-reusable-text/azure-resource-graph.md)], see the following articles.
 
 *   [Azure Updates](https://azure.microsoft.com/updates "Azure Updates | Microsoft Azure")
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Cache for Redis
@@ -86,11 +86,11 @@ Recommendation ID: 77204a4e-03ed-4db5-b059-3c3a26145b43
 
 <!--faf7de8d-ccb9-4364-aad1-4852e489b2f3_begin-->
 
-#### Support for TLS versions 1.0 and 1.1 is retiring on October 31, 2024.  
+#### Support for TLS versions 1.0 and 1.1 retired on March 31, 2025  
   
-Support for TLS 1.0/1.1 is retiring on October 31, 2024. Configure your cache to use TLS 1.2 only and your application should using TLS 1.2 or later. See https://aka.ms/TLSVersions for more information.  
+Support for TLS 1.0 and 1.1 retired on March 31, 2025. Configure the cache and the client application to use minimum TLS version as TLS 1.2.  
   
-**Potential benefits**: Keep your cache secure.  
+**Potential benefits**: Keep your cache secure  
 
 **Impact:** High
   
@@ -101,6 +101,8 @@ Recommendation ID: faf7de8d-ccb9-4364-aad1-4852e489b2f3
 
 
 <!--faf7de8d-ccb9-4364-aad1-4852e489b2f3_end-->
+
+
 
 <!--dc33091b-a748-4418-b4b0-d3d97466efe4_begin-->
 

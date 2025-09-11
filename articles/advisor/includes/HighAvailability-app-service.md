@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -101,24 +101,6 @@ Recommendation ID: b30897cc-2c2e-4677-a2a1-107ae982ff49
 Subcategory: DisasterRecovery
 
 <!--b30897cc-2c2e-4677-a2a1-107ae982ff49_end-->
-
-<!--80efd6cb-dcee-491b-83a4-7956e9e058d5_begin-->
-
-#### Fix the backup storage settings of your App Service resource  
-  
-When an application has invalid storage settings, its backups fail. For details, see your application's backup history on your app management page.  
-  
-**Potential benefits**: Ensure business continuity  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: 80efd6cb-dcee-491b-83a4-7956e9e058d5  
-Subcategory: DisasterRecovery
-
-<!--80efd6cb-dcee-491b-83a4-7956e9e058d5_end-->
 
 <!--66d3137a-c4da-4c8a-b6b8-e03f5dfba66e_begin-->
 
@@ -299,5 +281,96 @@ Recommendation ID: 72063b96-92fa-4b74-9457-b84b662155f9
 Subcategory: MonitoringAndAlerting
 
 <!--72063b96-92fa-4b74-9457-b84b662155f9_end-->
+
+<!--96d638d0-3d41-418f-bf21-a75f193c2f6e_begin-->
+
+#### Migrate to zone-supported App Service Environment  
+  
+Enable zoneRedundant in App Service Environment settings  
+  
+**Potential benefits**: Increases uptime for App Service Environments  
+
+**Impact:** High
+  
+For more information, see [App Service Environment Overview - Azure App Service Environment](https://aka.ms/WebHostingEnvironments)  
+
+ResourceType: microsoft.web/hostingenvironments  
+Recommendation ID: 96d638d0-3d41-418f-bf21-a75f193c2f6e  
+Subcategory: HighAvailability
+
+<!--96d638d0-3d41-418f-bf21-a75f193c2f6e_end-->
+
+<!--fac3022a-eda5-44b9-b54d-cb500d1d01dd_begin-->
+
+#### Use zone-supported App Service Plan  
+  
+Deploy App Service Plan with zoneRedundant set to true  
+  
+**Potential benefits**: Keeps web apps running across zones  
+
+**Impact:** High
+  
+For more information, see [Azure App Service Plans - Azure App Service](https://aka.ms/WebServerFarms)  
+
+ResourceType: microsoft.web/serverfarms  
+Recommendation ID: fac3022a-eda5-44b9-b54d-cb500d1d01dd  
+Subcategory: HighAvailability
+
+<!--fac3022a-eda5-44b9-b54d-cb500d1d01dd_end-->
+
+
+<!--bb557466-3ab7-44c3-87ac-d95759b9bfe3_begin-->
+
+#### Action Required: App Service Managed Certificates Impacted by MPIC Compliance  
+  
+To meet updated compliance standards, DigiCert has adopted Multi-Perspective Issuance Corroboration (MPIC) for certificate validation. As a result, App Service Managed Certificates can no longer be issued or renewed for apps that aren't publicly accessible starting July 28, 2025.  
+  
+**Potential benefits**: Maintain SSL continuity and avoid renewal failures  
+
+**Impact:** High
+  
+For more information, see [App Service Managed Certificate (ASMC) Changes – July 28, 2025 - Azure App Service](/azure/app-service/app-service-managed-certificate-changes-july-2025)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: bb557466-3ab7-44c3-87ac-d95759b9bfe3  
+Subcategory: undefined
+
+<!--bb557466-3ab7-44c3-87ac-d95759b9bfe3_end-->
+
+<!--7ca9b77c-53ea-402a-a1c9-085efd569ef4_begin-->
+
+#### App Service Managed Certificates: trafficmanager.net domains are no longer supported  
+  
+To meet updated compliance standards, DigiCert applies multi-perspective issuance corroboration for certificate validation. As a result, you cannot issue or renew App Service Managed Certificates for trafficmanager.net domains.  
+  
+**Potential benefits**: Maintain HTTPS support under new validation rules.  
+
+**Impact:** High
+  
+For more information, see [App Service Managed Certificate (ASMC) Changes – July 28, 2025 - Azure App Service](/azure/app-service/app-service-managed-certificate-changes-july-2025#scenario-3-site-relies-on-trafficmanagernet-domains-1)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 7ca9b77c-53ea-402a-a1c9-085efd569ef4  
+Subcategory: undefined
+
+<!--7ca9b77c-53ea-402a-a1c9-085efd569ef4_end-->
+
+<!--42702f7a-06af-4cca-80b6-6b058e22b12f_begin-->
+
+#### Upgrade PHP to a newer, supported version  
+  
+Extended support for PHP 8.1 is ending. Apps hosted on App Service continue to run. Future security updates aren't available. The platform no longer provides customer service for PHP 8.1.  
+  
+**Potential benefits**: Continued support for applications on Azure App Service  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=Php-81-extension)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 42702f7a-06af-4cca-80b6-6b058e22b12f  
+Subcategory: undefined
+
+<!--42702f7a-06af-4cca-80b6-6b058e22b12f_end-->
 
 <!--articleBody-->

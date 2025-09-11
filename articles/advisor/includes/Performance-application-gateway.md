@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Application Gateway
@@ -47,24 +47,6 @@ Recommendation ID: 17ebccd8-1405-405c-8695-1981d115ffdc
 
 
 <!--17ebccd8-1405-405c-8695-1981d115ffdc_end-->
-
-<!--f606607c-ee34-445e-997e-49d7cb563fe0_begin-->
-
-#### Upgrade your ExpressRoute circuit bandwidth to accommodate your bandwidth needs  
-  
-You have been using over 90% of your procured circuit bandwidth recently. If you exceed your allocated bandwidth, you experience an increase in dropped packets sent over ExpressRoute. Upgrade your circuit bandwidth to maintain performance, if your bandwidth needs remain high.  
-  
-**Potential benefits**: Prevent packet drops caused by bandwidth oversubscription  
-
-**Impact:** High
-  
-For more information, see [About upgrading circuit bandwidth](/azure/expressroute/about-upgrade-circuit-bandwidth)  
-
-ResourceType: microsoft.network/expressroutecircuits  
-Recommendation ID: f606607c-ee34-445e-997e-49d7cb563fe0  
-
-
-<!--f606607c-ee34-445e-997e-49d7cb563fe0_end-->
 
 <!--10b153b5-59d0-45ac-bb3f-6a0b7ad9c0cd_begin-->
 
@@ -245,5 +227,23 @@ Recommendation ID: ad65c036-7bb0-4f2e-9059-e4bea4799412
 
 
 <!--ad65c036-7bb0-4f2e-9059-e4bea4799412_end-->
+
+<!--ef4da732-f541-4109-bc0e-465c68b6c7eb_begin-->
+
+#### A minimum subnet size of /24 is recommended for Application Gateway v2 subnets  
+  
+Application Gateway (Standard_v2 or WAF_v2 SKU) can support up to 125 instances (125 instance IP addresses + 1 private frontend IP configuration + 5 Azure reserved). A minimum subnet size of /24 is recommended.  
+  
+**Potential benefits**: Enough room for scalability  
+
+**Impact:** High
+  
+For more information, see [Azure Application Gateway infrastructure configuration](https://aka.ms/appgw/infra)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: ef4da732-f541-4109-bc0e-465c68b6c7eb  
+
+
+<!--ef4da732-f541-4109-bc0e-465c68b6c7eb_end-->
 
 <!--articleBody-->

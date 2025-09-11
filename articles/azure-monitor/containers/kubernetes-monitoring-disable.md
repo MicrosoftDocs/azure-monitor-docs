@@ -2,7 +2,7 @@
 title: Disable monitoring of your Kubernetes cluster
 description: Describes how to remove Container insights and scraping of Prometheus metrics from your Kubernetes cluster.
 ms.topic: how-to
-ms.date: 01/23/2024
+ms.date: 08/25/2025
 ms.devlang: azurecli
 ms.reviewer: aul
 ---

@@ -4,7 +4,8 @@ title: About Azure Monitor SCOM Managed Instance
 description: This article describes about Azure Monitor SCOM Managed Instance.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 02/14/2025
+ms.date: 09/08/2025
+ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: overview
@@ -18,7 +19,7 @@ With the integration of SCOM Managed Instance, System Center Operations Manager 
 
 SCOM Managed Instance is a cloud-based alternative for System Center Operations Manager customers. SCOM Managed Instance provides you with continuous monitoring of your workloads with minimal infrastructure management through migrations or after you enable Azure connectivity for your on-premises environments.
 
-To know about the SCOM Managed Instance Architecture, see [Azure Monitor SCOM Managed Instance](overview.md#architecture).
+To know about the SCOM Managed Instance Architecture, see [Azure Monitor SCOM Managed Instance](#architecture).
 
 ## Key benefits
 

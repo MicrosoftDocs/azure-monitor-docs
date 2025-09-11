@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 09/09/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -340,24 +340,6 @@ Subcategory: HighAvailability
 
 <!--e3489565-d891-406e-91d1-44f476563850_end-->
 
-<!--70f87e66-9b2d-4bfa-ae38-1d7d74837689_begin-->
-
-#### Implement multiple ExpressRoute circuits in your Virtual Network for cross premises resiliency  
-  
-When an ExpressRoute gateway only has one ExpressRoute circuit associated to it, resiliency issues might occur. To ensure peering location redundancy and resiliency, connect one or more additional circuits to your gateway.  
-  
-**Potential benefits**: Improve resiliency in case of ExpressRoute peering location failure  
-
-**Impact:** Medium
-  
-For more information, see [Azure ExpressRoute: Designing for high availability ](/azure/expressroute/designing-for-high-availability-with-expressroute)  
-
-ResourceType: microsoft.network/virtualnetworkgateways  
-Recommendation ID: 70f87e66-9b2d-4bfa-ae38-1d7d74837689  
-Subcategory: BusinessContinuity
-
-<!--70f87e66-9b2d-4bfa-ae38-1d7d74837689_end-->
-
 <!--e070c4bf-afaf-413e-bc00-e476b89c5f3d_begin-->
 
 #### Move to production gateway SKUs from Basic gateways  
@@ -380,19 +362,20 @@ Subcategory: HighAvailability
 
 #### Enable Active-Active gateways for redundancy  
   
-In active-active configuration, both instances of the VPN gateway establish site-to-site (S2S) VPN tunnels to your on-premises VPN device. When a planned maintenance or unplanned event happens to one gateway instance, traffic is automatically switched over to the other active IPsec tunnel.  
+In active-active configuration, both instances of the VPN gateway establish site-to-site (S2S) VPN tunnels to your on-premise VPN device. When a planned maintenance or unplanned event happens to one gateway instance, traffic is automatically switched over to the other active IPsec tunnel.  
   
 **Potential benefits**: Ensure business continuity through connection resilience  
 
 **Impact:** Medium
   
-For more information, see [Design highly available gateway connectivity - Azure VPN Gateway ](https://aka.ms/aa_vpnha_learnmore)  
+For more information, see [Design highly available gateway connectivity - Azure VPN Gateway](https://aka.ms/aa_vpnha_learnmore)  
 
 ResourceType: microsoft.network/virtualnetworkgateways  
 Recommendation ID: c249dc0e-9a17-423e-838a-d72719e8c5dd  
 Subcategory: BusinessContinuity
 
 <!--c249dc0e-9a17-423e-838a-d72719e8c5dd_end-->
+
 
 <!--8d61a7d4-5405-4f43-81e3-8c6239b844a6_begin-->
 
@@ -557,5 +540,59 @@ Recommendation ID: bc45d55d-3902-4505-8e34-ef8777bc6177
 Subcategory: HighAvailability
 
 <!--bc45d55d-3902-4505-8e34-ef8777bc6177_end-->
+
+<!--b4af9e04-3570-41f1-b4cf-b7af07224799_begin-->
+
+#### Configure a maintenance configuration  
+  
+Configure a maintenance configuration to avoid upgrades during important service hours.  
+  
+**Potential benefits**: Improve reliability during important service hours.  
+
+**Impact:** Low
+  
+For more information, see [Configure customer-controlled maintenance for your virtual network gateway - ExpressRoute](/azure/expressroute/customer-controlled-gateway-maintenance)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: b4af9e04-3570-41f1-b4cf-b7af07224799  
+Subcategory: BusinessContinuity
+
+<!--b4af9e04-3570-41f1-b4cf-b7af07224799_end-->
+
+<!--cdf6b706-a12c-4b65-96b6-00cb125b7c26_begin-->
+
+#### Use Standard SKU with zone-redundant IP addresses  
+  
+Use Standard SKU and deploy across three or more zones.  
+  
+**Potential benefits**: Ensures IP availability during zone failures  
+
+**Impact:** High
+  
+For more information, see [Azure Public IP address prefix - Azure Virtual Network](/azure/virtual-network/public-ip-address-prefix)  
+
+ResourceType: microsoft.network/publicipprefixes  
+Recommendation ID: cdf6b706-a12c-4b65-96b6-00cb125b7c26  
+Subcategory: HighAvailability
+
+<!--cdf6b706-a12c-4b65-96b6-00cb125b7c26_end-->
+
+<!--20f2ff6a-3940-4cc9-8f14-909466c4ddd0_begin-->
+
+#### Traffic Manager monitor status should be online  
+  
+Monitor status should be online to ensure failover for application workload. If Traffic Manager's health shows degraded, one or more endpoints may also be degraded.  
+  
+**Potential benefits**: Ensures failover functionality  
+
+**Impact:** High
+  
+  
+
+ResourceType: microsoft.network/trafficmanagerprofiles  
+Recommendation ID: 20f2ff6a-3940-4cc9-8f14-909466c4ddd0  
+Subcategory: undefined
+
+<!--20f2ff6a-3940-4cc9-8f14-909466c4ddd0_end-->
 
 <!--articleBody-->

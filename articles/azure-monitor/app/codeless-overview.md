@@ -3,7 +3,7 @@ title: Autoinstrumentation for Azure Monitor Application Insights
 description: Overview of autoinstrumentation for Azure Monitor Application Insights codeless application performance management.
 ms.topic: how-to
 ms.custom: devx-track-js
-ms.date: 08/12/2024
+ms.date: 07/30/2025
 ms.reviewer: abinetabate
 ---
 
@@ -41,7 +41,7 @@ Links are provided to more information for each supported scenario.
 |-------------------------------|----------------|------------------|------|---------|--------|
 |Azure App Service on Windows - Publish as Code | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=net) ¹ | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=aspnetcore) ¹ | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=java) ¹ | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=nodejs) ¹ | :x: |
 |Azure App Service on Windows - Publish as Container ⁴ | [ :white_check_mark: :link: ](https://azure.github.io/AppService/2022/04/11/windows-containers-app-insights-preview.html) ² | [ :white_check_mark: :link: ](https://azure.github.io/AppService/2022/04/11/windows-containers-app-insights-preview.html) ² | [ :white_check_mark: :link: ](https://azure.github.io/AppService/2022/04/11/windows-containers-app-insights-preview.html) ² | [ :white_check_mark: :link: ](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/public-preview-application-insights-auto-instrumentation-for/ba-p/3947971) ² | :x: |
-|Azure App Service on Linux - Publish as Code | :x: | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=aspnetcore) ¹ | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=java) ¹ | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=nodejs)¹ | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=python) ² |
+|Azure App Service on Linux - Publish as Code | :x: | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=aspnetcore) ¹ | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=java) ¹ | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=nodejs)¹ | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=python) |
 |Azure App Service on Linux - Publish as Container ⁴ | :x: | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=aspnetcore) | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=java) | [ :white_check_mark: :link: ](codeless-app-service.md?tabs=nodejs) | :x: |
 |Azure Functions - basic | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md#distributed-tracing-for-python-function-apps) ¹ |
 |Azure Functions - dependencies | :x: | :x: | [ :white_check_mark: :link: ](monitor-functions.md) | :x: | :x: |

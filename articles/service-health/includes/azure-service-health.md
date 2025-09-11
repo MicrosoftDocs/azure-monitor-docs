@@ -2,7 +2,7 @@
 ms.service: azure-service-health
 ms.custom: devx-track-azurepowershell
 ms.topic: include
-ms.date: 06/16/2025
+ms.date: 08/21/2025
 ---
 
 #### Active Service Health events by subscription 
@@ -12,7 +12,7 @@ This query shows all active Service Health events—such as service issues, plan
 An example would show each event type including a count showing how many subscriptions affected by it.
 
 >[!NOTE]
->This event subscription doesn't include emerging issues. For more information, open [this page](/rest/api/resourcehealth/emerging-issues).
+>Emerging issues aren't tied to subscription IDs and as a result can't be queried via ARG, which is subscription ID based. For more information, open [this page](/rest/api/resourcehealth/emerging-issues).
 
 
 ```kusto

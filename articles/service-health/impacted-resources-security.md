@@ -1,11 +1,11 @@
 ---
-title: Viewing impacted resource from Azure security incidents
+title: Impacted resources from Azure security incidents
 description: This article details where to find information from Azure Service Health about how Azure security incidents impact your resources.
 ms.topic: concept-article
-ms.date: 5/14/2025
+ms.date: 7/9/2025
 ---
 
-# Viewing impacted resource from Azure security incidents
+# Impacted resources from Azure security incidents
 
 To support of the experience of viewing impacted resources, Service Health contains a feature that:
 
@@ -17,7 +17,7 @@ This article explains what and where you can view information about your impacte
 >[!Note]
 >This feature will be rolled out in phases. The rollout will gradually expand to 100 percent of subscription and tenant customers.
 
-## Role Based Access (RBAC) For Sensitive Security Incident Resource Impact
+## Role Based Access (RBAC) For Sensitive Security incident resource impact and sensitive details
 
 [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) helps you manage who has access to Azure resources, what they can do with those resources, and what areas they have access to.<br> 
 Given the sensitive nature of security incidents, role-based access is used to limit the audience of their impacted resource information. <!--
@@ -26,6 +26,7 @@ Along with resource information, Service Health provides the information shown h
 Users with the authorized roles shown here can view security impacted resource information and sensitive details such as description, summary, and updates:
 
 **Subscription level**
+- Service Health Security reader
 - Subscription Owner
 - Subscription Admin
 - Custom Roles with
@@ -64,13 +65,13 @@ You can retrieve information about impacted resources for security incidents usi
 **Subscription**
 
 ```HTTP
-https://management.azure.com/subscriptions/<Subscription ID>/providers/microsoft.resourcehealth/events/<Tracking ID>/listSecurityAdvisoryImpactedResources?api-version=2022-10-01
+https://management.azure.com/subscriptions/<Subscription ID>/providers/microsoft.resourcehealth/events/<Tracking ID>/listSecurityAdvisoryImpactedResources?api-version=2025-05-01
 ```
 
 **Tenant**
 
 ```HTTP
-https://management.azure.com/providers/microsoft.resourcehealth/events/("Tracking ID")/listSecurityAdvisoryImpactedResources?api-version=2022-10-01
+https://management.azure.com/providers/microsoft.resourcehealth/events/("Tracking ID")/listSecurityAdvisoryImpactedResources?api-version=2025-05-01
 ```
 
 ## Next steps

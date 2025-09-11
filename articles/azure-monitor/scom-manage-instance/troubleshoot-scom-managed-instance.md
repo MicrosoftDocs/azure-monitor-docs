@@ -4,7 +4,8 @@ title: Troubleshoot issues with Azure Monitor SCOM Managed Instance
 description: This article describes the errors that might occur when you deploy or use Azure Monitor SCOM Managed Instance and how to resolve them.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 06/19/2024
+ms.date: 09/08/2025
+ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: troubleshooting-general
@@ -143,7 +144,7 @@ Check the quota section on Azure portal and allocate more cores of type Standard
 
 **Cause**: This error might occur during the provisioning of System Center Operations Manager extension or System Center Operations Manager installation.
 
-**Resolution**: Check the [general troubleshooting](./troubleshoot-scom-managed-instance.md#general-troubleshooting), try to identify the issue, and resolve it accordingly.
+**Resolution**: Check the [general troubleshooting](#general-troubleshooting), try to identify the issue, and resolve it accordingly.
 
 ### Issue: Conflict
 

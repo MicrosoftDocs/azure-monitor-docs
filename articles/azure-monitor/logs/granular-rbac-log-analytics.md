@@ -144,7 +144,7 @@ ABAC conditions aren't set on functions directly. If you set the condition on a 
 ## Considerations
 
 Several considerations apply when using granular RBAC in Log Analytics. The following sections provide specifics.
-- Granular RBAC is only available in the public cloud.
+- Granular RBAC is available in the public cloud, Azure Commercial (GCC) and Azure China.
 
 ### Azure Monitor
 

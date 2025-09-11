@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/22/2025
+ms.date: 08/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability API Management
@@ -119,5 +119,23 @@ Recommendation ID: f4c48f42-74f2-41bf-bf99-14e2f9ea9ac9
 Subcategory: Scalability
 
 <!--f4c48f42-74f2-41bf-bf99-14e2f9ea9ac9_end-->
+
+<!--4f130398-8c13-4e84-bdef-bed40c438992_begin-->
+
+#### Upgrade to Premium and have the API Management instance deployed across multiple zones  
+  
+Update the gateway and the control plane of your API Management instance to be replicated across two or more physically separated zones within an Azure region.  
+  
+**Potential benefits**: Enhances service uptime and reliability  
+
+**Impact:** High
+  
+For more information, see [Azure API Management - Overview and key concepts](https://aka.ms/learnmore_api_management_service)  
+
+ResourceType: microsoft.apimanagement/service  
+Recommendation ID: 4f130398-8c13-4e84-bdef-bed40c438992  
+Subcategory: HighAvailability
+
+<!--4f130398-8c13-4e84-bdef-bed40c438992_end-->
 
 <!--articleBody-->

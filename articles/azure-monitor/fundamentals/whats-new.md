@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 04/03/2025
+ms.date: 08/31/2025
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +10,48 @@ ms.date: 04/03/2025
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
+
+### August 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Alerts|[Create tenant level service health alerts (preview)](../alerts/alerts-create-tenant-level-service-heath-alerts.md)|We announced the public preview of tenant-level service health alerts, enabling customers to create alerts at the tenant scope, along with updated guidance on issues and investigations by region.|
+|Application-Insights|[Release annotations](../app/failures-performance-transactions.md?tabs=failures-view%2Cresults-list#release-annotations)|Release annotations are now documented alongside the related experiences for better discoverability.|
+|Application-Insights|[Work item integration](../app/work-item-integration.md)|Information about work item integration has been deduplicated and made available in one place.|
+|Application-Insights|[`InstrumentationKeyMap`](../app/application-insights-asp-net-agent.md)|We clarified and added to `InstrumentationKeyMap` information across [Deploy Application Insights Agent](../app/application-insights-asp-net-agent.md) and [Monitor performance on VMs](../app/azure-vm-vmss-apps.md).|
+|Fundamentals|[Configure Azure Monitor with Network Security Perimeter](network-security-perimeter.md)|We published this article to support [General Availability (GA) of Network Security Perimeter](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/general-availability-of-azure-monitor-network-security-perimeter-features/4440307).|
+|Fundamentals|[Azure Monitor endpoint access and firewall configuration](azure-monitor-network-access.md)|We improved the technical accuracy and included new information about adding IPv6 support for App Insights ingestion endpoints.|
+|Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|We updated the search job record limit.|
+|Logs|[Optimize log queries in Azure Monitor](../logs/query-optimization.md#query-details-pane)|Information about the details pane has been updated.|
+|Visualizations|[Use Azure Monitor dashboards with Grafana (preview)](../visualize/visualize-use-grafana-dashboards.md)|We updated documentation to make the free, Azure-integrated Grafana with Dashboards the primary recommendation for customers who don’t require deep Grafana integrations.|
+
+### July 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Alerts|[Customize log search alert email subjects (preview)](../alerts/alerts-customize-email-subject-how-to.md)|Log search alert email subjects can now be customized.|
+|Application-Insights|[Application Insights for ASP.NET and ASP.NET Core applications](../app/asp-net.md)|Classic API SDK fundamentals for both ASP.NET and ASP.NET Core are now merged in one place.|
+|Application-Insights|[Metrics in Application Insights](../app/metrics-overview.md)|The documentation now clarifies that Azure Monitor Metrics and Workspaces ingest custom metrics at a fixed 60-second interval, regardless of how often they're sent, while Log Analytics records them at the actual send interval. We also introduced the OTEL_METRIC_EXPORT_INTERVAL environment variable, allowing configuration of the OpenTelemetry metric export interval, with a default of 60 seconds.|
+|Application-Insights|[Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry)|Clarified that when using Microsoft Entra ID for the Application Insights data collection endpoint, the application must also authenticate with Entra ID or telemetry will be rejected.|
+|Application-Insights|[Application Insights availability tests](../app/availability.md)|We published a query to discover deprecated URL ping tests with [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).|
+|Application-Insights|[Sampling in Azure Monitor Application Insights with OpenTelemetry](../app/opentelemetry-sampling.md)|All sampling links from the Azure portal now go directly to our OpenTelemetry guidance.|
+|Platform|[Azure Monitor activity log](../platform/activity-log.md)|Rewritten for clarity and to consolidate articles.|
+|Platform|[Resource logs in Azure Monitor](../platform/resource-logs.md)|Rewritten for clarity and to consolidate articles.|
+|Platform|[Diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md)|Rewritten for clarity and to consolidate articles.|
+
+### June 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|AIOPS|[Issues and investigations](../aiops/aiops-issue-and-investigation-overview.md)|This powerful addition to Azure Monitor leverages AI to automate troubleshooting processes.|
+|Application-Insights|[Managed workspaces in Application Insights](../app/managed-workspaces.md)|Telemetry ingestion into classic resources stopped on June 15th, 2025.|
+|Fundamentals|[Azure Monitor with Network Security Perimeter scenarios](network-security-perimeter-scenarios.md)|New article with NSP configuration for common scenarios.|
+|Metrics|[Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md)|Removed preview tags.|
+|Health-Models|[Health models in Azure Monitor (preview)](../health-models/overview.md)|Public preview of new health models feature.|
+|Agents|[Azure Diagnostics extension overview ](../agents/diagnostics-extension-overview.md)|Added query to identify agents for migration.|
+|Metrics|[Migrate from Self-hosted Prometheus to Azure Monitor Managed Service for Prometheus](../metrics/prometheus-migrate.md?tabs=entra-application)|New article providing guidance for migration from self-hosted Prometheus.|
+|Platform|[Send Azure Monitor activity log data](../platform/activity-log.md?tabs=powershell)|Updated Send Azure Monitor activity log data.|
+|Visualizations|[Grafana Dashboards](../visualize/visualize-use-grafana-dashboards.md)|Azure Monitor dashboards with Grafana empower users to effortlessly create, edit, and share dynamic visualizations for monitoring data from Azure resources, enhancing operational insights and efficiency.|
 
 ### May 2025
 

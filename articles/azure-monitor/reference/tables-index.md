@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 06/12/2025
+ms.date: 08/18/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -72,6 +72,7 @@ Microsoft.ServiceNetworking/TrafficControllers
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AGCAccessLogs](./tables/agcaccesslogs.md)
+- [AGCFirewallLogs](./tables/agcfirewalllogs.md)
 
 ### Application Gateways  
 
@@ -268,14 +269,9 @@ Microsoft.DocumentDb/databaseAccounts
 Microsoft.DocumentDB/mongoClusters  
 
 - [VCoreMongoRequests](./tables/vcoremongorequests.md)
-
-### Azure Cosmos DB for PostgreSQL  
-
-Microsoft.DBForPostgreSQL/servergroupsv2  
-
 - [AzureActivity](./tables/azureactivity.md)
-- [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [AzureDiagnostics](./tables/azurediagnostics.md)
 
 ### Azure Data Explorer Clusters  
 
@@ -323,6 +319,8 @@ Microsoft.DBForMySQL/flexibleServers
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [MySqlAuditLogs](./tables/mysqlauditlogs.md)
+- [MySqlSlowLogs](./tables/mysqlslowlogs.md)
 
 ### Azure Database for MySQL Servers  
 
@@ -339,6 +337,13 @@ Microsoft.DBForPostgreSQL/flexibleServers
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [PGSQLPgStatActivitySessions](./tables/pgsqlpgstatactivitysessions.md)
+- [PGSQLDbTransactionsStats](./tables/pgsqldbtransactionsstats.md)
+- [PGSQLQueryStoreRuntime](./tables/pgsqlquerystoreruntime.md)
+- [PGSQLQueryStoreWaits](./tables/pgsqlquerystorewaits.md)
+- [PGSQLAutovacuumStats](./tables/pgsqlautovacuumstats.md)
+- [PGSQLServerLogs](./tables/pgsqlserverlogs.md)
+- [PGSQLPgBouncer](./tables/pgsqlpgbouncer.md)
 
 ### Azure Database for PostgreSQL Servers  
 
@@ -534,6 +539,16 @@ Microsoft.Insights/AutoscaleSettings
 - [AutoscaleEvaluationsLog](./tables/autoscaleevaluationslog.md)
 - [AutoscaleScaleActionsLog](./tables/autoscalescaleactionslog.md)
 
+### Azure Monitor Diagnostics Agents  
+
+Microsoft.AzureMonitorDiagnosticsAgents/DataCollection  
+
+- [DataSetRuns](./tables/datasetruns.md)
+- [DataSetOutput](./tables/datasetoutput.md)
+- [PerfInsightsRun](./tables/perfinsightsrun.md)
+- [PerfInsightsFindings](./tables/perfinsightsfindings.md)
+- [PerfInsightsImpactedResources](./tables/perfinsightsimpactedresources.md)
+
 ### Azure Monitor Workspace  
 
 Microsoft.Monitor/accounts  
@@ -561,6 +576,7 @@ Microsoft.PlayFab/titles
 microsoft.securityinsights  
 
 - [SecurityAlert](./tables/securityalert.md)
+- [WindowsEvent](./tables/windowsevent.md)
 - [SecurityEvent](./tables/securityevent.md)
 - [DnsAuditEvents](./tables/dnsauditevents.md)
 - [AggregatedSecurityAlert](./tables/aggregatedsecurityalert.md)
@@ -823,13 +839,6 @@ Microsoft.DesktopVirtualization/workspaces
 - [WVDCheckpoints](./tables/wvdcheckpoints.md)
 - [WVDManagement](./tables/wvdmanagement.md)
 
-### Dev Center Plans  
-
-Microsoft.DevCenter/plans  
-
-- [AzureActivity](./tables/azureactivity.md)
-- [AzureMetrics](./tables/azuremetrics.md)
-
 ### Dev Centers  
 
 Microsoft.DevCenter/devcenters  
@@ -1045,6 +1054,7 @@ Microsoft.HealthcareApis/workspaces
 Microsoft.Logic/integrationAccounts  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [LIATrackingEvents](./tables/liatrackingevents.md)
 
 ### Intune Specialist Reports.  
 
@@ -1105,15 +1115,19 @@ Microsoft.Network/LoadBalancers
 
 - [ALBHealthEvent](./tables/albhealthevent.md)
 - [AzureActivity](./tables/azureactivity.md)
+- [AzureMetrics](./tables/azuremetrics.md)
+- [AzureDiagnostics](./tables/azurediagnostics.md)
 
 ### Log Analytics workspaces  
 
 Microsoft.OperationalInsights/Workspaces  
 
 - [AzureMetrics](./tables/azuremetrics.md)
+- [Syslog](./tables/syslog.md)
 - [LAQueryLogs](./tables/laquerylogs.md)
 - [LASummaryLogs](./tables/lasummarylogs.md)
 - [AzureMetricsV2](./tables/azuremetricsv2.md)
+- [LAJobLogs](./tables/lajoblogs.md)
 
 ### Logic Apps  
 
@@ -1227,6 +1241,7 @@ Microsoft.Graph/tenants
 Microsoft.Orbital/geocatalogs  
 
 - [OGOAuditLogs](./tables/ogoauditlogs.md)
+- [MPCIngestionLogs](./tables/mpcingestionlogs.md)
 
 ### Microsoft Playwright Testing  
 
@@ -1284,7 +1299,7 @@ microsoft.standbypool/standbyvirtualmachinepools
 
 Microsoft.ManagedNetworkFabric/networkDevices  
 
-- [Azuremetrics](./tables/azuremetrics.md)
+- [AzureMetrics](./tables/azuremetrics.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [MNFDeviceUpdates](./tables/mnfdeviceupdates.md)
 - [MNFSystemStateMessageUpdates](./tables/mnfsystemstatemessageupdates.md)
@@ -1346,6 +1361,7 @@ Microsoft.NetworkCloud/clusters
 
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [NCCIDRACLogs](./tables/nccidraclogs.md)
 - [NCCKubernetesLogs](./tables/ncckuberneteslogs.md)
 - [NCCPlatformOperationsLogs](./tables/nccplatformoperationslogs.md)
 - [NCCVMOrchestrationLogs](./tables/nccvmorchestrationlogs.md)
@@ -1377,6 +1393,12 @@ Microsoft.OnlineExperimentation/workspaces
 - [OEWExperimentAssignmentSummary](./tables/oewexperimentassignmentsummary.md)
 - [OEWExperimentScorecards](./tables/oewexperimentscorecards.md)
 - [OEWExperimentScorecardMetricPairs](./tables/oewexperimentscorecardmetricpairs.md)
+
+### Oracle Cloud  
+
+Oracle.Database/cloudVmClusters  
+
+- [OracleCloudDatabase](./tables/oracleclouddatabase.md)
 
 ### Power BI Datasets  
 

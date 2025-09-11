@@ -24,7 +24,7 @@ Connection strings specify to which Application Insights resource your instrumen
 
 * **Reliability**: Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.
 * **Security**: Connection strings allow authenticated telemetry ingestion by using [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md).
-* **Customized endpoints (sovereign or hybrid cloud environments)**: Endpoint settings allow sending data to a specific Azure Government region. ([See examples](connection-strings.md#set-a-connection-string).)
+* **Customized endpoints (sovereign or hybrid cloud environments)**: Endpoint settings allow sending data to a specific Azure Government region. ([See examples](connection-strings.md).)
 * **Privacy (regional endpoints)**: Connection strings ease privacy concerns by sending data to regional endpoints, ensuring data doesn't leave a geographic region.
 
 ## Find your connection string

@@ -1,10 +1,13 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 04/03/2025
+ms.date: 09/03/2025
 
 ---
 
-| Service name <br />&#9492; Retiring feature | Retirement date | Impacted Resources available? |
-|:--- |:--- |:--- |
-| Azure Batch <br />&#9492; Ubuntu 20.04 LTS support | April 23, 2025 |  |
+##### April 23, 2025
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Batch | Ubuntu 20.04 LTS support | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |

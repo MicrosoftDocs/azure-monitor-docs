@@ -8,7 +8,7 @@ ms.date: 06/09/2025
 #  Configure throttling for Container Insights
 
 > [!NOTE]
-> Container Insights logs are only throttled when [Container Network Logs](https://learn.microsoft.com/azure/aks/container-network-observability-logs) are being collected. If you have not enabled the collection of Container Network Logs, throttling is not enabled on your cluster.
+> Container Insights logs are only throttled when [Container Network Logs](/azure/aks/container-network-observability-logs) are being collected. If you have not enabled the collection of Container Network Logs, throttling is not enabled on your cluster.
 
 Azure Monitor - Container Insights allow customers to collect logs generated in their Azure Kubernetes Service (AKS) cluster. Depending on workload and logging configuration, the volume of logs generated can be substantial, leading to throttling and log loss. This article discusses the default values after which logs are throttled in Container Insights. We discuss how customers can modify these values. The final section covers how you can monitor for potential throttling issues with our Quality-of-Service (QoS) Grafana dashboard.
 
@@ -49,8 +49,8 @@ The Logs add-on that collects Container Network logs publishes QoS metrics that 
 
 **Pre-requisites** 
 
-* [Azure Monitor managed service for Prometheus](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus): The QoS metrics generated are sent to the managed Prometheus service. Enable by following the [these instructions](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana)
-* A Grafana instance to import the dashboard. This Grafana instance can be an instance of [Azure managed Grafana](https://learn.microsoft.com/azure/managed-grafana/overview), [Azure Monitor Dashboards with Grafana](https://learn.microsoft.com/azure/azure-monitor/visualize/visualize-use-grafana-dashboards) or any other Grafana instance linked with the Prometheus service mentioned previously.  
+* [Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus): The QoS metrics generated are sent to the managed Prometheus service. Enable by following the [these instructions](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana)
+* A Grafana instance to import the dashboard. This Grafana instance can be an instance of [Azure managed Grafana](/azure/managed-grafana/overview), [Azure Monitor Dashboards with Grafana](/azure/azure-monitor/visualize/visualize-use-grafana-dashboards) or any other Grafana instance linked with the Prometheus service mentioned previously.  
 
 **Configuration steps** 
 

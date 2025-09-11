@@ -1,6 +1,6 @@
 ### YamlMime:FAQ
 metadata:
-  title: Application Insights FAQ – Frequently Asked Questions
+  title: Application Insights FAQ - Frequently Asked Questions
   description: "Official FAQ for Azure Monitor Application Insights. Find answers to questions about using Application Insights with Azure Monitor."
   author: 
   ms.author: 
@@ -8,10 +8,9 @@ metadata:
   ms.topic: faq 
   ms.date: 05/23/2025
 
-title: "Application Insights FAQ – Frequently Asked Questions"
+title: "Application Insights FAQ - Frequently Asked Questions"
 summary: |
    Official FAQ for Azure Monitor Application Insights. Find answers to questions about using Application Insights with Azure Monitor.
-
 
 sections:
   - name: Overview
@@ -67,7 +66,13 @@ sections:
            * [Import to Log Analytics](../logs/data-collector-api.md)
            * [Log Analytics](../logs/data-collector-api.md)
            * [Logstash](../logs/data-collector-api.md)
-    
+
+      - question: Where does telemetry collected with traditional logging frameworks go?
+        answer: |
+          When using logging frameworks like Serilog, log messages are ingested by Application Insights as *Trace telemetry* and stored in the `traces` table (or `AppTraces` in Log Analytics). This is by design, since tables like `requests`, `dependencies`, and `exceptions` are reserved for their respective telemetry types.
+
+          For details, see the [Application Insights telemetry data model](data-model-complete.md#types-of-telemetry).
+
       - question: How many Application Insights resources should I deploy?
         answer: |
           To understand the number of Application Insights resources required to cover your application or components across environments, see the [Application Insights deployment planning guide](create-workspace-resource.md#how-many-application-insights-resources-should-i-deploy).  
@@ -1632,6 +1637,9 @@ sections:
 
           If one component applies head-based sampling without propagating the sampling decision (via W3C Trace Context headers), downstream services sample the trace independently, which can result in discarded spans. As a result, some parts of the trace aren't always available when viewed in Application Insights.
 
+      - question: How does the Application Insights custom sampler work alongside ingestion sampling?
+        answer: Ingestion sampling only drops what reaches the service, so it can't counteract or override the Application Insights custom sampler decisions. If both are enabled, the effective rate is multiplicative. For example, an SDK rate of 20 percent combined with an ingestion rate of 50 percent results in roughly 10 percent of data being stored. Microsoft recommends doing sampling at the source with the Azure Monitor OpenTelemetry sampler to keep traces intact and predictable, and using ingestion sampling only as a fallback.
+      
       - question: Where can I get more information about OpenTelemetry sampling? 
         answer: For more information, see [Sampling in Azure Monitor Application Insights with OpenTelemetry](../app/opentelemetry-sampling.md).
         

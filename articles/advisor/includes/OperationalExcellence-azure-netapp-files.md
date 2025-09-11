@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 08/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure NetApp Files
@@ -66,42 +66,6 @@ Recommendation ID: 464a7366-ddae-4d74-9187-386bfc45e4f5
 
 <!--464a7366-ddae-4d74-9187-386bfc45e4f5_end-->
 
-<!--8a31e95c-1d95-477d-87f3-2cbdeb7c5bcc_begin-->
-
-#### AzureNetappFiles IP Route Limit Recommendation  
-  
-Virtual Network associated with Azure NetApp Files volume has exceeded the route limit usage, which could interfere with VM connection to the ANF volume. It's recommended to change network features from basic to standard, which will eliminate the route limit and provide other advantages  
-  
-**Potential benefits**: No route limit impact and other benefits like NSG, UDR, Global peering  
-
-**Impact:** High
-  
-For more information, see [Configure network features for an Azure NetApp Files volume](https://aka.ms/anf-iproutelimit)  
-
-ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
-Recommendation ID: 8a31e95c-1d95-477d-87f3-2cbdeb7c5bcc  
-
-
-<!--8a31e95c-1d95-477d-87f3-2cbdeb7c5bcc_end-->
-
-<!--cd52642c-aa62-4231-b4a3-844175d9da2e_begin-->
-
-#### Application Volume Group SDK Recommendation  
-  
-The minimum API version for Azure NetApp Files application volume group feature should be 2022-01-01. We recommend using 2022-03-01 when possible to fully leverage the API.  
-  
-**Potential benefits**: Enable leverage of API  
-
-**Impact:** Medium
-  
-For more information, see [Azure NetApp Files SDKs and CLI tools](https://aka.ms/anf-sdkversion)  
-
-ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
-Recommendation ID: cd52642c-aa62-4231-b4a3-844175d9da2e  
-
-
-<!--cd52642c-aa62-4231-b4a3-844175d9da2e_end-->
-
 <!--db4ccef4-d6aa-40a8-8d3c-b42ffc20a9a0_begin-->
 
 #### Configure the network topology and the domain controllers  
@@ -119,5 +83,23 @@ Recommendation ID: db4ccef4-d6aa-40a8-8d3c-b42ffc20a9a0
 
 
 <!--db4ccef4-d6aa-40a8-8d3c-b42ffc20a9a0_end-->
+
+<!--95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd_begin-->
+
+#### Avoid volume availability issues with Azure NetApp Files  
+  
+Avoid volume availability issues by specifying your preference for the volume. Contact your Account Representative with your desired volume's state.  
+  
+**Potential benefits**: Sustained Volume Availability  
+
+**Impact:** High
+  
+For more information, see [Service levels for Azure NetApp Files](/azure/azure-netapp-files/azure-netapp-files-service-levels)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: 95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd  
+
+
+<!--95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd_end-->
 
 <!--articleBody-->

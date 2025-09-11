@@ -40,7 +40,7 @@
     {
       "path_to_root": "quickstart-templates",
       "url": "https://github.com/Azure/azure-quickstart-templates",
-      "branch": "master",
+      "branch": "main",
       "branch_mapping": {}
     },
     {
@@ -48,6 +48,12 @@
       "url": "https://github.com/MicrosoftDocs/azure-docs-pr",
       "branch": "main",
       "branch_mapping": {}
+    },
+    {
+        "path_to_root": "azure-policy-autogen-docs",
+        "url": "https://github.com/MicrosoftDocs/azure-policy-autogen-docs",
+        "branch": "main",
+        "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {},

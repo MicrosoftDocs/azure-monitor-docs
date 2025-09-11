@@ -13,7 +13,7 @@ The Azure Monitor Agent supports connections by using direct proxies, a Log Anal
 
 ## Virtual network service tags
 
-[Azure Virtual Network service tags](/azure/virtual-network/service-tags-overview) must be enabled on the virtual network for the virtual machine (VM). Both *AzureMonitor* and *AzureResourceManager* tags are required.
+[Azure Virtual Network service tags](/azure/virtual-network/service-tags-overview) must be enabled on the virtual network for the virtual machine (VM). Both *AzureMonitor* and *AzureResourceManager* tags are required. See AzureMonitor entry in [Available service tags](/azure/virtual-network/service-tags-overview#available-service-tags) for any additional requirements.
 
 You can use Azure Virtual Network service tags to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview#security-rules), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of specific IP addresses when you create security rules and routes. For scenarios where Azure Virtual Network service tags can't be used, the firewall requirements are described later in this article.
 

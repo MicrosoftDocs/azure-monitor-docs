@@ -3,7 +3,7 @@ metadata:
   title: Azure Resource Health FAQ
   description: Overview of Azure Resource Health
   ms.topic: faq
-  ms.date: 05/28/2025
+  ms.date: 07/25/2025
 title: Azure Resource Health FAQ
 summary: Learn the answers to common questions about Azure Resource Health.
 
@@ -45,7 +45,7 @@ sections:
       - question: |
           How can I get help for a resource that is unavailable?
         answer: |
-          You can submit a support request from the Resource Health blade. You don't need a support agreement with Microsoft to open a request when the resource is unavailable because platform events.
+          You can submit a support request from the Resource Health pane. You don't need a support agreement with Microsoft to open a request when the resource is unavailable because platform events.
 
       - question: |
           Does Resource Health differentiate between unavailability caused by platform problems versus something I did?
@@ -67,7 +67,7 @@ sections:
         answer: |
           After you sign in to the Azure portal, you can access Resource Health in different ways.
           - Navigate to your resource. In the left-hand navigation, select **Resource health**
-          - Go to the Azure Service Health blade. In the left-hand navigation, select **Resource health**.
+          - Go to the Azure Service Health pane. In the left-hand navigation, select **Resource health**.
           
           You can also use the Resource Health API to obtain information about the health of your resources.
           
@@ -120,6 +120,16 @@ sections:
           Why am I seeing the VM availability metric reflect VM downtime when I don't see any effect?
         answer: |
           The VM availability metric is calculated as an aggregation of the health checks stated [here](resource-health-checks-resource-types.md). If the guest agent is missing or installed incorrectly, we treat the guest heartbeat signal as unhealthy. As a result, the system reports a metric value of 0, which might not accurately reflect the actual state.
+
+      - question: |
+          Is it possible to use API to view my Impacted Resources?
+        answer: |
+          Yes. To view Impacted Resources in Azure Service Health using the API, you can use the Azure Resource Health REST API, which provides detailed information about resources affected by service events, outages, or security incidents. <br>Azure Resource Health API allows you to:
+          - List impacted resources by event ID and subscription or tenant scope.
+          - Get details for a specific impacted resource.
+          - Query by subscription or tenant depending on your access level.
+          For more information read [Impacted Resources](/rest/api/resourcehealth/impacted-resources/get?view=rest-resourcehealth).
+          
 additionalContent: |
 
   ## Next steps
