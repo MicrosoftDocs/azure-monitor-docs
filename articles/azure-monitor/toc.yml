@@ -455,8 +455,6 @@ items:
         href: containers/kubernetes-monitoring-enable.md
       - name: Onboard hybrid cluster
         href: containers/container-insights-hybrid-setup.md
-      - name: Prometheus based Container Insights
-        href: containers/container-insights-experience-v2.md
       - name: Firewall requirements
         displayName: Container insights, Prometheus
         href: containers/kubernetes-monitoring-firewall.md
@@ -465,12 +463,8 @@ items:
         href: containers/kubernetes-monitoring-private-link.md
       - name: Agent management
         href: containers/container-insights-manage-agent.md
-      - name: Legacy authentication
-        href: containers/container-insights-authentication.md
       - name: Supported region mappings
         href: containers/container-insights-region-mapping.md
-      - name: Transition from Container monitoring solution
-        href: containers/container-insights-transition-solution.md
     - name: Configure Container Insights (logs)
       items:
       - name: Collect container logs
@@ -544,8 +538,6 @@ items:
       - name: Send to multiple metric workspaces
         displayName: Prometheus
         href: containers/prometheus-metrics-multiple-workspaces.md
-      - name: Send Prometheus metrics to Logs
-        href: containers/container-insights-prometheus-logs.md
     - name: Remote-write with Prometheus
       items:
       - name: Prometheus remote-write
@@ -588,15 +580,10 @@ items:
         href: containers/container-insights-livedata-overview.md
       - name: Setup
         href: containers/container-insights-livedata-setup.md
-      - name: View cluster metrics
-        href: containers/container-insights-livedata-metrics.md
     - name: Alerting
       items:
       - name: Metric alert rules
         href: containers/kubernetes-metric-alerts.md
-      - name: Log alert rules
-        displayName: Container insights
-        href: containers/container-insights-log-alerts.md
       - name: Cost-effective Alerts
         href: containers/cost-effective-alerting.md
     - name: Disable monitoring
@@ -607,6 +594,21 @@ items:
         href: containers/prometheus-metrics-troubleshoot.md
       - name: Container insights
         href: containers/container-insights-troubleshoot.md
+    - name: Classic experience
+      items:
+      - name: View cluster metrics
+        href: containers/container-insights-livedata-metrics.md
+      - name: Log alert rules
+        displayName: Container insights
+        href: containers/container-insights-log-alerts.md
+      - name: Send Prometheus metrics to Logs
+        href: containers/container-insights-prometheus-logs.md
+      - name: Prometheus based Container Insights
+        href: containers/container-insights-experience-v2.md
+      - name: Legacy authentication
+        href: containers/container-insights-authentication.md
+      - name: Transition from Container monitoring solution
+        href: containers/container-insights-transition-solution.md
   - name: Monitor networks
     items:
     - name: Network Watcher
