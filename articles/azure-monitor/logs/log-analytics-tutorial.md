@@ -147,19 +147,20 @@ Let's look at a query that uses numerical data that we can view in a chart. Inst
 
 Select **Queries** on the left pane. This pane includes example queries that you can add to the query window. If you're using your own workspace, you should have various queries in multiple categories.
 
-Load the **Function Error rate** query in the **Applications** category to the editor. To do so, double-click the query or hover over the query name to show more information, then select **Load to editor**.
+Load the **Response time trend** query in the **Applications** category to the editor. To do so, double-click the query or hover over the query name to show more information, then select **Load to editor**.
 
 :::image type="content" source="media/log-analytics-tutorial/query-info.png" alt-text="Screenshot that shows info about the query." lightbox="media/log-analytics-tutorial/query-info.png":::
 
-Notice that the new query is separated from the other by a blank line. A query in KQL ends when it encounters a blank line, making them separate queries.
-
-Click anywhere in a query to select it, then click on the **Run** button to run it.
+Notice that the new query is separated from the other by a blank line. A query in KQL ends when it encounters a blank line, making them separate queries. Click anywhere in a query to select it, then click on the **Run** button to run it.
 
 To view the results in a graph, select **Chart** on the results pane. Notice that there are various options for working with the chart, such as changing it to another type.
 
 :::image type="content" source="media/log-analytics-tutorial/example-query-output-chart.png" alt-text="Screenshot that shows the query results chart." lightbox="media/log-analytics-tutorial/example-query-output-chart.png":::
 
-In this example, we a spike in response time. To get notified when such spikes occur, you can set up an alarm, see [Link text](url).
+In this example, we see the requst duration spiking at 4:00 PM. To get notified when such spikes occur, you can create an alert rule by opening the context menu (**...**) in the navigation bar and selecting **+ New alert rule**. For more information, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert).
+
+> [!NOTE]
+> Creating an alert rule is not supported in the demo environment.
 
 > [!TIP]
 > To learn how to pin these visuals to a shared dashboard, see [Create and share dashboards that visualize data in Azure Monitor Logs](../visualize/tutorial-logs-dashboards.md).
