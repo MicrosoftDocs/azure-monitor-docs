@@ -2,7 +2,7 @@
 title: Service Health event tags
 description: Learn how to understand and use the event tags in Azure Service Health
 ms.topic: overview
-ms.date: 9/4/2025
+ms.date: 9/11/2025
 ---
 
 # Service Health event tags
@@ -45,7 +45,7 @@ For example:
 
 |Event Type          |Example Subtypes                                                                         |
 |--------------------|-----------------------------------------------------------------------------------------|
-|Health Advisories   | Retirement, Action Required                                                             |
+|Health Advisories   | Retirement                                                           |
 |Billing Updates     | Tax Change, Foreign Exchange (FX) Rate Change, MeterID Change, Underbilling, Overbilling|
 <!--|Service Issues      | Outage, Latency, Degradation                                                        |
 |Planned Maintenance | Emergency Maintenance, Standard Maintenance                                             |
