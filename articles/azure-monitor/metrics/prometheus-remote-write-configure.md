@@ -109,9 +109,9 @@ The final step is to add remote write to the [configuration file](https://promet
 
 :::image type="content" source="media/prometheus-remote-write-virtual-machines/metrics-ingestion-endpoint.png" lightbox="media/prometheus-remote-write-virtual-machines/metrics-ingestion-endpoint.png" alt-text="Screenshot that shows the metrics ingestion endpoint for an Azure Monitor workspace.":::
 
-The `remote-write` section of the Prometheus configuration file will look similar to the following example, depending on the authentication type that you are using.
+The `remote-write` section of the Prometheus configuration file will look similar to the following example, depending on the authentication type that you're using.
 
-**Managed identity**
+### Managed identity
 
 ```azurecli
 remote_write:   
@@ -122,7 +122,7 @@ remote_write:
         client_id: "<client-id of the managed identity>"
 ```
 
-**Entra ID**
+### Entra ID
 
 ```azurecli
 remote_write:   
@@ -177,7 +177,7 @@ Use the following command  to apply the configuration file updates.
 kubectl apply -f <configmap-file-name>.yaml
 ```
 
-Restart Prometheus to pick up the new configuration. If you are using a deployment, you can restart the pods by running the following command:
+Restart Prometheus to pick up the new configuration. If you are using a deployment, you can restart the pods by running the following command.
 
 ```bash
 kubectl -n monitoring rollout restart deploy <prometheus-deployment-name>
@@ -191,12 +191,12 @@ For detailed release notes on the remote write side car image, please refer to t
 
 **HTTP 403 error in the Prometheus log**
 
-It takes about 30 minutes for the assignment of the role to take effect. During this time, you may see an HTTP 403 error in the Prometheus log. Check that you have configured the managed identity or Microsoft Entra ID application correctly with the `Monitoring Metrics Publisher` role on the workspace's DCR. If the configuration is correct, wait 30 minutes for the role assignment to take effect.
+It takes about 30 minutes for the assignment of the role to take effect. During this time, you may see an HTTP 403 error in the Prometheus log. Check that you have configured the managed identity or Microsoft Entra ID application correctly with the **Monitoring Metrics Publisher** role on the workspace's DCR. If the configuration is correct, wait 30 minutes for the role assignment to take effect.
 
 
-**No Kubernetes data is flowing**
+**No Kubernetes data is being collected**
 
-If remote data isn't flowing, run the following command to find errors in the remote write container.
+If data isn't being collected in Managed Prometheus, run the following command to find errors in the remote write container.
 
 ```azurecli
 kubectl --namespace <Namespace> describe pod <Prometheus-Pod-Name>
@@ -218,9 +218,11 @@ The output from this command has the following format:
 ```
 
 
-**Ingestion quotas and limits**
+**Data dropped due in high volume environments**
 
-When configuring Prometheus remote write to send data to an Azure Monitor workspace, you typically begin by using the remote write endpoint displayed on the Azure Monitor workspace overview page. This endpoint involves a system-generated Data Collection Rule (DCR) and Data Collection Endpoint (DCE). These resources have ingestion limits. For more information on ingestion limits, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics). When setting up remote write for multiple clusters sending data to the same endpoint, you might reach these limits. Consider [Remote write tuning](https://prometheus.io/docs/practices/remote_write/) to adjust configuration settings for better performance. If you still see data drops, consider creating additional DCRs and DCEs to distribute the ingestion load across multiple endpoints. This approach helps optimize performance and ensures efficient data handling. For more information about creating DCRs and DCEs, see [how to create custom Data collection endpoint(DCE) and custom Data collection rule(DCR) for an existing Azure monitor workspace(AMW) to ingest Prometheus metrics](https://aka.ms/prometheus/remotewrite/dcrartifacts).
+The Data Collection Rule (DCR) and Data Collection Endpoint (DCE) for the Azure Monitor workspace are subject ingestion limits listed in [Azure Monitor service limits](../service-limits.md#prometheus-metrics). You're most subject to these limits when configuring remote write for multiple clusters sending data to the same endpoint. 
+
+Consider [Remote write tuning](https://prometheus.io/docs/practices/remote_write/) to adjust configuration settings for better performance. If you still see data drops, consider creating additional DCRs and DCEs to distribute the ingestion load across multiple endpoints. This approach helps optimize performance and ensures efficient data handling. See [Instructions on how to create custom Data collection endpoint(DCE) and custom Data collection rule(DCR) for an existing Azure monitor workspace(AMW) to ingest Prometheus metrics](https://aka.ms/prometheus/remotewrite/dcrartifacts).
 
 
 ## Next steps

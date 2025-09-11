@@ -53,15 +53,9 @@ Azure Monitor provides multiple tools for querying and analyzing Prometheus metr
 
 ## Rules and alerts
 
-Prometheus supports recording rules and alert rules using PromQL queries. 
+[Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) in Prometheus allow you to precompute values stored in the time series, while [alert rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) provide proactive notification of predefined conditions in your collected metrics. Azure Monitor managed service for Prometheus automatically deploys a predefined set of recording rules, and Container insights allows you to easily enable a set of common alert rules for Kubernetes clusters. 
 
-Azure Monitor managed service for Prometheus automatically deploys rules and alerts. Metrics that recording rules record are stored in the Azure Monitor workspace. Dashboards or other rules can then query the metrics.
-
-Azure Monitor alerts proactively notify you of situations in your environment requiring attention. Managed Prometheus integrates [Prometheus alerts](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) with other alerts created by Azure Monitor. Container insights allows you to quickly enable a common set of Prometheus alerts for your Kubernetes cluster. See [](). 
-
-You can create and manage alert rules and recording rules by using [Azure Monitor managed service for Prometheus rule groups](prometheus-rule-groups.md). For your AKS cluster, a set of [predefined Prometheus alert rules](../containers/container-insights-metric-alerts.md) and [recording rules](../containers/prometheus-metrics-scrape-default.md#recording-rules) helps you get started quickly.
-
-Alerts that alert rules fire can trigger actions or notifications, as defined in the [action groups](../alerts/action-groups.md) configured for the alert rule. You can also view fired and resolved Prometheus alerts in the Azure portal, along with other alert types.
+Recording and alert rules are stored in the Azure Monitor workspace, and you can easily manage existing rules and manually create custom rules using the Azure portal. See [Azure Monitor managed service for Prometheus rule groups](./prometheus-rule-groups.md) for details.
 
 
 ## Related content
