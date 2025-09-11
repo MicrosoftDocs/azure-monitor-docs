@@ -13,10 +13,10 @@ ms.reviewer: mmcc
 The Azure Application Insights JavaScript SDK provides configuration for tracking, monitoring, and debugging your web applications.
 
 > [!div class="checklist"]
-> - [SDK configuration](#sdk-configuration)
-> - [Cookie management and configuration](#cookie-management)
-> - [Source map un-minify support](#source-map)
-> - [Tree shaking optimized code](#tree-shaking)
+> * [SDK configuration](#sdk-configuration)
+> * [Cookie management and configuration](#cookie-management)
+> * [Source map un-minify support](#source-map)
+> * [Tree shaking optimized code](#tree-shaking)
 
 ## SDK configuration
 
@@ -91,6 +91,31 @@ For instructions on how to add SDK configuration, see [Add SDK configuration](./
 | throttleMgrCfg<br><br>Set throttle mgr configuration by key.<br><br>This configuration field is only available in version 3.0.3 and later. | `{[key: number]: IThrottleMgrConfig}` | undefined |
 | userCookiePostfix<br><br>An optional value that is used as name postfix for user cookie name. If undefined, no postfix is added on user cookie name. | string | undefined |
 
+[!INCLUDE [Telemetry correlation and distributed tracing](./includes/application-insights-distributed-trace-data.md)]
+
+#### Enable W3C distributed tracing support
+
+This feature is enabled by default for JavaScript and the headers are automatically included when the hosting page domain is the same as the domain the requests are sent to (for example, the hosting page is `example.com` and the Ajax requests are sent to `example.com`). To change the distributed tracing mode, use the [`distributedTracingMode` configuration field](./javascript-sdk-configuration.md#sdk-configuration). AI_AND_W3C is provided by default for backward compatibility with any legacy services instrumented by Application Insights.
+
+* **[npm-based setup](javascript-sdk.md?tabs=npmpackage#get-started)**
+
+   Add the following configuration:
+  ```JavaScript
+    distributedTracingMode: DistributedTracingModes.W3C
+  ```
+
+* **[JavaScript (Web) SDK Loader Script-based setup](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started)**
+
+   Add the following configuration:
+  ```
+      distributedTracingMode: 2 // DistributedTracingModes.W3C
+  ```
+
+If the XMLHttpRequest or Fetch Ajax requests are sent to a different domain host, including subdomains, the correlation headers aren't included by default. To enable this feature, set the [`enableCorsCorrelation` configuration field](./javascript-sdk-configuration.md#sdk-configuration) to `true`. If you set `enableCorsCorrelation` to `true`, all XMLHttpRequest and Fetch Ajax requests include the correlation headers. As a result, if the application on the server that is being called doesn't support the `traceparent` header, the request might fail, depending on whether the browser / version can validate the request based on which headers the server accepts. You can use the [`correlationHeaderExcludedDomains` configuration field](./javascript-sdk-configuration.md#sdk-configuration) to exclude the server's domain from cross-component correlation header injection. For example, you can use `correlationHeaderExcludedDomains: ['*.auth0.com']` to exclude correlation headers from requests sent to the Auth0 identity provider.
+
+> [!IMPORTANT]
+> To see all configurations required to enable correlation, see the [JavaScript correlation documentation](./javascript.md#enable-distributed-tracing).
+
 ## Cookie management
 
 Starting from version 2.6.0, the Azure Application Insights JavaScript SDK provides instance-based cookie management that can be disabled and re-enabled after initialization.
@@ -123,12 +148,12 @@ The ICookieMgrConfig options are defined in the following table.
 Source map support helps you debug minified JavaScript code with the ability to unminify the minified callstack of your exception telemetry.
 
 > [!div class="checklist"]
-> - Compatible with all current integrations on the **Exception Details** panel
-> - Supports all current and future JavaScript SDKs, including Node.JS, without the need for an SDK upgrade
+> * Compatible with all current integrations on the **Exception Details** panel
+> * Supports all current and future JavaScript SDKs, including Node.JS, without the need for an SDK upgrade
 
 ### Link to Blob Storage account
 
-Application Insights supports the uploading of source maps to your Azure Storage account blob container. You can use source maps to unminify call stacks found on the **End-to-end transaction details** page. You can also use source maps to unminify any exception sent by the [JavaScript SDK][ApplicationInsights-JS] or the [Node.js SDK][ApplicationInsights-Node.js].
+Application Insights supports the uploading of source maps to your Azure Storage account blob container. You can use source maps to unminify call stacks found on the **End-to-end transaction details** page. You can also use source maps to unminify any exception sent by the [JavaScript SDK](https://github.com/microsoft/applicationinsights-js) or the [Node.js SDK](https://github.com/microsoft/applicationinsights-node.js).
 
 :::image type="content" source="./media/javascript-sdk-configuration/details-unminify.gif" lightbox="./media/javascript-sdk-configuration/details-unminify.gif" alt-text="Screenshot that shows selecting the option to unminify a call stack by linking with a storage account.":::
 
@@ -136,8 +161,8 @@ Application Insights supports the uploading of source maps to your Azure Storage
 
 If you already have an existing storage account or blob container, you can skip this step.
 
-1. [Create a new storage account][create storage account].
-1. [Create a blob container][create blob container] inside your storage account. Set **Public access level** to **Private** to ensure that your source maps aren't publicly accessible.
+1. [Create a new storage account](/azure/storage/common/storage-account-create?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=azure-portal).
+1. [Create a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) inside your storage account. Set **Public access level** to **Private** to ensure that your source maps aren't publicly accessible.
 
     :::image type="content" source="./media/javascript-sdk-configuration/container-access-level.png" lightbox="./media/javascript-sdk-configuration/container-access-level.png" alt-text="Screenshot that shows setting the container access level to Private.":::
 
@@ -149,7 +174,7 @@ You can upload source maps to your Azure Blob Storage container with the same fo
 
 ##### Upload source maps via Azure Pipelines (recommended)
 
-If you're using Azure Pipelines to continuously build and deploy your application, add an [Azure file copy][azure file copy] task to your pipeline to automatically upload your source maps.
+If you're using Azure Pipelines to continuously build and deploy your application, add an [Azure file copy](https://aka.ms/azurefilecopyreadme) task to your pipeline to automatically upload your source maps.
 
 :::image type="content" source="./media/javascript-sdk-configuration/azure-file-copy.png" lightbox="./media/javascript-sdk-configuration/azure-file-copy.png" alt-text="Screenshot that shows adding an Azure file copy task to your pipeline to upload your source maps to Azure Blob Storage.":::
 
@@ -194,14 +219,14 @@ To take advantage of tree shaking, import only the necessary components of the S
 
 In version 2.6.0, we deprecated and removed the internal usage of these static helper classes to improve support for tree-shaking algorithms. It lets npm packages safely drop unused code.
 
-- `CoreUtils`
-- `EventHelper`
-- `Util`
-- `UrlHelper`
-- `DateTimeUtils`
-- `ConnectionStringParser`
+* `CoreUtils`
+* `EventHelper`
+* `Util`
+* `UrlHelper`
+* `DateTimeUtils`
+* `ConnectionStringParser`
 
- The functions are now exported as top-level roots from the modules, making it easier to refactor your code for better tree-shaking.
+The functions are now exported as top-level roots from the modules, making it easier to refactor your code for better tree-shaking.
 
 The static classes were changed to const objects that reference the new exported functions, and future changes are planned to further refactor the references.
 
@@ -319,11 +344,3 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 * [Track usage](usage.md)
 * [Custom events and metrics](api-custom-events-metrics.md)
 * [Azure file copy task](/azure/devops/pipelines/tasks/deploy/azure-file-copy)
-
-<!-- Remote URLs -->
-[create storage account]: /azure/storage/common/storage-account-create?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=azure-portal
-[create blob container]: /azure/storage/blobs/storage-quickstart-blobs-portal
-[storage blob data reader]: ../../role-based-access-control/built-in-roles.md#storage-blob-data-reader
-[ApplicationInsights-JS]: https://github.com/microsoft/applicationinsights-js
-[ApplicationInsights-Node.js]: https://github.com/microsoft/applicationinsights-node.js
-[azure file copy]: https://aka.ms/azurefilecopyreadme

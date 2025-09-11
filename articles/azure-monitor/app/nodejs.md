@@ -147,6 +147,8 @@ Review their descriptions in your IDE's built-in type hinting or [applicationins
 > [!NOTE]
 > By default, `setAutoCollectConsole` is configured to *exclude* calls to `console.log` and other console methods. Only calls to supported third-party loggers (for example, winston and bunyan) will be collected. You can change this behavior to include calls to `console` methods by using `setAutoCollectConsole(true, true)`.
 
+[!INCLUDE [Telemetry correlation and distributed tracing](./includes/application-insights-distributed-trace-data.md)]
+
 ### Sampling
 
 By default, the SDK sends all collected data to the Application Insights service. If you want to enable sampling to reduce the amount of data, set the `samplingPercentage` field on the `config` object of a client. Setting `samplingPercentage` to 100 (the default) means all data will be sent, and 0 means nothing will be sent.

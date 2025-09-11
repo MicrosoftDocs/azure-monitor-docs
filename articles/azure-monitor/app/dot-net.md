@@ -2845,7 +2845,7 @@ To review frequently asked questions (FAQ), see [Event counters FAQ](application
 * [ApplicationId Provider](#applicationid-provider)
 * [Snapshot collection](#configure-snapshot-collection)
 * [Sampling](#sampling)
-* [Enrich and correlate over HTTP](#enrich-data-through-http)
+* [Telemetry correlation and distributed tracing](#telemetry-correlation-and-distributed-tracing)
 
 You can customize the Application Insights SDK for ASP.NET, ASP.NET Core, and Worker Service to change the default configuration.
 
@@ -3812,7 +3812,21 @@ var app = builder.Build();
 
 ---
 
-### Enrich data through HTTP
+[!INCLUDE [Telemetry correlation and distributed tracing](./includes/application-insights-distributed-trace-data.md)]
+
+#### Enable W3C distributed tracing support
+
+W3C TraceContext-based distributed tracing is enabled by default in all recent .NET Framework/.NET Core SDKs, along with backward compatibility with legacy `Request-Id` protocol.
+
+### Telemetry correlation
+
+Correlation is handled by default when onboarding an app. No special actions are required.
+
+.NET runtime supports distributed with the help of [Activity](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) and [DiagnosticSource](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)
+
+The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to collect and correlate telemetry.
+
+#### Enrich data through HTTP
 
 # [ASP.NET](#tab/net)
 
