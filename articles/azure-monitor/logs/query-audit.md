@@ -60,7 +60,7 @@ An audit record is created each time a query is run. If you send the data to a L
 | RequestClientApp | Description |
 |:---|:---|
 |AAPBI|[Log Analytics integration with Power BI](../logs/log-powerbi.md).|
-|AppAnalytics|Experiences of Log Analytics in the Azure portal.|
+|AppAnalytics|Experiences of Log Analytics in the Azure portal (Such as the 'Logs' blade).|
 |AppInsightsPortalExtension|[Workbooks](../visualize/workbooks-data-sources.md#logs-analytics-tables-application-insights) or [Application insights](../app/app-insights-overview.md).|
 |ASC_Portal|Microsoft Defender for Cloud.|
 |ASI_Portal|Sentinel.|
@@ -81,6 +81,7 @@ An audit record is created each time a query is run. If you send the data to a L
 |Sentinel-analyticsManagement-customerQuery|Sentinel.|
 |Unknown|[Log Analytics Query API.](../logs/api/overview.md)|
 |UpdateManagement|[Update Management.](/azure/automation/update-management/overview)|
+|M365D_AdvancedHunting| Advanced hunting in Microsoft Defender|
 
 
 ## Considerations
