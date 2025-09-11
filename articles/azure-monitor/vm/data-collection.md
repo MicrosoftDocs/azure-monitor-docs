@@ -120,6 +120,28 @@ On the **Resources** pane, select **Add resources** to add resources that will u
 > [!IMPORTANT]
 > When resources are added to a DCR, the default option in the Azure portal is to enable a system-assigned managed identity for the resources. For existing applications, if a user-assigned managed identity is already set, if you don't specify the user-assigned identity when you add the resource to a DCR by using the portal, the machine defaults to using a *system-assigned identity* that's applied by the DCR.
 
+## Add dataflows
+
+On the **Collect and deliver** pane, click **Add new dataflow** to add and configure data sources and destinations for the DCR. You can choose to add multiple data sources to the same DCR or create multiple DCRs with different data sources. A DCR can have up to 10 data sources, and a VM can use any number of DCRs.
+
+:::image type="content" source="media/data-collection/preview-add-data-source.png" lightbox="media/data-collection/preview-add-data-source.png" alt-text="Screenshot that shows the preview Add data sources tab for a new data collection rule.":::
+
+| Setting | Description |
+|:--------|:------------|
+| **Data source** | Select a **Data source type** and provide values for the fields based on the data source type you select. See the table below for details about configuring each type of data source. |
+| **Destination** | Add one or more destinations for each data source. Some data sources will only allow a single data source. If you need multiple, then you can create another DCR.<br><br>While you can select multiple destinations of the same type for some data sources, be aware that this will send duplicate data to each which will result in additional cost. See the details for each data type for the different destinations they support. |
+
+The following table lists the types of data you can collect from a VM client with Azure Monitor and where you can send that data. See the linked article for each to learn how to configure that data source.
+
+| Data source | Description | Client OS | Destinations |
+|:------------|:------------|:----------|:-------------|
+| [Windows events](data-collection-windows-events.md) | Information sent to the Windows event logging system, including sysmon events | Windows | Log Analytics workspace |
+| [Performance counters](data-collection-performance.md) | Numerical values that measure the performance of different aspects of the operating system and workloads | Windows<br>Linux | Azure Monitor metrics (preview) <br>Log Analytics workspace |
+| [Syslog](data-collection-syslog.md) | Information sent to the Linux event logging system | Linux | Log Analytics workspace |
+| [Text log](data-collection-log-text.md) | Information sent to a text log file on a local disk | Windows<br>Linux | Log Analytics workspace |
+| [JSON log](data-collection-log-json.md) | Information sent to a JSON log file on a local disk | Windows<br>Linux | Log Analytics workspace |
+| [IIS logs](data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
+
 ---
 
 ## Verify operation
