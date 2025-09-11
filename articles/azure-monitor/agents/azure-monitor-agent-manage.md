@@ -506,12 +506,13 @@ Currently not supported.
       ]
     }
     ```
-Important for Azure Arc machines:
-If you are associating the DCR with an Azure Arc-enabled machine, you must modify the scope property. Replace:
-   "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]"
-with
+> [!NOTE]
+> *If you are associating the DCR with an **Azure Arc-enabled machine**, you must modify the `scope` property.
 "scope": "[format('Microsoft.HybridCompute/machines/{0}', parameters('name'))]"
-This ensures the association works correctly for Arc machines.
+
+Replace:  
+
+"scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]"
 
     Parameter file:
 
