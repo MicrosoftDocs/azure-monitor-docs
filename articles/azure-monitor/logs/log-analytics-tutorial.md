@@ -153,15 +153,13 @@ Load the **Function Error rate** query in the **Applications** category to the e
 
 Notice that the new query is separated from the other by a blank line. A query in KQL ends when it encounters a blank line, making them separate queries.
 
-:::image type="content" source="media/log-analytics-tutorial/example-query.png" alt-text="Screenshot that shows a new query." lightbox="media/log-analytics-tutorial/example-query.png":::
-
 Click anywhere in a query to select it, then click on the **Run** button to run it.
-
-:::image type="content" source="media/log-analytics-tutorial/example-query-output-table.png" alt-text="Screenshot that shows the query results table." lightbox="media/log-analytics-tutorial/example-query-output-table.png":::
 
 To view the results in a graph, select **Chart** on the results pane. Notice that there are various options for working with the chart, such as changing it to another type.
 
 :::image type="content" source="media/log-analytics-tutorial/example-query-output-chart.png" alt-text="Screenshot that shows the query results chart." lightbox="media/log-analytics-tutorial/example-query-output-chart.png":::
+
+In this example, we a spike in response time. To get notified when such spikes occur, you can set up an alarm, see [Link text](url).
 
 > [!TIP]
 > To learn how to pin these visuals to a shared dashboard, see [Create and share dashboards that visualize data in Azure Monitor Logs](../visualize/tutorial-logs-dashboards.md).
