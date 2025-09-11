@@ -141,7 +141,7 @@ items:
         items:
         - name: .NET
           displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp
-          href: app/asp-net.md
+          href: app/dot-net.md
         - name: Node.js
           href: app/nodejs.md
         - name: Python OpenCensus (retired)
