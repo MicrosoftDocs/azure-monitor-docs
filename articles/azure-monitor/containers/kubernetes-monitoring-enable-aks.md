@@ -31,7 +31,7 @@ The following table describes the workspaces that are required to support the Az
 | Feature | Workspace | Notes |
 |:---|:---|:---|
 | Managed Prometheus | [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md) | `Contributor` permission is enough for enabling the addon to send data to the Azure Monitor workspace. You will need `Owner` level permission to link your Azure Monitor Workspace to view metrics in Azure Managed Grafana. This is required because the user executing the onboarding step, needs to be able to give the Azure Managed Grafana System Identity `Monitoring Reader` role on the Azure Monitor Workspace to query the metrics.<br><br>If you don't specify an existing Azure Monitor workspace when onboarding, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one with a name in the format `DefaultAzureMonitorWorkspace-<mapped_region>` will be created in a resource group with the name `DefaultRG-<cluster_region>`. |
-| Container logging | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter.<br><br>If you don't specify an existing Log Analytics workspace, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one will be created with a name in the format `DefaultWorkspace-<GUID>-<Region>`. |
+| Container logging<br>Control plane logs | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter.<br><br>If you don't specify an existing Log Analytics workspace, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one will be created with a name in the format `DefaultWorkspace-<GUID>-<Region>`. |
 | Managed Grafana | [Azure Managed Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal#create-an-azure-managed-grafana-workspace) | [Link your Grafana workspace to your Azure Monitor workspace](/azure/managed-grafana/how-to-connect-azure-monitor-workspace) to make the Prometheus metrics collected from your cluster available to Grafana dashboards. |
 
 
@@ -64,6 +64,8 @@ Use one of the following methods to enable scraping of Prometheus metrics from y
 - The k8s-extension extension must be installed using the command `az extension add --name k8s-extension`.
 - The k8s-extension version 1.4.1 or higher is required. 
 
+#### Enable Prometheus metrics
+
 Use the `-enable-azure-monitor-metrics` option with [az aks create](/cli/azure/aks#az-aks-create) or [az aks update](/cli/azure/aks#az-aks-update) depending whether you're creating a new cluster or updating an existing cluster to install the metrics add-on that scrapes Prometheus metrics. See the following examples.
 
 ```azurecli
@@ -91,8 +93,6 @@ Each of the commands above allow the following optional parameters. The paramete
 
 
 ### [Azure Resource Manager](#tab/arm)
-
-### Enable with ARM templates
 
 #### Prerequisites
 
@@ -129,12 +129,12 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 
 1. Download the required files for the type of Kubernetes cluster you're working with.
 
-    **AKS cluster ARM**
+    **ARM**
 
     - Template file: [https://aka.ms/azureprometheus-enable-arm-template](https://aka.ms/azureprometheus-enable-arm-template)
     - Parameter file: [https://aka.ms/azureprometheus-enable-arm-template-parameters](https://aka.ms/azureprometheus-enable-arm-template-parameters)
 
-    **AKS cluster Bicep**
+    **Bicep**
 
     - Template file: [https://aka.ms/azureprometheus-enable-bicep-template](https://aka.ms/azureprometheus-enable-bicep-template)
     - Parameter file: [https://aka.ms/azureprometheus-enable-bicep-template-parameters](https://aka.ms/azureprometheus-enable-arm-template-parameters)
@@ -231,8 +231,6 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 
 ### [Terraform](#tab/terraform)
 
-### Enable with Terraform
-
 #### Prerequisites
 
 - The Azure Monitor workspace and Azure Managed Grafana workspace must already be created.
@@ -270,19 +268,18 @@ Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in 
 
 ### [Azure Policy](#tab/policy)
 
-### Enable with Azure Policy
 
 1. Download Azure Policy template and parameter files.
 
    - Template file: [https://aka.ms/AddonPolicyMetricsProfile](https://aka.ms/AddonPolicyMetricsProfile)
    - Parameter file: [https://aka.ms/AddonPolicyMetricsProfile.parameters](https://aka.ms/AddonPolicyMetricsProfile.parameters)
 
-1. Create the policy definition using the following CLI command:
+2. Create the policy definition using the following CLI command:
 
       `az policy definition create --name "Prometheus Metrics addon" --display-name "Prometheus Metrics addon" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules AddonPolicyMetricsProfile.rules.json --params AddonPolicyMetricsProfile.parameters.json`
 
-1. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
-1. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
+3. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
+4. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
 1. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
 
 After the policy is assigned to the subscription, whenever you create a new cluster without Prometheus enabled, the policy will run and deploy to enable Prometheus monitoring.
@@ -611,6 +608,48 @@ az monitor diagnostic-settings create \
 ### [Azure Resource Manager](#tab/arm)
 
 ### [Terraform](#tab/terraform)
+
+```terraform
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_monitor_diagnostic_setting" "example" {
+  name               = "example-diagnostic-setting"
+  target_resource_id = azurerm_storage_account.example.id
+
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
+
+  enabled_log {
+    category = "AuditEvent"
+  }
+
+  enabled_metric {
+    category = "AllMetrics"
+  }
+}
+
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "West Europe"
+}
+
+resource "azurerm_storage_account" "example" {
+  name                     = "examplestorageacct"
+  resource_group_name      = azurerm_resource_group.example.name
+  location                 = azurerm_resource_group.example.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_log_analytics_workspace" "example" {
+  name                = "example-law"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+```
 
 ### [Azure Policy](#tab/policy) 
 

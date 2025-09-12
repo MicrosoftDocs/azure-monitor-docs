@@ -441,11 +441,11 @@ items:
       - name: Overview
         href: containers/kubernetes-monitoring-overview.md
         displayName: containers, kubernetes, container insights
-      - name: Quickstart
-        href: containers/kubernetes-monitoring-quickstart.md
-      - name: Full stack monitoring
+      - name: Monitoring guidance
         href: containers/monitor-kubernetes.md
         displayName: containers
+      - name: Quickstart
+        href: containers/kubernetes-monitoring-quickstart.md
       - name: Best practices
         href: containers/best-practices-containers.md
         displayName: containers, kubernetes
@@ -487,29 +487,27 @@ items:
         items:
         - name: Metrics
           items:
-          - name: Customize data collection
-            items:
-            - name: Default configuration
-              href: containers/prometheus-metrics-scrape-default.md
-              displayName: Prometheus
-            - name: Custom configuration
-              href: containers/prometheus-metrics-scrape-configuration.md
-              displayName: Prometheus
-            - name: Configure collection using CRDs
-              href: containers/prometheus-metrics-scrape-crd.md
-              displayName: Prometheus
-            - name: Create and validate custom scrape config
-              href: containers/prometheus-metrics-scrape-validate.md
-              displayName: Prometheus
-            - name: Minimal ingestion profile
-              href: containers/prometheus-metrics-scrape-configuration-minimal.md
-              displayName: Prometheus
-            - name: High scale
-              href: containers/prometheus-metrics-scrape-scale.md
-              displayName: Prometheus
-            - name: Autoscale support
-              href: containers/prometheus-metrics-scrape-autoscaling.md
-              displayName: Prometheus
+          - name: Default configuration
+            href: containers/prometheus-metrics-scrape-default.md
+            displayName: Prometheus
+          - name: Custom configuration
+            href: containers/prometheus-metrics-scrape-configuration.md
+            displayName: Prometheus
+          - name: Configure collection using CRDs
+            href: containers/prometheus-metrics-scrape-crd.md
+            displayName: Prometheus
+          - name: Create and validate custom scrape config
+            href: containers/prometheus-metrics-scrape-validate.md
+            displayName: Prometheus
+          - name: Minimal ingestion profile
+            href: containers/prometheus-metrics-scrape-configuration-minimal.md
+            displayName: Prometheus
+          - name: High scale
+            href: containers/prometheus-metrics-scrape-scale.md
+            displayName: Prometheus
+          - name: Autoscale support
+            href: containers/prometheus-metrics-scrape-autoscaling.md
+            displayName: Prometheus
           - name: Integrations
             items:
             - name: Set up exporters for common workloads
