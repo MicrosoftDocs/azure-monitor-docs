@@ -381,7 +381,10 @@ Starting from 3.4.0, rate-limited sampling is available and is now the default. 
 
 For Spring Boot native applications, the [sampling configurations of the OpenTelemetry Java SDK are applicable](https://opentelemetry.io/docs/languages/java/configuration/#sampler).
 
-For Quarkus native applications, review the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#sampler).
+For Quarkus native applications, configure sampling using the [Quarkus OpenTelemetry guide](https://quarkus.io/guides/opentelemetry#sampler), then use the [Quarkus OpenTelemetry Exporter](https://docs.quarkiverse.io/quarkus-opentelemetry-exporter/dev/quarkus-opentelemetry-exporter-azure.html) to send telemetry to Application Insights.
+
+> [!NOTE]
+> Quarkus extensions are maintained and supported by the Quarkus community. For help, use [Quarkus community support channels](https://quarkus.io/support). Microsoft doesn't provide technical support for this integration.
 
 ### [Node.js](#tab/nodejs)
 
