@@ -32,7 +32,7 @@ This tutorial uses the [Log Analytics demo environment](https://portal.azure.com
 
 ## Open Log Analytics
 
-Open the [Log Analytics demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), or select **Logs** from the Azure Monitor menu in your subscription. This step sets the initial scope to a Log Analytics workspace so that your query selects from all data in that workspace. If you select **Logs** from an Azure resource's menu, the scope is set to only record from that resource. For more infornmation, see [Log query scope](./scope.md).
+Open the [Log Analytics demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), or select **Logs** from the Azure Monitor menu in your subscription. This step sets the initial scope to a Log Analytics workspace so that your query selects from all data in that workspace. If you select **Logs** from an Azure resource's menu, the scope is set to only record from that resource. For more information, see [Log query scope](./scope.md).
 
 You can view the scope in the upper-left corner of the Logs experience, below the name of your active query tab. If you're using your own environment, you see an option to select a different scope. This option isn't available in the demo environment.
 
@@ -157,7 +157,7 @@ To view the results in a graph, select **Chart** on the results pane. Notice tha
 
 :::image type="content" source="media/log-analytics-tutorial/example-query-output-chart.png" alt-text="Screenshot that shows the query results chart." lightbox="media/log-analytics-tutorial/example-query-output-chart.png":::
 
-In this example, we see the requst duration spiking at 4:00 PM. To get notified when such spikes occur, you can create an alert rule by opening the context menu (**...**) in the action bar and selecting **+ New alert rule**. For more information, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md).
+In this example, we see the request duration spiking at 4:00 PM. To get notified when such spikes occur, you can create an alert rule by opening the context menu (**...**) in the action bar and selecting **+ New alert rule**. For more information, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md).
 
 > [!NOTE]
 > Creating an alert rule is not supported in the demo environment.
