@@ -1,43 +1,6 @@
----
-title: Filtering and preprocessing in the Application Insights SDK | Microsoft Docs
-description: Write telemetry processors and telemetry initializers for the SDK to filter or add properties to the data before the telemetry is sent to the Application Insights portal.
-ms.topic: how-to
-ms.date: 01/31/2025
-ms.devlang: csharp
-# ms.devlang: csharp, javascript, python
-ms.custom: "devx-track-js, devx-track-csharp"
-ms.reviewer: cithomas
----
+[!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
 
-# Filter and preprocess telemetry in the Application Insights SDK
-
-You can write code to filter, modify, or enrich your telemetry before it's sent from the SDK. The processing includes data that's sent from the standard telemetry modules, such as HTTP request collection and dependency collection.
-
-* [Filtering](#filtering) can modify or discard telemetry before it's sent from the SDK by implementing `ITelemetryProcessor`. For example, you could reduce the volume of telemetry by excluding requests from robots. Unlike sampling, You have full control over what is sent or discarded, but it affects any metrics based on aggregated logs. Depending on how you discard items, you might also lose the ability to navigate between related items.
-
-* [Add or Modify properties](#add-properties) to any telemetry sent from your app by implementing an `ITelemetryInitializer`. For example, you could add calculated values or version numbers by which to filter the data in the portal.
-
-* [Sampling](sampling.md) reduces the volume of telemetry without affecting your statistics. It keeps together related data points so that you can navigate between them when you diagnose a problem. In the portal, the total counts are multiplied to compensate for the sampling.
-
-> [!NOTE]
-> [The SDK API](./api-custom-events-metrics.md) is used to send custom events and metrics.
-
-## Prerequisites
-
-Install the [JavaScript](javascript.md) SDK for your application.
-
-## Filtering
-
-This technique gives you direct control over what's included or excluded from the telemetry stream. Filtering can be used to drop telemetry items from being sent to Application Insights. You can use filtering with sampling, or separately.
-
-To filter telemetry, you write a telemetry processor and register it with `TelemetryConfiguration`. All telemetry goes through your processor. You can choose to drop it from the stream or give it to the next processor in the chain. Telemetry from the standard modules, such as the HTTP request collector and the dependency collector, and telemetry you tracked yourself is included. For example, you can filter out telemetry about requests from robots or successful dependency calls.
-
-> [!WARNING]
-> Filtering the telemetry sent from the SDK by using processors can skew the statistics that you see in the portal and make it difficult to follow related items.
->
-> Instead, consider using [sampling](./sampling.md).
-
-### JavaScript web applications
+#### JavaScript web applications
 
 You can filter telemetry from JavaScript web applications by using ITelemetryInitializer.
 
@@ -58,19 +21,13 @@ You can filter telemetry from JavaScript web applications by using ITelemetryIni
     appInsights.addTelemetryInitializer(filteringFunction);
     ```
 
-## Add/modify properties: ITelemetryInitializer
+[!INCLUDE [ITelemetryInitializer](./includes/application-insights-itelemetryinitializer.md)]
 
-Use telemetry initializers to enrich telemetry with additional information or to override telemetry properties set by the standard telemetry modules.
-
-For example, Application Insights for a web package collects telemetry about HTTP requests. By default, it flags any request with a response code >=400 as failed. If instead you want to treat 400 as a success, you can provide a telemetry initializer that sets the success property.
-
-If you provide a telemetry initializer, it's called whenever any of the Track*() methods are called. This initializer includes `Track()` methods called by the standard telemetry modules. By convention, these modules don't set any property that was already set by an initializer. Telemetry initializers are called before calling telemetry processors, so any enrichments done by initializers are visible to processors.
-
-### JavaScript telemetry initializers
+#### JavaScript telemetry initializers
 
 Insert a JavaScript telemetry initializer, if needed. For more information on the telemetry initializers for the Application Insights JavaScript SDK, see [Telemetry initializers](https://github.com/microsoft/ApplicationInsights-JS#telemetry-initializers).
 
-#### [JavaScript (Web) SDK Loader Script](#tab/javascriptwebsdkloaderscript)
+# [JavaScript (Web) SDK Loader Script](#tab/javascriptwebsdkloaderscript)
 
 Insert a telemetry initializer by adding the onInit callback function in the [JavaScript (Web) SDK Loader Script configuration](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#javascript-web-sdk-loader-script-configuration):
 <!-- IMPORTANT: If you're updating this code example, please remember to also update it in: 1) articles\azure-monitor\app\javascript-sdk.md and 2) articles\azure-monitor\app\javascript-feature-extensions.md -->
@@ -92,7 +49,7 @@ cfg: { // Application Insights Configuration
 </script>
 ```
 
-#### [npm package](#tab/npmpackage)
+## [npm package](#tab/npmpackage)
 
 ```js
 import { ApplicationInsights } from '@microsoft/applicationinsights-web'
@@ -115,34 +72,20 @@ For a summary of the noncustom properties available on the telemetry item, see [
 
 You can add as many initializers as you like. They're called in the order that they're added.
 
-## ITelemetryProcessor and ITelemetryInitializer
-
-What's the difference between telemetry processors and telemetry initializers?
-
-* There are some overlaps in what you can do with them. Both can be used to add or modify properties of telemetry, although we recommend that you use initializers for that purpose.
-* Telemetry initializers always run before telemetry processors.
-* Telemetry initializers may be called more than once. By convention, they don't set any property that was already set.
-* Telemetry processors allow you to completely replace or discard a telemetry item.
-* All registered telemetry initializers are called for every telemetry item. For telemetry processors, SDK guarantees calling the first telemetry processor. Whether the rest of the processors are called or not is decided by the preceding telemetry processors.
-* Use telemetry initializers to enrich telemetry with more properties or override an existing one. Use a telemetry processor to filter out telemetry.
-
-> [!NOTE]
-> JavaScript only has telemetry initializers which can [filter out events by using ITelemetryInitializer](#javascript-web-applications).
-
-## Troubleshoot ApplicationInsights.config
+#### Troubleshoot ApplicationInsights.config
 
 * Confirm that the fully qualified type name and assembly name are correct.
 * Confirm that the applicationinsights.config file is in your output directory and contains any recent changes.
 
-## Azure Monitor Telemetry Data Types Reference
+#### Azure Monitor Telemetry Data Types Reference
 
 * [Node.js SDK](https://github.com/Microsoft/ApplicationInsights-node.js/tree/develop/Declarations/Contracts/TelemetryTypes)
 * [JavaScript SDK](https://github.com/microsoft/ApplicationInsights-JS/tree/master/shared/AppInsightsCommon/src/Telemetry)
 
-## Reference docs
+#### Reference docs
 
 * [API overview](./api-custom-events-metrics.md)
 
-## SDK code
+#### SDK code
 
 * [JavaScript SDK](https://github.com/Microsoft/ApplicationInsights-JS)
