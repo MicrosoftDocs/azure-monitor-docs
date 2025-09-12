@@ -546,6 +546,44 @@ After the policy is assigned to the subscription, whenever you create a new clus
 
 ### [Azure portal](#tab/portal)
 
+For container logs, you must first select the [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where the metrics are stored. You can select an existing workspace or create a new one. See [Workspaces](./kubernetes-monitoring-enable.md#workspaces) for more details about the Log Analytics workspace.
+
+You also must select a logging profile, which defines which logs will be collected and at what frequency. The available profiles are listed in the following table. 
+
+:::image type="content" source="media/container-insights-cost-config/cost-settings-onboarding.png" alt-text="Screenshot that shows the onboarding options." lightbox="media/container-insights-cost-config/cost-settings-onboarding.png" :::
+
+| Cost preset | Collection frequency | Namespace filters | Syslog collection | Collected data |
+| --- | --- | --- | --- | --- |
+| Logs and Events (Default) | 1 m | None | Not enabled | ContainerLogV2<br>KubeEvents<br>KubePodInventory |
+| Syslog | 1 m | None | Enabled by default | All standard container insights tables |
+| Standard | 1 m | None | Not enabled | All standard container insights tables |
+| Cost-optimized | 5 m | Excludes kube-system, gatekeeper-system, azure-arc | Not enabled | All standard container insights tables |
+
+If you want to customize the settings, click **Edit collection settings**. Each of these settings is described in the following table.
+
+:::image type="content" source="media/container-insights-cost-config/advanced-collection-settings.png" alt-text="Screenshot that shows the collection settings options." lightbox="media/container-insights-cost-config/advanced-collection-settings.png" :::
+
+| Name | Description |
+|:---|:---|
+| Collection frequency | Determines how often the agent collects data.  Valid values are 1m - 30m in 1m intervals The default value is 1m. This option can't be configured through the ConfigMap.|
+| Namespace filtering | *Off*: Collects data on all namespaces.<br>*Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br><br>Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_. For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_.  |
+| Collected Data | Defines which Container insights tables to collect. See below for a description of each grouping.  |
+| Enable ContainerLogV2 | Boolean flag to enable [ContainerLogV2 schema](./container-insights-logs-schema.md). If set to true, the stdout/stderr Logs are ingested to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are ingested to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2. |
+| Enable Syslog collection | Enables Syslog collection from the cluster. |
+
+
+The **Collected data** option allows you to select the tables that are populated for the cluster. The tables are grouped by the most common scenarios. 
+
+:::image type="content" source="media/container-insights-cost-config/collected-data-options.png" alt-text="Screenshot that shows the collected data options." lightbox="media/container-insights-cost-config/collected-data-options.png" :::
+
+| Grouping | Tables | Notes |
+| --- | --- | --- |
+| All (Default) | All standard container insights tables | Required for enabling the default Container insights visualizations |
+| Performance | Perf, InsightsMetrics | |
+| Logs and events | ContainerLog or ContainerLogV2, KubeEvents, KubePodInventory | Recommended if you have enabled managed Prometheus metrics |
+| Workloads, Deployments, and HPAs | InsightsMetrics, KubePodInventory, KubeEvents, ContainerInventory, ContainerNodeInventory, KubeNodeInventory, KubeServices | |
+| Persistent Volumes | InsightsMetrics, KubePVInventory | |
+
 ---
 
 
@@ -576,7 +614,22 @@ az monitor diagnostic-settings create \
 
 ### [Azure Policy](#tab/policy) 
 
-### [Azure portal](*#portal)
+### [Azure portal](#portal)
+Select **Diagnostic settings** from the **Monitoring** section of the menu for the cluster. Then select **+ Add diagnostic setting**.
+
+:::image type="content" source="media/kubernetes-monitoring-enable-portal/diagnostic-setting-new.png" alt-text="Screenshot that shows creation of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable-portal/diagnostic-setting-new.png" :::
+
+Select **Send to Log Analytics workspace** and select the same workspace where you send your container logs. Then select the different **Categories** that you want to collect. Give the **Diagnostic setting name** a descriptive name such as *Collect Control Plane Logs*.
+
+:::image type="content" source="media/kubernetes-monitoring-enable-portal/diagnostic-setting-details.png" alt-text="Screenshot that shows details of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable-portal/diagnostic-setting-details.png" :::
+
+## Verify deployment
+Within a few minutes after enabling monitoring, you should be able to use the following methods to verify that the monitoring features are enabled.
+
+- The cluster should move from the **Unmonitored clusters** view to the **Monitored clusters** view in Container insights multi-cluster view.
+- The **Monitor** view for the cluster should start to populate with data and no longer provide an option to enable monitoring. This includes the **Nodes**, **Workloads**, and **Containers** tabs.
+- For further validation options, see [Verify deployment](./kubernetes-monitoring-enable.md#verify-deployment).
+
 
 ---
 
