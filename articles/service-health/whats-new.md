@@ -9,7 +9,7 @@ ms.date: 09/12/2025
 
 
 ### Create tenant-based Service Health alerts
-You can now select a tenant directory as the scope for your alert. For more information, see [Create Service Health alerts (Preview)](/azure/azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts).
+You can now select a tenant directory as the scope for your alert. For more information, see [Create tenant-based alerts (Preview)](/azure/azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts).
 
 
 ### New way to deploy Service Health alerts using Azure Policy
