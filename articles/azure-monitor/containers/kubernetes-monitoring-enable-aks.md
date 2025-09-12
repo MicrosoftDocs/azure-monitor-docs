@@ -64,7 +64,7 @@ Use one of the following methods to enable scraping of Prometheus metrics from y
 - The k8s-extension extension must be installed using the command `az extension add --name k8s-extension`.
 - The k8s-extension version 1.4.1 or higher is required. 
 
-Use the `-enable-azure-monitor-metrics` option with [az aks create](/cli/azure/aks?view=azure-cli-latest#az-aks-create) or [az aks update](/cli/azure/aks?view=azure-cli-latest#az-aks-update) depending whether you're creating a new cluster or updating an existing cluster to install the metrics add-on that scrapes Prometheus metrics. See the following examples.
+Use the `-enable-azure-monitor-metrics` option with [az aks create](/cli/azure/aks#az-aks-create) or [az aks update](/cli/azure/aks#az-aks-update) depending whether you're creating a new cluster or updating an existing cluster to install the metrics add-on that scrapes Prometheus metrics. See the following examples.
 
 ```azurecli
 ### Use default Azure Monitor workspace
@@ -331,7 +331,7 @@ Use one of the following commands to enable collection of container logs for you
 - Managed identity authentication is default in CLI version 2.49.0 or higher.
 - Azure k8s-extension version 1.3.7 or higher
 
-Use the `--addon monitoring` option with [create](/cli/azure/aks?view=azure-cli-latest#az-aks-create) for a new cluster or [az aks enable-addon](/cli/azure/aks?view=azure-cli-latest#az-aks-enable-addons) to update an existing cluster to enable collection of container logs. See the following examples.
+Use the `--addon monitoring` option with [create](/cli/azure/aks#az-aks-create) for a new cluster or [az aks enable-addon](/cli/azure/aks#az-aks-enable-addons) to update an existing cluster to enable collection of container logs. See the following examples.
 
 ```azurecli
 ### Use default Log Analytics workspace
