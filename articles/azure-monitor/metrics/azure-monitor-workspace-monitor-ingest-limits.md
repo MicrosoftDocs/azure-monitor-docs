@@ -53,7 +53,7 @@ This document explains how to use the ARM API to update the data ingestion limit
 
 ### Step 1: Download the ARM templates and update the parameters
 
-Download the ARM template files ([AMWLimitIncrease-Template.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Template.json) and [AMWLimitIncrease-Parameters.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Parameters.json) and update the Parameters.json file with the AMW name, location, and required ingestion limits (maximum is 20000000).
+Download the ARM template files ([AMWLimitIncrease-Template.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Template.json) and [AMWLimitIncrease-Parameters.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Parameters.json) and update the Parameters.json file with the *subscription id*, *name of the resource group where the AMW is in*, *Name of the AMW*, *location of the AMW*, and required ingestion limits (maximum is 20000000).
 
 ### Step 2: Execute the ARM update
 
