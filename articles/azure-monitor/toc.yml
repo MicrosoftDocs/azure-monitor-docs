@@ -311,439 +311,431 @@ items:
           href: https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0
         - name: Troubleshooting articles
           href: /troubleshoot/azure/azure-monitor/welcome-azure-monitor
-      - name: Monitor virtual machines
-        items:
-          - name: Overview
-            href: /azure/virtual-machines/monitor-vm?toc=/azure/azure-monitor/toc.json
-          - name: Best practices
-            href: vm/best-practices-vm.md
-          - name: Tutorials
-            items:
-              - name: Enable recommended alerts
-                href: vm/tutorial-monitor-vm-alert-recommended.md
-                displayName: virtual machines, vm, vms
-              - name: Create an availability alert
-                href: vm/tutorial-monitor-vm-alert-availability.md
-                displayName: virtual machines, vm, vms
-              - name: Enable VM insights
-                href: vm/tutorial-monitor-vm-enable-insights.md
-              - name: Collect VM guest logs and metrics
-                href: vm/tutorial-monitor-vm-guest.md
-          - name: Collect client data
-            items:
-              - name: Create data collection rule
-                href: vm/data-collection.md
-                displayName: Azure Monitor agent, AMA
-              - name: Data sources
-                items:
-                  - name: Windows events
-                    href: vm/data-collection-windows-events.md
-                    displayName: data collection rule,Azure Monitor agent
-                  - name: Syslog events
-                    href: vm/data-collection-syslog.md
-                  - name: IIS logs
-                    href: vm/data-collection-iis.md
-                    displayName: data collection rule,Azure Monitor Agent,IIS logs
-                  - name: Performance data
-                    href: vm/data-collection-performance.md
-                    displayName: data collection rule,Azure Monitor agent
-                  - name: Text logs
-                    href: vm/data-collection-log-text.md
-                    displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-                  - name: JSON logs
-                    href: vm/data-collection-log-json.md
-                    displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-                  - name: SNMP traps
-                    href: vm/data-collection-snmp-data.md
-                    displayName: data collection rule,Azure Monitor agent
-                  - name: Windows Firewall logs
-                    href: vm/data-collection-firewall-logs.md
-                    displayName: data collection rule,Azure Monitor Agent,firewall logs
-              - name: Configure a syslog forwarder
-                href: /azure/sentinel/forward-syslog-monitor-agent
-                maintainContext: true
-              - name: Send data to Event Hubs and Storage
-                href: vm/send-event-hubs-storage.md
-          - name: VM insights
-            items:
-              - name: Overview
-                href: vm/vminsights-overview.md
-              - name: Enable and configure
-                items:
-                  - name: Enable VM insights
-                    href: vm/vminsights-enable.md
-                  - name: Enable with Azure Policy
-                    href: vm/vminsights-enable-policy.md
-                  - name: Windows client machines
-                    href: vm/vminsights-enable-client.md
-                  - name: Dependency agent
-                    href: vm/vminsights-dependency-agent.md
-                  - name: Disable monitoring
-                    href: vm/vminsights-optout.md
-                  - name: Troubleshoot
-                    href: vm/vminsights-troubleshoot.md
-              - name: Migrate
-                items:
-                  - name: Migrate to Azure Monitor agent
-                    href: vm/vminsights-migrate-agent.md
-                  - name: Migrate from deprecated policies
-                    href: vm/vminsights-migrate-deprecated-policies.md
-              - name: Use VM insights
-                items:
-                  - name: Monitor performance
-                    href: vm/vminsights-performance.md
-                  - name: Map dependencies
-                    href: vm/vminsights-maps.md
-                  - name: Query map data
-                    href: vm/vminsights-log-query.md
-                  - name: Map Retirement guidance
-                    href: vm/vminsights-maps-retirement.md
-                  - name: Monitor changes
-                    href: vm/vminsights-change-analysis.md
-                  - name: Visualize data with workbooks
-                    href: vm/vminsights-workbooks.md
-          - name: Performance diagnostics
-            items:
-              - name: Overview
-                href: vm/performance-diagnostics.md
-                displayName: performance diagnostics, virtual machine, vm
-              - name: Install and run reports
-                href: vm/performance-diagnostics-run.md
-                displayName: performance diagnostics, virtual machine, vm
-              - name: Analyze data
-                href: vm/performance-diagnostics-analyze.md
-                displayName: performance diagnostics, virtual machine, vm
-              - name: Extension
-                href: vm/performance-diagnostics-extension.md
-                displayName: performance diagnostics, virtual machine, vm
-          - name: Deployment guide
-            items:
-              - name: Overview
-                href: vm/monitor-virtual-machine.md
-              - name: Deploy agents
-                href: vm/monitor-virtual-machine-agent.md
-              - name: Collect data
-                href: vm/monitor-virtual-machine-data-collection.md
-              - name: Analyze data
-                href: vm/monitor-virtual-machine-analyze.md
-              - name: Create alerts
-                href: vm/monitor-virtual-machine-alerts.md
-              - name: Troubleshoot VM performance issues
-                href: /troubleshoot/azure/virtual-machines/performance-diagnostics?toc=/azure/azure-monitor/toc.json
-          - name: System Center
-            items:
-              - name: Migrate from Operations Manager
-                href: fundamentals/azure-monitor-operations-manager.md
-              - name: Assess Operations Manager
-                href: scom-manage-instance/scom-assessment.md
-      - name: Monitor Kubernetes clusters
-        items:
-          - name: Overview
-            href: containers/kubernetes-monitoring-overview.md
-            displayName: containers, kubernetes, container insights
-          - name: Quickstart
-            href: containers/kubernetes-monitoring-quickstart.md
-          - name: Full stack monitoring
-            href: containers/monitor-kubernetes.md
-            displayName: containers
-          - name: Best practices
-            href: containers/best-practices-containers.md
-            displayName: containers, kubernetes
-          - name: Enable monitoring
-            items:
-              - name: Overview
-                href: containers/kubernetes-monitoring-enable.md
-              - name: Onboarding methods
-                items:
-                  - name: Azure portal
-                    href: containers/kubernetes-monitoring-enable-portal.md
-                  - name: CLI
-                    href: containers/kubernetes-monitoring-enable-cli.md
-                  - name: ARM template
-                    href: containers/kubernetes-monitoring-enable-arm.md
-                  - name: Terraform
-                    href: containers/kubernetes-monitoring-enable-terraform.md
-                  - name: Azure Policy
-                    href: containers/kubernetes-monitoring-enable-policy.md
-              - name: Agent management
-                href: containers/container-insights-manage-agent.md
-              - name: Disable monitoring
-                href: containers/kubernetes-monitoring-disable.md
-          - name: Analyze data
-            items:
-              - name: Container insights
-                href: containers/container-insights-analyze.md
-              - name: Workbooks
-                href: containers/kubernetes-workbooks.md
-              - name: Monitor GPU performance
-                href: containers/container-insights-gpu-monitoring.md
-              - name: Monitor cluster network
-                href: containers/container-insights-network-monitoring.md
-              - name: Monitor Deployments & HPAs
-                href: containers/container-insights-deployment-hpa-metrics.md
-              - name: Monitor Persistent Volumes (PVs)
-                href: containers/container-insights-persistent-volumes.md
-              - name: Monitor Syslog
-                href: containers/container-insights-syslog.md
-              - name: Log queries
-                href: containers/container-insights-log-query.md
-              - name: View live data
-                items:
-                  - name: Overview
-                    href: containers/container-insights-livedata-overview.md
-                  - name: Enable live data
-                    href: containers/container-insights-livedata-setup.md
-          - name: Customize data collection
-            items:
-              - name: Metrics
-                items:
-                  - name: Customize data collection
-                    items:
-                      - name: Default configuration
-                        href: containers/prometheus-metrics-scrape-default.md
-                        displayName: Prometheus
-                      - name: Custom configuration
-                        href: containers/prometheus-metrics-scrape-configuration.md
-                        displayName: Prometheus
-                      - name: Configure collection using CRDs
-                        href: containers/prometheus-metrics-scrape-crd.md
-                        displayName: Prometheus
-                      - name: Create and validate custom scrape config
-                        href: containers/prometheus-metrics-scrape-validate.md
-                        displayName: Prometheus
-                      - name: Minimal ingestion profile
-                        href: containers/prometheus-metrics-scrape-configuration-minimal.md
-                        displayName: Prometheus
-                      - name: High scale
-                        href: containers/prometheus-metrics-scrape-scale.md
-                        displayName: Prometheus
-                      - name: Autoscale support
-                        href: containers/prometheus-metrics-scrape-autoscaling.md
-                        displayName: Prometheus
-                  - name: Integrations
-                    items:
-                      - name: Set up exporters for common workloads
-                        href: containers/prometheus-exporters.md
-                        displayName: Prometheus
-                      - name: Exporters
-                        items:
-                          - name: Monitor Apache Kafka
-                            href: containers/prometheus-kafka-integration.md
-                            displayName: Prometheus
-                          - name: Monitor Argo CD
-                            href: containers/prometheus-argo-cd-integration.md
-                            displayName: Prometheus
-                          - name: Monitor Elastic Search
-                            href: containers/prometheus-elasticsearch-integration.md
-                            displayName: Prometheus
-                          - name: Monitor Istio
-                            href: containers/prometheus-istio-integration.md
-                            displayName: Prometheus
-                          - name: Monitor Nvidia GPU
-                            href: containers/prometheus-dcgm-integration.md
-                            displayName: Prometheus
-                      - name: Scale using KEDA based on Prometheus metrics
-                        href: containers/integrate-keda.md
-                        displayName: Prometheus
-                  - name: Enable Windows metrics (preview)
-                    href: containers/enable-windows-metrics.md
-                    displayName: Prometheutheus-metricss
-                  - name: Send to multiple metric workspaces
-                    href: containers/prometheus-metrics-multiple-workspaces.md
-                    displayName: Prometheus
-                  - name: Remote-write with Prometheus
-                    items:
-                      - name: Prometheus remote-write
-                        href: containers/prometheus-remote-write.md
-                        displayName: Prometheus,remote-write, azure monitor
-                      - name: Managed identity authentication
-                        href: containers/prometheus-remote-write-managed-identity.md
-                        displayName: Prometheus,remote-write
-                      - name: Microsoft Entra authentication
-                        href: containers/prometheus-remote-write-active-directory.md
-                        displayName: Prometheus,remote-write
-                      - name: Microsoft Entra Workload ID authentication
-                        href: containers/prometheus-remote-write-azure-workload-identity.md
-                        displayName: Prometheus,remote-write
-                      - name: Troubleshoot remote-write
-                        href: containers/prometheus-remote-write-troubleshooting.md
-                        displayName: Prometheus,remote-write
-              - name: Logs
-                items:
-                  - name: ConfigMap
-                    href: containers/container-insights-data-collection-filter.md
-                  - name: Container log schema
-                    href: containers/container-insights-logs-schema.md
-                  - name: Data transformations
-                    href: containers/container-insights-transformations.md
-                    displayName: Container insights
-                  - name: Multitenant logging
-                    href: containers/container-insights-multitenant.md
-                  - name: High scale collection
-                    href: containers/container-insights-high-scale.md
-                  - name: Throttling
-                    href: containers/container-insights-throttling.md
-          - name: Optimize costs
-            items:
-              - name: Analyze and reduce costs
-                href: containers/container-insights-cost.md
-              - name: Cost-effective Alerts
-                href: containers/cost-effective-alerting.md
-          - name: Alerting
-            items:
-              - name: Metric alert rules
-                href: containers/kubernetes-metric-alerts.md
-          - name: Troubleshooting
-            items:
-              - name: Prometheus
-                href: containers/prometheus-metrics-troubleshoot.md
-              - name: Container insights
-                href: containers/container-insights-troubleshoot.md
-          - name: Reference
-            items:
-              - name: Firewall requirements
-                href: containers/kubernetes-monitoring-firewall.md
-                displayName: Container insights, Prometheus
-              - name: Supported region mappings
-                href: containers/container-insights-region-mapping.md
-          - name: Classic experience
-            items:
-              - name: View cluster metrics
-                href: containers/container-insights-livedata-metrics.md
-              - name: Log alert rules
-                href: containers/container-insights-log-alerts.md
-                displayName: Container insights
-              - name: Send Prometheus metrics to Logs
-                href: containers/container-insights-prometheus-logs.md
-              - name: Switch to Prometheus visualizations
-                href: containers/container-insights-experience-v2.md
-              - name: Legacy authentication
-                href: containers/container-insights-authentication.md
-              - name: Container monitoring solution
-                href: containers/container-insights-transition-solution.md
-      - name: Monitor networks
-        items:
-          - name: Network Watcher
-            href: /azure/network-watcher/network-watcher-overview?toc=/azure/azure-monitor/toc.json
-          - name: Network Insights
-            items:
-              - name: Overview
-                href: /azure/network-watcher/network-insights-overview?toc=/azure/azure-monitor/toc.json
-              - name: Topology
-                href: /azure/network-watcher/network-insights-topology?toc=/azure/azure-monitor/toc.json
-      - name: Health models
-        items:
-          - name: Overview
-            href: health-models/overview.md
-            displayName: health models
-          - name: Concepts
-            href: health-models/concepts.md
-            displayName: health models
-          - name: Create
-            href: health-models/create.md
-            displayName: health models
-          - name: Configure
-            href: health-models/designer.md
-            displayName: health models
-          - name: Analyze
-            href: health-models/analyze-health.md
-            displayName: health models
-      - name: Azure Monitor SCOM Managed Instance
-        items:
-          - name: SCOM Managed Instance
-            href: scom-manage-instance/index.yml
-          - name: Overview
-            items:
-              - name: About Azure Monitor SCOM Managed Instance
-                href: scom-manage-instance/overview.md
-              - name: What's new in SCOM Managed Instance
-                href: scom-manage-instance/whats-new-scom-managed-instance.md
-          - name: Quickstarts
-            items:
-              - name: Migrate from Operations Manager on-premises to SCOM Managed Instance
-                href: scom-manage-instance/migrate-to-operations-manager-managed-instance.md
-          - name: Tutorials
-            items:
-              - name: Create SCOM Managed Instance
-                href: scom-manage-instance/tutorial-create-scom-managed-instance.md
-          - name: Concepts
-            items:
-              - name: SCOM Managed Instance Service Health Dashboard
-                href: scom-manage-instance/monitor-health-scom-managed-instance.md
-              - name: Customizations on Azure Monitor SCOM Managed Instance management servers
-                href: scom-manage-instance/customizations-on-scom-managed-instance-management-servers.md
-              - name: Disaster Recovery guidance
-                href: scom-manage-instance/disaster-recovery-guidance.md
-          - name: How-to guides
-            items:
-              - name: Create SCOM Managed Instance
-                items:
-                  - name: Step 1. Register the SCOM Managed Instance resource provider
-                    href: scom-manage-instance/register-scom-managed-instance-resource-provider.md
-                  - name: Step 2. Create separate subnet in a VNet
-                    href: scom-manage-instance/create-separate-subnet-in-vnet.md
-                  - name: Step 3. Create a SQL MI
-                    href: scom-manage-instance/create-sql-managed-instance.md
-                  - name: Step 4. Create a Key vault
-                    href: scom-manage-instance/create-key-vault.md
-                  - name: Step 5. Create a user assigned identity
-                    href: scom-manage-instance/create-user-assigned-identity.md
-                  - name: Step 6. Create a computer group and gMSA account
-                    href: scom-manage-instance/create-group-managed-service-account.md
-                  - name: Step 7. Store domain credentials in Key vault
-                    href: scom-manage-instance/store-domain-credentials-key-vault.md
-                  - name: Step 8. Create a static IP
-                    href: scom-manage-instance/create-static-ip.md
-                  - name: Step 9. Configure the network firewall
-                    href: scom-manage-instance/configure-network-firewall.md
-                  - name: Step 10. Verify Azure and internal GPO policies
-                    href: scom-manage-instance/verify-azure-internal-group-policy-object-policies.md
-                  - name: Step 11. SCOM Managed Instance self-verification of steps
-                    href: scom-manage-instance/self-verification-steps.md
-                  - name: Step 12. Create a SCOM Managed Instance
-                    href: scom-manage-instance/create-operations-manager-managed-instance.md
-              - name: Post Deployment
-                items:
-                  - name: Connect to the Ops Console
-                    href: scom-manage-instance/connect-managed-instance-ops-console.md
-                  - name: Scale SCOM Managed Instance
-                    href: scom-manage-instance/scale-scom-managed-instance.md
-                  - name: Patch SCOM Managed Instance
-                    href: scom-manage-instance/patch-scom-managed-instance.md
-                  - name: Report using Power BI
-                    href: scom-manage-instance/create-reports-power-bi.md
-                  - name: Dashboards on Azure Managed Grafana
-                    href: scom-manage-instance/dashboards-on-azure-managed-grafana.md
-                  - name: Query SCOM Managed Instance data on Azure Managed Grafana
-                    href: scom-manage-instance/query-scom-managed-instance-data-on-grafana.md
-                  - name: View System Center Operations Manager's alerts in Azure Monitor
-                    href: scom-manage-instance/view-operations-manager-alerts-azure-monitor.md
-                  - name: Monitor Azure and Off-Azure Virtual machines with SCOM Managed Instance extensions
-                    href: scom-manage-instance/monitor-azure-off-azure-vm-with-scom-managed-instance.md
-                  - name: Monitor Off-Azure Virtual machines
-                    href: scom-manage-instance/monitor-off-azure-vm-with-scom-managed-instance.md
-                  - name: Monitor Linux machines
-                    href: scom-manage-instance/monitor-linux-machines.md
-          - name: Logs
-            items:
-              - name: Activity Log
-                href: scom-manage-instance/scom-mi-activity-log.md
-              - name: Configure Log Analytics for Azure Monitor SCOM Managed Instance
-                href: scom-manage-instance/configure-log-analytics-for-scom-managed-instance.md
-          - name: Troubleshoot
-            items:
-              - name: Troubleshoot issues with Azure Monitor SCOM Managed Instance
-                href: scom-manage-instance/troubleshoot-scom-managed-instance.md
-              - name: Troubleshoot commonly encountered errors while validating input parameters
-                href: scom-manage-instance/troubleshooting-input-parameters-scom-managed-instance.md
-              - name: FAQs
-                href: scom-manage-instance/scom-managed-instance-faq.yml
-          - name: Security
-            items:
-              - name: Managed Identity
-                href: scom-manage-instance/use-managed-identities-with-scom-mi.md
-              - name: Encryption at rest
-                href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
+    - name: Monitor virtual machines
+      items:
+        - name: Overview
+          href: /azure/virtual-machines/monitor-vm?toc=/azure/azure-monitor/toc.json
+        - name: Best practices
+          href: vm/best-practices-vm.md
+        - name: Tutorials
+          items:
+            - name: Enable recommended alerts
+              href: vm/tutorial-monitor-vm-alert-recommended.md
+              displayName: virtual machines, vm, vms
+            - name: Create an availability alert
+              href: vm/tutorial-monitor-vm-alert-availability.md
+              displayName: virtual machines, vm, vms
+            - name: Enable VM insights
+              href: vm/tutorial-monitor-vm-enable-insights.md
+            - name: Collect VM guest logs and metrics
+              href: vm/tutorial-monitor-vm-guest.md
+        - name: Collect client data
+          items:
+            - name: Create data collection rule
+              href: vm/data-collection.md
+              displayName: Azure Monitor agent, AMA
+            - name: Data sources
+              items:
+                - name: Windows events
+                  href: vm/data-collection-windows-events.md
+                  displayName: data collection rule,Azure Monitor agent
+                - name: Syslog events
+                  href: vm/data-collection-syslog.md
+                - name: IIS logs
+                  href: vm/data-collection-iis.md
+                  displayName: data collection rule,Azure Monitor Agent,IIS logs
+                - name: Performance data
+                  href: vm/data-collection-performance.md
+                  displayName: data collection rule,Azure Monitor agent
+                - name: Text logs
+                  href: vm/data-collection-log-text.md
+                  displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+                - name: JSON logs
+                  href: vm/data-collection-log-json.md
+                  displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+                - name: SNMP traps
+                  href: vm/data-collection-snmp-data.md
+                  displayName: data collection rule,Azure Monitor agent
+                - name: Windows Firewall logs
+                  href: vm/data-collection-firewall-logs.md
+                  displayName: data collection rule,Azure Monitor Agent,firewall logs
+            - name: Configure a syslog forwarder
+              href: /azure/sentinel/forward-syslog-monitor-agent
+              maintainContext: true
+            - name: Send data to Event Hubs and Storage
+              href: vm/send-event-hubs-storage.md
+        - name: VM insights
+          items:
+            - name: Overview
+              href: vm/vminsights-overview.md
+            - name: Enable and configure
+              items:
+                - name: Enable VM insights
+                  href: vm/vminsights-enable.md
+                - name: Enable with Azure Policy
+                  href: vm/vminsights-enable-policy.md
+                - name: Windows client machines
+                  href: vm/vminsights-enable-client.md
+                - name: Dependency agent
+                  href: vm/vminsights-dependency-agent.md
+                - name: Disable monitoring
+                  href: vm/vminsights-optout.md
+                - name: Troubleshoot
+                  href: vm/vminsights-troubleshoot.md
+            - name: Migrate
+              items:
+                - name: Migrate to Azure Monitor agent
+                  href: vm/vminsights-migrate-agent.md
+                - name: Migrate from deprecated policies
+                  href: vm/vminsights-migrate-deprecated-policies.md
+            - name: Use VM insights
+              items:
+                - name: Monitor performance
+                  href: vm/vminsights-performance.md
+                - name: Map dependencies
+                  href: vm/vminsights-maps.md
+                - name: Query map data
+                  href: vm/vminsights-log-query.md
+                - name: Map Retirement guidance
+                  href: vm/vminsights-maps-retirement.md
+                - name: Monitor changes
+                  href: vm/vminsights-change-analysis.md
+                - name: Visualize data with workbooks
+                  href: vm/vminsights-workbooks.md
+            - name: Performance diagnostics
+              items:
+                - name: Overview
+                  href: vm/performance-diagnostics.md
+                  displayName: performance diagnostics, virtual machine, vm
+                - name: Install and run reports
+                  href: vm/performance-diagnostics-run.md
+                  displayName: performance diagnostics, virtual machine, vm
+                - name: Analyze data
+                  href: vm/performance-diagnostics-analyze.md
+                  displayName: performance diagnostics, virtual machine, vm
+                - name: Extension
+                  href: vm/performance-diagnostics-extension.md
+                  displayName: performance diagnostics, virtual machine, vm
+            - name: Deployment guide
+              items:
+                - name: Overview
+                  href: vm/monitor-virtual-machine.md
+                - name: Deploy agents
+                  href: vm/monitor-virtual-machine-agent.md
+                - name: Collect data
+                  href: vm/monitor-virtual-machine-data-collection.md
+                - name: Analyze data
+                  href: vm/monitor-virtual-machine-analyze.md
+                - name: Create alerts
+                  href: vm/monitor-virtual-machine-alerts.md
+                - name: Troubleshoot VM performance issues
+                  href: /troubleshoot/azure/virtual-machines/performance-diagnostics?toc=/azure/azure-monitor/toc.json
+            - name: System Center
+              items:
+                - name: Migrate from Operations Manager
+                  href: fundamentals/azure-monitor-operations-manager.md
+                - name: Assess Operations Manager
+                  href: scom-manage-instance/scom-assessment.md
+    - name: Monitor Kubernetes clusters
+      items:
+        - name: Overview
+          href: containers/kubernetes-monitoring-overview.md
+          displayName: containers, kubernetes, container insights
+        - name: Quickstart
+          href: containers/kubernetes-monitoring-quickstart.md
+        - name: Full stack monitoring
+          href: containers/monitor-kubernetes.md
+          displayName: containers
+        - name: Best practices
+          href: containers/best-practices-containers.md
+          displayName: containers, kubernetes
+        - name: Enable monitoring
+          items:
+            - name: Overview
+              href: containers/kubernetes-monitoring-enable.md
+            - name: Onboard AKS clusters
+              href: containers/kubernetes-monitoring-enable-aks.md
+            - name: Onboard edge clusters
+              href: containers/kubernetes-monitoring-enable-aks.md
+            - name: Disable monitoring
+              href: containers/kubernetes-monitoring-disable.md
+        - name: Analyze data
+          items:
+            - name: Container insights
+              href: containers/container-insights-analyze.md
+            - name: Workbooks
+              href: containers/kubernetes-workbooks.md
+            - name: Monitor GPU performance
+              href: containers/container-insights-gpu-monitoring.md
+            - name: Monitor cluster network
+              href: containers/container-insights-network-monitoring.md
+            - name: Monitor Deployments & HPAs
+              href: containers/container-insights-deployment-hpa-metrics.md
+            - name: Monitor Persistent Volumes (PVs)
+              href: containers/container-insights-persistent-volumes.md
+            - name: Monitor Syslog
+              href: containers/container-insights-syslog.md
+            - name: Log queries
+              href: containers/container-insights-log-query.md
+            - name: View live data
+              items:
+                - name: Overview
+                  href: containers/container-insights-livedata-overview.md
+                - name: Enable live data
+                  href: containers/container-insights-livedata-setup.md
+        - name: Customize data collection
+          items:
+            - name: Metrics
+              items:
+                - name: Customize data collection
+                  items:
+                    - name: Default configuration
+                      href: containers/prometheus-metrics-scrape-default.md
+                      displayName: Prometheus
+                    - name: Custom configuration
+                      href: containers/prometheus-metrics-scrape-configuration.md
+                      displayName: Prometheus
+                    - name: Configure collection using CRDs
+                      href: containers/prometheus-metrics-scrape-crd.md
+                      displayName: Prometheus
+                    - name: Create and validate custom scrape config
+                      href: containers/prometheus-metrics-scrape-validate.md
+                      displayName: Prometheus
+                    - name: Minimal ingestion profile
+                      href: containers/prometheus-metrics-scrape-configuration-minimal.md
+                      displayName: Prometheus
+                    - name: High scale
+                      href: containers/prometheus-metrics-scrape-scale.md
+                      displayName: Prometheus
+                    - name: Autoscale support
+                      href: containers/prometheus-metrics-scrape-autoscaling.md
+                      displayName: Prometheus
+                - name: Integrations
+                  items:
+                    - name: Set up exporters for common workloads
+                      href: containers/prometheus-exporters.md
+                      displayName: Prometheus
+                    - name: Exporters
+                      items:
+                        - name: Monitor Apache Kafka
+                          href: containers/prometheus-kafka-integration.md
+                          displayName: Prometheus
+                        - name: Monitor Argo CD
+                          href: containers/prometheus-argo-cd-integration.md
+                          displayName: Prometheus
+                        - name: Monitor Elastic Search
+                          href: containers/prometheus-elasticsearch-integration.md
+                          displayName: Prometheus
+                        - name: Monitor Istio
+                          href: containers/prometheus-istio-integration.md
+                          displayName: Prometheus
+                        - name: Monitor Nvidia GPU
+                          href: containers/prometheus-dcgm-integration.md
+                          displayName: Prometheus
+                    - name: Scale using KEDA based on Prometheus metrics
+                      href: containers/integrate-keda.md
+                      displayName: Prometheus
+                - name: Enable Windows metrics (preview)
+                  href: containers/enable-windows-metrics.md
+                  displayName: Prometheutheus-metricss
+                - name: Send to multiple metric workspaces
+                  href: containers/prometheus-metrics-multiple-workspaces.md
+                  displayName: Prometheus
+                - name: Remote-write with Prometheus
+                  items:
+                    - name: Prometheus remote-write
+                      href: containers/prometheus-remote-write.md
+                      displayName: Prometheus,remote-write, azure monitor
+                    - name: Managed identity authentication
+                      href: containers/prometheus-remote-write-managed-identity.md
+                      displayName: Prometheus,remote-write
+                    - name: Microsoft Entra authentication
+                      href: containers/prometheus-remote-write-active-directory.md
+                      displayName: Prometheus,remote-write
+                    - name: Microsoft Entra Workload ID authentication
+                      href: containers/prometheus-remote-write-azure-workload-identity.md
+                      displayName: Prometheus,remote-write
+                    - name: Troubleshoot remote-write
+                      href: containers/prometheus-remote-write-troubleshooting.md
+                      displayName: Prometheus,remote-write
+            - name: Logs
+              items:
+                - name: ConfigMap
+                  href: containers/container-insights-data-collection-filter.md
+                - name: Container log schema
+                  href: containers/container-insights-logs-schema.md
+                - name: Data transformations
+                  href: containers/container-insights-transformations.md
+                  displayName: Container insights
+                - name: Multitenant logging
+                  href: containers/container-insights-multitenant.md
+                - name: High scale collection
+                  href: containers/container-insights-high-scale.md
+                - name: Throttling
+                  href: containers/container-insights-throttling.md
+        - name: Optimize costs
+          items:
+            - name: Analyze and reduce costs
+              href: containers/container-insights-cost.md
+            - name: Cost-effective Alerts
+              href: containers/cost-effective-alerting.md
+        - name: Alerting
+          items:
+            - name: Metric alert rules
+              href: containers/kubernetes-metric-alerts.md
+        - name: Troubleshooting
+          items:
+            - name: Prometheus
+              href: containers/prometheus-metrics-troubleshoot.md
+            - name: Container insights
+              href: containers/container-insights-troubleshoot.md
+        - name: Reference
+          items:
+            - name: Firewall requirements
+              href: containers/kubernetes-monitoring-firewall.md
+              displayName: Container insights, Prometheus
+            - name: Supported region mappings
+              href: containers/container-insights-region-mapping.md
+        - name: Classic experience
+          items:
+            - name: View cluster metrics
+              href: containers/container-insights-livedata-metrics.md
+            - name: Log alert rules
+              href: containers/container-insights-log-alerts.md
+              displayName: Container insights
+            - name: Agent management
+              href: containers/container-insights-manage-agent.md
+            - name: Send Prometheus metrics to Logs
+              href: containers/container-insights-prometheus-logs.md
+            - name: Switch to Prometheus visualizations
+              href: containers/container-insights-experience-v2.md
+            - name: Legacy authentication
+              href: containers/container-insights-authentication.md
+            - name: Container monitoring solution
+              href: containers/container-insights-transition-solution.md
+    - name: Monitor networks
+      items:
+        - name: Network Watcher
+          href: /azure/network-watcher/network-watcher-overview?toc=/azure/azure-monitor/toc.json
+        - name: Network Insights
+          items:
+            - name: Overview
+              href: /azure/network-watcher/network-insights-overview?toc=/azure/azure-monitor/toc.json
+            - name: Topology
+              href: /azure/network-watcher/network-insights-topology?toc=/azure/azure-monitor/toc.json
+    - name: Health models
+      items:
+        - name: Overview
+          href: health-models/overview.md
+          displayName: health models
+        - name: Concepts
+          href: health-models/concepts.md
+          displayName: health models
+        - name: Create
+          href: health-models/create.md
+          displayName: health models
+        - name: Configure
+          href: health-models/designer.md
+          displayName: health models
+        - name: Analyze
+          href: health-models/analyze-health.md
+          displayName: health models
+    - name: Azure Monitor SCOM Managed Instance
+      items:
+        - name: SCOM Managed Instance
+          href: scom-manage-instance/index.yml
+        - name: Overview
+          items:
+            - name: About Azure Monitor SCOM Managed Instance
+              href: scom-manage-instance/overview.md
+            - name: What's new in SCOM Managed Instance
+              href: scom-manage-instance/whats-new-scom-managed-instance.md
+        - name: Quickstarts
+          items:
+            - name: Migrate from Operations Manager on-premises to SCOM Managed Instance
+              href: scom-manage-instance/migrate-to-operations-manager-managed-instance.md
+        - name: Tutorials
+          items:
+            - name: Create SCOM Managed Instance
+              href: scom-manage-instance/tutorial-create-scom-managed-instance.md
+        - name: Concepts
+          items:
+            - name: SCOM Managed Instance Service Health Dashboard
+              href: scom-manage-instance/monitor-health-scom-managed-instance.md
+            - name: Customizations on Azure Monitor SCOM Managed Instance management servers
+              href: scom-manage-instance/customizations-on-scom-managed-instance-management-servers.md
+            - name: Disaster Recovery guidance
+              href: scom-manage-instance/disaster-recovery-guidance.md
+        - name: How-to guides
+          items:
+            - name: Create SCOM Managed Instance
+              items:
+                - name: Step 1. Register the SCOM Managed Instance resource provider
+                  href: scom-manage-instance/register-scom-managed-instance-resource-provider.md
+                - name: Step 2. Create separate subnet in a VNet
+                  href: scom-manage-instance/create-separate-subnet-in-vnet.md
+                - name: Step 3. Create a SQL MI
+                  href: scom-manage-instance/create-sql-managed-instance.md
+                - name: Step 4. Create a Key vault
+                  href: scom-manage-instance/create-key-vault.md
+                - name: Step 5. Create a user assigned identity
+                  href: scom-manage-instance/create-user-assigned-identity.md
+                - name: Step 6. Create a computer group and gMSA account
+                  href: scom-manage-instance/create-group-managed-service-account.md
+                - name: Step 7. Store domain credentials in Key vault
+                  href: scom-manage-instance/store-domain-credentials-key-vault.md
+                - name: Step 8. Create a static IP
+                  href: scom-manage-instance/create-static-ip.md
+                - name: Step 9. Configure the network firewall
+                  href: scom-manage-instance/configure-network-firewall.md
+                - name: Step 10. Verify Azure and internal GPO policies
+                  href: scom-manage-instance/verify-azure-internal-group-policy-object-policies.md
+                - name: Step 11. SCOM Managed Instance self-verification of steps
+                  href: scom-manage-instance/self-verification-steps.md
+                - name: Step 12. Create a SCOM Managed Instance
+                  href: scom-manage-instance/create-operations-manager-managed-instance.md
+            - name: Post Deployment
+              items:
+                - name: Connect to the Ops Console
+                  href: scom-manage-instance/connect-managed-instance-ops-console.md
+                - name: Scale SCOM Managed Instance
+                  href: scom-manage-instance/scale-scom-managed-instance.md
+                - name: Patch SCOM Managed Instance
+                  href: scom-manage-instance/patch-scom-managed-instance.md
+                - name: Report using Power BI
+                  href: scom-manage-instance/create-reports-power-bi.md
+                - name: Dashboards on Azure Managed Grafana
+                  href: scom-manage-instance/dashboards-on-azure-managed-grafana.md
+                - name: Query SCOM Managed Instance data on Azure Managed Grafana
+                  href: scom-manage-instance/query-scom-managed-instance-data-on-grafana.md
+                - name: View System Center Operations Manager's alerts in Azure Monitor
+                  href: scom-manage-instance/view-operations-manager-alerts-azure-monitor.md
+                - name: Monitor Azure and Off-Azure Virtual machines with SCOM Managed Instance extensions
+                  href: scom-manage-instance/monitor-azure-off-azure-vm-with-scom-managed-instance.md
+                - name: Monitor Off-Azure Virtual machines
+                  href: scom-manage-instance/monitor-off-azure-vm-with-scom-managed-instance.md
+                - name: Monitor Linux machines
+                  href: scom-manage-instance/monitor-linux-machines.md
+        - name: Logs
+          items:
+            - name: Activity Log
+              href: scom-manage-instance/scom-mi-activity-log.md
+            - name: Configure Log Analytics for Azure Monitor SCOM Managed Instance
+              href: scom-manage-instance/configure-log-analytics-for-scom-managed-instance.md
+        - name: Troubleshoot
+          items:
+            - name: Troubleshoot issues with Azure Monitor SCOM Managed Instance
+              href: scom-manage-instance/troubleshoot-scom-managed-instance.md
+            - name: Troubleshoot commonly encountered errors while validating input parameters
+              href: scom-manage-instance/troubleshooting-input-parameters-scom-managed-instance.md
+            - name: FAQs
+              href: scom-manage-instance/scom-managed-instance-faq.yml
+        - name: Security
+          items:
+            - name: Managed Identity
+              href: scom-manage-instance/use-managed-identities-with-scom-mi.md
+            - name: Encryption at rest
+              href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
       - name: Multicloud monitoring
         href: fundamentals/best-practices-multicloud.md
       - name: Enterprise architecture

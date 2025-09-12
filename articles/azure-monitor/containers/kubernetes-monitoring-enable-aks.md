@@ -287,7 +287,7 @@ Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in 
 
 After the policy is assigned to the subscription, whenever you create a new cluster without Prometheus enabled, the policy will run and deploy to enable Prometheus monitoring.
 
-### [Azure portal](#portal)
+### [Azure portal](#tab/portal)
 
 ### New AKS cluster (Prometheus, Container insights, and Grafana)
 
@@ -614,7 +614,7 @@ az monitor diagnostic-settings create \
 
 ### [Azure Policy](#tab/policy) 
 
-### [Azure portal](#portal)
+### [Azure portal](#tab/portal)
 Select **Diagnostic settings** from the **Monitoring** section of the menu for the cluster. Then select **+ Add diagnostic setting**.
 
 :::image type="content" source="media/kubernetes-monitoring-enable-portal/diagnostic-setting-new.png" alt-text="Screenshot that shows creation of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable-portal/diagnostic-setting-new.png" :::
