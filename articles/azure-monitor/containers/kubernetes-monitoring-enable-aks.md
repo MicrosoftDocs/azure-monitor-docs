@@ -420,6 +420,62 @@ Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in 
 > [!NOTE]
 > Edit the main.tf file appropriately before running the terraform template. Add in any existing azure_monitor_workspace_integrations values to the grafana resource before running the template. Else, older values get deleted and replaced with what is there in the template during deployment. Users with 'User Access Administrator' role in the subscription  of the AKS cluster can enable 'Monitoring Reader' role directly by deploying the template. Edit the grafanaSku parameter if you're using a nonstandard SKU and finally run this template in the Grafana Resource's resource group.
 
+
+#### Container logs
+
+#### New AKS cluster
+
+1.	Download Terraform template file depending on whether you want to enable Syslog collection.
+
+    **Syslog**
+    - [https://aka.ms/enable-monitoring-msi-syslog-terraform](https://aka.ms/enable-monitoring-msi-syslog-terraform)
+
+    **No Syslog** 
+    - [https://aka.ms/enable-monitoring-msi-terraform](https://aka.ms/enable-monitoring-msi-terraform)
+
+2.	Adjust the `azurerm_kubernetes_cluster` resource in *main.tf* based on your cluster settings.
+3.	Update parameters in *variables.tf* to replace values in "<>"
+
+    | Parameter | Description |
+    |:---|:---|
+    | `aks_resource_group_name` | Use the values on the AKS Overview page for the resource group. |
+    | `resource_group_location` | Use the values on the AKS Overview page for the resource group. |
+    | `cluster_name` | Define the cluster name that you would like to create. |
+    | `workspace_resource_id` | Use the resource ID of your Log Analytics workspace. |
+    | `workspace_region` | Use the location of your Log Analytics workspace. |
+    | `resource_tag_values` | Match the existing tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will match `MSCI-<clusterName>-<clusterRegion>` and this resource is created in the same resource group as the AKS clusters. For first time onboarding, you can set the arbitrary tag values. |
+    | `enabledContainerLogV2` | Set this parameter value to be true to use the default recommended ContainerLogV2. |
+    | Cost optimization parameters | Refer to [Data collection parameters](container-insights-cost-config.md#data-collection-parameters) |
+    | `streams` | Streams for data collection. For retina networkflow logs feature, include `Microsoft-RetinaNetworkFlowLogs`. For high scale mode, replace the stream `Microsoft-ContainerLogV2` with `Microsoft-ContainerLogV2-HighScale` in the template.   |
+    | `use_azure_monitor_private_link_scope`  | Flag to indicate whether to configure Azure Monitor Private Link Scope.  |
+    | `azure_monitor_private_link_scope_resource_id` | Azure Resource ID of the Azure Monitor Private Link Scope. |
+    
+
+
+4.	Run `terraform init -upgrade` to initialize the Terraform deployment.
+5.	Run `terraform plan -out main.tfplan` to initialize the Terraform deployment.
+6.	Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
+
+
+#### Existing AKS cluster
+1.	Import the existing cluster resource first with the command: ` terraform import azurerm_kubernetes_cluster.k8s <aksResourceId>`
+2.	Add the oms_agent add-on profile to the existing azurerm_kubernetes_cluster resource.
+    ```
+    oms_agent {
+        log_analytics_workspace_id = var.workspace_resource_id
+        msi_auth_for_monitoring_enabled = true
+      }
+    ```
+3.	Copy the DCR and DCRA resources from the Terraform templates
+4.	Run `terraform plan -out main.tfplan` and make sure the change is adding the oms_agent property. Note: If the `azurerm_kubernetes_cluster` resource defined is different during terraform plan, the existing cluster will get destroyed and recreated.
+5.	Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
+
+> [!TIP]
+> - Edit the `main.tf` file appropriately before running the terraform template
+> - Data will start flowing after 10 minutes since the cluster needs to be ready first
+> - WorkspaceID needs to match the format `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
+> - If resource group already exists, run `terraform import azurerm_resource_group.rg /subscriptions/<Subscription_ID>/resourceGroups/<Resource_Group_Name>` before terraform plan
+
 ### [Azure Policy](#tab/policy)
 
 
@@ -493,71 +549,6 @@ The **Collected data** option allows you to select the tables that are populated
 | Workloads, Deployments, and HPAs | InsightsMetrics, KubePodInventory, KubeEvents, ContainerInventory, ContainerNodeInventory, KubeNodeInventory, KubeServices | |
 | Persistent Volumes | InsightsMetrics, KubePVInventory | |
 
-
-
-
----
-
-
-
-
-
-
-### [Terraform](#tab/terraform)
-
-#### New AKS cluster
-
-1.	Download Terraform template file depending on whether you want to enable Syslog collection.
-
-    **Syslog**
-    - [https://aka.ms/enable-monitoring-msi-syslog-terraform](https://aka.ms/enable-monitoring-msi-syslog-terraform)
-
-    **No Syslog** 
-    - [https://aka.ms/enable-monitoring-msi-terraform](https://aka.ms/enable-monitoring-msi-terraform)
-
-2.	Adjust the `azurerm_kubernetes_cluster` resource in *main.tf* based on your cluster settings.
-3.	Update parameters in *variables.tf* to replace values in "<>"
-
-    | Parameter | Description |
-    |:---|:---|
-    | `aks_resource_group_name` | Use the values on the AKS Overview page for the resource group. |
-    | `resource_group_location` | Use the values on the AKS Overview page for the resource group. |
-    | `cluster_name` | Define the cluster name that you would like to create. |
-    | `workspace_resource_id` | Use the resource ID of your Log Analytics workspace. |
-    | `workspace_region` | Use the location of your Log Analytics workspace. |
-    | `resource_tag_values` | Match the existing tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will match `MSCI-<clusterName>-<clusterRegion>` and this resource is created in the same resource group as the AKS clusters. For first time onboarding, you can set the arbitrary tag values. |
-    | `enabledContainerLogV2` | Set this parameter value to be true to use the default recommended ContainerLogV2. |
-    | Cost optimization parameters | Refer to [Data collection parameters](container-insights-cost-config.md#data-collection-parameters) |
-    | `streams` | Streams for data collection. For retina networkflow logs feature, include `Microsoft-RetinaNetworkFlowLogs`. For high scale mode, replace the stream `Microsoft-ContainerLogV2` with `Microsoft-ContainerLogV2-HighScale` in the template.   |
-    | `use_azure_monitor_private_link_scope`  | Flag to indicate whether to configure Azure Monitor Private Link Scope.  |
-    | `azure_monitor_private_link_scope_resource_id` | Azure Resource ID of the Azure Monitor Private Link Scope. |
-    
-
-
-4.	Run `terraform init -upgrade` to initialize the Terraform deployment.
-5.	Run `terraform plan -out main.tfplan` to initialize the Terraform deployment.
-6.	Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
-
-
-#### Existing AKS cluster
-1.	Import the existing cluster resource first with the command: ` terraform import azurerm_kubernetes_cluster.k8s <aksResourceId>`
-2.	Add the oms_agent add-on profile to the existing azurerm_kubernetes_cluster resource.
-    ```
-    oms_agent {
-        log_analytics_workspace_id = var.workspace_resource_id
-        msi_auth_for_monitoring_enabled = true
-      }
-    ```
-3.	Copy the DCR and DCRA resources from the Terraform templates
-4.	Run `terraform plan -out main.tfplan` and make sure the change is adding the oms_agent property. Note: If the `azurerm_kubernetes_cluster` resource defined is different during terraform plan, the existing cluster will get destroyed and recreated.
-5.	Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
-
-> [!TIP]
-> - Edit the `main.tf` file appropriately before running the terraform template
-> - Data will start flowing after 10 minutes since the cluster needs to be ready first
-> - WorkspaceID needs to match the format `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
-> - If resource group already exists, run `terraform import azurerm_resource_group.rg /subscriptions/<Subscription_ID>/resourceGroups/<Resource_Group_Name>` before terraform plan
-
 ### [Azure Policy](#tab/policy)
 
 #### Azure portal
@@ -597,7 +588,6 @@ The **Collected data** option allows you to select the tables that are populated
     ```
 
 After the policy is assigned to the subscription, whenever you create a new cluster without Container insights enabled, the policy will run and deploy to enable Container insights monitoring. 
-
 
 ---
 
