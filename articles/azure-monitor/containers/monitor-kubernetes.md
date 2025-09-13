@@ -9,10 +9,6 @@ ms.date: 04/25/2025
 
 [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md) describes the Azure Monitor services used to provide complete monitoring of your Kubernetes environment and the workloads that run on it. This article provides best practices for how to configure these services to monitor the different layers of your Kubernetes environment based on the typical roles that manage them.
 
-> [!NOTE]
-> This article provides complete guidance on monitoring the different layers of your Kubernetes environment based on Azure Kubernetes Service (AKS) or Kubernetes clusters in other clouds. If you're just getting started with AKS or Azure Monitor, see [Monitoring AKS](/azure/aks/monitor-aks) for basic information for getting started monitoring an AKS cluster.
-
-
 Following is an illustration of a common model of a typical Kubernetes environment, starting from the infrastructure layer up through applications. Each layer has distinct monitoring requirements that are addressed by different services and typically managed by different roles in the organization.
 
 :::image type="content" source="media/monitor-kubernetes/layers-with-roles.png" alt-text="Diagram of layers of Kubernetes environment with related administrative roles." lightbox="media/monitor-kubernetes/layers-with-roles.png"  border="false":::
@@ -34,8 +30,8 @@ The *Network Engineer* is responsible for traffic between workloads and any ingr
 
 Following are common scenarios for monitoring the network.
 
-- Create [flow logs](/azure/network-watcher/network-watcher-nsg-flow-logging-overview) to log information about the IP traffic flowing through network security groups used by your cluster and then use [traffic analytics](/azure/network-watcher/traffic-analytics) to analyze and provide insights on this data. You'll most likely use the same Log Analytics workspace for traffic analytics that you use for Container insights and your control plane logs.
-- Using [traffic analytics](/azure/network-watcher/traffic-analytics), you can determine if any traffic is flowing either to or from any unexpected ports used by the cluster and also if any traffic is flowing over public IPs that shouldn't be exposed. Use this information to determine whether your network rules need modification.
+- Create [flow logs](/azure/network-watcher/network-watcher-nsg-flow-logging-overview) with [Network Watcher](/azure/network-watcher/network-watcher-monitoring-overview) to log information about the IP traffic flowing through network security groups used by your cluster and then use [traffic analytics](/azure/network-watcher/traffic-analytics) to analyze and provide insights on this data. Use the same Log Analytics workspace for traffic analytics that you use for your container logs and control plane logs.
+- Using [traffic analytics](/azure/network-watcher/traffic-analytics), determine if any traffic is flowing either to or from any unexpected ports used by the cluster and also if any traffic is flowing over public IPs that shouldn't be exposed. Use this information to determine whether your network rules need modification.
 - For AKS clusters, use the [Network Observability add-on for AKS (preview)](https://aka.ms/NetObsAddonDoc) to monitor and observe access between services in the cluster (east-west traffic).
 
 
@@ -45,26 +41,23 @@ The *platform engineer*, also known as the cluster administrator, is responsible
 
 :::image type="content" source="media/monitor-kubernetes/layers-platform-engineer.png" alt-text="Diagram of layers of Kubernetes environment for platform engineer." lightbox="media/monitor-kubernetes/layers-platform-engineer.png"  border="false":::
 
-
 Large organizations may also have a *fleet architect*, which is similar to the platform engineer but is responsible for multiple clusters. They need visibility across the entire environment and must perform administrative tasks at scale. At scale recommendations are included in the guidance below. See [What is Azure Kubernetes Fleet Manager?](/azure/kubernetes-fleet/overview) for details on creating a Fleet resource for multi-cluster and at-scale scenarios.
 
 
 ### Configure monitoring for platform engineer
 
-The sections below identify the steps for complete monitoring of your Kubernetes environment using the Azure services in [Container levels](./kubernetes-monitoring-overview.md#container-levels). Functionality and integration options are provided for each to help you determine where you may need to modify this configuration to meet your particular requirements.
-
-Onboarding Managed Prometheus and container logging can be part of the same experience as described in [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md). The following sections described each separately so you can consider your all of your onboarding and configuration options for each.
+The sections below identify the steps for complete monitoring of your Kubernetes environment using the Azure services in [Container levels](./kubernetes-monitoring-overview.md#container-levels). Functionality and integration options are provided for each to help you determine where you may need to modify this configuration to meet your particular requirements. Onboarding Managed Prometheus and container logging can be part of the same experience as described in [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md). The following sections described each separately so you can consider your all of your onboarding and configuration options for each.
 
 #### Enable scraping of Prometheus metrics
 
 > [!IMPORTANT]
->  To use Azure Monitor managed service for Prometheus, you need to have an [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md). For information on design considerations for a workspace configuration, see [Azure Monitor workspace architecture](../essentials/azure-monitor-workspace-overview.md#azure-monitor-workspace-architecture).
+>  To use Azure Monitor managed service for Prometheus, you need to have an [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md). For information on design considerations for a workspace configuration, see [Azure Monitor workspace architecture](../metrics/azure-monitor-workspace-overview.md#azure-monitor-workspace-architecture).
 
 Enable scraping of Prometheus metrics by Azure Monitor managed service for Prometheus from your cluster either when it's created or add this functionality to an existing cluster. See [Enable Prometheus metrics](./kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics) for details.
 
-If you already have a Prometheus environment that you want to use for your AKS clusters, then enable Azure Monitor managed service for Prometheus and then use remote-write to send data to your existing Prometheus environment. You can also [use remote-write to send data from your existing self-managed Prometheus environment to Azure Monitor managed service for Prometheus](../essentials/prometheus-remote-write.md). 
+If you already have a Prometheus environment that you want to use for your AKS clusters, then enable Azure Monitor managed service for Prometheus and then use remote-write to send data to your existing Prometheus environment. You can also [use remote-write to send data from your existing self-managed Prometheus environment to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md). 
 
-See [Default Prometheus metrics configuration in Azure Monitor](../essentials/prometheus-metrics-scrape-default.md) for details on the metrics that are collected by default and their frequency of collection. If you want to customize the configuration, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-scrape-configuration.md).
+See [Default Prometheus metrics configuration in Azure Monitor](../metrics/prometheus-metrics-scrape-default.md) for details on the metrics that are collected by default and their frequency of collection. If you want to customize the configuration, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](../metrics/prometheus-metrics-scrape-configuration.md).
 
 
 #### Enable Grafana for analysis of Prometheus data
@@ -72,11 +65,14 @@ See [Default Prometheus metrics configuration in Azure Monitor](../essentials/pr
 > [!NOTE]
 > [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) is currently in public preview and can replace Managed Grafana. This version of Grafana has no cost, requires no configuration, and presents dashboards in the Azure portal.Use Managed Grafana if you want to create dashboards that combine data from multiple data sources or if you want to integrate with an existing Grafana environment.
 
-[Create an instance of Managed Grafana](/azure/managed-grafana/quickstart-managed-grafana-portal) and [link it to your Azure Monitor workspace](../essentials/azure-monitor-workspace-manage.md#link-a-grafana-workspace) so that you can use your Prometheus data as a data source. You can also manually perform this configuration using [add Azure Monitor managed service for Prometheus as data source](../essentials/prometheus-grafana.md). A variety of [prebuilt dashboards](../visualize/visualize-use-managed-grafana-how-to.md) are available for monitoring Kubernetes clusters including several that present similar information as Container insights views. 
+[Create an instance of Managed Grafana](/azure/managed-grafana/quickstart-managed-grafana-portal) and [link it to your Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#link-a-grafana-workspace) so that you can use your Prometheus data as a data source. You can also manually perform this configuration using [add Azure Monitor managed service for Prometheus as data source](../metrics/prometheus-grafana.md). A variety of [prebuilt dashboards](../visualize/visualize-use-managed-grafana-how-to.md) are available for monitoring Kubernetes clusters including several that present similar information as Container insights views. 
 
 If you have an existing Grafana environment, then you can continue to use it and add Azure Monitor managed service for [Prometheus as a data source](https://grafana.com/docs/grafana/latest/datasources/prometheus/). You can also [add the Azure Monitor data source to Grafana](https://grafana.com/docs/grafana/latest/datasources/azure-monitor/) to use data collected by Container insights in custom Grafana dashboards. Perform this configuration if you want to focus on Grafana dashboards rather than using the Container insights views and reports.
 
 #### Enable collection of container logs
+
+> [!IMPORTANT]
+>  To use Azure Monitor managed service for Prometheus, you need to have a [Log Analytics workspace](../metrics/azure-monitor-workspace-overview.md). For information on design considerations for a workspace configuration, see [Azure Monitor workspace architecture](../metrics/azure-monitor-workspace-overview.md#azure-monitor-workspace-architecture).
 
 When you enable collection of container logs for your Kubernetes cluster, Azure Monitor deploys a containerized version of the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) that sends stdout/stderr and infrastructure logs to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) in Azure Monitor where they can be analyzed using [Kusto Query Language (KQL)](../logs/log-query-overview.md).
 
@@ -92,7 +88,7 @@ If you have an existing solution for collection of logs, then follow the guidanc
 
 #### Collect control plane logs for AKS clusters
 
-The logs for AKS control plane components are implemented in Azure as [resource logs](../essentials/resource-logs.md). [Create a diagnostic setting](./kubernetes-monitoring-enable-aks.md#enable-control-plane-logs) for each AKS cluster to send resource logs to a Log Analytics workspace. Use Azure Policy to ensure consistent configuration across multiple clusters.
+The logs for AKS control plane components are implemented in Azure as [resource logs](../metrics/resource-logs.md). [Create a diagnostic setting](./kubernetes-monitoring-enable-aks.md#enable-control-plane-logs) for each AKS cluster to send resource logs to a Log Analytics workspace. Use Azure Policy to ensure consistent configuration across multiple clusters.
 
 There's a cost for sending resource logs to a workspace, so you should only collect those log categories that you intend to use. For a description of the categories that are available for AKS, see [Resource logs](/azure/aks/monitor-aks-reference#resource-logs).  Start by collecting a minimal number of categories and then modify the diagnostic setting to collect additional categories as your needs increase and as you understand your associated costs. You can send logs to an Azure storage account to reduce costs if you need to retain the information for compliance reasons. For details on the cost of ingesting and retaining log data, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
@@ -112,7 +108,7 @@ If you're unsure which resource logs to initially enable, use the following reco
 If you have an existing solution for collection of logs, either follow the guidance for that tool or enable log collection with Azure Monitor and use the [data export feature of Log Analytics workspace](../logs/logs-data-export.md) to send data to Azure event hub to forward to alternate system.
 
 #### Collect Activity log for AKS clusters
-Configuration changes to your AKS clusters are stored in the [Activity log](../essentials/activity-log.md). [Create a diagnostic setting to send this data to your Log Analytics workspace](../essentials/activity-log.md#send-to-log-analytics-workspace) to analyze it with other monitoring data.  There's no cost for this data collection, and you can analyze or alert on the data using Log Analytics.
+Configuration changes to your AKS clusters are stored in the [Activity log](../metrics/activity-log.md). [Create a diagnostic setting to send this data to your Log Analytics workspace](../metrics/activity-log.md#send-to-log-analytics-workspace) to analyze it with other monitoring data.  There's no cost for this data collection, and you can analyze or alert on the data using Log Analytics.
 
 
 ### Monitor level 2 - Cluster level components
@@ -133,7 +129,7 @@ Following are common scenarios for monitoring the cluster level components.
 
 **Grafana dashboards**<br>
 - Use the [prebuilt dashboard](../visualize/visualize-use-managed-grafana-how-to.md) in Managed Grafana for **Kubelet** to see the health and performance of each.
-- Use Grafana dashboards with [Prometheus metric values](../essentials/prometheus-metrics-scrape-default.md) related to disk such as `node_disk_io_time_seconds_total` and `windows_logical_disk_free_bytes` to monitor attached storage.
+- Use Grafana dashboards with [Prometheus metric values](../metrics/prometheus-metrics-scrape-default.md) related to disk such as `node_disk_io_time_seconds_total` and `windows_logical_disk_free_bytes` to monitor attached storage.
 - Multiple [Kubernetes dashboards](https://grafana.com/grafana/dashboards/?search=kubernetes) are available that visualize the performance and health of your nodes based on data stored in Prometheus.
 
 **Log Analytics**
