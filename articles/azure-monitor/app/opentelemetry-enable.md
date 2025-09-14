@@ -139,6 +139,8 @@ For *Quarkus* native applications:
 
 * Add the [Quarkus OpenTelemetry Exporter for Azure](https://mvnrepository.com/artifact/io.quarkiverse.opentelemetry.exporter/quarkus-opentelemetry-exporter-azure) dependency.
 
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
 #### [Node.js](#tab/nodejs)
 
 Install the latest [@azure/monitor-opentelemetry](https://www.npmjs.com/package/@azure/monitor-opentelemetry) package:
@@ -394,6 +396,8 @@ Azure Monitor OpenTelemetry sample applications are available for all supported 
 * Learn more features for Quarkus native applications in [Quarkus OpenTelemetry Exporter for Azure](https://quarkus.io/guides/opentelemetry).
 * Review the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
 * To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 
