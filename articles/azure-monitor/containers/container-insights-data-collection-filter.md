@@ -13,7 +13,7 @@ Kubernetes clusters generate a large amount of data that's collected by Azure Mo
 [ConfigMaps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) are a Kubernetes mechanism that allow you to store non-confidential data such as a configuration file or environment variables. Container insights looks for a ConfigMap on each cluster with particular settings that define data that it should collect. 
 
 > [!TIP]
-> Before implementing any of the filtering options described in this article, ensure that you select a [log collection profile](./kubernetes-monitoring-enable-portal.md#container-log-options) that matches your requirements. Use the information in this article to further refine the data collection settings for your cluster.
+> Before implementing any of the filtering options described in this article, ensure that you select a [log collection profile](./kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics-and-container-logging) that matches your requirements. Use the information in this article to further refine the data collection settings for your cluster.
 
 ## Prerequisites 
 - The minimum agent version supported to collect stdout, stderr, and environmental variables from container workloads is **ciprod06142019** or later. 

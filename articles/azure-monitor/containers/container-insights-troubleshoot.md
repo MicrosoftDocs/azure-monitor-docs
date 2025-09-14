@@ -90,7 +90,7 @@ Check if the Log Analytics workspace is configured for local authentication with
 When the daily cap is limit is met for a Log Analytics workspace, it will stop collecting data until the reset time. See [Log Analytics Daily Cap](../logs/daily-cap.md).
 
 ### DCR not deployed with Terraform
-If Container insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. See [Enable Container insights using Terraform](./kubernetes-monitoring-enable-terraform.md).
+If Container insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. See [Enable Container insights using Terraform](./kubernetes-monitoring-enable-aks.md).
 
 ### Container insights not reporting any information
 Use the following steps if you can't view status information or no results are returned from a log query.

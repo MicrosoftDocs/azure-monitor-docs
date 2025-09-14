@@ -1,6 +1,6 @@
 ---
 title: Enable monitoring for AKS clusters
-description: Learn how to enable Container insights and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster.
+description: Learn how to enable monitoring for Azure Kubernetes Service (AKS) cluster with Azure Monitor.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
@@ -610,6 +610,7 @@ az monitor diagnostic-settings create \
 
 ### [Azure Resource Manager](#tab/arm)
 
+#### JSON
 
 ```json
 {
@@ -688,7 +689,7 @@ az monitor diagnostic-settings create \
 }
 ```
 
-### [Bicep](#tab/bicep)
+#### Bicep
 
 ```bicep
 param clusterName string
@@ -802,7 +803,7 @@ Select **Send to Log Analytics workspace** and select the same workspace where y
 
 :::image type="content" source="media/kubernetes-monitoring-enable-portal/diagnostic-setting-details.png" alt-text="Screenshot that shows details of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable-portal/diagnostic-setting-details.png" :::
 
-## Verify deployment
+### Verify deployment
 Within a few minutes after enabling monitoring, you should be able to use the following methods to verify that the monitoring features are enabled.
 
 - The cluster should move from the **Unmonitored clusters** view to the **Monitored clusters** view in Container insights multi-cluster view.
