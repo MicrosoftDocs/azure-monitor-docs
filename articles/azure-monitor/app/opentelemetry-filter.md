@@ -77,6 +77,8 @@ Suppressing autocollected telemetry isn't supported with Java native. To filter 
 * **Spring Boot** - [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
 * **Quarkus** - [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
 
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
 ### [Node.js](#tab/nodejs)
 
 > [!NOTE]
@@ -259,6 +261,8 @@ Sampling overrides and telemetry processors aren't supported with Java native. T
 * **Spring Boot** - [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
 * **Quarkus** - [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
 
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
 ### [Node.js](#tab/nodejs)
 
 You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`.
@@ -381,6 +385,8 @@ class SpanFilteringProcessor(SpanProcessor):
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
 * See the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
 * To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 

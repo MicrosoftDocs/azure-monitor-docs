@@ -79,6 +79,8 @@ Select a tab for the language of your choice to discover support options.
 - For a list of open issues with Spring Boot native applications, see the [GitHub Issues Page](https://github.com/Azure/azure-sdk-for-java/issues?q=is%3Aopen+is%3Aissue+label%3A%22Spring+Monitor%22).
 - For a list of open issues with Quarkus native applications, see the [GitHub Issues Page](https://github.com/quarkiverse/quarkus-opentelemetry-exporter).
 
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
 ### [Node.js](#tab/nodejs)
 
 - For Azure support issues, open an [Azure support ticket](https://azure.microsoft.com/support/create-ticket/).
