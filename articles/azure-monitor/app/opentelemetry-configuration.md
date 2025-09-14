@@ -276,6 +276,8 @@ To set the cloud role name:
 * Use the `spring.application.name` for Spring Boot native image applications
 * Use the `quarkus.application.name` for Quarkus native image applications
 
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
 ### [Node.js](#tab/nodejs)
 
 Set the Cloud Role Name and the Cloud Role Instance via [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, although it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
@@ -383,8 +385,7 @@ For Spring Boot native applications, the [sampling configurations of the OpenTel
 
 For Quarkus native applications, configure sampling using the [Quarkus OpenTelemetry guide](https://quarkus.io/guides/opentelemetry#sampler), then use the [Quarkus OpenTelemetry Exporter](https://docs.quarkiverse.io/quarkus-opentelemetry-exporter/dev/quarkus-opentelemetry-exporter-azure.html) to send telemetry to Application Insights.
 
-> [!NOTE]
-> Quarkus extensions are maintained and supported by the Quarkus community. For help, use [Quarkus community support channels](https://quarkus.io/support). Microsoft doesn't provide technical support for this integration.
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 
@@ -903,6 +904,8 @@ For more information about Java, see the [Java supplemental documentation](java-
 For Spring Boot native applications, the [OpenTelemetry Java SDK configurations](https://opentelemetry.io/docs/languages/java/configuration/) are available.
 
 For Quarkus native applications, review the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#configuration).
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 
