@@ -26,11 +26,11 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 
 ## Create workspaces
 
-The following table describes the workspaces that are required to support the Azure Monitor features enabled in this article. You can create each workspace as part of the onboarding process or use an existing workspace.  See [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on how many workspaces to create and where they should be placed. 
+The following table describes the workspaces that are required to support the Azure Monitor features enabled in this article. If you don't already have an existing workspace of each type, you can create them as part of the onboarding process.  See [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on how many workspaces to create and where they should be placed. 
 
 | Feature | Workspace | Notes |
 |:---|:---|:---|
-| Managed Prometheus | [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md) | `Contributor` permission is enough for enabling the addon to send data to the Azure Monitor workspace. You will need `Owner` level permission to link your Azure Monitor Workspace to view metrics in Azure Managed Grafana. This is required because the user executing the onboarding step, needs to be able to give the Azure Managed Grafana System Identity `Monitoring Reader` role on the Azure Monitor Workspace to query the metrics.<br><br>If you don't specify an existing Azure Monitor workspace when onboarding, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one with a name in the format `DefaultAzureMonitorWorkspace-<mapped_region>` will be created in a resource group with the name `DefaultRG-<cluster_region>`. |
+| Managed Prometheus | [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md) | If you don't specify an existing Azure Monitor workspace when onboarding, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one with a name in the format `DefaultAzureMonitorWorkspace-<mapped_region>` will be created in a resource group with the name `DefaultRG-<cluster_region>`.<br><br>`Contributor` permission is enough for enabling the addon to send data to the Azure Monitor workspace. You will need `Owner` level permission to link your Azure Monitor Workspace to view metrics in Azure Managed Grafana. This is required because the user executing the onboarding step, needs to be able to give the Azure Managed Grafana System Identity `Monitoring Reader` role on the Azure Monitor Workspace to query the metrics. |
 | Container logging<br>Control plane logs | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter.<br><br>If you don't specify an existing Log Analytics workspace, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one will be created with a name in the format `DefaultWorkspace-<GUID>-<Region>`. |
 | Managed Grafana | [Azure Managed Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal#create-an-azure-managed-grafana-workspace) | [Link your Grafana workspace to your Azure Monitor workspace](/azure/managed-grafana/how-to-connect-azure-monitor-workspace) to make the Prometheus metrics collected from your cluster available to Grafana dashboards. |
 
@@ -49,18 +49,16 @@ Use one of the following methods to enable scraping of Prometheus metrics from y
     - Microsoft.Insights
     - Microsoft.AlertsManagement
     - Microsoft.Monitor
-  - The following resource providers must be registered in the subscription of the Grafana workspace subscription:
-      - Microsoft.Dashboard
+- The following resource providers must be registered in the subscription of the Grafana workspace subscription:
+    - Microsoft.Dashboard
 
 
-> [!IMPORTANT] 
-> Check the references below for configuration requirements for particular scenarios.
-> 
-> - If you're using private link, see [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
->
-> - To enable container logging with network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
->
-> - To enable high scale mode, follow the onboarding process at [Enable high scale mode for Monitoring add-on](./container-insights-high-scale.md#enable-high-scale-mode-for-monitoring-add-on). You must also ConfigMap as described in [Update ConfigMap](./container-insights-high-scale.md#update-configmap), and the DCR stream needs to be changed from `Microsoft-ContainerLogV2` to `Microsoft-ContainerLogV2-HighScale`.
+### Special scenarios
+Check the references below for configuration requirements for particular scenarios.
+ 
+- If you're using private link, see [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
+- To enable container logging with network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
+- To enable high scale mode, follow the onboarding process at [Enable high scale mode for Monitoring add-on](./container-insights-high-scale.md#enable-high-scale-mode-for-monitoring-add-on). You must also ConfigMap as described in [Update ConfigMap](./container-insights-high-scale.md#update-configmap), and the DCR stream needs to be changed from `Microsoft-ContainerLogV2` to `Microsoft-ContainerLogV2-HighScale`.
 
 
 
@@ -74,7 +72,9 @@ Use one of the following methods to enable scraping of Prometheus metrics from y
 
 ### Prometheus metrics
 
-Use the `-enable-azure-monitor-metrics` option with [az aks create](/cli/azure/aks#az-aks-create) or [az aks update](/cli/azure/aks#az-aks-update) depending whether you're creating a new cluster or updating an existing cluster to install the metrics add-on that scrapes Prometheus metrics. See the following examples.
+Use the `-enable-azure-monitor-metrics` option with [az aks create](/cli/azure/aks#az-aks-create) or [az aks update](/cli/azure/aks#az-aks-update) depending whether you're creating a new cluster or updating an existing cluster to install the metrics add-on that scrapes Prometheus metrics. This will use the configuration described in [Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md). To modify this configuration, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](./prometheus-metrics-scrape-configuration.md).
+
+See the following examples.
 
 ```azurecli
 ### Use default Azure Monitor workspace
@@ -101,7 +101,9 @@ Each of the commands above allow the following optional parameters. The paramete
 
 #### Container logs
 
-Use the `--addon monitoring` option with [create](/cli/azure/aks#az-aks-create) for a new cluster or [az aks enable-addon](/cli/azure/aks#az-aks-enable-addons) to update an existing cluster to enable collection of container logs. See the following examples.
+Use the `--addon monitoring` option with [az aks create](/cli/azure/aks#az-aks-create) for a new cluster or [az aks enable-addon](/cli/azure/aks#az-aks-enable-addons) to update an existing cluster to enable collection of container logs. See below to modify the log collection settings.
+
+See the following examples.
 
 ```azurecli
 ### Use default Log Analytics workspace
@@ -170,7 +172,7 @@ When you specify the tables to collect using CLI or ARM, you specify a stream na
 
 
 
-### [Azure Resource Manager](#tab/arm)
+### [ARM](#tab/arm)
 
 ### Prerequisites
 
@@ -302,13 +304,9 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     ```
 
 
-
 4. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
 
-#### Container logs
-
-
-Both ARM and Bicep templates are provided in this section.
+### Container logs
 
 #### Prerequisites
  
@@ -316,29 +314,27 @@ Both ARM and Bicep templates are provided in this section.
 
 #### Download and install template
 
-1. Download and edit template and parameter file
+1. Download and edit template and parameter file.
 
-    **AKS cluster ARM**
-   - Template file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file)
-   - Parameter file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file)
-
-    **AKS  cluster Bicep**
+    **Bicep**
     - Template file (Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-template](https://aka.ms/enable-monitoring-msi-syslog-bicep-template)
     - Parameter file (No Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters](https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters)
     - Template file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-template](https://aka.ms/enable-monitoring-msi-bicep-template)
     - Parameter file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-parameters](https://aka.ms/enable-monitoring-msi-bicep-parameters)
+  
+    **ARM**
+   - Template file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file)
+   - Parameter file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file)
 
 
 2. Edit the following values in the parameter file. The same set of values are used for both the ARM and Bicep templates. Retrieve the resource ID of the resources from the **JSON View** of their **Overview** page.
 
     | Parameter | Description |
     |:---|:---|
-    | AKS: `aksResourceId`<br>Arc: `clusterResourceId`  | Resource ID of the cluster. |
-    | AKS: `aksResourceLocation`<br>Arc: `clusterRegion` | Location of the cluster. |
-    | AKS: `workspaceResourceId`<br>Arc: `workspaceResourceId` | Resource ID of the Log Analytics workspace. |
-    | Arc: `workspaceRegion` | Region of the Log Analytics workspace. |
-    | Arc: `workspaceDomain` | Domain of the Log Analytics workspace.<br>`opinsights.azure.com` for Azure public cloud<br>`opinsights.azure.us` for AzureUSGovernment. |
-    | AKS: `resourceTagValues` | Tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will be `MSCI-<clusterName>-<clusterRegion>` and this resource created in an AKS clusters resource group. For first time onboarding, you can set arbitrary tag values. |
+    | `aksResourceId`  | Resource ID of the cluster. |
+    | `aksResourceLocation` | Location of the cluster. |
+    | `workspaceResourceId` | Resource ID of the Log Analytics workspace. |
+    | `resourceTagValues` | Tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will be `MSCI-<clusterName>-<clusterRegion>` and this resource created in an AKS clusters resource group. For first time onboarding, you can set arbitrary tag values. |
     | `enableRetinaNetworkFlowLogs` | Flag to indicate whether to enable Retina Network Flow Logs. |
     | `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are sent to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are sent to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2. |
     | `enableSyslog` | Specifies whether Syslog collection should be enabled. |
@@ -608,7 +604,7 @@ az monitor diagnostic-settings create \
 --export-to-resource-specific true
 ```
 
-### [Azure Resource Manager](#tab/arm)
+### [ARM](#tab/arm)
 
 #### JSON
 
@@ -793,6 +789,8 @@ resource "azurerm_log_analytics_workspace" "example" {
 ```
 
 ### [Azure Policy](#tab/policy) 
+See [Create diagnostic settings at scale using built-in Azure Policies](../platform/diagnostic-settings-policy.md) for details about using Azure Policy to create diagnostic settings at scale.
+
 
 ### [Azure portal](#tab/portal)
 Select **Diagnostic settings** from the **Monitoring** section of the menu for the cluster. Then select **+ Add diagnostic setting**.
