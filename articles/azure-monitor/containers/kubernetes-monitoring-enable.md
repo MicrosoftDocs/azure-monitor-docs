@@ -11,39 +11,9 @@ ms.date: 08/25/2025
 
 As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes clusters. This article describes particular prerequisites and other considerations for enabling these features. 
 
-> [!TIP]
-> To quickly enable full monitoring for a single cluster, you can often just jump to one of the following articles that describes how to enable monitoring using different methods:
->
->- [Azure portal](kubernetes-monitoring-enable-portal.md)
->- [Azure CLI](kubernetes-monitoring-enable-cli.md)
->- [Azure Resource Manager templates](kubernetes-monitoring-enable-arm.md)
->- [Azure Policy](kubernetes-monitoring-enable-policy.md)
->- [Terraform](kubernetes-monitoring-enable-terraform.md)
 
 
 
-## Supported clusters
-
-The onboarding and configuration processes described in this articles support the following clusters. Any differences in the process for each type are noted in the relevant sections.
-
-- [Azure Kubernetes clusters (AKS)](/azure/aks/intro-kubernetes)
-- [Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes)
-  - AKS on Azure Local
-  - AKS Edge Essentials
-  - Canonical
-  - Cluster API Provider on Azure
-  - K8s on Azure Stack Edge
-  - Red Hat OpenShift version 4.x
-  - SUSE Rancher (Rancher Kubernetes engine)
-  - SUSE Rancher K3s
-  - VMware (TKG)
-
-The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations. For Arc-enabled clusters with Windows nodes, you can setup Managed Prometheus on a Linux node within the cluster, and configure scraping metrics from metrics endpoints running on the Windows nodes.
- 
-* Red Hat Openshift distributions, including Azure Red Hat OpenShift (ARO)
-* Windows nodes
-
-ARM64 nodes on AKSare supported. See [Cluster requirements](/azure/azure-arc/kubernetes/system-requirements#cluster-requirements) for the details of Azure Arc-enabled clusters that support ARM64 nodes.
 
 ## Security
 
@@ -55,44 +25,8 @@ ARM64 nodes on AKSare supported. See [Cluster requirements](/azure/azure-arc/kub
 - At least [Contributor](/azure/role-based-access-control/built-in-roles#contributor) access to the cluster for onboarding.
 - [Monitoring Reader](../roles-permissions-security.md#monitoring-reader) or [Monitoring Contributor](../roles-permissions-security.md#monitoring-contributor) to view data after monitoring is enabled.
 
-## Prerequisites
-
-**Arc-Enabled Kubernetes clusters**
-
-- Verify the [firewall requirements](kubernetes-monitoring-firewall.md) in addition to the [Azure Arc-enabled Kubernetes network requirements](/azure/azure-arc/kubernetes/network-requirements).
-- If you previously installed monitoring for AKS, ensure that you have [disabled monitoring](kubernetes-monitoring-disable.md) before proceeding to avoid issues during the extension install.
-- If you previously installed monitoring on a cluster using a script without cluster extensions, follow the instructions at [Disable monitoring of your Kubernetes cluster](kubernetes-monitoring-disable.md) to delete this Helm chart.
-
-**Managed Prometheus**
-
-- The cluster must use [managed identity authentication](/azure/aks/use-managed-identity).
-- You must have at `Contributor` permission to enable Managed Prometheus to send data to the Azure Monitor workspace.
-- The following resource providers must be registered in the subscription of the cluster and the Azure Monitor workspace:
-    - Microsoft.ContainerService
-    - Microsoft.Insights
-    - Microsoft.AlertsManagement
-    - Microsoft.Monitor
 
 
-## Workspaces
-The following workspaces are required for onboarding of Kubernetes monitoring features. Depending on the method you're using for onboarding, you may use an existing workspace or have a new one created for you. In most cases, you'll want to use an existing workspace since you typically want to limit the number of them in your environment. See  [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on how many workspaces to create and where they should be placed.
-
-| Feature | Workspace | Reference |
-|:---|:---|:---|
-| Managed Prometheus | Azure Monitor workspace | [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace) |
-| Container log collection  | Log Analytics workspace | [Create a Log Analytics workspace](../logs/quick-create-workspace.md) |
-
-You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.
-
-If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be [registered](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) in the subscription with the Log Analytics workspace. For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). 
-
-See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter.
-
-## Grafana
-Grafana dashboards are used for visualizing metrics and logs collected from your Kubernetes clusters. This was done using Managed Grafana which required creation of a Grafana instance. With the introduction of [Dashboards with Grafana (preview)](../visualize/visualize-grafana-overview.md), you can now visualize metrics and logs with Grafana dashboards with no configuration and no additional cost. This feature doesn't require creation of a Grafana instance. 
-
-> [!NOTE]
-> Configuration in the Azure portal still includes Managed Grafana as a standard option. If you want to use the preview of Dashboards with Grafana instead, you can disable the option to enable Managed Grafana.
 
 ## Agent
 
@@ -172,134 +106,16 @@ The settings for **collection frequency** and **namespace filtering** in the DCR
 | Insights.container/containers | Yes | Yes | |
 | Insights.container/persistentvolumes | Yes | Yes | |
 
+
+
+
+
 ## Cost control
  Kubernetes clusters generate a lot of log data, which can result in significant costs if you aren't selective about the logs that you collect. Before you enable monitoring for your cluster, see the following articles to ensure that your environment is optimized for cost and that you limit your log collection to only the data that you require:
  
 - [Configure data collection and cost optimization in Container insights using data collection rule](./container-insights-data-collection-dcr.md)<br>Details on customizing log collection once you've enabled monitoring, including using preset cost optimization configurations.
 - [Best practices for monitoring Kubernetes with Azure Monitor](../best-practices-containers.md)<br>Best practices for monitoring Kubernetes clusters organized by the five pillars of the [Azure Well-Architected Framework](/azure/architecture/framework/), including cost optimization.
 - [Cost optimization in Azure Monitor](../best-practices-cost.md)<br>Best practices for configuring all features of Azure Monitor to optimize your costs and limit the amount of data that you collect.
-
-
-
-## Verify deployment
-Once you complete the onboarding process, you can verify that the agent and selected features were deployed successfully using the [kubectl command line tool](/azure/aks/learn/quick-kubernetes-deploy-cli#connect-to-the-cluster).
-
-### Prometheus
-
-**Verify that the DaemonSet was deployed properly on the Linux node pools**
-
-```AzureCLI
-kubectl get ds ama-metrics-node --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Linux nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-metrics-node --namespace=kube-system
-NAME               DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-ama-metrics-node   1         1         1       1            1           <none>          10h
-```
-
-**Verify that Windows nodes were deployed properly**
-
-```AzureCLI
-kubectl get ds ama-metrics-win-node --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Windows nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-metrics-node --namespace=kube-system
-NAME                   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-ama-metrics-win-node   3         3         3       3            3           <none>          10h
-```
-
-**Verify that the two ReplicaSets were deployed for Prometheus**
-
-```AzureCLI
-kubectl get rs --namespace=kube-system
-```
-
-The output should resemble the following example:
-
-```output
-User@aksuser:~$kubectl get rs --namespace=kube-system
-NAME                            DESIRED   CURRENT   READY   AGE
-ama-metrics-5c974985b8          1         1         1       11h
-ama-metrics-ksm-5fcf8dffcd      1         1         1       11h
-```
-
-
-### Log collection
-
-**Verify that the DaemonSets were deployed properly on the Linux node pools**
-
-```AzureCLI
-kubectl get ds ama-logs --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Linux nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-logs --namespace=kube-system
-NAME       DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-ama-logs   2         2         2         2            2           <none>          1d
-```
-
-**Verify that Windows nodes were deployed properly**
-
-```
-kubectl get ds ama-logs-windows --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Windows nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-logs-windows --namespace=kube-system
-NAME                   DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NODE SELECTOR     AGE
-ama-logs-windows           2         2         2         2            2       <none>            1d
-```
-
-
-**Verify deployment of the Container insights solution**
-
-```
-kubectl get deployment ama-logs-rs --namespace=kube-system
-```
-
-The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get deployment ama-logs-rs --namespace=kube-system
-NAME          READY   UP-TO-DATE   AVAILABLE   AGE
-ama-logs-rs   1/1     1            1           24d
-```
-
-**View configuration with CLI**
-
-Use the `aks show` command to find out whether the solution is enabled, the Log Analytics workspace resource ID, and summary information about the cluster.
-
-```azurecli
-az aks show --resource-group <resourceGroupofAKSCluster> --name <nameofAksCluster>
-```
-
-The command will return JSON-formatted information about the solution. The `addonProfiles` section should include information on the `omsagent` as in the following example:
-
-```output
-"addonProfiles": {
-    "omsagent": {
-        "config": {
-            "logAnalyticsWorkspaceResourceID": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
-            "useAADAuth": "true"
-        },
-        "enabled": true,
-        "identity": null
-    },
-}
-```
-
----
-
 
 
 ## Next steps
@@ -318,7 +134,6 @@ The command will return JSON-formatted information about the solution. The `addo
 
 > [!IMPORTANT]
 > AKS clusters must use either a system-assigned or user-assigned managed identity. If cluster is using a service principal, you must update the cluster to use a [system-assigned managed identity](/azure/aks/use-managed-identity#update-an-existing-aks-cluster-to-use-a-system-assigned-managed-identity) or a [user-assigned managed identity](/azure/aks/use-managed-identity#update-an-existing-cluster-to-use-a-user-assigned-managed-identity).
-
 
 
 

@@ -451,12 +451,10 @@ items:
       displayName: containers, kubernetes
     - name: Enable monitoring
       items:
-      - name: Overview
-        href: containers/kubernetes-monitoring-enable.md
-      - name: Onboard AKS clusters
+      - name: AKS clusters
         href: containers/kubernetes-monitoring-enable-aks.md
-      - name: Onboard edge clusters
-        href: containers/kubernetes-monitoring-enable-aks.md
+      - name: Edge clusters
+        href: containers/kubernetes-monitoring-enable-edge.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
     - name: Analyze data

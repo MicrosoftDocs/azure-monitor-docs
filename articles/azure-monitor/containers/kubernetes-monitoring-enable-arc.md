@@ -16,10 +16,34 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 - Control plane logs
 
 
+## Supported clusters
+
+The onboarding and configuration processes described in this articles support the following clusters. Any differences in the process for each type are noted in the relevant sections.
+
+- AKS on Azure Local
+- AKS Edge Essentials
+- Canonical
+- Cluster API Provider on Azure
+- K8s on Azure Stack Edge
+- Red Hat OpenShift version 4.x
+- SUSE Rancher (Rancher Kubernetes engine)
+- SUSE Rancher K3s
+- VMware (TKG)
+
+The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations. For Arc-enabled clusters with Windows nodes, you can setup Managed Prometheus on a Linux node within the cluster, and configure scraping metrics from metrics endpoints running on the Windows nodes.
+ 
+* Red Hat Openshift distributions, including Azure Red Hat OpenShift (ARO)
+* Windows nodes
+
+ARM64 nodes on AKSare supported. See [Cluster requirements](/azure/azure-arc/kubernetes/system-requirements#cluster-requirements) for the details of Azure Arc-enabled clusters that support ARM64 nodes.
+
 ## Prerequisites
 
 - You require at least [Contributor](/azure/role-based-access-control/built-in-roles#contributor) access to the cluster for onboarding.
 - You require [Monitoring Reader](../roles-permissions-security.md#monitoring-reader) or [Monitoring Contributor](../roles-permissions-security.md#monitoring-contributor) to view data after monitoring is enabled.
+- Verify the [firewall requirements](kubernetes-monitoring-firewall.md) in addition to the [Azure Arc-enabled Kubernetes network requirements](/azure/azure-arc/kubernetes/network-requirements).
+- If you previously installed monitoring for AKS, ensure that you have [disabled monitoring](kubernetes-monitoring-disable.md) before proceeding to avoid issues during the extension install.
+- If you previously installed monitoring on a cluster using a script without cluster extensions, follow the instructions at [Disable monitoring of your Kubernetes cluster](kubernetes-monitoring-disable.md) to delete this Helm chart.
 
 
 
