@@ -1,13 +1,13 @@
 ---
-title: Enable monitoring for AKS clusters
-description: Learn how to enable Container insights and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster.
+title: Enable monitoring for edge Kubernetes clusters
+description: Learn how to enable Container insights and Managed Prometheus on edge Kubernetes clusters including arc-enabled clusters.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
 ms.date: 08/25/2025
 ---
 
-# Enable monitoring for AKS clusters
+# Enable monitoring for edge Kubernetes clusters
 As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) clusters. This article describes how to enable the following features for AKS clusters:
 
 - Prometheus metrics

@@ -471,33 +471,16 @@ Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in 
 > - WorkspaceID needs to match the format `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
 > - If resource group already exists, run `terraform import azurerm_resource_group.rg /subscriptions/<Subscription_ID>/resourceGroups/<Resource_Group_Name>` before terraform plan
 
-### [Azure Policy](#tab/policy)
-
-
-1. Download Azure Policy template and parameter files.
-
-   - Template file: [https://aka.ms/AddonPolicyMetricsProfile](https://aka.ms/AddonPolicyMetricsProfile)
-   - Parameter file: [https://aka.ms/AddonPolicyMetricsProfile.parameters](https://aka.ms/AddonPolicyMetricsProfile.parameters)
-
-2. Create the policy definition using the following CLI command:
-
-      `az policy definition create --name "Prometheus Metrics addon" --display-name "Prometheus Metrics addon" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules AddonPolicyMetricsProfile.rules.json --params AddonPolicyMetricsProfile.parameters.json`
-
-3. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
-4. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
-1. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
-
-After the policy is assigned to the subscription, whenever you create a new cluster without Prometheus enabled, the policy will run and deploy to enable Prometheus monitoring.
 
 ### [Azure portal](#tab/portal)
 
-### New AKS cluster (Prometheus, Container insights, and Grafana)
+### New AKS cluster
 
 When you create a new AKS cluster in the Azure portal, **Enable Container Logs**, **Enable Prometheus metrics**, **Enable Grafana**, and **Enable Recommended Alerts** checkboxes are checked by default in the Monitoring tab.
 
 :::image type="content" source="media/prometheus-metrics-enable/aks-integrations.png" lightbox="media/prometheus-metrics-enable/aks-integrations.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
 
-### Existing cluster (Prometheus, Container insights, and Grafana)
+### Existing cluster
 
 1. Navigate to your cluster in the Azure portal.
 2. In the service menu, select **Monitor** > **Monitor Settings**.
@@ -545,6 +528,23 @@ The **Collected data** option allows you to select the tables that are populated
 | Persistent Volumes | InsightsMetrics, KubePVInventory | |
 
 ### [Azure Policy](#tab/policy)
+
+#### Prometheus metrics
+
+1. Download Azure Policy template and parameter files.
+
+   - Template file: [https://aka.ms/AddonPolicyMetricsProfile](https://aka.ms/AddonPolicyMetricsProfile)
+   - Parameter file: [https://aka.ms/AddonPolicyMetricsProfile.parameters](https://aka.ms/AddonPolicyMetricsProfile.parameters)
+
+2. Create the policy definition using the following CLI command:
+
+      `az policy definition create --name "Prometheus Metrics addon" --display-name "Prometheus Metrics addon" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules AddonPolicyMetricsProfile.rules.json --params AddonPolicyMetricsProfile.parameters.json`
+
+3. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
+4. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
+1. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
+
+After the policy is assigned to the subscription, whenever you create a new cluster without Prometheus enabled, the policy will run and deploy to enable Prometheus monitoring.
 
 #### Azure portal
 
