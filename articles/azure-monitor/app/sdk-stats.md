@@ -21,7 +21,7 @@ Visualization is provided in the [SDK stats workbook](#open-the-sdk-stats-workbo
 
 > [!div class="checklist"]
 > - An [instrumented](opentelemetry-enable.md) Node.js or Python application.
-> - The OpenTelemetry distro 1.13.0+ or Application Insights Classic API SDK 3.10.0+.
+> - The OpenTelemetry distro (Node.js 1.13.0+ / Python 1.8.0+) or Application Insights Classic API SDK 3.10.0+.
 > - An environment variable set to [opt in](#enable-and-configure-sdk-stats).
 
 ## SDK stats overview
