@@ -4,4 +4,4 @@ ms.date: 09/14/2025
 ---
 
 > [!NOTE]
-> Quarkus extensions are maintained and supported by the Quarkus community. For help, use [Quarkus community support channels](https://quarkus.io/support). Microsoft doesn't provide technical support for this integration.
+> The Quarkus community supports and maintains Quarkus extensions. For help, use [Quarkus community support channels](https://quarkus.io/support). Microsoft doesn't provide technical support for this integration.
