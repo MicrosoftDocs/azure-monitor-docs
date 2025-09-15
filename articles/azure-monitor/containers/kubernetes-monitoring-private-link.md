@@ -138,7 +138,7 @@ Use the following steps to set up remote write for a Kubernetes cluster over a p
 Data for Container insights, is stored in a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md), so you must make this workspace accessible over a private link.
 
 > [!NOTE]
-> This section describes how to enable private link for Container insights using CLI. For details on using an ARM template, see [Enable Container insightsusing ARM template](kubernetes-monitoring-enable-arm.md) and note the parameters `useAzureMonitorPrivateLinkScope` and `azureMonitorPrivateLinkScopeResourceId`.
+> This section describes how to enable private link for Container insights using CLI. For details on using an ARM template, see [Enable Prometheus metrics and container logging](./kubernetes-monitoring-enable-aks.md?tabs=arm#enable-prometheus-metrics-and-container-logging) and note the parameters `useAzureMonitorPrivateLinkScope` and `azureMonitorPrivateLinkScopeResourceId`.
 
 ### Prerequisites
 

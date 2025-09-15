@@ -53,11 +53,11 @@ The sections below identify the steps for complete monitoring of your Kubernetes
 > [!IMPORTANT]
 >  To use Azure Monitor managed service for Prometheus, you need to have an [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md). For information on design considerations for a workspace configuration, see [Azure Monitor workspace architecture](../metrics/azure-monitor-workspace-overview.md#azure-monitor-workspace-architecture).
 
-Enable scraping of Prometheus metrics by Azure Monitor managed service for Prometheus from your cluster either when it's created or add this functionality to an existing cluster. See [Enable Prometheus metrics](./kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics) for details.
+Enable scraping of Prometheus metrics by Azure Monitor managed service for Prometheus from your cluster either when it's created or add this functionality to an existing cluster. See [Enable Prometheus metrics](./kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics-and-container-logging) for details.
 
-If you already have a Prometheus environment that you want to use for your AKS clusters, then enable Azure Monitor managed service for Prometheus and then use remote-write to send data to your existing Prometheus environment. You can also [use remote-write to send data from your existing self-managed Prometheus environment to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md). 
+If you already have a Prometheus environment that you want to use for your AKS clusters, then enable Azure Monitor managed service for Prometheus and then use remote-write to send data to your existing Prometheus environment. You can also [use remote-write to send data from your existing self-managed Prometheus environment to Azure Monitor managed service for Prometheus](./prometheus-remote-write.md). 
 
-See [Default Prometheus metrics configuration in Azure Monitor](../metrics/prometheus-metrics-scrape-default.md) for details on the metrics that are collected by default and their frequency of collection. If you want to customize the configuration, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](../metrics/prometheus-metrics-scrape-configuration.md).
+See [Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md) for details on the metrics that are collected by default and their frequency of collection. If you want to customize the configuration, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](./prometheus-metrics-scrape-configuration.md).
 
 
 #### Enable Grafana for analysis of Prometheus data
@@ -76,7 +76,7 @@ If you have an existing Grafana environment, then you can continue to use it and
 
 When you enable collection of container logs for your Kubernetes cluster, Azure Monitor deploys a containerized version of the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) that sends stdout/stderr and infrastructure logs to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) in Azure Monitor where they can be analyzed using [Kusto Query Language (KQL)](../logs/log-query-overview.md).
 
-See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable-aks.md#enable-container-logging) for prerequisites and configuration options for onboarding your Kubernetes clusters. Onboard using Azure Policy to ensure that all clusters retain a consistent configuration. 
+See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics-and-container-logging) for prerequisites and configuration options for onboarding your Kubernetes clusters. Onboard using Azure Policy to ensure that all clusters retain a consistent configuration. 
 
 Once container logging is enabled for a cluster, perform the following actions to optimize your installation.
 
@@ -88,7 +88,7 @@ If you have an existing solution for collection of logs, then follow the guidanc
 
 #### Collect control plane logs for AKS clusters
 
-The logs for AKS control plane components are implemented in Azure as [resource logs](../metrics/resource-logs.md). [Create a diagnostic setting](./kubernetes-monitoring-enable-aks.md#enable-control-plane-logs) for each AKS cluster to send resource logs to a Log Analytics workspace. Use Azure Policy to ensure consistent configuration across multiple clusters.
+The logs for AKS control plane components are implemented in Azure as [resource logs](../platform/resource-logs.md). [Create a diagnostic setting](./kubernetes-monitoring-enable-aks.md#enable-control-plane-logs) for each AKS cluster to send resource logs to a Log Analytics workspace. Use Azure Policy to ensure consistent configuration across multiple clusters.
 
 There's a cost for sending resource logs to a workspace, so you should only collect those log categories that you intend to use. For a description of the categories that are available for AKS, see [Resource logs](/azure/aks/monitor-aks-reference#resource-logs).  Start by collecting a minimal number of categories and then modify the diagnostic setting to collect additional categories as your needs increase and as you understand your associated costs. You can send logs to an Azure storage account to reduce costs if you need to retain the information for compliance reasons. For details on the cost of ingesting and retaining log data, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
@@ -108,7 +108,7 @@ If you're unsure which resource logs to initially enable, use the following reco
 If you have an existing solution for collection of logs, either follow the guidance for that tool or enable log collection with Azure Monitor and use the [data export feature of Log Analytics workspace](../logs/logs-data-export.md) to send data to Azure event hub to forward to alternate system.
 
 #### Collect Activity log for AKS clusters
-Configuration changes to your AKS clusters are stored in the [Activity log](../metrics/activity-log.md). [Create a diagnostic setting to send this data to your Log Analytics workspace](../metrics/activity-log.md#send-to-log-analytics-workspace) to analyze it with other monitoring data.  There's no cost for this data collection, and you can analyze or alert on the data using Log Analytics.
+Configuration changes to your AKS clusters are stored in the [Activity log](../platform/activity-log.md). [Create a diagnostic setting to send this data to your Log Analytics workspace](../platform/activity-log.md#send-to-log-analytics-workspace) to analyze it with other monitoring data.  There's no cost for this data collection, and you can analyze or alert on the data using Log Analytics.
 
 
 ### Monitor level 2 - Cluster level components

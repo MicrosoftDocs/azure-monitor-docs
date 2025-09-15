@@ -1,13 +1,13 @@
 ---
-title: Enable monitoring for AKS clusters
-description: Learn how to enable monitoring for Azure Kubernetes Service (AKS) cluster with Azure Monitor.
+title: Enable monitoring for Arc-enabled Kubernetes clusters
+description: Learn how to enable monitoring for Arc-enabled Kubernetes clusters with Azure Monitor.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
 ms.date: 08/25/2025
 ---
 
-# Enable monitoring for Arc-enabled clusters
+# Enable monitoring for Arc-enabled Kubernetes clusters
 As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) clusters. This article describes how to enable the following features for Arc-enabled clusters running in other clouds and on-premises:
 
 - Prometheus metrics
@@ -462,7 +462,7 @@ Navigate to your cluster in the Azure portal. In the service menu, select **Moni
 ### Configuration options
 Configuration options are the same for both new and existing clusters. The only difference is you may need to select **Advanced settings** to view all options for an existing cluster.
 
-:::image type="content" source="media/prometheus-metrics-enable/aks-integrations.png" lightbox="media/prometheus-metrics-enable/aks-integrations.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
+:::image type="content" source="media/prometheus-metrics-enable/aks-integrations.png" lightbox="media/prometheus-metrics-enable/aks-integrations.png" alt-text="Screenshot of monitoring configuration for Kubernetes cluster.":::
 
 
 3. Prometheus metrics, Grafana and Container Logs and events are selected for you. If you have existing Azure Monitor workspace, Grafana workspace and Log Analytics workspace, then they're selected for you.
@@ -470,9 +470,7 @@ Configuration options are the same for both new and existing clusters. The only 
 5. Select **Configure**.
 
 
-For container logs, you must first select the [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where the metrics are stored. You can select an existing workspace or create a new one. See [Workspaces](./kubernetes-monitoring-enable.md#workspaces) for more details about the Log Analytics workspace.
-
-You also must select a logging profile, which defines which logs will be collected and at what frequency. The available profiles are listed in the following table. 
+For container logs, you must select a logging profile, which defines which logs will be collected and at what frequency. The available profiles are listed in the following table. 
 
 :::image type="content" source="media/container-insights-cost-config/cost-settings-onboarding.png" alt-text="Screenshot that shows the onboarding options." lightbox="media/container-insights-cost-config/cost-settings-onboarding.png" :::
 
@@ -816,7 +814,6 @@ Within a few minutes after enabling monitoring, you should be able to use the fo
 
 - The cluster should move from the **Unmonitored clusters** view to the **Monitored clusters** view in Container insights multi-cluster view.
 - The **Monitor** view for the cluster should start to populate with data and no longer provide an option to enable monitoring. This includes the **Nodes**, **Workloads**, and **Containers** tabs.
-- For further validation options, see [Verify deployment](./kubernetes-monitoring-enable.md#verify-deployment).
 
 
 ---
