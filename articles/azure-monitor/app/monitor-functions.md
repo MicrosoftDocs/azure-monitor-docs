@@ -4,7 +4,6 @@ description: Azure Monitor integrates with your Azure Functions application, all
 ms.topic: how-to
 ms.custom: devx-track-extended-java, devx-track-python, devx-track-js
 ms.date: 07/30/2025
-ms.reviewer: abinetabate
 ---
 
 # Monitor Azure Functions with Azure Monitor Application Insights

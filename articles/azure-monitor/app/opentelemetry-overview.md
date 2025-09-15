@@ -3,7 +3,6 @@ title: Application Insights OpenTelemetry data collection
 description: Learn how to instrument applications using OpenTelemetry (OTel) with Azure Monitor Application Insights for telemetry data collection and monitoring.
 ms.topic: how-to
 ms.date: 03/23/2025
-ms.reviewer: mmcc
 
 #customer intent: "As a developer or site reliability engineer, I want to instrument my application with OpenTelemetry (OTel) in Application Insights so that I can collect standardized telemetry data for improved observability, performance monitoring, and diagnostics."
 
