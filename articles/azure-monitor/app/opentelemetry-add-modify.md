@@ -216,6 +216,8 @@ To reduce or increase the number of logs that Azure Monitor collects, first set 
 
 For Quartz native applications, look at the [Quarkus documentation](https://quarkus.io/guides/opentelemetry).
 
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
 #### [Node.js](#tab/nodejs)
 
 The following OpenTelemetry Instrumentation libraries are included as part of the Azure Monitor Application Insights Distro. For more information, see [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry/README.md#instrumentation-libraries).
@@ -644,6 +646,8 @@ public class Program {
     histogram.record(30.0);
     ```
 
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
 ##### [Node.js](#tab/nodejs)
 
 ```javascript
@@ -855,6 +859,8 @@ public class Program {
     myFruitCounter.add(5, Attributes.of(AttributeKey.stringKey("name"), "apple", AttributeKey.stringKey("color"), "red"));
     myFruitCounter.add(4, Attributes.of(AttributeKey.stringKey("name"), "lemon", AttributeKey.stringKey("color"), "yellow"));
     ```
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ##### [Node.js](#tab/nodejs)
 
@@ -1073,6 +1079,8 @@ public class Program {
                     observableMeasurement.record(randomNumber, Attributes.of(AttributeKey.stringKey("testKey"), "testValue"));
                 });
     ```
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ##### [Node.js](#tab/nodejs)
 
@@ -1546,6 +1554,8 @@ using (var activity = activitySource.StartActivity("CustomActivity"))
         span.end();
     }
     ```
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 #### [Node.js](#tab/nodejs)
 
@@ -2375,6 +2385,8 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
 * To see the release notes, see [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
 * To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 

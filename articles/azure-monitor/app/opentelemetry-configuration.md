@@ -276,6 +276,8 @@ To set the cloud role name:
 * Use the `spring.application.name` for Spring Boot native image applications
 * Use the `quarkus.application.name` for Quarkus native image applications
 
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
 ### [Node.js](#tab/nodejs)
 
 Set the Cloud Role Name and the Cloud Role Instance via [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, although it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
@@ -383,8 +385,7 @@ For Spring Boot native applications, the [sampling configurations of the OpenTel
 
 For Quarkus native applications, configure sampling using the [Quarkus OpenTelemetry guide](https://quarkus.io/guides/opentelemetry#sampler), then use the [Quarkus OpenTelemetry Exporter](https://docs.quarkiverse.io/quarkus-opentelemetry-exporter/dev/quarkus-opentelemetry-exporter-azure.html) to send telemetry to Application Insights.
 
-> [!NOTE]
-> Quarkus extensions are maintained and supported by the Quarkus community. For help, use [Quarkus community support channels](https://quarkus.io/support). Microsoft doesn't provide technical support for this integration.
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 
@@ -405,16 +406,31 @@ useAzureMonitor(options);
 
 ### [Python](#tab/python)
 
-The `configure_azure_monitor()` function automatically utilizes
-ApplicationInsightsSampler for compatibility with Application Insights SDKs and
-to sample your telemetry. The `OTEL_TRACES_SAMPLER_ARG` environment variable can be used to specify
-the sampling rate, with a valid range of 0 to 1, where 0 is 0% and 1 is 100%.
-For example, a value of 0.1 means 10% of your traces are sent.
+Rate-limited sampling is available starting from `azure-monitor-opentelemetry` version 1.8.0. Configure sampling using the following environment variables:
 
+- **`OTEL_TRACES_SAMPLER`**: Specifies the sampler type
+  - `microsoft.fixed.percentage` for Application Insights sampler
+  - `microsoft.rate_limited` for Rate Limited sampler
+- **`OTEL_TRACES_SAMPLER_ARG`**: Defines the sampling rate
+  - **ApplicationInsightsSampler**: Valid range 0 to 1 (0 = 0%, 1 = 100%)
+  - **RateLimitedSampler**: Maximum traces per second (e.g., 0.5 = one trace every two seconds, 5.0 = five traces per second)
+
+**Alternative configuration**: Use the `configure_azure_monitor()` function with the `traces_per_second` attribute to enable RateLimitedSampler.
+
+> [!NOTE]
+> Sampling configuration via environment variables will have precedence over the sampling exporter/distro options. If neither environment variables nor `traces_per_second` are specified, `configure_azure_monitor()` defaults to ApplicationInsightsSampler.
+
+#### ApplicationInsightsSampler example
 ```
+export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
 export OTEL_TRACES_SAMPLER_ARG=0.1
 ```
 
+#### RateLimitedSampler example
+```
+export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
+export OTEL_TRACES_SAMPLER_ARG=0.5
+```
 ---
 
 > [!TIP]
@@ -903,6 +919,8 @@ For more information about Java, see the [Java supplemental documentation](java-
 For Spring Boot native applications, the [OpenTelemetry Java SDK configurations](https://opentelemetry.io/docs/languages/java/configuration/) are available.
 
 For Quarkus native applications, review the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#configuration).
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 
