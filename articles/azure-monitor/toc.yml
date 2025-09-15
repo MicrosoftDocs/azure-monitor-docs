@@ -441,7 +441,7 @@ items:
     - name: Overview
       href: containers/kubernetes-monitoring-overview.md
       displayName: containers, kubernetes, container insights
-    - name: Deploy Kubernetes monitoring
+    - name: Deploy
       href: containers/monitor-kubernetes.md
       displayName: containers
     - name: Quickstart
@@ -459,7 +459,7 @@ items:
         href: containers/kubernetes-monitoring-disable.md
     - name: Analyze data
       items:
-      - name: Container insights
+      - name: Interactive views
         href: containers/container-insights-analyze.md
       - name: Workbooks
         href: containers/kubernetes-workbooks.md
@@ -578,7 +578,7 @@ items:
       items:
       - name: Metric alert rules
         href: containers/kubernetes-metric-alerts.md
-    - name: Troubleshooting
+    - name: Troubleshoot data collection
       items:
       - name: Prometheus
         href: containers/prometheus-metrics-troubleshoot.md

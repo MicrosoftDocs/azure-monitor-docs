@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot Container insights | Microsoft Docs
+title: Troubleshoot collection of container logs in Azure Monitor
 description: This article describes how you can troubleshoot and resolve issues with Container insights.
 ms.topic: troubleshooting-general
 ms.date: 01/29/2025
@@ -7,7 +7,7 @@ ms.reviewer: aul
 
 ---
 
-# Troubleshoot Container insights
+# Troubleshoot collection of container logs in Azure Monitor
 
 This article discusses some common issues and troubleshooting steps when using Container insights to monitor your Kubernetes cluster. 
 
