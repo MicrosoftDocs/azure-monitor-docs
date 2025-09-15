@@ -82,6 +82,12 @@ az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --reso
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --ksm-metric-labels-allow-list "namespaces=[k8s-label-1,k8s-label-n]" --ksm-metric-annotations-allow-list "pods=[k8s-annotation-1,k8s-annotation-n]"
 ```
 
+**Example**
+
+```azurecli
+az aks create/update --enable-azure-monitor-metrics --name "my-cluster" --resource-group "my-resource-group" --azure-monitor-workspace-resource-id "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.monitor/accounts/my-workspace"
+```
+
 #### Optional parameters
 Each of the commands above allow the following optional parameters. The parameter name is different for each, but their use is the same.
 
@@ -107,7 +113,6 @@ az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <
 ### Use custom log configuration file
 az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id> --data-collection-settings dataCollectionSettings.json
 
-
 ### Use legacy authentication
 az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id> --enable-msi-auth-for-monitoring false
 ```
@@ -115,7 +120,7 @@ az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <
 **Example**
 
 ```azurecli
-az aks enable-addons --addon monitoring --name "my-cluster" --resource-group "my-resource-group" --workspace-resource-id "/subscriptions/my-subscription/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace"
+az aks enable-addons --addon monitoring --name "my-cluster" --resource-group "my-resource-group" --workspace-resource-id "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace"
 ```
 
 #### Log configuration file
@@ -140,7 +145,7 @@ Each of the settings in the configuration is described in the following table.
 | `namespaceFilteringMode` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collect data on all namespaces.<br><br>Default: Off |
 | `namespaces` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored.<br><br>None. |
 |  `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are ingested to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are ingested to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2.<br><br>Default: True |
-| `streams` | An array of container insights table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>Default: ContainerLogV2, KubeEvents, KubePodInventory |
+| `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>Default: ContainerLogV2, KubeEvents, KubePodInventory |
 
 
 
@@ -290,7 +295,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 
     **Bicep**
     - Template file (Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-template](https://aka.ms/enable-monitoring-msi-syslog-bicep-template)
-    - Parameter file (No Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters](https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters)
+    - Parameter file (Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters](https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters)
     - Template file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-template](https://aka.ms/enable-monitoring-msi-bicep-template)
     - Parameter file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-parameters](https://aka.ms/enable-monitoring-msi-bicep-parameters)
   
@@ -314,7 +319,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     | `dataCollectionInterval` | Determines how often the agent collects data.  Valid values are 1m - 30m in 1m intervals The default value is 1m. If the value is outside the allowed range, then it defaults to *1 m*. |
     | `namespaceFilteringModeForDataCollection` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collect data on all namespaces.
     | `namespacesForDataCollection` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored. |
-    | `streams` | An array of container insights table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>To enable [high scale mode](./container-insights-high-scale.md) for container logs, use `Microsoft-ContainerLogV2-HighScale`.  |
+    | `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>To enable [high scale mode](./container-insights-high-scale.md) for container logs, use `Microsoft-ContainerLogV2-HighScale`.  |
     | `useAzureMonitorPrivateLinkScope` | Specifies whether to use private link for the cluster connection to Azure Monitor. |
     | `azureMonitorPrivateLinkScopeResourceId` | If private link is used, resource ID of the private link scope.  |
 
@@ -574,7 +579,7 @@ When you specify the tables to collect using CLI or ARM, you specify a stream na
 <sup>1</sup> Don't use both Microsoft-ContainerLogV2 and Microsoft-ContainerLogV2-HighScale together. This will result in duplicate data.
 
 ### Applicable tables and metrics
-The settings for **collection frequency** and **namespace filtering** don't apply to all log data. The following tables list the tables in the Log Analytics workspace used by Container insights and the metrics it collects along with the settings that apply to each. 
+The settings for **collection frequency** and **namespace filtering** don't apply to all log data. The following tables list the tables in the Log Analytics workspace along with the settings that apply to each. 
 
 | Table name | Interval? | Namespaces? | Remarks |
 |:---|:---:|:---:|:---|
@@ -741,6 +746,8 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
+**Parameter file**
+
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
@@ -762,51 +769,68 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 
 
 ### [Terraform](#tab/terraform)
+Use the following template to create a diagnostic setting for control plane logs. Modify the template to collect different categories or to send the logs to a different destination.
 
-```terraform
-provider "azurerm" {
+```terraformprovider "azurerm" {
   features {}
 }
 
-resource "azurerm_monitor_diagnostic_setting" "example" {
-  name               = "example-diagnostic-setting"
-  target_resource_id = azurerm_storage_account.example.id
+variable "setting_name" {
+  type        = string
+  description = "Name for the diagnostic setting."
+}
 
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
+variable "workspace_id" {
+  type        = string
+  description = "Resource ID of the Log Analytics workspace."
+}
 
-  enabled_log {
-    category = "AuditEvent"
+variable "cluster_id" {
+  type        = string
+  description = "Resource ID of the AKS cluster to attach diagnostics to."
+}
+
+resource "azurerm_monitor_diagnostic_setting" "aks" {
+  name                       = var.setting_name
+  target_resource_id         = var.cluster_id
+  log_analytics_workspace_id = var.workspace_id
+
+  log {
+    category = "kube-apiserver"
+    enabled  = true
   }
 
-  enabled_metric {
-    category = "AllMetrics"
+  log {
+    category = "kube-audit"
+    enabled  = true
   }
-}
 
-resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
-  location = "West Europe"
-}
+  log {
+    category = "kube-audit-admin"
+    enabled  = true
+  }
 
-resource "azurerm_storage_account" "example" {
-  name                     = "examplestorageacct"
-  resource_group_name      = azurerm_resource_group.example.name
-  location                 = azurerm_resource_group.example.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
+  log {
+    category = "kube-controller-manager"
+    enabled  = true
+  }
 
-resource "azurerm_log_analytics_workspace" "example" {
-  name                = "example-law"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  sku                 = "PerGB2018"
-  retention_in_days   = 30
+  log {
+    category = "kube-scheduler"
+    enabled  = false
+  }
+
+  log {
+    category = "cluster-autoscaler"
+    enabled  = true
+  }
+
+  log {
+    category = "guard"
+    enabled  = true
+  }
 }
 ```
-
-### [Azure Policy](#tab/policy) 
-See [Create diagnostic settings at scale using built-in Azure Policies](../platform/diagnostic-settings-policy.md) for details about using Azure Policy to create diagnostic settings at scale.
 
 
 ### [Azure portal](#tab/portal)
@@ -823,6 +847,9 @@ Within a few minutes after enabling monitoring, you should be able to use the fo
 
 - The cluster should move from the **Unmonitored clusters** view to the **Monitored clusters** view in Container insights multi-cluster view.
 - The **Monitor** view for the cluster should start to populate with data and no longer provide an option to enable monitoring. This includes the **Nodes**, **Workloads**, and **Containers** tabs.
+
+### [Azure Policy](#tab/policy) 
+See [Create diagnostic settings at scale using built-in Azure Policies](../platform/diagnostic-settings-policy.md) for details about using Azure Policy to create diagnostic settings at scale.
 
 
 ---
@@ -947,22 +974,7 @@ The command will return JSON-formatted information about the solution. The `addo
 }
 ```
 
-## Differences between Windows and Linux clusters
 
-The main differences in monitoring a Windows Server cluster compared to a Linux cluster include:
-
-- Windows doesn't have a Memory RSS metric. As a result, it isn't available for Windows nodes and containers. The [Working Set](/windows/win32/memory/working-set) metric is available.
-- Disk storage capacity information isn't available for Windows nodes.
-- Only pod environments are monitored, not Docker environments.
-- With the preview release, a maximum of 30 Windows Server containers are supported. This limitation doesn't apply to Linux containers.
-
->[!NOTE]
-> Container insights support for the Windows Server 2022 operating system is in preview.
-
-
-The containerized Linux agent (replicaset pod) makes API calls to all the Windows nodes on Kubelet secure port (10250) within the cluster to collect node and container performance-related metrics. Kubelet secure port (:10250) should be opened in the cluster's virtual network for both inbound and outbound for Windows node and container performance-related metrics collection to work.
-
-If you have a Kubernetes cluster with Windows nodes, review and configure the network security group and network policies to make sure the Kubelet secure port (:10250) is open for both inbound and outbound in the cluster's virtual network.
 
 
 

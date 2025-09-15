@@ -455,6 +455,8 @@ items:
         href: containers/kubernetes-monitoring-enable-aks.md
       - name: Arc-enabled clusters
         href: containers/kubernetes-monitoring-enable-arc.md
+      - name: Enable private link
+        href: containers/kubernetes-monitoring-private-link.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
     - name: Analyze data
@@ -555,8 +557,10 @@ items:
               displayName: Prometheus,remote-write
       - name: Logs
         items:
-        - name: ConfigMap
+        - name: Filter container logs
           href: containers/container-insights-data-collection-filter.md
+        - name: Filter control plane logs
+          href: containers/control-plane-transformations.md
         - name: Container log schema
           href: containers/container-insights-logs-schema.md
         - name: Data transformations
@@ -606,6 +610,8 @@ items:
         href: containers/container-insights-experience-v2.md
       - name: Legacy authentication
         href: containers/container-insights-authentication.md
+      - name: Onboard hybrid cluster
+        href: containers/container-insights-hybrid-setup.md
       - name: Container monitoring solution
         href: containers/container-insights-transition-solution.md
   - name: Monitor networks

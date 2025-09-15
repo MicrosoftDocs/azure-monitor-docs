@@ -9,14 +9,18 @@ ms.reviewer: viviandiec
 
 # Kubernetes monitoring in Azure Monitor
 
-Azure provides a complete set of services based on [Azure Monitor](../fundamentals/overview.md) for monitoring the health and performance of different layers of your Kubernetes infrastructure and the applications that depend on it. These services work in conjunction with each other to provide a complete monitoring solutionfor your clusters running in [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) or other clouds such as [AWS](https://aws.amazon.com/kubernetes/) and [GCP](https://cloud.google.com/kubernetes-engine). 
+Azure provides a complete set of services based on [Azure Monitor](../fundamentals/overview.md) for monitoring the health and performance of different layers of your Kubernetes infrastructure and the applications that depend on it. These services work in conjunction with each other to provide a complete monitoring solution for your clusters running in [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) or other clouds such as [AWS](https://aws.amazon.com/kubernetes/) and [GCP](https://cloud.google.com/kubernetes-engine). 
 
 > [!TIP]
 > This article describes the features of Azure Monitor used to monitor the health and performance of your Kubernetes clusters and the workloads running on them. See [Monitor Kubernetes clusters using Azure Monitor and cloud native tools](./monitor-kubernetes.md) for best practices on how to configure these services to monitor the different layers of your Kubernetes environment based on the typical roles that manage them.
 
+## Integration with cloud native tools
+
+You may have an existing investment in cloud native technologies endorsed by the [Cloud Native Computing Foundation](https://www.cncf.io/), or your organization may use alternative tools to collect and analyze Kubernetes logs, such as Splunk or Datadog. Your choice of which Azure tools to deploy and their configuration will depend on the requirements of your particular environment. You may choose to migrate your existing monitoring solution to Azure Monitor or integrate Azure services into your existing environment. For example, you may use the managed offerings in Azure for Prometheus and Grafana in other clouds, or you may choose to use your existing installation of these tools with your Kubernetes clusters in Azure. 
+
 ## Azure services for Kubernetes monitoring
 
-Following is an illustration of a typical Kubernetes environment, starting from the infrastructure layer up through applications. Each layer has distinct monitoring requirements that are addressed by different services.
+Following is an illustration of a typical Kubernetes environment, starting from the infrastructure layer up through applications. Each layer has distinct monitoring requirements that are addressed by different Azure services that are each described below.
 
 :::image type="content" source="media/kubernetes-monitoring-overview/layers.png" alt-text="Diagram of layers of Kubernetes environment with related administrative roles." lightbox="media/kubernetes-monitoring-overview/layers.png"  border="false":::
 
@@ -34,11 +38,10 @@ The Container levels include Kubernetes objects such as deployments, containers,
 
 | Service | Description |
 |:---|:---|
-| [Platform metrics](../metrics/data-platform-metrics.md) | Metrics automatically collected for the cluster at no cost. | 
 | [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) | [Prometheus](https://prometheus.io) is a cloud-native metrics solution from the Cloud Native Compute Foundation and the most common tool used for collecting and analyzing metric data from Kubernetes clusters. Azure Monitor managed service for Prometheus is a fully managed solution that's compatible with the Prometheus query language (PromQL) and Prometheus alerts and integrates with Azure Managed Grafana for visualization. This service supports your investment in open source tools without the complexity of managing your own Prometheus environment. |
-| [Container log collection](./kubernetes-monitoring-overview.md) | Azure service for AKS and Azure Arc-enabled Kubernetes clusters that use a containerized version of the [Azure Monitor agent](../agents/agents-overview.md) to collect stdout/stderr logs, performance metrics, and Kubernetes events from each node in your cluster. You can view the data in the Azure portal or query it using [Log Analytics](../logs/log-analytics-overview.md).   |
+| Container log collection | Azure service for AKS and Azure Arc-enabled Kubernetes clusters that use a containerized version of the [Azure Monitor agent](../agents/agents-overview.md) to collect stdout/stderr logs and Kubernetes events from each node in your cluster. Analyze the data in the Azure portal or query it using [Log Analytics](../logs/log-analytics-overview.md).   |
 | Control plane log collection | Control plane logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. Create a [diagnostic setting](../platform/diagnostic-settings.md) to collect these logs in the same Log Analytics workspace as your container logs. | 
-| [Azure Arc-enabled Kubernetes](container-insights-enable-arc-enabled-clusters.md) | Allows you to attach to Kubernetes clusters running in other clouds so that you can manage and configure them in Azure. With the Arc agent installed, you can monitor AKS and hybrid clusters together using the same methods and tools, including collection of container logs Prometheus metrics. |
+| [Azure Arc-enabled Kubernetes](container-insights-enable-arc-enabled-clusters.md) | Allows you to attach to Kubernetes clusters running on-premises or in other clouds using Azure as a centralized control plane. With the Arc agent installed, you can monitor AKS and hybrid clusters together using the same methods and tools, including collection of container logs Prometheus metrics. |
 
 
 ### Application level
@@ -58,13 +61,6 @@ Azure Monitor provides multiple tools to analyze the data collected by other fea
 | [Azure Monitor dashboards with Grafana (preview)](../visualize/visualize-grafana-overview.md) | Present Grafana dashboards in the Azure portal with no configuration requirements and no cost. Use this feature instead of Managed Grafana if you don't require dashboards across multiple data sources. |
 
 :::image type="content" source="media/kubernetes-monitoring-overview/containers-insights-experience.png" lightbox="media/kubernetes-monitoring-overview/containers-insights-experience.png" alt-text="Screenshots of Container insights single and multiple cluster views." border="false":::
-
-## Integration with cloud native tools
-
-You may have an existing investment in cloud native technologies endorsed by the [Cloud Native Computing Foundation](https://www.cncf.io/), in which case you may choose to integrate Azure tools into your existing environment. Your choice of which Azure tools to deploy and their configuration will depend on the requirements of your particular environment. 
-
-For example, you may use the managed offerings in Azure for Prometheus and Grafana in other clouds, or you may choose to use your existing installation of these tools with your Kubernetes clusters in Azure. Your organization may also use alternative tools to collect and analyze Kubernetes logs, such as Splunk or Datadog.
-
 
 
 

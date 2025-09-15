@@ -7,7 +7,7 @@ ms.date: 04/25/2025
 
 # Monitor Kubernetes clusters using Azure Monitor and cloud native tools
 
-[Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md) describes the Azure Monitor services used to provide complete monitoring of your Kubernetes environment and the workloads that run on it. This article provides best practices for how to configure these services to monitor the different layers of your Kubernetes environment based on the typical roles that manage them.
+[Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md) describes the Azure Monitor services used to provide complete monitoring of your Kubernetes environment and the workloads that run on it. This article provides best practices for how to leverage these services to monitor the different layers of your Kubernetes environment based on the typical roles that manage them. 
 
 Following is an illustration of a common model of a typical Kubernetes environment, starting from the infrastructure layer up through applications. Each layer has distinct monitoring requirements that are addressed by different services and typically managed by different roles in the organization.
 
@@ -46,7 +46,7 @@ Large organizations may also have a *fleet architect*, which is similar to the p
 
 ### Configure monitoring for platform engineer
 
-The sections below identify the steps for complete monitoring of your Kubernetes environment using the Azure services in [Container levels](./kubernetes-monitoring-overview.md#container-levels). Functionality and integration options are provided for each to help you determine where you may need to modify this configuration to meet your particular requirements. Onboarding Managed Prometheus and container logging can be part of the same experience as described in [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md). The following sections described each separately so you can consider your all of your onboarding and configuration options for each.
+The sections below identify the steps for monitoring of your Kubernetes environment using the Azure services in [Container levels](./kubernetes-monitoring-overview.md#container-levels). Functionality and integration options are provided for each to help you determine where you may need to modify this configuration to meet your particular requirements. Onboarding Managed Prometheus and container logging can be part of the same experience as described in [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable-aks.md). The following sections described each separately so you can consider your all of your onboarding and configuration options for each.
 
 #### Enable scraping of Prometheus metrics
 
