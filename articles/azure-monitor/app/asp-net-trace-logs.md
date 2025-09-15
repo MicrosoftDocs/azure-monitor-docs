@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet, devx-track-python
 ms.date: 04/08/2025
-ms.reviewer: mmcc
 ---
 
 # Explore .NET/.NET Core and Python trace logs in Application Insights

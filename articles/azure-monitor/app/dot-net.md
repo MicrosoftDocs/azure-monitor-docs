@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ms.date: 09/05/2025
-ms.reviewer: mmcc
 ---
 
 # Application Insights for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications

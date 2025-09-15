@@ -6,7 +6,6 @@ ms.date: 3/21/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, vb
 ms.custom: devx-track-csharp
-ms.reviewer: mmcc
 ---
 
 # Application Insights API for custom events and metrics
