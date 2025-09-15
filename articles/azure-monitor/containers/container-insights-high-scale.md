@@ -118,7 +118,7 @@ After applying this configmap, `ama-logs-*` pods will get restarted automaticall
 Enable the Monitoring Add-on with high scale mode using the following Azure CLI commands to enable high scale logs mode for the Monitoring add-on depending on your AKS configuration.
 
 > [!NOTE]
-> See [Enable Container Insights](./kubernetes-monitoring-enable-aks.md) for guidance on enabling Container Insights other methods such as ARM, Bicep, and Terraform. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Container logs](./kubernetes-monitoring-enable-aks.md?tabs=arm#container-logs-1).
+> See [Enable Container Insights](./kubernetes-monitoring-enable.md) for guidance on enabling Container Insights other methods such as ARM, Bicep, and Terraform. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Container logs](./kubernetes-monitoring-enable.md?tabs=arm#container-logs-1).
 
 **Existing AKS cluster**
 

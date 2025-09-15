@@ -11,7 +11,7 @@ ms.reviewer: viviandiec
 Azure Monitor provides a set of views in the Azure portal that combine performance and log data collected from your Kubernetes cluster to help you analyze its health and performance. This article describes the different views available and how to interact with and interpret the data they present.
 
 ## Multi-cluster view
-To open the multi-cluster view, select **Containers** from the **Insights** section of the **Monitor** menu in the Azure portal. This view shows the health status of all monitored Kubernetes clusters deployed across resource groups in your subscriptions. This views allows you to quickly identify clusters that are in a critical or unhealthy state and also helps you to enable and configure monitoring for all clusters in your environment. See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable-aks.md) for details.
+To open the multi-cluster view, select **Containers** from the **Insights** section of the **Monitor** menu in the Azure portal. This view shows the health status of all monitored Kubernetes clusters deployed across resource groups in your subscriptions. This views allows you to quickly identify clusters that are in a critical or unhealthy state and also helps you to enable and configure monitoring for all clusters in your environment. See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable.md) for details.
 
 :::image type="content" source="./media/container-insights-analyze/multi-cluster-view.png" alt-text="Screenshot that shows an Azure Monitor multi-cluster dashboard example." lightbox="media/container-insights-analyze/multi-cluster-view.png":::
 
@@ -56,9 +56,9 @@ To open the single cluster view, either select a cluster from the multi-cluster 
 
 | Option | Description |
 |:---|:---|
-| Visualization | Allows you to select which data source is used to populate the view. **Managed Prometheus visualizations** is the preferred setting which uses Prometheus metrics stored in an Azure Monitor workspace. These are enabled when you [enable Managed Prometheus](./kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics-and-container-logging) for the cluster. **Log Analytics visualizations** uses performance data stored in a Log Analytics workspace. You may not be collecting this data if you aren't collect performance data in your [logging profile](./kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics-and-container-logging). This option won't be available if Managed Prometheus isn't enabled for the cluster. |
+| Visualization | Allows you to select which data source is used to populate the view. **Managed Prometheus visualizations** is the preferred setting which uses Prometheus metrics stored in an Azure Monitor workspace. These are enabled when you [enable Managed Prometheus](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) for the cluster. **Log Analytics visualizations** uses performance data stored in a Log Analytics workspace. You may not be collecting this data if you aren't collect performance data in your [logging profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging). This option won't be available if Managed Prometheus isn't enabled for the cluster. |
 | Refresh | Refreshes the data in the view. |
-| Monitor settings | Opens the monitoring configuration settings for the cluster. See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable-aks.md) for details. |
+| Monitor settings | Opens the monitoring configuration settings for the cluster. See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable.md) for details. |
 | View Grafana | Displays a list of any Managed Grafana instances for linked to the Azure Monitor workspace for the cluster. You can either open dashboards for the instance or view the instance's configuration. |
 | Recommended alerts | Configure recommended alerts for the cluster. See [Create recommended alerts for Kubernetes clusters](./kubernetes-metric-alerts.md) for details. |
 | View all clusters | Open the [multi-cluster view](#multi-cluster-view). |

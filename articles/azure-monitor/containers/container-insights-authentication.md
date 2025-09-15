@@ -131,7 +131,7 @@ This shell script is the recommended migration method for bulk migration of mult
 
 
 ## Enable legacy authentication
-If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics-and-container-logging), which has examples of different options for enabling Container insights.
+If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging), which has examples of different options for enabling Container insights.
 
 
 ## Next steps

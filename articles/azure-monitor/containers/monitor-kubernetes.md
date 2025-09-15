@@ -46,14 +46,14 @@ Large organizations may also have a *fleet architect*, which is similar to the p
 
 ### Configure monitoring for platform engineer
 
-The sections below identify the steps for monitoring of your Kubernetes environment using the Azure services in [Container levels](./kubernetes-monitoring-overview.md#container-levels). Functionality and integration options are provided for each to help you determine where you may need to modify this configuration to meet your particular requirements. Onboarding Managed Prometheus and container logging can be part of the same experience as described in [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable-aks.md). The following sections described each separately so you can consider your all of your onboarding and configuration options for each.
+The sections below identify the steps for monitoring of your Kubernetes environment using the Azure services in [Container levels](./kubernetes-monitoring-overview.md#container-levels). Functionality and integration options are provided for each to help you determine where you may need to modify this configuration to meet your particular requirements. Onboarding Managed Prometheus and container logging can be part of the same experience as described in [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md). The following sections described each separately so you can consider your all of your onboarding and configuration options for each.
 
 #### Enable scraping of Prometheus metrics
 
 > [!IMPORTANT]
 >  To use Azure Monitor managed service for Prometheus, you need to have an [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md). For information on design considerations for a workspace configuration, see [Azure Monitor workspace architecture](../metrics/azure-monitor-workspace-overview.md#azure-monitor-workspace-architecture).
 
-Enable scraping of Prometheus metrics by Azure Monitor managed service for Prometheus from your cluster either when it's created or add this functionality to an existing cluster. See [Enable Prometheus metrics](./kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics-and-container-logging) for details.
+Enable scraping of Prometheus metrics by Azure Monitor managed service for Prometheus from your cluster either when it's created or add this functionality to an existing cluster. See [Enable Prometheus metrics](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) for details.
 
 If you already have a Prometheus environment that you want to use for your AKS clusters, then enable Azure Monitor managed service for Prometheus and then use remote-write to send data to your existing Prometheus environment. You can also [use remote-write to send data from your existing self-managed Prometheus environment to Azure Monitor managed service for Prometheus](./prometheus-remote-write.md). 
 
@@ -76,7 +76,7 @@ If you have an existing Grafana environment, then you can continue to use it and
 
 When you enable collection of container logs for your Kubernetes cluster, Azure Monitor deploys a containerized version of the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) that sends stdout/stderr and infrastructure logs to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) in Azure Monitor where they can be analyzed using [Kusto Query Language (KQL)](../logs/log-query-overview.md).
 
-See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable-aks.md#enable-prometheus-metrics-and-container-logging) for prerequisites and configuration options for onboarding your Kubernetes clusters. Onboard using Azure Policy to ensure that all clusters retain a consistent configuration. 
+See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) for prerequisites and configuration options for onboarding your Kubernetes clusters. Onboard using Azure Policy to ensure that all clusters retain a consistent configuration. 
 
 Once container logging is enabled for a cluster, perform the following actions to optimize your installation.
 
@@ -88,7 +88,7 @@ If you have an existing solution for collection of logs, then follow the guidanc
 
 #### Collect control plane logs for AKS clusters
 
-The logs for AKS control plane components are implemented in Azure as [resource logs](../platform/resource-logs.md). [Create a diagnostic setting](./kubernetes-monitoring-enable-aks.md#enable-control-plane-logs) for each AKS cluster to send resource logs to a Log Analytics workspace. Use Azure Policy to ensure consistent configuration across multiple clusters.
+The logs for AKS control plane components are implemented in Azure as [resource logs](../platform/resource-logs.md). [Create a diagnostic setting](./kubernetes-monitoring-enable.md#enable-control-plane-logs) for each AKS cluster to send resource logs to a Log Analytics workspace. Use Azure Policy to ensure consistent configuration across multiple clusters.
 
 There's a cost for sending resource logs to a workspace, so you should only collect those log categories that you intend to use. For a description of the categories that are available for AKS, see [Resource logs](/azure/aks/monitor-aks-reference#resource-logs).  Start by collecting a minimal number of categories and then modify the diagnostic setting to collect additional categories as your needs increase and as you understand your associated costs. You can send logs to an Azure storage account to reduce costs if you need to retain the information for compliance reasons. For details on the cost of ingesting and retaining log data, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
