@@ -6,7 +6,6 @@ ms.date: 02/28/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
-ms.reviewer: mmcc
 
 #customer intent: As a developer or site reliability engineer, I want to enable OpenTelemetry (OTel) data collection in Application Insights so that I can automatically collect telemetry data from my .NET, Java, Node.js, or Python applications without extensive configuration.
 

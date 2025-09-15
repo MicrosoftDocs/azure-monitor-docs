@@ -3,7 +3,6 @@ title: Application Insights managed workspaces
 description: This article explains automatically created managed workspaces
 ms.topic: how-to
 ms.date: 08/28/2025
-ms.reviewer: cogoodson
 ---
 
 # Managed workspaces in Application Insights

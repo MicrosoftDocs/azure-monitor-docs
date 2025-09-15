@@ -6,7 +6,6 @@ ms.date: 03/23/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
-ms.reviewer: mmcc
 
 #customer intent: As a developer or site reliability engineer, I want to integrate and customize OpenTelemetry (OTel) instrumentation in Application Insights so that I can achieve standardized telemetry collection and enhanced observability for my .NET, Java, Node.js, or Python applications.
 

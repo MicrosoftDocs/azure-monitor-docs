@@ -4,7 +4,6 @@ description: This article describes the Application Insights telemetry data mode
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
 ms.date: 04/30/2025
-ms.reviewer: mmcc
 ---
 
 # Application Insights telemetry data model
