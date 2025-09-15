@@ -452,7 +452,7 @@ items:
     - name: Enable monitoring
       items:
       - name: AKS clusters
-        href: containers/kubernetes-monitoring-enable-aks.md
+        href: containers/kubernetes-monitoring-enable.md
       - name: Arc-enabled clusters
         href: containers/kubernetes-monitoring-enable-arc.md
       - name: Enable private link
