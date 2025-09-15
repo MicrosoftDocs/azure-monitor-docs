@@ -37,9 +37,9 @@ All tables support the Analytics plan and all DCR-based custom tables and [some 
 When you change a table's plan from Analytics to Basic, Azure monitor treats any data that's older than 30 days as long-term retention data based on the total retention period set for the table. In other words, the total retention period of the table remains unchanged, unless you explicitly [modify the long-term retention period](../logs/data-retention-configure.md). 
 
 > [!NOTE]
-> * You can switch a table's plan once a week.
+> * See [Tables that support the Basic table plan in Azure Monitor Logs](basic-logs-azure-tables.md).
 >
-> * See [Tables that support the Basic table plan in Azure Monitor Logs](basic-logs-azure-tables.md) for more information.
+> * You can switch a table's plan once a week.
 
 ### [Portal](#tab/portal-1)
 
