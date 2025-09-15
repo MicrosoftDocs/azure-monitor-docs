@@ -108,7 +108,7 @@ If you're unsure which resource logs to initially enable, use the following reco
 If you have an existing solution for collection of logs, either follow the guidance for that tool or enable log collection with Azure Monitor and use the [data export feature of Log Analytics workspace](../logs/logs-data-export.md) to send data to Azure event hub to forward to alternate system.
 
 #### Collect Activity log for AKS clusters
-Configuration changes to your AKS clusters are stored in the [Activity log](../platform/activity-log.md). [Create a diagnostic setting to send this data to your Log Analytics workspace](../platform/activity-log.md#send-to-log-analytics-workspace) to analyze it with other monitoring data.  There's no cost for this data collection, and you can analyze or alert on the data using Log Analytics.
+Configuration changes to your AKS clusters are stored in the [Activity log](../platform/activity-log.md). [Create a diagnostic setting to send this data to your Log Analytics workspace](../platform/activity-log.md#log-analytics-workspace) to analyze it with other monitoring data.  There's no cost for this data collection, and you can analyze or alert on the data using Log Analytics.
 
 
 ### Monitor level 2 - Cluster level components
@@ -129,7 +129,7 @@ Following are common scenarios for monitoring the cluster level components.
 
 **Grafana dashboards**<br>
 - Use the [prebuilt dashboard](../visualize/visualize-use-managed-grafana-how-to.md) in Managed Grafana for **Kubelet** to see the health and performance of each.
-- Use Grafana dashboards with [Prometheus metric values](../metrics/prometheus-metrics-scrape-default.md) related to disk such as `node_disk_io_time_seconds_total` and `windows_logical_disk_free_bytes` to monitor attached storage.
+- Use Grafana dashboards with [Prometheus metric values](../containers/prometheus-metrics-scrape-default.md) related to disk such as `node_disk_io_time_seconds_total` and `windows_logical_disk_free_bytes` to monitor attached storage.
 - Multiple [Kubernetes dashboards](https://grafana.com/grafana/dashboards/?search=kubernetes) are available that visualize the performance and health of your nodes based on data stored in Prometheus.
 
 **Log Analytics**
@@ -195,7 +195,7 @@ Following are common scenarios for monitoring your Kubernetes objects and worklo
 
 **Azure portal**<br>
 - Use the **Nodes** and **Controllers** views to see the health and performance of the pods running on them and drill down to the health and performance of their containers.
-- Use the **Containers** view to see the health and performance for the containers. For more information on analyzing container health and performance, see [Analyze Kubernetes cluster data with Container insights](./container-insights-analyze.mdcontainer-insights-analyze.md).
+- Use the **Containers** view to see the health and performance for the containers. For more information on analyzing container health and performance, see [Analyze Kubernetes cluster data with Container insights](./container-insights-analyze.md).
 - Use the [Deployments workbook](./kubernetes-workbooks.md#resource-monitoring-workbooks) to see deployment metrics. For more information, see [Deployment & HPA metrics with Container Insights](container-insights-deployment-hpa-metrics.md).
 
 

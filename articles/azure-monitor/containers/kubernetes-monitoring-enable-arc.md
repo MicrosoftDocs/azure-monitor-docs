@@ -587,7 +587,32 @@ When you specify the tables to collect using CLI or ARM, you specify a stream na
 | Microsoft-KubeServices | KubeServices |
 | Microsoft-Perf | Perf |
 
-<sup>1</sup> You shouldn't use both Microsoft-ContainerLogV2 and Microsoft-ContainerLogV2-HighScale in the same DCR. This will result in duplicate data.
+<sup>1</sup> Don't use both Microsoft-ContainerLogV2 and Microsoft-ContainerLogV2-HighScale together. This will result in duplicate data.
+
+### Applicable tables and metrics
+The settings for **collection frequency** and **namespace filtering** don't apply to all log data. The following tables list the tables in the Log Analytics workspace used by Container insights and the metrics it collects along with the settings that apply to each. 
+
+| Table name | Interval? | Namespaces? | Remarks |
+|:---|:---:|:---:|:---|
+| ContainerInventory | Yes | Yes | |
+| ContainerNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable since Kubernetes Node isn't a namespace scoped resource |
+| KubeNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable Kubernetes Node isn't a namespace scoped resource |
+| KubePodInventory | Yes | Yes ||
+| KubePVInventory | Yes | Yes | |
+| KubeServices | Yes | Yes | |
+| KubeEvents | No | Yes | Data collection setting for interval isn't applicable for the Kubernetes Events |
+| Perf | Yes | Yes | Data collection setting for namespaces isn't applicable for the Kubernetes Node related metrics since the Kubernetes Node isn't a namespace scoped object. |
+| InsightsMetrics| Yes | Yes | Data collection settings are only applicable for the metrics collecting the following namespaces: container.azm.ms/kubestate, container.azm.ms/pv and container.azm.ms/gpu |
+
+> [!NOTE]
+> Namespace filtering does not apply to ama-logs agent records. As a result, even if the kube-system namespace is listed among excluded namespaces, records associated to ama-logs agent container will still be ingested. 
+
+| Metric namespace | Interval? | Namespaces? | Remarks |
+|:---|:---:|:---:|:---|
+| Insights.container/nodes| Yes | No | Node isn't a namespace scoped resource |
+|Insights.container/pods | Yes | Yes| |
+| Insights.container/containers | Yes | Yes | |
+| Insights.container/persistentvolumes | Yes | Yes | |
 
 ### Special scenarios
 Check the references below for configuration requirements for particular scenarios.

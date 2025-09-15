@@ -454,7 +454,7 @@ items:
       - name: AKS clusters
         href: containers/kubernetes-monitoring-enable-aks.md
       - name: Edge clusters
-        href: containers/kubernetes-monitoring-enable-edge.md
+        href: containers/kubernetes-monitoring-enable-arc.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
     - name: Analyze data
