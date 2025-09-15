@@ -3,7 +3,6 @@ title: Usage analysis with Application Insights | Azure Monitor
 description: Understand your users and what they do with your application.
 ms.topic: how-to
 ms.date: 05/31/2025
-ms.reviewer: mmcc
 ---
 
 # Usage analysis with Application Insights

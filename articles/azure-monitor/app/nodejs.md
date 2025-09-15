@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 3/21/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
-ms.reviewer: mmcc
 ---
 
 # Monitor your Node.js services and apps with Application Insights

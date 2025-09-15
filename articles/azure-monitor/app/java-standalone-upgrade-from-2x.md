@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 02/28/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
-ms.reviewer: mmcc
 ---
 
 # Upgrading from Application Insights Java 2.x SDK

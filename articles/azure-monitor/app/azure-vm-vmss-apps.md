@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 09/25/2025
 ms.devlang: csharp
 ms.custom: devx-track-azurepowershell
-ms.reviewer: abinetabate
 ---
 
 # Application Insights for Azure virtual machines (VMs) and virtual machine scale sets

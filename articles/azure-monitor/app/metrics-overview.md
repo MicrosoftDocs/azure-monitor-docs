@@ -3,7 +3,6 @@ title: Metrics in Application Insights - Azure Monitor | Microsoft Docs
 description: This article explains the difference between log-based and standard/preaggregated metrics in Application Insights.
 ms.topic: how-to
 ms.date: 06/30/2025
-ms.reviewer: vitalyg
 ---
 
 # Metrics in Application Insights
