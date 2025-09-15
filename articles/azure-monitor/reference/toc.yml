@@ -2967,6 +2967,10 @@ items:
             href: tables/securityregulatorycompliance.md
           - name: SentinelAudit
             href: tables/sentinelaudit.md
+          - name: SentinelBehaviorEntities
+            href: tables/sentinelbehaviorentities.md
+          - name: SentinelBehaviorInfo
+            href: tables/sentinelbehaviorinfo.md
           - name: SentinelHealth
             href: tables/sentinelhealth.md
           - name: ServiceFabricOperationalEvent
