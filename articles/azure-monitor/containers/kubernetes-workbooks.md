@@ -121,4 +121,5 @@ To create a custom workbook based on any of these workbooks, select the **View W
 
 ## Next steps
 
-For more information about workbooks in Azure Monitor, see [Azure Monitor workbooks](../visualize/workbooks-overview.md).
+* Learn how to [Analyze Kubernetes monitoring data in the Azure portal](container-insights-analyze.md) Container insights.
+

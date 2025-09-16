@@ -263,6 +263,5 @@ Following are common scenarios for monitoring your application.
 
 ## See also
 
-- See [Monitoring AKS](/azure/aks/monitor-aks) for guidance on monitoring specific to Azure Kubernetes Service (AKS).
-
+- See [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md) to enable Managed Prometheus and log collection on your cluster.
 

@@ -980,6 +980,6 @@ The command will return JSON-formatted information about the solution. The `addo
 
 ## Next steps
 
-* If you experience issues while you attempt to onboard the solution, review the [Troubleshooting guide](container-insights-troubleshoot.md).
-* With monitoring enabled to collect health and resource utilization of your AKS cluster and workloads running on them, learn [how to use](container-insights-analyze.md) Container insights.
+* If you experience issues attempting to onboard, review the [Troubleshooting guide](container-insights-troubleshoot.md).
+* Learn how to [Analyze Kubernetes monitoring data in the Azure portal](container-insights-analyze.md) Container insights.
 

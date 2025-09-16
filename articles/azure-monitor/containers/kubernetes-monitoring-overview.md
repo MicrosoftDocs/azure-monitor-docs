@@ -66,8 +66,7 @@ Azure Monitor provides multiple tools to analyze the data collected by other fea
 
 ## Next steps
 
+- See [Monitor Kubernetes clusters using Azure Monitor and cloud native tools](./monitor-kubernetes.md) for best practices and recommendations for configuring Azure Monitor features to monitor your Kubernetes environment.
 - See [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md) to enable Managed Prometheus and log collection on your cluster.
 
-<!-- LINKS - external -->
-[aks-release-notes]: https://github.com/Azure/AKS/releases
 
