@@ -2810,7 +2810,7 @@ applicationInsightsServiceOptions.EnableEventCounterCollectionModule = false;
 builder.Services.AddApplicationInsightsTelemetry(applicationInsightsServiceOptions);
 ```
 
-A similar approach can be used for the WorkerService SDK as well, but the namespace must be changed as shown in the following example.
+A similar approach can be used for the Worker Service SDK as well, but the namespace must be changed as shown in the following example.
 
 ```csharp
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
@@ -3208,18 +3208,19 @@ Telemetry processors can filter and modify each telemetry item before it's sent 
     > [!NOTE]
     > Adding a processor by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for ASP.NET Core applications or if you're using the Microsoft.ApplicationInsights.WorkerService SDK.
     
-    For apps written by using [ASP.NET Core](asp-net-core.md#add-telemetry-processors) or [WorkerService](worker-service.md#add-telemetry-processors), adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
+    For ASP.NET Core, adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
     
     ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        // ...
-        services.AddApplicationInsightsTelemetry();
-        services.AddApplicationInsightsTelemetryProcessor<SuccessfulDependencyFilter>();
+    var builder = WebApplication.CreateBuilder(args);
     
-        // If you have more processors:
-        services.AddApplicationInsightsTelemetryProcessor<AnotherProcessor>();
-    }
+    // ...
+    builder.Services.AddApplicationInsightsTelemetry();
+    builder.Services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
+    
+    // If you have more processors:
+    builder.Services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
+    
+    var app = builder.Build();
     ```
     
     To register telemetry processors that need parameters in ASP.NET Core, create a custom class implementing **ITelemetryProcessorFactory**. Call the constructor with the desired parameters in the **Create** method and then use **AddSingleton<ITelemetryProcessorFactory, MyTelemetryProcessorFactory>()**.
@@ -3229,21 +3230,17 @@ Telemetry processors can filter and modify each telemetry item before it's sent 
     > [!NOTE]
     > Adding a processor by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for ASP.NET Core applications or if you're using the Microsoft.ApplicationInsights.WorkerService SDK.
     
-    For apps written by using [ASP.NET Core](asp-net-core.md#add-telemetry-processors) or [WorkerService](worker-service.md#add-telemetry-processors), adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
+    For Worker Service, adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
     
     ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        // ...
-        services.AddApplicationInsightsTelemetry();
-        services.AddApplicationInsightsTelemetryProcessor<SuccessfulDependencyFilter>();
-    
-        // If you have more processors:
-        services.AddApplicationInsightsTelemetryProcessor<AnotherProcessor>();
-    }
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddApplicationInsightsTelemetryWorkerService();
+            services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
+            // If you have more processors:
+            services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
+        }
     ```
-    
-    To register telemetry processors that need parameters in ASP.NET Core, create a custom class implementing **ITelemetryProcessorFactory**. Call the constructor with the desired parameters in the **Create** method and then use **AddSingleton<ITelemetryProcessorFactory, MyTelemetryProcessorFactory>()**.
 
     ---
 
@@ -3289,7 +3286,7 @@ public void Process(ITelemetry item)
 If you want to diagnose only calls that are slow, filter out the fast ones.
 
 > [!NOTE]
-> This filtering will skew the statistics you see on the portal.
+> This filtering skews the statistics you see on the portal.
 
 ```csharp
 public void Process(ITelemetry item)
@@ -3303,43 +3300,6 @@ public void Process(ITelemetry item)
     this.Next.Process(item);
 }
 ```
-
-<!--
-
-# [ASP.NET Core](#tab/core-1)
-
-You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer). Use the following example:
-
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-// ...
-builder.Services.AddApplicationInsightsTelemetry();
-builder.Services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
-
-// If you have more processors:
-builder.Services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
-
-var app = builder.Build();
-```
-
-# [Worker Service](#tab/worker-1)
-
-You can add custom telemetry processors to `TelemetryConfiguration` by using the extension method `AddApplicationInsightsTelemetryProcessor` on `IServiceCollection`. You use telemetry processors in [advanced filtering scenarios](./api-filtering-sampling.md#itelemetryprocessor-and-itelemetryinitializer) to allow for more direct control over what's included or excluded from the telemetry you send to Application Insights. Use the following example:
-
-```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddApplicationInsightsTelemetryWorkerService();
-        services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
-        // If you have more processors:
-        services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
-    }
-```
-
----
-
--->
 
 ### Sampling
 
@@ -4239,4 +4199,3 @@ Our [Service Updates](https://azure.microsoft.com/updates/?service=application-i
 
 * Data types reference for [ASP.NET SDK](/dotnet/api/microsoft.applicationinsights.datacontracts) and [ASP.NET Core SDK](/dotnet/api/microsoft.applicationinsights.datacontracts).
 * SDK code for [ASP.NET SDK](https://github.com/Microsoft/ApplicationInsights-dotnet) and [ASP.NET Core SDK](https://github.com/Microsoft/ApplicationInsights-aspnetcore).
-* 

@@ -406,7 +406,7 @@ This section only applies to you if you're using the deprecated functions and yo
 
 ## Service notifications
 
-Service notifications is a feature built into the SDK to provide actionable recommendations to help ensure your telemetry flows uninterrupted to Application Insights. You'll see the notifications as an exception message within Application Insights. We ensure notifications are relevant to you based on your SDK settings, and we adjust the verbosity based on the urgency of the recommendation. We recommend leaving service notifications on, but you're able to opt out via the `featureOptIn` configuration. See below for a list of active notifications.
+Service notifications are a feature built into the SDK to provide actionable recommendations to help ensure your telemetry flows uninterrupted to Application Insights. You can see the notifications as an exception message within Application Insights. We ensure notifications are relevant to you based on your SDK settings, and we adjust the verbosity based on the urgency of the recommendation. We recommend leaving service notifications on, but you're able to opt out via the `featureOptIn` configuration.
 
 Currently, no active notifications are being sent.
 
