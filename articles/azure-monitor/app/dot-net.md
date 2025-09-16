@@ -1037,8 +1037,6 @@ ILogger guidance doesn’t apply to ASP.NET. To send trace logs from classic ASP
 * **System.Diagnostics.Trace** with Application Insights TraceListener
 * **log4net** or **NLog** with official Application Insights targets
 
-For detailed steps and configuration examples, see [Send trace logs to Application Insights](asp-net-trace-logs.md).
-
 # [ASP.NET Core](#tab/core)
 
 The Application Insights SDK for ASP.NET Core already collects ILogger logs by default. If you use the SDK, you typically don’t need to also call `builder.Logging.AddApplicationInsights()` and can disregard the following ILogger installation instructions.

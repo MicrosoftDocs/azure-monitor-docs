@@ -9,10 +9,10 @@ ms.date: 04/08/2025
 
 # Explore .NET/.NET Core trace logs in Application Insights
 
-Send diagnostic tracing logs for your ASP.NET/ASP.NET Core application from ILogger, NLog, log4Net, or System.Diagnostics.Trace to Azure Application Insights. You can then explore and search for them. Those logs are merged with the other log files from your application. You can use them to identify traces that are associated with each user request and correlate them with other events and exception reports.
+Send diagnostic tracing logs for your ASP.NET/ASP.NET Core application from `ILogger`, `NLog`, `log4Net`, or `System.Diagnostics.Trace` to Azure Application Insights. You can then explore and search for them. Those logs are merged with the other log files from your application. You can use them to identify traces that are associated with each user request and correlate them with other events and exception reports.
 
 > [!NOTE]
-> Do you need the log-capture module? It's a useful adapter for third-party loggers. But if you aren't already using NLog, log4Net, or System.Diagnostics.Trace, consider calling [**Application Insights TrackTrace()**](./api-custom-events-metrics.md#tracktrace) directly.
+> The log-capture module is a useful adapter for third-party loggers. However, if you aren't already using NLog, log4Net, or System.Diagnostics.Trace, consider calling [**Application Insights TrackTrace()**](./api-custom-events-metrics.md#tracktrace) directly.
 
 ## Install logging on your app
 
@@ -32,9 +32,9 @@ Install your chosen logging framework in your project, which should result in an
 
 ## Configure Application Insights to collect logs
 
-[Add Application Insights to your project](./asp-net.md) if you haven't done that yet and there is an option to include the log collector.
+**Option 1:** Add Application Insights to your project if you haven't done that yet. There's an option to include the log collector.
 
-Or right-click your project in Solution Explorer to **Configure Application Insights**. Select the **Configure trace collection** option.
+**Option 2:** Right-click your project in Solution Explorer to **Configure Application Insights**. Select the **Configure trace collection** option.
 
 > [!NOTE]
 > No Application Insights menu or log collector option? Try [Troubleshooting](#troubleshooting).
@@ -48,20 +48,33 @@ Use this method if your project type isn't supported by the Application Insights
 1. Search for **Application Insights**.
 1. Select one of the following packages:
 
-   - **ILogger**: [Microsoft.Extensions.Logging.ApplicationInsights](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights/)
-:::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.Extensions.Logging.ApplicationInsights.svg" alt-text="NuGet iLogger banner":::
-   - **NLog**: [Microsoft.ApplicationInsights.NLogTarget](https://www.nuget.org/packages/Microsoft.ApplicationInsights.NLogTarget/)
-:::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.NLogTarget.svg" alt-text="NuGet NLog banner":::
-   - **log4net**: [Microsoft.ApplicationInsights.Log4NetAppender](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Log4NetAppender/)
-:::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.Log4NetAppender.svg" alt-text="NuGet Log4Net banner":::
-   - **System.Diagnostics**: [Microsoft.ApplicationInsights.TraceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.TraceListener/)
-:::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.TraceListener.svg" alt-text="NuGet System.Diagnostics banner":::
-   - [Microsoft.ApplicationInsights.DiagnosticSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DiagnosticSourceListener/)
-:::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.DiagnosticSourceListener.svg" alt-text="NuGet Diagnostic Source Listener banner":::
-   - [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector/)
-:::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.EtwCollector.svg" alt-text="NuGet Etw Collector banner":::
-   - [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener/)
-:::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.EventSourceListener.svg" alt-text="NuGet Event Source Listener banner":::
+    * **ILogger**: [Microsoft.Extensions.Logging.ApplicationInsights](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights/)
+
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.Extensions.Logging.ApplicationInsights.svg" alt-text="NuGet iLogger banner":::
+
+    * **NLog**: [Microsoft.ApplicationInsights.NLogTarget](https://www.nuget.org/packages/Microsoft.ApplicationInsights.NLogTarget/)
+
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.NLogTarget.svg" alt-text="NuGet NLog banner":::
+
+    * **log4net**: [Microsoft.ApplicationInsights.Log4NetAppender](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Log4NetAppender/)
+
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.Log4NetAppender.svg" alt-text="NuGet Log4Net banner":::
+
+    * **System.Diagnostics**: [Microsoft.ApplicationInsights.TraceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.TraceListener/)
+
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.TraceListener.svg" alt-text="NuGet System.Diagnostics banner":::
+
+    * [Microsoft.ApplicationInsights.DiagnosticSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DiagnosticSourceListener/)
+
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.DiagnosticSourceListener.svg" alt-text="NuGet Diagnostic Source Listener banner":::
+
+    * [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector/)
+
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.EtwCollector.svg" alt-text="NuGet Etw Collector banner":::
+
+    * [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener/)
+
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.EventSourceListener.svg" alt-text="NuGet Event Source Listener banner":::
 
 The NuGet package installs the necessary assemblies and modifies web.config or app.config if that's applicable.
 
@@ -71,13 +84,13 @@ For examples of using the Application Insights ILogger implementation with conso
 
 ## Insert diagnostic log calls
 
-If you use System.Diagnostics.Trace, a typical call would be:
+If you use `System.Diagnostics.Trace`, a typical call would be:
 
 ```csharp
 System.Diagnostics.Trace.TraceWarning("Slow response - database01");
 ```
 
-If you prefer log4net or NLog, use:
+If you prefer `log4net` or `NLog`, use:
 
 ```csharp
     logger.Warn("Slow response - database01");
@@ -97,9 +110,9 @@ You can configure [System.Diagnostics.Tracing.EventSource](/dotnet/api/system.di
 
 For each source, you can set the following parameters:
 
- * **Name** specifies the name of the EventSource to collect.
- * **Level** specifies the logging level to collect: *Critical*, *Error*, *Informational*, *LogAlways*, *Verbose*, or *Warning*.
- * **Keywords** (optional) specify the integer value of keyword combinations to use.
+* **Name** specifies the name of the EventSource to collect.
+* **Level** specifies the logging level to collect: *Critical*, *Error*, *Informational*, *LogAlways*, *Verbose*, or *Warning*.
+* **Keywords** (optional) specify the integer value of keyword combinations to use.
 
 ## Use DiagnosticSource events
 
@@ -153,13 +166,13 @@ An advantage of `TrackTrace` is that you can put relatively long data in the mes
 
 You can also add a severity level to your message. And, like other telemetry, you can add property values to help filter or search for different sets of traces. For example:
 
-  ```csharp
-  TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
-  var telemetryClient = new TelemetryClient(configuration);
-  telemetryClient.TrackTrace("Slow database response",
-                              SeverityLevel.Warning,
-                              new Dictionary<string, string> { { "database", "db.ID" } });
-  ```
+```csharp
+TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
+var telemetryClient = new TelemetryClient(configuration);
+telemetryClient.TrackTrace("Slow database response",
+                            SeverityLevel.Warning,
+                            new Dictionary<string, string> { { "database", "db.ID" } });
+```
 
 Now you can easily filter out in **Transaction Search** all the messages of a particular severity level that relate to a particular database.
 
@@ -219,4 +232,3 @@ Several factors affect the amount of data that's retained. For more information,
 ### Why don't I see some log entries that I expected?
 
 Perhaps your application sends voluminous amounts of data and you're using the Application Insights SDK for ASP.NET version 2.0.0-beta3 or later. In this case, the adaptive sampling feature might operate and send only a portion of your telemetry. Learn more about [sampling](./sampling.md).
-
