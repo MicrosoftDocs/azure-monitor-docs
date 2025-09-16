@@ -33,7 +33,7 @@ Container insights automatically starts monitoring GPU usage on nodes and GPU re
 
 ## GPU performance charts
 
-Container insights includes preconfigured charts for the metrics listed earlier in the table as a GPU workbook for every cluster. For a description of the workbooks available for Container insights, see [Workbooks in Container insights](container-insights-reports.md).
+Container insights includes preconfigured charts for the metrics listed earlier in the table as a GPU workbook for every cluster. For a description of the workbooks available for Container insights, see [Workbooks in Container insights](./kubernetes-workbooks.md).
 
 ## Next steps
 

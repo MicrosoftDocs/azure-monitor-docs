@@ -26,7 +26,7 @@ If you use Defender for Cloud for security management and threat detection, then
 
 ## Kubernetes
 
-[Managed Prometheus](../essentials/prometheus-metrics-overview.md) and [Container insights](../containers/container-insights-overview.md) in Azure Monitor use [Azure Arc-enabled Kubernetes](/azure/azure-arc/servers/overview) to provide a consistent experience between both [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) and Kubernetes clusters in your AWS EKS or GCP GKE instances. You can view your hybrid clusters right alongside your Azure machines and onboard them using the same methods. This includes using standard Azure constructs such as Azure Policy and applying tags.
+[Managed Prometheus](../essentials/prometheus-metrics-overview.md) and [Container insights](../containers/kubernetes-monitoring-overview.md) in Azure Monitor use [Azure Arc-enabled Kubernetes](/azure/azure-arc/servers/overview) to provide a consistent experience between both [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) and Kubernetes clusters in your AWS EKS or GCP GKE instances. You can view your hybrid clusters right alongside your Azure machines and onboard them using the same methods. This includes using standard Azure constructs such as Azure Policy and applying tags.
 
 Use Prometheus [remote write](../essentials/prometheus-remote-write.md) from your on-premises, AWS, or GCP clusters to send data to Azure managed service for Prometheus.
 
