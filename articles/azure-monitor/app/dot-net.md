@@ -2859,7 +2859,7 @@ To review frequently asked questions (FAQ), see [Event counters FAQ](application
 
 [!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
 
-[!INCLUDE [Telemetry processor and telemetry initializer](./includes/application-insights-processor-and-initializer.md)]
+[!INCLUDE [Telemetry processor and telemetry initializer](./includes/application-insights-processor-initializer.md)]
 
 ### Telemetry initializers
 
@@ -2888,7 +2888,7 @@ The standard initializers are all set either by the web or WindowsServer NuGet p
 > [!NOTE]
 > For .NET applications running in Azure Service Fabric, you can include the `Microsoft.ApplicationInsights.ServiceFabric` NuGet package. This package includes a `FabricTelemetryInitializer` property, which adds Service Fabric properties to telemetry items. For more information, see the [GitHub page](https://github.com/Microsoft/ApplicationInsights-ServiceFabric/blob/master/README.md) about the properties added by this NuGet package.
 
-#### Use ITelemetryInitializer
+#### Add ITelemetryInitializer
 
 [This blog](https://azure.microsoft.com/blog/implement-an-application-insights-telemetry-processor/) describes a project to diagnose dependency issues by automatically sending regular pings to dependencies.
 
@@ -2981,7 +2981,7 @@ var app = builder.Build();
 > [!NOTE]
 > `builder.Services.AddSingleton<ITelemetryInitializer, MyCustomTelemetryInitializer>();` works for simple initializers. For others, `builder.Services.AddSingleton(new MyCustomTelemetryInitializer() { fieldName = "myfieldName" });` is required.
 
-#### Remove telemetry initializers
+##### Remove telemetry initializers
 
 By default, telemetry initializers are present. To remove all or specific telemetry initializers, use the following sample code *after* calling `AddApplicationInsightsTelemetry()`.
 
@@ -3021,7 +3021,7 @@ For apps written using Worker Service, adding a new telemetry initializer is don
     }
 ```
 
-#### Remove telemetry initializers
+##### Remove telemetry initializers
 
 Telemetry initializers are present by default. To remove all or specific telemetry initializers, use the following sample code *after* calling `AddApplicationInsightsTelemetryWorkerService()`.
 
@@ -3045,7 +3045,7 @@ Telemetry initializers are present by default. To remove all or specific telemet
 
 ---
 
-#### Example TelemetryInitializers
+#### Example ITelemetryInitializers
 
 ##### Add a custom property
 
@@ -3089,8 +3089,6 @@ public void Initialize(ITelemetry telemetry)
     return true;
 }
 ```
-
-
 
 ### Telemetry processors
 

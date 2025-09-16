@@ -138,7 +138,7 @@ You can filter telemetry from JavaScript web applications by using ITelemetryIni
     appInsights.addTelemetryInitializer(filteringFunction);
     ```
 
-[!INCLUDE [Telemetry processor and telemetry initializer](./includes/application-insights-processor-and-initializer.md)]
+[!INCLUDE [Telemetry processor and telemetry initializer](./includes/application-insights-processor-initializer.md)]
 
 #### JavaScript telemetry initializers
 
@@ -166,7 +166,7 @@ cfg: { // Application Insights Configuration
 </script>
 ```
 
-## [npm package](#tab/npmpackage)
+# [npm package](#tab/npmpackage)
 
 ```js
 import { ApplicationInsights } from '@microsoft/applicationinsights-web'
