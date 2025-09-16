@@ -4,7 +4,6 @@ description: Learn how to enable Microsoft Entra authentication to ensure that o
 ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: csharp
-ms.reviewer: rijolly
 ---
 
 # Microsoft Entra authentication for Application Insights

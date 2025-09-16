@@ -4,7 +4,6 @@ description: Overview of autoinstrumentation for Azure Monitor Application Insig
 ms.topic: how-to
 ms.custom: devx-track-js
 ms.date: 07/30/2025
-ms.reviewer: abinetabate
 ---
 
 # What is autoinstrumentation for Azure Monitor Application Insights?

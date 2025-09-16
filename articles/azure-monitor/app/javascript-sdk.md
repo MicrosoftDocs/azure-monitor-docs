@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 12/07/2024
 ms.devlang: javascript
 ms.custom: devx-track-js
-ms.reviewer: mmcc
 ---
 
 # Enable Azure Monitor Application Insights Real User Monitoring

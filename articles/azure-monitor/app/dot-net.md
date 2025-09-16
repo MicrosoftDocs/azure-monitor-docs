@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ms.date: 09/05/2025
-ms.reviewer: mmcc
 ---
 
 # Application Insights for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications
@@ -3611,7 +3610,7 @@ Here are the most commonly used settings for `ServerTelemetryChannel`:
 
 * `MaxTransmissionSenderCapacity`: The maximum number of `Transmission` instances that are sent to Application Insights at the same time. The default value is 10. This setting can be configured to a higher number, which we recommend when a huge volume of telemetry is generated. High volume typically occurs during load testing or when sampling is turned off.
 
-* `StorageFolder`: The folder that's used by the channel to store items to disk as needed. In Windows, either %LOCALAPPDATA% or %TEMP% is used if no other path is specified explicitly. In environments other than Windows, you must specify a valid location or telemetry isn't stored to local disk.
+* `StorageFolder`: The folder that's used by the channel to store items to disk as needed. In Windows, either %LOCALAPPDATA% or %TEMP% is used if no other path is specified explicitly. In environments other than Windows, by default the following locations are used (in order): %TMPDIR%, /var/tmp/ or /tmp/.
 
 #### Which channel should I use?
 

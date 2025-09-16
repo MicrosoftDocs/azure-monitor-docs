@@ -3,7 +3,6 @@ title: Enable application monitoring in Azure App Service for .NET, Node.js, Pyt
 description: Application performance monitoring for Azure App Service. Chart load and response time, dependency information, and set alerts on performance.
 ms.topic: how-to
 ms.date: 02/28/2025
-ms.reviewer: abinetabate
 ---
 
 # Enable application monitoring in Azure App Service for .NET, Node.js, Python, and Java applications
