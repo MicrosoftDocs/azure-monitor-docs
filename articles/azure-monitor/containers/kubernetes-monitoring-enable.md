@@ -439,14 +439,14 @@ You can enable Prometheus metrics and container logs when you create a new AKS c
 
 When you create a new AKS cluster in the Azure portal, configure monitoring in the **Monitoring** tab.
 
-:::image type="content" source="media/kubernetes-monitoring-enable-aks/new-cluster-monitoring-tab.png" lightbox="media/kubernetes-monitoring-enable-aks/new-cluster-monitoring-tab.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
+:::image type="content" source="media/kubernetes-monitoring-enable/new-cluster-monitoring-tab.png" lightbox="media/kubernetes-monitoring-enable/new-cluster-monitoring-tab.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
 
 
 ### Existing cluster
 
 Navigate to your cluster in the Azure portal. In the service menu, select **Monitor** and then **Monitor Settings**.
 
-:::image type="content" source="media/kubernetes-monitoring-enable-aks/existing-cluster-monitoring-tab.png" lightbox="media/kubernetes-monitoring-enable-aks/existing-cluster-monitoring-tab.png" alt-text="Screenshot of Monitoring tab for existing AKS cluster.":::
+:::image type="content" source="media/kubernetes-monitoring-enable/existing-cluster-monitoring-tab.png" lightbox="media/kubernetes-monitoring-enable/existing-cluster-monitoring-tab.png" alt-text="Screenshot of Monitoring tab for existing AKS cluster.":::
 
 ### Configuration options
 Configuration options are the same for both new and existing clusters. The only difference is you may need to select **Advanced settings** to view all options for an existing cluster.
