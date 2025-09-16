@@ -441,7 +441,7 @@ items:
     - name: Overview
       href: containers/kubernetes-monitoring-overview.md
       displayName: containers, kubernetes, container insights
-    - name: Deploy
+    - name: Deployment guidance
       href: containers/monitor-kubernetes.md
       displayName: containers
     - name: Quickstart

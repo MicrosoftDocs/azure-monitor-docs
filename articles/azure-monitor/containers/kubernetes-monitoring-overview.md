@@ -11,20 +11,18 @@ ms.reviewer: viviandiec
 
 Azure provides a complete set of services based on [Azure Monitor](../fundamentals/overview.md) for monitoring the health and performance of different layers of your Kubernetes infrastructure and the applications that depend on it. These services work in conjunction with each other to provide a complete monitoring solution for your clusters running in [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) or other clouds such as [AWS](https://aws.amazon.com/kubernetes/) and [GCP](https://cloud.google.com/kubernetes-engine). 
 
+You may have an existing investment in cloud native technologies endorsed by the [Cloud Native Computing Foundation](https://www.cncf.io/), or your organization may use alternative tools to collect and analyze Kubernetes logs, such as Splunk or Datadog. Your choice of which Azure tools to deploy and their configuration will depend on the requirements of your particular environment. You may choose to migrate your existing monitoring solution to Azure Monitor or integrate Azure services into your existing environment. For example, you may use the managed offerings in Azure for Prometheus and Grafana in other clouds, or you may choose to use your existing installation of these tools with your Kubernetes clusters in Azure. 
+
 > [!TIP]
 > This article describes the features of Azure Monitor used to monitor the health and performance of your Kubernetes clusters and the workloads running on them. See [Monitor Kubernetes clusters using Azure Monitor and cloud native tools](./monitor-kubernetes.md) for best practices on how to configure these services to monitor the different layers of your Kubernetes environment based on the typical roles that manage them.
 
-## Integration with cloud native tools
 
-You may have an existing investment in cloud native technologies endorsed by the [Cloud Native Computing Foundation](https://www.cncf.io/), or your organization may use alternative tools to collect and analyze Kubernetes logs, such as Splunk or Datadog. Your choice of which Azure tools to deploy and their configuration will depend on the requirements of your particular environment. You may choose to migrate your existing monitoring solution to Azure Monitor or integrate Azure services into your existing environment. For example, you may use the managed offerings in Azure for Prometheus and Grafana in other clouds, or you may choose to use your existing installation of these tools with your Kubernetes clusters in Azure. 
-
-## Azure services for Kubernetes monitoring
-
+## Kubernetes layers
 Following is an illustration of a typical Kubernetes environment, starting from the infrastructure layer up through applications. Each layer has distinct monitoring requirements that are addressed by different Azure services that are each described below.
 
 :::image type="content" source="media/kubernetes-monitoring-overview/layers.png" alt-text="Diagram of layers of Kubernetes environment with related administrative roles." lightbox="media/kubernetes-monitoring-overview/layers.png"  border="false":::
 
-### Network level
+## Network level
 Virtual network components supporting traffic to and from the Kubernetes cluster are monitored with the following services.
 
 | Service | Description |
@@ -33,7 +31,7 @@ Virtual network components supporting traffic to and from the Kubernetes cluster
 | [Traffic analytics](/azure/network-watcher/traffic-analytics) | Feature of Network Watcher that analyzes flow logs to provide insights into traffic flow. | 
 | [Network insights](/azure/network-watcher/network-insights-overview) | Feature of Azure Monitor that includes a visual representation of the performance and health of different network components and provides access to the network monitoring tools that are part of Network Watcher. |
 
-### Container levels
+## Container levels
 The Container levels include Kubernetes objects such as deployments, containers, and replicasets, cluster control plane components including API servers, cloud controller, and kubelet, and virtual machine scale sets abstracted as nodes and node pools. These layers are monitored with the following services.
 
 | Service | Description |
@@ -44,7 +42,7 @@ The Container levels include Kubernetes objects such as deployments, containers,
 | [Azure Arc-enabled Kubernetes](container-insights-enable-arc-enabled-clusters.md) | Allows you to attach to Kubernetes clusters running on-premises or in other clouds using Azure as a centralized control plane. With the Arc agent installed, you can monitor AKS and hybrid clusters together using the same methods and tools, including collection of container logs Prometheus metrics. |
 
 
-### Application level
+## Application level
 Application workloads running on your Kubernetes cluster are monitored with the following services.
 
 | Service | Description |
