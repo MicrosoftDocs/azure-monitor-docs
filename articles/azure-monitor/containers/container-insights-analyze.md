@@ -80,11 +80,11 @@ The icons in the **Status** field indicate the online status of item as describe
 
 | Icon | Status |
 |--------|-------------|
-| :::image type="content" source="./media/container-insights-analyze/containers-ready-icon.png" alt-text="Ready running status icon.":::|
-| :::image type="content" source="./media/container-insights-analyze/containers-waiting-icon.png" alt-text="Waiting or Paused status icon."::: | Waiting or Paused|
-| :::image type="content" source="./media/container-insights-analyze/containers-grey-icon.png" alt-text="Last reported running status icon."::: | Last reported running but hasn't responded in more than 30 minutes|
-| :::image type="content" source="./media/container-insights-analyze/containers-terminated-icon.png" alt-text="Terminated status icon."::: | Successfully stopped or failed to stop|
-| :::image type="content" source="./media/container-insights-analyze/containers-failed-icon.png" alt-text="Failed status icon."::: | Failed state |
+| :::image type="icon" source="./media/container-insights-analyze/containers-ready-icon.png" alt-text="Ready running status icon.":::|
+| :::image type="icon" source="./media/container-insights-analyze/containers-waiting-icon.png" alt-text="Waiting or Paused status icon."::: | Waiting or Paused|
+| :::image type="icon" source="./media/container-insights-analyze/containers-grey-icon.png" alt-text="Last reported running status icon."::: | Last reported running but hasn't responded in more than 30 minutes|
+| :::image type="icon" source="./media/container-insights-analyze/containers-terminated-icon.png" alt-text="Terminated status icon."::: | Successfully stopped or failed to stop|
+| :::image type="icon" source="./media/container-insights-analyze/containers-failed-icon.png" alt-text="Failed status icon."::: | Failed state |
 
 ### Select metric
 The **Nodes**, **Controllers**, and **Containers** tabs include an option to select the metric that's used for the values in the view. 

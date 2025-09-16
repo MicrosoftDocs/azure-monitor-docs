@@ -63,7 +63,7 @@ See [Default Prometheus metrics configuration in Azure Monitor](./prometheus-met
 #### Enable Grafana for analysis of Prometheus data
 
 > [!NOTE]
-> [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) is currently in public preview and can replace Managed Grafana. This version of Grafana has no cost, requires no configuration, and presents dashboards in the Azure portal.Use Managed Grafana if you want to create dashboards that combine data from multiple data sources or if you want to integrate with an existing Grafana environment.
+> [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) is currently in public preview and can replace Managed Grafana. This version of Grafana has no cost, requires no configuration, and presents dashboards in the Azure portal. Use Managed Grafana if you want to create dashboards that combine data from multiple data sources or if you want to integrate with an existing Grafana environment.
 
 [Create an instance of Managed Grafana](/azure/managed-grafana/quickstart-managed-grafana-portal) and [link it to your Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#link-a-grafana-workspace) so that you can use your Prometheus data as a data source. You can also manually perform this configuration using [add Azure Monitor managed service for Prometheus as data source](../metrics/prometheus-grafana.md). A variety of [prebuilt dashboards](../visualize/visualize-use-managed-grafana-how-to.md) are available for monitoring Kubernetes clusters including several that present similar information as Container insights views. 
 

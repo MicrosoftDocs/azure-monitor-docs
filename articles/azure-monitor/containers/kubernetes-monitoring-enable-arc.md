@@ -30,7 +30,7 @@ The onboarding and configuration processes described in this article support the
 - SUSE Rancher K3s
 - VMware (TKG)
 
-The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations. For Arc-enabled clusters with Windows nodes, you can setup Managed Prometheus on a Linux node within the cluster, and configure scraping metrics from metrics endpoints running on the Windows nodes.
+The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations. For Arc-enabled clusters with Windows nodes, you can set up Managed Prometheus on a Linux node within the cluster, and configure scraping metrics from metrics endpoints running on the Windows nodes.
  
 * Red Hat Openshift distributions, including Azure Red Hat OpenShift (ARO)
 * Windows nodes
