@@ -20,7 +20,7 @@ ms.date: 5/28/2025
 - Ignore network security perimeter/Resource ID claims in header.
 
 ### Container Insights 
-[Container insights](../containers/container-insights-overview.md) is a feature of Azure Monitor that collects and analyzes container logs from [Azure Kubernetes clusters](/azure/aks/what-is-aks) or [Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/overview) and their components.
+[Container insights](../containers/kubernetes-monitoring-overview.md) is a feature of Azure Monitor that collects and analyzes container logs from [Azure Kubernetes clusters](/azure/aks/what-is-aks) or [Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/overview) and their components.
 
 - Associate Log Analytics Workspace to a network security perimeter with inbound rules defined.
 - Allow the traffic if IP based rule specified and match the source resource's IP address.

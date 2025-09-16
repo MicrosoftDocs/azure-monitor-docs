@@ -1,33 +1,33 @@
 ---
-title: Query logs from Container insights
+title: Query container logs in Azure Monitor
 description: Container insights collects metrics and log data, and this article describes the records and includes sample queries.
 ms.topic: how-to
 ms.date: 04/23/2025
 ms.reviewer: viviandiec
 ---
 
-# Query logs from Container insights
+# Query container logs in Azure Monitor
 
-Container insights collects performance metrics, inventory data, and health state information from container hosts and containers. The data is collected every three minutes and forwarded to the Log Analytics workspace in Azure Monitor where it's available for [log queries](../logs/log-query-overview.md) using [Log Analytics](../logs/log-analytics-overview.md) in Azure Monitor.
+Container logs for Kubernetes clusters collect performance metrics, inventory data, and health state information from container hosts and containers. The data is stored in a Log Analytics workspace where it's available for [log queries](../logs/log-query-overview.md) using [Log Analytics](../logs/log-analytics-overview.md) in Azure Monitor.
 
-You can apply this data to scenarios that include migration planning, capacity analysis, discovery, and on-demand performance troubleshooting. Azure Monitor Logs can help you look for trends, diagnose bottlenecks, forecast, or correlate data that can help you determine whether the current cluster configuration is performing optimally.
+This data is useful for scenarios that include migration planning, capacity analysis, discovery, and on-demand performance troubleshooting. Log queries with this data can help you look for trends, diagnose bottlenecks, forecast, or correlate data that can help you determine whether the current cluster configuration is performing optimally.
 
 For information on using these queries, see [Using queries in Azure Monitor Log Analytics](../logs/queries.md). For a complete tutorial on using Log Analytics to run queries and work with their results, see [Log Analytics tutorial](../logs/log-analytics-tutorial.md).
 
 > [!IMPORTANT]
-> The queries in this article depend on data collected by Container insights and stored in a Log Analytics workspace. If you've modified the default data collection settings, the queries might not return the expected results. Most notably, if you've disabled collection of performance data since you've enabled Prometheus metrics for the cluster, any queries using the `Perf` table won't return results. 
+> If you've modified the default data collection settings, the queries might not return the expected results. Most notably, if you're not collecting performance data from the cluster since it's redundant, any queries using the `Perf` table won't return results. 
 > 
 > See [Configure data collection in Container insights using data collection rule](./container-insights-data-collection-dcr.md) for preset configurations including disabling performance data collection. See [Configure data collection in Container insights using ConfigMap](./container-insights-data-collection-configmap.md) for further data collection options.
 
 ## Open Log Analytics
 
-There are multiple options for starting Log Analytics. Each option starts with a different [scope](../logs/scope.md). For access to all data in the workspace, on the **Monitoring** menu, select **Logs**. To limit the data to a single Kubernetes cluster, select **Logs** from that cluster's menu.
+The [scope](../logs/scope.md) of your Log Analytics session depends on how you start it. For access to all data in the workspace, select **Logs** from the **Monitor** menu in the Azure portal. To limit the data to a single Kubernetes cluster, select **Logs** from that cluster's menu.
 
 :::image type="content" source="media/container-insights-log-query/start-log-analytics.png" alt-text="Screenshot that shows starting Log Analytics." lightbox="media/container-insights-log-query/start-log-analytics.png":::
 
 ## Existing log queries
 
-You don't necessarily need to understand how to write a log query to use Log Analytics. You can select from multiple prebuilt queries. You can either run the queries without modification or use them as a start to a custom query. Select **Queries** at the top of the Log Analytics screen, and view queries with a **Resource type** of **Kubernetes Services**.
+You don't necessarily need to understand how to write a log query to use Log Analytics but instead select from multiple prebuilt queries. You can either run the queries without modification or use them as a start to a custom query. Select **Queries** at the top of the Log Analytics screen, and view queries with a **Resource type** of **Kubernetes Services**.
 
 :::image type="content" source="media/container-insights-log-query/log-analytics-queries.png" alt-text="Screenshot that shows Log Analytics queries for Kubernetes." lightbox="media/container-insights-log-query/log-analytics-queries.png":::
 
@@ -60,22 +60,6 @@ KubeEvents
 | render table
 ```
 
-### Container CPU
-
-``` kusto
-Perf
-| where ObjectName == "K8SContainer" and CounterName == "cpuUsageNanoCores" 
-| summarize AvgCPUUsageNanoCores = avg(CounterValue) by bin(TimeGenerated, 30m), InstanceName 
-```
-
-### Container memory
-This query uses `memoryRssBytes` which is only available for Linux nodes.
-
-```kusto
-Perf
-| where ObjectName == "K8SContainer" and CounterName == "memoryRssBytes"
-| summarize AvgUsedRssMemoryBytes = avg(CounterValue) by bin(TimeGenerated, 30m), InstanceName
-```
 
 ### Requests per minute with custom metrics
 
@@ -631,7 +615,8 @@ The required tables for this chart include KubeNodeInventory, KubePodInventory, 
 
 ## Prometheus metrics
 
-The following examples require the configuration described in [Send Prometheus metrics to Log Analytics workspace with Container insights](container-insights-prometheus-logs.md).
+> [!IMPORTANT]
+> The following examples require the configuration described in [Send Prometheus metrics to Log Analytics workspace with Container insights](container-insights-prometheus-logs.md). This is a legacy configuration that's been replaced by Managed Prometheus. See [Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md) for guidance on querying Prometheus metrics.
 
 To view Prometheus metrics scraped by Azure Monitor and filtered by namespace, specify *"prometheus"*. Here's a sample query to view Prometheus metrics from the `default` Kubernetes namespace.
 
@@ -693,16 +678,6 @@ The output shows results similar to the following example:
 
 :::image type="content" source="./media/container-insights-log-query/log-query-example-kubeagent-events.png" alt-text="Screenshot that shows log query results of informational events from an agent." lightbox="media/container-insights-log-query/log-query-example-kubeagent-events.png":::
 
-## Frequently asked questions
-This section provides answers to common questions.
-
-### Can I view metrics collected in Grafana?
-Container insights support viewing metrics stored in your Log Analytics workspace in Grafana dashboards. We've provided a template that you can download from the Grafana [dashboard repository](https://grafana.com/grafana/dashboards?dataSource=grafana-azure-monitor-datasource&category=docker). Use it to get started and as a reference to help you learn how to query data from your monitored clusters to visualize in custom Grafana dashboards.
-
-### Why are log lines larger than 16 KB split into multiple records in Log Analytics?
-The agent uses the [Docker JSON file logging driver](https://docs.docker.com/config/containers/logging/json-file/) to capture the stdout and stderr of containers. This logging driver splits log lines [larger than 16 KB](https://github.com/moby/moby/pull/22982) into multiple lines when they're copied from stdout or stderr to a file. Use [Multi-line logging](./container-insights-logs-schema.md#multi-line-logging) to get log record size up to 64KB.
-
-          
 
 ## Next steps
 

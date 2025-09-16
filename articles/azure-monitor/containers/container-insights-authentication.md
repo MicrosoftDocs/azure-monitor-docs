@@ -122,24 +122,17 @@ AKS clusters must first disable monitoring and then upgrade to managed identity.
 
 ## [Shell script](#tab/script)
 
-This shell script is the recommended migration method for bulk migration of multiple machines. Make sure your cluster network meets [our firewall requirements](https://learn.microsoft.com/azure/azure-monitor/containers/kubernetes-monitoring-firewall) before running the script. 
+This shell script is the recommended migration method for bulk migration of multiple machines. Make sure your cluster network meets [our firewall requirements](/azure/azure-monitor/containers/kubernetes-monitoring-firewall) before running the script. 
 
-[Download the script file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/troubleshoot/cluster-migration/migrate-to-container-insights-msi.sh) directly from our Github repository. The first 30 lines of the script describe how to run it. 
+[Download the script file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/troubleshoot/cluster-migration/migrate-to-container-insights-msi.sh) directly from our GitHub repository. The first 30 lines of the script describe how to run it. 
 
 
 ---
 
 
 ## Enable legacy authentication
-If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable.md#enable-container-insights), which has examples of different options for enabling Container insights.
+If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging), which has examples of different options for enabling Container insights.
 
 
 ## Next steps
 If you experience issues when you upgrade the agent, review the [troubleshooting guide](container-insights-troubleshoot.md) for support.
-
-
-
-
-
-
-

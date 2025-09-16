@@ -1,33 +1,25 @@
 ---
-title: Reports in Container insights
-description: This article describes reports that are available to analyze data collected by Container insights.
+title: Kubernetes workbooks in Azure Monitor
+description: This article describes workbooks in Azure Monitor available to analyze monitoring data for Kubernetes clusters.
 ms.topic: article
-ms.date: 08/25/2025
+ms.date: 08/21/2025
 ms.reviewer: aul
 ---
 
-# Reports in Container insights
-Reports in Container insights are recommended out-of-the-box for [Azure workbooks](../visualize/workbooks-overview.md). This article describes the different workbooks that are available and how to access them.
+# Kubernetes workbooks in Azure Monitor
+A variety of [Azure Monitor workbooks](../visualize/workbooks-overview.md) are available to analyze the data collected by your Kubernetes clusters. This article describes the different workbooks that are available and how to access them.
 
 > [!NOTE]
-> The **Reports** tab will not be available if you enable the [Prometheus experience for Container insights](./container-insights-experience-v2.md). You can still access the workbooks from the **Workbooks** page for the cluster.
-
-
-> [!NOTE]
-> The workbooks on the Reports tab may not function as expected if the [data being collected in Container insights is configured and filtered](./container-insights-data-collection-configure.md
-).
->
-> :::image type="content" source="media/container-insights-reports/workbooks-page.png" alt-text="Screenshot of workbook option for a cluster." lightbox="media/container-insights-reports/workbooks-page.png":::
+> Workbooks may not function as expected if you've filtered data collected for your cluster. 
 
 ## View workbooks
-On the **Azure Monitor** menu in the Azure portal, select **Containers**. In the **Monitoring** section, select **Insights**, choose a particular cluster, and then select the **Reports** tab. You can also view them from the [workbook gallery](../visualize/workbooks-overview.md#the-gallery) in Azure Monitor.
-<!-- convertborder later -->
+In the menu for your cluster in the Azure portal, select **Workbooks** in the **Monitoring** section. The **Kubernetes services** section lists the different Kubernetes workbooks available.
+
 :::image type="content" source="media/container-insights-reports/reports-page.png" lightbox="media/container-insights-reports/reports-page.png" alt-text="Screenshot that shows the Reports page." border="false":::
 
 
 ## Cluster Optimization Workbook
-The Cluster Optimization Workbook provides multiple analyzers that give you a quick view of the health and performance of your Kubernetes cluster. It has multiple analyzers that each provide different information related to your cluster. The workbook requires no configuration once Container insights has been enabled on the cluster.
-
+The Cluster Optimization Workbook provides multiple analyzers that give you a quick view of the health and performance of your Kubernetes cluster. It has multiple analyzers that each provide different information related to your cluster. The workbook requires no configuration once Prometheus metrics and log collection has been enabled on the cluster.
 
 
 ### Liveness Probe Failures
@@ -39,7 +31,7 @@ The liveness probe failures analyzer shows which liveness probes have failed rec
 :::image type="content" source="media/container-insights-reports/cluster-optimization-workbook-liveness-probe.png" alt-text="Screenshot of Cluster Optimization Workbook." lightbox="media/container-insights-reports/cluster-optimization-workbook-liveness-probe.png":::
 
 ### Event Anomaly
-The **event anomaly** analyzer groups similar events together for easier analysis. It also shows which event groups have recently increased in volume. Events in the list are grouped based on common phrases. For example, two events with messages *"pod-abc-123 failed, can not pull image"* and *"pod-def-456 failed, can not pull image"* would be grouped together. The **Spikiness** column rates which events have occurred more recently. For example, if Events A and B occurred on average 10 times a day in the last month, but event A occurred 1,000 times yesterday while event B occurred 2 times yesterday, then event A would have a much higher spikiness rating than B.
+The **event anomaly** analyzer groups similar events together for easier analysis. It also shows which event groups have recently increased in volume. Events in the list are grouped based on common phrases. For example, two events with messages *"pod-abc-123 failed, cannot pull image"* and *"pod-def-456 failed, cannot pull image"* would be grouped together. The **Spikiness** column rates which events have occurred more recently. For example, if Events A and B occurred on average 10 times a day in the last month, but event A occurred 1,000 times yesterday while event B occurred 2 times yesterday, then event A would have a much higher spikiness rating than B.
 
 :::image type="content" source="media/container-insights-reports/cluster-optimization-workbook-event-anomaly.png" alt-text="Screenshot of event anomaly analyzer in Cluster Optimization Workbook." lightbox="media/container-insights-reports/cluster-optimization-workbook-event-anomaly.png":::
 
@@ -84,7 +76,7 @@ The number displayed on each tile represents how far the container limits/reques
     - IPs assigned to a pod.
 
 >[!NOTE]
-> By default 16 IP's are allocated from subnet to each node. This cannot be modified to be less than 16. For instructions on how to enable subnet IP usage metrics, see [Monitor IP Subnet Usage](/azure/aks/configure-azure-cni-dynamic-ip-allocation#monitor-ip-subnet-usage).
+> By default 16 IPs are allocated from subnet to each node. This cannot be modified to be less than 16. For instructions on how to enable subnet IP usage metrics, see [Monitor IP Subnet Usage](/azure/aks/configure-azure-cni-dynamic-ip-allocation#monitor-ip-subnet-usage).
 
 ## Resource Monitoring workbooks
 
@@ -129,4 +121,5 @@ To create a custom workbook based on any of these workbooks, select the **View W
 
 ## Next steps
 
-For more information about workbooks in Azure Monitor, see [Azure Monitor workbooks](../visualize/workbooks-overview.md).
+* Learn how to [Analyze Kubernetes monitoring data in the Azure portal](container-insights-analyze.md) Container insights.
+
