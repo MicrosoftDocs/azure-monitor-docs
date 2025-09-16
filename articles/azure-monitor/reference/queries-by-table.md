@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 09/08/2025
+ms.date: 09/15/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -2081,4 +2081,3 @@ ms.reviewer: lualderm
 - [Analyze logs from Azure storage with Log Analytics](/azure/azure-monitor/essentials/resource-logs#send-to-log-analytics-workspace)
 - [Learn more about resource logs](/azure/azure-monitor/essentials/platform-logs-overview)
 - [Change resource log diagnostic settings using the Azure Monitor REST API](/rest/api/monitor/diagnosticsettings)
-
