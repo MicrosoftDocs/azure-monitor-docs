@@ -18,7 +18,7 @@ You can use Azure Monitor managed service for Prometheus to use Prometheus funct
   - Data retention for 18 months with no cost for storage.
   - [Simple pricing based on ingestion and query](https://azure.microsoft.com/pricing/details/monitor/).
 - Monitoring and observability:
-  - [End-to-end, at-scale monitoring](../containers/container-insights-overview.md).
+  - [End-to-end, at-scale monitoring](../containers/kubernetes-monitoring-overview.md).
   - Out-of-the-box dashboards, alerts, and scrape configurations.
   - Native integration with key Azure Kubernetes Service (AKS) components, including [Customer Control Plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) and [Advanced Container Networking Services](/azure/aks/advanced-container-networking-services-overview).
   - [Compliance with Azure Trust Center](azure-monitor-workspace-overview.md#data-considerations).

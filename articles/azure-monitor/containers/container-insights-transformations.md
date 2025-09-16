@@ -13,14 +13,36 @@ This article describes how to implement data transformations in Container insigh
 > [!IMPORTANT]
 > The articles [Configure log collection in Container insights](./container-insights-data-collection-configure.md) and [Filtering log collection in Container insights](./container-insights-data-collection-filter.md) describe standard configuration settings to configure and filter data collection for Container insights. You should perform any required configuration using these features before using transformations. Use a transformation to perform filtering or other data configuration that you can't perform with the standard configuration settings.
 
-## Data collection rule
+## Data collection rules
 Transformations are implemented in [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) which are used to configure data collection in Azure Monitor. [Configure data collection using DCR](./container-insights-data-collection-configure.md) describes the DCR that's automatically created when you enable Container insights on a cluster. To create a transformation, you must perform one of the following actions:
 
 - **New cluster**. Use an existing [ARM template ](https://github.com/microsoft/Docker-Provider/tree/ci_prod/scripts/onboarding/aks/onboarding-using-msi-auth) to onboard an AKS cluster to Container insights. Modify the DCR in that template with your required configuration, including a transformation similar to one of the samples below.
 - **Existing DCR**. After a cluster has been onboarded to Container insights and data collection configured, edit its DCR to include a transformation using any of the methods in [Editing Data Collection Rules](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json). 
 
 > [!NOTE]
-> There is currently minimal UI for editing DCRs, which is required to add transformations. In most cases, you need to manually edit the the DCR. This article describes the DCR structure to implement. See [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) for guidance on how to implement that structure.
+> There is currently minimal UI for editing DCRs, which is required to add transformations. In most cases, you need to manually edit the DCR. This article describes the DCR structure to implement. See [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) for guidance on how to implement that structure.
+
+When you enable monitoring Prometheus metrics and container logging for your Kubernetes clusters in the Azure monitor, the following resources are created in your subscription. 
+
+**Managed Prometheus**
+
+| Resource Name | Resource Type | Resource Group | Region/Location | Description |
+|:---|:---|:---|:---|:---|
+| `MSPROM-<aksclusterregion>-<clustername>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | Same as cluster | Same as Azure Monitor workspace | Associated with the AKS cluster resource, defines configuration of prometheus metrics collection by metrics addon. |
+| `MSPROM-<aksclusterregion>-<clustername>` | [Data Collection endpoint](../data-collection/data-collection-endpoint-overview.md) | Same as cluster | Same as Azure Monitor workspace | Used by the DCR for ingesting Prometheus metrics from the metrics addon. |
+    
+When you create a new Azure Monitor workspace, the following additional resources are created.
+
+| Resource Name | Resource Type | Resource Group | Region/Location | Description |
+|:---|:---|:---|:---|:---|
+| `<azuremonitor-workspace-name>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCR to be used if you use Remote Write from a Prometheus server. |
+| `<azuremonitor-workspace-name>` | [Data Collection endpoint](../data-collection/data-collection-endpoint-overview.md) | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCE to be used if you use Remote Write from a Prometheus server. |
+
+**Log collection**
+
+| Resource Name | Resource Type | Resource Group | Region/Location | Description |
+|:---|:---|:---|:---|:---|
+| `MSCI-<aksclusterregion>-<clustername>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | Same as cluster | Same as Log Analytics workspace | Associated with the AKS cluster resource, defines configuration of logs collection by the Azure Monitor agent. |
 
 
 ## Data sources
@@ -179,7 +201,7 @@ This logic is shown in the following diagram.
 :::image type="content" source="media/container-insights-transformations/transformation-sample-basic-logs.png" lightbox="media/container-insights-transformations/transformation-sample-basic-logs.png" alt-text="Diagram that shows filtering container logs using a transformation that sends some data to analytics table and other data to basic logs." border="false":::
 
 > [!IMPORTANT]
-> Before you install the DCR in this sample, you must [create a new table](../logs/create-custom-table.md) with the same schema as `ContainerLogV2`. Name it `ContainerLogV2_CL`. The configure ContainerLogV2 for [basic logs](../logs/basic-logs-configure.md).
+> Before you install the DCR in this sample, you must [create a new table](../logs/create-custom-table.md) with the same schema as `ContainerLogV2`. Name it `ContainerLogV2_CL`. 
 
 The following sample shows this transformation added to the Container insights DCR. There are two data flows for `Microsoft-ContainerLogV2` in this DCR, one for each transformation. The first sends to the default table you don't need to specify a table name. The second requires the `outputStream` property to specify the destination table.
 
