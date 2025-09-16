@@ -153,9 +153,6 @@ items:
             href: app/api-custom-events-metrics.md
           - name: Log traces
             href: app/asp-net-trace-logs.md
-          - name: TelemetryProcessors
-            displayName: processors, filtering, telemetry filtering, telemetry processor
-            href: app/api-filtering-sampling.md
           - name: Distributed tracing and telemetry correlation
             displayName: correlation headers, w3c, distributed tracing, tracing
             href: app/distributed-trace-data.md
