@@ -2850,20 +2850,25 @@ To review frequently asked questions (FAQ), see [Event counters FAQ](application
 
 ## Filter and enrich telemetry
 
+#### In this section
+
+* [Filter and preprocess telemetry](#filter-and-preprocess-telemetry)
 * [Telemetry initializers](#telemetry-initializers)
 * [Telemetry processor](#telemetry-processors)
 * [Sampling](#sampling)
 * [Enrich data through HTTP](#enrich-data-through-http)
 
+[!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
+
+[!INCLUDE [ITelemetryInitializer](./includes/application-insights-processor-and-initializer.md)]
+
 ### Telemetry initializers
 
 To enrich telemetry with additional information or to override telemetry properties set by the standard telemetry modules, use telemetry initializers.
 
+Telemetry initializers set context properties that are sent along with every item of telemetry. You can write your own initializers to set context properties.
+
 # [ASP.NET](#tab/net-1)
-
-Telemetry initializers set context properties that are sent along with every item of telemetry.
-
-You can [write your own initializers](api-filtering-sampling.md#add-properties) to set context properties.
 
 The standard initializers are all set either by the web or WindowsServer NuGet packages:
 
@@ -2929,7 +2934,7 @@ var app = builder.Build();
 
 # [Worker Service](#tab/worker-1)
 
-Use [telemetry initializers](./api-filtering-sampling.md#addmodify-properties-itelemetryinitializer) when you want to define properties that are sent with all telemetry.
+Use telemetry initializers when you want to define properties that are sent with all telemetry.
 
 Add any new telemetry initializer to the `DependencyInjection` container and the SDK automatically adds them to `TelemetryConfiguration`.
 
@@ -2969,48 +2974,217 @@ Telemetry initializers are present by default. To remove all or specific telemet
 
 ### Telemetry processors
 
-# [ASP.NET](#tab/net-1)
-
 Telemetry processors can filter and modify each telemetry item before it's sent from the SDK to the portal.
 
-To learn how to use telemetry processors with ASP.NET applications, see [Filter and preprocess telemetry in the Application Insights SDK](api-filtering-sampling.md#filtering). <!-- SAME SAME -->
+1. Implement `ITelemetryProcessor`.
 
-You can [write your own telemetry processors](api-filtering-sampling.md#filtering). <!-- SAME SAME -->
+    Telemetry processors construct a chain of processing. When you instantiate a telemetry processor, you're given a reference to the next processor in the chain. When a telemetry data point is passed to the process method, it does its work and then calls (or doesn't call) the next telemetry processor in the chain.
 
-#### Adaptive sampling telemetry processor (from 2.0.0-beta3)
+    ```csharp
+    using Microsoft.ApplicationInsights.Channel;
+    using Microsoft.ApplicationInsights.Extensibility;
+    using Microsoft.ApplicationInsights.DataContracts;
 
-This functionality is enabled by default. If your app sends considerable telemetry, this processor removes some of it.
+    public class SuccessfulDependencyFilter : ITelemetryProcessor
+    {
+        private ITelemetryProcessor Next { get; set; }
 
-```xml
+        // next will point to the next TelemetryProcessor in the chain.
+        public SuccessfulDependencyFilter(ITelemetryProcessor next)
+        {
+            this.Next = next;
+        }
 
+        public void Process(ITelemetry item)
+        {
+            // To filter out an item, return without calling the next processor.
+            if (!OKtoSend(item)) { return; }
+
+            this.Next.Process(item);
+        }
+
+        // Example: replace with your own criteria.
+        private bool OKtoSend (ITelemetry item)
+        {
+            var dependency = item as DependencyTelemetry;
+            if (dependency == null) return true;
+
+            return dependency.Success != true;
+        }
+    }
+    ```
+
+1. Add your processor.
+
+    # [ASP.NET](#tab/net-1)
+    Insert this snippet in ApplicationInsights.config:
+    
+    ```xml
     <TelemetryProcessors>
-      <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.AdaptiveSamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
-        <MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>
+      <Add Type="WebApplication9.SuccessfulDependencyFilter, WebApplication9">
+        <!-- Set public property -->
+        <MyParamFromConfigFile>2-beta</MyParamFromConfigFile>
       </Add>
     </TelemetryProcessors>
+    ```
+    
+    You can pass string values from the .config file by providing public named properties in your class.
+    
+    > [!WARNING]
+    > Take care to match the type name and any property names in the .config file to the class and property names in the code. If the .config file references a nonexistent type or property, the SDK may silently fail to send any telemetry.
+    
+    Alternatively, you can initialize the filter in code. In a suitable initialization class, for example, AppStart in `Global.asax.cs`, insert your processor into the chain:
+    
+    > [!NOTE]
+    > The following code sample is obsolete, but is made available here for posterity. Consider [getting started with OpenTelemetry](opentelemetry-enable.md) or [migrating to OpenTelemetry](opentelemetry-dotnet-migrate.md).
 
+    ```csharp
+    var builder = TelemetryConfiguration.Active.DefaultTelemetrySink.TelemetryProcessorChainBuilder;
+    builder.Use((next) => new SuccessfulDependencyFilter(next));
+    
+    // If you have more processors:
+    builder.Use((next) => new AnotherProcessor(next));
+    
+    builder.Build();
+    ```
+    
+    Telemetry clients created after this point use your processors.
+
+    #### Adaptive sampling telemetry processor (from 2.0.0-beta3)
+    
+    This functionality is enabled by default. If your app sends considerable telemetry, this processor removes some of it.
+    
+    ```xml
+    
+        <TelemetryProcessors>
+          <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.AdaptiveSamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
+            <MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>
+          </Add>
+        </TelemetryProcessors>
+    
+    ```
+    
+    The parameter provides the target that the algorithm tries to achieve. Each instance of the SDK works independently. So, if your server is a cluster of several machines, the actual volume of telemetry is multiplied accordingly.
+    
+    Learn more about [sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+    
+    #### Fixed-rate sampling telemetry processor (from 2.0.0-beta1)
+    
+    There's also a standard sampling telemetry processor (from 2.0.1):
+    
+    ```xml
+        <TelemetryProcessors>
+         <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.SamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
+    
+         <!-- Set a percentage close to 100/N where N is an integer. -->
+         <!-- E.g. 50 (=100/2), 33.33 (=100/3), 25 (=100/4), 20, 1 (=100/100), 0.1 (=100/1000) -->
+         <SamplingPercentage>10</SamplingPercentage>
+         </Add>
+       </TelemetryProcessors>
+    ```
+
+    # [ASP.NET Core](#tab/core-1)
+    
+    > [!NOTE]
+    > Adding a processor by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for ASP.NET Core applications or if you're using the Microsoft.ApplicationInsights.WorkerService SDK.
+    
+    For apps written by using [ASP.NET Core](asp-net-core.md#add-telemetry-processors) or [WorkerService](worker-service.md#add-telemetry-processors), adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
+    
+    ```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // ...
+        services.AddApplicationInsightsTelemetry();
+        services.AddApplicationInsightsTelemetryProcessor<SuccessfulDependencyFilter>();
+    
+        // If you have more processors:
+        services.AddApplicationInsightsTelemetryProcessor<AnotherProcessor>();
+    }
+    ```
+    
+    To register telemetry processors that need parameters in ASP.NET Core, create a custom class implementing **ITelemetryProcessorFactory**. Call the constructor with the desired parameters in the **Create** method and then use **AddSingleton<ITelemetryProcessorFactory, MyTelemetryProcessorFactory>()**.
+
+    # [Worker Service](#tab/worker-1)
+    
+    > [!NOTE]
+    > Adding a processor by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for ASP.NET Core applications or if you're using the Microsoft.ApplicationInsights.WorkerService SDK.
+    
+    For apps written by using [ASP.NET Core](asp-net-core.md#add-telemetry-processors) or [WorkerService](worker-service.md#add-telemetry-processors), adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
+    
+    ```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // ...
+        services.AddApplicationInsightsTelemetry();
+        services.AddApplicationInsightsTelemetryProcessor<SuccessfulDependencyFilter>();
+    
+        // If you have more processors:
+        services.AddApplicationInsightsTelemetryProcessor<AnotherProcessor>();
+    }
+    ```
+    
+    To register telemetry processors that need parameters in ASP.NET Core, create a custom class implementing **ITelemetryProcessorFactory**. Call the constructor with the desired parameters in the **Create** method and then use **AddSingleton<ITelemetryProcessorFactory, MyTelemetryProcessorFactory>()**.
+
+    ---
+
+#### Example filters
+
+##### Synthetic requests
+
+Filter out bots and web tests. Although Metrics Explorer gives you the option to filter out synthetic sources, this option reduces traffic and ingestion size by filtering them at the SDK itself.
+
+```csharp
+public void Process(ITelemetry item)
+{
+    if (!string.IsNullOrEmpty(item.Context.Operation.SyntheticSource)) {return;}
+    
+    // Send everything else:
+    this.Next.Process(item);
+}
 ```
 
-The parameter provides the target that the algorithm tries to achieve. Each instance of the SDK works independently. So, if your server is a cluster of several machines, the actual volume of telemetry is multiplied accordingly.
+##### Failed authentication
 
-Learn more about [sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+Filter out requests with a "401" response.
 
-#### Fixed-rate sampling telemetry processor (from 2.0.0-beta1)
+```csharp
+public void Process(ITelemetry item)
+{
+    var request = item as RequestTelemetry;
 
-There's also a standard [sampling telemetry processor](api-filtering-sampling.md) (from 2.0.1):
+    if (request != null &&
+    request.ResponseCode.Equals("401", StringComparison.OrdinalIgnoreCase))
+    {
+        // To filter out an item, return without calling the next processor.
+        return;
+    }
 
-```xml
-
-    <TelemetryProcessors>
-     <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.SamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
-
-     <!-- Set a percentage close to 100/N where N is an integer. -->
-     <!-- E.g. 50 (=100/2), 33.33 (=100/3), 25 (=100/4), 20, 1 (=100/100), 0.1 (=100/1000) -->
-     <SamplingPercentage>10</SamplingPercentage>
-     </Add>
-   </TelemetryProcessors>
-
+    // Send everything else
+    this.Next.Process(item);
+}
 ```
+
+##### Filter out fast remote dependency calls
+
+If you want to diagnose only calls that are slow, filter out the fast ones.
+
+> [!NOTE]
+> This filtering will skew the statistics you see on the portal.
+
+```csharp
+public void Process(ITelemetry item)
+{
+    var request = item as DependencyTelemetry;
+
+    if (request != null && request.Duration.TotalMilliseconds < 100)
+    {
+        return;
+    }
+    this.Next.Process(item);
+}
+```
+
+<!--
 
 # [ASP.NET Core](#tab/core-1)
 
@@ -3044,6 +3218,8 @@ You can add custom telemetry processors to `TelemetryConfiguration` by using the
 ```
 
 ---
+
+-->
 
 ### Sampling
 

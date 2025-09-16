@@ -3,9 +3,7 @@ ms.topic: include
 ms.date: 01/31/2025
 ---
 
-#### ITelemetryInitializer
-
-##### ITelemetryProcessor and ITelemetryInitializer
+#### ITelemetryProcessor and ITelemetryInitializer
 
 What's the difference between telemetry processors and telemetry initializers?
 
@@ -16,7 +14,7 @@ What's the difference between telemetry processors and telemetry initializers?
 * All registered telemetry initializers are called for every telemetry item. For telemetry processors, SDK guarantees calling the first telemetry processor. Whether the rest of the processors are called or not is decided by the preceding telemetry processors.
 * Use telemetry initializers to enrich telemetry with more properties or override an existing one. Use a telemetry processor to filter out telemetry.
 
-##### Add/modify properties
+#### Add/modify properties
 
 Use telemetry initializers to enrich telemetry with additional information or to override telemetry properties set by the standard telemetry modules.
 
