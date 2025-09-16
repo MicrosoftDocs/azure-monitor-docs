@@ -10,7 +10,7 @@ ms.reviewer: aul
 
 Kubernetes clusters generate a large amount of data that's collected by Azure Monitor. Since you're charged for the ingestion and retention of this data, you can significantly reduce your monitoring costs by filtering out data that you don't need.
 
-[ConfigMaps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) are a Kubernetes mechanism that allow you to store non-confidential data such as a configuration file or environment variables. Container insights looks for a ConfigMap on each cluster with particular settings that define data that it should collect. 
+[ConfigMaps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) are a Kubernetes mechanism that allows you to store non-confidential data such as a configuration file or environment variables. Container insights looks for a ConfigMap on each cluster with particular settings that define data that it should collect. 
 
 > [!TIP]
 > Before implementing any of the filtering options described in this article, ensure that you select a [log collection profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) that matches your requirements. Use the information in this article to further refine the data collection settings for your cluster.

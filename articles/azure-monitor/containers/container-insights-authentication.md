@@ -124,7 +124,7 @@ AKS clusters must first disable monitoring and then upgrade to managed identity.
 
 This shell script is the recommended migration method for bulk migration of multiple machines. Make sure your cluster network meets [our firewall requirements](/azure/azure-monitor/containers/kubernetes-monitoring-firewall) before running the script. 
 
-[Download the script file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/troubleshoot/cluster-migration/migrate-to-container-insights-msi.sh) directly from our Github repository. The first 30 lines of the script describe how to run it. 
+[Download the script file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/troubleshoot/cluster-migration/migrate-to-container-insights-msi.sh) directly from our GitHub repository. The first 30 lines of the script describe how to run it. 
 
 
 ---

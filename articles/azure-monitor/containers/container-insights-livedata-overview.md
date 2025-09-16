@@ -16,7 +16,7 @@ The Live Data feature in Container insights gives you direct access to your Azur
 
 For help with setting up or troubleshooting the Live Data feature, see the [Setup guide](container-insights-livedata-setup.md). This feature directly accesses the Kubernetes API. For more information about the authentication model, see [The Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/).
 
-## View AKS resource live logs
+## View AKS resources live logs
 
 > [!NOTE]
 > You must be on a machine on the same private network to access live logs from a private cluster.

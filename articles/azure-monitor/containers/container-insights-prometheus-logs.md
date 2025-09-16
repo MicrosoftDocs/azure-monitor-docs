@@ -20,7 +20,7 @@ This configuration requires configuring the *monitoring addon* for the Azure Mon
 
 ## Prometheus scraping settings (for metrics stored as logs)
 
-Active scraping of metrics from Prometheus is performed from one of two perspectives below and metrics are sent to configured log analytics workspace :
+Active scraping of metrics from Prometheus is performed from one of two perspectives below and metrics are sent to configured log analytics workspace:
 
 - **Cluster-wide**: Defined in the ConfigMap section *[Prometheus data_collection_settings.cluster]*.
 - **Node-wide**: Defined in the ConfigMap section *[Prometheus_data_collection_settings.node]*.

@@ -20,7 +20,7 @@ Transformations are implemented in [data collection rules (DCRs)](../essentials/
 - **Existing DCR**. After a cluster has been onboarded to Container insights and data collection configured, edit its DCR to include a transformation using any of the methods in [Editing Data Collection Rules](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json). 
 
 > [!NOTE]
-> There is currently minimal UI for editing DCRs, which is required to add transformations. In most cases, you need to manually edit the the DCR. This article describes the DCR structure to implement. See [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) for guidance on how to implement that structure.
+> There is currently minimal UI for editing DCRs, which is required to add transformations. In most cases, you need to manually edit the DCR. This article describes the DCR structure to implement. See [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) for guidance on how to implement that structure.
 
 When you enable monitoring Prometheus metrics and container logging for your Kubernetes clusters in the Azure monitor, the following resources are created in your subscription. 
 
@@ -201,7 +201,7 @@ This logic is shown in the following diagram.
 :::image type="content" source="media/container-insights-transformations/transformation-sample-basic-logs.png" lightbox="media/container-insights-transformations/transformation-sample-basic-logs.png" alt-text="Diagram that shows filtering container logs using a transformation that sends some data to analytics table and other data to basic logs." border="false":::
 
 > [!IMPORTANT]
-> Before you install the DCR in this sample, you must [create a new table](../logs/create-custom-table.md) with the same schema as `ContainerLogV2`. Name it `ContainerLogV2_CL`. The configure ContainerLogV2 for [basic logs](../logs/basic-logs-configure.md).
+> Before you install the DCR in this sample, you must [create a new table](../logs/create-custom-table.md) with the same schema as `ContainerLogV2`. Name it `ContainerLogV2_CL`. 
 
 The following sample shows this transformation added to the Container insights DCR. There are two data flows for `Microsoft-ContainerLogV2` in this DCR, one for each transformation. The first sends to the default table you don't need to specify a table name. The second requires the `outputStream` property to specify the destination table.
 

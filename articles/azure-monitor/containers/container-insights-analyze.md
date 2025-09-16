@@ -11,14 +11,14 @@ ms.reviewer: viviandiec
 Azure Monitor provides a set of views in the Azure portal that combine performance and log data collected from your Kubernetes cluster to help you analyze its health and performance. This article describes the different views available and how to interact with and interpret the data they present.
 
 ## Multi-cluster view
-To open the multi-cluster view, select **Containers** from the **Insights** section of the **Monitor** menu in the Azure portal. This view shows the health status of all monitored Kubernetes clusters deployed across resource groups in your subscriptions. This views allows you to quickly identify clusters that are in a critical or unhealthy state and also helps you to enable and configure monitoring for all clusters in your environment. See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable.md) for details.
+To open the multi-cluster view, select **Containers** from the **Insights** section of the **Monitor** menu in the Azure portal. This view shows the health status of all monitored Kubernetes clusters deployed across resource groups in your subscriptions. This view allows you to quickly identify clusters that are in a critical or unhealthy state and also helps you to enable and configure monitoring for all clusters in your environment. See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable.md) for details.
 
 :::image type="content" source="./media/container-insights-analyze/multi-cluster-view.png" alt-text="Screenshot that shows an Azure Monitor multi-cluster dashboard example." lightbox="media/container-insights-analyze/multi-cluster-view.png":::
 
 >[!NOTE]
 >Azure Stack (Preview) and Non-Azure (Preview) are no longer supported in this view.
 
-Select the the **Nodes** column to open the **Nodes** tab in the single-cluster view for that cluster. Open the **Controllers** tab for the cluster with an appropriate filters by selecting the the **User pods** or **System pods** column.
+Select the **Nodes** column to open the **Nodes** tab in the single-cluster view for that cluster. Open the **Controllers** tab for the cluster with an appropriate filter by selecting the **User pods** or **System pods** column.
 
 The following table describes the different health statuses displayed in this view. Health state calculates the overall cluster status as the *worst of* the three states. If any of the three states is **Unknown**, the overall cluster state shows **Unknown**.
 
@@ -100,13 +100,13 @@ To review memory utilization, in the **Metric** dropdown list, select **Memory R
 
 ### Select metric calculation
 
-The the percentile selector defines how the metric is aggregated over the selected time range. The title of the aggregated column will change to match the selected option.
+The percentile selector defines how the metric is aggregated over the selected time range. The title of the aggregated column will change to match the selected option.
 
 :::image type="content" source="./media/container-insights-analyze/containers-metric-percentile-filter.png" alt-text="Screenshot that shows a percentile selection for data filtering." lightbox="media/container-insights-analyze/containers-metric-percentile-filter.png":::
 
 ### Trend column
 
-When you hover over the bar graph under the **Trend** column, each bar shows either CPU or memory usage, depending on which metric is selected, within a sample period of 15 minutes. After you select the trend chart through a keyboard, use the Alt+Page up key or Alt+Page down key to cycle through each bar individually. You get the same details that you would if you hovered over the bar.
+When you hover over the bar graph under the **Trend** column, each bar shows either CPU or memory usage, depending on which metric is selected, within a sample period of 15 minutes. After you select the trend chart through a keyboard, use the Alt+Page up key or Alt+Page down key to cycle through each bar individually. You get the same details as if you hovered over the bar.
 
 :::image type="content" source="./media/container-insights-analyze/containers-metric-trend-bar-01.png" alt-text="Screenshot that shows a Trend bar chart hover-over example." lightbox="media/container-insights-analyze/containers-metric-trend-bar-01.png":::
 

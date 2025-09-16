@@ -147,7 +147,7 @@ Container Flow Logs has the following limitations:
 1. Onboarding using Terraform is currently not supported
 2. If the table plan is set to Basic Logs, the pre-built Grafana dashboards do not work
 3. The Auxiliary logs table plan is not supported
-4. Only the Cilium dataplane is supported. Refer to the *[Prerequisites for Container Flow logs](/azure/aks/how-to-configure-container-network-logs?tabs=cilium#prerequisites)* article for a full list of limitations. 
+4. Only the Cilium data plane is supported. Refer to the *[Prerequisites for Container Flow logs](/azure/aks/how-to-configure-container-network-logs?tabs=cilium#prerequisites)* article for a full list of limitations. 
 
 
 

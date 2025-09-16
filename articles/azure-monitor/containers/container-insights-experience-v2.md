@@ -119,7 +119,7 @@ If you're currently using the logs based Container Insights experience, then you
 
 1. Navigate to the monitor settings for your clusters by following the instructions on how to configure your [Container Insights data collection rule](./container-insights-data-collection-dcr.md#configure-data-collection)
 
-2. From the Logs presets dropdown, select "Logs and Events" and save to configure.
+2. From the Logs preset dropdown, select "Logs and Events" and save to configure.
 
 > [!Note]
 > Disabling the Log Analytics metrics also disables the visualization dropdown in the toolbar. Revert to using one of the standard cost presets in the `Monitor Settings` blade to re-enable the Log Analytics visualizations.
