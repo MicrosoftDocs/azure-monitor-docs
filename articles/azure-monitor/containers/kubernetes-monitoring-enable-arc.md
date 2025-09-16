@@ -616,11 +616,11 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 ### [Azure portal](#tab/portal)
 Select **Diagnostic settings** from the **Monitoring** section of the menu for the cluster. Then select **+ Add diagnostic setting**.
 
-:::image type="content" source="media/kubernetes-monitoring-enable-portal/diagnostic-setting-new.png" alt-text="Screenshot that shows creation of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable-portal/diagnostic-setting-new.png" :::
+:::image type="content" source="media/kubernetes-monitoring-enable/diagnostic-setting-new.png" alt-text="Screenshot that shows creation of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable/diagnostic-setting-new.png" :::
 
 Select **Send to Log Analytics workspace** and select the same workspace where you send your container logs. Then select the different **Categories** that you want to collect. Give the **Diagnostic setting name** a descriptive name such as *Collect Control Plane Logs*.
 
-:::image type="content" source="media/kubernetes-monitoring-enable-portal/diagnostic-setting-details.png" alt-text="Screenshot that shows details of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable-portal/diagnostic-setting-details.png" :::
+:::image type="content" source="media/kubernetes-monitoring-enable/diagnostic-setting-details.png" alt-text="Screenshot that shows details of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable/diagnostic-setting-details.png" :::
 
 ### Verify deployment
 Within a few minutes after enabling monitoring, you should be able to use the following methods to verify that the monitoring features are enabled.
