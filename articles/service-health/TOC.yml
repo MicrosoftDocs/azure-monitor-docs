@@ -84,6 +84,8 @@
       href: ./resource-graph-health-samples.md
     - name: Sample queries for Azure Service Health Impacted resources
       href: ./resource-graph-impacted-samples.md
+    - name: Azure Resource Graph overview
+      href: azure-resource-graph-overview.md
     - name: Azure Resource health REST API queries
       href: /rest/api/resourcehealth/
     - name: Service Health API queries
