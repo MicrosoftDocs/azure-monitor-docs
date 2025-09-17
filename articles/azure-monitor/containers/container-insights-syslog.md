@@ -12,7 +12,7 @@ Log collection for your Kubernetes cluster in Azure Monitor includes the option 
 
 ## Prerequisites 
 
-- Syslog collection needs to be enabled in the [logging profile for your cluster](./kubernetes-monitoring-enable-portal.md#container-log-options).
+- Syslog collection needs to be enabled in the [logging profile for your cluster](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging).
 - Port 28330 should be available on the host node.
 - Ensure hostPort functionality is enabled in the cluster. For example, Cilium Enterprise does not have hostPort functionality enabled by default and prevents the syslog feature from working.
 - Target cluster should be an [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) cluster. Arc and other cluster types are not supported.

@@ -31,7 +31,7 @@ The liveness probe failures analyzer shows which liveness probes have failed rec
 :::image type="content" source="media/container-insights-reports/cluster-optimization-workbook-liveness-probe.png" alt-text="Screenshot of Cluster Optimization Workbook." lightbox="media/container-insights-reports/cluster-optimization-workbook-liveness-probe.png":::
 
 ### Event Anomaly
-The **event anomaly** analyzer groups similar events together for easier analysis. It also shows which event groups have recently increased in volume. Events in the list are grouped based on common phrases. For example, two events with messages *"pod-abc-123 failed, can not pull image"* and *"pod-def-456 failed, can not pull image"* would be grouped together. The **Spikiness** column rates which events have occurred more recently. For example, if Events A and B occurred on average 10 times a day in the last month, but event A occurred 1,000 times yesterday while event B occurred 2 times yesterday, then event A would have a much higher spikiness rating than B.
+The **event anomaly** analyzer groups similar events together for easier analysis. It also shows which event groups have recently increased in volume. Events in the list are grouped based on common phrases. For example, two events with messages *"pod-abc-123 failed, cannot pull image"* and *"pod-def-456 failed, cannot pull image"* would be grouped together. The **Spikiness** column rates which events have occurred more recently. For example, if Events A and B occurred on average 10 times a day in the last month, but event A occurred 1,000 times yesterday while event B occurred 2 times yesterday, then event A would have a much higher spikiness rating than B.
 
 :::image type="content" source="media/container-insights-reports/cluster-optimization-workbook-event-anomaly.png" alt-text="Screenshot of event anomaly analyzer in Cluster Optimization Workbook." lightbox="media/container-insights-reports/cluster-optimization-workbook-event-anomaly.png":::
 
@@ -76,7 +76,7 @@ The number displayed on each tile represents how far the container limits/reques
     - IPs assigned to a pod.
 
 >[!NOTE]
-> By default 16 IP's are allocated from subnet to each node. This cannot be modified to be less than 16. For instructions on how to enable subnet IP usage metrics, see [Monitor IP Subnet Usage](/azure/aks/configure-azure-cni-dynamic-ip-allocation#monitor-ip-subnet-usage).
+> By default 16 IPs are allocated from subnet to each node. This cannot be modified to be less than 16. For instructions on how to enable subnet IP usage metrics, see [Monitor IP Subnet Usage](/azure/aks/configure-azure-cni-dynamic-ip-allocation#monitor-ip-subnet-usage).
 
 ## Resource Monitoring workbooks
 
@@ -121,4 +121,5 @@ To create a custom workbook based on any of these workbooks, select the **View W
 
 ## Next steps
 
-For more information about workbooks in Azure Monitor, see [Azure Monitor workbooks](../visualize/workbooks-overview.md).
+* Learn how to [Analyze Kubernetes monitoring data in the Azure portal](container-insights-analyze.md) Container insights.
+

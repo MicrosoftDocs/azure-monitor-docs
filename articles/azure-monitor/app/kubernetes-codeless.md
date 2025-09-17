@@ -4,7 +4,6 @@ description: Azure Monitor integrates seamlessly with your application running o
 ms.topic: how-to
 ms.custom: devx-track-extended-java
 ms.date: 04/03/2025
-ms.reviewer: abinetabate
 ---
 
 # Autoinstrumentation for Azure Kubernetes Service (Preview)

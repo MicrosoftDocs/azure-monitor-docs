@@ -8,10 +8,12 @@ ms.reviewer: aul
 
 # Configure container log collection in Container insights
 
-As described in [Customize data collection in Container insights](./container-insights-data-collection-configure.md), there are two configuration methods that work together to define the data collection from your cluster. This article describes options for filtering container log collection using ConfigMap.
+Kubernetes clusters generate a large amount of data that's collected by Azure Monitor. Since you're charged for the ingestion and retention of this data, you can significantly reduce your monitoring costs by filtering out data that you don't need.
+
+[ConfigMaps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) are a Kubernetes mechanism that allows you to store non-confidential data such as a configuration file or environment variables. Container insights looks for a ConfigMap on each cluster with particular settings that define data that it should collect. 
 
 > [!TIP]
-> Before implementing any of the filtering options described in this article, ensure that you select a [log collection profile](./kubernetes-monitoring-enable-portal.md#container-log-options) that matches your requirements. Use the information in this article to further refine the data collection settings for your cluster.
+> Before implementing any of the filtering options described in this article, ensure that you select a [log collection profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) that matches your requirements. Use the information in this article to further refine the data collection settings for your cluster.
 
 | ConfigMap | Description |
 |:---|:---|
@@ -180,7 +182,7 @@ The following table describes the settings you can configure to control data col
 | `[enable_multiline_logs]`<br>`enabled` | Boolean | true<br>false | Controls whether multiline container logs are enabled. See [Multi-line logging in Container Insights](./container-insights-logs-schema.md#multi-line-logging) for details. If not specified in the ConfigMap, the default value is `false`. This requires the `schema` setting to be `v2`. |
 | `[metadata_collection]`<br>`enabled` | Boolean | true<br>false | Controls whether metadata is collected in the `KubernetesMetadata` column of the `ContainerLogV2` table. |
 | `[metadata_collection]`<br>`include_fields` | String | Comma-separated array | List of metadata fields to include. If the setting isn't used then all fields are collected. Valid values are  `["podLabels","podAnnotations","podUid","image","imageID","imageRepo","imageTag"]` |
-| `[log_collection_settings.multi_tenancy]`<br>`enabled` | Boolean | true<br>false | Controls whether multi-tenancy is enabled. See  [Multi-tenant managed logging](./container-insights-multitenant.md) for details. If not specified in the ConfigMap, the default value is `false`. |
+| `[log_collection_settings.multi_tenancy]`<br>`enabled` | Boolean | true<br>false | Controls whether multitenancy is enabled. See  [Multitenant managed logging](./container-insights-multitenant.md) for details. If not specified in the ConfigMap, the default value is `false`. |
 | **[metric_collection_settings]** | | | |
 | `[collect_kube_system_pv_metrics]`<br>`enabled` | Boolean | true<br>false | Allows persistent volume (PV) usage metrics to be collected in the kube-system namespace. By default, usage metrics for persistent volumes with persistent volume claims in the kube-system namespace aren't collected. When this setting is set to `true`, PV usage metrics for all namespaces are collected. If not specified in the ConfigMap, the default value is `false`. |
 | **[agent_settings]** | | | |

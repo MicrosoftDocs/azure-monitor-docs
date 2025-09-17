@@ -35,7 +35,7 @@ The following table highlights the key differences between using ContainerLogV2 
 
 >[!NOTE]
 > The `LogMessage` field is dynamic and supports ingesting both JSON and plaintext string formats. 
-[Log data export](../logs/logs-data-export.md) to Event Hub and Storage Account is supported if the incoming `LogMessage` is valid JSON or a valid plain string. 
+[Log data export](../logs/logs-data-export.md) to Event Hubs and Storage Account is supported if the incoming `LogMessage` is valid JSON or a valid plain string. 
 >
 > If the `LogMessage` is malformed JSON then those log messages will be ingested with escaping. By default, log messages larger than 16KB are truncated. With [multi-line logging](#multi-line-logging) enabled, log messages larger than 64KB are truncated.
 

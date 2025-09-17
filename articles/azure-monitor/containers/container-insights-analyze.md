@@ -1,24 +1,24 @@
 ---
-title: Analyze the health and status of your Kubernetes cluster with Container insights
-description: This article describes how you can view and analyze the performance of a Kubernetes cluster with Container insights.
+title: Analyze the health and status of your Kubernetes cluster with Azure Monitor
+description: This article describes how you can view and analyze the performance of a Kubernetes cluster with Azure Monitor in the Azure portal.
 ms.topic: article
 ms.date: 08/25/2025
 ms.reviewer: viviandiec
 ---
 
-# Analyze Kubernetes cluster data with Container insights
+# Analyze the health and status of your Kubernetes cluster with Azure Monitor
 
-Container insights provides a set of views in the Azure portal that combine performance and log data collected from your Kubernetes cluster to help you analyze its health and performance. This article describes the different views available and how to interact with and interpret the data they present.
+Azure Monitor provides a set of views in the Azure portal that combine performance and log data collected from your Kubernetes cluster to help you analyze its health and performance. This article describes the different views available and how to interact with and interpret the data they present.
 
 ## Multi-cluster view
-To open the Container insights multi-cluster view, select **Containers** from the **Insights** section of the **Monitor** menu in the Azure portal. This view shows the health status of all monitored Kubernetes clusters deployed across resource groups in your subscriptions. This views allows you to quickly identify clusters that are in a critical or unhealthy state and also helps you to enable and configure monitoring for all clusters in your environment. See [Enable Kubernetes monitoring using the Azure portal](./kubernetes-monitoring-enable-portal.md) for details.
+To open the multi-cluster view, select **Containers** from the **Insights** section of the **Monitor** menu in the Azure portal. This view shows the health status of all monitored Kubernetes clusters deployed across resource groups in your subscriptions. This view allows you to quickly identify clusters that are in a critical or unhealthy state and also helps you to enable and configure monitoring for all clusters in your environment. See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable.md) for details.
 
 :::image type="content" source="./media/container-insights-analyze/multi-cluster-view.png" alt-text="Screenshot that shows an Azure Monitor multi-cluster dashboard example." lightbox="media/container-insights-analyze/multi-cluster-view.png":::
 
 >[!NOTE]
 >Azure Stack (Preview) and Non-Azure (Preview) are no longer supported in this view.
 
-Select the the **Nodes** column to open the **Nodes** tab in the single-cluster view for that cluster. Open the **Controllers** tab for the cluster with an appropriate filters by selecting the the **User pods** or **System pods** column.
+Select the **Nodes** column to open the **Nodes** tab in the single-cluster view for that cluster. Open the **Controllers** tab for the cluster with an appropriate filter by selecting the **User pods** or **System pods** column.
 
 The following table describes the different health statuses displayed in this view. Health state calculates the overall cluster status as the *worst of* the three states. If any of the three states is **Unknown**, the overall cluster state shows **Unknown**.
 
@@ -48,17 +48,17 @@ The following table provides a breakdown of the calculation that controls the he
 
 
 ## Single cluster view
-To open the single cluster view in Container insights, either select a cluster from the multi-cluster view or select **Monitor** from a cluster's menu. This view provides multiple tabs that allow you to drill down on the health and performance of the selected cluster.
+To open the single cluster view, either select a cluster from the multi-cluster view or select **Monitor** from a cluster's menu. This view provides multiple tabs that allow you to drill down on the health and performance of the selected cluster.
 
 ### Options
 
-:::image type="content" source="./media/container-insights-analyze/visualization-setting.png" alt-text="Screenshot that shows the visualization setting for COntainer insights single cluster view." lightbox="media/container-insights-analyze/visualization-setting.png":::
+:::image type="content" source="./media/container-insights-analyze/visualization-setting.png" alt-text="Screenshot that shows the visualization setting for the single cluster view." lightbox="media/container-insights-analyze/visualization-setting.png":::
 
 | Option | Description |
 |:---|:---|
-| Visualization | Allows you to select which data source is used to populate the view. **Managed Prometheus visualizations** is the preferred setting which uses Prometheus metrics stored in an Azure Monitor workspace. These are enabled when you [enable Managed Prometheus](./kubernetes-monitoring-enable.md#prometheus) for the cluster. **Log Analytics visualizations** uses performance data stored in a Log Analytics workspace. You may not be collecting this data if you aren't collect performance data in your [logging profile](./kubernetes-monitoring-enable-portal.md#container-log-options). This option won't be available if Managed Prometheus isn't enabled for the cluster. |
+| Visualization | Allows you to select which data source is used to populate the view. **Managed Prometheus visualizations** is the preferred setting which uses Prometheus metrics stored in an Azure Monitor workspace. These are enabled when you [enable Managed Prometheus](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) for the cluster. **Log Analytics visualizations** uses performance data stored in a Log Analytics workspace. You may not be collecting this data if you aren't collect performance data in your [logging profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging). This option won't be available if Managed Prometheus isn't enabled for the cluster. |
 | Refresh | Refreshes the data in the view. |
-| Monitor settings | Opens the monitoring configuration settings for the cluster. See [Enable Kubernetes monitoring using the Azure portal](./kubernetes-monitoring-enable-portal.md) for details. |
+| Monitor settings | Opens the monitoring configuration settings for the cluster. See [Enable monitoring for AKS clusters](./kubernetes-monitoring-enable.md) for details. |
 | View Grafana | Displays a list of any Managed Grafana instances for linked to the Azure Monitor workspace for the cluster. You can either open dashboards for the instance or view the instance's configuration. |
 | Recommended alerts | Configure recommended alerts for the cluster. See [Create recommended alerts for Kubernetes clusters](./kubernetes-metric-alerts.md) for details. |
 | View all clusters | Open the [multi-cluster view](#multi-cluster-view). |
@@ -80,11 +80,11 @@ The icons in the **Status** field indicate the online status of item as describe
 
 | Icon | Status |
 |--------|-------------|
-| :::image type="content" source="./media/container-insights-analyze/containers-ready-icon.png" alt-text="Ready running status icon.":::|
-| :::image type="content" source="./media/container-insights-analyze/containers-waiting-icon.png" alt-text="Waiting or Paused status icon."::: | Waiting or Paused|
-| :::image type="content" source="./media/container-insights-analyze/containers-grey-icon.png" alt-text="Last reported running status icon."::: | Last reported running but hasn't responded in more than 30 minutes|
-| :::image type="content" source="./media/container-insights-analyze/containers-terminated-icon.png" alt-text="Terminated status icon."::: | Successfully stopped or failed to stop|
-| :::image type="content" source="./media/container-insights-analyze/containers-failed-icon.png" alt-text="Failed status icon."::: | Failed state |
+| :::image type="icon" source="./media/container-insights-analyze/containers-ready-icon.png" alt-text="Ready running status icon.":::|
+| :::image type="icon" source="./media/container-insights-analyze/containers-waiting-icon.png" alt-text="Waiting or Paused status icon."::: | Waiting or Paused|
+| :::image type="icon" source="./media/container-insights-analyze/containers-grey-icon.png" alt-text="Last reported running status icon."::: | Last reported running but hasn't responded in more than 30 minutes|
+| :::image type="icon" source="./media/container-insights-analyze/containers-terminated-icon.png" alt-text="Terminated status icon."::: | Successfully stopped or failed to stop|
+| :::image type="icon" source="./media/container-insights-analyze/containers-failed-icon.png" alt-text="Failed status icon."::: | Failed state |
 
 ### Select metric
 The **Nodes**, **Controllers**, and **Containers** tabs include an option to select the metric that's used for the values in the view. 
@@ -100,13 +100,13 @@ To review memory utilization, in the **Metric** dropdown list, select **Memory R
 
 ### Select metric calculation
 
-The the percentile selector defines how the metric is aggregated over the selected time range. The title of the aggregated column will change to match the selected option.
+The percentile selector defines how the metric is aggregated over the selected time range. The title of the aggregated column will change to match the selected option.
 
 :::image type="content" source="./media/container-insights-analyze/containers-metric-percentile-filter.png" alt-text="Screenshot that shows a percentile selection for data filtering." lightbox="media/container-insights-analyze/containers-metric-percentile-filter.png":::
 
 ### Trend column
 
-When you hover over the bar graph under the **Trend** column, each bar shows either CPU or memory usage, depending on which metric is selected, within a sample period of 15 minutes. After you select the trend chart through a keyboard, use the Alt+Page up key or Alt+Page down key to cycle through each bar individually. You get the same details that you would if you hovered over the bar.
+When you hover over the bar graph under the **Trend** column, each bar shows either CPU or memory usage, depending on which metric is selected, within a sample period of 15 minutes. After you select the trend chart through a keyboard, use the Alt+Page up key or Alt+Page down key to cycle through each bar individually. You get the same details as if you hovered over the bar.
 
 :::image type="content" source="./media/container-insights-analyze/containers-metric-trend-bar-01.png" alt-text="Screenshot that shows a Trend bar chart hover-over example." lightbox="media/container-insights-analyze/containers-metric-trend-bar-01.png":::
 
@@ -121,7 +121,7 @@ Select any item to open a property pane that shows the properties of the item se
 
 ### View log data
 
-To view log data for the selected resource  based on predefined log searches, select **View Events in Log Analytics** from the property pane. For more information on this data and log queries, see [How to query logs from Container insights](container-insights-log-query.md).
+To view log data for the selected resource  based on predefined log searches, select **View Events in Log Analytics** from the property pane. For more information on this data and log queries, see [How to query container logs](container-insights-log-query.md).
 
 
 ### Nodes tab

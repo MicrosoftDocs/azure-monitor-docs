@@ -45,7 +45,7 @@ Enable the recording rules that are required for the out-of-the-box dashboards:
 
    * If onboarding using the CLI, include the option `--enable-windows-recording-rules`.
    * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
-   * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and is'nt an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
+   * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
 
 ## Add scrape job for Arc-enabled clusters
 
@@ -78,6 +78,23 @@ If you're enabling Managed Prometheus for an ARC-enabled cluster, you can config
         regex: (.+?)(\:\d+)?
         replacement: $$1:9182
 ```
+
+## Differences between Windows and Linux clusters
+
+The main differences in monitoring a Windows Server cluster compared to a Linux cluster include:
+
+- Windows doesn't have a Memory RSS metric. As a result, it isn't available for Windows nodes and containers. The [Working Set](/windows/win32/memory/working-set) metric is available.
+- Disk storage capacity information isn't available for Windows nodes.
+- Only pod environments are monitored, not Docker environments.
+- With the preview release, a maximum of 30 Windows Server containers are supported. This limitation doesn't apply to Linux containers.
+
+>[!NOTE]
+> Container insights support for the Windows Server 2022 operating system is in preview.
+
+
+The containerized Linux agent (replicaset pod) makes API calls to all the Windows nodes on Kubelet secure port (10250) within the cluster to collect node and container performance-related metrics. Kubelet secure port (:10250) should be opened in the cluster's virtual network for both inbound and outbound for Windows node and container performance-related metrics collection to work.
+
+If you have a Kubernetes cluster with Windows nodes, review and configure the network security group and network policies to make sure the Kubelet secure port (:10250) is open for both inbound and outbound in the cluster's virtual network.
 
 ```AzureCLI
 kubectl apply -f ama-metrics-prometheus-config-configmap.yaml

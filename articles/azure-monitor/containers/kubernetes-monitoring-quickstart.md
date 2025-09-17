@@ -43,7 +43,7 @@ When you have the options you want, click **Configure**. This will deploy the [A
 ## View dashboards
 Now that your cluster is being monitored, have a look at the built-in Grafana dashboards that visualize this data. Select **Dashboards with Grafana (preview)** for a list of dashboards. 
 
-:::image type="content" source="media/kubernetes-monitoring-quickstart/grafana-dashboards.png" lightbox="media/kubernetes-monitoring-quickstart/grafana-dashboards.png" alt-text="Screenshot of builtin Grafana dashboards.":::
+:::image type="content" source="media/kubernetes-monitoring-quickstart/grafana-dashboards.png" lightbox="media/kubernetes-monitoring-quickstart/grafana-dashboards.png" alt-text="Screenshot of built-in Grafana dashboards.":::
 
 Select one of the dashboards to open it.
 

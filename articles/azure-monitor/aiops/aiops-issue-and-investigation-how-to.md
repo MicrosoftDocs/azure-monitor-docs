@@ -28,6 +28,45 @@ Associating a subscription with an Azure Monitor Workspace is required to create
 1. Select an existing Azure Monitor Workspace or create a new one as needed.
 1. After confirming your selection, the Issue page will reload and the investigation will automatically start running.
 
+
+### Associate an AMW via REST API
+
+You can create, update, view, and delete an AMW association to a subscription using the following REST API commands.
+
+#### Create or update an association
+
+```
+PUT https://management.azure.com/subscriptions/<subscription_id>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
+Host: management.azure.com
+Content-Type: application/json
+Authorization: Bearer <bearerToken>
+
+{
+  "properties": {
+    "defaultAzureMonitorWorkspace": "<amw_id>"
+  }
+}
+
+```
+
+#### View an association
+
+```
+GET https://management.azure.com/subscriptions/<subscription_id>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
+Host: management.azure.com
+Authorization: Bearer <bearerToken>
+```
+
+#### Delete an association
+
+```
+DELETE https://management.azure.com/subscriptions/<subscription_id>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
+Host: management.azure.com
+Authorization: Bearer <bearerToken>
+```
+
+
+
 ## Ways to start an investigation on an alert
 
 There are two ways to start an investigation on an alert:
