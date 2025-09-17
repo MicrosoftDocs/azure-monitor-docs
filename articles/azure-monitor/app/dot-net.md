@@ -1020,26 +1020,208 @@ For more information, follow [ILogger docs](/dotnet/core/extensions/logging#conf
 
 ### Traces (logs)
 
+This section explains how to send diagnostic tracing logs from ASP.NET or ASP.NET Core applications to Application Insights, and then explore/search those logs in the portal.
+
+You can use trace logs to identify traces associated with each user request and correlate them with other events and exception reports.
+
 Application Insights captures logs from ASP.NET Core and other .NET apps through ILogger, and from classic ASP.NET (.NET Framework) through the classic SDK and adapters.
 
-> [!TIP]
+> [!NOTE]
 > * By default, the Application Insights provider only sends logs with a severity of `Warning` or higher. To include `Information` or lower-level logs, update the log level settings in `appsettings.json`.
 >
 > * The [`Microsoft.ApplicationInsights.WorkerService`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) NuGet package, used to enable Application Insights for background services, is out of scope.
-
-> [!NOTE]
+>
 > To review frequently asked questions (FAQ), see [Logging with .NET FAQ](application-insights-faq.yml#logging-with--net).
 
 # [ASP.NET](#tab/net)
 
-ILogger guidance doesn’t apply to ASP.NET. To send trace logs from classic ASP.NET apps to Application Insights, use supported adapters such as:
+Choose a logging approach to emit diagnostic logs that Application Insights can collect.
 
-* **System.Diagnostics.Trace** with Application Insights TraceListener
-* **log4net** or **NLog** with official Application Insights targets
+#### Install logging on your app
+
+For classic ASP.NET apps that use **System.Diagnostics** tracing, configure an **Application Insights TraceListener** in configuration.
+
+Add a listener to `web.config` or `app.config`:
+
+```xml
+<configuration>
+  <system.diagnostics>
+    <trace>
+      <listeners>
+        <add name="myAppInsightsListener"
+             type="Microsoft.ApplicationInsights.TraceListener.ApplicationInsightsTraceListener, Microsoft.ApplicationInsights.TraceListener" />
+      </listeners>
+    </trace>
+  </system.diagnostics>
+</configuration>
+```
+
+> [!NOTE]
+> The *log-capture module* is a useful adapter for third-party loggers. However, if you aren't already using *NLog*, *log4Net*, or `System.Diagnostics.Trace`, consider calling [Application Insights TrackTrace()](api-custom-events-metrics.md#tracktrace) directly.
+
+#### Configure Application Insights to collect logs
+
+**Option 1:** Add Application Insights to your project if you haven't done so already. When adding Application Insights in Visual Studio, there's an option to include the log collector.
+
+**Option 2:** Right-click your project in Solution Explorer to **Configure Application Insights**. Select the **Configure trace collection** option.
+
+> [!NOTE]
+> No Application Insights menu or log collector option? Try [Troubleshooting](#troubleshooting).
 
 # [ASP.NET Core](#tab/core)
 
-The Application Insights SDK for ASP.NET Core already collects ILogger logs by default. If you use the SDK, you typically don’t need to also call `builder.Logging.AddApplicationInsights()` and can disregard the following ILogger installation instructions.
+---
+
+#### Manual installation
+
+Use this method if your project type isn't supported by the Application Insights installer (for example, some desktop/console scenarios) or if you prefer explicit package‑level control.
+
+1. In Solution Explorer, right-click your project, and select **Manage NuGet Packages**.
+
+1. Search for **Application Insights**.
+
+1. Select one of the following packages:
+
+    > [!NOTE]
+    > In ASP.NET Core, you typically use ILogger to emit logs that flow through the Application Insights provider. See Manual installation → ILogger for package details.
+
+    * **ILogger**: [Microsoft.Extensions.Logging.ApplicationInsights](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights/)
+    
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.Extensions.Logging.ApplicationInsights.svg" alt-text="NuGet iLogger banner":::
+    
+    * **System.Diagnostics**: [Microsoft.ApplicationInsights.TraceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.TraceListener/)
+    
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.TraceListener.svg" alt-text="NuGet System.Diagnostics banner":::
+    
+    * [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener/)
+    
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.EventSourceListener.svg" alt-text="NuGet Event Source Listener banner":::
+    
+    * [Microsoft.ApplicationInsights.DiagnosticSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DiagnosticSourceListener/)
+    
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.DiagnosticSourceListener.svg" alt-text="NuGet Diagnostic Source Listener banner":::
+    
+    * [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector/)
+    
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.EtwCollector.svg" alt-text="NuGet Etw Collector banner":::
+    
+    * **NLog**: [Microsoft.ApplicationInsights.NLogTarget](https://www.nuget.org/packages/Microsoft.ApplicationInsights.NLogTarget/)
+    
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.NLogTarget.svg" alt-text="NuGet NLog banner":::
+    
+    * **log4net**: [Microsoft.ApplicationInsights.Log4NetAppender](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Log4NetAppender/)
+    
+        :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.Log4NetAppender.svg" alt-text="NuGet Log4Net banner":::
+
+The NuGet package installs the necessary assemblies and modifies web.config or `app.config`, if applicable.
+
+##### Insert diagnostic log calls
+
+If you use `System.Diagnostics.Trace`, a typical call would be:
+
+```csharp
+System.Diagnostics.Trace.TraceWarning("Slow response - database01");
+```
+
+If you prefer `log4net` or `NLog`, use:
+
+```csharp
+    logger.Warn("Slow response - database01");
+```
+
+##### Use EventSource events
+
+You can configure [System.Diagnostics.Tracing.EventSource](/dotnet/api/system.diagnostics.tracing.eventsource) events to be sent to Application Insights as traces.
+
+1. nstall the `Microsoft.ApplicationInsights.EventSourceListener` NuGet package.
+
+1. Edit the `TelemetryModules` section of the [ApplicationInsights.config](./configuration-with-applicationinsights-config.md) file:
+
+    ```xml
+        <Add Type="Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule, Microsoft.ApplicationInsights.EventSourceListener">
+          <Sources>
+            <Add Name="MyCompany" Level="Verbose" />
+          </Sources>
+        </Add>
+    ```
+
+For each source, you can set the following parameters:
+
+* **Name** specifies the name of the EventSource to collect.
+* **Level** specifies the logging level to collect: *Critical*, *Error*, *Informational*, *LogAlways*, *Verbose*, or *Warning*.
+* **Keywords** (optional) specify the integer value of keyword combinations to use.
+
+##### Use DiagnosticSource events
+
+You can configure [System.Diagnostics.DiagnosticSource](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) events to be sent to Application Insights as traces. 
+
+1. Install the [`Microsoft.ApplicationInsights.DiagnosticSourceListener`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DiagnosticSourceListener) NuGet package.
+
+1. Edit the `TelemetryModules` section of the [ApplicationInsights.config](./configuration-with-applicationinsights-config.md) file:
+
+    ```xml
+        <Add Type="Microsoft.ApplicationInsights.DiagnosticSourceListener.DiagnosticSourceTelemetryModule, Microsoft.ApplicationInsights.DiagnosticSourceListener">
+          <Sources>
+            <Add Name="MyDiagnosticSourceName" />
+          </Sources>
+        </Add>
+    ```
+
+For each diagnostic source you want to trace, add an entry with the `Name` attribute set to the name of your diagnostic source.
+
+##### Use ETW events
+
+You can configure Event Tracing for Windows (ETW) events to be sent to Application Insights as traces.
+
+1. Install the `Microsoft.ApplicationInsights.EtwCollector` NuGet package.
+
+1. Edit the "TelemetryModules" section of the [ApplicationInsights.config](./configuration-with-applicationinsights-config.md) file:
+
+> [!NOTE]
+> ETW events can only be collected if the process that hosts the SDK runs under an identity that's a member of Performance Log Users or Administrators.
+
+```xml
+    <Add Type="Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule, Microsoft.ApplicationInsights.EtwCollector">
+      <Sources>
+        <Add ProviderName="MyCompanyEventSourceName" Level="Verbose" />
+      </Sources>
+    </Add>
+```
+
+For each source, you can set the following parameters:
+
+ * **ProviderName** is the name of the ETW provider to collect.
+ * **ProviderGuid** specifies the GUID of the ETW provider to collect. It can be used instead of `ProviderName`.
+ * **Level** sets the logging level to collect. It can be *Critical*, *Error*, *Informational*, *LogAlways*, *Verbose*, or *Warning*.
+ * **Keywords** (optional) set the integer value of keyword combinations to use.
+
+##### Use the Trace API directly
+
+You can call the Application Insights trace API directly. The logging adapters use this API. For example:
+
+```csharp
+TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
+var telemetryClient = new TelemetryClient(configuration);
+telemetryClient.TrackTrace("Slow response - database01");
+```
+
+An advantage of `TrackTrace` is that you can put relatively long data in the message. For example, you can encode POST data there.
+
+You can also add a severity level to your message. And, like other telemetry, you can add property values to help filter or search for different sets of traces. For example:
+
+```csharp
+TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
+var telemetryClient = new TelemetryClient(configuration);
+telemetryClient.TrackTrace("Slow database response",
+                            SeverityLevel.Warning,
+                            new Dictionary<string, string> { { "database", "db.ID" } });
+```
+
+Now you can easily filter out in **Transaction Search** all the messages of a particular severity level that relate to a particular database.
+
+# [ASP.NET Core](#tab/core)
+
+The Application Insights SDK for ASP.NET Core already collects ILogger logs by default. If you use the SDK, you typically don't need to also call `builder.Logging.AddApplicationInsights()` and can disregard the following ILogger installation instructions.
 
 If you only need log forwarding and not the full telemetry stack, you can use the [`Microsoft.Extensions.Logging.ApplicationInsights`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) provider package to capture logs.
 
@@ -1166,7 +1348,7 @@ For more information, see [What Application Insights telemetry type is produced 
 #### Logging scopes
 
 > [!NOTE]
-> The following guidance applies to ILogger scenarios (ASP.NET Core and console only). *It doesn’t apply to classic ASP.NET.*
+> The following guidance applies to ILogger scenarios (ASP.NET Core and console only). *It doesn't apply to classic ASP.NET.*
 
 `ApplicationInsightsLoggingProvider` supports [log scopes](/dotnet/core/extensions/logging#log-scopes), which are enabled by default. 
 
@@ -1189,6 +1371,24 @@ using (_logger.BeginScope("hello scope"))
 ```
 
 #### Find your logs
+
+Run your app in debug mode or deploy it live.
+
+##### Transaction Search
+
+In your app's overview pane in the Application Insights portal, select **Transaction Search**.
+
+You can, for example:
+
+* Filter on log traces or on items with specific properties.
+* Inspect a specific item in detail.
+* Find other system log data that relates to the same user request (has the same operation ID).
+* Save the configuration of a page as a favorite.
+
+> [!NOTE]
+> If your application sends a lot of data and you're using the Application Insights SDK for ASP.NET version 2.0.0-beta3 or later, the *adaptive sampling* feature might operate and send only a portion of your telemetry. Learn more about [sampling](./sampling.md).
+
+##### Logs
 
 ILogger logs appear as trace telemetry (table `traces` in Application Insights and `AppTraces` in Log Analytics).
 
@@ -1215,6 +1415,47 @@ Correlation is handled by default when onboarding an app. No special actions are
 .NET runtime supports distributed with the help of [Activity](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) and [DiagnosticSource](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)
 
 The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to collect and correlate telemetry.
+
+#### Troubleshooting
+
+Find answers to common questions.
+
+##### What causes delayed telemetry, an overloaded network, and inefficient transmission?
+
+System.Diagnostics.Tracing has an [Autoflush feature](/dotnet/api/system.diagnostics.trace.autoflush). This feature causes SDK to flush with every telemetry item, which is undesirable, and can cause logging adapter issues like delayed telemetry, an overloaded network, and inefficient transmission.
+
+##### How do I do this for Java?
+
+In Java codeless instrumentation, which is recommended, the logs are collected out of the box. Use [Java 3.0 agent](./opentelemetry-enable.md?tabs=java).
+
+The Application Insights Java agent collects logs from Log4j, Logback, and java.util.logging out of the box.
+
+##### Why is there no Application Insights option on the project context menu?
+
+* Make sure that Developer Analytics Tools is installed on the development machine. In Visual Studio, go to  **Tools** > **Extensions and Updates**, and look for **Developer Analytics Tools**. If it isn't on the **Installed** tab, open the **Online** tab and install it.
+* This project type might be one that Developer Analytics Tools doesn't support. Use [manual installation](#manual-installation).
+
+##### Why is there no log adapter option in the configuration tool?
+
+* Install the logging framework first.
+* If you're using System.Diagnostics.Trace, make sure that you've [configured it in *web.config*](/dotnet/api/system.diagnostics.eventlogtracelistener).
+* Make sure that you have the latest version of Application Insights. In Visual Studio, go to **Tools** > **Extensions and Updates** and open the **Updates** tab. If **Developer Analytics Tools** is there, select it to update it.
+
+##### Why do I get the "Instrumentation key cannot be empty" error message?
+
+You probably installed the logging adapter NuGet package without installing Application Insights. In Solution Explorer, right-click *ApplicationInsights.config*, and select **Update Application Insights**. You are prompted to sign in to Azure and create an Application Insights resource or reuse an existing one. It should fix the problem.
+
+##### Why can I see traces but not other events in diagnostic search?
+
+It can take a while for all the events and requests to get through the pipeline.
+
+##### How much data is retained?
+
+Several factors affect the amount of data that's retained. For more information, see the [Limits](./api-custom-events-metrics.md#limits) section of the customer event metrics page.
+
+##### Why don't I see some log entries that I expected?
+
+Perhaps your application sends voluminous amounts of data and you're using the Application Insights SDK for ASP.NET version 2.0.0-beta3 or later. In this case, the adaptive sampling feature might operate and send only a portion of your telemetry. Learn more about [sampling](./sampling.md).
 
 ### Dependencies
 
