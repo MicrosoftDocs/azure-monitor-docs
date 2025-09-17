@@ -6,7 +6,6 @@ ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
-ms.reviewer: mmcc
 ---
 
 # Enable Click Analytics Auto-Collection plug-in

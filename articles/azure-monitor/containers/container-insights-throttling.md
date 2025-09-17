@@ -49,7 +49,7 @@ The Logs add-on that collects Container Network logs publishes QoS metrics that 
 
 **Pre-requisites** 
 
-* [Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus): The QoS metrics generated are sent to the managed Prometheus service. Enable by following the [these instructions](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana)
+* [Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus): The QoS metrics generated are sent to the managed Prometheus service. Enable by following the [these instructions](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli)
 * A Grafana instance to import the dashboard. This Grafana instance can be an instance of [Azure managed Grafana](/azure/managed-grafana/overview), [Azure Monitor Dashboards with Grafana](/azure/azure-monitor/visualize/visualize-use-grafana-dashboards) or any other Grafana instance linked with the Prometheus service mentioned previously.  
 
 **Configuration steps** 

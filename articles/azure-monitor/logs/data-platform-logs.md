@@ -121,7 +121,7 @@ For more information about Log Analytics, see [Overview of Log Analytics in Azur
 
 Many of Azure Monitor's [ready-to-use, curated Insights experiences](../insights/insights-overview.md) store data in Azure Monitor Logs, and present this data in an intuitive way so you can monitor the performance and availability of your cloud and hybrid applications and their supporting components.
 
-:::image type="content" source="../containers/media/container-insights-overview/azmon-containers-experience.png" lightbox="../containers/media/container-insights-overview/azmon-containers-experience.png" alt-text="A screenshot that shows the built-in Container Insights monitoring experience in Azure Monitor.":::
+:::image type="content" source="../containers/media/kubernetes-monitoring-overview/containers-insights-experience.png" lightbox="../containers/media/kubernetes-monitoring-overview/containers-insights-experience.png" alt-text="A screenshot that shows the built-in Container Insights monitoring experience in Azure Monitor.":::
 
 [Create your own visualizations and reports](../best-practices-analysis.md#built-in-visualization-tools) using workbooks, dashboards, and Power BI.  
 

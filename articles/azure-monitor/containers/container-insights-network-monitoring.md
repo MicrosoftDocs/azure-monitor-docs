@@ -15,7 +15,7 @@ This article describes Azure Monitor features that customers can use for monitor
 [Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#azure-monitor-managed-service-for-prometheus) is Azure's recommended solution to collect metrics from your Azure Kubernetes Service (AKS) clusters. When metrics collection using managed Prometheus is enabled for a cluster, network monitoring metrics are collected by default. By default the metrics collected are at the node level. To collect pod level and other advanced metrics, customers need to enable the _Container Network Observability_ feature. Use the links following to explore more. 
 
 **Managed Prometheus and default networking metrics collected**
-* [Enable Managed Prometheus on your cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana)
+* [Enable Managed Prometheus on your cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli)
 * Read about the [default configuration in Managed Prometheus](/azure/azure-monitor/containers/prometheus-metrics-scrape-default) and [metrics collected by default](/azure/azure-monitor/containers/prometheus-metrics-scrape-default#metrics-collected-from-default-targets)
 
 **Container Network Observability** 
@@ -147,7 +147,7 @@ Container Flow Logs has the following limitations:
 1. Onboarding using Terraform is currently not supported
 2. If the table plan is set to Basic Logs, the pre-built Grafana dashboards do not work
 3. The Auxiliary logs table plan is not supported
-4. Only the Cilium dataplane is supported. Refer to the *[Prerequisites for Container Flow logs](/azure/aks/how-to-configure-container-network-logs?tabs=cilium#prerequisites)* article for a full list of limitations. 
+4. Only the Cilium data plane is supported. Refer to the *[Prerequisites for Container Flow logs](/azure/aks/how-to-configure-container-network-logs?tabs=cilium#prerequisites)* article for a full list of limitations. 
 
 
 

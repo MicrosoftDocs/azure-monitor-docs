@@ -2,13 +2,13 @@
 title: Switch to Managed Prometheus visualizations in Azure Monitor
 description: This article describes how to switch to using Managed Prometheus visualizations in Azure Monitor.
 ms.topic: how-to
-ms.date: 05/15/2024
+ms.date: 08/25/2025
 ms.reviewer: vdiec
 ---
 
 # Switch to using Managed Prometheus visualizations in Azure Monitor
 
-Container Insights currently uses data from Log Analytics to power the visualizations in the Azure portal. However, with the release of managed Prometheus, this new format of metrics collection is cheaper and more efficient. Container Insights now offers the ability to visualize using only managed Prometheus data. This article helps you with the setup to start using managed Prometheus as your primary visualization tool.
+Container Insights previously used data from Log Analytics to power the visualizations in the Azure portal. With the release of Managed Prometheus, the format of metrics collection is cheaper and more efficient. Container Insights now offers the ability to visualize using only managed Prometheus data. This article helps you with the setup to start using managed Prometheus as your primary visualization tool if you still have a cluster using the classic configuration.
 
 > [!Note]
 > This feature is currently in public preview for Arc-enabled Kubernetes clusters and for deployments in China and US Government regions. Some visualizations may differ.
@@ -22,7 +22,7 @@ To view your Container Insights data using Prometheus, ensure the following step
 * Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes cluster [configured with managed Prometheus](./kubernetes-monitoring-enable.md)
 * User has `Reader` permission or higher on the associated Prometheus Data Collection Rule and [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md)
 * Ad block is disabled or set to allow `monitor.azure.com` traffic
-* For Windows clusters, [enable Windows metric collection](./kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview)
+* For Windows clusters, [enable Windows metric collection](./enable-windows-metrics.md).
 
 ## Accessing Prometheus based Container Insights
 
@@ -119,7 +119,7 @@ If you're currently using the logs based Container Insights experience, then you
 
 1. Navigate to the monitor settings for your clusters by following the instructions on how to configure your [Container Insights data collection rule](./container-insights-data-collection-dcr.md#configure-data-collection)
 
-2. From the Logs presets dropdown, select "Logs and Events" and save to configure.
+2. From the Logs preset dropdown, select "Logs and Events" and save to configure.
 
 > [!Note]
 > Disabling the Log Analytics metrics also disables the visualization dropdown in the toolbar. Revert to using one of the standard cost presets in the `Monitor Settings` blade to re-enable the Log Analytics visualizations.
@@ -150,7 +150,7 @@ This error occurs when the user doesn't have permissions to view the associated 
 
 ### Unable to access Azure Monitor workspace
 
-This error occurs when the user doesn't have permissions to view the associated Azure Monitor workspace for the cluster or the Azure Monitor workspace may have been deleted. To resolve this error, grant access to the Azure Monitor workspace or reconfigure managed Prometheus by deleting and [redeploying the addon](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
+This error occurs when the user doesn't have permissions to view the associated Azure Monitor workspace for the cluster or the Azure Monitor workspace may have been deleted. To resolve this error, grant access to the Azure Monitor workspace or reconfigure managed Prometheus by deleting and [redeploying the addon](./kubernetes-monitoring-enable.md).
 
 ### The data could not be retrieved
 

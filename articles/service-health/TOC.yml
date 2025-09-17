@@ -34,6 +34,8 @@
       href: Service-health-advisories.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
+    - name: How to Report an issue
+      href: report-issue.md
     - name: How to create alerts
       items:
       - name: Configure alerts for service health events in the Azure portal
@@ -88,6 +90,8 @@
       href: azure-resource-graph-overview.md
   - name: REST API
     items:   
+    - name: Azure Resource health REST API queries
+      href: /rest/api/resourcehealth/
     - name: Service Health REST API
       href: /rest/api/resourcehealth/events/
     - name: Emerging Issues REST API
