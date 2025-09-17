@@ -6,7 +6,6 @@ ms.date: 10/09/2024
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: devx-track-csharp
-ms.reviewer: rijolly
 
 #customer intent: As a developer, I want use the Application map and Intelligent view features in Azure Monitor so that I can monitor complex application topologies.
 ---

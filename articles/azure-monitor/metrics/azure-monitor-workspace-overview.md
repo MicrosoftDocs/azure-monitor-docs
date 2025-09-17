@@ -4,7 +4,7 @@ description: Overview of Azure Monitor workspace, which is a unique environment 
 ms.reviewer: poojaa
 ms.topic: concept-article
 ms.custom: references_regions
-ms.date: 07/24/2024
+ms.date: 08/28/2025
 ---
 
 # Azure Monitor workspace

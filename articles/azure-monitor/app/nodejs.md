@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 3/21/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
-ms.reviewer: mmcc
 ---
 
 # Monitor your Node.js services and apps with Application Insights
@@ -146,6 +145,8 @@ Review their descriptions in your IDE's built-in type hinting or [applicationins
 
 > [!NOTE]
 > By default, `setAutoCollectConsole` is configured to *exclude* calls to `console.log` and other console methods. Only calls to supported third-party loggers (for example, winston and bunyan) will be collected. You can change this behavior to include calls to `console` methods by using `setAutoCollectConsole(true, true)`.
+
+[!INCLUDE [Distributed tracing](./includes/application-insights-distributed-trace-data.md)]
 
 ### Sampling
 
@@ -377,6 +378,10 @@ server.on("listening", () => {
 By default, telemetry is buffered for 15 seconds before it's sent to the ingestion server. If your application has a short lifespan, such as a CLI tool, it might be necessary to manually flush your buffered telemetry when the application terminates by using `appInsights.defaultClient.flush()`.
 
 If the SDK detects that your application is crashing, it calls flush for you by using `appInsights.defaultClient.flush({ isAppCrashing: true })`. With the flush option `isAppCrashing`, your application is assumed to be in an abnormal state and isn't suitable to send telemetry. Instead, the SDK saves all buffered telemetry to [persistent storage](/previous-versions/azure/azure-monitor/app/data-retention-privacy#nodejs) and lets your application terminate. When your application starts again, it tries to send any telemetry that was saved to persistent storage.
+
+[!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
+
+[!INCLUDE [Telemetry processor and telemetry initializer](./includes/application-insights-processor-initializer.md)]
 
 ### Preprocess data with telemetry processors
 

@@ -2,7 +2,7 @@
 title: Send Prometheus metrics to multiple Azure Monitor workspaces
 description: Describes data collection rules required to send Prometheus metrics from a cluster in Azure Monitor to multiple Azure Monitor workspaces.
 ms.topic: how-to
-ms.date: 2/28/2024
+ms.date: 08/25/2025
 ms.reviewer: aul
 ---
 
@@ -11,7 +11,7 @@ ms.reviewer: aul
  Routing different metrics to more Azure Monitor workspaces can be done through the creation of additional data collection rules.
 
  You can create Data Collection Rules with corresponding Data Collection Endpoints for different metrics to be sent to additional Azure Monitor workspaces from the same Kubernetes cluster.
- Currently, this is only available through onboarding through Resource Manager templates. You can follow the [regular onboarding process](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) and then edit the same Resource Manager templates to add additional DCRs and DCEs for your additional Azure Monitor workspaces. You'll need to edit the template to add an additional parameters for every additional Azure Monitor workspace, add another DCR for every additional Azure Monitor workspace, add another DCE, add the Monitor Reader Role for the new Azure Monitor workspace and add an additional Azure Monitor workspace integration for Grafana.
+ Currently, this is only available through onboarding through Resource Manager templates. You can follow the [regular onboarding process](kubernetes-monitoring-enable.md) and then edit the same Resource Manager templates to add additional DCRs and DCEs for your additional Azure Monitor workspaces. You'll need to edit the template to add an additional parameters for every additional Azure Monitor workspace, add another DCR for every additional Azure Monitor workspace, add another DCE, add the Monitor Reader Role for the new Azure Monitor workspace and add an additional Azure Monitor workspace integration for Grafana.
 
 - Add the following parameters:
   ```json
@@ -250,4 +250,4 @@ scrape_configs:
 ## Next steps
 
 - [Learn more about Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md).
-- [Collect Prometheus metrics from AKS cluster](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
+- [Collect Prometheus metrics from AKS cluster](kubernetes-monitoring-enable.md).

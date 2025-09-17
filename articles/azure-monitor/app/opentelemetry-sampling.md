@@ -3,7 +3,6 @@ title: Sampling in Azure Application Insights with OpenTelemetry
 description: Learn how OpenTelemetry sampling in Application Insights reduces telemetry volume, controls costs, and preserves key diagnostic data.
 ms.topic: how-to
 ms.date: 03/26/2025
-ms.reviewer: mmcc
 ---
 
 # Sampling in Azure Monitor Application Insights with OpenTelemetry

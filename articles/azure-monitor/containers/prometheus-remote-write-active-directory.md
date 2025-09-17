@@ -11,7 +11,7 @@ ms.date: 4/18/2024
 This article describes how to set up [remote write](prometheus-remote-write.md) to send data from a self-managed Prometheus server running in your Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes cluster by using Microsoft Entra authentication and a side car container that Azure Monitor provides. Note that you can also directly configure remote-write in the Prometheus configuration for the same.
 
 > [!NOTE]
-> We recommend that you directly configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. See [Send Prometheus data to Azure Monitor using Microsoft Entra Id authentication](../essentials/prometheus-remote-write-virtual-machines.md#set-up-authentication-for-remote-write) to learn more. The steps below use the Azure Monitor side car container.
+> We recommend that you directly configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. See [Send Prometheus data to Azure Monitor using Microsoft Entra ID authentication](../essentials/prometheus-remote-write-virtual-machines.md#set-up-authentication-for-remote-write) to learn more. The steps below use the Azure Monitor side car container.
 
 ## Cluster configurations
 
@@ -182,7 +182,7 @@ For verification and troubleshooting information, see [Troubleshooting remote wr
 
 ## Next steps
 
-- [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+- [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md)
 - [Learn more about Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md)
 - [Remote write in Azure Monitor managed service for Prometheus](prometheus-remote-write.md)
 - [Send Prometheus data to Azure Monitor by using managed identity authentication](./prometheus-remote-write-managed-identity.md)
