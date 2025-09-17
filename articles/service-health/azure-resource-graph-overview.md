@@ -10,11 +10,11 @@ ms.date: 09/17/2025
 Azure Resource Graph (ARG) provides a way for you to query Azure resources across your subscriptions using Kusto Query Language (KQL). 
 This article gives a detailed breakdown of the fields commonly found in ARG tables, especially the fields that are relevant to Azure Service Health and governance scenarios.
 
-Use the Service Health table to query
+Use the Service Health table to query:
 -  Service Health Event properties (microsoft.resourcehealth/events)
 -  Service Health Impacted Resources properties (microsoft.resourcehealth/events/impactedresources)<br>
 
-Use the Resource Health table to query
+Use the Resource Health table to query:
 -  Resource Health properties (microsoft.resourcehealth/availabilitystatuses and microsoft.resourcehealth/resourceannotations)<br>
 For more information on the HealthResources table, see [VM availability information in Azure Resource Graph](/azure/virtual-machines/resource-graph-availability/).
  
