@@ -121,7 +121,7 @@ Access control systems ensure that only authorized individuals with a valid need
 ## Impacted Resources
 :::image type="content"source="./media/resource-graph-overview/impacted-resources-properties.png"alt-text="Screenshot of the fields shown in the Impacted Resources properties column."Lightbox="./media/resource-graph-overview/impacted-resources-properties.png":::
 
-When the `type` column in the ServiceHealthResources table is set to **microsoft.resourcehealth/events/impactedresources** it opens the query to search for information about the impacted resources by Service Health events such as outages, planned maintenance, or security advisories.
+Set the `type` column in the ServiceHealthResources table to **microsoft.resourcehealth/events/impactedresources** so it opens the query to search for information about the impacted resources by Service Health events such as outages, planned maintenance, or security advisories.
 
 
 ### Impacted Resources properties
