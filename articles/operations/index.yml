@@ -1,0 +1,23 @@
+### YamlMime:Landing
+
+title: Ops360 documentation
+summary: Learn about monitoring Azure and on-premises services. Understand how to aggregate and analyze metrics, logs, and traces. Respond to issues by firing alerts that can send notifications or by calling automated solutions.
+
+metadata:
+  title: Ops360 documentation
+  description: Azure Monitor, which now includes Log Analytics and Application Insights, provides sophisticated tools for collecting and analyzing telemetry that allow you to maximize the performance and availability of your cloud and on-premises resources and applications.
+  ms.topic: landing-page
+  ms.service: operations
+  ms.date: 03/11/2024
+# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+
+landingContent:
+# Cards and links should be based on top customer tasks or top subjects
+# Start card title with a verb
+# Card 
+  - title: Ops360
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Ops360?
+            url: fundamentals/overview.md
