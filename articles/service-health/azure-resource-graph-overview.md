@@ -2,7 +2,7 @@
 title: Azure Resource Graph Overview
 description: Learn about the Azure Resource Graph table properties.
 ms.topic: concept-article
-ms.date: 09/10/2025
+ms.date: 09/17/2025
 
 ---
 # Azure Resource Graph tables overview
@@ -105,7 +105,7 @@ This table lists all the properties you can use in your Service Health and Impac
 >Fields like `isEventSensitive` might be empty or omitted unless the event is security-related.<br> 
 >The `EventSubType` is often empty unless the event is a billing or retirement advisory. <br>For more information, see [Service Health event tags](service-health-event-tags.md) and [Filter notifications using Event Level](/azure/service-health/metadata-filter).
 
-Access control should be utilized to ensure only users who need to see the data are able to access it. For more information, see [View and access Security advisories](security-advisories-elevated-access.md).
+Access control systems ensure that only authorized individuals with a valid need can view sensitive information. For more information, see [View and access Security advisories](security-advisories-elevated-access.md).
 
 **How These Fields Work Together**
 
@@ -154,7 +154,7 @@ This table provides the latest availability status of Azure resources—primaril
 You can use this query to:
 - **Track VM Health across your environment**: Get a consolidated view of the health status of virtual machines across all subscriptions or resource groups.
 - **Diagnose issues quickly**: Identify which VMs are marked as Unavailable or Degraded, and investigate the underlying causes.
-- **Audit downtime sources**: Determine whether service interruptions are caused by platform-initiated events (like maintenance) or customer actions.
+- **Audit downtime sources**: Determine whether service interruptions result from platform-initiated events (like maintenance) or customer actions.
 - **Create operational dashboards**: Visualize real-time health data to monitor service-level agreements (SLAs) and maintain operational awareness.
 - **Add context with annotations**: Combine this table with `resourceannotations` to understand the reasons behind availability changes, such as restarts or outages.
 
@@ -206,7 +206,7 @@ Why are the `maintenanceStartTime`, `maintenanceEndTime`, and `info` showing as 
 These fields can appear null in ARG queries for microsoft.resourcehealth events due to several factors. Understanding the fields can help you interpret the data more accurately.
 -  **Event type dependency**:<br>
 Only Planned Maintenance events include maintenance timing details. Other event types like Service Issue or Security Advisory don't use those fields, so they're null.
-- **Incomplete ingestion data**: Sometimes the upstream ingestion pipeline from Azure Change Management or partners might not populate the maintenance timing fields, especially during rapid incident responses or edge cases.
+<!--- **Incomplete ingestion data**: Sometimes the upstream ingestion pipeline from Azure Change Management or partners might not populate the maintenance timing fields, especially during rapid incident responses or edge cases.-->
 - **Event lifecycle and access control**:<br>
     - Newly created or early-stage events might not have the full details to populate the fields or confirmed maintenance windows. 
     - Some sensitive events require elevated permissions to view complete data. Without the right access, the fields appear blank.
