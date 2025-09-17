@@ -1031,7 +1031,7 @@ Application Insights captures logs from ASP.NET Core and other .NET apps through
 >
 > * The [`Microsoft.ApplicationInsights.WorkerService`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) NuGet package, used to enable Application Insights for background services, is out of scope.
 >
-> To review frequently asked questions (FAQ), see [Logging with .NET FAQ](application-insights-faq.yml#logging-with--net).
+> * To review frequently asked questions (FAQ), see [Logging with .NET FAQ](application-insights-faq.yml#logging-with--net).
 
 # [ASP.NET](#tab/net)
 
@@ -1070,6 +1070,10 @@ Add a listener to `web.config` or `app.config`:
 
 # [ASP.NET Core](#tab/core)
 
+The Application Insights SDK for ASP.NET Core already collects ILogger logs by default. If you use the SDK, you typically don't need to also call `builder.Logging.AddApplicationInsights()` and can disregard the following ILogger installation instructions.
+
+If you only need log forwarding and not the full telemetry stack, you can use the [`Microsoft.Extensions.Logging.ApplicationInsights`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) provider package to capture logs.
+
 ---
 
 #### Manual installation
@@ -1081,9 +1085,6 @@ Use this method if your project type isn't supported by the Application Insights
 1. Search for **Application Insights**.
 
 1. Select one of the following packages:
-
-    > [!NOTE]
-    > In ASP.NET Core, you typically use ILogger to emit logs that flow through the Application Insights provider. See Manual installation → ILogger for package details.
 
     * **ILogger**: [Microsoft.Extensions.Logging.ApplicationInsights](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights/)
     
@@ -1219,13 +1220,8 @@ telemetryClient.TrackTrace("Slow database response",
 
 Now you can easily filter out in **Transaction Search** all the messages of a particular severity level that relate to a particular database.
 
-# [ASP.NET Core](#tab/core)
 
-The Application Insights SDK for ASP.NET Core already collects ILogger logs by default. If you use the SDK, you typically don't need to also call `builder.Logging.AddApplicationInsights()` and can disregard the following ILogger installation instructions.
-
-If you only need log forwarding and not the full telemetry stack, you can use the [`Microsoft.Extensions.Logging.ApplicationInsights`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) provider package to capture logs.
-
-#### Add ApplicationInsightsLoggerProvider
+##### Add ApplicationInsightsLoggerProvider (ILogger)
 
 1. Install the [`Microsoft.Extensions.Logging.ApplicationInsights`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights).
 
@@ -1295,8 +1291,6 @@ public class ValuesController : ControllerBase
 ```
 
 For more information, see [Logging in ASP.NET Core](/aspnet/core/fundamentals/logging) and [What Application Insights telemetry type is produced from ILogger logs? Where can I see ILogger logs in Application Insights?](application-insights-faq.yml#what-application-insights-telemetry-type-is-produced-from-ilogger-logs--where-can-i-see-ilogger-logs-in-application-insights).
-
----
 
 #### Console application
 
@@ -1374,7 +1368,7 @@ using (_logger.BeginScope("hello scope"))
 
 Run your app in debug mode or deploy it live.
 
-##### Transaction Search
+##### Explore in Transaction Search
 
 In your app's overview pane in the Application Insights portal, select **Transaction Search**.
 
@@ -1388,7 +1382,7 @@ You can, for example:
 > [!NOTE]
 > If your application sends a lot of data and you're using the Application Insights SDK for ASP.NET version 2.0.0-beta3 or later, the *adaptive sampling* feature might operate and send only a portion of your telemetry. Learn more about [sampling](./sampling.md).
 
-##### Logs
+##### Explore in Azure Monitor Logs
 
 ILogger logs appear as trace telemetry (table `traces` in Application Insights and `AppTraces` in Log Analytics).
 
