@@ -37,7 +37,7 @@ A DCE is required for certain [AMA data sources](../vm/data-collection.md). In t
 The following data sources currently require a DCE:
 
 * [Windows Firewall Logs](../agents/data-sources-firewall-logs.md)
-* [Prometheus Metrics (Container Insights)](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+* [Prometheus Metrics (Container Insights)](../containers/kubernetes-monitoring-enable.md)
 
 You can view the DCE for a DCR from the **Overview** page of the DCR. Click **Configure DCE** to modify it.
 

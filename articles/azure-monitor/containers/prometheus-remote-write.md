@@ -91,4 +91,4 @@ For detailed release notes on the remote write side car image, please refer to t
 ## Next steps
 
 - [Learn more about Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md).
-- [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+- [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md)

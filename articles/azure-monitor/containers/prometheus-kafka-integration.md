@@ -15,7 +15,7 @@ This article describes how to configure the Azure Monitor *managed service for P
 ## Prerequisites
 
 + Kafka cluster running on AKS or Azure Arc-enabled Kubernetes - [Deploy Kafka cluster running on AKS](/azure/aks/kafka-infrastructure?pivots=azure-cli)
-+ Azure Managed prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
++ Azure Managed prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md)
 
 ## Install the Kafka Exporter
 

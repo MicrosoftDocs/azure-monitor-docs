@@ -2,7 +2,7 @@
 title: High scale log collection in Container Insights 
 description: Enable high scale log collection in Container Insights.
 ms.topic: article
-ms.date: 08/06/2025
+ms.date: 08/25/2025
 ---
 
 # High scale log collection in Container Insights 
@@ -118,7 +118,7 @@ After applying this configmap, `ama-logs-*` pods will get restarted automaticall
 Enable the Monitoring Add-on with high scale mode using the following Azure CLI commands to enable high scale logs mode for the Monitoring add-on depending on your AKS configuration.
 
 > [!NOTE]
-> See [Enable Container Insights](kubernetes-monitoring-enable.md?tabs=arm#enable-container-insights) for guidance on enabling Container Insights other methods such as ARM, Bicep, and Terraform. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Configure DCR with ARM templates](container-insights-data-collection-configure.md?tabs=arm#configure-dcr-with-arm-templates).
+> See [Enable Container Insights](./kubernetes-monitoring-enable.md) for guidance on enabling Container Insights other methods such as ARM, Bicep, and Terraform. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Container logs](./kubernetes-monitoring-enable.md?tabs=arm#container-logs-1).
 
 **Existing AKS cluster**
 

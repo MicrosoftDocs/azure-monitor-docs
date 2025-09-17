@@ -379,6 +379,10 @@ By default, telemetry is buffered for 15 seconds before it's sent to the ingesti
 
 If the SDK detects that your application is crashing, it calls flush for you by using `appInsights.defaultClient.flush({ isAppCrashing: true })`. With the flush option `isAppCrashing`, your application is assumed to be in an abnormal state and isn't suitable to send telemetry. Instead, the SDK saves all buffered telemetry to [persistent storage](/previous-versions/azure/azure-monitor/app/data-retention-privacy#nodejs) and lets your application terminate. When your application starts again, it tries to send any telemetry that was saved to persistent storage.
 
+[!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
+
+[!INCLUDE [Telemetry processor and telemetry initializer](./includes/application-insights-processor-initializer.md)]
+
 ### Preprocess data with telemetry processors
 
 You can process and filter collected data before it's sent for retention by using *telemetry processors*. Telemetry processors are called one by one in the order they were added before the telemetry item is sent to the cloud.

@@ -3226,7 +3226,7 @@
    "redirect_document_id": false
   },
   {
-   "source_path_from_root": "/articles/azure-monitor/insights/container-insights-overview.md",
+   "source_path_from_root": "/articles/azure-monitor/insights/kubernetes-monitoring-overview.md",
    "redirect_url": "/azure/azure-monitor/containers/container-insights-overview",
    "redirect_document_id": false
   },
@@ -5150,6 +5150,11 @@
    "redirect_url": "/azure/monitoring/monitoring-container-insights-overview",
    "redirect_document_id": false
   },
+    {
+   "source_path_from_root": "/articles/monitoring/monitoring-container-insights-overview.md",
+   "redirect_url": "/azure/azure-monitor/containers/container-insights-overview",
+   "redirect_document_id": false
+  },
   {
    "source_path_from_root": "/articles/monitoring/monitoring-walkthrough-servicemap.md",
    "redirect_url": "/azure/monitoring/monitoring-service-map",
@@ -6006,8 +6011,13 @@
    "redirect_document_id": false
   },
   {
-   "source_path_from_root": "/articles/monitoring/monitoring-container-insights-overview.md",
+   "source_path_from_root": "/articles/monitoring/monitoring-kubernetes-monitoring-overview.md",
    "redirect_url": "/azure/azure-monitor/insights/container-insights-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/insights/container-insights-overview.md",
+   "redirect_url": "/azure/azure-monitor/containers/container-insights-overview",
    "redirect_document_id": false
   },
   {
@@ -8540,6 +8550,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/containers/container-insights-reports",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-workbooks",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/app/ilogger.md",
    "redirect_url": "/azure/azure-monitor/app/dot-net",
    "redirect_document_id": false
@@ -8555,8 +8570,23 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/containers/container-insights-data-collection-configure.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-enable",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/app/configuration-with-applicationinsights-config.md",
    "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/container-insights-overview.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/container-insights-reports.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-workbooks",
    "redirect_document_id": false
   },
   {
@@ -8601,6 +8631,11 @@
   },
   {
    "source_path": "articles/azure-monitor/app/asp-net.md",
+   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/api-filtering-sampling.md",
    "redirect_url": "/azure/azure-monitor/app/dot-net",
    "redirect_document_id": false
   }
