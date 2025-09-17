@@ -22,7 +22,7 @@ Visualization is provided in the [SDK stats workbook](#open-the-sdk-stats-workbo
 > [!div class="checklist"]
 > - An application [instrumented](opentelemetry-enable.md) with one of the following:
 >   - Python OpenTelemetry Distro 1.8.0+ and azure-monitor-opentelemetry-exporter 1.0.0b42+
->   - Node.js OpenTelemetry Distro 1.13.0+
+>   - Node.js OpenTelemetry Distro 1.13.0+ and @azure/monitor-opentelemetry-exporter 1.0.0-beta.34+
 >   - Node.js Application Insights Classic API SDK 3.10.0+
 > - An environment variable set to [opt in](#enable-and-configure-sdk-stats).
 
