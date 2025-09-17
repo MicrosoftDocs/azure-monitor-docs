@@ -86,7 +86,7 @@
       href: ./resource-graph-health-samples.md
     - name: Sample queries for Impacted resources
       href: ./resource-graph-impacted-samples.md
-    - name: Resource Graph Table overview
+    - name: Resource Graph tables overview
       href: azure-resource-graph-overview.md
   - name: REST API
     items:   
