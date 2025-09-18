@@ -16,7 +16,7 @@ This article explains the differences between Event level, Event subtypes, and E
 
 **Event level** tags categorize the severity of these events into informational, warning, and critical. 
 
-Event tags help users understand the type of action required, while event levels indicate the urgency and effect of the issue. Together, they enable more effective management of service communications.
+Event tags help users understand the type of action required, while event levels indicate the urgency and effect of the issue, and the subtype events give more information about the issue. Together, they enable more effective management of service communications.
 
 :::image type="content" source="media/event-tags/event-tags-metadata.png" alt-text="Screenshot of pane with event level and event tags." lightbox="media/event-tags/event-tags-metadata.png":::
 
@@ -45,12 +45,12 @@ A Health Advisory displays a Retirement (subtype) indicating a product is being 
 :::image type="content"source="./media/event-tags/event-tags-sub-type.png"alt-text="Screenshot of Health advisories pane with sub-type event tags." lightbox="media/event-tags/event-tags-sub-type.png":::
 
 
-A Billing Update might have an FX Rate Change (subtype) indicating adjustments in foreign exchange rates affecting billing.
+A Billing Update might have an FX Rate Change (subtype) indicating adjustments in foreign exchange rates that affect billing.
 
 :::image type="content"source="./media/event-tags/event-tags-sub-type-2.png"alt-text="Screenshot of Billing updates pane with sub-type event tags." lightbox="media/event-tags/event-tags-sub-type-2.png":::
 
 
-|Event Type          |Example subtypes                                                                         |
+|Event panes         |Event subtypes                                                                         |
 |--------------------|-----------------------------------------------------------------------------------------|
 |Health Advisories   | Retirement                                                           |
 |Billing Updates     | Tax Change, Foreign Exchange (FX) Rate Change, MeterID Change, Underbilling, Overbilling|
@@ -74,7 +74,7 @@ Unlike event tags, which describe the type or status of the communication, event
 
 Event tags, Event levels, and Event subtypes are shown on the following panes:
 
-|pane |Event level tags  |Event tags  | Event sub-types|
+|pane |Event level tags  |Event tags  | Event subtypes|
 |---------|---------|---------|----|
 |Service issues      |Yes| Yes |  |
 |Planned maintenance |No | Yes|  |
