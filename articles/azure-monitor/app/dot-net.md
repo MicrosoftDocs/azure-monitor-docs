@@ -1103,9 +1103,10 @@ Use this method if your project type isn't supported by the Application Insights
 
 The NuGet package installs the necessary assemblies and modifies web.config or `app.config`, if applicable.
 
-##### Instructions
+**Installation Instructions:**
 
-Expand any of the sections below for package-specific installation instructions.
+> [!NOTE]
+> Expand any of the sections below for package-specific installation instructions.
 
 <br>
 <details>
@@ -1182,7 +1183,6 @@ For more information, see [Logging in ASP.NET Core](/aspnet/core/fundamentals/lo
 
 </details>
 
-<br>
 <details>
 <summary><b>Insert diagnostic log calls (System.Diagnostics.Trace / log4net / NLog)</b></summary>
 
@@ -1200,7 +1200,6 @@ If you prefer `log4net` or `NLog`, use:
 
 </details>
 
-<br>
 <details>
 <summary><b>Use EventSource events</b></summary>
 
@@ -1226,7 +1225,6 @@ For each source, you can set the following parameters:
 
 </details>
 
-<br>
 <details>
 <summary><b>Use DiagnosticSource events</b></summary>
 
@@ -1248,7 +1246,6 @@ For each diagnostic source you want to trace, add an entry with the `Name` attri
 
 </details>
 
-<br>
 <details>
 <summary><b>Use ETW events</b></summary>
 
