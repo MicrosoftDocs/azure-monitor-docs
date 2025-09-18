@@ -10,32 +10,26 @@ ms.custom: devx-track-csharp
 
 # Application Insights API for custom events and metrics
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
-
 Insert a few lines of code in your application to find out what users are doing with it, or to help diagnose issues. You can send telemetry from device and desktop apps, web clients, and web servers. Use the [Application Insights](./app-insights-overview.md) core telemetry API to send custom events and metrics and your own versions of standard telemetry. This API is the same API that the standard Application Insights data collectors use.
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ## API summary
 
-
 The core API is uniform across all platforms, apart from a few variations like `GetMetric` (.NET only).
 
-| Method | Used for |
-|--------|----------|
-| [`TrackPageView`](#page-views)   | Pages, screens, panes, or forms.   |
-| [`TrackEvent`](#trackevent)      | User actions and other events. Used to track user behavior or to monitor performance.   |
-| [`GetMetric`](#getmetric)        | Zero and multidimensional metrics, centrally configured aggregation, C# only.   |
-| [`TrackMetric`](#trackmetric)    | Performance measurements such as queue lengths not related to specific events.   |
-| [`TrackException`](#trackexception) | Logging exceptions for diagnosis. Trace where they occur in relation to other events and examine stack traces.   |
-| [`TrackRequest`](#trackrequest)  | Logging the frequency and duration of server requests for performance analysis.   |
-| [`TrackTrace`](#tracktrace)      | Resource Diagnostic log messages. You can also capture third-party logs.   |
-| [`TrackDependency`](#trackdependency) | Logging the duration and frequency of calls to external components that your app depends on.   |
+| Method                                | Used for                                                                                                       |
+|---------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| [`TrackPageView`](#page-views)        | Pages, screens, panes, or forms.                                                                               |
+| [`TrackEvent`](#trackevent)           | User actions and other events. Used to track user behavior or to monitor performance.                          |
+| [`GetMetric`](#getmetric)             | Zero and multidimensional metrics, centrally configured aggregation, C# only.                                  |
+| [`TrackMetric`](#trackmetric)         | Performance measurements such as queue lengths not related to specific events.                                 |
+| [`TrackException`](#trackexception)   | Logging exceptions for diagnosis. Trace where they occur in relation to other events and examine stack traces. |
+| [`TrackRequest`](#trackrequest)       | Logging the frequency and duration of server requests for performance analysis.                                |
+| [`TrackTrace`](#tracktrace)           | Resource Diagnostic log messages. You can also capture third-party logs.                                       |
+| [`TrackDependency`](#trackdependency) | Logging the duration and frequency of calls to external components that your app depends on.                   |
 
 You can [attach properties and metrics](#properties) to most of these telemetry calls.
 
-## <a name="prep"></a>Before you start
-
+## Before you start
 
 If you don't have a reference on Application Insights SDK yet:
 
@@ -51,15 +45,12 @@ If you don't have a reference on Application Insights SDK yet:
 
     *C#:* `using Microsoft.ApplicationInsights;`
 
-    *Visual Basic:* `Imports Microsoft.ApplicationInsights`
-
     *Java:* `import com.microsoft.applicationinsights.TelemetryClient;`
 
     *Node.js:* `var applicationInsights = require("applicationinsights");`
 
 
 ## Get a TelemetryClient instance
-
 
 Get an instance of `TelemetryClient` (except in JavaScript in webpages):
 
@@ -75,12 +66,6 @@ private TelemetryClient telemetry = new TelemetryClient();
 
 If you see a message that tells you this method is obsolete, see [microsoft/ApplicationInsights-dotnet#1152](https://github.com/microsoft/ApplicationInsights-dotnet/issues/1152) for more information.
 
-*Visual Basic*
-
-```vb
-Private Dim telemetry As New TelemetryClient
-```
-
 *Java*
 
 ```java
@@ -92,7 +77,6 @@ private TelemetryClient telemetry = new TelemetryClient();
 ```javascript
 var telemetry = applicationInsights.defaultClient;
 ```
-
 
 `TelemetryClient` is thread safe.
 
@@ -114,9 +98,7 @@ telemetry.getContext().getDevice().setId("...");
 
 In Node.js projects, you can use `new applicationInsights.TelemetryClient(instrumentationKey?)` to create a new instance. We recommend this approach only for scenarios that require isolated configuration from the singleton `defaultClient`.
 
-
 ## TrackEvent
-
 
 In Application Insights, a *custom event* is a data point that you can display in [Metrics Explorer](../essentials/metrics-charts.md) as an aggregated count and in [Diagnostic Search](./transaction-search-and-diagnostics.md?tabs=transaction-search) as individual occurrences. (It isn't related to MVC or other framework "events.")
 
@@ -136,12 +118,6 @@ appInsights.trackEvent({name:"WinGame"});
 telemetry.TrackEvent("WinGame");
 ```
 
-*Visual Basic*
-
-```vb
-telemetry.TrackEvent("WinGame")
-```
-
 *Java*
 
 ```java
@@ -154,19 +130,14 @@ telemetry.trackEvent("WinGame");
 telemetry.trackEvent({name: "WinGame"});
 ```
 
-
 ### Custom events in Log Analytics
-
 
 The telemetry is available in the `customEvents` table on the [Application Insights Logs tab](../logs/log-query-overview.md) or [usage experience](usage.md). Events might come from `trackEvent(..)` or the [Click Analytics Auto-collection plug-in](javascript-feature-extensions.md).
 
-
 If [sampling](./sampling.md) is in operation, the `itemCount` property shows a value greater than `1`. For example, `itemCount==10` means that of 10 calls to `trackEvent()`, the sampling process transmitted only one of them. To get a correct count of custom events, use code such as `customEvents | summarize sum(itemCount)`.
-
 
 > [!NOTE]
 > itemCount has a minimum value of one; the record itself represents an entry.
-
 
 ## GetMetric
 
@@ -250,12 +221,6 @@ appInsights.trackPageView("tab1");
 
 ```csharp
 telemetry.TrackPageView("GameReviewPage");
-```
-
-*Visual Basic*
-
-```vb
-telemetry.TrackPageView("GameReviewPage")
 ```
 
 *Java*
@@ -365,7 +330,7 @@ Telemetry items reported within a scope of operation become children of such an 
 
 In **Search**, the operation context is used to create the **Related Items** list.
 
-:::image type="content" source="./media/api-custom-events-metrics/21.png" lightbox="./media/api-custom-events-metrics/21.png" alt-text="Screenshot that shows the Related Items list.":::
+:::image type="content" source="media/dot-net/related-items-list.png" lightbox="media/dot-net/related-items-list.png" alt-text="Screenshot that shows the Related Items list.":::
 
 For more information on custom operations tracking, see [Track custom operations with Application Insights .NET SDK](./custom-operations-tracking.md).
 
@@ -807,22 +772,6 @@ var metrics = {"Score": currentGame.Score, "Opponents": currentGame.OpponentCoun
 telemetry.trackEvent({name: "WinGame", properties: properties, measurements: metrics});
 ```
 
-*Visual Basic*
-
-```vb
-' Set up some properties:
-Dim properties = New Dictionary (Of String, String)
-properties.Add("game", currentGame.Name)
-properties.Add("difficulty", currentGame.Difficulty)
-
-Dim metrics = New Dictionary (Of String, Double)
-metrics.Add("Score", currentGame.Score)
-metrics.Add("Opponents", currentGame.OpponentCount)
-
-' Send the event:
-telemetry.TrackEvent("WinGame", properties, metrics)
-```
-
 *Java*
 
 ```java
@@ -934,15 +883,6 @@ gameTelemetry.Context.GlobalProperties["Game"] = currentGame.Name;
 gameTelemetry.TrackEvent("WinGame");
 ```
 
-*Visual Basic*
-
-```vb
-Dim gameTelemetry = New TelemetryClient()
-gameTelemetry.Context.GlobalProperties("Game") = currentGame.Name
-' Now all telemetry will automatically be sent with the context property:
-gameTelemetry.TrackEvent("WinGame")
-```
-
 *Java*
 
 ```java
@@ -1024,12 +964,6 @@ During debugging, it's useful to have your telemetry expedited through the pipel
 
 ```csharp
 TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
-```
-
-*Visual Basic*
-
-```vb
-TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = True
 ```
 
 *Node.js*
@@ -1146,9 +1080,8 @@ To determine how long data is kept, see [Data retention and privacy](/previous-v
 * [Node.js SDK](https://github.com/Microsoft/ApplicationInsights-Node.js)
 * [JavaScript SDK](https://github.com/Microsoft/ApplicationInsights-JS)
 
-## <a name="next"></a>Next steps
+## Next steps
 
 * To review frequently asked questions (FAQ), see [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
 * Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * [Search events and logs](./transaction-search-and-diagnostics.md?tabs=transaction-search)
-

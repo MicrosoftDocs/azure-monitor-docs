@@ -146,11 +146,6 @@ items:
           href: app/nodejs.md
         - name: Python OpenCensus (retired)
           href: /previous-versions/azure/azure-monitor/app/opencensus-python
-        - name: Advanced SDK topics
-          items:
-          - name: Application Insights Classic API summary
-            displayName: SDK, API, custom events, custom metrics, trackevent, trackmetric, getmetric, trackrequest, trackexception, tracktrace, trackdependency
-            href: app/api-custom-events-metrics.md
         - name: SDK (Classic API) support policy
           href: /troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance
     - name: Experiences
