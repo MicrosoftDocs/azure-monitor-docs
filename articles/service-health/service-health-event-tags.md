@@ -8,11 +8,11 @@ ms.date: 9/18/2025
 # Service Health event tags
 
 
-This article explains the differences between Event level, Even Subtypes, and Event tags in Azure Service Health. 
+This article explains the differences between Event level, Event subtypes, and Event tags in Azure Service Health. 
 
 **Event** tags are metadata labels that help users understand the nature of service health communications. 
  
-**Event Subtypes** tags give you more information about what aspect of that issue is involved.
+**Event subtypes** tags give you more information about what aspect of that issue is involved.
 
 **Event level** tags categorize the severity of these events into informational, warning, and critical. 
 
@@ -35,15 +35,22 @@ These tags are visible on the Azure Service Health portal and are especially use
 
 For example, tags like “Action Recommended” are often highlighted in red to draw attention.
 
-## Event Subtype tags
+## Event subtypes
 
 Event subtypes are more granular classifications within each event type. They help further specify the nature of the event and can tell you specifically what aspect of that issue is involved.<br>
 
 For example:
-- A Health Advisory (event type) might have a Retirement (subtype) indicating a product is being phased out.
-- A Billing Update (event type) might have a Tax Change (subtype) indicating a change in tax policy affecting billing.
 
-|Event Type          |Example Subtypes                                                                         |
+A Health Advisory displays a Retirement (subtype) indicating a product is being phased out.
+:::image type="content"source="./media/event-tags/event-tags-sub-type.png"alt-text="Screenshot of Health advisories pane with sub-type event tags." lightbox="media/event-tags/event-tags-sub-type.png":::
+
+
+A Billing Update might have an FX Rate Change (subtype) indicating adjustments in foreign exchange rates affecting billing.
+
+:::image type="content"source="./media/event-tags/event-tags-sub-type-2.png"alt-text="Screenshot of Billing updates pane with sub-type event tags." lightbox="media/event-tags/event-tags-sub-type-2.png":::
+
+
+|Event Type          |Example subtypes                                                                         |
 |--------------------|-----------------------------------------------------------------------------------------|
 |Health Advisories   | Retirement                                                           |
 |Billing Updates     | Tax Change, Foreign Exchange (FX) Rate Change, MeterID Change, Underbilling, Overbilling|
@@ -54,7 +61,7 @@ For example:
 These subtypes can help you filter information and set up automatic replies or actions based on specific criteria.
 
 
-## Event level tags
+## Event levels
 
 Event level tags are a separate metadata field used to help users assess the severity of a service health event. It categorizes events into:
 - **Informational** – No current impact, but potential future issues.
@@ -65,19 +72,19 @@ Unlike event tags, which describe the type or status of the communication, event
 
  :::image type="content"source="./media/event-tags/event-level-tags-main.png"alt-text="Screenshot of pane with event level tags." lightbox="media/event-tags/event-level-tags-main.png":::
 
-The event tags and event level tags are shown on the following panes:
+Event tags, Event levels, and Event subtypes are shown on the following panes:
 
-|pane |Event level tags  |Event tags  |
-|---------|---------|---------|
-|Service issues      |Yes| Yes |
-|Planned maintenance |No | Yes|
-|Health advisories   |Yes | Yes |
-|Security advisories |Yes | Yes |
-|Billing updates     |Yes | No |
+|pane |Event level tags  |Event tags  | Event sub-types|
+|---------|---------|---------|----|
+|Service issues      |Yes| Yes |  |
+|Planned maintenance |No | Yes|  |
+|Health advisories   |Yes | Yes | Yes |
+|Security advisories |Yes | Yes | |
+|Billing updates     |Yes | No | Yes |
 
 
 >[!NOTE]
-> The Evdnt level tags in Billing updates are informational only.
+> The Event level tags in Billing updates are informational only.
 
 For more information on Event level tags, see [Filter Service Health notifications by event level](metadata-filter.md).
 
