@@ -828,7 +828,7 @@ Run your application. The workers from all the preceding examples make an HTTP c
 
 Application Insights collects these ILogger logs, with a severity of Warning or above by default, and dependencies. They're correlated to `RequestTelemetry` with a parent-child relationship. Correlation also works across process/network boundaries. For example, if the call was made to another monitored component, it's correlated to this parent as well.
 
-This custom operation of `RequestTelemetry` can be thought of as the equivalent of an incoming web request in a typical web application. It isn't necessary to use an operation, but it fits best with the [Application Insights correlation data model](distributed-trace-data.md). `RequestTelemetry` acts as the parent operation and every telemetry generated inside the worker iteration is treated as logically belonging to the same operation.
+This custom operation of `RequestTelemetry` can be thought of as the equivalent of an incoming web request in a typical web application. It isn't necessary to use an operation, but it fits best with the [Application Insights correlation data model](#distributed-tracing). `RequestTelemetry` acts as the parent operation and every telemetry generated inside the worker iteration is treated as logically belonging to the same operation.
 
 This approach also ensures all the telemetry generated, both automatic and manual, has the same `operation_id`. Because sampling is based on `operation_id`, the sampling algorithm either keeps or drops all the telemetry from a single iteration.
 
@@ -1418,7 +1418,7 @@ Correlation is handled by default when onboarding an app. No special actions are
 
 The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to collect and correlate telemetry.
 
-#### Troubleshooting
+#### Troubleshoot trace logs
 
 Find answers to common questions.
 
@@ -2402,7 +2402,7 @@ This section provides guidance on how to track custom operations with the Applic
 
 #### Overview
 
-An operation is a logical piece of work run by an application. It has a name, start time, duration, result, and a context of execution like user name, properties, and result. If operation A was initiated by operation B, then operation B is set as a parent for A. An operation can have only one parent, but it can have many child operations. For more information on operations and telemetry correlation, see [Application Insights telemetry correlation](distributed-trace-data.md).
+An operation is a logical piece of work run by an application. It has a name, start time, duration, result, and a context of execution like user name, properties, and result. If operation A was initiated by operation B, then operation B is set as a parent for A. An operation can have only one parent, but it can have many child operations. For more information on operations and telemetry correlation, see [Application Insights telemetry correlation](#distributed-tracing).
 
 In the Application Insights .NET SDK, the operation is described by the abstract class [OperationTelemetry](https://github.com/microsoft/ApplicationInsights-dotnet/blob/7633ae849edc826a8547745b6bf9f3174715d4bd/BASE/src/Microsoft.ApplicationInsights/Extensibility/Implementation/OperationTelemetry.cs) and its descendants [RequestTelemetry](https://github.com/microsoft/ApplicationInsights-dotnet/blob/7633ae849edc826a8547745b6bf9f3174715d4bd/BASE/src/Microsoft.ApplicationInsights/DataContracts/RequestTelemetry.cs) and [DependencyTelemetry](https://github.com/microsoft/ApplicationInsights-dotnet/blob/7633ae849edc826a8547745b6bf9f3174715d4bd/BASE/src/Microsoft.ApplicationInsights/DataContracts/DependencyTelemetry.cs).
 
