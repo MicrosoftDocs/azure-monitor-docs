@@ -1,12 +1,12 @@
 ---
-title: View Code Optimizations results
+title: View Code Optimizations Results
 description: Learn how to access the results provided by Azure Monitor's Code Optimizations feature.
 ms.topic: article
 ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 02/07/2025
+ms.date: 09/16/2025
 ms.reviewer: jan.kalis
 ---
 
@@ -76,6 +76,15 @@ For Memory, the number is a percentage of all allocations made within the trace.
 ### CPU
 
 For CPU, the percentage is based on the number of CPUs in your machine (four core, eight core, etc.) and the trace time. For example, let's say your trace is 10 seconds long and you have 4 CPUs: you have a total of 40 seconds of CPU time. If the insight says the line of code is using 5% of the CPU, it's using 5% of 40 seconds, or 2 seconds.
+
+## Blocking
+
+Shows where threads spent time waiting for resources such as I/O operations, locks, or sleeps. Blocking time is reported in seconds and aggregated across all threads and cores, so totals can exceed the capture duration, following the same aggregation rule as CPU metrics. 
+
+Use this metric to quickly identify latency bottlenecks, such as:
+- Lock contention between threads
+- Synchronous I/O operations
+- Blocking calls on asynchronous operations
 
 ## View insights
 
