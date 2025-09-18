@@ -74,7 +74,7 @@ Unlike event tags, which describe the type or status of the communication, event
 
 Event tags, Event levels, and Event subtypes are shown on the following panes:
 
-|pane |Event level tags  |Event tags  | Event subtypes|
+|pane |Event level  |Event tags  | Event subtypes|
 |---------|---------|---------|----|
 |Service issues      |Yes| Yes |  |
 |Planned maintenance |No | Yes|  |
