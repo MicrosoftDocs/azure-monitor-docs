@@ -489,17 +489,17 @@ items:
             - name: Default configuration
               href: containers/prometheus-metrics-scrape-default.md
               displayName: Prometheus
-            - name: Custom configuration
-              href: containers/prometheus-metrics-scrape-configuration.md
-              displayName: Prometheus
-            - name: Configure collection using CRDs
-              href: containers/prometheus-metrics-scrape-crd.md
-              displayName: Prometheus
-            - name: Create and validate custom scrape config
-              href: containers/prometheus-metrics-scrape-validate.md
-              displayName: Prometheus
             - name: Minimal ingestion profile
               href: containers/prometheus-metrics-scrape-configuration-minimal.md
+              displayName: Prometheus
+            - name: Customize configuration
+              href: containers/prometheus-metrics-scrape-configuration.md
+              displayName: Prometheus
+            - name: Create custom scrape config with ConfigMap
+              href: containers/prometheus-metrics-scrape-validate.md
+              displayName: Prometheus
+            - name: Create custom scrape config with CRD
+              href: containers/prometheus-metrics-scrape-crd.md
               displayName: Prometheus
             - name: High scale
               href: containers/prometheus-metrics-scrape-scale.md
