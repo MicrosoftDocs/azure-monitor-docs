@@ -2,7 +2,7 @@
 title: Service Health event tags
 description: Learn how to understand and use the event tags in Azure Service Health
 ms.topic: overview
-ms.date: 9/11/2025
+ms.date: 9/18/2025
 ---
 
 # Service Health event tags
@@ -16,7 +16,7 @@ This article explains the differences between Event level, Even Subtypes, and Ev
 
 **Event level** tags categorize the severity of these events into informational, warning, and critical. 
 
-Event tags help users understand the type of action required, while event levels indicate the urgency and impact of the issue. Together, they enable more effective management of service communications.
+Event tags help users understand the type of action required, while event levels indicate the urgency and effect of the issue. Together, they enable more effective management of service communications.
 
 :::image type="content" source="media/event-tags/event-tags-metadata.png" alt-text="Screenshot of pane with event level and event tags." lightbox="media/event-tags/event-tags-metadata.png":::
 
@@ -74,6 +74,10 @@ The event tags and event level tags are shown on the following panes:
 |Health advisories   |Yes | Yes |
 |Security advisories |Yes | Yes |
 |Billing updates     |Yes | No |
+
+
+>[!NOTE]
+> The Billing updates Event tags are informational only.
 
 For more information on Event level tags, see [Filter Service Health notifications by event level](metadata-filter.md).
 
