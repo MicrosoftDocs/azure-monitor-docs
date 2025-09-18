@@ -8570,11 +8570,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/containers/container-insights-data-collection-configure.md",
-   "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-enable",
-   "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/app/configuration-with-applicationinsights-config.md",
    "redirect_url": "/azure/azure-monitor/app/dot-net",
    "redirect_document_id": false
