@@ -1101,14 +1101,13 @@ Use this method if your project type isn't supported by the Application Insights
     * [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector/)
 :::image type="content" source="https://img.shields.io/nuget/vpre/Microsoft.ApplicationInsights.EtwCollector.svg" alt-text="NuGet Etw Collector banner":::
 
-
-
 The NuGet package installs the necessary assemblies and modifies web.config or `app.config`, if applicable.
 
 ##### Instructions
 
 Expand any of the sections below for package-specific installation instructions.
 
+<br>
 <details>
 <summary><b>ILogger</b></summary>
 
@@ -1183,6 +1182,7 @@ For more information, see [Logging in ASP.NET Core](/aspnet/core/fundamentals/lo
 
 </details>
 
+<br>
 <details>
 <summary><b>Insert diagnostic log calls (System.Diagnostics.Trace / log4net / NLog)</b></summary>
 
@@ -1200,6 +1200,7 @@ If you prefer `log4net` or `NLog`, use:
 
 </details>
 
+<br>
 <details>
 <summary><b>Use EventSource events</b></summary>
 
@@ -1225,6 +1226,7 @@ For each source, you can set the following parameters:
 
 </details>
 
+<br>
 <details>
 <summary><b>Use DiagnosticSource events</b></summary>
 
@@ -1246,6 +1248,7 @@ For each diagnostic source you want to trace, add an entry with the `Name` attri
 
 </details>
 
+<br>
 <details>
 <summary><b>Use ETW events</b></summary>
 
@@ -1419,6 +1422,7 @@ The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to coll
 
 Find answers to common questions.
 
+<br>
 <details>
 <summary><b>Expand to view troubleshooting topics</b></summary>
 
