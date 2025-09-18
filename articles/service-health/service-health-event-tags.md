@@ -77,7 +77,7 @@ The event tags and event level tags are shown on the following panes:
 
 
 >[!NOTE]
-> The Billing updates Event tags are informational only.
+> The Evdnt level tags in Billing updates are informational only.
 
 For more information on Event level tags, see [Filter Service Health notifications by event level](metadata-filter.md).
 
