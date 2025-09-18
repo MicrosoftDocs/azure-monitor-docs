@@ -74,13 +74,13 @@ Unlike event tags, which describe the type or status of the communication, event
 
 Event tags, Event levels, and Event subtypes are shown on the following panes:
 
-|pane |Event level  |Event tags  | Event subtypes|
-|---------|---------|---------|----|
-|Service issues      |Yes| Yes |  |
-|Planned maintenance |No | Yes|  |
-|Health advisories   |Yes | Yes | Yes |
-|Security advisories |Yes | Yes | |
-|Billing updates     |Yes | No | Yes |
+|pane                  |Event level |Event tags  | Event subtypes|
+|----------------------|------------|------------|---------------|
+|Service issues        |Yes         | Yes        | No            |
+|Planned maintenance   |No          | Yes        | No            |
+|Health advisories     |Yes         | Yes        | Yes           |
+|Security advisories   |Yes         | Yes        | No            |
+|Billing updates       |Yes         | No         | Yes           |
 
 
 >[!NOTE]
