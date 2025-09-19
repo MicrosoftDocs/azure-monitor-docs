@@ -5,10 +5,9 @@ ms.topic: how-to
 ms.date: 08/25/2025
 ms.reviewer: aul
 ---
-# Customize collection using CRDs (Service and Pod Monitors)
+# Customize collection of Prometheus metrics from your Kubernetes cluster using CRDs
 
-
-The enablement of Managed Prometheus automatically deploys the custom resource definitions (CRD) for [pod monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-podmonitor-crd.yaml) and [service monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-servicemonitor-crd.yaml). These custom resource definitions are the same custom resource definitions (CRD) as [OSS Pod monitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) and [OSS service monitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) for Prometheus, except for a change in the group name. If you have existing Prometheus CRDs and custom resources on your cluster, these CRDs won't conflict with the CRDs created by the add-on. At the same time, the managed Prometheus addon does not pick up the CRDs created for the OSS Prometheus. This separation is intentional for the purposes of isolation of scrape jobs.
+Enabling Azure Monitor managed service for Prometheus automatically deploys custom resource definitions (CRD) for [pod monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-podmonitor-crd.yaml) and [service monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-servicemonitor-crd.yaml). These CRDs are the same as [OSS Pod monitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) and [OSS service monitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) for Prometheus except for a change in the group name. If you have existing Prometheus CRDs and custom resources on your cluster, these CRDs won't conflict with the CRDs created by the add-on. At the same time, the managed Prometheus addon does not pick up the CRDs created for the OSS Prometheus. This separation is intentional for the purposes of isolation of scrape jobs.
 
 ## Create a Pod or Service Monitor
 
@@ -149,7 +148,7 @@ See the [Pod and Service Monitor examples](https://github.com/Azure/prometheus-c
 ### Relabelings
 The `relabelings` section is applied at the time of target discovery and applies to each target for the job. The following examples show ways to use `relabelings`.
 
-#### Add a label
+**Add a label**
 Add a new label called `example_label` with the value `example_value` to every metric of the job. Use `__address__` as the source label only because that label always exists and adds the label for every target of the job.
 
 ```yaml
@@ -159,7 +158,7 @@ relabelings:
   replacement: 'example_value'
 ```
 
-#### Use Pod or Service Monitor labels
+**Use Pod or Service Monitor labels**
 
 Targets discovered using pod and service monitors have different `__meta_*` labels depending on what monitor is used. The `__*` labels are dropped after discovering the targets. To filter by using them at the metrics level, first keep them using `relabelings` by assigning a label name. Then use `metricRelabelings` to filter.
 
@@ -177,7 +176,7 @@ metricRelabelings:
   regex: 'default'
 ```
 
-#### Job and instance relabeling
+### Job and instance relabeling
 
 You can change the `job` and `instance` label values based on the source label, just like any other label.
 
@@ -190,18 +189,18 @@ relabelings:
 # Replace the instance name with the node name. This is helpful to replace a node IP
 # and port with a value that is more readable
 relabelings:
-- sourceLabels: [__meta_kubernetes_node_name]]
+- sourceLabels: [__meta_kubernetes_node_name]
   targetLabel: instance
 ```
 
 > [!NOTE]
 > If you have relabeling configs, ensure that the relabeling does not filter out the targets, and the labels configured correctly match the targets.
 
-### Metric Relabelings
+### Metric relabelings
 
-Metric relabelings are applied after scraping and before ingestion. Use the `metricRelabelings` section to filter metrics after scraping. The following examples show how to do so.
+Metric relabelings are applied after scraping and before ingestion. Use the `metricRelabelings` section to filter metrics after scraping. See the following examples.
 
-#### Drop metrics by name
+**Drop metrics by name**
 
 ```yaml
 # Drop the metric named 'example_metric_name'
@@ -211,7 +210,7 @@ metricRelabelings:
   regex: 'example_metric_name'
 ```
 
-#### Keep only certain metrics by name
+**Keep only certain metrics by name**
 
 ```yaml
 # Keep only the metric named 'example_metric_name'
@@ -229,10 +228,7 @@ metricRelabelings:
   regex: '(example_.*)'
 ```
 
-#### Rename metrics
-Metric renaming isn't supported.
-
-#### Filter metrics by labels
+**Filter metrics by labels**
 
 ```yaml
 # Keep metrics only where example_label = 'example'
@@ -267,17 +263,13 @@ metricRelabelings:
   regex: '.+'
 ```
 
+**Rename metrics**
+Metric renaming isn't supported.
 
 
 ## Basic Authentication and Bearer Tokens
 
-Scraping targets using basic auth or bearer tokens is supported using PodMonitors and ServiceMonitors. Make sure that the secret containing the username/password/token is in the same namespace as the pod/service monitor (This behavior is the same as OSS prometheus-operator)
-
-
-
-If you are using both file based credentials for basic auth (username_file, password_file or credentials_file) and TLS auth, refer to the [section](#basic-auth-and-tls) below.
-For more details, refer to the [note section](#note) below.
-
+Scraping targets using basic auth or bearer tokens is supported using PodMonitors and ServiceMonitors. Make sure that the secret containing the username/password/token is in the same namespace as the pod/service monitor. This behavior is the same as OSS prometheus-operator.
 
 ### TLS-based scraping
 
@@ -285,7 +277,7 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 
 1. Create a secret in the `kube-system` namespace named `ama-metrics-mtls-secret`. Each key-value pair specified in the data section of the secret object will be mounted as a separate file in this /etc/prometheus/certs location with file names that are the same as the keys specified in the data section. The secret values should be base64-encoded.
 
-   Below is an example YAML of a secret:
+   Following is an example YAML of a secret:
    
    ```yaml
    apiVersion: v1
@@ -299,11 +291,11 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
      <keyfile>: base64_key_content 
    ```
 
-   The `ama-metrics-mtls-secret` secret is mounted on to the `ama-metrics` pods at the path `/etc/prometheus/certs/` and is made available to the Prometheus scraper. The key ( `password1` in the above example) will be the file name. The value is base64 decoded and added as the contents of the file within the container.
+   The `ama-metrics-mtls-secret` secret is mounted on to the `ama-metrics` pods at the path `/etc/prometheus/certs/` and is made available to the Prometheus scraper. The key will be the file name. The value is base64 decoded and added as the contents of the file within the container.
 
-2. Then, in the Prometheus config, PodMonitor, or ServiceMonitor, provide the filepath:
+2. Provide the filepath in the Prometheus config, PodMonitor, or ServiceMonitor:
 
-   - To provide the TLS config setting for a PodMonitor or ServiceMonitor, follow the below example:
+   - Use the following example to provide the TLS config setting for a PodMonitor or ServiceMonitor:
 
    ```yaml
     tlsConfig:
@@ -323,7 +315,7 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 
 ### Basic Auth and TLS
 
-   If you want to use both basic auth or bearer token (file based credentials) and TLS authentication settings in your configmap/CRD, ensure that the secret `ama-metrics-mtls-secret` includes all the keys under the data section with their corresponding base64-encoded values, as shown below:
+   If you want to use both basic auth or bearer token (file based credentials) and TLS authentication settings in your CRD, ensure that the secret `ama-metrics-mtls-secret` includes all the keys under the data section with their corresponding base64-encoded values, as shown below:
 
    ```yaml
    apiVersion: v1
@@ -339,20 +331,15 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
      password2: base64-encoded-string # used for basic auth
    ```
 
-### Note
 > [!NOTE]
 > 
 > The `/etc/prometheus/certs/` path is mandatory, but `password1` can be any string and needs to match the key for the data in the secret created above. This is because the secret `ama-metrics-mtls-secret` is mounted in the path `/etc/prometheus/certs/` within the container.
 >
-> The base64-encoded value is automatically decoded by the ama-metrics pods when the secret is mounted as file.
->
-> Ensure secret name is `ama-metrics-mtls-secret` and it is in `kube-system` namespace.
+> The base64-encoded value is automatically decoded by the ama-metrics pods when the secret is mounted as file. Ensure secret name is `ama-metrics-mtls-secret` and is in `kube-system` namespace.
 > 
-> The secret should be created first, and then the configmap, PodMonitor, or ServiceMonitor should be created in `kube-system` namespace. The order of secret creation matters. When there's no secret but a configmap, PodMonitor, or ServiceMonitor pointing to the secret, the following error will be in the ama-metrics prometheus-collector container logs: `no file found for cert....`
+> The secret should be created first, and then the ConfigMap, PodMonitor, or ServiceMonitor should be created in `kube-system` namespace. The order of secret creation matters. When there's no secret but a ConfigMap, PodMonitor, or ServiceMonitor pointing to the secret, the following error will be in the ama-metrics prometheus-collector container logs: `no file found for cert....`
 >
-> To read more on TLS configuration settings, please follow this [Configurations](https://aka.ms/tlsconfigsetting).
-
-
+> See [tls_config](https://aka.ms/tlsconfigsetting) for more details on TLS configuration settings.
 
 
 
