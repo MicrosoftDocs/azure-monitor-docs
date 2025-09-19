@@ -47,7 +47,7 @@ A Health Advisory displays a Retirement (subtype) indicating a product is being 
 
 A Billing Update might have an FX Rate Change (subtype) indicating adjustments in foreign exchange rates that affect billing.
 
-:::image type="content"source="./media/event-tags/event-tags-sub-type-3.png"alt-text="Screenshot of Billing updates pane with sub-type event tags." lightbox="media/event-tags/event-tags-sub-type-3.png":::
+:::image type="content"source="./media/event-tags/event-tags-sub-type-2.png"alt-text="Screenshot of Billing updates pane with sub-type event tags." lightbox="media/event-tags/event-tags-sub-type-2.png":::
 
 
 |Event panes         |Event subtypes                                                                         |
