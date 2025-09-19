@@ -7,14 +7,14 @@ ms.date: 09/19/2025
 
 # Filter notifications using event levels in Azure Service Health
 
-To help you prioritize Azure Service Health event communications, the **Service issues,** **Health advisories,** and **Security advisories** panes include a new metadata field called **Event Level**. This field can help you understand the significance of each communication and rapidly evaluate the importance of each alert.
+To help you prioritize Azure Service Health event communications, the **Service issues,** **Health advisories,** and **Security advisories** panes include a new metadata field called **Event level**. This field can help you understand the significance of each communication and rapidly evaluate the importance of each alert.
 
 You can use this feature to filter and sort events, and more effectively prioritize your actions.
 
 ## Access to the event level metadata field
-Everyone with access to the subscription can view and filter by **Event Level**.
+Everyone with access to the subscription can view and filter by **Event level**.
 
-## Service issues event level alert definitions
+## Service issues event level definitions
 
 |Alert type|Definition|
 |-----|-----|
@@ -29,9 +29,9 @@ Everyone with access to the subscription can view and filter by **Event Level**.
 
 
 > [!NOTE]
-> This field is currently available on the **Service Issues,** **Health advisories,** and the **Security advisories** panes.
+> This field is currently available on the **Service issues,** **Health advisories,** and the **Security advisories** panes.
 
-## Health advisories event level alert definitions
+## Health advisories event level definitions
 
 
 |Alert type|Definition|
@@ -42,7 +42,7 @@ Everyone with access to the subscription can view and filter by **Event Level**.
 
 :::image type="content" source="media/metadata/metadata-health-advisory-screen.png" alt-text="Screenshot of the health advisory metadata filter screen." lightbox="media/metadata/metadata-health-advisory-screen.png":::
 
-## Security advisories event level alert definitions
+## Security advisories event level definitions
 
 |Alert type|Definition|
 |-----|-----|
@@ -54,5 +54,5 @@ Everyone with access to the subscription can view and filter by **Event Level**.
 
 
 ### More information
-Access to the Security advisories pane, see [Elevated access to Security advisories](security-advisories-elevated-access.md).
+Access to the Security advisories pane, see [Elevated access to Security advisories](security-advisories-elevated-access.md).<br>
 Event and event level tags, see [Service Health event tags](service-health-event-tags.md)
