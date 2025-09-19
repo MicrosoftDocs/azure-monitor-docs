@@ -41,13 +41,13 @@ Event subtypes are more granular classifications within each event type. They he
 
 For example:
 
-A Health Advisory displays a Retirement (subtype) indicating a product is being phased out.
-:::image type="content"source="./media/event-tags/event-tags-sub-type.png"alt-text="Screenshot of Health advisories pane with sub-type event tags." lightbox="media/event-tags/event-tags-sub-type.png":::
+A Health advisory displays a Retirement (subtype) indicating a product is being phased out.
+:::image type="content"source="./media/event-tags/event-tags-sub-type.png"alt-text="Screenshot of Health advisories pane with subtype event tags." lightbox="media/event-tags/event-tags-sub-type.png":::
 
 
-A Billing Update might have an FX Rate Change (subtype) indicating adjustments in foreign exchange rates that affect billing.
+A Billing update might have an FX Rate Change (subtype) indicating adjustments in foreign exchange rates that affect billing.
 
-:::image type="content"source="./media/event-tags/event-tags-sub-type-2.png"alt-text="Screenshot of Billing updates pane with sub-type event tags." lightbox="media/event-tags/event-tags-sub-type-2.png":::
+:::image type="content"source="./media/event-tags/event-tags-sub-type-2.png"alt-text="Screenshot of Billing updates pane with subtype event tags." lightbox="media/event-tags/event-tags-sub-type-2.png":::
 
 
 |Event panes         |Event subtypes                                                                         |
