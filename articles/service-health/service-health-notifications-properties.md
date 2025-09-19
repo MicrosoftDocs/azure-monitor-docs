@@ -2,7 +2,7 @@
 title: Azure service health notifications
 description: Service health notifications allow you to view service health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 08/08/2025
+ms.date: 09/19/2025
 
 ---
 
@@ -24,20 +24,20 @@ Each communication category panel - Incidents, Planned Maintenance, Health Advis
 
 |**Event**  |**Severity levels** |**Event tags** |**When Event is moved to Health History panel**  | **Event details moved from Health History panel, but available through REST API** | **Event details archived and inaccessible through REST API**|
 |---------|---------|---------|---------|
-|**Service Issues** | **Error** - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.<br>**Warning** - Issues accessing specific services and/or specific regions are impacting a subset of customers.<br>**Informational** - Issues impacting management operations and/or latency, not impacting service availability.      | Action Recommended<br>- Final PIR<br>- Preliminary PIR<br>False Positive   |  Three days       | 90 days from most recent published date| One year from most recent  published date   |
+|**Service Issues**       | **Error** - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.<br>**Warning** - Issues accessing specific services and/or specific regions are impacting a subset of customers.<br>**Informational** - Issues impacting management operations and/or latency, not impacting service availability.      | Action Recommended<br>- Final PIR<br>- Preliminary PIR<br>False Positive   |  Three days       | 90 days from most recent published date| One year from most recent  published date   |
 |**Planned Maintenance**   | **Warning** - Emergency Maintenance <br> **Informational** - Standard Planned Maintenance | N/A         | Schedule's EndDate passed<br> Or 50 days from Schedule's StartDate        |90 days from most recent published date   |One year from most recent  published date    |
-|**Security**     |**Warning** - Security advisory that affects existing services and might require administrator action<br>**Informational** - Security advisory that affects existing services |Action Recommended<br>- Final Post Incident Review (PIR)<br>- Preliminary PIR<br>False Positive         |         | 90 days from most recent published date  | One year from most recent  published date   |
-|**Health Advisories**<br>-Action Required<br>- Informational<br>- Product Retirement notifications |**Warning** - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement<br> -**Informational** - Administrator might be required to prevent impact to existing services. | Retirement         |         | 90 days from most recent published date  | One year from most recent  published date   |
-|**Billing**     |**Informational** - Issues impacting billing updates   | N/A        |         | 90 days from most recent published date  | One year from most recent  published date   |
+|**Security**              |**Warning** - Security advisory that affects existing services and might require administrator action<br>**Informational** - Security advisory that affects existing services |Action Recommended<br>- Final Post Incident Review (PIR)<br>- Preliminary PIR<br>False Positive         |         | 90 days from most recent published date  | One year from most recent  published date   |
+|**Health Advisories**     |**Warning** - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement<br> -**Informational** - An administrator might be required to prevent an effect to existing services. | Retirement         |         | 90 days from most recent published date  | One year from most recent  published date   |
+|**Billing**              |**Informational** - Issues impacting billing updates   | N/A        |         | 90 days from most recent published date  | One year from most recent  published date   |
 
 
 
-For more information about using Azure Resource Graph (ARG) queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+For more information about using Azure Resource Graph (ARG) queries, see [Resource graph sample queries](resource-graph-samples.md). This document provides guidance on how to utilize the available queries.
 
 
 
 
-Each service health notification includes details on the scope and impact to your resources. Details include:
+Each service health notification includes details on the scope and effect to your resources. Details include:
 
 Property name | Description
 -------- | -----------
@@ -66,7 +66,7 @@ Properties.defaultLanguageContent | The communication in English as either HTML 
 Properties.stage | The possible values for **Incident**, and **Security** are **Active,** **Resolved, or **RCA**. For **ActionRequired** or **Informational** the only value is **Active.** For **Maintenance** they are: **Active**, **Planned**, **InProgress**, **Canceled**, **Rescheduled**, **Resolved**, or **Complete**.
 Properties.communicationId | The communication this event is associated with.
 
-### Details on service health level information
+### Service health event level details
 
 Service Health event type (properties.incidentType)
 
@@ -93,4 +93,4 @@ Service Health event type (properties.incidentType)
 - Informational - Issues impacting management operations and/or latency, not impacting service availability.
 
 **Billing** (properties.incidentType == Billing)
-- Informational - Issues impacting billing updates. 
+- Informational - Issues impacting billing updates.
