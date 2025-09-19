@@ -121,7 +121,7 @@ The following properties in the events object response aren't populated for sens
 * Updates
 
 
-## Next steps
+## More information
 
 * Read [Keep informed about Azure security events](stay-informed-security.md)
 * Read [Resource impact from Azure security incidents](impacted-resources-security.md)
