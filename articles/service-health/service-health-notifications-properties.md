@@ -78,7 +78,7 @@ Service Health event type (properties.incidentType)
 - Informational - Standard planned maintenance
 
 **Health Advisory** (properties.incidentType == Informational)
-- Informational - Administrator might be required to prevent impact to existing services.
+- Informational - An administrator might be required to prevent an impact to existing services.
 
 **Health Advisory** (properties.incidentType == Retirement)
 - Retirement - Retirement reminder notifications for scenarios where less than three months are left from final date of Retirement.
