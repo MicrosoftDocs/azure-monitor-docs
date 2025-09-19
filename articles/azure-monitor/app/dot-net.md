@@ -4393,6 +4393,8 @@ If your project doesn't include *_Layout.cshtml*, you can still add [client-side
 
 ---
 
+[!INCLUDE [azure-monitor-custom-events-metrics](includes/azure-monitor-custom-events-metrics.md)]
+
 ## Sample applications
 
 [.NET Core console application](https://github.com/microsoft/ApplicationInsights-dotnet/tree/develop/examples/ConsoleApp):
