@@ -55,4 +55,4 @@ Everyone with access to the subscription can view and filter by **Event level**.
 
 ### More information
 Access to the Security advisories pane, see [Elevated access to Security advisories](security-advisories-elevated-access.md).<br>
-Event and event level tags, see [Service Health event tags](service-health-event-tags.md)
+Event and event level tags, see [Service Health event tags](service-health-event-tags.md).
