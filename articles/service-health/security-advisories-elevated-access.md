@@ -3,13 +3,13 @@ title: View and access Security advisories
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 
 ms.topic: conceptual
-ms.date: 8/11/2025
+ms.date: 9/19/2025
 ---
 
 
 # View and access Security advisories
 
-The Security advisories pane in Azure Service Health is a specialized dashboard designed to notify Azure customers about urgent security-related events that might affect their subscriptions.
+The Security advisories pane in Azure Service Health is a specialized dashboard designed to notify you about urgent security-related events that might affect your subscriptions.
 
 
 :::image type="content"source="./media/security-advisories/security-advisories-main.PNG"alt-text="Screenshot of Service Health Security Advisories pane."Lightbox="./media/security-advisories/security-advisories-main.PNG":::
@@ -55,7 +55,7 @@ Users who have [roles with tenant admin access](admin-access-reference.md) can a
 
 ## Service Health API endpoint
 
-To access Security Advisories through APIs, you must update your code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details. Users with the specified roles can view sensitive event details for a specific event with the new endpoint.
+To access Security advisories through APIs, you must update your code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details. Users with the specified roles can view sensitive event details for a specific event with the new endpoint.
 
 The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details.
 
@@ -78,7 +78,7 @@ https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/
 ```
 Operation: POST
 
-#### Impacted Resources for Security advisories
+#### Impacted resources for Security advisories
 
 Customers authorized with the authorized roles, can use the following endpoints to access the list of resources impacted by a Security Incident.
 <!--- Available since API version 2022-05-01-->
@@ -102,7 +102,7 @@ Operation: POST
 
 For more information, see [Security Advisories Impacted Resources](/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id).
 
-#### Existing Events API Endpoint
+#### Existing events API endpoint
 
 **Security advisories Subscription List Events** 
 
