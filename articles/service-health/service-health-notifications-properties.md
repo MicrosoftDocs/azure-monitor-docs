@@ -45,7 +45,7 @@ channels | One of the following values: **Admin** or **Operation**.
 correlationId | Usually a GUID in the string format. Events that belong to the same action usually share the same correlationId.
 eventDataId | The unique identifier of an event.
 eventName | The title of an event.
-level | The level of an event
+level | The level of an event.
 resourceProviderName | The name of the resource provider for the impacted resource.
 resourceType| The type of resource of the impacted resource.
 subStatus | Usually the HTTP status code of the corresponding REST call, but can also include other strings describing a substatus. For example:<br> OK (HTTP Status Code: 200)<br> Created (HTTP Status Code: 201)<br> Accepted (HTTP Status Code: 202)<br> No Content (HTTP Status Code: 204)<br> Bad Request (HTTP Status Code: 400),<br> Not Found (HTTP Status Code: 404),<br> Conflict (HTTP Status Code: 409),<br> Internal Server Error (HTTP Status Code: 500)<br> Service Unavailable (HTTP Status Code: 503)<br> Gateway Timeout (HTTP Status Code: 504).
@@ -63,7 +63,7 @@ Properties.trackingId | The incident this event is associated with. Use this tra
 Properties.impactedServices | An escaped JSON blob that describes the services and regions impacted by the incident. The property includes a list of services, each of which has a **ServiceName**, and a list of impacted regions, each of which has a **RegionName**.
 Properties.defaultLanguageTitle | The communication in English.
 Properties.defaultLanguageContent | The communication in English as either HTML markup or plain text.
-Properties.stage | The possible values for **Incident**, and **Security** are **Active,** **Resolved, or **RCA**. For **ActionRequired** or **Informational** the only value is **Active.** For **Maintenance** they are: **Active**, **Planned**, **InProgress**, **Canceled**, **Rescheduled**, **Resolved**, or **Complete**.
+Properties.stage | The possible values for **Incident**, and **Security** are **Active,** <br>**Resolved**, or **RCA**.<br> For **ActionRequired** or **Informational** the only value is **Active.** <br>For **Maintenance** they are: **Active**, **Planned**, **InProgress**, **Canceled**, **Rescheduled**, **Resolved**, or **Complete**.
 Properties.communicationId | The communication this event is associated with.
 
 ### Service health event level details
