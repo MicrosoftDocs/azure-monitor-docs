@@ -4412,7 +4412,7 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 
 There's a known issue in Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *Applicationinsights.config* file to work around this bug. This article is designed to avoid this issue entirely, by not using user secrets.
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/application-insights-app-insights-test-connectivity.md)]
 
 ## Open-source SDK
 
