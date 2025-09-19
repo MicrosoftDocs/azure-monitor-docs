@@ -9,7 +9,7 @@ ms.date: 09/19/2025
 
 With the increased use of cloud computing, customers rely increasingly on Azure to run their workload for critical and noncritical business applications. It's important for you as an Azure customer to stay informed about Azure security issues or privacy breaches and take the right action to protect your environment.
 
-This article shows where you receive Azure security notifications, and the three steps you can follow to ensure security alerts reach the right people in your organization.
+This article shows how you receive Azure security notifications, and the three steps you can follow to ensure security alerts reach the right people in your organization.
 
 ## Security issues affecting your Azure subscription workloads
 
@@ -72,4 +72,4 @@ There's an important difference between Service Health security advisories and [
 
 ### More information
 For Azure Service Health notifications, see [Azure service health notifications](service-health-notifications-properties.md).<br>
-For Service Health alert rules, see[Deploy Service Health alert rules at scale using Azure Policy](service-health-alert-deploy-policy.md).
+For Service Health alerts at scale, see [Deploy Service Health alert rules at scale using Azure Policy](service-health-alert-deploy-policy.md).
