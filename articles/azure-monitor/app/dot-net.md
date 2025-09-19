@@ -4430,12 +4430,12 @@ Our [Service Updates](https://azure.microsoft.com/updates/?service=application-i
     * [Applications Insights for ASP.NET FAQ](application-insights-faq.yml#asp-net)
     * [Application Insights for ASP.NET Core FAQ](application-insights-faq.yml#asp-net-core-applications)
     * [Worker Service applications FAQ](application-insights-faq.yml#worker-service-applications)
+    * [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
 * Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * See the [data model](data-model-complete.md) for Application Insights types and data model.
-* Add synthetic transactions to test that your website is available from all over the world with [availability monitoring](availability-overview.md).
+* Add synthetic transactions to test that your website is available from all over the world with [availability monitoring](availability.md).
 * Check the [System.Diagnostics.Activity User Guide](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) to see how we correlate telemetry.
 * [Configure a snapshot collection](snapshot-debugger.md) to see the state of source code and variables at the moment an exception is thrown.
-* [Use the API](api-custom-events-metrics.md) to send your own events and metrics for a detailed view of your app's performance and usage.
 
 ## Reference docs
 

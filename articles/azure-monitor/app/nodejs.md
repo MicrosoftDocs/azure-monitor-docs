@@ -470,10 +470,8 @@ For troubleshooting information, including "no data" scenarios and customizing l
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [Node.js FAQ](application-insights-faq.yml#node-js).
+* To review frequently asked questions (FAQ), see:
+    * [Node.js FAQ](application-insights-faq.yml#node-js)
+    * [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
 * [Monitor your telemetry in the portal](./overview-dashboard.md).
 * [Learn to use Log Analytics](../logs/log-analytics-tutorial.md) and [write analytics queries over your telemetry](../logs/get-started-queries.md).
-
-<!--references-->
-
-[FAQ]: ./application-insights-faq.yml#overview
