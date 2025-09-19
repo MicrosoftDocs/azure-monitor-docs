@@ -36,7 +36,7 @@ Select the **Advisory name** link to open the tabs with the information you need
 >Security advisories are displayed in the pane for up to 28 days if they are still active and if the impact time is in the future. After that they are moved to the health history panel where they are displayed for 90 days.
 >
 >
->For more information about Sercurity advisories using ARG queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+>For more information about Sercurity advisories using ARG queries, see [Azure Resource Graph sample queries for Service health](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 ## Who can view Security advisories?
 
