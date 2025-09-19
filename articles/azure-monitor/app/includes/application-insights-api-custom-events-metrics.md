@@ -325,7 +325,7 @@ The recommended way to send request telemetry is where the request acts as an <a
 
 #### Operation context
 
-You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does this for exceptions and other events that are sent while an HTTP request is being processed. In [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search) and [Analytics](../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
+You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does this for exceptions and other events that are sent while an HTTP request is being processed. In [Search](../failures-performance-transactions.md?tabs=transaction-search) and [Analytics](../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
 
 For more information on correlation, see [Telemetry correlation in Application Insights](distributed-trace-data.md).
 
@@ -377,7 +377,7 @@ requests
 Send exceptions to Application Insights:
 
 * To [count them](../../metrics/analyze-metrics.md), as an indication of the frequency of a problem.
-* To [examine individual occurrences](./transaction-search-and-diagnostics.md?tabs=transaction-search).
+* To [examine individual occurrences](../failures-performance-transactions.md?tabs=transaction-search).
 
 The reports include the stack traces.
 
@@ -484,7 +484,7 @@ exceptions
 
 #### TrackTrace
 
-Use `TrackTrace` to help diagnose problems by sending a "breadcrumb trail" to Application Insights. You can send chunks of diagnostic data and inspect them in [Diagnostic Search](./transaction-search-and-diagnostics.md?tabs=transaction-search).
+Use `TrackTrace` to help diagnose problems by sending a "breadcrumb trail" to Application Insights. You can send chunks of diagnostic data and inspect them in [Diagnostic Search](../failures-performance-transactions.md?tabs=transaction-search).
 
 # [.NET](#tab/api-net)
 
@@ -555,7 +555,7 @@ properties.put("Database", db.ID);
 telemetry.trackTrace("Slow Database response", SeverityLevel.Warning, properties);
 ```
 
-In [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search), you can then easily filter out all the messages of a particular severity level that relate to a particular database.
+In [Search](../failures-performance-transactions.md?tabs=transaction-search), you can then easily filter out all the messages of a particular severity level that relate to a particular database.
 
 ##### Traces in Log Analytics
 
@@ -642,7 +642,7 @@ In Java, many dependency calls can be automatically tracked by using the
 
 You use this call if you want to track calls that the automated tracking doesn't catch.
 
-To turn off the standard dependency-tracking module in C#, edit [ApplicationInsights.config](./configuration-with-applicationinsights-config.md) and delete the reference to `DependencyCollector.DependencyTrackingTelemetryModule`. For Java, see
+To turn off the standard dependency-tracking module in C#, edit *ApplicationInsights.config* and delete the reference to `DependencyCollector.DependencyTrackingTelemetryModule`. For Java, see
 [Suppressing specific autocollected telemetry](../java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 ##### Dependencies in Log Analytics
@@ -669,7 +669,7 @@ Normally, the SDK sends data at fixed intervals, typically 30 seconds, or whenev
 
 # [.NET](#tab/api-net)
 
-When you use `Flush()`, we recommend this [pattern](./console.md#full-example):
+When you use `Flush()`, we recommend this [pattern](/previous-versions/azure/azure-monitor/app/console#full-example):
 
 ```csharp
 telemetry.Flush();
@@ -754,7 +754,7 @@ appInsights.setAuthenticatedUserContext(validatedId, accountId);
 
 In [Metrics Explorer](../essentials/metrics-charts.md), you can create a chart that counts **Users, Authenticated**, and **User accounts**.
 
-You can also [search](./transaction-search-and-diagnostics.md?tabs=transaction-search) for client data points with specific user names and accounts.
+You can also [search](../failures-performance-transactions.md?tabs=transaction-search) for client data points with specific user names and accounts.
 
 > [!NOTE]
 > The [EnableAuthenticationTrackingJavaScript property in the ApplicationInsightsServiceOptions class](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs) in the .NET Core SDK simplifies the JavaScript configuration needed to inject the user name as the Auth ID for each trace sent by the Application Insights JavaScript SDK.
@@ -973,11 +973,11 @@ gameTelemetry.TrackEvent({name: "WinGame"});
 
 Individual telemetry calls can override the default values in their property dictionaries.
 
-*To add properties to all telemetry*, including the data from standard collection modules, [implement `ITelemetryInitializer`](./api-filtering-sampling.md#add-properties).
+*To add properties to all telemetry*, including the data from standard collection modules, [implement `ITelemetryInitializer`](../dot-net.md#telemetry-initializers).
 
 #### Sample, filter, and process telemetry
 
-See [Filter and preprocess telemetry in the Application Insights SDK](./api-filtering-sampling.md).
+See [Filter and preprocess telemetry in the Application Insights SDK](#filter-and-preprocess-telemetry).
 
 #### Disable telemetry
 
@@ -997,7 +997,7 @@ TelemetryConfiguration.Active.DisableTelemetry = true;
 telemetry.getConfiguration().setTrackingDisabled(true);
 ```
 
-To *disable selected standard collectors*, for example, performance counters, HTTP requests, or dependencies, delete or comment out the relevant lines in [ApplicationInsights.config](./configuration-with-applicationinsights-config.md). An example is if you want to send your own `TrackRequest` data.
+To *disable selected standard collectors*, for example, performance counters, HTTP requests, or dependencies, delete or comment out the relevant lines in *ApplicationInsights.config*. An example is if you want to send your own `TrackRequest` data.
 
 # [Node.js](#tab/api-node)
 
@@ -1130,11 +1130,11 @@ var appInsights = window.appInsights || function(config){ ...
 telemetry.Context.Operation.Name = "MyOperationName";
 ```
 
-If you set any of these values yourself, consider removing the relevant line from [ApplicationInsights.config](./configuration-with-applicationinsights-config.md) so that your values and the standard values don't get confused.
+If you set any of these values yourself, consider removing the relevant line from *ApplicationInsights.config* so that your values and the standard values don't get confused.
 
 * **Component**: The app and its version.
 * **Device**: Data about the device where the app is running. In web apps, it's the server or client device that the telemetry is sent from.
-* **InstrumentationKey**: The Application Insights resource in Azure where the telemetry appears. It's usually picked up from `ApplicationInsights.config`.
+* **InstrumentationKey**: The Application Insights resource in Azure where the telemetry appears. It's usually picked up from *ApplicationInsights.config*.
 * **Location**: The geographic location of the device.
 * **Operation**: In web apps, the current HTTP request. In other app types, you can set this value to group events together.
     * **ID**: A generated value that correlates different events so that when you inspect any event in Diagnostic Search, you can find related items.
