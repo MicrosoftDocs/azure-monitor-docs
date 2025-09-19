@@ -1,31 +1,26 @@
 ---
-title: Application Insights API for custom events and metrics | Microsoft Docs
-description: Insert a few lines of code in your device or desktop app, webpage, or service to track usage and diagnose issues.
-ms.topic: how-to
+ms.topic: include
 ms.date: 3/21/2025
-ms.devlang: csharp
-# ms.devlang: csharp, java, javascript, vb
-ms.custom: devx-track-csharp
 ---
 
-# Application Insights API for custom events and metrics
+## Application Insights API for custom events and metrics
 
-Insert a few lines of code in your application to find out what users are doing with it, or to help diagnose issues. You can send telemetry from device and desktop apps, web clients, and web servers. Use the [Application Insights](./app-insights-overview.md) core telemetry API to send custom events and metrics and your own versions of standard telemetry. This API is the same API that the standard Application Insights data collectors use.
+Insert a few lines of code in your application to find out what users are doing with it, or to help diagnose issues. You can send telemetry from device and desktop apps, web clients, and web servers. Use the [Application Insights](../app-insights-overview.md) core telemetry API to send custom events and metrics and your own versions of standard telemetry. This API is the same API that the standard Application Insights data collectors use.
 
 ## API summary
 
 The core API is uniform across all platforms, apart from a few variations like `GetMetric` (.NET only).
 
-| Method                                | Used for                                                                                                       |
-|---------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| [`TrackPageView`](#page-views)        | Pages, screens, panes, or forms.                                                                               |
-| [`TrackEvent`](#trackevent)           | User actions and other events. Used to track user behavior or to monitor performance.                          |
-| [`GetMetric`](#getmetric)             | Zero and multidimensional metrics, centrally configured aggregation, C# only.                                  |
-| [`TrackMetric`](#trackmetric)         | Performance measurements such as queue lengths not related to specific events.                                 |
-| [`TrackException`](#trackexception)   | Logging exceptions for diagnosis. Trace where they occur in relation to other events and examine stack traces. |
-| [`TrackRequest`](#trackrequest)       | Logging the frequency and duration of server requests for performance analysis.                                |
-| [`TrackTrace`](#tracktrace)           | Resource Diagnostic log messages. You can also capture third-party logs.                                       |
-| [`TrackDependency`](#trackdependency) | Logging the duration and frequency of calls to external components that your app depends on.                   |
+| Method | Used for |
+|--------|----------|
+| [`TrackPageView`](#page-views) | Pages, screens, panes, or forms. |
+| [`TrackEvent`](#trackevent) | User actions and other events. Used to track user behavior or to monitor performance. |
+| [`GetMetric`](#getmetric) | Zero and multidimensional metrics, centrally configured aggregation, C# only. |
+| [`TrackMetric`](#trackmetric) | Performance measurements such as queue lengths not related to specific events. |
+| [`TrackException`](#trackexception) | Logging exceptions for diagnosis. Trace where they occur in relation to other events and examine stack traces. |
+| [`TrackRequest`](#trackrequest) | Logging the frequency and duration of server requests for performance analysis. |
+| [`TrackTrace`](#tracktrace) | Resource Diagnostic log messages. You can also capture third-party logs. |
+| [`TrackDependency`](#trackdependency) | Logging the duration and frequency of calls to external components that your app depends on. |
 
 You can [attach properties and metrics](#properties) to most of these telemetry calls.
 
@@ -33,32 +28,45 @@ You can [attach properties and metrics](#properties) to most of these telemetry 
 
 If you don't have a reference on Application Insights SDK yet:
 
-* Add the Application Insights SDK to your project:
-
-    * [ASP.NET project](./asp-net.md)
-    * [ASP.NET Core project](./asp-net-core.md)
-    * [Java project](./opentelemetry-enable.md?tabs=java)
-    * [Node.js project](./nodejs.md)
-    * [JavaScript in each webpage](./javascript.md)
+* Add the Application Insights SDK to your project.
 
 * In your device or web server code, include:
 
-    *C#:* `using Microsoft.ApplicationInsights;`
+    # [.NET](#tab/api-net)
 
-    *Java:* `import com.microsoft.applicationinsights.TelemetryClient;`
+    ```csharp
+    using Microsoft.ApplicationInsights;
+    ```
+    # [Java](#tab/api-java)
 
-    *Node.js:* `var applicationInsights = require("applicationinsights");`
+    ```java
+    import com.microsoft.applicationinsights.TelemetryClient;
+    ```
+
+    # [Node.js](#tab/api-node)
+
+    ```javascript
+    var applicationInsights = require("applicationinsights");
+    ```
 
 
 ## Get a TelemetryClient instance
 
 Get an instance of `TelemetryClient` (except in JavaScript in webpages):
 
-For [ASP.NET Core](asp-net-core.md) apps and [Non-HTTP/Worker for .NET/.NET Core](application-insights-faq.yml#how-can-i-track-telemetry-that-s-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
+For [ASP.NET Core](../dot-net.md) apps and [Non-HTTP/Worker for .NET/.NET Core](application-insights-faq.yml#how-can-i-track-telemetry-that-s-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
 
 If you use Azure Functions v2+ or Azure WebJobs v3+, see [Monitor Azure Functions](/azure/azure-functions/functions-monitoring).
 
-*C#*
+## Get a TelemetryClient instance
+
+Get an instance of `TelemetryClient` (except in JavaScript in webpages):
+
+For [ASP.NET Core](../asp-net-core.md) apps and [Non-HTTP/Worker for .NET/.NET Core](../application-insights-faq.yml#how-can-i-track-telemetry-that-s-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
+
+If you use Azure Functions v2+ or Azure WebJobs v3+, see [Monitor Azure Functions](/azure/azure-functions/functions-monitoring).
+
+# [.NET](#tab/api-net)
 
 ```csharp
 private TelemetryClient telemetry = new TelemetryClient();
@@ -66,37 +74,51 @@ private TelemetryClient telemetry = new TelemetryClient();
 
 If you see a message that tells you this method is obsolete, see [microsoft/ApplicationInsights-dotnet#1152](https://github.com/microsoft/ApplicationInsights-dotnet/issues/1152) for more information.
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 private TelemetryClient telemetry = new TelemetryClient();
 ```
 
-*Node.js*
+# [Node.js](#tab/api-node)
 
 ```javascript
 var telemetry = applicationInsights.defaultClient;
 ```
 
+# [JS (Browser)](#tab/api-js)
+
+Not applicable.
+
+---
+
 `TelemetryClient` is thread safe.
 
 For ASP.NET and Java projects, incoming HTTP requests are automatically captured. You might want to create more instances of `TelemetryClient` for other modules of your app. For example, you might have one `TelemetryClient` instance in your middleware class to report business logic events. You can set properties such as `UserId` and `DeviceId` to identify the machine. This information is attached to all events that the instance sends.
 
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 TelemetryClient.Context.User.Id = "...";
 TelemetryClient.Context.Device.Id = "...";
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 telemetry.getContext().getUser().setId("...");
 telemetry.getContext().getDevice().setId("...");
 ```
 
+# [Node.js](#tab/api-node)
+
 In Node.js projects, you can use `new applicationInsights.TelemetryClient(instrumentationKey?)` to create a new instance. We recommend this approach only for scenarios that require isolated configuration from the singleton `defaultClient`.
+
+# [JS (Browser)](#tab/api-js)
+
+Not applicable.
+
+---
 
 ## TrackEvent
 
@@ -106,29 +128,31 @@ Insert `TrackEvent` calls in your code to count various events. For example, you
 
 For example, in a game app, send an event whenever a user wins the game:
 
-*JavaScript*
-
-```javascript
-appInsights.trackEvent({name:"WinGame"});
-```
-
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 telemetry.TrackEvent("WinGame");
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 telemetry.trackEvent("WinGame");
 ```
 
-*Node.js*
+# [Node.js](#tab/api-node)
 
 ```javascript
 telemetry.trackEvent({name: "WinGame"});
 ```
+
+# [JS (Browser)](#tab/api-js)
+
+```javascript
+appInsights.trackEvent({name:"WinGame"});
+```
+
+---
 
 ### Custom events in Log Analytics
 
@@ -166,13 +190,7 @@ To send metrics to Application Insights, you can use the `TrackMetric(..)` API. 
 
 To send a single metric value:
 
-*JavaScript*
-
-```javascript
-appInsights.trackMetric({name: "queueLength", average: 42});
-```
-
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 var sample = new MetricTelemetry();
@@ -181,17 +199,25 @@ sample.Sum = 42.3;
 telemetryClient.TrackMetric(sample);
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 telemetry.trackMetric("queueLength", 42.0);
 ```
 
-*Node.js*
+# [Node.js](#tab/api-node)
 
 ```javascript
 telemetry.trackMetric({name: "queueLength", value: 42.0});
 ```
+
+# [JS (Browser)](#tab/api-js)
+
+```javascript
+appInsights.trackMetric({name: "queueLength", average: 42});
+```
+
+---
 
 ### Custom metrics in Log Analytics
 
@@ -211,22 +237,26 @@ User and session data is sent as properties along with page views, so the user a
 
 ### Custom page views
 
-*JavaScript*
-
-```javascript
-appInsights.trackPageView("tab1");
-```
-
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 telemetry.TrackPageView("GameReviewPage");
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 telemetry.trackPageView("GameReviewPage");
+```
+
+# [Node.js](#tab/api-node)
+
+Not applicable.
+
+# [JS (Browser)](#tab/api-js)
+
+```javascript
+appInsights.trackPageView("tab1");
 ```
 
 If you have several tabs within different HTML pages, you can specify the URL too:
@@ -244,8 +274,6 @@ Instead, you can either:
 * Set an explicit duration in the [trackPageView](https://github.com/microsoft/ApplicationInsights-JS/blob/17ef50442f73fd02a758fbd74134933d92607ecf/legacy/API.md#trackpageview) call: `appInsights.trackPageView("tab1", null, null, null, durationInMilliseconds);`.
 * Use the page view timing calls `startTrackPage` and `stopTrackPage`.
 
-*JavaScript*
-
 ```javascript
 // To start timing a page:
 appInsights.startTrackPage("Page1");
@@ -259,6 +287,8 @@ appInsights.stopTrackPage("Page1", url, properties, measurements);
 The name that you use as the first parameter associates the start and stop calls. It defaults to the current page name.
 
 The resulting page load durations displayed in Metrics Explorer are derived from the interval between the start and stop calls. It's up to you what interval you actually time.
+
+---
 
 ### Page telemetry in Log Analytics
 
@@ -354,7 +384,7 @@ Send exceptions to Application Insights:
 
 The reports include the stack traces.
 
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 try
@@ -367,7 +397,7 @@ catch (Exception ex)
 }
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 try {
@@ -377,20 +407,7 @@ try {
 }
 ```
 
-*JavaScript*
-
-```javascript
-try
-{
-    ...
-}
-catch (ex)
-{
-    appInsights.trackException({exception: ex});
-}
-```
-
-*Node.js*
+# [Node.js](#tab/api-node)
 
 ```javascript
 try
@@ -403,7 +420,23 @@ catch (ex)
 }
 ```
 
+# [JS (Browser)](#tab/api-js)
+
+```javascript
+try
+{
+    ...
+}
+catch (ex)
+{
+    appInsights.trackException({exception: ex});
+}
+```
+
+---
+
 The SDKs catch many exceptions automatically, so you don't always have to call `TrackException` explicitly:
+
 
 * **ASP.NET**: [Write code to catch exceptions](./asp-net-exceptions.md).
 * **Java EE**: [Exceptions are caught automatically](./opentelemetry-enable.md?tabs=java).
@@ -449,19 +482,19 @@ In .NET [Log adapters](./asp-net-trace-logs.md), use this API to send third-part
 
 In Java, the [Application Insights Java agent](opentelemetry-enable.md?tabs=java) autocollects and sends logs to the portal.
 
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 telemetry.TrackTrace(message, SeverityLevel.Warning, properties);
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 telemetry.trackTrace(message, SeverityLevel.Warning, properties);
 ```
 
-*Node.js*
+# [Node.js](#tab/api-node)
 
 ```javascript
 telemetry.trackTrace({
@@ -471,7 +504,7 @@ telemetry.trackTrace({
 });
 ```
 
-*Client/Browser-side JavaScript*
+# [JS (Browser)](#tab/api-js)
 
 ```javascript
 trackTrace({
@@ -480,6 +513,8 @@ trackTrace({
     severityLevel?: SeverityLevel
 })
 ```
+
+---
 
 Log a diagnostic event such as entering or leaving a method.
 
@@ -527,7 +562,7 @@ Use the `TrackDependency` call to track the response times and success rates of 
 > [!NOTE]
 > For .NET and .NET Core, you can alternatively use the `TelemetryClient.StartOperation` (extension) method that fills the `DependencyTelemetry` properties that are needed for correlation and some other properties like the start time and duration, so you don't need to create a custom timer as with the following examples. For more information, see the section on outgoing dependency tracking in [Track custom operations with Application Insights .NET SDK](./custom-operations-tracking.md#outgoing-dependencies-tracking).
 
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 var success = false;
@@ -550,7 +585,7 @@ finally
 }
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 boolean success = false;
@@ -567,7 +602,7 @@ finally {
 }
 ```
 
-*Node.js*
+# [Node.js](#tab/api-node)
 
 ```javascript
 var success = false;
@@ -587,6 +622,10 @@ finally
     });
 }
 ```
+
+# [JS (Browser)](#tab/api-js)
+
+---
 
 Remember that the server SDKs include a [dependency module](./asp-net-dependencies.md) that discovers and tracks certain dependency calls automatically, for example, to databases and REST APIs. You have to install an agent on your server to make the module work.
 
@@ -620,7 +659,7 @@ dependencies
 
 Normally, the SDK sends data at fixed intervals, typically 30 seconds, or whenever the buffer is full, which is typically 500 items. In some cases, you might want to flush the buffer. An example is if you're using the SDK in an application that shuts down.
 
-*.NET*
+# [.NET](#tab/api-net)
 
 When you use `Flush()`, we recommend this [pattern](./console.md#full-example):
 
@@ -639,7 +678,7 @@ await telemetryClient.FlushAsync()
 
 We recommend always flushing as part of the application shutdown to guarantee that telemetry isn't lost.
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 telemetry.flush();
@@ -647,11 +686,15 @@ telemetry.flush();
 Thread.sleep(5000);
 ```
 
-*Node.js*
+# [Node.js](#tab/api-node)
 
 ```javascript
 telemetry.flush();
 ```
+
+# [JS (Browser)](#tab/api-js)
+
+---
 
 The function is asynchronous for the [server telemetry channel](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel/).
 
@@ -712,7 +755,7 @@ You can also [search](./transaction-search-and-diagnostics.md?tabs=transaction-s
 >
 > For JavaScript applications that don't work in the same way as ASP.NET Core MVC, such as SPA web apps, you would still need to add `appInsights.setAuthenticatedUserContext` manually.
 
-## <a name="properties"></a>Filter, search, and segment your data by using properties
+## Filter, search, and segment your data by using properties
 
 You can attach properties and measurements to your events, metrics, page views, exceptions, and other telemetry data.
 
@@ -726,7 +769,45 @@ Metric values should be greater than or equal to 0 to display correctly.
 
 There are some [limits on the number of properties, property values, and metrics](#limits) that you can use.
 
-*JavaScript*
+# [.NET](#tab/api-net)
+
+```csharp
+// Set up some properties and metrics:
+var properties = new Dictionary <string, string>
+    {{"game", currentGame.Name}, {"difficulty", currentGame.Difficulty}};
+var metrics = new Dictionary <string, double>
+    {{"Score", currentGame.Score}, {"Opponents", currentGame.OpponentCount}};
+
+// Send the event:
+telemetry.TrackEvent("WinGame", properties, metrics);
+```
+
+# [Java](#tab/api-java)
+
+```java
+Map<String, String> properties = new HashMap<String, String>();
+properties.put("game", currentGame.getName());
+properties.put("difficulty", currentGame.getDifficulty());
+
+Map<String, Double> metrics = new HashMap<String, Double>();
+metrics.put("Score", currentGame.getScore());
+metrics.put("Opponents", currentGame.getOpponentCount());
+
+telemetry.trackEvent("WinGame", properties, metrics);
+```
+
+# [Node.js](#tab/api-node)
+
+```javascript
+// Set up some properties and metrics:
+var properties = {"game": currentGame.Name, "difficulty": currentGame.Difficulty};
+var metrics = {"Score": currentGame.Score, "Opponents": currentGame.OpponentCount};
+
+// Send the event:
+telemetry.trackEvent({name: "WinGame", properties: properties, measurements: metrics});
+```
+
+# [JS (Browser)](#tab/api-js)
 
 ```javascript
 appInsights.trackEvent({
@@ -748,43 +829,7 @@ appInsights.trackPageView({
 });
 ```
 
-*C#*
-
-```csharp
-// Set up some properties and metrics:
-var properties = new Dictionary <string, string>
-    {{"game", currentGame.Name}, {"difficulty", currentGame.Difficulty}};
-var metrics = new Dictionary <string, double>
-    {{"Score", currentGame.Score}, {"Opponents", currentGame.OpponentCount}};
-
-// Send the event:
-telemetry.TrackEvent("WinGame", properties, metrics);
-```
-
-*Node.js*
-
-```javascript
-// Set up some properties and metrics:
-var properties = {"game": currentGame.Name, "difficulty": currentGame.Difficulty};
-var metrics = {"Score": currentGame.Score, "Opponents": currentGame.OpponentCount};
-
-// Send the event:
-telemetry.trackEvent({name: "WinGame", properties: properties, measurements: metrics});
-```
-
-*Java*
-
-```java
-Map<String, String> properties = new HashMap<String, String>();
-properties.put("game", currentGame.getName());
-properties.put("difficulty", currentGame.getDifficulty());
-
-Map<String, Double> metrics = new HashMap<String, Double>();
-metrics.put("Score", currentGame.getScore());
-metrics.put("Opponents", currentGame.getOpponentCount());
-
-telemetry.trackEvent("WinGame", properties, metrics);
-```
+---
 
 > [!NOTE]
 > Make sure you don't log personally identifiable information in properties.
@@ -825,11 +870,11 @@ Notice that:
 * When you extract a value from the `customDimensions` or `customMeasurements` JSON, it has dynamic type, so you must cast it `tostring` or `todouble`.
 * To take account of the possibility of [sampling](./sampling.md), use `sum(itemCount)` not `count()`.
 
-## <a name="timed"></a> Timing events
+## Timing events
 
 Sometimes you want to chart how long it takes to perform an action. For example, you might want to know how long users take to consider choices in a game. To obtain this information, use the measurement parameter.
 
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 var stopwatch = System.Diagnostics.Stopwatch.StartNew();
@@ -849,7 +894,7 @@ var properties = new Dictionary <string, string>
 telemetry.TrackEvent("SignalProcessed", properties, metrics);
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 long startTime = System.currentTimeMillis();
@@ -868,11 +913,17 @@ properties.put("signalSource", currentSignalSource.getName());
 telemetry.trackEvent("SignalProcessed", properties, metrics);
 ```
 
-## <a name="defaults"></a>Default properties for custom telemetry
+# [Node.js](#tab/api-node)
+
+# [JS (Browser)](#tab/api-js)
+
+---
+
+## Default properties for custom telemetry
 
 If you want to set default property values for some of the custom events that you write, set them in a `TelemetryClient` instance. They're attached to every telemetry item that's sent from that client.
 
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 using Microsoft.ApplicationInsights.DataContracts;
@@ -883,7 +934,7 @@ gameTelemetry.Context.GlobalProperties["Game"] = currentGame.Name;
 gameTelemetry.TrackEvent("WinGame");
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 import com.microsoft.applicationinsights.TelemetryClient;
@@ -897,7 +948,7 @@ context.getProperties().put("Game", currentGame.Name);
 gameTelemetry.TrackEvent("WinGame");
 ```
 
-*Node.js*
+# [Node.js](#tab/api-node)
 
 ```javascript
 var gameTelemetry = new applicationInsights.TelemetryClient();
@@ -906,9 +957,13 @@ gameTelemetry.commonProperties["Game"] = currentGame.Name;
 gameTelemetry.TrackEvent({name: "WinGame"});
 ```
 
-Individual telemetry calls can override the default values in their property dictionaries.
+# [JS (Browser)](#tab/api-js)
 
 *For JavaScript web clients*, use JavaScript telemetry initializers.
+
+---
+
+Individual telemetry calls can override the default values in their property dictionaries.
 
 *To add properties to all telemetry*, including the data from standard collection modules, [implement `ITelemetryInitializer`](./api-filtering-sampling.md#add-properties).
 
@@ -920,7 +975,7 @@ See [Filter and preprocess telemetry in the Application Insights SDK](./api-filt
 
 To *dynamically stop and start* the collection and transmission of telemetry:
 
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 using  Microsoft.ApplicationInsights.Extensibility;
@@ -928,7 +983,7 @@ using  Microsoft.ApplicationInsights.Extensibility;
 TelemetryConfiguration.Active.DisableTelemetry = true;
 ```
 
-*Java*
+# [Java](#tab/api-java)
 
 ```java
 telemetry.getConfiguration().setTrackingDisabled(true);
@@ -936,11 +991,15 @@ telemetry.getConfiguration().setTrackingDisabled(true);
 
 To *disable selected standard collectors*, for example, performance counters, HTTP requests, or dependencies, delete or comment out the relevant lines in [ApplicationInsights.config](./configuration-with-applicationinsights-config.md). An example is if you want to send your own `TrackRequest` data.
 
-*Node.js*
+# [Node.js](#tab/api-node)
 
 ```javascript
 telemetry.config.disableAppInsights = true;
 ```
+
+# [JS (Browser)](#tab/api-js)
+
+---
 
 To *disable selected standard collectors*, for example, performance counters, HTTP requests, or dependencies, at initialization time, chain configuration methods to your SDK initialization code.
 
@@ -956,17 +1015,19 @@ applicationInsights.setup()
 
 To disable these collectors after initialization, use the Configuration object: `applicationInsights.Configuration.setAutoCollectRequests(false)`.
 
-## <a name="debug"></a>Developer mode
+## Developer mode
 
 During debugging, it's useful to have your telemetry expedited through the pipeline so that you can see results immediately. You also get other messages that help you trace any problems with the telemetry. Switch it off in production because it might slow down your app.
 
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
 ```
 
-*Node.js*
+# [Java](#tab/api-java)
+
+# [Node.js](#tab/api-node)
 
 For Node.js, you can enable developer mode by enabling internal logging via `setInternalLogging` and setting `maxBatchSize` to `0`, which causes your telemetry to be sent as soon as it's collected.
 
@@ -977,9 +1038,13 @@ applicationInsights.setup("ikey")
 applicationInsights.defaultClient.config.maxBatchSize = 0;
 ```
 
-## <a name="ikey"></a> Set the instrumentation key for selected custom telemetry
+# [JS (Browser)](#tab/api-js)
 
-*C#*
+---
+
+## Set the instrumentation key for selected custom telemetry
+
+# [.NET](#tab/api-net)
 
 ```csharp
 var telemetry = new TelemetryClient();
@@ -987,13 +1052,21 @@ telemetry.InstrumentationKey = "---my key---";
 // ...
 ```
 
-## <a name="dynamic-ikey"></a> Dynamic instrumentation key
+# [Java](#tab/api-java)
+
+# [Node.js](#tab/api-node)
+
+# [JS (Browser)](#tab/api-js)
+
+---
+
+## Dynamic instrumentation key
 
 To avoid mixing up telemetry from development, test, and production environments, you can [create separate Application Insights resources](./create-workspace-resource.md) and change their keys, depending on the environment.
 
 Instead of getting the instrumentation key from the configuration file, you can set it in your code. Set the key in an initialization method, such as `global.aspx.cs` in an ASP.NET service:
 
-*C#*
+# [.NET](#tab/api-net)
 
 ```csharp
 protected void Application_Start()
@@ -1006,7 +1079,20 @@ protected void Application_Start()
 }
 ```
 
-*JavaScript*
+# [Java](#tab/api-java)
+
+```java
+    String instrumentationKey = "00000000-0000-0000-0000-000000000000";
+
+    if (instrumentationKey != null)
+    {
+        TelemetryConfiguration.getActive().setInstrumentationKey(instrumentationKey);
+    }
+```
+
+# [Node.js](#tab/api-node)
+
+# [JS (Browser)](#tab/api-js)
 
 ```javascript
 appInsights.config.instrumentationKey = myKey;
@@ -1026,15 +1112,6 @@ var appInsights = window.appInsights || function(config){ ...
     @Microsoft.ApplicationInsights.Extensibility.
         TelemetryConfiguration.Active.InstrumentationKey;
 }) // ...
-```
-
-```java
-    String instrumentationKey = "00000000-0000-0000-0000-000000000000";
-
-    if (instrumentationKey != null)
-    {
-        TelemetryConfiguration.getActive().setInstrumentationKey(instrumentationKey);
-    }
 ```
 
 ## TelemetryContext
