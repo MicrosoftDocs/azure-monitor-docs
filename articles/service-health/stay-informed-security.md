@@ -2,20 +2,20 @@
 title: View and manage Azure security issues
 description: This article shows you where Azure customers receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
 ms.topic: article
-ms.date: 07/11/2025
+ms.date: 09/19/2025
 ---
 
 # View and manage Azure security issues
 
 With the increased use of cloud computing, customers rely increasingly on Azure to run their workload for critical and noncritical business applications. It's important for you as an Azure customer to stay informed about Azure security issues or privacy breaches and take the right action to protect your environment.
 
-This article shows where Azure customers receive Azure security notifications, and the three steps you can follow to ensure security alerts reach the right people in your organization.
+This article shows where you receive Azure security notifications, and the three steps you can follow to ensure security alerts reach the right people in your organization.
 
 ## Security issues affecting your Azure subscription workloads
 
 You receive security-related notifications affecting your Azure **subscription** workloads in two ways: 
 
-**Security Advisory in [Azure Service Health](https://azure.microsoft.com/get-started/azure-portal/service-health/)**
+**Security advisory in [Azure Service Health](https://azure.microsoft.com/get-started/azure-portal/service-health/)**
 
 Azure publishes Service Health notifications, which contain information about the resources under your subscription. 
 - You can review these security advisories in the Service Health experience in the Azure portal and get notified about security advisories through your preferred channel by setting up Service Health alerts for this type of notification. 
@@ -24,7 +24,7 @@ Azure publishes Service Health notifications, which contain information about th
 >[!NOTE]
 >Depending on your requirements, you can configure various alerts to use the same [action group](../azure-monitor/alerts/action-groups.md) or different action groups. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 
-**Email Notification**
+**Email notification**
 
 We communicate security-related information affecting your Azure subscription workloads via Email and/or Azure Service Health Notifications. We send notifications to subscription admins or owners.
 
@@ -47,20 +47,20 @@ However, when Microsoft identifies a security event that is both impactful and d
 
 ### Stay informed about Azure security issues
 
-1. **Check the Contact on Subscription Admin Owner Role**
+1. **Check the contact on Subscription Admin Owner role**
 
     Ensure that there's a **contactable email address** as the [subscription administrator or subscription owner](/azure/cost-management-billing/manage/add-change-subscription-administrator). 
     This email address is used for security issues that would have an effect at the subscription level.
 
-2. **Check the Contacts for Tenant Global Admin, Technical Contact, and Security Admin Roles**
+2. **Check the Contacts for Tenant Global admin, Technical contact, and Security admin roles**
 
     Ensure that there are **contactable email addresses** entered for your [Global Admins](/azure/active-directory/roles/permissions-reference), [Technical contacts](/azure/active-directory/fundamentals/active-directory-properties-area), and [security admins](/azure/defender-for-cloud/permissions). 
-T    hese email addresses are used for security issues that would have an effect at the tenant level.
+    These email addresses are used for security issues that would have an effect at the tenant level.
 
 3. **Create Azure Service Health alerts for subscription notifications**
 
     Create **Azure Service Health** alerts for security events so that your organization can be alerted for any security event that Microsoft identifies. 
-    This channel is the same one you configure to be alerted of outages, or maintenance information on the platform: [Create Activity Log Alerts on Service Notifications using the Azure portal](../service-health/alerts-activity-log-service-notifications-portal.md).
+    This channel is the same one you configure to be alerted of outages, or maintenance information on the platform: [Create activity log alerts on Service notifications using the Azure portal](../service-health/alerts-activity-log-service-notifications-portal.md).
 
 Depending on your requirements, you can configure various alerts to use the same [action group](../azure-monitor/alerts/action-groups.md) or different action groups. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 
@@ -69,4 +69,7 @@ There's an important difference between Service Health security advisories and [
 - Security advisories in Service Health provide notifications dealing with platform vulnerabilities and security and privacy breaches at the subscription and tenant level. 
 - Security notifications in Microsoft Defender for Cloud communicate vulnerabilities that pertain to affected individual Azure resources.
 
-For more information about the Azure Service Health notifications, see [Azure service health notifications](service-health-notifications-properties.md).
+
+### More information
+For Azure Service Health notifications, see [Azure service health notifications](service-health-notifications-properties.md).<br>
+For Service Health alert rules, see[Deploy Service Health alert rules at scale using Azure Policy](service-health-alert-deploy-policy.md).
