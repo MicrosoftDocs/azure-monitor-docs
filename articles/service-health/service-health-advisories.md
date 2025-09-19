@@ -7,7 +7,7 @@ ms.date: 9/19/2025
 
 # Health advisories 
 
-The Health Advisories pane in Azure Service Health is a vital tool that helps you proactively manage your environment by highlighting non-incident issues that might need attention. This article explains its purpose, and outlines the types of information it provides.
+The Health Advisories pane in Azure Service Health is a vital tool that helps you proactively manage your environment by highlighting non-incident issues that might need attention. This article explains its purpose, and outlines the types of information you get on this pane.
 
 :::image type="content"source="./media/service-health-advisories/health-advisories-main-tab.png" alt-text= "A screenshot of health advisories main pane with more information." Lightbox= "./media/service-health-advisories/health-advisories-main-tab.png":::
 
