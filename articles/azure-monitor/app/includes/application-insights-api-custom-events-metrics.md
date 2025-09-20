@@ -22,7 +22,7 @@ The core API is uniform across all platforms, apart from a few variations like `
 | [`TrackTrace`](#tracktrace) | Resource Diagnostic log messages. You can also capture third-party logs. |
 | [`TrackDependency`](#trackdependency) | Logging the duration and frequency of calls to external components that your app depends on. |
 
-You can [attach properties and metrics](#properties) to most of these telemetry calls.
+You can [attach properties and metrics](#filter-search-and-segment-your-data-by-using-properties) to most of these telemetry calls.
 
 ### Prerequisites
 
@@ -161,7 +161,7 @@ telemetry.trackMetric({name: "queueLength", value: 42.0});
 
 #### Custom metrics in Log Analytics
 
-The telemetry is available in the `customMetrics` table in [Application Insights Analytics](../logs/log-query-overview.md). Each row represents a call to `trackMetric(..)` in your app.
+The telemetry is available in the `customMetrics` table in [Application Insights Analytics](../../logs/log-query-overview.md). Each row represents a call to `trackMetric(..)` in your app.
 
 * `valueSum`: The sum of the measurements. To get the mean value, divide by `valueCount`.
 * `valueCount`: The number of measurements that were aggregated into this `trackMetric(..)` call.
@@ -191,7 +191,7 @@ Not applicable.
 
 #### Page telemetry in Log Analytics
 
-In [Log Analytics](../logs/log-query-overview.md), two tables show data from browser operations:
+In [Log Analytics](../../logs/log-query-overview.md), two tables show data from browser operations:
 
 * `pageViews`: Contains data about the URL and page title.
 * `browserTimings`: Contains data about client performance like the time taken to process the incoming data.
@@ -227,7 +227,7 @@ The recommended way to send request telemetry is where the request acts as an <a
 
 ### Operation context
 
-You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does this for exceptions and other events that are sent while an HTTP request is being processed. In [Search](../failures-performance-transactions.md?tabs=transaction-search) and [Analytics](../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
+You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does this for exceptions and other events that are sent while an HTTP request is being processed. In [Search](../failures-performance-transactions.md?tabs=transaction-search) and [Analytics](../../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
 
 
 
@@ -392,7 +392,7 @@ Log a diagnostic event such as entering or leaving a method.
 | Parameter | Description |
 |-----------|-------------|
 | `message` | Diagnostic data. Can be much longer than a name. |
-| `properties` | Map of string to string. More data is used to [filter exceptions](#properties) in the portal. Defaults to empty. |
+| `properties` | Map of string to string. More data is used to [filter exceptions](#filter-search-and-segment-your-data-by-using-properties) in the portal. Defaults to empty. |
 | `severityLevel` | Supported values: [SeverityLevel.ts](https://github.com/microsoft/ApplicationInsights-JS/blob/17ef50442f73fd02a758fbd74134933d92607ecf/shared/AppInsightsCommon/src/Interfaces/Contracts/Generated/SeverityLevel.ts). |
 
 You can search on message content, but unlike property values, you can't filter on it.
@@ -545,7 +545,7 @@ The user ID is also set in a session cookie and sent to the server. If the serve
 
 If your app groups users into accounts, you can also pass an identifier for the account. The same character restrictions apply.
 
-In [Metrics Explorer](../metrics/analyze-metrics.md), you can create a chart that counts **Users, Authenticated**, and **User accounts**.
+In [Metrics Explorer](../../metrics/analyze-metrics.md), you can create a chart that counts **Users, Authenticated**, and **User accounts**.
 
 You can also [search](../failures-performance-transactions.md?tabs=transaction-search) for client data points with specific user names and accounts.
 
@@ -621,7 +621,7 @@ telemetry.TrackEvent(event);
 
 #### Custom measurements and properties in Log Analytics
 
-In [Log Analytics](../logs/log-query-overview.md), custom metrics and properties show in the `customMeasurements` and `customDimensions` attributes of each telemetry record.
+In [Log Analytics](../../logs/log-query-overview.md), custom metrics and properties show in the `customMeasurements` and `customDimensions` attributes of each telemetry record.
 
 For example, if you add a property named "game" to your request telemetry, this query counts the occurrences of different values of "game" and shows the average of the custom metric "score":
 
