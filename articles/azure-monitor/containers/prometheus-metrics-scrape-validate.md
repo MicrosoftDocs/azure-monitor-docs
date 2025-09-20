@@ -6,7 +6,7 @@ ms.date: 5/25/2025
 ms.reviewer: aul
 ---
 
-# Create and validate custom configuration file for Prometheus metrics in Azure Monitor
+# Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap
 
 [Customize collection of Prometheus metrics from your Kubernetes cluster](./prometheus-metrics-scrape-configuration.md) describes how to use ConfigMap to customize scraping of Prometheus metrics from default targets in your Kubernetes cluster. This article describes how to use ConfigMap to create custom scrape jobs for further customization and additional targets.
 
@@ -137,8 +137,9 @@ The following `node-exporter` config is one of the default targets for the Daemo
 
 
 ## Scrape config settings
+The following sections describe the settings supported in the Prometheus configuration file used in the ConfigMap. See the [Prometheus configuration reference](https://prometheus.io/docs/prometheus/latest/configuration/configuration/) for more details on these settings.
 
-## Global settings
+### Global settings
 The configuration format for global settings is the same as supported by [OSS prometheus configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) 
 
 ```yaml
@@ -177,7 +178,7 @@ Targets discovered using `kubernetes_sd_configs` each have different `__meta_*` 
 ### Relabel configs
 The `relabel_configs` section is applied at the time of target discovery and applies to each target for the job. The following examples show ways to use `relabel_configs`.
 
-#### Add a label
+**Add a label**
 Add a new label called `example_label` with the value `example_value` to every metric of the job. Use `__address__` as the source label only because that label always exists and adds the label for every target of the job.
 
 ```yaml
@@ -187,7 +188,7 @@ relabel_configs:
   replacement: 'example_value'
 ```
 
-#### Use Kubernetes Service Discovery labels
+**Use Kubernetes Service Discovery labels**
 
 If a job is using [`kubernetes_sd_configs`](https://aka.ms/azureprometheus-promioconfig-sdk8s) to discover targets, each role has associated `__meta_*` labels for metrics. The `__*` labels are dropped after discovering the targets. To filter by using them at the metrics level, first keep them using `relabel_configs` by assigning a label name. Then use `metric_relabel_configs` to filter.
 
@@ -205,7 +206,7 @@ metric_relabel_configs:
   regex: 'default'
 ```
 
-#### Job and instance relabeling
+**Job and instance relabeling**
 
 You can change the `job` and `instance` label values based on the source label, just like any other label.
 

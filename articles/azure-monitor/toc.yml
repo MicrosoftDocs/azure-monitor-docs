@@ -495,10 +495,10 @@ items:
             - name: Customize configuration
               href: containers/prometheus-metrics-scrape-configuration.md
               displayName: Prometheus
-            - name: Create custom scrape config with ConfigMap
+            - name: Create scrape config with ConfigMap
               href: containers/prometheus-metrics-scrape-validate.md
               displayName: Prometheus
-            - name: Create custom scrape config with CRD
+            - name: Create scrape config with CRD
               href: containers/prometheus-metrics-scrape-crd.md
               displayName: Prometheus
             - name: High scale
