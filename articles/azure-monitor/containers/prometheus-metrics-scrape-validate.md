@@ -22,7 +22,7 @@ The following table describes the ConfigMaps used to create custom scraping jobs
 
 
 ## Create Prometheus configuration file
-Instead of directly modifying `ama-metrics-prometheus-config`, it's easier to create a config file and then convert it to a ConfigMap.
+Instead of directly modifying `ama-metrics-prometheus-config`, it's easier to create a config file and then convert it to a ConfigMap. See [Scrape config settings](#scrape-config-settings) below for details on the different sections of this file.
 
 Create a Prometheus scrape configuration file named `prometheus-config` using the following format. This lists the scrape configs under the section `scrape_configs`  section and can optionally use the global section for setting the global `scrape_interval`, `scrape_timeout`, and `external_labels`. Refer to Prometheus.io [scrape configuration reference](https://aka.ms/azureprometheus-promioconfig-scrape) for complete details on the options for a scrape config. 
 
@@ -108,55 +108,6 @@ This creates a ConfigMap named `ama-metrics-prometheus-config-node-windows` in `
 
 ## Troubleshooting
 If you successfully created the ConfigMap in the **kube-system** namespace and still don't see the custom targets being scraped, check for errors in the **replica pod** logs for **ama-metrics-prometheus-config** ConfigMap or **DaemonSet pod** logs for **ama-metrics-prometheus-config-node** ConfigMap using *kubectl logs* and make sure there are no errors in the *Start Merging Default and Custom Prometheus Config* section with prefix *prometheus-config-merger*
-
-## Advanced setup: Configure custom Prometheus scrape jobs for the DaemonSet
-
-The `ama-metrics` Replica pod consumes the custom Prometheus config and scrapes the specified targets. For a cluster with a large number of nodes and pods and a large volume of metrics to scrape, some of the applicable custom scrape targets can be off-loaded from the single `ama-metrics` Replica pod to the `ama-metrics` DaemonSet pod.
-
-The `ama-metrics-prometheus-config-node` ConfigMap, is similar to the replica-set ConfigMap, and can be created to have static scrape configs on each node. The scrape config should only target a single node and shouldn't use service discovery/pod annotations. Otherwise, each node tries to scrape all targets and makes many calls to the Kubernetes API server.
-
-Custom scrape targets can follow the same format by using `static_configs` with targets and using the `$NODE_IP` environment variable and specifying the port to scrape. Each pod of the DaemonSet takes the config, scrapes the metrics, and sends them for that node.
-
-The following `node-exporter` config is one of the default targets for the DaemonSet pods. It uses the `$NODE_IP` environment variable, which is already set for every `ama-metrics` add-on container to target a specific port on the node.
-
- ```yaml
- - job_name: nodesample
-   scrape_interval: 30s
-   scheme: http
-   metrics_path: /metrics
-   relabel_configs:
-   - source_labels: [__metrics_path__]
-     regex: (.*)
-     target_label: metrics_path
-   - source_labels: [__address__]
-     replacement: '$NODE_NAME'
-     target_label: instance
-   static_configs:
-   - targets: ['$NODE_IP:9100']
- ```
-
-
-## Scrape config settings
-The following sections describe the settings supported in the Prometheus configuration file used in the ConfigMap. See the [Prometheus configuration reference](https://prometheus.io/docs/prometheus/latest/configuration/configuration/) for more details on these settings.
-
-### Global settings
-The configuration format for global settings is the same as supported by [OSS prometheus configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) 
-
-```yaml
-global:
-  scrape_interval: <duration>
-  scrape_timeout: <duration>
-  external_labels:
-    <labelname1>: <labelvalue>
-    <labelname2>: <labelvalue>
-scrape_configs:
-  - <job-x>
-  - <job-y>
-```
-The settings provided in the global section apply to all scrape jobs (both jobs in Configmap and Custom resources) but are overridden if they are specified in the individual jobs.
-
-> [!NOTE]
-> If you want to use global settings that apply to all the scrape jobs, and only have [Custom Resources](prometheus-metrics-scrape-crd.md) you would still need to create a ConfigMap with just the global settings(Settings for each of these in the custom resources will override the ones in the global section)
 
 
 ### Scrape configs
@@ -424,6 +375,54 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 >
 > See [tls_config](https://aka.ms/tlsconfigsetting) for more details on TLS configuration settings.
 
+## Advanced setup: Configure custom Prometheus scrape jobs for the DaemonSet
+
+The `ama-metrics` Replica pod consumes the custom Prometheus config and scrapes the specified targets. For a cluster with a large number of nodes and pods and a large volume of metrics to scrape, some of the applicable custom scrape targets can be off-loaded from the single `ama-metrics` Replica pod to the `ama-metrics` DaemonSet pod.
+
+The `ama-metrics-prometheus-config-node` ConfigMap, is similar to the replica-set ConfigMap, and can be created to have static scrape configs on each node. The scrape config should only target a single node and shouldn't use service discovery/pod annotations. Otherwise, each node tries to scrape all targets and makes many calls to the Kubernetes API server.
+
+Custom scrape targets can follow the same format by using `static_configs` with targets and using the `$NODE_IP` environment variable and specifying the port to scrape. Each pod of the DaemonSet takes the config, scrapes the metrics, and sends them for that node.
+
+The following `node-exporter` config is one of the default targets for the DaemonSet pods. It uses the `$NODE_IP` environment variable, which is already set for every `ama-metrics` add-on container to target a specific port on the node.
+
+ ```yaml
+ - job_name: nodesample
+   scrape_interval: 30s
+   scheme: http
+   metrics_path: /metrics
+   relabel_configs:
+   - source_labels: [__metrics_path__]
+     regex: (.*)
+     target_label: metrics_path
+   - source_labels: [__address__]
+     replacement: '$NODE_NAME'
+     target_label: instance
+   static_configs:
+   - targets: ['$NODE_IP:9100']
+ ```
+
+
+## Scrape config settings
+The following sections describe the settings supported in the Prometheus configuration file used in the ConfigMap. See the [Prometheus configuration reference](https://prometheus.io/docs/prometheus/latest/configuration/configuration/) for more details on these settings.
+
+### Global settings
+The configuration format for global settings is the same as supported by [OSS prometheus configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) 
+
+```yaml
+global:
+  scrape_interval: <duration>
+  scrape_timeout: <duration>
+  external_labels:
+    <labelname1>: <labelvalue>
+    <labelname2>: <labelvalue>
+scrape_configs:
+  - <job-x>
+  - <job-y>
+```
+The settings provided in the global section apply to all scrape jobs (both jobs in Configmap and Custom resources) but are overridden if they are specified in the individual jobs.
+
+> [!NOTE]
+> If you want to use global settings that apply to all the scrape jobs, and only have [Custom Resources](prometheus-metrics-scrape-crd.md) you would still need to create a ConfigMap with just the global settings(Settings for each of these in the custom resources will override the ones in the global section)
 
 
 ## Next steps

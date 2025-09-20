@@ -7,17 +7,19 @@ ms.reviewer: aul
 ---
 # Customize collection of Prometheus metrics from your Kubernetes cluster using CRDs
 
+[Customize collection of Prometheus metrics from your Kubernetes cluster](./prometheus-metrics-scrape-configuration.md) describes how to use ConfigMap to customize scraping of Prometheus metrics from default targets in your Kubernetes cluster. This article describes how to use custom resource definitions (CRDs) to create custom scrape jobs for further customization and additional targets.
+
+## Custom resource definitions (CRDs)
+
 Enabling Azure Monitor managed service for Prometheus automatically deploys custom resource definitions (CRD) for [pod monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-podmonitor-crd.yaml) and [service monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-servicemonitor-crd.yaml). These CRDs are the same as [OSS Pod monitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) and [OSS service monitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) for Prometheus except for a change in the group name. If you have existing Prometheus CRDs and custom resources on your cluster, these CRDs won't conflict with the CRDs created by the add-on. At the same time, the managed Prometheus addon does not pick up the CRDs created for the OSS Prometheus. This separation is intentional for the purposes of isolation of scrape jobs.
 
 ## Create a Pod or Service Monitor
 
-Use the [Pod and Service Monitor templates](https://github.com/Azure/prometheus-collector/tree/main/otelcollector/customresources) and follow the API specification to create your custom resources([PodMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md)). **Note** that the only change required to the existing OSS CRs(Custom Resources) for being picked up by the Managed Prometheus is the API group - **azmonitoring.coreos.com/v1**.
+Use the [Pod and Service Monitor templates](https://github.com/Azure/prometheus-collector/tree/main/otelcollector/customresources) and follow the API specification to create your custom resources([PodMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md)). The only change required to the existing OSS CRs(Custom Resources) for being picked up by the Managed Prometheus is the API group - **azmonitoring.coreos.com/v1**.
 
 
 > [!IMPORTANT]
-> Make sure to use the **labelLimit, labelNameLengthLimit and labelValueLengthLimit** specified in the templates so that they are not dropped during processing.
-
-Use the [Pod and Service Monitor templates](https://github.com/Azure/prometheus-collector/tree/main/otelcollector/customresources) and follow the API specification to create your custom resources([PodMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md) and [Service Monitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md)). **Note** that the only change required to the existing OSS CRs for being picked up by the Managed Prometheus is the API group - **azmonitoring.coreos.com/v1**.
+> Make sure to use the **labelLimit, labelNameLengthLimit and labelValueLengthLimit** specified in the templates so that they are not dropped during processing. See [Scrape config settings](#scrape-config-settings) below for details on the different sections of this file.
 
 Your pod and service monitors should look like the following examples:
 
@@ -98,7 +100,7 @@ Deploy a sample application exposing prometheus metrics to be configured by pod/
 kubectl apply -f https://raw.githubusercontent.com/Azure/prometheus-collector/refs/heads/main/internal/referenceapp/prometheus-reference-app.yaml
 ```
 
-#### Create a pod monitor and/or service monitor to scrape metrics
+##### Create a pod monitor and/or service monitor to scrape metrics
 
 Deploy a pod monitor that is configured to scrape the application from the previous step.
 
@@ -122,7 +124,7 @@ When the pod or service monitors are successfully applied, the addon should auto
 
 
 ## Scrape config settings
-The following sections describe the settings supported in the Prometheus configuration file used in the ConfigMap. See the [Prometheus configuration reference](https://prometheus.io/docs/prometheus/latest/configuration/configuration/) for more details on these settings.
+The following sections describe the settings supported in the Prometheus configuration file used in the CRD. See the [Prometheus configuration reference](https://prometheus.io/docs/prometheus/latest/configuration/configuration/) for more details on these settings.
 
 ### Global settings
 The configuration format for global settings is the same as supported by [OSS prometheus configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) 
@@ -138,13 +140,13 @@ scrape_configs:
   - <job-x>
   - <job-y>
 ```
-The settings provided in the global section apply to all scrape jobs (both jobs in Configmap and Custom resources) but are overridden if they are specified in the individual jobs.
+The settings provided in the global section apply to all scrape jobs in the CRD but are overridden if they are specified in the individual jobs.
 
 > [!NOTE]
-> If you want to use global settings that apply to all the scrape jobs, and only have [Custom Resources](prometheus-metrics-scrape-crd.md) you would still need to create a ConfigMap with just the global settings(Settings for each of
+> If you want to use global settings that apply to all the scrape jobs, and only have custom resources, you still need to create a ConfigMap with just the global settings. Settings for each of these in the custom resources will override the ones in the global section
 
 ### Scrape configs
-Currently, the supported methods of target discovery for custom resources are pod and service monitor
+The supported methods of target discovery for custom resources are currently pod and service monitor.
 
 ### Pod and Service Monitors
 Targets discovered using pod and service monitors have different `__meta_*` labels depending on what monitor is used. You can use the labels in the `relabelings` section to filter targets or replace labels for the targets. See the [Pod and Service Monitor examples](https://github.com/Azure/prometheus-collector/tree/main/otelcollector/deploy/example-custom-resources) of pod and service monitors.
