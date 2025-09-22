@@ -1,13 +1,13 @@
 ---
-title: Monitor Node.js services with Application Insights | Microsoft Docs
-description: Monitor performance and diagnose problems in Node.js services with Application Insights.
+title: Monitor Node.js Applications and Services with Application Insights (Classic API) | Microsoft Docs
+description: Monitor Node.js applications and services with Application Insights (Classic API) for availability, performance, and usage.
 ms.topic: how-to
-ms.date: 3/21/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
+ms.date: 3/21/2025
 ---
 
-# Monitor your Node.js services and apps with Application Insights
+# Monitor your Node.js applications and services with Application Insights (Classic API)
 
 [!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
 

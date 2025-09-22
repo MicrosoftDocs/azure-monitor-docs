@@ -1,13 +1,13 @@
 ---
-title: Application Insights for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications | Microsoft Docs
-description: Monitor ASP.NET, ASP.NET Core, and Worker Service applications for availability, performance, and usage.
+title: Monitor .NET Applications and Services with Application Insights (Classic API) | Microsoft Docs
+description: Monitor .NET applications and services with Application Insights (Classic API) for availability, performance, and usage.
 ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ms.date: 09/05/2025
 ---
 
-# Application Insights for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications
+# Monitor .NET applications and services with Application Insights (Classic API)
 
 [!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
 
