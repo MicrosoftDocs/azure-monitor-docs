@@ -509,7 +509,7 @@ items:
               displayName: Prometheus
         - name: Integrations
           items:
-            - name: Set up exporters for common workloads
+            - name: Exporters for common workloads
               href: containers/prometheus-exporters.md
               displayName: Prometheus
             - name: Exporters
