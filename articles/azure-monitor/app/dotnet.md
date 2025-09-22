@@ -1,13 +1,15 @@
 ---
-title: Application Insights for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications | Microsoft Docs
-description: Monitor ASP.NET, ASP.NET Core, and Worker Service applications for availability, performance, and usage.
+title: Monitor .NET Applications and Services with Application Insights (Classic API) | Microsoft Docs
+description: Monitor .NET applications and services with Application Insights (Classic API) for availability, performance, and usage.
 ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ms.date: 09/05/2025
 ---
 
-# Application Insights for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications
+# Monitor .NET applications and services with Application Insights (Classic API)
+
+[!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
@@ -120,7 +122,7 @@ From within your ASP.NET web app project in Visual Studio:
 
 1. After you add Application Insights to your project, check to confirm that you're using the latest stable release of the SDK. Go to **Project** > **Manage NuGet Packages** > **Microsoft.ApplicationInsights.AspNetCore**. If you need to, select **Update**.
 
-    :::image type="content" source="media/asp-net/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
+    :::image type="content" source="media/dotnet/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
 
 ---
 
@@ -1057,7 +1059,7 @@ Add a listener to `web.config` or `app.config`:
 ```
 
 > [!NOTE]
-> The *log-capture module* is a useful adapter for third-party loggers. However, if you aren't already using *NLog*, *log4Net*, or `System.Diagnostics.Trace`, consider calling [Application Insights TrackTrace()](api-custom-events-metrics.md#tracktrace) directly.
+> The *log-capture module* is a useful adapter for third-party loggers. However, if you aren't already using *NLog*, *log4Net*, or `System.Diagnostics.Trace`, consider calling [Application Insights TrackTrace()](#tracktrace) directly.
 
 #### Configure Application Insights to collect logs
 
@@ -1454,7 +1456,7 @@ It can take a while for all the events and requests to get through the pipeline.
 
 ##### How much data is retained?
 
-Several factors affect the amount of data that's retained. For more information, see the [Limits](./api-custom-events-metrics.md#limits) section of the customer event metrics page.
+Several factors affect the amount of data that's retained. For more information, see the [Limits](#limits) section of the customer event metrics page.
 
 ##### Why don't I see some log entries that I expected?
 
@@ -1480,7 +1482,7 @@ Currently, `DependencyTrackingTelemetryModule` tracks the following dependencies
 | [Azure Service Bus client SDK](https://nuget.org/packages/Azure.Messaging.ServiceBus)| Use the latest package: https://nuget.org/packages/Azure.Messaging.ServiceBus. |
 | [Azure Cosmos DB](https://www.nuget.org/packages/Microsoft.Azure.Cosmos) | Tracked automatically if HTTP/HTTPS is used. Tracing for operations in direct mode with TCP are captured automatically using preview package >= [3.33.0-preview](https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.33.0-preview). For more details, visit the [documentation](/azure/cosmos-db/nosql/sdk-observability). |
 
-If the dependency isn't autocollected, you can track it manually with a [track dependency call](api-custom-events-metrics.md#trackdependency).
+If the dependency isn't autocollected, you can track it manually with a [track dependency call](#trackdependency).
 
 For more information about how dependency tracking works, see [Dependency tracking in Application Insights](dependencies.md#how-does-automatic-dependency-monitoring-work).
 
@@ -1503,7 +1505,7 @@ The following examples of dependencies, which aren't automatically collected, re
 * Azure Cosmos DB is tracked automatically only if [HTTP/HTTPS](/azure/cosmos-db/performance-tips#networking) is used. TCP mode isn't automatically captured by Application Insights for SDK versions older than [`2.22.0-Beta1`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/CHANGELOG.md#version-2220-beta1).
 * Redis
 
-For those dependencies not automatically collected by SDK, you can track them manually by using the [TrackDependency API](api-custom-events-metrics.md#trackdependency) that's used by the standard autocollection modules.
+For those dependencies not automatically collected by SDK, you can track them manually by using the [TrackDependency API](#trackdependency) that's used by the standard autocollection modules.
 
 **Example**
 
@@ -1628,7 +1630,7 @@ For detailed instructions, see [Investigate failures, performance, and transacti
 
     If CodeLens is enabled, you see data about the exceptions:
 
-    :::image type="content" source="media/asp-net/codelens.png" lightbox="media/asp-net/codelens.png" alt-text="Screenshot that shows CodeLens notification of exceptions.":::
+    :::image type="content" source="media/dotnet/codelens.png" lightbox="media/dotnet/codelens.png" alt-text="Screenshot that shows CodeLens notification of exceptions.":::
 
 ---
 
@@ -1644,7 +1646,7 @@ Using the <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient?displ
 
 To see these events, on the left menu, open [Search](failures-performance-transactions.md?tabs=transaction-searchh). Select the dropdown menu **Event types**, and then choose **Custom Event**, **Trace**, or **Exception**.
 
-:::image type="content" source="media/asp-net/custom-events.png" lightbox="media/asp-net/custom-events.png" alt-text="Screenshot that shows the Search screen.":::
+:::image type="content" source="media/dotnet/custom-events.png" lightbox="media/dotnet/custom-events.png" alt-text="Screenshot that shows the Search screen.":::
 
 > [!NOTE]
 > If your app generates large amounts of telemetry, the adaptive sampling module automatically reduces the volume sent to the portal by sending only a representative fraction of events. Events that are part of the same operation are selected or deselected as a group so that you can navigate between related events. For more information, see [Sampling in Application Insights](sampling.md).
@@ -1654,7 +1656,7 @@ To see these events, on the left menu, open [Search](failures-performance-transa
 Request details don't include the data sent to your app in a POST call. To have this data reported:
 
 * [Add the Application Insights SDK](#add-application-insights-automatically-visual-studio) to your app code.
-* Insert code in your application to call [Microsoft.ApplicationInsights.TrackTrace()](api-custom-events-metrics.md#tracktrace). Send the POST data in the message parameter. There's a limit to the permitted size, so you should try to send only the essential data.
+* Insert code in your application to call [Microsoft.ApplicationInsights.TrackTrace()](#tracktrace). Send the POST data in the message parameter. There's a limit to the permitted size, so you should try to send only the essential data.
 * When you investigate a failed request, find the associated traces.
 
 #### Capture exceptions and related diagnostic data
@@ -2112,7 +2114,7 @@ Trend tracking in a metric every second, or at an even more granular interval, c
 * **Increased network traffic or performance overhead.** In some scenarios, this overhead could have both a monetary and application performance cost.
 * **Risk of ingestion throttling.** Azure Monitor drops ("throttles") data points when your app sends a high rate of telemetry in a short time interval.
 
-Throttling is a concern because it can lead to missed alerts. The condition to trigger an alert could occur locally and then be dropped at the ingestion endpoint because of too much data being sent. We don't recommend using `TrackMetric()` for .NET and .NET Core unless you implemented your own local aggregation logic. If you're trying to track every instance an event occurs over a given time period, you might find that [`TrackEvent()`](api-custom-events-metrics.md#trackevent) is a better fit. Keep in mind that unlike custom metrics, custom events are subject to sampling. You can still use `TrackMetric()` even without writing your own local preaggregation. But if you do so, be aware of the pitfalls.
+Throttling is a concern because it can lead to missed alerts. The condition to trigger an alert could occur locally and then be dropped at the ingestion endpoint because of too much data being sent. We don't recommend using `TrackMetric()` for .NET and .NET Core unless you implemented your own local aggregation logic. If you're trying to track every instance an event occurs over a given time period, you might find that [`TrackEvent()`](#trackevent) is a better fit. Keep in mind that unlike custom metrics, custom events are subject to sampling. You can still use `TrackMetric()` even without writing your own local preaggregation. But if you do so, be aware of the pitfalls.
 
 In summary, we recommend `GetMetric()` because it does preaggregation, it accumulates values from all the `Track()` calls, and sends a summary/aggregate once every minute. The `GetMetric()` method can significantly reduce the cost and performance overhead by sending fewer data points while still collecting all relevant information.
 
@@ -2190,14 +2192,14 @@ This single telemetry item represents an aggregate of 41 distinct metric measure
 
 If we examine our Application Insights resource in the **Logs (Analytics)** experience, the individual telemetry item would look like the following screenshot.
 
-:::image type="content" source="media/asp-net/log-analytics.png" lightbox="media/asp-net/log-analytics.png" alt-text="Screenshot that shows the Log Analytics query view.":::
+:::image type="content" source="media/dotnet/log-analytics.png" lightbox="media/dotnet/log-analytics.png" alt-text="Screenshot that shows the Log Analytics query view.":::
 
 > [!NOTE]
 > While the raw telemetry item didn't contain an explicit sum property/field once ingested, we create one for you. In this case, both the `value` and `valueSum` property represent the same thing.
 
 You can also access your custom metric telemetry in the [*Metrics*](../metrics/analyze-metrics.md) section of the portal as both a [log-based and custom metric](metrics-overview.md). The following screenshot is an example of a log-based metric.
 
-:::image type="content" source="media/asp-net/metrics-explorer.png" lightbox="media/asp-net/metrics-explorer.png" alt-text="Screenshot that shows the Metrics explorer view.":::
+:::image type="content" source="media/dotnet/metrics-explorer.png" lightbox="media/dotnet/metrics-explorer.png" alt-text="Screenshot that shows the Metrics explorer view.":::
 
 ##### Cache metric reference for high-throughput usage
 
@@ -2262,15 +2264,15 @@ The examples in the previous section show zero-dimensional metrics. Metrics can 
 
 Running the sample code for at least 60-seconds results in three distinct telemetry items being sent to Azure. Each item represents the aggregation of one of the three form factors. As before, you can further examine in the **Logs (Analytics)** view.
 
-:::image type="content" source="media/asp-net/log-analytics-multi-dimensional.png" lightbox="media/asp-net/log-analytics-multi-dimensional.png" alt-text="Screenshot that shows the Log Analytics view of multidimensional metric.":::
+:::image type="content" source="media/dotnet/log-analytics-multi-dimensional.png" lightbox="media/dotnet/log-analytics-multi-dimensional.png" alt-text="Screenshot that shows the Log Analytics view of multidimensional metric.":::
 
 In the metrics explorer:
 
-:::image type="content" source="media/asp-net/custom-metrics.png" lightbox="media/asp-net/custom-metrics.png" alt-text="Screenshot that shows Custom metrics.":::
+:::image type="content" source="media/dotnet/custom-metrics.png" lightbox="media/dotnet/custom-metrics.png" alt-text="Screenshot that shows Custom metrics.":::
 
 Notice that you can't split the metric by your new custom dimension or view your custom dimension with the metrics view.
 
-:::image type="content" source="media/asp-net/splitting-support.png" lightbox="media/asp-net/splitting-support.png" alt-text="Screenshot that shows splitting support.":::
+:::image type="content" source="media/dotnet/splitting-support.png" lightbox="media/dotnet/splitting-support.png" alt-text="Screenshot that shows splitting support.":::
 
 By default, multidimensional metrics within the metric explorer aren't turned on in Application Insights resources.
 
@@ -2283,11 +2285,11 @@ After you made that change and sent new multidimensional telemetry, you can sele
 > [!NOTE]
 > Only newly sent metrics after the feature was turned on in the portal have dimensions stored.
 
-:::image type="content" source="media/asp-net/apply-splitting.png" lightbox="media/asp-net/apply-splitting.png" alt-text="Screenshot that shows applying splitting.":::
+:::image type="content" source="media/dotnet/apply-splitting.png" lightbox="media/dotnet/apply-splitting.png" alt-text="Screenshot that shows applying splitting.":::
 
 View your metric aggregations for each `FormFactor` dimension.
 
-:::image type="content" source="media/asp-net/formfactor.png" lightbox="media/asp-net/formfactor.png" alt-text="Screenshot that shows form factors.":::
+:::image type="content" source="media/dotnet/formfactor.png" lightbox="media/dotnet/formfactor.png" alt-text="Screenshot that shows form factors.":::
 
 ##### Use MetricIdentifier when there are more than three dimensions
 
@@ -2991,7 +2993,7 @@ To review frequently asked questions (FAQ), see [Performance counters FAQ](appli
 
 ### Event counters
 
-[`EventCounter`](/dotnet/core/diagnostics/event-counters) is .NET/.NET Core mechanism to publish and consume counters or statistics. EventCounters are supported in all OS platforms - Windows, Linux, and macOS. It can be thought of as a cross-platform equivalent for the [PerformanceCounters](/dotnet/api/system.diagnostics.performancecounter) that is only supported in Windows systems.
+[`EventCounter`](/dotnet/core/diagnostics/event-counters) is .NET/.NET Core mechanism to publish and consume counters or statistics. EventCounters are supported in all OS platforms - Windows, Linux, and macOS. It can be thought of as a cross-platform equivalent for the [PerformanceCounters](/dotnet/api/system.diagnostics.performancecounter) that's only supported in Windows systems.
 
 While users can publish any custom event counters to meet their needs, [.NET](/dotnet/fundamentals/) publishes a set of these counters by default. This document walks through the steps required to collect and view event counters (system defined or user defined) in Azure Application Insights.
 
@@ -3759,7 +3761,7 @@ var app = builder.Build();
 ```
 
 > [!NOTE]
-> If you want to flush the buffer, see [Flushing data](api-custom-events-metrics.md#flushing-data). For example, you might need to flush the buffer if you're using the SDK in an application that shuts down.
+> If you want to flush the buffer, see [Flushing data](#flushing-data). For example, you might need to flush the buffer if you're using the SDK in an application that shuts down.
 
 # [Worker Service](#tab/worker-1)
 
@@ -3843,7 +3845,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | Area | Description |
 |------|-------------|
 | **Request tracking** | Collects request telemetry (response time, result code) for incoming web requests.<br><br>**Module:** `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) |
-| **Dependency tracking** | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). To work in IIS, [install Application Insights Agent](application-insights-asp-net-agent.md). You can also write custom dependency tracking using [TrackDependency API](api-custom-events-metrics.md#trackdependency). Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VM/VMSS monitoring](azure-vm-vmss-apps.md).<br><br>**Module:** `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
+| **Dependency tracking** | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). To work in IIS, [install Application Insights Agent](application-insights-asp-net-agent.md). You can also write custom dependency tracking using [TrackDependency API](#trackdependency). Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VM/VMSS monitoring](azure-vm-vmss-apps.md).<br><br>**Module:** `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
 | **Performance counters** | Collects Windows Performance Counters (CPU, memory, network load from IIS installs). Specify which counters (including custom ones). For more information, see [Collects system performance counters](asp-net-counters.md).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`<br>**NuGet:**[Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
 | **Event counters** | Collects [.NET EventCounters](#event-counters). Recommended for ASP.NET Core and cross‑platform in place of Windows perf counters.<br><br>**Module:** `EventCounterCollectionModule` (SDK ≥ 2.8.0) |
 | **Live Metrics (QuickPulse)** | Collects telemetry for Live Metrics pane.<br><br>**Module:** `QuickPulseTelemetryModule` |
@@ -3855,7 +3857,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | **Exception tracking (Unobserved/Unhandled)** | Tracks unobserved task exceptions and unhandled exceptions for worker roles, Windows services, and console apps.<br><br>**Modules:**<br>&nbsp;• `Microsoft.ApplicationInsights.WindowsServer.UnobservedExceptionTelemetryModule`<br>&nbsp;• `Microsoft.ApplicationInsights.WindowsServer.UnhandledExceptionTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.WindowsServer](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
 | **EventSource tracking** | Sends configured [EventSource events](#) to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener) |
 | **ETW collector** | Sends configured ETW provider events to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
-| **Core API (not a module)** | [Core API](/dotnet/api/microsoft.applicationinsights) used by other telemetry components and for [custom telemetry](api-custom-events-metrics.md).<br><br>**Module:** `Microsoft.ApplicationInsights package`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights)<br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
+| **Core API (not a module)** | [Core API](/dotnet/api/microsoft.applicationinsights) used by other telemetry components and for [custom telemetry](#core-api-for-custom-events-and-metrics).<br><br>**Module:** `Microsoft.ApplicationInsights package`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights)<br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
 
 # [ASP.NET Core](#tab/core)
 
@@ -4393,6 +4395,8 @@ If your project doesn't include *_Layout.cshtml*, you can still add [client-side
 
 ---
 
+[!INCLUDE [azure-monitor-custom-events-metrics](includes/application-insights-api-custom-events-metrics.md)]
+
 ## Sample applications
 
 [.NET Core console application](https://github.com/microsoft/ApplicationInsights-dotnet/tree/develop/examples/ConsoleApp):
@@ -4430,12 +4434,12 @@ Our [Service Updates](https://azure.microsoft.com/updates/?service=application-i
     * [Applications Insights for ASP.NET FAQ](application-insights-faq.yml#asp-net)
     * [Application Insights for ASP.NET Core FAQ](application-insights-faq.yml#asp-net-core-applications)
     * [Worker Service applications FAQ](application-insights-faq.yml#worker-service-applications)
+    * [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
 * Validate you're running a [supported version](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance) of the Application Insights SDK.
 * See the [data model](data-model-complete.md) for Application Insights types and data model.
-* Add synthetic transactions to test that your website is available from all over the world with [availability monitoring](availability-overview.md).
+* Add synthetic transactions to test that your website is available from all over the world with [availability monitoring](availability.md).
 * Check the [System.Diagnostics.Activity User Guide](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) to see how we correlate telemetry.
 * [Configure a snapshot collection](snapshot-debugger.md) to see the state of source code and variables at the moment an exception is thrown.
-* [Use the API](api-custom-events-metrics.md) to send your own events and metrics for a detailed view of your app's performance and usage.
 
 ## Reference docs
 
