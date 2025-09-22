@@ -284,7 +284,7 @@ Telemetry items reported within a scope of operation become children of such an 
 
 In **Search**, the operation context is used to create the **Related Items** list.
 
-:::image type="content" source="media/dot-net/related-items-list.png" lightbox="media/dot-net/related-items-list.png" alt-text="Screenshot that shows the Related Items list.":::
+:::image type="content" source="../media/dot-net/related-items-list.png" lightbox="../media/dot-net/related-items-list.png" alt-text="Screenshot that shows the Related Items list.":::
 
 For more information on custom operations tracking, see [Track custom operations with Application Insights .NET SDK](../dot-net.md#custom-operations-tracking).
 

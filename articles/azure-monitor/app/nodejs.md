@@ -257,7 +257,7 @@ appInsights
 
 ## TelemetryClient API
 
-For a full description of the TelemetryClient API, see [Application Insights API for custom events and metrics](./api-custom-events-metrics.md).
+For a full description of the TelemetryClient API, see [Application Insights API for custom events and metrics](#application-insights-api-for-custom-events-and-metrics).
 
 You can track any request, event, metric, or exception by using the Application Insights client library for Node.js. The following code example demonstrates some of the APIs that you can use:
 
