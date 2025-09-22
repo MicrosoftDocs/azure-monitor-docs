@@ -9,6 +9,10 @@ ms.custom: devx-track-js
 
 # Monitor your Node.js services and apps with Application Insights
 
+[!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
+
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
+
 [Application Insights](./app-insights-overview.md) monitors your components after deployment to discover performance and other issues. You can use Application Insights for Node.js services that are hosted in your datacenter, Azure VMs and web apps, and even in other public clouds.
 
 To receive, store, and explore your monitoring data, include the SDK in your code. Then set up a corresponding Application Insights resource in Azure. The SDK sends data to that resource for further analysis and exploration.
@@ -18,8 +22,6 @@ The Node.js client library can automatically monitor incoming and outgoing HTTP 
 All events related to an incoming HTTP request are correlated for faster troubleshooting.
 
 You can use the TelemetryClient API to manually instrument and monitor more aspects of your app and system. We describe the TelemetryClient API in more detail later in this article.
-
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ## Get started
 
@@ -257,7 +259,7 @@ appInsights
 
 ## TelemetryClient API
 
-For a full description of the TelemetryClient API, see [Application Insights API for custom events and metrics](#application-insights-api-for-custom-events-and-metrics).
+For a full description of the TelemetryClient API, see [Application Insights API for custom events and metrics](#core-api-for-custom-events-and-metrics).
 
 You can track any request, event, metric, or exception by using the Application Insights client library for Node.js. The following code example demonstrates some of the APIs that you can use:
 

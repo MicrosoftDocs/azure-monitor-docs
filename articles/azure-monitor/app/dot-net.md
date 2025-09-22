@@ -9,6 +9,8 @@ ms.date: 09/05/2025
 
 # Application Insights for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications
 
+[!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
+
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 This article explains how to enable and configure [Application Insights](app-insights-overview.md) for ASP.NET, ASP.NET Core, and Worker Service (non-HTTP) applications. Application Insights can collect the following telemetry from your apps:
@@ -3855,7 +3857,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | **Exception tracking (Unobserved/Unhandled)** | Tracks unobserved task exceptions and unhandled exceptions for worker roles, Windows services, and console apps.<br><br>**Modules:**<br>&nbsp;• `Microsoft.ApplicationInsights.WindowsServer.UnobservedExceptionTelemetryModule`<br>&nbsp;• `Microsoft.ApplicationInsights.WindowsServer.UnhandledExceptionTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.WindowsServer](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
 | **EventSource tracking** | Sends configured [EventSource events](#) to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EventSourceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener) |
 | **ETW collector** | Sends configured ETW provider events to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
-| **Core API (not a module)** | [Core API](/dotnet/api/microsoft.applicationinsights) used by other telemetry components and for [custom telemetry](#application-insights-api-for-custom-events-and-metrics).<br><br>**Module:** `Microsoft.ApplicationInsights package`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights)<br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
+| **Core API (not a module)** | [Core API](/dotnet/api/microsoft.applicationinsights) used by other telemetry components and for [custom telemetry](#core-api-for-custom-events-and-metrics).<br><br>**Module:** `Microsoft.ApplicationInsights package`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights)<br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
 
 # [ASP.NET Core](#tab/core)
 

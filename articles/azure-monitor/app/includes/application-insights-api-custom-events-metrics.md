@@ -3,7 +3,7 @@ ms.topic: include
 ms.date: 3/21/2025
 ---
 
-## Application Insights API for custom events and metrics
+## Core API for custom events and metrics
 
 Insert a few lines of code in your application to find out what users are doing with it, or to help diagnose issues. You can send telemetry from device and desktop apps, web clients, and web servers. Use the [Application Insights](../app-insights-overview.md) core telemetry API to send custom events and metrics and your own versions of standard telemetry. This API is the same API that the standard Application Insights data collectors use.
 

@@ -144,10 +144,7 @@ items:
           href: app/dot-net.md
         - name: Node.js
           href: app/nodejs.md
-        - name: Python OpenCensus (retired)
-          href: /previous-versions/azure/azure-monitor/app/opencensus-python
-        - name: SDK (Classic API) support policy
-          href: /troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance
+          displayName: SDK, Node.js, nodejs, JavaScript, js
     - name: Experiences
       items:
       - name: Application dashboard
