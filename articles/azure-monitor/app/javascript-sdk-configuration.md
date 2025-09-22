@@ -418,10 +418,7 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see:
-    * [JavaScript SDK configuration FAQ](application-insights-faq.yml#javascript-sdk-configuration)
-    * [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
+* To review frequently asked questions (FAQ), see [JavaScript SDK configuration FAQ](application-insights-faq.yml#javascript-sdk-configuration).
 * [Track usage](usage.md)
-* [Custom events and metrics](api-custom-events-metrics.md)
 * [Azure file copy task](/azure/devops/pipelines/tasks/deploy/azure-file-copy)
 * [Azure Monitor data types reference](https://github.com/microsoft/ApplicationInsights-JS/tree/master/shared/AppInsightsCommon/src/Telemetry) and [SDK code](https://github.com/Microsoft/ApplicationInsights-JS) for JavaScript SDK.
