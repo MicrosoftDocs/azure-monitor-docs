@@ -108,7 +108,7 @@ telemetry.trackEvent({name: "WinGame"});
 
 #### Custom events in Log Analytics
 
-The telemetry is available in the `customEvents` table on the [Application Insights Logs tab](../../logs/log-query-overview.md) or [usage experience](../usage.md). Events might come from `trackEvent(..)` or the [Click Analytics Auto-collection plug-in](../javascript-feature-extensions.md).
+The telemetry is available in the `customEvents` table on the [Application Insights Logs tab](../../logs/log-query-overview.md) or [usage experience](../usage.md). Events might come from `trackEvent(..)` or the [Click Analytics Autocollection plug-in](../javascript-feature-extensions.md).
 
 If [sampling](../sampling.md) is in operation, the `itemCount` property shows a value greater than `1`. For example, `itemCount==10` means that of 10 calls to `trackEvent()`, the sampling process transmitted only one of them. To get a correct count of custom events, use code such as `customEvents | summarize sum(itemCount)`.
 
@@ -122,9 +122,9 @@ To learn how to effectively use the `GetMetric()` call to capture locally preagg
 ### TrackMetric
 
 > [!NOTE]
-> `Microsoft.ApplicationInsights.TelemetryClient.TrackMetric` isn't the preferred method for sending metrics. Metrics should always be preaggregated across a time period before being sent. Use one of the `GetMetric(..)` overloads to get a metric object for accessing SDK pre-aggregation capabilities.
+> `Microsoft.ApplicationInsights.TelemetryClient.TrackMetric` isn't the preferred method for sending metrics. Metrics should always be preaggregated across a time period before being sent. Use one of the `GetMetric(..)` overloads to get a metric object for accessing SDK preaggregation capabilities.
 >
-> If you're implementing your own pre-aggregation logic, you can use the `TrackMetric()` method to send the resulting aggregates. If your application requires sending a separate telemetry item on every occasion without aggregation across time, you likely have a use case for event telemetry. See `TelemetryClient.TrackEvent(Microsoft.ApplicationInsights.DataContracts.EventTelemetry)`.
+> If you're implementing your own preaggregation logic, you can use the `TrackMetric()` method to send the resulting aggregates. If your application requires sending a separate telemetry item on every occasion without aggregation across time, you likely have a use case for event telemetry. See `TelemetryClient.TrackEvent(Microsoft.ApplicationInsights.DataContracts.EventTelemetry)`.
 
 Application Insights can chart metrics that aren't attached to particular events. For example, you could monitor a queue length at regular intervals. With metrics, the individual measurements are of less interest than the variations and trends, and so statistical charts are useful.
 
@@ -227,7 +227,7 @@ The recommended way to send request telemetry is where the request acts as an <a
 
 ### Operation context
 
-You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does this for exceptions and other events that are sent while an HTTP request is being processed. In [Search](../failures-performance-transactions.md?tabs=transaction-search) and [Analytics](../../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
+You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does it for exceptions and other events that are sent while an HTTP request is being processed. In [Search](../failures-performance-transactions.md?tabs=transaction-search) and [Analytics](../../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
 
 
 
@@ -239,7 +239,7 @@ When you track telemetry manually, the easiest way to ensure telemetry correlati
 // Establish an operation context and associated telemetry item:
 using (var operation = telemetryClient.StartOperation<RequestTelemetry>("operationName"))
 {
-    // Telemetry sent in here will use the same operation ID.
+    // Telemetry sent in here uses the same operation ID.
     ...
     telemetryClient.TrackTrace(...); // or other Track* calls
     ...
@@ -262,7 +262,7 @@ For more information on correlation, see [Telemetry correlation in Application I
 const operation = appInsights.startOperation(client, { name: "operationName" });
 
 appInsights.wrapWithCorrelationContext(() => {
-    // Telemetry sent in here will use the same operation ID.
+    // Telemetry sent in here uses the same operation ID.
     ...
     client.trackTrace({ message: "..." }); // or other track* calls
     ...
@@ -539,7 +539,7 @@ telemetry.flush();
 
 In a web app, users are [identified by cookies](../usage.md#users-sessions-and-events) by default. A user might be counted more than once if they access your app from a different machine or browser, or if they delete cookies.
 
-If users sign in to your app, you can get a more accurate count by setting the authenticated user ID in the browser code. It isn't necessary to use the user's actual sign-in name. It only has to be an ID that is unique to that user. It must not include spaces or any of the characters `,;=|`.
+If users sign in to your app, you can get a more accurate count by setting the authenticated user ID in the browser code. It isn't necessary to use the user's actual sign-in name. It only has to be an ID that's unique to that user. It must not include spaces or any of the characters `,;=|`.
 
 The user ID is also set in a session cookie and sent to the server. If the server SDK is installed, the authenticated user ID is sent as part of the context properties of both client and server telemetry. You can then filter and search on it.
 
@@ -552,9 +552,9 @@ You can also [search](../failures-performance-transactions.md?tabs=transaction-s
 > [!NOTE]
 > The [EnableAuthenticationTrackingJavaScript property in the ApplicationInsightsServiceOptions class](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs) in the .NET Core SDK simplifies the JavaScript configuration needed to inject the user name as the Auth ID for each trace sent by the Application Insights JavaScript SDK.
 >
-> When this property is set to `true`, the user name from the user in the ASP.NET Core is printed along with [client-side telemetry](../dotnet.md#add-client-side-monitoring). For this reason, adding `appInsights.setAuthenticatedUserContext` manually wouldn't be needed anymore because it's already injected by the SDK for ASP.NET Core. The Auth ID will also be sent to the server where the SDK in .NET Core will identify it and use it for any server-side telemetry, as described in the [JavaScript API reference](https://github.com/microsoft/ApplicationInsights-JS/blob/master/API-reference.md#setauthenticatedusercontext).
+> When this property is set to `true`, the user name from the user in the ASP.NET Core is printed along with [client-side telemetry](../dotnet.md#add-client-side-monitoring). For this reason, adding `appInsights.setAuthenticatedUserContext` manually isn't required anymore because it's already injected by the SDK for ASP.NET Core. The Auth ID is also sent to the server where the SDK in .NET Core identifies and uses it for any server-side telemetry, as described in the [JavaScript API reference](https://github.com/microsoft/ApplicationInsights-JS/blob/master/API-reference.md#setauthenticatedusercontext).
 >
-> For JavaScript applications that don't work in the same way as ASP.NET Core MVC, such as SPA web apps, you would still need to add `appInsights.setAuthenticatedUserContext` manually.
+> For JavaScript applications that don't work in the same way as ASP.NET Core MVC, such as SPA web apps, you still need to add `appInsights.setAuthenticatedUserContext` manually.
 
 ### Filter, search, and segment your data by using properties
 
@@ -674,7 +674,7 @@ using Microsoft.ApplicationInsights.DataContracts;
 
 var gameTelemetry = new TelemetryClient();
 gameTelemetry.Context.GlobalProperties["Game"] = currentGame.Name;
-// Now all telemetry will automatically be sent with the context property:
+// Now all telemetry is automatically sent with the context property:
 gameTelemetry.TrackEvent("WinGame");
 ```
 
