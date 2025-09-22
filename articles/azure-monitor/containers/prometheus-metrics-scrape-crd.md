@@ -1,11 +1,11 @@
 ---
-title: Customize collection of Prometheus metrics from your Kubernetes cluster using CRDs
+title: Create custom Prometheus scrape job from your Kubernetes cluster using CRDs
 description: Describes how to create and apply pod and service monitors to scrape Prometheus metrics in Azure Monitor to Kubernetes cluster.
 ms.topic: how-to
 ms.date: 08/25/2025
 ms.reviewer: aul
 ---
-# Customize collection of Prometheus metrics from your Kubernetes cluster using CRDs
+# Create custom Prometheus scrape job from your Kubernetes cluster using CRDs
 
 [Customize collection of Prometheus metrics from your Kubernetes cluster](./prometheus-metrics-scrape-configuration.md) describes how to use ConfigMap to customize scraping of Prometheus metrics from default targets in your Kubernetes cluster. This article describes how to use custom resource definitions (CRDs) to create custom scrape jobs for further customization and additional targets.
 

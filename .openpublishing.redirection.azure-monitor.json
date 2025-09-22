@@ -8638,6 +8638,16 @@
    "source_path": "articles/azure-monitor/app/api-filtering-sampling.md",
    "redirect_url": "/azure/azure-monitor/app/dot-net",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/metrics/prometheus-remote-write-virtual-machines.md",
+   "redirect_url": "/azure/azure-monitor/metrics/prometheus-remote-write",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/prometheus-metrics-scrape-validate.md",
+   "redirect_url": "/azure/azure-monitor/containers/prometheus-metrics-scrape-configmap",
+   "redirect_document_id": false
   }
  ]
 }

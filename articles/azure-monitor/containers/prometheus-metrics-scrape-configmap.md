@@ -1,12 +1,12 @@
 ---
-title: Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap
+title: Create custom Prometheus scrape job from your Kubernetes cluster using ConfigMap
 description: Describes how to create custom configuration file Prometheus metrics in Azure Monitor and use validation tool before applying to Kubernetes cluster.
 ms.topic: troubleshooting-general
 ms.date: 5/25/2025
 ms.reviewer: aul
 ---
 
-# Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap
+# Create custom Prometheus scrape job from your Kubernetes cluster using ConfigMap
 
 [Customize collection of Prometheus metrics from your Kubernetes cluster](./prometheus-metrics-scrape-configuration.md) describes how to use ConfigMap to customize scraping of Prometheus metrics from default targets in your Kubernetes cluster. This article describes how to use ConfigMap to create custom scrape jobs for further customization and additional targets.
 
