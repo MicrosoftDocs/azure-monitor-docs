@@ -4852,7 +4852,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/data-retention-privacy.md",
-   "redirect_url": "/azure/azure-monitor/app/application-insights-faq.yml#how-does-application-insights-handle-data-collection--retention--storage--and-privacy",
+   "redirect_url": "/azure/azure-monitor/app/application-insights-faq#how-does-application-insights-handle-data-collection--retention--storage--and-privacy",
    "redirect_document_id": false
   },
   {
@@ -5482,7 +5482,7 @@
   },
   {
    "source_path_from_root": "/articles/application-insights/app-insights-data-retention-privacy.md",
-   "redirect_url": "/azure/azure-monitor/app/application-insights-faq.yml#how-does-application-insights-handle-data-collection--retention--storage--and-privacy",
+   "redirect_url": "/azure/azure-monitor/app/application-insights-faq#how-does-application-insights-handle-data-collection--retention--storage--and-privacy",
    "redirect_document_id": false
   },
   {
