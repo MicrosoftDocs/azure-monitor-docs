@@ -122,7 +122,7 @@ From within your ASP.NET web app project in Visual Studio:
 
 1. After you add Application Insights to your project, check to confirm that you're using the latest stable release of the SDK. Go to **Project** > **Manage NuGet Packages** > **Microsoft.ApplicationInsights.AspNetCore**. If you need to, select **Update**.
 
-    :::image type="content" source="media/dot-net/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
+    :::image type="content" source="media/dotnet/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
 
 ---
 
@@ -1630,7 +1630,7 @@ For detailed instructions, see [Investigate failures, performance, and transacti
 
     If CodeLens is enabled, you see data about the exceptions:
 
-    :::image type="content" source="media/dot-net/codelens.png" lightbox="media/dot-net/codelens.png" alt-text="Screenshot that shows CodeLens notification of exceptions.":::
+    :::image type="content" source="media/dotnet/codelens.png" lightbox="media/dotnet/codelens.png" alt-text="Screenshot that shows CodeLens notification of exceptions.":::
 
 ---
 
@@ -1646,7 +1646,7 @@ Using the <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient?displ
 
 To see these events, on the left menu, open [Search](failures-performance-transactions.md?tabs=transaction-searchh). Select the dropdown menu **Event types**, and then choose **Custom Event**, **Trace**, or **Exception**.
 
-:::image type="content" source="media/dot-net/custom-events.png" lightbox="media/dot-net/custom-events.png" alt-text="Screenshot that shows the Search screen.":::
+:::image type="content" source="media/dotnet/custom-events.png" lightbox="media/dotnet/custom-events.png" alt-text="Screenshot that shows the Search screen.":::
 
 > [!NOTE]
 > If your app generates large amounts of telemetry, the adaptive sampling module automatically reduces the volume sent to the portal by sending only a representative fraction of events. Events that are part of the same operation are selected or deselected as a group so that you can navigate between related events. For more information, see [Sampling in Application Insights](sampling.md).
@@ -2192,14 +2192,14 @@ This single telemetry item represents an aggregate of 41 distinct metric measure
 
 If we examine our Application Insights resource in the **Logs (Analytics)** experience, the individual telemetry item would look like the following screenshot.
 
-:::image type="content" source="media/dot-net/log-analytics.png" lightbox="media/dot-net/log-analytics.png" alt-text="Screenshot that shows the Log Analytics query view.":::
+:::image type="content" source="media/dotnet/log-analytics.png" lightbox="media/dotnet/log-analytics.png" alt-text="Screenshot that shows the Log Analytics query view.":::
 
 > [!NOTE]
 > While the raw telemetry item didn't contain an explicit sum property/field once ingested, we create one for you. In this case, both the `value` and `valueSum` property represent the same thing.
 
 You can also access your custom metric telemetry in the [*Metrics*](../metrics/analyze-metrics.md) section of the portal as both a [log-based and custom metric](metrics-overview.md). The following screenshot is an example of a log-based metric.
 
-:::image type="content" source="media/dot-net/metrics-explorer.png" lightbox="media/dot-net/metrics-explorer.png" alt-text="Screenshot that shows the Metrics explorer view.":::
+:::image type="content" source="media/dotnet/metrics-explorer.png" lightbox="media/dotnet/metrics-explorer.png" alt-text="Screenshot that shows the Metrics explorer view.":::
 
 ##### Cache metric reference for high-throughput usage
 
@@ -2264,15 +2264,15 @@ The examples in the previous section show zero-dimensional metrics. Metrics can 
 
 Running the sample code for at least 60-seconds results in three distinct telemetry items being sent to Azure. Each item represents the aggregation of one of the three form factors. As before, you can further examine in the **Logs (Analytics)** view.
 
-:::image type="content" source="media/dot-net/log-analytics-multi-dimensional.png" lightbox="media/dot-net/log-analytics-multi-dimensional.png" alt-text="Screenshot that shows the Log Analytics view of multidimensional metric.":::
+:::image type="content" source="media/dotnet/log-analytics-multi-dimensional.png" lightbox="media/dotnet/log-analytics-multi-dimensional.png" alt-text="Screenshot that shows the Log Analytics view of multidimensional metric.":::
 
 In the metrics explorer:
 
-:::image type="content" source="media/dot-net/custom-metrics.png" lightbox="media/dot-net/custom-metrics.png" alt-text="Screenshot that shows Custom metrics.":::
+:::image type="content" source="media/dotnet/custom-metrics.png" lightbox="media/dotnet/custom-metrics.png" alt-text="Screenshot that shows Custom metrics.":::
 
 Notice that you can't split the metric by your new custom dimension or view your custom dimension with the metrics view.
 
-:::image type="content" source="media/dot-net/splitting-support.png" lightbox="media/dot-net/splitting-support.png" alt-text="Screenshot that shows splitting support.":::
+:::image type="content" source="media/dotnet/splitting-support.png" lightbox="media/dotnet/splitting-support.png" alt-text="Screenshot that shows splitting support.":::
 
 By default, multidimensional metrics within the metric explorer aren't turned on in Application Insights resources.
 
@@ -2285,11 +2285,11 @@ After you made that change and sent new multidimensional telemetry, you can sele
 > [!NOTE]
 > Only newly sent metrics after the feature was turned on in the portal have dimensions stored.
 
-:::image type="content" source="media/dot-net/apply-splitting.png" lightbox="media/dot-net/apply-splitting.png" alt-text="Screenshot that shows applying splitting.":::
+:::image type="content" source="media/dotnet/apply-splitting.png" lightbox="media/dotnet/apply-splitting.png" alt-text="Screenshot that shows applying splitting.":::
 
 View your metric aggregations for each `FormFactor` dimension.
 
-:::image type="content" source="media/dot-net/formfactor.png" lightbox="media/dot-net/formfactor.png" alt-text="Screenshot that shows form factors.":::
+:::image type="content" source="media/dotnet/formfactor.png" lightbox="media/dotnet/formfactor.png" alt-text="Screenshot that shows form factors.":::
 
 ##### Use MetricIdentifier when there are more than three dimensions
 
