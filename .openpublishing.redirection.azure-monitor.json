@@ -1242,7 +1242,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/asp-net-core-no-visualstudio.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
@@ -3917,12 +3917,12 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/dotnet-quickstart.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/nodejs-quick-start.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
@@ -5327,12 +5327,12 @@
   },
   {
    "source_path_from_root": "/articles/application-insights/app-insights-asp-net.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/application-insights/app-insights-asp-net-core.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
@@ -8486,7 +8486,7 @@
   },
   {
    "source_path": "articles/azure-monitor/app/asp-net-core.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
@@ -8556,17 +8556,17 @@
   },
   {
    "source_path": "articles/azure-monitor/app/ilogger.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/app/asp-net-exceptions.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/app/get-metric.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
@@ -8576,7 +8576,7 @@
   },
   {
    "source_path": "articles/azure-monitor/app/configuration-with-applicationinsights-config.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
@@ -8591,7 +8591,7 @@
   },
   {
    "source_path": "articles/azure-monitor/app/telemetry-channels.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
@@ -8606,7 +8606,7 @@
   },
   {
    "source_path": "articles/azure-monitor/app/asp-net-counters.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
@@ -8616,32 +8616,42 @@
   },
   {
    "source_path": "articles/azure-monitor/app/custom-operations-tracking.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/app/worker-service.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/app/distributed-trace-data.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/app/asp-net.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/app/api-filtering-sampling.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/app/asp-net-trace-logs.md",
-   "redirect_url": "/azure/azure-monitor/app/dot-net",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/api-custom-events-metrics.md",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/dot-net.md",
+   "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
   }
  ]
