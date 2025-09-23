@@ -11,19 +11,20 @@ ms.date: 04/03/2025
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-This guide walks through enabling Azure Monitor Application Insights for Azure Kubernetes Service (AKS) workloads without modifying source code.
+This guide walks through enabling Azure Monitor Application Insights for Azure Kubernetes Service (AKS) workloads without modifying source code. Also covered will be options for OpenTelemetry support for both Azure Monitor Distros and non-Microsoft OSS OpenTelemetry SDKs.
 
-We cover [installing the aks-preview Azure CLI extension](#install-the-aks-preview-azure-cli-extension), [registering the AzureMonitorAppMonitoringPreview feature flag](#register-the-azuremonitorappmonitoringpreview-feature-flag), [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), and [restarting deployments](#restart-deployment). These steps result in autoinstrumentation injecting the Azure Monitor OpenTelemetry Distro in application pods to generate telemetry. For more on autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](codeless-overview.md).
+We cover [installing the aks-preview Azure CLI extension](#install-the-aks-preview-azure-cli-extension), [registering the AzureMonitorAppMonitoringPreview feature flag](#register-the-azuremonitorappmonitoringpreview-feature-flag), [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), and [restarting deployments](#restart-deployment). These steps result in autoinstrumentation injecting the Azure Monitor OpenTelemetry Distro in application pods to generate telemetry. If an application is already instrumented with an OSS OpenTelemetry SDK (regardless of the language) and there's no need for autoinstrumentation - configuring the existing SDK to send OpenTelemetry data to an Application Insights component and an Azure Monitor workspace is also supported. For more on autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](codeless-overview.md).
 
 
 ## Prerequisites
 
 * An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using Java or Node.js in the Azure public cloud
 * [A workspace-based Application Insights resource](create-workspace-resource.md#create-and-configure-application-insights-resources).
+* For OpenTelemetry support - the Application Insights resource must support Azure Monitor workspace.
 * Azure CLI 2.60.0 or greater. For more information, see [How to install the Azure CLI](/cli/azure/install-azure-cli), [What version of the Azure CLI is installed?](/cli/azure/install-azure-cli#what-version-of-the-azure-cli-is-installed), and [How to update the Azure CLI](/cli/azure/update-azure-cli).
 
 > [!WARNING]
-> - This feature is incompatible with both Windows (any architecture) and Linux Arm64 node pools.
+> - This feature is incompatible with Windows (any architecture) and Linux Arm64 node pools.
 
 ## Install the aks-preview Azure CLI extension
 
@@ -71,10 +72,18 @@ az provider show --namespace "Microsoft.ContainerService" --query "registrationS
 
 ## Prepare a cluster
 
-To prepare a cluster, run the following Azure CLI command.
+To prepare a cluster, run one of the following Azure CLI commands depending on your needs.
+
+If you only want to ingest into Application Insights components and Log Analytics workspaces using autoinstrumentation and don't need OpenTelemetry support:
 
 ```azurecli
 az aks update --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring 
+```
+
+If you do need OpenTelemetry support that also enables you to ingest OpenTelemetry signals in case your application is instrumented with a non-Microsoft OSS SDK into Azure Monitor workspaces:
+
+```azurecli
+az aks update --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --enable-azure-monitor-metrics	--enable-azure-monitor-logs --enable-opentelemetry-metrics --enable-opentelemetry-logs
 ```
 
 > [!Tip]
@@ -86,7 +95,7 @@ Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. 
 
 ### Namespace-wide onboarding
 
-To onboard all deployments within a namespace, create a single _Instrumentation_ custom resource named `default` in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource.
+To onboard all deployments within a namespace, create a single _Instrumentation_ custom resource named `default` in that namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource.
 
 > [!TIP]
 > You can retrieve connection string from the overview page of your Application Insights resource.
@@ -99,27 +108,30 @@ metadata:
   namespace: mynamespace1
 spec:
   settings:
-    autoInstrumentationPlatforms: []
+    autoInstrumentationPlatforms:
+      - Java
+      - NodeJs
   destination: # required
     applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
 ```
 
 At a minimum, the following configuration is required:
 
-- `spec.settings.autoInstrumentationPlatforms`: One or more values based on the languages your pods are running.
-- `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource. 
+- `spec.settings.autoInstrumentationPlatforms`: Empty array, or one or more values based on the languages your pods are running. Currently supported values are: `Java`, `NodeJs`. If an empty array is provided - autoconfiguration will be performed instead of autoinstrumentation: no distro will be places on the pod, but OpenTelemetry environment variables will be placed to configure any application already instrumented by an OSS OpenTelemetry SDK in any language to send telemetry to the specified Application Insights resource.
+- `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource to receive telemetry.
 
 > [!TIP]
+> - Use `autoInstrumentationPlatforms: []` syntax to specify an empty array.
 > - Use [annotations](#annotations) if per-deployment overrides are required. For more information, see [annotations](#annotations).
 > - [Restart deployments](#restart-deployment) for settings to take effect.
 
 ### Per-deployment onboarding
 
-Use per-deployment onboarding to ensure deployments are instrumented with specific languages or to direct telemetry to separate Application Insights resources.
+Use per-deployment onboarding to ensure deployments are instrumented with different languages or to direct telemetry to separate Application Insights resources.
 
 1. Create a unique _Instrumentation_ custom resource for each scenario. Avoid using the name `default`, which is used for namespace-wide onboarding.
 
-    Create _Instrumentation_ custom resources to configure Application Insights in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource. 
+    Create _Instrumentation_ custom resources to configure Application Insights in the namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource. 
 
     > [!TIP]
     > You can retrieve connection string from the overview page of your Application Insights resource.
@@ -133,13 +145,15 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
       namespace: mynamespace1
     spec:
       settings:
-        autoInstrumentationPlatforms: []
+        autoInstrumentationPlatforms: [] # not used since the language will be specified in the annotation
       destination: # required
         applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
     ```
     
     At a minimum, the following configuration is required:
     - `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource.
+  
+    The value of `autoInstrumentationPlatforms` will be ignored; the language (or no language, i.e. autoconfiguration) is specified in the annotation that associates the custom resource with a deployment (see below).
 
 3. Associate each deployment with the appropriate custom resource using [annotations](#annotations). The annotation overrides the language set in the custom resource.
 
@@ -149,6 +163,7 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     Examples:
     - Java: `instrumentation.opentelemetry.io/inject-java: "cr1"`
     - Node.js: `instrumentation.opentelemetry.io/inject-nodejs: "cr1"`
+    - Autoconfiguration (no autoinstrumentation, only OpenTelemetry configuration via environment variables): `instrumentation.opentelemetry.io/inject-configuration: "cr1"`
     
     Annotation placement should look as follows.
 
@@ -198,10 +213,11 @@ az aks update --resource-group={resource_group} --name={cluster_name} --disable-
 
 ### Disabling autoinstrumentation
 
-The following annotations disable autoinstrumentation for the language indicated.
+The following annotations disable autoinstrumentation and autoconfiguration for the language indicated.
 
 - Java: `instrumentation.opentelemetry.io/inject-java`
 - Node.js: `instrumentation.opentelemetry.io/inject-nodejs`
+- Autoconfiguration: `instrumentation.opentelemetry.io/inject-configuration`
 
   ```yml
   instrumentation.opentelemetry.io/inject-java: "false"
@@ -255,8 +271,16 @@ Use the following annotation to enable logs in Application Insights
 
 AKS Clusters can be prepared for this feature during cluster creation. Run the following Azure CLI command if you prefer to have the cluster prepped during creation. Application monitoring isn't enabled just because your cluster is prepped. You must deploy an application and onboard the application to this feature.
 
+If you only want to ingest into Application Insights components and Log Analytics workspaces using autoinstrumentation and don't need OpenTelemetry support:
+
 ```azurecli
 az aks create --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --generate-ssh-keys
+```
+
+If you do need OpenTelemetry support that also enables you to ingest OpenTelemetry signals in case your application is instrumented with a non-Microsoft OSS SDK into Azure Monitor workspaces:
+
+```azurecli
+az aks update --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --enable-azure-monitor-metrics	--enable-azure-monitor-logs --enable-opentelemetry-metrics --enable-opentelemetry-logs --generate-ssh-keys
 ```
 
 ## Next steps
