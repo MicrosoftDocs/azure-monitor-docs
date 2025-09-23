@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 08/18/2025
+ms.date: 09/22/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -580,6 +580,8 @@ microsoft.securityinsights
 - [SecurityEvent](./tables/securityevent.md)
 - [DnsAuditEvents](./tables/dnsauditevents.md)
 - [AggregatedSecurityAlert](./tables/aggregatedsecurityalert.md)
+- [SentinelBehaviorInfo](./tables/sentinelbehaviorinfo.md)
+- [SentinelBehaviorEntities](./tables/sentinelbehaviorentities.md)
 - [CommonSecurityLog](./tables/commonsecuritylog.md)
 - [ASimWebSessionLogs](./tables/asimwebsessionlogs.md)
 - [PurviewDataSensitivityLogs](./tables/purviewdatasensitivitylogs.md)
@@ -1123,6 +1125,7 @@ Microsoft.Network/LoadBalancers
 Microsoft.OperationalInsights/Workspaces  
 
 - [AzureMetrics](./tables/azuremetrics.md)
+- [Event](./tables/event.md)
 - [Syslog](./tables/syslog.md)
 - [LAQueryLogs](./tables/laquerylogs.md)
 - [LASummaryLogs](./tables/lasummarylogs.md)
@@ -1689,6 +1692,8 @@ Microsoft.Compute/VirtualMachines
 - [ADReplicationResult](./tables/adreplicationresult.md)
 - [ComputerGroup](./tables/computergroup.md)
 - [ContainerLog](./tables/containerlog.md)
+- [DataSetOutput](./tables/datasetoutput.md)
+- [DataSetRuns](./tables/datasetruns.md)
 - [DnsEvents](./tables/dnsevents.md)
 - [DnsInventory](./tables/dnsinventory.md)
 - [SecurityBaselineSummary](./tables/securitybaselinesummary.md)
@@ -1697,6 +1702,9 @@ Microsoft.Compute/VirtualMachines
 - [ConfigurationData](./tables/configurationdata.md)
 - [Event](./tables/event.md)
 - [Perf](./tables/perf.md)
+- [PerfInsightsFindings](./tables/perfinsightsfindings.md)
+- [PerfInsightsImpactedResources](./tables/perfinsightsimpactedresources.md)
+- [PerfInsightsRun](./tables/perfinsightsrun.md)
 - [ProtectionStatus](./tables/protectionstatus.md)
 - [SecurityBaseline](./tables/securitybaseline.md)
 - [SecurityEvent](./tables/securityevent.md)

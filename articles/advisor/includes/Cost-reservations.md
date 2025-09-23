@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/01/2025
+ms.date: 09/23/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Reservations
@@ -14,21 +14,22 @@ ms.custom: Cost Reservations
   
 <!--abb1f687-2d58-4197-8f5b-8882f05c04b8_begin-->
 
-#### Configure automatic renewal for your expiring reservation  
+#### Configure automatic renewal for the expiring reservations  
   
-Reserved instances listed below are expiring soon or recently expired. Your resources will continue to operate normally, however, you will be billed at the on-demand rates going forward. To optimize your costs, configure automatic renewal for these reservations or purchase a replacement manually.  
+Reservations shown below are expiring soon or recently expired. Your resources will continue to operate normally, however, you will be billed at the on-demand rates going forward. To optimize your costs, configure automatic renewal for these reservations or purchase a replacement manually.  
   
 **Potential benefits**: Continue to receive discounted rates for your resources  
 
 **Impact:** High
   
-For more information, see [Azure Reserved Virtual Machine Instances ](https://aka.ms/reservedinstances)  
+For more information, see [Azure Reserved Virtual Machine Instances](https://aka.ms/reservedinstances)  
 
 ResourceType: microsoft.capacity/reservationorders/reservations  
 Recommendation ID: abb1f687-2d58-4197-8f5b-8882f05c04b8  
 
 
 <!--abb1f687-2d58-4197-8f5b-8882f05c04b8_end-->
+
 
 <!--5b8ddf04-be28-44ec-ab2c-a63a34d1de13_begin-->
 
@@ -389,5 +390,23 @@ Recommendation ID: db621e98-4a20-4942-b174-c455dc71dbae
 
 
 <!--db621e98-4a20-4942-b174-c455dc71dbae_end-->
+
+<!--9ed827e8-2a1c-45f3-93f0-df6962034a33_begin-->
+
+#### Consider Microsoft Fabric reservations to save over your pay-as-you-go costs  
+  
+Microsoft Fabric purchases are recommended based on usage over the selected term and look-back period. Purchase a reservation to save over pay-as-you-go costs, it automatically applies to matching resources. Shared scope recommendations are available in the reservation purchase experience.  
+  
+**Potential benefits**: savings  
+
+**Impact:** High
+  
+For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
+
+ResourceType: microsoft.subscriptions/subscriptions  
+Recommendation ID: 9ed827e8-2a1c-45f3-93f0-df6962034a33  
+
+
+<!--9ed827e8-2a1c-45f3-93f0-df6962034a33_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 09/23/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -335,5 +335,23 @@ Recommendation ID: 8a885111-34c0-4fd6-bb77-dbbb844ad7e5
 
 
 <!--8a885111-34c0-4fd6-bb77-dbbb844ad7e5_end-->
+
+<!--8abe4b22-d8ad-4bff-babe-38b9267e46b7_begin-->
+
+#### Monitor health for virtual hubs  
+  
+Set up monitoring and alerts for virtual hubs. Create alert rule to ensure prompt response to changes in BGP status and Data processed by virtual hubs.  
+  
+**Potential benefits**: Detect and mitigate issues to avoid disruptions.  
+
+**Impact:** Medium
+  
+For more information, see [Monitor Azure Virtual WAN](/azure/virtual-wan/monitoring-best-practices#virtual-hub)  
+
+ResourceType: microsoft.network/virtualhubs  
+Recommendation ID: 8abe4b22-d8ad-4bff-babe-38b9267e46b7  
+
+
+<!--8abe4b22-d8ad-4bff-babe-38b9267e46b7_end-->
 
 <!--articleBody-->
