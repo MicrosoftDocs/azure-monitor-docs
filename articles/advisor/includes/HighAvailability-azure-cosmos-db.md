@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 09/23/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -336,5 +336,23 @@ Subcategory: BusinessContinuity
 
 <!--52fef986-5897-4359-8b92-0f22749f0d73_end-->
 
+
+<!--a2002089-9dd1-46b6-881c-d0f349515230_begin-->
+
+#### Evaluate multi-region write capability in Azure Cosmos DB  
+  
+Multi-region writes enable high availability but require careful consistency and conflict resolution. Using Bounded Staleness is an anti-pattern, as replication lag increases latency and coordination overhead. This setup undermines scalability, impacting performance and availability.  
+  
+**Potential benefits**: Enhances high availability  
+
+**Impact:** High
+  
+For more information, see [Configure Multi-Region Writes](/azure/cosmos-db/nosql/how-to-multi-master?tabs=api-async)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: a2002089-9dd1-46b6-881c-d0f349515230  
+Subcategory: undefined
+
+<!--a2002089-9dd1-46b6-881c-d0f349515230_end-->
 
 <!--articleBody-->

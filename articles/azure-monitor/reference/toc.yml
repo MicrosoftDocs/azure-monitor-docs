@@ -2827,6 +2827,8 @@ items:
             href: tables/networkaccessalerts.md
           - name: NetworkAccessConnectionEvents
             href: tables/networkaccessconnectionevents.md
+          - name: NetworkAccessGenerativeAIInsights
+            href: tables/networkaccessgenerativeaiinsights.md
           - name: NetworkAccessTraffic
             href: tables/networkaccesstraffic.md
           - name: NetworkSessions
