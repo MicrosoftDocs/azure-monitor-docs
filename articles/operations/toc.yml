@@ -2,21 +2,19 @@ items:
 - name: Ops360 Documentation
   href: index.yml
 - name: Overview
-  items:
-  - name: Ops360 overview
-    href: fundamentals/overview.md
-  - name: Onboarding
-    href: onboarding.md
-  - name: Licensing
-    href: licensing.md
-  - name: Agentic experience
-    href: agentic-experience.md
-  - name: Using the portal
-    href: using-the-portal.md
-  - name: Architecture & Key Concepts
-    href: architecture-key-concepts.md
-  - name: Security & Compliance
-    href: security-compliance.md
-  - name: FAQ
-    href: faq.md
+  href: overview.md
+- name: Onboarding
+  href: onboarding.md
+- name: Licensing
+  href: licensing.md
+- name: Agentic experience
+  href: agentic-experience.md
+- name: Using the portal
+  href: using-the-portal.md
+- name: Architecture & Key Concepts
+  href: architecture-key-concepts.md
+- name: Security & Compliance
+  href: security-compliance.md
+- name: FAQ
+  href: faq.md
   
