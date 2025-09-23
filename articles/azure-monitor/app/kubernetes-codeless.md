@@ -160,10 +160,12 @@ Use per-deployment onboarding to ensure deployments are instrumented with differ
     > [!IMPORTANT]
     > To avoid adding them to the deployment's annotations by mistake, add annotations at the `spec.template.metadata.annotations` level of your deployment.
 
-    Examples:
+    Supported annotations:
     - Java: `instrumentation.opentelemetry.io/inject-java: "cr1"`
     - Node.js: `instrumentation.opentelemetry.io/inject-nodejs: "cr1"`
-    - Autoconfiguration (no autoinstrumentation, only OpenTelemetry configuration via environment variables): `instrumentation.opentelemetry.io/inject-configuration: "cr1"`
+    - Autoconfiguration: `instrumentation.opentelemetry.io/inject-configuration: "cr1"`
+   
+    For autoconfiguration, no autoinstrumentation occurs (meaning no distro is places onto the pod); instead, OpenTelemetry configuration is performed via environment variables, so that whatever OSS OpenTelemetry SDK the application is already instrumented with will be directed to send OpenTelemetry telemetry to the provided Application Insights resource.
     
     Annotation placement should look as follows.
 
