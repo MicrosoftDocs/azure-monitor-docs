@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 09/23/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -354,7 +354,7 @@ Recommendation ID: 278ffae3-fa57-463b-a9f6-4b04a8b320b0
 
 <!--ed0b346c-26a6-4c2b-850b-32a449d94e56_begin-->
 
-#### Review the server for pooler recommendation  
+#### Review the server for connection pooler  
   
 The server has high client connection errors, frequent disconnects, and high idle connections with CPU/connection spikes and workload anomalies. Enable PgBouncer to stabilize and improve performance.  
   
@@ -369,5 +369,6 @@ Recommendation ID: ed0b346c-26a6-4c2b-850b-32a449d94e56
 
 
 <!--ed0b346c-26a6-4c2b-850b-32a449d94e56_end-->
+
 
 <!--articleBody-->
