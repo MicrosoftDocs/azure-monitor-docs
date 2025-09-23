@@ -2,7 +2,7 @@
 title: Impacted Resources from Azure Retirements
 description: This article details where to find information from Azure Service Health impacted resources from retirements.
 ms.topic: article
-ms.date: 9/08/2025
+ms.date: 9/23/2025
 
 ---
 
@@ -13,7 +13,7 @@ To support of the experience of viewing Impacted Resources, Service Health has f
 - Display resources that are impacted due to a Retirement.
 - Provide impacted resources information for retirements through the Service Health Portal. 
 
-This article details what is communicated to users and where they can view information about their impacted resources.
+This article details what communication is available to users, and where they can view information about their impacted resources.
 
 >[!NOTE]
 >Impacted resources for retirements could take up to two weeks to appear after the event is published.
@@ -271,7 +271,7 @@ advisorresources
 
 |Question|Answer|
 |--------|------|
-|Are the Impacted resources only available for 'Active' retirement events?|Yes, the Azure portal supports impacted resources only for Active Retirements and support for other advisories will be added later on.|
+|Are the Impacted resources only available for 'Active' retirement events?|Yes, the Azure portal supports impacted resources only for Active Retirements and support for other advisories will be available in the future.|
 
 
 ## For more information
