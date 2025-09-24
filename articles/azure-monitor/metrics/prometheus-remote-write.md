@@ -107,7 +107,7 @@ Once the identity that you're going to use is created, it needs to be given acce
 ## Configure remote-write in configuration file
 The final step is to add remote write to the [configuration file](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) for your self-managed Prometheus server. In addition to details for the identity that you created, you'll also need the metrics ingestion endpoint for the Azure Monitor workspace. Get this value from the **Overview** page for your Azure Monitor workspace in the Azure portal.
 
-:::image type="content" source="media/prometheus-remote-write/metrics-ingestion-endpoint.png" lightbox="media/prometheus-remote/metrics-ingestion-endpoint.png" alt-text="Screenshot that shows the metrics ingestion endpoint for an Azure Monitor workspace.":::
+:::image type="content" source="media/prometheus-remote-write/metrics-ingestion-endpoint.png" lightbox="media/prometheus-remote-write/metrics-ingestion-endpoint.png" alt-text="Screenshot that shows the metrics ingestion endpoint for an Azure Monitor workspace.":::
 
 The `remote-write` section of the Prometheus configuration file will look similar to the following example, depending on the authentication type that you're using.
 

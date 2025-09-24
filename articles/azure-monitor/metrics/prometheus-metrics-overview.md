@@ -38,7 +38,7 @@ Azure Monitor managed service for Prometheus is intended to be a replacement for
 
 The following diagram illustrates this strategy. A [data collection rule (DCR)](../data-collection/data-collection-rule-overview.md) in Azure Monitor provides an endpoint for the self-managed Prometheus to send metrics to and defines the Azure Monitor workspace where the data will be sent.
 
-:::image type="content" source="media/prometheus-remote-write-configure/overview.png" alt-text="Diagram showing use of remote-write to send metrics from local Prometheus to Managed Prometheus." lightbox="media/prometheus-remote-write-configure/overview.png"  border="false":::
+:::image type="content" source="media/prometheus-remote-write/overview.png" alt-text="Diagram showing use of remote-write to send metrics from local Prometheus to Managed Prometheus." lightbox="media/prometheus-remote-write/overview.png"  border="false":::
 
 See [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](prometheus-remote-write.md) to configure remote write to collect data from a self-managed Prometheus server.
 

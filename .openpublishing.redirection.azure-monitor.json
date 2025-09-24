@@ -8655,7 +8655,7 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monito/containers/prometheus-remote-write.md",
+   "source_path": "articles/azure-monitor/containers/prometheus-remote-write.md",
    "redirect_url": "/azure/azure-monitor/metrics/prometheus-remote-write",
    "redirect_document_id": false
   }
