@@ -2,7 +2,7 @@
 title: Service Health event tags
 description: Learn how to understand and use the event tags in Azure Service Health
 ms.topic: overview
-ms.date: 9/19/2025
+ms.date: 9/24/2025
 ---
 
 # Service Health event tags
@@ -44,6 +44,8 @@ For example:
 A Health advisory displays a Retirement (subtype) indicating a product is being phased out.
 :::image type="content"source="./media/event-tags/event-tags-sub-type.png"alt-text="Screenshot of Health advisories pane with subtype event tags." lightbox="media/event-tags/event-tags-sub-type.png":::
 
+>[!NOTE]
+>On the health advisory pane, you can select **Add filter** and search on the subtype displayed.
 
 A Billing update might have an FX Rate Change (subtype) indicating adjustments in foreign exchange rates that affect billing.
 
