@@ -7,14 +7,22 @@ ms.reviewer: aul
 ---
 
 # Default Prometheus metrics configuration in Azure Monitor
-When you enable Prometheus metrics collection in Azure Monitor from your Kubernetes cluster, it uses a default configuration for targets, dashboards, and recording rules.
+When you enable Prometheus metrics collection in Azure Monitor from your Kubernetes cluster, it uses a default configuration for targets, dashboards, and recording rules. This article describes the default configuration and the scenarios where you may choose to customize it for your specific requirements.
 
 ## Minimal ingestion profile
-`Minimal ingestion profile` is a setting that helps reduce ingestion volume of metrics, as only metrics used by default dashboards, default recording rules & default alerts are collected. For addon based collection, `Minimal ingestion profile` setting is enabled by default. You can modify collection to enable collecting more metrics, as specified below.
+`Minimal ingestion profile` is a setting that helps reduce ingestion volume of metrics, as only metrics used by default dashboards, default recording rules & default alerts are collected. For addon based collection, `Minimal ingestion profile` setting is enabled by default. If you disable this setting, then all available metrics for the target are collected which can significantly increase ingestion volume.
 
-## Scrape frequency
+## Scenarios
 
- The default scrape frequency for all default targets and scrapes is 30 seconds.
+There are four scenarios where you may want to customize this behavior:
+
+| Scenario | Method |
+|:---|:---|
+| Ingest only minimal metrics per default target. | No change needed. Use the default behavior with the setting `default-targets-metrics-keep-list.minimalIngestionProfile="true"`. Only metrics listed below are ingested for each of the default targets. |
+| Ingest a few other metrics for one or more default targets in addition to minimal metrics. | Keep ` minimalIngestionProfile="true"` and specify the appropriate `keeplistRegexes.*` specific to the target, for example `keeplistRegexes.coreDns="X``Y"`. X,Y is merged with default metric list for the target and then ingested. See [Customize metrics collected by default targets](./prometheus-metrics-scrape-configuration.md#customize-metrics-collected-by-default-targets). |
+| Ingest only a specific set of metrics for a target and nothing else. | Set `minimalIngestionProfile="false"` and specify the appropriate `default-targets-metrics-keep-list.="X``Y"` specific to the target in a custom scrape job. See [Create custom Prometheus scrape job from your Kubernetes cluster using ConfigMap](./prometheus-metrics-scrape-configmap.md). |
+| Ingest all metrics scraped for the default target. | Set `minimalIngestionProfile="false"` and don't specify any `default-targets-metrics-keep-list.<targetname>` for that target. Changing to `false` can increase metric ingestion volume by a factor per target. |
+
 
 ## Targets scraped by default
 Following targets are **enabled/ON** by default - meaning you don't have to provide any scrape job configuration for scraping these targets, as metrics addon will scrape these targets automatically by default.
