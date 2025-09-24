@@ -1,4 +1,12 @@
-# Ops360 Onboarding
+---
+title: Azure Operations Center Onboarding
+description: Provides a step-by-step guide to onboarding users and organizations to the Azure Operations Center platform.
+ms.topic: conceptual
+ms.date: 09/24/2025
+---
+
+
+# Azure Operations Center Onboarding
 
 Getting started with Ops360 is simple and scalable. This guide walks you through the steps to onboard your organization and users to the platform.
 

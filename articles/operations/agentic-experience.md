@@ -1,4 +1,12 @@
-# Agentic Experience in Ops360
+---
+title: Agentic Experience in Azure Operations Center
+description: Provides an overview of the agentic experience in Azure Operations Center, highlighting AI-driven guidance and automation features to enhance operational workflows.
+ms.topic: conceptual
+ms.date: 09/24/2025
+---
+
+
+# Agentic Experience in Azure Operations Center
 
 Ops360 introduces an agentic experience, leveraging AI-driven guidance and automation to enhance operational workflows.
 
