@@ -120,6 +120,9 @@ At a minimum, the following configuration is required:
 - `spec.settings.autoInstrumentationPlatforms`: Empty array, or one or more values based on the languages your pods are running. Currently supported values are: `Java`, `NodeJs`. If an empty array is provided - autoconfiguration will be performed instead of autoinstrumentation: no distro will be places on the pod, but OpenTelemetry environment variables will be placed to configure any application already instrumented by an OSS OpenTelemetry SDK in any language to send telemetry to the specified Application Insights resource.
 - `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource to receive telemetry.
 
+> [!IMPORTANT]
+> If you're using OpenTelemetry to ingest into the Application Insights resource, you must also create a Data Collection Rule Association (DCR-A) between that Application Insights resource's DCR and the AKS cluster. See [here](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview#data-collection-rule-associations-dcra) for details.
+
 > [!TIP]
 > - Use `autoInstrumentationPlatforms: []` syntax to specify an empty array.
 > - Use [annotations](#annotations) if per-deployment overrides are required. For more information, see [annotations](#annotations).
@@ -152,6 +155,9 @@ Use per-deployment onboarding to ensure deployments are instrumented with differ
     
     At a minimum, the following configuration is required:
     - `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource.
+  
+> [!IMPORTANT]
+> If you're using OpenTelemetry to ingest into the Application Insights resource, you must also create a Data Collection Rule Association (DCR-A) between that Application Insights resource's DCR and the AKS cluster. See [here](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview#data-collection-rule-associations-dcra) for details.
   
     The value of `autoInstrumentationPlatforms` will be ignored; the language (or no language, i.e. autoconfiguration) is specified in the annotation that associates the custom resource with a deployment (see below).
 
