@@ -45,7 +45,7 @@ A Health advisory displays a Retirement (subtype) indicating a product is being 
 :::image type="content"source="./media/event-tags/event-tags-sub-type.png"alt-text="Screenshot of Health advisories pane with subtype event tags." lightbox="media/event-tags/event-tags-sub-type.png":::
 
 >[!NOTE]
->On the health advisory pane, you can select **Add filter** and search on the subtype displayed.
+>On the health advisory pane, select **+ Add filter** and search on the subtype displayed.
 
 A Billing update might have an FX Rate Change (subtype) indicating adjustments in foreign exchange rates that affect billing.
 
