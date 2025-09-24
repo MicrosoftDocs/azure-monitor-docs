@@ -18,6 +18,23 @@ Ops360 is a unified operations management platform designed to streamline monito
 ## Audience
 Ops360 is intended for IT operations teams, cloud administrators, and service owners seeking to improve efficiency and visibility across their environments.
 
+## Core Components
+Ops360 is built on a scalable, cloud-native architecture that integrates with Azure services and supports hybrid environments.
+
+- **Data Ingestion:** Collects telemetry and operational data from various sources
+- **Processing Engine:** Analyzes data for insights, alerts, and automation
+- **Agentic Layer:** Provides AI-driven guidance and automation
+- **Portal Interface:** Centralized dashboard for user interaction
+
+## Key Concepts
+- Resource groups and scopes
+- Role-based access control (RBAC)
+- Integration with Azure Monitor, Log Analytics, and Copilot
+
+## Extensibility
+Ops360 supports custom integrations and extensible workflows for advanced scenarios.
+
+
 ## Next Steps
 - [Onboarding](onboarding.md)
 - [Licensing](licensing.md)
