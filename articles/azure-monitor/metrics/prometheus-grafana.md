@@ -23,7 +23,6 @@ Azure Monitor managed service for Prometheus stores data in an [Azure Monitor wo
 
 ## Configure Grafana
 
-Follow the processes below 
 
 ## [Azure Managed Grafana](#tab/azure-managed-grafana)
 
@@ -131,7 +130,7 @@ Use the following steps to set up Microsoft Entra ID authentication:
 
     :::image type="content" source="media/prometheus-grafana/app-access-add-role-assignment.png" lightbox="media/prometheus-grafana/app-access-add-role-assignment.png" alt-text="Screenshot that shows the Add role assignment page.":::
 
-6. Choose **Select members**. Search for the app that you registered in the [Register an app with Microsoft Entra ID](#register-an-app-with-azure-active-directory) section and select it.
+6. Choose **Select members**. Search for the app that you registered in the [Register an app with Microsoft Entra ID](#register-an-app-with-microsoft-entra-id) section and select it.
 
 9. Select **Review + assign**.
 

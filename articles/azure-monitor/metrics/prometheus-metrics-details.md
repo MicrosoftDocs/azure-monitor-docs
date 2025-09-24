@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor managed service for Prometheus technical details
-description: Get an overview of Azure Monitor with Prometheus, which provides Prometheus-compatible interfaces called Azure Monitor workspaces for storing and retrieving metric data.
+description: Technical details of Azure Monitor with Prometheus, which provides Prometheus-compatible interfaces called Azure Monitor workspaces for storing and retrieving metric data.
 ms.topic: concept-article
 ms.date: 10/06/2024
 ---
@@ -8,6 +8,7 @@ ms.date: 10/06/2024
 # Azure Monitor managed service for Prometheus technical details
 
 [Prometheus](http://promehteus.io) is a popular open-source monitoring and alerting solution that's widely used in the cloud-native ecosystem. Azure Monitor provides a fully managed service for Prometheus that enables you to collect, store, and analyze Prometheus metrics without maintaining your own Prometheus server. You can leverage this managed service to collect Prometheus metrics from your Kubernetes clusters and virtual machines, or you can integrate with it from your self-managed Prometheus servers.
+
 
 ## Service limits and quotas
 
@@ -52,6 +53,9 @@ Open-source Prometheus treats the preceding examples as two different time serie
 Prometheus [does not support duplicate time series](https://promlabs.com/blog/2022/12/15/understanding-duplicate-samples-and-out-of-order-timestamp-errors-in-prometheus). Azure Managed Prometheus surfaces these to users as 422 errors rather than silently drop duplicate time series. Users encountering these errors should take action to avoid duplication of time series. 
 
 For example, if a user uses the same "cluster" label value for two different clusters stored in different resource groups but ingesting to the same AMW, they should rename one of these labels for uniqueness. This error will only arise in edge-cases where the timestamp and values are identical across both clusters in this scenario.
+
+## Personal data
+The use of Azure Monitor to manage and host Prometheus is intended for storing information about the service health of customer machines and applications. It's not intended for storing any personal data. Ensure that you don't send any sensitive information, such as usernames and credit card numbers, into Azure Monitor-hosted Prometheus fields like metric names, label names, or label values.
 
 
 ## Metric names, label names & label values

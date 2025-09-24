@@ -125,10 +125,10 @@ Optimizing Prometheus queries using filters involves refining the queries to ret
 
 Running a high number of parallel queries in Prometheus can lead to performance bottlenecks and can affect the stability of your Prometheus server. To handle a large volume of parallel queries efficiently, follow the best practices below:
 
-| Best practice            | Description                                                                                                 |
-|--------------------------|-------------------------------------------------------------------------------------------------------------|
+| Best practice | Description |
+|:---|:---|
 | Query Load Distribution. | Distribute the query load by spreading the queries across different time intervals or Prometheus instances. |
-| Staggered Queries.       | Schedule queries to run at different intervals to avoid peaks of simultaneous query executions.             |
+| Staggered Queries. | Schedule queries to run at different intervals to avoid peaks of simultaneous query executions. |
 
 If you're still seeing issues with running many parallel queries, create a support ticket to request an increase in the query limits.
 

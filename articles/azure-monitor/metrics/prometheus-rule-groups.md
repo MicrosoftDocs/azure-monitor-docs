@@ -9,7 +9,7 @@ ms.date: 11/09/2024
 
 Rules in Prometheus act on data as the data is collected, either to precompute values stored in the time series or to alert on predefined conditions in your collected metrics. Azure Monitor managed service for Prometheus provides predefined sets of each type of rule and allows you to create and manage custom rules using the Azure portal. 
 
-## Rule groups and types
+## Rule groups types
 A Prometheus rule group is a collection of alert rules/or and recording rules that are evaluated together. Every rule must be a member of a single rule group. Rule groups define the scope of all the rules in the group and the frequency that they're evaluated.
 
 There are two types of Prometheus rules.
@@ -45,7 +45,7 @@ Select **Rule groups** from an Azure Monitor workspace in the Azure portal to vi
 **All rules**
 From the **Alerts** page in the **Monitor** menu in the Azure portal, select **Prometheus rule groups** to view all rules groups in subscriptions you have access to. 
 
-:::image type="content" source="media/prometheus-metrics-rule-groups/prometheus-rule-groups-from-alerts.png" alt-text="Screenshot that shows how to view Prometheus rule groups from the alerts screen.":::
+:::image type="content" source="media/prometheus-rule-groups/prometheus-rule-groups-from-alerts.png" alt-text="Screenshot that shows how to view Prometheus rule groups from the alerts screen.":::
 
 This view identifies the workspace where the rule group is located, whether it's enabled, and the cluster if the rule group is limited to a specific cluster scope. Use the filters at the top of the screen to narrow the list of rule groups by various properties. You can delete multiple rule groups from this view by selecting them and then clicking **Delete**. This can be useful, for example, to cleanup rule groups that are no longer needed after deleting a cluster.
 
@@ -62,7 +62,7 @@ This view identifies the workspace where the rule group is located, whether it's
 
 Open the **All rules** view described about and select **+ Create**
 
-:::image type="content" source="media/prometheus-metrics-rule-groups/create-rule-group.png" lightbox="media/prometheus-metrics-rule-groups/create-rule-group.png" alt-text="Screenshot that shows option to create a new Prometheus rule group.":::
+:::image type="content" source="media/prometheus-rule-groups/create-rule-group.png" lightbox="media/prometheus-rule-groups/create-rule-group.png" alt-text="Screenshot that shows option to create a new Prometheus rule group.":::
 
 **Scope**
 
@@ -124,7 +124,7 @@ On the **Scope** tab:
 
 1. Select **Next** to configure the rule group details.
 
-   :::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-scope.png" alt-text="Screenshot that shows configuration of Prometheus rule group scope.":::
+   :::image type="content" source="media/prometheus-rule-groups/create-new-rule-group-scope.png" alt-text="Screenshot that shows configuration of Prometheus rule group scope.":::
 
 ### [CLI](#tab/cli)
 Use the [az alerts-management prometheus-rule-group create](/cli/azure/alerts-management/prometheus-rule-group#commands) command to create a new Prometheus rule group.
@@ -311,16 +311,14 @@ If both the cluster ID scope and `clusterName` property aren't specified for a r
 
 
 
-
-
 #### Configure the rule group details
 
 
 
-:::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-recording.png" alt-text="Screenshot that shows configuration of a Prometheus rule group recording rule.":::
+:::image type="content" source="media/prometheus-rule-groups/create-new-rule-group-recording.png" alt-text="Screenshot that shows configuration of a Prometheus rule group recording rule.":::
 
 
-:::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-alert.png" alt-text="Screenshot that shows configuration of Prometheus rule group alert rule.":::
+:::image type="content" source="media/prometheus-rule-groups/create-new-rule-group-alert.png" alt-text="Screenshot that shows configuration of Prometheus rule group alert rule.":::
 
 > [!NOTE]
 > For alert rules, the expression query typically returns only time series that fulfill the expression condition. If the preview chart isn't shown and you get the message "The query returned no result," it's likely that the condition wasn't fulfilled in the preview time range.
@@ -329,16 +327,34 @@ If both the cluster ID scope and `clusterName` property aren't specified for a r
 
 1. On the **Tags** tab, set any required Azure resource tags to be added to the rule group resource.
 
-    :::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-tags.png" alt-text="Screenshot that shows the Tags tab when creating a new alert rule.":::
+    :::image type="content" source="media/prometheus-rule-groups/create-new-rule-group-tags.png" alt-text="Screenshot that shows the Tags tab when creating a new alert rule.":::
 
 1. On the **Review + create** tab, the rule group is validated and lets you know about any issues. On this tab, you can also select the **View automation template** option and download the template for the group that you're about to create.
 
 1. After validation passes and you review the settings, select **Create**.
 
-    :::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-review-create.png" alt-text="Screenshot that shows the Review + create tab when you create a new alert rule.":::
+    :::image type="content" source="media/prometheus-rule-groups/create-new-rule-group-review-create.png" alt-text="Screenshot that shows the Review + create tab when you create a new alert rule.":::
 
 1. You can follow up on the rule group deployment to make sure that it finishes successfully or to be notified of any error.
 
+## View the resource health states of your Prometheus rule groups
+
+You can now view the [resource health state](../../service-health/resource-health-overview.md) of your Prometheus rule group in the portal. You can detect problems in your rule groups, such as incorrect configuration, or query throttling problems.
+
+1. In the [portal](https://portal.azure.com/), go to the overview of the Prometheus rule group that you want to monitor.
+
+1. On the left pane, under **Help**, select **Resource health**.
+
+    :::image type="content" source="media/prometheus-rule-groups/prometheus-rule-groups-resource-health.png" alt-text="Screenshot that shows how to view the resource health state of a Prometheus rule group.":::
+
+1. On the **Resource health** pane, you can see the current availability state of the rule group. You can also see a history of recent resource health events, up to the last 30 days.
+
+    :::image type="content" source="media/prometheus-rule-groups/prometheus-rule-groups-resource-health-history.png" alt-text="Screenshot that shows how to view the resource health history of a Prometheus rule group.":::
+
+    * If the rule group is marked as **Available**, it's working as expected.
+    * If the rule group is marked as **Degraded**, one or more rules in the group aren't working as expected. The rule query might be throttled, or other issues might cause the rule evaluation to fail. Expand the status entry for more information on the detected problem, suggestions for mitigation, or further troubleshooting.
+    * If the rule group is marked as **Unavailable**, the entire rule group isn't working as expected. There might be a configuration issue (for example, the Azure Monitor workspace can't be detected) or internal service issues. Expand the status entry for more information on the detected problem, suggestions for mitigation, or further troubleshooting.
+    * If the rule group is marked as **Unknown**, the entire rule group is disabled or is in an unknown state.
 
 
 ## Disable and enable rule groups
