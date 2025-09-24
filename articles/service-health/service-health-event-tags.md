@@ -43,9 +43,9 @@ For example:
 
 A Health advisory displays a Retirement (subtype) indicating a product is being phased out.
 :::image type="content"source="./media/event-tags/event-tags-sub-type.png"alt-text="Screenshot of Health advisories pane with subtype event tags." lightbox="media/event-tags/event-tags-sub-type.png":::
-
+<!---
 >[!TIP]
->You can select **+ Add filter** and search on the subtype displayed.
+>You can select **+ Add filter** and search on the subtype displayed.--->
 
 A Billing update might have an FX Rate Change (subtype) indicating adjustments in foreign exchange rates that affect billing.
 
