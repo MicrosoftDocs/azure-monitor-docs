@@ -57,8 +57,8 @@ Prometheus metrics are stored in an [Azure Monitor workspace](azure-monitor-work
 
 The following limitations apply to Azure Monitor managed service for Prometheus:
 
-- The minimum frequency for scraping and storing metrics is one second. See [Case sensitivity in Azure Managed Prometheus](./prometheus-metrics-overview.md#case-sensitivity).
-- Certain limitations apply to metric names, label names, and label values. See [Metric names, label names, and label values](./prometheus-metrics-overview.md#metric-names-label-names--label-values).
+- The minimum frequency for scraping and storing metrics is one second. See [Case sensitivity in Azure Managed Prometheus](./prometheus-metrics-details.md#case-sensitivity).
+- Certain limitations apply to metric names, label names, and label values. See [Metric names, label names, and label values](./prometheus-metrics-details.md#metric-names-label-names--label-values).
 - Certain limitations apply to the PromQL query API for Azure Managed Prometheus. See [Query Prometheus metrics by using the API and PromQL](./prometheus-api-promql.md#api-limitations).
 - The `PrometheusRule` CRD isn't supported with Azure Managed Prometheus.
 
@@ -129,7 +129,7 @@ Also consider [remote-write tuning](https://prometheus.io/docs/practices/remote_
 
 ### Alerting rules and recording rules
 
-Azure Managed Prometheus supports Prometheus alerting rules and recording rules with Prometheus rule groups. See [Convert your existing rules to a Prometheus rule group Azure Resource Manager template](./prometheus-rule-groups.md#convert-prometheus-rules-file-to-a-prometheus-rule-group-arm-template).
+Azure Managed Prometheus supports Prometheus alerting rules and recording rules with Prometheus rule groups. See [Convert your existing rules to a Prometheus rule group Azure Resource Manager template](./prometheus-rule-groups.md#convert-prometheus-rules-file-to-a-managed-prometheus-rule-group).
 
 With the managed add-on, recommended recording rules are automatically set up as you enable Managed Prometheus for your AKS or Azure Arc-enabled cluster. To review the list of automatically provisioned recording rules, see [Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md#recording-rules). Prometheus community recommended alerts are also available, and you can create them out-of-the-box.
 

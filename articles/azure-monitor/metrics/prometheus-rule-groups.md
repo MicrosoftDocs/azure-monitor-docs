@@ -275,7 +275,7 @@ In addition to the rules file, the utility requires other properties needed to c
 You can optionally limit the rules in a rule group to query data originating from a single specific cluster by adding a cluster scope to your rule group or by using the rule group `clusterName` property.
 Limit rules to a single cluster if your Azure Monitor workspace contains a large amount of data from multiple clusters. In such a case, there's a concern that running a single set of rules on all the data might cause performance or throttling issues. By using the cluster scope, you can create multiple rule groups, each configured with the same rules, with each group covering a different cluster.
 
-To limit your rule group to a cluster scope [by using an ARM template](#create-a-prometheus-rule-group-by-using-an-arm-template), add the Azure resource ID value of your cluster to the rule group `scopes[]` list. *The scopes list must still include the Azure Monitor workspace resource ID.* The following cluster resource types are supported as a cluster scope:
+To limit your rule group to a cluster scope [using an ARM template](#create-prometheus-rule-groups-and-rules), add the Azure resource ID value of your cluster to the rule group `scopes[]` list. *The scopes list must still include the Azure Monitor workspace resource ID.* The following cluster resource types are supported as a cluster scope:
 
 * Azure Kubernetes Service clusters (`Microsoft.ContainerService/managedClusters`)
 * Azure Arc-enabled Kubernetes clusters (`Microsoft.kubernetes/connectedClusters`)
