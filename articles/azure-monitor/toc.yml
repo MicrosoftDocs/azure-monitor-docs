@@ -358,6 +358,8 @@ items:
           href: vm/vminsights-enable.md
         - name: Enable with Azure Policy
           href: vm/vminsights-enable-policy.md
+        - name: Enable OpenTelemetry metrics (Preview)
+          href: vm/vminsights-opentelemetry.md
         - name: Windows client machines
           href: vm/vminsights-enable-client.md
         - name: Dependency agent
