@@ -62,7 +62,7 @@ To optimize queries, consider the following best practices:
 
 #### Use Recording rules to optimize query performance
 
-Prometheus recording rules are used to precompute frequently used, or computationally expensive queries, making them more efficient and faster to query. Recording rules are especially useful for high volume metrics where querying raw data can be slow and resource-intensive. For more information, see [Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules). Azure Managed Prometheus provides a managed and scalable way to create and update recording rules with the help of [Azure Managed Prometheus Rule Groups](prometheus-rule-groups.md#rule-types).
+Prometheus recording rules are used to precompute frequently used, or computationally expensive queries, making them more efficient and faster to query. Recording rules are especially useful for high volume metrics where querying raw data can be slow and resource-intensive. For more information, see [Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules). Azure Managed Prometheus provides a managed and scalable way to create and update recording rules with the help of [Azure Managed Prometheus Rule Groups](prometheus-rule-groups.md).
 
 Once the rule groups are created, Azure Managed Prometheus automatically loads and starts evaluating them. Query rule groups from the Azure Monitor workspace like other Prometheus metrics.
 

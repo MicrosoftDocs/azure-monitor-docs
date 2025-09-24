@@ -94,7 +94,7 @@ apiserver = "mymetric.*"
 > [!NOTE]
 > If you use quotation marks or backslashes in the regex, you need to escape them by using a backslash like the examples `"test\'smetric\"s\""` and `testbackslash\\*`.
 
-If you want to further customize default targets to change properties like collection frequency or labels, then disable that target by setting its value to `false`. Then create a custom job for the target as described in [Customize scraping of Prometheus metrics in Azure Monitor](#configure-custom-prometheus-scrape-jobs).
+If you want to further customize default targets to change properties like collection frequency or labels, then disable that target by setting its value to `false`. Then create a custom job for the target as described in [Customize scraping of Prometheus metrics in Azure Monitor](./prometheus-metrics-scrape-configmap.md).
 
 ### Cluster alias
 The last part of the cluster's resource ID is appended to every time series to uniquely identify the data. For example, if the resource ID is `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-name/providers/Microsoft.ContainerService/managedClusters/myclustername`, the cluster label is `myclustername`. To override this cluster label, update the setting `cluster_alias` under `prometheus-collector-settings`. 

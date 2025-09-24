@@ -8,9 +8,9 @@ ms.date: 4/18/2024
 # Send Prometheus data to Azure Monitor using managed identity authentication
 
 > [!IMPORTANT]
-> This article describes how to set up [remote write in Azure Monitor managed service for Prometheus](../metrics/prometheus-metrics-overview.md) using managed identity authentication and a side car container provided by Azure Monitor. You can use remote write with managed identity without using a sidecar using the guidance at [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write-configure.md).
+> This article describes how to set up remote write in Azure Monitor managed service for Prometheus using managed identity authentication and a side car container provided by Azure Monitor. You can use remote write with managed identity without using a sidecar using the guidance at [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md).
 
-This article describes how to set up [remote write](prometheus-remote-write.md) to send data from a self-managed Prometheus server running in your Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes cluster by using managed identity authentication and a side car container provided by Azure Monitor. You can either use an existing identity that's created by AKS or [create your own](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). Both options are described here.
+This article describes how to set up [remote write](../metrics/prometheus-remote-write.md) to send data from a self-managed Prometheus server running in your Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes cluster by using managed identity authentication and a side car container provided by Azure Monitor. You can either use an existing identity that's created by AKS or [create your own](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). Both options are described here.
 
 > [!NOTE]
 > If you are using the user-assigned managed identity, we recommend that you directly configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. See [Send Prometheus data to Azure Monitor using user-assigned managed identity](../essentials/prometheus-remote-write-virtual-machines.md#set-up-authentication-for-remote-write) to learn more. The steps below use the Azure Monitor side car container.
@@ -146,13 +146,13 @@ This step isn't required if you're using an AKS identity. An AKS identity alread
 
 ## Verification and troubleshooting
 
-For verification and troubleshooting information, see [Troubleshooting remote write](/azure/azure-monitor/containers/prometheus-remote-write-troubleshooting)  and [Azure Monitor managed service for Prometheus remote write](prometheus-remote-write.md#verify-remote-write-is-working-correctly).
+For verification and troubleshooting information, see [Troubleshooting remote write](/azure/azure-monitor/containers/prometheus-remote-write-troubleshooting)  and [Azure Monitor managed service for Prometheus remote write](../metrics/prometheus-remote-write.md#troubleshoot).
 
 ## Next steps
 
 - [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md)
 - [Learn more about Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md)
-- [Remote write in Azure Monitor managed service for Prometheus](prometheus-remote-write.md)
+- [Remote write in Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md)
 - [Send Prometheus data to Azure Monitor by using Microsoft Entra authentication](./prometheus-remote-write-active-directory.md)
 - [Send Prometheus data to Azure Monitor by using Microsoft Entra Workload ID (preview) authentication](./prometheus-remote-write-azure-workload-identity.md)
 - [Send Prometheus data to Azure Monitor by using Microsoft Entra pod-managed identity (preview) authentication](./prometheus-remote-write-azure-ad-pod-identity.md)

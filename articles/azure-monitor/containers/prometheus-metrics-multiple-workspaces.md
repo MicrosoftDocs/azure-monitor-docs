@@ -71,7 +71,7 @@ scrape_configs:
 
 Once you have your ConfigMaps defined, create a DCR for each scrape config. The DCR will look for the label you defined in the ConfigMap and route the data to the appropriate Azure Monitor workspace. 
 
-Use the ARM template [https://aka.ms/azureprometheus-enable-arm-template](https://aka.ms/azureprometheus-enable-arm-template) described in [Enable monitoring for Kubernetes clusters using ARM templates](./kubernetes-monitoring-enable-arm.md). Before deploying the template though, you need to make the following edits to add support for multiple Azure Monitor workspaces.
+Use the ARM template [https://aka.ms/azureprometheus-enable-arm-template](https://aka.ms/azureprometheus-enable-arm-template) described in [Enable monitoring for Kubernetes clusters using ARM templates](./kubernetes-monitoring-enable.md). Before deploying the template though, you need to make the following edits to add support for multiple Azure Monitor workspaces.
 
 **Parameters**
 Add the following parameters:

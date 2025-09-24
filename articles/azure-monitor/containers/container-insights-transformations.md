@@ -1,28 +1,36 @@
 ---
-title: Data transformations in Container insights in Azure Monitor
-description: Describes how to transform data using a DCR transformation in Container insights.
+title: Filter and transform Kubernetes container logs using data transformations in Azure Monitor
+description: Describes how to transform data using a DCR transformation with container logs from your Kubernetes cluster using Azure Monitor.
 ms.topic: article
-ms.date: 05/14/2025
+ms.date: 09/14/2025
 ms.reviewer: aul
 ---
 
-# Filter and transform container logs using data transformations in Azure Monitor
+# Filter and transform Kubernetes container logs using data transformations in Azure Monitor
 
-This article describes how to implement data transformations in Container insights. [Transformations](../essentials/data-collection-transformations.md) in Azure Monitor allow you to modify or filter data before it's ingested in your Log Analytics workspace. They allow you to perform such actions as filtering out data collected from your cluster to save costs or processing incoming data to assist in your data queries.
+This article describes how to implement data transformations with container log data from your Kubernetes cluster. [Transformations](../essentials/data-collection-transformations.md) in Azure Monitor allow you to modify or filter data before it's ingested in your Log Analytics workspace. They allow you to perform such actions as filtering out data collected from your cluster to save costs or processing incoming data to assist in your data queries.
 
 > [!IMPORTANT]
 > The article [Filter container log collection with ConfigMap](./container-insights-data-collection-filter.md) describes standard configuration settings to configure and filter container log collection. You should perform any required configuration using these features before using transformations. Use a transformation to perform filtering or other data configuration that you can't perform with the standard configuration settings.
 
 ## Data collection rules
-Transformations are implemented in [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) which are used to configure data collection in Azure Monitor. [Configure data collection using DCR](./container-insights-data-collection-configure.md) describes the DCR that's automatically created when you enable Container insights on a cluster. To create a transformation, you must perform one of the following actions:
+Transformations are implemented in [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) which are used to configure data collection in Azure Monitor. When you enable monitoring Prometheus metrics and container logging for your Kubernetes clusters in the Azure monitor, separate DCRs are created for each type of data. Transformations can be added to the DCR that collects container logs.
 
-- **New cluster**. Use an existing [ARM template ](https://github.com/microsoft/Docker-Provider/tree/ci_prod/scripts/onboarding/aks/onboarding-using-msi-auth) to onboard an AKS cluster to Container insights. Modify the DCR in that template with your required configuration, including a transformation similar to one of the samples below.
+To create a transformation, perform one of the following actions:
+
+- **New cluster**. Use an existing [ARM template](https://github.com/microsoft/Docker-Provider/tree/ci_prod/scripts/onboarding/aks/onboarding-using-msi-auth) to onboard an AKS cluster to Container insights. Modify the DCR in that template with your required configuration, including a transformation similar to one of the samples below.
 - **Existing DCR**. After a cluster has been onboarded to Container insights and data collection configured, edit its DCR to include a transformation using any of the methods in [Editing Data Collection Rules](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json). 
 
 > [!NOTE]
 > There is currently minimal UI for editing DCRs, which is required to add transformations. In most cases, you need to manually edit the DCR. This article describes the DCR structure to implement. See [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) for guidance on how to implement that structure.
 
-When you enable monitoring Prometheus metrics and container logging for your Kubernetes clusters in the Azure monitor, the following resources are created in your subscription. 
+The resources that are created when you enable monitoring Prometheus metrics and container logging for your Kubernetes clusters in the Azure monitor are described in the following tables. 
+
+**Log collection**
+
+| Resource Name | Resource Type | Resource Group | Region/Location | Description |
+|:---|:---|:---|:---|:---|
+| `MSCI-<aksclusterregion>-<clustername>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | Same as cluster | Same as Log Analytics workspace | Associated with the AKS cluster resource, defines configuration of logs collection by the Azure Monitor agent. **This is the DCR to add the transformation.** |
 
 **Managed Prometheus**
 
@@ -37,12 +45,6 @@ When you create a new Azure Monitor workspace, the following additional resource
 |:---|:---|:---|:---|:---|
 | `<azuremonitor-workspace-name>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCR to be used if you use Remote Write from a Prometheus server. |
 | `<azuremonitor-workspace-name>` | [Data Collection endpoint](../data-collection/data-collection-endpoint-overview.md) | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCE to be used if you use Remote Write from a Prometheus server. |
-
-**Log collection**
-
-| Resource Name | Resource Type | Resource Group | Region/Location | Description |
-|:---|:---|:---|:---|:---|
-| `MSCI-<aksclusterregion>-<clustername>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | Same as cluster | Same as Log Analytics workspace | Associated with the AKS cluster resource, defines configuration of logs collection by the Azure Monitor agent. |
 
 
 ## Data sources
