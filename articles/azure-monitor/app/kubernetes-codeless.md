@@ -156,8 +156,8 @@ Use per-deployment onboarding to ensure deployments are instrumented with differ
     At a minimum, the following configuration is required:
     - `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource.
   
-> [!IMPORTANT]
-> If you're using OpenTelemetry to ingest into the Application Insights resource, you must also create a Data Collection Rule Association (DCR-A) between that Application Insights resource's DCR and the AKS cluster. See [here](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview#data-collection-rule-associations-dcra) for details.
+    > [!IMPORTANT]
+    > If you're using OpenTelemetry to ingest into the Application Insights resource, you must also create a Data Collection Rule Association (DCR-A) between that Application Insights resource's DCR and the AKS cluster. See [here](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview#data-collection-rule-associations-dcra) for details.
   
     The value of `autoInstrumentationPlatforms` will be ignored; the language (or no language, i.e. autoconfiguration) is specified in the annotation that associates the custom resource with a deployment (see below).
 
