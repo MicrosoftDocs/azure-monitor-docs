@@ -107,7 +107,7 @@ Here's an example of an inbound security rule with an ActionGroup service tag:
 
 :::image type="content" source="../alerts/media/action-groups/action-group-service-tag.png" alt-text="Screenshot that shows a completed inbound security rule with an ActionGroup service tag.":::
 
-### Application Insights Profiler for .NET
+### Application Insights Profiler
 
 | Purpose | Hostname | Ports |
 |---------|-----|-------|
