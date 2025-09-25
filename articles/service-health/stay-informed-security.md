@@ -32,9 +32,8 @@ The **Security advisory pane** in [Azure Service Health](https://ms.portal.azure
 Azure publishes Service Health notifications, which contain information about the resources under your subscription. 
 - You can review these security advisories in the Service Health experience in the Azure portal and get notified about security advisories through your preferred channel by setting up Service Health alerts for this type of notification. 
 - You can create [Service Health alerts](../service-health/alerts-activity-log-service-notifications-portal.md) on Service Health notifications in the portal.
+- Depending on your requirements, you can use the same [action group](../azure-monitor/alerts/action-groups.md) or different action groups. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 
->[!NOTE]
->Depending on your requirements, you can configure various alerts to use the same [action group](../azure-monitor/alerts/action-groups.md) or different action groups. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 
 **Email notifications**
 
@@ -73,10 +72,6 @@ However, when Microsoft identifies a security event that is both impactful and d
 
     Create **Azure Service Health** alerts for security events so that your organization can be alerted for any security event that Microsoft identifies. 
     This channel is the same one you configure for alerts about outages, or maintenance information on the platform: [Create activity log alerts on Service notifications using the Azure portal](../service-health/alerts-activity-log-service-notifications-portal.md).
-
-4. **Configure alerts using action groups**
-    
-    Depending on your requirements, you can use the same [action group](../azure-monitor/alerts/action-groups.md) or different action groups. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 
 
 ### More information
