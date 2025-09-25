@@ -125,11 +125,11 @@ sections:
           Default SDK modules focus on performance, usage, and diagnostics and typically do not include sensitive personal data. Do not put sensitive data in URLs. Review custom telemetry so it does not include personal data. Client IP is used for geolocation, then the stored IP field is zeroed by default. If you need masking, add a telemetry initializer. If your app needs an opt-out, disable collection in code. Also review seemingly innocuous fields, for example device name on personal devices.
           You can control or disable some collection in configuration or via code. For more information, see [Geolocation and IP address handling](ip-collection.md).
           
-          #### Local buffering and outages
-          If connectivity to Azure is lost or throttled, SDKs buffer telemetry locally and retry. Stale items are dropped, for example after about 48 hours for logs and 30 minutes for metrics. Local temporary storage is not encrypted, so secure any storage directory you configure. In browsers, sessionStorage is used to buffer sends.
-          
           #### TLS
           Use modern TLS for data in transit. Do not hardcode older protocol versions. Allow the platform to negotiate newer versions as they become available. For more information, see [Secure your Azure Monitor deployment](../fundamentals/best-practices-security.md).
+          
+          #### Local buffering and outages
+          If connectivity to Azure is lost or throttled, SDKs buffer telemetry locally and retry. Stale items are dropped, for example after about 48 hours for logs and 30 minutes for metrics. Local temporary storage is not encrypted, so secure any storage directory you configure. In browsers, sessionStorage is used to buffer sends.
           
           #### Per-language local storage: quick reference
           - **.NET (ServerTelemetryChannel)**: Defaults to `%LOCALAPPDATA%\Microsoft\ApplicationInsights` or `%TMP%`. You can set a persisted folder in config or code.
