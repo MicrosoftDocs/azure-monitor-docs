@@ -1,8 +1,8 @@
 ---
-title: View and manage Azure security issues
+title: Manage Azure security notifications with Service Health
 description: This article shows you where Azure customers receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
 ms.topic: article
-ms.date: 09/19/2025
+ms.date: 09/25/2025
 ---
 
 # View and manage Azure security issues
@@ -15,7 +15,9 @@ This article explains how you receive Azure security notifications, and the thre
 
 You receive security-related notifications affecting your Azure **subscription** workloads in two ways: 
 
-**Security advisory in [Azure Service Health](https://azure.microsoft.com/get-started/azure-portal/service-health/)**
+**Security advisory in [Azure Service Health](https://ms.portal.azure.com/?exp.azureportal_retirements-impacted-resources-treatment=true&feature.useGenericRetirementQuery=true&microsoft_azure_health=dev3#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/securityAnnouncements/incidentType/history/navigateTo/healthhistory/)**
+
+:::image type="content"source="./media/security-notifications/security-advisories-pane.png"alt-text="Screenshot that shows the Security advisories pane."Lightbox="./media/security-notifications/security-advisories-pane.png":::
 
 Azure publishes Service Health notifications, which contain information about the resources under your subscription. 
 - You can review these security advisories in the Service Health experience in the Azure portal and get notified about security advisories through your preferred channel by setting up Service Health alerts for this type of notification. 
