@@ -24,45 +24,38 @@ Modify the settings in the ConfigMap based on the guidance below and then apply 
 kubectl apply -f .\ama-metrics-settings-configmap.yaml
 ```
 
-## Enable and disable default targets
-The following table lists the default targets the Azure Monitor metrics add-on can scrape by default and whether it's initially enabled. Default targets are scraped every 30 seconds. Edit the `default-scrape-settings-enabled` section of the ConfigMap To modify which targets are enabled.
 
-| Key | Type | Enabled | Pod | Description |
-|-----|------|----------|----|-------------|
-| kubelet | bool | `true` | Linux DaemonSet | Scrape kubelet in every node in the K8s cluster without any extra scrape config. |
-| cadvisor | bool | `true` | Linux DaemonSet | Scrape cadvisor in every node in the K8s cluster without any extra scrape config.<br>Linux only. |
-| kubestate | bool | `true` | Linux replica | Scrape kube-state-metrics in the K8s cluster (installed as a part of the add-on) without any extra scrape config. |
-| nodeexporter | bool | `true` | Linux DaemonSet | Scrape node metrics without any extra scrape config.<br>Linux only. |
-| coredns | bool | `false` | Linux replica | Scrape coredns service in the K8s cluster without any extra scrape config. |
-| kubeproxy | bool | `false` | Linux DaemonSet | Scrape kube-proxy in every Linux node discovered in the K8s cluster without any extra scrape config.<br>Linux only. |
-| apiserver | bool | `false` | Linux replica | Scrape the Kubernetes API server in the K8s cluster without any extra scrape config. |
-| windowsexporter | bool | `false` | Windows DaemonSet | Scrape windows-exporter in every node in the K8s cluster without any extra scrape config.<br>Windows only. |
-| windowskubeproxy | bool | `false` | Windows DaemonSet | Scrape windows-kube-proxy in every node in the K8s cluster without any extra scrape config.<br>Windows only. |
-| prometheuscollectorhealth | bool | `false` | Linux replica | Scrape information about the prometheus-collector container, such as the amount and size of time series scraped. |
+## Enable and disable default targets
+[Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md) lists the default targets and metrics that are collected by default from your Kubernetes cluster. To enable/disable scraping of any of these targets, update the setting for the target in the `default-scrape-settings-enabled` section of the ConfigMap to `true` or `false`.
+
+For example, to enable scraping of `coredns` which is disabled by default, update the setting as follows:
+
+```yaml
+default-scrape-settings-enabled: |-
+    kubelet = true
+    coredns = true
+    cadvisor = true
+    kubeproxy = false
+    ...
+```
 
 ## Scrape interval settings
+The default scrape interval for all default targets is 30 seconds. To modify this interval for any target, you can update the setting in the `default-targets-scrape-interval-settings` section of the ConfigMap.
 
-Update the duration in the setting `default-targets-scrape-interval-settings` to update the scrape interval settings for any target. Use the scrape interval format specified in [Configuration file](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) as in the following example\.
+For example, to change the scrape interval for `kubelet` to 60 seconds, update the setting as follows:
 
-```
+```yaml
 default-targets-scrape-interval-settings: |-
     kubelet = "60s"
     coredns = "30s"
     cadvisor = "30s"
-    kubeproxy = "30s"
-    apiserver = "30s"
-    kubestate = "30s"
-    nodeexporter = "30s"
-    windowsexporter = "30s"
-    windowskubeproxy = "30s"
-    kappiebasic = "30s"
-    prometheuscollectorhealth = "30s"
-    podannotations = "30s"
+    ...
 ```
 
-
 ## Enable pod annotation-based scraping
-Add annotations to the pods in your cluster to scrape application pods without creating a custom Prometheus config. To enable scraping pods with specific annotations, add the regex for the namespace(s) of the pods with annotations you want to scrape to `podannotationnamespaceregex` in the `podannotationnamespaceregex` section of the ConfigMap . For example, the following setting scrapes pods with annotations only in the namespaces `kube-system` and `my-namespace`:
+Add annotations to the pods in your cluster to scrape application pods without creating a custom Prometheus config. To enable scraping pods with specific annotations, add the regex for the namespace(s) of the pods with annotations you want to scrape to `podannotationnamespaceregex` in the `podannotationnamespaceregex` section of the ConfigMap . 
+
+For example, the following setting scrapes pods with annotations only in the namespaces `kube-system` and `my-namespace`:
 
 ```yaml
 pod-annotation-based-scraping: |-
@@ -82,9 +75,15 @@ metadata:
 > Scraping the pod annotations from many namespaces can generate a very large volume of metrics depending on the number of pods that have annotations.
 
 ## Customize metrics collected by default targets
-Only minimal metrics are collected for default targets as described in [Minimal ingestion profile for Prometheus metrics in Azure Monitor](prometheus-metrics-scrape-configuration-minimal.md). To collect all metrics from default targets, set `minimalingestionprofile` to `false` and update the keep-lists under `default-targets-metrics-keep-list` for each target you want to change.
+Only minimal metrics are collected for default targets as described in [Minimal ingestion profile for Prometheus metrics in Azure Monitor](prometheus-metrics-scrape-configuration-minimal.md). To collect all metrics from default targets, set `minimalingestionprofile` to `false` in the `default-targets-metrics-keep-list` section of the ConfigMap. 
 
-For example, `kubelet` is the metric filtering setting for the default target kubelet. Use the following script to filter *in* metrics collected for the default targets by using regex-based filtering.
+```yaml
+minimalingestionprofile = false
+```
+
+Alternatively, you can add metrics to be collected for any default target by updating its keep-lists under `default-targets-metrics-keep-list`.
+
+For example, `kubelet` is the metric filtering setting for the default target kubelet. Use the following script to filter in metrics collected for the default targets by using regex-based filtering.
 
 ```bash
 kubelet = "metricX|metricY"
@@ -102,6 +101,12 @@ The last part of the cluster's resource ID is appended to every time series to u
 > [!NOTE]
 > Only alphanumeric characters are allowed. Any other characters are replaced with `_`. 
 > If you are enabling recording and alerting rules, make sure to use the cluster alias name in the cluster name parameter of the rule onboarding template for the rules to work.
+
+```yml
+  prometheus-collector-settings: |-
+    cluster_alias = ""
+```
+
 
 ## Debug mode
 

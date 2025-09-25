@@ -8658,6 +8658,11 @@
    "source_path": "articles/azure-monitor/containers/prometheus-remote-write.md",
    "redirect_url": "/azure/azure-monitor/metrics/prometheus-remote-write",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/prometheus-metrics-scrape-configuration-minimal.md",
+   "redirect_url": "/azure/azure-monitor/containers/prometheus-metrics-scrape-default",
+   "redirect_document_id": false
   }
  ]
 }

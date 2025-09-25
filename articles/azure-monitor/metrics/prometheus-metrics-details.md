@@ -14,7 +14,8 @@ ms.date: 10/06/2024
 
 Azure Monitor managed service for Prometheus has default limits and quotas for ingestion. When you reach the ingestion limits, throttling can occur. You can request an increase in these limits. For more information, see [Azure Monitor service limits](../fundamentals/service-limits.md#prometheus-metrics).
 
-To monitor and alert on your ingestion metrics, see [Monitor Azure Monitor workspace metrics ingestion](azure-monitor-workspace-monitor-ingest-limits.md).
+- For best practices for scaling, see [Best practices for scaling Azure Monitor Workspaces with Azure Monitor managed service for Prometheus](./azure-monitor-workspace-scaling-best-practice.md)
+- To monitor and alert on your ingestion metrics, see [Monitor Azure Monitor workspace metrics ingestion](azure-monitor-workspace-monitor-ingest-limits.md).
 
 ## Limitations
 
@@ -23,6 +24,16 @@ The following limitations apply to Azure Monitor managed service for Prometheus:
 * The minimum frequency for scraping and storing metrics is 1 second.
 * During node updates, you might experience gaps that last 1 to 2 minutes in some metric collections from the cluster-level collector. This gap is due to a regular action from Azure Kubernetes Service to update the nodes in your cluster. This behavior doesn't affect recommended alert rules.
 * Managed Prometheus for Windows nodes isn't automatically enabled. To enable monitoring for Windows nodes and pods in your clusters, see [Enable Windows metrics collection (preview)](../containers/enable-windows-metrics.md).
+
+## Data considerations
+
+Data stored in the Azure Monitor workspace, including Prometheus data, is handled in accordance with all standards described in the [Azure Trust Center](https://www.microsoft.com/en-us/trust-center?rtc=1). Several considerations exist specific to this data:
+
+* Data is physically stored in the same region that the Azure Monitor Workspace is provisioned in.
+* Data is encrypted at rest using a Microsoft-managed key.
+* Data is retained for 18 months.
+
+For details about the Azure Monitor managed service for Prometheus' support of PII/EUII data, see [Azure Monitor and Prometheus](prometheus-metrics-overview.md).
 
 ## Case sensitivity
 

@@ -58,7 +58,7 @@ Azure Monitor provides multiple tools for querying and analyzing Prometheus metr
 
 [Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) in Prometheus allow you to precompute values stored in the time series, while [alert rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) provide proactive notification of predefined conditions in your collected metrics. Azure Monitor managed service for Prometheus automatically deploys a predefined set of recording rules, and Container insights allows you to easily enable a set of common alert rules for Kubernetes clusters. 
 
-Recording and alert rules are stored in the Azure Monitor workspace, and you can easily manage existing rules and manually create custom rules using the Azure portal. See [Azure Monitor managed service for Prometheus rule groups](./prometheus-rule-groups.md) for details.
+Recording and alert rules are stored in the Azure Monitor workspace, and you can easily manage existing rules and manually create custom rules using a variety of methods such as the Azure portal, CLI, Bicep, and ARM. See [Azure Monitor managed service for Prometheus rule groups](./prometheus-rule-groups.md) for details.
 
 
 ## Related content

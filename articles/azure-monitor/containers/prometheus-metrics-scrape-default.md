@@ -38,57 +38,12 @@ The following table identifies the targets that the Azure Monitor metrics add-on
 |  `windows-exporter`<br>`kube-proxy-windows` | Disabled by default. Requires [Windows metrics collection](./enable-windows-metrics.md) to be enabled. |
 
 
-
-The following targets are **enabled** by default. This means you don't have to provide any scrape job configuration for these targets, as the metrics addon will scrape them automatically by default.
-
-- `cadvisor` (`job=cadvisor`)
-- `nodeexporter` (`job=node`)
-- `kubelet` (`job=kubelet`)
-- `kube-state-metrics` (`job=kube-state-metrics`)
-- `networkobservabilityRetina` (`job=networkobservabilityRetina`)
-
-The following targets are **enabled** when you enable [control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview) feature.
-
-- `controlplane-apiserver` (`job=controlplane-apiserver`)
-- `controlplane-etcd` (`job=controlplane-etcd`)
-
-The following targets are **enabled** when you enable [Container Network Observability](/azure/aks/advanced-network-observability-concepts).
-
-- `networkobservabilityHubble` (`job=networkobservabilityHubble`)
-- `networkobservabilityCilium` (`job=networkobservabilityCilium`)
-
-The following targets are **enabled** when you enable [Azure Container Storage](/azure/storage/container-storage/enable-monitoring).
-
-- `acstor-capacity-provisioner` (`job=acstor-capacity-provisioner`)
-- `acstor-metrics-exporter` (`job=acstor-metrics-exporter`)
-
 ## Metrics collected from default targets
 
-The following metrics are collected by default from each default target. All other metrics are dropped through relabeling rules.
+The following metrics are collected by default from each default target. All other metrics are dropped through relabeling rules. The target must be enabled for the metrics to be collected.
 
-**cadvisor (job=cadvisor)**<br>
-- `container_spec_cpu_period`
-- `container_spec_cpu_quota`
-- `container_cpu_usage_seconds_total`
-- `container_memory_rss`
-- `container_network_receive_bytes_total`
-- `container_network_transmit_bytes_total`
-- `container_network_receive_packets_total`
-- `container_network_transmit_packets_total`
-- `container_network_receive_packets_dropped_total`
-- `container_network_transmit_packets_dropped_total`
-- `container_fs_reads_total`
-- `container_fs_writes_total`
-- `container_fs_reads_bytes_total`
--  `container_fs_writes_bytes_total`
-- `container_memory_working_set_bytes`
-- `container_memory_cache`
-- `container_memory_swap`
-- `container_cpu_cfs_throttled_periods_total`
-- `container_cpu_cfs_periods_total`
-- `kubernetes_build_info"`
+#### kubelet
 
-**kubelet (job=kubelet)**<br>
 - `kubelet_volume_stats_used_bytes`
 - `kubelet_node_name`
 - `kubelet_running_pods`
@@ -118,36 +73,72 @@ The following metrics are collected by default from each default target. All oth
 - `kubelet_volume_stats_inodes`
 - `kubernetes_build_info"`
 
-**nodexporter (job=node)**<br>
-- `node_cpu_seconds_total`
-- `node_memory_MemAvailable_bytes`
-- `node_memory_Buffers_bytes`
-- `node_memory_Cached_bytes`
-- `node_memory_MemFree_bytes`
-- `node_memory_Slab_bytes`
-- `node_memory_MemTotal_bytes`
-- `node_netstat_Tcp_RetransSegs`
-- `node_netstat_Tcp_OutSegs`
-- `node_netstat_TcpExt_TCPSynRetrans`
-- `node_load1``node_load5`
-- `node_load15`
-- `node_disk_read_bytes_total`
-- `node_disk_written_bytes_total`
-- `node_disk_io_time_seconds_total`
-- `node_filesystem_size_bytes`
-- `node_filesystem_avail_bytes`
-- `node_filesystem_readonly`
-- `node_network_receive_bytes_total`
-- `node_network_transmit_bytes_total`
-- `node_vmstat_pgmajfault`
-- `node_network_receive_drop_total`
-- `node_network_transmit_drop_total`
-- `node_disk_io_time_weighted_seconds_total`
-- `node_exporter_build_info`
-- `node_time_seconds`
-- `node_uname_info"`
+#### coredns
 
-**kube-state-metrics (job=kube-state-metrics)**<br>
+- `coredns_build_info`
+- `coredns_panics_total`
+- `coredns_dns_responses_total`
+- `coredns_forward_responses_total`
+- `coredns_dns_request_duration_seconds`  `coredns_dns_request_duration_seconds_bucket`  `coredns_dns_request_duration_seconds_sum`  `coredns_dns_request_duration_seconds_count`
+- `coredns_forward_request_duration_seconds`  `coredns_forward_request_duration_seconds_bucket`  `coredns_forward_request_duration_seconds_sum`  `coredns_forward_request_duration_seconds_count`
+- `coredns_dns_requests_total`
+- `coredns_forward_requests_total`
+- `coredns_cache_hits_total`
+- `coredns_cache_misses_total`
+- `coredns_cache_entries`
+- `coredns_plugin_enabled`
+- `coredns_dns_request_size_bytes` `coredns_dns_request_size_bytes_bucket` `coredns_dns_request_size_bytes_sum` `coredns_dns_request_size_bytes_count` 
+- `coredns_dns_response_size_bytes`  `coredns_dns_response_size_bytes_bucket`  `coredns_dns_response_size_bytes_sum`  `coredns_dns_response_size_bytes_count`
+- `coredns_dns_response_size_bytes`  `coredns_dns_response_size_bytes_bucket`  `coredns_dns_response_size_bytes_sum`  `coredns_dns_response_size_bytes_count` 
+- `process_resident_memory_bytes`
+- `process_cpu_seconds_total`
+- `go_goroutines`
+- `kubernetes_build_info"`
+
+#### cadvisor
+
+- `container_spec_cpu_period`
+- `container_spec_cpu_quota`
+- `container_cpu_usage_seconds_total`
+- `container_memory_rss`
+- `container_network_receive_bytes_total`
+- `container_network_transmit_bytes_total`
+- `container_network_receive_packets_total`
+- `container_network_transmit_packets_total`
+- `container_network_receive_packets_dropped_total`
+- `container_network_transmit_packets_dropped_total`
+- `container_fs_reads_total`
+- `container_fs_writes_total`
+- `container_fs_reads_bytes_total`
+-  `container_fs_writes_bytes_total`
+- `container_memory_working_set_bytes`
+- `container_memory_cache`
+- `container_memory_swap`
+- `container_cpu_cfs_throttled_periods_total`
+- `container_cpu_cfs_periods_total`
+- `kubernetes_build_info"`
+
+#### kubeproxy
+- `kubeproxy_sync_proxy_rules_duration_seconds` `kubeproxy_sync_proxy_rules_duration_seconds_bucket` `kubeproxy_sync_proxy_rules_duration_seconds_sum` `kubeproxy_sync_proxy_rules_duration_seconds_count` `kubeproxy_network_programming_duration_seconds`
+- `kubeproxy_network_programming_duration_seconds` `kubeproxy_network_programming_duration_seconds_bucket` `kubeproxy_network_programming_duration_seconds_sum` `kubeproxy_network_programming_duration_seconds_count` `rest_client_requests_total`
+- `rest_client_request_duration_seconds` `rest_client_request_duration_seconds_bucket` `rest_client_request_duration_seconds_sum` `rest_client_request_duration_seconds_count`
+- `process_resident_memory_bytes`
+- `process_cpu_seconds_total`
+- `go_goroutines`
+- `kubernetes_build_info"`
+
+#### apiserver
+-  `apiserver_request_duration_seconds` `apiserver_request_duration_seconds_bucket` `apiserver_request_duration_seconds_sum` `apiserver_request_duration_seconds_count` 
+-  `apiserver_request_total` 
+-  `workqueue_adds_total``workqueue_depth`
+-  `workqueue_queue_duration_seconds` `workqueue_queue_duration_seconds_bucket` `workqueue_queue_duration_seconds_sum` `workqueue_queue_duration_seconds_count` 
+-  `process_resident_memory_bytes`
+-  `process_cpu_seconds_total`
+-  `go_goroutines`
+-  `kubernetes_build_info"`
+
+#### kube-state
+
 - `kube_job_status_succeeded`
 - `kube_job_spec_completions`
 - `kube_daemonset_status_desired_number_scheduled`
@@ -187,51 +178,38 @@ The following metrics are collected by default from each default target. All oth
 - `kube_resource_labels` (ex - kube_pod_labels, kube_deployment_labels)
 - `kube_resource_annotations` (ex - kube_pod_annotations, kube_deployment_annotations)
 
-**controlplane-apiserver (job=controlplane-apiserver)**<br>
-- `apiserver_request_total`
-- `apiserver_cache_list_fetched_objects_total`
-- `apiserver_cache_list_returned_objects_total`
-- `apiserver_flowcontrol_demand_seats_average`
-- `apiserver_flowcontrol_current_limit_seats`
-- `apiserver_request_sli_duration_seconds_bucket{le=+inf}`
-- `apiserver_request_sli_duration_seconds_count`
-- `apiserver_request_sli_duration_seconds_sum`
-- `process_start_time_seconds`
-- `apiserver_request_duration_seconds_bucket{le=+inf}`
-- `apiserver_request_duration_seconds_count`
-- `apiserver_request_duration_seconds_sum`
-- `apiserver_storage_list_fetched_objects_total`
-- `apiserver_storage_list_returned_objects_total`
-- `apiserver_current_inflight_requests`
+#### nodeexporter
 
-> [!NOTE]
-> `apiserver_request_duration_seconds` and `apiserver_request_sli_duration_seconds` are histogram metrics which have high cardinality and all series are not collected by default. Only the sum and count are used for gathering the average latencies.
-
-**controlplane-etcd (job=controlplane-etcd)**<br>
-- `etcd_server_has_leader`
-- `rest_client_requests_total`
-- `etcd_mvcc_db_total_size_in_bytes`
-- `etcd_mvcc_db_total_size_in_use_in_bytes`
-- `etcd_server_slow_read_indexes_total`
-- `etcd_server_slow_apply_total`
-- `etcd_network_client_grpc_sent_bytes_total`
-- `etcd_server_heartbeat_send_failures_total`
-
-**networkobservabilityHubble (job=networkobservabilityHubble)**<br>
-See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
-
-**networkobservabilityCilium (job=networkobservabilityCilium)**<br>
-See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
+- `node_cpu_seconds_total`
+- `node_memory_MemAvailable_bytes`
+- `node_memory_Buffers_bytes`
+- `node_memory_Cached_bytes`
+- `node_memory_MemFree_bytes`
+- `node_memory_Slab_bytes`
+- `node_memory_MemTotal_bytes`
+- `node_netstat_Tcp_RetransSegs`
+- `node_netstat_Tcp_OutSegs`
+- `node_netstat_TcpExt_TCPSynRetrans`
+- `node_load1``node_load5`
+- `node_load15`
+- `node_disk_read_bytes_total`
+- `node_disk_written_bytes_total`
+- `node_disk_io_time_seconds_total`
+- `node_filesystem_size_bytes`
+- `node_filesystem_avail_bytes`
+- `node_filesystem_readonly`
+- `node_network_receive_bytes_total`
+- `node_network_transmit_bytes_total`
+- `node_vmstat_pgmajfault`
+- `node_network_receive_drop_total`
+- `node_network_transmit_drop_total`
+- `node_disk_io_time_weighted_seconds_total`
+- `node_exporter_build_info`
+- `node_time_seconds`
+- `node_uname_info"`
 
 
-**acstor-capacity-provisioner (job=acstor-capacity-provisioner)**<br>
-See [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
-
-**acstor-metrics-exporter (job=acstor-metrics-exporter)**<br>
-See [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
-
-
-**windows-exporter (job=windows-exporter)**<br>
+#### windowsexporter
 - `windows_system_system_up_time`
 - `windows_cpu_time_total`
 - `windows_memory_available_bytes`
@@ -256,7 +234,7 @@ See [Azure Container Storage metrics](/azure/storage/container-storage/enable-mo
 - `windows_container_network_receive_bytes_total`
 - `windows_container_network_transmit_bytes_total`
 
-**kube-proxy-windows (job=kube-proxy-windows)**<br>
+#### windowskubeproxy
 - `kubeproxy_sync_proxy_rules_duration_seconds`
 - `kubeproxy_sync_proxy_rules_duration_seconds_bucket`
 - `kubeproxy_sync_proxy_rules_duration_seconds_sum`
@@ -269,6 +247,90 @@ See [Azure Container Storage metrics](/azure/storage/container-storage/enable-mo
 - `process_resident_memory_bytes`
 - `process_cpu_seconds_total`
 - `go_goroutines`
+
+#### networkobservabilityHubble
+See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
+
+#### networkobservabilityCilium
+See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
+
+#### controlplane-apiserver
+
+- `apiserver_request_total`
+- `apiserver_cache_list_fetched_objects_total`
+- `apiserver_cache_list_returned_objects_total`
+- `apiserver_flowcontrol_demand_seats_average`
+- `apiserver_flowcontrol_current_limit_seats`
+- `apiserver_request_sli_duration_seconds_bucket{le=+inf}`
+- `apiserver_request_sli_duration_seconds_count`
+- `apiserver_request_sli_duration_seconds_sum`
+- `process_start_time_seconds`
+- `apiserver_request_duration_seconds_bucket{le=+inf}`
+- `apiserver_request_duration_seconds_count`
+- `apiserver_request_duration_seconds_sum`
+- `apiserver_storage_list_fetched_objects_total`
+- `apiserver_storage_list_returned_objects_total`
+- `apiserver_current_inflight_requests`
+
+> [!NOTE]
+> `apiserver_request_duration_seconds` and `apiserver_request_sli_duration_seconds` are histogram metrics which have high cardinality and all series are not collected by default. Only the sum and count are used for gathering the average latencies.
+
+#### controlplane-cluster-autoscaler
+
+- `rest_client_requests_total`
+- `cluster_autoscaler_last_activity`
+- `cluster_autoscaler_cluster_safe_to_autoscale`
+- `cluster_autoscaler_scale_down_in_cooldown`
+- `cluster_autoscaler_scaled_up_nodes_total`
+- `cluster_autoscaler_unneeded_nodes_count`
+- `cluster_autoscaler_unschedulable_pods_count`
+- `cluster_autoscaler_nodes_count`
+- `cloudprovider_azure_api_request_errors`
+- `cloudprovider_azure_api_request_duration_seconds_bucket`
+- `cloudprovider_azure_api_request_duration_seconds_count`
+
+#### controlplane-node-auto-provisioning
+
+- `karpenter_pods_state`
+- `karpenter_nodes_created_total`
+- `karpenter_nodes_terminated_total`
+- `karpenter_nodeclaims_disrupted_total`
+- `karpenter_voluntary_disruption_eligible_nodes`
+- `karpenter_voluntary_disruption_decisions_total`
+
+#### controlplane-kube-scheduler
+- `scheduler_pending_pods`
+- `scheduler_unschedulable_pods`
+- `scheduler_pod_scheduling_attempts`
+- `scheduler_queue_incoming_pods_total`
+- `scheduler_preemption_attempts_total`
+- `scheduler_preemption_victims`
+- `scheduler_scheduling_attempt_duration_seconds`
+- `scheduler_schedule_attempts_total`
+- `scheduler_pod_scheduling_duration_seconds`
+
+#### controlplane-kube-controller-manager
+- `rest_client_request_duration_seconds`
+- `rest_client_requests_total`
+- `workqueue_depth`
+
+#### controlplane-etcd
+- `etcd_server_has_leader`
+- `rest_client_requests_total`
+- `etcd_mvcc_db_total_size_in_bytes`
+- `etcd_mvcc_db_total_size_in_use_in_bytes`
+- `etcd_server_slow_read_indexes_total`
+- `etcd_server_slow_apply_total`
+- `etcd_network_client_grpc_sent_bytes_total`
+- `etcd_server_heartbeat_send_failures_total`
+
+
+#### acstor-capacity-provisioner (job=acstor-capacity-provisioner)
+See [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
+
+#### acstor-metrics-exporter (job=acstor-metrics-exporter)
+See [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
+
 
 ## Dashboards
 

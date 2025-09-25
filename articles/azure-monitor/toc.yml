@@ -489,9 +489,6 @@ items:
             - name: Default configuration
               href: containers/prometheus-metrics-scrape-default.md
               displayName: Prometheus
-            - name: Minimal ingestion profile
-              href: containers/prometheus-metrics-scrape-configuration-minimal.md
-              displayName: Prometheus
             - name: Customize configuration
               href: containers/prometheus-metrics-scrape-configuration.md
               displayName: Prometheus
