@@ -117,7 +117,7 @@ To create a custom table into which to ingest events, in the Azure portal:
 > * Column names are case-sensitive. Make sure to use the correct case in your data collection rule.
 
 > [!NOTE]
-> For more information about currently supported API-versions, see [API version change log for deployment of Microsoft.OperationalInsights/workspaces/tables](/azure/templates/microsoft.operationalinsights/change-log/workspaces/tables).
+> For more information about currently supported API versions, see [API version change log for deployment of Microsoft.OperationalInsights/workspaces/tables](/azure/templates/microsoft.operationalinsights/change-log/workspaces/tables).
 
 ## Create a data collection endpoint
 
