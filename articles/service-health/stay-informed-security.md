@@ -70,8 +70,8 @@ However, when Microsoft identifies a security event that is both impactful and d
 
 3. **Create Azure Service Health alerts for subscription notifications**
 
-    Create **Azure Service Health** alerts for security events so that your organization can be alerted for any security event that Microsoft identifies. 
-    This channel is the same one you configure for alerts about outages, or maintenance information on the platform: [Create activity log alerts on Service notifications using the Azure portal](../service-health/alerts-activity-log-service-notifications-portal.md).
+    Create **Azure Service Health** [alerts](../service-health/alerts-activity-log-service-notifications-portal.md) for security events so that your organization can be alerted for any security event that Microsoft identifies. 
+    This channel is the same one you configure for alerts about outages, or maintenance information on the platform.
 
 
 ### More information
