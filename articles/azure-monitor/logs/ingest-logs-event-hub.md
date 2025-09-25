@@ -108,13 +108,16 @@ To create a custom table into which to ingest events, in the Azure portal:
     }
     '@
     
-    Invoke-AzRestMethod -Path "/subscriptions/<subscription_id>/resourcegroups/<resource_group_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>/tables/<table_name>?api-version=2021-12-01-preview" -Method PUT -payload $tableParams
+    Invoke-AzRestMethod -Path "/subscriptions/<subscription_id>/resourcegroups/<resource_group_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>/tables/<table_name>?api-version=<api-version>" -Method PUT -payload $tableParams
     ```
 
 > [!IMPORTANT]
-> * Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
-> * `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. 
-> * Column names are case-sensitive. Make sure to use the correct case in your data collection rule. 
+> * Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`).
+> * `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
+> * Column names are case-sensitive. Make sure to use the correct case in your data collection rule.
+
+> [!NOTE]
+> For more information about currently supported API-versions, see [API version change log for deployment of Microsoft.OperationalInsights/workspaces/tables](/azure/templates/microsoft.operationalinsights/change-log/workspaces/tables).
 
 ## Create a data collection endpoint
 
