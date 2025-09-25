@@ -8,7 +8,6 @@ ms.date: 09/25/2025
 # Manage Azure security notifications with Service Health
 Security advisories and Security issues are two types of notifications that Azure provides to help you stay informed about security-related matters. <br> Security Advisories address broad threats across the environment, while Security Issues focus on particular assets needing attention. By staying informed about both types of notifications, you can better protect your Azure environment.
 
-There's an important difference between Service Health security advisories and [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) security notifications. 
 
 This article explains how you receive Azure security notifications, and the three steps you can follow to ensure security alerts reach the right people in your organization.
 
@@ -18,7 +17,7 @@ Security advisories are found in Azure Service Health and focus on platform vuln
 
 ## Security issues
 
-Security issues, which are communicated through Microsoft Defender for Cloud, deal with vulnerabilities that are specific to individual Azure resources. This means that while Security advisories give a broader view of potential risks, Security issues provide detailed information about specific resources that might be at risk. For instance, if a particular virtual machine has a security vulnerability, you would receive a Security Issue notification related to that resource.
+Security issues, which are communicated through [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), deal with vulnerabilities that are specific to individual Azure resources. This means that while Security advisories give a broader view of potential risks, Security issues provide detailed information about specific resources that might be at risk. For instance, if a particular virtual machine has a security vulnerability, you would receive a Security Issue notification related to that resource.
 
 
 
@@ -65,7 +64,7 @@ However, when Microsoft identifies a security event that is both impactful and d
     Ensure the **contactable email address** as the [subscription administrator or subscription owner](/azure/cost-management-billing/manage/add-change-subscription-administrator) and is current and correct. 
     This email address is used for security issues that would have an effect at the subscription level.
 
-2. **Check the Contacts for Tenant Global admin, Technical contact, and Security admin roles**
+2. **Check the contacts for Tenant Global admin, Technical contact, and Security admin roles**
 
     Ensure that there are **contactable email addresses** entered for your [Global Admins](/azure/active-directory/roles/permissions-reference), [Technical contacts](/azure/active-directory/fundamentals/active-directory-properties-area), and [security admins](/azure/defender-for-cloud/permissions). 
     These email addresses are used for security issues that would have an effect at the tenant level.
@@ -73,9 +72,11 @@ However, when Microsoft identifies a security event that is both impactful and d
 3. **Create Azure Service Health alerts for subscription notifications**
 
     Create **Azure Service Health** alerts for security events so that your organization can be alerted for any security event that Microsoft identifies. 
-    This channel is the same one you configure to be alerted of outages, or maintenance information on the platform: [Create activity log alerts on Service notifications using the Azure portal](../service-health/alerts-activity-log-service-notifications-portal.md).
+    This channel is the same one you configure for alerts about outages, or maintenance information on the platform: [Create activity log alerts on Service notifications using the Azure portal](../service-health/alerts-activity-log-service-notifications-portal.md).
 
-Depending on your requirements, you can configure various alerts to use the same [action group](../azure-monitor/alerts/action-groups.md) or different action groups. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
+4. **Configure alerts using action groups**
+    
+    Depending on your requirements, you can use the same [action group](../azure-monitor/alerts/action-groups.md) or different action groups. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 
 
 ### More information
