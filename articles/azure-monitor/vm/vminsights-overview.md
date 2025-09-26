@@ -52,6 +52,7 @@ VM insights supports the following operating systems:
 
 - VM insights collects a predefined set of metrics from the VM client and doesn't collect any event data. You can use the Azure portal to [create data collection rules](../vm/data-collection.md) to collect events and additional performance counters using the same Azure Monitor agent used by VM insights.
 - VM insights doesn't support sending data to multiple Log Analytics workspaces (multi-homing).
+- VM insights doesn't support any sampling frequency other than every 60 seconds for performance counters in the Microsoft-InsightsMetrics stream.
 
 ## Diagnostic and usage data
 
