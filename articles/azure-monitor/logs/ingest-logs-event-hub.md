@@ -78,7 +78,7 @@ To create a custom table into which to ingest events, in the Azure portal:
 
     :::image type="content" source="media/ingest-logs-event-hub/create-custom-table-open-cloud-shell.png" lightbox="media/ingest-logs-event-hub/create-custom-table-open-cloud-shell.png" alt-text="Screenshot showing how to open Cloud Shell.":::
 
-1. Run this PowerShell command to create the table, providing the table name (`<table_name>`) in the JSON (that too with suffix *_CL* in case of custom table), and setting the `<subscription_id>`, `<resource_group_name>`, `<workspace_name>`, and `<table_name>` values in the `Invoke-AzRestMethod -Path` command:
+1. Run this PowerShell command to create the table, providing the table name (`<table_name>`) in the JSON (that too with suffix *_CL* in case of custom table), and setting the `<subscription_id>`, `<resource_group_name>`, `<workspace_name>`, `<table_name>`, and `<api_version>` values in the `Invoke-AzRestMethod -Path` command:
 
     ```PowerShell
     $tableParams = @'
@@ -108,13 +108,16 @@ To create a custom table into which to ingest events, in the Azure portal:
     }
     '@
     
-    Invoke-AzRestMethod -Path "/subscriptions/<subscription_id>/resourcegroups/<resource_group_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>/tables/<table_name>?api-version=2021-12-01-preview" -Method PUT -payload $tableParams
+    Invoke-AzRestMethod -Path "/subscriptions/<subscription_id>/resourcegroups/<resource_group_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>/tables/<table_name>?api-version=<api_version>" -Method PUT -payload $tableParams
     ```
 
 > [!IMPORTANT]
-> * Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
-> * `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. 
-> * Column names are case-sensitive. Make sure to use the correct case in your data collection rule. 
+> * Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`).
+> * `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
+> * Column names are case-sensitive. Make sure to use the correct case in your data collection rule.
+
+> [!NOTE]
+> For more information about currently supported API versions, see [API version change log for deployment of Microsoft.OperationalInsights/workspaces/tables](/azure/templates/microsoft.operationalinsights/change-log/workspaces/tables).
 
 ## Create a data collection endpoint
 
