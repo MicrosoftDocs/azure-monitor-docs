@@ -149,10 +149,10 @@ Update-AzVmssInstance -ResourceGroupName <resource-group> -VMScaleSetName <vmss>
 This forces the current scale set model (including the updated `enableAutomaticUpgrade` flag) onto the selected instances.
 
 > [!TIP]
-> You can change upgrade policy to *Rolling* so future model changes flow automatically by running the following CLI command:
+> You can change upgrade policy to *Rolling* so future model changes flow automatically. Run the following CLI command and replace `<resource-group>` and `<vmss>` with the names of your resource group and virtual machine scale set:
 > 
 > ```azurecli
-> az vmss update -g <rg> -n <vmss> --set upgradePolicy.mode=Rolling
+> az vmss update -g <resource-group> -n <vmss> --set upgradePolicy.mode=Rolling
 > ```
 
 If specific VMs still don't update, check *Instance protection* (protect from scale set actions) and clear it if set.
