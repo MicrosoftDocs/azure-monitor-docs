@@ -133,31 +133,36 @@ Use one of the following two ways to configure the connection string:
 
 ### [Node.js](#tab/nodejs)
 
+> [!TIP]
+> **Node.js examples use modern ESM `import` syntax.** If your project is CommonJS, you can still use this syntax with the approaches described in the OpenTelemetry JS ESM support guide and Node.js documentation. The code below is valid JavaScript and doesn't require TypeScript.
+
+
 Use one of the following two ways to configure the connection string:
 
 - Set an environment variable.
 
-   ```console
+   ```javascript
    APPLICATIONINSIGHTS_CONNECTION_STRING=<Your Connection String>
-   ```
+   
+```
 
 - Use a configuration object.
 
     ```javascript
-    // Import the useAzureMonitor function from @azure/monitor-opentelemetry.
-    const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
+   // Import the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions class from the @azure/monitor-opentelemetry package.
 
-    // Create the options object. Set the connection string for your Application Insights resource.
-    const options = {
+    // Create a new AzureMonitorOpenTelemetryOptions object.
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+    const options= {
       azureMonitorExporterOptions: {
-        connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>"
+        connectionString: "<your connection string>"
       }
     };
 
-    // Enable Azure Monitor integration using the useAzureMonitor function and the options object.
+    // Enable Azure Monitor integration using the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions object.
     useAzureMonitor(options);
-    ```
-
+    
+```
 
 ### [Python](#tab/python)
 
@@ -283,12 +288,15 @@ To set the cloud role name:
 Set the Cloud Role Name and the Cloud Role Instance via [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, although it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
 
 ```javascript
-// Import the useAzureMonitor function and the resource helpers from the relevant packages.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { resourceFromAttributes } = require("@opentelemetry/resources");
-// Stable + incubating semantic conventions for service attributes.
-const { ATTR_SERVICE_NAME } = require("@opentelemetry/semantic-conventions");
-const { ATTR_SERVICE_NAMESPACE, ATTR_SERVICE_INSTANCE_ID } = require("@opentelemetry/semantic-conventions/incubating");
+// Import the useAzureMonitor function and Resource helpers.
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { resourceFromAttributes } from "@opentelemetry/resources";
+// Import stable and incubating semantic conventions for service attributes.
+import { ATTR_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
+import {
+  ATTR_SERVICE_NAMESPACE,
+  ATTR_SERVICE_INSTANCE_ID
+} from "@opentelemetry/semantic-conventions/incubating";
 
 // Build a Resource with your desired Cloud Role settings.
 // Cloud Role Name = service.namespace + "." + service.name (falls back to service.name).
@@ -299,18 +307,17 @@ const customResource = resourceFromAttributes({
   [ATTR_SERVICE_INSTANCE_ID]: process.env.OTEL_SERVICE_INSTANCE_ID || "my-instance",
 });
 
-// Configure the Azure Monitor Distro and apply the Resource.
 const options = {
   resource: customResource,
   azureMonitorExporterOptions: {
-    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
   },
 };
 
 // Enable Azure Monitor integration.
 useAzureMonitor(options);
 ```
-
 
 ### [Python](#tab/python)
 
@@ -393,67 +400,49 @@ For Quarkus native applications, configure sampling using the [Quarkus OpenTelem
 
 ### [Node.js](#tab/nodejs)
 
-Rate-limited sampling is available starting from `azure-monitor-opentelemetry-exporter` version 1.0.0-beta.32. Configure sampling using environment variables or code:
+Rate-limited sampling is available starting from `azure-monitor-opentelemetry-exporter` version 1.0.0-beta.32. Configure sampling using the following environment variables:
 
 - **`OTEL_TRACES_SAMPLER`**: Specifies the sampler type
-  - `microsoft.fixed.percentage` for fixed-percentage sampling
-  - `microsoft.rate_limited` for rate-limited sampling
-- **`OTEL_TRACES_SAMPLER_ARG`**: Defines the sampling parameter
-  - **Fixed-percentage**: Valid range 0 to 1 (for example, `0.1` ≈ 10%)
-  - **Rate-limited**: Maximum traces per second (for example, `0.5` = one trace every two seconds, `5.0` = five traces per second)
+  - `microsoft.fixed.percentage` for Application Insights sampler
+  - `microsoft.rate_limited` for Rate Limited sampler
+- **`OTEL_TRACES_SAMPLER_ARG`**: Defines the sampling rate
+  - **ApplicationInsightsSampler**: The sampler expects a sample rate of between 0 and 1 inclusive. A rate of 0.1 means approximately 10% of your traces are sent.
+  - **RateLimitedSampler**: Maximum traces per second (e.g., 0.5 = one trace every two seconds, 5.0 = five traces per second)
 
-**Configure fixed-percentage sampling in code**
-
+**Alternative configuration** 
 ```javascript
-// Import the useAzureMonitor function from @azure/monitor-opentelemetry.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
+// Import the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions class from the @azure/monitor-opentelemetry package.
 
-// Create options with a 10% sampling ratio.
-const options = {
-  // A rate of 0.1 means approximately 10% of traces are sent.
-  samplingRatio: 0.1,
-  azureMonitorExporterOptions: {
-    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
+// Create a new AzureMonitorOpenTelemetryOptions object and set the samplingRatio property to 0.1 to enable ApplicationInsightsSampler
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+const options= {
+  samplingRatio: 0.1
 };
 
-// Enable Azure Monitor integration with sampling.
-useAzureMonitor(options);
-```
-
-**Configure rate-limited sampling in code**
-
-```javascript
-// Import the useAzureMonitor function from @azure/monitor-opentelemetry.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-
-// Limit the maximum number of traced root spans per second.
-const options = {
-  tracesPerSecond: 1.5, // e.g., 1.5 traces/sec
-  azureMonitorExporterOptions: {
-    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
+// OR to enable RateLimitedSampler, set the tracesPerSecond property to 0.5.
+const options= {
+  tracesPerSecond: 0.5
 };
 
-// Enable Azure Monitor integration with rate-limited sampling.
+// Enable Azure Monitor integration using the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions object.
 useAzureMonitor(options);
+
 ```
 
-**Environment variable examples**
-
-```bash
-# Fixed-percentage sampler (30%)
+#### ApplicationInsightsSampler example
+```
 export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
 export OTEL_TRACES_SAMPLER_ARG=0.3
+```
 
-# Rate-limited sampler (1.5 traces per second)
+#### RateLimitedSampler example
+```
 export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=1.5
 ```
 
 > [!NOTE]
-> Sampling configuration via environment variables takes precedence over options passed to the exporter/distro. If neither environment variables nor `tracesPerSecond`/`samplingRatio` are specified, the distro defaults to the fixed-percentage sampler.
-
+> Sampling configuration via environment variables will have precedence over the sampling exporter/distro options. If neither environment variables nor `tracePerSecond` are specified, sampling defaults to ApplicationInsightsSampler.
 
 ### [Python](#tab/python)
 
@@ -531,37 +520,33 @@ The Live Metrics aren't available today for GraalVM native applications.
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-Live Metrics is **enabled by default**. You can enable/disable it when configuring the Distro using the `enableLiveMetrics` option.
+Users can enable/disable Live Metrics when configuring the Distro using the `enableLiveMetrics` property.
 
 ```javascript
-// Import the useAzureMonitor function from @azure/monitor-opentelemetry.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-
-// Disable Live Metrics
-const options = {
-  azureMonitorExporterOptions: {
-    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-  enableLiveMetrics: false,
-};
+const options= {
+    azureMonitorExporterOptions: {
+        connectionString"APPLICATIONINSIGHTS_CONNECTION_STRING"] || "<your connection string>",
+    },
+    enableLiveMetrics};
 
 useAzureMonitor(options);
+
 ```
+
+<!--
+
+TODO:
+
+This feature is/isn't enabled by default.
+
+Functionality and customization are covered in the following configuration sample.
 
 ```javascript
-// (Optional) Explicitly enable Live Metrics (default is true)
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
+Configuration sample
 
-const options = {
-  azureMonitorExporterOptions: {
-    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-  enableLiveMetrics: true,
-};
-
-useAzureMonitor(options);
 ```
 
+-->
 
 ### [Python](#tab/python)
 
@@ -731,39 +716,30 @@ By default, the AzureMonitorExporter uses one of the following locations for off
   - %TMPDIR%/Microsoft/AzureMonitor
   - /var/tmp/Microsoft/AzureMonitor
 
-To override the default directory, set `storageDirectory` on the exporter options.
+To override the default directory, you should set `storageDirectory`.
+
+For example:
+
 
 ```javascript
-// Import the useAzureMonitor function from @azure/monitor-opentelemetry.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
+// Import the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions class from the @azure/monitor-opentelemetry package.
 
-// Configure a custom offline storage directory.
-const options = {
+// Create a new AzureMonitorOpenTelemetryOptions object and set the azureMonitorExporterOptions property to an object with the following properties:
+//
+// * connectionString// * storageDirectory// * disableOfflineStorage= {
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
   azureMonitorExporterOptions: {
-    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-    storageDirectory: "C:\\AzureMonitorStorage", // Custom storage path
-    disableOfflineStorage: false, // Enable offline storage (default)
-  },
+    connectionString: "<Your Connection String>",
+    storageDirectory: "C:\\SomeDirectory",
+    disableOfflineStorage}
 };
 
+// Enable Azure Monitor integration using the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions object.
 useAzureMonitor(options);
+
 ```
 
-To disable offline storage entirely, set `disableOfflineStorage` to `true`:
-
-```javascript
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-
-const options = {
-  azureMonitorExporterOptions: {
-    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-    disableOfflineStorage: true,
-  },
-};
-
-useAzureMonitor(options);
-```
-
+To disable this feature, you should set `disableOfflineStorage = true`.
 
 ### [Python](#tab/python)
 
@@ -878,39 +854,35 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
 
 ### [Node.js](#tab/nodejs)
 
-1. Install the [OpenTelemetry Collector Trace Exporter](https://www.npmjs.com/package/@opentelemetry/exporter-trace-otlp-http) and required OpenTelemetry packages in your project.
-
-    ```bash
-    npm install @opentelemetry/api
-    npm install @opentelemetry/sdk-trace-base
-    npm install @opentelemetry/exporter-trace-otlp-http
-    ```
-
-2. Add the following code. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-js/tree/main/examples/otlp-exporter-node).
+1. Install the [OpenTelemetry Collector Trace Exporter](https://www.npmjs.com/package/@opentelemetry/exporter-trace-otlp-http) and other OpenTelemetry packages in your project.
 
     ```javascript
-    // Import the useAzureMonitor function, BatchSpanProcessor, and OTLPTraceExporter.
-    const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-    const { BatchSpanProcessor } = require("@opentelemetry/sdk-trace-base");
-    const { OTLPTraceExporter } = require("@opentelemetry/exporter-trace-otlp-http");
+        npm install @opentelemetry/api
+        npm install @opentelemetry/exporter-trace-otlp-http
+        npm install @opentelemetry/sdk-trace-base
+        npm install @opentelemetry/sdk-trace-node
+    
+```
 
-    // Create an OTLP trace exporter.
-    const otlpExporter = new OTLPTraceExporter({
-      // (Optional) endpoint: "http://localhost:4318/v1/traces"
-    });
+1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-js/tree/main/examples/otlp-exporter-node).
 
-    // Configure Azure Monitor and add the OTLP exporter as an additional span processor.
-    const options = {
-      azureMonitorExporterOptions: {
-        connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-      },
-      spanProcessors: [new BatchSpanProcessor(otlpExporter)],
-    };
+    ```javascript
+    // Import the useAzureMonitor function, the AzureMonitorOpenTelemetryOptions class, the trace module, the ProxyTracerProvider class, the BatchSpanProcessor class, the NodeTracerProvider class, and the OTLPTraceExporter class from the @azure/monitor-opentelemetry, @opentelemetry/api, @opentelemetry/sdk-trace-base, @opentelemetry/sdk-trace-node, and @opentelemetry/exporter-trace-otlp-http packages, respectively.
 
-    // Enable Azure Monitor integration with dual export.
+    // Create a new OTLPTraceExporter object.
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base";
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
+    const otlpExporter = new OTLPTraceExporter();
+
+    // Enable Azure Monitor integration.
+    const options= {
+        // Add the SpanEnrichingProcessor
+        spanProcessors: [new BatchSpanProcessor(otlpExporter)] 
+    }
     useAzureMonitor(options);
-    ```
-
+    
+```
 
 ### [Python](#tab/python)
 
@@ -1068,49 +1040,50 @@ We're actively working in the OpenTelemetry community to support redaction.
 
 ### [Node.js](#tab/nodejs)
 
-When you're using the [Azure Monitor OpenTelemetry distro](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry) package, query strings can be redacted by creating and applying a span processor to the distro configuration.
+When you're using the [Azure Monitor OpenTelemetry distro](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry) package, query strings can be redacted via creating and applying a span processor to the distro configuration.
 
 ```javascript
-// Import the useAzureMonitor function and HTTP semantic attribute constants.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { SEMATTRS_HTTP_ROUTE, SEMATTRS_HTTP_TARGET, SEMATTRS_HTTP_URL } = require("@opentelemetry/semantic-conventions");
+import { useAzureMonitor, AzureMonitorOpenTelemetryOptions } from "@azure/monitor-opentelemetry";
+import { Context } from "@opentelemetry/api";
+import { ReadableSpan, Span, SpanProcessor } from "@opentelemetry/sdk-trace-base";
+import { SEMATTRS_HTTP_ROUTE, SEMATTRS_HTTP_TARGET, SEMATTRS_HTTP_URL } from "@opentelemetry/semantic-conventions";
 
-// A simple SpanProcessor that removes query strings from common HTTP attributes.
-class RedactQueryStringProcessor {
-  // Called to flush any buffered data; not used here.
-  forceFlush() { return Promise.resolve(); }
-  // Called when a span starts; not used here.
-  onStart() {}
-  // Called when the SDK shuts down; not used here.
-  shutdown() { return Promise.resolve(); }
-
-  // Called when a span ends.
+class RedactQueryStringProcessor{
+  forceFlush(){
+	return Promise.resolve();
+  }
+  onStart(span){
+    return;
+  }
+  shutdown(){
+	return Promise.resolve();
+  }
   onEnd(span) {
-    const route = String(span.attributes[SEMATTRS_HTTP_ROUTE] || "");
-    const url = String(span.attributes[SEMATTRS_HTTP_URL] || "");
-    const target = String(span.attributes[SEMATTRS_HTTP_TARGET] || "");
-
-    const iRoute = route.indexOf("?");
-    const iUrl = url.indexOf("?");
-    const iTarget = target.indexOf("?");
-
-    if (iRoute !== -1) span.attributes[SEMATTRS_HTTP_ROUTE] = route.substring(0, iRoute);
-    if (iUrl !== -1) span.attributes[SEMATTRS_HTTP_URL] = url.substring(0, iUrl);
-    if (iTarget !== -1) span.attributes[SEMATTRS_HTTP_TARGET] = target.substring(0, iTarget);
+    const httpRouteIndex= String(span.attributes[SEMATTRS_HTTP_ROUTE]).indexOf('?');
+    const httpUrlIndex= String(span.attributes[SEMATTRS_HTTP_URL]).indexOf('?');
+    const httpTargetIndex= String(span.attributes[SEMATTRS_HTTP_TARGET]).indexOf('?');
+    if (httpRouteIndex !== -1) {
+      span.attributes[SEMATTRS_HTTP_ROUTE] = String(span.attributes[SEMATTRS_HTTP_ROUTE]).substring(0, httpRouteIndex);
+    }
+    if (httpUrlIndex !== -1) {
+      span.attributes[SEMATTRS_HTTP_URL] = String(span.attributes[SEMATTRS_HTTP_URL]).substring(0, httpUrlIndex);
+    }
+    if (httpTargetIndex !== -1) {
+      span.attributes[SEMATTRS_HTTP_TARGET] = String(span.attributes[SEMATTRS_HTTP_TARGET]).substring(0, httpTargetIndex);
+    }
   }
 }
 
-// Apply the processor when configuring the Azure Monitor distro.
-const options = {
+const options= {
   azureMonitorExporterOptions: {
-    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+      connectionString: <YOUR_CONNECTION_STRING>,
   },
-  spanProcessors: [new RedactQueryStringProcessor()],
+  spanProcessors: [new RedactQueryStringProcessor()]
 };
 
 useAzureMonitor(options);
-```
 
+```
 
 ### [Python](#tab/python)
 

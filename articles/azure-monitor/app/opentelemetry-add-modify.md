@@ -2,7 +2,7 @@
 title: Add and modify OpenTelemetry in Application Insights
 description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights. Includes .NET, Java, Node.js, and Python applications, custom attributes, telemetry processors, and log and trace modifications.
 ms.topic: how-to
-ms.date: 03/23/2025
+ms.date: 09/30/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -218,6 +218,10 @@ For Quartz native applications, look at the [Quarkus documentation](https://quar
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 #### [Node.js](#tab/nodejs)
+
+
+> [!TIP]
+> **Node.js examples use modern ESM `import` syntax.** If your project is CommonJS, you can still use this syntax with the approaches described in the OpenTelemetry JS ESM support guide and Node.js documentation. The code below is valid JavaScript and doesn't require TypeScript.
 
 The following OpenTelemetry Instrumentation libraries are included as part of the Azure Monitor Application Insights Distro. For more information, see [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry/README.md#instrumentation-libraries).
 
@@ -864,23 +868,41 @@ public class Program {
 ##### [Node.js](#tab/nodejs)
 
 ```javascript
-// Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { metrics } = require("@opentelemetry/api");
+// Import the Azure Monitor OpenTelemetry integration and OpenTelemetry metrics API.
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { metrics } from "@opentelemetry/api";
+import express from "express";
 
-// Enable Azure Monitor integration
-useAzureMonitor();
+// Enable Azure Monitor integration.
+// Uses APPLICATIONINSIGHTS_CONNECTION_STRING if it is set.
+useAzureMonitor({
+  azureMonitorExporterOptions: {
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+  },
+});
 
-// Get the meter for the "testMeter" namespace
-const meter =  metrics.getMeter("testMeter");
+// Create a meter and a Counter instrument.
+const meter = metrics.getMeter("otel_azure_monitor_counter_demo");
+const counter = meter.createCounter("MyFruitCounter");
 
-// Create a counter metric
-let counter = meter.createCounter("counter");
+// Simple HTTP endpoint that increments the counter.
+const app = express();
+app.get("/", (_req, res) => {
+  // Record some sample values grouped by name and color.
+  counter.add(1, { name: "apple", color: "red" });
+  counter.add(2, { name: "lemon", color: "yellow" });
+  counter.add(1, { name: "lemon", color: "yellow" });
+  counter.add(2, { name: "apple", color: "green" });
+  counter.add(5, { name: "apple", color: "red" });
+  counter.add(4, { name: "lemon", color: "yellow" });
 
-// Add values to the counter metric with different tags
-counter.add(1, { "testKey": "testValue" });
-counter.add(5, { "testKey2": "testValue" });
-counter.add(3, { "testKey": "testValue2" });
+  res.send("Custom metric recorded.");
+});
+
+app.listen(8080, () => {
+  console.log("Counter example listening on http://localhost:8080 — refresh to emit metrics.");
+});
 ```
 
 ##### [Python](#tab/python)
@@ -1559,21 +1581,43 @@ using (var activity = activitySource.StartActivity("CustomActivity"))
 #### [Node.js](#tab/nodejs)
 
 ```javascript
-// Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { trace } = require("@opentelemetry/api");
+// Import the Azure Monitor OpenTelemetry integration and OpenTelemetry tracing API.
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { trace } from "@opentelemetry/api";
 
-// Enable Azure Monitor integration
-useAzureMonitor();
+// Enable Azure Monitor integration.
+// Uses APPLICATIONINSIGHTS_CONNECTION_STRING if it is set.
+useAzureMonitor({
+  azureMonitorExporterOptions: {
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+  },
+});
 
-// Get the tracer for the "testTracer" namespace
-const tracer = trace.getTracer("testTracer");
+// Get a tracer for your library or service.
+const tracer = trace.getTracer("otel_azure_monitor_custom_trace_demo");
 
-// Start a span with the name "hello"
-let span = tracer.startSpan("hello");
+// Create a span, add attributes/events, and end it.
+const span = tracer.startSpan("doWork");
+try {
+  // Add attributes to capture useful context.
+  span.setAttribute("component", "worker");
+  span.setAttribute("operation.id", "42");
 
-// End the span
-span.end();
+  // Add an event to annotate the span.
+  span.addEvent("invoking doWork");
+
+  // Simulate work.
+  for (let i = 0; i < 10_000_000; i++) {
+    // noop
+  }
+} catch (err) {
+  // Record an exception if something goes wrong.
+  span.recordException(err as Error);
+} finally {
+  // Always end the span.
+  span.end();
+}
 ```
 
 #### [Python](#tab/python)
