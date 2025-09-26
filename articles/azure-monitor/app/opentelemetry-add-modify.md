@@ -221,7 +221,7 @@ For Quartz native applications, look at the [Quarkus documentation](https://quar
 
 
 > [!TIP]
-> **Node.js examples use modern ESM `import` syntax.** If your project is CommonJS, you can still use this syntax with the approaches described in the OpenTelemetry JS ESM support guide and Node.js documentation. The code below is valid JavaScript and doesn't require TypeScript.
+> **Node.js examples use modern ESM `import` syntax.** If your project is CommonJS, you can still use this syntax (for example by setting `"type": "module"` in `package.json`, or using `.mjs` files). The code below is plain JavaScript—no TypeScript required.
 
 The following OpenTelemetry Instrumentation libraries are included as part of the Azure Monitor Application Insights Distro. For more information, see [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry/README.md#instrumentation-libraries).
 
@@ -247,32 +247,27 @@ To reduce or increase the number of logs that Azure Monitor collects, first set 
 
 Instrumentations can be configured using `AzureMonitorOpenTelemetryOptions`:
 
-```typescript
+```javascript
 // Import Azure Monitor OpenTelemetry
-const { useAzureMonitor, AzureMonitorOpenTelemetryOptions } = require("@azure/monitor-opentelemetry");
-// Import OpenTelemetry HTTP Instrumentation to get config type
-const { HttpInstrumentationConfig } = require("@azure/monitor-opentelemetry");
-    // Import HTTP to get type
-const { IncomingMessage } = require("http");
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 
-// Specific Instrumentation configs could be added
-const httpInstrumentationConfig: HttpInstrumentationConfig = {
-    ignoreIncomingRequestHook: (request: IncomingMessage) => {
-        return false; //Return true if you want to ignore a specific request 
+// Specific instrumentation configs can be added.
+const options = {
+  instrumentationOptions: {
+    http: {
+      // Return true to ignore a specific request
+      ignoreIncomingRequestHook: (request) => {
+        return false;
+      },
+      enabled: true,
     },
-    enabled: true
-};
-// Instrumentations configuration
-const options: AzureMonitorOpenTelemetryOptions = {
-instrumentationOptions: {
-    http: httpInstrumentationConfig,
     azureSdk: { enabled: true },
     mongoDb: { enabled: true },
     mySql: { enabled: true },
     postgreSql: { enabled: true },
     redis: { enabled: true },
     redis4: { enabled: true },
-}
+  },
 };
 
 // Enable Azure Monitor integration
@@ -377,34 +372,33 @@ You can't use community instrumentation libraries with GraalVM Java native appli
 
 Other OpenTelemetry Instrumentations are available [here](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages) and could be added using TraceHandler in ApplicationInsightsClient:
 
- ```typescript
-    // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-    const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-    const { metrics, trace, ProxyTracerProvider } = require("@opentelemetry/api");
+ ```javascript
+// Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { metrics, trace } from "@opentelemetry/api";
 
-    // Import the OpenTelemetry instrumentation registration function and Express instrumentation
-    const { registerInstrumentations } = require( "@opentelemetry/instrumentation");
-    const { ExpressInstrumentation } = require('@opentelemetry/instrumentation-express');
+// Import the OpenTelemetry instrumentation registration function and Express instrumentation
+import { registerInstrumentations } from "@opentelemetry/instrumentation";
+import { ExpressInstrumentation } from "@opentelemetry/instrumentation-express";
 
-    // Get the OpenTelemetry tracer provider and meter provider
-    const tracerProvider = (trace.getTracerProvider() as ProxyTracerProvider).getDelegate();
-    const meterProvider = metrics.getMeterProvider();
+// Enable Azure Monitor integration (uses the APPLICATIONINSIGHTS_CONNECTION_STRING env var if set)
+useAzureMonitor();
 
-    // Enable Azure Monitor integration
-    useAzureMonitor();
-    
-    // Register the Express instrumentation
-    registerInstrumentations({
-      // List of instrumentations to register
-      instrumentations: [
-        new ExpressInstrumentation(), // Express instrumentation
-      ],
-    // OpenTelemetry tracer provider
-      tracerProvider: tracerProvider,
-      // OpenTelemetry meter provider
-      meterProvider: meterProvider
-    });
- ```
+// Get the OpenTelemetry tracer provider and meter provider
+const maybeProxy = trace.getTracerProvider();
+const tracerProvider = (typeof maybeProxy?.getDelegate === "function") ? maybeProxy.getDelegate() : maybeProxy;
+const meterProvider = metrics.getMeterProvider();
+
+// Register the Express instrumentation
+registerInstrumentations({
+  instrumentations: [
+    new ExpressInstrumentation(),
+  ],
+  tracerProvider,
+  meterProvider,
+});
+
+```
 
 #### [Python](#tab/python)
 
@@ -655,22 +649,23 @@ public class Program {
 
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { metrics } = require("@opentelemetry/api");
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { metrics } from "@opentelemetry/api";
 
 // Enable Azure Monitor integration
 useAzureMonitor();
 
 // Get the meter for the "testMeter" namespace
-const meter =  metrics.getMeter("testMeter");
+const meter = metrics.getMeter("testMeter");
 
 // Create a histogram metric
-let histogram = meter.createHistogram("histogram");
+const histogram = meter.createHistogram("histogram");
 
-// Record values to the histogram metric with different tags
-histogram.record(1, { "testKey": "testValue" });
-histogram.record(30, { "testKey": "testValue2" });
-histogram.record(100, { "testKey2": "testValue" });
+// Record values to the histogram metric with different attributes
+histogram.record(1, { testKey: "testValue" });
+histogram.record(30, { testKey: "testValue2" });
+histogram.record(100, { testKey2: "testValue" });
+
 ```
 
 ##### [Python](#tab/python)
@@ -877,8 +872,7 @@ import express from "express";
 // Uses APPLICATIONINSIGHTS_CONNECTION_STRING if it is set.
 useAzureMonitor({
   azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+    connectionString|| "<your connection string>",
   },
 });
 
@@ -1105,10 +1099,10 @@ public class Program {
 
 ##### [Node.js](#tab/nodejs)
 
-```typescript
-// Import the useAzureMonitor function and the metrics module from the @azure/monitor-opentelemetry and @opentelemetry/api packages, respectively.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { metrics } = require("@opentelemetry/api");
+```javascript
+// Import the useAzureMonitor function and the metrics module
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { metrics } from "@opentelemetry/api";
 
 // Enable Azure Monitor integration.
 useAzureMonitor();
@@ -1117,16 +1111,14 @@ useAzureMonitor();
 const meter = metrics.getMeter("testMeter");
 
 // Create an observable gauge metric with the name "gauge".
-let gauge = meter.createObservableGauge("gauge");
+const gauge = meter.createObservableGauge("gauge");
 
-// Add a callback to the gauge metric. The callback will be invoked periodically to generate a new value for the gauge metric.
-gauge.addCallback((observableResult: ObservableResult) => {
-    // Generate a random number between 0 and 99.
-    let randomNumber = Math.floor(Math.random() * 100);
-
-    // Set the value of the gauge metric to the random number.
-    observableResult.observe(randomNumber, {"testKey": "testValue"});
+// Add a callback to the gauge metric. The callback will be invoked periodically to generate a new value.
+gauge.addCallback((observableResult) => {
+  const randomNumber = Math.floor(Math.random() * 100);
+  observableResult.observe(randomNumber, { testKey: "testValue" });
 });
+
 ```
 
 ##### [Python](#tab/python)
@@ -1321,8 +1313,8 @@ The Node.js SDK exports manually recorded span-based exceptions to Application I
 
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { trace } = require("@opentelemetry/api");
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { trace } from "@opentelemetry/api";
 
 // Enable Azure Monitor integration
 useAzureMonitor();
@@ -1331,17 +1323,18 @@ useAzureMonitor();
 const tracer = trace.getTracer("testTracer");
 
 // Start a span with the name "hello"
-let span = tracer.startSpan("hello");
+const span = tracer.startSpan("hello");
 
-// Try to throw an error
 try {
-    throw new Error("Test Error");
+  // Throw an error
+  throw new Error("Test Error");
+} catch (error) {
+  // Record the error and end the span
+  span.recordException(error);
+} finally {
+  span.end();
 }
 
-// Catch the error and record it to the span
-catch(error){
-    span.recordException(error);
-}
 ```
 
 #### [Python](#tab/python)
@@ -1580,7 +1573,7 @@ using (var activity = activitySource.StartActivity("CustomActivity"))
 
 #### [Node.js](#tab/nodejs)
 
-```typescript
+```javascript
 // Import the Azure Monitor OpenTelemetry integration and OpenTelemetry tracing API.
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { trace } from "@opentelemetry/api";
@@ -1600,24 +1593,18 @@ const tracer = trace.getTracer("otel_azure_monitor_custom_trace_demo");
 // Create a span, add attributes/events, and end it.
 const span = tracer.startSpan("doWork");
 try {
-  // Add attributes to capture useful context.
   span.setAttribute("component", "worker");
   span.setAttribute("operation.id", "42");
-
-  // Add an event to annotate the span.
   span.addEvent("invoking doWork");
 
   // Simulate work.
-  for (let i = 0; i < 10_000_000; i++) {
-    // noop
-  }
+  for (let i = 0; i < 10_000_000; i++) { /* noop */ }
 } catch (err) {
-  // Record an exception if something goes wrong.
-  span.recordException(err as Error);
+  span.recordException(err);
 } finally {
-  // Always end the span.
   span.end();
 }
+
 ```
 
 #### [Python](#tab/python)
@@ -2002,37 +1989,25 @@ Span.current().setAttribute(attributeKey, "myvalue1");
 
 ##### [Node.js](#tab/nodejs)
 
-```typescript
-// Import the necessary packages.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { ReadableSpan, Span, SpanProcessor } = require("@opentelemetry/sdk-trace-base");
-const { SemanticAttributes } = require("@opentelemetry/semantic-conventions");
+```javascript
+// Import the Azure Monitor OpenTelemetry integration
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 
-// Create a new SpanEnrichingProcessor class.
-class SpanEnrichingProcessor implements SpanProcessor {
-  forceFlush(): Promise<void> {
-    return Promise.resolve();
-  }
-
-  shutdown(): Promise<void> {
-    return Promise.resolve();
-  }
-
-  onStart(_span: Span): void {}
-
-  onEnd(span: ReadableSpan) {
-    // Add custom dimensions to the span.
+// Create a SpanEnrichingProcessor to add custom dimensions.
+class SpanEnrichingProcessor {
+  forceFlush() { return Promise.resolve(); }
+  shutdown() { return Promise.resolve(); }
+  onStart() {}
+  onEnd(span) {
     span.attributes["CustomDimension1"] = "value1";
     span.attributes["CustomDimension2"] = "value2";
   }
 }
 
-// Enable Azure Monitor integration.
-const options: AzureMonitorOpenTelemetryOptions = {
-    // Add the SpanEnrichingProcessor
-    spanProcessors: [new SpanEnrichingProcessor()] 
-}
-useAzureMonitor(options);
+// Enable Azure Monitor integration with the custom span processor.
+useAzureMonitor({
+  spanProcessors: [new SpanEnrichingProcessor()],
+});
 
 ```
 
@@ -2115,19 +2090,26 @@ This field is automatically populated.
 
 Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
-```typescript
-...
-// Import the SemanticAttributes class from the @opentelemetry/semantic-conventions package.
-const { SemanticAttributes } = require("@opentelemetry/semantic-conventions");
+```javascript
+// Import the Azure Monitor OpenTelemetry integration
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 
-// Create a new SpanEnrichingProcessor class.
-class SpanEnrichingProcessor implements SpanProcessor {
-
-    onEnd(span) {
-    // Set the HTTP_CLIENT_IP attribute on the span to the IP address of the client.
-    span.attributes[SemanticAttributes.HTTP_CLIENT_IP] = "<IP Address>";
-    }
+// Create a SpanEnrichingProcessor to add custom dimensions.
+class SpanEnrichingProcessor {
+  forceFlush() { return Promise.resolve(); }
+  shutdown() { return Promise.resolve(); }
+  onStart() {}
+  onEnd(span) {
+    span.attributes["CustomDimension1"] = "value1";
+    span.attributes["CustomDimension2"] = "value2";
+  }
 }
+
+// Enable Azure Monitor integration with the custom span processor.
+useAzureMonitor({
+  spanProcessors: [new SpanEnrichingProcessor()],
+});
+
 ```
 
 ##### [Python](#tab/python)
@@ -2204,19 +2186,26 @@ Span.current().setAttribute("enduser.id", "myuser");
 
 Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
-```typescript
-...
-// Import the SemanticAttributes class from the @opentelemetry/semantic-conventions package.
-import { SemanticAttributes } from "@opentelemetry/semantic-conventions";
+```javascript
+// Import the Azure Monitor OpenTelemetry integration
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 
-// Create a new SpanEnrichingProcessor class.
-class SpanEnrichingProcessor implements SpanProcessor {
-
-    onEnd(span: ReadableSpan) {
-    // Set the ENDUSER_ID attribute on the span to the ID of the user.
-    span.attributes[SemanticAttributes.ENDUSER_ID] = "<User ID>";
-    }
+// Create a SpanEnrichingProcessor to add custom dimensions.
+class SpanEnrichingProcessor {
+  forceFlush() { return Promise.resolve(); }
+  shutdown() { return Promise.resolve(); }
+  onStart() {}
+  onEnd(span) {
+    span.attributes["CustomDimension1"] = "value1";
+    span.attributes["CustomDimension2"] = "value2";
+  }
 }
+
+// Enable Azure Monitor integration with the custom span processor.
+useAzureMonitor({
+  spanProcessors: [new SpanEnrichingProcessor()],
+});
+
 ```
 
 ##### [Python](#tab/python)
@@ -2256,27 +2245,32 @@ For Spring Boot native applications, Logback is instrumented out of the box.
 
 #### [Node.js](#tab/nodejs)
 
-```typescript
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const bunyan = require('bunyan');
+```javascript
+// Import Azure Monitor OpenTelemetry
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 
-// Instrumentations configuration
-const options: AzureMonitorOpenTelemetryOptions = {
-    instrumentationOptions: {
-        // Instrumentations generating logs
-        bunyan: { enabled: true },
-    }
+// Specific instrumentation configs can be added.
+const options = {
+  instrumentationOptions: {
+    http: {
+      // Return true to ignore a specific request
+      ignoreIncomingRequestHook: (request) => {
+        return false;
+      },
+      enabled: true,
+    },
+    azureSdk: { enabled: true },
+    mongoDb: { enabled: true },
+    mySql: { enabled: true },
+    postgreSql: { enabled: true },
+    redis: { enabled: true },
+    redis4: { enabled: true },
+  },
 };
 
 // Enable Azure Monitor integration
 useAzureMonitor(options);
 
-var log = bunyan.createLogger({ name: 'testApp' });
-log.info({
-    "testAttribute1": "testValue1",
-    "testAttribute2": "testValue2",
-    "testAttribute3": "testValue3"
-}, 'testEvent');
 ```
 
 #### [Python](#tab/python)
@@ -2369,11 +2363,13 @@ Get the request trace ID and the span ID in your code:
 
 ```javascript
 // Import the trace module from the OpenTelemetry API.
-const { trace } = require("@opentelemetry/api");
+import { trace } from "@opentelemetry/api";
 
 // Get the span ID and trace ID of the active span.
-let spanId = trace.getActiveSpan().spanContext().spanId;
-let traceId = trace.getActiveSpan().spanContext().traceId;
+const activeSpan = trace.getActiveSpan();
+const spanId = activeSpan?.spanContext().spanId;
+const traceId = activeSpan?.spanContext().traceId;
+
 ```
 
 ### [Python](#tab/python)
