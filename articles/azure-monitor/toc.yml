@@ -452,6 +452,8 @@ items:
         href: containers/kubernetes-monitoring-enable.md
       - name: Arc-enabled clusters
         href: containers/kubernetes-monitoring-enable-arc.md
+      - name: Enable Windows metrics (preview)
+        href: containers/enable-windows-metrics.md
       - name: Enable private link
         href: containers/kubernetes-monitoring-private-link.md
       - name: Disable monitoring
@@ -492,10 +494,10 @@ items:
             - name: Customize configuration
               href: containers/prometheus-metrics-scrape-configuration.md
               displayName: Prometheus
-            - name: Create scrape config with ConfigMap
+            - name: Scrape config with ConfigMap
               href: containers/prometheus-metrics-scrape-configmap.md
               displayName: Prometheus
-            - name: Create scrape config with CRD
+            - name: Scrape config with CRD
               href: containers/prometheus-metrics-scrape-crd.md
               displayName: Prometheus
             - name: High scale
@@ -526,11 +528,9 @@ items:
                 - name: Monitor Nvidia GPU
                   href: containers/prometheus-dcgm-integration.md
                   displayName: Prometheus
-            - name: Scale using KEDA based on Prometheus metrics
+            - name: Scale using KEDA
               href: containers/integrate-keda.md
               displayName: Prometheus
-        - name: Enable Windows metrics (preview)
-          href: containers/enable-windows-metrics.md
           displayName: Prometheutheus-metricss
         - name: Send to multiple metric workspaces
           href: containers/prometheus-metrics-multiple-workspaces.md
@@ -588,6 +588,8 @@ items:
         href: containers/container-insights-region-mapping.md
     - name: Classic experience
       items:
+      - name: Switch to Prometheus visualizations
+        href: containers/container-insights-experience-v2.md
       - name: View cluster metrics
         href: containers/container-insights-livedata-metrics.md
       - name: Log alert rules
@@ -597,8 +599,6 @@ items:
         href: containers/container-insights-manage-agent.md
       - name: Send Prometheus metrics to Logs
         href: containers/container-insights-prometheus-logs.md
-      - name: Switch to Prometheus visualizations
-        href: containers/container-insights-experience-v2.md
       - name: Legacy authentication
         href: containers/container-insights-authentication.md
       - name: Onboard hybrid cluster

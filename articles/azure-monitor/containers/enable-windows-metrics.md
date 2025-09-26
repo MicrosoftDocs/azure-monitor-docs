@@ -20,7 +20,7 @@ Windows metric collection is enabled for AKS clusters as of version 6.4.0-main-0
 
 ## Install Windows exporter
 
-Manually install windows-exporter on AKS nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors:
+Manually install windows-exporter on AKS nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors. For more collectors, see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
 
    * `[defaults]`
    * `container`
@@ -28,24 +28,22 @@ Manually install windows-exporter on AKS nodes to access Windows metrics by depl
    * `process`
    * `cpu_info`
    
-   For more collectors, see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
+ 
+Deploy the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. If there are any taints applied in the node, you need to apply the appropriate tolerations.
 
-   Deploy the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. If there are any taints applied in the node, you need to apply the appropriate tolerations.
-
-   ```
-       kubectl apply -f windows-exporter-daemonset.yaml
-   ```
-## Apply ConfigMap
-
-Apply the [ama-metrics-settings-configmap](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/configmaps/ama-metrics-settings-configmap.yaml) to your cluster. Set the `windowsexporter` and `windowskubeproxy` Booleans to `true`. For more information, see [Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap](./prometheus-metrics-scrape-configuration.md).
+  ```bash
+kubectl apply -f windows-exporter-daemonset.yaml
+  ```
+## Enable Windows metrics
+Set the `windowsexporter` and `windowskubeproxy` Booleans to `true` in your metrics settings ConfigMap and apply it to the cluster. See [Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap](./prometheus-metrics-scrape-configuration.md).
 
 ## Enable recording rules
 
-Enable the recording rules that are required for the out-of-the-box dashboards:
+Enable the recording rules are required for the out-of-the-box dashboards:
 
-   * If onboarding using the CLI, include the option `--enable-windows-recording-rules`.
-   * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
-   * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
+ * If onboarding using the CLI, include the option `--enable-windows-recording-rules`.
+ * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
+ * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
 
 ## Add scrape job for Arc-enabled clusters
 
