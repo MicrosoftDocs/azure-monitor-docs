@@ -2,7 +2,7 @@
 title: Configuration options - Azure Monitor Application Insights for Java
 description: This article shows you how to configure Azure Monitor Application Insights for Java.
 ms.topic: how-to
-ms.date: 02/28/2025
+ms.date: 09/26/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
 ---
@@ -33,7 +33,7 @@ More information and configuration options are provided in the following section
 
 ### Default configuration
 
-By default, Application Insights Java 3  expects the configuration file to be named applicationinsights.json and located in the same directory as applicationinsights-agent-3.7.1.jar.
+By default, Application Insights Java 3  expects the configuration file to be named applicationinsights.json and located in the same directory as applicationinsights-agent-3.7.5.jar.
  
 ### Alternative configurations
 
@@ -43,7 +43,7 @@ You can specify a custom configuration file with
 *	the APPLICATIONINSIGHTS_CONFIGURATION_FILE environment variable, or
 *	the applicationinsights.configuration.file system property
 
-If you provide a relative path, it will resolve relative to the directory where applicationinsights-agent-3.7.1.jar is located.
+If you provide a relative path, it will resolve relative to the directory where applicationinsights-agent-3.7.5.jar is located.
 
 #### JSON configuration
 
@@ -70,7 +70,7 @@ Or you can set the connection string by using the Java system property `applicat
 
 You can also set the connection string by specifying a file to load the connection string from.
 
-If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.1.jar` is located.
+If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.5.jar` is located.
 
 ```json
 {
@@ -336,7 +336,7 @@ Add `applicationinsights-core` to your application:
 <dependency>
   <groupId>com.microsoft.azure</groupId>
   <artifactId>applicationinsights-core</artifactId>
-  <version>3.7.1</version>
+  <version>3.7.5</version>
 </dependency>
 ```
 
@@ -911,7 +911,7 @@ In the preceding configuration example:
 
 * `level` can be one of `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`, or `TRACE`.
 * `path` can be an absolute or relative path. Relative paths are resolved against the directory where
-`applicationinsights-agent-3.7.1.jar` is located.
+`applicationinsights-agent-3.7.5.jar` is located.
 
 Starting from version 3.0.2, you can also set the self-diagnostics `level` by using the environment variable
 `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL`. It then takes precedence over the self-diagnostics level specified in the JSON configuration.
