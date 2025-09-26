@@ -219,10 +219,6 @@ For Quartz native applications, look at the [Quarkus documentation](https://quar
 
 #### [Node.js](#tab/nodejs)
 
-
-> [!TIP]
-> **Node.js examples use modern ESM `import` syntax.** If your project is CommonJS, you can still use this syntax with the approaches described in the OpenTelemetry JS ESM support guide and Node.js documentation. The code below is valid JavaScript and doesn't require TypeScript.
-
 The following OpenTelemetry Instrumentation libraries are included as part of the Azure Monitor Application Insights Distro. For more information, see [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry/README.md#instrumentation-libraries).
 
 **Requests**
@@ -653,7 +649,7 @@ public class Program {
 
 ##### [Node.js](#tab/nodejs)
 
-```typescript
+```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
 const { metrics } = require("@opentelemetry/api");
@@ -867,42 +863,24 @@ public class Program {
 
 ##### [Node.js](#tab/nodejs)
 
-```typescript
-// Import the Azure Monitor OpenTelemetry integration and OpenTelemetry metrics API.
-import { useAzureMonitor } from "@azure/monitor-opentelemetry";
-import { metrics } from "@opentelemetry/api";
-import express from "express";
+```javascript
+// Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
+const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
+const { metrics } = require("@opentelemetry/api");
 
-// Enable Azure Monitor integration.
-// Uses APPLICATIONINSIGHTS_CONNECTION_STRING if it is set.
-useAzureMonitor({
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-});
+// Enable Azure Monitor integration
+useAzureMonitor();
 
-// Create a meter and a Counter instrument.
-const meter = metrics.getMeter("otel_azure_monitor_counter_demo");
-const counter = meter.createCounter("MyFruitCounter");
+// Get the meter for the "testMeter" namespace
+const meter =  metrics.getMeter("testMeter");
 
-// Simple HTTP endpoint that increments the counter.
-const app = express();
-app.get("/", (_req, res) => {
-  // Record some sample values grouped by name and color.
-  counter.add(1, { name: "apple", color: "red" });
-  counter.add(2, { name: "lemon", color: "yellow" });
-  counter.add(1, { name: "lemon", color: "yellow" });
-  counter.add(2, { name: "apple", color: "green" });
-  counter.add(5, { name: "apple", color: "red" });
-  counter.add(4, { name: "lemon", color: "yellow" });
+// Create a counter metric
+let counter = meter.createCounter("counter");
 
-  res.send("Custom metric recorded.");
-});
-
-app.listen(8080, () => {
-  console.log("Counter example listening on http://localhost:8080 — refresh to emit metrics.");
-});
+// Add values to the counter metric with different tags
+counter.add(1, { "testKey": "testValue" });
+counter.add(5, { "testKey2": "testValue" });
+counter.add(3, { "testKey": "testValue2" });
 ```
 
 ##### [Python](#tab/python)
@@ -1319,7 +1297,7 @@ span.recordException(e);
 The Node.js SDK exports manually recorded span-based exceptions to Application Insights as exceptions only when recorded on a top-level span or a child of a remote or internal span.
 
 
-```typescript
+```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
 const { trace } = require("@opentelemetry/api");
@@ -1580,44 +1558,22 @@ using (var activity = activitySource.StartActivity("CustomActivity"))
 
 #### [Node.js](#tab/nodejs)
 
-```typescript
-// Import the Azure Monitor OpenTelemetry integration and OpenTelemetry tracing API.
-import { useAzureMonitor } from "@azure/monitor-opentelemetry";
-import { trace } from "@opentelemetry/api";
+```javascript
+// Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
+const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
+const { trace } = require("@opentelemetry/api");
 
-// Enable Azure Monitor integration.
-// Uses APPLICATIONINSIGHTS_CONNECTION_STRING if it is set.
-useAzureMonitor({
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-});
+// Enable Azure Monitor integration
+useAzureMonitor();
 
-// Get a tracer for your library or service.
-const tracer = trace.getTracer("otel_azure_monitor_custom_trace_demo");
+// Get the tracer for the "testTracer" namespace
+const tracer = trace.getTracer("testTracer");
 
-// Create a span, add attributes/events, and end it.
-const span = tracer.startSpan("doWork");
-try {
-  // Add attributes to capture useful context.
-  span.setAttribute("component", "worker");
-  span.setAttribute("operation.id", "42");
+// Start a span with the name "hello"
+let span = tracer.startSpan("hello");
 
-  // Add an event to annotate the span.
-  span.addEvent("invoking doWork");
-
-  // Simulate work.
-  for (let i = 0; i < 10_000_000; i++) {
-    // noop
-  }
-} catch (err) {
-  // Record an exception if something goes wrong.
-  span.recordException(err as Error);
-} finally {
-  // Always end the span.
-  span.end();
-}
+// End the span
+span.end();
 ```
 
 #### [Python](#tab/python)
@@ -1789,7 +1745,7 @@ It's not possible to send a `customEvent` using the `"microsoft.custom_event.nam
 
 To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object. Other attributes can also be included as needed.
 
-```typescript
+```javascript
 // Send a customEvent by including the microsoft attribute key in the log.
 // The customEvent name uses the value of that attribute.
 logger.emit({
@@ -2367,7 +2323,7 @@ String spanId = span.getSpanContext().getSpanId();
 
 Get the request trace ID and the span ID in your code:
 
-```typescript
+```javascript
 // Import the trace module from the OpenTelemetry API.
 const { trace } = require("@opentelemetry/api");
 
