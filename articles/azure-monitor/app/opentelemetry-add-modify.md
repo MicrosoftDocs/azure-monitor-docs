@@ -377,7 +377,7 @@ You can't use community instrumentation libraries with GraalVM Java native appli
 
 Other OpenTelemetry Instrumentations are available [here](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages) and could be added using TraceHandler in ApplicationInsightsClient:
 
- ```javascript
+ ```typescript
     // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
     const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
     const { metrics, trace, ProxyTracerProvider } = require("@opentelemetry/api");
@@ -653,7 +653,7 @@ public class Program {
 
 ##### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
 const { metrics } = require("@opentelemetry/api");
@@ -867,7 +867,7 @@ public class Program {
 
 ##### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry integration and OpenTelemetry metrics API.
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { metrics } from "@opentelemetry/api";
@@ -1319,7 +1319,7 @@ span.recordException(e);
 The Node.js SDK exports manually recorded span-based exceptions to Application Insights as exceptions only when recorded on a top-level span or a child of a remote or internal span.
 
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
 const { trace } = require("@opentelemetry/api");
@@ -1580,7 +1580,7 @@ using (var activity = activitySource.StartActivity("CustomActivity"))
 
 #### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry integration and OpenTelemetry tracing API.
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { trace } from "@opentelemetry/api";
@@ -2367,7 +2367,7 @@ String spanId = span.getSpanContext().getSpanId();
 
 Get the request trace ID and the span ID in your code:
 
-```javascript
+```typescript
 // Import the trace module from the OpenTelemetry API.
 const { trace } = require("@opentelemetry/api");
 

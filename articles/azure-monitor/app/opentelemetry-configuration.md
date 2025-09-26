@@ -141,14 +141,14 @@ Use one of the following two ways to configure the connection string:
 
 - Set an environment variable.
 
-   ```javascript
+   ```typescript
    APPLICATIONINSIGHTS_CONNECTION_STRING=<Your Connection String>
    
 ```
 
 - Use a configuration object.
 
-    ```javascript
+    ```typescript
    // Import the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions class from the @azure/monitor-opentelemetry package.
 
     // Create a new AzureMonitorOpenTelemetryOptions object.
@@ -287,7 +287,7 @@ To set the cloud role name:
 
 Set the Cloud Role Name and the Cloud Role Instance via [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, although it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
 
-```javascript
+```typescript
 // Import the useAzureMonitor function and Resource helpers.
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { resourceFromAttributes } from "@opentelemetry/resources";
@@ -410,7 +410,7 @@ Rate-limited sampling is available starting from `azure-monitor-opentelemetry-ex
   - **RateLimitedSampler**: Maximum traces per second (e.g., 0.5 = one trace every two seconds, 5.0 = five traces per second)
 
 **Alternative configuration** 
-```javascript
+```typescript
 // Import the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions class from the @azure/monitor-opentelemetry package.
 
 // Create a new AzureMonitorOpenTelemetryOptions object and set the samplingRatio property to 0.1 to enable ApplicationInsightsSampler
@@ -522,7 +522,7 @@ The Live Metrics aren't available today for GraalVM native applications.
 
 Users can enable/disable Live Metrics when configuring the Distro using the `enableLiveMetrics` property.
 
-```javascript
+```typescript
 const options= {
     azureMonitorExporterOptions: {
         connectionString"APPLICATIONINSIGHTS_CONNECTION_STRING"] || "<your connection string>",
@@ -541,7 +541,7 @@ This feature is/isn't enabled by default.
 
 Functionality and customization are covered in the following configuration sample.
 
-```javascript
+```typescript
 Configuration sample
 
 ```
@@ -721,7 +721,7 @@ To override the default directory, you should set `storageDirectory`.
 For example:
 
 
-```javascript
+```typescript
 // Import the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions class from the @azure/monitor-opentelemetry package.
 
 // Create a new AzureMonitorOpenTelemetryOptions object and set the azureMonitorExporterOptions property to an object with the following properties:
@@ -856,7 +856,7 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
 
 1. Install the [OpenTelemetry Collector Trace Exporter](https://www.npmjs.com/package/@opentelemetry/exporter-trace-otlp-http) and other OpenTelemetry packages in your project.
 
-    ```javascript
+    ```typescript
         npm install @opentelemetry/api
         npm install @opentelemetry/exporter-trace-otlp-http
         npm install @opentelemetry/sdk-trace-base
@@ -866,7 +866,7 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-js/tree/main/examples/otlp-exporter-node).
 
-    ```javascript
+    ```typescript
     // Import the useAzureMonitor function, the AzureMonitorOpenTelemetryOptions class, the trace module, the ProxyTracerProvider class, the BatchSpanProcessor class, the NodeTracerProvider class, and the OTLPTraceExporter class from the @azure/monitor-opentelemetry, @opentelemetry/api, @opentelemetry/sdk-trace-base, @opentelemetry/sdk-trace-node, and @opentelemetry/exporter-trace-otlp-http packages, respectively.
 
     // Create a new OTLPTraceExporter object.
@@ -1042,7 +1042,7 @@ We're actively working in the OpenTelemetry community to support redaction.
 
 When you're using the [Azure Monitor OpenTelemetry distro](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry) package, query strings can be redacted via creating and applying a span processor to the distro configuration.
 
-```javascript
+```typescript
 import { useAzureMonitor, AzureMonitorOpenTelemetryOptions } from "@azure/monitor-opentelemetry";
 import { Context } from "@opentelemetry/api";
 import { ReadableSpan, Span, SpanProcessor } from "@opentelemetry/sdk-trace-base";
