@@ -10,7 +10,7 @@ ms.topic: reference
 > [!NOTE]
 > This page lists APIs for native Azure Monitor features, including *Managed Prometheus*. Other managed services, such as *Azure Managed Grafana* and *Azure Monitor SCOM Managed Instance*, use their own REST APIs and aren't included in this index.
 >
-> For more information about services, see [Azure Managed Grafana REST API Reference](/rest/api/managed-grafana/) and [System Center Operations Manager REST API Reference](/rest/operationsmanager/).
+> For more information about these services, see [Azure Managed Grafana REST API Reference](/rest/api/managed-grafana/) and [System Center Operations Manager REST API Reference](/rest/operationsmanager/).
 
 Organized by subject area.
 
