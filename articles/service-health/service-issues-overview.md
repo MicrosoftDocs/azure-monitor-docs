@@ -2,7 +2,7 @@
 title: Service Issues notifications
 description: This article describes how to view and use the Service Issues pane
 ms.topic: overview
-ms.date: 8/26/2025
+ms.date: 9/26/2025
 
 ---
 
