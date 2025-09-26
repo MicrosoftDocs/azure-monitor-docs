@@ -125,23 +125,23 @@ You can apply the latest model in the Azure portal or programmatically.
 1. Go to the **Azure portal**.
 1. Open your **Virtual Machine Scale Set**.
 1. Go to **Instances**.
-1. Select the intances to update.
+1. Select the intances to upgrade.
 1. In the top menu bar, select **Upgrade** > **Apply latest model**.
 
 # [Azure CLI](#tab/cli)
 
-Run the following command:
+Run the following command and replace `<resource-group>` and `<vmss>` with the names of your resource group and virtual machine scale set:
 
 ```azurecli
-az vmss update-instances -g <rg> -n <vmss> --instance-ids "*"
+az vmss update-instances -g <resource-group> -n <vmss> --instance-ids "*"
 ```
 
 # [PowerShell](#tab/ps)
 
-Run the following command:
+Run the following command and replace `<resource-group>` and `<vmss>` with the names of your resource group and virtual machine scale set:
 
 ```powershell
-Update-AzVmssInstance -ResourceGroupName <rg> -VMScaleSetName <vmss> -InstanceId "*"
+Update-AzVmssInstance -ResourceGroupName <resource-group> -VMScaleSetName <vmss> -InstanceId "*"
 ```
 
 ---
