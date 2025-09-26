@@ -20,6 +20,21 @@ Azure Monitor managed service for Prometheus provides preconfigured alerts, rule
 
 The only requirement to enable Azure Monitor managed service for Prometheus is to create an [Azure Monitor workspace](./prometheus-metrics-overview.md) which provides the storage for Prometheus metrics. Add Azure Monitor workspaces to separate data for different regions, environments, or teams. Onboarding for monitoring resources such as Azure Kubernetes Service (AKS) clusters guide you through the process of creating a new Azure Monitor workspace or connecting to an existing one.
 
+## Benefits of Azure Monitor managed service for Prometheus
+
+You can use Azure Monitor managed service for Prometheus to use Prometheus functionality while you benefit from Azure cloud-native, enterprise-grade capabilities. Key advantages are:
+
+- A fully managed service:
+  - Automatic upgrades and scaling.
+  - Data retention for 18 months with no cost for storage.
+  - [Simple pricing based on ingestion and query](https://azure.microsoft.com/pricing/details/monitor/).
+- Monitoring and observability:
+  - [End-to-end, at-scale monitoring](../containers/kubernetes-monitoring-overview.md).
+  - Out-of-the-box dashboards, alerts, and scrape configurations.
+  - Native integration with key Azure Kubernetes Service (AKS) components, including [Customer Control Plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) and [Advanced Container Networking Services](/azure/aks/advanced-container-networking-services-overview).
+  - [Compliance with Azure Trust Center](azure-monitor-workspace-overview.md#data-considerations).
+- Native integration with other Azure services, such as [Azure Managed Grafana](/azure/managed-grafana/overview) or [Azure Monitor dashboards with Grafana](../visualize/visualize-use-grafana-dashboards.md) for dashboarding.
+
 ## Pricing
 There's no direct cost to Azure Monitor managed service for Prometheus or creating an Azure Monitor workspace. Pricing is based on ingestion and query of collected data. See the **Metrics** tab in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) for details.
 
