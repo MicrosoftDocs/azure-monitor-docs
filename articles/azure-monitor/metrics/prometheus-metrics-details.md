@@ -7,8 +7,7 @@ ms.date: 10/06/2024
 
 # Azure Monitor managed service for Prometheus technical details
 
-[Prometheus](http://prometheus.io) is a popular open-source monitoring and alerting solution that's widely used in the cloud-native ecosystem. Azure Monitor provides a fully managed service for Prometheus that enables you to collect, store, and analyze Prometheus metrics without maintaining your own Prometheus server. You can leverage this managed service to collect Prometheus metrics from your Kubernetes clusters and virtual machines, or you can integrate with it from your self-managed Prometheus servers.
-
+[Azure Monitor and Prometheus](./prometheus-metrics-overview.md) provides an overview of Azure Monitor managed service for Prometheus. This article provides additional technical details about the service.
 
 ## Service limits and quotas
 

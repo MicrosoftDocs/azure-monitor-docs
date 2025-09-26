@@ -26,16 +26,41 @@ You may choose to use the default configuration or customize collection for your
 
 
 ## Targets scraped by default
-The following table identifies the targets that the Azure Monitor metrics add-on can scrape by default and the conditions under which they are enabled. See [Enable and disable default targets](./prometheus-metrics-scrape-configuration.md#enable-and-disable-default-targets) to enable/disable default targets.
+Following are the targets that the Azure Monitor metrics add-on can scrape by default and the conditions under which they are enabled. See [Enable and disable default targets](./prometheus-metrics-scrape-configuration.md#enable-and-disable-default-targets) to enable/disable default targets.
 
-| Condition | Targets |
-|:---|:---|
-| `cadvisor`<br>`nodeexporter`<br>`kubelet`<br>`kube-state-metrics`<br>`networkobservabilityRetina` | Enabled by default. |
-|`controlplane-apiserver`<br>`controlplane-etcd` | Enabled when [control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview) is enabled. | 
-| `networkobservabilityHubble`<br>`networkobservabilityCilium` | Enabled when [Container Network Observability](/azure/aks/advanced-network-observability-concepts) is enabled. | 
-| `acstor-capacity-provisioner`<br>`acstor-metrics-exporter` | Enabled when [Azure Container Storage](/azure/storage/container-storage/enable-monitoring) is enabled. |
-|  `coredns`<br>`kubeproxy`<br>`apiserver` | Disabled by default.  |
-|  `windows-exporter`<br>`kube-proxy-windows` | Disabled by default. Requires [Windows metrics collection](./enable-windows-metrics.md) to be enabled. |
+The following targets are enabled by default.
+
+- `cadvisor`
+- `nodeexporter`
+- `kubelet`
+- `kube-state-metrics`
+- `networkobservabilityRetina`
+
+Th following targets are enabled when [control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview) is enabled.
+
+- `controlplane-apiserver`
+- `controlplane-etcd` 
+
+The following targets are enable when [Container Network Observability](/azure/aks/advanced-network-observability-concepts) is enabled.
+
+- `networkobservabilityHubble`
+- `networkobservabilityCilium` 
+
+The following targets are enabled when [Azure Container Storage](/azure/storage/container-storage/overview) is enabled.
+
+- `acstor-capacity-provisioner`
+- `acstor-metrics-exporter`
+
+The following targets are disabled by default.
+
+- `coredns`
+- `kubeproxy`
+- `apiserver`
+
+The following targets are disabled by default and require [Windows metrics collection (preview)](./enable-windows-metrics.md) to be enabled.
+
+- `windows-exporter`
+- `kube-proxy-windows`
 
 
 ## Metrics collected from default targets
@@ -249,10 +274,10 @@ The following metrics are collected by default from each default target. All oth
 - `go_goroutines`
 
 #### networkobservabilityHubble
-See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
+- See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
 
 #### networkobservabilityCilium
-See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
+- See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
 
 #### controlplane-apiserver
 
@@ -326,10 +351,10 @@ See [Container Network Observability metrics](/azure/aks/advanced-network-observ
 
 
 #### acstor-capacity-provisioner (job=acstor-capacity-provisioner)
-See [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
+- See [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
 
 #### acstor-metrics-exporter (job=acstor-metrics-exporter)
-See [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
+- See [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
 
 
 ## Dashboards
