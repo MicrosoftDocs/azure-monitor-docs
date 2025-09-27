@@ -2167,18 +2167,8 @@ Span.current().setAttribute("enduser.id", "myuser");
 Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```javascript
-...
-// Import the SemanticAttributes class from the @opentelemetry/semantic-conventions package.
-import { SemanticAttributes } from "@opentelemetry/semantic-conventions";
-
-// Create a new SpanEnrichingProcessor class.
-class SpanEnrichingProcessor implements SpanProcessor {
-
-    onEnd(span: ReadableSpan) {
-    // Set the ENDUSER_ID attribute on the span to the ID of the user.
-    span.attributes[SemanticAttributes.ENDUSER_ID] = "<User ID>";
-    }
-}
+// In your custom SpanEnrichingProcessor.onEnd(span):
+span.attributes["enduser.id"] = "<User ID>";
 ```
 
 ##### [Python](#tab/python)

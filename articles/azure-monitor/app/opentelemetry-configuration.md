@@ -884,22 +884,21 @@ import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 
 // Create an OTLP trace exporter.
+// If your collector is not running on the default endpoint, set the 'url'.
 const otlpExporter = new OTLPTraceExporter({
-  // url: "http://localhost:4318/v1/traces" // <- set if not default
+  // url: "http://localhost:4318/v1/traces",
 });
 
 // Configure Azure Monitor and add the OTLP exporter as an additional span processor.
 const options = {
-  
   azureMonitorExporterOptions: {
     connectionString:
       process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
   },
-spanProcessors: [new BatchSpanProcessor(otlpExporter)],
+  spanProcessors: [new BatchSpanProcessor(otlpExporter)],
 };
 
 useAzureMonitor(options);
-
 ```
 
 ### [Python](#tab/python)
