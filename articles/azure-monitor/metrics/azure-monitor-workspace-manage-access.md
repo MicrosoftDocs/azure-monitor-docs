@@ -179,55 +179,55 @@ This role is a superset of the Monitoring Reader role. It's appropriate for memb
 
 The Monitoring Contributor role includes the following Azure actions:
 
-[Learn more](/azure/azure-monitor/roles-permissions-security)
+[Learn more](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor)
 
 > [!div class="mx-tableFixed"]
 > | Actions | Description |
 > | --- | --- |
 > | */read | Read control plane information for all Azure resources. |
-> | [Microsoft.AlertsManagement](../permissions/monitor.md#microsoftalertsmanagement)/alerts/* |  |
-> | [Microsoft.AlertsManagement](../permissions/monitor.md#microsoftalertsmanagement)/alertsSummary/* |  |
-> | [Microsoft.AlertsManagement](../permissions/monitor.md#microsoftalertsmanagement)/issues/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/actiongroups/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/activityLogAlerts/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/AlertRules/* | Create and manage a classic metric alert |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/components/* | Create and manage Insights components |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/createNotifications/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/dataCollectionEndpoints/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/dataCollectionRules/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/dataCollectionRuleAssociations/* |  |
+> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/alerts/* |  |
+> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/alertsSummary/* |  |
+> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/issues/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/actiongroups/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/activityLogAlerts/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/AlertRules/* | Create and manage a classic metric alert |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/components/* | Create and manage Insights components |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/createNotifications/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/dataCollectionEndpoints/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/dataCollectionRules/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/dataCollectionRuleAssociations/* |  |
 > | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/DiagnosticSettings/* | Creates, updates, or reads the diagnostic setting for Analysis Server |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/eventtypes/* | List Activity Log events (management events) in a subscription. This permission is applicable to both programmatic and portal access to the Activity Log. |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/LogDefinitions/* | This permission is necessary for users who need access to Activity Logs via the portal. List log categories in Activity Log. |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/metricalerts/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/MetricDefinitions/* | Read metric definitions (list of available metric types for a resource). |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/Metrics/* | Read metrics for a resource. |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/notificationStatus/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/Register/Action | Register the Microsoft Insights provider |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/scheduledqueryrules/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/webtests/* | Create and manage Insights web tests |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/workbooks/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/workbooktemplates/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/privateLinkScopes/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/privateLinkScopeOperationStatuses/* |  |
-> | [Microsoft.Monitor](../permissions/monitor.md#microsoftmonitor)/accounts/* |  |
-> | [Microsoft.OperationalInsights](../permissions/monitor.md#microsoftoperationalinsights)/workspaces/write | Creates a new workspace or links to an existing workspace by providing the customer id from the existing workspace. |
-> | [Microsoft.OperationalInsights](../permissions/monitor.md#microsoftoperationalinsights)/workspaces/intelligencepacks/* | Read/write/delete log analytics solution packs. |
-> | [Microsoft.OperationalInsights](../permissions/monitor.md#microsoftoperationalinsights)/workspaces/savedSearches/* | Read/write/delete log analytics saved searches. |
-> | [Microsoft.OperationalInsights](../permissions/monitor.md#microsoftoperationalinsights)/workspaces/search/action | Executes a search query |
-> | [Microsoft.OperationalInsights](../permissions/monitor.md#microsoftoperationalinsights)/workspaces/sharedKeys/action | Retrieves the shared keys for the workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace. |
-> | [Microsoft.OperationalInsights](../permissions/monitor.md#microsoftoperationalinsights)/workspaces/sharedKeys/read | Retrieves the shared keys for the workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace. |
-> | [Microsoft.OperationalInsights](../permissions/monitor.md#microsoftoperationalinsights)/workspaces/storageinsightconfigs/* | Read/write/delete log analytics storage insight configurations. |
-> | [Microsoft.OperationalInsights](../permissions/monitor.md#microsoftoperationalinsights)/locations/workspaces/failover/action | Initiates workspace failover to replication location. |
-> | [Microsoft.OperationalInsights](../permissions/monitor.md#microsoftoperationalinsights)/workspaces/failback/action | Initiates workspace failback. |
-> | [Microsoft.Support](../permissions/general.md#microsoftsupport)/* | Create and update a support ticket |
-> | [Microsoft.AlertsManagement](../permissions/monitor.md#microsoftalertsmanagement)/smartDetectorAlertRules/* |  |
-> | [Microsoft.AlertsManagement](../permissions/monitor.md#microsoftalertsmanagement)/actionRules/* |  |
-> | [Microsoft.AlertsManagement](../permissions/monitor.md#microsoftalertsmanagement)/smartGroups/* |  |
-> | [Microsoft.AlertsManagement](../permissions/monitor.md#microsoftalertsmanagement)/migrateFromSmartDetection/* |  |
-> | [Microsoft.AlertsManagement](../permissions/monitor.md#microsoftalertsmanagement)/investigations/* |  |
-> | [Microsoft.AlertsManagement](../permissions/monitor.md#microsoftalertsmanagement)/prometheusRuleGroups/* |  |
-> | [Microsoft.Monitor](../permissions/monitor.md#microsoftmonitor)/investigations/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/eventtypes/* | List Activity Log events (management events) in a subscription. This permission is applicable to both programmatic and portal access to the Activity Log. |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/LogDefinitions/* | This permission is necessary for users who need access to Activity Logs via the portal. List log categories in Activity Log. |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/metricalerts/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/MetricDefinitions/* | Read metric definitions (list of available metric types for a resource). |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/Metrics/* | Read metrics for a resource. |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/notificationStatus/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/Register/Action | Register the Microsoft Insights provider |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/scheduledqueryrules/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/webtests/* | Create and manage Insights web tests |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/workbooks/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/workbooktemplates/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/privateLinkScopes/* |  |
+> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/privateLinkScopeOperationStatuses/* |  |
+> | [Microsoft.Monitor](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftmonitor)/accounts/* |  |
+> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/write | Creates a new workspace or links to an existing workspace by providing the customer id from the existing workspace. |
+> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/intelligencepacks/* | Read/write/delete log analytics solution packs. |
+> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/savedSearches/* | Read/write/delete log analytics saved searches. |
+> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/search/action | Executes a search query |
+> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/sharedKeys/action | Retrieves the shared keys for the workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace. |
+> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/sharedKeys/read | Retrieves the shared keys for the workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace. |
+> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/storageinsightconfigs/* | Read/write/delete log analytics storage insight configurations. |
+> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/locations/workspaces/failover/action | Initiates workspace failover to replication location. |
+> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/failback/action | Initiates workspace failback. |
+> | [Microsoft.Support](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/general.md#microsoftsupport)/* | Create and update a support ticket |
+> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/smartDetectorAlertRules/* |  |
+> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/actionRules/* |  |
+> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/smartGroups/* |  |
+> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/migrateFromSmartDetection/* |  |
+> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/investigations/* |  |
+> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/prometheusRuleGroups/* |  |
+> | [Microsoft.Monitor](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftmonitor)/investigations/* |  |
 > | **NotActions** |  |
 > | *none* |  |
 > | **DataActions** |  |
@@ -243,9 +243,4 @@ To scope queries to a [resource](#query-scope), you need these permissions on th
 |----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 | `Microsoft.Insights/metrics/*/read`                                                                   | Ability to view all metrics data for the resource                                       |
 
-The `/read` permission is usually granted from a role that includes _\*/read or_ _\*_ permissions, such as the built-in [Reader](/azure/role-based-access-control/built-in-roles#reader) and [Contributor](/azure/role-based-access-control/built-in-roles#contributor) roles. Custom roles that include specific actions or dedicated built-in roles might not include this permission.
-
-## Next steps
-
-* See [Log Analytics agent overview](../agents/log-analytics-agent.md) to gather data from computers in your datacenter or other cloud environment.
-* See [Collect data about Azure virtual machines](../vm/monitor-virtual-machine.md) to configure data collection from Azure VMs.
+The `/read` permission is usually granted from a role that includes _\*/read or_ _\*_ permissions, such as the built-in [Reader](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#reader) and [Contributor](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#contributor) roles. Custom roles that include specific actions or dedicated built-in roles might not include this permission.
