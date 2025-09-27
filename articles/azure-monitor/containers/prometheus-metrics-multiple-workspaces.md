@@ -35,7 +35,7 @@ relabel_configs:
 
 ## Create DCRs
 
-Once you have your ConfigMaps defined, you need a DCR for each scrape config. Each DCR will look for the label you defined in the ConfigMap and route the data to the appropriate Azure Monitor workspace. There are multiple methods to edit and create DCRs as described in [Create data collection rules (DCRs) in Azure Monitor](../data-collection-rule-create-edit.md). You can start by editing the DCR created when you onboarded the cluster and then use that as a template for the others.
+Once you have your ConfigMaps defined, you need a DCR for each scrape config. Each DCR will look for the label you defined in the ConfigMap and route the data to the appropriate Azure Monitor workspace. There are multiple methods to edit and create DCRs as described in [Create data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md). You can start by editing the DCR created when you onboarded the cluster and then use that as a template for the others.
 
 To identify the data to be routed, use the `labelIncludeFilter` property in the `prometheusForwarder` section of the DCR. The following example shows a DCR that routes data with the label `MonitoringAccountLabel1`.
 

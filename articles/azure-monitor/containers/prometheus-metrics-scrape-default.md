@@ -46,7 +46,7 @@ The following targets are enable when [Container Network Observability](/azure/a
 - `networkobservabilityHubble`
 - `networkobservabilityCilium` 
 
-The following targets are enabled when [Azure Container Storage](/azure/storage/container-storage/overview) is enabled.
+The following targets are enabled when [Azure Container Storage](/azure/storage/container-storage/container-storage-introduction) is enabled.
 
 - `acstor-capacity-provisioner`
 - `acstor-metrics-exporter`
