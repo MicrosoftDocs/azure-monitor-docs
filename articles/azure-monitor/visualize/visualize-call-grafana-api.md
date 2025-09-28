@@ -90,21 +90,7 @@ The Grafana endpoint usually follows the format: https://local-<your_dashboard_r
 
 ## Get an access token
 
-To access Grafana APIs, you need to get an access token. You can get the access token using the Azure CLI or making a POST request.
-
-### [Azure CLI](#tab/azure-cli)
-
-Sign in to the Azure CLI by running the [az login](/cli/azure/reference-index#az-login) command and replace `<client-id>`, `<client-secret>`, and `<tenant-id>` with the application (client) ID, client secret, and tenant ID collected in the previous step:
-
-```
-az login --service-principal --username "<client-id>" --password "<client-secret>" --tenant "<tenant-id>"
-```
-
-Use the command [az account get-access-token](/cli/azure/account#az-account-get-access-token) to get an access token. Here's an example:
-
-```
-az account get-access-token --tenant 00000000-0000-0000-0000-000000000000
-```
+To access Grafana APIs, you need to get an access token. You can get the access token by making a POST request.
 
 ### [POST request](#tab/post)
 
