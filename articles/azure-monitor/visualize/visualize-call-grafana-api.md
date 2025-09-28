@@ -189,7 +189,7 @@ Example post request:
 ```bash
 curl -X POST \
 -H 'Authorization: Bearer <access-token>' \
--d '{"Dashboard": {...}} \
+-d '{"Dashboard": {...}}' \
 <grafana-endpoint>/api/dashboards/db
 ```
 
