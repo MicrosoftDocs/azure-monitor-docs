@@ -13,6 +13,8 @@ ms.topic: overview
 
 # About Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article provides you with a quick service overview of Azure Monitor SCOM Managed Instance.
 
 With the integration of SCOM Managed Instance, System Center Operations Manager functionality is now available on Azure.

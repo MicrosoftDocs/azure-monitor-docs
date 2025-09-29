@@ -13,6 +13,8 @@ ms.topic: whats-new
 
 # What's new in Azure Monitor SCOM Managed Instance 
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article provides details of what's new in each version of Azure Monitor SCOM Managed Instance.
 
 ## Version 1.0.106

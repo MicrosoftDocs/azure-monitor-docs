@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Create a computer group and group-managed service account for Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes how to create a group-managed service account (gMSA) account, computer group, and domain user account in on-premises Active Directory.
 
 > [!NOTE]

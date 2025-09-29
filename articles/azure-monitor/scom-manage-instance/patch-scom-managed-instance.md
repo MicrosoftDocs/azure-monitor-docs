@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Patch Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 Azure Monitor SCOM Managed Instance offers a convenient patching experience compared to on-premises System Center Operations Manager.
 
 Following are the key highlights:

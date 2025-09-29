@@ -14,6 +14,8 @@ ms.topic: how-to
 
 # Disaster Recovery guidance – Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 Azure Monitor SCOM Managed Instance provides an industry leading high availability monitoring service. It also provides business continuity capabilities that you can perform for quick disaster recovery in the event of a regional outage. This article provides information to review in advance of application deployment.
 
 Though we continuously strive to provide high availability, there are times when the Azure Monitor SCOM Managed Instance service incurs outages that cause the unavailability of your monitored data and thus impacts your observability service. When our service monitoring detects issues that cause widespread connectivity errors, failures, or performance issues, the service declares an outage to keep you informed.

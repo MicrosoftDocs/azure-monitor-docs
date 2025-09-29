@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Create a user-assigned identity for Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes how to create a user-assigned identity, provide admin access to Azure SQL Managed Instance, and grant **Get** and **List** access on a key vault.
 
 >[!NOTE]

@@ -14,6 +14,8 @@ ms.topic: tutorial
 
 # Tutorial: Create an instance of Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 Azure Monitor SCOM Managed Instance provides System Center Operations Manager functionality in Azure. It helps you monitor all your workloads, whether they're on-premises, in Azure, or in any other cloud services.
 
 This tutorial describes how to create an instance of the service (a SCOM Managed Instance) with System Center Operations Manager functionality in Azure.

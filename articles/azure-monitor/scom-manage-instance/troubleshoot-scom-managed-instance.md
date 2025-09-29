@@ -13,6 +13,8 @@ ms.topic: troubleshooting-general
 
 # Troubleshoot issues with Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes the errors that might occur when you deploy or use Azure Monitor SCOM Managed Instance and how to resolve them.
 
 ## Scenario: SCOM Managed Instance creation/deployment

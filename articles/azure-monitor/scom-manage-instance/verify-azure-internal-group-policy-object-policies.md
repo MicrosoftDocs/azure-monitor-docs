@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Verify Azure and internal GPO policies for Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes how to verify Azure and internal Group Policy Object (GPO) policies.
 
 > [!NOTE]

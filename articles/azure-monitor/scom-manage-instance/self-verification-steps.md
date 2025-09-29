@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Azure Monitor SCOM Managed Instance self-verification of steps
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes the self-verification processes of the Operations Manager admin, Active Directory admin, and network admin.
 
 > [!NOTE]
