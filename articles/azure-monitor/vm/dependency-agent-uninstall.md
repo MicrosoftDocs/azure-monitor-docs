@@ -1,6 +1,6 @@
 ---
 title:  Remove Dependency Agent from Azure Virtual Machines and Virtual Machine Scale Sets
-description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
+description: Detailed process for safely uninstalling the Dependency Agent from both Windows and Linux-based Azure VMs and VMSS instances.
 ms.topic: article
 ms.date: 02/26/2025
 ---
@@ -59,7 +59,7 @@ az vmss extension list --resource-group <resource-group-name> --vmss-name <vm-na
 ```
 
 
-### [PowerShell](#tab=powershell)
+### [PowerShell](#tab/powershell)
 
 Run the following command to list installed extensions. Look for `Microsoft.Azure.Monitoring.DependencyAgent` in the **Publisher** column. Note the value in the **Name** column since you'll need it later.
 
@@ -159,7 +159,7 @@ az monitor data-collection rule association update --association-name "$dcraName
 
 
 
-### [PowerShell](#tab=powershell)
+### [PowerShell](#tab/powershell)
 
 ```azurecli
 
@@ -207,7 +207,7 @@ az vmss extension delete --resource-group <resource-group-name> --vm-name <vm-na
 ```
 
 
-### [PowerShell](#tab=powershell)
+### [PowerShell](#tab/powershell)
 
 Use one of the following commands with the extension name from [Identify the Dependency Agent installation](#identify-the-dependency-agent-installation).
 
