@@ -30,6 +30,8 @@ To create a custom table and collect log data, you need:
 
 >[!NOTE]
 > Auxiliary logs are generally available (GA) for all public cloud regions, but not available for Azure Government or China clouds.
+><br>
+> Auxiliary logs are available in all regions Log Analytics workspaces are available except for Qatar Central.
 
 ## Create a custom table with the Auxiliary plan
 
@@ -224,7 +226,7 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
 
 
 
-## Next steps
+## Related content
 
 Learn more about:
 
