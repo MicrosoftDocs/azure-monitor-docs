@@ -10,4 +10,4 @@ ms.subservice: operations-manager-managed-instance
 ---
 
 >[!NOTE]
->Azure Monitor SCOM Managed Instance is no longer in support and is planned to be deprecated by 30 September 2026. This content will no longer be updated. We recommend Azure Monitor or System Center Operations Manager as an alternative solution, based on your requirements.
+>Azure Monitor SCOM Managed Instance is no longer in support and is planned to be deprecated by 30 September 2026. This content will no longer be updated. We recommend [Azure Monitor](/azure/azure-monitor/scom-manage-instance/migrate-to-azure-monitor) or [System Center Operations Manager](/azure/azure-monitor/scom-manage-instance/migrate-to-operations-manager) as an alternative solution, based on your requirements.

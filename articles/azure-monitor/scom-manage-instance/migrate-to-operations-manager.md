@@ -55,6 +55,6 @@ To migrate to System Center Operations Manager, follow these steps:
 
    Perform end-to-end testing of alerts, dashboards, and reports. Confirm that monitoring logic behaves as expected. Include application owners and IT stakeholders in validation. Use synthetic transactions where applicable.
 
-8. **Decommission SCOM MI**
+8. **Decommission SCOM Managed Instance**
 
    Once the on-premises setup is stable, delete SCOM Managed Instance resources to avoid unnecessary costs. Deleting a SCOM Managed Instance is nothing but deleting the Azure resource groups where the SCOM Managed Instance resources are deployed. For any issues, see [frequently asked questions](/azure/azure-monitor/scom-manage-instance/scom-managed-instance-faq#what-is-the-procedure-to-delete-an-instance-).
