@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Store domain credentials in Azure Key Vault
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes how to store domain credentials in Azure Key Vault.
 
 ## To store domain credentials in a key vault

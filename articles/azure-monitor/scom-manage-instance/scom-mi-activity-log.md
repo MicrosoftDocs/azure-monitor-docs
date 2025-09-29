@@ -14,6 +14,8 @@ ms.topic: article
 
 # Azure Monitor SCOM Managed Instance activity log 
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 The Azure Monitor SCOM Managed Instance activity log is a platform log in Azure that provides insight into subscription-level events. The activity log includes information such as when a SCOM Managed Instance resource is created or modified or patched with new software and scaled or deleted. This article provides information on how to view the activity log.
 
 >[!Note]

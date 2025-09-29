@@ -13,6 +13,8 @@ ms.topic: troubleshooting-general
 
 # Troubleshoot commonly encountered errors while validating input parameters
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes the errors that might occur while validating input parameters and how to resolve them.
 
 If you encounter any issues while creating on-premises parameters, use [this script](https://go.microsoft.com/fwlink/?linkid=2221732) for assistance.

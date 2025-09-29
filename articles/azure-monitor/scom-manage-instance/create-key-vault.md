@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Create an Azure key vault
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes how to create a key vault to store domain credentials.
 
 >[!NOTE]

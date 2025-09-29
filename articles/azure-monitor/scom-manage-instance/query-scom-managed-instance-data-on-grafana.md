@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Query Azure Monitor SCOM Managed Instance data from Azure Managed Grafana dashboards
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes how to query monitoring data from Operational database and create dashboards on Azure Managed Grafana.
 
 From Azure Managed Grafana linked to Azure Monitor SCOM Managed Instance, you can use SQL queries to get the monitored data from Operational database stored on Azure Managed SQL Managed Instance.

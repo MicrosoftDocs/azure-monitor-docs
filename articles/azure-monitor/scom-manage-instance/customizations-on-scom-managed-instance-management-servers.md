@@ -13,6 +13,8 @@ ms.topic: concept-article
 
 # Customizations on Azure Monitor SCOM Managed Instance management servers
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 Azure Monitor SCOM Managed Instance is a PaaS service hosted on Azure. As part of instance creation, Azure creates a Virtual machine scale set cluster and commissions VMs inside that Virtual machine scale set cluster. However, if you have a requirement to access the management server and customize some aspect of it, such as applying a post-deployment configuration, installing a Management Pack or software, or carry out any other management operation, use the [Script for Customization](https://download.microsoft.com/download/0/1/5/015ee8fc-e3ab-4842-8c2a-3acebb0e54f5/RunCustomizations.zip).
 
 The script internally uses Azure custom script extensions for making the customizations. Once you run the script, it downloads and executes the customization script on the SCOM Managed Instance Management Servers.

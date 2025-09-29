@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Dashboards on Azure Managed Grafana
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 Azure Managed Grafana (AMG) is a data visualization platform, built on top of the Grafana software by Grafana Labs. Grafana helps you bring together metrics, logs, and traces into a single user interface.
 
 Azure Managed Grafana is optimized for the Azure environment and works seamlessly, providing the following integration features:
