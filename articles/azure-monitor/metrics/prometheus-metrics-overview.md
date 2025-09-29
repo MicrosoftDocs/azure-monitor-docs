@@ -18,13 +18,13 @@ Azure Monitor managed service for Prometheus provides preconfigured alerts, rule
 
 :::image type="content" source="media/prometheus-metrics-overview/overview.png" alt-text="Diagram showing overview of Managed Prometheus and Azure Monitor tools that use it." lightbox="media/prometheus-metrics-overview/overview.png"  border="false":::
 
-The only requirement to enable Azure Monitor managed service for Prometheus is to create an [Azure Monitor workspace](./prometheus-metrics-overview.md) which provides the storage for Prometheus metrics. Add Azure Monitor workspaces to separate data for different regions, environments, or teams. Onboarding for monitoring resources such as Azure Kubernetes Service (AKS) clusters guide you through the process of creating a new Azure Monitor workspace or connecting to an existing one.
+
 
 ## Benefits of Azure Monitor managed service for Prometheus
 
-You can use Azure Monitor managed service for Prometheus to use Prometheus functionality while you benefit from Azure cloud-native, enterprise-grade capabilities. Key advantages are:
+Key benefits of Azure Monitor managed service for Prometheus include:
 
-- A fully managed service:
+- Fully managed service hosted in Azure:
   - Automatic upgrades and scaling.
   - Data retention for 18 months with no cost for storage.
   - [Simple pricing based on ingestion and query](https://azure.microsoft.com/pricing/details/monitor/).
@@ -33,21 +33,21 @@ You can use Azure Monitor managed service for Prometheus to use Prometheus funct
   - Out-of-the-box dashboards, alerts, and scrape configurations.
   - Native integration with key Azure Kubernetes Service (AKS) components, including [Customer Control Plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) and [Advanced Container Networking Services](/azure/aks/advanced-container-networking-services-overview).
   - [Compliance with Azure Trust Center](azure-monitor-workspace-overview.md#data-considerations).
-- Native integration with other Azure services, such as [Azure Managed Grafana](/azure/managed-grafana/overview) or [Azure Monitor dashboards with Grafana](../visualize/visualize-use-grafana-dashboards.md) for dashboarding.
+- Native integration with other Azure services including [Azure Managed Grafana](/azure/managed-grafana/overview) or [Azure Monitor dashboards with Grafana](../visualize/visualize-use-grafana-dashboards.md).
 
 ## Pricing
 There's no direct cost to Azure Monitor managed service for Prometheus or creating an Azure Monitor workspace. Pricing is based on ingestion and query of collected data. See the **Metrics** tab in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) for details.
 
-## Data storage
-Data is stored for 18 months at no additional cost.
-
 ## Data collection
-Azure Monitor managed service for Prometheus currently collects data directly from AKS and Azure Arc-enabled Kubernetes. [Container insights](../containers/kubernetes-monitoring-overview.md) provides an onboarding process that installs the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) in your cluster and creates a [data collection rule (DCR)](../data-collection/data-collection-rule-overview.md) that defines the data collection process and directs the data to the appropriate workspace. You can use the Azure portal to easily enable and configure monitoring or work directly with the DCR for more advanced scenarios.
+Azure Monitor managed service for Prometheus currently collects data directly from AKS and Azure Arc-enabled Kubernetes. Azure Monitor provides an [onboarding process](../containers/kubernetes-monitoring-overview.md) that installs the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) in your cluster and creates a [data collection rule (DCR)](../data-collection/data-collection-rule-overview.md) that defines the data collection process and directs the data to the appropriate workspace. You can use the Azure portal, CLI, PowerShell, and ARM/Bicep templates to easily enable and configure monitoring or work directly with ConfigMap and the DCR for more advanced scenarios.
 
-See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) to use Container insights to configure Managed Prometheus on your cluster. To enable managed Prometheus for Microsoft Azure air-gapped clouds, contact support.
+See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) for details on enabling Managed Prometheus on your cluster. To enable managed Prometheus for Microsoft Azure air-gapped clouds, contact support.
+
+## Data storage
+The only requirement to enable Azure Monitor managed service for Prometheus is to create an [Azure Monitor workspace](./prometheus-metrics-overview.md) which provides the storage for Prometheus metrics. Add Azure Monitor workspaces to separate data for different regions, environments, or teams. Onboarding for monitoring resources such as Azure Kubernetes Service (AKS) clusters guide you through the process of creating a new Azure Monitor workspace or connecting to an existing one. Data is stored for 18 months at no additional cost.
 
 ## Integrate with self-managed Prometheus
-Azure Monitor managed service for Prometheus is intended to be a replacement for self managed Prometheus so you don't need to manage a Prometheus server in your Kubernetes clusters. There may be scenarios though where you want to continue to use self-managed Prometheus in your Kubernetes clusters while also sending data to Managed Prometheus for long term data retention and to create a centralized view across your clusters. This may be a temporary solution while you migrate to Managed Prometheus or a long term solution if you have specific requirements to maintain self-managed Prometheus.
+Azure Monitor managed service for Prometheus is intended to be a replacement for self managed Prometheus so you don't need to manage a Prometheus server in your Kubernetes clusters. There may be scenarios though where you want to continue to use self-managed Prometheus in your Kubernetes clusters while also sending data to Managed Prometheus for long term data retention and to create a centralized view across your clusters. This may be a temporary solution while you migrate to Managed Prometheus or a long term solution if you have specific requirements to maintain your existing environment.
 
 [Remote_write](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) is a feature in Prometheus that allows you to send metrics from a local Prometheus instance to remote storage or to another Prometheus instance. Use this feature to send metrics from self-managed Prometheus running in your Kubernetes cluster or virtual machines to an Azure Monitor workspace used by Managed Prometheus. 
 

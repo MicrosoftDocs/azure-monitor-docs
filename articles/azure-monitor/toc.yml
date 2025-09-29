@@ -948,11 +948,11 @@ items:
           href: agents/agent-linux-troubleshoot.md
   - name: Prometheus metrics
     items:
+    - name: Integrate with self-hosted Prometheus
+      href: metrics/prometheus-remote-write.md
     - name: Migrate from self-hosted Prometheus
       href: metrics/prometheus-migrate.md
       displayName: Prometheus migrate
-    - name: Integrate with self-hosted Prometheus
-      href: metrics/prometheus-remote-write.md
       displayName: Prometheus remote-write
   - name: Logs ingestion API
     items:
