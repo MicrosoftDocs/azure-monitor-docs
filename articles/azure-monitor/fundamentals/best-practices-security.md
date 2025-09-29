@@ -3,6 +3,7 @@ title: Secure your Azure Monitor deployment
 description: This article provides instructions for deploying Azure Monitor securely and explains how Microsoft secures Azure Monitor. 
 ms.topic: article
 ms.date: 03/19/2025
+ms.custom: horz-security
 ms.reviewer: bwren
 ---
 

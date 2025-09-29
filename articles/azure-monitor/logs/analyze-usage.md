@@ -23,7 +23,7 @@ This article provides guidance on analyzing your collected data to assist in con
 
 Each Log Analytics workspace is charged as a separate service and contributes to the bill for your Azure subscription. The amount of data ingestion can be considerable, depending on the:
 
-* Set of insights and services (for example, [Application Insights](../app/app-insights-overview.md), [Container Insights](../containers/container-insights-overview.md), [VM Insights](../vm/tutorial-monitor-vm-enable-insights.md)) enabled and their configuration.
+* Set of insights and services (for example, [Application Insights](../app/app-insights-overview.md), [Container Insights](../containers/kubernetes-monitoring-overview.md), [VM Insights](../vm/tutorial-monitor-vm-enable-insights.md)) enabled and their configuration.
 * Number and type of monitored resources.
 * Volume of data collected from each monitored resource.
 

@@ -1,47 +1,34 @@
 ---
-title: Access Syslog data in Container Insights 
+title: Analyze Syslog data from Kubernetes cluster in Azure Monitor
 description: Describes how to access Syslog data collected from AKS nodes using Container insights.
 ms.topic: article
 ms.date: 08/19/2025
 ms.reviewer: damendo
 ---
 
-# Access Syslog data in Container Insights 
+# Analyze Syslog data from Kubernetes cluster in Azure Monitor
 
-Container Insights offers the ability to collect Syslog events from Linux nodes in your [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) clusters. This includes the ability to collect logs from control plane components like kubelet. Customers can also use Syslog for monitoring security and health events, typically by ingesting syslog into a SIEM system like [Microsoft Sentinel](https://azure.microsoft.com/products/microsoft-sentinel/#overview).  
-
-
+Log collection for your Kubernetes cluster in Azure Monitor includes the option to collect Syslog events from Linux nodes. This may include logs from control plane components like kubelet or security and health events that may be ingested into a SIEM system like [Microsoft Sentinel](https://azure.microsoft.com/products/microsoft-sentinel/#overview).  
 
 ## Prerequisites 
 
-- Syslog collection needs to be enabled for your cluster using the guidance in [Configure and filter log collection in Container insights](./container-insights-data-collection-configure.md#configure-data-collection-using-dcr).
+- Syslog collection needs to be enabled in the [logging profile for your cluster](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging).
 - Port 28330 should be available on the host node.
 - Ensure hostPort functionality is enabled in the cluster. For example, Cilium Enterprise does not have hostPort functionality enabled by default and prevents the syslog feature from working.
-- Target cluster should be an [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) cluster. Arc and other cluster types are not supported
+- Target cluster should be an [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) cluster. Arc and other cluster types are not supported.
 
-## Built-in workbooks
+## Syslog workbook
 
-To get a quick snapshot of your syslog data, use the built-in Syslog workbook using one of the following methods:
+To get a quick snapshot of your syslog data, open the built-in Syslog workbook from the **Workbooks** item in the menu for your cluster.
 
-> [!NOTE]
-> The **Reports** tab won't be available if you enable the [Container insights Prometheus experience](./container-insights-experience-v2.md) for your cluster.
-
-- **Reports** tab in Container Insights. 
-Navigate to your cluster in the Azure portal and open the **Insights**. Open the **Reports** tab and locate the **Syslog** workbook. 
-
-    :::image type="content" source="media/container-insights-syslog/syslog-workbook-cluster.gif" lightbox="media/container-insights-syslog/syslog-workbook-cluster.gif" alt-text="Video of Syslog workbook being accessed from Container Insights Reports tab." border="true":::
-
-- **Workbooks** tab in AKS
-Navigate to your cluster in the Azure portal. Open the **Workbooks** tab and locate the **Syslog** workbook. 
-
-    :::image type="content" source="media/container-insights-syslog/syslog-workbook-container-insights-reports-tab.gif" lightbox="media/container-insights-syslog/syslog-workbook-container-insights-reports-tab.gif" alt-text="Video of Syslog workbook being accessed from cluster workbooks tab." border="true":::
+:::image type="content" source="media/container-insights-syslog/syslog-workbook-container-insights-reports-tab.gif" lightbox="media/container-insights-syslog/syslog-workbook-container-insights-reports-tab.gif" alt-text="Video of Syslog workbook being accessed from cluster workbooks tab." border="true":::
 
 ## Grafana dashboard
 
-If you use Grafana, you can use the Syslog dashboard for Grafana to get an overview of your Syslog data. This dashboard is available by default if you create a new Azure-managed Grafana instance. Otherwise, you can [import the Syslog dashboard from the Grafana marketplace](https://grafana.com/grafana/dashboards/19866-azure-insights-containers-syslog/). 
+There is also a Syslog dashboard available for Grafana. This dashboard is available by default with Azure Monitor dashboards with Grafana and also if you create a new Azure-managed Grafana instance. You can also import the Syslog dashboard from the [Grafana marketplace](https://grafana.com/grafana/dashboards/19866-azure-insights-containers-syslog/). 
 
 > [!NOTE]
-> You need the **Monitoring Reader** role on the Subscription containing the Azure Managed Grafana instance to access syslog from Container Insights. 
+> You need the **Monitoring Reader** role on the Subscription containing the Azure Managed Grafana instance. 
 
 :::image type="content" source="media/container-insights-syslog/grafana-screenshot.png" lightbox="media/container-insights-syslog/grafana-screenshot.png" alt-text="Screenshot of Syslog Grafana dashboard." border="false":::
 
@@ -51,7 +38,7 @@ Syslog data is stored in the [Syslog](/azure/azure-monitor/reference/tables/sysl
 
 :::image type="content" source="media/container-insights-syslog/azmon-3.png" lightbox="media/container-insights-syslog/azmon-3.png" alt-text="Screenshot of Syslog query loaded in the query editor in the Azure Monitor Portal UI." border="false":::    
 
-You can open Log Analytics from the **Logs** menu in the **Monitor** menu to access Syslog data for all clusters or from the AKS cluster's menu to access Syslog data for a single cluster.
+Open Log Analytics from the **Logs** menu in the **Monitor** menu to access Syslog data for all clusters or from the AKS cluster's menu to access Syslog data for a single cluster.
  
 :::image type="content" source="media/container-insights-syslog/aks-4.png" lightbox="media/container-insights-syslog/aks-4.png" alt-text="Screenshot of Query editor with Syslog query." border="false":::
   

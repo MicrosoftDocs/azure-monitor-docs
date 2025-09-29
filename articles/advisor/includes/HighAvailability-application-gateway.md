@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 09/23/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -558,5 +558,60 @@ Recommendation ID: b4af9e04-3570-41f1-b4cf-b7af07224799
 Subcategory: BusinessContinuity
 
 <!--b4af9e04-3570-41f1-b4cf-b7af07224799_end-->
+
+<!--cdf6b706-a12c-4b65-96b6-00cb125b7c26_begin-->
+
+#### Use Standard SKU with zone-redundant IP addresses  
+  
+Use Standard SKU and deploy across three or more zones.  
+  
+**Potential benefits**: Ensures IP availability during zone failures  
+
+**Impact:** High
+  
+For more information, see [Azure Public IP address prefix - Azure Virtual Network](/azure/virtual-network/public-ip-address-prefix)  
+
+ResourceType: microsoft.network/publicipprefixes  
+Recommendation ID: cdf6b706-a12c-4b65-96b6-00cb125b7c26  
+Subcategory: HighAvailability
+
+<!--cdf6b706-a12c-4b65-96b6-00cb125b7c26_end-->
+
+<!--20f2ff6a-3940-4cc9-8f14-909466c4ddd0_begin-->
+
+#### Traffic Manager monitor status should be online  
+  
+Monitor status should be online to ensure failover for application workload. If Traffic Manager's health shows degraded, one or more endpoints may also be degraded.  
+  
+**Potential benefits**: Ensures failover functionality  
+
+**Impact:** High
+  
+For more information, see [Azure Traffic Manager endpoint monitoring](/azure/traffic-manager/traffic-manager-monitoring)  
+
+ResourceType: microsoft.network/trafficmanagerprofiles  
+Recommendation ID: 20f2ff6a-3940-4cc9-8f14-909466c4ddd0  
+Subcategory: undefined
+
+<!--20f2ff6a-3940-4cc9-8f14-909466c4ddd0_end-->
+
+
+<!--80415aba-c979-4199-b093-873d3a31fec0_begin-->
+
+#### Monitor health for Virtual WAN point-to-site VPN gateways  
+  
+Configure monitoring and alerts for point-to-site VPN gateways. Create alert rule to ensure prompt response for critical events including gateway over utilization, connection count limits, and user VPN route limits. Mission Critical workloads should use dual express routes instead of VPN.  
+  
+**Potential benefits**: Proactively detect and mitigate disruptions  
+
+**Impact:** High
+  
+For more information, see [Monitor Azure Virtual WAN](/azure/virtual-wan/monitor-virtual-wan#point-to-site-vpn-gateway)  
+
+ResourceType: microsoft.network/p2svpngateways  
+Recommendation ID: 80415aba-c979-4199-b093-873d3a31fec0  
+Subcategory: undefined
+
+<!--80415aba-c979-4199-b093-873d3a31fec0_end-->
 
 <!--articleBody-->

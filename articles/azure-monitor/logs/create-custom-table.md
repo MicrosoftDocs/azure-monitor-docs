@@ -201,7 +201,8 @@ Use these rules when defining column names for custom tables:
 * Don't use spaces, dots, dashes, or other punctuation in column names.
 * Non-ASCII letters (for example, Æ, É, Ö) aren't supported in column names.
 * Column names are case sensitive.
-* Column names must be 1 to 45 characters long.
+* Column names must be 2 to 45 characters long.
+
 * Don't use names that conflict with system or reserved columns, including `id`, `BilledSize`, `IsBillable`, `InvalidTimeGenerated`, `TenantId`, `Title`, `Type`, `UniqueId`, `_ItemId`, `_ResourceGroup`, `_ResourceId`, `_SubscriptionId`, `_TimeReceived`.
 
 > [!IMPORTANT]

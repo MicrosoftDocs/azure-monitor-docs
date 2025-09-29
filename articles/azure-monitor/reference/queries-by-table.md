@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 09/01/2025
+ms.date: 09/22/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 

@@ -3,8 +3,7 @@ title: Troubleshooting guide - Azure Monitor issues and investigations (preview)
 description: This article provides troubleshooting guidance for Azure Monitor issues and investigations. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
 ms.topic: troubleshooting-general
 ms.servce: azure-monitor
-ms.reviewer: enauerman
-ms.date: 05/08/2025
+ms.date: 09/04/2025
 ---
 
 # Troubleshooting guide: Azure Monitor issues and investigations (preview)
@@ -17,7 +16,8 @@ You must have the *Issue Contributor, Monitoring Contributor, or Contributor* ro
 
 If you don't have permission, you won't be able to create an issue or run an investigation, and you should consult with your system administrator.
 
-:::image type="content" source="media/diagnostics-and-troubleshooting-no-access.png" alt-text="Screenshot of no access." lightbox="media/diagnostics-and-troubleshooting-no-access.png":::
+## Lack of associated Azure Monitor Workspace (AMW)
+You must have an AMW associated to the subscription you are investigating. Consult with your system administrator to create the association. See [Associate an Azure Monitor Workspace with a subscription](aiops-issue-and-investigation-how-to.md#associate-an-amw-in-the-azure-portal).
 
 ## No findings
 
@@ -28,8 +28,6 @@ When an investigation is run, you might receive a *No findings* result. This res
 ## OpenAI issue
 
 The feature depends on OpenAI for the text generation to function correctly. Occasionally, OpenAI might experience problems. If you encounter a screen indicating a problem with OpenAI, try refreshing the page and running the investigation again from the beginning. In the meantime, you can still review the anomalies detected without the summary, which can help identify potential issues even if the summary functionality is unavailable.
-
-:::image type="content" source="media/troubleshooting-openai-failure.png" alt-text="Screenshot of openai failure." lightbox="media/troubleshooting-openai-failure.png":::
 
 ## Related content
 

@@ -34,6 +34,8 @@
       href: Service-health-advisories.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
+    - name: How to Report an issue
+      href: report-issue.md
     - name: How to create alerts
       items:
       - name: Configure alerts for service health events in the Azure portal
@@ -68,12 +70,14 @@
         href: resource-health-alert-arm-template-guide.md
     - name: Impacted Resources
       items:
-      - name: Impacted Resources from Outages
+      - name: Impacted Resources from outages
         href: impacted-resources-outage.md
       - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
       - name: Impacted Resources from Azure security incidents
-        href: impacted-resources-security.md     
+        href: impacted-resources-security.md
+      - name: Impacted Resources from Azure retirements
+        href: impacted-resources-retirements.md   
 - name: Reference
   items:
   - name: Resource Graph
@@ -84,8 +88,12 @@
       href: ./resource-graph-health-samples.md
     - name: Sample queries for Impacted resources
       href: ./resource-graph-impacted-samples.md
+    - name: Resource Graph tables overview
+      href: azure-resource-graph-overview.md
   - name: REST API
     items:   
+    - name: Azure Resource health REST API queries
+      href: /rest/api/resourcehealth/
     - name: Service Health REST API
       href: /rest/api/resourcehealth/events/
     - name: Emerging Issues REST API

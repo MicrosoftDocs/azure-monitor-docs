@@ -2827,6 +2827,8 @@ items:
             href: tables/networkaccessalerts.md
           - name: NetworkAccessConnectionEvents
             href: tables/networkaccessconnectionevents.md
+          - name: NetworkAccessGenerativeAIInsights
+            href: tables/networkaccessgenerativeaiinsights.md
           - name: NetworkAccessTraffic
             href: tables/networkaccesstraffic.md
           - name: NetworkSessions
@@ -2967,6 +2969,10 @@ items:
             href: tables/securityregulatorycompliance.md
           - name: SentinelAudit
             href: tables/sentinelaudit.md
+          - name: SentinelBehaviorEntities
+            href: tables/sentinelbehaviorentities.md
+          - name: SentinelBehaviorInfo
+            href: tables/sentinelbehaviorinfo.md
           - name: SentinelHealth
             href: tables/sentinelhealth.md
           - name: ServiceFabricOperationalEvent
