@@ -950,10 +950,9 @@ items:
     items:
     - name: Integrate with self-hosted Prometheus
       href: metrics/prometheus-remote-write.md
+      displayName: remote write
     - name: Migrate from self-hosted Prometheus
       href: metrics/prometheus-migrate.md
-      displayName: Prometheus migrate
-      displayName: Prometheus remote-write
   - name: Logs ingestion API
     items:
     - name: Overview
