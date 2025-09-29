@@ -29,9 +29,7 @@ To create a custom table and collect log data, you need:
 * Setting up a table with the Auxiliary plan is only supported on new tables. After you create a table with an Auxiliary plan, you can't switch the table's plan.
 
 >[!NOTE]
-> Auxiliary logs are generally available (GA) for all public cloud regions, but not available for Azure Government or China clouds.
-><br>
-> Auxiliary logs are available in all regions Log Analytics workspaces are available except for Qatar Central.
+> Auxiliary logs are generally available (GA) for all public cloud regions except for Qatar Central, and not available for Azure Government or China clouds.
 
 ## Create a custom table with the Auxiliary plan
 
