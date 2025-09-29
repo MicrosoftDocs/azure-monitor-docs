@@ -12,7 +12,7 @@ The [Dependency Agent](./vminsights-dependency-agent.md) is a required component
 > [VM insights](./vminsights-overview.md) isn't being retired, just the map feature and any components that rely on it, such as the dependency agent.
 
 ## Understand the Dependency Agent
-The Dependency Agent collects data about machine processes, connections, and dependencies. Before proceeding with removal, consider how this may affect your monitoring, troubleshooting, or compliance workflows. Removing the agent stops data collection for the [map feature of Azure Monitor](./vminsights-maps.md) and any workbooks or other solutions you may have that depend on his data.
+The Dependency Agent collects data about machine processes, connections, and dependencies. Before proceeding with removal, consider how this may affect your monitoring, troubleshooting, or compliance workflows. Removing the agent stops data collection for the [map feature of Azure Monitor](./vminsights-maps.md) and any workbooks or other solutions you may have that depend on this data.
 
 ## Best practices
 
@@ -27,11 +27,11 @@ The Dependency Agent collects data about machine processes, connections, and dep
 - Identify machines or scale set instances where the Dependency Agent is installed. See [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md).
 - Ensure you have Owner or Contributor permission, or equivalent administrative rights, on the target VM or VMSS.
 - Ensure you have at least Reader access to the [VM insights Data Collection Rules (DCR)](./vminsights-enable.md#vm-insights-dcr).
-- If you use [Azure Policy](./vminsights-enable-policy.md) to enable VM insights, you may require changes in policy assignments to prevent compliance issues or reinstallation of the Dependency Agent after it is removed. 
-- Review any monitoring solutions that rely on the Dependency Agent and communicate with your IT or monitoring teams to avoid unintended disruptions. Any alert rules that uses any of the [`VMComputer`](/azure/azure-monitor/reference/tables/vmcomputer), [`VMProcess`](/azure/azure-monitor/reference/tables/vmprocess), [`VMConnection`](/azure/azure-monitor/reference/tables/vmconnection), or [`VMBoundPort`](/azure/azure-monitor/reference/tables/vmboundport) tables from a Log Analytics Workspace will be affected. The contents of the [Insig`htsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) table will change and may affect monitoring solutions.
+- If you use [Azure Policy](./vminsights-enable-policy.md) to enable VM insights, you may require changes in policy assignments to prevent compliance issues or reinstallation of the Dependency Agent after it's removed. 
+- Review any monitoring solutions that rely on the Dependency Agent and communicate with your IT or monitoring teams to avoid unintended disruptions. Any alert rules that use any of the [`VMComputer`](/azure/azure-monitor/reference/tables/vmcomputer), [`VMProcess`](/azure/azure-monitor/reference/tables/vmprocess), [`VMConnection`](/azure/azure-monitor/reference/tables/vmconnection), or [`VMBoundPort`](/azure/azure-monitor/reference/tables/vmboundport) tables from a Log Analytics Workspace are affected. The contents of the [Insig`htsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) table will change and may affect monitoring solutions.
 - Removal doesn't require a VM reboot but follow your organization’s best practice to avoid adversely affecting production systems.
 - For VMSS, changes need to be applied across all instances. 
-- Previously collected data in workspaces won't be deleted. It will be retained according to existing data retention policies.
+- Previously collected data in workspaces won't be deleted but will be retained according to existing data retention policies.
 
 ## Identify the Dependency Agent installation
 The Dependency Agent is typically installed as an Azure extension. You can verify its installation using any of the methods below.
@@ -61,7 +61,7 @@ az vmss extension list --resource-group <resource-group-name> --vmss-name <vm-na
 
 ### [PowerShell](#tab/powershell)
 
-Run the following command to list installed extensions. Look for `Microsoft.Azure.Monitoring.DependencyAgent` in the **Publisher** column. Note the value in the **Name** column since you'll need it later.
+Run the following command to list installed extensions. Look for `Microsoft.Azure.Monitoring.DependencyAgent` in the **Publisher** column. Note the value in the **Name** column since you need it later.
 
 
 **VM**
@@ -79,11 +79,11 @@ Get-AzVMExtension -ResourceGroupName <resource-group-name> -VMName <vm-name> | F
 
 ## Update Data Collection Rule Assignments (DCRA)
 
-This step will disable sending process and connection data to the workspace. Prior to this step, verify alerts and monitoring in your environment that depend upon this data have been disabled or removed.
+This step disables sending process and connection data to the workspace. Prior to this step, verify that you've removed or disabled any alerts and monitoring in your environment that depend upon this data.
 
 
 #### [Azure portal](#tab/portal)
-The portal can't make changes for all possible Data Collection Rule Associations (DCRA), since the VM/VMSS might be associated with multiple DCRs. Use the query below in the [Azure Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade) to check if your VM/VMSS can use the Azure portal to update its DCRA. If it doesn't return *Ok to use portal*, you'll need to use PowerShell or CLI to update each DCRA.
+The portal can't make changes for all possible Data Collection Rule Associations (DCRA), since the VM/VMSS might be associated with multiple DCRs. Use the query below in the [Azure Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade) to check if your VM/VMSS can use the Azure portal to update its DCRA. If it doesn't return *Ok to use portal*, you need to use PowerShell or CLI to update each DCRA.
 
 ```kusto
 resources
@@ -255,7 +255,7 @@ This is typically a transient issue when some other process is interacting with 
 #### Windows
 
 **The uninstall did not complete in time and was killed.**<br>
-This is typically a transient issue when the VM is resource constrained. Try to uninstall the VM extension again when the VM is has a lower CPU/Memory usage.
+This is typically a transient issue when the VM is resource constrained. Try to uninstall the VM extension again when the VM has a lower CPU/Memory usage.
 
 **C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe non-zero exit code n.**<br>
 Log onto the system with administrator privileges and run the uninstaller interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
