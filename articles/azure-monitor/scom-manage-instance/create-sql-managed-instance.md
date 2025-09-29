@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Create an Azure SQL managed instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes how to create a SQL managed instance in a dedicated subnet of a virtual network. Peer your Azure Monitor SCOM Managed Instance subnet and Azure SQL Managed Instance subnet.
 
 >[!NOTE]

@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Scale Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 Addition or deletion of a management server to the existing System Center Operations Manager Infrastructure automatically links or delinks it from the existing Operational database, Data warehouse, and endpoints in SCOM Managed Instance.
 
 This article provides information on how to scale your SCOM Managed Instance.

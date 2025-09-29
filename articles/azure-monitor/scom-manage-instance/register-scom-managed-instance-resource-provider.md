@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Register the Azure Monitor SCOM Managed Instance resource provider
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes how to register the Azure Monitor SCOM Managed Instance resource provider.
 
 >[!NOTE]

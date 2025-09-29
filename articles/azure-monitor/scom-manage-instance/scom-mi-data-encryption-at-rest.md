@@ -13,6 +13,8 @@ ms.topic: article
 
 # Azure Monitor SCOM Managed Instance Data Encryption at Rest 
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 Microsoft Azure includes tools to safeguard the data according to your company's security and compliance needs. Encryption at Rest is a common security requirement. 
 
 In Azure, organizations can encrypt data at rest without the risk or cost of a custom key management solution. Organizations have the option of letting Azure completely manage Encryption at Rest. Additionally, organizations have various options to closely manage encryption or encryption keys. For more information, see [Azure Data Encryption at rest](/azure/security/fundamentals/encryption-atrest).

@@ -13,6 +13,8 @@ ms.topic: concept-article
 
 # Azure Monitor SCOM Managed Instance Service Health Dashboard
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 With Azure Monitor SCOM Managed Instance Service Health Dashboard, you can now view the health of SCOM Managed Instance service in real-time.
 
 ## Key capabilities

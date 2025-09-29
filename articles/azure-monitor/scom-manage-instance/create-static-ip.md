@@ -13,6 +13,8 @@ ms.topic: how-to
 
 # Create a static IP for Azure Monitor SCOM Managed Instance
 
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
+
 This article describes how to create a static IP for a load balancer in a dedicated subnet of Azure Monitor SCOM Managed Instance. Additionally, insert an entry into the Domain Name System (DNS) server, and ensure that the DNS name resolves to the DNS name (`DNSHostName`) of the group managed service account (gMSA). Get the DNS host name of the gMSA account from [step 6](create-group-managed-service-account.md).
 
 >[!NOTE]
