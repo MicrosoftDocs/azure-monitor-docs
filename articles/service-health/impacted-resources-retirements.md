@@ -72,7 +72,7 @@ Follow these steps to get information about retirement-impacted resources.
 
 **Step 1. Use API Query**
 
-Get the Id for the event using the Recommendation Metadata API.
+Get the ID for the event using the Recommendation Metadata API.
 For more information, see [Recommendation Metadata - List - REST API](/rest/api/advisor/recommendation-metadata/list).
 
 ```http
