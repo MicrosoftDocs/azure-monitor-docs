@@ -70,6 +70,9 @@ Use the following steps to create a new diagnostic setting or edit an existing o
 
     :::image type="Add diagnostic setting" source="media/diagnostic-settings/setting-new-blank.png" lightbox="media/diagnostic-settings/setting-new-blank.png" alt-text="Screenshot that shows Diagnostic setting details.":::
 
+   > [!NOTE]
+   > The categories will vary for different types of Azure resources. This screenshot shows an example Key Vault. Other types of resources will have a different set of categories.
+
 4. **Logs and metrics to route**: For logs, either choose a [category group](#category-groups) or select the individual checkboxes for each category of data you want to send to the destinations specified later. The list of categories varies for each Azure service. Select **AllMetrics** if you want to collect platform metrics.
 
 5. **Destination details**: Select the checkbox for each destination that should be included in the diagnostic settings and then provide the details for each. If you select Log Analytics workspace as a destination, then you may need to specify the collection mode. See [Collection mode](./resource-logs.md#collection-mode) for details.
