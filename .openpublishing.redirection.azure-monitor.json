@@ -8570,11 +8570,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/containers/container-insights-data-collection-configure.md",
-   "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-enable",
-   "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/app/configuration-with-applicationinsights-config.md",
    "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
@@ -8620,6 +8615,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/containers/prometheus-remote-write-troubleshooting.md",
+   "redirect_url": "/azure/azure-monitor/metrics/prometheus-remote-write-troubleshooting#troubleshoot",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/app/worker-service.md",
    "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
@@ -8652,6 +8652,36 @@
   {
    "source_path": "articles/azure-monitor/app/dot-net.md",
    "redirect_url": "/azure/azure-monitor/app/dotnet",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/metrics/prometheus-remote-write-virtual-machines.md",
+   "redirect_url": "/azure/azure-monitor/metrics/prometheus-remote-write",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/prometheus-metrics-scrape-validate.md",
+   "redirect_url": "/azure/azure-monitor/containers/prometheus-metrics-scrape-configmap",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/container-insights-data-collection-configure.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-prometheus-metrics-and-container-logging",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/prometheus-remote-write.md",
+   "redirect_url": "/azure/azure-monitor/metrics/prometheus-remote-write",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/prometheus-metrics-scrape-configuration-minimal.md",
+   "redirect_url": "/azure/azure-monitor/containers/prometheus-metrics-scrape-default",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/enable-windows-metrics.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-windows-metrics-preview",
    "redirect_document_id": false
   }
  ]

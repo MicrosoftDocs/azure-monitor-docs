@@ -62,7 +62,7 @@ To optimize queries, consider the following best practices:
 
 #### Use Recording rules to optimize query performance
 
-Prometheus recording rules are used to precompute frequently used, or computationally expensive queries, making them more efficient and faster to query. Recording rules are especially useful for high volume metrics where querying raw data can be slow and resource-intensive. For more information, see [Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules). Azure Managed Prometheus provides a managed and scalable way to create and update recording rules with the help of [Azure Managed Prometheus Rule Groups](prometheus-rule-groups.md#rule-types).
+Prometheus recording rules are used to precompute frequently used, or computationally expensive queries, making them more efficient and faster to query. Recording rules are especially useful for high volume metrics where querying raw data can be slow and resource-intensive. For more information, see [Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules). Azure Managed Prometheus provides a managed and scalable way to create and update recording rules with the help of [Azure Managed Prometheus Rule Groups](prometheus-rule-groups.md).
 
 Once the rule groups are created, Azure Managed Prometheus automatically loads and starts evaluating them. Query rule groups from the Azure Monitor workspace like other Prometheus metrics.
 
@@ -125,10 +125,10 @@ Optimizing Prometheus queries using filters involves refining the queries to ret
 
 Running a high number of parallel queries in Prometheus can lead to performance bottlenecks and can affect the stability of your Prometheus server. To handle a large volume of parallel queries efficiently, follow the best practices below:
 
-| Best practice            | Description                                                                                                 |
-|--------------------------|-------------------------------------------------------------------------------------------------------------|
+| Best practice | Description |
+|:---|:---|
 | Query Load Distribution. | Distribute the query load by spreading the queries across different time intervals or Prometheus instances. |
-| Staggered Queries.       | Schedule queries to run at different intervals to avoid peaks of simultaneous query executions.             |
+| Staggered Queries. | Schedule queries to run at different intervals to avoid peaks of simultaneous query executions. |
 
 If you're still seeing issues with running many parallel queries, create a support ticket to request an increase in the query limits.
 
