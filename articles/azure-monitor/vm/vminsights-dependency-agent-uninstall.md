@@ -248,15 +248,15 @@ After removal, verify that the agent is fully uninstalled and no related process
 If the uninstall fails, review the common issues below. The VM/VMSS’s Activity Log may provide more details.
 
 - Linux
-    - **Could not acquire package manager (yum or dpkg) lock.**
+    - **Could not acquire package manager (yum or dpkg) lock.**<br>
     This is typically a transient issue when some other process is interacting with the package manager. Try to uninstall the VM extension again.
 
 - Windows
-    - **The uninstall did not complete in time and was killed.**
+    - **The uninstall did not complete in time and was killed.**<br>
     This is typically a transient issue when the VM is resource constrained. Try to uninstall the VM extension again when the VM has a lower CPU/Memory usage.
-    - **C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe non-zero exit code n.**
+    - **C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe non-zero exit code n.**<br>
     Log onto the system with administrator privileges and run the uninstaller interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
-    - **PowerShell Exit Status = n and there is no other error message.**
+    - **PowerShell Exit Status = n and there is no other error message.**<br>
     Log onto the system with administrator privileges. Locate the program named `C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe`, where version is a four part version number. Run it interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
 
 
