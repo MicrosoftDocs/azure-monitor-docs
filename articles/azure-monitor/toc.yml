@@ -452,8 +452,6 @@ items:
         href: containers/kubernetes-monitoring-enable.md
       - name: Arc-enabled clusters
         href: containers/kubernetes-monitoring-enable-arc.md
-      - name: Enable Windows metrics (preview)
-        href: containers/enable-windows-metrics.md
       - name: Enable private link
         href: containers/kubernetes-monitoring-private-link.md
       - name: Disable monitoring

@@ -9,13 +9,13 @@ ms.date: 06/13/2025
 
 [Azure Monitor and Prometheus](./prometheus-metrics-overview.md) describes Azure Monitor managed service for Prometheus which is a fully managed service that enables you to collect, store, and analyze Prometheus metrics without maintaining your own Prometheus server. This article provides guidance for migrating to this Azure service from your existing self-managed Prometheus for monitoring of your virtual machines and Kubernetes clusters. 
 
-> [!NOTE]
-> This article describes a complete migration to Azure Monitor managed service for Prometheus. If you want to continue to use self-managed Prometheus while also sending data to Azure Monitor managed service for Prometheus, see [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](./prometheus-remote-write.md).
-
 ## Key concepts
 
 ### Metric collection
-Azure Monitor installs a managed add-on in your AKS or Azure Arc-enabled Kubernetes cluster to collect data. You can use custom resources (pod and service monitors) and the add-on ConfigMaps to configure data collection. The format of the pod/service monitors and ConfigMaps are the same as open-source Prometheus. This allows you to use existing configurations directly with Azure Managed Prometheus.
+Use Azure Managed Prometheus in either of the following configurations:
+
+- **Fully managed service or replacement for self-managed Prometheus**<br>Azure Monitor installs a managed add-on in your AKS or Arc-enabled Kubernetes cluster to collect data. You can use custom resources (pod and service monitors) and the add-on ConfigMaps to configure data collection. The format of the pod/service monitors and ConfigMaps are the same as open-source Prometheus. In this way, you can use existing configs directly with Azure Managed Prometheus.
+- **Remote-write target**<br>Use Prometheus remote write to send metrics from your existing Prometheus server running in Azure or non-Azure environments to send data to an Azure Monitor workspace. You can then gradually migrate from self-hosted to the fully managed add-on.
 
 ### Storage
 
@@ -78,6 +78,8 @@ Once Managed Prometheus is enabled, you can either [enable the managed Prometheu
 
 ## Configure metrics collection and exporters
 
+**Managed add-on**
+
 Review the default metrics collected by the managed add-on at [Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md). The predefined targets that you can enable or disable are the same as the targets that are available with the open-source Prometheus operator. The only difference is that the metrics collected by default are the ones queried by the automatically provisioned dashboards. 
 
 - Customize collection for default targets by [modifying the metrics setting ConfigMap](../containers/prometheus-metrics-scrape-configuration.md). For additional targets or more significant customizations, create a custom scrape job using either [ConfigMaps](../containers/prometheus-metrics-scrape-configmap.md) or [custom resource definitions (CRDs)](../containers/prometheus-metrics-scrape-crd.md).
@@ -85,6 +87,7 @@ Review the default metrics collected by the managed add-on at [Default Prometheu
 - If you're using pod monitors and service monitors to monitor your workloads, migrate them to Azure Managed Prometheus by changing `apiVersion` to `azmonitoring.coreos.com/v1`.
 - If you have an existing Prometheus configuration YAML file, convert them into the ConfigMap add-on. See [Deploy config file as ConfigMap](../containers/prometheus-metrics-scrape-configmap.md#deploy-config-file-as-configmap).
 
+**Remote-write**
 
 If you're using remote-write to forward scraped metrics to an Azure Monitor workspace, configure filtering or relabeling before you send metrics. See [Prometheus remote-write configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write). Also consider [remote-write tuning](https://prometheus.io/docs/practices/remote_write/) to adjust configuration settings for better performance. Consider reducing `max_shards` and increasing capacity and `max_samples_per_send` to avoid memory issues.
 

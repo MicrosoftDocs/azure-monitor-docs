@@ -632,7 +632,7 @@ Within a few minutes after enabling monitoring, you should be able to use the fo
 
 ---
 
-## Enable Windows metrics
+## Enable Windows metrics (Preview)
 Windows metric collection is enabled for Arc-enabled clusters as of version 6.4.0-main-02-22-2023-3ee44b9e of the Managed Prometheus addon container. Onboarding to the Azure Monitor Metrics add-on enables the Windows DaemonSet pods to start running on your node pools. Both Windows Server 2019 and Windows Server 2022 are supported. Follow these steps to enable the pods to collect metrics from your Windows node pools.
 
 > [!NOTE]

@@ -57,7 +57,7 @@ The following targets are disabled by default.
 - `kubeproxy`
 - `apiserver`
 
-The following targets are disabled by default and require [Windows metrics collection (preview)](./enable-windows-metrics.md) to be enabled.
+The following targets are disabled by default and require [Windows metrics collection (preview)](./kubernetes-monitoring-enable.md#enable-windows-metrics) to be enabled.
 
 - `windows-exporter`
 - `kube-proxy-windows`
