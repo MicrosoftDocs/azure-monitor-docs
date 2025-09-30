@@ -28,10 +28,10 @@ The Dependency Agent collects data about machine processes, connections, and dep
 - Ensure you have Owner or Contributor permission, or equivalent administrative rights, on the target VM or VMSS.
 - Ensure you have at least Reader access to the [VM insights Data Collection Rules (DCR)](./vminsights-enable.md#vm-insights-dcr).
 - If you use [Azure Policy](./vminsights-enable-policy.md) to enable VM insights, you may require changes in policy assignments to prevent compliance issues or reinstallation of the Dependency Agent after it's removed. 
-- Review any monitoring solutions that rely on the Dependency Agent and communicate with your IT or monitoring teams to avoid unintended disruptions. Any alert rules that use any of the [`VMComputer`](/azure/azure-monitor/reference/tables/vmcomputer), [`VMProcess`](/azure/azure-monitor/reference/tables/vmprocess), [`VMConnection`](/azure/azure-monitor/reference/tables/vmconnection), or [`VMBoundPort`](/azure/azure-monitor/reference/tables/vmboundport) tables from a Log Analytics Workspace are affected. The contents of the [Insig`htsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) table will change and may affect monitoring solutions.
+- Review any monitoring solutions that rely on the Dependency Agent and communicate with your IT or monitoring teams to avoid unintended disruptions. Any alert rules that use any of the [`VMComputer`](/azure/azure-monitor/reference/tables/vmcomputer), [`VMProcess`](/azure/azure-monitor/reference/tables/vmprocess), [`VMConnection`](/azure/azure-monitor/reference/tables/vmconnection), or [`VMBoundPort`](/azure/azure-monitor/reference/tables/vmboundport) tables from a Log Analytics Workspace are affected. The contents of the [`InsightsMetrics`](/azure/azure-monitor/reference/tables/insightsmetrics) table will change and may affect monitoring solutions.
 - Removal doesn't require a VM reboot but follow your organization’s best practice to avoid adversely affecting production systems.
 - For VMSS, changes need to be applied across all instances. 
-- Previously collected data in workspaces won't be deleted but will be retained according to existing data retention policies.
+- Previously collected data in workspaces isn't deleted but is retained according to existing data retention policies.
 
 ## Identify the Dependency Agent installation
 The Dependency Agent is typically installed as an Azure extension. You can verify its installation using any of the methods below.
@@ -79,7 +79,7 @@ Get-AzVMExtension -ResourceGroupName <resource-group-name> -VMName <vm-name> | F
 
 ## Update Data Collection Rule Assignments (DCRA)
 
-This step disables sending process and connection data to the workspace. Prior to this step, verify that you've removed or disabled any alerts and monitoring in your environment that depend upon this data.
+This step disables sending process and connection data to the workspace. Prior to this step, verify that you removed or disabled any alerts and monitoring in your environment that depend upon this data.
 
 
 #### [Azure portal](#tab/portal)
