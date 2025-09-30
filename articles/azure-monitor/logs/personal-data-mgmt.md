@@ -99,7 +99,7 @@ To manage system resources, we limit purge requests to 50 requests an hour. Batc
     ```
 
 > [!NOTE]
-> You can't purge data from tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans). Purging data from an Analytics table doesn't affect data that's mirrored in a Microsoft Sentinel data lake. For more information, see [Set up connectors for Microsoft Sentinel data lake](/azure/sentinel/datalake/sentinel-lake-connectors).
+> You can't purge data from tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans). When you onboard a workspace to Microsoft Sentinel data lake, purging data from an Analytics table doesn't purge the data that's mirrored to the data lake. For more information, see [Set up connectors for Microsoft Sentinel data lake](/azure/sentinel/datalake/sentinel-lake-connectors).
 
 
 ## Next steps
