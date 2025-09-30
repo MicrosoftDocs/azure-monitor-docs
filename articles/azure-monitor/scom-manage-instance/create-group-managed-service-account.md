@@ -4,7 +4,7 @@ title: Create a computer group and group-managed service account for Azure Monit
 description: This article describes how to create a group-managed service account, computer group, and domain user account in on-premises Active Directory.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 09/08/2025
+ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -16,9 +16,6 @@ ms.topic: how-to
 [!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 This article describes how to create a group-managed service account (gMSA) account, computer group, and domain user account in on-premises Active Directory.
-
-> [!NOTE]
-> To learn about the Azure Monitor SCOM Managed Instance architecture, see [Azure Monitor SCOM Managed Instance](overview.md).
 
 ## Active Directory prerequisites
 
