@@ -4,7 +4,7 @@ description: This article explains how to convert a System Center Operations Man
 ms.topic: how-to
 author: jyothisuri
 ms.author: jsuri
-ms.date: 09/09/2025
+ms.date: 09/30/2025
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ---

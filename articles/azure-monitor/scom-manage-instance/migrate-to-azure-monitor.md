@@ -4,7 +4,7 @@ description: This article explains how to migrate from Azure Monitor SCOM Manage
 ms.topic: conceptual
 author: jyothisuri
 ms.author: jsuri
-ms.date: 09/03/2025
+ms.date: 09/30/2025
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ---
