@@ -80,7 +80,6 @@ Recording and alert rules are stored in the Azure Monitor workspace, and you can
 
 * [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md)
 * [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md)
-* [Enable Windows metrics collection (preview)](../containers/enable-windows-metrics.md)
 * [Configure Azure Monitor managed service for Prometheus rule groups](prometheus-rule-groups.md)
 * [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](../containers/prometheus-metrics-scrape-configuration.md)
 * [Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot.md)

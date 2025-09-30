@@ -2,7 +2,7 @@
 title: Azure Monitor managed service for Prometheus technical details
 description: Technical details of Azure Monitor with Prometheus, which provides Prometheus-compatible interfaces called Azure Monitor workspaces for storing and retrieving metric data.
 ms.topic: concept-article
-ms.date: 10/06/2024
+ms.date: 09/30/2025
 ---
 
 # Azure Monitor managed service for Prometheus technical details
@@ -22,7 +22,7 @@ The following limitations apply to Azure Monitor managed service for Prometheus:
 
 * The minimum frequency for scraping and storing metrics is 1 second.
 * During node updates, you might experience gaps that last 1 to 2 minutes in some metric collections from the cluster-level collector. This gap is due to a regular action from Azure Kubernetes Service to update the nodes in your cluster. This behavior doesn't affect recommended alert rules.
-* Managed Prometheus for Windows nodes isn't automatically enabled. To enable monitoring for Windows nodes and pods in your clusters, see [Enable Windows metrics collection (preview)](../containers/enable-windows-metrics.md).
+* Managed Prometheus for Windows nodes isn't automatically enabled. To enable monitoring for Windows nodes and pods in your clusters, see [Enable Windows metrics collection (preview)](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-preview).
 
 ## Data considerations
 
@@ -86,15 +86,8 @@ Metrics scraping currently has the limitations in the following table:
 
 * [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md)
 * [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md)
-* [Enable Windows metrics collection (preview)](../containers/enable-windows-metrics.md)
+* [Enable Windows metrics collection (preview)](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-preview)
 * [Configure Azure Monitor managed service for Prometheus rule groups](prometheus-rule-groups.md)
 * [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](../containers/prometheus-metrics-scrape-configuration.md)
 * [Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot.md)
 
-
-> [!IMPORTANT]
-> The use of Azure Monitor to manage and host Prometheus is intended for storing information about the service health of customer machines and applications. It's not intended for storing any personal data. We strongly recommend that you don't send any sensitive information (for example, usernames and credit card numbers) into Azure Monitor-hosted Prometheus fields like metric names, label names, or label values.
-
-
-> [!NOTE]
-> Azure Managed Prometheus supports Horizontal Pod Autoscaling for replicaset pods in AKS Kubernetes clusters. See [Autoscaling](../containers/prometheus-metrics-scrape-autoscaling.md) to learn more.
