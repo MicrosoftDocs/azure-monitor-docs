@@ -4,7 +4,7 @@ title: Create a separate subnet in a VNet for SCOM Managed Instance
 description: This article describes how to create a separate subnet in a virtual network for Azure Monitor SCOM Managed Instance.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 09/08/2025
+ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance

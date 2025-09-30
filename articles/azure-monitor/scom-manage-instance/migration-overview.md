@@ -6,7 +6,7 @@ ms.author: jsuri
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: overview
-ms.date: 09/09/2025
+ms.date: 09/30/2025
 ---
 
 # Overview of migration from Azure Monitor SCOM Managed Instance
