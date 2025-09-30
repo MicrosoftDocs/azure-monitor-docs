@@ -118,7 +118,7 @@ kubectl apply -f https://raw.githubusercontent.com/Azure/prometheus-collector/re
 
 ### Troubleshooting
 
-When the pod or service monitors are successfully applied, the addon should automatically start collecting metrics from the targets.  instructions [Troubleshoot collection of Prometheus metrics in Azure Monitor](./prometheus-metrics-troubleshoot.md) for general troubleshooting of custom resources and also to ensure the targets show up in 127.0.0.1/targets.
+When the pod or service monitors are successfully applied, the addon should automatically start collecting metrics from the targets. See [Troubleshoot collection of Prometheus metrics in Azure Monitor](./prometheus-metrics-troubleshoot.md) for general troubleshooting of custom resources and also to ensure the targets show up in 127.0.0.1/targets.
 
 
 
