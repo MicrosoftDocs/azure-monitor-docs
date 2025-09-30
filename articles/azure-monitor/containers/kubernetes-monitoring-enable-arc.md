@@ -8,7 +8,7 @@ ms.date: 08/25/2025
 ---
 
 # Enable monitoring for Arc-enabled Kubernetes clusters
-As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) clusters. This article describes how to enable the following features for Arc-enabled clusters running in other clouds and on-premises:
+As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Kubernetes clusters. This article describes how to enable the following features for Arc-enabled clusters running in other clouds and on-premises:
 
 - Prometheus metrics
 - Managed Grafana
@@ -220,7 +220,7 @@ Each of the settings in the configuration is described in the following table.
 - The Azure Monitor workspace and Azure Managed Grafana instance must already be created.
 - The template must be deployed in the same resource group as the Azure Managed Grafana instance.
 - If the Azure Managed Grafana instance is in a subscription other than the Azure Monitor workspace subscription, register the Azure Monitor workspace subscription with the `Microsoft.Dashboard` resource provider using the guidance at [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
-- Users with the `User Access Administrator` role in the subscription of the AKS cluster can enable the `Monitoring Reader` role directly by deploying the template.
+- Users with the `User Access Administrator` role in the subscription of the cluster can enable the `Monitoring Reader` role directly by deploying the template.
 
 > [!NOTE]
 > Currently in Bicep, there's no way to explicitly scope the `Monitoring Reader` role assignment on a string parameter "resource ID" for an Azure Monitor workspace like in an ARM template. Bicep expects a value of type `resource | tenant`. There is also no REST API [spec](https://github.com/Azure/azure-rest-api-specs) for an Azure Monitor workspace.
@@ -263,8 +263,8 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     |:---|:---|
     | `azureMonitorWorkspaceResourceId` | Resource ID for the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
     | `azureMonitorWorkspaceLocation` | Location of the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
-    | `clusterResourceId` | Resource ID for the AKS cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
-    | `clusterLocation` | Location of the AKS cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
+    | `clusterResourceId` | Resource ID for the cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
+    | `clusterLocation` | Location of the cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
     | `metricLabelsAllowlist` | Comma-separated list of Kubernetes labels keys to be used in the resource's labels metric. |
     | `metricAnnotationsAllowList` | Comma-separated list of more Kubernetes label keys to be used in the resource's annotations metric. |
     | `grafanaResourceId` | Resource ID for the managed Grafana instance. Retrieve from the **JSON view** on the **Overview** page for the Grafana instance. |
@@ -325,10 +325,11 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 
     | Parameter | Description |
     |:---|:---|
-    | `aksResourceId`  | Resource ID of the cluster. |
-    | `aksResourceLocation` | Location of the cluster. |
+    | `clusterResourceId`  | Resource ID of the cluster. |
+    | `clusterRegion` | Location of the cluster. |
     | `workspaceResourceId` | Resource ID of the Log Analytics workspace. |
-    | `resourceTagValues` | Tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will be `MSCI-<clusterName>-<clusterRegion>` and this resource created in an AKS clusters resource group. For first time onboarding, you can set arbitrary tag values. |
+    | `workspaceRegion` | Region of the Log Analytics workspace. |
+    | `workspaceDomain` | Domain of the Log Analytics workspace.<br>`opinsights.azure.com` for Azure public cloud<br>`opinsights.azure.us` for AzureUSGovernment. |
     | `enableRetinaNetworkFlowLogs` | Flag to indicate whether to enable Retina Network Flow Logs. |
     | `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are sent to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are sent to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2. |
     | `enableSyslog` | Specifies whether Syslog collection should be enabled. |
@@ -631,7 +632,42 @@ Within a few minutes after enabling monitoring, you should be able to use the fo
 
 ---
 
+## Enable Windows metrics
+Windows metric collection is enabled for Arc-enabled clusters as of version 6.4.0-main-02-22-2023-3ee44b9e of the Managed Prometheus addon container. Onboarding to the Azure Monitor Metrics add-on enables the Windows DaemonSet pods to start running on your node pools. Both Windows Server 2019 and Windows Server 2022 are supported. Follow these steps to enable the pods to collect metrics from your Windows node pools.
 
+> [!NOTE]
+> There's no CPU/Memory limit in `windows-exporter-daemonset.yaml` so it may over-provision the Windows nodes. For details see [Resource reservation](https://kubernetes.io/docs/concepts/configuration/windows-resource-management/#resource-reservation)
+>   
+> As you deploy workloads, set resource memory and CPU limits on containers. This also subtracts from NodeAllocatable and helps the cluster-wide scheduler in determining which pods to place on which nodes.
+> Scheduling pods without limits may over-provision the Windows nodes and in extreme cases can cause the nodes to become unhealthy.
+
+### Install Windows exporter
+
+Manually install windows-exporter on nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors. For more collectors, see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
+
+   * `[defaults]`
+   * `container`
+   * `memory`
+   * `process`
+   * `cpu_info`
+   
+ 
+Deploy the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. If there are any taints applied in the node, you need to apply the appropriate tolerations.
+
+  ```bash
+kubectl apply -f windows-exporter-daemonset.yaml
+```
+
+### Enable Windows metrics
+Set the `windowsexporter` and `windowskubeproxy` Booleans to `true` in your metrics settings ConfigMap and apply it to the cluster. See [Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap](./prometheus-metrics-scrape-configuration.md).
+
+### Enable recording rules
+
+Enable the recording rules that are required for the out-of-the-box dashboards:
+
+ * If onboarding using CLI, include the option `--enable-windows-recording-rules`.
+ * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
+ * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
 
 
 ## Verify deployment

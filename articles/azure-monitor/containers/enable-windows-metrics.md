@@ -45,9 +45,9 @@ Enable the recording rules are required for the out-of-the-box dashboards:
  * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
  * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
 
-## Add scrape job for Arc-enabled clusters
+## Add scrape job 
 
-If you're enabling Managed Prometheus for an ARC-enabled cluster, you can configure Managed Prometheus that is running on a Linux node within the cluster to scrape metrics from endpoints running on the Windows nodes. Add the following scrape job to [ama-metrics-prometheus-config-configmap.yaml](https://aka.ms/ama-metrics-prometheus-config-configmap) and apply the configmap to your cluster.
+Configure Managed Prometheus running on a Linux node in the cluster to scrape metrics from endpoints running on the Windows nodes. Add the following scrape job to [ama-metrics-prometheus-config-configmap.yaml](https://aka.ms/ama-metrics-prometheus-config-configmap) and apply the configmap to your cluster.
 
 ```yaml
   scrape_configs:
