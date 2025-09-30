@@ -2,7 +2,7 @@
 title: Manage Azure security notifications with Service Health
 description: This article shows you where Azure customers receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
 ms.topic: article
-ms.date: 09/25/2025
+ms.date: 09/30/2025
 ---
 
 # Manage Azure security notifications with Service Health
@@ -13,11 +13,11 @@ This article explains how you receive Azure security notifications, and the thre
 
 ## Security advisories
 
-Security advisories are found in Azure Service Health and focus on platform vulnerabilities and security breaches that could affect your entire subscription or tenant. They're meant to alert you about potential risks that could affect your Azure environment as a whole. For example, if there's a widespread vulnerability affecting Azure services, you would receive a Security Advisory to inform you of this risk.
+Security advisories are found in Azure Service Health and focus on platform vulnerabilities and security breaches that could affect your entire subscription or tenant. They're meant to alert you about potential risks that could affect your Azure environment as a whole. For example, if there's a widespread vulnerability affecting Azure services, you would receive a Security advisory to inform you of this risk.
 
 ## Security issues
 
-Security issues, which are communicated through [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), deal with vulnerabilities that are specific to individual Azure resources. This means that while Security advisories give a broader view of potential risks, Security issues provide detailed information about specific resources that might be at risk. For instance, if a particular virtual machine has a security vulnerability, you would receive a Security Issue notification related to that resource.
+Security issues, which are communicated through [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), deal with vulnerabilities that are specific to individual Azure resources. This means that while Security advisories give a broader view of potential risks, Security issues provide detailed information about specific resources that might be at risk. For instance, if a particular virtual machine has a security vulnerability, you would receive a Security issue notification related to that resource.
 
 
 
@@ -25,7 +25,7 @@ Security issues, which are communicated through [Microsoft Defender for Cloud](/
 
 You receive security-related notifications affecting your Azure **subscription** workloads in two ways: 
 
-The **Security advisory pane** in [Azure Service Health](https://ms.portal.azure.com/?exp.azureportal_retirements-impacted-resources-treatment=true&feature.useGenericRetirementQuery=true&microsoft_azure_health=dev3#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/securityAnnouncements/incidentType/history/navigateTo/healthhistory/).
+The **Security advisory** pane in [Azure Service Health](https://ms.portal.azure.com/?exp.azureportal_retirements-impacted-resources-treatment=true&feature.useGenericRetirementQuery=true&microsoft_azure_health=dev3#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/securityAnnouncements/incidentType/history/navigateTo/healthhistory/).
 
 :::image type="content"source="./media/security-notifications/security-advisories-pane.png"alt-text="Screenshot that shows the Security advisories pane."Lightbox="./media/security-notifications/security-advisories-pane.png":::
 
