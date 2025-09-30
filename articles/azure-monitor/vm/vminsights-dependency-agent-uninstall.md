@@ -44,7 +44,7 @@ The Dependency Agent is typically installed as an Azure extension. You can verif
 
 ### [CLI](#tab/cli)
 
-Run the following command to list installed extensions. Look for `Microsoft.Azure.Monitoring.DependencyAgent` in the **Publisher** column. Note the value in the **Name** column since you need it later.
+Run one of the following commands to list installed extensions. Look for `Microsoft.Azure.Monitoring.DependencyAgent` in the **Publisher** column. Note the value in the **Name** column since you need it later.
 
 **VM**
 
@@ -61,7 +61,7 @@ az vmss extension list --resource-group <resource-group-name> --vmss-name <vm-na
 
 ### [PowerShell](#tab/powershell)
 
-Run the following command to list installed extensions. Look for `Microsoft.Azure.Monitoring.DependencyAgent` in the **Publisher** column. Note the value in the **Name** column since you need it later.
+Run one of the following commands to list installed extensions. Look for `Microsoft.Azure.Monitoring.DependencyAgent` in the **Publisher** column. Note the value in the **Name** column since you need it later.
 
 
 **VM**
@@ -161,7 +161,7 @@ az monitor data-collection rule association update --association-name "$dcraName
 
 ### [PowerShell](#tab/powershell)
 
-```azurecli
+```powershell
 
 # Find the current DCR
 $dcr = Get-AzDataCollectionRule -SubscriptionId <subscription-id> -ResourceGroupName <resource-group-name> -DataCollectionRuleName <dcr-name>
@@ -244,31 +244,26 @@ After removal, verify that the agent is fully uninstalled and no related process
 
 ## Troubleshooting
 
-### Extension Removal Fails
+**Extension Removal Fails**<br>
 If the uninstall fails, review the common issues below. The VM/VMSS’s Activity Log may provide more details.
 
-#### Linux
+- Linux
+    - **Could not acquire package manager (yum or dpkg) lock.**
+    This is typically a transient issue when some other process is interacting with the package manager. Try to uninstall the VM extension again.
 
-**Could not acquire package manager (yum or dpkg) lock.**<br>
-This is typically a transient issue when some other process is interacting with the package manager. Try to uninstall the VM extension again.
-
-#### Windows
-
-**The uninstall did not complete in time and was killed.**<br>
-This is typically a transient issue when the VM is resource constrained. Try to uninstall the VM extension again when the VM has a lower CPU/Memory usage.
-
-**C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe non-zero exit code n.**<br>
-Log onto the system with administrator privileges and run the uninstaller interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
-
-**PowerShell Exit Status = n and there is no other error message.**<br>
-Log onto the system with administrator privileges. Locate the program named `C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe`, where version is a four part version number. Run it interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
+- Windows
+    - **The uninstall did not complete in time and was killed.**
+    This is typically a transient issue when the VM is resource constrained. Try to uninstall the VM extension again when the VM has a lower CPU/Memory usage.
+    - **C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe non-zero exit code n.**
+    Log onto the system with administrator privileges and run the uninstaller interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
+    - **PowerShell Exit Status = n and there is no other error message.**
+    Log onto the system with administrator privileges. Locate the program named `C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe`, where version is a four part version number. Run it interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
 
 
-
-### Agent reinstalls automatically
+**Agent reinstalls automatically**<br>
 Review policies, automation pipelines, and ARM templates to ensure the Dependency Agent isn't included in deployment scripts.
 
-### Permission Issues
+**Permission Issues**<br>
 Make sure your Azure account has sufficient rights to remove extensions from VMs or VMSS resources.
 
 
