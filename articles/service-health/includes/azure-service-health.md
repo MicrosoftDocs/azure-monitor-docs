@@ -77,7 +77,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 This query returns all upcoming Service Health events for Retirements across all your subscriptions.
 
-```kusto
+```
 ServiceHealthResources
 | where type =~ 'Microsoft.ResourceHealth/events'
 | extend eventType = properties.EventType, eventSubType = properties.EventSubType
