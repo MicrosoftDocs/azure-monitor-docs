@@ -237,9 +237,9 @@ If the VMSS is configured with [manual upgrade mode](/azure/virtual-machine-scal
 
 After removal, verify that the agent is fully uninstalled and no related processes are running.
 
-- Check the **Extensions + applications** blade in the Azure portal. the Dependency Agent should no longer be listed.
+- Check the **Extensions + applications** blade in the Azure portal. The Dependency Agent should no longer be listed.
 - Review monitoring dashboards to ensure expected changes in data collection.
-- After several days, check for unintentional reinstallation of the process and connection monitoring. The VM/VMSS’s Activity Log can be used to identify who and when the changes were made. After addressing the cause of the reinstallation, complete the steps above again.
+- After several days, check for unintentional reinstallation of the process and connection monitoring. The VM/VMSS’s Activity Log can be used to identify when the changes were made and who made them. After addressing the cause of the reinstallation, complete the steps above again.
 
 
 ## Troubleshooting
@@ -257,7 +257,7 @@ If the uninstall fails, review the common issues below. The VM/VMSS’s Activity
     - **C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe non-zero exit code n.**<br>
     Log onto the system with administrator privileges and run the uninstaller interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
     - **PowerShell Exit Status = n and there is no other error message.**<br>
-    Log onto the system with administrator privileges. Locate the program named `C:\Program Files\Microsoft Dependency Agent\Uninstall_version.exe`, where version is a four part version number. Run it interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
+    Log onto the system with administrator privileges. Locate the program named `C:\Program Files\Microsoft Dependency Agent\Uninstall_<version>.exe`, where version is a four part version number. Run it interactively and address any reported issues. Do the VM extension uninstall again to complete the process.
 
 
 **Agent reinstalls automatically**<br>
