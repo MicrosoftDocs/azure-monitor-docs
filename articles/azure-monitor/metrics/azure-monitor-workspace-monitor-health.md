@@ -35,7 +35,7 @@ The events dropped metric indicates the number of events received but not accept
 | ------ | ----------- |
 | OldData | Data was dropped because events have timestamps older than 20 minutes. Only events with timestamps no more than 20 minutes in the past or 20 minutes in the future (relative to ingestion time) are accepted. |
 | LimitThrottling | Data was dropped because ingestion limits were exceeded. [Request an increase in ingestion limits](./azure-monitor-workspace-monitor-ingest-limits.md)|
-| BadInputFormat | Data was dropped because the input format was invalid. For valid input formats, see [Metric names, label names & label values](./prometheus-metrics-overview.md#metric-names-label-names--label-values)|
+| BadInputFormat | Data was dropped because the input format was invalid. For valid input formats, see [Metric names, label names & label values](./prometheus-metrics-details.md#metric-names-label-names--label-values)|
 | InternalError | Data was dropped because of an internal error. |
 
 ### Time series samples dropped
@@ -51,7 +51,7 @@ The time series samples dropped metric indicates the number of datapoints droppe
 | OldData | Data was rejected because it was too old. Only events with timestamps no more than 20 minutes in the past (relative to ingestion time) are accepted. |
 | InternalError | Update has failed due to an internal error. |
 | ReservedDimensionName | Data was rejected because it contained one or more dimension key(s)/label name(s) that conflicts with reserved dimension/label name(s). |
-| BadInputFormat | Data was dropped because it contained values outside of the supported data range. For valid input formats, see [Metric names, label names & label values](./prometheus-metrics-overview.md#metric-names-label-names--label-values) |
+| BadInputFormat | Data was dropped because it contained values outside of the supported data range. For valid input formats, see [Metric names, label names & label values](./prometheus-metrics-details.md#metric-names-label-names--label-values) |
 
 
 > [!NOTE]
