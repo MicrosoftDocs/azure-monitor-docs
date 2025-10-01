@@ -2,7 +2,7 @@
 ms.service: azure-service-health
 ms.custom: devx-track-azurepowershell
 ms.topic: include
-ms.date: 08/21/2025
+ms.date: 10/01/2025
 ---
 
 #### Active Service Health events by subscription 
@@ -77,14 +77,8 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 This query returns all upcoming Service Health events for Retirements across all your subscriptions.
 
-```kusto
+```
 ServiceHealthResources
-| where type =~ 'Microsoft.ResourceHealth/events'
-| extend eventType = properties.EventType, status = properties.Status, description = properties.Title, trackingId = properties.TrackingId, summary = properties.Summary, priority = properties.Priority, impactStartTime = properties.ImpactStartTime, impactMitigationTime = todatetime(tolong(properties.ImpactMitigationTime))
-| where eventType == 'PlannedMaintenance' and impactMitigationTime > now()
-```
-
-```
 where type =~ 'Microsoft.ResourceHealth/events'
 | extend eventType = properties.EventType, eventSubType = properties.EventSubType
 | where eventType == "HealthAdvisory" and eventSubType == "Retirement"
