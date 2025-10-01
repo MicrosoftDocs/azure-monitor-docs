@@ -29,7 +29,7 @@ If you haven't done so already, [create a diagnostic setting](../../platform/dia
 
 This will allow you to use the `LAQueryLogs` table to detect API usage patterns. Specifically, look for entries where the `RequestTarget` or `RequestClientApp` fields indicate use of the beta API.
 
-### Check logs for the query API
+### Check logs for API beta version
 
 * **Check one specific workspace:**
 
@@ -60,7 +60,7 @@ This will allow you to use the `LAQueryLogs` table to detect API usage patterns.
         | project TimeGenerated, RequestClientApp, RequestTarget, QueryTex
         ```
 
-### Change `beta` path to `v1`
+## Change `beta` path to `v1`
 
 To migrate from the `beta` version of the Logs Query API, change the path in your API calls from `beta` to `v1`.
 
@@ -72,7 +72,7 @@ To migrate from the `beta` version of the Logs Query API, change the path in you
 
 <a href="#note1"><sup>1</sup></a>Log Analytics queries via ARM should migrate to the Logs Query API `v1` [request format](request-format.md#public-api-format).
 
-### Split batch queries to single queries
+## Split batch queries to single queries
 
 To migrate [batch API calls](batch-queries.md), split every query that you previously sent as part of the `requests` array in the body of the message and use the `query` section in the [request format](request-format.md#post-query) instead.
 
