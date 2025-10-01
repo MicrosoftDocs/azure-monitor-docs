@@ -1005,13 +1005,16 @@ items:
         items:
           - name: Overview
             href: metrics/azure-monitor-workspace-overview.md
-            displayName: Prometheus
+            displayName: Azure Monitor workspace
           - name: Manage
             href: metrics/azure-monitor-workspace-manage.md
-            displayName: Prometheus
+            displayName: Azure Monitor workspace
+          - name: Manage access
+            href: metrics/azure-monitor-workspace-manage-access.md
+            displayName: Azure Monitor workspace
           - name: Monitor metrics ingestion limits
             href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
-            displayName: Prometheus Azure Monitor workspace
+            displayName: Azure Monitor workspace
           - name: Best practices for scaling
             href: metrics/azure-monitor-workspace-scaling-best-practice.md
           - name: Monitor Performance

@@ -21,28 +21,28 @@ This article describes how to manage access to data in a Azure Monitor workspace
 
 The factors that define the data you can access are described in the following table. Each factor is further described in the sections that follow.
 
-| Factor                                                 | Description                                                                                                                                              |
-|:-------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Query scope](#query-scope)                            | Method used to query the Prometheus HTTP APIs that Azure exposes for all Azure Monitor Workspace metrics. Defines the scope of the data available and the access control mode that's applied.                                 |
-| [Access control mode](#access-control-mode)            | Setting on the workspace that defines whether permissions are applied at the workspace or resource level.                                                |
+| Factor | Description |
+|:---|:---|
+| [Query scope](#query-scope) | Method used to query the Prometheus HTTP APIs that Azure exposes for all Azure Monitor Workspace metrics. Defines the scope of the data available and the access control mode that's applied. |
+| [Access control mode](#access-control-mode)  | Setting on the workspace that defines whether permissions are applied at the workspace or resource level.|
 | [Azure role-based access control (RBAC)](#azure-rbac)  | Permissions applied to individuals or groups of users for the workspace or resource sending data to the workspace. Defines what data you have access to. |
 
-## Query Scope
+## Query scope
 
-The *Query Scope* refers to how you access a Azure Monitor workspace and defines the data you can access.
+The *query scope* refers to how you access a Azure Monitor workspace and defines the data you can access.
 
-There are two Query Scopes:
+There are two query scopes:
 
-* **Workspace-scope**: You can view all metrics in the workspace for which you have permission. These queries are scoped to all data in the workspace you have access to. When you select an **Azure Monitor Workspace** Scope on any **Azure Monitor** dashboard in the Azure portal, that is the workspace scope.
+* **Workspace-scope**: You can view all metrics in the workspace for which you have permission. These queries are scoped to all data in the workspace you have access to. When you select an **Azure Monitor Workspace** scope on any **Azure Monitor** dashboard in the Azure portal, the workspace scope is used.
 
-* **Resource-scope**: When you access the metrics for a particular resource, resource group, or subscription, such as when you select **Metrics** from a resource menu in the Azure portal, Azure RBAC is used so you can view metrics for only resources that you have access to. Depending on the Access Mode the workspace(s) hosting your resource metrics is configured to, you may need direct access to the workspace(s) in addition to resources queried.
+* **Resource-scope**: When you access the metrics for a particular resource, resource group, or subscription, such as when you select **Metrics** from a resource menu in the Azure portal, Azure RBAC is used so you can view metrics for only resources that you have access to. Depending on the access control mode configured for the workspaces hosting your resource metrics, you may need direct access to the workspaces in addition to resources queried.
 
-Metrics are only available in resource-scope queries if they're associated with the relevant resource. To check this association, run a query and verify that the Microsoft.resourceid dimension is populated.
+Metrics are only available in resource-scope queries if they're associated with the relevant resource. To check this association, run a query and verify that the `Microsoft.resourceid` dimension is populated.
 
-There are known limitations with the following resources:
+There are limitations with the following resources:
 
-* **Computers outside of Azure**: Resource-scoped queries are only supported with [Azure Arc for servers](/azure/azure-arc/servers/).
-* **Application Insights**: Supported for resource-scoped queries only when using [OpenTelemetry metrics](../app/opentelemetry-configuration.md) that have an associated DCR that handles the stamping of required Microsoft.* dimensions.
+* **Computers outside of Azure**: Resource-scoped queries are only supported for external machines configured with [Azure Arc for servers](/azure/azure-arc/servers/).
+* **Application Insights**: Supported for resource-scoped queries only when using [OpenTelemetry metrics](../app/opentelemetry-configuration.md) that have an associated [data collection rule DCR](../data-collection/data-collection-rule-overview.md) that handles the stamping of required `Microsoft.*` dimensions.
 
 ### Comparing query scopes
 
@@ -50,7 +50,7 @@ The following table summarizes the scenarios and personas using each query scope
 
 | Issue | Workspace-scope | Resource-scope |
 |:------|:------------------|:-----------------|
-| Who is each model intended for? | Central administration.<br>Administrators who need to configure data collection and users who need access to a wide variety of resources. Also currently required for users who need to access metrics for resources outside of Azure, such as those sent via remote-write without Azure Arc enabled on hosting machines. | Application teams.<br>Administrators of Azure resources being monitored. Allows them to focus on their resource without filtering. |
+| Who is each model intended for? | Central administration.<br>Administrators who need to configure data collection and users who need access to a wide variety of resources. Currently required for users who need to access metrics for resources outside of Azure, such as those sent from remote-write without Azure Arc enabled on hosting machines. | Application teams.<br>Administrators of Azure resources being monitored. Allows them to focus on their resource without filtering. |
 | What does a user require to view metrics? | Permissions to the workspace.<br>See "Workspace permissions" in [Manage access using workspace permissions](#azure-rbac). | Read access to the resource.<br>See "Resource permissions" in [Manage access using Azure permissions](#azure-rbac). Permissions can be inherited from the resource group or subscription or directly assigned to the resource. Permission to the metrics for the resource will be automatically assigned. The user doesn't require access to the workspace. |
 | What is the scope of permissions? | Workspace.<br>Users with access to the workspace can query all metrics in the workspace. | Azure resource.<br>Users can query metrics for specific resources, resource groups, or subscriptions they have access to in any workspace, but they can't query metrics for other resources. |
 | How can a user access metrics? | On the **Azure Monitor** menu, select **Metrics**.<br><br>Select **Metrics** from **Azure Monitor workspaces**.<br><br>From Azure Monitor when the Azure Monitor workspace is selected for resource type. | Select **Metrics** on the menu for the Azure resource. Users will have access to data for that resource.<br><br>Select **Metrics** on the **Azure Monitor** menu. Users will have access to data for all resources they have access to.|
@@ -59,7 +59,7 @@ The following table summarizes the scenarios and personas using each query scope
 
 The *access control mode* is a setting on each workspace that defines how permissions are determined for the workspace.
 
-* **Require workspace permissions**. This control mode does NOT allow granular resource-level Azure RBAC. To access the workspace, the user must be [granted permissions to the workspace](#azure-rbac).
+* **Require workspace permissions**. This control mode doesn't allow granular resource-level Azure RBAC. To access the workspace, the user must be [granted permissions to the workspace](#azure-rbac).
 
     When a user scopes their query to a [workspace](#query-scope), workspace permissions apply. When a user scopes their query to a [resource](#query-scope), both workspace permissions AND resource permissions are verified.
 
@@ -168,7 +168,7 @@ The Monitoring Reader role includes the following Azure actions:
 
 #### Monitoring Contributor
 
-People assigned the Monitoring Contributor role can view all monitoring data in a subscription. They can also create or modify monitoring settings, but they can't modify any other resources.
+Members of the Monitoring Contributor role can view all monitoring data in a subscription. They can also create or modify monitoring settings, but they can't modify any other resources.
 
 This role is a superset of the Monitoring Reader role. It's appropriate for members of an organization's monitoring team or managed service providers who, in addition to the permissions mentioned earlier, need to:
 
@@ -177,70 +177,19 @@ This role is a superset of the Monitoring Reader role. It's appropriate for memb
 * Create and edit diagnostic settings for a resource.
 * Set alert rule activity and settings using Azure alerts.
 
-The Monitoring Contributor role includes the following Azure actions:
+See [Monitoring Contributor](/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor) for a detailed list of the Azure actions included in the role.
 
-[Learn more](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor)
-
-> [!div class="mx-tableFixed"]
-> | Actions | Description |
-> | --- | --- |
-> | */read | Read control plane information for all Azure resources. |
-> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/alerts/* |  |
-> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/alertsSummary/* |  |
-> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/issues/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/actiongroups/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/activityLogAlerts/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/AlertRules/* | Create and manage a classic metric alert |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/components/* | Create and manage Insights components |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/createNotifications/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/dataCollectionEndpoints/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/dataCollectionRules/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/dataCollectionRuleAssociations/* |  |
-> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/DiagnosticSettings/* | Creates, updates, or reads the diagnostic setting for Analysis Server |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/eventtypes/* | List Activity Log events (management events) in a subscription. This permission is applicable to both programmatic and portal access to the Activity Log. |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/LogDefinitions/* | This permission is necessary for users who need access to Activity Logs via the portal. List log categories in Activity Log. |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/metricalerts/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/MetricDefinitions/* | Read metric definitions (list of available metric types for a resource). |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/Metrics/* | Read metrics for a resource. |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/notificationStatus/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/Register/Action | Register the Microsoft Insights provider |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/scheduledqueryrules/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/webtests/* | Create and manage Insights web tests |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/workbooks/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/workbooktemplates/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/privateLinkScopes/* |  |
-> | [Microsoft.Insights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftinsights)/privateLinkScopeOperationStatuses/* |  |
-> | [Microsoft.Monitor](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftmonitor)/accounts/* |  |
-> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/write | Creates a new workspace or links to an existing workspace by providing the customer id from the existing workspace. |
-> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/intelligencepacks/* | Read/write/delete log analytics solution packs. |
-> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/savedSearches/* | Read/write/delete log analytics saved searches. |
-> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/search/action | Executes a search query |
-> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/sharedKeys/action | Retrieves the shared keys for the workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace. |
-> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/sharedKeys/read | Retrieves the shared keys for the workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace. |
-> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/storageinsightconfigs/* | Read/write/delete log analytics storage insight configurations. |
-> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/locations/workspaces/failover/action | Initiates workspace failover to replication location. |
-> | [Microsoft.OperationalInsights](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftoperationalinsights)/workspaces/failback/action | Initiates workspace failback. |
-> | [Microsoft.Support](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/general.md#microsoftsupport)/* | Create and update a support ticket |
-> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/smartDetectorAlertRules/* |  |
-> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/actionRules/* |  |
-> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/smartGroups/* |  |
-> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/migrateFromSmartDetection/* |  |
-> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/investigations/* |  |
-> | [Microsoft.AlertsManagement](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftalertsmanagement)/prometheusRuleGroups/* |  |
-> | [Microsoft.Monitor](https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/monitor.md#microsoftmonitor)/investigations/* |  |
-> | **NotActions** |  |
-> | *none* |  |
-> | **DataActions** |  |
-> | *none* |  |
-> | **NotDataActions** |  |
-> | *none* |  |
 
 ### Resource permissions
 
-To scope queries to a [resource](#query-scope), you need these permissions on the resource:
+To scope queries to a [resource](#query-scope), you need the following permissions on the resource:
 
-| Permission                                                                                         | Description                                                                         |
-|----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| `Microsoft.Insights/metrics/*/read`                                                                   | Ability to view all metrics data for the resource                                       |
+| Permission | Description |
+|:---|:---|
+| `Microsoft.Insights/metrics/*/read` | Ability to view all metrics data for the resource |
 
-The `/read` permission is usually granted from a role that includes _\*/read or_ _\*_ permissions, such as the built-in [Reader](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#reader) and [Contributor](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#contributor) roles. Custom roles that include specific actions or dedicated built-in roles might not include this permission.
+The `/read` permission is usually granted from a role that includes _\*/read or_ _\*_ permissions, such as the built-in [Reader](/azure/role-based-access-control/built-in-roles#reader) and [Contributor](/azure/role-based-access-control/built-in-roles#contributor) roles. Custom roles that include specific actions or dedicated built-in roles might not include this permission.
+
+## Next steps
+
+- Learn more about [Azure Monitor workspaces](./azure-monitor-workspace-overview.md).

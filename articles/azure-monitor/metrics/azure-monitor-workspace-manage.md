@@ -91,7 +91,7 @@ Similar to [Log Analytics workspace](../logs/manage-access.md), Azure Monitor Wo
 * Users do not need to know which workspace to query for the metrics they've scoped their query to
 * Users do not need direct access to the workspace(s) storing the metrics for their resources
 
-Read more about [how to manage the workspace Access Mode here.](../metrics/azure-monitor-workspace-manage-access.md)
+See [Manage access to Azure Monitor workspaces](../metrics/azure-monitor-workspace-manage-access.md) for details.
 
 ## Delete an Azure Monitor workspace
 When you delete an Azure Monitor workspace, unlike with a [Log Analytics workspace](../logs/delete-workspace.md), there's no soft delete operation. The data in the workspace is immediately deleted, and there's no recovery option.
