@@ -79,12 +79,12 @@ This query returns all upcoming Service Health events for Retirements across all
 
 ```kusto
 ServiceHealthResources
-where type =~ 'Microsoft.ResourceHealth/events'
+| where type =~ 'Microsoft.ResourceHealth/events'
 | extend eventType = properties.EventType, eventSubType = properties.EventSubType
 | where eventType == "HealthAdvisory" and eventSubType == "Retirement"
-|extend status = properties.Status, description = properties.Title, trackingId = properties.TrackingId, summary = properties.Summary, priority = properties.Priority, impactStartTime = todatetime(tolong(properties.ImpactStartTime)), impactMitigationTime = todatetime(tolong(properties.ImpactMitigationTime)), impact = properties.Impact
+| extend status = properties.Status, description = properties.Title, trackingId = properties.TrackingId, summary = properties.Summary, priority = properties.Priority, impactStartTime = todatetime(tolong(properties.ImpactStartTime)), impactMitigationTime = todatetime(tolong(properties.ImpactMitigationTime)), impact = properties.Impact
 | where impactMitigationTime > datetime(now)
-|project trackingId, subscriptionId, status, eventType, eventSubType, summary, description, priority, impactStartTime, impactMitigationTime, impact
+| project trackingId, subscriptionId, status, eventType, eventSubType, summary, description, priority, impactStartTime, impactMitigationTime, impact
 ```
 ---
 #### All active planned maintenance events
