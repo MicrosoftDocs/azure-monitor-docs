@@ -943,13 +943,6 @@ items:
         - name: Log Analytics Linux agent
           displayName: troubleshoot, troubleshooting
           href: agents/agent-linux-troubleshoot.md
-  - name: Prometheus metrics
-    items:
-    - name: Integrate with self-hosted Prometheus
-      href: metrics/prometheus-remote-write.md
-      displayName: remote write
-    - name: Migrate from self-hosted Prometheus
-      href: metrics/prometheus-migrate.md
   - name: Logs ingestion API
     items:
     - name: Overview
@@ -1003,6 +996,11 @@ items:
       - name: Connect Grafana
         href: metrics/prometheus-grafana.md
         displayName: Prometheus Grafana
+      - name: Integrate with self-hosted Prometheus
+        href: metrics/prometheus-remote-write.md
+        displayName: remote write
+      - name: Migrate from self-hosted Prometheus
+        href: metrics/prometheus-migrate.md        
       - name: Azure Monitor workspace
         items:
           - name: Overview

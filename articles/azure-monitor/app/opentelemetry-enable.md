@@ -33,7 +33,7 @@ OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applic
 
 ## Enable OpenTelemetry with Application Insights
 
-Follow the steps in this section to instrument your application with OpenTelemetry. Select a tab for langauge-specific instructions.
+Follow the steps in this section to instrument your application with OpenTelemetry. Select a tab for language-specific instructions.
 
 > [!NOTE]
 > .NET covers multiple scenarios, including classic ASP.NET, console apps, Windows Forms (WinForms), and more.
