@@ -57,7 +57,7 @@ This will allow you to use the `LAQueryLogs` table to detect API usage patterns.
           workspace("workspace-id-3").LAQueryLogs
         | where TimeGenerated > ago(30d)
         | where RequestTarget contains "/beta/"
-        | project TimeGenerated, RequestClientApp, RequestTarget, QueryTex
+        | project TimeGenerated, RequestClientApp, RequestTarget, QueryText
         ```
 
 ## Change `beta` path to `v1`
