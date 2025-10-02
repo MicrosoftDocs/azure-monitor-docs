@@ -1003,6 +1003,14 @@ items:
       - name: Connect Grafana
         href: metrics/prometheus-grafana.md
         displayName: Prometheus Grafana
+      - name: Self-hosted Prometheus
+        items:
+        - name: Integrate
+          href: metrics/prometheus-remote-write.md
+          displayName: remote write, Prometheus
+        - name: Migrate
+          href: metrics/prometheus-migrate.md
+          displayName: remote write, Prometheus
       - name: Azure Monitor workspace
         items:
           - name: Overview
