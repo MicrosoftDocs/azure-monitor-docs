@@ -4,7 +4,7 @@ title: Azure Monitor SCOM Managed Instance Data Encryption at Rest
 description: This article provides an overview of SCOM Managed Instance Data Encryption at Rest.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 09/08/2025
+ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -12,6 +12,8 @@ ms.topic: article
 ---
 
 # Azure Monitor SCOM Managed Instance Data Encryption at Rest 
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 Microsoft Azure includes tools to safeguard the data according to your company's security and compliance needs. Encryption at Rest is a common security requirement. 
 

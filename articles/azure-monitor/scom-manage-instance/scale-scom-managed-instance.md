@@ -4,7 +4,7 @@ title: Scale Azure Monitor SCOM Managed Instance
 description: This article provides information on how to scale your Azure Monitor SCOM Managed Instance.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 09/08/2025
+ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -12,6 +12,8 @@ ms.topic: how-to
 ---
 
 # Scale Azure Monitor SCOM Managed Instance
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 Addition or deletion of a management server to the existing System Center Operations Manager Infrastructure automatically links or delinks it from the existing Operational database, Data warehouse, and endpoints in SCOM Managed Instance.
 

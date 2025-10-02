@@ -94,12 +94,12 @@ These region groups and regions are currently supported:
 
 | Region Group | Primary regions | Secondary regions (replication locations) |
 |--------------|-----------------|-------------------------------------------|
-| North America | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3 | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2 |
+| North America | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3 | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2 <br> West US 3 |
 | South America | Brazil South <br> Brazil Southeast | Brazil South <br> Brazil Southeast |
-| Europe | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK | France Central <br> North Europe <br> South UK <br> West Europe |
+| Europe | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK | France Central <br> Germany West Central <br> North Europe <br> South UK <br> West Europe |
 | Middle East | Qatar Central <br> UAE Central <br> UAE North | Qatar Central <br> UAE Central <br> UAE North |
-| India | Central India <br> South India | Central India <br> South India |
-| Asia Pacific | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | East Asia <br> Japan East <br> Korea Central |
+| India | Central India <br> Jio India Central <br> Jio India West <br> South India | Central India <br> Jio India West <br> South India |
+| Asia Pacific | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | East Asia <br> Japan East <br> Korea Central <br> Southeast Asia |
 | Oceania | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast | Australia Central <br> Australia East <br> Australia Southeast |
 | Africa | South Africa North <br> South Africa West | South Africa North <br> South Africa West |
 

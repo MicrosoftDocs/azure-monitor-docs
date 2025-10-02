@@ -4,7 +4,7 @@ title: Register the Azure Monitor SCOM Managed Instance resource provider
 description: This article describes how to register the SCOM Managed Instance resource provider.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 09/08/2025
+ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -12,6 +12,8 @@ ms.topic: how-to
 ---
 
 # Register the Azure Monitor SCOM Managed Instance resource provider
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 This article describes how to register the Azure Monitor SCOM Managed Instance resource provider.
 

@@ -4,7 +4,7 @@ title: Connect the Azure Monitor SCOM Managed Instance to Operations console
 description: This article describes how to connect the Azure Monitor SCOM Managed Instance to Operations console.
 author: jyothisuri
 ms.author: jsuri
-ms.date: 09/08/2025
+ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -12,6 +12,8 @@ ms.topic: how-to
 ---
 
 # Connect the Azure Monitor SCOM Managed Instance to Operations console
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 Azure Monitor SCOM Managed Instance is compatible with [System Center Operations Manager 2022](https://www.microsoft.com/download/details.aspx?id=104038).
 

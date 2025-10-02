@@ -257,7 +257,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Microsoft Entra authentication for Application Insights](../app/azure-ad-authentication.md)|Options to enable Microsoft Entra authentication for .NET and Node.js autoinstrumentation are documented.|
 |Application-Insights|[Application Insights availability tests](../app/availability.md)|We clarified information about using an "availability test string identifier", which previously caused some confusion when referred to as a "GUID".|
 |Containers|[Optimize monitoring costs for Container insights](../containers/container-insights-cost.md)|Rewritten to consolidate cost saving options and analysis.|
-|Containers|[Configure log collection in Container insights](../containers/container-insights-data-collection-configure.md)|New article to consolidate all guidance for container location.|
 |Containers|[Filter log collection in Container insights](../containers/container-insights-data-collection-filter.md)|New article to describe all options to filter container logs.|
 |Containers|[Container insights log schema](../containers/container-insights-logs-schema.md)|Rewritten to focus on definition and configuration of log schema, including metadata option.|
 |Containers|[Access Syslog data in Container Insights](../containers/container-insights-syslog.md)|Removed duplicate information on configuration.|
@@ -866,8 +865,6 @@ Application-insights|[Sampling overrides (preview) - Azure Monitor Application I
 Autoscale|[Understand autoscale settings](../autoscale/autoscale-understanding-settings.md)|Refreshed and updated.|
 Autoscale|[Overview of common autoscale patterns](../autoscale/autoscale-common-scale-patterns.md)|Refreshed and updated.|
 Essentials|[Azure Monitor managed service for Prometheus (preview)](../containers/prometheus-metrics-scrape-default.md)|Restructured Prometheus content.|
-Essentials|[Configure remote write for Azure Monitor managed service for Prometheus by using Azure Active Directory authentication (preview)](../containers/prometheus-remote-write.md)|New article.|
-Essentials|[Azure Monitor workspace (preview)](../metrics/azure-monitor-workspace-overview.md)|Added Bicep example.|
 Essentials|[Migrate from diagnostic settings storage retention to Azure Storage lifecycle management](../platform/migrate-to-azure-storage-lifecycle-policy.md)|Added deprecation note.|
 Essentials|[Diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md)|All destination endpoints support TLS 1.2.|
 Logs|[Cost optimization and Azure Monitor](best-practices-cost.md)|Added cost information and removed preview label.|
