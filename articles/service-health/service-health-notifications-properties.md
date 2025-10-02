@@ -8,9 +8,11 @@ ms.date: 10/01/2025
 
 # Service health notifications
 
-Azure Service Health notifications are system-generated alerts that inform you about Azure service issues or events affecting your resources. They're recorded as part of your subscription’s [Azure Activity Log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics)  and also shown in the Azure portal under Service Health. Depending on the notification’s class (type), it might be purely informational, or indicate an issue that requires you to take action.
+Azure Service Health notifications are system-generated alerts that inform you about Azure service issues or events affecting your resources.<br> They're recorded as part of your subscription’s [Azure Activity Log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) and also are shown in the Azure portal under Service Health. Depending on the notification’s class (type), it might be purely informational, or indicate an issue that requires you to take action.
 
-To help you stay ahead of potential disruptions, Azure defines six distinct classes of Service Health notifications—each tailored to a specific type of event. These alerts keep you informed about outages, planned maintenance, security advisories, and other critical updates—so you can take timely action and maintain service continuity. Here’s a breakdown of each notification class, what it means, and how you can access and retain these updates.
+To help you stay ahead of potential disruptions, Azure defines six distinct classes of Service Health notifications—each tailored to a specific type of event. These alerts keep you informed about outages, planned maintenance, security advisories, and other critical updates—so you can take timely action and maintain service continuity. 
+
+Here’s a breakdown of each notification class, what it means, and how you can access and retain these updates.
 
 - **Action required:** Azure might notice something unusual happens on your account, and work with you to remedy the issue. Azure sends you a notification, either detailing the actions you need to take or how to contact Azure engineering or support.  
 - **Incident:** An event that impacts service is currently affecting one or more of the resources in your subscription.  
