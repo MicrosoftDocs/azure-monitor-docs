@@ -15,7 +15,7 @@ The Azure Monitor Logs Query API is deprecating the `batch` query operation and 
 | March 31, 2026 | Logs Query API `beta` version | [Change `beta` path to `v1`](#change-beta-path-to-v1) |
 | March 31, 2028 | Logs Query API `batch` operation | [Split batch queries into single queries](#split-batch-queries-to-single-queries) |
 
-## Check if the `beta` API is used
+## Check if the Logs Query API beta version is used
 
 > [!NOTE]
 > There's currently no direct UI in the Azure portal that explicitly flags usage of the deprecated beta API version.
