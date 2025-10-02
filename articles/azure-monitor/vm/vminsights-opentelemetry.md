@@ -27,17 +27,116 @@ Benefits of the new OTel-based collection pipeline include the following:
 
 ## Enable OpenTelemetry for VM insights
 
-Select a VM in the Azure portal and navigate to the **Insights** pane under the **Monitoring** section. 
+> [!NOTE]
+> The Azure portal is currently the only supported method to enable OpenTelemetry for VM insights.
 
-If your VM is already onboarded to VM insights, you'll see a prompt to enable OpenTelemetry.
+1. Select a VM in the Azure portal and navigate to the **Insights** pane under the **Monitoring** section. 
 
-:::image type="content" source="media/vminsights-opentelemetry/upgrade.png" lightbox="media/vminsights-opentelemetry/upgrade.png" alt-text="Screenshot that shows option to upgrade VM insights to OpenTelemetry experience in the Azure portal.":::
+2. If your VM is already onboarded to VM insights, you'll see a prompt to enable OpenTelemetry.
 
-If your VM isn't onboarded yet, you can enable OpenTelemetry during the onboarding process.
+    :::image type="content" source="media/vminsights-opentelemetry/upgrade.png" lightbox="media/vminsights-opentelemetry/upgrade.png" alt-text="Screenshot that shows option to upgrade VM insights to OpenTelemetry experience in the Azure portal.":::
 
-:::image type="content" source="media/vminsights-opentelemetry/enable.png" lightbox="media/vminsights-opentelemetry/enable.png" alt-text="Screenshot that shows option to enable VM insights to OpenTelemetry experience in the Azure portal.":::
+    If your VM isn't onboarded yet, you can enable OpenTelemetry during the onboarding process.
 
-Select whether to enable just the Opentelemetry metrics or both OpenTelemetry and Log Analytics metrics. 
+    :::image type="content" source="media/vminsights-opentelemetry/enable.png" lightbox="media/vminsights-opentelemetry/enable.png" alt-text="Screenshot that shows option to enable VM insights to OpenTelemetry experience in the Azure portal.":::
+
+3. For a VM that hasn't been onboarded yet, you can choose whether to enable the classic log-based metrics, the new OpenTelemetry metrics, or both. For a VM that has already been onboarded, you can only add OpenTelemetry metrics. The option to disable classic log-based metrics isn't currently available. See [Disable classic log-based metrics](#disable-classic-log-based-metrics) to disable the classic experience.
+
+    :::image type="content" source="{source}" alt-text="{alt-text}":::
+
+4. The Azure Monitor workspace for OTel metrics and the Log Analytics workspace for classic metrics that will be used are displayed. You can change either workspace by selecting **Customize infrastructure monitoring**.
+
+    :::image type="content" source="media/vminsights-opentelemetry/workspace.png" lightbox="media/vminsights-opentelemetry/workspace.png" alt-text="Screenshot that shows option to select workspaces for OpenTelemetry and classic Log Analytics metrics in the Azure portal.":::
+
+    > [!NOTE]
+    > This screen displays the metrics that will be collected, although you can't modify them here. See [Customize metric collection](#customize-metric-collection).
+
+## Visualize OpenTelemetry metrics
+The visualize OTel metrics, select the **Metrics** option from the Azure Monitor workspace.
+
+## Disable classic log-based metrics
+If your VM is currently using the classic log-based VM insights experience, then you can choose to stop sending metrics to the Log Analytics workspace to save on ingestion and retention costs. See [Disable monitoring of your VMs in VM insights](./vminsights-optout.md) for this process.
+
+## Customize metric collection
+By default, VM insights collects a core set of metrics at no cost. If you need additional visibility such as per-process performance, logical disk usage, filesystem utilization, or workload-specific metrics, you can extend the collection by updating the [Data Collection Rule (DCR)](../data-collection/data-collection-rule-overview.md) that gets deployed when VM insights with OTel metrics is enabled.
+
+To identify the DCR associated with the VM, open **Data Collection Rules** from the **Monitor** menu in the Azure portal. Select the **Resources** tab and locate your VM.
+
+:::image type="content" source="media/vminsights-opentelemetry/resources.png" lightbox="media/vminsights-opentelemetry/resources.png" alt-text="Screenshot of Resources tab of Data Collection Rules menu item.":::
+
+Click the number in the **Data collection rules** column to list the DCRs associated with the VM. The OTel DCR will have a name in the form `MSVMOtel-<region>-<name>`.
+
+:::image type="content" source="media/vminsights-opentelemetry/data-collection-rules.png" lightbox="media/vminsights-opentelemetry/data-collection-rules.png" alt-text="Screenshot of DCRs associated with selected resource.":::
+
+See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md) for guidance on how to modify a DCR. The default configuration is shown below. Add any of the metrics listed in [Additional cost](#additional-cost) the `counterSpecifiers` section of the DCR.
+
+```json
+{
+    "properties": {
+        "dataSources": {
+            "performanceCountersOTel": [
+                {
+                    "streams": [
+                        "Microsoft-OtelPerfMetrics"
+                    ],
+                    "samplingFrequencyInSeconds": 60,
+                    "counterSpecifiers": [
+                        "system.filesystem.usage",
+                        "system.filesystem.utilization",
+                        "system.disk.io",
+                        "system.disk.operation_time",
+                        "system.disk.operations",
+                        "system.memory.usage",
+                        "system.network.io",
+                        "system.cpu.time",
+                        "system.uptime",
+                        "system.network.dropped",
+                        "system.network.errors"
+                    ],
+                    "name": "OtelDataSource"
+                }
+            ]
+        },
+        "destinations": {
+            "monitoringAccounts": [
+                {
+                    "accountResourceId": "/subscriptions/my-subscription/resourcegroups/my-resource-group/providers/microsoft.monitor/accounts/my-workspace",
+                    "name": "MonitoringAccountDestination"
+                }
+            ]
+        },
+        "dataFlows": [
+            {
+                "streams": [
+                    "Microsoft-OtelPerfMetrics"
+                ],
+                "destinations": [
+                    "MonitoringAccountDestination"
+                ]
+            }
+        ]
+    }
+}
+```
+
+
+
+## Troubleshooting
+
+**The charts are stuck in a loading state**<br>
+This issue occurs if the network traffic for the Azure Monitor workspace is blocked. This is typically related to network policies such as ad blocking software. To resolve this issue, disable the ad block or allowlist `monitor.azure.com` traffic and reload the page.
+
+**Unable to access Data Collection Rule (DCR)**<br>
+This error occurs when the user doesn't have permission to view the associated Prometheus DCR for the cluster, or the DCR may have been deleted. To resolve, grant access to the Prometheus DCr or reconfigure managed Prometheus using the **Monitor Settings** button in the toolbar.
+
+**Data configuration error**<br>
+This error occurs when the Azure Monitor workspace or DCR has been modified or deleted. Use the **Reconfigure** button to patch the recording rules and try again.
+
+**Access denied**<br>
+This error occurs when the user's portal token expires or doesn't have permissions to view the associated Azure Monitor workspace. This can typically be resolved by refreshing the browser session or contacting your system administrator to request access. The user needs monitor reader permission, and the resource centric flag should be enabled on the Azure Monitor workspace by the system administrator.
+
+**An unknown error occurred**<br>
+If this error message persists, then contact support to open up a ticket.
 
 
 ## Metrics reference
