@@ -7,29 +7,38 @@ ms.date: 01/15/2025
 
 # Migrate to VM Insights OpenTelemetry (Preview)
 
-[VM insights](./vminsights-overview.md) in Azure Monitor currently uses a Log Analytics workspace to collect client performance data from your virtual machines to power visualizations in the Azure portal. It now supports OpenTelemetry (OTel) system metrics, which provides standardized signals that are more cost-effective and efficient.
+[VM insights](./vminsights-overview.md) in Azure Monitor currently uses a Log Analytics workspace to collect client performance data from your virtual machines and to power visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VMinsights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
 
-Benefits of the new OTel-based pipeline include the following:
+## Benefits of OpenTelemetry for VM insights
+
+Benefits of the new OTel-based collection pipeline include the following:
 
 - Standard system-level metrics such as CPU, memory, disk I/O, and network errors.
 - Per-process metrics such as process uptime, memory, and open file descriptors that were not previously available in Azure Monitor.
 - Extensibility to non-OS workloads such as MongoDB, Cassandra, and Oracle.
 - Cross-platform consistency with a unified schema across Linux and Windows.
 
+## Prerequisites
+
+- Azure VM or Arc-enabled server running an [operating system supported by the Azure Monitor agent](../agents/azure-monitor-agent-supported-operating-systems.md).
+- See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md) for prerequisites related to Azure Monitor agent.
+- See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
+
+
 ## Enable OpenTelemetry for VM insights
 
-### [Azure portal](#tab/arm)
 Select a VM in the Azure portal and navigate to the **Insights** pane under the **Monitoring** section. 
 
 If your VM is already onboarded to VM insights, you'll see a prompt to enable OpenTelemetry.
 
 :::image type="content" source="media/vminsights-opentelemetry/upgrade.png" lightbox="media/vminsights-opentelemetry/upgrade.png" alt-text="Screenshot that shows option to upgrade VM insights to OpenTelemetry experience in the Azure portal.":::
 
- If your VM isn't onboarded yet, you can enable OpenTelemetry during the onboarding process.
+If your VM isn't onboarded yet, you can enable OpenTelemetry during the onboarding process.
 
-:::image type="content" source="media/vminsights-opentelemetry/enable.png" lightbox="media/vminsights-opentelemetry/enable.png" alt-text="Screenshot that shows option to enable VM insights to OpenTelemetry experience in the Azure portal."::
+:::image type="content" source="media/vminsights-opentelemetry/enable.png" lightbox="media/vminsights-opentelemetry/enable.png" alt-text="Screenshot that shows option to enable VM insights to OpenTelemetry experience in the Azure portal.":::
 
-Select whether top enable just the Opentelemetry metrics or both OpenTelemetry and Log Analytics metrics. 
+Select whether to enable just the Opentelemetry metrics or both OpenTelemetry and Log Analytics metrics. 
+
 
 ## Metrics reference
 
