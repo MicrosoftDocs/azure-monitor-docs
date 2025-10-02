@@ -22,12 +22,12 @@ The Azure Monitor Logs Query API is deprecating the `batch` query operation and 
 
 ### Enable query auditing
 
-If you haven't done so already, [create a diagnostic setting](../../platform/diagnostic-settings.md?tabs=portal#create-a-diagnostic-setting) in your **Log Analytics workspace** and select:
+[Create a diagnostic setting](../../platform/diagnostic-settings.md?tabs=portal#create-a-diagnostic-setting) in your **Log Analytics workspace** and select:
 
 * **Logs:** audit
-* **Destionation details:** Send to Log Analytics workspace
+* **Destination details:** Send to Log Analytics workspace
 
-This will allow you to use the `LAQueryLogs` table to detect API usage patterns. Specifically, look for entries where the `RequestTarget` or `RequestClientApp` fields indicate use of the beta API.
+Query auditing allows you to use the `LAQueryLogs` table to detect API usage patterns. Specifically, look for entries where the `RequestTarget` or `RequestClientApp` fields indicate use of the beta API.
 
 ### Check logs for API beta version
 
