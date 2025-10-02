@@ -24,7 +24,7 @@ You can **set up recommended alerts** for Azure Monitor Workspace to monitor the
 To enable the recommended alert rules, navigate to the Azure Monitor Workspace in Azure portal.
 1. In the Monitoring section, select **Alerts** > **Set up recommended alerts**. The **Set up recommended alert rules** pane opens with a list of recommended alert rules for your Azure Monitor workspace.  
         
-   :::image type="content" source="media/azure-monitor-workspace-monitor-ingest-limits/amw-recommended-alerts.png" alt-text="Screenshot of AMW recommended alert rules pane.":::
+   :::image type="content" source="media/azure-monitor-workspace-monitor-ingest-limits/amw-recommended-alerts.png" lightbox="media/azure-monitor-workspace-monitor-ingest-limits/amw-recommended-alerts.png" alt-text="Screenshot of AMW recommended alert rules pane.":::
 
 1. In the **Select Alert rules** section, select all of the rules you want to enable. 
 1. In the **Notify me by** section, select the way you want to be notified if an alert is triggered.
