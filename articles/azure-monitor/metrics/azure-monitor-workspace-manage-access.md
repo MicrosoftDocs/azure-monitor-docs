@@ -15,7 +15,7 @@ The factors that determine which data you can access in an Azure Monitor workspa
 * Your access permissions to resources that send data to the workspace.
 * The method used to access the workspace.
 
-This article describes how to manage access to data in a Azure Monitor workspace.
+This article describes how to manage access to data in an Azure Monitor workspace.
 
 ## Overview
 
@@ -29,7 +29,7 @@ The factors that define the data you can access are described in the following t
 
 ## Query scope
 
-The *query scope* refers to how you access a Azure Monitor workspace and defines the data you can access.
+The *query scope* refers to how you access an Azure Monitor workspace and defines the data you can access.
 
 There are two query scopes:
 
