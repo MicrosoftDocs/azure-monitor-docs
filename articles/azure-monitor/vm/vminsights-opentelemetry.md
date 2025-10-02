@@ -42,11 +42,9 @@ Benefits of the new OTel-based collection pipeline include the following:
 
 3. For a VM that hasn't been onboarded yet, you can choose whether to enable the classic log-based metrics, the new OpenTelemetry metrics, or both. For a VM that has already been onboarded, you can only add OpenTelemetry metrics. The option to disable classic log-based metrics isn't currently available. See [Disable classic log-based metrics](#disable-classic-log-based-metrics) to disable the classic experience.
 
-    :::image type="content" source="{source}" alt-text="{alt-text}":::
-
 4. The Azure Monitor workspace for OTel metrics and the Log Analytics workspace for classic metrics that will be used are displayed. You can change either workspace by selecting **Customize infrastructure monitoring**.
 
-    :::image type="content" source="media/vminsights-opentelemetry/workspace.png" lightbox="media/vminsights-opentelemetry/workspace.png" alt-text="Screenshot that shows option to select workspaces for OpenTelemetry and classic Log Analytics metrics in the Azure portal.":::
+    :::image type="content" source="media/vminsights-opentelemetry/customize-configuration.png" lightbox="media/vminsights-opentelemetry/customize-configuration.png" alt-text="Screenshot that shows screen for customizing metric collection in the Azure portal.":::
 
     > [!NOTE]
     > This screen displays the metrics that will be collected, although you can't modify them here. See [Customize metric collection](#customize-metric-collection).
@@ -204,5 +202,4 @@ If this error message persists, then contact support to open up a ticket.
 | system.processes.created          | Processes created                                |
 
 ## Learn More
-- [Azure Monitor documentation](https://learn.microsoft.com/azure/azure-monitor/)
-- [Log Analytics overview](https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-overview)
+- [Azure Monitor metrics](../metrics/data-platform-metrics.md)
