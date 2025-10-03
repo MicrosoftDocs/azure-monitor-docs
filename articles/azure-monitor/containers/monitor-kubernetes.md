@@ -229,30 +229,18 @@ In addition to developing the application, the *developer* maintains the applica
 
 :::image type="content" source="media/monitor-kubernetes/layers-developer.png" alt-text="Diagram of layers of Kubernetes environment for developer." lightbox="media/monitor-kubernetes/layers-developer.png"  border="false":::
 
-### Azure services for developer
-
-The following table lists the services that are commonly used by the developer to monitor the health and performance of the application running on the cluster.  
-
-See [Data Collection Basics of Azure Monitor Application Insights](../app/opentelemetry-overview.md) for options on configuring data collection from the application running on your cluster and decision criteria on the best method for your particular requirements. 
-
 ### Monitor level 5 - Application
 
-Following are common scenarios for monitoring your application.
+Implement the [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-enable.md) to enable [Application Insights experiences](../app/app-insights-overview.md#application-insights-experiences) and configure [sampling](../app/opentelemetry-sampling.md#sampling-in-azure-monitor-application-insights-with-opentelemetry) to control costs.
+
+The following are common scenarios for monitoring your application.
 
 **Application performance**<br>
-- Use the **Performance** view in Application insights to view the performance of different operations in your application.
-- Use the [.NET Profiler](../profiler/profiler-overview.md) to capture and view performance traces for your application.
-- Use the [Application Map](../app/app-map.md) to view the dependencies between your application components and identify any bottlenecks.
-- Enable [distributed tracing](../app/distributed-trace-data.md), which provides a performance profiler that works like call stacks for cloud and microservices architectures, to gain better observability into the interaction between services.
-
-**Application failures**<br>
-- Use the **Failures** tab of Application insights to view the number of failed requests and the most common exceptions.
-- Ensure that alerts for [failure anomalies](../alerts/proactive-failure-diagnostics.md) identified with [smart detection](../alerts/proactive-diagnostics.md) are configured properly.
-
-**Health monitoring**<br>
-- Create an [Availability test](../app/availability-overview.md) in Application insights to create a recurring test to monitor the availability and responsiveness of your application.
-- Use the [SLA report](../app/sla-report.md) to calculate and report SLA for web tests.
-- Use [annotations](../app/release-and-work-item-insights.md?tabs=release-annotations) to identify when a new build is deployed so that you can visually inspect any change in performance after the update.
+- View the [overview dashboard](../app/overview-dashboard.md) for at-a-glance assessment of application health and performance.
+- View [live metrics](../app/live-stream.md) for real-time insight into application activity and performance.
+- [Investigate failures, performance, and transactions](../app/failures-performance-transactions.md) to diagnose application health and efficiency.
+- Use the [Application Map](../app/app-map.md) for a visual overview of application architecture and component interactions.
+- Create [standard tests](../app/availability.md#standard-test) to monitor application availability.
 
 **Application logs**<br>
 - Container insights sends stdout/stderr logs to a Log Analytics workspace. See [Resource logs](/azure/aks/monitor-aks-reference#resource-logs) for a description of the different logs and [Kubernetes Services](/azure/azure-monitor/logs/manage-logs-tables) for a list of the tables each is sent to.
