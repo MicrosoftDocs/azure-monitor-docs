@@ -194,6 +194,19 @@ You can add as many initializers as you like. They're called in the order that t
 * Confirm that the fully qualified type name and assembly name are correct.
 * Confirm that the applicationinsights.config file is in your output directory and contains any recent changes.
 
+#### Add a cloud role name and cloud role instance
+
+Use a telemetry initializer to set the `ai.cloud.role` and `ai.cloud.roleInstance` tags. These tags define how your component appears in the [Application Map](app-map.md) in Azure Monitor.
+
+```javascript
+appInsights.queue.push(() => {
+appInsights.addTelemetryInitializer((envelope) => {
+  envelope.tags["ai.cloud.role"] = "your role name";
+  envelope.tags["ai.cloud.roleInstance"] = "your role instance";
+});
+});
+```
+
 ## Cookie management
 
 Starting from version 2.6.0, the Azure Application Insights JavaScript SDK provides instance-based cookie management that can be disabled and re-enabled after initialization.

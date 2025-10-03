@@ -3308,19 +3308,76 @@ public void Initialize(ITelemetry item)
 }
 ```
 
-##### Add a cloud role name
+##### Add a cloud role name and cloud role instance
+
+**Step 1: Write custom TelemetryInitializer**
 
 The following sample initializer sets the cloud role name to every tracked telemetry.
 
 ```csharp
-public void Initialize(ITelemetry telemetry)
+using Microsoft.ApplicationInsights.Channel;
+using Microsoft.ApplicationInsights.Extensibility;
+
+namespace CustomInitializer.Telemetry
 {
-    if (string.IsNullOrEmpty(telemetry.Context.Cloud.RoleName))
+    public class MyTelemetryInitializer : ITelemetryInitializer
     {
-        telemetry.Context.Cloud.RoleName = "MyCloudRoleName";
+        public void Initialize(ITelemetry telemetry)
+        {
+            if (string.IsNullOrEmpty(telemetry.Context.Cloud.RoleName))
+            {
+                //set custom role name here
+                telemetry.Context.Cloud.RoleName = "Custom RoleName";
+                telemetry.Context.Cloud.RoleInstance = "Custom RoleInstance";
+            }
+        }
     }
 }
 ```
+
+**Step 2: Load an initializer to TelemetryConfiguration**
+
+# [ASP.NET](#tab/net)
+
+In the *ApplicationInsights.config* file:
+
+```xml
+    <ApplicationInsights>
+      <TelemetryInitializers>
+        <!-- Fully qualified type name, assembly name: -->
+        <Add Type="CustomInitializer.Telemetry.MyTelemetryInitializer, CustomInitializer"/>
+        ...
+      </TelemetryInitializers>
+    </ApplicationInsights>
+```
+
+An alternate method for ASP.NET Web apps is to instantiate the initializer in code. The following example shows code in the *Global.aspx.cs* file:
+
+```csharp
+ using Microsoft.ApplicationInsights.Extensibility;
+ using CustomInitializer.Telemetry;
+
+    protected void Application_Start()
+    {
+        // ...
+        TelemetryConfiguration.Active.TelemetryInitializers.Add(new MyTelemetryInitializer());
+    }
+```
+
+# [ASP.NET Core](#tab/core)
+
+To add a new `TelemetryInitializer` instance, you add it to the Dependency Injection container. The following example shows this approach. Add this code in the `ConfigureServices` method of your `Startup.cs` class.
+
+```csharp
+ using Microsoft.ApplicationInsights.Extensibility;
+ using CustomInitializer.Telemetry;
+ public void ConfigureServices(IServiceCollection services)
+{
+    services.AddSingleton<ITelemetryInitializer, MyTelemetryInitializer>();
+}
+```
+
+---
 
 ##### Control the client IP address used for geolocation mappings
 
