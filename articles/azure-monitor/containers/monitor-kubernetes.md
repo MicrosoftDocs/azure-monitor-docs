@@ -233,9 +233,7 @@ In addition to developing the application, the *developer* maintains the applica
 
 Implement the [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-enable.md) to enable [Application Insights experiences](../app/app-insights-overview.md#application-insights-experiences) and configure [sampling](../app/opentelemetry-sampling.md#sampling-in-azure-monitor-application-insights-with-opentelemetry) to control costs.
 
-The following are common scenarios for monitoring your application.
-
-**Application performance**<br>
+**Application Insights experiences**<br>
 - View the [overview dashboard](../app/overview-dashboard.md) for at-a-glance assessment of application health and performance.
 - View [live metrics](../app/live-stream.md) for real-time insight into application activity and performance.
 - [Investigate failures, performance, and transactions](../app/failures-performance-transactions.md) to diagnose application health and efficiency.
