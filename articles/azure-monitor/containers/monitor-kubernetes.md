@@ -239,8 +239,8 @@ The following are common scenarios for monitoring your application.
 - View the [overview dashboard](../app/overview-dashboard.md) for at-a-glance assessment of application health and performance.
 - View [live metrics](../app/live-stream.md) for real-time insight into application activity and performance.
 - [Investigate failures, performance, and transactions](../app/failures-performance-transactions.md) to diagnose application health and efficiency.
-- Use the [Application Map](../app/app-map.md) for a visual overview of application architecture and component interactions.
-- Create [standard tests](../app/availability.md#standard-test) to monitor application availability.
+- Use the [application map](../app/app-map.md) for a visual overview of application architecture and component interactions.
+- Create [standard tests](../app/availability.md) to monitor application availability.
 
 **Application logs**<br>
 - Container insights sends stdout/stderr logs to a Log Analytics workspace. See [Resource logs](/azure/aks/monitor-aks-reference#resource-logs) for a description of the different logs and [Kubernetes Services](/azure/azure-monitor/logs/manage-logs-tables) for a list of the tables each is sent to.
@@ -252,4 +252,3 @@ The following are common scenarios for monitoring your application.
 ## See also
 
 - See [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md) to enable Managed Prometheus and log collection on your cluster.
-
