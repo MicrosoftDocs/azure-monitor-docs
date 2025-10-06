@@ -55,3 +55,9 @@ Ops360 introduces an agentic experience, leveraging AI-driven guidance and autom
 
 ### Optimization
 
+- **Scenario 1:** Potential actions to reduce cost.
+- **Scenario 2:** Explanations of how recommendations were created to ensure understanding of impact of acting on them.
+- **Scenario 3:** Recommendations that are immediately actionable and validated against quota and capacity constraints to prevent implementation failures.
+- **Scenario 4:** Additional options if the top recommendations don’t work. 
+- **Scenario 5:** Understand both the performance improvement and cost impact of making the change upsizing Virtual Machines.
+
