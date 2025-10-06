@@ -52,7 +52,7 @@ Benefits of the new OTel-based collection pipeline include the following:
 ## Visualize OpenTelemetry metrics
 When you enable OTel metrics, the VM insights dashboards are updated to use these metrics instead of those stored in Log Analytics workspace. You can do custom analysis of these metrics select the **Metrics** option from the Azure Monitor workspace to open metrics explorer. See [Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md).
 
-    :::image type="content" source="media/vminsights-opentelemetry/metrics-explorer.png" lightbox="media/vminsights-opentelemetry/metrics-explorer.png" alt-text="Screenshot that shows metrics explorer with PromQL in the Azure portal.":::
+:::image type="content" source="media/vminsights-opentelemetry/metrics-explorer.png" lightbox="media/vminsights-opentelemetry/metrics-explorer.png" alt-text="Screenshot that shows metrics explorer with PromQL in the Azure portal.":::
 
 ## Disable classic log-based metrics
 If your VM is currently using the classic log-based VM insights experience, then you can choose to stop sending metrics to the Log Analytics workspace to save on ingestion and retention costs. See [Disable monitoring of your VMs in VM insights](./vminsights-optout.md) for this process.
@@ -68,7 +68,7 @@ Click the number in the **Data collection rules** column to list the DCRs associ
 
 :::image type="content" source="media/vminsights-opentelemetry/data-collection-rules.png" lightbox="media/vminsights-opentelemetry/data-collection-rules.png" alt-text="Screenshot of DCRs associated with selected resource.":::
 
-See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md) for guidance on how to modify a DCR. The default configuration is shown below. Add any of the metrics listed in [Additional cost](#additional-cost) to the `counterSpecifiers` section of the DCR.
+See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md) for guidance on how to modify a DCR. The default configuration is shown below. Add any of the metrics listed in [Additional metrics](#additional-metrics) to the `counterSpecifiers` section of the DCR.
 
 ```json
 {
