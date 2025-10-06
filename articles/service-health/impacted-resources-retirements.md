@@ -2,7 +2,7 @@
 title: Impacted Resources from Azure Retirements
 description: This article details where to find information from Azure Service Health impacted resources from retirements.
 ms.topic: article
-ms.date: 9/29/2025
+ms.date: 10/06/2025
 
 ---
 
@@ -20,7 +20,7 @@ This article details what communication is available to users, and where they ca
 
 ## Viewing impacted resources for Retirements in the Service Health portal
 
-In the Azure portal, the **Impacted Resources** tab located in the **Health Advisories** panel displays the resources affected by a retirement event. The example here illustrates how the tab highlights a retirement scenario with impacted resources.
+In the Azure portal, the **Impacted Resources** tab located in the **Health advisories** panel displays the resources affected by a retirement event. The example here illustrates how the tab highlights a retirement scenario with impacted resources.
 
 :::image type="content"source="./media/impacted-retirements/impacted-retirements-health-advisory.png"alt-text="Screenshot of Health advisories panel."Lightbox="./media/impacted-retirements/impacted-retirements-health-advisory.png":::
 
