@@ -2,13 +2,13 @@
 title: Service Issues notifications
 description: This article describes how to view and use the Service Issues pane
 ms.topic: overview
-ms.date: 9/26/2025
+ms.date: 10/06/2025
 
 ---
 
 # Service issues
 
-The Service issues pane in Azure Service Health offers a detailed, and real-time view of active Azure service problems. It highlights issues that could be affecting your resources.
+The Service issues pane in Azure Service Health offers a detailed, real-time view of active Azure service problems. It highlights issues that could be affecting your resources.
 
 You can see which resources are impacted and review key details such as severity, status, scope, and timestamps. The information on this pane helps you stay informed and able to take action quickly if needed. This article provides a detailed explanation of the purpose of this panel and the information it provides.
 
