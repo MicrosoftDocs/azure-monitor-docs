@@ -14,7 +14,7 @@ ms.date: 01/15/2025
 Benefits of the new OTel-based collection pipeline include the following:
 
 - Standard system-level metrics such as CPU, memory, disk I/O, and network errors.
-- Per-process metrics such as process uptime, memory, and open file descriptors that were not previously available in Azure Monitor.
+- Per-process metrics such as process uptime, memory, and open file descriptors that weren't previously available in Azure Monitor.
 - Extensibility to non-OS workloads such as MongoDB, Cassandra, and Oracle.
 - Cross-platform consistency with a unified schema across Linux and Windows.
 
@@ -127,7 +127,7 @@ See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/da
 This issue occurs if the network traffic for the Azure Monitor workspace is blocked. This is typically related to network policies such as ad blocking software. To resolve this issue, disable the ad block or allowlist `monitor.azure.com` traffic and reload the page.
 
 **Unable to access Data Collection Rule (DCR)**<br>
-This error occurs when the user doesn't have permission to view the associated Prometheus DCR for the cluster, or the DCR may have been deleted. To resolve, grant access to the Prometheus DCr or reconfigure managed Prometheus using the **Monitor Settings** button in the toolbar.
+This error occurs when the user doesn't have permission to view the associated Prometheus DCR for the cluster, or the DCR may have been deleted. To resolve, grant access to the Prometheus DCR or reconfigure managed Prometheus using the **Monitor Settings** button in the toolbar.
 
 **Data configuration error**<br>
 This error occurs when the Azure Monitor workspace or DCR has been modified or deleted. Use the **Reconfigure** button to patch the recording rules and try again.
