@@ -2,7 +2,7 @@
 title: Query across resources with Azure Monitor  
 description: Query and correlated data from multiple Log Analytics workspaces, applications, or resources using the `workspace()`, `app()`, and `resource()` Kusto Query Language (KQL) expressions.
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 10/06/2025
 # Customer intent: As a data analyst, I want to write KQL queries that correlate data from multiple Log Analytics workspaces, applications, or resources, to enable my analysis.
 
 ---
@@ -96,12 +96,14 @@ Use the `workspace()` expression to retrieve data from a specific workspace in t
 
 ### Arguments
 
-`*Identifier*`: Identifies the workspace by using one of the formats in the following table.
+`*Identifier*`: The explicit identifier formats in the following table are the best way to query a workspace since they are the most efficient.
 
 | Identifier | Description | Example
 |:---|:---|:---|
 | ID | GUID of the workspace | workspace("00000000-0000-0000-0000-000000000000") |
 | Azure Resource ID | Identifier for the Azure resource | workspace("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail") |
+
+Other workspace identifiers that only use the workspace name or the resource name aren't recommended since they result in reduced performance and possible errors when querying across workspaces.
 
 ### Examples
 
