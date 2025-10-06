@@ -1,11 +1,11 @@
 ---
-title: Migrate to VM Insights OpenTelemetry
-description: Learn how to migrate to VM Insights OpenTelemetry for enhanced monitoring and observability of your Azure virtual machines.
+title: Migrate to VM insights OpenTelemetry
+description: Learn how to migrate to VM insights OpenTelemetry for enhanced monitoring and observability of your Azure virtual machines.
 ms.topic: concept-article
 ms.date: 01/15/2025
 ---
 
-# Migrate to VM Insights OpenTelemetry (Preview)
+# Migrate to VM insights OpenTelemetry (Preview)
 
 [VM insights](./vminsights-overview.md) in Azure Monitor currently uses a Log Analytics workspace to collect client performance data from your virtual machines and to power visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VMinsights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
 
@@ -42,7 +42,7 @@ Benefits of the new OTel-based collection pipeline include the following:
 
 3. For a VM that hasn't been onboarded yet, you can choose whether to enable the classic log-based metrics, the new OpenTelemetry metrics, or both. For a VM that has already been onboarded, you can only add OpenTelemetry metrics. The option to disable classic log-based metrics isn't currently available. See [Disable classic log-based metrics](#disable-classic-log-based-metrics) to disable the classic experience.
 
-4. The Azure Monitor workspace for OTel metrics and the Log Analytics workspace for classic metrics that will be used are displayed. You can change either workspace by selecting **Customize infrastructure monitoring**.
+4. The Azure Monitor workspace for OTel metrics and the Log Analytics workspace for classic metrics that will be used are displayed. You can change either workspace by selecting **Customize infrastructure monitoring**. If a workspace doesn't already exist, a default workspace will be created for you. You can also choose to create your own new workspace.
 
     :::image type="content" source="media/vminsights-opentelemetry/customize-configuration.png" lightbox="media/vminsights-opentelemetry/customize-configuration.png" alt-text="Screenshot that shows screen for customizing metric collection in the Azure portal.":::
 
@@ -50,7 +50,9 @@ Benefits of the new OTel-based collection pipeline include the following:
     > This screen displays the metrics that will be collected, although you can't modify them here. See [Customize metric collection](#customize-metric-collection).
 
 ## Visualize OpenTelemetry metrics
-The visualize OTel metrics, select the **Metrics** option from the Azure Monitor workspace.
+When you enable OTel metrics, the VM insights dashboards are updated to use these metrics instead of those stored in Log Analytics workspace. You can do custom analysis of these metrics select the **Metrics** option from the Azure Monitor workspace to open metrics explorer. See [Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md).
+
+    :::image type="content" source="media/vminsights-opentelemetry/metrics-explorer.png" lightbox="media/vminsights-opentelemetry/metrics-explorer.png" alt-text="Screenshot that shows metrics explorer with PromQL in the Azure portal.":::
 
 ## Disable classic log-based metrics
 If your VM is currently using the classic log-based VM insights experience, then you can choose to stop sending metrics to the Log Analytics workspace to save on ingestion and retention costs. See [Disable monitoring of your VMs in VM insights](./vminsights-optout.md) for this process.
@@ -66,7 +68,7 @@ Click the number in the **Data collection rules** column to list the DCRs associ
 
 :::image type="content" source="media/vminsights-opentelemetry/data-collection-rules.png" lightbox="media/vminsights-opentelemetry/data-collection-rules.png" alt-text="Screenshot of DCRs associated with selected resource.":::
 
-See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md) for guidance on how to modify a DCR. The default configuration is shown below. Add any of the metrics listed in [Additional cost](#additional-cost) the `counterSpecifiers` section of the DCR.
+See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md) for guidance on how to modify a DCR. The default configuration is shown below. Add any of the metrics listed in [Additional cost](#additional-cost) to the `counterSpecifiers` section of the DCR.
 
 ```json
 {
@@ -138,8 +140,10 @@ If this error message persists, then contact support to open up a ticket.
 
 
 ## Metrics reference
+The following tables list the metrics collected by VM insights OpenTelemetry.
 
-### Available at no additional cost
+### Default metrics
+The metrics in the following table are collected by default and at no additional cost.
 
 | Metric Name                        | Description                                      |
 |------------------------------------|--------------------------------------------------|
@@ -154,7 +158,8 @@ If this error message persists, then contact support to open up a ticket.
 | system.filesystem.usage           | Filesystem usage in bytes                        |
 | system.disk.operation_time        | Average disk operation time                      |
 
-### Additional cost
+### Additional metrics
+The metrics in the following table can be collected by modifying the DCR for the VM as described in [Customize metric collection](#customize-metric-collection). There is an additional cost to collect these metrics. 
 
 | Metric Name                        | Description                                      |
 |------------------------------------|--------------------------------------------------|
