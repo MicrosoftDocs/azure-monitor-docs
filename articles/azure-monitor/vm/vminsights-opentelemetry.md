@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.date: 01/15/2025
 ---
 
-# Migrate to VM insights OpenTelemetry (Preview)
+# Migrate to VM insights OpenTelemetry (preview)
 
 [VM insights](./vminsights-overview.md) in Azure Monitor currently uses a Log Analytics workspace to collect client performance data from your virtual machines and to power visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VMinsights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
 
