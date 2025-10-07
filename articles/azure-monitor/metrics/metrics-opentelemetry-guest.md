@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry Guest OS Metrics (preview)
-description: Learn about OpenTelemetry System Metrics (Guest OS Peformance Counters) in Azure Monitor and how they're modeled.
+description: Learn about OpenTelemetry System Metrics (Guest OS Performances Counters) in Azure Monitor and how they're modeled.
 ms.topic: article
 ms.date: 09/27/2025
 ms.reviewer: tylerkight
@@ -12,24 +12,16 @@ At Microsoft, we embrace Open Standards through adoption and support of OpenTele
 
 Before reading this article, users are recommended to first understand the difference between [Host OS vs Guest OS performance counters on virtual machines](/azure/virtual-machines/monitor-vm). 
 
-This article is about Guest OS performance counters that users must opt-in to collecting, either via Azure Monitor Agent with DCR, VM Insights with DCR, or user-collected with the OTelCollector as part of OTel instrumentation libraries. Regardless of how they are collected, users are recommended to store them in the metrics-optimized Azure Monitor Workspace, where they will be both cheaper and faster to query against than Log Analytics Workspaces. 
+This article is about Guest OS performance counters that users must opt-in to collecting, either via Azure Monitor Agent with DCR, VM Insights with DCR, or user-collected with the OTelCollector as part of OTel instrumentation libraries. Users are recommended to store all metrics in the metrics-optimized Azure Monitor Workspace, where they are cheaper and faster to query than in Log Analytics Workspaces. 
  
 This article provides users with the following information:
-> * Overview of performance counters[#performance-counters]
-> * Benefits of using OpenTelemetry system metrics[#benefits-of-opentelemetry]
-> * Benefits of using Azure Monitor Workspace for metrics[#benefits-of-azure-monitor-workspace]
-> * Comparison of OpenTelemetry naming convention to traditional performance counters[#performance-counter-names]
-> * Resource Attributes[#resource-attributes]
-
-Once you have an understanding of this new OSS terminology, the articles below will help you get started:
-> * How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection
-> * How to begin collecting OpenTelemetry Guest OS performance counters: VM Insights (v2)
-> * How to query OpenTelemetry Guest OS performance counters with PromQl
+* Overview of performance counters[#performance-counters]
+* Benefits of using OpenTelemetry system metrics[#benefits-of-opentelemetry]
+* Benefits of using Azure Monitor Workspace for metrics[#benefits-of-azure-monitor-workspace]
+* Comparison of OpenTelemetry naming convention to traditional performance counters[#performance-counter-names]
+* Resource Attributes[#resource-attributes]
 
 OpenTelemetry Guest OS Performance Counters are currently in public preview.
-
-> [!TIP]
-> See [Overview of Azure Monitor Metrics](../metrics/data-platform-metrics.md) for a detailed comparison between our legacy method of ingesting Guest OS and other metrics to Log Analytics and our new Azure Monitor Workspace-powered metrics ingestion and consumption experiences.
 
 ## Performance Counters
 
@@ -41,39 +33,39 @@ A subset of OpenTelemetry Metrics are known as [system metrics](https://opentele
 
 ## Benefits of OpenTelemetry
 
-> **Cross-OS observability**
-> The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for users to manage their virtual machines / nodes across their fleet with a single set of queries used for either Windows or Linux OS images. The same configuration-as-code (ARM/Bicep templates, Terraform, etc) using the same PromQl queries can be used for any hosting resource that adopts OpenTelemetry system metrics. 
+**Cross-OS observability**
+The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for users to manage their virtual machines / nodes across their fleet with a single set of queries used for either Windows or Linux OS images. The same configuration-as-code (ARM/Bicep templates, Terraform, etc) using the same PromQl queries can be used for any hosting resource that adopts OpenTelemetry system metrics. 
 
-> **More performance counters**
-> The OpenTelemetry Collector Host Metrics Receiver collects many more performance counters than Azure Monitor currently makes available for collection via DCR with Log Analytics workspace as a destination. For example, users can now monitor per-process CPU utilization, disk I/O, memory usage and more.
+**More performance counters**
+The OpenTelemetry Collector Host Metrics Receiver collects many more performance counters than Azure Monitor currently makes available for collection via DCR with Log Analytics workspace as a destination. For example, users can now monitor per-process CPU utilization, disk I/O, memory usage and more.
 
-> **Fewer performance counters**
-> In many scenarios, existing performance counters have been simplified into a single OTel system metric with metric dimensions [(i.e. Attributes)](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#timeseries-model) simplifying the user experience.
+**Fewer performance counters**
+In many scenarios, existing performance counters have been simplified into a single OTel system metric with metric dimensions [(Resource Attributes)](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#timeseries-model) simplifying the user experience.
 
-> For example, the CPU time in different states can surface as the following three performance counters in Windows:
-> * \Processor Information(_Total )\% Processor Time
-> * \Processor Information(_Total)\% Privileged Time
-> * \Processor Information(_Total)\% User Time
-> or as the following seven performance counters in Linux:
-> * Cpu/usage_user
-> * Cpu/usage_system
-> * Cpu/usage_idle
-> * Cpu/usage_active
-> * Cpu/usage_nice
-> * Cpu/usage_iowait
-> * Cpu/usage_irq
+For example, the CPU time in different states can surface as the following three performance counters in Windows:
+* \Processor Information(_Total )\% Processor Time
+* \Processor Information(_Total)\% Privileged Time
+* \Processor Information(_Total)\% User Time
+or as the following seven performance counters in Linux:
+* Cpu/usage_user
+* Cpu/usage_system
+* Cpu/usage_idle
+* Cpu/usage_active
+* Cpu/usage_nice
+* Cpu/usage_iowait
+* Cpu/usage_irq
 
-> In OpenTelemetry, these become a single performance counter: system.cpu.time, and the time spent in each state (e.g. user, system, idle) can now be found by simply filtering on the dimension *State*.
+In OpenTelemetry, all of these counters become a single performance counter: system.cpu.time, and the time spent in each state (such as user, system, idle) can now be found by simply filtering on the dimension *State*.
 
 ## Benefits of Azure Monitor Workspace
 
-Metrics stored in Azure Monitor workspaces are generally cheaper and faster to query than when stored in Log Analytics workspaces, due to the different data models backing these different data stores. AMWs are optimized for time series metric data, using the same platform that powers all of Microsoft's internal observability needs with some of the highest volume and performance demands in the world.
+Metrics stored in Azure Monitor workspaces are cheaper and faster to query than when stored in Log Analytics workspaces, due to the different data models backing these different data stores. 
 
-In addition to those general benefits, existing users will no longer experience mismatches in schemas between the Perf and Insightsmetrics tables. VM Insights (v2) sending to AMW uses a subset of the OpenTelemetry system metrics we make available to users, providing seamless compatibility across user cohorts. Large enterprises with application teams that may use a mix of VM Insights and non-VM Insights Guest OS performance counter monitoring can use the same PromQl queries, dashboards and alerts for the same OTel metrics.
+In addition to those general benefits, users no longer experience mismatches in schemas between the Perf and Insights tables. VM Insights (v2) sending to AMW uses a subset of the OpenTelemetry system metrics we make available to users, providing seamless compatibility across user cohorts. Large enterprises with application teams that use a mix of VM Insights and non-VM Insights Guest OS performance counter monitoring can use the same PromQl queries, dashboards, and alerts for the same OTel metrics.
 
 ## Performance Counter Names 
 
-The following performance counters are available to be collected by the Azure Monitor Agent for Windows and Linux virtual machines. The default sampling frequency is 60s, but this can be changed when creating or updating the data collection rule.
+The following performance counters are collected by the Azure Monitor Agent for Windows and Linux virtual machines. The default sampling frequency is 60 seconds, but this frequency can be changed when creating or updating the data collection rule.
 
 ### [OpenTelemetry](#tab/OpenTelemetry)
 
@@ -246,7 +238,7 @@ The following performance counters are available to be collected by the Azure Mo
 
 ## Resource Attributes
 
-The OpenTelemetry [Resource semantic convention](https://opentelemetry.io/docs/specs/semconv/resource/) is still in development, so expect changes to this section in the future. We are actively engaging with the OSS community to improve and standardize this naming convention for a variety of scenarios - please share your feedback to help us continuously improve your experience.
+The OpenTelemetry [Resource semantic convention](https://opentelemetry.io/docs/specs/semconv/resource/) is still in development. We are actively engaging with the OSS community to improve and standardize this naming convention for a variety of scenarios - please share your feedback to help us continuously improve your experience.
 
 In general, OpenTelemetry metrics collected via Azure Monitor Agent + Data Collection Rules and sent to Azure Monitor workspaces have the following cloud resource attributes automatically added as dimensions to support resource-scoped querying:
  * Microsoft.resourceid
@@ -255,7 +247,7 @@ In general, OpenTelemetry metrics collected via Azure Monitor Agent + Data Colle
  * Microsoft.resourcetype
  * Microsoft.amwresourceid
 
-OpenTelemetry [**per-process** metrics](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#process) have their own special set of [Resource Attributes](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#resource-attributes). The table below shows those resource attributes that the Azure Monitor Agent automatically promotes as dimensions.
+OpenTelemetry [**per-process** metrics](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#process) have their own special set of [Resource Attributes](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#resource-attributes). The table shows those resource attributes that the Azure Monitor Agent automatically promotes as dimensions.
 
 | Name | Description | Values | Enabled | 
 |------|-------------|--------|---------|
@@ -268,7 +260,7 @@ OpenTelemetry [**per-process** metrics](https://github.com/open-telemetry/opente
 | process.executable.path  | The full path to the process executable. On Linux-based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | Any Str | false |
 | process.parent_pid | Parent Process Identifier (PPID). | Any Int | false |
 
-The process.command_line attribute can contain extremely long strings with thousands of characters, making it unsuitable as a normal metric dimension. We may find a different way to surface this attribute based on customer user scenarios submitted as feedback to the product team.
+The process.command_line attribute can contain extremely long strings with thousands of characters, making it unsuitable as a normal metric dimension. We might find a different way to surface this attribute based on customer user scenarios submitted as feedback to the product team.
 
 ## Next steps
 
