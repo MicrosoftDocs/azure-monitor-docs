@@ -419,6 +419,29 @@ function removeStackTraces ( envelope, context ) {
 appInsights.defaultClient.addTelemetryProcessor(removeStackTraces);
 ```
 
+#### Add a cloud role name and cloud role instance
+
+**Set cloud role name via direct context tags:**
+
+```javascript
+var appInsights = require("applicationinsights");
+appInsights.setup('INSTRUMENTATION_KEY').start();
+appInsights.defaultClient.context.tags["ai.cloud.role"] = "your role name";
+appInsights.defaultClient.context.tags["ai.cloud.roleInstance"] = "your role instance";
+```
+
+**Set cloud role name via telemetry processor:**
+
+```javascript
+var appInsights = require("applicationinsights");
+appInsights.setup('INSTRUMENTATION_KEY').start();
+
+appInsights.defaultClient.addTelemetryProcessor(envelope => {
+    envelope.tags["ai.cloud.role"] = "your role name";
+    envelope.tags["ai.cloud.roleInstance"] = "your role instance"
+});
+```
+
 ## Use multiple connection strings
 
 You can create multiple Application Insights resources and send different data to each by using their respective connection strings.

@@ -31,7 +31,7 @@ The following Software Development Kits (SDKs) and features are unsupported for 
 * [Application Insights Java 2.x SDK](deprecated-java-2x.md#monitor-dependencies-caught-exceptions-and-method-execution-times-in-java-web-apps).<br />
  Microsoft Entra authentication is only available for Application Insights Java Agent greater than or equal to 3.2.0.
 * [ApplicationInsights JavaScript web SDK](javascript.md).
-* [Application Insights OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python) with Python version 3.4 and 3.5.
+* [Application Insights OpenCensus Python SDK (retired)](/previous-versions/azure/azure-monitor/app/opencensus-python) with Python version 3.4 and 3.5.
 * [Automatic instrumentation for Python on Azure App Service](azure-web-apps-python.md)
 * [Application Insights Profiler for .NET](profiler-overview.md).
 
@@ -378,7 +378,7 @@ appInsights.defaultClient.config.aadTokenCredential = credential;
 
 > [!NOTE]
 > * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
-> * We provide information on configuring OpenCensus (deprecated) separately. See [Configure and enable Microsoft Entra ID-based authentication](/previous-versions/azure/azure-monitor/app/opencensus-python#configure-and-enable-microsoft-entra-id-based-authentication).
+> * We provide information on configuring OpenCensus (retired) separately. See [Configure and enable Microsoft Entra ID-based authentication](/previous-versions/azure/azure-monitor/app/opencensus-python#configure-and-enable-microsoft-entra-id-based-authentication).
 
 - We recommend `DefaultAzureCredential` for local development.
 - We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
