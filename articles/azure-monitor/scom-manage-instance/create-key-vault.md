@@ -2,8 +2,8 @@
 ms.assetid: 
 title: Create an Azure key vault
 description: This article describes how to create a key vault to store domain credentials.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor

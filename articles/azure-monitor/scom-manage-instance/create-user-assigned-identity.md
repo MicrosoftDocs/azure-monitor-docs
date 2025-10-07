@@ -2,8 +2,8 @@
 ms.assetid: 
 title: Create a user-assigned identity for SCOM Managed Instance
 description: This article describes how to create a user-assigned identity, provide admin access to Azure SQL Managed Instance, and grant get and list access on a key vault.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor

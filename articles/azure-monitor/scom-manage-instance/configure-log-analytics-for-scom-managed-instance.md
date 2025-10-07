@@ -2,8 +2,8 @@
 ms.assetid: 
 title: Configure Log Analytics for Azure Monitor SCOM Managed Instance
 description: This article details about the Integration of Azure Monitor SCOM Managed Instance with Log Analytics and how to configure Azure Monitor SCOM Managed Instance with Azure Log Analytics.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor

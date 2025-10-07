@@ -2,8 +2,8 @@
 ms.assetid: 
 title: Dashboards on Azure Managed Grafana
 description: This article describes how to create a SCOM Managed Instance dashboard on Azure Managed Grafana.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor

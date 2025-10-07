@@ -2,8 +2,8 @@
 title: Convert System Center Operations Manager management packs into data collection rules
 description: This article explains how to convert a System Center Operations Manager management pack such as the Active directory or SQL management pack into data collection rules (DCR) in Azure Monitor.
 ms.topic: how-to
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
