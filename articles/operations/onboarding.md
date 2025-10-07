@@ -6,7 +6,7 @@ ms.date: 09/24/2025
 ---
 
 
-# Machine enrollment in Azure Operations center
+# Machine enrollment in Azure operations center
 
 The machine enrollment feature in Azure operations center simplifies the onboarding and configuration of virtual machines (VMs) across your Azure environment. This feature allows for automated discovery, enrollment, and management of VMs, ensuring they are properly configured for monitoring and operational tasks.
 
@@ -20,13 +20,45 @@ The features automatically enabled for each VM in the enrolled subscription are 
 | Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
 | Azure update manager | Manages and automates the deployment of updates to VMs. |
 
+## Services
+
+### Free tier
+Basic monitoring and management features for VMs. Require no onboarding and provided at no cost.
+
+- Host metrics
+- Activity logs
+
+### Essential tier
+Curated bundle of core management and monitoring capabilities provided at a fixed price. 
+
+- Azure update manager
+  - Install extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)
+  - [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. 
+- Change tracking and inventory
+  - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`) 
+  - Uses Log Analytics workspace specified in onboarding.
+- Monitor
+  - Collects standard set of performance counters.
+- [Foundational CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans)
+
+### Additional tiers
+
+- [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans)
+  - All settings on by default.
+- [Defender for cloud](/azure/defender-for-cloud/defender-for-servers-overview)
+  - All settings for [Plan 2](/azure/defender-for-cloud/defender-for-servers-overview#defender-for-servers-plans) enabled.
+
+> [!NOTE]
+> - Current DCR appears to be classic VM insights. Shouldn't we be using OTel mtrics, AMW, and disable DA?
+> - Are we configuring any event collection?
+> Spec says recommended alerts, but I don't see any alert rules. 
+
+
 ## Concepts
 Enable machine enrollment for each subscription to automatically onboard VMs. Once enabled, all existing and new VMs in the subscription are enrolled and configured with the features listed above.
 
 ### Excluding VMs
-
-> [!NOTE]
-> Is this possible other than manually modifying the policy assignments?
+During the public preview period, there is no ability to exclude VMs in the enabled subscription. All VMs in the subscription are onboarded and configured with the selected features.
 
 ## Required permissions
 
@@ -46,7 +78,8 @@ You must have the following roles in the subscription being enabled:
 
 ## Enable machine management
 
-### [Azure portal](#tab/portal)
+> [!NOTE]
+> The Azure portal is the only current supported method for enabling machine management.
 
 Go to **Operations center** in the Azure portal and select **Machine enrollment**.
 
@@ -87,13 +120,7 @@ The **Security** tab allows you to select additional security services for the m
 | **Defender for cloud** | Comprehensive server protection with integrated endpoint detection and response (EDR), vulnerability management, file integrity monitoring, and advanced threat detection. Recommended for business-critical workloads.<br><br>This add-on incurs an additional charge. |
 
 
-### [CLI](#tab/cli)
-
-### [PowerShell](#tab/powershell)
-
-### [Bicep](#tab/bicep)
-
----
+## Existing machines
 
 ## Policy assignments provisioned
 
@@ -103,5 +130,57 @@ The **Security** tab allows you to select additional security services for the m
 | Assignment | Initiative | Description |
 |:---|:---|:---|
 | Enable Azure Monitor for VMs with Azure Monitoring Agent(AMA) | Enable Azure Monitor for VMs with Azure Monitoring Agent(AMA) | Enables Azure Monitor for VMs with Azure Monitoring Agent (AMA) to collect metrics and logs. |
+
+
+
+## Data collection rules
+
+| Name | Description |
+|:---|:---|
+| `MSVMI-PerfandDa-ama-vmi-default-perfAndda-dcr` |  |
+| `\<workspace\>-Managedops-CT-DCR` | Change tracking and inventory. Collects Files, Registry Keys, Softwares, Windows Services/Linux Daemons |
+
+## Permissions
+
+### Essential Machine Management Administrator Role
+
+- `Microsoft.ManagedOps/managedOps/write`
+- `Microsoft.ManagedOps/managedOps/read`,
+- `Microsoft.Resources/deployments/read`
+- `Microsoft.Authorization/policyAssignments/read` 
+- `Microsoft.Authorization/policyAssignments/write` 
+- `Microsoft.Authorization/policyAssignments/delete`
+- `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action`
+- `Microsoft.Resources/deployments/read` 
+- `Microsoft.Resources/deployments/write` 
+- `Microsoft.OperationsManagement/solutions/read` 
+- `Microsoft.OperationsManagement/solutions/write` 
+- `Microsoft.OperationalInsights/workspaces/read` 
+- `Microsoft.OperationalInsights/workspaces/sharedkeys/action` 
+- `Microsoft.OperationalInsights/workspaces/sharedkeys/read`
+- `Microsoft.OperationalInsights/workspaces/listKeys/action`
+- `Microsoft.Insights/DataCollectionRules/Read` 
+- `Microsoft.Insights/DataCollectionRules/Write` 
+- `Microsoft.PolicyInsights/remediations/read` 
+- `Microsoft.PolicyInsights/remediations/write` 
+- `Microsoft.PolicyInsights/remediations/listDeployments/read` 
+- `Microsoft.PolicyInsights/remediations/cancel/action`
+
+### Essential Machine Management Onboarding Role
+
+- `Microsoft.Resources/deployments/read`
+- `Microsoft.Resources/deployments/write` 
+- `Microsoft.HybridCompute/machines/extensions/read` 
+- `Microsoft.HybridCompute/machines/extensions/write` 
+- `Microsoft.HybridCompute/machines/read` 
+- `Microsoft.HybridCompute/machines/write` 
+- `Microsoft.Compute/virtualMachines/extensions/read` 
+- `Microsoft.Compute/virtualMachines/extensions/write` 
+- `Microsoft.Compute/virtualMachines/read` 
+- `Microsoft.Compute/virtualMachines/write` 
+- `Microsoft.Insights/DataCollectionRules/Read` 
+- `Microsoft.Insights/DataCollectionRuleAssociations/Read` 
+- `Microsoft.Insights/DataCollectionRuleAssociations/Write` 
+
 
 ## Next steps
