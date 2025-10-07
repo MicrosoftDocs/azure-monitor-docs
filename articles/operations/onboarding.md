@@ -44,28 +44,11 @@ You must have the following roles in the subscription being enabled:
 
 
 
-## Onboarding Steps
-
-### 
-
-1. Access the Ops360 portal via your organization's Azure environment.
-2. Authenticate using your Azure AD credentials.
-3. Configure initial settings, including resource groups and monitoring scope.
-4. Invite team members and assign roles.
-5. Review licensing and compliance requirements.
-
-## Best Practices
-- Start with a pilot group to validate workflows
-- Use built-in templates for common operational scenarios
-- Leverage agentic guidance for setup
-
-
-
 ## Enable machine management
 
 ### [Azure portal](#tab/portal)
 
-Go to Operations center in the Azure portal and select **Machine enrollment**.
+Go to **Operations center** in the Azure portal and select **Machine enrollment**.
 
 :::image type="content" source="./media/onboarding/machine-enrollment.png" lightbox="./media/onboarding/machine-enrollment.png" alt-text="Screenshot of machine enrollment screen with no subscriptions enabled.":::
 
@@ -113,6 +96,9 @@ The **Security** tab allows you to select additional security services for the m
 ---
 
 ## Policy assignments provisioned
+
+> [!NOTE]
+> Are we creating any new policies or initiatives? Or are we creating assignments for existing ones?
 
 | Assignment | Initiative | Description |
 |:---|:---|:---|
