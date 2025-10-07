@@ -2,8 +2,8 @@
 ms.assetid: 
 title: Create a computer group and group-managed service account for Azure Monitor SCOM Managed Instance
 description: This article describes how to create a group-managed service account, computer group, and domain user account in on-premises Active Directory.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor

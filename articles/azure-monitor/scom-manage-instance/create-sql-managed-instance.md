@@ -2,8 +2,8 @@
 ms.assetid: 
 title: Create an Azure SQL managed instance
 description: This article describes how to create a SQL managed instance in a dedicated subnet of a virtual network.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
