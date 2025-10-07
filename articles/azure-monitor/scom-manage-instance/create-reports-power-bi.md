@@ -2,8 +2,8 @@
 ms.assetid: 
 title: Create reports on Power BI
 description: This article describes how to create reports on Power BI for Azure Monitor SCOM Managed Instance.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.custom: UpdateFrequency.5, engagement-fy24
 ms.update-cycle: 180-days

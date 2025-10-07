@@ -2,15 +2,20 @@
 title: Azure service health notifications
 description: Service health notifications allow you to view service health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 09/19/2025
+ms.date: 10/02/2025
 
 ---
 
 # Service health notifications
 
-Service health notifications created through Azure, contain information about the resources under your subscription. These notifications are a subclass of activity log events, and can also be found in the activity log. Service health notifications can be informational or actionable, depending on the class.
+Azure Service Health notifications are system-generated alerts that inform you about Azure service issues or events affecting your resources.<br> 
+They're recorded as part of your subscription’s [Azure Activity Log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) and also are shown in the Azure portal under Service Health. Depending on the notification’s class (type), it might be purely informational, or indicate an issue that requires you to take action.
 
-There are various classes of service health notifications:  
+To help you stay ahead of potential disruptions, Azure defines six distinct classes of Service Health notifications—each tailored to a specific type of event. 
+
+These alerts keep you informed about outages, planned maintenance, security advisories, and other critical updates—so you can take timely action and maintain service continuity. 
+
+Here’s a breakdown of each notification class, what it means, and how you can access and retain these updates.
 
 - **Action required:** Azure might notice something unusual happens on your account, and work with you to remedy the issue. Azure sends you a notification, either detailing the actions you need to take or how to contact Azure engineering or support.  
 - **Incident:** An event that impacts service is currently affecting one or more of the resources in your subscription.  
@@ -24,7 +29,7 @@ Each communication category panel - Incidents, Planned Maintenance, Health Advis
 
 |**Event**  |**Severity levels** |**Event tags** |**When Event is moved to Health History panel**  | **Event details moved from Health History panel, but available through REST API** | **Event details archived and inaccessible through REST API**|
 |---------|---------|---------|---------|
-|**Service Issues**       | **Error** - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.<br>**Warning** - Issues accessing specific services and/or specific regions are impacting a subset of customers.<br>**Informational** - Issues impacting management operations and/or latency, not impacting service availability.      | Action Recommended<br>- Final PIR<br>- Preliminary PIR<br>False Positive   |  Three days       | 90 days from most recent published date| One year from most recent  published date   |
+|**Service Issues**       | **Error** - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.<br>**Warning** - Issues accessing specific services and/or specific regions are impacting a subset of customers.<br>**Informational** - Issues impacting management operations and/or latency, not impacting service availability.      | Action Recommended<br>- Final PIR<br>- Preliminary PIR<br>False Positive   | 90 days as long as it's active or updated | When it's resolved| One year from most recent published date   |
 |**Planned Maintenance**   | **Warning** - Emergency Maintenance <br> **Informational** - Standard Planned Maintenance | N/A         | Schedule's EndDate passed<br> Or 50 days from Schedule's StartDate        |90 days from most recent published date   |One year from most recent  published date    |
 |**Security**              |**Warning** - Security advisory that affects existing services and might require administrator action<br>**Informational** - Security advisory that affects existing services |Action Recommended<br>- Final Post Incident Review (PIR)<br>- Preliminary PIR<br>False Positive         |         | 90 days from most recent published date  | One year from most recent  published date   |
 |**Health Advisories**     |**Warning** - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement<br> -**Informational** - An administrator might be required to prevent an effect to existing services. | Retirement         |         | 90 days from most recent published date  | One year from most recent  published date   |
@@ -35,9 +40,7 @@ Each communication category panel - Incidents, Planned Maintenance, Health Advis
 For more information about using Azure Resource Graph (ARG) queries, see [Resource graph sample queries](resource-graph-samples.md). This document provides guidance on how to utilize the available queries.
 
 
-
-
-Each service health notification includes details on the scope and effect to your resources. Details include:
+Each service health notification includes details on the scope and effect to your resources, which include:
 
 Property name | Description
 -------- | -----------
@@ -71,7 +74,7 @@ Properties.communicationId | The communication this event is associated with.
 Service Health event type (properties.incidentType)
 
 **Health Advisory** (properties.incidentType == ActionRequired)
-- Informational - Administrator action is required to prevent impact to existing services.
+- Informational - Administrator action is required to prevent an impact to existing services.
     
 **Planned Maintenance** (properties.incidentType == Maintenance)
 - Warning - Emergency maintenance

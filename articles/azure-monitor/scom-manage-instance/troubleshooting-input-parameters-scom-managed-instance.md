@@ -2,8 +2,8 @@
 ms.assetid: 
 title: Troubleshoot commonly encountered errors while validating input parameters
 description: This article describes the errors that might occur while validating input parameters and how to resolve them.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor

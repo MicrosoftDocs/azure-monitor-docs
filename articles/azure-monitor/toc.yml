@@ -358,14 +358,22 @@ items:
           href: vm/vminsights-enable.md
         - name: Enable with Azure Policy
           href: vm/vminsights-enable-policy.md
+        - name: Enable OpenTelemetry metrics (Preview)
+          href: vm/vminsights-opentelemetry.md
         - name: Windows client machines
           href: vm/vminsights-enable-client.md
-        - name: Dependency agent
-          href: vm/vminsights-dependency-agent.md
         - name: Disable monitoring
           href: vm/vminsights-optout.md
         - name: Troubleshoot
           href: vm/vminsights-troubleshoot.md
+        - name: Dependency agent
+          items:
+          - name: Manage
+            displayName: dependency agent, vminsights
+            href: vm/vminsights-dependency-agent.md
+          - name: Uninstall
+            displayName: dependency agent, vminsights
+            href: vm/vminsights-dependency-agent-uninstall.md
       - name: Migrate
         items:
         - name: Migrate to Azure Monitor agent

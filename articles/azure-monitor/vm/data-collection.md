@@ -3,7 +3,6 @@ title: Collect data from virtual machine client with Azure Monitor
 description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
 ms.topic: article
 ms.date: 02/26/2025
-ms.reviewer: jeffwo
 ---
 
 # Collect data from virtual machine client with Azure Monitor

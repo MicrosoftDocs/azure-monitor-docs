@@ -2,8 +2,8 @@
 ms.assetid: 
 title: View System Center Operations Manager's alerts in Azure Monitor
 description: This article describes the recent feature addition that allows Azure Monitor SCOM Managed Instance customers to view Operations Manager's alerts in Azure Monitor.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor

@@ -2,8 +2,8 @@
 ms.assetid: 
 title: Query Azure Monitor SCOM Managed Instance data from Azure Managed Grafana dashboards.
 description: This article describes how to query monitoring data from Operational database and create dashboards on Azure Managed Grafana.
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
