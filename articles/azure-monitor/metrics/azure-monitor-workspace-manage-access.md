@@ -76,7 +76,7 @@ The *access control mode* is a setting on each workspace that defines how permis
 
 ### Configure access control mode for a workspace
 
-# [Resource Manager](#tab/arm)
+## Resource Manager
 
 To configure the access mode in an Azure Resource Manager template, set the **enableAccessUsingResourcePermissions** feature flag on the workspace to one of the following values:
 
@@ -84,7 +84,7 @@ To configure the access mode in an Azure Resource Manager template, set the **en
 * **true**: Set the workspace to *resource-context* permissions.
 
     > [!NOTE]
-    > The ability to configure this setting via UI and PowerShell is coming soon.
+    > An ARM template is the only method currently supported to configure access control for an Azure Monitor workspace.
 
 ---
 
