@@ -115,6 +115,13 @@ These are the supported Azure regions for issues and investigation services:
 | southcentralus                         |
 | uksouth                                |
 | westeurope                             |
+| canadacentral                          |
+| westus                                 |
+| northcentralus                         |
+| eastus2                                |
+| northeurope                            |
+| westus2                                |
+
 
 ## Next steps
 

@@ -358,14 +358,22 @@ items:
           href: vm/vminsights-enable.md
         - name: Enable with Azure Policy
           href: vm/vminsights-enable-policy.md
+        - name: Enable OpenTelemetry metrics (Preview)
+          href: vm/vminsights-opentelemetry.md
         - name: Windows client machines
           href: vm/vminsights-enable-client.md
-        - name: Dependency agent
-          href: vm/vminsights-dependency-agent.md
         - name: Disable monitoring
           href: vm/vminsights-optout.md
         - name: Troubleshoot
           href: vm/vminsights-troubleshoot.md
+        - name: Dependency agent
+          items:
+          - name: Manage
+            displayName: dependency agent, vminsights
+            href: vm/vminsights-dependency-agent.md
+          - name: Uninstall
+            displayName: dependency agent, vminsights
+            href: vm/vminsights-dependency-agent-uninstall.md
       - name: Migrate
         items:
         - name: Migrate to Azure Monitor agent
@@ -471,73 +479,65 @@ items:
       items:
       - name: Metrics
         items:
-        - name: Default configuration
-          href: containers/prometheus-metrics-scrape-default.md
-          displayName: Prometheus
-        - name: Custom configuration
-          href: containers/prometheus-metrics-scrape-configuration.md
-          displayName: Prometheus
-        - name: Configure collection using CRDs
-          href: containers/prometheus-metrics-scrape-crd.md
-          displayName: Prometheus
-        - name: Create and validate custom scrape config
-          href: containers/prometheus-metrics-scrape-validate.md
-          displayName: Prometheus
-        - name: Minimal ingestion profile
-          href: containers/prometheus-metrics-scrape-configuration-minimal.md
-          displayName: Prometheus
-        - name: High scale
-          href: containers/prometheus-metrics-scrape-scale.md
-          displayName: Prometheus
-        - name: Autoscale support
-          href: containers/prometheus-metrics-scrape-autoscaling.md
-          displayName: Prometheus
+        - name: Customize data collection
+          items:
+            - name: Default configuration
+              href: containers/prometheus-metrics-scrape-default.md
+              displayName: Prometheus
+            - name: Customize configuration
+              href: containers/prometheus-metrics-scrape-configuration.md
+              displayName: Prometheus
+            - name: Scrape config with ConfigMap
+              href: containers/prometheus-metrics-scrape-configmap.md
+              displayName: Prometheus
+            - name: Scrape config with CRD
+              href: containers/prometheus-metrics-scrape-crd.md
+              displayName: Prometheus
+            - name: High scale
+              href: containers/prometheus-metrics-scrape-scale.md
+              displayName: Prometheus
+            - name: Autoscale support
+              href: containers/prometheus-metrics-scrape-autoscaling.md
+              displayName: Prometheus
         - name: Integrations
           items:
-          - name: Set up exporters for common workloads
-            href: containers/prometheus-exporters.md
-            displayName: Prometheus
-          - name: Exporters
-            items:
-            - name: Monitor Apache Kafka
-              href: containers/prometheus-kafka-integration.md
+            - name: Exporters for common workloads
+              href: containers/prometheus-exporters.md
               displayName: Prometheus
-            - name: Monitor Argo CD
-              href: containers/prometheus-argo-cd-integration.md
+            - name: Exporters
+              items:
+                - name: Monitor Apache Kafka
+                  href: containers/prometheus-kafka-integration.md
+                  displayName: Prometheus
+                - name: Monitor Argo CD
+                  href: containers/prometheus-argo-cd-integration.md
+                  displayName: Prometheus
+                - name: Monitor Elastic Search
+                  href: containers/prometheus-elasticsearch-integration.md
+                  displayName: Prometheus
+                - name: Monitor Istio
+                  href: containers/prometheus-istio-integration.md
+                  displayName: Prometheus
+                - name: Monitor Nvidia GPU
+                  href: containers/prometheus-dcgm-integration.md
+                  displayName: Prometheus
+            - name: Scale using KEDA
+              href: containers/integrate-keda.md
               displayName: Prometheus
-            - name: Monitor Elastic Search
-              href: containers/prometheus-elasticsearch-integration.md
-              displayName: Prometheus
-            - name: Monitor Istio
-              href: containers/prometheus-istio-integration.md
-              displayName: Prometheus
-            - name: Monitor Nvidia GPU
-              href: containers/prometheus-dcgm-integration.md
-              displayName: Prometheus
-          - name: Scale using KEDA based on Prometheus metrics
-            href: containers/integrate-keda.md
-            displayName: Prometheus
-          - name: Enable Windows metrics (preview)
-            href: containers/enable-windows-metrics.md
-          - name: Send to multiple metric workspaces
-            href: containers/prometheus-metrics-multiple-workspaces.md
-            displayName: Prometheus
-          - name: Remote-write with Prometheus
-            items:
-            - name: Prometheus remote-write
-              href: containers/prometheus-remote-write.md
-              displayName: Prometheus,remote-write, azure monitor
+          displayName: Prometheutheus-metricss
+        - name: Send to multiple metric workspaces
+          href: containers/prometheus-metrics-multiple-workspaces.md
+          displayName: Prometheus
+        - name: Remote-write with Prometheus
+          items:
             - name: Managed identity authentication
               href: containers/prometheus-remote-write-managed-identity.md
               displayName: Prometheus,remote-write
-            - name: Microsoft Entra authentication
+            - name: Entra authentication
               href: containers/prometheus-remote-write-active-directory.md
               displayName: Prometheus,remote-write
-            - name: Microsoft Entra Workload ID authentication
+            - name: Entra Workload ID authentication
               href: containers/prometheus-remote-write-azure-workload-identity.md
-              displayName: Prometheus,remote-write
-            - name: Troubleshoot remote-write
-              href: containers/prometheus-remote-write-troubleshooting.md
               displayName: Prometheus,remote-write
       - name: Logs
         items:
@@ -581,6 +581,8 @@ items:
         href: containers/container-insights-region-mapping.md
     - name: Classic experience
       items:
+      - name: Switch to Prometheus visualizations
+        href: containers/container-insights-experience-v2.md
       - name: View cluster metrics
         href: containers/container-insights-livedata-metrics.md
       - name: Log alert rules
@@ -590,8 +592,6 @@ items:
         href: containers/container-insights-manage-agent.md
       - name: Send Prometheus metrics to Logs
         href: containers/container-insights-prometheus-logs.md
-      - name: Switch to Prometheus visualizations
-        href: containers/container-insights-experience-v2.md
       - name: Legacy authentication
         href: containers/container-insights-authentication.md
       - name: Onboard hybrid cluster
@@ -653,6 +653,18 @@ items:
         href: scom-manage-instance/disaster-recovery-guidance.md
     - name: How-to guides
       items:
+      - name: Migrate from SCOM Managed Instance
+        items:
+        - name: Overview
+          href: scom-manage-instance/migration-overview.md
+        - name: Migrate to System Center Operations Manager 
+          href: scom-manage-instance/migrate-to-operations-manager.md
+        - name: Migrate to Azure Monitor
+          href: scom-manage-instance/migrate-to-azure-monitor.md
+        - name: Convert management packs into data collection rules
+          href: scom-manage-instance/convert-management-packs-into-data-collection-rules.md
+        - name: Migration FAQs
+          href: scom-manage-instance/migration-faq-scom-manage-instance.yml
       - name: Create SCOM Managed Instance
         items:
         - name: Step 1. Register the SCOM Managed Instance resource provider
@@ -983,60 +995,57 @@ items:
     - name: Prometheus metrics
       items:
       - name: Overview
-        displayName: Prometheus
         href: metrics/prometheus-metrics-overview.md
-      - name: Migrate from self-hosted Prometheus
-        displayName: Prometheus migrate
-        href: metrics/prometheus-migrate.md
-      - name: Prometheus remote-write from virtual machines
-        displayName: Prometheus remote-write
-        href: metrics/prometheus-remote-write-virtual-machines.md
-      - name: Connect Grafana to Azure Monitor Prometheus metrics
-        displayName: Prometheus Grafana
+        displayName: Prometheus
+      - name: Technical details
+        href: metrics/prometheus-metrics-details.md
+      - name: Connect Grafana
         href: metrics/prometheus-grafana.md
+        displayName: Prometheus Grafana
+      - name: Self-hosted Prometheus
+        items:
+        - name: Integrate
+          href: metrics/prometheus-remote-write.md
+          displayName: remote write, Prometheus
+        - name: Migrate
+          href: metrics/prometheus-migrate.md
+          displayName: remote write, Prometheus
       - name: Azure Monitor workspace
         items:
-        - name: Overview
-          displayName: Prometheus
-          href: metrics/azure-monitor-workspace-overview.md
-        - name: Manage
-          displayName: Prometheus
-          href: metrics/azure-monitor-workspace-manage.md
-        - name: Monitor metrics ingestion limits
-          displayName: Prometheus Azure Monitor workspace
-          href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
-        - name: Best practices for scaling
-          href: metrics/azure-monitor-workspace-scaling-best-practice.md
-        - name: Monitor Performance
-          items:
-          - name: Metrics usage insights
-            displayName: Azure Monitor workspace
-            href: metrics/metrics-usage-insights.md
-          - name: Monitor metrics ingestion errors
-            displayName: Azure Monitor workspace
-            href: metrics/azure-monitor-workspace-monitor-health.md
-        - name: Private endpoints
-          displayName: Azure Monitor workspace
-          href: metrics/azure-monitor-workspace-private-endpoint.md
-        - name: Private link data query of Prometheus metrics
-          displayName: Private link data query
-          href: /azure/managed-grafana/how-to-connect-to-data-source-privately
-          maintainContext: true
+          - name: Overview
+            href: metrics/azure-monitor-workspace-overview.md
+            displayName: Prometheus
+          - name: Manage
+            href: metrics/azure-monitor-workspace-manage.md
+            displayName: Prometheus
+          - name: Monitor metrics ingestion limits
+            href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
+            displayName: Prometheus Azure Monitor workspace
+          - name: Best practices for scaling
+            href: metrics/azure-monitor-workspace-scaling-best-practice.md
+          - name: Monitor Performance
+            items:
+              - name: Metrics usage insights
+                href: metrics/metrics-usage-insights.md
+                displayName: Azure Monitor workspace
+              - name: Monitor metrics ingestion errors
+                href: metrics/azure-monitor-workspace-monitor-health.md
+                displayName: Azure Monitor workspace
       - name: Alerting and rule groups
-        displayName: Prometheus
         href: metrics/prometheus-rule-groups.md
+        displayName: Prometheus
       - name: Query Prometheus metrics
         items:
-        - name: Query using Azure workbooks
-          displayName: Prometheus
-          href: metrics/prometheus-workbooks.md
-        - name: Query using the API and PromQL
-          displayName: Prometheus
-          href: metrics/prometheus-api-promql.md
-    - name: OpenTelemetry Guest OS metrics (preview)
-      href: metrics/metrics-otel-guest-os.md
-    - name: Custom metrics
-      href: metrics/metrics-custom-overview.md
+          - name: Query using Azure workbooks
+            href: metrics/prometheus-workbooks.md
+            displayName: Prometheus
+          - name: Query using the API and PromQL
+            href: metrics/prometheus-api-promql.md
+            displayName: Prometheus
+          - name: OpenTelemetry Guest OS metrics (preview)
+            href: metrics/metrics-otel-guest-os.md
+          - name: Custom metrics
+            href: metrics/metrics-custom-overview.md
   - name: Logs
     items:
     - name: Overview

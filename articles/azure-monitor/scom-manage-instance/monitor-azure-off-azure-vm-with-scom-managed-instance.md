@@ -2,9 +2,9 @@
 ms.assetid: 
 title: Monitor Azure and Off-Azure Virtual machines with Azure Monitor SCOM Managed Instance extensions.
 description: Azure Monitor SCOM Managed Instance provides a cloud-based alternative for Operations Manager users providing monitoring continuity for cloud and on-premises environments across the cloud adoption journey.
-author: jyothisuri
-ms.author: jsuri
-ms.date: 09/08/2025
+author: Jeronika-MS
+ms.author: v-gajeronika
+ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -12,6 +12,8 @@ ms.topic: how-to
 ---
 
 # Monitor Azure and Off-Azure Virtual machines with Azure Monitor SCOM Managed Instance extensions
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 Azure Monitor SCOM Managed Instance provides a cloud-based alternative for Operations Manager users providing monitoring continuity for cloud and on-premises environments across the cloud adoption journey.
 

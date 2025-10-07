@@ -16,11 +16,13 @@ You can define what payload is included in alerts triggered by these alert rules
 
 ## Prerequisites
 
-To create a metric alert rule, you must have the following permissions:
+Before creating a metric alert rule, ensure you have the following permissions:
 
-* Read permission on the target resource of the alert rule.
-* Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
+* Read permission (such as *Reader*) on the target resource of the alert rule.
 * Read permission on any action group associated to the alert rule, if applicable.
+* Write permission (such as *Contributor*) on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
+
+These permissions are managed through [Azure Role-Based Access Control (RBAC)](/azure/role-based-access-control/overview). For more information, see [Roles, permissions, and security in Azure Monitor](../fundamentals/roles-permissions-security.md) and [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## Create or edit an alert rule from the portal home page
 

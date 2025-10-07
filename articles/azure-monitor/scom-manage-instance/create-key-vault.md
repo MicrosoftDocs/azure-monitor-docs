@@ -2,9 +2,9 @@
 ms.assetid: 
 title: Create an Azure key vault
 description: This article describes how to create a key vault to store domain credentials.
-author: jyothisuri
-ms.author: jsuri
-ms.date: 09/08/2025
+author: Jeronika-MS
+ms.author: v-gajeronika
+ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -13,10 +13,9 @@ ms.topic: how-to
 
 # Create an Azure key vault
 
-This article describes how to create a key vault to store domain credentials.
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
->[!NOTE]
-> To learn about the Azure Monitor SCOM Managed Instance architecture, see [Azure Monitor SCOM Managed Instance](overview.md).
+This article describes how to create a key vault to store domain credentials.
 
 ## Create a key vault to store secrets
 
