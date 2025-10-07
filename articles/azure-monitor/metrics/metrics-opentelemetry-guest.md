@@ -10,7 +10,7 @@ ms.reviewer: tylerkight
 
 At Microsoft, we embrace Open Standards through adoption and support of OpenTelemetry metrics stored in Azure Monitor Workspaces(AMW), with Prometheus Query Language(PromQl) our foundational metrics query language across all AMW metrics. 
 
-Before reading this article, users are recommended to first understand the difference between [Host OS vs Guest OS performance counters on virtual machines](https://learn.microsoft.com/en-us/azure/virtual-machines/monitor-vm?source=recommendations#overview-monitor-vm-host-and-guest-metrics-and-logs). 
+Before reading this article, users are recommended to first understand the difference between [Host OS vs Guest OS performance counters on virtual machines](/azure/virtual-machines/monitor-vm). 
 
 This article is about Guest OS performance counters that users must opt-in to collecting, either via Azure Monitor Agent with DCR, VM Insights with DCR, or user-collected with the OTelCollector as part of OTel instrumentation libraries. Regardless of how they are collected, users are recommended to store them in the metrics-optimized Azure Monitor Workspace, where they will be both cheaper and faster to query against than Log Analytics Workspaces. 
  
@@ -33,9 +33,9 @@ OpenTelemetry Guest OS Performance Counters are currently in public preview.
 
 ## Performance Counters
 
-Both Windows and Linux provide users with OS-level metrics related to CPU usage, memory consumption, disk I/O, networking and more to help diagnose performance issues. You can easily see an example on your local machine right now by using [Performance Monitor(perfmon)](https://learn.microsoft.com/en-us/windows/win32/perfctrs/performance-counters-portal) on Windows or by using the [*perf* command](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/developer_guide/perf) on Linux. 
+Both Windows and Linux provide users with OS-level metrics related to CPU usage, memory consumption, disk I/O, networking and more to help diagnose performance issues. You can easily see an example on your local machine right now by using [Performance Monitor(perfmon)](/windows/win32/perfctrs/performance-counters-portal) on Windows or by using the [*perf* command](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/developer_guide/perf) on Linux. 
 
-The total number of available OS performance counters is dynamic, with Windows providing [~1846 OS performance counters](https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/rebuild-performance-counter-library-values) by default and several more available based on the local machine available hardware, software, and tracepoint events.
+The total number of available OS performance counters is dynamic, with Windows providing [~1846 OS performance counters](/troubleshoot/windows-server/performance/rebuild-performance-counter-library-values) by default and several more available based on the local machine available hardware, software, and tracepoint events.
 
 A subset of OpenTelemetry Metrics are known as [system metrics](https://opentelemetry.io/docs/specs/semconv/system/system-metrics/). System metrics are essentially another name for performance counters; they are an Open Source Standard for consistent naming and formatting of performance counters and do not add any net-new OS performance counters.  
 
@@ -242,7 +242,7 @@ The following performance counters are available to be collected by the Azure Mo
 | System(*)\\CPUs | System |
 
 > [!TIP]
-> Feel free to share your feedback on new performance counters or functionality you would like to see by posting to our [Github Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](https://learn.microsoft.com/en-us/answers/questions/564554/where-can-i-submit-suggestions-for-azure).
+> Feel free to share your feedback on new performance counters or functionality you would like to see by posting to our [Github Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](/answers/questions/564554/where-can-i-submit-suggestions-for-azure).
 
 ## Resource Attributes
 
