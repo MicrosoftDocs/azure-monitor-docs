@@ -16,7 +16,6 @@ For more information on the various classes of service health notifications, see
 
 ## View your service health notifications in the Azure portal
 
-
 Azure Monitor brings together all your monitoring settings and data into one consolidated view.
 
 :::image type="content" source="media/service-notifications/azure-main-service-health-1.png" alt-text="Screenshot of the Azure portal home page."  Lightbox="media/service-notifications/azure-main-service-health-1.png":::
