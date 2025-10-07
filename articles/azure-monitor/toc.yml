@@ -524,7 +524,7 @@ items:
             - name: Scale using KEDA
               href: containers/integrate-keda.md
               displayName: Prometheus
-          displayName: Prometheutheus-metricss
+          displayName: Prometheus-metrics
         - name: Send to multiple metric workspaces
           href: containers/prometheus-metrics-multiple-workspaces.md
           displayName: Prometheus
@@ -1043,7 +1043,7 @@ items:
             href: metrics/prometheus-api-promql.md
             displayName: Prometheus
           - name: OpenTelemetry Guest OS metrics (preview)
-            href: metrics/metrics-otel-guest-os.md
+            href: metrics/metrics-opentelemetry-guest.md
           - name: Custom metrics
             href: metrics/metrics-custom-overview.md
   - name: Logs
