@@ -8,57 +8,20 @@ ms.date: 09/24/2025
 
 # Machine enrollment in Azure operations center
 
-The machine enrollment feature in Azure operations center simplifies the onboarding and configuration of virtual machines (VMs) across your Azure environment. This feature allows for automated discovery, enrollment, and management of VMs, ensuring they are properly configured for monitoring and operational tasks.
+The machine enrollment feature in [Azure operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. This article describes the features that are enabled by this feature and how to enable it for your subscriptions.
+
 
 ## Features
-The features automatically enabled for each VM in the enrolled subscription are listed in the following table.
+The management features automatically enabled for each VM in the enrolled subscription are listed in the following table. Further details on each feature are provided below.
 
-| Feature | Description |
-|:---|:---|
-| Azure monitor insights | Monitors and provides insights into VM performance and health. |
-| Azure policy and machine configurations | Ensures VMs comply with organizational policies and configurations. |
-| Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
-| Azure update manager | Manages and automates the deployment of updates to VMs. |
-
-## Services
-
-### Free tier
-Basic monitoring and management features for VMs. Require no onboarding and provided at no cost.
-
-- Host metrics
-- Activity logs
-
-### Essential tier
-Curated bundle of core management and monitoring capabilities provided at a fixed price. 
-
-- Azure update manager
-  - Install extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)
-  - [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. 
-- Change tracking and inventory
-  - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`) 
-  - Uses Log Analytics workspace specified in onboarding.
-- Monitor
-  - Collects standard set of performance counters.
-- [Foundational CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans)
-
-### Additional tiers
-
-- [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans)
-  - All settings on by default.
-- [Defender for cloud](/azure/defender-for-cloud/defender-for-servers-overview)
-  - All settings for [Plan 2](/azure/defender-for-cloud/defender-for-servers-overview#defender-for-servers-plans) enabled.
-
-> [!NOTE]
-> - Current DCR appears to be classic VM insights. Shouldn't we be using OTel mtrics, AMW, and disable DA?
-> - Are we configuring any event collection?
-> Spec says recommended alerts, but I don't see any alert rules. 
-
-
-## Concepts
-Enable machine enrollment for each subscription to automatically onboard VMs. Once enabled, all existing and new VMs in the subscription are enrolled and configured with the features listed above.
-
-### Excluding VMs
-During the public preview period, there is no ability to exclude VMs in the enabled subscription. All VMs in the subscription are onboarded and configured with the selected features.
+| Tier | Feature | Description |
+|:---|:---|:---|
+| Essential | Azure Monitor | Monitors and provides insights into VM performance and health. |
+| Essential | Update manager | Automates the deployment of operating system updates to VMs. |
+| Essential | Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
+| Essential | Foundational CSPM | Provides foundational cloud security posture management (CSPM) capabilities to assess and improve the security of your cloud resources. |
+| Additional | Defender CSPM | Advanced cloud security posture management (CSPM) capabilities to enhance the security of your cloud resources. |
+| Additional | Defender for cloud | Advanced threat protection and security management for VMs. |
 
 ## Required permissions
 
@@ -75,17 +38,15 @@ You must have the following roles in the subscription being enabled:
   - Monitoring Reader
 
 
-
-## Enable machine management
+## Enable a subscription
+Machine enrollment is enabled for each subscription to automatically onboard all Azure VMs and arc-enabled servers in that subscription. Once enabled, any VMs added to the subscription are enrolled and configured with the selected features.
 
 > [!NOTE]
-> The Azure portal is the only current supported method for enabling machine management.
+> What about existing VMs? Should we provide guidance on creating remediations?
 
-Go to **Operations center** in the Azure portal and select **Machine enrollment**.
+During public preview, the Azure portal is the only supported method for enabling machine management. Go to **Operations center** in the Azure portal and select **Machine enrollment**. Click **Enable** to enable machine management for a subscription.
 
 :::image type="content" source="./media/onboarding/machine-enrollment.png" lightbox="./media/onboarding/machine-enrollment.png" alt-text="Screenshot of machine enrollment screen with no subscriptions enabled.":::
-
-Click **Enable** to enable machine management for a subscription.
 
 #### Scope
 
@@ -120,7 +81,44 @@ The **Security** tab allows you to select additional security services for the m
 | **Defender for cloud** | Comprehensive server protection with integrated endpoint detection and response (EDR), vulnerability management, file integrity monitoring, and advanced threat detection. Recommended for business-critical workloads.<br><br>This add-on incurs an additional charge. |
 
 
-## Existing machines
+## Excluding VMs
+During the public preview period, there is no ability to exclude VMs in the enabled subscription. All VMs in the subscription are onboarded and configured with the selected features.
+
+## Services
+This section describes configuration details of the services that are enabled for each VM in the enrolled subscription.
+
+### Essential tier
+Curated bundle of core management and monitoring capabilities provided at a fixed price. 
+
+- Azure Monitor
+  - Installs Azure Monitor agent.
+  - Collects standard set of performance counters.
+  - Collects basic set of events.
+    - Windows events (Critical and error only)
+    - Syslog (Critical and error only)
+    - IIS logs
+- [Foundational CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans)
+- Azure update manager
+  - Installs extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)
+  - [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. 
+- Change tracking and inventory
+  - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`) 
+  - Uses Log Analytics workspace specified in onboarding.
+
+
+### Additional tiers
+
+- [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans)
+  - All settings on by default.
+- [Defender for cloud](/azure/defender-for-cloud/defender-for-servers-overview)
+  - All settings for [Plan 2](/azure/defender-for-cloud/defender-for-servers-overview#defender-for-servers-plans) enabled.
+
+> [!NOTE]
+> - Current DCR appears to be classic VM insights. Shouldn't we be using OTel mtrics, AMW, and disable DA?
+> - Are we configuring any event collection?
+> Spec says recommended alerts, but I don't see any alert rules. 
+
+
 
 ## Policy assignments provisioned
 
@@ -130,17 +128,21 @@ The **Security** tab allows you to select additional security services for the m
 | Assignment | Initiative | Description |
 |:---|:---|:---|
 | Enable Azure Monitor for VMs with Azure Monitoring Agent(AMA) | Enable Azure Monitor for VMs with Azure Monitoring Agent(AMA) | Enables Azure Monitor for VMs with Azure Monitoring Agent (AMA) to collect metrics and logs. |
-
+| Enable Azure Monitor for Hybrid VMs with AMA | | |
+| Managedops-Policy-71b36fb6-4fe4-4664-9a7b-245dc62f2930 | | |
+| ASC Default (subscription: 71b36fb6-4fe4-4664-9a7b-245dc62f2930) | | |
 
 
 ## Data collection rules
+The following table lists the data collection rules (DCRs) created during onboarding. Relationships are created between these DCRs and the VMs being managed.
 
 | Name | Description |
 |:---|:---|
-| `MSVMI-PerfandDa-ama-vmi-default-perfAndda-dcr` |  |
+| `MSVMI-PerfandDa-ama-vmi-default-perfAndda-dcr` | Performance data collection for Azure Monitor. |
 | `\<workspace\>-Managedops-CT-DCR` | Change tracking and inventory. Collects Files, Registry Keys, Softwares, Windows Services/Linux Daemons |
 
 ## Permissions
+
 
 ### Essential Machine Management Administrator Role
 
