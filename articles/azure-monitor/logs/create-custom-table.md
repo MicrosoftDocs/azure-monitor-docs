@@ -23,7 +23,7 @@ ms.date: 08/29/2025
 
 To ingest data to the table, you might need the following:
 * Data collection endpoint (DCE). For more information, see [DCE](../data-collection/data-collection-endpoint-overview.md).
-* A sample of at least one record of the source data in a JSON file. This is used to create custom tables in the portal, such as what's required to collect [text and JSON data sources from VMs](/azure/azure-monitor/vm/data-collection.md#add-data-sources)
+* A sample of at least one record of the source data in a JSON file. This is used to create custom tables in the portal, such as what's required to collect [text and JSON data sources from VMs](../vm/data-collection.md#add-data-sources)
 
     ```json
     [
@@ -346,4 +346,4 @@ Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourc
 
 * [Collecting logs with the Log Ingestion API](../logs/logs-ingestion-api-overview.md)
 * [Collecting logs with Azure Monitor Agent](../agents/agents-overview.md)
-* [Collect data from virtual machines](/azure-monitor/vm/data-collection.md)
+* [Collect data from virtual machines](../vm/data-collection.md)
