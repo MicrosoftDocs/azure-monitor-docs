@@ -1015,8 +1015,10 @@ items:
           - name: Overview
             href: metrics/azure-monitor-workspace-overview.md
             displayName: Prometheus
-          - name: Manage
+          - name: Create an Azure Monitor workspace
             href: metrics/azure-monitor-workspace-manage.md
+          - name: Manage access
+            href: metrics/azure-monitor-workspace-manage-access.md
             displayName: Prometheus
           - name: Monitor metrics ingestion limits
             href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
