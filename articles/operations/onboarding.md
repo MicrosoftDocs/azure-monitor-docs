@@ -115,8 +115,8 @@ Curated bundle of core management and monitoring capabilities provided at a fixe
 
 > [!NOTE]
 > - Current DCR appears to be classic VM insights. Shouldn't we be using OTel mtrics, AMW, and disable DA?
-> - Are we configuring any event collection?
-> Spec says recommended alerts, but I don't see any alert rules. 
+> - Are we configuring any event collection? The Azure Monitor doc mentions the events I specified above, but I don't see any configuration for them in the DCR.
+> - Spec says recommended alerts, but I don't see any alert rules. They wouldn't be in the DCR, but I don't see any created in my subscription.
 
 
 
