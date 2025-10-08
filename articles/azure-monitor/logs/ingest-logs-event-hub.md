@@ -23,6 +23,9 @@ In this tutorial, you learn how to:
 > * Grant the data collection rule permissions to the event hub
 > * Associate the data collection rule with the event hub
 
+> [!NOTE]
+> While you can create a data collection rule (DCR) and a destination table in Azure Log Analytics through the Azure portal, ingesting events from Azure Event Hubs into Azure Monitor Logs requires a template deployment. This is because the DCR must include specific syntax that is not supported in the portal interface.
+
 ## Prerequisites
 
 To send events from Azure Event Hubs to Azure Monitor Logs, you need these resources:
