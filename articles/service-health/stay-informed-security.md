@@ -57,7 +57,7 @@ Azure Service Health security communications are visible.
 
 However, when Microsoft identifies a security event that is both impactful and designed at the subscription level, we also proactively send another notifications at the tenant level to ensure maximum visibility and awareness.
 
-### Stay informed about Azure security issues
+### Stay informed about Azure Security issues
 
 1. **Check the contact on Subscription Admin Owner role**
 
