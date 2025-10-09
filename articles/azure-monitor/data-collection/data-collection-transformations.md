@@ -43,20 +43,23 @@ For example, the [Event](../reference/tables/event.md) table is used to store ev
 
 ## Cost for transformations
 
-Processing logs in the Azure Monitor cloud pipeline has different billing implications depending on the type of table into which data is being ingested in a Log Analytics workspace. 
+Processing logs (transforming and filtering) in the Azure Monitor cloud pipeline has different billing implications depending on the type of table into which data is being ingested in a Log Analytics workspace. 
 
 ### Auxiliary Logs
 
-Auxiliary Logs charges for data processing and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data that is ingested into the Log Analytics workspace as an Auxiliary Logs table after the transformation is applied. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for current prices for log processing and log data ingestion.
+Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data after the transformation which is ingested as an Auxiliary Logs table into a Log Analytics workspace. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for current prices for log processing and log data ingestion.
 
 ### Analytics or Basic Logs
 
-For Analytics or Basic Logs, transformations themselves don't incur direct costs, but the following scenarios can result in additional charges:
+For Analytics or Basic Logs, transformations themselves don't usually incur any costs, but the following scenarios can result in additional charges:
 
 * If a transformation increases the size of the incoming data, such as by adding a calculated column, you're charged the standard ingestion rate for the extra data.
 * If a transformation reduces the ingested data by more than 50%, you're charged for the amount of filtered data above 50%.
 
-To calculate the data processing charge resulting from transformations, use the following formula:<br>[GB filtered out by transformations] - ([GB data ingested] / 2). The following table shows examples.
+To calculate the data processing charge resulting from transformations, use the following formula:  
+<br>[GB filtered out by transformations] - ([GB data ingested] / 2).   
+  
+The following table shows examples.
 
 |Incoming data size| Data dropped by transformation | Data ingested into Log Analytics workspace as Analytics or Basic Logs| Data processing charge |Data ingestion charge |
 |:--------------------------|:------------------------------:|:----------------------------------------:|:----------------------:|:----------------:|
