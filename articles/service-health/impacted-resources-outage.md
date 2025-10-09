@@ -5,13 +5,15 @@ ms.topic: concept-article
 ms.date: 10/09/2025
 ---
 
-# Impacted Resources from Outages
+# Impacted Resources from outages
 
-[Azure Service Health](https://azure.microsoft.com/get-started/azure-portal/service-health/) helps customers monitor any health events that affect their subscriptions and tenants. In the Azure portal, the **Service issues** pane within **Service Health** displays any ongoing problems in Azure services that are affecting your resources. <br>You can see when each issue began and which services and regions are impacted. 
+[Azure Service Health](https://azure.microsoft.com/get-started/azure-portal/service-health/) helps customers monitor any health events that affect their subscriptions and tenants. In the Azure portal, the **Service issues** pane within **Service Health** displays any ongoing problems in Azure services that are affecting your resources. 
+
+You can see when each issue began and which services and regions are impacted. 
 
 This article explains what Service Health communicates and where to find information about your impacted resources.
 
-:::image type="content"source="./media/impacted-resource-outage/ir-service-issues.png"alt-text="Screenshot of impacted resources in Azure Service issues."Lightbox="./media/impacted-resource-outage/ir-service-issues.png":::
+:::image type="content"source="./media/impacted-resource-outage/impact-resource-service-issues.png"alt-text="Screenshot of impacted resources in Azure Service issues."Lightbox="./media/impacted-resource-outage/impact-resource-service-issues.png":::
 
 
 ### View impacted resources
