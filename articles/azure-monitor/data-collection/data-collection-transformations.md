@@ -47,7 +47,7 @@ Processing logs in the Azure Monitor cloud pipeline has different billing implic
 
 ### Auxiliary Logs
 
-Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data that is ingested into the Log Analytics workspace as an Auxiliary Logs table after the transformation is applied. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for current prices for log processing and log data ingestion.
+Auxiliary Logs charges for data processing and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data that is ingested into the Log Analytics workspace as an Auxiliary Logs table after the transformation is applied. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for current prices for log processing and log data ingestion.
 
 ### Analytics or Basic Logs
 
