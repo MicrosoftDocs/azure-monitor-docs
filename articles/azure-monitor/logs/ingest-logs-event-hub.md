@@ -81,7 +81,7 @@ To create a custom table into which to ingest events, in the Azure portal:
 
     :::image type="content" source="media/ingest-logs-event-hub/create-custom-table-open-cloud-shell.png" lightbox="media/ingest-logs-event-hub/create-custom-table-open-cloud-shell.png" alt-text="Screenshot showing how to open Cloud Shell.":::
 
-1. Run this PowerShell command to create the table, provide the table name (`<table_name>`) in the JSON (with suffix *_CL* in case of a custom table), and set the `<subscription_id>`, `<resource_group_name>`, `<workspace_name>`, `<table_name>`, and `<api_version>` values in the `Invoke-AzRestMethod -Path` command:
+1. Run this PowerShell command to create the table, provide the table name (`<table_name>`) in the JSON (with suffix *_CL* for a custom table), and set the `<subscription_id>`, `<resource_group_name>`, `<workspace_name>`, `<table_name>`, and `<api_version>` values in the `Invoke-AzRestMethod -Path` command:
 
     ```PowerShell
     $tableParams = @'
@@ -153,7 +153,7 @@ To create a data collection rule in the Azure portal:
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/build-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/build-custom-template.png" alt-text="Screenshot to build template in the editor.":::
 
-1. Paste the Resource Manager template below into the editor and then select **Save**.
+1. Paste the following Resource Manager template into the editor and select **Save**.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/edit-template.png" lightbox="media/tutorial-workspace-transformations-api/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
 
@@ -176,6 +176,8 @@ To create a data collection rule in the Azure portal:
     * `dataFlows` - Matches the stream with the destination workspace and specifies the transformation query and the destination table. In our example, we ingest data to the custom table we created previously. You can also [ingest into a supported Azure table](#ingest-log-data-into-an-azure-table-optional).
 
     * `transformKql` - Specifies a transformation to apply to the incoming data (stream declaration) before it's sent to the workspace. In our example, we set `transformKql` to `source`, which doesn't modify the data from the source in any way, because we're mapping incoming data to a custom table we've created specifically with the corresponding schema. If you're ingesting data to a table with a different schema or to filter data before ingestion, [define a data collection transformation](../data-collection/data-collection-transformations.md).
+
+    <a id="dcr-template"></a>
 
     ```json
     {
@@ -301,7 +303,7 @@ To create a data collection rule in the Azure portal:
 
 ### Configure user-assigned managed identity (optional)
 
-To configure your data collection rule to support [user-assigned identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities), in the example above, replace:
+To configure your data collection rule to support [user-assigned identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities), in the [DCR template](#dcr-template), replace:
 
 ```json
     "identity": {
