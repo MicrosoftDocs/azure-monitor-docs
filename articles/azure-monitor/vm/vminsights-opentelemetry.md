@@ -127,10 +127,10 @@ See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/da
 This issue occurs if the network traffic for the Azure Monitor workspace is blocked. This is typically related to network policies such as ad blocking software. To resolve this issue, disable the ad block or allowlist `monitor.azure.com` traffic and reload the page.
 
 **Unable to access Data Collection Rule (DCR)**<br>
-This error occurs when the user doesn't have permission to view the associated Prometheus DCR for the cluster, or the DCR may have been deleted. To resolve, grant access to the Prometheus DCR or reconfigure managed Prometheus using the **Monitor Settings** button in the toolbar.
+This error occurs when the user doesn't have permission to view the associated DCR for the VM, or the DCR may have been deleted. To resolve, contact the system administrator or reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
 
 **Data configuration error**<br>
-This error occurs when the Azure Monitor workspace or DCR has been modified or deleted. Use the **Reconfigure** button to patch the recording rules and try again.
+This error occurs when the Azure Monitor workspace or DCR has been modified or deleted. Reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
 
 **Access denied**<br>
 This error occurs when the user's portal token expires or doesn't have permissions to view the associated Azure Monitor workspace. This can typically be resolved by refreshing the browser session or contacting your system administrator to request access. The user needs monitor reader permission, and the resource centric flag should be enabled on the Azure Monitor workspace by the system administrator.
