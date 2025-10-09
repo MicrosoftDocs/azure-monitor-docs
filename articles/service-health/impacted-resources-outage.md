@@ -2,14 +2,17 @@
 title: Impacted Resources from Outages
 description: This article details where to find information from Azure Service Health about how Azure outages might affect your resources.
 ms.topic: concept-article
-ms.date: 07/11/2025
+ms.date: 10/09/2025
 ---
 
 # Impacted Resources from Outages
 
-[Azure Service Health](https://azure.microsoft.com/get-started/azure-portal/service-health/) helps customers monitor any health events that affect their subscriptions and tenants. In the Azure portal, the **Service Issues** pane within **Service Health** displays any ongoing problems in Azure services that are affecting your resources. <br>You can see when each issue began and which services and regions are impacted. 
+[Azure Service Health](https://azure.microsoft.com/get-started/azure-portal/service-health/) helps customers monitor any health events that affect their subscriptions and tenants. In the Azure portal, the **Service issues** pane within **Service Health** displays any ongoing problems in Azure services that are affecting your resources. <br>You can see when each issue began and which services and regions are impacted. 
 
 This article explains what Service Health communicates and where to find information about your impacted resources.
+
+:::image type="content"source="./media/impacted-resource-outage/ir-service-issues.png"alt-text="Screenshot of impacted resources in Azure Service issues."Lightbox="./media/impacted-resource-outage/ir-service-issues.png":::
+
 
 ### View impacted resources
 
@@ -18,7 +21,7 @@ In the Azure portal, the **Impacted Resources** tab under **Service Health** > *
 |Column  |Description |
 |---------|---------|
 |**Resource Name**|Name of the resource. The name is a clickable link that goes to the Resource Health page to show the resource. If no Resource Health signal is available for the resource, this name is text only.|
-|**Resource Health**|Health status of the resource: <br><br>**Available**: Your resource is healthy, but a service event might impact it at a some point in time. <br>**Degraded** or **Unavailable**: A customer-initiated action or a platform-initiated action might cause this status. It means your resource was impacted but might now be healthy, pending a status update. <br>**Unknown**:  This status means that the system doesn't any health information from the resource for more than 10 minutes. However, it isn't necessarily an indication of a problem with the resource itself, as it often reflects a lack of telemetry or communication from the resource provider. <br>:::image type="content" source="./media/impacted-resource-outage/rh-cropped.PNG" alt-text="Screenshot of health statuses for a resource.":::|
+|**Resource Health**|Health status of the resource: <br><br>**Available**: Your resource is healthy, but a service event might impact it at a some point in time. <br>**Degraded** or **Unavailable**: A customer-initiated action or a platform-initiated action might cause this status. It means your resource was impacted but might now be healthy, pending a status update. <br>**Unknown**:  This status means that the system doesn't any health information from the resource for more than 10 minutes. However, this isn't always indicative of a resource malfunction; it could be a result of incomplete monitoring signals or status updates from the provider. <br>:::image type="content" source="./media/impacted-resource-outage/rh-cropped.PNG" alt-text="Screenshot of health statuses for a resource.":::|
 |**Impact Type**|Indication of whether the resource is or might be impacted: <br><br>**Confirmed**: The resource is impacted from an outage. Check the **Summary** section for any action items that you can take to remediate the problem. <br><br>**Potential**: The resource isn't impacted, but it could potentially be affected because it's under a service or region experiencing an outage. Check the **Resource Health** column to make sure that everything is working as planned.|
 |**Resource Type**|Type of impacted resource (for example, virtual machine).|
 |**Resource Group**|Resource group that contains the impacted resource.|
