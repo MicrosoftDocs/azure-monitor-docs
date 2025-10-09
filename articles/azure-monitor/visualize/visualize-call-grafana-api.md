@@ -145,13 +145,19 @@ curl -X GET \
 Replace `<access-token>` and `<grafana-endpoint>` with the access token retrieved in the previous step and the endpoint URL of your dashboard resource. For example `https://local-westcentralus.gateway.dashboard.azure.com`.
 
 Currently, only a subset of Grafana APIs is supported, including:
-- Get dashboard by uid, `GET /api/dashboards/uid/:uid`
+- Get dashboard by UID, `GET /api/dashboards/uid/:uid`
 - Update dashboard, `POST /api/dashboards/db/`
 - Get all dashboard versions by dashboard UID, `GET /api/dashboards/uid/:uid/versions`
 - Get dashboard version by dashboard UID, `GET /api/dashboards/uid/:uid/versions/:version`
 - Restore dashboard by dashboard UID, `POST /api/dashboards/id/:dashboardId/restore`
-- Get a single data source by uid, `GET /api/datasources/uid/:uid`
+- Get a single data source by UID, `GET /api/datasources/uid/:uid`
 - Query a data source, `POST /api/ds/query`
+- Get dashboard annotations by UID, `GET /api/annotations?dashboardUID=:uid`
+- Create dashboard annotations, `POST /api/annotations`
+- Update a dashboard annotation by annotation ID, `PUT /api/annotations/:id`
+- Patch a dashboard annotation by annotation ID, `PATCH /api/annotations/:id`
+- Delete annotation by annotation id and dashboard UID, `DELETE /api/annotations/:id?dashboardUID=:uid`
+- Find annotation tags by dashboard UID, `GET /api/annotations/tags?dashboardUID=:uid`
 
 For more details about these APIs, see [Grafana public doc](https://aka.ms/helios/grafana-api-doc).
 
@@ -160,6 +166,8 @@ For more details about these APIs, see [Grafana public doc](https://aka.ms/helio
 > You cannot import or delete dashboards through the Grafana API, as these operations require Azure Resource Manager (ARM) requests.  
 > - Importing a dashboard requires the ARM to create a new Azure Monitor dashboard with the Grafana resource first, this can be done using [ARM templates or Bicep](/azure/templates/microsoft.dashboard/dashboards?pivots=deployment-language-arm-template). The ARM request will create a resource with empty dashboard by default. After resource is created, then you could use Grafana data plane API(`POST /api/dashboards/db/`) to update the dashboard.
 > - Deleting a dashboard is a ARM operation, no Grafana API call is needed.
+> - Find annotations and find annotations tags require `dashboardUID` parameter
+> - Create, update and patch annotations require `dashboardUID` in request body
 
 
 Below are some commonly used APIs example:
@@ -203,7 +211,7 @@ Example post request:
 ```bash
 curl -X POST \
 -H 'Authorization: Bearer <access-token>' \
--d '{"Dashboard": {...}} \
+-d '{"Dashboard": {...}}' \
 <grafana-endpoint>/api/dashboards/db
 ```
 
@@ -222,6 +230,37 @@ Example response:
    "folderUid": "",
    "message": "Made changes to xyz",
    "overwrite": false
+}
+```
+
+### Create Annotation by dashboardUID
+
+`POST /api/annotations`
+
+Example post request:
+
+```bash
+curl -X POST \
+  -H "Authorization: Bearer <access-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "dashboardUID": "jcIIG-07z",
+    "panelId": 1,
+    "time": 1507037197339,
+    "timeEnd": 1507180805056,
+    "tags": ["tag1", "tag2"],
+    "text": "Annotation Description"
+  }' \
+  <grafana-endpoint>/api/annotations
+
+```
+
+Example response:
+
+```bash
+{
+    "message":"Annotation added",
+    "id": 1,
 }
 ```
 
