@@ -43,14 +43,16 @@ For example, the [Event](../reference/tables/event.md) table is used to store ev
 
 ## Cost for transformations
 
-While transformations themselves don't incur direct costs, the following scenarios can result in additional charges:
+Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data that is ingested into the Log Analytics workspace as an Auxiliary Logs table after the transformation is applied.
+
+For Analytics or Basic Logs, transformations themselves don't incur direct costs, but the following scenarios can result in additional charges:
 
 * If a transformation increases the size of the incoming data, such as by adding a calculated column, you're charged the standard ingestion rate for the extra data.
 * If a transformation reduces the ingested data by more than 50%, you're charged for the amount of filtered data above 50%.
 
 To calculate the data processing charge resulting from transformations, use the following formula:<br>[GB filtered out by transformations] - ([GB data ingested] / 2). The following table shows examples.
 
-| Data ingested | Data dropped by transformation | Data ingested by Log Analytics workspace | Data processing charge | Ingestion charge |
+|Incoming data size| Data dropped by transformation | Data ingested into Log Analytics workspace as Analytics or Basic Logs| Data processing charge |Data ingestion charge |
 |:--------------------------|:------------------------------:|:----------------------------------------:|:----------------------:|:----------------:|
 | 20 GB                     | 12 GB                          | 8 GB                                     | 2 GB <sup>1</sup>      | 8 GB             |
 | 20 GB                     | 8 GB                           | 12 GB                                    | 0 GB                   | 12 GB            |
