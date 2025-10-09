@@ -43,7 +43,13 @@ For example, the [Event](../reference/tables/event.md) table is used to store ev
 
 ## Cost for transformations
 
-Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data that is ingested into the Log Analytics workspace as an Auxiliary Logs table after the transformation is applied.
+Processing logs in the Azure Monitor cloud pipeline has different billing implications depending on the type of table into which data is being ingested in a Log Analytics workspace. 
+
+### Auxiliary Logs
+
+Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data that is ingested into the Log Analytics workspace as an Auxiliary Logs table after the transformation is applied. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for current prices for log processing and log data ingestion.
+
+### Analytics or Basic Logs
 
 For Analytics or Basic Logs, transformations themselves don't incur direct costs, but the following scenarios can result in additional charges:
 
@@ -61,7 +67,7 @@ To calculate the data processing charge resulting from transformations, use the 
 
 To avoid this charge, you should filter ingested data using alternative methods before applying transformations. By doing so, you can reduce the amount of data processed by transformations and, therefore, minimize any additional costs.
 
-See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for current charges for ingestion and retention of log data in Azure Monitor.
+See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for pricing for log processing and log data ingestion.
 
 > [!IMPORTANT]
 > If Azure Sentinel is enabled for the Log Analytics workspace, there's no filtering ingestion charge regardless of how much data the transformation filters.
