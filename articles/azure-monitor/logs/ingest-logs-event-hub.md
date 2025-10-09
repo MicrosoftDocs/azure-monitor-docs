@@ -157,7 +157,7 @@ To create a data collection rule in the Azure portal:
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/edit-template.png" lightbox="media/tutorial-workspace-transformations-api/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
 
-    Notice the following details in the data collection rule below:
+    Notice the following details in the [data collection rule](#dcr-template):
 
     * `identity` - Defines which type of [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to use. In our example, we use system-assigned identity. You can also [configure user-assigned managed identity](#configure-user-assigned-managed-identity-optional).
     
@@ -175,7 +175,7 @@ To create a data collection rule in the Azure portal:
 
     * `dataFlows` - Matches the stream with the destination workspace and specifies the transformation query and the destination table. In our example, we ingest data to the custom table we created previously. You can also [ingest into a supported Azure table](#ingest-log-data-into-an-azure-table-optional).
 
-    * `transformKql` - Specifies a transformation to apply to the incoming data (stream declaration) before it's sent to the workspace. In our example, we set `transformKql` to `source`, which doesn't modify the data from the source in any way, because we're mapping incoming data to a custom table we've created specifically with the corresponding schema. If you're ingesting data to a table with a different schema or to filter data before ingestion, [define a data collection transformation](../data-collection/data-collection-transformations.md).
+    * `transformKql` - Specifies a transformation to apply to the incoming data (stream declaration) before it's sent to the workspace. In our example, we set `transformKql` to `source`, which doesn't modify the data from the source in any way, because we're mapping incoming data to a custom table created specifically with the corresponding schema. If you're ingesting data to a table with a different schema or to filter data before ingestion, [define a data collection transformation](../data-collection/data-collection-transformations.md).
 
     <a id="dcr-template"></a>
 
