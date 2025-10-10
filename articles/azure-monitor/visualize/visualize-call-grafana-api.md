@@ -19,7 +19,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure Monitor dashboards with Grafana. [Create an Azure Monitor dashboards with Grafana resource](/azure/azure-monitor/visualize/visualize-use-grafana-dashboards).
 - A Microsoft Entra application with a service principal. [Create a Microsoft Entra application and service principal](/entra/identity-platform/howto-create-service-principal-portal). For simplicity, use an application located in the same Microsoft Entra tenant as your Azure Monitor dashboards with Grafana resource.
 
