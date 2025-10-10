@@ -115,7 +115,7 @@ dotnet add package Azure.Monitor.OpenTelemetry.Exporter
 
 #### [Java](#tab/java)
 
-Download the latest [applicationinsights-agent-3.7.5.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.5/applicationinsights-agent-3.7.5.jar) file.
+Download the latest [applicationinsights-agent-3.7.4.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.4/applicationinsights-agent-3.7.4.jar) file.
 
 > [!WARNING]
 >
