@@ -80,7 +80,11 @@ Provide the following properties when creating a new dedicated cluster:
 - **ClusterName**: Must be unique for the resource group.
 - **ResourceGroupName**: Use a central IT resource group because many teams in the organization usually share clusters. For more design considerations, review [Design a Log Analytics workspace configuration](../logs/workspace-design.md).
 - **Location**
-- **SkuCapacity**: You can set the commitment tier to 100, 200, 300, 400, 500, 1000, 2000, 5000, 10000, 25000 or 50000 GB per day. The minimum commitment tier supported in CLI is 500 GB currently. Use REST to configure lower commitment tiers with minimum of 100 GB. For more information on cluster costs, see [Dedicated clusters](./cost-logs.md#dedicated-clusters). 
+- **SkuCapacity**: You can set the commitment tier to 100, 200, 300, 400, 500, 1000, 2000, 5000, 10000, 25000 or 50000 GB per day. The minimum commitment tier supported in CLI is 500 GB currently. Use REST to configure lower commitment tiers with minimum of 100 GB. For more information on cluster costs, see [Dedicated clusters](./cost-logs.md#dedicated-clusters).
+
+> [!NOTE]
+> Commitment tiers below 500 GB per day (such as 100 GB or 200 GB) can be configured **only using the REST API**. Deployments using **Bicep, ARM templates**, or **CLI** will fail when specifying a commitment tier under 500 GB.
+
 - **Managed identity**: Clusters support two [managed identity types](/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types): 
   - System-assigned managed identity - Generated automatically with the cluster creation when identity `type` is set to "*SystemAssigned*". This identity can be used later to grant storage access to your Key Vault for wrap and unwrap operations.
 
