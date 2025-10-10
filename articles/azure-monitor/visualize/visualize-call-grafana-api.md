@@ -90,21 +90,7 @@ The Grafana endpoint usually follows the format: https://local-<your_dashboard_r
 
 ## Get an access token
 
-To access Grafana APIs, you need to get an access token. You can get the access token using the Azure CLI or making a POST request.
-
-### [Azure CLI](#tab/azure-cli)
-
-Sign in to the Azure CLI by running the [az login](/cli/azure/reference-index#az-login) command and replace `<client-id>`, `<client-secret>`, and `<tenant-id>` with the application (client) ID, client secret, and tenant ID collected in the previous step:
-
-```
-az login --service-principal --username "<client-id>" --password "<client-secret>" --tenant "<tenant-id>"
-```
-
-Use the command [az account get-access-token](/cli/azure/account#az-account-get-access-token) to get an access token. Here's an example:
-
-```
-az account get-access-token --tenant 00000000-0000-0000-0000-000000000000
-```
+To access Grafana APIs, you need to get an access token. You can get the access token by making a POST request.
 
 ### [POST request](#tab/post)
 
@@ -112,7 +98,7 @@ Follow the example below to call Microsoft Entra ID and retrieve a token. Replac
 
 ```bash
 curl -X POST -H 'Content-Type: application/x-www-form-urlencoded' \
--d 'grant_type=client_credentials&client_id=<client-id>&client_secret=<client-secret>&resource=ce34e7e5-485f-4d76-964f-b3d2b16d1e4f' \
+-d 'grant_type=client_credentials&client_id=<client-id>&client_secret=<client-secret>&resource=6f2d169c-08f3-4a4c-a982-bcaf2d038c45' \
 https://login.microsoftonline.com/<tenant-id>/oauth2/token
 ```
 
@@ -203,7 +189,7 @@ Example post request:
 ```bash
 curl -X POST \
 -H 'Authorization: Bearer <access-token>' \
--d '{"Dashboard": {...}} \
+-d '{"Dashboard": {...}}' \
 <grafana-endpoint>/api/dashboards/db
 ```
 
