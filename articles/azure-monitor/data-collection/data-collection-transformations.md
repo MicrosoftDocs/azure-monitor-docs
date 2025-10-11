@@ -47,7 +47,15 @@ Processing logs (transforming and filtering) in the Azure Monitor cloud pipeline
 
 ### Auxiliary Logs
 
-Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data after the transformation which is ingested as an Auxiliary Logs table into a Log Analytics workspace. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for current prices for log processing and log data ingestion.
+Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data after the transformation which is ingested as an Auxiliary Logs table into a Log Analytics workspace. Transformations can either increase of decrease the size of the data. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for current prices for log processing and log data ingestion.
+
+|Incoming data size| Data dropped or added by transformation | Data ingested into a Log Analytics workspace as an Auxiliary Logs table| Data processing charge |Data ingestion charge |
+|:--------------------------|:------------------------------:|:----------------------------------------:|:----------------------:|:----------------:|
+| 20 GB                     | 12 GB dropped                         | 8 GB                                     | 20 GB                   | 8 GB             |
+| 20 GB                     | 8 GB dropped                           | 12 GB                                    | 20 GB                   | 12 GB            |
+| 20 GB                     | 4 GB added                           | 24 GB                                    | 20 GB                   | 24 GB            |
+
+
 
 ### Analytics or Basic Logs
 
@@ -61,7 +69,7 @@ To calculate the data processing charge resulting from transformations, use the 
   
 The following table shows examples.
 
-|Incoming data size| Data dropped by transformation | Data ingested into Log Analytics workspace as Analytics or Basic Logs| Data processing charge |Data ingestion charge |
+|Incoming data size| Data dropped by transformation | Data ingested into a Log Analytics workspace as an Analytics or Basic Logs table| Data processing charge |Data ingestion charge |
 |:--------------------------|:------------------------------:|:----------------------------------------:|:----------------------:|:----------------:|
 | 20 GB                     | 12 GB                          | 8 GB                                     | 2 GB <sup>1</sup>      | 8 GB             |
 | 20 GB                     | 8 GB                           | 12 GB                                    | 0 GB                   | 12 GB            |
