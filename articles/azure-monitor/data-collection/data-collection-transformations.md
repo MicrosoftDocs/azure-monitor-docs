@@ -67,7 +67,7 @@ For Analytics or Basic Logs, transformations themselves don't usually incur any 
 * If a transformation reduces the ingested data by more than 50%, you're charged for the amount of filtered data above 50%.
 
 To calculate the data processing charge resulting from transformations, use the following formula:  
-<br>[GB filtered out by transformations] - ([GB data ingested] / 2).   
+<br>[GB data dropped by transformation] - ([GB incoming data size] / 2).   
   
 The following table shows examples.
 
@@ -82,7 +82,7 @@ To avoid this charge, you should filter ingested data using alternative methods 
 See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for pricing for log processing and log data ingestion.
 
 > [!IMPORTANT]
-> If Azure Sentinel is enabled on a Log Analytics workspace, when ingesting data into this workspace as Analytics Logs or Basic Logs tables, there is no filtering ingestion charge regardless of how much data the transformation filters.
+> If Microsoft Sentinel is enabled for the Log Analytics workspace, there's no cost for transformation to Analytics tables regardless of how much data the transformation filters.
 
 ## Next steps
 

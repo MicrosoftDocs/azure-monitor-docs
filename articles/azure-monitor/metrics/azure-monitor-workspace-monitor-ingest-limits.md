@@ -19,7 +19,17 @@ Azure Monitor Workspace exposes a set of metrics that provide insight into inges
 1. In the **Add metric** dropdown, select **Add with builder**.
 1. In the **Metric** drop-down, select **Active Time Series % Utilization** and **Events Per Minute Received % Utilization** and verify that they are below 100%.
 
-You can **set up recommended alerts** for Azure Monitor Workspace to monitor the ingestion limits, you can either [enable recommended out-of-the-box alerts](../alerts/alerts-overview.md#recommended-alert-rules) rules, or manually [create new alert rules](#query-and-alert-on-workspace-ingestion-metrics).
+You can **set up recommended alerts** for Azure Monitor Workspace to monitor the ingestion limits, you can either [enable recommended out-of-the-box alerts](../alerts/alerts-overview.md#recommended-alert-rules) rules, or manually [create new alert rules](#query-and-alert-on-workspace-ingestion-metrics). The following alerts get created when you set up recommended alerts for the Azure Monitor Workspace.
+
+| Alert name | Description | Default threshold | Timeframe (minutes) |
+|:---|:---|:---:|:---:|
+| AMW Is Approaching Event Ingestion Limit | The Events per min Ingestion utilization is above 75% of the current limit | >75% | 5 |
+| AMW Is Approaching Active TimeSeries Ingestion Limit | The TimeSeries Ingestion utilization is above 75% of the current limit. | >75% | 5 |
+| AMW Is At High Risk Of Exceeding Event Ingestion Limit  | The Events per min Ingestion utilization is above 95% of the current limit, and is at risk of getting throttled. Request for an increase [here](https://go.microsoft.com/fwlink/?linkid=2270124) | >95% | 5 |
+| AMW Is At High Risk Of Exceeding Active TimeSeries Ingestion Limit | The TimeSeries Ingestion utilization is above 95% of the current limit, and is at risk of getting throttled. Request for an increase [here](https://go.microsoft.com/fwlink/?linkid=2270124) | >95% | 5 |
+
+
+### [Azure portal](#tab/azure-portal)
 
 To enable the recommended alert rules, navigate to the Azure Monitor Workspace in Azure portal.
 1. In the Monitoring section, select **Alerts** > **Set up recommended alerts**. The **Set up recommended alert rules** pane opens with a list of recommended alert rules for your Azure Monitor workspace.  
@@ -30,6 +40,226 @@ To enable the recommended alert rules, navigate to the Azure Monitor Workspace i
 1. In the **Notify me by** section, select the way you want to be notified if an alert is triggered.
 1. Select **Use an existing action group**, and enter the details of the existing action group if you want to use an action group that already exists.
 1. Select **Save**.
+
+### [Resource Manager](#tab/resource-manager)
+To enable the recommended alert rules, use the following Resource Manager template and parameters files  with any of the [standard deployment options](../fundamentals/resource-manager-samples.md#deploy-the-sample-templates).
+
+**Template File**:
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "actionGroupResourceId": {
+            "type": "string",
+            "metadata": {
+                "description": "Action Group ResourceId"
+            }
+        },
+        "azureMonitorWorkspaceResourceId": {
+            "type": "string",
+            "metadata": {
+                "description": "ResourceId of Azure Monitor Workspace (AMW) to associate to"
+            }
+        }
+    },
+    "variables": {
+        "amwName": "[last(split(parameters('azureMonitorWorkspaceResourceId'), '/'))]"
+    },
+    "resources": [
+        {
+            "name": "[concat('AMW Is Approaching Event Ingestion Limit - ', variables('amwName'))]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "location": "global",
+            "tags": {
+                "alertRuleCreatedWithAlertsRecommendations": "true"
+            },
+            "properties": 
+            {
+                "description": "AMW Is Approaching Event Ingestion Limit - Request for an increase https://go.microsoft.com/fwlink/?linkid=2270124",
+                "severity": 3,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('azureMonitorWorkspaceResourceId')]"
+                ],
+                "evaluationFrequency": "PT5M",
+                "windowSize": "PT30M",
+                "criteria": {
+                    "allOf": [
+                    {
+                        "threshold": 75,
+                        "name": "EventsCriteria",
+                        "metricName": "EventsPerMinuteIngestedPercentUtilization",
+                        "operator": "GreaterThan",
+                        "timeAggregation": "Average",
+                        "criterionType": "StaticThresholdCriterion"
+                    }
+                ],
+                "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "actions": [
+                {
+                    "actionGroupId": "[parameters('actionGroupResourceId')]"
+                }
+            ]
+        }
+    },
+    {
+            "name": "[concat('AMW Is Approaching Active TimeSeries Ingestion Limit - ', variables('amwName'))]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "location": "global",
+            "tags": {
+                "alertRuleCreatedWithAlertsRecommendations": "true"
+            },
+            "properties": 
+            {
+                "description": "AMW Is Approaching Active Timeseries Limit - Request for an increase https://go.microsoft.com/fwlink/?linkid=2270124",
+                "severity": 3,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('azureMonitorWorkspaceResourceId')]"
+                ],
+                "evaluationFrequency": "PT5M",
+                "windowSize": "PT30M",
+                "criteria": {
+                    "allOf": [
+                    {
+                        "threshold": 85,
+                        "name": "TimeSeriesCriteria",
+                        "metricName": "ActiveTimeSeriesPercentUtilization",
+                        "operator": "GreaterThan",
+                        "timeAggregation": "Average",
+                        "criterionType": "StaticThresholdCriterion"
+                    }
+                ],
+                "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "actions": [
+                {
+                    "actionGroupId": "[parameters('actionGroupResourceId')]"
+                }
+            ]
+        }
+    },
+    {
+            "name": "[concat('AMW Is At High Risk Of Exceeding Event Ingestion Limit - ', variables('amwName'))]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "location": "global",
+            "tags": {
+                "alertRuleCreatedWithAlertsRecommendations": "true"
+            },
+            "properties": 
+            {
+                "description": "AMW Is At High Risk Of Exceeding Event Ingestion Limit - Request for an increase https://go.microsoft.com/fwlink/?linkid=2270124",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('azureMonitorWorkspaceResourceId')]"
+                ],
+                "evaluationFrequency": "PT5M",
+                "windowSize": "PT30M",
+                "criteria": {
+                    "allOf": [
+                    {
+                        "threshold": 95,
+                        "name": "EventsCriteria",
+                        "metricName": "EventsPerMinuteIngestedPercentUtilization",
+                        "operator": "GreaterThan",
+                        "timeAggregation": "Average",
+                        "criterionType": "StaticThresholdCriterion"
+                    }
+                ],
+                "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "actions": [
+                {
+                    "actionGroupId": "[parameters('actionGroupResourceId')]"
+                }
+            ]
+        }
+    },
+        {
+            "name": "[concat('AMW Is At High Risk Of Exceeding Active TimeSeries Ingestion Limit - ', variables('amwName'))]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "location": "global",
+            "tags": {
+                "alertRuleCreatedWithAlertsRecommendations": "true"
+            },
+            "properties": 
+            {
+                "description": "AMW Is At High Risk Of Exceeding Active TimeSeries Limit - Request for an increase https://go.microsoft.com/fwlink/?linkid=2270124",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('azureMonitorWorkspaceResourceId')]"
+                ],
+                "evaluationFrequency": "PT5M",
+                "windowSize": "PT30M",
+                "criteria": {
+                    "allOf": [
+                    {
+                        "threshold": 95,
+                        "name": "TimeSeriesCriteria",
+                        "metricName": "ActiveTimeSeriesPercentUtilization",
+                        "operator": "GreaterThan",
+                        "timeAggregation": "Average",
+                        "criterionType": "StaticThresholdCriterion"
+                    }
+                ],
+                "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "actions": [
+                {
+                    "actionGroupId": "[parameters('actionGroupResourceId')]"
+                }
+            ]
+        }
+    }
+  ]
+}
+```
+
+
+**Parameter file**: Update the Parameters.json file with the *Resource Id of the Azure Monitor Workspace* and the *Resource ID of the Action Group*
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "azureMonitorWorkspaceResourceId": {
+      "value": "<<ResourceID of the Azure Monitor Workspace>>"
+    },
+    "actionGroupResourceId": {
+      "value": "<<ResourceID of the Action Group>>"
+    }
+  }
+}
+```
+
+Run the below commands to execute the Resource Manager template deployment:
+
+For Azure CLI:
+
+```azurecli
+az login
+az account set --subscription <subscriptionId>
+az deployment group create --name AMWRecAlerts --resource-group <resourceGroupName> --template-file <<template-file-as-above.json>> --parameters <<parameter-file-from-above.json>>
+```
+
+For Azure PowerShell:
+
+```
+Connect-AzAccount
+New-AzResourceGroupDeployment -Name AMWRecAlerts -ResourceGroupName  <resourceGroupName> -TemplateFile <<template-file-as-above.json>> -TemplateParameterFile <<parameter-file-from-above.json>>
+```
+---
+
 
 ## Request for an increase in ingestion limits (Preview)
 
