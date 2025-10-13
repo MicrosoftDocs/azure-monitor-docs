@@ -82,7 +82,7 @@ To avoid this charge, you should filter ingested data using alternative methods 
 See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for pricing for log processing and log data ingestion.
 
 > [!IMPORTANT]
-> If Azure Sentinel is enabled for the Log Analytics workspace, there's no filtering ingestion charge regardless of how much data the transformation filters.
+> If Azure Sentinel is enabled on a Log Analytics workspace, when ingesting data into this workspace as Analytics Logs or Basic Logs tables, there is no filtering ingestion charge regardless of how much data the transformation filters.
 
 ## Next steps
 
