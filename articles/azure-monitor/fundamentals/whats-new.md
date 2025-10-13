@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 08/31/2025
+ms.date: 10/31/2025
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +10,19 @@ ms.date: 08/31/2025
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
+
+### September 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Application-Insights|[SDK Stats](../app/sdk-stats.md)|The SDK Stats Public Preview is available for Node.js and Python.|
+|Application-Insights|[Python deploy-as-code](../app/codeless-app-service.md?tabs=python#enable-application-insights)|Python deploy-as-code autoinstrumentation is now Generally Available (GA).|
+|Application-Insights|[Rate-limited sampling](../app/opentelemetry-configuration.md?tabs=nodejs#enable-sampling)|OpenTelemetry rate-limited sampling is now available for both Node.js and Python.|
+|Application-Insights|[.NET Classic API](../app/dotnet.md)|Classic API SDK information for .NET has been consolidated into a single article. Try the "Ask Learn" for AI assistance.|
+|Application-Insights|[Node.js Classic API](../app/nodejs.md)|Classic API SDK information for Node.js has been consolidated into a single article. Try the "Ask Learn" for AI assistance.|
+|Application-Insights|[Data collection, retention, storage, and privacy](../app/application-insights-faq.yml#how-does-application-insights-handle-data-collection--retention--storage--and-privacy)|Data collection, retention, storage, and privacy has been consolidated in the FAQ with additional granularity.|
+|Application-Insights|[Quarkus support](../app/opentelemetry-enable.md?tabs=java-native#install-the-client-library)|We've clarified Quarkus support across OpenTelemetry documentation and provided a link to get community assistance.|
+|Visualizations|[Visualize with Grafana](../visualize/visualize-grafana-overview.md)|We brought this feature forward as first choice over Managed Grafana.|
 
 ### August 2025
 
