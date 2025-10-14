@@ -69,6 +69,9 @@ See the [README](https://github.com/Azure/prometheus-collector/blob/main/AddonBi
 
 ---
 
+> [!TIP]
+> We recommend that you also enable recommended alerts for the Azure Monitor Workspace where Prometheus metrics are ingested into. These alerts enable you to monitor the ingestion limits and quotas, and avoid metrics throttling. To enable these recommended alerts, see [Set up recommended alerts for Azure Monitor Workspace](../metrics/azure-monitor-workspace-monitor-ingest-limits.md).
+
 
 ## Edit recommended alert rules
 

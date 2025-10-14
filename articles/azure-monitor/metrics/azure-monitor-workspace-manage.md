@@ -85,6 +85,10 @@ When you create an Azure Monitor workspace, a new resource group is created. The
  
 To connect your Azure Monitor managed service for Prometheus to your Azure Monitor workspace, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md)
 
+> [!TIP]
+> We recommend that you enable recommended alerts for your Azure Monitor Workspace to monitor the ingestion limits and quotas. To enable the recommended alerts, see [here](azure-monitor-workspace-monitor-ingest-limits.md).
+
+
 ## Access mode
 Similar to [Log Analytics workspace](../logs/manage-access.md), Azure Monitor Workspaces offer a resource-context access mode to enable more granular Azure RBAC resource-permissions for users querying data in a workspace. This provides the following benefits:
 
