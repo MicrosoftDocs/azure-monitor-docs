@@ -266,7 +266,7 @@ The same **Essentials** section has a **JSON View** that displays the replicatio
 
 Azure Monitor Agent, the Logs Ingestion API, and Azure Event Hubs collect data and send it to the destination you specify based on how you set up your [data collection rules (DCR)](../data-collection/data-collection-rule-overview.md).
 
-If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The name of the workspace data collection endpoint is identical to your workspace ID. Only data collection rules you associate to the workspace data collection endpoint enable replication and switchover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
+If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The name of the workspace data collection endpoint is identical to your workspace ID. Only data collection rules you associate to the workspace data collection endpoint ensure ingestion continues during a failover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
 
 To replicate data you collect using data collection rules, associate your data collection rules to the workspace data collection endpoint:
 
