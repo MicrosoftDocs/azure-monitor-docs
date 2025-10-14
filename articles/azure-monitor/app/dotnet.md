@@ -764,7 +764,7 @@ The full example is shared at this [GitHub page](https://github.com/microsoft/Ap
                     IServiceCollection services = new ServiceCollection();
     
                     // Being a regular console app, there is no appsettings.json or configuration providers enabled by default.
-                    // Hence instrumentation key/ connection string and any changes to default logging level must be specified here.
+                    // Hence connection string and any changes to default logging level must be specified here.
                     services.AddLogging(loggingBuilder => loggingBuilder.AddFilter<Microsoft.Extensions.Logging.ApplicationInsights.ApplicationInsightsLoggerProvider>("Category", LogLevel.Information));
                     services.AddApplicationInsightsTelemetryWorkerService((ApplicationInsightsServiceOptions options) => options.ConnectionString = "InstrumentationKey=<instrumentation key here>");
     
