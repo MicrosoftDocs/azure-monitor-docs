@@ -23,10 +23,10 @@ Operations center is organized into five pillars that correspond to the [pillars
 
 | Area |Description | Services |
 |:---|:---|:---|
-| Observability | Provides a deep understanding of a system to diagnose and resolve unknown or complex problems. | [Azure Monitor]()<br>[Service health]() |
+| Monitor | Provides a deep understanding of a system to diagnose and resolve unknown or complex problems. | [Azure Monitor]()<br>[Service health]() |
 | Security | Protect systems and data. | [Defender for Cloud ]() |
-| Configuration | Defining standards, assessing compliance, and changing the settings of a system. | [Business continuity center]()<br>[Backup]()<br>[Site Recovery]() |
 | Resiliency | Emphasizes the systems ability to recover from failures and maintain functionality | [Policy]()<br>[Machine configuration]()<br>[Update management]()<br>[Change tracking + inventory]() | 
+| Configuration | Defining standards, assessing compliance, and changing the settings of a system. | [Business continuity center]()<br>[Backup]()<br>[Site Recovery]() |
 | Optimization | Finds the best possible solution within given constraints, improving factors like cost, performance, and carbon emissions. | [Cost optimization]()<br>[Carbon emissions]() |
 
 
