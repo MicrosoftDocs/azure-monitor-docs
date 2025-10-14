@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -42,13 +42,14 @@ High availability of SAP while used with Azure NetApp Files relies on setting pr
 
 **Impact:** High
   
-For more information, see [Get started with SAP on Azure VMs ](/azure/sap/workloads/get-started)  
+For more information, see [Get started with SAP on Azure VMs](/azure/sap/workloads/get-started)  
 
 ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: 8754f0ed-c82a-497e-be31-c9d701c976e1  
-Subcategory: Other
+Subcategory: undefined
 
 <!--8754f0ed-c82a-497e-be31-c9d701c976e1_end-->
+
 
 <!--cda11061-35a8-4ca3-aa03-b242dcdf7319_begin-->
 
@@ -64,7 +65,7 @@ For more information, see [How Azure NetApp Files snapshots work](/azure/azure-n
 
 ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: cda11061-35a8-4ca3-aa03-b242dcdf7319  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--cda11061-35a8-4ca3-aa03-b242dcdf7319_end-->
 
@@ -72,23 +73,25 @@ Subcategory: DisasterRecovery
 
 
 
+
 <!--e4bebd74-387a-4a74-b757-475d2d1b4e3e_begin-->
 
-#### Azure Netapp Files - Enable Continuous Availability for SMB Volumes  
+#### Enable SMB volume for Azure Netapp Files to enable Continuous Availability  
   
-For Continuous Availability, we recommend enabling Server Message Block (SMB) volume for your Azure Netapp Files.  
+For Continuous Availability, the platform recommends enabling Server Message Block (SMB) volume for Azure Netapp Files.  
   
-**Potential benefits**: Prevent application disruptions by enabling Continuous Availability for SMB volumes  
+**Potential benefits**: Prevent application disruptions for SMB volumes  
 
 **Impact:** High
   
-For more information, see [Enable Continuous Availability on existing Azure NetApp Files SMB volumes ](https://aka.ms/anfdoc-continuous-availability)  
+For more information, see [Enable Continuous Availability on existing Azure NetApp Files SMB volumes](https://aka.ms/anfdoc-continuous-availability)  
 
 ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: e4bebd74-387a-4a74-b757-475d2d1b4e3e  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--e4bebd74-387a-4a74-b757-475d2d1b4e3e_end-->
+
 
 <!--c70fc854-2814-4b03-9b93-8ad7b918bfcf_begin-->
 
