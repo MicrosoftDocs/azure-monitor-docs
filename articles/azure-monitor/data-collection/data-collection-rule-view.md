@@ -16,6 +16,9 @@ View all of the DCRs in your subscription from the **Data Collection Rules** opt
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-rules.png" lightbox="media/data-collection-rule-overview/data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal.":::
 
+> [!TIP]
+> For details on how to view the associations between a DCR and the resources using it, see [Manage data collection rule associations in Azure Monitor](./data-collection-rule-associations.md).
+
 ## DCR visualizer (preview)
 The *DCR visualizer* provides an interactive view of the data flows defined within a DCR and the resources associated with those flows. This feature helps you quickly understand how data is collected and where it’s sent. 
 

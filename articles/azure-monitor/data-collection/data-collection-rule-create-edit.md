@@ -46,6 +46,9 @@ In addition to editing an existing DCR, you can create a new one using one of th
 
 Once you have the definition of your DCR, you can deploy it to Azure Monitor using the Azure portal, CLI, PowerShell, API, or ARM templates. 
 
+> [!TIP]
+> To view the JSON definition of a DCR, see [View DCR definition](./data-collection-rule-view.md#view-dcr-definition).
+
 ### [CLI](#tab/cli)
 
 ### Create or edit DCR with CLI

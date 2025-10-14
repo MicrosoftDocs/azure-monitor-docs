@@ -753,8 +753,11 @@ items:
   - name: Data collection rules (DCR)
     items:
     - name: Overview
-      displayName: data collection rule, dcr, Azure Monitor pipeline
+      displayName: data collection rule, dcr
       href: data-collection/data-collection-rule-overview.md
+    - name: View
+      displayName: data collection rule, dcr
+      href: data-collection/data-collection-rule-view.md    
     - name: Create DCRs
       items:
       - name: Create and edit
