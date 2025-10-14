@@ -291,7 +291,7 @@ Search jobs are intended to scan large volumes of data in a specific table, so s
 
 All functions and binary operators within these operators are usable.
 
-Advanced text matches have more impact on performance, so the [`contains`](/azure/data-explorer/kusto/query/contains-operator) string operator is not supported in search jobs. Instead, use the [`has`](/azure/data-explorer/kusto/query/has-operator) operator to search for strings longer than four characters. For more information, see [Optimize log queries in Azure Monitor](../logs/query-optimization#use-effective-aggregation-commands-and-dimensions-in-summarize-and-join).
+Advanced text matches have more impact on performance, so the [`contains`](/azure/data-explorer/kusto/query/contains-operator) string operator is not supported in search jobs. Instead, use the [`has`](/azure/data-explorer/kusto/query/has-operator) operator to search for strings longer than four characters. For more information, see [Optimize log queries in Azure Monitor](../logs/query-optimization.md#use-effective-aggregation-commands-and-dimensions-in-summarize-and-join).
 
 
 ## Pricing model
