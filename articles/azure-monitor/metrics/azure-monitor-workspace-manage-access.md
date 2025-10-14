@@ -76,62 +76,15 @@ The *access control mode* is a setting on each workspace that defines how permis
 
 ### Configure access control mode for a workspace
 
-# [Azure portal](#tab/portal)
-
-View the current workspace access control mode on the **Overview** page for the workspace in the **Azure Monitor workspace** menu.
-
-Change this setting on the **Properties** page of the workspace. If you don't have permissions to configure the workspace, changing the setting is disabled.
-
-# [PowerShell](#tab/powershell)
-
-Use the following command to view the access control mode for all workspaces in the subscription:
-
-```powershell
-Get-AzResource -ResourceType Microsoft.monitor/accounts -ExpandProperties | foreach {$_.Name + ": " + $_.Properties.features.enableAccessUsingResourcePermissions}
-```
-
-The output should resemble the following:
-
-```
-DefaultWorkspace38917: True
-DefaultWorkspace21532: False
-```
-
-A value of `False` means the workspace is configured with *workspace-context* access mode. A value of `True` means the workspace is configured with *resource-context* access mode.
-
-> [!NOTE]
-> If a workspace is returned without a Boolean value and is blank, this result also matches the results of a `False` value.
-
-Use the following script to set the access control mode for a specific workspace to *resource-context* access mode:
-
-```powershell
-$WSName = "my-workspace"
-$Workspace = Get-AzResource -Name $WSName -ExpandProperties
-if ($Workspace.Properties.features.enableAccessUsingResourcePermissions -eq $null)
-    { $Workspace.Properties.features | Add-Member enableAccessUsingResourcePermissions $true -Force }
-else
-    { $Workspace.Properties.features.enableAccessUsingResourcePermissions = $true }
-Set-AzResource -Properties $Workspace.Properties -Force
-```
-
-Use the following script to set the access control mode for all workspaces in the subscription to *resource-context* access mode:
-
-```powershell
-Get-AzResource -ResourceType Microsoft.monitor/accounts -ExpandProperties | foreach {
-if ($_.Properties.features.enableAccessUsingResourcePermissions -eq $null)
-    { $_.Properties.features | Add-Member enableAccessUsingResourcePermissions $true -Force }
-else
-    { $_.Properties.features.enableAccessUsingResourcePermissions = $true }
-Set-AzResource -Properties $_.Properties -Force
-}
-```
-
-# [Resource Manager](#tab/arm)
+## Resource Manager
 
 To configure the access mode in an Azure Resource Manager template, set the **enableAccessUsingResourcePermissions** feature flag on the workspace to one of the following values:
 
 * **false**: Set the workspace to *workspace-context* permissions. This setting is the default if the flag isn't set.
 * **true**: Set the workspace to *resource-context* permissions.
+
+    > [!NOTE]
+    > An ARM template is the only method currently supported to configure access control for an Azure Monitor workspace.
 
 ---
 

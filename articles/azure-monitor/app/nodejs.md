@@ -29,7 +29,7 @@ Complete the following tasks to set up monitoring for an app or service.
 
 ### Prerequisites
 
-Before you begin, make sure that you have an Azure subscription, or [get a new one for free](https://azure.microsoft.com/free/). If your organization already has an Azure subscription, an administrator can follow [these instructions](/azure/active-directory/fundamentals/add-users-azure-active-directory) to add you to it.
+Before you begin, make sure that you have an Azure subscription, or [get a new one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If your organization already has an Azure subscription, an administrator can follow [these instructions](/azure/active-directory/fundamentals/add-users-azure-active-directory) to add you to it.
 
 ### Set up an Application Insights resource
 
@@ -417,6 +417,29 @@ function removeStackTraces ( envelope, context ) {
 }
 
 appInsights.defaultClient.addTelemetryProcessor(removeStackTraces);
+```
+
+#### Add a cloud role name and cloud role instance
+
+**Set cloud role name via direct context tags:**
+
+```javascript
+var appInsights = require("applicationinsights");
+appInsights.setup('INSTRUMENTATION_KEY').start();
+appInsights.defaultClient.context.tags["ai.cloud.role"] = "your role name";
+appInsights.defaultClient.context.tags["ai.cloud.roleInstance"] = "your role instance";
+```
+
+**Set cloud role name via telemetry processor:**
+
+```javascript
+var appInsights = require("applicationinsights");
+appInsights.setup('INSTRUMENTATION_KEY').start();
+
+appInsights.defaultClient.addTelemetryProcessor(envelope => {
+    envelope.tags["ai.cloud.role"] = "your role name";
+    envelope.tags["ai.cloud.roleInstance"] = "your role instance"
+});
 ```
 
 ## Use multiple connection strings

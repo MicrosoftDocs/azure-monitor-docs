@@ -524,7 +524,7 @@ items:
             - name: Scale using KEDA
               href: containers/integrate-keda.md
               displayName: Prometheus
-          displayName: Prometheutheus-metricss
+          displayName: Prometheus-metrics
         - name: Send to multiple metric workspaces
           href: containers/prometheus-metrics-multiple-workspaces.md
           displayName: Prometheus
@@ -992,8 +992,6 @@ items:
     items:
     - name: Overview of Azure Monitor Metrics
       href: metrics/data-platform-metrics.md
-    - name: Custom metrics
-      href: metrics/metrics-custom-overview.md
     - name: Prometheus metrics
       items:
       - name: Overview
@@ -1017,8 +1015,10 @@ items:
           - name: Overview
             href: metrics/azure-monitor-workspace-overview.md
             displayName: Prometheus
-          - name: Manage
+          - name: Create an Azure Monitor workspace
             href: metrics/azure-monitor-workspace-manage.md
+          - name: Manage access
+            href: metrics/azure-monitor-workspace-manage-access.md
             displayName: Prometheus
           - name: Monitor metrics ingestion limits
             href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
@@ -1044,6 +1044,10 @@ items:
           - name: Query using the API and PromQL
             href: metrics/prometheus-api-promql.md
             displayName: Prometheus
+          - name: OpenTelemetry Guest OS metrics (preview)
+            href: metrics/metrics-opentelemetry-guest.md
+          - name: Custom metrics
+            href: metrics/metrics-custom-overview.md
   - name: Logs
     items:
     - name: Overview

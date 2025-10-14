@@ -28,7 +28,7 @@
       href: service-health-notifications-properties.md
     - name: View and access Security advisories
       href: security-advisories-elevated-access.md
-    - name: View and manage Azure security issues
+    - name: Manage Azure security notifications
       href: stay-informed-security.md
     - name: View Health advisories
       href: Service-health-advisories.md
