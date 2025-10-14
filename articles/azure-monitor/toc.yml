@@ -755,7 +755,7 @@ items:
     - name: Overview
       displayName: data collection rule, dcr
       href: data-collection/data-collection-rule-overview.md
-    - name: View
+    - name: View DCRs
       displayName: data collection rule, dcr
       href: data-collection/data-collection-rule-view.md    
     - name: Create DCRs
