@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Application Gateway
@@ -86,9 +86,9 @@ Recommendation ID: 80b35b4e-1e5c-4ddf-835e-a774ce2ab81e
 
 <!--db00ef71-91ab-418a-a2ea-da45a678bb34_begin-->
 
-#### Firewall policy is reaching IP Group limitations.  
+#### Firewall policy is reaching limitation of 600 IP Groups  
   
-Your Azure Firewall policy is reaching or exceeding the 200 IP Groups maximum. Consider reducing the quantity, adjusting the IP Group, or adjusting rule configurations to prevent performance and latency issues.  
+The Azure Firewall policy is reaching or exceeded the maximum limit of 600 IP Groups. Prevent performance and latency issues by reducing the quantity of IP Groups, adjusting the IP Group, or adjusting rule configurations.  
   
 **Potential benefits**: Ensure Azure Firewall is configured to optimize performance.  
 
@@ -101,6 +101,7 @@ Recommendation ID: db00ef71-91ab-418a-a2ea-da45a678bb34
 
 
 <!--db00ef71-91ab-418a-a2ea-da45a678bb34_end-->
+
 
 <!--241b9d61-3657-4096-85c3-83ad2a5f36e2_begin-->
 
