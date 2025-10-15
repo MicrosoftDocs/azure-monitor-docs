@@ -41,11 +41,11 @@ There are several options how to sort the information at the top of the pane.
 
 :::image type="content" source="./media/service-health-history/health-history-filter.png" alt-text="Screenshot of Service health sorting options." lightbox="./media/service-health-history/health-history-filter.png":::
 
-- Scope: tenant or subscription
-- Subscription: your subscription id
-- Region: the region where your resources are
-- Health event type: All, Service issue, Planned Maintenance, Health Advisory, Security Advisory, Billing
-- Time Range: the last 24 hours up to the last three months
+- **Scope**: By Tenant or Subscription
+- **Subscription**: Your Subscription id
+- **Region**: The region where your resources are located
+- **Health event type**: All, Service issue, Planned Maintenance, Health Advisory, Security Advisory or Billing
+- **Time Range**: The last 24 hours up to the last three months
 
 ### Health history common use cases and features
 
