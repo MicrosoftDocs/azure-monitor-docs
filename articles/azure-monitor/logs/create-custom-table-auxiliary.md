@@ -40,7 +40,7 @@ PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/
 ```
 
 > [!NOTE]
-> Only version `2023-01-01-preview` of the API currently lets you set the Auxiliary table plan.
+> Only version `2023-01-01-preview` of the API allows you to set the Auxiliary table plan.
 
 Provide this payload as the body of your request. Update the table name and adjust the columns based on your table schema. This sample lists all the supported column data types.
 
@@ -50,38 +50,22 @@ Provide this payload as the body of your request. Update the table name and adju
         "schema": {
             "name": "table_name_CL",
             "columns": [
-                {
-                    "name": "TimeGenerated",
-                    "type": "datetime"
-                },
-                {
-                    "name": "StringProperty",
-                    "type": "string"
-                },
-                {
-                    "name": "IntProperty",
-                    "type": "int"
-                },
-                 {
-                    "name": "LongProperty",
-                    "type": "long"
-                },
-                 {
-                    "name": "RealProperty",
-                    "type": "real"
-                },
-                 {
-                    "name": "BooleanProperty",
-                    "type": "boolean"
-                },
-                 {
-                    "name": "GuidProperty",
-                    "type": "guid"
-                },
-                 {
-                    "name": "DateTimeProperty",
-                    "type": "datetime"
-                }
+                {"name": "TimeGenerated",
+                 "type": "datetime"},
+                {"name": "StringProperty",
+                 "type": "string"},
+                {"name": "IntProperty",
+                 "type": "int"},
+                {"name": "LongProperty",
+                 "type": "long"},
+                {"name": "RealProperty",
+                 "type": "real"},
+                {"name": "BooleanProperty",
+                 "type": "boolean"},
+                {"name": "GuidProperty",
+                 "type": "guid"},
+                {"name": "DateTimeProperty",
+                 "type": "datetime"}
             ]
         },
         "totalRetentionInDays": 365,
@@ -192,11 +176,11 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
 1. Send data using [sample code](tutorial-logs-ingestion-code.md).
 
 > [!WARNING]
-> When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. Doing so might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits#logs-ingestion-api), and we're working to remove it.
+> When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. This API call might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed.
+>
+> This restriction does not apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md).
 
 ## Related content
-
-Learn more about:
 
 * [Azure Monitor Logs table plans](data-platform-logs.md#table-plans)
 * [Collecting logs with the Log Ingestion API](logs-ingestion-api-overview.md)
