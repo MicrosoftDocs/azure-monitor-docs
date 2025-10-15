@@ -96,23 +96,28 @@ Provide this payload as the body of your request. Update the table name and adju
 
 ## Send data to a table with the Auxiliary plan
 
-There are currently two ways to ingest data to a custom table with the Auxiliary plan:
+There are currently two ways to ingest data to a custom table with the Auxiliary plan. 
+* Use the Azure Monitor Agent (AMA)
+* Use the logs ingestion API
 
-* [Collect logs from a text file with Azure Monitor Agent](../agents/data-collection-log-text.md) / [Collect logs from a JSON file with Azure Monitor Agent](../agents/data-collection-log-json.md).
+### Use the AMA
 
-    If you use this method, your custom table must only have two columns - `TimeGenerated` and `RawData` (of type `string`). The data collection rule sends the entirety of each log entry you collect to the `RawData` column, and Azure Monitor Logs automatically populates the `TimeGenerated` column with the time the log is ingested.
+If you use this method, your custom table must only have two columns - `TimeGenerated` (type `datetime`) and `RawData` (of type `string`). The data collection rule sends the entirety of each log entry you collect to the `RawData` column, and Azure Monitor Logs automatically populates the `TimeGenerated` column with the time the log is ingested.
 
-* Send data to Azure Monitor using Logs ingestion API.
+For more information on how to use the AMA, see the following articles:
+* [Collect logs from a text file with Azure Monitor Agent](../agents/data-collection-log-text.md)
+* [Collect logs from a JSON file with Azure Monitor Agent](../agents/data-collection-log-json.md).
 
-    To use this method:
+### Use the logs ingestion API
 
-    1. [Create a custom table with the Auxiliary plan](#create-a-custom-table-with-the-auxiliary-plan) as described in this article.
+This method closely follows the steps described in [Tutorial: Send data to Azure Monitor using Logs ingestion API](tutorial-logs-ingestion-api.md).
 
-    1. Follow the steps described in [Tutorial: Send data to Azure Monitor using Logs ingestion API](tutorial-logs-ingestion-api.md) to:
-
-        1. [Create a Microsoft Entra application](tutorial-logs-ingestion-api.md#create-microsoft-entra-application).
-
-        1. [Create a data collection rule](tutorial-logs-ingestion-api.md#create-data-collection-rule) using this ARM template.
+1. [Create a custom table with the Auxiliary plan](#create-a-custom-table-with-the-auxiliary-plan) as described in this article.
+1. [Create a Microsoft Entra application](tutorial-logs-ingestion-api.md#create-microsoft-entra-application).
+1. [Create a data collection rule](tutorial-logs-ingestion-api.md#create-data-collection-rule). Here's a sample ARM template for `kind`: `Direct`. This type of DCR doesn't require a DCE since it includes a `logsIngestion` endpoint.
+   * `myworkspace` is the name of your Log Analytics workspace.
+   * `tablename_CL` is the name of your table.
+   * `columns` includes the same columns you set in the creation of the table.
 
         ```json
         {
@@ -121,21 +126,15 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
             "parameters": {
                 "dataCollectionRuleName": {
                     "type": "string",
-                    "metadata": {
-                        "description": "Specifies the name of the data collection rule to create."
-                    }
+                    "metadata": {"description": "Specifies the name of the data collection rule to create."}
                 },
                 "location": {
                     "type": "string",
-                    "metadata": {
-                        "description": "Specifies the region in which to create the data collection rule. The must be the same region as the destination Log Analytics workspace."
-                    }
+                    "metadata": {"description": "Specifies the region in which to create the data collection rule. The must be the same region as the destination Log Analytics workspace."}
                 },
                 "workspaceResourceId": {
                     "type": "string",
-                    "metadata": {
-                        "description": "The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan."
-                    }
+                    "metadata": {"description": "The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan."}
                 }
             },
             "resources": [
@@ -147,64 +146,40 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
                     "kind": "Direct",
                     "properties": {
                         "streamDeclarations": {
-                            "Custom-table_name_CL": {
+                            "Custom-tablename_CL": {
                                 "columns": [
-                                    {
-                                        "name": "TimeGenerated",
-                                        "type": "datetime"
-                                    },
-                                    {
-                                        "name": "StringProperty",
-                                        "type": "string"
-                                    },
-                                    {
-                                        "name": "IntProperty",
-                                        "type": "int"
-                                    },
-                                    {
-                                        "name": "LongProperty",
-                                        "type": "long"
-                                    },
-                                    {
-                                        "name": "RealProperty",
-                                        "type": "real"
-                                    },
-                                    {
-                                        "name": "BooleanProperty",
-                                        "type": "boolean"
-                                    },
-                                    {
-                                        "name": "GuidProperty",
-                                        "type": "guid"
-                                    },
-                                    {
-                                        "name": "DateTimeProperty",
-                                        "type": "datetime"
-                                    }
-                                        ]
+                                    {"name": "TimeGenerated",
+                                     "type": "datetime"},
+                                    {"name": "StringProperty",
+                                     "type": "string"},
+                                    {"name": "IntProperty",
+                                     "type": "int"},
+                                    {"name": "LongProperty",
+                                     "type": "long"},
+                                    {"name": "RealProperty",
+                                     "type": "real"},
+                                    {"name": "BooleanProperty",
+                                     "type": "boolean"},
+                                    {"name": "GuidProperty",
+                                     "type": "guid"},
+                                    {"name": "DateTimeProperty",
+                                     "type": "datetime"}]
                                         }
                                     },
                         "destinations": {
                             "logAnalytics": [
-                                {
-                                    "workspaceResourceId": "[parameters('workspaceResourceId')]",
-                                    "name": "myworkspace"
-                                }
-                            ]
+                                {"workspaceResourceId": "[parameters('workspaceResourceId')]",
+                                 "name": "myworkspace"}]
                         },
                         "dataFlows": [
                             {
-                                "streams": [
-                                    "Custom-table_name_CL"
-                                ],
-                                "destinations": [
-                                    "myworkspace"
-                                ]
-                            }
-                        ]
+                                "streams": ["Custom-table_name"],
+                                "transformKql": "source",
+                                "destinations": ["myworkspace"],
+                                "outputStream": "Custom-tablename-CL"
+                            }]
                     }
-                }
-            ],
+                }],
             "outputs": {
                 "dataCollectionRuleId": {
                     "type": "string",
@@ -213,16 +188,11 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
             }
         }
         ```
+1. [Grant your application permission to use your DCR](tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
+1. Send data using [sample code](tutorial-logs-ingestion-code.md).
 
-        Where:
-
-        * `myworkspace` is the name of your Log Analytics workspace.
-        * `table_name_CL` is the name of your table.
-        * `columns` includes the same columns you set in [Create a custom table with the Auxiliary plan](#create-a-custom-table-with-the-auxiliary-plan).
-    
-    1. [Grant your application permission to use your DCR](tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
-
-
+> [!WARNING]
+> When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. Doing so might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits#logs-ingestion-api), and we're working to remove it.
 
 ## Related content
 
