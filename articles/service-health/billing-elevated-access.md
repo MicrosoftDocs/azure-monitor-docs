@@ -19,7 +19,7 @@ To help you track billing changes, the communication includes updates that relat
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-2.png"alt-text="A screenshot of in-portal billing main pane with more information."Lightbox="./media/billing-elevated-access/in-portal-billing-2.png":::
 
 
-The **Billing pdates** pane includes billing communication types such as:
+The **Billing updates** pane includes billing communication types such as:
 
 - Overbilling notifications
 - Underbilling notifications
@@ -39,7 +39,7 @@ You can view up to three months of billing updates in the user interface and ret
 
 The detail pages for billing communication event types appear in the **Billing Updates** pane in [Service Health](service-health-overview.md). Only users with elevated access can open the pane.
 
-To view the **Billing pdates** pane, you need to have access as one of the following roles:
+To view the **Billing updates** pane, you need to have access as one of the following roles:
 
 - Subscription owner
 - Subscription contributor
