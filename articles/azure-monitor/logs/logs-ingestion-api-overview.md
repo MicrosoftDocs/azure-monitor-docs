@@ -173,6 +173,11 @@ For example:
 
 Ensure that the request body is properly encoded in UTF-8 to prevent any issues with data transmission.
 
+> [!WARNING]
+> When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. This API call might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed.
+>
+> This restriction does not apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md).
+
 ### Example
 
 See [Sample code to send data to Azure Monitor using Logs ingestion API](tutorial-logs-ingestion-code.md?tabs=powershell#sample-code) for an example of the API call using PowerShell.
