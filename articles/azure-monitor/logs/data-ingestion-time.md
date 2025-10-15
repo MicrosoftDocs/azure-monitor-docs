@@ -108,6 +108,11 @@ This process currently takes about 5 minutes when there's a low volume of data, 
 
 Ingestion time might vary for different resources under different circumstances. You can use log queries to identify specific behavior of your environment. The following table specifies how you can determine the different times for a record as it's created and sent to Azure Monitor.
 
+> [!WARNING]
+> When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. This API call might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed.
+>
+> This restriction does not apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md).
+
 | Step | Property or function | Comments |
 |:-----|:---------------------|:---------|
 | Record created at data source | [TimeGenerated](log-standard-columns.md#timegenerated) | The TimeGenerated value can't be more than two days before the received time or more than a day in the future. Otherwise, Azure Monitor Logs replaces the TimeGenerated value with the actual received time.<br>If the data source doesn't set this value, Azure Monitor Logs sets the value to the same time as _TimeReceived. |
