@@ -1,5 +1,5 @@
 ---
-title: Service Issues notifications
+title: Service Issues overview
 description: This article describes how to view and use the Service Issues pane
 ms.topic: overview
 ms.date: 10/15/2025
