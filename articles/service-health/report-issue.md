@@ -13,7 +13,8 @@ When you submit an issue, our team reviews the submitted report, and if an outag
 
 ## Access permission
 
-You don’t  need to be a subscription owner or an administrator to report service-level issues.<br>
+You don’t  need to be a subscription owner or an administrator to report service-level issues.
+
 To generate resource-level impact reports, ensure the following prerequisites are met:
 
 - **Register the Microsoft.Impact resource provider** in your Azure subscription.
