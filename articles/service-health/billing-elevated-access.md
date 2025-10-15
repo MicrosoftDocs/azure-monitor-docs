@@ -2,7 +2,7 @@
 title: In-portal Billing Communications
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 7/24/2025
+ms.date: 10/15/2025
 ---
 
 # In-portal Billing Communications
@@ -19,7 +19,7 @@ To help you track billing changes, the communication includes updates that relat
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-2.png"alt-text="A screenshot of in-portal billing main pane with more information."Lightbox="./media/billing-elevated-access/in-portal-billing-2.png":::
 
 
-The **Billing Updates** pane includes billing communication types such as:
+The **Billing pdates** pane includes billing communication types such as:
 
 - Overbilling notifications
 - Underbilling notifications
@@ -39,7 +39,7 @@ You can view up to three months of billing updates in the user interface and ret
 
 The detail pages for billing communication event types appear in the **Billing Updates** pane in [Service Health](service-health-overview.md). Only users with elevated access can open the pane.
 
-To view the **Billing Updates** pane, you need to have access as one of the following roles:
+To view the **Billing pdates** pane, you need to have access as one of the following roles:
 
 - Subscription owner
 - Subscription contributor
@@ -51,7 +51,7 @@ Users without access see a message at the top of the pane.
 
 ## How to view billing events
 
-Azure customers with any of the elevated accesses defined here can view billing communication events through the **Billing Updates pane**  in the [Service Health](service-health-overview.md) portal, and through the API access to retrieve billing event data,
+Azure customers with any of the elevated accesses defined here can view billing communication events through the **Billing updates** pane  in the [Service Health](service-health-overview.md) portal, and through the API access to retrieve billing event data,
   
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-details.png"alt-text="A screenshot of Billing event details."Lightbox="./media/billing-elevated-access/in-portal-billing-details.png":::
 
