@@ -2,7 +2,7 @@
 title: Report an issue in Azure Service Health 
 description: Learn how to access and report an issue in Azure Service Health.
 ms.topic: overview
-ms.date: 09/08/2025
+ms.date: 10/15/2025
 ---
 
 # How to report an issue in Azure Service Health (Preview)
@@ -26,8 +26,6 @@ To report a single issue, you must have the correct permission.
 >This option to report an issue isn't available on the Billing panel.
 
 ## How to report a resource-level issue
-
-
 
 To report an issue, follow these steps.
 1. Select **Report an Issue**.
