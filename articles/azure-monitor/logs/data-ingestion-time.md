@@ -1,15 +1,15 @@
 ---
 title: Log data ingestion time in Azure Monitor | Microsoft Docs
 description: This article explains the different factors that affect latency in collecting log data in Azure Monitor.
-ms.topic: how-to
+ms.topic: conceptual
 ms.reviewer: ivkhrul
-ms.date: 11/21/2024
+ms.date: 10/15/2025
 
 ---
 
 # Log data ingestion time in Azure Monitor
 
-Azure Monitor is a high-scale data service that serves thousands of customers that send terabytes of data each month at a growing pace. There are often questions about the time it takes for log data to become available after it's collected. This article explains the different factors that affect this latency.
+Azure Monitor is a high-scale data service for thousands of customers that send terabytes of data each month and continues to grow. Understanding the time it takes for log data to become available after it's collected, and the factors that affect this latency is a concept this article explains.
 
 ## Average latency
 
@@ -106,7 +106,7 @@ This process currently takes about 5 minutes when there's a low volume of data, 
 
 ## Check ingestion time
 
-Ingestion time might vary for different resources under different circumstances. You can use log queries to identify specific behavior of your environment. The following table specifies how you can determine the different times for a record as it's created and sent to Azure Monitor.
+Ingestion time might vary for different resources under different circumstances. Use log queries to identify specific behavior of your environment. The following table specifies how you can determine the different times for a record as it's created and sent to Azure Monitor. For more information about log queries, see [Overview of Log Analytics](log-analytics-overview.md).
 
 > [!WARNING]
 > When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. This API call might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed.
