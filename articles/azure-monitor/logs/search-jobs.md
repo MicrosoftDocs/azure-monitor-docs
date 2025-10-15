@@ -2,7 +2,7 @@
 title: Run search jobs in Azure Monitor
 description: Search jobs are asynchronous log queries in Azure Monitor that make results available as a table for further analytics.
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 10/14/2025
 ms.custom: references_regions
 ms.reviewer: adi.biran
 # Customer intent: As a data scientist or workspace administrator, I want an efficient way to search through large volumes of data in a table, including data in long-term retention.
@@ -277,7 +277,7 @@ When you reach the record limit, Azure aborts the job with a status of *partial 
 
 ### KQL query considerations
 
-Search jobs are intended to scan large volumes of data in a specific table, so search job queries must always start with a table name. To enable asynchronous execution using distribution and segmentation, the query supports a subset of KQL, including these operators: 
+Search jobs are intended to scan large volumes of data in a specific table, so search job queries must always start with a table name. To enable asynchronous execution using distribution and segmentation, the query supports a subset of KQL, including these tabular operators: 
 
 * [`where`](/azure/data-explorer/kusto/query/whereoperator)
 * [`extend`](/azure/data-explorer/kusto/query/extendoperator)
@@ -290,6 +290,9 @@ Search jobs are intended to scan large volumes of data in a specific table, so s
 * [`parse-where`](/azure/data-explorer/kusto/query/parse-where-operator)
 
 All functions and binary operators within these operators are usable.
+
+The [`contains`](/azure/data-explorer/kusto/query/contains-operator) string operator is blocked from use in search jobs since advanced text matches have significant impact on performance. Instead, use the [`has`](/azure/data-explorer/kusto/query/has-operator) string operator. For more information on performance considerations, see [Optimize log queries in Azure Monitor](../logs/query-optimization.md#use-effective-aggregation-commands-and-dimensions-in-summarize-and-join).
+
 
 ## Pricing model
 
