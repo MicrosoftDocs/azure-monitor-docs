@@ -4,6 +4,7 @@ description: Learn about the limits of each type of workbook data source.
 ms.topic: limits-and-quotas
 ms.date: 10/16/2025
 ms.reviewer: gardnerjr
+---
 
 # Workbooks result limits
 

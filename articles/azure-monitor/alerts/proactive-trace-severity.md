@@ -4,6 +4,7 @@ description: Monitor application traces with Azure Application Insights for unus
 ms.topic: how-to
 ms.date: 10/16/2025
 ms.reviewer: yagil
+---
 
 # Degradation in trace severity ratio (preview)
 
