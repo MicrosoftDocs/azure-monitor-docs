@@ -1,12 +1,12 @@
 ---
-title: Machine enrollment in Azure Operations center
+title: Machine enrollment in Azure Operations center (preview)
 description: Guidance for using machine enrollment in Azure Operations center to streamline onboarding and configuration of virtual machines.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
 
 
-# Machine enrollment in Azure operations center
+# Machine enrollment in Azure operations center (preview)
 
 The machine enrollment feature in [Azure operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. This article describes the features that are enabled by this feature and how to enable it for your subscriptions.
 
