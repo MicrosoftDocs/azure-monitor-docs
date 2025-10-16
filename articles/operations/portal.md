@@ -38,7 +38,7 @@ Operations center is organized into five pillars that correspond to the [pillars
 
 ## Security pillar
 
-:::image type="content" source="./media/portal/monitor-security.png" lightbox="./media/portal/monitor-security.png" alt-text="Screenshot of Security menu in the Azure portal":::
+:::image type="content" source="./media/portal/security-pillar.png" lightbox="./media/portal/security-pillar.png" alt-text="Screenshot of Security menu in the Azure portal":::
 
 | Menu | Description |
 |:---|:---|
@@ -51,7 +51,7 @@ Operations center is organized into five pillars that correspond to the [pillars
 
 ## Resiliency pillar
 
-:::image type="content" source="./media/portal/monitor-resiliency.png" lightbox="./media/portal/monitor-resiliency.png" alt-text="Screenshot of Resiliency menu in the Azure portal":::
+:::image type="content" source="./media/portal/resiliency-pillar.png" lightbox="./media/portal/resiliency-pillar.png" alt-text="Screenshot of Resiliency menu in the Azure portal":::
 
 | Menu | Description |
 |:---|:---|
@@ -61,7 +61,7 @@ Operations center is organized into five pillars that correspond to the [pillars
 
 ## Configuration pillar
 
-:::image type="content" source="./media/portal/monitor-configuration.png" lightbox="./media/portal/monitor-configuration.png" alt-text="Screenshot of Configuration menu in the Azure portal":::
+:::image type="content" source="./media/portal/configuration-pillar.png" lightbox="./media/portal/configuration-pillar.png" alt-text="Screenshot of Configuration menu in the Azure portal":::
 
 
 | Menu | Description |
@@ -76,7 +76,7 @@ Operations center is organized into five pillars that correspond to the [pillars
 
 ## Optimization pillar
 
-:::image type="content" source="./media/portal/monitor-optimization.png" lightbox="./media/portal/monitor-Optimization.png" alt-text="Screenshot of Optimization menu in the Azure portal":::
+:::image type="content" source="./media/portal/optimization-pillar.png" lightbox="./media/portal/optimization-pillar.png" alt-text="Screenshot of Optimization menu in the Azure portal":::
 
 | Menu | Description |
 |:---|:---|

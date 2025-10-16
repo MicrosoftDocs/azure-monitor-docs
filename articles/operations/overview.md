@@ -44,4 +44,4 @@ Create service groups to represent the various applications and workloads that y
 - [Onboarding](onboarding.md)
 - [Licensing](licensing.md)
 - [Agentic Experience](agentic-experience.md)
-- [Using the Portal](using-the-portal.md)
+- [Using the Portal](portal.md)
