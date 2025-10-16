@@ -2,7 +2,7 @@
 title: Impacted Resources from Azure Retirements
 description: This article details where to find information from Azure Service Health impacted resources from retirements.
 ms.topic: article
-ms.date: 10/06/2025
+ms.date: 10/16/2025
 
 ---
 
