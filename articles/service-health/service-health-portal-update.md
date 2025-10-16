@@ -59,7 +59,8 @@ Select **Planned maintenance** on the left menu to see a list of all planned mai
 
 Health advisories are notifications that inform users about changes in Azure services. These advisories can include information about the deprecation of Azure features, upgrade requirements, or other actions that users need to take to maintain the health and performance of their Azure resources.
 
-Select **Health advisories** on the left menu to see all the health advisories based on your subscription access. For more information, see [Health advisories](service-health-advisories.md). <br>
+Select **Health advisories** on the left menu to see all the health advisories based on your subscription access. For more information, see [Health advisories](service-health-advisories.md).
+
 For information on how to configure alerts for Service Health events, see [Create Service Health alerts by using the Azure portal](alerts-activity-log-service-notifications.md), [Create activity log alerts by using a Bicep file](alerts-activity-log-service-notifications-bicep.md), or [Create Service Health alerts by using an ARM template](alerts-activity-log-service-notifications-arm.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the Health advisories window." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::
@@ -72,7 +73,7 @@ Select **Security advisories** from the left menu to see all the current securit
 
 ### See all billing updates
 
-Select **Billing updates** from the left menu to see billing updates. Only users with subscription owner or contributor permissions can access this information. <br>For more information, see [In-portal billing](billing-elevated-access.md).
+Select **Billing updates** from the left menu to see billing updates. Only users with subscription owner or contributor permissions can access this information. For more information, see [In-portal billing](billing-elevated-access.md).
 
 :::image type="content" source="media/service-health-portal-update/in-portal-billing-blade.png" alt-text="A screenshot of the Billing updates window." lightbox="media/service-health-portal-update/in-portal-billing-blade.png":::
 
