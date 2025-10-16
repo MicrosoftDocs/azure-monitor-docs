@@ -18,7 +18,7 @@ Operations center is organized into five pillars that correspond to the [pillars
 
 ## Monitor pillar
 
-:::image type="content" source="./media/portal/monitor-pillar" lightbox="./media/portal/monitor-pillar" alt-text="Screenshot of Monitor menu in the Azure portal":::
+:::image type="content" source="./media/portal/monitor-pillar.png" lightbox="./media/portal/monitor-pillar.png" alt-text="Screenshot of Monitor menu in the Azure portal":::
 
 | Menu | Description |
 |:---|:---|
@@ -30,7 +30,7 @@ Operations center is organized into five pillars that correspond to the [pillars
 | Workbooks + dashboards | Create and analyze [Azure Monitor workbooks](/azure/azure-monitor/visualize/workbooks-overview) and [dashboards with Grafana](/azure/azure-monitor/visualize/visualize-grafana-overview). |
 | Monitor insights | Access different [insights in Azure Monitor](/azure/azure-monitor/visualize/insights-overview). These are the same options available in the **Insights** section of the Azure Monitor menu and the same view as the **Insights hub** menu item. |
 | Change analysis | View and manage [change analysis](/azure/governance/resource-graph/changes/resource-graph-changes) data. This is the same view as the **Change Analysis** item in the Azure Monitor menu. |
-| Monitor settings | Configure different settings for Azure monitor including [diagnostic settings](/azure/azure-monitor/essentials/diagnostic-settings) and [data collection rules](/azure/azure-monitor/essentials/data-collection-rules).  The tabs across the top of this view correspond to the menu items in the **Settings** section of the Azure Monitor menu. |
+| Monitor settings | Configure different settings for Azure monitor including [diagnostic settings](/azure/azure-monitor/platform/diagnostic-settings) and [data collection rules](/azure/azure-monitor/data-collection/data-collection-rules).  The tabs across the top of this view correspond to the menu items in the **Settings** section of the Azure Monitor menu. |
 
 > [!NOTE]
 > No Prometheus metrics?
