@@ -31,6 +31,7 @@ Operations center is organized into five pillars that correspond to the [pillars
 | Monitor insights | Access different [insights in Azure Monitor](/azure/azure-monitor/visualize/insights-overview). These are the same options available in the **Insights** section of the Azure Monitor menu and the same view as the **Insights hub** menu item. |
 | Change analysis | View and manage [change analysis](/azure/governance/resource-graph/changes/resource-graph-changes) data. This is the same view as the **Change Analysis** item in the Azure Monitor menu. |
 | Monitor settings | Configure different settings for Azure monitor including [diagnostic settings](/azure/azure-monitor/platform/diagnostic-settings) and [data collection rules](/azure/azure-monitor/data-collection/data-collection-rules).  The tabs across the top of this view correspond to the menu items in the **Settings** section of the Azure Monitor menu. |
+| Recommendations | |
 
 > [!NOTE]
 > No Prometheus metrics?
@@ -42,12 +43,11 @@ Operations center is organized into five pillars that correspond to the [pillars
 
 | Menu | Description |
 |:---|:---|
-| Overview | Summary of security issues. |
-| Recommendations | Recommendations to remediate security issues and improve security posture based on based on assessments of your resources and subscriptions against security standards. This view is the same as the **Security alerts** item in the **General** section of the **Microsoft Defender for Cloud** menu. |
+| Security | Summary of monitoring issues including top recommendation actions, summary of health and open issues, and recommended maintenance. |
 | Security posture | View your [secure score](/azure/defender-for-cloud/secure-score-security-controls) and explore your [security posture](/azure/defender-for-cloud/concept-cloud-security-posture-management). This view is the same as the **Recommendations** item in the **General** section of the **Microsoft Defender for Cloud** menu. |
 | Security alerts | Manage and respond to [security alerts](/azure/defender-for-cloud/managing-and-responding-alerts)  This view is the same as the **Security alerts** item in the **General** section of the **Microsoft Defender for Cloud** menu. |
 | Resource protections | Analyze threat detection and protection for protected resources. This view is the same as the **Workload protections** item in the **Cloud Security** section of the **Microsoft Defender for Cloud** menu. |
-
+| Recommendations | Recommendations to remediate security issues and improve security posture based on based on assessments of your resources and subscriptions against security standards. This view is the same as the **Security alerts** item in the **General** section of the **Microsoft Defender for Cloud** menu. |
 
 ## Resiliency pillar
 
@@ -56,8 +56,11 @@ Operations center is organized into five pillars that correspond to the [pillars
 | Menu | Description |
 |:---|:---|
 | Resiliency | Consolidated view of information related to protection of your resources across solutions. This page is the same as the **Overview** page in the **Business Continuity Center** menu. |
-| Recommendations | Azure Advisor recommendations related to resiliency. |
+| Resource resiliency | |
+| Service group resiliency | |
 | Backup + recovery | Use [Azure Business Continuity Center](/azure/business-continuity-center/business-continuity-center-overview) to manage your protection estate across solutions and environments. The tabs across the top of this view correspond to menu items in the **Business Continuity Center** menu. |
+| Recommendations | Azure Advisor recommendations related to resiliency. |
+
 
 ## Configuration pillar
 
@@ -66,13 +69,13 @@ Operations center is organized into five pillars that correspond to the [pillars
 
 | Menu | Description |
 |:---|:---|
-| Configuration | |
-| Recommendations |  |
+| Configuration | Summary of resource policy compliance and update requirements. |
 | Policy | Use [Azure Policy](/azure/governance/policy/overview) to enforce organizational standards and to assess compliance at-scale. The tabs across the top of this view correspond to menu items in the **Policy** menu. |
+| Machine enrollment | Enable subscriptions for automatic configuration of VMs. See [Machine enrollment in Azure operations center (preview)](./onboarding.md). |
+| Update management | Use [Azure Update Manager](/azure/update-manager/overview) to manage and govern updates for all your machines. The tabs across the top of this view correspond to menu items in the **Azure Update Manager** menu. |
 | Machine configuration | |
-| Machine updates | Use [Azure Update Manager](/azure/update-manager/overview) to manage and govern updates for all your machines. The tabs across the top of this view correspond to menu items in the **Azure Update Manager** menu. |
 | Machines changes + inventory | Use [Change tracking and inventory](/azure/automation/change-tracking/overview-monitoring-agent) to monitor changes and access detailed inventory logs for servers across your different virtual machines. The tabs across the top of this view correspond to menu items in the **Change Tracking and Inventory Center** menu. |
-
+| Recommendations | Azure Advisor recommendations related to resiliency. |
 
 ## Optimization pillar
 
@@ -80,11 +83,8 @@ Operations center is organized into five pillars that correspond to the [pillars
 
 | Menu | Description |
 |:---|:---|
-| Optimization |  |
+| Security | Summary of cost and carbon usage and  optimization recommendations. |
+| Cost + emission | Summary of carbon emissions and cost for your subscriptions. |
+| Carbon optimization | Measure and minimize the carbon impact of your Azure footprint.  The tabs across the top of this view correspond to menu items in the **Carbon Optimization** menu. |
 | Recommendations | Azure Advisor recommendations related to cost and performance. This view is the same as the **Advisor recommendations** item in the **Cost Management** section of the **Subscription** menu. | 
-| Cost + emission |  |
-| Emission reports | Measure and minimize the carbon impact of your Azure footprint.  The tabs across the top of this view correspond to menu items in the **Carbon Optimization** menu. |
 
-
-## Help & Support
-Access documentation, FAQs, and support directly from the portal menu.
