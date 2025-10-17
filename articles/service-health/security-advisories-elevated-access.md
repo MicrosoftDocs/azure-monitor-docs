@@ -19,7 +19,7 @@ The Security advisories pane is used to communicate critical security events suc
 - Security incidents
 - Privacy breaches
 
-These advisories are distinct from general health or service issues, because they often involve sensitive information and require elevated access roles to view the full details.
+These advisories are distinct from general health or service issues, because they often involve sensitive information and require elevated access roles to view all the details.
 
 :::image type="content"source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security advisories summary tab."Lightbox="./media/impacted-resource-sec/security-advisories-tab.PNG":::
 
