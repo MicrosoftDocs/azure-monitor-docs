@@ -23,7 +23,7 @@ This video explains when and how to use search jobs:
 | Run a search job | `Microsoft.OperationalInsights/workspaces/tables/write` and `Microsoft.OperationalInsights/workspaces/searchJobs/write` permissions to the Log Analytics workspace, for example, as provided by the [Log Analytics Contributor built-in role](../logs/manage-access.md#built-in-roles). |
 
 > [!NOTE]
-> Cross-tenant search jobs aren't supported. Azure Lighthouse delegated access is also not supported for search jobs even when a delegated role like Log Analytics Contributor which includes the searchJobs/write permission is assigned.
+> Cross-tenant search jobs aren't supported. Azure Lighthouse delegated access is also not supported for search jobs even when a delegated role is assigned which includes the searchJobs/write permission.
 
 ## When to use search jobs
 
@@ -265,14 +265,18 @@ We recommend you [delete the search job table](../logs/create-custom-table.md#de
 
 Search jobs are subject to the following considerations:
 
-* Optimized to query one table at a time.
-* Search date range is any period within the total retention.
-* Supports long running searches up to a 24-hour time-out.
-* Results are limited to 100 million records in the record set. When you reach the record limit, Azure Monitor aborts the job with a status of *partial success*, and the table contains only records ingested up to that point. 
+* Optimized to query one table at a time
+* Search date range is any period within the total retention
+* Supports long running searches up to a 24-hour time-out
+* Results are limited to 100 million records in the record set - if limit is surpassed, Azure Monitor aborts the job with a status of *partial success*, and the table contains only records ingested up to that point
 * Concurrent execution is limited to ten search jobs per workspace.
-* Limited to 200 search results tables per workspace.
-* Limited to 200 search job executions per day per workspace.
-* Cross-tenant search jobs aren't supported. This includes Azure Lighthouse delegated access which fails with error, *"User \<managing tenant user id\> does not maintain access to action Microsoft.OperationalInsights/workspaces/searchJobs/write at scope /subscriptions/\<delegated subscription id\>/resourcegroups/\<delegated resource group name\>/providers/microsoft.operationalinsights/workspaces/\<delegated workspace name\>."* even though the delegation contains the proper searchJobs/write permission.
+* Limited to 200 search results tables per workspace
+* Limited to 200 search job executions per day per workspace
+* Cross-tenant search jobs aren't supported
+* Azure Lighthouse delegated access isn't supported for search jobs even if the delegation contains the proper searchJobs/write permission - fails with error message:
+```Error
+User <managing tenant user id> does not maintain access to action Microsoft.OperationalInsights/workspaces/searchJobs/write at scope /subscriptions/<delegated subscription id>/resourcegroups/<delegated resource group name>/providers/microsoft.operationalinsights/workspaces/<delegated workspace name>.
+```
 
 ### KQL query considerations
 
