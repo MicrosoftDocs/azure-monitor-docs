@@ -43,7 +43,7 @@ Cost implication data is available via metadata API and Azure Resource Graph, en
 
 ### Download as CSV
 
-The downloadable CSV report now includes cost implication info along with descriptions of factors making it asier to analyze and share recommendations offline.
+The downloadable CSV report now includes cost implication info along with descriptions of factors making it easier to analyze and share recommendations offline.
 
 ## How to use
 
