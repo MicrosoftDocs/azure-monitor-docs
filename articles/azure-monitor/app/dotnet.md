@@ -1071,7 +1071,7 @@ Add a listener to `web.config` or `app.config`:
 **Option 2:** Right-click your project in Solution Explorer to **Configure Application Insights**. Select the **Configure trace collection** option.
 
 > [!NOTE]
-> No Application Insights menu or log collector option? Refer to the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
+> If you're missing the Application Insights menu or log collector option, refer to the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
 
 # [ASP.NET Core](#tab/core)
 
@@ -1419,10 +1419,6 @@ Correlation is handled by default when onboarding an app. No special actions are
 .NET runtime supports distributed with the help of [Activity](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) and [DiagnosticSource](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)
 
 The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to collect and correlate telemetry.
-
-#### Troubleshoot trace logs
-
-See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data#issues-with-trace-logs).
 
 ### Dependencies
 
