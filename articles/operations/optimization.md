@@ -40,20 +40,21 @@ The **Cost + emissions** page lists your subscriptions with a quick summary of t
 ## Optimize agent
 The Optimize agent in operations center provides an agentic experience to help you identify and implement cost-saving and carbon-reduction measures. The agent uses Copilot to analyze your resource usage patterns and recommend actions to optimize your Azure environment. You can either initiate a conversation with the agent using prompts or select specific recommendations to get guided assistance.
 
-## Open the agent
+### Open the agent
 There are multiple ways to open the Optimize agent in operations center:
 
 - Click on **Optimize with Copilot** button on any recommendations in the Optimization overview page. Copilot opens in agent mode and initiates a conversation around the selected recommendation. Other actions may be presented that don't use the agent experience.
 
     :::image type="content" source="./media/portal/optimize-with-copilot.png" lightbox="./media/portal/optimize-with-copilot.png" alt-text="Screenshot of top actions distinguishing between agent and non-agent experience.":::
 
-- Click the **Copilot** button at the top of the page. Ensure **Agent** is enabled and then enter a prompt related to optimization. See [Sample prompts](#sample-prompts) for examples. You can also click on the suggested prompts that Copilot provides.
+- Click the **Copilot** button at the top of the portal. Ensure **Agent** is enabled and then enter a prompt related to optimization. See [Sample prompts](#sample-prompts) for examples. You can also click on the suggested prompts that Copilot provides.
 
     :::image type="content" source="./media/portal/optimization-agent.png" lightbox="./media/portal/optimization-agent.png" alt-text="Screenshot of starting a conversation with Copilot using the Optimization agent.":::
 
 ### Use the agent
-Once the Optimize agent is open, you can interact with it using natural language prompts. See [Copilot documentation](/azure/copilot/overview) for more information on how to best use the agent experience.
+Once the Optimize agent is open, you can interact with it using natural language prompts. It will also offer you links to perform recommended actions or get additional information. See [Copilot documentation](/azure/copilot/overview) for more information on how to best use the agent experience.
 
+    :::image type="content" source="./media/portal/agent-conversation.png" lightbox="./media/portal/agent-conversation.png" alt-text="Screenshot of a conversation susing the Optimization agent.":::
 
 ### Sample prompts
 Here are some sample prompts to get you started with the Optimize agent:
