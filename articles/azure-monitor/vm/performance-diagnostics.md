@@ -21,14 +21,13 @@ Performance Diagnostics stores all insights and reports in a storage account tha
 ## Performance Diagnostics modes
 Performance diagnostics operates in one of the following two modes:
 
-* **Continuous diagnostics** collects data at five-second intervals and reports actionable insights about high resource usage every five minutes. Continuous diagnostics is Generally Available (GA) for Windows VMs and in Public Preview for Linux VMs.
+* **Continuous diagnostics** collects data at five-second intervals and reports actionable insights about high resource usage every five minutes.
 * **On-demand diagnostics** helps you troubleshoot an ongoing performance issue by providing more in-depth data, insights, and recommendations that are based on data that's collected at a single moment. On-demand diagnostics is supported on both Windows and Linux.
 
 The following table compares the data provided by Continuous and On-demand Performance Diagnostics. For a complete list of all the collected diagnostics data, see [Data collected](#data-collected).
 
 | | Continuous | On-demand |
 |:---|:---|:---|
-| **Availability**  | GA for Windows VMs<br>Public Preview for Linux VMs | GA for Windows<br>GA for Linux VMs |
 | **Insights generated** | Continuous actionable insights into high resource usage, such as high CPU, high memory, and high disk usage | On-demand actionable insights into high resource usage and various system configurations |
 | **Data collection frequency** | Collects data every five seconds. Updates are uploaded every five minutes. | Collects data on demand for the selected duration of the on-demand run |
 | **Reports generated** | Doesn't generate a report | Generates a report that has comprehensive diagnostics data |
