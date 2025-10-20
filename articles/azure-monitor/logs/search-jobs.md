@@ -272,7 +272,7 @@ Search jobs are subject to the following considerations:
 * Concurrent execution is limited to ten search jobs per workspace.
 * Limited to 200 search results tables per workspace.
 * Limited to 200 search job executions per day per workspace.
-* Cross-tenant search jobs aren't supported. This includes Azure Lighthouse delegated access which fails with error, *"User <managing tenant user id> does not maintain access to action Microsoft.OperationalInsights/workspaces/searchJobs/write at scope /subscriptions/<delegated subscription id>/resourcegroups/<delegated resource group name>/providers/microsoft.operationalinsights/workspaces/<delegated workspace name>."* even though the delegation contains the proper searchJobs/write permission.
+* Cross-tenant search jobs aren't supported. This includes Azure Lighthouse delegated access which fails with error, *"User <managing tenant user id> does not maintain access to action Microsoft.OperationalInsights/workspaces/searchJobs/write at scope /subscriptions/\<delegated subscription id\>/resourcegroups/\<delegated resource group name\>/providers/microsoft.operationalinsights/workspaces/\<delegated workspace name\>."* even though the delegation contains the proper searchJobs/write permission.
 
 ### KQL query considerations
 
