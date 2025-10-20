@@ -274,9 +274,12 @@ Search jobs are subject to the following considerations:
 * Limited to 200 search job executions per day per workspace
 * Cross-tenant search jobs aren't supported
 * Azure Lighthouse delegated access isn't supported for search jobs even if the delegation contains the proper searchJobs/write permission - fails with error message:
-```Error
-User <managing tenant user id> does not maintain access to action Microsoft.OperationalInsights/workspaces/searchJobs/write at scope /subscriptions/<delegated subscription id>/resourcegroups/<delegated resource group name>/providers/microsoft.operationalinsights/workspaces/<delegated workspace name>.
-```
+:::row:::
+:::column span="3":::
+*User* \<managing-tenant-userId\> *does not maintain access to action Microsoft.OperationalInsights/workspaces/searchJobs/write at scope* 
+<delegated-workspace-resourceID\>.
+:::column-end:::
+:::row-end:::
 
 ### KQL query considerations
 
