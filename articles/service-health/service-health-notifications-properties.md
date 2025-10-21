@@ -14,6 +14,9 @@ Depending on the notification’s type, it could be purely informational or indi
 
  :::image type="content"source="./media/service-health-notifications/service-health-notifications-main.png"alt-text="Screenshot of service health notification history pane." lightbox="./media/service-health-notifications/service-health-notifications-main.png":::
 
+When you open a Service Health notification, you see a tab full of data describing the event.
+
+ :::image type="content"source="./media/service-health-notifications/service-health-notifications-details.png"alt-text="Screenshot of main service health notification summary tab." lightbox="./media/service-health-notifications/service-health-notifications-details.png":::
 
 ## How to access and use Service Health notifications
 Once logged into Azure, you can access Service Health notifications in one of three options:
@@ -55,7 +58,7 @@ Here’s a breakdown of each notification type, what it means, and how you can a
 ## Service Health notifications - event transitions
 Each communication category panel - Incidents, Planned maintenance, Health advisories, Security advisories, and Billing updates - uses distinct logic to determine event transitions. This logic determines when an event moves from its category tab to the Health history panel as defined in this table.
 
-|Event  |**Severity levels** |**Event tags** |**When Event is moved to Health history panel**  | **Event details moved from Health history panel, but available through REST API** | **Event details archived and inaccessible through REST API**|
+|Event  |Severity levels |Event tags |When Event is moved to Health history panel  | Event details moved from Health history panel, but available through REST API | Event details archived and inaccessible through REST API|
 |---------|---------|---------|---------|
 |**Service Issues**       | **Error** - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.<br>**Warning** - Issues accessing specific services and/or specific regions are impacting a subset of customers.<br>**Informational** - Issues impacting management operations and/or latency, not impacting service availability.      | Action Recommended<br>- Final PIR<br>- Preliminary PIR<br>False Positive   | 90 days as long as it's active or updated | When resolved| One year from most recent published date   |
 |**Planned maintenance**   | **Warning** - Emergency Maintenance <br> **Informational** - Standard Planned Maintenance | N/A         | Schedule's EndDate passed<br> Or 50 days from Schedule's StartDate        |90 days from most recent published date   |One year from most recent published date    |
@@ -63,10 +66,6 @@ Each communication category panel - Incidents, Planned maintenance, Health advis
 |**Health advisories**     |**Warning** - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement<br> -**Information** - An administrator might be required to prevent an effect to existing services. | Retirement         |         | 90 days from most recent published date  | One year from most recent  published date   |
 |**Billing**              |**Informational** - Issues impacting billing updates   | N/A        |         | 90 days from most recent published date  | One year from most recent  published date   |
 
-
-When you open a Service Health notification, you see a tab full of data describing the event.
-
- :::image type="content"source="./media/service-health-notifications/service-health-notifications-details.png"alt-text="Screenshot of main service health notification summary tab." lightbox="./media/service-health-notifications/service-health-notifications-details.png":::
 
 
 ## Service Health notifications - properties
