@@ -69,10 +69,16 @@ When you open a Service Health notification, you see a tab full of data describi
  :::image type="content"source="./media/service-health-notifications/service-health-notifications-details.png"alt-text="Screenshot of main service health notification summary tab." lightbox="./media/service-health-notifications/service-health-notifications-details.png":::
 
 
-For more information on properties, see [Service health event properties](#service-health-event-properties).
-
 ## Service Health notifications - properties
-When you query a Service Health notification in API, you typically see the following data properties describing the event.
+
+### Event type
+Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. Key properties include eventType (for example, *ServiceIssue*, or *PlannedMaintenance*), eventSubType (specific details like *Retirement* or *TaxChange*), status (*Active* or *Resolved*), priority (*Critical*, *Warning*, or *Informational*), and timestamps such as *impactStartTime* and *impactMitigationTime*.
+
+Start by checking *eventType* and *eventSubType* to understand what kind of issue and detail is involved, then review *priority* and *EventLevel* for severity. 
+
+Use the *status* and *timestamps* to gauge whether the event is ongoing or resolved, and refer to the *title* for a quick description. These properties help you filter, prioritize, and act on service health alerts effectively. For more details, see [Service Health event tags](service-health-event-tags.md) 
+
+The following table lists and describes all the properties found in a Service health event.
 
 Property name | Description
 -------- | -----------
@@ -102,9 +108,13 @@ Properties.stage | The possible values for **Incident**, and **Security** are **
 Properties.communicationId | The communication this event is associated with.
 
 
-### Service health event properties
+### Incident type
 
-Service Health event type (properties.incidentType)
+The `properties.incidentType` field in Azure Service Health identifies the category of a health event, such as *ActionRequired*, *Incident*, *Maintenance*, *Security*, *Informational*, or *Billing*. Each type signals a different scenario—for example, *Incident* means an unplanned outage or degradation, while *Maintenance* indicates scheduled work, and *ActionRequired* alerts you to changes needing your intervention.
+
+You can use this property to filter and prioritize notifications in the Azure portal, Resource Graph queries, or alert rules. For instance, you might configure alerts only for Incident and Security types to focus on critical issues, or query Maintenance events to plan for downtime. This information helps automate monitoring and ensures timely responses to events that matter most.
+
+Service Health event type (`properties.incidentType`)
 
 **Health Advisory** (properties.incidentType == ActionRequired)
 - Informational - Administrator action is required to prevent an impact to existing services.
