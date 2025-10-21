@@ -3,6 +3,16 @@ items:
   href: index.yml
 - name: Overview
   href: overview.md
+- name: Monitor
+  href: monitor.md
+- name: Security
+  href: security.md
+- name: Resiliency
+  href: resiliency.md
+- name: Configuration
+  href: configuration.md
+- name: Optimization
+  href: optimization.md
 - name: Old
   items:
   - name: Onboarding
@@ -13,13 +23,4 @@ items:
     href: portal.md
 - name: New
   items:
-  - name: Monitor
-    href: monitor.md
-  - name: Security
-    href: security.md
-  - name: Resiliency
-    href: resiliency.md
-  - name: Configuration
-    href: configuration.md
-  - name: Optimization
-    href: optimization.md
+

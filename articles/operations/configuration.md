@@ -8,22 +8,32 @@ ms.date: 09/24/2025
 
 # Configuration in Azure Operations Center (preview)
 
-Operations center provides a unified portal for managing and monitoring your Azure and hybrid environments. This article guides you through the key features and navigation of the operations center portal. Operations center is organized into five pillars that correspond to the [pillars in Microsoft Azure Well-Architected Framework](/azure/well-architected/pillars). This article describes the **Configuration** pillar.
+The **Configuration** pillar [Azure operations center](./overview.md) helps you manage the configuration of your virtual machines. Manage the policies that define their configuration and track changes and operating system updates. The pillar also provides a streamlined onboarding experience to automatically enroll your virtual machines for different Azure management and monitoring services.
+
+The Configuration pillar uses the following Azure services:
+
+- [VM insights](/azure/azure-monitor/vm/vminsights-overview)
+- [Azure Policy](/azure/governance/policy/overview)
+- [Azure Update Manager](/azure/update-manager/overview)
+- [Change tracking and inventory](/azure/automation/change-tracking/overview-monitoring-agent)
 
 ## Menu items
-
-:::image type="content" source="./media/portal/configuration-pillar.png" lightbox="./media/portal/configuration-pillar.png" alt-text="Screenshot of Configuration menu in the Azure portal":::
-
+The Configuration pillar includes the following menu items:
 
 | Menu | Description |
 |:---|:---|
 | Configuration | Summary of resource policy compliance and update requirements. |
 | Policy | Use [Azure Policy](/azure/governance/policy/overview) to enforce organizational standards and to assess compliance at-scale. The tabs across the top of this view correspond to menu items in the **Policy** menu. |
-| Machine enrollment | Enable subscriptions for automatic configuration of VMs. See [Machine enrollment in Azure operations center (preview)](./onboarding.md). |
+| Machine enrollment | Enable subscriptions for automatic configuration of VMs. See [Machine enrollment](#machine-enrollment). |
 | Update management | Use [Azure Update Manager](/azure/update-manager/overview) to manage and govern updates for all your machines. The tabs across the top of this view correspond to menu items in the **Azure Update Manager** menu. |
-| Machine configuration | |
+| Machine configuration |  |
 | Machines changes + inventory | Use [Change tracking and inventory](/azure/automation/change-tracking/overview-monitoring-agent) to monitor changes and access detailed inventory logs for servers across your different virtual machines. The tabs across the top of this view correspond to menu items in the **Change Tracking and Inventory Center** menu. |
 | Recommendations | Azure Advisor recommendations related to resiliency. |
+
+## Configuration overview
+The configuration overview page provides a single-pane snapshot of policy compliance and update requirements for your virtual machines. Drill down on any of the tiles to open other pages in the Configuration pillar for more details.
+
+:::image type="content" source="./media/portal/configuration-pillar.png" lightbox="./media/portal/configuration-pillar.png" alt-text="Screenshot of Configuration menu in the Azure portal":::
 
 
 ## Machine enrollment
