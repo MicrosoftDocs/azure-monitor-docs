@@ -31,7 +31,7 @@ Once logged into Azure, you can access Service Health notifications in one of th
 For information about using Azure Resource Graph (ARG) queries to create reports on your Service health notifications, see [Resource graph sample queries](resource-graph-samples.md). This document provides guidance on how to utilize the available queries.
 
 
-## Service Health notification event types
+## Service Health notification types
 
 To help you stay ahead of potential disruptions, Azure categorizes service health events into six types, each indicating a different type of situation. Some event types are *actionable* (meaning you need to do something) and others are purely *informational*.
  
@@ -55,7 +55,7 @@ Here’s a breakdown of each notification type, what it means, and how you can a
 - **Billing** – *Informational (account notices)*. These notifications provide information about billing or subscription changes. They might notify subscription owners/contributors about things like upcoming billing updates, credit expiration, or other billing-related issues. Billing notifications are purely informational. You don't fix anything in Azure—if there’s a billing issue, you’d contact support or check your billing settings.<br>
 *These notifications are shown in the Billing updates pane*.
 
-## Service Health notifications - event transitions
+## Service Health notifications - transitions
 Each communication category panel - Incidents, Planned maintenance, Health advisories, Security advisories, and Billing updates - uses distinct logic to determine event transitions. This logic determines when an event moves from its category tab to the Health history panel as defined in this table.
 
 |Event  |Severity levels |Event tags |When Event is moved to Health history panel  | Event details moved from Health history panel, but available through REST API | Event details archived and inaccessible through REST API|
@@ -68,7 +68,7 @@ Each communication category panel - Incidents, Planned maintenance, Health advis
 
 
 
-## Service Health notifications - properties
+## Service Health notifications - data properties
 
 ### Event type
 Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. Key properties include eventType (for example, *ServiceIssue*, or *PlannedMaintenance*), eventSubType (specific details like *Retirement* or *TaxChange*), status (*Active* or *Resolved*), priority (*Critical*, *Warning*, or *Informational*), and timestamps such as *impactStartTime* and *impactMitigationTime*.
