@@ -19,7 +19,7 @@ When you open a Service Health notification, you see a tab full of data describi
  :::image type="content"source="./media/service-health-notifications/service-health-notifications-details.png"alt-text="Screenshot of main service health notification summary tab." lightbox="./media/service-health-notifications/service-health-notifications-details.png":::
 
 ## How to access and use Service Health notifications
-Once logged into Azure, you can access Service Health notifications in one of three options:
+Once logged into Azure, you can access Service Health notifications in one of three ways:
 
 - **Azure Portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard showing any active notifications for your subscriptions. The notifications are organized into the categories corresponding to the types (Incidents, Maintenance, etc.), and there’s also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details (impact, status updates, resolution, etc.). See [Azure Service Health Portal](service-health-portal-update.md).  
 
@@ -31,7 +31,7 @@ Once logged into Azure, you can access Service Health notifications in one of th
 For information about using Azure Resource Graph (ARG) queries to create reports on your Service health notifications, see [Resource graph sample queries](resource-graph-samples.md). This document provides guidance on how to utilize the available queries.
 
 
-## Service Health notifications event types
+## Service Health notification event types
 
 To help you stay ahead of potential disruptions, Azure categorizes service health events into six types, each indicating a different type of situation. Some event types are *actionable* (meaning you need to do something) and others are purely *informational*.
  
