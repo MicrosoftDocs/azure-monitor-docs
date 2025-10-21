@@ -40,8 +40,7 @@ The configuration overview page provides a single-pane snapshot of policy compli
 
 The machine enrollment feature in [Azure operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. This article describes the features that are enabled by this feature and how to enable it for your subscriptions.
 
-
-## Features
+### Features
 The management features automatically enabled for each VM in the enrolled subscription are listed in the following table. Further details on each feature are provided below.
 
 | Tier | Feature | Description |
@@ -53,13 +52,13 @@ The management features automatically enabled for each VM in the enrolled subscr
 | Additional | Defender CSPM | Advanced cloud security posture management (CSPM) capabilities to enhance the security of your cloud resources. |
 | Additional | Defender for cloud | Advanced threat protection and security management for VMs. |
 
-## Required permissions
+### Required permissions
 
 You must have the following roles in the subscription being enabled:
 - Essential Machine Management Administrator
 - Managed Identity Operator roles
 
-## Prerequisites
+### Prerequisites
 
 - [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace) to collect log data collected from VMs.
 - [Azure Monitor workspace](/azure/azure-monitor/metrics/azure-monitor-workspace-manage) to collect metrics data collected from VMs.
@@ -68,7 +67,7 @@ You must have the following roles in the subscription being enabled:
   - Monitoring Reader
 
 
-## Enable a subscription
+### Enable a subscription
 Machine enrollment is enabled for each subscription to automatically onboard all Azure VMs and arc-enabled servers in that subscription. Once enabled, any VMs added to the subscription are enrolled and configured with the selected features.
 
 > [!NOTE]
@@ -78,7 +77,7 @@ During public preview, the Azure portal is the only supported method for enablin
 
 :::image type="content" source="./media/onboarding/machine-enrollment.png" lightbox="./media/onboarding/machine-enrollment.png" alt-text="Screenshot of machine enrollment screen with no subscriptions enabled.":::
 
-#### Scope
+##### Scope
 
 The **Scope** tab includes the subscription that you want to enable and the managed identity.
 
@@ -91,7 +90,7 @@ The **Scope** tab includes the subscription that you want to enable and the mana
 | **Required identity role assignment** | Lists the required roles the managed identity must be assigned. |
 | **Current identity role assignment** | Lists the roles currently assigned to the managed identity. |
 
-### Configure
+#### Configure
 
 The **Configure** tab includes the Log Analytics workspace and Azure Monitor workspace that will collect data from the managed VMs.
 
@@ -100,7 +99,7 @@ The **Configure** tab includes the Log Analytics workspace and Azure Monitor wor
 | **Log Analytics workspace** | Select the Log Analytics workspace to use for collecting log data from VMs. |
 | **Azure Monitor workspace** | Select the Azure Monitor workspace to use for collecting metrics data from VMs. |
 
-## Security
+### Security
 
 The **Security** tab allows you to select additional security services for the managed VMs.
 
@@ -111,7 +110,7 @@ The **Security** tab allows you to select additional security services for the m
 | **Defender for cloud** | Comprehensive server protection with integrated endpoint detection and response (EDR), vulnerability management, file integrity monitoring, and advanced threat detection. Recommended for business-critical workloads.<br><br>This add-on incurs an additional charge. |
 
 
-## Excluding VMs
+### Excluding VMs
 During the public preview period, there is no ability to exclude VMs in the enabled subscription. All VMs in the subscription are onboarded and configured with the selected features.
 
 ## Services
