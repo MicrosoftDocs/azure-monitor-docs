@@ -1022,7 +1022,7 @@ The audience parameter, AADAudience, can vary depending on your specific environ
 
 ## Troubleshooting
 
-For troubleshooting guidance, see [Troubleshoot Microsoft Entra authentication issues](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-microsoft-entra-authentication.md).
+For troubleshooting guidance, see [Troubleshoot Microsoft Entra authentication issues](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry#troubleshoot-microsoft-entra-authentication-issues).
 
 ## Next steps
 
