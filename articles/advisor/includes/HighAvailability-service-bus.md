@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Service Bus
@@ -41,13 +41,14 @@ When running critical applications, enabling the auto scale feature allows you t
 
 **Impact:** High
   
-For more information, see [Azure Service Bus - Automatically update messaging units - Azure Service Bus ](https://aka.ms/asb-autoscale)  
+For more information, see [Azure Service Bus - Automatically update messaging units - Azure Service Bus](https://aka.ms/asb-autoscale)  
 
 ResourceType: microsoft.servicebus/namespaces  
 Recommendation ID: 68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106  
-Subcategory: Scalability
+Subcategory: undefined
 
 <!--68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106_end-->
+
 
 <!--15a7e73b-943e-4cf5-847d-f54ed39c33f1_begin-->
 

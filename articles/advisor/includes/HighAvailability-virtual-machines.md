@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -266,13 +266,14 @@ VMSS in your subscription are running on images that have been scheduled for dep
 
 **Impact:** High
   
-For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines](https://aka.ms/DeprecatedImagesFAQ)  
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 3b739bd1-c193-4bb6-a953-1362ee3b03b2  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: undefined
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_end-->
+
 
 <!--3d18d7cd-bdec-4c68-9160-16a677d0f86a_begin-->
 
@@ -364,9 +365,10 @@ For more information, see [Virtual machine sizes overview - Azure Virtual Machin
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 7f71b153-c0b7-4e99-a23e-db8179183ec9  
-Subcategory: Scalability
+Subcategory: undefined
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_end-->
+
 
 
 <!--1670c0af-6536-4cbf-872f-152c91a51a80_begin-->
@@ -383,9 +385,10 @@ For more information, see [On-demand capacity reservation in Azure - Azure Virtu
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 1670c0af-6536-4cbf-872f-152c91a51a80  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--1670c0af-6536-4cbf-872f-152c91a51a80_end-->
+
 
 
 <!--5f2613df-629f-4b07-9425-2a47ea0dfad3_begin-->
@@ -498,5 +501,41 @@ Recommendation ID: 00e4ac6c-afa3-4578-a021-5f15e18850a2
 Subcategory: HighAvailability
 
 <!--00e4ac6c-afa3-4578-a021-5f15e18850a2_end-->
+
+<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_begin-->
+
+#### Shared disks should only be enabled in clustered servers  
+  
+Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.  
+  
+**Potential benefits**: Enhances clustered server availability  
+
+**Impact:** Medium
+  
+For more information, see [Share an Azure managed disk across VMs - Azure Virtual Machines](/azure/virtual-machines/disks-shared)  
+
+ResourceType: microsoft.compute/disks  
+Recommendation ID: 42d6dc9f-3e08-4a56-959d-0fd86310035f  
+Subcategory: Other
+
+<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_end-->
+
+<!--89496618-9e41-49e3-9db1-d08d61d9e820_begin-->
+
+#### Standard_NC24rs_v3 virtual machine (VM) size in NCv3-series is being retired.  
+  
+To avoid any disruption to your service, we recommend that you change the VM sizing for your workloads from the current Standard_NC24rs_v3 to the newer VM series in the same NC product line.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=standardnc24rsv3-virtual-machines-will-be-retired-on-march-31st-2025)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 89496618-9e41-49e3-9db1-d08d61d9e820  
+Subcategory: undefined
+
+<!--89496618-9e41-49e3-9db1-d08d61d9e820_end-->
 
 <!--articleBody-->

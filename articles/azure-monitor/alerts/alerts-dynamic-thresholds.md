@@ -138,8 +138,6 @@ Dynamic thresholds support most metrics, but the following metrics can't use dyn
 | Microsoft.ContainerService/managedClusters | OomKilledContainerCount |
 | Microsoft.Devices/IotHubs | TotalDeviceCount |
 | Microsoft.Devices/IotHubs | ConnectedDeviceCount |
-| Microsoft.Devices/IotHubs | TotalDeviceCount |
-| Microsoft.Devices/IotHubs | ConnectedDeviceCount |
 | Microsoft.DocumentDB/databaseAccounts | CassandraConnectionClosures |
 | Microsoft.EventHub/clusters | Size |
 | Microsoft.EventHub/namespaces | CPU |

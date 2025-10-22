@@ -22,7 +22,29 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Node.js Classic API](../app/nodejs.md)|Classic API SDK information for Node.js has been consolidated into a single article. Try the "Ask Learn" for AI assistance.|
 |Application-Insights|[Data collection, retention, storage, and privacy](../app/application-insights-faq.yml#how-does-application-insights-handle-data-collection--retention--storage--and-privacy)|Data collection, retention, storage, and privacy has been consolidated in the FAQ with additional granularity.|
 |Application-Insights|[Quarkus support](../app/opentelemetry-enable.md?tabs=java-native#install-the-client-library)|We've clarified Quarkus support across OpenTelemetry documentation and provided a link to get community assistance.|
+| Data Collection | [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md) | Added content for preview DCR experience. |
+| Kubernetes | [Analyze the health and status of your Kubernetes cluster with Azure Monitor](../containers/container-insights-analyze.md) | Rewrite to support latest portal experience. |
+| Kubernetes | [Filter container log collection with ConfigMap](../containers/container-insights-data-collection-filter.md) | Rewrite to improve clarity. |
+| Kubernetes | [View live data with Container insights](../containers/container-insights-livedata-overview.md) | Rewrite to support latest portal experience. |
+| Kubernetes | [Analyze Syslog data from Kubernetes cluster in Azure Monitor](../containers/container-insights-syslog.md) | Rewrite to improve clarity. |
+| Kubernetes | [Filter and transform Kubernetes container logs using data transformations in Azure Monitor](../containers/container-insights-transformations.md) | Rewrite to improve clarity. |
+| Kubernetes | [Disable monitoring of your Kubernetes cluster](../containers/kubernetes-monitoring-disable.md) | Added section on Prometheus metrics. |
+| Kubernetes | [Kubernetes monitoring in Azure Monitor](../containers/kubernetes-monitoring-overview.md) | Rewrite to include all layers of the Kubernetes stack. |
+| Kubernetes | [Enable monitoring for Arc-enabled Kubernetes clusters](../containers/kubernetes-monitoring-enable-arc.md) | New article with scope limited to arc-enabled clusters. |
+| Kubernetes | [Enable monitoring for AKS clusters](../containers/kubernetes-monitoring-enable.md) | Rewrite to improve clarity and reduce scope to AKS. |
+| Kubernetes | [Quickstart monitoring a Kubernetes cluster in Azure Monitor](../containers/kubernetes-monitoring-quickstart.md) | New article to walk  through basic enabling of monitoring. |
+| Kubernetes | [Kubernetes workbooks in Azure Monitor](../containers/kubernetes-workbooks.md) | Rewrite to emphasize latest Prometheus experience. |
+| Kubernetes | [Monitor Kubernetes clusters using Azure Monitor and cloud native tools](../containers/monitor-kubernetes.md) | Updated for Application insights updates and Azure Monitor dashboards with Grafana. Scope reduced to compliment rewritten overview. |
+| Metrics | [Connect Grafana to Azure Monitor managed service for Prometheus](../metrics/prometheus-grafana.md) | Updated for Azure Monitor dashboards with Grafana.  |
+| Metrics | [Azure Monitor managed service for Prometheus technical details](../metrics/prometheus-metrics-details.md) | New article to consolidate technical details related to Prometheus metrics. |
+| Metrics | [Overview of Azure Monitor with Prometheus](../metrics/prometheus-metrics-overview.md) | Rewrite to improve clarity and remove technical details moved to other article. |
+| Metrics | [Migrate from Self-Hosted Prometheus to Azure Monitor Managed Service for Prometheus](../metrics/prometheus-migrate.md) | Rewrite for clarity. |
+| Metrics | [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md) | Rewrite for clarity. |
+| Metrics | [Rule Groups in Azure Monitor Managed Service for Prometheus](../metrics/prometheus-rule-groups.md) | Rewrite for clarity. |
+| Virtual Machines | [Run Performance Diagnostics reports on Azure virtual machines](../vm/performance-diagnostics-run.md) | Removed known issue since resolved. | 
+| Virtual Machines | [Remove Dependency Agent from Azure Virtual Machines and Virtual Machine Scale Sets](../vm/vminsights-dependency-agent-uninstall.md) | New article. | 
 |Visualizations|[Visualize with Grafana](../visualize/visualize-grafana-overview.md)|We brought this feature forward as first choice over Managed Grafana.|
+
 
 ### August 2025
 
