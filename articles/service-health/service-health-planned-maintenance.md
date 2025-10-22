@@ -140,7 +140,7 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
     - trackingId
     - status
 4. Can I automate maintenance tracking?<br>
-  Yes, with:
+  Yes, you can use:
     - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
     - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
 5. How long is the maintenance history available?
@@ -150,6 +150,7 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 
 ### Next steps:
 
+- Read [Impacted resources from Azure Retirements](impacted-resources-retirements.md)
 - Read [Service Health Frequently asked questions](service-health-faq.yml)
 - Read [Resource impact from Azure outages](impacted-resources-outage.md)
 - Read [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
