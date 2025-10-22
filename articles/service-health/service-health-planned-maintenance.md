@@ -25,7 +25,7 @@ Unlike unplanned outages, planned maintenance is scheduled and communicated ahea
 
 When you open the Planned maintenance pane, you see a list of maintenance events relevant to your subscriptions.
 
-On the main panel you can sort the displayed list of Planned maintenance events by Scope, Subscription, Region, Service, and Event tags.
+On the main panel you can sort the displayed list of Planned maintenance events by **Scope**, **Subscription**, **Region**, **Service**, and **Event tags**.
 
 There are options to: 
 - Create a service health alert
