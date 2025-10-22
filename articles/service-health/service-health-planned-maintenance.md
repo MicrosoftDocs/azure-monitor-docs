@@ -8,7 +8,7 @@ ms.date: 10/22/2025
 
 # Planned maintenance
 
-The Planned Maintenance pane in Azure Service Health is a dedicated section in the Azure portal that keeps you informed about upcoming maintenance activities. It highlights events that may impact your Azure resources, helping you prepare in advance.<br> Here's a breakdown of its purpose and the information it provides:
+The Planned Maintenance pane in Azure Service Health is a dedicated section in the Azure portal that keeps you informed about upcoming maintenance activities. It highlights events that can affect your Azure resources, helping you prepare in advance.<br> Here's a breakdown of its purpose and the information it provides:
 
 
 This pane is designed to provide you with advance notice of scheduled maintenance events that can affect your services. 
@@ -144,8 +144,8 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
     - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
     - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
 5. How long is the maintenance history available?
-- Active view: up to 90 days.
-- Health history: up to one year.
+- Active view: up to 90 days
+- Health history: up to one year
 
 
 ### Next steps:
