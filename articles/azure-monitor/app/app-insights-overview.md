@@ -2,7 +2,7 @@
 title: Application Insights OpenTelemetry observability overview
 description: Learn how Azure Monitor Application Insights integrates with OpenTelemetry (OTel) for comprehensive application observability.
 ms.topic: overview
-ms.date: 04/22/2025
+ms.date: 09/25/2025
 
 #customer intent: As a developer or site reliability engineer, I want to use OpenTelemetry (OTel), often searched as 'Open Telemetry', with Application Insights so that I can collect, analyze, and monitor application telemetry in a standardized way for improved observability and performance diagnostics.
 
@@ -70,9 +70,6 @@ This section outlines supported scenarios.
 
 For more information about instrumenting applications to enable Application Insights, see [data collection basics](opentelemetry-overview.md).
 
-### Automatic instrumentation (enable without code changes)
-* [Autoinstrumentation supported environments and languages](codeless-overview.md#supported-environments-languages-and-resource-providers)
-
 ### Manual instrumentation
 
 #### OpenTelemetry Distro
@@ -92,13 +89,18 @@ For more information about instrumenting applications to enable Application Insi
 
 #### Application Insights SDK (Classic API)
 
+> [!NOTE]
+> Review [Should I use OpenTelemetry or the Application Insights SDK](application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-sdk) before considering instrumentation with the Classic API.
+
 * [ASP.NET Core](./asp-net-core.md)
 * [ASP.NET](./asp-net.md)
 * [Node.js](./nodejs.md)
 
-### Supported platforms and frameworks
+### Automatic instrumentation (enable without code changes)
 
-This section lists all supported platforms and frameworks.
+For supported environments and languages, see our [autoinstrumentation overview](codeless-overview.md#supported-environments-languages-and-resource-providers).
+
+### Supported platforms
 
 #### Azure service integration (portal enablement, Azure Resource Manager deployments)
 * [Azure Virtual Machines and Azure Virtual Machine Scale Sets](./azure-vm-vmss-apps.md)
@@ -106,13 +108,6 @@ This section lists all supported platforms and frameworks.
 * [Azure Functions](/azure/azure-functions/functions-monitoring)
 * [Azure Spring Apps](/azure/spring-apps/enterprise/how-to-application-insights)
 * [Azure Cloud Services](./azure-web-apps-net-core.md), including both web and worker roles
-
-#### Logging frameworks
-* [`ILogger`](./ilogger.md)
-* [Log4Net, NLog, or System.Diagnostics.Trace](./asp-net-trace-logs.md)
-* [`Log4J`, Logback, or java.util.logging](./opentelemetry-add-modify.md?tabs=java)
-* [LogStash plug-in](https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash/logstash-output-applicationinsights)
-* [Azure Monitor](/archive/blogs/msoms/application-insights-connector-in-oms)
 
 #### Export and data analysis
 * [Integrate Log Analytics with Power BI](../logs/log-powerbi.md)
@@ -146,19 +141,3 @@ Post coding questions to [Stack Overflow](https://stackoverflow.com/questions/ta
 ### Feedback Community
 
 Leave product feedback for the engineering team in the [Feedback Community](https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0).
-
----------------------------
-
-## Next steps
-
-- To review frequently asked questions (FAQ), see [Application Insights FAQ](application-insights-faq.yml#overview)
-- [Data collection basics](opentelemetry-overview.md)
-- [Workspace-based resources](create-workspace-resource.md)
-- [Automatic instrumentation overview](codeless-overview.md)
-- [Application dashboard](overview-dashboard.md)
-- [Application Map](app-map.md)
-- [Live metrics](live-stream.md)
-- [Transaction search](transaction-search-and-diagnostics.md?tabs=transaction-search)
-- [Availability overview](availability-overview.md)
-- [Users, sessions, and events](usage.md)
-

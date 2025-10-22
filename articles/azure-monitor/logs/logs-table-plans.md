@@ -3,7 +3,7 @@ title: Select a table plan based on data usage in a Log Analytics workspace
 description: Use the Auxiliary, Basic, and Analytics Logs plans to reduce costs and take advantage of advanced analytics capabilities in Azure Monitor Logs.
 ms.reviewer: adi.biran
 ms.topic: how-to
-ms.date: 07/04/2024
+ms.date: 08/29/2025
 
 # Customer intent: As a Log Analytics workspace administrator, I want to manage configure the plans of tables in my Log Analytics workspace so that I pay less for data I use less frequently.
 ---
@@ -30,18 +30,20 @@ For information about what each table plan offers and which use cases it's optim
   
 ## Set the table plan
 
-You can set the table plan to Auxiliary only when you [create a custom table](create-custom-table-auxiliary.md#create-a-custom-table-with-the-auxiliary-plan) by using the API. Built-in Azure tables don't currently support the Auxiliary plan. After you create a table with an Auxiliary plan, you can't switch the table's plan. 
+You can set the table plan to Auxiliary only when you [create a custom table](create-custom-table-auxiliary.md#create-a-custom-table-with-the-auxiliary-plan) by using the API. Built-in Azure tables don't currently support the Auxiliary plan. After you create a table with an Auxiliary plan, you can't switch the table's plan.
 
 All tables support the Analytics plan and all DCR-based custom tables and [some Azure tables support the Basic log plan](basic-logs-azure-tables.md). You can switch between the Analytics and Basic plans, the change takes effect on existing data in the table immediately. 
 
 When you change a table's plan from Analytics to Basic, Azure monitor treats any data that's older than 30 days as long-term retention data based on the total retention period set for the table. In other words, the total retention period of the table remains unchanged, unless you explicitly [modify the long-term retention period](../logs/data-retention-configure.md). 
 
 > [!NOTE]
-> You can switch a table's plan once a week.
+> * See [Tables that support the Basic table plan in Azure Monitor Logs](basic-logs-azure-tables.md).
+>
+> * You can switch a table's plan once a week.
 
 ### [Portal](#tab/portal-1)
 
-Analytics is the default table plan of all tables you create in the portal. You can switch between the Analytics and Basic plans, as described in this section. 
+Analytics is the default table plan of all tables you create in the portal. You can switch between the Analytics and Basic plans, as described in this section.
 
 To switch a table's plan in the Azure portal:
 
@@ -175,6 +177,4 @@ Update-AzOperationalInsightsTable  -ResourceGroupName RG-NAME -WorkspaceName WOR
 
 ## Related content
 
-* [Manage data retention](../logs/data-retention-configure.md).
-* [Tables that support the Basic table plan in Azure Monitor Logs](basic-logs-azure-tables.md).
-
+Learn about [managing data retention](../logs/data-retention-configure.md).

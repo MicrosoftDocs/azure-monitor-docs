@@ -4,7 +4,6 @@ description: Azure Monitor integrates seamlessly with your application running o
 ms.topic: how-to
 ms.custom: devx-track-extended-java
 ms.date: 04/03/2025
-ms.reviewer: abinetabate
 ---
 
 # Autoinstrumentation for Azure Kubernetes Service (Preview)
@@ -232,11 +231,11 @@ You can opt to collect logs in Application Insights as an addition to or replace
 
 Enabling logs in Application Insights provide correlated logs, allowing users to easily view distributed traces alongside their related logs. Further, some microservices don't write logs to the console so Container Insights isn't able to collect them and only Application Insights instrumentation captures these logs.
 
-Conversely, Application Insights might not be able to instrument all microservices. As an example, those using NGINX or unsupported languages. Users might prefer to rely on Container Insights logs only for such microservices.
+Conversely, Application Insights might not be able to instrument all microservices. As an example, those using NGINX or unsupported languages. Users might prefer to rely on container logs only for such microservices.
 
 You can also choose to enable both sources for logs if you have multiple observability teams such as infra engineers using Container Insights and developers using Application Insights.
 
-Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, Container Insights Logs, or both. If you disable Container Insights logs, see [Container Insights settings](../containers/container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-configmap).
+Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, container logs, or both. If you disable container log collection, see [Filter container log collection with ConfigMap](../containers/container-insights-data-collection-filter.md).
 
 > [!IMPORTANT]
 > To avoid unnecessary duplication and increased cost, enable logs in Application Insights to allow the feature to collect application logs from standard logging frameworks and send them to Application Insights.

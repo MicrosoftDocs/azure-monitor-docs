@@ -2,15 +2,18 @@
 ms.assetid: 
 title: Create a separate subnet in a VNet for SCOM Managed Instance
 description: This article describes how to create a separate subnet in a virtual network for Azure Monitor SCOM Managed Instance.
-author: jyothisuri
-ms.author: jsuri
-ms.date: 05/22/2024
+author: Jeronika-MS
+ms.author: v-gajeronika
+ms.date: 09/30/2025
+ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: how-to
 ---
 
 # Create a separate subnet in a virtual network for Azure Monitor SCOM Managed Instance
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 This article describes how to create a separate subnet in a virtual network for a managed instance of Azure Monitor SCOM Managed Instance and enable Azure NAT Gateway on a SCOM Managed Instance subnet.
 

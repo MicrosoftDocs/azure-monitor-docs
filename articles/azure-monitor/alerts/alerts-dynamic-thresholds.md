@@ -138,10 +138,11 @@ Dynamic thresholds support most metrics, but the following metrics can't use dyn
 | Microsoft.ContainerService/managedClusters | OomKilledContainerCount |
 | Microsoft.Devices/IotHubs | TotalDeviceCount |
 | Microsoft.Devices/IotHubs | ConnectedDeviceCount |
-| Microsoft.Devices/IotHubs | TotalDeviceCount |
-| Microsoft.Devices/IotHubs | ConnectedDeviceCount |
 | Microsoft.DocumentDB/databaseAccounts | CassandraConnectionClosures |
 | Microsoft.EventHub/clusters | Size |
+| Microsoft.EventHub/namespaces | CPU |
+| Microsoft.EventHub/namespaces | Memory Usage |
+| Microsoft.EventHub/namespaces | ReplicationLagCount |
 | Microsoft.EventHub/namespaces | Size |
 | Microsoft.IoTCentral/IoTApps | connectedDeviceCount |
 | Microsoft.IoTCentral/IoTApps | provisionedDeviceCount |
@@ -163,11 +164,13 @@ Dynamic thresholds support most metrics, but the following metrics can't use dyn
 | Microsoft.Network/virtualNetworkGateways | ExpressRouteGatewayPacketsPerSecond |
 | Microsoft.Network/virtualNetworkGateways | ExpressRouteGatewayNumberOfVmInVnet |
 | Microsoft.Network/virtualNetworkGateways | ExpressRouteGatewayFrequencyOfRoutesChanged |
+| Microsoft.ServiceBus/namespaces | Count of active messages in a Queue/Topic. (ActiveMessages)|
+| Microsoft.ServiceBus/namespaces | Count of dead-lettered messages in a Queue/Topic (DeadletteredMessages) |
+| Microsoft.ServiceBus/namespaces | Count of messages in a Queue/Topic (Messages) |
+| Microsoft.ServiceBus/namespaces | Count of scheduled messages in a Queue/Topic (ScheduledMessages) |
+| Microsoft.ServiceBus/namespaces | CPU (NamespaceCpuUsage) |
+| Microsoft.ServiceBus/namespaces | Memory Usage (NamespaceMemoryUsage) |
 | Microsoft.ServiceBus/namespaces | Size |
-| Microsoft.ServiceBus/namespaces | Messages |
-| Microsoft.ServiceBus/namespaces | ActiveMessages |
-| Microsoft.ServiceBus/namespaces | DeadletteredMessages |
-| Microsoft.ServiceBus/namespaces | ScheduledMessages |
 | Microsoft.ServiceFabricMesh/applications | AllocatedCpu |
 | Microsoft.ServiceFabricMesh/applications | AllocatedMemory |
 | Microsoft.ServiceFabricMesh/applications | ActualCpu |

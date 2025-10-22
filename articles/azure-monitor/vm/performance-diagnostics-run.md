@@ -13,6 +13,7 @@ ms.date: 06/10/2025
 
 [Performance Diagnostics](./performance-diagnostics.md) helps identify and troubleshoot performance issues on Azure virtual machines. This article describes how to install Performance Diagnostics and run on-demand reports on your Azure virtual machine (VM).
 
+
 ## Prerequisites
 
 * To run continuous and on-demand diagnostics on Windows, you need [.NET SDK](/dotnet/core/install/windows) version 4.5 or a later version installed.

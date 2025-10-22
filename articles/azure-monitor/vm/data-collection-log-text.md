@@ -15,7 +15,7 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#text-logs).
 
 ## Prerequisites
-In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for details about the requirements of this table. Note that Aarch64 is not supported.
+In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for details about the requirements of this table. Note that Aarch64 alma8 and rocky8 are not supported.
 
 ## Configure custom text file data source
 Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Custom Text Logs** from the **Data source type** dropdown.
@@ -26,7 +26,7 @@ The options available in the **Custom Text Logs** configuration are described in
 
 | Setting | Description |
 |:---|:---|
-| File pattern     | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas. Wildcards may only be used in the file name, not in the folder name.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
+| File pattern     | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas. You can use wildcards in the file name and the first level folder name above the file name only.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>-C:\Logs\IIS*\\\*.logs <br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
 | Table name       | Name of the destination table in your Log Analytics Workspace. This table must already exist. |     
 | Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat` to identify the start of a new record. If no date in the specified format is found then end of line is used. See [Time formats](#time-formats) for more details. | 
 | TimeStamp Format | The time format used in the log file as described in [Time formats](#time-formats) below. |

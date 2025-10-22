@@ -3,7 +3,7 @@ title: Ingest events from Azure Event Hubs into Azure Monitor Logs (Preview)
 description: Ingest logs from Event Hubs into Azure Monitor Logs 
 ms.reviewer: ilanawaitser
 ms.topic: tutorial 
-ms.date: 12/28/2023
+ms.date: 08/29/2025
 ms.custom: references_regions 
 
 # Customer intent: As a DevOps engineer, I want to ingest data from an event hub into a Log Analytics workspace so that I can monitor logs that I send to Azure Event Hubs.
@@ -22,6 +22,9 @@ In this tutorial, you learn how to:
 > * Create a data collection rule
 > * Grant the data collection rule permissions to the event hub
 > * Associate the data collection rule with the event hub
+
+> [!NOTE]
+> While a data collection rule (DCR) and destination table in Azure Log Analytics can be created through the Azure portal, ingesting events from Azure Event Hubs into Azure Monitor Logs requires a deployment template or the DCR API. This is because the DCR must include specific syntax that isn't supported in the portal interface.
 
 ## Prerequisites
 
@@ -56,15 +59,15 @@ For minimum latency, we recommend placing all resources in the same region.
 
 You need your subscription ID, resource group name, workspace name, workspace resource ID, and event hub instance resource ID in subsequent steps:
 
-1. Navigate to your workspace in the **Log Analytics workspaces** menu and select **Properties** and copy your **Subscription ID**, **Resource group**, and **Workspace name**. You'll need these details to create resources in this tutorial. 
+1. Navigate to your workspace in the **Log Analytics workspaces** menu and select **Properties** and copy your **Subscription ID**, **Resource group**, and **Workspace name**. You need these details to create resources in this tutorial. 
 
     :::image type="content" source="media/ingest-logs-event-hub/create-custom-table-prepare.png" lightbox="media/ingest-logs-event-hub/create-custom-table-prepare.png" alt-text="Screenshot showing Log Analytics workspace overview screen with subscription ID, resource group name, and workspace name highlighted.":::
 
-1. Select **JSON** to open the **Resource JSON** screen and copy the workspace's **Resource ID**. You'll need the workspace resource ID to create a data collection rule. 
+1. Select **JSON** to open the **Resource JSON** screen and copy the workspace's **Resource ID**. You need the workspace resource ID to create a data collection rule. 
 
     :::image type="content" source="media/ingest-logs-event-hub/log-analytics-workspace-id.png" lightbox="media/ingest-logs-event-hub/log-analytics-workspace-id.png" alt-text="Screenshot showing the Resource JSON screen with the workspace resource ID highlighted.":::
 
-1. Navigate to your event hub instance, select **JSON** to open the **Resource JSON** screen, and copy the event hub instance's **Resource ID**. You'll need the event hub instance's resource ID to associate the data collection rule with the event hub.
+1. Navigate to your event hub instance, select **JSON** to open the **Resource JSON** screen, and copy the event hub instance's **Resource ID**. You need the event hub instance's resource ID to associate the data collection rule with the event hub.
 
     :::image type="content" source="media/ingest-logs-event-hub/event-hub-resource-id.png" lightbox="media/ingest-logs-event-hub/event-hub-resource-id.png" alt-text="Screenshot showing the Resource JSON screen with the event hub resource ID highlighted.":::
 
@@ -78,7 +81,7 @@ To create a custom table into which to ingest events, in the Azure portal:
 
     :::image type="content" source="media/ingest-logs-event-hub/create-custom-table-open-cloud-shell.png" lightbox="media/ingest-logs-event-hub/create-custom-table-open-cloud-shell.png" alt-text="Screenshot showing how to open Cloud Shell.":::
 
-1. Run this PowerShell command to create the table, providing the table name (`<table_name>`) in the JSON (that too with suffix *_CL* in case of custom table), and setting the `<subscription_id>`, `<resource_group_name>`, `<workspace_name>`, and `<table_name>` values in the `Invoke-AzRestMethod -Path` command:
+1. Run this PowerShell command to create the table, provide the table name (`<table_name>`) in the JSON (with suffix *_CL* for a custom table), and set the `<subscription_id>`, `<resource_group_name>`, `<workspace_name>`, `<table_name>`, and `<api_version>` values in the `Invoke-AzRestMethod -Path` command:
 
     ```PowerShell
     $tableParams = @'
@@ -108,13 +111,16 @@ To create a custom table into which to ingest events, in the Azure portal:
     }
     '@
     
-    Invoke-AzRestMethod -Path "/subscriptions/<subscription_id>/resourcegroups/<resource_group_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>/tables/<table_name>?api-version=2021-12-01-preview" -Method PUT -payload $tableParams
+    Invoke-AzRestMethod -Path "/subscriptions/<subscription_id>/resourcegroups/<resource_group_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>/tables/<table_name>?api-version=<api_version>" -Method PUT -payload $tableParams
     ```
 
 > [!IMPORTANT]
-> * Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
-> * `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. 
-> * Column names are case-sensitive. Make sure to use the correct case in your data collection rule. 
+> * Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`).
+> * `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
+> * Column names are case-sensitive. Make sure to use the correct case in your data collection rule.
+
+> [!NOTE]
+> For more information about currently supported API versions, see [API version change log for deployment of Microsoft.OperationalInsights/workspaces/tables](/azure/templates/microsoft.operationalinsights/change-log/workspaces/tables).
 
 ## Create a data collection endpoint
 
@@ -129,7 +135,7 @@ To collect data with a data collection rule, you need a data collection endpoint
 
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-endpoint-details.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-details.png" alt-text="Screenshot that shows the data collection endpoint Overview screen.":::
 
-1. Copy the **Resource ID** for the data collection rule. You'll use this information in the next step.
+1. Copy the **Resource ID** for the data collection rule. You use this information in the next step.
 
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-json-view.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-json-view.png" alt-text="Screenshot that shows the data collection endpoint JSON view.":::
     
@@ -147,11 +153,11 @@ To create a data collection rule in the Azure portal:
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/build-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/build-custom-template.png" alt-text="Screenshot to build template in the editor.":::
 
-1. Paste the Resource Manager template below into the editor and then select **Save**.
+1. Paste the following Resource Manager template into the editor and select **Save**.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/edit-template.png" lightbox="media/tutorial-workspace-transformations-api/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
 
-    Notice the following details in the data collection rule below:
+    Notice the following details in the [data collection rule](#dcr-template):
 
     * `identity` - Defines which type of [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to use. In our example, we use system-assigned identity. You can also [configure user-assigned managed identity](#configure-user-assigned-managed-identity-optional).
     
@@ -169,7 +175,9 @@ To create a data collection rule in the Azure portal:
 
     * `dataFlows` - Matches the stream with the destination workspace and specifies the transformation query and the destination table. In our example, we ingest data to the custom table we created previously. You can also [ingest into a supported Azure table](#ingest-log-data-into-an-azure-table-optional).
 
-    * `transformKql` - Specifies a transformation to apply to the incoming data (stream declaration) before it's sent to the workspace. In our example, we set `transformKql` to `source`, which doesn't modify the data from the source in any way, because we're mapping incoming data to a custom table we've created specifically with the corresponding schema. If you're ingesting data to a table with a different schema or to filter data before ingestion, [define a data collection transformation](../data-collection/data-collection-transformations.md).
+    * `transformKql` - Specifies a transformation to apply to the incoming data (stream declaration) before it's sent to the workspace. In our example, we set `transformKql` to `source`, which doesn't modify the data from the source in any way, because we're mapping incoming data to a custom table created specifically with the corresponding schema. If you're ingesting data to a table with a different schema or to filter data before ingestion, [define a data collection transformation](../data-collection/data-collection-transformations.md).
+
+    <a id="dcr-template"></a>
 
     ```json
     {
@@ -215,36 +223,36 @@ To create a data collection rule in the Azure portal:
                 "location": "[resourceGroup().location]", 
                 "apiVersion": "2022-06-01",
                 "identity": {
-                                 "type": "systemAssigned"
-                  },
+                    "type": "systemAssigned"
+                    },
                 "properties": {
                     "dataCollectionEndpointId": "[parameters('endpointResourceId')]",
                     "streamDeclarations": {
                         "Custom-MyEventHubStream": {
                             "columns": [
-                    {
-                        "name": "TimeGenerated",
-                        "type": "datetime"
-                    },
-                    {
-                        "name": "RawData",
-                        "type": "string"
-                    },
-                    {
-                        "name": "Properties",
-                        "type": "dynamic"
-                    }
-                ]
+                                {
+                                    "name": "TimeGenerated",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "name": "RawData",
+                                    "type": "string"
+                                },
+                                {
+                                    "name": "Properties",
+                                    "type": "dynamic"
+                                }
+                            ]
                         }
                     },
                     "dataSources": {
                         "dataImports": {
-                             "eventHub": {
-                                        "consumerGroup": "[parameters('consumerGroup')]",
-                                        "stream": "Custom-MyEventHubStream",
-                                        "name": "myEventHubDataSource1"
-                                                              }
-                                               }
+                            "eventHub": {
+                                    "consumerGroup": "[parameters('consumerGroup')]",
+                                    "stream": "Custom-MyEventHubStream",
+                                    "name": "myEventHubDataSource1"
+                            }
+                        }
                    },
                     "destinations": {
                         "logAnalytics": [
@@ -289,33 +297,33 @@ To create a data collection rule in the Azure portal:
 
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-details.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-details.png" alt-text="Screenshot that shows the Data Collection Rule Overview screen.":::
 
-1. Copy the **Resource ID** for the data collection rule. You'll use this information in the next step.
+1. Copy the **Resource ID** for the data collection rule. You use this information in the next step.
 
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-json-view.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-json-view.png" alt-text="Screenshot that shows the data collection rule JSON view.":::
 
 ### Configure user-assigned managed identity (optional)
 
-To configure your data collection rule to support [user-assigned identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities), in the example above, replace:
+To configure your data collection rule to support [user-assigned identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities), in the [DCR template](#dcr-template), replace:
 
 ```json
     "identity": {
-                        "type": "systemAssigned"
-        },
+        "type": "systemAssigned"
+    },
 ``` 
 
-with:
+With:
 
 ```json
     "identity": {
-            "type": "userAssigned",
-            "userAssignedIdentities": {
-                "<identity_resource_Id>": {
-                }
+        "type": "userAssigned",
+        "userAssignedIdentities": {
+            "<identity_resource_Id>": {
             }
-        },
+        }
+    },
 ```
 
-To find the `<identity_resource_Id>` value, navigate to your user-assigned managed identity resource in the Azure portal, select **JSON** to open the **Resource JSON** screen and copy the managed identity's **Resource ID**. 
+To find the `<identity_resource_Id>` value, navigate to your user-assigned managed identity resource in the Azure portal, select **JSON** to open the **Resource JSON** screen, and copy the managed identity's **Resource ID**. 
 
 :::image type="content" source="media/ingest-logs-event-hub/managed-identity-resource-id.png" lightbox="media/ingest-logs-event-hub/managed-identity-resource-id.png" alt-text="Screenshot showing Resource JSON screen with the managed identity resource ID highlighted.":::
 
@@ -358,7 +366,7 @@ The final step is to associate the data collection rule to the event hub from wh
 You can associate a single data collection rule with multiple event hubs that share the same [consumer group](/azure/event-hubs/event-hubs-features#consumer-groups) and ingest data to the same stream. Alternatively, you can associate a unique data collection rule to each event hub.
 
 > [!IMPORTANT]
-> You must associate at least one data collection rule to the event hub to ingest data from an event hub. When you delete all data collection rule associations related to the event hub, you'll stop ingesting data from the event hub.
+> You must associate at least one data collection rule to the event hub to ingest data from an event hub. When you delete all data collection rule associations related to the event hub, you stop ingesting data from the event hub.
 
 To create a data collection rule association in the Azure portal:
 
@@ -366,7 +374,7 @@ To create a data collection rule association in the Azure portal:
 
 1. Select **Build your own template in the editor**.
 
-1. Paste the Resource Manager template below into the editor and then select **Save**.
+1. Paste the following Resource Manager template into the editor and select **Save**.
 
     ```JSON
     {

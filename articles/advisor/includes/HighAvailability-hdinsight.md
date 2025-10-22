@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability HDInsight
@@ -58,31 +58,33 @@ When data disks used by Kafka brokers in  HDInsight clusters are almost full, th
 
 **Impact:** High
   
-For more information, see [Broker fails to start due to a full disk in Azure HDInsight ](https://aka.ms/kafka-troubleshoot-full-disk)  
+For more information, see [Broker fails to start due to a full disk in Azure HDInsight](https://aka.ms/kafka-troubleshoot-full-disk)  
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: 35e3a19f-16e7-4bb1-a7b8-49e02a35af2e  
-Subcategory: Other
+Subcategory: undefined
 
 <!--35e3a19f-16e7-4bb1-a7b8-49e02a35af2e_end-->
 
+
 <!--8f163c95-0029-4139-952a-42bd0d773b93_begin-->
 
-#### Upgrade your cluster to the the latest HDInsight image  
+#### Upgrade the cluster to the latest HDInsight image  
   
-A cluster created one year ago doesn't have the latest image upgrades. Your cluster was created 1 year ago. As part of the best practices, we recommend you use the latest HDInsight images for the best open source updates, Azure updates, and security fixes. The recommended maximum duration for cluster upgrades is less than six months.  
+A cluster doesn't have the latest image upgrades. The cluster was created 1 year ago. The platform recommends using the latest HDInsight images for the best open source updates, Azure updates, and security fixes. The recommended maximum duration for cluster upgrades is six months or less.  
   
 **Potential benefits**: Get the latest fixes and features  
 
 **Impact:** High
   
-For more information, see [Before you start with Azure HDInsight ](/azure/hdinsight/hdinsight-overview-before-you-start#keep-your-clusters-up-to-date)  
+For more information, see [Before you start with Azure HDInsight](/azure/hdinsight/hdinsight-overview-before-you-start#keep-your-clusters-up-to-date)  
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: 8f163c95-0029-4139-952a-42bd0d773b93  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: undefined
 
 <!--8f163c95-0029-4139-952a-42bd0d773b93_end-->
+
 
 <!--97355d8e-59ae-43ff-9214-d4acf728467a_begin-->
 
@@ -94,13 +96,14 @@ A cluster not using the latest image doesn't have the latest upgrades. Your clus
 
 **Impact:** High
   
-For more information, see [Release notes for Azure HDInsight ](/azure/hdinsight/hdinsight-release-notes)  
+For more information, see [Release notes for Azure HDInsight](/azure/hdinsight/hdinsight-release-notes)  
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: 97355d8e-59ae-43ff-9214-d4acf728467a  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: undefined
 
 <!--97355d8e-59ae-43ff-9214-d4acf728467a_end-->
+
 
 <!--b3bf9f14-c83e-4dd3-8f5c-a6be746be173_begin-->
 
@@ -124,19 +127,55 @@ Subcategory: Other
 
 #### VM agent is 9.9.9.9. Upgrade the cluster.  
   
-Our records indicate that one or more of your clusters are using images dated February 2022 or older (image versions 2202xxxxxx or older). 
-There is a potential reliability issue on HDInsight clusters that use images dated February 2022 or older.Consider rebuilding your clusters with latest image.  
+Our records indicate that one or more of your clusters are using images dated February 2022 or older (image versions 2202xxxxxx or older). There is a potential reliability issue on HDInsight clusters that use images dated February 2022 or older. Consider rebuilding your clusters with newest image.  
   
 **Potential benefits**: Improved Reliability in Scaling and Network connectivity  
 
 **Impact:** High
   
-  
+For more information, see [Migrate cluster to a newer version - Azure HDInsight](https://aka.ms/hdiupgrade)  
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: e4635832-0ab1-48b1-a386-c791197189e6  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: undefined
 
 <!--e4635832-0ab1-48b1-a386-c791197189e6_end-->
+
+
+<!--32b83a78-f586-425a-afd2-52accec61d65_begin-->
+
+#### HDInsight 4.0 is being retired  
+  
+Customers running HDInsight 4.0 no longer receive support and no new clusters can be created after the retirement date.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-hdinsight-40-will-be-retired-on-31-march-2025-migrate-your-hdinsight-clusters-to-51)  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: 32b83a78-f586-425a-afd2-52accec61d65  
+Subcategory: undefined
+
+<!--32b83a78-f586-425a-afd2-52accec61d65_end-->
+
+<!--f0466e91-184d-4a0d-8e18-25c1cf7a4c1c_begin-->
+
+#### HDInsight 5.0 is being retired  
+  
+Customers running HDInsight 5.0 no longer receive support.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=hdinsight5retire)  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: f0466e91-184d-4a0d-8e18-25c1cf7a4c1c  
+Subcategory: undefined
+
+<!--f0466e91-184d-4a0d-8e18-25c1cf7a4c1c_end-->
 
 <!--articleBody-->

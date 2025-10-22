@@ -4,18 +4,15 @@ description: This article explains what Azure Monitor issue and investigation is
 ms.topic: how-to
 ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.date: 05/08/2025
+ms.date: 09/02/2025
 ms.custom: references_regions
 ---
 
 # Azure Monitor issues and investigations (preview)
 
-Azure Monitor issues and investigations (preview) are new AIOps capabilities that automate the troubleshooting processes for [Azure monitor alerts](/azure/azure-monitor/alerts/alerts-overview).
+Azure Monitor issues and investigations (preview) are AIOps capabilities that automate the troubleshooting processes for [Azure monitor alerts](/azure/azure-monitor/alerts/alerts-overview).
 
-This article explains what Azure Monitor issues and investigations (preview) are and how they are used to triage and mitigate problems with an Azure resource.
-
-> [!NOTE]
-> For preview, the only alert supported is an Application Insights resource alert.
+This article explains how Azure Monitor issues and investigations (preview) are used to triage and mitigate problems with an Azure resource.
 
 ## What is an issue?
 
@@ -44,7 +41,7 @@ A finding contains a summary that can include:
 - **Next steps.** Suggestions for continuing the investigation or mitigating the problems.
 - **Evidence.** Evidence is the data justifying the finding, such as anomalies, diagnostics insights, health data, resource changes, related resources, and related alerts.
 
-> [!Note]
+> [!NOTE]
 > Up to five findings are displayed and all other anomalies are grouped into **Additional data**.
 
 ## Evidence types
@@ -115,8 +112,16 @@ These are the supported Azure regions for issues and investigation services:
 | eastasia                               |
 | eastus                                 |
 | eastus2euap                            |
+| southcentralus                         |
 | uksouth                                |
 | westeurope                             |
+| canadacentral                          |
+| westus                                 |
+| northcentralus                         |
+| eastus2                                |
+| northeurope                            |
+| westus2                                |
+
 
 ## Next steps
 

@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot Container insights | Microsoft Docs
+title: Troubleshoot collection of container logs in Azure Monitor
 description: This article describes how you can troubleshoot and resolve issues with Container insights.
 ms.topic: troubleshooting-general
 ms.date: 01/29/2025
@@ -7,7 +7,7 @@ ms.reviewer: aul
 
 ---
 
-# Troubleshoot Container insights
+# Troubleshoot collection of container logs in Azure Monitor
 
 This article discusses some common issues and troubleshooting steps when using Container insights to monitor your Kubernetes cluster. 
 
@@ -90,7 +90,7 @@ Check if the Log Analytics workspace is configured for local authentication with
 When the daily cap is limit is met for a Log Analytics workspace, it will stop collecting data until the reset time. See [Log Analytics Daily Cap](../logs/daily-cap.md).
 
 ### DCR not deployed with Terraform
-If Container insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. See [Enable Container insights](./kubernetes-monitoring-enable.md?tabs=terraform#enable-container-insights).
+If Container insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. See [Enable Container insights using Terraform](./kubernetes-monitoring-enable.md).
 
 ### Container insights not reporting any information
 Use the following steps if you can't view status information or no results are returned from a log query.
@@ -314,7 +314,7 @@ There are plans to adjust the default PODS_CHUNK_SIZE value to smaller value to 
 
 3. If errors are because of the outbound endpoint is blocked, see [Network firewall requirements for monitoring Kubernetes cluster](./kubernetes-monitoring-firewall.md) for endpoint requirements.
 
-4. If errors are because of missing Data collection endpoint (DCE) or Data Collection rule (DCR), then reenable Container insights using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md#enable-container-insights).
+4. If errors are because of missing Data collection endpoint (DCE) or Data Collection rule (DCR), then reenable Container insights using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md).
 
 5. If there are no errors, then this may be related to log scale. See [High scale logs collection in Container Insights (Preview)](./container-insights-high-scale.md).
 
@@ -347,7 +347,7 @@ There are plans to adjust the default PODS_CHUNK_SIZE value to smaller value to 
 
 3. If errors are because of the outbound endpoint is blocked, see [Network firewall requirements for monitoring Kubernetes cluster](./kubernetes-monitoring-firewall.md) for endpoint requirements.
 
-4. If errors are because of missing Data collection endpoint (DCE) or Data Collection rule (DCR), then reenable Container insights using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md#enable-container-insights).
+4. If errors are because of missing Data collection endpoint (DCE) or Data Collection rule (DCR), then reenable Container insights using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md).
 
 5. If there are no network errors, check if the cluster level prometheus scraping is enabled by reviewing the  [prometheus_data_collection_settings.cluster] settings in configmap.
 

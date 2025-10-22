@@ -3,7 +3,7 @@ title: Optimize log queries in Azure Monitor
 description: Best practices for optimizing log queries in Azure Monitor.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 10/11/2024
+ms.date: 10/07/2025
 
 
 ---
@@ -27,21 +27,42 @@ Here's a detailed video walkthrough on optimizing queries.
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=e498f85b-a3c6-4f77-95ce-cdd0a1a9d466]
 
 ## Query Details pane
-After you run a query in Log Analytics, select **Query details** at the bottom right corner of the screen to open the **Query Details** pane. This pane shows the results of several performance indicators for the query. These performance indicators are described in the following section.
+After you run a query in Log Analytics, select **Query details** at the bottom right corner of the screen to open the **Query Details** pane. 
+The Query Details pane includes three tabs:
+- **Overview** - A curated set of key performance indicators
+- **Raw statistics** - All detailed execution stats, referenced workspaces and queries, and other technical data
+- **Errors** - Lists any errors encountered during query execution
+
+This **Overview** tab shows the results of several performance indicators for the query. These performance indicators are described in the following section.
 
 :::image type="content" source="media/query-optimization/query-details-pane.png" alt-text="Screenshot that shows the Query Details pane in Azure Monitor Log Analytics." lightbox="media/query-optimization/query-details-pane.png":::
+
+## Query Execution Time Breakdown
+
+When analyzing query performance in Azure Monitor Logs, the Query Details pane provides an **Execution time** that reflects the overall duration of the query from end-to-end. This stats is broken down into three distinct components to help identify performance bottlenecks:
+
+1.	**Engine Execution Time**
+This is the time spent executing the query within the underlying data engine, such as Azure Data Explorer or other components. If this value is the primary contributor to the overall execution time, it may indicate that the query itself can be optimized. Refer to the optimization techniques described in this document to improve performance.
+
+2.	**Service Execution Time**
+This represents the time spent within the Azure Monitor Logs service itself, outside of the data engine. It includes internal processing and orchestration.
+
+3.	**Service Queue Time**
+This is the time the query spent waiting in the Azure Monitor Logs service queue before execution. If this value is populated (for example, not the default value of N/A), it suggests that the user has reached concurrency limits due to multiple simultaneous queries. A high queue time indicates that other concurrent queries may be resource-intensive and should be reviewed and optimized to reduce contention. See Azure Monitor service limits - Azure Monitor | Microsoft Learn.
+[Azure Monitor service limits - User query throttling](../fundamentals/service-limits.md#user-query-throttling)
+
 
 ## Query performance indicators
 
 The following query performance indicators are available for every query that's executed:
 
 - [Total CPU](#total-cpu): Overall compute used to process the query across all compute nodes. It represents time used for computing, parsing, and data fetching.
-- [Data used for processed query](#data-used-for-processed-query): Overall data that was accessed to process the query. Influenced by the size of the target table, time span used, filters applied, and the number of columns referenced.
 - [Time span of the processed query](#time-span-of-the-processed-query): The gap between the newest and the oldest data that was accessed to process the query. Influenced by the explicit time range specified for the query.
 - [Age of processed data](#age-of-processed-data): The gap between now and the oldest data that was accessed to process the query. It highly influences the efficiency of data fetching.
 - [Number of workspaces](#number-of-workspaces): How many workspaces were accessed during the query processing based on implicit or explicit selection.
 - [Number of regions](#number-of-regions): How many regions were accessed during the query processing based on implicit or explicit selection of workspaces. Multi-region queries are much less efficient, and performance indicators present partial coverage.
 - [Parallelism](#parallelism): Indicates how much the system was able to execute this query on multiple nodes. Relevant only to queries that have high CPU consumption. Influenced by usage of specific functions and operators.
+- [Memory peak](#memory-peak): The maximum amount of memory used by the system while executing this query. This includes memory consumed by data loading, processing and temporary storage during execution.
 
 ## Total CPU
 The actual compute CPU that was invested to process this query across all the query processing nodes. Because most queries are executed on large numbers of nodes, this total will usually be much larger than the duration the query took to execute.
@@ -234,17 +255,9 @@ LogData
     " field10=" Field10: string *
 ```
 
-## Data used for processed query
-
-A critical factor in the processing of the query is the volume of data that's scanned and used for the query processing. Azure Data Explorer uses aggressive optimizations that dramatically reduce the data volume compared to other data platforms. Still, there are critical factors in the query that can affect the data volume that's used.
-
-A query that processes more than 2,000 KB of data is considered a query that consumes excessive resources. A query that's processing more than 20,000 KB of data is considered an abusive query and might be throttled.
-
-In Azure Monitor Logs, the `TimeGenerated` column is used as a way to index the data. Restricting the `TimeGenerated` values to as narrow a range as possible will improve query performance. The narrow range significantly limits the amount of data that has to be processed.
-
 ### Avoid unnecessary use of search and union operators
 
-Another factor that increases the data that's processed is the use of a large number of tables. This scenario usually happens when `search *` and `union *` commands are used. These commands force the system to evaluate and scan data from all tables in the workspace. In some cases, there might be hundreds of tables in the workspace. Try to avoid using `search *` or any search without scoping it to a specific table.
+A factor that increases the data that's processed is the use of a large number of tables. This scenario usually happens when `search *` and `union *` commands are used. These commands force the system to evaluate and scan data from all tables in the workspace. In some cases, there might be hundreds of tables in the workspace. Try to avoid using `search *` or any search without scoping it to a specific table.
 
 For example, the following queries produce exactly the same result, but the last one is the most efficient:
 
@@ -284,10 +297,11 @@ SecurityEvent
 | summarize LoginSessions = dcount(LogonGuid) by Account
 ```
 
-### Avoid multiple scans of the same source data by using conditional aggregation functions and the materialize function
-When a query has several subqueries that are merged by using join or union operators, each subquery scans the entire source separately. Then it merges the results. This action multiplies the number of times that data is scanned, which is a critical factor in large datasets.
+### Avoid multiple scans of the same source data
 
-A technique to avoid this scenario is by using the conditional aggregation functions. Most of the [aggregation functions](/azure/data-explorer/kusto/query/summarizeoperator#list-of-aggregation-functions) that are used in a summary operator have a conditioned version that you can use for a single summarize operator with multiple conditions.
+When a query has several subqueries that are merged by using join or union operators, each subquery scans the entire source separately. Then it merges the results. This action multiplies the number of times that data is scanned, which is a critical factor in large dataset query performance.
+
+A technique to avoid this performance problem is using the conditional aggregation functions. Most of the [aggregation functions](/azure/data-explorer/kusto/query/summarizeoperator#list-of-aggregation-functions) that are used in a summary operator have a conditional version. Use the conditional version to get a single summarize operator with multiple conditions.
 
 For example, the following queries show the number of login events and the number of process execution events for each account. They return the same results, but the first query scans the data twice. The second query scans it only once:
 
@@ -340,7 +354,7 @@ SecurityEvent
 
 When the preceding query doesn't allow you to avoid using subqueries, another technique is to hint to the query engine that there's a single source of data used in each one of them by using the [materialize() function](/azure/data-explorer/kusto/query/materializefunction?pivots=azuremonitor). This technique is useful when the source data is coming from a function that's used several times within the query. `Materialize` is effective when the output of the subquery is much smaller than the input. The query engine will cache and reuse the output in all occurrences.
 
-### Reduce the number of columns that's retrieved
+### Reduce the number of columns retrieved
 
 Because Azure Data Explorer is a columnar data store, retrieval of every column is independent of the others. The number of columns that are retrieved directly influences the overall data volume. You should only include the columns in the output that are needed by [summarizing](/azure/kusto/query/summarizeoperator) the results or [projecting](/azure/kusto/query/projectoperator) the specific columns.
 
@@ -495,7 +509,9 @@ A query that spans more than five workspaces is considered a query that consumes
 
 > [!IMPORTANT]
 > - In some multi-workspace scenarios, the CPU and data measurements won't be accurate and will represent the measurement of only a few of the workspaces.
-> - Cross workspace queries having an explicit identifier: workspace ID, or workspace Azure Resource ID, consume less resources and are more performant. 
+> - Cross workspace queries having an explicit identifier: workspace ID, or workspace Azure Resource ID, consume less resources and perform better. 
+
+For more information, see [Query across resources](cross-workspace-query.md).
 
 ## Parallelism
 Azure Monitor Logs uses large clusters of Azure Data Explorer to run queries. These clusters vary in scale and potentially get up to dozens of compute nodes. The system automatically scales the clusters according to workspace placement logic and capacity.
@@ -504,12 +520,22 @@ To efficiently execute a query, it's partitioned and distributed to compute node
 
 Query behaviors that can reduce parallelism include:
 
+- In many cases, operators such as [join](/azure/kusto/query/joinoperator?pivots=azuremonitor) and [summarize](/azure/kusto/query/summarizeoperator?pivots=azuremonitor) lower overall parallelism. Consider using [shuffle](/azure/kusto/query/shufflequery?pivots=azuremonitor) when performance is problematic. Use shuffle when a key (in other words, a column being joined or summarized by) has high cardinality. For example, use shuffle when a column contains public IP addresses. Avoid using shuffle for keys with low cardinality (such as the severity level of an event).
 - Use of serialization and window functions, such as the [serialize operator](/azure/kusto/query/serializeoperator), [next()](/azure/kusto/query/nextfunction), [prev()](/azure/kusto/query/prevfunction), and the [row](/azure/kusto/query/rowcumsumfunction) functions. Time series and user analytics functions can be used in some of these cases. Inefficient serialization might also happen if the following operators aren't used at the end of the query: [range](/azure/kusto/query/rangeoperator), [sort](/azure/data-explorer/kusto/query/sort-operator), [order](/azure/kusto/query/orderoperator), [top](/azure/kusto/query/topoperator), [top-hitters](/azure/kusto/query/tophittersoperator), and [getschema](/azure/kusto/query/getschemaoperator).
 - Use of the [dcount()](/azure/kusto/query/dcount-aggfunction) aggregation function forces the system to have a central copy of the distinct values. When the scale of data is high, consider using the `dcount` function optional parameters to reduce accuracy.
-- In many cases, the [join](/azure/kusto/query/joinoperator?pivots=azuremonitor) operator lowers overall parallelism. Examine `shuffle join` as an alternative when performance is problematic.
 - In resource-scope queries, the pre-execution Kubernetes role-based access control (RBAC) or Azure RBAC checks might linger in situations where there's a large number of Azure role assignments. This situation might lead to longer checks that would result in lower parallelism. For example, a query might be executed on a subscription where there are thousands of resources and each resource has many role assignments on the resource level, not on the subscription or resource group.
 - If a query is processing small chunks of data, its parallelism will be low because the system won't spread it across many compute nodes.
 
-## Next steps
+## Memory peak
+Memory peak is the maximum amount of RAM that the Azure Data Explorer engine observed while executing a query. It covers memory used for data loading (cache/hot reads), operator processing (for example, join, summarize, make-series), and temporary working sets. 
+It's a leading indicator for runaway memory conditions that trigger protections such as runaway queries (E_RUNAWAY_QUERY, operator exceeded memory budget) and E_LOW_MEMORY_CONDITION. Monitoring memory peak helps you catch these patterns early and tune queries before they hit related hard limits.
+
+### How to reduce Memory Peak
+- Follow the same practices as desribed for [Total CPU](#total-cpu). Specifically, for each table of the query, apply early filtering of records and projection of columns.
+- In many cases, operators such as [join](/azure/kusto/query/joinoperator?pivots=azuremonitor) and [summarize](/azure/kusto/query/summarizeoperator?pivots=azuremonitor) lead to high memory usage and can result in a runaway query. Consider using [shuffle](/azure/kusto/query/shufflequery?pivots=azuremonitor) when performance is problematic. Use shuffle when a key (in other words, a column being joined or summarized by) has high cardinality. For example, use shuffle when a column contains public IP addresses. Avoid using shuffle for keys with low cardinality (such as the severity level of an event).
+- If using [join](/azure/kusto/query/joinoperator?pivots=azuremonitor), use best practices where applicable. See [Query best practices](/azure/kusto/query/best-practices).
+- Consider using sampling.
+
+## Related content
 
 [Reference documentation for the Kusto Query Language](/azure/kusto/query/)

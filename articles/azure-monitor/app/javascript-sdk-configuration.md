@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
-ms.reviewer: mmcc
 ---
 
 # Microsoft Azure Monitor Application Insights JavaScript SDK configuration
@@ -13,10 +12,10 @@ ms.reviewer: mmcc
 The Azure Application Insights JavaScript SDK provides configuration for tracking, monitoring, and debugging your web applications.
 
 > [!div class="checklist"]
-> - [SDK configuration](#sdk-configuration)
-> - [Cookie management and configuration](#cookie-management)
-> - [Source map un-minify support](#source-map)
-> - [Tree shaking optimized code](#tree-shaking)
+> * [SDK configuration](#sdk-configuration)
+> * [Cookie management and configuration](#cookie-management)
+> * [Source map un-minify support](#source-map)
+> * [Tree shaking optimized code](#tree-shaking)
 
 ## SDK configuration
 
@@ -38,7 +37,7 @@ For instructions on how to add SDK configuration, see [Add SDK configuration](./
 | correlationHeaderDomains<br><br>Enable correlation headers for specific domains | string[] | undefined |
 | correlationHeaderExcludedDomains<br><br>Disable correlation headers for specific domains | string[] | undefined |
 | correlationHeaderExcludePatterns<br><br>Disable correlation headers using regular expressions | regex[] | undefined |
-| createPerfMgr<br><br>Callback function that is called to create an IPerfManager instance when required and ```enablePerfMgr``` is enabled, it enables you to override the default creation of a PerfManager() without needing to ```setPerfMgr()``` after initialization. | (core: IAppInsightsCore, notificationManager: INotificationManager) => IPerfManager | undefined |
+| createPerfMgr<br><br>Callback function that's called to create an IPerfManager instance when required and ```enablePerfMgr``` is enabled, it enables you to override the default creation of a PerfManager() without needing to ```setPerfMgr()``` after initialization. | (core: IAppInsightsCore, notificationManager: INotificationManager) => IPerfManager | undefined |
 | customHeaders<br><br>The ability for the user to provide extra headers when using a custom endpoint. customHeaders aren't added on browser shutdown moment when beacon sender is used. And adding custom headers isn't supported on IE9 or earlier. | `[{header: string, value: string}]` | undefined |
 | diagnosticLogInterval<br><br>(internal) Polling interval (in ms) for internal logging queue | numeric | 10000 |
 | disableAjaxTracking<br><br>If true, Ajax calls aren't autocollected. Default is false. | boolean | false |
@@ -78,18 +77,135 @@ For instructions on how to add SDK configuration, see [Add SDK configuration](./
 | maxAjaxPerfLookupAttempts<br><br>Defaults to 3. The maximum number of times to look for the window.performance timings (if available) is required. Not all browsers populate the window.performance before reporting the end of the XHR request. For fetch requests, it's added after it's complete. | numeric | 3 |
 | maxBatchInterval<br><br>How long to batch telemetry for before sending (milliseconds) | numeric | 15000 |
 | maxBatchSizeInBytes<br><br>Max size of telemetry batch. If a batch exceeds this limit, it's immediately sent and a new batch is started | numeric | 10000 |
-| namePrefix<br><br>An optional value that is used as name postfix for localStorage and session cookie name. | string | undefined |
+| namePrefix<br><br>An optional value that's used as name postfix for localStorage and session cookie name. | string | undefined |
 | onunloadDisableBeacon<br><br>Default false. when tab is closed, the SDK sends all remaining telemetry using the [Beacon API](https://www.w3.org/TR/beacon) | boolean | false |
 | onunloadDisableFetch<br><br>If fetch keepalive is supported don't use it for sending events during unload, it may still fall back to fetch() without keepalive | boolean | false |
 | overridePageViewDuration<br><br>If true, default behavior of trackPageView is changed to record end of page view duration interval when trackPageView is called. If false and no custom duration is provided to trackPageView, the page view performance is calculated using the navigation timing API. Default is false. | boolean | false |
 | perfEvtsSendAll<br><br>When _enablePerfMgr_ is enabled and the [IPerfManager](https://github.com/microsoft/ApplicationInsights-JS/blob/master/shared/AppInsightsCore/src/JavaScriptSDK.Interfaces/IPerfManager.ts) fires a [INotificationManager](https://github.com/microsoft/ApplicationInsights-JS/blob/master/shared/AppInsightsCore/src/JavaScriptSDK.Interfaces/INotificationManager.ts).perfEvent() this flag determines whether an event is fired (and sent to all listeners) for all events (true) or only for 'parent' events (false &lt;default&gt;).<br />A parent [IPerfEvent](https://github.com/microsoft/ApplicationInsights-JS/blob/master/shared/AppInsightsCore/src/JavaScriptSDK.Interfaces/IPerfEvent.ts) is an event where no other IPerfEvent is still running at the point of the event being created and its _parent_ property isn't null or undefined. Since v2.5.7 | boolean | false |
-| samplingPercentage<br><br>Percentage of events that is sent. Default is 100, meaning all events are sent. Set it if you wish to preserve your data cap for large-scale applications. | numeric | 100 |
+| samplingPercentage<br><br>Percentage of events that's sent. Default is 100, meaning all events are sent. Set it if you wish to preserve your data cap for large-scale applications. | numeric | 100 |
 | sdkExtension<br><br>Sets the SDK extension name. Only alphabetic characters are allowed. The extension name is added as a prefix to the 'ai.internal.sdkVersion' tag (for example, 'ext_javascript:2.0.0'). Default is null. | string | null |
-| sessionCookiePostfix<br><br>An optional value that is used as name postfix for session cookie name. If undefined, namePrefix is used as name postfix for session cookie name. | string | undefined |
+| sessionCookiePostfix<br><br>An optional value that's used as name postfix for session cookie name. If undefined, namePrefix is used as name postfix for session cookie name. | string | undefined |
 | sessionExpirationMs<br><br>A session is logged if it has continued for this amount of time in milliseconds. Default is 24 hours | numeric | 86400000 |
 | sessionRenewalMs<br><br>A session is logged if the user is inactive for this amount of time in milliseconds. Default is 30 minutes | numeric | 1800000 |
 | throttleMgrCfg<br><br>Set throttle mgr configuration by key.<br><br>This configuration field is only available in version 3.0.3 and later. | `{[key: number]: IThrottleMgrConfig}` | undefined |
-| userCookiePostfix<br><br>An optional value that is used as name postfix for user cookie name. If undefined, no postfix is added on user cookie name. | string | undefined |
+| userCookiePostfix<br><br>An optional value that's used as name postfix for user cookie name. If undefined, no postfix is added on user cookie name. | string | undefined |
+
+[!INCLUDE [Distributed tracing](./includes/application-insights-distributed-trace-data.md)]
+
+#### Enable W3C distributed tracing support
+
+This feature is enabled by default for JavaScript and the headers are automatically included when the hosting page domain is the same as the domain the requests are sent to (for example, the hosting page is `example.com` and the Ajax requests are sent to `example.com`). To change the distributed tracing mode, use the [`distributedTracingMode` configuration field](./javascript-sdk-configuration.md#sdk-configuration). AI_AND_W3C is provided by default for backward compatibility with any legacy services instrumented by Application Insights.
+
+* **[npm-based setup](javascript-sdk.md?tabs=npmpackage#get-started)**
+
+   Add the following configuration:
+  ```JavaScript
+    distributedTracingMode: DistributedTracingModes.W3C
+  ```
+
+* **[JavaScript (Web) SDK Loader Script-based setup](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started)**
+
+   Add the following configuration:
+  ```
+      distributedTracingMode: 2 // DistributedTracingModes.W3C
+  ```
+
+If the XMLHttpRequest or Fetch Ajax requests are sent to a different domain host, including subdomains, the correlation headers aren't included by default. To enable this feature, set the [`enableCorsCorrelation` configuration field](./javascript-sdk-configuration.md#sdk-configuration) to `true`. If you set `enableCorsCorrelation` to `true`, all XMLHttpRequest and Fetch Ajax requests include the correlation headers. As a result, if the application on the server that's being called doesn't support the `traceparent` header, the request might fail, depending on whether the browser / version can validate the request based on which headers the server accepts. You can use the [`correlationHeaderExcludedDomains` configuration field](./javascript-sdk-configuration.md#sdk-configuration) to exclude the server's domain from cross-component correlation header injection. For example, you can use `correlationHeaderExcludedDomains: ['*.auth0.com']` to exclude correlation headers from requests sent to the Auth0 identity provider.
+
+> [!IMPORTANT]
+> To see all configurations required to enable correlation, see the [JavaScript correlation documentation](./javascript.md#enable-distributed-tracing).
+
+[!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
+
+#### JavaScript web applications
+
+You can filter telemetry from JavaScript web applications by using ITelemetryInitializer.
+
+1. Create a telemetry initializer callback function. The callback function takes `ITelemetryItem` as a parameter, which is the event that's being processed. Returning `false` from this callback results in the telemetry item to be filtered out.
+
+    ```js
+    var filteringFunction = (envelope) => {
+      if (envelope.data.someField === 'tobefilteredout') {
+        return false;
+      }
+      return true;
+    };
+    ```
+
+1. Add your telemetry initializer callback:
+
+    ```js
+    appInsights.addTelemetryInitializer(filteringFunction);
+    ```
+
+[!INCLUDE [Telemetry processor and telemetry initializer](./includes/application-insights-processor-initializer.md)]
+
+#### JavaScript telemetry initializers
+
+Insert a JavaScript telemetry initializer, if needed. For more information on the telemetry initializers for the Application Insights JavaScript SDK, see [Telemetry initializers](https://github.com/microsoft/ApplicationInsights-JS#telemetry-initializers).
+
+# [JavaScript (Web) SDK Loader Script](#tab/javascriptwebsdkloaderscript)
+
+Insert a telemetry initializer by adding the onInit callback function in the [JavaScript (Web) SDK Loader Script configuration](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#javascript-web-sdk-loader-script-configuration):
+<!-- IMPORTANT: If you're updating this code example, please remember to also update it in: 1) articles\azure-monitor\app\javascript-sdk.md and 2) articles\azure-monitor\app\javascript-feature-extensions.md -->
+```html
+<script type="text/javascript">
+!(function (cfg){function e(){cfg.onInit&&cfg.onInit(n)}var x,w,D,t,E,n,C=window,O=document,b=C.location,q="script",I="ingestionendpoint",L="disableExceptionTracking",j="ai.device.";"instrumentationKey"[x="toLowerCase"](),w="crossOrigin",D="POST",t="appInsightsSDK",E=cfg.name||"appInsights",(cfg.name||C[t])&&(C[t]=E),n=C[E]||function(g){var f=!1,m=!1,h={initialize:!0,queue:[],sv:"8",version:2,config:g};function v(e,t){var n={},i="Browser";function a(e){e=""+e;return 1===e.length?"0"+e:e}return n[j+"id"]=i[x](),n[j+"type"]=i,n["ai.operation.name"]=b&&b.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(h.sv||h.version),{time:(i=new Date).getUTCFullYear()+"-"+a(1+i.getUTCMonth())+"-"+a(i.getUTCDate())+"T"+a(i.getUTCHours())+":"+a(i.getUTCMinutes())+":"+a(i.getUTCSeconds())+"."+(i.getUTCMilliseconds()/1e3).toFixed(3).slice(2,5)+"Z",iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}},ver:undefined,seq:"1",aiDataContract:undefined}}var n,i,t,a,y=-1,T=0,S=["js.monitor.azure.com","js.cdn.applicationinsights.io","js.cdn.monitor.azure.com","js0.cdn.applicationinsights.io","js0.cdn.monitor.azure.com","js2.cdn.applicationinsights.io","js2.cdn.monitor.azure.com","az416426.vo.msecnd.net"],o=g.url||cfg.src,r=function(){return s(o,null)};function s(d,t){if((n=navigator)&&(~(n=(n.userAgent||"").toLowerCase()).indexOf("msie")||~n.indexOf("trident/"))&&~d.indexOf("ai.3")&&(d=d.replace(/(\/)(ai\.3\.)([^\d]*)$/,function(e,t,n){return t+"ai.2"+n})),!1!==cfg.cr)for(var e=0;e<S.length;e++)if(0<d.indexOf(S[e])){y=e;break}var n,i=function(e){var a,t,n,i,o,r,s,c,u,l;h.queue=[],m||(0<=y&&T+1<S.length?(a=(y+T+1)%S.length,p(d.replace(/^(.*\/\/)([\w\.]*)(\/.*)$/,function(e,t,n,i){return t+S[a]+i})),T+=1):(f=m=!0,s=d,!0!==cfg.dle&&(c=(t=function(){var e,t={},n=g.connectionString;if(n)for(var i=n.split(";"),a=0;a<i.length;a++){var o=i[a].split("=");2===o.length&&(t[o[0][x]()]=o[1])}return t[I]||(e=(n=t.endpointsuffix)?t.location:null,t[I]="https://"+(e?e+".":"")+"dc."+(n||"services.visualstudio.com")),t}()).instrumentationkey||g.instrumentationKey||"",t=(t=(t=t[I])&&"/"===t.slice(-1)?t.slice(0,-1):t)?t+"/v2/track":g.endpointUrl,t=g.userOverrideEndpointUrl||t,(n=[]).push((i="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",o=s,u=t,(l=(r=v(c,"Exception")).data).baseType="ExceptionData",l.baseData.exceptions=[{typeName:"SDKLoadFailed",message:i.replace(/\./g,"-"),hasFullStack:!1,stack:i+"\nSnippet failed to load ["+o+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(b&&b.pathname||"_unknown_")+"\nEndpoint: "+u,parsedStack:[]}],r)),n.push((l=s,i=t,(u=(o=v(c,"Message")).data).baseType="MessageData",(r=u.baseData).message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+l+")").replace(/\"/g,"")+'"',r.properties={endpoint:i},o)),s=n,c=t,JSON&&((u=C.fetch)&&!cfg.useXhr?u(c,{method:D,body:JSON.stringify(s),mode:"cors"}):XMLHttpRequest&&((l=new XMLHttpRequest).open(D,c),l.setRequestHeader("Content-type","application/json"),l.send(JSON.stringify(s)))))))},a=function(e,t){m||setTimeout(function(){!t&&h.core||i()},500),f=!1},p=function(e){var n=O.createElement(q),e=(n.src=e,t&&(n.integrity=t),n.setAttribute("data-ai-name",E),cfg[w]);return!e&&""!==e||"undefined"==n[w]||(n[w]=e),n.onload=a,n.onerror=i,n.onreadystatechange=function(e,t){"loaded"!==n.readyState&&"complete"!==n.readyState||a(0,t)},cfg.ld&&cfg.ld<0?O.getElementsByTagName("head")[0].appendChild(n):setTimeout(function(){O.getElementsByTagName(q)[0].parentNode.appendChild(n)},cfg.ld||0),n};p(d)}cfg.sri&&(n=o.match(/^((http[s]?:\/\/.*\/)\w+(\.\d+){1,5})\.(([\w]+\.){0,2}js)$/))&&6===n.length?(d="".concat(n[1],".integrity.json"),i="@".concat(n[4]),l=window.fetch,t=function(e){if(!e.ext||!e.ext[i]||!e.ext[i].file)throw Error("Error Loading JSON response");var t=e.ext[i].integrity||null;s(o=n[2]+e.ext[i].file,t)},l&&!cfg.useXhr?l(d,{method:"GET",mode:"cors"}).then(function(e){return e.json()["catch"](function(){return{}})}).then(t)["catch"](r):XMLHttpRequest&&((a=new XMLHttpRequest).open("GET",d),a.onreadystatechange=function(){if(a.readyState===XMLHttpRequest.DONE)if(200===a.status)try{t(JSON.parse(a.responseText))}catch(e){r()}else r()},a.send())):o&&r();try{h.cookie=O.cookie}catch(k){}function e(e){for(;e.length;)!function(t){h[t]=function(){var e=arguments;f||h.queue.push(function(){h[t].apply(h,e)})}}(e.pop())}var c,u,l="track",d="TrackPage",p="TrackEvent",l=(e([l+"Event",l+"PageView",l+"Exception",l+"Trace",l+"DependencyData",l+"Metric",l+"PageViewPerformance","start"+d,"stop"+d,"start"+p,"stop"+p,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),h.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4},(g.extensionConfig||{}).ApplicationInsightsAnalytics||{});return!0!==g[L]&&!0!==l[L]&&(e(["_"+(c="onerror")]),u=C[c],C[c]=function(e,t,n,i,a){var o=u&&u(e,t,n,i,a);return!0!==o&&h["_"+c]({message:e,url:t,lineNumber:n,columnNumber:i,error:a,evt:C.event}),o},g.autoExceptionInstrumented=!0),h}(cfg.cfg),(C[E]=n).queue&&0===n.queue.length?(n.queue.push(e),n.trackPageView({})):e();})({
+src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
+crossOrigin: "anonymous", // When supplied this will add the provided value as the cross origin attribute on the script tag
+onInit: function (sdk) {
+    sdk.addTelemetryInitializer(function (envelope) {
+    envelope.data = envelope.data || {};
+    envelope.data.someField = 'This item passed through my telemetry initializer';
+    });
+}, // Once the application insights instance has loaded and initialized this method will be called
+// sri: false, // Custom optional value to specify whether fetching the snippet from integrity file and do integrity check
+cfg: { // Application Insights Configuration
+    connectionString: "YOUR_CONNECTION_STRING"
+}});
+</script>
+```
+
+# [npm package](#tab/npmpackage)
+
+```js
+import { ApplicationInsights } from '@microsoft/applicationinsights-web'
+
+const appInsights = new ApplicationInsights({ config: {
+  connectionString: 'YOUR_CONNECTION_STRING'
+  /* ...Other Configuration Options... */
+} });
+appInsights.loadAppInsights();
+// To insert a telemetry initializer, uncomment the following code.
+/** var telemetryInitializer = (envelope) => { envelope.data = envelope.data || {}; envelope.data.someField = 'This item passed through my telemetry initializer'; 
+ };
+appInsights.addTelemetryInitializer(telemetryInitializer); **/ 
+appInsights.trackPageView();
+```
+
+---
+
+For a summary of the noncustom properties available on the telemetry item, see [Application Insights Export Data Model](./export-telemetry.md#application-insights-export-data-model).
+
+You can add as many initializers as you like. They're called in the order that they're added.
+
+#### Troubleshoot ApplicationInsights.config
+
+* Confirm that the fully qualified type name and assembly name are correct.
+* Confirm that the applicationinsights.config file is in your output directory and contains any recent changes.
+
+#### Add a cloud role name and cloud role instance
+
+Use a telemetry initializer to set the `ai.cloud.role` and `ai.cloud.roleInstance` tags. These tags define how your component appears in the [Application Map](app-map.md) in Azure Monitor.
+
+```javascript
+appInsights.queue.push(() => {
+appInsights.addTelemetryInitializer((envelope) => {
+  envelope.tags["ai.cloud.role"] = "your role name";
+  envelope.tags["ai.cloud.roleInstance"] = "your role instance";
+});
+});
+```
 
 ## Cookie management
 
@@ -123,12 +239,12 @@ The ICookieMgrConfig options are defined in the following table.
 Source map support helps you debug minified JavaScript code with the ability to unminify the minified callstack of your exception telemetry.
 
 > [!div class="checklist"]
-> - Compatible with all current integrations on the **Exception Details** panel
-> - Supports all current and future JavaScript SDKs, including Node.JS, without the need for an SDK upgrade
+> * Compatible with all current integrations on the **Exception Details** panel
+> * Supports all current and future JavaScript SDKs, including Node.JS, without the need for an SDK upgrade
 
 ### Link to Blob Storage account
 
-Application Insights supports the uploading of source maps to your Azure Storage account blob container. You can use source maps to unminify call stacks found on the **End-to-end transaction details** page. You can also use source maps to unminify any exception sent by the [JavaScript SDK][ApplicationInsights-JS] or the [Node.js SDK][ApplicationInsights-Node.js].
+Application Insights supports the uploading of source maps to your Azure Storage account blob container. You can use source maps to unminify call stacks found on the **End-to-end transaction details** page. You can also use source maps to unminify any exception sent by the [JavaScript SDK](https://github.com/microsoft/applicationinsights-js) or the [Node.js SDK](https://github.com/microsoft/applicationinsights-node.js).
 
 :::image type="content" source="./media/javascript-sdk-configuration/details-unminify.gif" lightbox="./media/javascript-sdk-configuration/details-unminify.gif" alt-text="Screenshot that shows selecting the option to unminify a call stack by linking with a storage account.":::
 
@@ -136,8 +252,8 @@ Application Insights supports the uploading of source maps to your Azure Storage
 
 If you already have an existing storage account or blob container, you can skip this step.
 
-1. [Create a new storage account][create storage account].
-1. [Create a blob container][create blob container] inside your storage account. Set **Public access level** to **Private** to ensure that your source maps aren't publicly accessible.
+1. [Create a new storage account](/azure/storage/common/storage-account-create?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=azure-portal).
+1. [Create a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) inside your storage account. Set **Public access level** to **Private** to ensure that your source maps aren't publicly accessible.
 
     :::image type="content" source="./media/javascript-sdk-configuration/container-access-level.png" lightbox="./media/javascript-sdk-configuration/container-access-level.png" alt-text="Screenshot that shows setting the container access level to Private.":::
 
@@ -149,7 +265,7 @@ You can upload source maps to your Azure Blob Storage container with the same fo
 
 ##### Upload source maps via Azure Pipelines (recommended)
 
-If you're using Azure Pipelines to continuously build and deploy your application, add an [Azure file copy][azure file copy] task to your pipeline to automatically upload your source maps.
+If you're using Azure Pipelines to continuously build and deploy your application, add an [Azure file copy](https://aka.ms/azurefilecopyreadme) task to your pipeline to automatically upload your source maps.
 
 :::image type="content" source="./media/javascript-sdk-configuration/azure-file-copy.png" lightbox="./media/javascript-sdk-configuration/azure-file-copy.png" alt-text="Screenshot that shows adding an Azure file copy task to your pipeline to upload your source maps to Azure Blob Storage.":::
 
@@ -194,14 +310,14 @@ To take advantage of tree shaking, import only the necessary components of the S
 
 In version 2.6.0, we deprecated and removed the internal usage of these static helper classes to improve support for tree-shaking algorithms. It lets npm packages safely drop unused code.
 
-- `CoreUtils`
-- `EventHelper`
-- `Util`
-- `UrlHelper`
-- `DateTimeUtils`
-- `ConnectionStringParser`
+* `CoreUtils`
+* `EventHelper`
+* `Util`
+* `UrlHelper`
+* `DateTimeUtils`
+* `ConnectionStringParser`
 
- The functions are now exported as top-level roots from the modules, making it easier to refactor your code for better tree-shaking.
+The functions are now exported as top-level roots from the modules, making it easier to refactor your code for better tree-shaking.
 
 The static classes were changed to const objects that reference the new exported functions, and future changes are planned to further refactor the references.
 
@@ -303,7 +419,7 @@ This section only applies to you if you're using the deprecated functions and yo
 
 ## Service notifications
 
-Service notifications is a feature built into the SDK to provide actionable recommendations to help ensure your telemetry flows uninterrupted to Application Insights. You'll see the notifications as an exception message within Application Insights. We ensure notifications are relevant to you based on your SDK settings, and we adjust the verbosity based on the urgency of the recommendation. We recommend leaving service notifications on, but you're able to opt out via the `featureOptIn` configuration. See below for a list of active notifications.
+Service notifications are a feature built into the SDK to provide actionable recommendations to help ensure your telemetry flows uninterrupted to Application Insights. You can see the notifications as an exception message within Application Insights. We ensure notifications are relevant to you based on your SDK settings, and we adjust the verbosity based on the urgency of the recommendation. We recommend leaving service notifications on, but you're able to opt out via the `featureOptIn` configuration.
 
 Currently, no active notifications are being sent.
 
@@ -315,15 +431,7 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [JavaScript SDK configuration FAQ](application-insights-faq.yml#javascript-sdk-configuration)
+* To review frequently asked questions (FAQ), see [JavaScript SDK configuration FAQ](application-insights-faq.yml#javascript-sdk-configuration).
 * [Track usage](usage.md)
-* [Custom events and metrics](api-custom-events-metrics.md)
 * [Azure file copy task](/azure/devops/pipelines/tasks/deploy/azure-file-copy)
-
-<!-- Remote URLs -->
-[create storage account]: /azure/storage/common/storage-account-create?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=azure-portal
-[create blob container]: /azure/storage/blobs/storage-quickstart-blobs-portal
-[storage blob data reader]: ../../role-based-access-control/built-in-roles.md#storage-blob-data-reader
-[ApplicationInsights-JS]: https://github.com/microsoft/applicationinsights-js
-[ApplicationInsights-Node.js]: https://github.com/microsoft/applicationinsights-node.js
-[azure file copy]: https://aka.ms/azurefilecopyreadme
+* [Azure Monitor data types reference](https://github.com/microsoft/ApplicationInsights-JS/tree/master/shared/AppInsightsCommon/src/Telemetry) and [SDK code](https://github.com/Microsoft/ApplicationInsights-JS) for JavaScript SDK.

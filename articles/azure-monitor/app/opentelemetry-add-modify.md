@@ -6,7 +6,6 @@ ms.date: 03/23/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
-ms.reviewer: mmcc
 
 #customer intent: As a developer or site reliability engineer, I want to integrate and customize OpenTelemetry (OTel) instrumentation in Application Insights so that I can achieve standardized telemetry collection and enhanced observability for my .NET, Java, Node.js, or Python applications.
 
@@ -215,6 +214,8 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 For Quartz native applications, look at the [Quarkus documentation](https://quarkus.io/guides/opentelemetry).
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 #### [Node.js](#tab/nodejs)
 
@@ -472,7 +473,7 @@ The following table represents the currently supported custom telemetry types:
 
 ### Add custom metrics
 
-In this context, the custom metrics term refers to manually instrumenting your code to collect extra metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
+In this context, the custom metrics term refers to manually instrumenting your code to collect extra metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect. To learn more about using metrics, see [Metrics in Application Insights](metrics-overview.md).
 
 The OpenTelemetry API offers six metric "instruments" to cover various metric scenarios and you need to pick the correct "Aggregation Type" when visualizing metrics in Metrics Explorer. This requirement is true when using the OpenTelemetry Metric API to send metrics and when using an instrumentation library.
 
@@ -643,6 +644,8 @@ public class Program {
     histogram.record(100.0);
     histogram.record(30.0);
     ```
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ##### [Node.js](#tab/nodejs)
 
@@ -855,6 +858,8 @@ public class Program {
     myFruitCounter.add(5, Attributes.of(AttributeKey.stringKey("name"), "apple", AttributeKey.stringKey("color"), "red"));
     myFruitCounter.add(4, Attributes.of(AttributeKey.stringKey("name"), "lemon", AttributeKey.stringKey("color"), "yellow"));
     ```
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ##### [Node.js](#tab/nodejs)
 
@@ -1073,6 +1078,8 @@ public class Program {
                     observableMeasurement.record(randomNumber, Attributes.of(AttributeKey.stringKey("testKey"), "testValue"));
                 });
     ```
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ##### [Node.js](#tab/nodejs)
 
@@ -1546,6 +1553,8 @@ using (var activity = activitySource.StartActivity("CustomActivity"))
         span.end();
     }
     ```
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 #### [Node.js](#tab/nodejs)
 
@@ -2132,7 +2141,8 @@ Populate the `user ID` field in the `requests`, `dependencies`, or `exceptions` 
     ```java
     import io.opentelemetry.api.trace.Span;
     
-    Span.current().setAttribute("enduser.id", "myuser");
+    Span.current().setAttribute("enduser.id", "myuser"); // (user_AuthenticatedId)
+    Span.current().setAttribute("enduser.pseudo.id", "myuser"); // (user_Id)
     ```
 
 ##### [Java native](#tab/java-native)
@@ -2144,7 +2154,8 @@ Set `user_Id` in your code:
 ```java
 import io.opentelemetry.api.trace.Span;
 
-Span.current().setAttribute("enduser.id", "myuser");
+Span.current().setAttribute("enduser.id", "myuser"); // (user_AuthenticatedId)
+Span.current().setAttribute("enduser.pseudo.id", "myuser"); // (user_Id)
 ```
 
 ##### [Node.js](#tab/nodejs)
@@ -2375,6 +2386,8 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
 * To see the release notes, see [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
 * To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 

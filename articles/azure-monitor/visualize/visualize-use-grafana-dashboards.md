@@ -3,10 +3,14 @@ title: Use Azure Monitor Dashboards with Grafana
 description: This article explains how to use Azure Monitor dashboards with Grafana. It covers creating, editing, importing, and sharing dashboards for monitoring data.
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 05/06/2025
+ms.date: 08/22/2025
 ---
 
-# Use Azure Monitor dashboards with Grafana
+# Use Azure Monitor dashboards with Grafana (preview)
+
+> [!IMPORTANT]
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
 This article explains how to use Azure Monitor dashboards with Grafana. It covers creating, editing, importing, and sharing dashboards for monitoring data.
 
 ## Prerequisites
@@ -20,7 +24,7 @@ For more information about RBAC and assigning roles, see [Azure RBAC](/azure/rol
 
 Azure managed template dashboards are pre-provisioned and automatically updated dashboards for frequently used Azure resources and Azure Kubernetes Services. They help you get started quickly. The following steps are for using these Grafana dashboards that are already available in the Azure portal. Azure managed templates are identified with a tag.
 
-:::image type="content" source="media/visualizations-grafana/azure-managed-templates.png" alt-text="Screenshot of azure managed template listing the gallery.":::
+:::image type="content" source="media/visualizations-grafana/azure-managed-templates.png" alt-text="Screenshot of Azure managed template listing the gallery.":::
 
 1.  Navigate to **Azure Monitor** in the Azure portal.
 1.  Select **Dashboards with Grafana (Preview)**.
@@ -89,8 +93,17 @@ Dashboards that you import or create require RBAC access configuration to share 
 
 1. Open the dashboard.
 1. Select **Share**. The Share Dashboard pane opens. Copy the link to the dashboard to your clipboard.
-1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is required for viewing the dashboard. **Contributor** is required to edit the dashboard.
-1. Paste the link into your preferred communication method to share it with the intended people or groups.
+1. Review sharing options:
+    - **People with this link can edit** - Enabling this option creates a link that opens the dashboard in the standard view and provides the ability to edit for users with the required dashboard write permissions. Disabling this option creates a link that opens the dashboard in a view-only mode for all users.
+    - **Lock time range** - If the dashboard is using a relative time range e.g. *now-30m to now*, enabling this option converts the time range in the link to an absolute time range. This enables link recipients to view the same absolute time range as used when shared.
+    - **Keep variables** - If the dashboard includes variables, enabling this option retains the current values of the variables and includes them in the generated link.
+1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is required for viewing the dashboard. **Contributor** is required to edit the dashboard. The link recipient will also need access to any data source used in the content of this Grafana dashboard. **Monitoring Reader** role is required for Azure Monitor data and **Monitoring Data Reader** is required for Prometheus data.
+> [!NOTE]
+> 'Microsoft.Dashboard/dashboard/read' and 'Microsoft.Dashboard/dashboard/write' can also be used to assign permissions with more fine-grained control.
+1.	Copy the link to the dashboard to your clipboard.
+1. Paste the link into your preferred communication method to share it.
+
+
 
 ## Use dashboards with Azure Kubernetes Service (AKS)
 

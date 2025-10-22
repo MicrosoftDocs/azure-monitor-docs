@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -57,15 +57,16 @@ Virtual machines are resilient to regional outages when replication to another r
   
 **Potential benefits**: Ensure business continuity during an Azure region outage.  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Set up Azure VM disaster recovery to a secondary region with Azure Site Recovery - Azure Site Recovery](https://aka.ms/azure-site-recovery-dr-azure-vms)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: ed651749-cd37-4fd5-9897-01b416926745  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_end-->
+
 
 <!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_begin-->
 
@@ -265,13 +266,14 @@ VMSS in your subscription are running on images that have been scheduled for dep
 
 **Impact:** High
   
-For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines](https://aka.ms/DeprecatedImagesFAQ)  
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 3b739bd1-c193-4bb6-a953-1362ee3b03b2  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: undefined
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_end-->
+
 
 <!--3d18d7cd-bdec-4c68-9160-16a677d0f86a_begin-->
 
@@ -363,9 +365,10 @@ For more information, see [Virtual machine sizes overview - Azure Virtual Machin
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 7f71b153-c0b7-4e99-a23e-db8179183ec9  
-Subcategory: Scalability
+Subcategory: undefined
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_end-->
+
 
 
 <!--1670c0af-6536-4cbf-872f-152c91a51a80_begin-->
@@ -382,9 +385,10 @@ For more information, see [On-demand capacity reservation in Azure - Azure Virtu
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 1670c0af-6536-4cbf-872f-152c91a51a80  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--1670c0af-6536-4cbf-872f-152c91a51a80_end-->
+
 
 
 <!--5f2613df-629f-4b07-9425-2a47ea0dfad3_begin-->
@@ -457,9 +461,10 @@ For more information, see [Tutorial to run an Azure VM disaster recovery drill w
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 01c715f6-426a-47d3-87be-9f26e2ab2d8e  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_end-->
+
 
 <!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_begin-->
 
@@ -478,5 +483,59 @@ Recommendation ID: 4175946b-cd53-4a37-9e9a-0f8a418ef6ac
 Subcategory: HighAvailability
 
 <!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_end-->
+
+<!--00e4ac6c-afa3-4578-a021-5f15e18850a2_begin-->
+
+#### Align location of resource and resource group  
+  
+Move virtual machines to the same region as the related resource group. This way, Azure Resource Manager stores metadata related to all resources within the group in one region. By co-locating, you reduce the chance of being affected by region unavailability.  
+  
+**Potential benefits**: Reduce the impact of regional outages  
+
+**Impact:** Medium
+  
+For more information, see [What is Azure Resource Manager? - Azure Resource Manager](/azure/azure-resource-manager/management/overview#which-location-should-i-use-for-my-resource-group)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 00e4ac6c-afa3-4578-a021-5f15e18850a2  
+Subcategory: HighAvailability
+
+<!--00e4ac6c-afa3-4578-a021-5f15e18850a2_end-->
+
+<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_begin-->
+
+#### Shared disks should only be enabled in clustered servers  
+  
+Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.  
+  
+**Potential benefits**: Enhances clustered server availability  
+
+**Impact:** Medium
+  
+For more information, see [Share an Azure managed disk across VMs - Azure Virtual Machines](/azure/virtual-machines/disks-shared)  
+
+ResourceType: microsoft.compute/disks  
+Recommendation ID: 42d6dc9f-3e08-4a56-959d-0fd86310035f  
+Subcategory: Other
+
+<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_end-->
+
+<!--89496618-9e41-49e3-9db1-d08d61d9e820_begin-->
+
+#### Standard_NC24rs_v3 virtual machine (VM) size in NCv3-series is being retired.  
+  
+To avoid any disruption to your service, we recommend that you change the VM sizing for your workloads from the current Standard_NC24rs_v3 to the newer VM series in the same NC product line.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=standardnc24rsv3-virtual-machines-will-be-retired-on-march-31st-2025)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 89496618-9e41-49e3-9db1-d08d61d9e820  
+Subcategory: undefined
+
+<!--89496618-9e41-49e3-9db1-d08d61d9e820_end-->
 
 <!--articleBody-->

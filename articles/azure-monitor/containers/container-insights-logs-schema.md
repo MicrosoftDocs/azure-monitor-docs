@@ -35,13 +35,13 @@ The following table highlights the key differences between using ContainerLogV2 
 
 >[!NOTE]
 > The `LogMessage` field is dynamic and supports ingesting both JSON and plaintext string formats. 
-[Log data export](../logs/logs-data-export.md) to Event Hub and Storage Account is supported if the incoming `LogMessage` is valid JSON or a valid plain string. 
+[Log data export](../logs/logs-data-export.md) to Event Hubs and Storage Account is supported if the incoming `LogMessage` is valid JSON or a valid plain string. 
 >
 > If the `LogMessage` is malformed JSON then those log messages will be ingested with escaping. By default, log messages larger than 16KB are truncated. With [multi-line logging](#multi-line-logging) enabled, log messages larger than 64KB are truncated.
 
 
 ## Enable the ContainerLogV2 schema
-Enable the **ContainerLogV2** schema for a cluster either using the cluster's [Data Collection Rule (DCR)](./container-insights-data-collection-configure.md#configure-data-collection-using-dcr) or [ConfigMap](./container-insights-data-collection-configure.md#configure-data-collection-using-configmap). If both settings are enabled, the ConfigMap takes precedence. The `ContainerLog` table is used only when both the DCR and ConfigMap are explicitly set to off.
+Enable the **ContainerLogV2** schema for a cluster either using the cluster's [log profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) or [ConfigMap](./container-insights-data-collection-filter.md#configmap-settings). If both settings are enabled, the ConfigMap takes precedence. The `ContainerLog` table is used only when both are explicitly set to off.
 
 Before you enable the **ContainerLogsV2** schema, you should assess whether you have any alert rules that rely on the **ContainerLog** table. Any such alerts need to be updated to use the new table. Run the following Azure Resource Graph query to scan for alert rules that reference the `ContainerLog` table.
 
@@ -85,7 +85,7 @@ Kubernetes metadata and logs filtering extends the ContainerLogsV2 schema with a
 > Collection of Kubernetes metadata requires [managed identity authentication](./container-insights-authentication.md#migrate-to-managed-identity-authentication) and [ContainerLogsV2](./container-insights-logs-schema.md)
 
 
-Enable Kubernetes metadata using [ConfigMap](./container-insights-data-collection-configure.md#configure-data-collection-using-configmap) with the following settings. All metadata fields are collected by default when the `metadata_collection` is enabled. Uncomment `include_fields` to specify individual fields to be collected.
+Enable Kubernetes metadata using [ConfigMap](./container-insights-data-collection-filter.md#configmap-settings) with the following settings. All metadata fields are collected by default when the `metadata_collection` is enabled. Uncomment `include_fields` to specify individual fields to be collected.
 
 ```yaml
 [log_collection_settings.metadata_collection]
@@ -101,7 +101,7 @@ After a few minutes, the `KubernetesMetadata` column should be included with any
 ### Install Grafana dashboard
 
 > [!IMPORTANT]
-> If you enabled Grafana using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) then your Grafana instance should already have access to your Azure Monitor workspace for Prometheus metrics. The Kubernetes Logs Metadata dashboard also requires access to your Log Analytics workspace which contains log data. See [How to modify access permissions to Azure Monitor](/azure/managed-grafana/how-to-permissions) for guidance on granting your Grafana instance the Monitoring Reader role for your Log Analytics workspace.
+> If you enabled Grafana using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md) then your Grafana instance should already have access to your Azure Monitor workspace for Prometheus metrics. The Kubernetes Logs Metadata dashboard also requires access to your Log Analytics workspace which contains log data. See [How to modify access permissions to Azure Monitor](/azure/managed-grafana/how-to-permissions) for guidance on granting your Grafana instance the Monitoring Reader role for your Log Analytics workspace.
 
 Import the dashboard from the Grafana gallery at [ContainerLogV2 Dashboard](https://grafana.com/grafana/dashboards/20995-azure-insights-containers-containerlogv2/). You can then open the dashboard and select values for DataSource, Subscription, ResourceGroup, Cluster, Namespace, and Labels. 
 
