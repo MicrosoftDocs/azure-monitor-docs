@@ -2,7 +2,7 @@
 title: Service Issues overview
 description: This article describes how to view and use the Service Issues pane
 ms.topic: overview
-ms.date: 10/15/2025
+ms.date: 10/22/2025
 
 ---
 
@@ -12,7 +12,7 @@ The Service issues pane in Azure Service Health offers a detailed, real-time vie
 
 You can see which resources are impacted and review key details such as severity, status, scope, and timestamps. The information on this pane helps you stay informed and able to take action quickly if needed. This article provides a detailed explanation of the purpose of this panel and the information it provides.
 
-On the main panel you can sort the displayed list of Planned maintenance events by Scope, Subscription, Region, Service, Event levels and Event tags. 
+On the main panel you can sort the displayed list of Planned maintenance events by Scope, Subscription, Region, Service, Event levels, and Event tags. 
 
 And you can create a service health alert. See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
 
@@ -64,7 +64,7 @@ The information on this tab includes the following data:
 |---------|---------|
 |Title    | A summary of the issue |
 |Tracking ID |A unique identifier for the incident |
-|Status   |Whether the issue is Active, Resolved, or Scheduled. Select the **See details** link to open the Impacted Services tab for more detailed information. |
+|Status   |Whether the issue is Active, Resolved, or Scheduled<br> Select the **See details** link to open the Impacted Services tab for more detailed information. |
 |Start/End Time |When the issue began and when it was resolved (if applicable) |
 |Impacted Services |Azure services affected by the issue|
 |Impacted Regions |Geographic regions where the issue is occurring |
