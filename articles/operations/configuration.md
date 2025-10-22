@@ -1,5 +1,5 @@
 ---
-title: Using the Azure operations center portal (preview)
+title: Configuration in Azure Operations Center (preview)
 description: Provides guidance on navigating and utilizing the features of the Azure Operations Center portal for managing operations and accessing agentic workflows.
 ms.topic: conceptual
 ms.date: 09/24/2025

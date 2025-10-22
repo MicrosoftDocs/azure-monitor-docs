@@ -3,8 +3,8 @@ items:
   href: index.yml
 - name: Overview
   href: overview.md
-- name: Monitor
-  href: monitor.md
+- name: Observability
+  href: observability.md
 - name: Security
   href: security.md
 - name: Resiliency

@@ -1,12 +1,12 @@
 ---
-title: Using the Azure operations center portal (preview)
+title: Observability in Azure Operations Center (preview)
 description: Provides guidance on navigating and utilizing the features of the Azure Operations Center portal for managing operations and accessing agentic workflows.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
 
 
-# Monitor in Azure Operations Center (preview)
+# Observability in Azure Operations Center (preview)
 
 Operations center provides a unified portal for managing and monitoring your Azure and hybrid environments. This article guides you through the key features and navigation of the operations center portal.
 
@@ -16,7 +16,7 @@ Operations center is organized into five pillars that correspond to the [pillars
 ## Operations center home
 
 
-## Monitor pillar
+## Observability pillar
 
 :::image type="content" source="./media/portal/monitor-pillar.png" lightbox="./media/portal/monitor-pillar.png" alt-text="Screenshot of Monitor menu in the Azure portal":::
 
