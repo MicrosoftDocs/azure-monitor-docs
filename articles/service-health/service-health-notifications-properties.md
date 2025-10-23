@@ -75,7 +75,7 @@ Each communication category panel - Incidents, Planned maintenance, Health advis
 ## Service Health notifications - data properties in the Activity log
 
 ### Event type
-Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. Key properties include eventType (for example, *ServiceIssue*, or *PlannedMaintenance*), eventSubType (specific details like *Retirement* or *TaxChange*), status (*Active* or *Resolved*), priority (*Critical*, *Warning*, or *Informational*), and timestamps such as *impactStartTime* and *impactMitigationTime*. For more information about these data properties, see [Activity log - Service Health](azure/azure-monitor/platform/activity-log-schema#service-health-category)
+Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. Key properties include eventType (for example, *ServiceIssue*, or *PlannedMaintenance*), eventSubType (specific details like *Retirement* or *TaxChange*), status (*Active* or *Resolved*), priority (*Critical*, *Warning*, or *Informational*), and timestamps such as *impactStartTime* and *impactMitigationTime*. For more information about these data properties, see [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category)
 
 Start by checking *eventType* and *eventSubType* to understand what kind of issue and detail is involved, then review *priority* and *EventLevel* for severity. 
 
