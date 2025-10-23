@@ -57,7 +57,7 @@ You've now successfully added your network security group to Chaos Studio.
    **`dns-outage-simulation`**
 4. Choose a **resource group** and region for the experiment, then select **Next: Experiment design**.
 
-![Chaos Studio experiment creation page — placeholder](images/chaos-studio-experiment-create.png)
+[![Chaos Studio experiment creation page — placeholder](images/chaos-studio-experiment-create.png)](images/chaos-studio-experiment-create.png#lightbox)
 
 ---
 
@@ -78,7 +78,7 @@ You've now successfully added your network security group to Chaos Studio.
 
 This configuration denies all outbound UDP traffic on port 53 — effectively disabling DNS lookups for the target during the experiment.
 
-![NSG rule configuration example — placeholder](images/nsg-dns-rules-config.png)
+[![NSG rule configuration example — placeholder](images/nsg-dns-rules-config.png)](images/nsg-dns-rules-config.png#lightbox)
 
 ---
 
