@@ -14,9 +14,6 @@ Depending on the notification’s type, it could be purely informational or indi
 
  :::image type="content"source="./media/service-health-notifications/service-health-notifications-main.png"alt-text="Screenshot of service health notification history pane." lightbox="./media/service-health-notifications/service-health-notifications-main.png":::
 
-When you open a Service Health notification, you see a tab full of data describing the event.
-
- :::image type="content"source="./media/service-health-notifications/service-health-notifications-details.png"alt-text="Screenshot of main service health notification summary tab." lightbox="./media/service-health-notifications/service-health-notifications-details.png":::
 
 ## How to access and use Service Health notifications
 Once logged into Azure, you can access Service Health notifications in one of three ways:
