@@ -132,14 +132,18 @@ On the **Collect and deliver** pane, click **Add new dataflow** to add and confi
 
 The following table lists the types of data you can collect from a VM client with Azure Monitor and where you can send that data. See the linked article for each to learn how to configure that data source.
 
-| Data source | Description | Client OS | Destinations |
-|:------------|:------------|:----------|:-------------|
-| [Windows events](data-collection-windows-events.md) | Information sent to the Windows event logging system, including sysmon events | Windows | Log Analytics workspace |
-| [Performance counters](data-collection-performance.md) | Numerical values that measure the performance of different aspects of the operating system and workloads | Windows<br>Linux | Azure Monitor metrics (preview) <br>Log Analytics workspace |
-| [Syslog](data-collection-syslog.md) | Information sent to the Linux event logging system | Linux | Log Analytics workspace |
-| [Text log](data-collection-log-text.md) | Information sent to a text log file on a local disk | Windows<br>Linux | Log Analytics workspace |
-| [JSON log](data-collection-log-json.md) | Information sent to a JSON log file on a local disk | Windows<br>Linux | Log Analytics workspace |
-| [IIS logs](data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
+**Agent-based destination support by data source**
+
+|  | Azure Monitor Metrics | Log Analytics Workspaces | Azure Monitor Workspaces | Azure Data Explorer | Microsoft Fabric |
+|:-----|:------:|:------:|:-----:|:-----:|:-----:|
+| [Performance Counters](data-collection-performance.md) | :white_check_mark: | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
+| Firewall Logs | | :white_check_mark: | | | |
+| [IIS Logs](data-collection-iis.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
+| [Windows Event Logs](data-collection-windows-events.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
+| [Linux Syslog](data-collection-syslog.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
+| Prometheus Metrics | | | :white_check_mark: | | |
+| [Custom Text Logs](data-collection-log-text.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
+| [Custom JSON Logs](data-collection-log-json.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
 
 ---
 
