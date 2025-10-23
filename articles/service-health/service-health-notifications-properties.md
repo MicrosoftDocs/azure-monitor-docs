@@ -23,7 +23,10 @@ Once logged into Azure, you can access Service Health notifications in one of th
 
 - **Azure Portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard showing any active notifications for your subscriptions. The notifications are organized into the categories corresponding to the types (Incidents, Maintenance, etc.), and there’s also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details (impact, status updates, resolution, etc.). See [Azure Service Health Portal](service-health-portal-update.md).  
 
-- **Azure Portal – Activity Log**: In the Azure portal, open the activity log to view notifications. For more information, see [View and retrieve the activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics#view-and-retrieve-the-activity-log). 
+- **Azure Portal – Activity Log**: In the Azure portal, open the activity log to view notifications that contain more detailed information, but only under specific conditions. 
+    - Service Health events appear in the Activity Log when they're subscription-scoped (for example, service issues, planned maintenance, health advisories).
+    - Emerging Issues don't show up because they're global and not tied to a subscription.<br>
+For more information, see [View and retrieve the activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics#view-and-retrieve-the-activity-log). 
 
 - **Alerts**: Within the Service Health portal pane, you can also set up Activity Log alerts to notify you (via email, SMS, etc.) when new Service Health events occur. For instance, you might create an alert to get an email whenever there’s a new Incident or a Security advisory. This way you don’t have to constantly check the portal; Azure proactively sends you a notification through your chosen channel. For more information on how to create alerts, see [Create Service Health Alerts](alerts-activity-log-service-notifications-portal.md).
 
@@ -39,7 +42,7 @@ To help you stay ahead of potential disruptions, Azure categorizes service healt
 
 Here’s a breakdown of each notification type, what it means, and how you can access and retain these updates.
 
-- **Action required** – *Actionable*. Azure detected something unusual or important in your subscription that needs your attention or intervention.  For example, Azure could detect something that needs your attention—like a configuration problem or an upcoming change that could affect your service. When that happens, Azure sends you a notification explaining what’s happening and provides clear steps you can take to fix it or how to reach support for help. The notifications are proactively issued to prevent or fix potential problems.<br> *The notifications often appear in the Service Health portal under Health Advisories.* 
+- **Action required** – *Actionable*. Azure detected something unusual or important in your subscription that needs your attention or intervention. For example, Azure could detect something that needs your attention—like a configuration problem or an upcoming change that could affect your service. When that happens, Azure sends you a notification explaining what’s happening and provides clear steps you can take to fix it or how to reach support for help. The notifications are proactively issued to prevent or fix potential problems.<br> *The notifications often appear in the Service Health portal under Health Advisories.* 
 
 - **Incident** - *Informational (urgent service issue)*. This type represents a service outage or degradation (an unplanned event) that is currently affecting one or more of your Azure resources. Essentially, an Incident notification means Azure is experiencing a problem (for example, a data center issue) that impacts you. The notification describes the issue and keeps you updated on its status. While labeled informational, Incidents are critical to know about; you usually don’t fix them, but you might activate your contingency plans.<br>
 *You typically see them under the Service Issues pane for active outages.*
@@ -69,14 +72,14 @@ Each communication category panel - Incidents, Planned maintenance, Health advis
 
 
 
-## Service Health notifications - data properties
+## Service Health notifications - data properties in the Activity log
 
 ### Event type
-Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. Key properties include eventType (for example, *ServiceIssue*, or *PlannedMaintenance*), eventSubType (specific details like *Retirement* or *TaxChange*), status (*Active* or *Resolved*), priority (*Critical*, *Warning*, or *Informational*), and timestamps such as *impactStartTime* and *impactMitigationTime*.
+Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. Key properties include eventType (for example, *ServiceIssue*, or *PlannedMaintenance*), eventSubType (specific details like *Retirement* or *TaxChange*), status (*Active* or *Resolved*), priority (*Critical*, *Warning*, or *Informational*), and timestamps such as *impactStartTime* and *impactMitigationTime*. For more information about these data properties, see [Activity log - Service Health](azure/azure-monitor/platform/activity-log-schema#service-health-category)
 
 Start by checking *eventType* and *eventSubType* to understand what kind of issue and detail is involved, then review *priority* and *EventLevel* for severity. 
 
-Use the *status* and *timestamps* to gauge whether the event is ongoing or resolved, and refer to the *title* for a quick description. These properties help you filter, prioritize, and act on service health alerts effectively. For more details, see [Service Health event tags](service-health-event-tags.md) 
+Use the *status* and *timestamps* to gauge whether the event is ongoing or resolved, and refer to the *title* for a quick description. These properties help you filter, prioritize, and act on service health alerts effectively. For more information, see [Service Health event tags](service-health-event-tags.md) 
 
 The following table lists and describes all the properties found in a Service health event.
 
