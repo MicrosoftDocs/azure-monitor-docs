@@ -137,9 +137,13 @@ Service Health event type (`properties.incidentType`)
 - Error - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.
 - Warning - Issues accessing specific services and/or specific regions are impacting a subset of customers.
 - Informational - Issues impacting management operations and/or latency, not impacting service availability.
-
+<!--
 **Billing** (properties.incidentType == Billing)
 - Informational - Issues impacting billing updates.
+- -->
+
+>[!NOTE]
+> Billing notifications are not shown in the Activity log in the Azure portal. You will see them in Azure Service Health. 
 
  ## For more information
 
