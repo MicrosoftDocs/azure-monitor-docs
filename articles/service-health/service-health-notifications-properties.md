@@ -75,13 +75,13 @@ Each communication category panel - Incidents, Planned maintenance, Health advis
 ## Service Health notifications - data properties in the Activity log
 
 ### Event type
-Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. Key properties include eventType (for example, *ServiceIssue*, or *PlannedMaintenance*), eventSubType (specific details like *Retirement* or *TaxChange*), status (*Active* or *Resolved*), priority (*Critical*, *Warning*, or *Informational*), and timestamps such as *impactStartTime* and *impactMitigationTime*. For more information about these data properties, see [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category)
+Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. Key properties include eventType (for example, *ServiceIssue*, or *PlannedMaintenance*), eventSubType (specific details like *Retirement* or *TaxChange*), status (*Active* or *Resolved*), priority (*Critical*, *Warning*, or *Informational*), and timestamps such as *impactStartTime* and *impactMitigationTime*. For more information about these data properties, see [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
 
 Start by checking *eventType* and *eventSubType* to understand what kind of issue and detail is involved, then review *priority* and *EventLevel* for severity. 
 
-Use the *status* and *timestamps* to gauge whether the event is ongoing or resolved, and refer to the *title* for a quick description. These properties help you filter, prioritize, and act on service health alerts effectively. For more information, see [Service Health event tags](service-health-event-tags.md) 
+Use the *status* and *timestamps* to gauge whether the event is ongoing or resolved, and refer to the *title* for a quick description. These properties help you filter, prioritize, and act on service health alerts effectively. For more information, see [Service Health event tags](service-health-event-tags.md). 
 
-The following table lists and describes all the properties found in a Service health event.
+The following table lists and describes all the properties found in a Service health event in the Activity log.
 
 Property name | Description
 -------- | -----------
