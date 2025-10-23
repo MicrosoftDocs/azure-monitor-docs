@@ -982,6 +982,8 @@ items:
     href: data-collection/edge-pipeline-configure.md
   - name: Custom metrics ingestion using REST
     href: metrics/metrics-store-custom-rest-api.md
+  - name: Monitor coverage
+    href: fundamentals/monitor-coverage.md
   - name: Troubleshoot
     href: logs/data-collection-troubleshoot.md
 - name: Data platform
