@@ -13,16 +13,22 @@ Azure operations center is a unified operations management platform designed to 
 :::image type="content" source="./media/overview/operations-center.png" lightbox="./media/overview/operations-center.png" alt-text="Screenshot of operations center showing the five pillars":::
 
 
-## Key Features
-Operations center offers several key features to enhance operational efficiency including the following:
+## Value of operations center
+Azure includes a rich set of services to manage and monitor your cloud resources. Working with these services in the Azure portal though can be frustrating because they're scattered across different menus. You also need to identify the different services available and configure each for your applications and resources.
 
-- Unified dashboard for operational data and management activities. Use operations center as a single pane of glass in place of multiple screens in the Azure portal.
-- Agentic experience for guided troubleshooting. Issues and recommendations are proactively surfaced, and Copilot-powered workflows guide you through resolution steps.
-- Scalable onboarding for Azure VMs and Arc-enabled servers. Easily configure your subscription to automatically enable multiple management services on resources as they are created.
+Operations center provides a unified portal to manage and monitor your Azure and hybrid environments. It consolidates the experience of multiple Azure management services into a single location and adds features to improve usability and streamline common tasks. Continue to use the Azure services that you already rely on but save time by accessing them in a consolidated portal experience.
+
+:::image type="content" source="./media/overview/operations-center-concept.png" lightbox="./media/overview/operations-center-concept.png" alt-text="Diagram showing the benefits of Operations Center.":::
+
+Operations center is broken down by the different areas of management with each consolidating the experience for related Azure services. Each area includes an overview page that summarizes key information and identifies any critical actions. To further increase your efficiency, a top level overview provides you with an overall summary across your management spectrum and clearly identifies any issues that need to be address and recommended actions to be taken.
+
+Enhancing the portal experience, operations center leverages Copilot agents to proactively surfaces issues and guide you through resolution steps. This helps you quickly identify and remediate issues to optimize your environment without needing to search for solutions or navigate complex documentation.
+
+
 
 
 ## Operations pillars
-Operations center is organized into five pillars that correspond to the [pillars in Microsoft Azure Well-Architected Framework](/azure/well-architected/pillars). 
+Operations center is organized into five pillars described in the following table. Each 
 
 | Area |Description | Services |
 |:---|:---|:---|
