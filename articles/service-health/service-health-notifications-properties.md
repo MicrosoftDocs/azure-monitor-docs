@@ -2,7 +2,7 @@
 title: Azure service health notifications overview
 description: Service health notifications allow you to view service health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 10/21/2025
+ms.date: 10/23/2025
 
 ---
 
@@ -23,6 +23,7 @@ Once logged into Azure, you can access Service Health notifications in one of th
 
 - **Azure Portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard showing any active notifications for your subscriptions. The notifications are organized into the categories corresponding to the types (Incidents, Maintenance, etc.), and there’s also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details (impact, status updates, resolution, etc.). See [Azure Service Health Portal](service-health-portal-update.md).  
 
+- **Azure Portal – Activity Log**: In the Azure portal, open the activity log and you can set up notifications for what you want to see. For more information, see [View and retrieve the activity log](./azure/azure-monitor/platform/activity-log?tabs=log-analytics#view-and-retrieve-the-activity-log). 
 
 - **Alerts**: Within the Service Health portal pane, you can also set up Activity Log alerts to notify you (via email, SMS, etc.) when new Service Health events occur. For instance, you might create an alert to get an email whenever there’s a new Incident or a Security advisory. This way you don’t have to constantly check the portal; Azure proactively sends you a notification through your chosen channel. For more information on how to create alerts, see [Create Service Health Alerts](alerts-activity-log-service-notifications-portal.md).
 
@@ -109,7 +110,7 @@ Properties.communicationId | The communication this event is associated with.
 
 ### Incident type
 
-The `properties.incidentType` field in Azure Service Health identifies the category of a health event, such as *ActionRequired*, *Incident*, *Maintenance*, *Security*, *Informational*, or *Billing*. Each type signals a different scenario—for example, *Incident* means an unplanned outage or degradation, while *Maintenance* indicates scheduled work, and *ActionRequired* alerts you to changes needing your intervention.
+The `properties.incidentType` field in Azure Service Health identifies the category of a health event, such as *ActionRequired*, *Incident*, *Maintenance*, *Security*, or *Informational*. Each type signals a different scenario—for example, *Incident* means an unplanned outage or degradation, while *Maintenance* indicates scheduled work, and *ActionRequired* alerts you to changes needing your intervention.
 
 You can use this property to filter and prioritize notifications in the Azure portal, Resource Graph queries, or alert rules. For instance, you might configure alerts only for Incident and Security types to focus on critical issues, or query Maintenance events to plan for downtime. This information helps automate monitoring and ensures timely responses to events that matter most.
 
