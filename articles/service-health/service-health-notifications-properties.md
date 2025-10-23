@@ -8,7 +8,7 @@ ms.date: 10/23/2025
 
 # Service health notifications
 
-Azure Service Health notifications are system-generated alerts that inform you about Azure service issues or events affecting your resources. They're recorded as part of your subscription’s [Azure Activity Log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) (which logs many events in Azure), and then shown in the Azure portal under [Azure Service Health Portal](service-health-portal-update.md). In other words, whenever Azure needs to communicate something about service health (for example, an outage, upcoming maintenance, or account-specific alert), it creates a Service Health event in your Activity Log. 
+Azure Service Health notifications are system-generated alerts that inform you about Azure service issues or events affecting your resources. They're recorded as part of your subscription’s [Azure Activity Log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) (which logs many events in Azure), and then shown in the Azure portal under [Azure Service Health](service-health-portal-update.md). In other words, whenever Azure needs to communicate something about service health (for example, an outage, upcoming maintenance, or account-specific alert), it creates a Service Health event in your Activity Log. 
 
 Depending on the notification’s type, it could be purely informational or indicate an issue that requires you to act. For more information, see [View Service Health notifications](service-notifications.md).
 
