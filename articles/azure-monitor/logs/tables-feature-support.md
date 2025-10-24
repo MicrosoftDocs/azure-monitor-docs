@@ -437,7 +437,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [EmailPostDeliveryEvents](/azure/azure-monitor/reference/tables/emailpostdeliveryevents) | |
 | [EmailUrlInfo](/azure/azure-monitor/reference/tables/emailurlinfo) | |
 | [EnrichedMicrosoft365AuditLogs](/azure/azure-monitor/reference/tables/enrichedmicrosoft365auditlogs) | |
-| [Event](/azure/azure-monitor/reference/tables/event) | Partial support . Data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving from Diagnostics Extension Â is collected through Azure storage. This path isn't supported. |
+| [Event](/azure/azure-monitor/reference/tables/event) | Partial support. Data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving from Diagnostics Extension is collected through Azure storage. This path isn't supported. |
 | [ExchangeAssessmentRecommendation](/azure/azure-monitor/reference/tables/exchangeassessmentrecommendation) | |
 | [ExchangeOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/exchangeonlineassessmentrecommendation) | |
 | [FailedIngestion](/azure/azure-monitor/reference/tables/failedingestion) | |
