@@ -706,7 +706,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [VCoreMongoRequests](/azure/azure-monitor/reference/tables/vcoremongorequests) | |
 | [VIAudit](/azure/azure-monitor/reference/tables/viaudit) | |
 | [VIIndexing](/azure/azure-monitor/reference/tables/viindexing) | |
-| [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) | Partial support â€“ data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn't supported. |
+| [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) | Partial support - data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn't supported. |
 | [WaaSDeploymentStatus](/azure/azure-monitor/reference/tables/waasdeploymentstatus) | |
 | [WaaSInsiderStatus](/azure/azure-monitor/reference/tables/waasinsiderstatus) | |
 | [WaaSUpdateStatus](/azure/azure-monitor/reference/tables/waasupdatestatus) | |
