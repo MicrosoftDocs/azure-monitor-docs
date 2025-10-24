@@ -13,6 +13,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 > We are in a process of adding support for more tables. Please check this article regularly. 
 
 | Table | Limitations |
+|:---|:---|
 | [AACAudit](/azure/azure-monitor/reference/tables/aacaudit) | |
 | [AACHttpRequest](/azure/azure-monitor/reference/tables/aachttprequest) | |
 | [AADB2CRequestLogs](/azure/azure-monitor/reference/tables/aadb2crequestlogs) | |
