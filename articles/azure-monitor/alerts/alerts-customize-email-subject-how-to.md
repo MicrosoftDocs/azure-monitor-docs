@@ -36,7 +36,7 @@ The format for extracting a dynamic value from the alert payload is: `${<path to
 
 This example creates an email subject containing the affected resource and whether it was fired or resolved. 
 
-- Value: "Alert ${data.essentials.monitorCondition} on ${data.essentials.alertTargetIDs}"
+- Value: "Alert ${data.essentials.monitorCondition} on ${data.essentials.alertTargetIDs[0]}"
 - Potential results:
   - Alert Fired on VM1.
   - Alert Resolved on VM1.
