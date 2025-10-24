@@ -9,10 +9,12 @@ ms.date: 10/02/2025
 # Service Health notifications - data transitions
 
 Service Health notifications in Azure transition from the Active pane to the History pane once the event’s status changes from Active to Resolved. 
-This move ensures that only ongoing issues remain visible in the Active view, while completed events are archived for reference. 
-This article explains the full lifecycle of Service Health notifications, detailing why they transition between blades, how to access historical records, and the retention period before removal.
 
-## Logic of data moving from actice to history
+This move ensures that only ongoing issues remain visible in the Active view, while completed events are archived for reference.
+
+In this article, you learn about the lifecycle of Service Health notifications, including the reasons for transitions between pans, ways to view past records, and how long they're retained.
+
+## Logic of data moving from active to history
 
 Each communication category panel - Incidents, Planned maintenance, Health advisories, Security advisories, and Billing updates - uses distinct logic to determine event transitions. This logic determines when an event moves from its category tab to the Health history panel as defined in this table.
 
