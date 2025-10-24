@@ -331,7 +331,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [ComputerGroup](/azure/azure-monitor/reference/tables/computergroup) | |
 | [ConfidentialWatchlist](/azure/azure-monitor/reference/tables/confidentialwatchlist) | |
 | [ConfigurationChange](/azure/azure-monitor/reference/tables/configurationchange) | |
-| [ConfigurationData](/azure/azure-monitor/reference/tables/configurationdata) | Partial support â€“ some of the data is ingested through internal services that aren't supported. |
+| [ConfigurationData](/azure/azure-monitor/reference/tables/configurationdata) | Partial support - some of the data is ingested through internal services that aren't supported. |
 | [ContainerAppConsoleLogs](/azure/azure-monitor/reference/tables/containerappconsolelogs) | |
 | [ContainerAppSystemLogs](/azure/azure-monitor/reference/tables/containerappsystemlogs) | |
 | [ContainerEvent](/azure/azure-monitor/reference/tables/containerevent) | |
