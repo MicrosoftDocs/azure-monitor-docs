@@ -2,13 +2,13 @@
 title: Azure service health notification data transitions
 description: Service health notification data moving from active to resolved explained.
 ms.topic: article
-ms.date: 10/02/2025
+ms.date: 10/24/2025
 
 ---
 
 # Service Health notifications - data transitions
 
-Service Health notifications in Azure transition from the Active pane to the History pane once the event’s status changes from Active to Resolved. 
+Service Health notifications in Azure transition from any **Active** pane to the **History** pane when the status of the event changes from Active to Resolved. 
 
 This move ensures that only ongoing issues remain visible in the Active view, while completed events are archived for reference.
 
@@ -25,3 +25,5 @@ Each communication category panel - Incidents, Planned maintenance, Health advis
 |**Security**              |**Warning** - Security advisory that affects existing services and might require administrator action<br>**Informational** - Security advisory that affects existing services |Action Recommended<br>- Final Post Incident Review (PIR)<br>- Preliminary PIR<br>False Positive         |         | 90 days from most recent published date  | One year from most recent  published date   |
 |**Health advisories**     |**Warning** - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement<br> -**Information** - An administrator might be required to prevent an effect to existing services. | Retirement         |         | 90 days from most recent published date  | One year from most recent  published date   |
 |**Billing**              |**Informational** - Issues impacting billing updates   | N/A        |         | 90 days from most recent published date  | One year from most recent  published date   |
+
+For more information, see [Service Health notifications](service-health-notifications-properties.md).
