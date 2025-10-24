@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 10/22/2025
+ms.date: 10/24/2025
 
 ---
 
@@ -131,7 +131,6 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 2. How can I prepare for maintenance?
 - Monitor the Planned Maintenance pane regularly.
 - Use the Resources tab to identify the affected services.
-- If you're eligible, use Maintenance Control to defer updates for critical workloads.
 3. What metadata is available for maintenance events?<br>
   These key fields help you assess the scope, timing, and severity of the events.
     - impactType
