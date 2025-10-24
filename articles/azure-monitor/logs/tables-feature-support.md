@@ -627,7 +627,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [SecurityBaseline](/azure/azure-monitor/reference/tables/securitybaseline) | |
 | [SecurityBaselineSummary](/azure/azure-monitor/reference/tables/securitybaselinesummary) | |
 | [SecurityDetection](/azure/azure-monitor/reference/tables/securitydetection) | |
-| [SecurityEvent](/azure/azure-monitor/reference/tables/securityevent) | Partial support â€“ data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn't supported. |
+| [SecurityEvent](/azure/azure-monitor/reference/tables/securityevent) | Partial support - data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn't supported. |
 | [SecurityIncident](/azure/azure-monitor/reference/tables/securityincident) | |
 | [SecurityIoTRawEvent](/azure/azure-monitor/reference/tables/securityiotrawevent) | |
 | [SecurityNestedRecommendation](/azure/azure-monitor/reference/tables/securitynestedrecommendation) | |
