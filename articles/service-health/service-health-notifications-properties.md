@@ -2,7 +2,7 @@
 title: Azure service health notifications overview
 description: Service health notifications allow you to view service health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 10/23/2025
+ms.date: 10/24/2025
 
 ---
 
@@ -55,7 +55,7 @@ Here’s a breakdown of each notification type, what it means, and how you can a
 
 - **Billing** – *Informational (account notices)*. These notifications provide information about billing or subscription changes. They might notify subscription owners/contributors about things like upcoming billing updates, credit expiration, or other billing-related issues. Billing notifications are purely informational. You don't fix anything in Azure—if there’s a billing issue, you’d contact support or check your billing settings.<br>
 *These notifications are shown in the Billing updates pane*.
-
+<!--
 ## Service Health notifications - transitions
 Each communication category panel - Incidents, Planned maintenance, Health advisories, Security advisories, and Billing updates - uses distinct logic to determine event transitions. This logic determines when an event moves from its category tab to the Health history panel as defined in this table.
 
@@ -66,7 +66,7 @@ Each communication category panel - Incidents, Planned maintenance, Health advis
 |**Security**              |**Warning** - Security advisory that affects existing services and might require administrator action<br>**Informational** - Security advisory that affects existing services |Action Recommended<br>- Final Post Incident Review (PIR)<br>- Preliminary PIR<br>False Positive         |         | 90 days from most recent published date  | One year from most recent  published date   |
 |**Health advisories**     |**Warning** - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement<br> -**Information** - An administrator might be required to prevent an effect to existing services. | Retirement         |         | 90 days from most recent published date  | One year from most recent  published date   |
 |**Billing**              |**Informational** - Issues impacting billing updates   | N/A        |         | 90 days from most recent published date  | One year from most recent  published date   |
-
+-->
 
 
 ## Service Health notifications - data properties in the Activity log
