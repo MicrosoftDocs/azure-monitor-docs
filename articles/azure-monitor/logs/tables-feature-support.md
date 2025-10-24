@@ -699,7 +699,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [UCDOStatus](/azure/azure-monitor/reference/tables/ucdostatus) | |
 | [UCServiceUpdateStatus](/azure/azure-monitor/reference/tables/ucserviceupdatestatus) | |
 | [UCUpdateAlert](/azure/azure-monitor/reference/tables/ucupdatealert) | |
-| [Update](/azure/azure-monitor/reference/tables/update) | Partial support â€“ some of the data is ingested through internal services that aren't supported. |
+| [Update](/azure/azure-monitor/reference/tables/update) | Partial support - some of the data is ingested through internal services that aren't supported. |
 | [UpdateRunProgress](/azure/azure-monitor/reference/tables/updaterunprogress) | |
 | [UpdateSummary](/azure/azure-monitor/reference/tables/updatesummary) | |
 | [UrlClickEvents](/azure/azure-monitor/reference/tables/urlclickevents) | |
