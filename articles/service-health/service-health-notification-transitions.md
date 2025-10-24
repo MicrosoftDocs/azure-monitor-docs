@@ -14,7 +14,7 @@ This move ensures that only ongoing issues remain visible in the Active view, wh
 
 In this article, you learn about the lifecycle of Service Health notifications, including the reasons for transitions between pans, ways to view past records, and how long they're retained.
 
-## Logic of data moving from active to history
+## How notifications move from active to history
 
 Each communication category panel - Incidents, Planned maintenance, Health advisories, Security advisories, and Billing updates - uses distinct logic to determine event transitions. This logic determines when an event moves from its category tab to the Health history panel as defined in this table.
 
