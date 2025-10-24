@@ -503,7 +503,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [IdentityLogonEvents](/azure/azure-monitor/reference/tables/identitylogonevents) | |
 | [IdentityQueryEvents](/azure/azure-monitor/reference/tables/identityqueryevents) | |
 | [IlumioInsights](/azure/azure-monitor/reference/tables/ilumioinsights) | |
-| [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) | Partial support â€“ some of the data is ingested through internal services that aren't supported. |
+| [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) | Partial support - some of the data is ingested through internal services that aren't supported. |
 | [IntuneAuditLogs](/azure/azure-monitor/reference/tables/intuneauditlogs) | |
 | [IntuneDevices](/azure/azure-monitor/reference/tables/intunedevices) | |
 | [IntuneOperationalLogs](/azure/azure-monitor/reference/tables/intuneoperationallogs) | |
