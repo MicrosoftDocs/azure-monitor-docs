@@ -12,7 +12,7 @@ Service Health notifications in Azure transition from any **Active** pane to the
 
 This move ensures that only ongoing issues remain visible in the Active view, while completed events are archived for reference.
 
-In this article, you learn about the lifecycle of Service Health notifications, including the reasons for transitions between pans, ways to view past records, and how long they're retained.
+In this article, you learn about the lifecycle of Service Health notifications, including the reasons for transitions between the panes, ways to view past records, and how long they're retained.
 
 ## How notifications move from active to history
 
