@@ -719,7 +719,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [WindowsEvent](/azure/azure-monitor/reference/tables/windowsevent) | |
 | [WindowsFirewall](/azure/azure-monitor/reference/tables/windowsfirewall) | |
 | [WindowsServerAssessmentRecommendation](/azure/azure-monitor/reference/tables/windowsserverassessmentrecommendation) | |
-| [WireData](/azure/azure-monitor/reference/tables/wiredata) | Partial support â€“ some of the data is ingested through internal services that aren't supported. |
+| [WireData](/azure/azure-monitor/reference/tables/wiredata) | Partial support - some of the data is ingested through internal services that aren't supported. |
 | [WorkloadDiagnosticLogs](/azure/azure-monitor/reference/tables/workloaddiagnosticlogs) | |
 | [WUDOAggregatedStatus](/azure/azure-monitor/reference/tables/wudoaggregatedstatus) | |
 | [WUDOStatus](/azure/azure-monitor/reference/tables/wudostatus) | |
