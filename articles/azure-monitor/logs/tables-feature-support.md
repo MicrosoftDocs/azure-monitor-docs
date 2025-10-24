@@ -684,7 +684,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [SynapseSqlPoolRequestSteps](/azure/azure-monitor/reference/tables/synapsesqlpoolrequeststeps) | |
 | [SynapseSqlPoolSqlRequests](/azure/azure-monitor/reference/tables/synapsesqlpoolsqlrequests) | |
 | [SynapseSqlPoolWaits](/azure/azure-monitor/reference/tables/synapsesqlpoolwaits) | |
-| [Syslog](/azure/azure-monitor/reference/tables/syslog) | Partial support â€“ data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn't supported. |
+| [Syslog](/azure/azure-monitor/reference/tables/syslog) | Partial support - data arriving from Log Analytics agent (MMA) or Azure Monitor Agent (AMA) is fully supported. Data arriving via Diagnostics Extension agent is collected though storage while this path isn't supported. |
 | [ThreatIntelIndicators](/azure/azure-monitor/reference/tables/threatintelindicators) | |
 | [ThreatIntelligenceIndicator](/azure/azure-monitor/reference/tables/threatintelligenceindicator) | |
 | [ThreatIntelObjects](/azure/azure-monitor/reference/tables/threatintelobjects) | |
