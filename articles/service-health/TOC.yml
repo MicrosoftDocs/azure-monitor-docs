@@ -18,14 +18,15 @@
   items:
   - name: Azure Service Health
     items:
-    - name: View Service Health notifications from the Azure portal
+    - name: Service Health notifications overview
+      href: service-health-notifications-properties.md
+    - name: View Service Health notifications
       href: service-notifications.md
     - name: Filter Service Health notifications by event level
       href: metadata-filter.md
     - name: Service Health event tags
       href: service-health-event-tags.md
-    - name: Service Health notifications
-      href: service-health-notifications-properties.md
+    
     - name: View and access Security advisories
       href: security-advisories-elevated-access.md
     - name: Manage Azure security notifications
@@ -34,7 +35,7 @@
       href: Service-health-advisories.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
-    - name: How to Report an issue
+    - name: How to report an issue
       href: report-issue.md
     - name: How to create alerts
       items:
