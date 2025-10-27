@@ -35,7 +35,7 @@
       href: Service-health-advisories.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
-    - name: How to Report an issue
+    - name: How to report an issue
       href: report-issue.md
     - name: How to create alerts
       items:
