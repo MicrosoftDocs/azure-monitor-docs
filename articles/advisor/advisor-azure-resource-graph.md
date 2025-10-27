@@ -30,7 +30,7 @@ These resource types are listed under a new table named as *AdvisorResources*, w
 
 ## Examples
 
-### Active cost recommendations
+### Get active cost recommendations
 
 ```kusto
 advisorresources 
@@ -100,6 +100,7 @@ advisorresources
 | extend term = tostring(extendedProperties.term)
 | extend lookbackPeriod = tostring(extendedProperties.lookbackPeriod)
 | where isRecommendationActive == 1
+| where category == 'Cost'
 | project
     subscriptionId,
     recommendationTypeId,
@@ -115,7 +116,26 @@ advisorresources
     term,
     lookbackPeriod,
     resourceGroup,
-    extendedProperties
+    extendedProperties,
+    joinID = toupper(resourceId)
+| join kind=leftouter (resources | project joinID = toupper(id), tags) on $left.joinID == $right.joinID
+| project
+    subscriptionId,
+    recommendationTypeId,
+    recommendationSubcategory,
+    resourceType,
+    category,
+    impact,
+    resourceId,
+    description,
+    lastUpdate,
+    annualSavingsAmount,
+    savingsCurrency,
+    term,
+    lookbackPeriod,
+    resourceGroup,
+    extendedProperties,
+    tags
 ```
 
 ## Related articles
