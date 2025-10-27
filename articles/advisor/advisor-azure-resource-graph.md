@@ -2,7 +2,7 @@
 title: Advisor data in Azure Resource Graph
 description: Make queries for Advisor data in Azure Resource Graph
 ms.topic: article
-ms.date: 12/02/2024
+ms.date: 10/27/2025
 ---
 
 # Query for Advisor data in Resource Graph Explorer (Azure Resource Graph)
@@ -119,7 +119,5 @@ advisorresources
 ```
 
 ## Related articles
-
-For more information about Azure Advisor, see the following articles.
 
 *  [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal.md)
