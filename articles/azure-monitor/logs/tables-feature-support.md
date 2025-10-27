@@ -274,7 +274,6 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AZFWNatRuleAggregation](/azure/azure-monitor/reference/tables/azfwnatruleaggregation) | |
 | [AZFWNetworkRule](/azure/azure-monitor/reference/tables/azfwnetworkrule) | |
 | [AZFWNetworkRuleAggregation](/azure/azure-monitor/reference/tables/azfwnetworkruleaggregation) | |
-| [AZFWNetworkRuleAggregation](/azure/azure-monitor/reference/tables/azfwnetworkruleaggregation) | |
 | [AZFWThreatIntel](/azure/azure-monitor/reference/tables/azfwthreatintel) | |
 | [AZFWThreatIntel](/azure/azure-monitor/reference/tables/azfwthreatintel) | |
 | [AZKVPolicyEvaluationDetailsLogs](/azure/azure-monitor/reference/tables/azkvpolicyevaluationdetailslogs) | |
