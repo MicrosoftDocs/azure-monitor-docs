@@ -2,7 +2,7 @@
 title: Azure service health notification data transitions
 description: Service health notification data moving from active to resolved explained.
 ms.topic: article
-ms.date: 10/24/2025
+ms.date: 10/27/2025
 
 ---
 
