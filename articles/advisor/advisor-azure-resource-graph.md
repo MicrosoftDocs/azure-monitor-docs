@@ -28,26 +28,98 @@ There are three resource types available for querying under Advisor resources. H
 
 These resource types are listed under a new table named as *AdvisorResources*, which you can also query in the Resource Graph Explorer in the Azure portal.
 
+## Examples
+
+### Active cost recommendations
+
+```kusto
+advisorresources 
+| where type =~ 'microsoft.advisor/recommendations' 
+| where (properties.category == 'Security' and properties.lastUpdated > ago(60h)) or properties.lastUpdated >= ago(1d) 
+| where isempty(properties.tracked) or properties.tracked == false 
+| project id, stableId = name, subscriptionId, resourceGroup, properties 
+| join kind = leftouter (
+    advisorresources
+    | where type =~ 'microsoft.advisor/suppressions' 
+    | extend tokens = split(id, '/') 
+    | extend stableId = iff(array_length(tokens) > 3, tokens[(array_length(tokens) - 3)], '') 
+    | extend expirationTimeStamp = todatetime(iff(strcmp(tostring(properties.ttl), '-1') == 0, '9999-12-31', properties.expirationTimeStamp)) 
+    | where expirationTimeStamp > now() 
+    | project
+        suppressionId = tostring(properties.suppressionId),
+        stableId,
+        expirationTimeStamp)
+    on stableId 
+| project
+    id,
+    stableId,
+    subscriptionId,
+    resourceGroup,
+    properties,
+    expirationTimeStamp,
+    suppressionId
+| join kind = leftouter  (
+    advisorresources
+    | where type =~ 'microsoft.advisor/configurations'
+    | where isempty(resourceGroup) == true
+    | project
+        subscriptionId,
+        excludeRecomm = properties.exclude,
+        lowCpuThreshold = properties.lowCpuThreshold)
+    on subscriptionId
+| extend isActive1 = iff(isempty(excludeRecomm), true, tobool(excludeRecomm) == false)
+| extend isActive2 = iff((properties.recommendationTypeId in ("e10b1381-5f0a-47ff-8c7b-37bd13d7c974", "94aea435-ef39-493f-a547-8408092c22a7")), iff((isnotempty(lowCpuThreshold) and isnotnull(properties.extendedProperties) and isnotempty(properties.extendedProperties.MaxCpuP95)), todouble(properties.extendedProperties.MaxCpuP95) < todouble(lowCpuThreshold), iff((isnull(properties.extendedProperties) or isempty(properties.extendedProperties.MaxCpuP95) or todouble(properties.extendedProperties.MaxCpuP95) < 100), true, false)), true)
+| where isActive1 == true and isActive2 == true
+| join kind = leftouter  (
+    advisorresources
+    | where type =~ 'microsoft.advisor/configurations'
+    | where isnotempty(resourceGroup) == true
+    | project subscriptionId, resourceGroup, excludeProperty = properties.exclude)
+    on subscriptionId, resourceGroup
+| extend isActive3 = iff(isempty(excludeProperty), true, tobool(excludeProperty) == false)
+| where isActive3 == true
+| summarize
+    expirationTimeStamp = max(expirationTimeStamp),
+    suppressionIds = make_list(suppressionId)
+    by id, stableId, subscriptionId, resourceGroup, tostring(properties)
+| extend properties = parse_json(properties)
+| extend extendedProperties = properties.extendedProperties
+| extend properties = parse_json(properties)
+| extend recommendationTypeId = tostring(properties.recommendationTypeId)
+| extend resourceType = tostring(properties.impactedField)
+| extend category = tostring(properties.category)
+| extend impact = tolower(tostring(properties.impact))
+| extend resourceId = tolower(substring(id, 0, strlen(id) - 81))
+| extend description = tostring(properties.shortDescription.solution)
+| extend lastUpdate = tostring(properties.lastUpdated)
+| extend isRecommendationActive = (isnull(expirationTimeStamp) or isempty(expirationTimeStamp))
+| extend extendedProperties = properties.extendedProperties
+| extend recommendationSubcategory = tostring(extendedProperties.recommendationSubCategory)
+| extend annualSavingsAmount = toreal(extendedProperties.annualSavingsAmount)
+| extend savingsCurrency = tostring(extendedProperties.savingsCurrency)
+| extend term = tostring(extendedProperties.term)
+| extend lookbackPeriod = tostring(extendedProperties.lookbackPeriod)
+| where isRecommendationActive == 1
+| project
+    subscriptionId,
+    recommendationTypeId,
+    recommendationSubcategory,
+    resourceType,
+    category,
+    impact,
+    resourceId,
+    description,
+    lastUpdate,
+    annualSavingsAmount,
+    savingsCurrency,
+    term,
+    lookbackPeriod,
+    resourceGroup,
+    extendedProperties
+```
+
 ## Related articles
 
 For more information about Azure Advisor, see the following articles.
 
-*   [Introduction to Azure Advisor](./advisor-overview.md)
-
-*   [Azure Advisor portal basics](./advisor-get-started.md)
-
-*   [Use Advisor score](./azure-advisor-score.md)
-
-*   [Azure Advisor REST API](/rest/api/advisor)
-
-For more information about specific Advisor recommendations, see the following articles.
-
-*   [Reliability recommendations](./advisor-reference-reliability-recommendations.md)
-
-*   [Reduce service costs by using Azure Advisor](./advisor-reference-cost-recommendations.md)
-
-*   [Performance recommendations](./advisor-reference-performance-recommendations.md)
-
-*   [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations "Review security recommendations | Defender for Cloud | Microsoft Learn")
-
-*   [Operational excellence recommendations](./advisor-reference-operational-excellence-recommendations.md)
+*  [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal.md)
