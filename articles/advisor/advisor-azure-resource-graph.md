@@ -140,4 +140,4 @@ advisorresources
 
 ## Related articles
 
-*  [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal.md)
+*  [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal)
