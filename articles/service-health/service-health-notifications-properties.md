@@ -1,6 +1,6 @@
 ---
-title: Azure service health notifications overview
-description: Service health notifications allow you to view service health messages published by Microsoft Azure.
+title: Azure Service Health notifications overview
+description: Service Health notifications allow you to view Service Health messages published by Microsoft Azure.
 ms.topic: article
 ms.date: 10/27/2025
 
@@ -143,7 +143,7 @@ Service Health event type (`properties.incidentType`)
 - -->
 
 >[!NOTE]
-> Billing notifications are not shown in the Activity log in the Azure portal. You will see them in Azure Service Health. 
+> Billing notifications aren't shown in the Activity log found in the Azure portal. You'll see them in Azure Service Health. 
 
  ## For more information
 
