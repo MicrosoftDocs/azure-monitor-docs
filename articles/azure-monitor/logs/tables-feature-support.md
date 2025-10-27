@@ -133,7 +133,6 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AGWAccessLogs](/azure/azure-monitor/reference/tables/agwaccesslogs) | |
 | [AGWFirewallLogs](/azure/azure-monitor/reference/tables/agwfirewalllogs) | |
 | [AGWPerformanceLogs](/azure/azure-monitor/reference/tables/agwperformancelogs) | |
-| [AGWPerformanceLogs](/azure/azure-monitor/reference/tables/agwperformancelogs) | |
 | [AHDSDeidAuditLogs](/azure/azure-monitor/reference/tables/ahdsdeidauditlogs) | |
 | [AHDSDicomAuditLogs](/azure/azure-monitor/reference/tables/ahdsdicomauditlogs) | |
 | [AHDSDicomDiagnosticLogs](/azure/azure-monitor/reference/tables/ahdsdicomdiagnosticlogs) | |
