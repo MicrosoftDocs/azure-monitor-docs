@@ -260,7 +260,6 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AWSWAF](/azure/azure-monitor/reference/tables/awswaf) | |
 | [AZFWApplicationRule](/azure/azure-monitor/reference/tables/azfwapplicationrule) | |
 | [AZFWApplicationRuleAggregation](/azure/azure-monitor/reference/tables/azfwapplicationruleaggregation) | |
-| [AZFWApplicationRuleAggregation](/azure/azure-monitor/reference/tables/azfwapplicationruleaggregation) | |
 | [AZFWDnsQuery](/azure/azure-monitor/reference/tables/azfwdnsquery) | |
 | [AZFWDnsQuery](/azure/azure-monitor/reference/tables/azfwdnsquery) | |
 | [AZFWFatFlow](/azure/azure-monitor/reference/tables/azfwfatflow) | |
