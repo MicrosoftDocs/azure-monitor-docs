@@ -259,7 +259,6 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AWSVPCFlowLogsCCP](/azure/azure-monitor/reference/tables/awsvpcflowlogsccp) | |
 | [AWSWAF](/azure/azure-monitor/reference/tables/awswaf) | |
 | [AZFWApplicationRule](/azure/azure-monitor/reference/tables/azfwapplicationrule) | |
-| [AZFWApplicationRule](/azure/azure-monitor/reference/tables/azfwapplicationrule) | |
 | [AZFWApplicationRuleAggregation](/azure/azure-monitor/reference/tables/azfwapplicationruleaggregation) | |
 | [AZFWApplicationRuleAggregation](/azure/azure-monitor/reference/tables/azfwapplicationruleaggregation) | |
 | [AZFWDnsQuery](/azure/azure-monitor/reference/tables/azfwdnsquery) | |
