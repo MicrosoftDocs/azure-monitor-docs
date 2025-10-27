@@ -272,7 +272,6 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AZFWInternalFqdnResolutionFailure](/azure/azure-monitor/reference/tables/azfwinternalfqdnresolutionfailure) | |
 | [AZFWNatRule](/azure/azure-monitor/reference/tables/azfwnatrule) | |
 | [AZFWNatRuleAggregation](/azure/azure-monitor/reference/tables/azfwnatruleaggregation) | |
-| [AZFWNatRuleAggregation](/azure/azure-monitor/reference/tables/azfwnatruleaggregation) | |
 | [AZFWNetworkRule](/azure/azure-monitor/reference/tables/azfwnetworkrule) | |
 | [AZFWNetworkRule](/azure/azure-monitor/reference/tables/azfwnetworkrule) | |
 | [AZFWNetworkRuleAggregation](/azure/azure-monitor/reference/tables/azfwnetworkruleaggregation) | |
