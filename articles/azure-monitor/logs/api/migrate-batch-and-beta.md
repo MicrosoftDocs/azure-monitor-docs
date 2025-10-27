@@ -15,51 +15,6 @@ The Azure Monitor Logs Query API is deprecating the `batch` query operation and 
 | March 31, 2026 | Logs Query API `beta` version | [Change `beta` path to `v1`](#change-beta-path-to-v1) |
 | March 31, 2028 | Logs Query API `batch` operation | [Split batch queries into single queries](#split-batch-queries-to-single-queries) |
 
-## Check if the Logs Query API beta version is used
-
-> [!NOTE]
-> There's currently no direct UI in the Azure portal that explicitly flags usage of the deprecated beta API version.
-
-### Enable query auditing
-
-[Create a diagnostic setting](../../platform/diagnostic-settings.md?tabs=portal#create-a-diagnostic-setting) in your **Log Analytics workspace** and select:
-
-* **Logs:** audit
-* **Destination details:** Send to Log Analytics workspace
-
-Query auditing allows you to use the `LAQueryLogs` table to detect API usage patterns. Specifically, look for entries where the `RequestTarget` or `RequestClientApp` fields indicate use of the beta API.
-
-### Check logs for API beta version
-
-* **Check one specific workspace:**
-
-    1. Go to your **Log Analytics workspace** in the Azure portal.
-    
-    2. In **Logs**, run the following query:
-    
-        ```kusto
-        LAQueryLogs
-        | where TimeGenerated > ago(30d)
-        | where RequestTarget contains "/beta/"
-        | project TimeGenerated, RequestClientApp, RequestTarget, QueryText
-        ```
-
-* **Check across multiple workspaces:**
-
-    1. Go to your **Monitor** in the Azure portal.
-    
-    2. In **Logs**, run the following query:
-
-        ```kusto
-        union 
-          workspace("workspace-id-1").LAQueryLogs,
-          workspace("workspace-id-2").LAQueryLogs,
-          workspace("workspace-id-3").LAQueryLogs
-        | where TimeGenerated > ago(30d)
-        | where RequestTarget contains "/beta/"
-        | project TimeGenerated, RequestClientApp, RequestTarget, QueryText
-        ```
-
 ## Change `beta` path to `v1`
 
 To migrate from the `beta` version of the Logs Query API, change the path in your API calls from `beta` to `v1`.
