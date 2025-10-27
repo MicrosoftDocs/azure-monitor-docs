@@ -21,7 +21,7 @@ For a list of supported autoinstrumentation scenarios, see [Supported environmen
 ## Distributed tracing for Java applications
 
 > [!Note]
-> This feature used to have an 8- to 9-second cold startup implication, which has been reduced to less than 1 second. If you were an early adopter of this feature (for example, prior to February 2023), review the "Troubleshooting" section to update to the current version and benefit from the new faster startup.
+> This feature used to have an 8- to 9-second cold startup implication, which has been reduced to less than 1 second. If you were an early adopter of this feature (for example, prior to February 2023), review [Slow startup times](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot#issues-with-java-app-running-on-azure-functions) to update to the current version and benefit from the new faster startup.
 
 To view more data from your Java-based Azure Functions applications than is [collected by default](/azure/azure-functions/functions-monitoring?tabs=cmd), enable the [Application Insights Java 3.x agent](./java-in-process-agent.md). This agent allows Application Insights to automatically collect and correlate dependencies, logs, and metrics from popular libraries and Azure Software Development Kits (SDKs). This telemetry is in addition to the request telemetry already captured by Functions.
 
@@ -46,7 +46,7 @@ Deploying your own agent will result in a longer cold start implication for cons
 
 ### Troubleshooting
 
-For troubleshooting guidance, see [Troubleshoot Application Insights autoinstrumentation](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot#issues-with-java-app-running-on-azure-functions).
+For troubleshooting guidance, see [Issues with Java app running on Azure Functions](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot#issues-with-java-app-running-on-azure-functions).
 
 ## Distributed tracing for Node.js function apps
 
