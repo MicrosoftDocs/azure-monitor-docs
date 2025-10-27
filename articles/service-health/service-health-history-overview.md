@@ -2,12 +2,14 @@
 title: Service Health history overview
 description: The Health history pane in Azure Service is designed to help you review and manage your historical health events.
 ms.topic: overview
-ms.date: 10/15/2025
+ms.date: 10/27/2025
 ---
 
 # Service Health history
 
-The Health history pane in Azure Service Health is designed to help you review and manage the historical health events of your Azure resources.
+The Health history pane in Azure Service Health is an archive of past health events (such as service issues, planned maintenance, health advisories, and security notices) that move out of the active view. Use this pane to review and manage the historical health events of your Azure resources.
+
+Users with *owner*, *contributor*, or *reader* roles on the subscription can view information on the Health history pane. For sensitive events like security advisories, you should have RBAC permissions.
 
 ## Get started with Health history
 
@@ -15,7 +17,7 @@ To view past health events that affected your Azure resources, select **Health h
 
 :::image type="content" source="./media/service-health-history/health-history-main.png" alt-text="Screenshot of Service Health history pane." lightbox="./media/service-health-history/health-history-main.png":::
 
-When you open the Health history pane, you can see detailed information about each historical event, including the type of event, its impact, and the actions taken to resolve it.
+When you open the Health history pane, you can see detailed information about each historical event, including the type of event, its effect, and the actions taken to resolve it.
 
 Select the **Issue name** link to open the tabs with the complete information about each event. For instance, if you select on the link for a Service issue Event type, it opens the page with all the information in the Service issue pane. 
 
@@ -44,7 +46,7 @@ There are several options how to sort the information at the top of the pane.
 - **Scope**: By Tenant or Subscription
 - **Subscription**: Your Subscription id
 - **Region**: The region where your resources are located
-- **Health event type**: All, Service issue, Planned Maintenance, Health Advisory, Security Advisory or Billing
+- **Health event type**: All, Service issue, Planned Maintenance, Health Advisory, Security Advisory, or Billing
 - **Time Range**: The last 24 hours up to the last three months
 
 ### Health history common use cases and features
@@ -74,6 +76,7 @@ The Health history pane can help you manage your resources more effectively by p
 
 ### More information:
 
+- [Azure Service Health portal](service-health-portal-update.md)
 - [Resource Health FAQs](resource-health-faq.yml)
 - [Service Health FAQs](service-health-faq.yml)
 - [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
