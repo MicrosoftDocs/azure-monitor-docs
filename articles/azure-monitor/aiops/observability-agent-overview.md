@@ -18,7 +18,7 @@ When an issue is created (typically from an alert or invoked during troubleshoot
 
 - **Analyzes telemetry data** from the affected resources and related systems
 - **Detects anomalies** in metrics, logs, and other observability signals
-- **Correlates evidence** across multiple data sources to understand the scope of problems
+- **Correlates data** across multiple data sources to understand the scope of problems
 - **Generates findings** with explanations of what happened and potential next steps
 - **Persists results** in the issue for review and action
 

@@ -98,7 +98,7 @@ The issue background provides information about the alerts associated with the i
 
 ## Work with investigation findings
 
-Observability Agent presents findings based on the evidence it analyzed. To review the findings:
+Observability Agent presents findings based on the data it analyzed. To review the findings:
 
 1. Select the **Investigation tab** of the issue page.
 1. Select the finding. Every finding has an Observability Agent summary.
