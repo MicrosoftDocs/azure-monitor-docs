@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -73,17 +73,18 @@ Subcategory: undefined
   
 Achieve zone redundancy by deploying Application Gateway across Availability Zones. Zone redundancy boosts resilience by enabling Application Gateway to survive various outages. Zone redundancy ensures continuity even if one zone is affected and enhances overall reliability.  
   
-**Potential benefits**: Resiliency of Application Gateways is considerably increased when using Availability Zones.  
+**Potential benefits**: Availability zones add resiliency for Application Gateways  
 
 **Impact:** High
   
-For more information, see [Scaling and Zone-redundant Application Gateway v2 ](https://aka.ms/appgw/az)  
+For more information, see [Scaling and Zone-redundant Application Gateway v2](https://aka.ms/appgw/az)  
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 5c488377-be3e-4365-92e8-09d1e8d9038c  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--5c488377-be3e-4365-92e8-09d1e8d9038c_end-->
+
 
 <!--6cc8be07-8c03-4bd7-ad9b-c2985b261e01_begin-->
 
@@ -95,13 +96,14 @@ To improve security and provide a more consistent experience across Azure, all u
 
 **Impact:** High
   
-  
+For more information, see [Azure Application Gateway infrastructure configuration](https://aka.ms/agsubnetjoin)  
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 6cc8be07-8c03-4bd7-ad9b-c2985b261e01  
 Subcategory: undefined
 
 <!--6cc8be07-8c03-4bd7-ad9b-c2985b261e01_end-->
+
 
 
 <!--c9c9750b-9ddb-436f-b19a-9c725539a0b5_begin-->
@@ -644,12 +646,13 @@ We announced the deprecation of Application Gateway V1 on April 28, 2023. Starti
 
 **Impact:** High
   
-  
+For more information, see [We're retiring Application Gateway V1 SKU in April 2026 - Azure Application Gateway](https://aka.ms/appgw/v1eol)  
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 0e19257e-dcef-4d00-8de1-5fe1ae0fd948  
 Subcategory: undefined
 
 <!--0e19257e-dcef-4d00-8de1-5fe1ae0fd948_end-->
+
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/12/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Container Apps
@@ -101,5 +101,23 @@ Recommendation ID: b7e00078-7703-4a0a-afac-1b403803ba62
 Subcategory: HighAvailability
 
 <!--b7e00078-7703-4a0a-afac-1b403803ba62_end-->
+
+<!--ce97546e-2d8f-4534-99dd-c5bbb584d568_begin-->
+
+#### Migrate away from Service Connector (preview) on Azure Container Apps  
+  
+Support for Service Connector (preview) on Azure Container Apps is ending. Creation of new service connections using Service Connector (preview) through any interface is blocked.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=501528)  
+
+ResourceType: microsoft.app/containerapps  
+Recommendation ID: ce97546e-2d8f-4534-99dd-c5bbb584d568  
+Subcategory: undefined
+
+<!--ce97546e-2d8f-4534-99dd-c5bbb584d568_end-->
 
 <!--articleBody-->

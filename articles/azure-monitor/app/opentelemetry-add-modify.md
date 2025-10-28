@@ -1,8 +1,8 @@
 ---
-title: Add and modify OpenTelemetry in Application Insights
+title: Add and Modify OpenTelemetry in Application Insights
 description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights. Includes .NET, Java, Node.js, and Python applications, custom attributes, telemetry processors, and log and trace modifications.
 ms.topic: how-to
-ms.date: 03/23/2025
+ms.date: 10/28/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -219,6 +219,12 @@ For Quartz native applications, look at the [Quarkus documentation](https://quar
 
 #### [Node.js](#tab/nodejs)
 
+> [!TIP]
+> **Node.js examples use modern ESM `import` syntax.** If your project uses CommonJS, you can still adopt this syntax by enabling ESM (for example, set `"type": "module"` in `package.json` or use `.mjs` files), or by using dynamic `import()`. The code below is plain JavaScript with no TypeScript required. For reference:
+> - **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev/src
+> - **OpenTelemetry JS ESM support guide** (interop options and caveats): https://github.com/open-telemetry/opentelemetry-js/blob/main/doc/esm-support.md
+> - **Node.js docs: ECMAScript modules** (how to enable/configure ESM in Node): https://nodejs.org/api/esm.html
+
 The following OpenTelemetry Instrumentation libraries are included as part of the Azure Monitor Application Insights Distro. For more information, see [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry/README.md#instrumentation-libraries).
 
 **Requests**
@@ -243,36 +249,28 @@ To reduce or increase the number of logs that Azure Monitor collects, first set 
 
 Instrumentations can be configured using `AzureMonitorOpenTelemetryOptions`:
 
-```typescript
-// Import Azure Monitor OpenTelemetry
-const { useAzureMonitor, AzureMonitorOpenTelemetryOptions } = require("@azure/monitor-opentelemetry");
-// Import OpenTelemetry HTTP Instrumentation to get config type
-const { HttpInstrumentationConfig } = require("@azure/monitor-opentelemetry");
-    // Import HTTP to get type
-const { IncomingMessage } = require("http");
+```javascript
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import bunyan from "bunyan";
 
-// Specific Instrumentation configs could be added
-const httpInstrumentationConfig: HttpInstrumentationConfig = {
-    ignoreIncomingRequestHook: (request: IncomingMessage) => {
-        return false; //Return true if you want to ignore a specific request 
-    },
-    enabled: true
-};
-// Instrumentations configuration
-const options: AzureMonitorOpenTelemetryOptions = {
-instrumentationOptions: {
-    http: httpInstrumentationConfig,
-    azureSdk: { enabled: true },
-    mongoDb: { enabled: true },
-    mySql: { enabled: true },
-    postgreSql: { enabled: true },
-    redis: { enabled: true },
-    redis4: { enabled: true },
-}
+// Enable Azure Monitor integration and bunyan instrumentation
+const options = {
+  instrumentationOptions: {
+    bunyan: { enabled: true },
+  },
 };
 
-// Enable Azure Monitor integration
 useAzureMonitor(options);
+
+const log = bunyan.createLogger({ name: "testApp" });
+log.info(
+  {
+    testAttribute1: "testValue1",
+    testAttribute2: "testValue2",
+    testAttribute3: "testValue3",
+  },
+  "testEvent"
+);
 
 ```
 
@@ -371,37 +369,33 @@ You can't use community instrumentation libraries with GraalVM Java native appli
 
 #### [Node.js](#tab/nodejs)
 
-Other OpenTelemetry Instrumentations are available [here](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages) and could be added using TraceHandler in ApplicationInsightsClient:
+```javascript
+// Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { metrics, trace } from "@opentelemetry/api";
 
- ```javascript
-    // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-    const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-    const { metrics, trace, ProxyTracerProvider } = require("@opentelemetry/api");
+// Import the OpenTelemetry instrumentation registration function and Express instrumentation
+import { registerInstrumentations } from "@opentelemetry/instrumentation";
+import { ExpressInstrumentation } from "@opentelemetry/instrumentation-express";
 
-    // Import the OpenTelemetry instrumentation registration function and Express instrumentation
-    const { registerInstrumentations } = require( "@opentelemetry/instrumentation");
-    const { ExpressInstrumentation } = require('@opentelemetry/instrumentation-express');
+// Enable Azure Monitor integration (uses the APPLICATIONINSIGHTS_CONNECTION_STRING env var if set)
+useAzureMonitor();
 
-    // Get the OpenTelemetry tracer provider and meter provider
-    const tracerProvider = (trace.getTracerProvider() as ProxyTracerProvider).getDelegate();
-    const meterProvider = metrics.getMeterProvider();
+// Get the OpenTelemetry tracer provider and meter provider
+const maybeProxy = trace.getTracerProvider();
+const tracerProvider = (typeof maybeProxy?.getDelegate === "function") ? maybeProxy.getDelegate() : maybeProxy;
+const meterProvider = metrics.getMeterProvider();
 
-    // Enable Azure Monitor integration
-    useAzureMonitor();
-    
-    // Register the Express instrumentation
-    registerInstrumentations({
-      // List of instrumentations to register
-      instrumentations: [
-        new ExpressInstrumentation(), // Express instrumentation
-      ],
-    // OpenTelemetry tracer provider
-      tracerProvider: tracerProvider,
-      // OpenTelemetry meter provider
-      meterProvider: meterProvider
-    });
- ```
+// Register the Express instrumentation
+registerInstrumentations({
+  instrumentations: [
+    new ExpressInstrumentation(),
+  ],
+  tracerProvider,
+  meterProvider,
+});
 
+```
 #### [Python](#tab/python)
 
 To add a community instrumentation library (not officially supported/included in Azure Monitor distro), you can instrument directly with the instrumentations. The list of community instrumentation libraries can be found [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
@@ -434,6 +428,46 @@ with engine.connect() as conn:
 ```
 
 ---
+
+## Resource detectors
+
+Resource detectors discover environment metadata at startup and populate OpenTelemetry **resource attributes** such as `service.name`, `cloud.provider`, and `cloud.resource_id`. This metadata powers experiences in Application Insights like Application Map and compute linking, and it improves correlation across traces, metrics, and logs.
+
+> [!TIP]
+> Resource attributes describe the process and its environment. Span attributes describe a single operation. Use resource attributes for app-level properties like `service.name`.
+
+### Supported environments
+
+| Environment | How detection works | Notes |
+|---|---|---|
+| Azure App Service | The language SDK or Azure Monitor distro reads well-known App Service environment variables and host metadata | Works with .NET, Java, Node.js, and Python when you use the guidance in this article. |
+| Azure Functions | See the [Azure Functions OpenTelemetry how‑to](/azure/azure-functions/opentelemetry-howto) | All Azure Functions guidance lives there. |
+| Azure Virtual Machines | The language SDK or distro queries the Azure Instance Metadata Service | Ensure the VM has access to the Instance Metadata Service endpoint. |
+| Azure Kubernetes Service (AKS) | Use the OpenTelemetry Collector `k8sattributes` processor to add Kubernetes metadata | Recommended for all languages running in AKS. |
+| Azure Container Apps | Detectors map environment variables and resource identifiers when available | You can also set `OTEL_RESOURCE_ATTRIBUTES` to fill gaps. |
+
+### Manual and automatic instrumentation
+
+- Automatic instrumentation and the Azure Monitor distros enable resource detection when running in Azure environments where supported.
+- For manual setups, you can set resource attributes directly with standard OpenTelemetry options:
+
+    ```bash
+    # Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
+    export OTEL_SERVICE_NAME="my-service"
+    export OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
+    ```
+
+    On Windows PowerShell:
+
+    ```powershell
+    $Env:OTEL_SERVICE_NAME="my-service"
+    $Env:OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
+    ```
+
+### OTLP ingestion considerations
+
+- Application Insights uses `service.name` to derive Cloud Role Name. Choose a stable name per service to avoid fragmented nodes in Application Map.
+- `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences may not show the Azure resource that produced the data.
 
 ## Collect custom telemetry
 
@@ -651,22 +685,23 @@ public class Program {
 
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { metrics } = require("@opentelemetry/api");
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { metrics } from "@opentelemetry/api";
 
 // Enable Azure Monitor integration
 useAzureMonitor();
 
 // Get the meter for the "testMeter" namespace
-const meter =  metrics.getMeter("testMeter");
+const meter = metrics.getMeter("testMeter");
 
 // Create a histogram metric
-let histogram = meter.createHistogram("histogram");
+const histogram = meter.createHistogram("histogram");
 
-// Record values to the histogram metric with different tags
-histogram.record(1, { "testKey": "testValue" });
-histogram.record(30, { "testKey": "testValue2" });
-histogram.record(100, { "testKey2": "testValue" });
+// Record values to the histogram metric with different attributes
+histogram.record(1, { testKey: "testValue" });
+histogram.record(30, { testKey: "testValue2" });
+histogram.record(100, { testKey2: "testValue" });
+
 ```
 
 ##### [Python](#tab/python)
@@ -864,23 +899,42 @@ public class Program {
 ##### [Node.js](#tab/nodejs)
 
 ```javascript
-// Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { metrics } = require("@opentelemetry/api");
+// Import the Azure Monitor OpenTelemetry integration and OpenTelemetry metrics API.
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { metrics } from "@opentelemetry/api";
+import express from "express";
 
-// Enable Azure Monitor integration
-useAzureMonitor();
+// Enable Azure Monitor integration.
+// Uses APPLICATIONINSIGHTS_CONNECTION_STRING if it is set.
+useAzureMonitor({
+  azureMonitorExporterOptions: {
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+  },
+});
 
-// Get the meter for the "testMeter" namespace
-const meter =  metrics.getMeter("testMeter");
+// Create a meter and a Counter instrument.
+const meter = metrics.getMeter("otel_azure_monitor_counter_demo");
+const counter = meter.createCounter("MyFruitCounter");
 
-// Create a counter metric
-let counter = meter.createCounter("counter");
+// Simple HTTP endpoint that increments the counter.
+const app = express();
+app.get("/", (_req, res) => {
+  // Record some sample values grouped by name and color.
+  counter.add(1, { name: "apple", color: "red" });
+  counter.add(2, { name: "lemon", color: "yellow" });
+  counter.add(1, { name: "lemon", color: "yellow" });
+  counter.add(2, { name: "apple", color: "green" });
+  counter.add(5, { name: "apple", color: "red" });
+  counter.add(4, { name: "lemon", color: "yellow" });
 
-// Add values to the counter metric with different tags
-counter.add(1, { "testKey": "testValue" });
-counter.add(5, { "testKey2": "testValue" });
-counter.add(3, { "testKey": "testValue2" });
+  res.send("Custom metric recorded.");
+});
+
+app.listen(8080, () => {
+  console.log("Counter example listening on http://localhost:8080 — refresh to emit metrics.");
+});
+
 ```
 
 ##### [Python](#tab/python)
@@ -1083,10 +1137,10 @@ public class Program {
 
 ##### [Node.js](#tab/nodejs)
 
-```typescript
-// Import the useAzureMonitor function and the metrics module from the @azure/monitor-opentelemetry and @opentelemetry/api packages, respectively.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { metrics } = require("@opentelemetry/api");
+```javascript
+// Import the useAzureMonitor function and the metrics module
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { metrics } from "@opentelemetry/api";
 
 // Enable Azure Monitor integration.
 useAzureMonitor();
@@ -1095,16 +1149,14 @@ useAzureMonitor();
 const meter = metrics.getMeter("testMeter");
 
 // Create an observable gauge metric with the name "gauge".
-let gauge = meter.createObservableGauge("gauge");
+const gauge = meter.createObservableGauge("gauge");
 
-// Add a callback to the gauge metric. The callback will be invoked periodically to generate a new value for the gauge metric.
-gauge.addCallback((observableResult: ObservableResult) => {
-    // Generate a random number between 0 and 99.
-    let randomNumber = Math.floor(Math.random() * 100);
-
-    // Set the value of the gauge metric to the random number.
-    observableResult.observe(randomNumber, {"testKey": "testValue"});
+// Add a callback to the gauge metric. The callback will be invoked periodically to generate a new value.
+gauge.addCallback((observableResult) => {
+  const randomNumber = Math.floor(Math.random() * 100);
+  observableResult.observe(randomNumber, { testKey: "testValue" });
 });
+
 ```
 
 ##### [Python](#tab/python)
@@ -1299,8 +1351,8 @@ The Node.js SDK exports manually recorded span-based exceptions to Application I
 
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { trace } = require("@opentelemetry/api");
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { trace } from "@opentelemetry/api";
 
 // Enable Azure Monitor integration
 useAzureMonitor();
@@ -1309,17 +1361,18 @@ useAzureMonitor();
 const tracer = trace.getTracer("testTracer");
 
 // Start a span with the name "hello"
-let span = tracer.startSpan("hello");
+const span = tracer.startSpan("hello");
 
-// Try to throw an error
 try {
-    throw new Error("Test Error");
+  // Throw an error
+  throw new Error("Test Error");
+} catch (error) {
+  // Record the error and end the span
+  span.recordException(error);
+} finally {
+  span.end();
 }
 
-// Catch the error and record it to the span
-catch(error){
-    span.recordException(error);
-}
 ```
 
 #### [Python](#tab/python)
@@ -1559,21 +1612,37 @@ using (var activity = activitySource.StartActivity("CustomActivity"))
 #### [Node.js](#tab/nodejs)
 
 ```javascript
-// Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { trace } = require("@opentelemetry/api");
+// Import the Azure Monitor OpenTelemetry integration and OpenTelemetry tracing API.
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { trace } from "@opentelemetry/api";
 
-// Enable Azure Monitor integration
-useAzureMonitor();
+// Enable Azure Monitor integration.
+// Uses APPLICATIONINSIGHTS_CONNECTION_STRING if it is set.
+useAzureMonitor({
+  azureMonitorExporterOptions: {
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+  },
+});
 
-// Get the tracer for the "testTracer" namespace
-const tracer = trace.getTracer("testTracer");
+// Get a tracer for your library or service.
+const tracer = trace.getTracer("otel_azure_monitor_custom_trace_demo");
 
-// Start a span with the name "hello"
-let span = tracer.startSpan("hello");
+// Create a span, add attributes/events, and end it.
+const span = tracer.startSpan("doWork");
+try {
+  span.setAttribute("component", "worker");
+  span.setAttribute("operation.id", "42");
+  span.addEvent("invoking doWork");
 
-// End the span
-span.end();
+  // Simulate work.
+  for (let i = 0; i < 10_000_000; i++) { /* noop */ }
+} catch (err) {
+  span.recordException(err);
+} finally {
+  span.end();
+}
+
 ```
 
 #### [Python](#tab/python)
@@ -1745,7 +1814,7 @@ It's not possible to send a `customEvent` using the `"microsoft.custom_event.nam
 
 To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object. Other attributes can also be included as needed.
 
-```typescript
+```javascript
 // Send a customEvent by including the microsoft attribute key in the log.
 // The customEvent name uses the value of that attribute.
 logger.emit({
@@ -1958,37 +2027,25 @@ Span.current().setAttribute(attributeKey, "myvalue1");
 
 ##### [Node.js](#tab/nodejs)
 
-```typescript
-// Import the necessary packages.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { ReadableSpan, Span, SpanProcessor } = require("@opentelemetry/sdk-trace-base");
-const { SemanticAttributes } = require("@opentelemetry/semantic-conventions");
+```javascript
+// Import the Azure Monitor OpenTelemetry integration
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 
-// Create a new SpanEnrichingProcessor class.
-class SpanEnrichingProcessor implements SpanProcessor {
-  forceFlush(): Promise<void> {
-    return Promise.resolve();
-  }
-
-  shutdown(): Promise<void> {
-    return Promise.resolve();
-  }
-
-  onStart(_span: Span): void {}
-
-  onEnd(span: ReadableSpan) {
-    // Add custom dimensions to the span.
+// Create a SpanEnrichingProcessor to add custom dimensions.
+class SpanEnrichingProcessor {
+  forceFlush() { return Promise.resolve(); }
+  shutdown() { return Promise.resolve(); }
+  onStart() {}
+  onEnd(span) {
     span.attributes["CustomDimension1"] = "value1";
     span.attributes["CustomDimension2"] = "value2";
   }
 }
 
-// Enable Azure Monitor integration.
-const options: AzureMonitorOpenTelemetryOptions = {
-    // Add the SpanEnrichingProcessor
-    spanProcessors: [new SpanEnrichingProcessor()] 
-}
-useAzureMonitor(options);
+// Enable Azure Monitor integration with the custom span processor.
+useAzureMonitor({
+  spanProcessors: [new SpanEnrichingProcessor()],
+});
 
 ```
 
@@ -2071,19 +2128,10 @@ This field is automatically populated.
 
 Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
-```typescript
-...
-// Import the SemanticAttributes class from the @opentelemetry/semantic-conventions package.
-const { SemanticAttributes } = require("@opentelemetry/semantic-conventions");
+```javascript
+// In your custom SpanEnrichingProcessor.onEnd(span):
+span.attributes["http.client_ip"] = "<IP Address>";
 
-// Create a new SpanEnrichingProcessor class.
-class SpanEnrichingProcessor implements SpanProcessor {
-
-    onEnd(span) {
-    // Set the HTTP_CLIENT_IP attribute on the span to the IP address of the client.
-    span.attributes[SemanticAttributes.HTTP_CLIENT_IP] = "<IP Address>";
-    }
-}
 ```
 
 ##### [Python](#tab/python)
@@ -2162,19 +2210,9 @@ Span.current().setAttribute("enduser.pseudo.id", "myuser"); // (user_Id)
 
 Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
-```typescript
-...
-// Import the SemanticAttributes class from the @opentelemetry/semantic-conventions package.
-import { SemanticAttributes } from "@opentelemetry/semantic-conventions";
-
-// Create a new SpanEnrichingProcessor class.
-class SpanEnrichingProcessor implements SpanProcessor {
-
-    onEnd(span: ReadableSpan) {
-    // Set the ENDUSER_ID attribute on the span to the ID of the user.
-    span.attributes[SemanticAttributes.ENDUSER_ID] = "<User ID>";
-    }
-}
+```javascript
+// In your custom SpanEnrichingProcessor.onEnd(span):
+span.attributes["enduser.id"] = "<User ID>";
 ```
 
 ##### [Python](#tab/python)
@@ -2214,27 +2252,29 @@ For Spring Boot native applications, Logback is instrumented out of the box.
 
 #### [Node.js](#tab/nodejs)
 
-```typescript
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const bunyan = require('bunyan');
+```javascript
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import bunyan from "bunyan";
 
-// Instrumentations configuration
-const options: AzureMonitorOpenTelemetryOptions = {
-    instrumentationOptions: {
-        // Instrumentations generating logs
-        bunyan: { enabled: true },
-    }
+// Enable Azure Monitor integration and bunyan instrumentation
+const options = {
+  instrumentationOptions: {
+    bunyan: { enabled: true },
+  },
 };
 
-// Enable Azure Monitor integration
 useAzureMonitor(options);
 
-var log = bunyan.createLogger({ name: 'testApp' });
-log.info({
-    "testAttribute1": "testValue1",
-    "testAttribute2": "testValue2",
-    "testAttribute3": "testValue3"
-}, 'testEvent');
+const log = bunyan.createLogger({ name: "testApp" });
+log.info(
+  {
+    testAttribute1: "testValue1",
+    testAttribute2: "testValue2",
+    testAttribute3: "testValue3",
+  },
+  "testEvent"
+);
+
 ```
 
 #### [Python](#tab/python)
@@ -2327,11 +2367,13 @@ Get the request trace ID and the span ID in your code:
 
 ```javascript
 // Import the trace module from the OpenTelemetry API.
-const { trace } = require("@opentelemetry/api");
+import { trace } from "@opentelemetry/api";
 
 // Get the span ID and trace ID of the active span.
-let spanId = trace.getActiveSpan().spanContext().spanId;
-let traceId = trace.getActiveSpan().spanContext().traceId;
+const activeSpan = trace.getActiveSpan();
+const spanId = activeSpan?.spanContext().spanId;
+const traceId = activeSpan?.spanContext().traceId;
+
 ```
 
 ### [Python](#tab/python)

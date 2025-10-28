@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -372,5 +372,23 @@ Recommendation ID: 42702f7a-06af-4cca-80b6-6b058e22b12f
 Subcategory: undefined
 
 <!--42702f7a-06af-4cca-80b6-6b058e22b12f_end-->
+
+<!--b5666e83-63e6-420d-acd2-c1924f1f060e_begin-->
+
+#### Store configuration as app settings for Web Sites  
+  
+Use app settings for configuration and define them in Resource Manager templates or via PowerShell to facilitate part of an automated deployment/update process for improved reliability.  
+  
+**Potential benefits**: Enhanced reliability via automation  
+
+**Impact:** Medium
+  
+For more information, see [Configure an App Service App - Azure App Service](/azure/app-service-web/web-sites-configure)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: b5666e83-63e6-420d-acd2-c1924f1f060e  
+Subcategory: undefined
+
+<!--b5666e83-63e6-420d-acd2-c1924f1f060e_end-->
 
 <!--articleBody-->
