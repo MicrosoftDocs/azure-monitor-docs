@@ -187,7 +187,7 @@ appInsights.trackPageView();
 
 For a summary of the noncustom properties available on the telemetry item, see [Application Insights Export Data Model](./export-telemetry.md#application-insights-export-data-model).
 
-You can add as many initializsers as you like. They're called in the order that they're added.
+You can add as many initializers as you like. They're called in the order that they're added.
 
 #### Add a cloud role name and cloud role instance
 
