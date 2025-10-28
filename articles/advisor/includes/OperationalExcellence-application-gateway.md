@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -206,13 +206,14 @@ WAF rule sets are constantly updated to guard against new attacks. Upgrading to 
 
 **Impact:** High
   
-For more information, see [Azure Web Application Firewall DRS rule groups and rules](https://aka.ms/afdwafruleset)  
+  
 
 ResourceType: microsoft.network/frontdoorwebapplicationfirewallpolicies  
 Recommendation ID: a1ad465b-8218-40d6-a6ce-4bfff566a6cd  
 
 
 <!--a1ad465b-8218-40d6-a6ce-4bfff566a6cd_end-->
+
 
 <!--c7a883a4-fda2-4bcd-9f78-dad70c19429f_begin-->
 

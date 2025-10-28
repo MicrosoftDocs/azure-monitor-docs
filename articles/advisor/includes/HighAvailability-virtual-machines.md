@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -537,5 +537,149 @@ Recommendation ID: 89496618-9e41-49e3-9db1-d08d61d9e820
 Subcategory: undefined
 
 <!--89496618-9e41-49e3-9db1-d08d61d9e820_end-->
+
+<!--71c69a25-0953-41d6-bf3a-1db323cd70b0_begin-->
+
+#### Migrate to zonal aware deployment model  
+  
+Migrate to zonal aware deployment model such as Virtual Machine Scale Sets, Azure Kubernetes Service (AKS), or App Service for zone redundant benefit.  
+  
+**Potential benefits**: Zone failover reduces service disruption  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.compute/cloudservices  
+Recommendation ID: 71c69a25-0953-41d6-bf3a-1db323cd70b0  
+Subcategory: undefined
+
+<!--71c69a25-0953-41d6-bf3a-1db323cd70b0_end-->
+
+<!--61bd0aa3-f2b0-485f-8e5e-95d02ac3483a_begin-->
+
+#### Spread dedicated hosts across zones for isolation of hardware failures  
+  
+Create host groups with hosts distributed across multiple zones. Assign virtual machine instances to hosts in different zones for isolation of faults.  
+  
+**Potential benefits**: Host isolation across zones for durability  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.compute/hostgroups  
+Recommendation ID: 61bd0aa3-f2b0-485f-8e5e-95d02ac3483a  
+Subcategory: undefined
+
+<!--61bd0aa3-f2b0-485f-8e5e-95d02ac3483a_end-->
+
+<!--3742247e-ea02-4202-bfef-a8a6be51fa4c_begin-->
+
+#### Use zone-scoped Proximity Placement Groups and duplicate across zones  
+  
+Use zone-scoped proximity placement groups and deploy dependent resources in the same zone for low latency. Ensure multiple proximity placement groups exist across zones for redundancy.  
+  
+**Potential benefits**: Low latency plus zone-level fault isolation  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.compute/proximityplacementgroups  
+Recommendation ID: 3742247e-ea02-4202-bfef-a8a6be51fa4c  
+Subcategory: undefined
+
+<!--3742247e-ea02-4202-bfef-a8a6be51fa4c_end-->
+
+<!--13cea0f1-c3f7-4c66-8b3b-9928a0f07cea_begin-->
+
+#### Review and migrate virtual machine workloads  
+  
+Azure Virtual Machine (VM) series F, Fs, Fsv2, Lsv2, G, Gs, Av2, and B are retiring. The VM series are no longer available for use or purchase. Applications and workloads currently operating on VM types must be migrated to newer VM series.  
+  
+**Potential benefits**: Avoid service disruptions by proactively migrating workloads  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500682)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 13cea0f1-c3f7-4c66-8b3b-9928a0f07cea  
+Subcategory: undefined
+
+<!--13cea0f1-c3f7-4c66-8b3b-9928a0f07cea_end-->
+
+<!--0e68ab45-c2c8-4d1f-9873-908dc5828252_begin-->
+
+#### Resize or migrate NVv3-series virtual machines  
+  
+To avoid service disruptions, migrate workloads to the Azure NVadsA10_v5-series VMs. Azure NVadsA10_v5-series VMs include increased GPU memory bandwidth per GPU, Small AI workloads and GPU accelerated graphics applications, virtual desktops, and visualizations.  
+  
+**Potential benefits**: Avoid service disruptions and loss of functionality  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500573)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 0e68ab45-c2c8-4d1f-9873-908dc5828252  
+Subcategory: undefined
+
+<!--0e68ab45-c2c8-4d1f-9873-908dc5828252_end-->
+
+<!--cfeba225-ca14-48fe-83ba-50d24f60f84e_begin-->
+
+#### Resize or migrate NVv4-series virtual machines  
+  
+To avoid service disruptions, migrate workloads to Azure NVads_V710_v5-series virtual machines. NVads_V710_v5-series virtual machines provide greater GPU memory bandwidth per GPU for small AI workloads and GPU accelerated graphics applications, virtual desktops, and visualizations.  
+  
+**Potential benefits**: Avoid service disruptions and loss of functionality  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500578)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: cfeba225-ca14-48fe-83ba-50d24f60f84e  
+Subcategory: undefined
+
+<!--cfeba225-ca14-48fe-83ba-50d24f60f84e_end-->
+
+<!--da4fe6f8-35f4-4ea0-8704-1732ee88f695_begin-->
+
+#### Contoso recommendation - R3  
+  
+Test recommendation for Contoso  
+  
+**Potential benefits**: Test potential benefits  
+
+**Impact:** Medium
+  
+For more information, see [nohello](https://aka.ms/nohello)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: da4fe6f8-35f4-4ea0-8704-1732ee88f695  
+Subcategory: undefined
+
+<!--da4fe6f8-35f4-4ea0-8704-1732ee88f695_end-->
+
+<!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_begin-->
+
+#### Migrate to encryption at host  
+  
+Azure Disk Encryption is retiring. Migrate to encryption at host before the retirement date to ensure continued security, functionality, and performance.  
+  
+**Potential benefits**: Ensure continued security, functionality, and performance  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=493779)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1  
+Subcategory: undefined
+
+<!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_end-->
 
 <!--articleBody-->
