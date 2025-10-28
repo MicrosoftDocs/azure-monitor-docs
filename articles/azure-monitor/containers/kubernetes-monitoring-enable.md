@@ -319,7 +319,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     | `dataCollectionInterval` | Determines how often the agent collects data.  Valid values are 1m - 30m in 1m intervals The default value is 1m. If the value is outside the allowed range, then it defaults to *1 m*. |
     | `namespaceFilteringModeForDataCollection` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collect data on all namespaces.
     | `namespacesForDataCollection` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored. |
-    | `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>To enable [high scale mode](./container-insights-high-scale.md) for container logs, use `Microsoft-ContainerLogV2-HighScale`.  |
+    | `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.  |
     | `useAzureMonitorPrivateLinkScope` | Specifies whether to use private link for the cluster connection to Azure Monitor. |
     | `azureMonitorPrivateLinkScopeResourceId` | If private link is used, resource ID of the private link scope.  |
 
@@ -400,7 +400,7 @@ Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in 
     | `resource_tag_values` | Match the existing tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will match `MSCI-<clusterName>-<clusterRegion>` and this resource is created in the same resource group as the AKS clusters. For first time onboarding, you can set the arbitrary tag values. |
     | `enabledContainerLogV2` | Set this parameter value to be true to use the default recommended ContainerLogV2. |
     | Cost optimization parameters | Refer to [Data collection parameters](container-insights-cost-config.md#data-collection-parameters) |
-    | `streams` | Streams for data collection. For retina networkflow logs feature, include `Microsoft-RetinaNetworkFlowLogs`. For high scale mode, replace the stream `Microsoft-ContainerLogV2` with `Microsoft-ContainerLogV2-HighScale` in the template.   |
+    | `streams` | Streams for data collection. See [Stream values](#stream-values).  |
     | `use_azure_monitor_private_link_scope`  | Flag to indicate whether to configure Azure Monitor Private Link Scope.  |
     | `azure_monitor_private_link_scope_resource_id` | Azure Resource ID of the Azure Monitor Private Link Scope. |
     
@@ -575,6 +575,7 @@ When you specify the tables to collect using CLI or ARM, you specify a stream na
 | Microsoft-KubePVInventory | KubePVInventory |
 | Microsoft-KubeServices | KubeServices |
 | Microsoft-Perf | Perf |
+| Microsoft-RetinaNetworkFlowLogs | RetinaNetworkFlowLogs |
 
 <sup>1</sup> Don't use both Microsoft-ContainerLogV2 and Microsoft-ContainerLogV2-HighScale together. This will result in duplicate data.
 
