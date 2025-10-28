@@ -64,7 +64,6 @@ The endpoint is the **Log Ingestion** endpoint from the data collection endpoint
 
 The following scenarios aren't supported:
 
-* Onboarding Azure Arc-enabled Kubernetes clusters 
 * HTTP proxy with trusted certificate
 * Onboarding through Azure portal, Azure Policy, Terraform 
 * Configuring through **Monitor Settings** in the AKS Insights portal experience
