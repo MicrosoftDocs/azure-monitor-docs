@@ -69,7 +69,7 @@ Organized by subject area.
 | [Linked Services](/rest/api/loganalytics/linked-services) | Create or update linked services. |
 | [Linked Storage Accounts](/rest/api/loganalytics/linked-storage-accounts) | Manage a link relation between a workspace and storage accounts and retrieve all linked storage accounts associated with a workspace. |
 | [Management Groups](/rest/api/loganalytics/management-groups) | Retrieve all management groups connected to a Log Analytics workspace. |
-| [Metadata](/rest/api/loganalytics/metadata) | Retrieve the metadata information for a Log Analytics workspace. |
+| [Metadata](/azure/azure-monitor/logs/api/overview) | Retrieve the metadata information for a Log Analytics workspace. |
 | [Operation Statuses](/rest/api/loganalytics/operation-statuses) | Retrieve the status of a long running azure asynchronous operation. |
 | [Operations](/rest/api/loganalytics/operations) | Retrieve all of the available OperationalInsights Rest API operations. |
 | [Query](/azure/azure-monitor/logs/api/overview) | Query the full set of data collected by Azure Monitor logs using KQL. |
