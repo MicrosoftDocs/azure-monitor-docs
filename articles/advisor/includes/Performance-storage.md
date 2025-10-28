@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Storage
@@ -88,7 +88,7 @@ Recommendation ID: 33557a7c-6dd6-4b46-9579-fc5273f07458
 
 #### Enable SMB Multichannel for storage account  
   
-We observed that the SMB multichannel isn't enabled for your storage account. SMB Multichannel enables an SMB 3.x client to establish multiple network connections to an SMB file share. An increased performance is achieved through bandwidth aggregation over multiple NICs and utilizing Receive S  
+We observed that the SMB multichannel isn't enabled for your storage account. SMB Multichannel enables an SMB 3.x client to establish multiple network connections to an SMB file share. Increased performance is achieved by bandwidth aggregation over multiple NICs and utilizing RSS support.  
   
 **Potential benefits**: Increase performance of file shares using SMB Multichannel  
 
@@ -101,6 +101,7 @@ Recommendation ID: 6708739d-5221-4d53-9960-698cd2fd9628
 
 
 <!--6708739d-5221-4d53-9960-698cd2fd9628_end-->
+
 
 <!--d05351cc-1014-4a6c-9173-bec1bcc48849_begin-->
 

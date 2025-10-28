@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Reservations
@@ -98,13 +98,14 @@ Based on your usage over the selected term and look-back period, we recommend re
 
 **Impact:** High
   
-  
+For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
 
 ResourceType: microsoft.subscriptions/subscriptions  
 Recommendation ID: 0d524e8d-4cfd-4db5-9f91-8b4bb5235a8e  
 
 
 <!--0d524e8d-4cfd-4db5-9f91-8b4bb5235a8e_end-->
+
 
 
 <!--3f6c5689-6a05-4896-a6e0-c6f8a22a44c2_begin-->
@@ -269,13 +270,14 @@ Based on your usage over the selected term and look-back period, we recommend re
 
 **Impact:** High
   
-For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
+  
 
 ResourceType: microsoft.subscriptions/subscriptions  
 Recommendation ID: 06ad499a-0952-48d3-b061-ec81c9cabb8b  
 
 
 <!--06ad499a-0952-48d3-b061-ec81c9cabb8b_end-->
+
 
 
 <!--148cdd60-97e8-426b-a7b9-141b7cb4bc2f_begin-->
