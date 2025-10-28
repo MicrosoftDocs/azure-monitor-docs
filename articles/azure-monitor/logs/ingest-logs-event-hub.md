@@ -111,12 +111,17 @@ To create a custom table into which to ingest events, in the Azure portal:
     }
     '@
     
-    Invoke-AzRestMethod -Path "/subscriptions/<subscription_id>/resourcegroups/<resource_group_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>/tables/<table_name>?api-version=<api_version>" -Method PUT -payload $tableParams
+    $restMethodParams = @{
+        Path    = "/subscriptions/<subscription_id>/resourcegroups/<resource_group_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>/tables/<table_name>?api-version=<api_version>"
+        Method  = "PUT"
+        Payload = $tableParams}
+
+    Invoke-AzRestMethod @restMethodParams
     ```
 
 > [!IMPORTANT]
 > * Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`).
-> * `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
+> * `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
 > * Column names are case-sensitive. Make sure to use the correct case in your data collection rule.
 
 > [!NOTE]
