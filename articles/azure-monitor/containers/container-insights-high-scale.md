@@ -65,9 +65,10 @@ The endpoint is the **Log Ingestion** endpoint from the data collection endpoint
 The following scenarios aren't supported:
 
 * HTTP proxy with trusted certificate
-* Onboarding through Azure portal, Azure Policy, Terraform 
+* Onboarding through Azure portal
 * Configuring through **Monitor Settings** in the AKS Insights portal experience
 * Automatic migration from existing Container Insights
+*	Onboarding via Bicep, Terraform, Azure Policy for Azure Arc-enabled Kubernetes
 
 ## Enable high scale log collection
 
@@ -80,7 +81,7 @@ Follow the two steps in the following sections to enable high scale mode for you
 
 The first step is to update configmap for the cluster to instruct the Container Insights ama-logs deamonset pods to run in high scale mode. 
 
-1. Follow the guidance in [Configure and deploy ConfigMap](container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
+1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-filter.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
 
 1. Enable high scale mode with the following setting under `agent-settings`.
 
@@ -101,12 +102,6 @@ The first step is to update configmap for the cluster to instruct the Container 
     ```bash
     kubectl config set-context <cluster-name>
     kubectl apply -f <configmap_yaml_file.yaml>
-    ```
-    
-    Example:
-    ```bash
-    kubectl config set-context my-cluster
-    kubectl apply -f container-azm-ms-agentconfig.yaml
     ```
 
 
