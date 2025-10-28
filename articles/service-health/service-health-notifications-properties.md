@@ -57,7 +57,7 @@ Here’s a breakdown of each notification type, what it means, and how you can a
 - **Billing** – *Informational (account notices)*. These notifications provide information about billing or subscription changes. They might notify subscription owners/contributors about things like upcoming billing updates, credit expiration, or other billing-related issues. Billing notifications are purely informational. You don't fix anything in Azure—if there’s a billing issue, you’d contact support or check your billing settings.<br>
 *These notifications are shown in the Billing updates pane*.
 
-## Service Health notifications data properties
+## Service Health notification data properties
 
 ### Event type
 Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. 
