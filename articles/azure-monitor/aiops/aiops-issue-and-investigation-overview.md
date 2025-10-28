@@ -158,5 +158,5 @@ These are the supported Azure regions for issues and investigation services:
 
 - [Azure Monitor Observability Agent overview](observability-agent-overview.md)
 - [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
-- [Azure Monitor issues and investigations (preview) responsible use](aiops-issue-and-investigation-responsible-use.md)
-- [Azure Monitor issues and investigations (preview) troubleshooting](aiops-issue-and-investigation-troubleshooting.md)
+- [Azure Monitor issues and investigations (preview) responsible use](observability-agent-responsible-use.md)
+- [Azure Monitor issues and investigations (preview) troubleshooting](observability-agent-troubleshooting.md)

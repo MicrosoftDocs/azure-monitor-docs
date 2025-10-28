@@ -8725,6 +8725,21 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/aiops/aiops-issue-and-investigation-best-practices.md",
+   "redirect_url": "/azure/azure-monitor/aiops/observability-agent-best-practices",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/aiops/aiops-issue-and-investigation-responsible-use.md",
+   "redirect_url": "/azure/azure-monitor/aiops/observability-agent-responsible-use",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/aiops/aiops-issue-and-investigation-troubleshooting.md",
+   "redirect_url": "/azure/azure-monitor/aiops/observability-agent-troubleshooting",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/app/dotnet.md",
    "redirect_url": "/azure/azure-monitor/app/classic-api",
    "redirect_document_id": false

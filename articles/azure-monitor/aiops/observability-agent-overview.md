@@ -70,4 +70,4 @@ For a complete workflow example, see [Issue and investigation initial workflow](
 
 - [Azure Monitor issues and investigations overview](aiops-issue-and-investigation-overview.md) - Detailed technical documentation
 - [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md) - Step-by-step usage guide
-- [Best practices for Azure Monitor investigations](aiops-issue-and-investigation-best-practices.md) - Optimization guidance
+- [Best practices for Azure Monitor investigations](observability-agent-best-practices.md) - Optimization guidance
