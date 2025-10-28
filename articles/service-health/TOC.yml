@@ -25,8 +25,7 @@
     - name: Filter Service Health notifications by event level
       href: metadata-filter.md
     - name: Service Health event tags
-      href: service-health-event-tags.md
-    
+      href: service-health-event-tags.md  
     - name: View and access Security advisories
       href: security-advisories-elevated-access.md
     - name: Manage Azure security notifications
