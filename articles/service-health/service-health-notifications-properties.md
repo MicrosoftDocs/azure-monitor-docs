@@ -57,12 +57,12 @@ Here’s a breakdown of each notification type, what it means, and how you can a
 - **Billing** – *Informational (account notices)*. These notifications provide information about billing or subscription changes. They might notify subscription owners/contributors about things like upcoming billing updates, credit expiration, or other billing-related issues. Billing notifications are purely informational. You don't fix anything in Azure—if there’s a billing issue, you’d contact support or check your billing settings.<br>
 *These notifications are shown in the Billing updates pane*.
 
-## Service Health notifications - data properties
+## Service Health notifications data properties
 
 ### Event type
 Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. 
 
-Key properties include properties.incidentType (for example, *ServiceIssue*, or *PlannedMaintenance*), status (*Active* or *Resolved*), and timestamps such as *properties.impactStartTime* and *properties.impactMitigationTime*. For more information about these data properties, see [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
+Key properties include *properties.incidentTyp*e (for example, *ServiceIssue*, or *PlannedMaintenance*), status (*Active* or *Resolved*), and timestamps such as *properties.impactStartTime* and *properties.impactMitigationTime*. <br>For more information about the data properties, see [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
 
 Start by checking *properties.incidentType* to understand what kind of issue and detail is involved, then review *Level* for severity. For more information, see [Service Health event tags](service-health-event-tags.md).
 
