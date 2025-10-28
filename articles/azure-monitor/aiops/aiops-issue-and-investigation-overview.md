@@ -32,11 +32,11 @@ Only the latest investigation is displayed. Users can edit the scope and impact 
 
 ### Findings
 
-Findings identify anomalous behavior that could explain a problem with a service resource. They summarize the analysis of multiple anomalies (for example, 'VM performance is low due to possible memory leak’) based on relevant signals (metrics, logs, etc.) and might suggest further investigation steps and potential mitigations.​
+Findings identify anomalous behavior that could explain a problem with a service resource. They summarize the analysis of multiple anomalies (for example, "VM performance is low due to possible memory leak") based on relevant signals (metrics, logs, etc.) and might suggest further investigation steps and potential mitigations.
 
 A finding contains a summary that can include:
 
-- **What happened.** A description of the finding with the resources included in the investigation.
+- **What happened?** A description of the finding with the resources included in the investigation.
 - **A possible explanation.** A description of what might be causing problems for the specific finding and related supporting data.
 - **Next steps.** Suggestions for continuing the investigation or mitigating the problems.
 - **Supporting data.** Supporting data is the information that justifies the finding, such as anomalies, diagnostics insights, health data, resource changes, related resources, and related alerts.
@@ -58,9 +58,9 @@ Observability Agent scans the application logs for anomalies. The top three fail
 
 - **Explanation**: An explanation of what happened is generated for the failure.
 - **Transaction Examples**: A list of examples of transactions in which the specific failure event exists. Selecting the example displays the end-to-end transaction in Application Insights.
-- **Exceptions**: If there are specific exception problem IDs that correlate with the failure, they'll be displayed with the count of appearance in the logs. The problem IDs are explained in natural language and an example is provided.
-- **Transaction Pattern**: If there's a specific transaction pattern the failure, it is displayed. This information can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
-- **Trace Message Patterns**: If there are specific trace message patterns that correlate with the failure, they'll be displayed with the count of appearance in the logs. The patterns are explained in natural language and an example is provided.
+- **Exceptions**: If there are specific exception problem identifiers (IDs) that correlate with the failure, they are displayed with the count of appearance in the logs. The problem IDs are explained in natural language and an example is provided.
+- **Transaction Pattern**: If there's a specific transaction pattern the failure, it's displayed. This information can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
+- **Trace Message Patterns**: If there are specific trace message patterns that correlate with the failure, they are displayed with the count of appearance in the logs. The patterns are explained in natural language and an example is provided.
 
 :::image type="content" source="media/application-anomalies.png" alt-text="Screenshot of application anomalies." lightbox="media/application-anomalies.png":::
 
@@ -88,7 +88,7 @@ Observability Agent makes suggestions for which resources to analyze based on th
 
 ### Smart scoping
 
-Observability Agent also offers smart scoping for Application Insight resources. In this case, possible suspected resources are automatically identified by looking at the dependencies and the infrastructure where the service is running then includes them in the analysis. This happens during the investigation and the results are synced to the issue.
+Observability Agent also offers smart scoping for Application Insight resources. In this case, possible suspected resources are automatically identified by looking at the dependencies and the infrastructure where the service is running then includes them in the analysis. This process happens during the investigation and the results are synced to the issue.
 
 :::image type="content" source="media/smart-scoping.png" alt-text="Screenshot of smart scoping." lightbox="media/smart-scoping.png":::
 
@@ -103,7 +103,7 @@ Observability Agent also offers smart scoping for Application Insight resources.
 
 ## Regions
 
-These are the supported Azure regions for issues and investigation services:
+These regions are the supported Azure regions for issues and investigation services:
 
 | **Public preview region availability** |
 |----------------------------------------|
@@ -152,7 +152,6 @@ These are the supported Azure regions for issues and investigation services:
 | westus                                 |
 | westus2                                |
 | westus3                                | 
-
 
 ## Next steps
 

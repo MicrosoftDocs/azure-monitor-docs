@@ -14,10 +14,10 @@ This article provides troubleshooting guidance for Azure Monitor issues and inve
 
 You must have the *Issue Contributor, Monitoring Contributor, or Contributor* role assigned for the target resource.
 
-If you don't have permission, you won't be able to create an issue or run an Observability Agent investigation, and you should consult with your system administrator.
+If you don't have permission, you can't create an issue or run an Observability Agent investigation, and you should consult with your system administrator.
 
 ## Lack of associated Azure Monitor Workspace (AMW)
-You must have an AMW associated to the subscription you are investigating. Consult with your system administrator to create the association. See [Associate an Azure Monitor Workspace with a subscription](aiops-issue-and-investigation-how-to.md#associate-an-amw-in-the-azure-portal).
+You must have an AMW associated to the subscription you're investigating. To create the association, consult with your system administrator. See [Associate an Azure Monitor Workspace with a subscription](aiops-issue-and-investigation-how-to.md#associate-an-amw-in-the-azure-portal).
 
 ## No findings
 

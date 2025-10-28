@@ -1,6 +1,6 @@
 ---
 title:  Use Azure Monitor issues and investigations (preview)
-description: This article guides you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
+description: This article guides you through getting started with Azure Monitor issues and investigations. It shows how to trigger Observability Agent to investigate issues, identify resource problems, explain why an alert fired, and provide next steps to mitigate and resolve problems with Azure resources.
 ms.topic: how-to
 ms.servce: azure-monitor
 ms.reviewer: enauerman
@@ -9,7 +9,7 @@ ms.date: 09/04/2025
 
 # Use Azure Monitor issues and investigations (preview)
 
-This article guides you through getting started with Azure Monitor issues and investigations. It includes how to trigger [Observability Agent](observability-agent-overview.md) to investigate issues in order to identify resource problems, explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
+This article guides you through getting started with Azure Monitor issues and investigations. It shows how to trigger [Observability Agent](observability-agent-overview.md) to investigate issues, identify resource problems, explain why an alert fired, and provide next steps to mitigate and resolve problems with Azure resources.
 
 ## Prerequisites
 
@@ -17,18 +17,17 @@ This article guides you through getting started with Azure Monitor issues and in
 - Learn about the [Azure Monitor Observability Agent](observability-agent-overview.md).
 - Learn about the [responsible use](observability-agent-responsible-use.md) of Azure Monitor investigations.
 - Be sure that the subscription containing the investigated resource is associated with an Azure Monitor Workspace (AMW).
-- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the AMW you’re investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the AMW you're investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ### Associate an AMW in the Azure portal
 > [!NOTE]
-> This is a one-time step required for each subscription you'd like to investigate, and should be performed by a user with the Contributor role on the associated subscription.
+> This setup is required once for each subscription you want to investigate. A user with the Contributor role on the subscription should perform this setup.
 
 Associating a subscription with an Azure Monitor Workspace is required to create issues and run Observability Agent investigations:
 
-1. If the alert’s target resource subscription isn’t already linked to an AMW, you’ll see a message indicating that an Azure Monitor Workspace is required. The **Select an Azure Monitor workspace** screen will appear.
+1. If the alert's target resource subscription isn't already linked to an AMW, you see a message indicating that an Azure Monitor Workspace is required. The **Select an Azure Monitor workspace** screen appears.
 1. Select an existing Azure Monitor Workspace or create a new one as needed.
-1. After confirming your selection, the Issue page will reload and Observability Agent will automatically start investigating.
-
+1. After confirming your selection, the Issue page reloads and Observability Agent automatically starts investigating.
 
 ### Associate an AMW via REST API
 
@@ -66,8 +65,6 @@ Host: management.azure.com
 Authorization: Bearer <bearerToken>
 ```
 
-
-
 ## Ways to start an Observability Agent investigation on an alert
 
 There are two ways to start an Observability Agent investigation on an alert:
@@ -101,7 +98,7 @@ The issue background provides information about the alerts associated with the i
 
 ## Work with investigation findings
 
-Observability Agent will present findings based on the evidence it analyzed. To review the findings:
+Observability Agent presents findings based on the evidence it analyzed. To review the findings:
 
 1. Select the **Investigation tab** of the issue page.
 1. Select the finding. Every finding has an Observability Agent summary.
@@ -114,13 +111,13 @@ Observability Agent will present findings based on the evidence it analyzed. To 
 ### Change the impact time of the investigation
 
 1.  Select the **Overview** tab.
-1.  Select **impact time** and adjust it. Changing the time will automatically trigger Observability Agent to start a new investigation.
+1.  Select **impact time** and adjust it. Changing the time automatically triggers Observability Agent to start a new investigation.
 
 ### Change the resources included in the investigation
 
 1.  Select the **Resources** tab.
 1.  Select **Edit resources**.
-1.  Select the additional resources you want Observability Agent to include in the investigation. A new investigation will begin.
+1.  Select the other resources you want Observability Agent to include in the investigation. A new investigation begins.
 
 ## Related content
 

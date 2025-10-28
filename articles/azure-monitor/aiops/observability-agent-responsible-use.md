@@ -13,7 +13,7 @@ This article explains the responsible use of Azure Monitor Observability Agent a
 
 ## What is Azure Monitor Observability Agent (preview)?
 
-Azure Monitor Observability Agent is an advanced AIOps solution that helps IT operations teams efficiently find, troubleshoot, and resolve incidents. It uses AI and machine learning to automate the investigation process, offering insights and recommendations for issue mitigation based on data such as platform metrics and custom metrics. For an overview of how Observability Agent works and a summary of capabilities, see the [Azure Monitor Observability Agent overview](observability-agent-overview.md) and [Azure Monitor issues and investigations overview](aiops-issue-and-investigation-overview.md)
+Azure Monitor Observability Agent is an advanced AIOps solution that helps IT operations teams efficiently find, troubleshoot, and resolve incidents. It uses AI and machine learning to automate the investigation process. The agent offers insights and recommendations for issue mitigation based on data such as platform metrics and custom metrics. For an overview of how Observability Agent works and a summary of capabilities, see the [Azure Monitor Observability Agent overview](observability-agent-overview.md) and [Azure Monitor issues and investigations overview](aiops-issue-and-investigation-overview.md)
 
 ## Are Azure Monitor Observability Agent (preview) results reliable?
 
@@ -29,7 +29,7 @@ Azure Monitor Observability Agent doesn't use user-provided prompts or its own r
 
 ## What should I do if I see unexpected or offensive content?
 
-Azure Monitor Observability Agent development is guided by our [AI principles](https://www.microsoft.com/ai/principles-and-approach) and [Responsible AI Standard](https://aka.ms/RAIStandardPDF). We have prioritized mitigating exposing customers to offensive content. However, you might still see unexpected results. We continually work to improve the technology to prevent such content.
+Microsoft guides Azure Monitor Observability Agent development by our [AI principles](https://www.microsoft.com/ai/principles-and-approach) and [Responsible AI Standard](https://aka.ms/RAIStandardPDF). We have prioritized mitigating exposing customers to offensive content. However, you might still see unexpected results. We continually work to improve the technology to prevent such content.
 
 ## How current is the information Azure Monitor Observability Agent (preview) provides?
 
@@ -45,7 +45,7 @@ Fairness is a core part of Azure Monitor Observability Agent's development. Cons
 
 ## How should I integrate Azure Monitor Observability Agent (preview) into my workflow?
 
-To integrate Azure Monitor Observability Agent effectively into your operations, it's important to understand its capabilities and limitations. Testing using real data from your environment helps to evaluate its performance. Ensure that SREs are trained in the system's intended uses, how to interact with it, and when to rely on human judgment over automated output. This balanced approach maximizes the benefits of Observability Agent while maintaining oversight and control.
+To integrate Azure Monitor Observability Agent effectively into your operations, it's important to understand its capabilities and limitations. Testing using real data from your environment helps to evaluate its performance. Ensure that Site Reliability Engineers (SREs) are trained in the system's intended uses, how to interact with it, and when to rely on human judgment over automated output. This balanced approach maximizes the benefits of Observability Agent while maintaining oversight and control.
 
 ## Related content
 
