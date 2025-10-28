@@ -2,7 +2,7 @@
 title: Azure Service Health notifications overview
 description: Service Health notifications allow you to view Service Health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 10/27/2025
+ms.date: 10/28/2025
 
 ---
 
@@ -39,7 +39,8 @@ To help you stay ahead of potential disruptions, Azure categorizes service healt
 
 Here’s a breakdown of each notification type, what it means, and how you can access and retain these updates.
 
-- **Action required** – *Actionable*. Azure detected something unusual or important in your subscription that needs your attention or intervention. For example, Azure could detect something that needs your attention—like a configuration problem or an upcoming change that could affect your service. When that happens, Azure sends you a notification explaining what’s happening and provides clear steps you can take to fix it or how to reach support for help. The notifications are proactively issued to prevent or fix potential problems.<br> *The notifications often appear in the Service Health portal under Health Advisories.* 
+- **Action required** – *Actionable*. Azure detected something unusual or important in your subscription that needs your attention or intervention. For example, Azure could detect something that needs your attention—like a configuration problem or an upcoming change that could affect your service. When that happens, Azure sends you a notification explaining what’s happening and provides clear steps you can take to fix it or how to reach support for help. The notifications are proactively issued to prevent or fix potential problems.<br> 
+*The notifications often appear in the Service Health portal under Health Advisories.* 
 
 - **Incident** - *Informational (urgent service issue)*. This type represents a service outage or degradation (an unplanned event) that is currently affecting one or more of your Azure resources. Essentially, an Incident notification means Azure is experiencing a problem (for example, a data center issue) that impacts you. The notification describes the issue and keeps you updated on its status. While labeled informational, Incidents are critical to know about; you usually don’t fix them, but you might activate your contingency plans.<br>
 *You typically see them under the Service Issues pane for active outages.*
@@ -55,26 +56,15 @@ Here’s a breakdown of each notification type, what it means, and how you can a
 
 - **Billing** – *Informational (account notices)*. These notifications provide information about billing or subscription changes. They might notify subscription owners/contributors about things like upcoming billing updates, credit expiration, or other billing-related issues. Billing notifications are purely informational. You don't fix anything in Azure—if there’s a billing issue, you’d contact support or check your billing settings.<br>
 *These notifications are shown in the Billing updates pane*.
-<!--
-## Service Health notifications - transitions
-Each communication category panel - Incidents, Planned maintenance, Health advisories, Security advisories, and Billing updates - uses distinct logic to determine event transitions. This logic determines when an event moves from its category tab to the Health history panel as defined in this table.
 
-|Event  |Severity levels |Event tags |When Event is moved to Health history panel  | Event details moved from Health history panel, but available through REST API | Event details archived and inaccessible through REST API|
-|---------|---------|---------|---------|
-|**Service Issues**       | **Error** - Widespread issues accessing multiple services across multiple regions are impacting a broad set of customers.<br>**Warning** - Issues accessing specific services and/or specific regions are impacting a subset of customers.<br>**Informational** - Issues impacting management operations and/or latency, not impacting service availability.      | Action Recommended<br>- Final PIR<br>- Preliminary PIR<br>False Positive   | 90 days as long as it's active or updated | When resolved| One year from most recent published date   |
-|**Planned maintenance**   | **Warning** - Emergency Maintenance <br> **Informational** - Standard Planned Maintenance | N/A         | Schedule's EndDate passed<br> Or 50 days from Schedule's StartDate        |90 days from most recent published date   |One year from most recent published date    |
-|**Security**              |**Warning** - Security advisory that affects existing services and might require administrator action<br>**Informational** - Security advisory that affects existing services |Action Recommended<br>- Final Post Incident Review (PIR)<br>- Preliminary PIR<br>False Positive         |         | 90 days from most recent published date  | One year from most recent  published date   |
-|**Health advisories**     |**Warning** - Retirement reminder notifications for scenarios where less than 3 months are left from final date of Retirement<br> -**Information** - An administrator might be required to prevent an effect to existing services. | Retirement         |         | 90 days from most recent published date  | One year from most recent  published date   |
-|**Billing**              |**Informational** - Issues impacting billing updates   | N/A        |         | 90 days from most recent published date  | One year from most recent  published date   |
--->
-
-
-## Service Health notifications - data properties in the Activity log
+## Service Health notifications - data properties
 
 ### Event type
-Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. Key properties include eventType (for example, *ServiceIssue*, or *PlannedMaintenance*), eventSubType (specific details like *Retirement* or *TaxChange*), status (*Active* or *Resolved*), priority (*Critical*, *Warning*, or *Informational*), and timestamps such as *impactStartTime* and *impactMitigationTime*. For more information about these data properties, see [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
+Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. 
 
-Start by checking *eventType* and *eventSubType* to understand what kind of issue and detail is involved, then review *priority* and *EventLevel* for severity. 
+Key properties include properties.incidentType (for example, *ServiceIssue*, or *PlannedMaintenance*), status (*Active* or *Resolved*), and timestamps such as *properties.impactStartTime* and *properties.impactMitigationTime*. For more information about these data properties, see [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
+
+Start by checking *properties.incidentType* to understand what kind of issue and detail is involved, then review *Level* for severity. For more information, see [Service Health event tags](service-health-event-tags.md).
 
 Use the *status* and *timestamps* to gauge whether the event is ongoing or resolved, and refer to the *title* for a quick description. These properties help you filter, prioritize, and act on service health alerts effectively. For more information, see [Service Health event tags](service-health-event-tags.md). 
 
@@ -143,7 +133,7 @@ Service Health event type (`properties.incidentType`)
 - -->
 
 >[!NOTE]
-> Billing notifications aren't shown in the Activity log found in the Azure portal. You'll see them in Azure Service Health. 
+> Billing notifications aren't shown in the Activity log found in the Azure portal. You see them in Azure Service Health. 
 
  ## For more information
 
