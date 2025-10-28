@@ -18,7 +18,7 @@ This guide provides instructions on integrating and customizing OpenTelemetry (O
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
 > [!NOTE]
-> For Azure Functions-specific guidance, see **[Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto)**.
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
 
 <!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
 
