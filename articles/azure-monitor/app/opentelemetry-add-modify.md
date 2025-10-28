@@ -1,8 +1,8 @@
 ---
-title: Add and modify OpenTelemetry in Application Insights
+title: Add and Modify OpenTelemetry in Application Insights
 description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights. Includes .NET, Java, Node.js, and Python applications, custom attributes, telemetry processors, and log and trace modifications.
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 10/28/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -428,6 +428,46 @@ with engine.connect() as conn:
 ```
 
 ---
+
+## Resource detectors
+
+Resource detectors discover environment metadata at startup and populate OpenTelemetry **resource attributes** such as `service.name`, `cloud.provider`, and `cloud.resource_id`. This metadata powers experiences in Application Insights like Application Map and compute linking, and it improves correlation across traces, metrics, and logs.
+
+> [!TIP]
+> Resource attributes describe the process and its environment. Span attributes describe a single operation. Use resource attributes for app-level properties like `service.name`.
+
+### Supported environments
+
+| Environment | How detection works | Notes |
+|---|---|---|
+| Azure App Service | The language SDK or Azure Monitor distro reads well-known App Service environment variables and host metadata | Works with .NET, Java, Node.js, and Python when you use the guidance in this article. |
+| Azure Functions | See the [Azure Functions OpenTelemetry how‑to](/azure/azure-functions/opentelemetry-howto) | All Azure Functions guidance lives there. |
+| Azure Virtual Machines | The language SDK or distro queries the Azure Instance Metadata Service | Ensure the VM has access to the Instance Metadata Service endpoint. |
+| Azure Kubernetes Service (AKS) | Use the OpenTelemetry Collector `k8sattributes` processor to add Kubernetes metadata | Recommended for all languages running in AKS. |
+| Azure Container Apps | Detectors map environment variables and resource identifiers when available | You can also set `OTEL_RESOURCE_ATTRIBUTES` to fill gaps. |
+
+### Manual and automatic instrumentation
+
+- Automatic instrumentation and the Azure Monitor distros enable resource detection when running in Azure environments where supported.
+- For manual setups, you can set resource attributes directly with standard OpenTelemetry options:
+
+    ```bash
+    # Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
+    export OTEL_SERVICE_NAME="my-service"
+    export OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
+    ```
+
+    On Windows PowerShell:
+
+    ```powershell
+    $Env:OTEL_SERVICE_NAME="my-service"
+    $Env:OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
+    ```
+
+### OTLP ingestion considerations
+
+- Application Insights uses `service.name` to derive Cloud Role Name. Choose a stable name per service to avoid fragmented nodes in Application Map.
+- `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences may not show the Azure resource that produced the data.
 
 ## Collect custom telemetry
 
