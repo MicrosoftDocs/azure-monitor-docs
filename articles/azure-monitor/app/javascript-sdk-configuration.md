@@ -189,11 +189,6 @@ For a summary of the noncustom properties available on the telemetry item, see [
 
 You can add as many initializers as you like. They're called in the order that they're added.
 
-#### Troubleshoot ApplicationInsights.config
-
-* Confirm that the fully qualified type name and assembly name are correct.
-* Confirm that the applicationinsights.config file is in your output directory and contains any recent changes.
-
 #### Add a cloud role name and cloud role instance
 
 Use a telemetry initializer to set the `ai.cloud.role` and `ai.cloud.roleInstance` tags. These tags define how your component appears in the [Application Map](app-map.md) in Azure Monitor.
