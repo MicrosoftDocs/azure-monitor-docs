@@ -7,8 +7,8 @@ items:
     href: fundamentals/overview.md
   - name: Insights and curated visualizations
     href: visualize/insights-overview.md
-    - name: Azure Monitor AIOPs
-      items:
+  - name: Azure Monitor AIOPs
+    items:
       - name: Observability agent
         items:
         - name: Observability agent overview
