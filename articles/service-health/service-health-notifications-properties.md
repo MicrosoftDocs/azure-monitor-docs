@@ -2,7 +2,7 @@
 title: Azure Service Health notifications overview
 description: Service Health notifications allow you to view Service Health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 10/28/2025
+ms.date: 10/29/2025
 
 ---
 
@@ -14,6 +14,7 @@ Depending on the notification’s type, it could be purely informational or indi
 
  :::image type="content"source="./media/service-health-notifications/service-health-notifications-main.png"alt-text="Screenshot of service health notification history pane." lightbox="./media/service-health-notifications/service-health-notifications-main.png":::
 
+For information on how long Service Health notifications stay active in the portal see [Service Health data transitions](service-health-notification-transitions.md).
 
 ## How to access and use Service Health notifications
 Once logged into Azure, you can access Service Health notifications in one of three ways:
