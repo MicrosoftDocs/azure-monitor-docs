@@ -8,22 +8,22 @@ ms.reviewer: aprilbadger
 
 # Send virtual machine client data to Fabric and Azure Data Explorer (Preview)
 
-Collect data from virtual machines (VMs) with the Azure Monitor Agent (AMA) using data collection rules (DCRs). This article describes how to send that data to Azure Data Explorer (ADX) and Fabric. This feature is in public preview.
-
-The following table lists the AMA based data sources supported by this feature.
+This article describes how to create data collection rules (DCRs) for the Azure Monitor agent (AMA) to send VM data to Azure Data Explorer (ADX) and Fabric eventhouses. This feature is in public preview.
 
 ## Prerequisites
 
 Each VM resource must have the AMA installed. For more information, see [Install the Azure Monitor agent on virtual machines](../agents/azure-monitor-agent-virtual-machines.md).
 
-The agent VM must have a user-assigned managed identity associated to it. [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) is recommended for better scalability and performance. The agent must be configured to use the managed identity for authentication as described in [Azure Monitor agent requirements](../agents/azure-monitor-agent-requirements.md#permissions). 
-The agent VM must have a user-assigned managed identity associated to it. [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) is recommended for better scalability and performance. The agent must be configured to use the managed identity for authentication as described in [Azure Monitor agent requirements](../agents/azure-monitor-agent-requirements.md#permissions).
+The agent VM must have a user-assigned managed identity associated to it. User-assigned managed identities are required, and they're recommended in general for better scalability and performance. For more information, see [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). The agent must be configured to use the managed identity for authentication as described in [Azure Monitor agent requirements](../agents/azure-monitor-agent-requirements.md#permissions). 
 
-Opt into the DCR preview feature by selecting the banner in the Azure portal when creating a DCR. There is now a preview feature to create a data collection rule (DCR) that sends data to Event Hubs or storage using the Azure portal. See [Create a data collection rule](../vm/data-collection.md?tabs=preview#create-a-data-collection-rule).
+Select the option presented by the informational banner to preview the new Data Collection Rule creation experience. For more information, see [Create a data collection rule](../vm/data-collection.md?tabs=preview#create-a-data-collection-rule).
+
+:::image type="content" source="./media/send-fabric-destination/preview-experience.png" alt-text="Screenshot of the informational banner to click in order to preview the new Data Collection Rule creation experience.":::
+
 
 ## Supported data types
 
-The data types in the following table are supported sources to send to Fabric and ADX. Each has a link to an article describing the details of that source and the managed identity required and whether the DCR must use a data collection endpoint (DCE).
+The data types in the following table are agent-based telemetry sources supported to send to Fabric and ADX. Each has a link to an article describing the details of that source and the managed identity required and whether the DCR must use a data collection endpoint (DCE).
 
 | Data source | DCE needed | Managed identity required | 
 |:---|:---|:---|
@@ -34,24 +34,22 @@ The data types in the following table are supported sources to send to Fabric an
 | [Custom Text logs](./data-collection-log-text.md) |  No | User-assigned |
 | [Custom JSON logs](./data-collection-log-json.md) |  No | User-assigned |
 
-> [!NOTE]
-> This feature is only supported for Azure VMs. Arc-enabled VMs are not supported.
 
 ## Permissions
 
-The following permissions are required to create a DCR that sends data to ADX or Fabric:
+In addition to the [general permissions required to create a DCR and DCR associations](../data-collection/data-collection-rule-create-edit.md#permissions), the following permissions are required in order to create a DCR that sends data to ADX or Fabric:
 
-| Destination | RBAC role |
+| Destination | Role |
 |:---|:---|
-| ADX | DB Admin (data plane permission) on the database the DCR is pointing to or Azure contributor (control plane permission) on the ADX cluster DCR is pointing to |
-| Fabric | Workspace contributor where the Eventhouse is located |
+| ADX | Database Admin at the database scope where the DCR is pointing to, or Azure contributor at the ADX cluster scope where the DCR is pointing to. |
+| Fabric | Workspace contributor where the eventhouse is located. For more information, see [Give users access to eventhouse workspaces](/fabric/fundamentals/give-access-workspaces). |
 
-The DCR creation adds the VM user-assigned managed identity as a NativeIngestor to the ADX database or Eventhouse. For more information, see [Ingest data using managed identity authentication - Azure Data Explorer](/azure/data-explorer/ingest-data-managed-identity).
+The DCR creation process adds the VM user-assigned managed identity as a NativeIngestor to the ADX database or eventhouse. For more information, see [Ingest data using managed identity authentication - Azure Data Explorer](/azure/data-explorer/ingest-data-managed-identity).
 
 ## Create a data collection rule
 
-:::image type="content" source="/media/send-fabric-destination/agent-telemetry.png" alt-text="{alt-text}":::
+:::image type="content" source="./media/send-fabric-destination/agent-telemetry.png" alt-text="{alt-text}":::
 
-:::image type="content" source="/media/send-fabric-destination/data-flow-destination.png" alt-text="{alt-text}":::
+:::image type="content" source="./media/send-fabric-destination/data-flow-destination.png" alt-text="{alt-text}":::
 
 ## Verify data ingestion
