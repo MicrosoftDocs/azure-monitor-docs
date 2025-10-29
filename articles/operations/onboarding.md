@@ -20,6 +20,7 @@ The management features automatically enabled for each VM in the enrolled subscr
 | Essential | Update manager | Automates the deployment of operating system updates to VMs. |
 | Essential | Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
 | Essential | Foundational CSPM | Provides foundational cloud security posture management (CSPM) capabilities to assess and improve the security of your cloud resources. |
+| Essential | Azure policy and Machine Configuration |  |
 | Additional | Defender CSPM | Advanced cloud security posture management (CSPM) capabilities to enhance the security of your cloud resources. |
 | Additional | Defender for cloud | Advanced threat protection and security management for VMs. |
 
@@ -28,6 +29,7 @@ The management features automatically enabled for each VM in the enrolled subscr
 You must have the following roles in the subscription being enabled:
 - Essential Machine Management Administrator
 - Managed Identity Operator roles
+- Resource Policy Contributor
 
 ## Prerequisites
 
