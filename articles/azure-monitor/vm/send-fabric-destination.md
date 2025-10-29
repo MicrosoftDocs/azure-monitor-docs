@@ -18,7 +18,7 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 
 ## Permissions
 
-The [general permissions required to create a DCR and DCR associations](../data-collection/data-collection-rule-create-edit.md#permissions) are required.
+The [general permissions to create a DCR and DCR associations](../data-collection/data-collection-rule-create-edit.md#permissions) are required.
 
 Also, the following permissions are required for sending data to ADX or Fabric:
 
