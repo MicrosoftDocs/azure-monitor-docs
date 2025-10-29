@@ -130,21 +130,6 @@ On the **Collect and deliver** pane, click **Add new dataflow** to add and confi
 | **Data source** | Select a **Data source type** and provide values for the fields based on the data source type you select. See the table below for details about configuring each type of data source. |
 | **Destination** | Add one or more destinations for each data source. Some data sources will only allow a single data source. If you need multiple, then you can create another DCR.<br><br>While you can select multiple destinations of the same type for some data sources, be aware that this will send duplicate data to each which will result in additional cost. See the details for each data type for the different destinations they support. |
 
-The following table lists the types of data you can collect from a VM client with Azure Monitor and where you can send that data. See the linked article for each to learn how to configure that data source.
-
-**Agent-based destination support by data source**
-
-|  | Azure Monitor Metrics | Log Analytics Workspaces | Azure Monitor Workspaces | Azure Data Explorer | Microsoft Fabric |
-|:-----|:------:|:------:|:-----:|:-----:|:-----:|
-| [Performance Counters](data-collection-performance.md) | :white_check_mark: | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
-| Firewall Logs | | :white_check_mark: | | | |
-| [IIS Logs](data-collection-iis.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
-| [Windows Event Logs](data-collection-windows-events.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
-| [Linux Syslog](data-collection-syslog.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
-| Prometheus Metrics | | | :white_check_mark: | | |
-| [Custom Text Logs](data-collection-log-text.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
-| [Custom JSON Logs](data-collection-log-json.md) | | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
-
 ---
 
 ## Verify operation

@@ -12,7 +12,7 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 
 ## Prerequisites
 
-Each VM resource must have the AMA installed. For more information, see [Install the Azure Monitor agent on virtual machines](../agents/azure-monitor-agent-virtual-machines.md).
+Each VM resource must have the AMA installed. For more information, see [Install the Azure Monitor agent on virtual machines](../agents/azure-monitor-agent-manage.md).
 
 The agent VM must have a user-assigned managed identity associated to it. User-assigned managed identities are required, and they're recommended in general for better scalability and performance. For more information, see [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). The agent must be configured to use the managed identity for authentication as described in [Azure Monitor agent requirements](../agents/azure-monitor-agent-requirements.md#permissions).
 
