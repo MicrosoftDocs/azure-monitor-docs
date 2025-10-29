@@ -36,6 +36,8 @@ The DCR creation process adds the VM user-assigned managed identity as a NativeI
 
    :::image type="content" source="./media/send-fabric-destination/preview-experience.png" alt-text="Screenshot of the informational banner to click in order to preview the new Data Collection Rule creation experience.":::
 
+### Basics settings
+
 1. Select the **Basics** tab.
 1. The **Region** must match the region of the ADX cluster or Fabric eventhouse.
 1. Select the **Type of telemetry** as **Agent-based** (either Windows or Linux or both). 
@@ -43,10 +45,16 @@ The DCR creation process adds the VM user-assigned managed identity as a NativeI
 
    :::image type="content" source="./media/send-fabric-destination/agent-telemetry.png" alt-text="Screenshot showing the agent-based telemetry source and the basics tab for creating a data collection rule.":::
 
+### Resources
+
 1. Select the **Resources** tab and add the VMs in the same region as the ADX cluster you want to send data to. For more information, see [Add data collection rule resources](./data-collection.md#add-resources-1).
+
+
+### Collect and deliver
+
 1. Select the **Collect and deliver** tab. 
 1. Select **Add new data flow**.
-1. In the **Data source** tab, choose one of the [supported data types](#supported-data-types). Each data source listed has a link to general instructions and special instructions.    
+1. In the **Data source** tab, choose one of the [supported data types](#supported-data-types). Each data source listed has a link to general steps and special instructions.    
 1. In the **Destination** tab, select either **Azure Data Explorer** or **Azure Fabric** as the destination.
 
    :::image type="content" source="./media/send-fabric-destination/data-flow-destination.png" alt-text="Screenshot showing dataflow destination of ADX.":::
