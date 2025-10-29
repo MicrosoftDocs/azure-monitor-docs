@@ -19,14 +19,14 @@ items:
           href: aiops/observability-agent-troubleshooting.md
         - name: Observability agent responsible use
           href: aiops/observability-agent-responsible-use.md
-    - name: Issues and investigations
-      items:
-      - name: Issues and investigations overview
-        href: aiops/aiops-issue-and-investigation-overview.md
-      - name: Use issues and investigations
-        href: aiops/aiops-issue-and-investigation-how-to.md
+      - name: Issues and investigations
+        items:
+        - name: Issues and investigations overview
+          href: aiops/aiops-issue-and-investigation-overview.md
+        - name: Use issues and investigations
+          href: aiops/aiops-issue-and-investigation-how-to.md
     - name: AIOps and machine learning
-    href: aiops/aiops-machine-learning.md
+      href: aiops/aiops-machine-learning.md
   - name: What's new?
     href: fundamentals/whats-new.md
 - name: Getting started
