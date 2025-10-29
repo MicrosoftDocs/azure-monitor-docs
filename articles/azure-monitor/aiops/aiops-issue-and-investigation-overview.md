@@ -10,7 +10,7 @@ ms.custom: references_regions
 
 # Azure Monitor issues and investigations (preview)
 
-Azure Monitor issues and investigations (preview) are AIOps capabilities that automate the troubleshooting processes for [Azure monitor alerts](/azure/azure-monitor/alerts/alerts-overview). The [Observability Agent](observability-agent-overview.md) is the AI-powered system that investigates issues and produces findings to help resolve problems with Azure resources.
+Azure Monitor issues and investigations (preview) are AIOps capabilities that automate the troubleshooting processes for [Azure monitor alerts](/azure/azure-monitor/alerts/alerts-overview). The [observability agent](observability-agent-overview.md) is the AI-powered system that investigates issues and produces findings to help resolve problems with Azure resources.
 
 This article explains how Azure Monitor issues and investigations (preview) are used to triage and mitigate problems with an Azure resource.
 
@@ -26,9 +26,9 @@ You can set the severity, status, and impact time of an issue.
 
 ## What is an investigation?
 
-An investigation is an analysis performed by [Observability Agent](observability-agent-overview.md) that produces findings within the context of an issue. Observability Agent uses AI-based, iterative triage and diagnostic processes to minimize manual effort and enable faster and more accurate troubleshooting.
+An investigation is an analysis performed by the [observability agent](observability-agent-overview.md) that produces findings within the context of an issue. The observability agent uses AI-based, iterative triage and diagnostic processes to minimize manual effort and enable faster and more accurate troubleshooting.
 
-Only the latest investigation is displayed. Users can edit the scope and impact time and trigger Observability Agent to run a new investigation. Observability Agent scans up to two hours of telemetry from the issue impact time.
+Only the latest investigation is displayed. Users can edit the scope and impact time and trigger the observability agent to run a new investigation. The observability agent scans up to two hours of telemetry from the issue impact time.
 
 ### Findings
 
@@ -54,7 +54,7 @@ In addition to detecting anomalies, explanations are created based the metric di
 
 ### Application logs Analysis
 
-Observability Agent scans the application logs for anomalies. The top three failure events (for dependencies, requests and exceptions) are analyzed. For each event:
+The observability agent scans the application logs for anomalies. The top three failure events (for dependencies, requests and exceptions) are analyzed. For each event:
 
 - **Explanation**: An explanation of what happened is generated for the failure.
 - **Transaction Examples**: A list of examples of transactions in which the specific failure event exists. Selecting the example displays the end-to-end transaction in Application Insights.
@@ -84,22 +84,22 @@ Provides events data from [Azure Resource Health](/azure/service-health/resource
 
 ### Configurable scope
 
-Observability Agent makes suggestions for which resources to analyze based on the scope of the investigation. The default scope includes all metrics of the resource. You can change the scope to include up to five resources. See Scope the investigation in [Use issue and investigation](aiops-issue-and-investigation-how-to.md).
+The observability agent makes suggestions for which resources to analyze based on the scope of the investigation. The default scope includes all metrics of the resource. You can change the scope to include up to five resources. See Scope the investigation in [Use issue and investigation](aiops-issue-and-investigation-how-to.md).
 
 ### Smart scoping
 
-Observability Agent also offers smart scoping for Application Insight resources. In this case, possible suspected resources are automatically identified by looking at the dependencies and the infrastructure where the service is running then includes them in the analysis. This process happens during the investigation and the results are synced to the issue.
+The observability agent also offers smart scoping for Application Insight resources. In this case, possible suspected resources are automatically identified by looking at the dependencies and the infrastructure where the service is running then includes them in the analysis. This process happens during the investigation and the results are synced to the issue.
 
 :::image type="content" source="media/smart-scoping.png" alt-text="Screenshot of smart scoping." lightbox="media/smart-scoping.png":::
 
 ## Issue and investigation initial workflow example
 
 1. An alert email from Azure Monitor is received.
-1. A select on the investigate button in the email creates an issue and starts Observability Agent investigation. The issue page on the Azure portal opens in your browser.
+1. A select on the investigate button in the email creates an issue and starts an observability agent investigation. The issue page on the Azure portal opens in your browser.
 1. On the Issue page, you're presented with:
-    1. The issue overview where the findings produced by Observability Agent are presented with summarized supporting data.
-    1. Each finding contains the Observability Agent analysis summary, suggested actions to take and the supporting data used for the analysis.
-1.  Every finding produced by Observability Agent presents more details on the potential cause and present next steps to choose from.
+    1. The issue overview where the findings of the last investigation are presented with summarized supporting data.
+    1. Each finding contains the observability agent analysis summary, suggested actions to take and the supporting data used for the analysis.
+1.  Every finding produced by the observability agent presents more details on the potential cause and present next steps to choose from.
 
 ## Regions
 
@@ -155,7 +155,7 @@ These regions are the supported Azure regions for issues and investigation servi
 
 ## Next steps
 
-- [Azure Monitor Observability Agent overview](observability-agent-overview.md)
+- [Azure Monitor observability agent overview](observability-agent-overview.md)
 - [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
 - [Azure Monitor issues and investigations (preview) responsible use](observability-agent-responsible-use.md)
 - [Azure Monitor issues and investigations (preview) troubleshooting](observability-agent-troubleshooting.md)

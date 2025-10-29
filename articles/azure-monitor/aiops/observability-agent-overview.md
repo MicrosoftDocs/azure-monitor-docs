@@ -1,6 +1,6 @@
 ---
-title: Azure Monitor Observability Agent (preview)
-description: This article explains what Azure Monitor Observability Agent is and how it investigates issues within Azure Monitor to provide automated troubleshooting insights.
+title: Azure Monitor observability agent (preview)
+description: This article explains what Azure Monitor observability agent is and how it investigates issues within Azure Monitor to provide automated troubleshooting insights.
 ms.topic: how-to
 ms.service: azure-monitor
 ms.reviewer: yalavi
@@ -8,13 +8,13 @@ ms.date: 10/28/2025
 ms.custom: references_regions
 ---
 
-# Azure Monitor Observability Agent (preview)
+# Azure Monitor observability agent (preview)
 
-Azure Monitor Observability Agent is an AI-powered system that automatically investigates issues within Azure Monitor. When problems occur with your applications and Azure resources, Observability Agent analyzes telemetry data, identifies anomalies, and produces findings to help you understand and resolve issues faster.
+Azure Monitor observability agent is an AI-powered system that automatically investigates issues within Azure Monitor. When problems occur with your applications and Azure resources, the observability agent analyzes telemetry data, identifies anomalies, and produces findings to help you understand and resolve issues faster.
 
-## What does Observability Agent do?
+## What does the observability agent do?
 
-When an issue is created (typically from an alert or invoked during troubleshooting in Azure Copilot), Observability Agent:
+When an issue is created (typically from an alert or invoked during troubleshooting in Azure Copilot), the observability agent investigates it by:
 
 - **Analyzes telemetry data** from the affected resources and related systems
 - **Detects anomalies** in metrics, logs, and other observability signals
@@ -24,7 +24,7 @@ When an issue is created (typically from an alert or invoked during troubleshoot
 
 ## Investigation capabilities overview
 
-Observability Agent provides comprehensive analysis capabilities including:
+The investigation provides comprehensive analysis capabilities including:
 
 - **Metric anomaly analysis** - Examines metric data to identify unusual patterns with explanations
 - **Application log analysis** - Scans logs to identify top failure events with detailed breakdowns
@@ -37,9 +37,9 @@ For detailed information about each capability and the supporting data types the
 
 ## How it works with issues
 
-Observability Agent operates within the context of Azure Monitor issues:
+The observability agent operates within the context of Azure Monitor issues:
 
-1. **Issue creation** - When you create an issue, it triggers Observability Agent
+1. **Issue creation** - When you create an issue, it triggers the observability agent
 2. **Investigation execution** - The agent analyzes telemetry from the issue impact time (see [technical details](aiops-issue-and-investigation-overview.md#what-is-an-investigation) for scope and timing)
 3. **Finding generation** - Results are organized into findings that explain what happened, possible causes, and next steps
 4. **Supporting data correlation** - Supporting data is attached to each finding for validation and deeper analysis
@@ -48,7 +48,7 @@ Observability Agent operates within the context of Azure Monitor issues:
 
 ## Integration with Azure Monitor workflow
 
-Observability Agent is seamlessly integrated into the standard Azure Monitor troubleshooting workflow:
+The observability agent is seamlessly integrated into the standard Azure Monitor troubleshooting workflow:
 
 :::image type="content" source="media/investigate-an-alert.png" alt-text="Screenshot showing the investigate button in Azure Monitor alert email notification." lightbox="media/investigate-an-alert.png":::
 
