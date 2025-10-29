@@ -2,7 +2,7 @@
 title: Add and Modify OpenTelemetry in Application Insights
 description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights. Includes .NET, Java, Node.js, and Python applications, custom attributes, telemetry processors, and log and trace modifications.
 ms.topic: how-to
-ms.date: 10/28/2025
+ms.date: 10/29/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -219,12 +219,6 @@ For Quartz native applications, look at the [Quarkus documentation](https://quar
 
 #### [Node.js](#tab/nodejs)
 
-> [!TIP]
-> **Node.js examples use modern ESM `import` syntax.** If your project uses CommonJS, you can still adopt this syntax by enabling ESM (for example, set `"type": "module"` in `package.json` or use `.mjs` files), or by using dynamic `import()`. The code below is plain JavaScript with no TypeScript required. For reference:
-> - **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev/src
-> - **OpenTelemetry JS ESM support guide** (interop options and caveats): https://github.com/open-telemetry/opentelemetry-js/blob/main/doc/esm-support.md
-> - **Node.js docs: ECMAScript modules** (how to enable/configure ESM in Node): https://nodejs.org/api/esm.html
-
 The following OpenTelemetry Instrumentation libraries are included as part of the Azure Monitor Application Insights Distro. For more information, see [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry/README.md#instrumentation-libraries).
 
 **Requests**
@@ -249,7 +243,7 @@ To reduce or increase the number of logs that Azure Monitor collects, first set 
 
 Instrumentations can be configured using `AzureMonitorOpenTelemetryOptions`:
 
-```javascript
+```typescript
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import bunyan from "bunyan";
 
@@ -369,7 +363,7 @@ You can't use community instrumentation libraries with GraalVM Java native appli
 
 #### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { metrics, trace } from "@opentelemetry/api";
@@ -683,7 +677,7 @@ public class Program {
 
 ##### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { metrics } from "@opentelemetry/api";
@@ -898,7 +892,7 @@ public class Program {
 
 ##### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry integration and OpenTelemetry metrics API.
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { metrics } from "@opentelemetry/api";
@@ -1137,7 +1131,7 @@ public class Program {
 
 ##### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 // Import the useAzureMonitor function and the metrics module
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { metrics } from "@opentelemetry/api";
@@ -1349,7 +1343,7 @@ span.recordException(e);
 The Node.js SDK exports manually recorded span-based exceptions to Application Insights as exceptions only when recorded on a top-level span or a child of a remote or internal span.
 
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { trace } from "@opentelemetry/api";
@@ -1611,7 +1605,7 @@ using (var activity = activitySource.StartActivity("CustomActivity"))
 
 #### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry integration and OpenTelemetry tracing API.
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import { trace } from "@opentelemetry/api";
@@ -1814,7 +1808,7 @@ It's not possible to send a `customEvent` using the `"microsoft.custom_event.nam
 
 To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object. Other attributes can also be included as needed.
 
-```javascript
+```typescript
 // Send a customEvent by including the microsoft attribute key in the log.
 // The customEvent name uses the value of that attribute.
 logger.emit({
@@ -2027,7 +2021,7 @@ Span.current().setAttribute(attributeKey, "myvalue1");
 
 ##### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 // Import the Azure Monitor OpenTelemetry integration
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 
@@ -2126,12 +2120,52 @@ This field is automatically populated.
 
 ##### [Node.js](#tab/nodejs)
 
-Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use request-scoped code to set the client IP on the active **server span**, so each request is attributed correctly.
 
-```javascript
-// In your custom SpanEnrichingProcessor.onEnd(span):
-span.attributes["http.client_ip"] = "<IP Address>";
+```typescript
+import express, { Request, Response, NextFunction } from "express";
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { trace } from "@opentelemetry/api";
 
+// Enable Azure Monitor integration early, so HTTP/Express instrumentation can create the server span.
+useAzureMonitor();
+
+const app = express();
+
+/**
+ * Extract a usable client address.
+ * Prefer X-Forwarded-For (first IP) when present; fall back to req.ip / remoteAddress.
+ * Configure Express "trust proxy" as appropriate for your hosting environment.
+ */
+function getClientAddress(req: Request): string | undefined {
+  const xff = req.headers["x-forwarded-for"];
+  if (typeof xff === "string" && xff.length > 0) {
+    return xff.split(",")[0].trim();
+  }
+  if (Array.isArray(xff) && xff.length > 0) {
+    return String(xff[0]).split(",")[0].trim();
+  }
+  return req.ip || req.socket.remoteAddress || undefined;
+}
+
+// Attach attributes to the current server span for each request
+app.use((req: Request, _res: Response, next: NextFunction) => {
+  const span = trace.getActiveSpan();
+  const clientAddress = getClientAddress(req);
+  if (span && clientAddress) {
+    // Preferred network semantic convention
+    span.setAttribute("client.address", clientAddress);
+    // Optional: back-compat for older mappings
+    span.setAttribute("http.client_ip", clientAddress);
+  }
+  next();
+});
+
+app.get("/", (_req: Request, res: Response) => res.send("OK"));
+
+app.listen(8080, () => {
+  console.log("listening on http://localhost:8080");
+});
 ```
 
 ##### [Python](#tab/python)
@@ -2208,11 +2242,48 @@ Span.current().setAttribute("enduser.pseudo.id", "myuser"); // (user_Id)
 
 ##### [Node.js](#tab/nodejs)
 
-Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Set the ID on the active **server span** inside your request handler/middleware. Use `enduser.id` for an **authenticated** user ID and `enduser.pseudo.id` for an **anonymous** user ID.
 
-```javascript
-// In your custom SpanEnrichingProcessor.onEnd(span):
-span.attributes["enduser.id"] = "<User ID>";
+```typescript
+import express, { Request, Response, NextFunction } from "express";
+import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { trace } from "@opentelemetry/api";
+
+useAzureMonitor();
+
+const app = express();
+
+// Example: derive the authenticated and/or anonymous IDs from your app's auth/session
+app.use((req: Request, _res: Response, next: NextFunction) => {
+  const span = trace.getActiveSpan();
+  if (span) {
+    // Replace these lookups with your real auth/session logic
+    const authenticatedId =
+      // common header when using Azure App Service Easy Auth / Entra ID
+      (req.headers["x-ms-client-principal-id"] as string | undefined) ||
+      // e.g., passport.js attaches req.user
+      (req as any).user?.id ||
+      undefined;
+
+    const anonymousId =
+      // custom header/cookie/example – if you maintain your own anonymous ID
+      (req.headers["x-anon-id"] as string | undefined) ||
+      undefined;
+
+    if (authenticatedId) {
+      // Maps to Application Insights user_AuthenticatedId
+      span.setAttribute("enduser.id", String(authenticatedId));
+    }
+    if (anonymousId) {
+      // Maps to Application Insights user_Id
+      span.setAttribute("enduser.pseudo.id", String(anonymousId));
+    }
+  }
+  next();
+});
+
+app.get("/", (_req: Request, res: Response) => res.send("OK"));
+app.listen(8080);
 ```
 
 ##### [Python](#tab/python)
@@ -2252,7 +2323,7 @@ For Spring Boot native applications, Logback is instrumented out of the box.
 
 #### [Node.js](#tab/nodejs)
 
-```javascript
+```typescript
 import { useAzureMonitor } from "@azure/monitor-opentelemetry";
 import bunyan from "bunyan";
 
@@ -2365,7 +2436,7 @@ String spanId = span.getSpanContext().getSpanId();
 
 Get the request trace ID and the span ID in your code:
 
-```javascript
+```typescript
 // Import the trace module from the OpenTelemetry API.
 import { trace } from "@opentelemetry/api";
 

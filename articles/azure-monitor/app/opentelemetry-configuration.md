@@ -2,7 +2,7 @@
 title: Configuring OpenTelemetry in Application Insights
 description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 10/29/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -133,11 +133,6 @@ Use one of the following two ways to configure the connection string:
 
 ### [Node.js](#tab/nodejs)
 
-> [!TIP]
-> **Node.js examples use modern ESM `import` syntax.** If your project uses CommonJS, you can still adopt this syntax by enabling ESM (for example, set `"type": "module"` in `package.json` or use `.mjs` files), or by using dynamic `import()`. The code below is plain JavaScript with no TypeScript required. For reference:
-> - **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev/src
-> - **OpenTelemetry JS ESM support guide** (interop options and caveats): https://github.com/open-telemetry/opentelemetry-js/blob/main/doc/esm-support.md
-> - **Node.js docs: ECMAScript modules** (how to enable/configure ESM in Node): https://nodejs.org/api/esm.html
 
 Use one of the following two ways to configure the connection string:
 
@@ -149,20 +144,49 @@ APPLICATIONINSIGHTS_CONNECTION_STRING=<Your Connection String>
 
 - Use a configuration object.
 
-```javascript
-// Import the useAzureMonitor function from @azure/monitor-opentelemetry.
-import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+```typescript
+/**
+ * Basic Connection Example
+ *
+ * This example demonstrates how to configure Azure Monitor OpenTelemetry
+ * using the APPLICATIONINSIGHTS_CONNECTION_STRING environment variable.
+ *
+ */
 
-// Create the options object. Set the connection string for your Application Insights resource.
-const options = {
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-};
+export class BasicConnectionExample {
+  static async run() {
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
 
-// Enable Azure Monitor integration using the useAzureMonitor function and the options object.
-useAzureMonitor(options);
+    try {
+      // Configure Azure Monitor with connection string from environment
+      const options = {
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+        },
+      };
+
+      // Enable Azure Monitor integration using the useAzureMonitor function
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured successfully!");
+      console.log("Connection string source: APPLICATIONINSIGHTS_CONNECTION_STRING");
+      console.log("Telemetry will be sent to Azure Application Insights");
+
+      // Simulate some application work
+      console.log("Simulating application work...");
+
+      // This would be your actual application logic
+      // The telemetry data will be automatically collected and sent to Azure Monitor
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log("Application work completed");
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+      throw error;
+    }
+  }
+}
 ```
 
 ### [Python](#tab/python)
@@ -288,36 +312,79 @@ To set the cloud role name:
 
 Set the Cloud Role Name and the Cloud Role Instance via [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, although it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
 
-```javascript
-// Import the useAzureMonitor function and Resource helpers.
-import { useAzureMonitor } from "@azure/monitor-opentelemetry";
-import { resourceFromAttributes } from "@opentelemetry/resources";
-// Import stable and incubating semantic conventions for service attributes.
-import { ATTR_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
-import {
-  ATTR_SERVICE_NAMESPACE,
-  ATTR_SERVICE_INSTANCE_ID
-} from "@opentelemetry/semantic-conventions/incubating";
+```typescript
+/**
+ * Cloud Role Example
+ *
+ * This example demonstrates how to set the Cloud Role Name and Cloud Role Instance
+ * using OpenTelemetry Resource attributes. Values are read from environment variables:
+ * - OTEL_SERVICE_NAME (service name)
+ * - OTEL_SERVICE_NAMESPACE (service namespace)
+ * - OTEL_SERVICE_INSTANCE_ID (service instance ID)
+ *
+ */
 
-// Build a Resource with your desired Cloud Role settings.
-// Cloud Role Name = service.namespace + "." + service.name (falls back to service.name).
-// Cloud Role Instance = service.instance.id.
-const customResource = resourceFromAttributes({
-  [ATTR_SERVICE_NAME]: process.env.OTEL_SERVICE_NAME || "my-service",
-  [ATTR_SERVICE_NAMESPACE]: process.env.OTEL_SERVICE_NAMESPACE || "my-namespace",
-  [ATTR_SERVICE_INSTANCE_ID]: process.env.OTEL_SERVICE_INSTANCE_ID || "my-instance",
-});
+export class CloudRoleExample {
+  static async run() {
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+    const { resourceFromAttributes } = await import("@opentelemetry/resources");
+    const { ATTR_SERVICE_NAME } = await import("@opentelemetry/semantic-conventions");
+    const semanticConventionsIncubating = await import(
+      "@opentelemetry/semantic-conventions/incubating"
+    );
+    const { ATTR_SERVICE_NAMESPACE, ATTR_SERVICE_INSTANCE_ID } = semanticConventionsIncubating;
 
-const options = {
-  resource: customResource,
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-};
+    try {
+      // Create a new Resource object with custom resource attributes
+      const customResource = resourceFromAttributes({
+        [ATTR_SERVICE_NAME]: process.env.OTEL_SERVICE_NAME || "my-service",
+        [ATTR_SERVICE_NAMESPACE]: process.env.OTEL_SERVICE_NAMESPACE || "my-namespace",
+        [ATTR_SERVICE_INSTANCE_ID]: process.env.OTEL_SERVICE_INSTANCE_ID || "my-instance",
+      });
 
-// Enable Azure Monitor integration.
-useAzureMonitor(options);
+      // Create configuration options with the custom resource
+      const options = {
+        resource: customResource,
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+        },
+      };
+
+      // Enable Azure Monitor integration with custom resource attributes
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured with custom cloud role settings:");
+      console.log(
+        `   Service Name: ${process.env.OTEL_SERVICE_NAME || "my-service"} (from OTEL_SERVICE_NAME)`,
+      );
+      console.log(
+        `   Service Namespace: ${process.env.OTEL_SERVICE_NAMESPACE || "my-namespace"} (from OTEL_SERVICE_NAMESPACE)`,
+      );
+      console.log(
+        `   Service Instance ID: ${process.env.OTEL_SERVICE_INSTANCE_ID || "my-instance"} (from OTEL_SERVICE_INSTANCE_ID)`,
+      );
+      console.log(
+        `   Cloud Role Name will appear as: ${process.env.OTEL_SERVICE_NAMESPACE || "my-namespace"}.${process.env.OTEL_SERVICE_NAME || "my-service"}`,
+      );
+      console.log(
+        `   Cloud Role Instance will be: ${process.env.OTEL_SERVICE_INSTANCE_ID || "my-instance"}`,
+      );
+
+      // Simulate some application work
+      console.log("\nSimulating application work...");
+      console.log("This telemetry will show up in Application Map with the custom role name");
+
+      // This would be your actual application logic
+      // The telemetry data will include the custom resource attributes
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log("Application work completed");
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+    }
+  }
+}
 ```
 
 ### [Python](#tab/python)
@@ -411,30 +478,58 @@ Rate-limited sampling is available starting from `azure-monitor-opentelemetry-ex
   - **RateLimitedSampler**: Maximum traces per second (e.g., 0.5 = one trace every two seconds, 5.0 = five traces per second)
 
 **Alternative configuration** 
-```javascript
-// Import the useAzureMonitor function from @azure/monitor-opentelemetry.
-import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+```typescript
+/**
+ * Sampling Example
+ *
+ * This example demonstrates how to enable sampling to reduce data ingestion volume
+ * and control costs while maintaining accurate experiences.
+ */
 
-// A rate of 0.1 means approximately 10% of traces are sent.
-const options = {
-  samplingRatio: 0.1,
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-};
+export class SamplingExample {
+  static async run() {
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
 
-// Alternatively, to enable rate-limited sampling (e.g., 1.5 traces/sec):
-// const options = {
-//   tracesPerSecond: 1.5,
-//   azureMonitorExporterOptions: {
-//     connectionString:
-//       process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-//   },
-// };
+    try {
+      // Configure Azure Monitor with sampling
+      // A rate of 0.1 means approximately 10% of traces are sent
+      const options = {
+        samplingRatio: 0.1, // 10% sampling rate
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+        },
+      };
 
-useAzureMonitor(options);
+      // Enable Azure Monitor integration with sampling
+      useAzureMonitor(options);
 
+      console.log("Azure Monitor configured with sampling:");
+      console.log("   Sampling Ratio: 10% (0.1)");
+      console.log("   This reduces data ingestion volume and costs");
+      console.log("   Maintains accurate experiences and event counts");
+      console.log("   Preserves traces across services");
+
+      // Simulate multiple operations to demonstrate sampling
+      console.log("\nSimulating multiple operations to demonstrate sampling...");
+
+      for (let i = 1; i <= 10; i++) {
+        console.log(`   Operation ${i}/10: Processing request`);
+
+        // Simulate some work
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
+        // With 10% sampling, approximately 1 out of these 10 operations
+        // will be traced and sent to Azure Monitor
+      }
+
+      console.log("All operations completed");
+      console.log("With 10% sampling, approximately 1 of these operations was traced");
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+    }
+  }
+}
 ```
 
 #### ApplicationInsightsSampler example
@@ -530,21 +625,109 @@ The Live Metrics aren't available today for GraalVM native applications.
 
 Users can enable/disable Live Metrics when configuring the Distro using the `enableLiveMetrics` property.
 
-```javascript
-// Import the useAzureMonitor function from @azure/monitor-opentelemetry.
-import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+```typescript
+/**
+ * Live Metrics Example
+ *
+ * This example demonstrates how to enable/disable Live Metrics for real-time
+ * analytics dashboard and application monitoring.
+ */
 
-// Enable or disable Live Metrics using the enableLiveMetrics option.
-const options = {
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-  enableLiveMetrics: true, // set to false to disable
-};
+export class LiveMetricsExample {
+  static async run() {
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
 
-useAzureMonitor(options);
+    try {
+      // Configure Azure Monitor with Live Metrics enabled
+      const options = {
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+        },
+        enableLiveMetrics: true, // Enable Live Metrics (default is true)
+      };
 
+      // Enable Azure Monitor integration with Live Metrics
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured with Live Metrics:");
+      console.log("   Live Metrics: ENABLED");
+      console.log("   Real-time analytics dashboard available");
+      console.log("   Provides insight into application activity and performance");
+      console.log("   Currently in Preview - see Supplemental Terms");
+
+      // Simulate application activity for Live Metrics
+      console.log("\nSimulating application activity...");
+      console.log("This activity will be visible in Live Metrics (if enabled)");
+
+      // Simulate various types of activity
+      const activities = [
+        "Processing incoming request",
+        "Querying database",
+        "Calling external API",
+        "Processing business logic",
+        "Returning response",
+      ];
+
+      for (const activity of activities) {
+        console.log(`   ${activity}`);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      }
+
+      console.log("Application activity completed");
+      console.log("Check Azure Portal > Application Insights > Live Metrics Stream");
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+    }
+  }
+
+  static async runWithDisabledLiveMetrics() {
+    // Import dependencies inside the method for easier copying to documentation
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+
+    try {
+      // Configure Azure Monitor with Live Metrics disabled
+      const options = {
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+        },
+        enableLiveMetrics: false, // Disable Live Metrics
+      };
+
+      // Enable Azure Monitor integration without Live Metrics
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured with Live Metrics:");
+      console.log("   Live Metrics: DISABLED");
+      console.log("   Regular telemetry collection continues");
+      console.log("   Reduced overhead from real-time streaming");
+
+      // Simulate application activity
+      console.log("\nSimulating application activity...");
+      console.log("This activity will be visible in Live Metrics (if enabled)");
+
+      // Simulate various types of activity
+      const activities = [
+        "Processing incoming request",
+        "Querying database",
+        "Calling external API",
+        "Processing business logic",
+        "Returning response",
+      ];
+
+      for (const activity of activities) {
+        console.log(`   ${activity}`);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      }
+
+      console.log("Application activity completed");
+      console.log("Check Azure Portal > Application Insights > Live Metrics Stream");
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+    }
+  }
+}
 ```
 
 <!--
@@ -555,9 +738,109 @@ This feature is/isn't enabled by default.
 
 Functionality and customization are covered in the following configuration sample.
 
-```javascript
-Configuration sample
+```typescript
+/**
+ * Live Metrics Example
+ *
+ * This example demonstrates how to enable/disable Live Metrics for real-time
+ * analytics dashboard and application monitoring.
+ */
 
+export class LiveMetricsExample {
+  static async run() {
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+
+    try {
+      // Configure Azure Monitor with Live Metrics enabled
+      const options = {
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+        },
+        enableLiveMetrics: true, // Enable Live Metrics (default is true)
+      };
+
+      // Enable Azure Monitor integration with Live Metrics
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured with Live Metrics:");
+      console.log("   Live Metrics: ENABLED");
+      console.log("   Real-time analytics dashboard available");
+      console.log("   Provides insight into application activity and performance");
+      console.log("   Currently in Preview - see Supplemental Terms");
+
+      // Simulate application activity for Live Metrics
+      console.log("\nSimulating application activity...");
+      console.log("This activity will be visible in Live Metrics (if enabled)");
+
+      // Simulate various types of activity
+      const activities = [
+        "Processing incoming request",
+        "Querying database",
+        "Calling external API",
+        "Processing business logic",
+        "Returning response",
+      ];
+
+      for (const activity of activities) {
+        console.log(`   ${activity}`);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      }
+
+      console.log("Application activity completed");
+      console.log("Check Azure Portal > Application Insights > Live Metrics Stream");
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+    }
+  }
+
+  static async runWithDisabledLiveMetrics() {
+    // Import dependencies inside the method for easier copying to documentation
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+
+    try {
+      // Configure Azure Monitor with Live Metrics disabled
+      const options = {
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+        },
+        enableLiveMetrics: false, // Disable Live Metrics
+      };
+
+      // Enable Azure Monitor integration without Live Metrics
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured with Live Metrics:");
+      console.log("   Live Metrics: DISABLED");
+      console.log("   Regular telemetry collection continues");
+      console.log("   Reduced overhead from real-time streaming");
+
+      // Simulate application activity
+      console.log("\nSimulating application activity...");
+      console.log("This activity will be visible in Live Metrics (if enabled)");
+
+      // Simulate various types of activity
+      const activities = [
+        "Processing incoming request",
+        "Querying database",
+        "Calling external API",
+        "Processing business logic",
+        "Returning response",
+      ];
+
+      for (const activity of activities) {
+        console.log(`   ${activity}`);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      }
+
+      console.log("Application activity completed");
+      console.log("Check Azure Portal > Application Insights > Live Metrics Stream");
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+    }
+  }
+}
 ```
 
 -->
@@ -735,22 +1018,108 @@ To override the default directory, you should set `storageDirectory`.
 For example:
 
 
-```javascript
-// Import the useAzureMonitor function from @azure/monitor-opentelemetry.
-import { useAzureMonitor } from "@azure/monitor-opentelemetry";
+```typescript
+/**
+ * Offline Storage Example
+ *
+ * This example demonstrates how to configure offline storage and automatic retries
+ * for Azure Monitor OpenTelemetry when the application disconnects.
+ */
 
-// Configure a custom offline storage directory, or disable offline storage.
-const options = {
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<Your Connection String>",
-    storageDirectory: "C:\\SomeDirectory",
-    disableOfflineStorage: false, // set to true to disable
-  },
-};
+export class OfflineStorageExample {
+  static async run() {
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
 
-useAzureMonitor(options);
+    try {
+      // Configure Azure Monitor with custom offline storage settings
+      const options = {
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+          storageDirectory: "C:\\AzureMonitorStorage", // Custom storage directory
+          disableOfflineStorage: false, // Enable offline storage (default)
+        },
+      };
 
+      // Enable Azure Monitor integration with offline storage
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured with offline storage:");
+      console.log("   Offline Storage: ENABLED");
+      console.log("   Custom Storage Directory: C:\\AzureMonitorStorage");
+      console.log("   Automatic Retries: Up to 48 hours");
+      console.log("   Telemetry cached when disconnected");
+
+      // Demonstrate the offline storage behavior
+      console.log("\nSimulating application work with potential connectivity issues...");
+
+      const scenarios = [
+        "Normal operation - telemetry sent immediately",
+        "Network hiccup - telemetry cached locally",
+        "Extended offline - telemetry stored for retry",
+        "Connection restored - cached telemetry sent",
+        "High load scenario - prioritizing recent events",
+      ];
+
+      for (const scenario of scenarios) {
+        console.log(`   ${scenario}`);
+        await new Promise((resolve) => setTimeout(resolve, 800));
+      }
+
+      console.log("\nOffline storage demonstration completed");
+      console.log("Check your storage directory for cached telemetry files");
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+    }
+  }
+
+  static async runWithDisabledStorage() {
+    // Import dependencies inside the method for easier copying to documentation
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+
+    try {
+      // Configure Azure Monitor with offline storage disabled
+      const options = {
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+          disableOfflineStorage: true, // Disable offline storage
+        },
+      };
+
+      // Enable Azure Monitor integration without offline storage
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured with offline storage:");
+      console.log("   Offline Storage: DISABLED");
+      console.log("   Telemetry will be lost if connection fails");
+      console.log("   Reduced local disk usage");
+
+      console.log("\nSimulating application work with potential connectivity issues...");
+
+      const scenarios = [
+        "Normal operation - telemetry sent immediately",
+        "Network hiccup - telemetry cached locally",
+        "Extended offline - telemetry stored for retry",
+        "Connection restored - cached telemetry sent",
+        "High load scenario - prioritizing recent events",
+      ];
+
+      for (const scenario of scenarios) {
+        console.log(`   ${scenario}`);
+        await new Promise((resolve) => setTimeout(resolve, 800));
+      }
+
+      console.log("\nOffline storage demonstration completed");
+      console.log("Check your storage directory for cached telemetry files");
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+      console.error(
+        "Make sure APPLICATIONINSIGHTS_CONNECTION_STRING is set in your environment or .env file",
+      );
+    }
+  }
+}
 ```
 
 To disable this feature, you should set `disableOfflineStorage = true`.
@@ -880,28 +1249,92 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-js/tree/main/examples/otlp-exporter-node).
 
-    ```javascript
-// Import the useAzureMonitor function, BatchSpanProcessor, and OTLPTraceExporter.
-import { useAzureMonitor } from "@azure/monitor-opentelemetry";
-import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base";
-import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
+```typescript
+/**
+ * OTLP Exporter Example
+ *
+ * This example demonstrates how to enable the OpenTelemetry Protocol (OTLP) Exporter
+ * alongside the Azure Monitor Exporter to send telemetry to two locations.
+ */
 
-// Create an OTLP trace exporter.
-// If your collector is not running on the default endpoint, set the 'url'.
-const otlpExporter = new OTLPTraceExporter({
-  // url: "http://localhost:4318/v1/traces",
-});
+export class OtlpExporterExample {
+  static async run() {
+    // Import dependencies inside the method for easier copying to documentation
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+    const { BatchSpanProcessor } = await import("@opentelemetry/sdk-trace-base");
+    const { OTLPTraceExporter } = await import("@opentelemetry/exporter-trace-otlp-http");
 
-// Configure Azure Monitor and add the OTLP exporter as an additional span processor.
-const options = {
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-  spanProcessors: [new BatchSpanProcessor(otlpExporter)],
-};
+    try {
+      // Create an OTLP exporter
+      const otlpExporter = new OTLPTraceExporter({
+        url: "http://localhost:4318/v1/traces", // Default OTLP collector endpoint
+        // You can customize the endpoint based on your OpenTelemetry Collector setup
+      });
 
-useAzureMonitor(options);
+      // Configure Azure Monitor with OTLP exporter
+      const options = {
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+        },
+        // Add the OTLP exporter as an additional span processor
+        spanProcessors: [new BatchSpanProcessor(otlpExporter)],
+      };
+
+      // Enable Azure Monitor integration with dual export
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured with dual export:");
+      console.log("   Azure Monitor: Enabled");
+      console.log("   OTLP Exporter: Enabled");
+      console.log("   Endpoint: http://localhost:4318/v1/traces");
+      console.log("   Telemetry sent to both destinations");
+
+      // Show setup requirements
+      this.showSetupRequirements();
+
+      // Simulate application work that generates traces
+      console.log("\nGenerating traces for dual export...");
+
+      const operations = [
+        "user-authentication",
+        "database-query",
+        "external-api-call",
+        "data-processing",
+        "response-generation",
+      ];
+
+      for (const operation of operations) {
+        console.log(`   Trace: ${operation}`);
+
+        // Simulate some work that would generate traces
+        await new Promise((resolve) => setTimeout(resolve, 300));
+      }
+
+      console.log("\nTrace generation completed");
+      console.log("Check both Azure Monitor and your OTLP collector for the traces");
+    } catch (error) {
+      console.error("Error configuring OTLP exporter:", error);
+      console.log("\nMake sure you have an OpenTelemetry Collector running");
+      console.log("   or update the OTLP endpoint URL to match your setup");
+    }
+  }
+
+  private static showSetupRequirements() {
+    console.log("\nSetup Requirements:");
+    console.log("1. Install required packages (already included):");
+    console.log("   - npm install @opentelemetry/api");
+    console.log("   - npm install @opentelemetry/exporter-trace-otlp-http");
+    console.log("   - npm install @opentelemetry/sdk-trace-base");
+    console.log("   - npm install @opentelemetry/sdk-trace-node");
+    console.log("\n2. Run OpenTelemetry Collector:");
+    console.log("   - Download from: https://opentelemetry.io/docs/collector/");
+    console.log(
+      "   - Or use Docker: docker run -p 4317:4317 -p 4318:4318 otel/opentelemetry-collector",
+    );
+    console.log("\n3. Configure collector to receive OTLP data");
+  }
+}
 ```
 
 ### [Python](#tab/python)
@@ -1062,42 +1495,139 @@ We're actively working in the OpenTelemetry community to support redaction.
 
 When you're using the [Azure Monitor OpenTelemetry distro](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry) package, query strings can be redacted via creating and applying a span processor to the distro configuration.
 
-```javascript
-// Import the useAzureMonitor function and HTTP semantic attribute constants.
-import { useAzureMonitor } from "@azure/monitor-opentelemetry";
-import { SEMATTRS_HTTP_ROUTE, SEMATTRS_HTTP_TARGET, SEMATTRS_HTTP_URL } from "@opentelemetry/semantic-conventions";
+```typescript
+/**
+ * Redact Query Strings Example
+ *
+ * This example demonstrates how to redact URL query strings from telemetry data
+ * to protect sensitive information like SAS tokens.
+ *
+ */
 
-// A simple SpanProcessor that removes query strings from common HTTP attributes.
-class RedactQueryStringProcessor {
-  forceFlush() { return Promise.resolve(); }
-  onStart() {}
-  shutdown() { return Promise.resolve(); }
+/**
+ * Factory function to create a RedactQueryStringProcessor with proper types
+ */
+async function createRedactQueryStringProcessor() {
+  // Import semantic conventions
+  const semanticConventions = await import("@opentelemetry/semantic-conventions");
 
-  onEnd(span) {
-    const route = String(span.attributes[SEMATTRS_HTTP_ROUTE] || "");
-    const url = String(span.attributes[SEMATTRS_HTTP_URL] || "");
-    const target = String(span.attributes[SEMATTRS_HTTP_TARGET] || "");
+  // For TypeScript interface/type, we need to use a different approach
+  // Since Span is an interface, we'll use it as a type annotation when available
+  type SpanLike = {
+    attributes: Record<string, any>;
+  };
 
-    const iRoute = route.indexOf("?");
-    const iUrl = url.indexOf("?");
-    const iTarget = target.indexOf("?");
+  /**
+   * Custom span processor that redacts query strings from HTTP attributes
+   */
+  class RedactQueryStringProcessor {
+    forceFlush() {
+      return Promise.resolve();
+    }
 
-    if (iRoute !== -1) span.attributes[SEMATTRS_HTTP_ROUTE] = route.substring(0, iRoute);
-    if (iUrl !== -1) span.attributes[SEMATTRS_HTTP_URL] = url.substring(0, iUrl);
-    if (iTarget !== -1) span.attributes[SEMATTRS_HTTP_TARGET] = target.substring(0, iTarget);
+    onStart(_span: any, _parentContext: any) {
+      // No action needed on span start
+      return;
+    }
+
+    shutdown() {
+      return Promise.resolve();
+    }
+
+    onEnd(span: SpanLike) {
+      // Use imported semantic conventions
+      const SEMATTRS_HTTP_ROUTE = semanticConventions.SEMATTRS_HTTP_ROUTE || "http.route";
+      const SEMATTRS_HTTP_TARGET = semanticConventions.SEMATTRS_HTTP_TARGET || "http.target";
+      const SEMATTRS_HTTP_URL = semanticConventions.SEMATTRS_HTTP_URL || "http.url";
+
+      // Find the index of the query string separator '?' in each HTTP attribute
+      const httpRouteIndex = String(span.attributes[SEMATTRS_HTTP_ROUTE] || "").indexOf("?");
+      const httpUrlIndex = String(span.attributes[SEMATTRS_HTTP_URL] || "").indexOf("?");
+      const httpTargetIndex = String(span.attributes[SEMATTRS_HTTP_TARGET] || "").indexOf("?");
+
+      // Remove query strings by keeping only the part before '?'
+      if (httpRouteIndex !== -1) {
+        span.attributes[SEMATTRS_HTTP_ROUTE] = String(
+          span.attributes[SEMATTRS_HTTP_ROUTE],
+        ).substring(0, httpRouteIndex);
+      }
+      if (httpUrlIndex !== -1) {
+        span.attributes[SEMATTRS_HTTP_URL] = String(span.attributes[SEMATTRS_HTTP_URL]).substring(
+          0,
+          httpUrlIndex,
+        );
+      }
+      if (httpTargetIndex !== -1) {
+        span.attributes[SEMATTRS_HTTP_TARGET] = String(
+          span.attributes[SEMATTRS_HTTP_TARGET],
+        ).substring(0, httpTargetIndex);
+      }
+    }
   }
+
+  return new RedactQueryStringProcessor();
 }
 
-const options = {
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
-  },
-  spanProcessors: [new RedactQueryStringProcessor()],
-};
+export class RedactQueryStringExample {
+  static async run() {
+    // Import dependencies inside the method for easier copying to documentation
+    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
 
-useAzureMonitor(options);
+    try {
+      // Create the redact processor with proper types
+      const redactProcessor = await createRedactQueryStringProcessor();
 
+      // Configure Azure Monitor with query string redaction
+      const options = {
+        azureMonitorExporterOptions: {
+          connectionString:
+            process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your connection string>",
+        },
+        spanProcessors: [redactProcessor],
+      };
+
+      // Enable Azure Monitor integration with query string redaction
+      useAzureMonitor(options);
+
+      console.log("Azure Monitor configured with query string redaction:");
+      console.log("   Query strings will be removed from telemetry");
+      console.log("   Protects sensitive information (SAS tokens, API keys, etc.)");
+      console.log("   HTTP attributes affected:");
+      console.log("      - http.route");
+      console.log("      - http.url");
+      console.log("      - http.target");
+
+      // Demonstrate the redaction
+      console.log("\nDemonstrating query string redaction...");
+
+      // Simulate URLs that would have query strings redacted
+      const exampleUrls = [
+        "/api/data?token=secret123&userId=456",
+        "/storage/blob?sv=2020-08-04&ss=b&srt=sco&sp=rwdlacup&se=...",
+        "/search?q=sensitive+data&apikey=abc123",
+        "/upload?signature=xyz789&timestamp=1234567890",
+      ];
+
+      console.log("\nExample URLs before redaction:");
+      exampleUrls.forEach((url, index) => {
+        console.log(`   ${index + 1}. ${url}`);
+      });
+
+      console.log("\nAfter redaction, telemetry would show:");
+      exampleUrls.forEach((url, index) => {
+        const redacted = url.split("?")[0];
+        console.log(`   ${index + 1}. ${redacted}`);
+      });
+
+      console.log("\nQuery strings successfully redacted from telemetry");
+      console.log("Sensitive information is now protected");
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    } catch (error) {
+      console.error("Error configuring Azure Monitor:", error);
+    }
+  }
+}
 ```
 
 ### [Python](#tab/python)
