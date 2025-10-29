@@ -12,13 +12,15 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 
 ## Prerequisites
 
-Each VM resource must have the AMA installed. For more information, see [Install the Azure Monitor agent on virtual machines](../agents/azure-monitor-agent-manage.md).
-
-The agent VM must have a user-assigned managed identity associated to it. User-assigned managed identities are required, and they're recommended in general for better scalability and performance. For more information, see [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). The agent must be configured to use the managed identity for authentication as described in [Azure Monitor agent requirements](../agents/azure-monitor-agent-requirements.md#permissions).
+- Each VM resource must have the AMA installed. For more information, see [Install the Azure Monitor agent on virtual machines](../agents/azure-monitor-agent-manage.md).
+- Each VM must have a user-assigned managed identity associated to it. For more information, see [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). 
+- Each AMA must be configured to use the managed identity for authentication. For more information, see [Azure Monitor agent requirements](../agents/azure-monitor-agent-requirements.md#permissions).
 
 ## Permissions
 
-In addition to the [general permissions required to create a DCR and DCR associations](../data-collection/data-collection-rule-create-edit.md#permissions), the following permissions are required in order to create a DCR that sends data to ADX or Fabric:
+The [general permissions required to create a DCR and DCR associations](../data-collection/data-collection-rule-create-edit.md#permissions) are required.
+
+Also, the following permissions are required for sending data to ADX or Fabric:
 
 | Destination | Role |
 |:---|:---|
@@ -32,14 +34,14 @@ The DCR creation process adds the VM user-assigned managed identity as a NativeI
 1. In the Azure portal, on the **Monitor** menu, select **Data Collection Rules** > **Create** to open the DCR creation pane.
 1. Select the option presented by the informational banner to preview the new Data Collection Rule creation experience. For more information, see [Create a data collection rule](../vm/data-collection.md?tabs=preview#create-a-data-collection-rule).
 
-:::image type="content" source="./media/send-fabric-destination/preview-experience.png" alt-text="Screenshot of the informational banner to click in order to preview the new Data Collection Rule creation experience.":::
+   :::image type="content" source="./media/send-fabric-destination/preview-experience.png" alt-text="Screenshot of the informational banner to click in order to preview the new Data Collection Rule creation experience.":::
 
 1. Select the **Basics** tab.
 1. The **Region** must match the region of the ADX cluster or Fabric eventhouse.
 1. Select the **Type of telemetry** as **Agent-based** (either Windows or Linux or both). 
 1. Enable Managed Identity authentication and select the user-assigned managed identity associated with the VM(s) that uses this DCR.
 
-:::image type="content" source="./media/send-fabric-destination/agent-telemetry.png" alt-text="Screenshot showing the agent-based telemetry source and the basics tab for creating a data collection rule.":::
+   :::image type="content" source="./media/send-fabric-destination/agent-telemetry.png" alt-text="Screenshot showing the agent-based telemetry source and the basics tab for creating a data collection rule.":::
 
 1. Select the **Resources** tab and add the VMs in the same region as the ADX cluster you want to send data to. For more information, see [Add data collection rule resources](./data-collection.md#add-resources-1).
 1. Select the **Collect and deliver** tab. 
@@ -47,7 +49,7 @@ The DCR creation process adds the VM user-assigned managed identity as a NativeI
 1. In the **Data source** tab, choose one of the [supported data types](#supported-data-types). Each data source listed has a link to general instructions and special instructions.    
 1. In the **Destination** tab, select either **Azure Data Explorer** or **Azure Fabric** as the destination.
 
-:::image type="content" source="./media/send-fabric-destination/data-flow-destination.png" alt-text="Screenshot showing dataflow destination of ADX.":::
+   :::image type="content" source="./media/send-fabric-destination/data-flow-destination.png" alt-text="Screenshot showing dataflow destination of ADX.":::
 
 1. Review and create the DCR.
 
