@@ -9,22 +9,22 @@ items:
     href: visualize/insights-overview.md
   - name: Azure Monitor AIOPs
     items:
-      - name: Observability agent
-        items:
-        - name: Observability agent overview
-          href: aiops/observability-agent-overview.md
-        - name: Observability agent best practices guide
-          href: aiops/observability-agent-best-practices.md
-        - name: Observability agent troubleshooting guide
-          href: aiops/observability-agent-troubleshooting.md
-        - name: Observability agent responsible use
-          href: aiops/observability-agent-responsible-use.md
-      - name: Issues and investigations
-        items:
-        - name: Issues and investigations overview
-          href: aiops/aiops-issue-and-investigation-overview.md
-        - name: Use issues and investigations
-          href: aiops/aiops-issue-and-investigation-how-to.md
+    - name: Observability agent
+      items:
+      - name: Observability agent overview
+        href: aiops/observability-agent-overview.md
+      - name: Observability agent best practices guide
+        href: aiops/observability-agent-best-practices.md
+      - name: Observability agent troubleshooting guide
+        href: aiops/observability-agent-troubleshooting.md
+      - name: Observability agent responsible use
+        href: aiops/observability-agent-responsible-use.md
+    - name: Issues and investigations
+      items:
+      - name: Issues and investigations overview
+        href: aiops/aiops-issue-and-investigation-overview.md
+      - name: Use issues and investigations
+        href: aiops/aiops-issue-and-investigation-how-to.md
     - name: AIOps and machine learning
       href: aiops/aiops-machine-learning.md
   - name: What's new?
