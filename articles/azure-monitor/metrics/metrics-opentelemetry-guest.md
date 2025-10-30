@@ -15,11 +15,11 @@ Before reading this article, users are recommended to first understand the diffe
 This article is about Guest OS performance counters that users must opt-in to collecting, either via Azure Monitor Agent with DCR, VM Insights with DCR, or user-collected with the OTelCollector as part of OTel instrumentation libraries. Users are recommended to store all metrics in the metrics-optimized Azure Monitor Workspace, where they are cheaper and faster to query than in Log Analytics Workspaces. 
  
 This article provides users with the following information:
-* Overview of performance counters[#performance-counters]
-* Benefits of using OpenTelemetry system metrics[#benefits-of-opentelemetry]
-* Benefits of using Azure Monitor Workspace for metrics[#benefits-of-azure-monitor-workspace]
-* Comparison of OpenTelemetry naming convention to traditional performance counters[#performance-counter-names]
-* Resource Attributes[#resource-attributes]
+* [Overview of performance counters](#performance-counters)
+* [Benefits of using OpenTelemetry system metrics](#benefits-of-opentelemetry)
+* [Benefits of using Azure Monitor Workspace for metrics](#benefits-of-azure-monitor-workspace)
+* [Comparison of OpenTelemetry naming convention to traditional performance counters](#performance-counter-names)
+* [Resource Attributes](#resource-attributes)
 
 OpenTelemetry Guest OS Performance Counters are currently in public preview.
 
@@ -266,6 +266,6 @@ The process.command_line attribute can contain extremely long strings with thous
 
 Use custom metrics from various services:
 
- * How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection
- * How to begin collecting OpenTelemetry Guest OS performance counters: VM Insights (v2)
+ * [How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection](../vm/data-collection-performance.md)
+ * [How to begin collecting OpenTelemetry Guest OS performance counters: VM Insights](../vm/vminsights-opentelemetry.md)
  * How to query OpenTelemetry Guest OS performance counters with PromQl
