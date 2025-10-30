@@ -77,11 +77,11 @@ You may prepare a cluster using either the Azure portal or Azure CLI.
 
 Use the Azure portal to prepare a cluster.
 
-:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-1.png" alt-text="asdf" lightbox="media/kubernetes-codeless/prepare-a-cluster-2.png":::
+:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-1.png" alt-text="Azure portal screenshot showing how to enable Application monitoring for an AKS cluster under monitor settings along with Prometheus, Grafana, and Log Analytics options." lightbox="media/kubernetes-codeless/prepare-a-cluster-1.png":::
 
-:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-2.png" alt-text="asdf" lightbox="media/kubernetes-codeless/prepare-a-cluster-2.png":::
+:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-2.png" alt-text="Azure portal screenshot showing the namespaces list for an AKS cluster, displaying multiple active Kubernetes namespaces with columns for name, status, age, and type." lightbox="media/kubernetes-codeless/prepare-a-cluster-2.png":::
 
-#### [Azure CLI](#tab/CLI)
+#### [Azure CLI](#tab/programmatic)
 
 To prepare a cluster, run the following Azure CLI command.
 
@@ -102,13 +102,13 @@ You may use either the Azure Portal or YAML configuration to onboard deployments
 
 Use the Azure portal for namespace-wide deployment onboarding.
 
-:::image type="content" source="media/kubernetes-codeless/namespace-wide-onboarding-1.png" alt-text="asdf" lightbox="media/kubernetes-codeless/namespace-wide-onboarding-1.png":::
+:::image type="content" source="media/kubernetes-codeless/namespace-wide-onboarding-1.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/namespace-wide-onboarding-1.png":::
 
-:::image type="content" source="media/kubernetes-codeless/namespace-wide-onboarding-2.png" alt-text="asdf" lightbox="media/kubernetes-codeless/namespace-wide-onboarding-2.png":::
+:::image type="content" source="media/kubernetes-codeless/namespace-wide-onboarding-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation and rollout restarts are set to deploy changes immediately." lightbox="media/kubernetes-codeless/namespace-wide-onboarding-2.png":::
 
-:::image type="content" source="media/kubernetes-codeless/namespace-wide-onboarding-3.png" alt-text="asdf" lightbox="media/kubernetes-codeless/namespace-wide-onboarding-3.png":::
+:::image type="content" source="media/kubernetes-codeless/namespace-wide-onboarding-3.png" alt-text="Azure portal screenshot showing the configure application monitoring pane for the chaos-testing namespace, with Node.js and Java selected and both deployments (chaos-controller-manager and chaos-dashboard) showing as Instrumented.sdf" lightbox="media/kubernetes-codeless/namespace-wide-onboarding-3.png":::
 
-#### [YAML](#tab/yml)
+#### [YAML](#tab/programmatic)
 
 Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. Use the namespace-wide method to onboard all deployments within a namespace. For selective or variably configured onboarding across multiple deployments, employ the per-deployment approach.
 
@@ -211,9 +211,9 @@ You may restart a deployment using either the Azure portal or the Kubernetes com
 
 Use the Azure portal to restart a deployment.
 
-:::image type="content" source="media/kubernetes-codeless/restart-deployment.png" alt-text="asdf" lightbox="media/kubernetes-codeless/restart-deployment.png":::
+:::image type="content" source="media/kubernetes-codeless/restart-deployment.png" alt-text="Azure portal view of the configure application monitoring pane for the namespace, showing Node.js and Java selected and both deployments successfully instrumented, indicating that application monitoring has been enabled." lightbox="media/kubernetes-codeless/restart-deployment.png":::
 
-#### [Command Line](#tab/kubectl)
+#### [Command Line](#tab/programmatic)
 
 Run the following command after all custom resources are created and deployments are optionally annotated.
 
@@ -233,9 +233,9 @@ You may remove AKS autoinstrumentation using either the Azure portal or Azure CL
 
 Use the Azure portal to remove autoinstrumentation.
 
-:::image type="content" source="media/kubernetes-codeless/remove-aks-autoinstrumentation.png" alt-text="asdf" lightbox="media/kubernetes-codeless/remove-aks-autoinstrumentation.png":::
+:::image type="content" source="media/kubernetes-codeless/remove-aks-autoinstrumentation.png" alt-text="Azure portal view of the monitor settings pane for an AKS cluster, showing monitoring capabilities such as Prometheus metrics, Grafana dashboards, Log Analytics, and an unchecked enable application monitoring option." lightbox="media/kubernetes-codeless/remove-aks-autoinstrumentation.png":::
 
-#### [Azure CLI](#tab/CLI)
+#### [Azure CLI](#tab/programmatic)
 
 Ensure that you don't have any instrumented deployments. To uninstrument an instrumented deployment, remove the associated Instrumentation custom resource and run `kubectl rollout restart` on the deployment. Next run the following command.
 
