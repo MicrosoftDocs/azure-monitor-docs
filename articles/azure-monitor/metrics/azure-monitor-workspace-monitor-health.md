@@ -7,7 +7,7 @@ ms.date: 04/09/2025
 
 # Monitor metrics ingestion in Azure Monitor workspace (preview)
 
-Ingestion errors are issues that occurred during data ingestion. Error conditions in this category might suggest data loss, so they are important to monitor. These errors may include indications of reaching the Azure Monitor workspace ingestion limits. For service limits for Azure Monitor workspaces, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics).
+Ingestion errors are issues that occurred during data ingestion. Error conditions in this category might suggest data loss, so they're important to monitor. These errors may include indications of reaching the Azure Monitor workspace ingestion limits. For service limits for Azure Monitor workspaces, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics).
 
 > [!IMPORTANT]
 > This feature is currently in preview and may be subject to change. Support for this feature is limited. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
@@ -29,7 +29,7 @@ To monitor errors in data ingestion for Azure Monitor workspace metrics, use the
 
 ### Events dropped
 
-The events dropped metric indicates the number of events received but not accepted into Azure Monitor Workspace. It includes a **Reason** dimension to indicate why events are not accepted. The set of reasons are subject to change in the future to provide better fidelity. The following table describes the set of reasons and what conditions result in them.
+The events dropped metric indicates the number of events received but not accepted into Azure Monitor Workspace. It includes a **Reason** dimension to indicate why events aren't accepted. The set of reasons are subject to change in the future to provide better fidelity. The following table describes the set of reasons and what conditions result in them.
 
 | Reason | Description |
 | ------ | ----------- |
@@ -55,7 +55,7 @@ The time series samples dropped metric indicates the number of datapoints droppe
 
 ## Monitor ingestion requests for Data Collection Rule (Preview)
 
-When you setup Azure Monitor Workspace, there are limits apply to the associated data collection rules (DCR) that send Prometheus metrics to the Azure Monitor workspace. For information on these limits, see [Prometheus Service limits](../fundamentals/service-limits.md#prometheus-metrics).
+When you set up Azure Monitor Workspace, there are limits applying to the associated data collection rules (DCR) that send Prometheus metrics to the Azure Monitor workspace. For information on these limits, see [Prometheus Service limits](../fundamentals/service-limits.md#prometheus-metrics).
 
 To view and monitor if the DCR limits are being throttled, use the following steps:
 
