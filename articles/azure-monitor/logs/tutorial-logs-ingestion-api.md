@@ -255,7 +255,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
                 "kind": "Direct",
                 "properties": {
                     "streamDeclarations": {
-                        "Custom-MyTableRawData": {
+                        "Custom-MyTable": {
                             "columns": [
                                 {
                                     "name": "Time",
@@ -291,7 +291,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
                     "dataFlows": [
                         {
                             "streams": [
-                                "Custom-MyTableRawData"
+                                "Custom-MyTable"
                             ],
                             "destinations": [
                                 "myworkspace"
@@ -361,7 +361,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
                 "properties": {
                     "dataCollectionEndpointId": "[parameters('endpointResourceId')]",
                     "streamDeclarations": {
-                        "Custom-MyTableRawData": {
+                        "Custom-MyTable": {
                             "columns": [
                                 {
                                     "name": "Time",
@@ -397,7 +397,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
                     "dataFlows": [
                         {
                             "streams": [
-                                "Custom-MyTableRawData"
+                                "Custom-MyTable"
                             ],
                             "destinations": [
                                 "myworkspace"
