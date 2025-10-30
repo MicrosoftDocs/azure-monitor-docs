@@ -73,7 +73,7 @@ To monitor if the DCR metrics ingestion is getting throttled, you can create an 
 1. Review the details and enter the threshold; In the **Split by dimensions** section, select **Response code** from the "Dimension name" dropdown, and enter "429" as the dimension value.
 1. Review other details and create the alert.
 
-    :::image type="content" source="./media/azure-monitor-workspace-monitor-ingest-limits/amw-dcr-metric-alert.png" alt-text="Screenshot that shows setting up alert for metrics throttling for the DCR." lightbox="./media/azure-monitor-workspace-monitor-ingest-limits/amw-dcr-metric-alert.png":::
+    :::image type="content" source="./media/azure-monitor-workspace-monitor-ingest-limits/azure-monitor-workspace-data-rule-alert.png" alt-text="Screenshot that shows setting up alert for metrics throttling for the Data Collection Rule." lightbox="./media/azure-monitor-workspace-monitor-ingest-limits/azure-monitor-workspace-data-rule-alert.png":::
    
 In case you get an alert, consider creating additional DCRs and DCEs to distribute the ingestion load across multiple endpoints. This approach helps optimize performance and ensures efficient data handling. For more information about creating DCRs and DCEs, see [How to create custom Data collection endpoint(DCE) and custom Data collection rule(DCR) for an existing Azure monitor workspace to ingest Prometheus metrics](https://github.com/Azure/prometheus-collector/tree/main/Azure-ARM-templates/Prometheus-RemoteWrite-DCR-artifacts).
 
