@@ -2,7 +2,7 @@
 title: Azure Status Overview
 description: Learn how to use the Azure status page to get a global view into the health of Azure services.
 ms.topic: overview
-ms.date: 5/16/2025
+ms.date: 10/30/2025
 
 ---
 # Azure status overview
