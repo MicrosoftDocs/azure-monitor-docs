@@ -136,7 +136,7 @@ The following example shows a map in **Hierarchical view** with five component n
 
 - Distant or unrelated component nodes are shown smaller in comparison to the other nodes. These items are dimmed in the view to highlight performance for the currently selected component.
 
-- In this example, each cloud role name also represents a different unique Application Insights resource with its own instrumentation keys. Because the owner of this application has access to each of those four disparate Application Insights resources, **Application map** can stitch together a map of the underlying relationships.
+- In this example, each cloud role name also represents a different unique Application Insights resource with its own connection string. Because the owner of this application has access to each of those four disparate Application Insights resources, **Application map** can stitch together a map of the underlying relationships.
 
 ### Investigate cloud role instances
 

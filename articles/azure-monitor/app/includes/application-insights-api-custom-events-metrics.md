@@ -77,7 +77,7 @@ TelemetryClient.Context.Device.Id = "...";
 var telemetry = applicationInsights.defaultClient;
 ```
 
-You can use `new applicationInsights.TelemetryClient(instrumentationKey?)` to create a new instance. We recommend this approach only for scenarios that require isolated configuration from the singleton `defaultClient`.
+You can use `telemetry.config.connectionString = "YOUR_CONNECTION_STRING";` to create a new instance. We recommend this approach only for scenarios that require isolated configuration from the singleton `defaultClient`.
 
 ---
 
@@ -742,7 +742,7 @@ TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
 For Node.js, you can enable developer mode by enabling internal logging via `setInternalLogging` and setting `maxBatchSize` to `0`, which causes your telemetry to be sent as soon as it's collected.
 
 ```js
-applicationInsights.setup("ikey")
+applicationInsights.setup("YOUR_CONNECTION_STRING")
   .setInternalLogging(true, true)
   .start()
 applicationInsights.defaultClient.config.maxBatchSize = 0;
@@ -750,13 +750,13 @@ applicationInsights.defaultClient.config.maxBatchSize = 0;
 
 ---
 
-### Set the instrumentation key for selected custom telemetry
+### Set the connection string for selected custom telemetry
 
 # [.NET](#tab/api-net)
 
 ```csharp
 var telemetry = new TelemetryClient();
-telemetry.InstrumentationKey = "---my key---";
+telemetry.ConnectionString = "YOUR_CONNECTION_STRING";
 // ...
 ```
 
@@ -766,9 +766,9 @@ telemetry.InstrumentationKey = "---my key---";
 
 ### Dynamic connection string
 
-To avoid mixing up telemetry from development, test, and production environments, you can [create separate Application Insights resources](../create-workspace-resource.md) and change their keys, depending on the environment.
+To avoid mixing up telemetry from development, test, and production environments, you can [create separate Application Insights resources](../create-workspace-resource.md) depending on the environment.
 
-Instead of getting the instrumentation key from the configuration file, you can set it in your code. Set the key in an initialization method, such as `global.aspx.cs` in an ASP.NET service:
+Instead of getting the connection string from the configuration file, you can set it in your code. Set the connection string in an initialization method, such as `global.aspx.cs` in an ASP.NET service:
 
 # [.NET](#tab/api-net)
 
@@ -776,9 +776,9 @@ Instead of getting the instrumentation key from the configuration file, you can 
 protected void Application_Start()
 {
     Microsoft.ApplicationInsights.Extensibility.
-    TelemetryConfiguration.Active.InstrumentationKey =
+    TelemetryConfiguration.Active.ConnectionString =
         // - for example -
-        WebConfigurationManager.Settings["ikey"];
+        WebConfigurationManager.Settings["YOUR_CONNECTION_STRING"];
     ...
 }
 ```
@@ -799,7 +799,7 @@ If you set any of these values yourself, consider removing the relevant line fro
 
 * **Component**: The app and its version.
 * **Device**: Data about the device where the app is running. In web apps, it's the server or client device that the telemetry is sent from.
-* **InstrumentationKey**: The Application Insights resource in Azure where the telemetry appears. It's usually picked up from *ApplicationInsights.config*.
+* **ConnectionString**: The Application Insights resource in Azure where the telemetry appears. It's usually picked up from *ApplicationInsights.config*.
 * **Location**: The geographic location of the device.
 * **Operation**: In web apps, the current HTTP request. In other app types, you can set this value to group events together.
     * **ID**: A generated value that correlates different events so that when you inspect any event in Diagnostic Search, you can find related items.
