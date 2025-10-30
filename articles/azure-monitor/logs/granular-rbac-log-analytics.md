@@ -53,16 +53,16 @@ The following sections provide an overview of the key concepts and steps involve
 
 ### Role creation
 
-To configure granular RBAC, you must create a custom role with required **actions** then assign the custom role with **conditions**. For more information on custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles-portal).
+To configure granular RBAC, use the built-in role, [**Log Analytics Data Reader**](manage-access.md#log-analytics-data-reader), or create a custom role with required **actions**. Then assign the role with **conditions**. For more information on custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles-portal).
 
-The minimum required permissions for the custom role action and data actions are:
+The minimum required permissions for the custom role's action and data actions are:
 
 | Custom role definition | Permission | Description |
 |---|---|---|
-| Control plane actions (Actions) |`Microsoft.OperationalInsights/workspaces/query/read` | Run queries in Log Analytics and see metadata. This permission doesn't grant access to data. |
-| Data plane actions (DataActions) | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Access to the data and is the `dataaction` chosen in the role assignment condition. If no condition is set, this permission grants access to all data at the assigned scope. |
+| Control plane (Actions) |`Microsoft.OperationalInsights/workspaces/query/read` | Run queries in Log Analytics and see metadata. This permission doesn't grant access to data. |
+| Data plane (DataActions) | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Access to the data and is the `dataaction` chosen in the role assignment condition. If no condition is set, this permission grants access to all data at the assigned scope. |
 
-Optionally, include access from the Azure portal by adding the `Microsoft.OperationalInsights/workspaces/read` control action. For more information, see [Azure RBAC control and data actions](/azure/role-based-access-control/role-definitions#control-data-actions).
+Optionally, include access to the Logs UI in the Azure portal by adding the `Microsoft.OperationalInsights/workspaces/read` control action. For more information, see [Azure RBAC control and data actions](/azure/role-based-access-control/role-definitions#control-data-actions).
  
 > [!NOTE]
 > Granular RBAC, like Azure RBAC, is an additive model. Your effective permissions are the sum of your role assignments. For granular RBAC conditions to take effect, you must remove any role assignments with higher access privileges. 
