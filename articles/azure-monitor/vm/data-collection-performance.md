@@ -60,7 +60,7 @@ To verify OpenTelemetry performance counters are being collected in the Azure Mo
 
 :::image type="content" source="media/data-collection-performance/OTelPerfDCR_4_query.png" lightbox="media/data-collection-performance/OTelPerfDCR_4_query.png" alt-text="Screenshot that shows records returned from an AMW." :::
 
-If the AMW was set to resource-context access mode, you can also verify the same query works as expected when scoped to the VM itself by navigating to the VM Metrics blade in Portal and either choosing the "add with editor" dropdown or choosing the "view AMW metrics in editor" dropdown under Metric Namespaces. 
+If the AMW was set to [resource-context access mode](../metrics/azure-monitor-workspace-manage-access.md), you can also verify the same query works as expected when scoped to the VM itself by navigating to the VM Metrics blade in Portal and either choosing the "add with editor" dropdown or choosing the "view AMW metrics in editor" dropdown under Metric Namespaces. 
 
 :::image type="content" source="media/data-collection-performance/OTelPerfDCR_5_query.png" lightbox="media/data-collection-performance/OTelPerfDCR_5_query.png" alt-text="Screenshot that shows how to navigate to AMW PromQl editor from a VM Metrics blade." :::
 
