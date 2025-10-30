@@ -37,7 +37,7 @@ In this scenario, row-level access control is implemented in a restrictive manne
 
 ## Create custom roles
 
-Set up custom roles for the defined scenario. Create one for the network team and another for the security team. Keep in mind, role assignments are additive, so remove any roles that assign read access giving more privileges than the granular RBAC conditions. For more information, see [Configure granular RBAC role creation](granular-rbac-log-analytics.md#role-creation).
+Set up custom roles for the defined scenario or use the built-in role, **Log Analytics Data Reader**. If you setup custom roles, create one for the network team and another for the security team. Keep in mind, role assignments are additive, so remove any roles that assign read access giving more privileges than the granular RBAC conditions. For more information, see [Configure granular RBAC role creation](granular-rbac-log-analytics.md#role-creation).
 
 1. From the resource group containing the prerequisite Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add custom role**.
