@@ -102,11 +102,11 @@ You may use either the Azure Portal or YAML configuration to onboard deployments
 
 Use the Azure portal for namespace-wide deployment onboarding.
 
-:::image type="content" source="media/kubernetes-codeless/onboarding-1.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/onboarding-1.png":::
+:::image type="content" source="media/kubernetes-codeless/deployment-1.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-1.png":::
 
-:::image type="content" source="media/kubernetes-codeless/onboarding-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation and rollout restarts are set to deploy changes immediately." lightbox="media/kubernetes-codeless/onboarding-2.png":::
+:::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation and rollout restarts are set to deploy changes immediately." lightbox="media/kubernetes-codeless/deployment-2.png":::
 
-:::image type="content" source="media/kubernetes-codeless/onboarding-3.png" alt-text="Azure portal screenshot showing the configure application monitoring pane for the chaos-testing namespace, with Node.js and Java selected and both deployments (chaos-controller-manager and chaos-dashboard) showing as Instrumented.sdf" lightbox="media/kubernetes-codeless/onboarding-3.png":::
+:::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal screenshot showing the configure application monitoring pane for the chaos-testing namespace, with Node.js and Java selected and both deployments (chaos-controller-manager and chaos-dashboard) showing as Instrumented.sdf" lightbox="media/kubernetes-codeless/deployment-3.png":::
 
 #### [YAML](#tab/programmatic)
 
@@ -198,7 +198,7 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
 
 Use mixed mode when most deployments use a default configuration and a few deployments must use different configurations.
 
-1. Implement [namespace-wide onboarding](#onboarding) to define the default configuration.
+1. Implement [namespace-wide onboarding](#onboard-deployments) to define the default configuration.
 2. Create [per-deployment onboarding](#per-deployment-onboarding) configurations, which override the default configuration for specific resources.
 
 ---
