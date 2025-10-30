@@ -2,15 +2,17 @@
 title: What is Azure Service Health?
 description: Personalized information about how your Azure apps are affected due to current and future Azure service problems and maintenance. 
 ms.topic: overview
-ms.date: 05/16/2025
+ms.date: 10/30/2025
 ---
 # What is Azure Service Health?
 
 Azure offers a suite of experiences to keep you informed about the health of your cloud resources. This information includes current and upcoming issues such as service impacting events, planned maintenance, and other changes that might affect your availability.
 
+:::image type="content" source="media/overview/azure-service-health-portal.png" alt-text="" lightbox="media/overview/azure-service-health-portal.png":::
+
 ## Key components of Service Health
 
-Azure Service Health is a combination of three separate smaller services.
+Azure Service Health is a combination of three separate services.
 
 [Azure status](azure-status-overview.md) informs you of service outages in Azure on the **[Azure Status page](https://azure.status.microsoft)**. The page is a global view of the health of all Azure services across all Azure regions. The status page is a good reference for incidents with widespread effect, but we strongly recommend that current Azure users apply Azure service health to stay informed about Azure incidents and maintenance.
 
@@ -20,7 +22,7 @@ Azure Service Health is a combination of three separate smaller services.
 
 ## Using Azure Service Health
 
-Using Azure Monitor, you can configure alerts to notify you of the availability changes to your cloud resources. The notifications and tailored alerts you receive tell you about issues affecting your specific resources, ensuring they're promptly informed about any disruptions.
+Using Azure Monitor, you can configure alerts to notify you of the availability changes to your cloud resources. The notifications and tailored alerts you receive tell you about issues affecting your specific resources, ensuring you're promptly informed about any disruptions.
 
 Through proactive management that you define, you can stay informed about planned maintenance and potential issues, and then take proactive steps to mitigate any effect on your services.
 
