@@ -8,7 +8,7 @@ ms.date: 10/30/2025
 
 Azure offers a suite of experiences to keep you informed about the health of your cloud resources. This information includes current and upcoming issues such as service impacting events, planned maintenance, and other changes that might affect your availability.
 
-:::image type="content" source="media/overview/azure-service-health-portal.png" alt-text="" lightbox="media/overview/azure-service-health-portal.png":::
+:::image type="content" source="media/overview/azure-service-health-portal.png" alt-text="Screenshot of Azure Service Health portal." lightbox="media/overview/azure-service-health-portal.png":::
 
 ## Key components of Service Health
 
