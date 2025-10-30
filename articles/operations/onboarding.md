@@ -16,7 +16,8 @@ The management features automatically enabled for each VM in the enrolled subscr
 
 | Tier | Feature | Description |
 |:---|:---|:---|
-| Essential | Azure Monitor | Monitors and provides insights into VM performance and health. |
+| Essential | VM insights | Monitors and provides insights into VM performance and health. |
+| Essential | [Azure Policy and Machine Configurations](/azure/governance/machine-configuration/overview) | Audit or configure operating system settings. |
 | Essential | Update manager | Automates the deployment of operating system updates to VMs. |
 | Essential | Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
 | Essential | Foundational CSPM | Provides foundational cloud security posture management (CSPM) capabilities to assess and improve the security of your cloud resources. |
@@ -36,7 +37,6 @@ You must have the following roles in the subscription being enabled:
 - [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace) to collect log data collected from VMs.
 - [Azure Monitor workspace](/azure/azure-monitor/metrics/azure-monitor-workspace-manage) to collect metrics data collected from VMs.
 - User assigned managed identity with the following roles assigned for the subscription:
-  - Essential Machine Management Onboarding
   - Monitoring Reader
 
 
@@ -56,8 +56,8 @@ The **Scope** tab includes the subscription that you want to enable and the mana
 
 | **Setting** | **Description** |
 |:---|:---|
-| **Select a subscription** | Click to select the subscription to enable. A list is provided with all subscriptions you have access to and the number of Azure VMs and Arc-enable dVMs in each. |
-| **Required user role assignments** | Lists the required roles that your user account must be assigned to the managed identity. |
+| **Select a subscription** | Click to select the subscription to enable. A list is provided with all subscriptions you have access to and the number of Azure VMs and Arc-enable VMs in each. |
+| **Required user role assignments** | Lists the required roles that your user account must be assigned to. |
 | **Current user role assignments** | Lists the roles that are currently assigned to your user account. |
 | **User assigned managed identity** | Select the managed identity to use for onboarding VMs in the subscription. |
 | **Required identity role assignment** | Lists the required roles the managed identity must be assigned. |
@@ -78,7 +78,7 @@ The **Security** tab allows you to select additional security services for the m
 
 | **Setting** | **Description** |
 |:---|:---|
-| **Log Analytics workspace** | Continuously assess your cloud environment with agentless, risk-prioritized insights. Recommended for all workloads.<br><br>This add-on incurs no additional charge.  |
+| **Foundational CSPM** | Continuously assess your cloud environment with agentless, risk-prioritized insights. Recommended for all workloads.<br><br>This add-on incurs no additional charge.  |
 | **Defender CSPM** | Continuously assess your cloud environment with agentless, risk-prioritized insights. Recommended for all workloads.<br><br>This add-on incurs an additional charge. |
 | **Defender for cloud** | Comprehensive server protection with integrated endpoint detection and response (EDR), vulnerability management, file integrity monitoring, and advanced threat detection. Recommended for business-critical workloads.<br><br>This add-on incurs an additional charge. |
 
@@ -122,6 +122,9 @@ Curated bundle of core management and monitoring capabilities provided at a fixe
 
 
 
+Managedops-Policy-71b36fb6-4fe4-4664-9a7b-245dc62f2930
+
+
 ## Policy assignments provisioned
 
 > [!NOTE]
@@ -129,11 +132,7 @@ Curated bundle of core management and monitoring capabilities provided at a fixe
 
 | Assignment | Initiative | Description |
 |:---|:---|:---|
-| Enable Azure Monitor for VMs with Azure Monitoring Agent(AMA) | Enable Azure Monitor for VMs with Azure Monitoring Agent(AMA) | Enables Azure Monitor for VMs with Azure Monitoring Agent (AMA) to collect metrics and logs. |
-| Enable Azure Monitor for Hybrid VMs with AMA | | |
-| Managedops-Policy-71b36fb6-4fe4-4664-9a7b-245dc62f2930 | | |
-| ASC Default (subscription: 71b36fb6-4fe4-4664-9a7b-245dc62f2930) | | |
-
+| [Preview]: Enable Essential Machine Management - Microsoft Azure | | |
 
 ## Data collection rules
 The following table lists the data collection rules (DCRs) created during onboarding. Relationships are created between these DCRs and the VMs being managed.
@@ -142,6 +141,7 @@ The following table lists the data collection rules (DCRs) created during onboar
 |:---|:---|
 | `MSVMI-PerfandDa-ama-vmi-default-perfAndda-dcr` | Performance data collection for Azure Monitor. |
 | `\<workspace\>-Managedops-CT-DCR` | Change tracking and inventory. Collects Files, Registry Keys, Softwares, Windows Services/Linux Daemons |
+ | `<\workspace\>-Managedops-AM-DCR` | OTel metric collection for VM clients. |
 
 ## Permissions
 

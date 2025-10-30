@@ -13,11 +13,3 @@ items:
   href: configuration.md
 - name: Optimization
   href: optimization.md
-- name: Old
-  items:
-  - name: Onboarding
-    href: onboarding.md
-  - name: Agentic experience
-    href: agentic-experience.md
-  - name: Using the portal
-    href: portal.md
