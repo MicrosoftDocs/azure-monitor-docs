@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cache for Redis
@@ -102,5 +102,41 @@ Recommendation ID: 4ea9775d-8a8e-481c-8594-5aabd8214431
 Subcategory: undefined
 
 <!--4ea9775d-8a8e-481c-8594-5aabd8214431_end-->
+
+<!--f3aded79-f9ff-4ce4-99e3-2ffcf11161a4_begin-->
+
+#### Migrate to Azure Managed Redis from Azure Cache for Redis  
+  
+To avoid service disruptions, migrate workloads to Azure Managed Redis before the retirement date.  
+  
+**Potential benefits**: Avoid service disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499577)  
+
+ResourceType: microsoft.cache/redis  
+Recommendation ID: f3aded79-f9ff-4ce4-99e3-2ffcf11161a4  
+Subcategory: undefined
+
+<!--f3aded79-f9ff-4ce4-99e3-2ffcf11161a4_end-->
+
+<!--b498df1b-749b-4fdb-a7a1-28551cef6a82_begin-->
+
+#### Migrate to Azure Managed Redis from Azure Cache for Redis Enterprise  
+  
+To avoid service disruptions, migrate workloads to Azure Managed Redis before the retirement date.  
+  
+**Potential benefits**: Avoid service disruptions and ensure continued support  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499606)  
+
+ResourceType: microsoft.cache/redisenterprise  
+Recommendation ID: b498df1b-749b-4fdb-a7a1-28551cef6a82  
+Subcategory: undefined
+
+<!--b498df1b-749b-4fdb-a7a1-28551cef6a82_end-->
 
 <!--articleBody-->
