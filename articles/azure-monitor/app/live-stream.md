@@ -128,7 +128,7 @@ Basic metrics include request, dependency, and exception rate. Performance metri
 
 ## Troubleshooting
 
-For troubleshooting guidance, see [Troubleshoot Live Metrics issues](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-live-metrics.md).
+See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-live-metrics).
 
 ## Next steps
 
