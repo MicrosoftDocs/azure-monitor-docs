@@ -182,7 +182,7 @@ Create assignments at the resource level (workspace) to assure accurate access c
 
 #### Log Analytics Data Reader
 
-Provide the bare minimum permissions to run queries in Log Analytics and see metadata with the Log Analytics Data Reader role. It's an ideal role for granular RBAC to create role assignment conditions which further controls access to table data. For more information, see [granular RBAC](granular-rbac-log-analytics.md#role-creation).
+Provide the bare minimum permissions needed to run queries and see metadata with the Log Analytics Data Reader role. It's an ideal role for granular RBAC to create role assignment conditions which further control access to table data. For more information, see [granular RBAC](granular-rbac-log-analytics.md#role-creation).
 
 | Type | Permission | Description |
 |------|------------|-------------|
