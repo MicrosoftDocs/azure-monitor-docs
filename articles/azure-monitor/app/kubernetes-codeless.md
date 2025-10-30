@@ -71,6 +71,18 @@ az provider show --namespace "Microsoft.ContainerService" --query "registrationS
 
 ## Prepare a cluster
 
+You may prepare a cluster using either the Azure portal or Azure CLI.
+
+#### [Azure Portal](#tab/portal)
+
+Use the Azure portal to prepare a cluster.
+
+:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-1.png" alt-text="asdf" lightbox="media/kubernetes-codeless/prepare-a-cluster-2.png":::
+
+:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-2.png" alt-text="asdf" lightbox="media/kubernetes-codeless/prepare-a-cluster-2.png":::
+
+#### [Azure CLI](#tab/CLI)
+
 To prepare a cluster, run the following Azure CLI command.
 
 ```azurecli
@@ -80,7 +92,23 @@ az aks update --resource-group={resource_group} --name={cluster_name} --enable-a
 > [!Tip]
 > AKS Clusters can be prepared for this feature during cluster creation. To learn more, see [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-aks-cluster-create).
 
+---
+
 ## Onboard deployments
+
+You may use either the Azure Portal or YAML configuration to onboard deployments.
+
+#### [Azure Portal](#tab/portal)
+
+Use the Azure portal for namespace-wide deployment onboarding.
+
+:::image type="content" source="media/kubernetes-codeless/namespace-wide-onboarding-1.png" alt-text="asdf" lightbox="media/kubernetes-codeless/namespace-wide-onboarding-1.png":::
+
+:::image type="content" source="media/kubernetes-codeless/namespace-wide-onboarding-2.png" alt-text="asdf" lightbox="media/kubernetes-codeless/namespace-wide-onboarding-2.png":::
+
+:::image type="content" source="media/kubernetes-codeless/namespace-wide-onboarding-3.png" alt-text="asdf" lightbox="media/kubernetes-codeless/namespace-wide-onboarding-3.png":::
+
+#### [YAML](#tab/yml)
 
 Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. Use the namespace-wide method to onboard all deployments within a namespace. For selective or variably configured onboarding across multiple deployments, employ the per-deployment approach.
 
@@ -173,7 +201,19 @@ Use mixed mode when most deployments use a default configuration and a few deplo
 1. Implement [namespace-wide onboarding](#namespace-wide-onboarding) to define the default configuration.
 2. Create [per-deployment onboarding](#per-deployment-onboarding) configurations, which override the default configuration for specific resources.
 
+---
+
 ## Restart deployment
+
+You may restart a deployment using either the Azure portal or the Kubernetes command line (`kubectl`) tool.
+
+#### [Azure Portal](#tab/portal)
+
+Use the Azure portal to restart a deployment.
+
+:::image type="content" source="media/kubernetes-codeless/restart-deployment.png" alt-text="asdf" lightbox="media/kubernetes-codeless/restart-deployment.png":::
+
+#### [Command Line](#tab/kubectl)
 
 Run the following command after all custom resources are created and deployments are optionally annotated.
 
@@ -183,7 +223,19 @@ kubectl rollout restart deployment <deployment-name> -n mynamespace1
 
 This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences. You're able to use all Application Insights Experiences except Live Metrics and Application Insights Code Analysis features. Learn more about the available Application Insights experiences [here](app-insights-overview.md#application-insights-experiences).
 
+---
+
 ## Remove Autoinstrumentation for AKS
+
+You may remove AKS autoinstrumentation using either the Azure portal or Azure CLI.
+
+#### [Azure Portal](#tab/portal)
+
+Use the Azure portal to remove autoinstrumentation.
+
+:::image type="content" source="media/kubernetes-codeless/remove-aks-autoinstrumentation.png" alt-text="asdf" lightbox="media/kubernetes-codeless/remove-aks-autoinstrumentation.png":::
+
+#### [Azure CLI](#tab/CLI)
 
 Ensure that you don't have any instrumented deployments. To uninstrument an instrumented deployment, remove the associated Instrumentation custom resource and run `kubectl rollout restart` on the deployment. Next run the following command.
 
@@ -193,6 +245,8 @@ az aks update --resource-group={resource_group} --name={cluster_name} --disable-
 
  > [!NOTE]
  > If instrumented deployments remain after the feature is disabled, they continue to be instrumented until redeployed to their original uninstrumented state or deleted.
+
+---
 
 ## Annotations
 
