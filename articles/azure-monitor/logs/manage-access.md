@@ -3,7 +3,7 @@ title: Manage access to Log Analytics workspaces
 description: This article explains how you can manage access to data stored in a Log Analytics workspace in Azure Monitor by using resource, workspace, or table-level permissions.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 02/14/2025
+ms.date: 10/30/2025
 ms.custom: devx-track-azurepowershell
 
 ---
@@ -179,6 +179,17 @@ Create assignments at the resource level (workspace) to assure accurate access c
 
 > [!NOTE]
 > To add and remove users to a user role, you must have `Microsoft.Authorization/*/Delete` and `Microsoft.Authorization/*/Write` permission.
+
+#### Log Analytics Data Reader
+
+Provide the bare minimum permissions to run queries in Log Analytics and see metadata with the Log Analytics Data Reader role. It's an ideal role for granular RBAC to create role assignment conditions which further controls access to table data. For more information, see [granular RBAC](granular-rbac-log-analytics.md#role-creation).
+
+| Type | Permission | Description |
+|------|------------|-------------|
+| Action | `Microsoft.OperationalInsights/workspaces/query/read` | Run queries over the data in a workspace |
+| Action | `Microsoft.OperationalInsights/workspaces/read` | Read existing workspaces |
+| DataActions | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Read data access to workspaces, or more fine-grained data entities, such as specific tables or rows when used with granular RBAC |
+
 
 #### Log Analytics Reader
 
