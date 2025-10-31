@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.HealthcareApis/workspaces/dicomservices
-description: Reference for Microsoft.HealthcareApis/workspaces/dicomservices in Azure Monitor Logs.
+title: Supported log categories - Microsoft.Cdn/edgeactions
+description: Reference for Microsoft.Cdn/edgeactions in Azure Monitor Logs.
 ms.topic: generated-reference
 ms.date: 10/31/2025
-ms.custom: Microsoft.HealthcareApis/workspaces/dicomservices, naam
+ms.custom: Microsoft.Cdn/edgeactions, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,16 +12,16 @@ ms.custom: Microsoft.HealthcareApis/workspaces/dicomservices, naam
 
 
 
-# Supported logs for Microsoft.HealthcareApis/workspaces/dicomservices  
-The following table lists the types of logs available for the Microsoft.HealthcareApis/workspaces/dicomservices resource type.
+# Supported logs for Microsoft.Cdn/edgeactions  
+The following table lists the types of logs available for the Microsoft.Cdn/edgeactions resource type.
   
   
   
-For a list of supported metrics, see [Supported metrics - Microsoft.HealthcareApis/workspaces/dicomservices](../supported-metrics/microsoft-healthcareapis-workspaces-dicomservices-metrics.md)  
+For a list of supported metrics, see [Supported metrics - Microsoft.Cdn/edgeactions](../supported-metrics/microsoft-cdn-edgeactions-metrics.md)  
   
 
   
-[!INCLUDE [Microsoft.HealthcareApis/workspaces/dicomservices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthcareapis-workspaces-dicomservices-logs-include.md)]  
+[!INCLUDE [Microsoft.Cdn/edgeactions](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cdn-edgeactions-logs-include.md)]  
   
 
 ## Next Steps

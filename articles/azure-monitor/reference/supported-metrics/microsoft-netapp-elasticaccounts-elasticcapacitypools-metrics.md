@@ -1,29 +1,25 @@
 ---
-title: Supported metrics - Microsoft.Web/serverfarms
-description: Reference for Microsoft.Web/serverfarms metrics in Azure Monitor.
+title: Supported metrics - Microsoft.NetApp/elasticAccounts/elasticCapacityPools
+description: Reference for Microsoft.NetApp/elasticAccounts/elasticCapacityPools metrics in Azure Monitor.
 ms.topic: generated-reference
 ms.date: 10/31/2025
-ms.custom: Microsoft.Web/serverfarms, naam
+ms.custom: Microsoft.NetApp/elasticAccounts/elasticCapacityPools, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Microsoft.Web/serverfarms
+# Supported metrics for Microsoft.NetApp/elasticAccounts/elasticCapacityPools
   
-The following table lists the metrics available for the Microsoft.Web/serverfarms resource type.  
+The following table lists the metrics available for the Microsoft.NetApp/elasticAccounts/elasticCapacityPools resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.Web/serverfarms](../supported-logs/microsoft-web-serverfarms-logs.md)  
-  
  
 
-[!INCLUDE [Microsoft.Web/serverfarms](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-web-serverfarms-metrics-include.md)]  
+[!INCLUDE [Microsoft.NetApp/elasticAccounts/elasticCapacityPools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-netapp-elasticaccounts-elasticcapacitypools-metrics-include.md)]  
 
 
 
