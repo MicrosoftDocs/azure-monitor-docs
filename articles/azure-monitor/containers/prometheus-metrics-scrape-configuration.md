@@ -139,7 +139,7 @@ Note that the below is a yaml configuration -
       - default
 ```
 
-> [! NOTE]
+> [!NOTE]
 > Customizing these values can affect the default data collected as a part of the kube-state-metrics job and can result in certain dashboards not loading data.
 >
 > Deleting the entire section (ksm-config) in the setting configmap needs for the ama-metrics-ksm deployment to be recreated. This can either be done by deleting the ama-metrics-ksm pod or by doing - kubectl rollout restart deployment/ama-metrics -n kube-system
