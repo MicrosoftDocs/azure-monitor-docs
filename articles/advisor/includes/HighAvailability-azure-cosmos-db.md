@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/23/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -274,13 +274,14 @@ This recommendation suggests enabling zone redundancy for multi-region Cosmos DB
 
 **Impact:** High
   
-For more information, see [High availability (Reliability)  in Azure Cosmos DB for NoSQL](/azure/cosmos-db/high-availability#replica-outages).
+For more information, see [High Availability (Reliability) in Azure Cosmos DB for NoSQL](/azure/cosmos-db/high-availability#replica-outages)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 8034b205-167a-4fd5-a133-0c8cb166103c  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--8034b205-167a-4fd5-a133-0c8cb166103c_end-->
+
 
 <!--92056ca3-8fab-43d1-bebf-f9c377ef20e9_begin-->
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/23/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -58,13 +58,14 @@ Your Application Gateway may be deleted after October 2024 due to a failed inter
 
 **Impact:** High
   
-For more information, see [Frequently asked questions about Application Gateway ](/azure/application-gateway/application-gateway-faq#can-i-change-the-virtual-network-or-subnet-for-an-existing-application-gateway)  
+For more information, see [Frequently asked questions about Application Gateway](/azure/application-gateway/application-gateway-faq#can-i-change-the-virtual-network-or-subnet-for-an-existing-application-gateway)  
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 511a9f7b-7b5e-4713-b18d-0b7464a84d1f  
-Subcategory: BusinessContinuity
+Subcategory: undefined
 
 <!--511a9f7b-7b5e-4713-b18d-0b7464a84d1f_end-->
+
 
 <!--5c488377-be3e-4365-92e8-09d1e8d9038c_begin-->
 
@@ -72,17 +73,18 @@ Subcategory: BusinessContinuity
   
 Achieve zone redundancy by deploying Application Gateway across Availability Zones. Zone redundancy boosts resilience by enabling Application Gateway to survive various outages. Zone redundancy ensures continuity even if one zone is affected and enhances overall reliability.  
   
-**Potential benefits**: Resiliency of Application Gateways is considerably increased when using Availability Zones.  
+**Potential benefits**: Availability zones add resiliency for Application Gateways  
 
 **Impact:** High
   
-For more information, see [Scaling and Zone-redundant Application Gateway v2 ](https://aka.ms/appgw/az)  
+For more information, see [Scaling and Zone-redundant Application Gateway v2](https://aka.ms/appgw/az)  
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 5c488377-be3e-4365-92e8-09d1e8d9038c  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--5c488377-be3e-4365-92e8-09d1e8d9038c_end-->
+
 
 <!--6cc8be07-8c03-4bd7-ad9b-c2985b261e01_begin-->
 
@@ -94,13 +96,15 @@ To improve security and provide a more consistent experience across Azure, all u
 
 **Impact:** High
   
-For more information, see [Azure Application Gateway infrastructure configuration ](https://aka.ms/agsubnetjoin)  
+For more information, see [Azure Application Gateway infrastructure configuration](https://aka.ms/agsubnetjoin)  
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 6cc8be07-8c03-4bd7-ad9b-c2985b261e01  
-Subcategory: Other
+Subcategory: undefined
 
 <!--6cc8be07-8c03-4bd7-ad9b-c2985b261e01_end-->
+
+
 
 <!--c9c9750b-9ddb-436f-b19a-9c725539a0b5_begin-->
 
@@ -130,13 +134,14 @@ Your Application Gateway is at risk of deletion after October 2024 due to a fail
 
 **Impact:** High
   
-For more information, see [Frequently asked questions about Application Gateway ](/azure/application-gateway/application-gateway-faq#can-i-change-the-virtual-network-or-subnet-for-an-existing-application-gateway)  
+For more information, see [Frequently asked questions about Application Gateway](/azure/application-gateway/application-gateway-faq#can-i-change-the-virtual-network-or-subnet-for-an-existing-application-gateway)  
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: df989782-82d1-420d-b354-71956bd9379c  
-Subcategory: BusinessContinuity
+Subcategory: undefined
 
 <!--df989782-82d1-420d-b354-71956bd9379c_end-->
+
 
 <!--fa44bc92-1747-4cef-9f78-7861be4c0db9_begin-->
 
@@ -323,22 +328,20 @@ Subcategory: BusinessContinuity
 
 #### ExpressRoute IP routes nearing specified limit  
   
-Your ExpressRoute circuit is close to reaching its IP route limits. Exceeding these limits will disrupt the connectivity. Connectivity will restore once routes are within limits
-Suggestions:
-Regularly monitor route counts.
-Explore Virtual WAN RouteMap to reduce advertised IP routes.  
+Your ExpressRoute circuit is close to reaching its IP route limits. Exceeding these limits will disrupt the connectivity. Connectivity will restore once routes are within limit. Suggestions: Regularly monitor route counts. Explore Virtual WAN RouteMap to reduce advertised IP routes.  
   
-**Potential benefits**: Monitoring IP route counts prevents connectivity issues and ensures stability.  
+**Potential benefits**: Prevent connectivity issues and ensure stability  
 
 **Impact:** High
   
-For more information, see [Azure Virtual WAN FAQ ](https://aka.ms/mseeprefixtracking)  
+For more information, see [Azure Virtual WAN FAQ](https://aka.ms/mseeprefixtracking)  
 
 ResourceType: microsoft.network/virtualhubs  
 Recommendation ID: e3489565-d891-406e-91d1-44f476563850  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--e3489565-d891-406e-91d1-44f476563850_end-->
+
 
 <!--e070c4bf-afaf-413e-bc00-e476b89c5f3d_begin-->
 
@@ -446,9 +449,10 @@ For more information, see [Health monitoring overview for Azure Application Gate
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 01c0dcd3-d6f7-4d50-a98b-4e15f9486a32  
-Subcategory: Scalability
+Subcategory: undefined
 
 <!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_end-->
+
 
 
 <!--1afa00b3-bb4c-496d-99e5-b7bda59a057c_begin-->
@@ -613,5 +617,42 @@ Recommendation ID: 80415aba-c979-4199-b093-873d3a31fec0
 Subcategory: undefined
 
 <!--80415aba-c979-4199-b093-873d3a31fec0_end-->
+
+<!--c7b5d99f-9759-4a04-9e86-ff6a41e0902f_begin-->
+
+#### Use version-less Key Vault secret identifier to reference the certificates  
+  
+To allow your application gateway resource to automatically retrieve a new certificate version, we strongly recommend using a version-less secret identifier, whenever available. For example: https://myvault.vault.azure.net/secrets/mysecret/  
+  
+**Potential benefits**: Ensure auto-rotation for new certificate versions  
+
+**Impact:** High
+  
+For more information, see [TLS termination with Azure Key Vault certificates](https://aka.ms/agkvversion)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: c7b5d99f-9759-4a04-9e86-ff6a41e0902f  
+Subcategory: undefined
+
+<!--c7b5d99f-9759-4a04-9e86-ff6a41e0902f_end-->
+
+<!--0e19257e-dcef-4d00-8de1-5fe1ae0fd948_begin-->
+
+#### Application Gateway v1 has been retired. Migrate to Application Gateway v2.  
+  
+We announced the deprecation of Application Gateway V1 on April 28, 2023. Starting from April 28, 2026, we are retiring Application Gateway v1 SKU. If you use Application Gateway V1 SKU, start planning your migration to V2 now.  
+  
+**Potential benefits**: Plan your migration to v2 now.  
+
+**Impact:** High
+  
+For more information, see [We're retiring Application Gateway V1 SKU in April 2026 - Azure Application Gateway](https://aka.ms/appgw/v1eol)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 0e19257e-dcef-4d00-8de1-5fe1ae0fd948  
+Subcategory: undefined
+
+<!--0e19257e-dcef-4d00-8de1-5fe1ae0fd948_end-->
+
 
 <!--articleBody-->

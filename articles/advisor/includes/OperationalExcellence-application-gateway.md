@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/23/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -76,7 +76,7 @@ One or more of the Application Gateways are facing DNS resolution failures due t
 
 **Impact:** High
   
-For more information, see [Name resolution for resources in Azure virtual networks](https://aka.ms/azurednsresolution)  
+For more information, see [Azure Virtual Network Name Resolution Guide](https://aka.ms/azurednsresolution)  
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 884975b5-12b5-433d-a633-904d8db75c5f  
@@ -84,13 +84,14 @@ Recommendation ID: 884975b5-12b5-433d-a633-904d8db75c5f
 
 <!--884975b5-12b5-433d-a633-904d8db75c5f_end-->
 
+
 <!--ea000e01-b053-4076-a61b-e4cc58e9db07_begin-->
 
 #### Remove the conflicting private frontend IP configuration  
   
 The update operations on the gateway are failing due to conflicts with static private IP addresses. To resolve the issue, remove the conflicting frontend IP configuration. Allow a day for the message to disappear after fixed.  
   
-**Potential benefits**: Avoid disruption in management of Application Gateway V1 resource  
+**Potential benefits**: Avoid disruption in management of Application Gateway V1  
 
 **Impact:** High
   
@@ -102,23 +103,8 @@ Recommendation ID: ea000e01-b053-4076-a61b-e4cc58e9db07
 
 <!--ea000e01-b053-4076-a61b-e4cc58e9db07_end-->
 
-<!--ed19a87d-5729-4ba2-98bb-1a5a8d37b4c7_begin-->
-
-#### Application Gateway doesn't have enough capacity to scale out  
-  
-We detected that your Application Gateway subnet doesn't have enough capacity for allowing scale out during high traffic conditions, which can cause downtime.  
-  
-**Potential benefits**: Resolve control plane failures and data plane downtime  
-
-**Impact:** High
-  
-For more information, see [Frequently asked questions about Application Gateway](https://aka.ms/application-gateway-faq)  
-
-ResourceType: microsoft.network/applicationgateways  
-Recommendation ID: ed19a87d-5729-4ba2-98bb-1a5a8d37b4c7  
 
 
-<!--ed19a87d-5729-4ba2-98bb-1a5a8d37b4c7_end-->
 
 <!--7aaefe5a-5b88-4790-9a3d-5106722f7c34_begin-->
 
@@ -220,7 +206,7 @@ WAF rule sets are constantly updated to guard against new attacks. Upgrading to 
 
 **Impact:** High
   
-For more information, see [Azure Web Application Firewall DRS rule groups and rules](https://aka.ms/afdwafruleset)  
+  
 
 ResourceType: microsoft.network/frontdoorwebapplicationfirewallpolicies  
 Recommendation ID: a1ad465b-8218-40d6-a6ce-4bfff566a6cd  
@@ -228,23 +214,25 @@ Recommendation ID: a1ad465b-8218-40d6-a6ce-4bfff566a6cd
 
 <!--a1ad465b-8218-40d6-a6ce-4bfff566a6cd_end-->
 
+
 <!--c7a883a4-fda2-4bcd-9f78-dad70c19429f_begin-->
 
 #### Add explicit outbound method to disable default outbound  
   
-Use an explicit connectivity method such as NAT gateway or a Public IP. The depreciation of insecure default outbound public IP addresses for all new subnets is scheduled for September 2025.  
+Use an explicit connectivity method such as NAT gateway or a Public IP. After March 31, 2026, new virtual networks will default to creation of private subnets, which are intentionally designed to block default outbound access connectivity.  
   
 **Potential benefits**: Secure and explicit outbound access for new subnets.  
 
 **Impact:** Medium
   
-For more information, see [Default outbound access in Azure - Azure Virtual Network](https://aka.ms/defaultoutboundretirement)  
+For more information, see [Default Outbound Access in Azure - Azure Virtual Network](https://aka.ms/defaultoutboundretirement)  
 
 ResourceType: microsoft.network/networkinterfaces  
 Recommendation ID: c7a883a4-fda2-4bcd-9f78-dad70c19429f  
 
 
 <!--c7a883a4-fda2-4bcd-9f78-dad70c19429f_end-->
+
 
 <!--7c27d589-c7ed-47e1-8fe9-fe12ea81634a_begin-->
 
@@ -340,18 +328,37 @@ Recommendation ID: 8a885111-34c0-4fd6-bb77-dbbb844ad7e5
 
 #### Monitor health for virtual hubs  
   
-Set up monitoring and alerts for virtual hubs. Create alert rule to ensure prompt response to changes in BGP status and Data processed by virtual hubs.  
+Configure monitoring and alerts for virtual hubs. Create alert rule to ensure prompt response to changes in BGP status and data processed by virtual hubs.  
   
 **Potential benefits**: Detect and mitigate issues to avoid disruptions.  
 
 **Impact:** Medium
   
-For more information, see [Monitor Azure Virtual WAN](/azure/virtual-wan/monitoring-best-practices#virtual-hub)  
+For more information, see [Monitor Azure Virtual WAN](/azure/virtual-wan/monitor-virtual-wan#virtual-hub)  
 
 ResourceType: microsoft.network/virtualhubs  
 Recommendation ID: 8abe4b22-d8ad-4bff-babe-38b9267e46b7  
 
 
 <!--8abe4b22-d8ad-4bff-babe-38b9267e46b7_end-->
+
+
+<!--37652095-cbe3-4132-9c62-526eeb6f4d75_begin-->
+
+#### Migrate from Basic to Standard Virtual WAN  
+  
+Basic tier isn't recommended for critical workloads. Standard tier provides important features including Inter-hub and VNet-to-VNet transiting through the virtual hub, ExpressRoute, VPN and Point-to-Site Gateways, ability to deploy Azure Firewalls and NVAs.  
+  
+**Potential benefits**: Full Mesh communication and resiliency  
+
+**Impact:** High
+  
+For more information, see [Upgrade Virtual WAN - Basic SKU type to Standard - Azure Virtual WAN](/azure/virtual-wan/upgrade-virtual-wan)  
+
+ResourceType: microsoft.network/virtualhubs  
+Recommendation ID: 37652095-cbe3-4132-9c62-526eeb6f4d75  
+
+
+<!--37652095-cbe3-4132-9c62-526eeb6f4d75_end-->
 
 <!--articleBody-->

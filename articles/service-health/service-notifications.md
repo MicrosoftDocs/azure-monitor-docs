@@ -2,7 +2,7 @@
 title: View service health notifications from the Azure portal
 description: View your service health notifications in the Azure portal. The Azure infrastructure publishes Service health notifications into the Azure activity log.
 ms.topic: how-to
-ms.date: 10/07/2025
+ms.date: 10/23/2025
 ---
 
 # View service health notifications from the Azure portal
@@ -12,7 +12,7 @@ Given that there could be large volume of information stored in the activity log
 
 Service health notifications can be informational or actionable, depending on the class.
 
-For more information on the various classes of service health notifications, see [Service health notifications properties](service-health-notifications-properties.md).
+For more information on the various classes of service health notifications, see [Service health notifications](service-health-notifications-properties.md).
 
 ## View your service health notifications in the Azure portal
 

@@ -86,6 +86,9 @@ This section guides you through automatically adding Application Insights to a t
 
 # [ASP.NET](#tab/net)
 
+> [!NOTE]
+> There's a known issue in Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *Applicationinsights.config* file to work around this bug.
+
 From within your ASP.NET web app project in Visual Studio:
 
 1. Select **Project** > **Add Application Insights Telemetry** > **Application Insights Sdk (local)** > **Next** > **Finish** > **Close**.
@@ -1068,7 +1071,7 @@ Add a listener to `web.config` or `app.config`:
 **Option 2:** Right-click your project in Solution Explorer to **Configure Application Insights**. Select the **Configure trace collection** option.
 
 > [!NOTE]
-> No Application Insights menu or log collector option? Try [Troubleshooting](#troubleshooting).
+> If you're missing the Application Insights menu or log collector option, refer to the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
 
 # [ASP.NET Core](#tab/core)
 
@@ -1416,53 +1419,6 @@ Correlation is handled by default when onboarding an app. No special actions are
 .NET runtime supports distributed with the help of [Activity](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) and [DiagnosticSource](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)
 
 The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to collect and correlate telemetry.
-
-#### Troubleshoot trace logs
-
-Find answers to common questions.
-
-<br>
-<details>
-<summary><b>Expand to view troubleshooting topics</b></summary>
-
-##### What causes delayed telemetry, an overloaded network, and inefficient transmission?
-
-System.Diagnostics.Tracing has an [Autoflush feature](/dotnet/api/system.diagnostics.trace.autoflush). This feature causes SDK to flush with every telemetry item, which is undesirable, and can cause logging adapter issues like delayed telemetry, an overloaded network, and inefficient transmission.
-
-##### How do I do this for Java?
-
-In Java codeless instrumentation, which is recommended, the logs are collected out of the box. Use [Java 3.0 agent](./opentelemetry-enable.md?tabs=java).
-
-The Application Insights Java agent collects logs from Log4j, Logback, and java.util.logging out of the box.
-
-##### Why is there no Application Insights option on the project context menu?
-
-* Make sure that Developer Analytics Tools is installed on the development machine. In Visual Studio, go to  **Tools** > **Extensions and Updates**, and look for **Developer Analytics Tools**. If it isn't on the **Installed** tab, open the **Online** tab and install it.
-* This project type might be one that Developer Analytics Tools doesn't support. Use [manual installation](#manual-installation).
-
-##### Why is there no log adapter option in the configuration tool?
-
-* Install the logging framework first.
-* If you're using System.Diagnostics.Trace, make sure that you [configured it in *web.config*](/dotnet/api/system.diagnostics.eventlogtracelistener).
-* Make sure that you have the latest version of Application Insights. In Visual Studio, go to **Tools** > **Extensions and Updates** and open the **Updates** tab. If **Developer Analytics Tools** is there, select it to update it.
-
-##### Why do I get the "Instrumentation key cannot be empty" error message?
-
-You probably installed the logging adapter NuGet package without installing Application Insights. In Solution Explorer, right-click *ApplicationInsights.config*, and select **Update Application Insights**. You're prompted to sign in to Azure and create an Application Insights resource or reuse an existing one. It should fix the problem.
-
-##### Why can I see traces but not other events in diagnostic search?
-
-It can take a while for all the events and requests to get through the pipeline.
-
-##### How much data is retained?
-
-Several factors affect the amount of data that's retained. For more information, see the [Limits](#limits) section of the customer event metrics page.
-
-##### Why don't I see some log entries that I expected?
-
-Perhaps your application sends voluminous amounts of data and you're using the Application Insights SDK for ASP.NET version 2.0.0-beta3 or later. In this case, the adaptive sampling feature might operate and send only a portion of your telemetry. Learn more about [sampling](./sampling.md).
-
-</details>
 
 ### Dependencies
 
@@ -3205,10 +3161,8 @@ protected void Application_Start()
 
 See more of [this sample](https://github.com/MohanGsk/ApplicationInsights-Home/tree/master/Samples/AzureEmailService/MvcWebRole).
 
-##### Troubleshoot ApplicationInsights.config
-
-* Confirm that the fully qualified type name and assembly name are correct.
-* Confirm that the applicationinsights.config file is in your output directory and contains any recent changes.
+> [!NOTE]
+> Make sure the *applicationinsights.config* file is in your output directory and contains any recent changes.
 
 # [ASP.NET Core](#tab/core-1)
 
@@ -3862,7 +3816,7 @@ By default, a maximum of 10 `Transmission` instances can be sent in parallel. If
 
 For the full list of configurable settings for each channel, see:
 
-* [InMemoryChannel](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/BASE/src/Microsoft.ApplicationInsights/Channel/InMemoryChannel.cs)
+* [InMemoryChannel](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/BASE/Test/Microsoft.ApplicationInsights.Test/Microsoft.ApplicationInsights.Tests/Channel/InMemoryChannelTest.cs)
 * [ServerTelemetryChannel](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/BASE/src/ServerTelemetryChannel/ServerTelemetryChannel.cs)
 
 Here are the most commonly used settings for `ServerTelemetryChannel`:
@@ -4468,8 +4422,6 @@ Use this sample if you have a [.NET](/dotnet/fundamentals/) Worker Service appli
 ## Troubleshooting
 
 See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
-
-There's a known issue in Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *Applicationinsights.config* file to work around this bug. This article is designed to avoid this issue entirely, by not using user secrets.
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 

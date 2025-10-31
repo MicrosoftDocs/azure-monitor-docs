@@ -2,7 +2,7 @@
 title: Service Health event tags
 description: Learn how to understand and use the event tags in Azure Service Health
 ms.topic: overview
-ms.date: 9/24/2025
+ms.date: 10/16/2025
 ---
 
 # Service Health event tags
@@ -37,7 +37,7 @@ For example, tags like “Action Recommended” are often highlighted in red to 
 
 ## Event subtypes
 
-Event subtypes are more granular classifications within each event type. They help further specify the nature of the event and can tell you specifically what aspect of that issue is involved.<br>
+Event subtypes are more granular classifications within each event type. They help further specify the nature of the event and can tell you specifically what aspect of that issue is involved.
 
 For example:
 

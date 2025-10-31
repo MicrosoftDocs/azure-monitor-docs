@@ -111,7 +111,7 @@ Here's an example of response:
   "ext_expires_in": "599",
   "expires_on": "1575500555",
   "not_before": "1575499766",
-  "resource": "ce34...1e4f",
+  "resource": "6f2d...8c45",
   "access_token": "eyJ0eXAiOiJ......AARUQ"
 }
 ```

@@ -127,7 +127,7 @@ To receive an alert when the daily cap is reached, create a [log search alert ru
 
 
 ### Classic Application Insights resource
-When the daily cap is reach for a classic Application Insights resource, an event is created in the Azure Activity log with the following signal names. You can also optionally have an email sent to the subscription administrator both when the cap is reached and when a specified percentage of the daily cap has been reached.
+When the daily cap is reached for a classic Application Insights resource, an event is created in the Azure Activity log with the following signal names. You can also optionally have an email sent to the subscription administrator both when the cap is reached and when a specified percentage of the daily cap has been reached.
 
 * Application Insights component daily cap warning threshold reached
 * Application Insights component daily cap reached
