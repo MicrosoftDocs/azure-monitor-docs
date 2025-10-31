@@ -1254,6 +1254,8 @@ items:
             href: tables/microsoft-app_managedenvironments.md
           - name: microsoft.appconfiguration/configurationstores
             href: tables/microsoft-appconfiguration_configurationstores.md
+          - name: microsoft.applink/applinks/applinksmembers
+            href: tables/microsoft-applink_applinks_applinksmembers.md
           - name: microsoft.appplatform/spring
             href: tables/microsoft-appplatform_spring.md
           - name: microsoft.attestation/attestationproviders
@@ -1300,6 +1302,8 @@ items:
             href: tables/microsoft-compute_virtualmachinescalesets.md
           - name: microsoft.conenctedvmwarevsphere/virtualmachines
             href: tables/microsoft-conenctedvmwarevsphere_virtualmachines.md
+          - name: microsoft.confidentialledger/ledgers
+            href: tables/microsoft-confidentialledger_ledgers.md
           - name: microsoft.confidentialledger/managedccfs
             href: tables/microsoft-confidentialledger_managedccfs.md
           - name: microsoft.connectedcache/cachenodes
@@ -1392,6 +1396,8 @@ items:
             href: tables/microsoft-healthcareapis_services.md
           - name: microsoft.healthcareapis/workspaces
             href: tables/microsoft-healthcareapis_workspaces.md
+          - name: microsoft.healthcareinterop/workspaces
+            href: tables/microsoft-healthcareinterop_workspaces.md
           - name: microsoft.healthdataaiservices/deidservices
             href: tables/microsoft-healthdataaiservices_deidservices.md
           - name: microsoft.hybridcontainerservice/provisionedclusters
@@ -1635,6 +1641,10 @@ items:
             href: tables/absbotrequests.md
           - name: ACICollaborationAudit
             href: tables/acicollaborationaudit.md
+          - name: ACLTransactionLogs
+            href: tables/acltransactionlogs.md
+          - name: ACLUserDefinedLogs
+            href: tables/acluserdefinedlogs.md
           - name: ACRConnectedClientList
             href: tables/acrconnectedclientlist.md
           - name: ACREntraAuthenticationAuditLog
@@ -1781,6 +1791,8 @@ items:
             href: tables/agwfirewalllogs.md
           - name: AGWPerformanceLogs
             href: tables/agwperformancelogs.md
+          - name: AHCIDiagnosticLogs
+            href: tables/ahcidiagnosticlogs.md
           - name: AHDSDeidAuditLogs
             href: tables/ahdsdeidauditlogs.md
           - name: AHDSDicomAuditLogs
@@ -2669,6 +2681,8 @@ items:
             href: tables/lasummarylogs.md
           - name: LIATrackingEvents
             href: tables/liatrackingevents.md
+          - name: LLMActivity
+            href: tables/llmactivity.md
           - name: LogicAppWorkflowRuntime
             href: tables/logicappworkflowruntime.md
           - name: MAApplication
@@ -2757,6 +2771,8 @@ items:
             href: tables/mpcingestionlogs.md
           - name: McasShadowItReporting
             href: tables/mcasshadowitreporting.md
+          - name: MeshControlPlane
+            href: tables/meshcontrolplane.md
           - name: MicrosoftAzureBastionAuditLogs
             href: tables/microsoftazurebastionauditlogs.md
           - name: MicrosoftDataShareReceivedSnapshotLog
@@ -2813,6 +2829,8 @@ items:
             href: tables/ntaipdetails.md
           - name: NTANetAnalytics
             href: tables/ntanetanalytics.md
+          - name: NTARuleRecommendation
+            href: tables/ntarulerecommendation.md
           - name: NTATopologyDetails
             href: tables/ntatopologydetails.md
           - name: NWConnectionMonitorDNSResult
@@ -2859,6 +2877,18 @@ items:
             href: tables/olpsupplychainentityoperations.md
           - name: OLPSupplyChainEvents
             href: tables/olpsupplychainevents.md
+          - name: OTelEvents
+            href: tables/otelevents.md
+          - name: OTelLogs
+            href: tables/otellogs.md
+          - name: OTelResources
+            href: tables/otelresources.md
+          - name: OTelSpans
+            href: tables/otelspans.md
+          - name: OTelTraces
+            href: tables/oteltraces.md
+          - name: OTelTracesAgent
+            href: tables/oteltracesagent.md
           - name: OfficeActivity
             href: tables/officeactivity.md
           - name: OktaSystemLogs
@@ -3261,6 +3291,10 @@ items:
             href: queries/ABSBotRequests.md
           - name: ACICollaborationAudit
             href: queries/ACICollaborationAudit.md
+          - name: ACLTransactionLogs
+            href: queries/ACLTransactionLogs.md
+          - name: ACLUserDefinedLogs
+            href: queries/ACLUserDefinedLogs.md
           - name: ACRConnectedClientList
             href: queries/ACRConnectedClientList.md
           - name: ACREntraAuthenticationAuditLog
@@ -3345,6 +3379,8 @@ items:
             href: queries/AGCAccessLogs.md
           - name: AGSGrafanaLoginEvents
             href: queries/AGSGrafanaLoginEvents.md
+          - name: AHCIDiagnosticLogs
+            href: queries/AHCIDiagnosticLogs.md
           - name: AHDSDicomAuditLogs
             href: queries/AHDSDicomAuditLogs.md
           - name: AHDSDicomDiagnosticLogs
@@ -3557,6 +3593,12 @@ items:
             href: queries/ContainerServiceLog.md
           - name: CoreAzureBackup
             href: queries/CoreAzureBackup.md
+          - name: CrowdStrikeAlerts
+            href: queries/CrowdStrikeAlerts.md
+          - name: CrowdStrikeDetections
+            href: queries/CrowdStrikeDetections.md
+          - name: CrowdStrikeIncidents
+            href: queries/CrowdStrikeIncidents.md
           - name: DCRLogErrors
             href: queries/DCRLogErrors.md
           - name: DNSQueryLogs
@@ -3651,6 +3693,8 @@ items:
             href: queries/LAQueryLogs.md
           - name: LASummaryLogs
             href: queries/LASummaryLogs.md
+          - name: LLMActivity
+            href: queries/LLMActivity.md
           - name: LogicAppWorkflowRuntime
             href: queries/LogicAppWorkflowRuntime.md
           - name: MDCDetectionDNSEvents
@@ -3665,6 +3709,8 @@ items:
             href: queries/MNFSystemSessionHistoryUpdates.md
           - name: MNFSystemStateMessageUpdates
             href: queries/MNFSystemStateMessageUpdates.md
+          - name: MeshControlPlane
+            href: queries/MeshControlPlane.md
           - name: MicrosoftDataShareReceivedSnapshotLog
             href: queries/MicrosoftDataShareReceivedSnapshotLog.md
           - name: MicrosoftDataShareSentSnapshotLog
@@ -3681,6 +3727,8 @@ items:
             href: queries/NGXOperationLogs.md
           - name: NGXSecurityLogs
             href: queries/NGXSecurityLogs.md
+          - name: NTARuleRecommendation
+            href: queries/NTARuleRecommendation.md
           - name: NWConnectionMonitorPathResult
             href: queries/NWConnectionMonitorPathResult.md
           - name: NWConnectionMonitorTestResult
@@ -3701,6 +3749,12 @@ items:
             href: queries/OEWExperimentScorecards.md
           - name: OLPSupplyChainEntityOperations
             href: queries/OLPSupplyChainEntityOperations.md
+          - name: OTelEvents
+            href: queries/OTelEvents.md
+          - name: OTelLogs
+            href: queries/OTelLogs.md
+          - name: OTelSpans
+            href: queries/OTelSpans.md
           - name: OfficeActivity
             href: queries/OfficeActivity.md
           - name: OktaSystemLogs
