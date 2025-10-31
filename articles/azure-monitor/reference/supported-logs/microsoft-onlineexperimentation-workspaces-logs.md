@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.HealthcareApis/workspaces/dicomservices
-description: Reference for Microsoft.HealthcareApis/workspaces/dicomservices in Azure Monitor Logs.
+title: Supported log categories - microsoft.onlineexperimentation/workspaces
+description: Reference for microsoft.onlineexperimentation/workspaces in Azure Monitor Logs.
 ms.topic: generated-reference
 ms.date: 10/31/2025
-ms.custom: Microsoft.HealthcareApis/workspaces/dicomservices, naam
+ms.custom: microsoft.onlineexperimentation/workspaces, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,16 +12,12 @@ ms.custom: Microsoft.HealthcareApis/workspaces/dicomservices, naam
 
 
 
-# Supported logs for Microsoft.HealthcareApis/workspaces/dicomservices  
-The following table lists the types of logs available for the Microsoft.HealthcareApis/workspaces/dicomservices resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.HealthcareApis/workspaces/dicomservices](../supported-metrics/microsoft-healthcareapis-workspaces-dicomservices-metrics.md)  
+# Supported logs for microsoft.onlineexperimentation/workspaces  
+The following table lists the types of logs available for the microsoft.onlineexperimentation/workspaces resource type.
   
 
   
-[!INCLUDE [Microsoft.HealthcareApis/workspaces/dicomservices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthcareapis-workspaces-dicomservices-logs-include.md)]  
+[!INCLUDE [microsoft.onlineexperimentation/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-onlineexperimentation-workspaces-logs-include.md)]  
   
 
 ## Next Steps

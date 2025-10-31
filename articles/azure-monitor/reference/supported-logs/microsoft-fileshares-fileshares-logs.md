@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.HealthcareApis/workspaces/dicomservices
-description: Reference for Microsoft.HealthcareApis/workspaces/dicomservices in Azure Monitor Logs.
+title: Supported log categories - Microsoft.FileShares/fileShares
+description: Reference for Microsoft.FileShares/fileShares in Azure Monitor Logs.
 ms.topic: generated-reference
 ms.date: 10/31/2025
-ms.custom: Microsoft.HealthcareApis/workspaces/dicomservices, naam
+ms.custom: Microsoft.FileShares/fileShares, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,16 +12,16 @@ ms.custom: Microsoft.HealthcareApis/workspaces/dicomservices, naam
 
 
 
-# Supported logs for Microsoft.HealthcareApis/workspaces/dicomservices  
-The following table lists the types of logs available for the Microsoft.HealthcareApis/workspaces/dicomservices resource type.
+# Supported logs for Microsoft.FileShares/fileShares  
+The following table lists the types of logs available for the Microsoft.FileShares/fileShares resource type.
   
   
   
-For a list of supported metrics, see [Supported metrics - Microsoft.HealthcareApis/workspaces/dicomservices](../supported-metrics/microsoft-healthcareapis-workspaces-dicomservices-metrics.md)  
+For a list of supported metrics, see [Supported metrics - Microsoft.FileShares/fileShares](../supported-metrics/microsoft-fileshares-fileshares-metrics.md)  
   
 
   
-[!INCLUDE [Microsoft.HealthcareApis/workspaces/dicomservices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthcareapis-workspaces-dicomservices-logs-include.md)]  
+[!INCLUDE [Microsoft.FileShares/fileShares](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-fileshares-fileshares-logs-include.md)]  
   
 
 ## Next Steps

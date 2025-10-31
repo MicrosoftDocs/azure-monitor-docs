@@ -1,29 +1,29 @@
 ---
-title: Supported metrics - Microsoft.Web/serverfarms
-description: Reference for Microsoft.Web/serverfarms metrics in Azure Monitor.
+title: Supported metrics - Oracle.Database/dbSystems
+description: Reference for Oracle.Database/dbSystems metrics in Azure Monitor.
 ms.topic: generated-reference
 ms.date: 10/31/2025
-ms.custom: Microsoft.Web/serverfarms, naam
+ms.custom: Oracle.Database/dbSystems, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Microsoft.Web/serverfarms
+# Supported metrics for Oracle.Database/dbSystems
   
-The following table lists the metrics available for the Microsoft.Web/serverfarms resource type.  
+The following table lists the metrics available for the Oracle.Database/dbSystems resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
   
   
-For a list of supported logs, see [Supported log categories - Microsoft.Web/serverfarms](../supported-logs/microsoft-web-serverfarms-logs.md)  
+For a list of supported logs, see [Supported log categories - Oracle.Database/dbSystems](../supported-logs/oracle-database-dbsystems-logs.md)  
   
  
 
-[!INCLUDE [Microsoft.Web/serverfarms](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-web-serverfarms-metrics-include.md)]  
+[!INCLUDE [Oracle.Database/dbSystems](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/oracle-database-dbsystems-metrics-include.md)]  
 
 
 

@@ -1,29 +1,29 @@
 ---
-title: Supported metrics - Microsoft.Web/serverfarms
-description: Reference for Microsoft.Web/serverfarms metrics in Azure Monitor.
+title: Supported metrics - Microsoft.FileShares/fileShares
+description: Reference for Microsoft.FileShares/fileShares metrics in Azure Monitor.
 ms.topic: generated-reference
 ms.date: 10/31/2025
-ms.custom: Microsoft.Web/serverfarms, naam
+ms.custom: Microsoft.FileShares/fileShares, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Microsoft.Web/serverfarms
+# Supported metrics for Microsoft.FileShares/fileShares
   
-The following table lists the metrics available for the Microsoft.Web/serverfarms resource type.  
+The following table lists the metrics available for the Microsoft.FileShares/fileShares resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
   
   
-For a list of supported logs, see [Supported log categories - Microsoft.Web/serverfarms](../supported-logs/microsoft-web-serverfarms-logs.md)  
+For a list of supported logs, see [Supported log categories - Microsoft.FileShares/fileShares](../supported-logs/microsoft-fileshares-fileshares-logs.md)  
   
  
 
-[!INCLUDE [Microsoft.Web/serverfarms](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-web-serverfarms-metrics-include.md)]  
+[!INCLUDE [Microsoft.FileShares/fileShares](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-fileshares-fileshares-metrics-include.md)]  
 
 
 
