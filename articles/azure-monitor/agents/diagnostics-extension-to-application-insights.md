@@ -21,7 +21,7 @@ Example configuration of a sink for Application Insights:
 ```xml
 <SinksConfig>
     <Sink name="ApplicationInsights">
-      <ApplicationInsights>YOUR_CONNECTION_STRING</ApplicationInsights>
+      <ApplicationInsights>{Insert ConnectionString}</ApplicationInsights>
       <Channels>
         <Channel logLevel="Error" name="MyTopDiagData"  />
         <Channel logLevel="Verbose" name="MyLogData"  />
@@ -34,7 +34,7 @@ Example configuration of a sink for Application Insights:
     "Sink": [
         {
             "name": "ApplicationInsights",
-            "ApplicationInsights": "YOUR_CONNECTION_STRING",
+            "ApplicationInsights": "{Insert ConnectionString}",
             "Channels": {
                 "Channel": [
                     {
@@ -102,7 +102,7 @@ Here's a complete example of the public configuration file that:
 
 <SinksConfig>
     <Sink name="ApplicationInsights">
-      <ApplicationInsights>YOUR_CONNECTION_STRING</ApplicationInsights>
+      <ApplicationInsights>{Insert ConnectionString}</ApplicationInsights>
       <Channels>
         <Channel logLevel="Error" name="MyTopDiagData"  />
         <Channel logLevel="Verbose" name="MyLogData"  />
@@ -149,7 +149,7 @@ Here's a complete example of the public configuration file that:
         "Sink": [
             {
                 "name": "ApplicationInsights",
-                "ApplicationInsights": "YOUR_CONNECTION_STRING",
+                "ApplicationInsights": "{Insert ConnectionString}",
                 "Channels": {
                     "Channel": [
                         {

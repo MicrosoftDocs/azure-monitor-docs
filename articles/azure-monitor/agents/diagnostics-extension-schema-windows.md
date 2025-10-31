@@ -440,8 +440,8 @@ The *PublicConfig* and *PrivateConfig* are separated because in most JSON usage 
                     "name": "AzureMonitorSink",
                     "AzureMonitor":
                     {
-                        "ResourceId": "{insert resourceId if a classic VM or cloud service, else property not needed}",
-                        "Region": "{insert Azure region of resource if a classic VM or cloud service, else property not needed}"
+                        "ResourceId": "{Insert resourceId if a classic VM or cloud service, else property not needed}",
+                        "Region": "{Insert Azure region of resource if a classic VM or cloud service, else property not needed}"
                     }
                 },
                 {
@@ -605,8 +605,8 @@ The *PublicConfig* and *PrivateConfig* are separated because in most JSON usage 
       <SinksConfig> <!-- Added in 1.5 -->
         <Sink name="AzureMonitorSink">
             <AzureMonitor> <!-- Added in 1.11 -->
-                <resourceId>{insert resourceId}</ResourceId> <!-- Parameter only needed for classic VMs and Classic Cloud Services, exclude VMSS and Resource Manager VMs-->
-                <Region>{insert Azure region of resource}</Region> <!-- Parameter only needed for classic VMs and Classic Cloud Services, exclude VMSS and Resource Manager VMs -->
+                <resourceId>{Insert resourceId}</ResourceId> <!-- Parameter only needed for classic VMs and Classic Cloud Services, exclude VMSS and Resource Manager VMs-->
+                <Region>{Insert Azure region of resource}</Region> <!-- Parameter only needed for classic VMs and Classic Cloud Services, exclude VMSS and Resource Manager VMs -->
             </AzureMonitor>
         </Sink>
         <Sink name="ApplicationInsights">
