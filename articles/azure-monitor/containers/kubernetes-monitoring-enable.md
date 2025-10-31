@@ -100,7 +100,6 @@ Each of the commands above allow the following optional parameters. The paramete
 > [!NOTE]
 > Note that the parameters set using - ksm-metric-annotations-allow-list and ksm-metric-labels-allow-list can be overridden or alternatively set using the [ama-metrics-settings-configmap](./prometheus-metrics-scrape-configuration.md/#kube-state-metrics)
 
-
 #### Container logs
 
 Use the `--addon monitoring` option with [az aks create](/cli/azure/aks#az-aks-create) for a new cluster or [az aks enable-addon](/cli/azure/aks#az-aks-enable-addons) to update an existing cluster to enable collection of container logs. See below to modify the log collection settings.

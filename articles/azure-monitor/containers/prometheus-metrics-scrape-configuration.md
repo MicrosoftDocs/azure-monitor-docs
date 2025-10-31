@@ -117,9 +117,9 @@ To view every metric that's being scraped for debugging purposes, the metrics ad
 
 ### Kube-state-metrics
 
-To override the default startup paramaters(resources, metric-labels-allowlist and metric-annotations-allowlist) of kube-state-metrics deployment (ama-metrics-ksm) that is installed as a part of Managed Prometheus enablement use the [ama-metrics-settings-configmap](https://github.com/Azure/prometheus-collector/blob/0ca49133ef65150e759fad8fe21e46c132f789e9/otelcollector/configmaps/ama-metrics-settings-configmap.yaml#L97C3-L112C18).
+To override the default startup paramaters(resources, metric-labels-allowlist and metric-annotations-allowlist) of kube-state-metrics deployment (ama-metrics-ksm) that is installed as a part of Managed Prometheus enablement, use the [ama-metrics-settings-configmap](https://github.com/Azure/prometheus-collector/blob/0ca49133ef65150e759fad8fe21e46c132f789e9/otelcollector/configmaps/ama-metrics-settings-configmap.yaml#L97C3-L112C18).
 
-The settings provided in the configmap override the parameters that are set during onboarding for [ksm-metrics-labels-allow-list and ksm-metrics-annotations-allow-list](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#optional-parameters)
+The settings for in the configmap for labels_allow_list and annotations_allow_lsit override the parameters that are set during onboarding for [ksm-metrics-labels-allow-list and ksm-metrics-annotations-allow-list](./kubernetes-monitoring-enable.md/#optional-parameters)
 
 The settings for resources override the [default collectors](https://github.com/Azure/prometheus-collector/blob/0ca49133ef65150e759fad8fe21e46c132f789e9/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/values-template.yaml#L13) set for ama-metrics-ksm deployment
 
@@ -143,7 +143,7 @@ Note that the below is a yaml configuration -
 > Customizing these values can affect the default data collected as a part of the kube-state-metrics job and can result in certain dashboards not loading data.
 > Deleting the entire section (ksm-config) in the setting configmap needs for the ama-metrics-ksm deployment to be recreated. This can either be done by deleting the ama-metrics-ksm pod or by doing - kubectl rollout restart deployment/ama-metrics -n kube-system
 > Recommendation as is to only customize these 3 parameters when needed, setting additional parameters as overrides is an unsupported scenario - while possible, has to be used with caution 
-> [OSS documentation for kube-state-metrics resources and the metrics](https://github.com/kubernetes/kube-state-metrics/tree/main/docs#exposed-metrics)
+> [OSS documentation for kube-state-metrics cli arguments](https://github.com/kubernetes/kube-state-metrics/blob/main/docs/developer/cli-arguments.md#available-options)
 
 
 ## Next steps
