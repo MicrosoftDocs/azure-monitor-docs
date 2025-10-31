@@ -77,9 +77,11 @@ You may prepare a cluster using either the Azure portal or Azure CLI.
 
 Use the Azure portal to prepare a cluster.
 
-:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-1.png" alt-text="Azure portal screenshot showing how to enable Application monitoring for an AKS cluster under monitor settings along with Prometheus, Grafana, and Log Analytics options." lightbox="media/kubernetes-codeless/prepare-a-cluster-1.png":::
+1. Select the **Monitor** pane.
+1. Check the "Enable application monitoring" box.
+1. Select the "Review and enable" button.
 
-:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-2.png" alt-text="Azure portal screenshot showing the namespaces list for an AKS cluster, displaying multiple active Kubernetes namespaces with columns for name, status, age, and type." lightbox="media/kubernetes-codeless/prepare-a-cluster-2.png":::
+:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-1.png" alt-text="Azure portal screenshot showing how to enable Application monitoring for an AKS cluster under monitor settings along with Prometheus, Grafana, and Log Analytics options." lightbox="media/kubernetes-codeless/prepare-a-cluster-1.png":::
 
 #### [Azure CLI](#tab/programmatic)
 
@@ -207,14 +209,6 @@ Use mixed mode when most deployments use a default configuration and a few deplo
 
 You may restart a deployment using either the Azure portal or the Kubernetes command line (`kubectl`) tool.
 
-#### [Azure Portal](#tab/portal)
-
-Use the Azure portal to restart a deployment.
-
-:::image type="content" source="media/kubernetes-codeless/restart-deployment.png" alt-text="Azure portal view of the configure application monitoring pane for the namespace, showing Node.js and Java selected and both deployments successfully instrumented, indicating that application monitoring has been enabled." lightbox="media/kubernetes-codeless/restart-deployment.png":::
-
-#### [Command Line](#tab/programmatic)
-
 Run the following command after all custom resources are created and deployments are optionally annotated.
 
 ```shell
@@ -223,11 +217,13 @@ kubectl rollout restart deployment <deployment-name> -n mynamespace1
 
 This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences. You're able to use all Application Insights Experiences except Live Metrics and Application Insights Code Analysis features. Learn more about the available Application Insights experiences [here](app-insights-overview.md#application-insights-experiences).
 
----
-
 ## Remove Autoinstrumentation for AKS
 
 You may remove AKS autoinstrumentation using either the Azure portal or Azure CLI.
+
+> [!TIP]
+> * Removing AKS autoinstrumentation by using the Azure portal or Azure CLI removes it from the entire cluster.
+> * To remove autoinstrumentation from a single namespace, delete the associated **Instrumentation** custom resource (CR). (for example, `kubectl delete instrumentation <instrumentation-name> -n <namespace-name>`) 
 
 #### [Azure Portal](#tab/portal)
 
