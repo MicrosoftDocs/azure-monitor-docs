@@ -97,6 +97,10 @@ Each of the commands above allow the following optional parameters. The paramete
 | Label keys | `--ksm-metric-labels-allow-list`<br><br>Comma-separated list of more Kubernetes label keys that is used in the resource's kube_resource_labels metric kube_resource_labels metric. For example, kube_pod_labels is the labels metric for the pods resource. By default this metric contains only name and namespace labels. To include more labels, provide a list of resource names in their plural form and Kubernetes label keys that you want to allow for them A single `*` can be provided for each resource to allow any labels, but i this has severe performance implications. For example, `pods=[app],namespaces=[k8s-label-1,k8s-label-n,...],...`. |
 | Recording rules | `--enable-windows-recording-rules`<br><br>Lets you enable the recording rule groups required for proper functioning of the Windows dashboards. |
 
+> [!NOTE]
+> Note that the parameters set using - ksm-metric-annotations-allow-list and ksm-metric-labels-allow-list can be overridden or alternatively set using the [ama-metrics-settings-configmap](./prometheus-metrics-scrape-configuration.md/#kube-state-metrics)
+
+
 #### Container logs
 
 Use the `--addon monitoring` option with [az aks create](/cli/azure/aks#az-aks-create) for a new cluster or [az aks enable-addon](/cli/azure/aks#az-aks-enable-addons) to update an existing cluster to enable collection of container logs. See below to modify the log collection settings.
