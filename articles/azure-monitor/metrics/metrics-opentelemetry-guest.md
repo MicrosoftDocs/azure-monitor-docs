@@ -234,7 +234,7 @@ The following performance counters are collected by the Azure Monitor Agent for 
 | System(*)\\CPUs | System |
 
 > [!TIP]
-> Feel free to share your feedback on new performance counters or functionality you would like to see by posting to our [Github Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](/answers/questions/564554/where-can-i-submit-suggestions-for-azure).
+> Feel free to share your feedback on new performance counters or functionality you would like to see by posting to our [GitHub Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](/answers/questions/564554/where-can-i-submit-suggestions-for-azure).
 
 ## Resource Attributes
 
