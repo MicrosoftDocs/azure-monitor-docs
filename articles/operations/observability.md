@@ -1,6 +1,6 @@
 ---
 title: Observability in Azure Operations Center (preview)
-description: Provides guidance on navigating and utilizing the features of the Azure Operations Center portal for managing operations and accessing agentic workflows.
+description: Describes the Observability pillar in Azure Operations Center, which helps you monitor the health and performance of your cloud applications and resources.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---

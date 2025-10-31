@@ -1,6 +1,6 @@
 ---
 title: Configuration in Azure Operations Center (preview)
-description: Provides guidance on navigating and utilizing the features of the Azure Operations Center portal for managing operations and accessing agentic workflows.
+description: Describes the Configuration pillar in Azure Operations Center and provides details on using machine enrollment to automatically configure management for VMs in your subscription.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
@@ -15,6 +15,9 @@ The Configuration pillar uses the following Azure services:
 - [Azure Policy](/azure/governance/policy/overview)
 - [Azure Update Manager](/azure/update-manager/overview)
 - [Change tracking and inventory](/azure/automation/change-tracking/overview-monitoring-agent)
+- [Machine configuration](/azure/governance/machine-configuration/overview)
+- [Azure Advisor](/azure/advisor/advisor-overview)
+
 
 ## Menu items
 The Configuration pillar includes the following menu items:
@@ -30,9 +33,19 @@ The Configuration pillar includes the following menu items:
 | Recommendations | Azure Advisor recommendations related to resiliency. |
 
 ## Configuration overview
-The configuration overview page provides a single-pane snapshot of policy compliance and update requirements for your virtual machines. Drill down on any of the tiles to open other pages in the Configuration pillar for more details.
+The **Configuration** overview page provides a single-pane snapshot of policy compliance and update requirements across your Azure resources. Drill down on any of the tiles to open other pages in the Configuration pillar for more details.
 
-:::image type="content" source="./media/portal/configuration-pillar.png" lightbox="./media/portal/configuration-pillar.png" alt-text="Screenshot of Configuration menu in the Azure portal":::
+:::image type="content" source="./media/configuration/configuration-pillar.png" lightbox="./media/configuration/configuration-pillar.png" alt-text="Screenshot of Configuration menu in the Azure portal":::
+
+The **Configuration** overview page includes the following sections. Modify the scope of tiles by selecting the **Subscription** filter at the top of the page.
+
+| Section | Description |
+|:---|:---|
+| Compliance summary | Summary of the policy compliance for all of your Azure resources. Click **View details** to open the **Policy** page for details on individual resources and to create remediations to improve compliance.  |
+| Update management | Summary of the update status for your virtual machines. Click **View details** to open the **Update Management** page. |
+| Baselines compliance | |
+| Patch orchestration configuration of Azure virtual machines | | 
+| Machine assignments by compliance state | |
 
 
 ## Machine enrollment
@@ -85,7 +98,7 @@ The following behavior applies to existing VMs in the subscription when machine 
 
 During gated preview, the Azure portal is the only supported method for enabling machine management. Go to **Operations center** in the Azure portal and select **Machine enrollment**. Click **Enable** to enable machine management for a subscription.
 
-:::image type="content" source="./media/onboarding/machine-enrollment.png" lightbox="./media/onboarding/machine-enrollment.png" alt-text="Screenshot of machine enrollment screen with no subscriptions enabled.":::
+:::image type="content" source="./media/configuration/machine-enrollment.png" lightbox="./media/configuration/machine-enrollment.png" alt-text="Screenshot of machine enrollment screen with no subscriptions enabled.":::
 
 ##### Scope
 
