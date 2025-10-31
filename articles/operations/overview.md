@@ -45,9 +45,3 @@ Operations center is organized into five pillars described in the following tabl
 Create service groups to represent the various applications and workloads that you support. Operations center will allow you to filter different views by service group, making it easier to focus on the resources that matter most to you. Recommends 
 
 
-
-## Next Steps
-- [Onboarding](onboarding.md)
-- [Licensing](licensing.md)
-- [Agentic Experience](agentic-experience.md)
-- [Using the Portal](portal.md)

@@ -40,7 +40,7 @@ The Optimization overview page includes the following sections. Modify the scope
 
 
 ## Cost + emissions
-The **Cost + emissions** page lists your subscriptions with a quick summary of their cost and carbon emissions for the current month in addition to any open cost alerts. Click on any of these values to open the [Cost Analysis](/cost-management-billing/costs/cost-analysis-built-in-views) or [Emissions detail](/azure/carbon-optimization/view-emissions) pages or  with more detail.
+The **Cost + emissions** page lists your subscriptions with a quick summary of their cost and carbon emissions for the current month in addition to any open cost alerts. Click on any of these values to open the [Cost Analysis](/azure/cost-management-billing/costs/cost-analysis-built-in-views) or [Emissions detail](/azure/carbon-optimization/view-emissions) pages or  with more detail.
 
 
 :::image type="content" source="./media/optimization/cost-emissions.png" lightbox="./media/optimization/cost-emissions.png" alt-text="Screenshot of Cost + emissions page in the Azure portal":::

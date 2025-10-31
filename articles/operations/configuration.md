@@ -28,7 +28,7 @@ The Configuration pillar includes the following menu items:
 | Policy | Use [Azure Policy](/azure/governance/policy/overview) to enforce organizational standards and to assess compliance at-scale. The tabs across the top of this view correspond to menu items in the **Policy** menu. |
 | Machine enrollment | Enable subscriptions for automatic Azure management service onboarding to your VMs and Arc-enabled servers. See [Machine enrollment](#machine-enrollment). |
 | Update management | Use [Azure Update Manager](/azure/update-manager/overview) to manage and govern updates for all your machines. The tabs across the top of this view correspond to menu items in the **Azure Update Manager** menu. |
-| Machine configuration | Audit or configure operating system settings as code for VMs and Arc-enabled servers. https://learn.microsoft.com/azure/governance/machine-configuration/overview |
+| Machine configuration | Audit or configure operating system settings as code for VMs and Arc-enabled servers. See [Understanding Azure Machine Configuration](/azure/governance/machine-configuration/overview) for details. |
 | Machines changes + inventory | Use [Change tracking and inventory](/azure/automation/change-tracking/overview-monitoring-agent) to monitor changes and access detailed inventory logs for servers across your different virtual machines. The tabs across the top of this view correspond to menu items in the **Change Tracking and Inventory Center** menu. |
 | Recommendations | Azure Advisor recommendations related to resiliency. |
 

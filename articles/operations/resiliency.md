@@ -1,6 +1,6 @@
 ---
 title: Resiliency in Azure Operations Center (preview)
-description: Describes the Optimization pillar in Azure Operations Center, which provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources.
+description: Describes the Resiliency pillar in Azure Operations Center, which provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
@@ -34,7 +34,7 @@ The resiliency overview page provides a single-pane snapshot of the resiliency s
 
 Drill down on any of the tiles to open other pages in the Optimization pillar for more details.
 
-:::image type="content" source="./media/portal/optimization-pillar.png" lightbox="./media/portal/optimization-pillar.png" alt-text="Screenshot of Optimization menu in the Azure portal":::
+:::image type="content" source="./media/resiliency/resiliency-pillar.png" lightbox="./media/resiliency/resiliency-pillar.png" alt-text="Screenshot of Resiliency menu in the Azure portal":::
 
 ## Resource resiliency
 
