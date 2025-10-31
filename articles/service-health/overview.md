@@ -2,7 +2,7 @@
 title: What is Azure Service Health?
 description: Personalized information about how your Azure apps are affected due to current and future Azure service problems and maintenance. 
 ms.topic: overview
-ms.date: 10/30/2025
+ms.date: 10/31/2025
 ---
 # What is Azure Service Health?
 
@@ -21,7 +21,6 @@ Azure Service Health is a combination of three separate services.
 [Resource health](resource-health-overview.md) provides information about the health of your individual cloud resources, such as a specific virtual machine instance. 
 
 ## Using Azure Service Health
-
 Using Azure Monitor, you can configure alerts to notify you of the availability changes to your cloud resources. The notifications and tailored alerts you receive tell you about issues affecting your specific resources, ensuring you're promptly informed about any disruptions.
 
 Through proactive management that you define, you can stay informed about planned maintenance and potential issues, and then take proactive steps to mitigate any effect on your services.
