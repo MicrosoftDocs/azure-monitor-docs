@@ -18,7 +18,7 @@ Azure Monitor is based on a [common monitoring data platform](data-platform.md) 
 
 ## Azure resources
 
-Most resources in Azure generate a standard set of monitoring data described in the following table. Some services have more collectable data, described in other sections in this article. Regardless of the services that you're monitoring, start by understanding and configuring collection of this core data.
+Most resources in Azure generate a standard set of monitoring data described in the following table. Some services have more collectable data, described in other sections in this article. Regardless of the services that you're monitoring, start by understanding and configuring the collection of this core data.
 
 Create diagnostic settings for each of the following data types to be sent to a Log Analytics workspace, archived to a storage account, or streamed to an event hub for ingestion by services outside of Azure. See [Create diagnostic settings in Azure Monitor](../essentials/create-diagnostic-settings.md).
 
