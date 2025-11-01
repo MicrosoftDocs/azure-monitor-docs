@@ -68,7 +68,7 @@ Learn more about the [Change Analysis API powered by Resource Graph](/azure/gove
 | Supported resource types | [Use Change Analysis (classic) in Azure Monitor to find web app issues](./change-analysis.md) | [Supported Resource Manager resource types](/azure/governance/resource-graph/reference/supported-tables-resources) |
 | Web app in-app data (app settings, file changes, environmental variables) | Yes | No |
 | Automatic onboarding for data collection | No | Yes |
-| Resource type | `Microsoft.ChangeAnalysis/changes` and `Microsoft.ChangeAnalysis/ resourcechanges` | `Microsoft.Resources/ resources` |
+| Resource type | `Microsoft.ChangeAnalysis/changes` and `Microsoft.ChangeAnalysis/ resourcechanges` | `Microsoft.ResourceGraph/ resourceChanges` |
 | [Change Actor](/azure/governance/resource-graph/changes/get-resource-changes) | No | Yes |
 | Resource Graph query support | No | Yes |
 | Granular filtering (including Change Type and Change Actor filters) | No | Yes |
