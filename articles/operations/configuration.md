@@ -8,7 +8,7 @@ ms.date: 09/24/2025
 
 # Configuration in Azure Operations Center (preview)
 
-The **Configuration** pillar of [Azure operations center](./overview.md) helps you manage the configuration of your virtual machines. Manage the policies that define their configuration and track changes and operating system updates. The pillar also provides a streamlined onboarding experience to automatically enroll your virtual machines for different Azure management and monitoring services.
+The **Configuration** pillar of [Azure operations center](./overview.md) helps you manage the configuration of your Azure VMs and Arc-enabled servers. Manage the policies that define their configuration and track changes and operating system updates. The pillar also provides a streamlined onboarding experience to automatically enroll your virtual machines for different Azure management and monitoring services.
 
 The Configuration pillar uses the following Azure services:
 
@@ -24,13 +24,13 @@ The Configuration pillar includes the following menu items:
 
 | Menu | Description |
 |:---|:---|
-| Configuration | Summary of resource policy compliance and update requirements. |
-| Policy | Use [Azure Policy](/azure/governance/policy/overview) to enforce organizational standards and to assess compliance at-scale. The tabs across the top of this view correspond to menu items in the **Policy** menu. |
-| Machine enrollment | Enable subscriptions for automatic Azure management service onboarding to your VMs and Arc-enabled servers. See [Machine enrollment](#machine-enrollment). |
-| Update management | Use [Azure Update Manager](/azure/update-manager/overview) to manage and govern updates for all your machines. The tabs across the top of this view correspond to menu items in the **Azure Update Manager** menu. |
+| Configuration | Overview of resource policy compliance and update requirements. See [Configuration overview](#configuration-overview) for details. |
+| Policy | Configure Azure Policy to enforce organizational standards and to assess compliance at-scale. The tabs across the top of this view correspond to menu items in the **Policy** menu. See [Create and manage policies to enforce compliance](/azure/governance/policy/tutorials/create-and-manage) for details. |
+| Machine enrollment | Enable subscriptions for automatic Azure management service onboarding to your VMs and Arc-enabled servers. This page and functionality is unique to operations center. See [Machine enrollment](#machine-enrollment). |
+| Update management | Use Azure Update Manager to manage and govern updates for all your machines. The tabs across the top of this view correspond to menu items in the **Azure Update Manager** menu. See [About Azure Update Manager](/azure/update-manager/overview) for details. |
 | Machine configuration | Audit or configure operating system settings as code for VMs and Arc-enabled servers. See [Understanding Azure Machine Configuration](/azure/governance/machine-configuration/overview) for details. |
-| Machines changes + inventory | Use [Change tracking and inventory](/azure/automation/change-tracking/overview-monitoring-agent) to monitor changes and access detailed inventory logs for servers across your different virtual machines. The tabs across the top of this view correspond to menu items in the **Change Tracking and Inventory Center** menu. |
-| Recommendations | Azure Advisor recommendations related to resiliency. |
+| Machines changes + inventory | Use Change tracking and inventory to monitor changes and access detailed inventory logs for servers across your different virtual machines. The tabs across the top of this view correspond to menu items in the **Change Tracking and Inventory Center** menu. See [Manage change tracking and inventory using Azure Monitoring Agent](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent) for details. |
+| Recommendations | Azure Advisor recommendations related to resiliency. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
 
 ## Configuration overview
 The **Configuration** overview page provides a single-pane snapshot of policy compliance and update requirements across your Azure resources. Drill down on any of the tiles to open other pages in the Configuration pillar for more details.
@@ -43,33 +43,47 @@ The **Configuration** overview page includes the following sections. Modify the 
 |:---|:---|
 | Compliance summary | Summary of the policy compliance for all of your Azure resources. Click **View details** to open the **Policy** page for details on individual resources and to create remediations to improve compliance.  |
 | Update management | Summary of the update status for your virtual machines. Click **View details** to open the **Update Management** page. |
-| Baselines compliance | |
+| Baselines compliance | Summary of the machines that that are compliant with baselines. Click **View details** to open the **Machine configuration** page. |
 | Patch orchestration configuration of Azure virtual machines | | 
 | Machine assignments by compliance state | |
 
 
-## Machine enrollment
+## Machine configuration
+The **Machine configuration** page provides several views to help you manage the policy definitions and assignments for your Azure VMs and Arc-enabled servers.
 
-The machine enrollment feature in [Azure operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. This article describes the features that are enabled by this feature and how to enable it for your subscriptions.
+| Tab | Description |
+|:---|:---|
+| Overview | Shows assignments by compliance state 
+| Definitions | Lists the policy definitions for **Guest Configuration**. This is the same as the **Definitions** tab in the **Policy** menu. |
+| Baseline Rules (preview) | Lists Azure baseline rules and the number of compliant machines. |
+| Assignments | Lists the policy assignments for **Guest Configuration**. This is the same as the **Assignments** tab in the **Policy** menu. | 
+| Windows recovery (preview) | |
+
+
+## Machine enrollment
+**Machine enrollment** simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. When you enable a subscription for machine enrollment, all VMs and arc-enabled servers in that subscription are automatically enrolled and configured with a curated set of management features. This ensures that your machines are consistently configured for monitoring, security, and management.
 
 ### Features
-The management features automatically enabled for each VM in the enrolled subscription are listed in the following table. Further details on each feature are provided below.
+The management features automatically enabled for each VM in the enrolled subscription are listed in the following table. Any features in the Essentials tier are included with no additional charge. Features in the Additional tier incur an additional charge. See [XXX Pricing Details XXX]().
 
-| Tier | Feature | Description |
-|:---|:---|:---|
-| Essential | Azure Monitor | Monitors and provides insights into VM performance and health. |
-| Essential | Update manager | Automates the deployment of operating system updates to VMs. Configure recommended alerts. |
-| Essential | Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
-| Essential | Foundational CSPM | Provides foundational cloud security posture management (CSPM) capabilities to assess and improve the security of your cloud resources. |
-Essential | Machine configuration | Audits the Azure security baseline policy
-| Additional | Defender CSPM | Advanced cloud security posture management (CSPM) capabilities to enhance the security of your cloud resources. |
-| Additional | Defender for cloud | Advanced threat protection and security management for VMs. |
+**Essentials tier**
+| Feature | Description |
+|:---|:---|
+| Azure Monitor | Monitors and provides insights into VM performance and health. |
+| Update manager | Automates the deployment of operating system updates to VMs. Configure recommended alerts. |
+| Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
+| Foundational CSPM | Provides foundational cloud security posture management (CSPM) capabilities to assess and improve the security of your cloud resources. |
+| Machine configuration | Audits the Azure security baseline policy
 
-
+**Additional cost**
+| Feature | Description |
+|:---|:---|
+| Defender CSPM | Advanced cloud security posture management (CSPM) capabilities to enhance the security of your cloud resources. |
+| Defender for cloud | Advanced threat protection and security management for VMs. |
 
 ### Required permissions
 
-You must have the following roles in the subscription being enabled:
+You must have the following roles to configure a subscription for machine enrollment:
 - Essential Machine Management Administrator
 - Managed Identity Operator roles
 - Resource Policy Contributor
@@ -81,22 +95,12 @@ You must have the following roles in the subscription being enabled:
 - User assigned managed identity with the following roles assigned for the subscription:
   - Monitoring Reader
 
-
 ### Enable a subscription
-Machine enrollment is enabled for each subscription to automatically onboard all Azure VMs and arc-enabled servers in that subscription. Once enabled, any VMs added to the subscription are enrolled and configured with the selected features.
+ To enable machine management for a subscription, select **Machine enrollment** from the **Configuration** pillar, and click **Enable**.
 
-### Existing VMS
+> [!NOTE]
+> During gated preview, the Azure portal is the only supported method for enabling machine management. 
 
-The following behavior applies to existing VMs in the subscription when machine enrollment is enabled.
-
-- Existing services will retain their configuration. For example, if a VM is already using Update Management with a maintenance schedule, it will still follow that maintenance schedule.
-- After the subscription is enabled, operations center will create [remediation tasks](/azure/governance/policy/how-to/remediate-resources) to enable the selected service for all existing VMs in the subscription.
-
-> [!WARNING]
-> Use caution with the gated preview if you have existing VMs with Change Tracking enabled. In this case, an additional Change Tracking DCR will be created and associated with the VM. Since Change Tracking supports only a single DCR though, either DCR could be assigned. 
-
-
-During gated preview, the Azure portal is the only supported method for enabling machine management. Go to **Operations center** in the Azure portal and select **Machine enrollment**. Click **Enable** to enable machine management for a subscription.
 
 :::image type="content" source="./media/configuration/machine-enrollment.png" lightbox="./media/configuration/machine-enrollment.png" alt-text="Screenshot of machine enrollment screen with no subscriptions enabled.":::
 
@@ -132,6 +136,15 @@ The **Security** tab allows you to select additional security services for the m
 | **Defender CSPM** | Continuously assess your cloud environment with agentless, risk-prioritized insights. Recommended for all workloads.<br><br>This add-on incurs an additional charge. |
 | **Defender for cloud** | Comprehensive server protection with integrated endpoint detection and response (EDR), vulnerability management, file integrity monitoring, and advanced threat detection. Recommended for business-critical workloads.<br><br>This add-on incurs an additional charge. |
 
+### Existing VMs
+
+Machine enrollment is enabled for each subscription to automatically onboard all Azure VMs and arc-enabled servers in that subscription. Once enabled, any VMs added to the subscription are enrolled and configured with the selected features. The following behavior applies to existing VMs in the subscription when machine enrollment is enabled.
+
+- Existing services will retain their configuration. For example, if a VM is already using Update Management with a maintenance schedule, it will still follow that maintenance schedule.
+- After the subscription is enabled, operations center will create [remediation tasks](/azure/governance/policy/how-to/remediate-resources) to enable the selected service for all existing VMs in the subscription.
+
+> [!WARNING]
+> Use caution with the gated preview if you have existing VMs with Change Tracking enabled. In this case, an additional Change Tracking DCR will be created and associated with the VM. Since Change Tracking supports only a single DCR though, either DCR could be assigned. 
 
 ### Excluding VMs
 There is currently no ability to exclude VMs in the enabled subscription. All VMs in the subscription are onboarded and configured with the selected features.
@@ -141,6 +154,9 @@ This section describes configuration details of the services that are enabled fo
 
 ### Essential tier
 Curated bundle of core management and monitoring capabilities provided at a fixed price. 
+
+| Feature | Configuration details |
+
 
 - Azure Monitor
   - Installs Azure Monitor agent.

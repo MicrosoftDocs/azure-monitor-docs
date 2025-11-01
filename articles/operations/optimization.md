@@ -23,7 +23,7 @@ The Optimization pillar includes the following menu items:
 | Optimization | Overview of cost and carbon usage and optimization recommendations. See [Optimization overview](#optimization-overview) for details. |
 | Cost + emission | Summary of carbon emissions and cost for your subscriptions. |
 | Carbon optimization | Measure and minimize the carbon impact of your Azure footprint.  The tabs across the top of this page correspond to menu items in the Carbon Optimization menu. See [Carbon Optimization](/azure/carbon-optimization/overview) for details on these pages. |
-| Recommendations | Azure Advisor recommendations related to cost. This page is the same as the **Advisor recommendations** item in the **Cost Management** section of the **Subscription** menu. See [Tutorial: Optimize costs from recommendations](/azure/cost-management-billing/costs/tutorial-acm-opt-recommendations) for details. | 
+| Recommendations | Azure Advisor recommendations related to cost. This page is the same as the **Advisor recommendations** item in the **Cost Management** section of the **Subscription** menu. See [Optimize costs from recommendations](/azure/cost-management-billing/costs/tutorial-acm-opt-recommendations) for details. | 
 
 ## Optimization overview
 The optimization overview page provides a single-pane snapshot of cost, carbon, and optimization metrics across your subscriptions to drive your optimization efforts. It summarizes key information such as total cost, carbon emissions, active recommendations, and potential savings. 

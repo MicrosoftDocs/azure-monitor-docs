@@ -1,15 +1,17 @@
 items:
 - name: Operations Center Documentation
   href: index.yml
-- name: Overview
+- name: What is Azure operations center?
   href: overview.md
-- name: Observability
-  href: observability.md
-- name: Security
-  href: security.md
-- name: Resiliency
-  href: resiliency.md
-- name: Configuration
-  href: configuration.md
-- name: Optimization
-  href: optimization.md
+- name: Pillars
+  items:
+  - name: Observability
+    href: observability.md
+  - name: Security
+    href: security.md
+  - name: Resiliency
+    href: resiliency.md
+  - name: Configuration
+    href: configuration.md
+  - name: Optimization
+    href: optimization.md
