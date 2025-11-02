@@ -27,12 +27,12 @@ Granular RBAC lets you finely tune access at the table or row level. Users with 
 Table-level access configuration using granular RBAC is less complex than earlier methods and offers the flexibility to implement row-level conditions. These steps just focus on configuring table-level access though. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
 
 Configuring granular RBAC for table-level access requires these steps:
-1. Create granular RBAC custom role
-1. Build condition for the assigned role (permissive or restrictive)
+1. Select the built-in **Log Analytics Data Reader** role, or create a custom role
+1. Build the condition for the assigned role (permissive or restrictive)
 
 #### Create granular RBAC custom role 
 
-The control plane "data action" is one of the things that sets granular RBAC apart from earlier methods of configuring table-level access. For more information, see [Create granular RBAC custom role](granular-rbac-use-case.md#create-custom-roles).
+The control plane "data action" is one of the things that sets granular RBAC apart from earlier methods of configuring table-level access. For more information, see [Create granular RBAC role assignment](granular-rbac-use-case.md#assign-selected-role).
 
 Here's the JSON for an example custom role:
 
@@ -60,7 +60,7 @@ Here's the JSON for an example custom role:
 }
 ```
 
-Assign the custom role to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#conditions-and-expressions).
+Assign the role to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#conditions-and-expressions).
  
 1. From the Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add role assignment**.
