@@ -6,7 +6,7 @@ services: azure-monitor
 sub-service: logs
 ms.topic: how-to
 ms.reviewer: rofrenke
-ms.date: 05/22/2024
+ms.date: 11/02/2025
 ms.custom: devx-track-azurepowershell
 
 # Customer intent: As an Azure Monitor Log Analytics administrator, I want to understand the best method for creating access at the table level.
@@ -32,7 +32,7 @@ Configuring granular RBAC for table-level access requires these steps:
 
 #### Create granular RBAC custom role 
 
-The control plane "data action" is one of the things that sets granular RBAC apart from earlier methods of configuring table-level access. For more information, see [Create granular RBAC role assignment](granular-rbac-use-case.md#assign-selected-role).
+The control plane "data action" differentiates granular RBAC apart from earlier methods of configuring table-level access, and it's already configured in the built-in **Log Analytics Data Reader** role. If you don't select the built-in role, follow these steps to create a custom role. For more information, see [Create granular RBAC role assignment](granular-rbac-use-case.md#assign-selected-role).
 
 Here's the JSON for an example custom role:
 
