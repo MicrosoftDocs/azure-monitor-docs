@@ -47,7 +47,7 @@ Jump into granular RBAC with a [**Step by step granular RBAC example**](granular
 
 The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC. 
 
-- [Role creation](#role-creation)
+- [Role creation](#role-selection)
 - [Conditions and expressions](#conditions-and-expressions)
 - [Expression operators](#expression-operators)
 
