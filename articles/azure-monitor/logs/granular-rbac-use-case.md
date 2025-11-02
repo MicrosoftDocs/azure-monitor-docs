@@ -45,7 +45,7 @@ To use custom roles for the defined scenario, follow these steps to create one f
 
 1. From the resource group containing the prerequisite Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add custom role**.
-1. Create the general data access role with the following actions and data action at the resource group level:
+1. Create the data access role with the following actions and data action at the resource group level:
 
 | Custom role definition | Detail |
 |---|---|
