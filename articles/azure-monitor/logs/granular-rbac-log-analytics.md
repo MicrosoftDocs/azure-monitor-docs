@@ -51,11 +51,11 @@ The following sections provide an overview of the key concepts and steps involve
 - [Conditions and expressions](#conditions-and-expressions)
 - [Expression operators](#expression-operators)
 
-### Role creation
+### Role selection
 
-To configure granular RBAC, use the built-in role, [**Log Analytics Data Reader**](manage-access.md#log-analytics-data-reader), or create a custom role with required **actions**. Then assign the role with **conditions**. For more information on custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles-portal).
+To configure granular RBAC, use the built-in role, [**Log Analytics Data Reader**](manage-access.md#log-analytics-data-reader), or create a custom role with specific, required **actions**. Then assign the selected role using **conditions**. For more information on custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles-portal).
 
-The minimum required permissions for the custom role's action and data actions are:
+The minimum required action and data action permissions:
 
 | Custom role definition | Permission | Description |
 |---|---|---|
