@@ -35,11 +35,13 @@ In this scenario, row-level access control is implemented in a restrictive manne
 1. Set the network team's group access to only access the `CommonSecurityLog` table where the DeviceVendor name matches the network firewalls. This configuration uses the *No access to data, except what is allowed* strategy.
 1. Give the tier 1 security analyst team access to all tables, but restrict the `SigninLogs` and `DnsEvents` tables to prevent them from accessing records containing the UPN or computername of the CEO. This configuration uses the *Access to all data, except what isn't allowed* strategy.
 
-## Scenario role preparation 
+## Role preparation 
 
-Select the built-in role, **Log Analytics Data Reader** for the simplest approach to the role assignment process. Keep in mind, role assignments are additive, so remove any role assignments that give read access at the same scope or above the workspace. For example, if Log Analytics Reader was assigned to a user at the resource group level, a granular RBAC role is not effective. For more information, see [Configure granular RBAC role creation](granular-rbac-log-analytics.md#role-selection). If you select the **Log Analytics Data Reader** role, skip ahead to [**Assign selected role**](#assign-selected-role).
+Select the built-in role, **Log Analytics Data Reader** for the simplest approach to the role assignment process. 
 
-To use custom roles for the defined scenario, here are the steps to create one for the network team and another for the security team. 
+Keep in mind, role assignments are additive, so remove any role assignments that give read access at the same scope or above the workspace. For example, if the Log Analytics Reader role was assigned to a user at the resource group level, a granular RBAC role assignment is not effective. For more information, see [Configure granular RBAC role creation](granular-rbac-log-analytics.md#role-selection). If you select the **Log Analytics Data Reader** role, skip ahead to [**Assign selected role**](#assign-selected-role).
+
+To use custom roles for the defined scenario, follow these steps to create one for the network team and another for the security team. 
 
 1. From the resource group containing the prerequisite Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add custom role**.
