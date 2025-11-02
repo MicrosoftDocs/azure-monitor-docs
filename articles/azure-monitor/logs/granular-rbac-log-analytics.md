@@ -6,7 +6,7 @@ services: azure-monitor
 sub-service: logs
 ms.reviewer: rofrenke
 ms.topic: concept-article
-ms.date: 05/19/2025
+ms.date: 11/02/2025
 
 # Customer intent: As an Azure administrator, I want to understand how to use attribute-based access control to granularly define access in Log Analytics workspaces.
 ---
@@ -18,14 +18,13 @@ Granular role-based access control (RBAC) in Azure Monitor Log Analytics allows 
 - Table level access
 - Separation of control and data planes
 
-If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy, or compliance, granular RBAC helps simplify by reducing the number of workspaces required.
+If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy, or compliance, granular RBAC helps simplify your topology by reducing the number of workspaces required.
 
 ## Introduction video
 
 > [!VIDEO 661dc5e1-bbe4-4f41-8a3d-05a008becfe7]
 
 ### Prerequisites
-
 
 | Action | Permission required |
 |---|---|
@@ -47,22 +46,22 @@ Jump into granular RBAC with a [**Step by step granular RBAC example**](granular
 
 The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC. 
 
-- [Role creation](#role-creation)
+- [Role creation](#role-selection)
 - [Conditions and expressions](#conditions-and-expressions)
 - [Expression operators](#expression-operators)
 
-### Role creation
+### Role selection
 
-To configure granular RBAC, you must create a custom role with required **actions** then assign the custom role with **conditions**. For more information on custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles-portal).
+To configure granular RBAC, use the built-in role, [**Log Analytics Data Reader**](manage-access.md#log-analytics-data-reader), or create a custom role with specific, required **actions**. Then assign the selected role using **conditions**. For more information on custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles-portal).
 
-The minimum required permissions for the custom role action and data actions are:
+The minimum required action and data action permissions:
 
 | Custom role definition | Permission | Description |
 |---|---|---|
-| Control plane actions (Actions) |`Microsoft.OperationalInsights/workspaces/query/read` | Run queries in Log Analytics and see metadata. This permission doesn't grant access to data. |
-| Data plane actions (DataActions) | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Access to the data and is the `dataaction` chosen in the role assignment condition. If no condition is set, this permission grants access to all data at the assigned scope. |
+| Control plane (Actions) |`Microsoft.OperationalInsights/workspaces/query/read` | Run queries in Log Analytics and see metadata. This permission doesn't grant access to data. |
+| Data plane (DataActions) | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Access to the data and is the `dataaction` chosen in the role assignment condition. If no condition is set, this permission grants access to all data at the assigned scope. |
 
-Optionally, include access from the Azure portal by adding the `Microsoft.OperationalInsights/workspaces/read` control action. For more information, see [Azure RBAC control and data actions](/azure/role-based-access-control/role-definitions#control-data-actions).
+Optionally, include access to the Logs UI in the Azure portal by adding the `Microsoft.OperationalInsights/workspaces/read` control action. For more information, see [Azure RBAC control and data actions](/azure/role-based-access-control/role-definitions#control-data-actions).
  
 > [!NOTE]
 > Granular RBAC, like Azure RBAC, is an additive model. Your effective permissions are the sum of your role assignments. For granular RBAC conditions to take effect, you must remove any role assignments with higher access privileges. 
