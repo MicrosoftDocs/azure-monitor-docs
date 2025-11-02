@@ -767,7 +767,7 @@ exceptions
 
 ### Performance counters
 
-Use metrics in the **Performance counters** category to access [system performance counters collected by Application Insights](../app/asp-net-counters.md).
+Use metrics in the **Performance counters** category to access system performance counters collected by Application Insights.
 
 ### [Standard](#tab/standard)
 
