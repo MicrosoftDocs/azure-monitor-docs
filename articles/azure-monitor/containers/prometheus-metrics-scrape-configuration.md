@@ -119,7 +119,7 @@ To view every metric that's being scraped for debugging purposes, the metrics ad
 
 To override the default startup paramaters(resources, metric-labels-allowlist and metric-annotations-allowlist) of kube-state-metrics deployment (ama-metrics-ksm) that is installed as a part of Managed Prometheus enablement, use the [ama-metrics-settings-configmap](https://github.com/Azure/prometheus-collector/blob/0ca49133ef65150e759fad8fe21e46c132f789e9/otelcollector/configmaps/ama-metrics-settings-configmap.yaml#L97C3-L112C18).
 
-The settings in the configmap for labels_allow_list and annotations_allow_list override the parameters that are set during onboarding for [ksm-metrics-labels-allow-list and ksm-metrics-annotations-allow-list](./kubernetes-monitoring-enable.md/#optional-parameters)
+The settings in the configmap for labels_allow_list and annotations_allow_list override the parameters that are set during onboarding for [ksm-metrics-labels-allow-list and ksm-metrics-annotations-allow-list](../containers/kubernetes-monitoring-enable.md#optional-parameters)
 
 The settings in the configmap for resources override the [default collectors](https://github.com/Azure/prometheus-collector/blob/0ca49133ef65150e759fad8fe21e46c132f789e9/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/values-template.yaml#L13) set for ama-metrics-ksm deployment
 

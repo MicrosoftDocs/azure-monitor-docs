@@ -98,7 +98,7 @@ Each of the commands above allow the following optional parameters. The paramete
 | Recording rules | `--enable-windows-recording-rules`<br><br>Lets you enable the recording rule groups required for proper functioning of the Windows dashboards. |
 
 > [!NOTE]
-> Note that the parameters set using - ksm-metric-annotations-allow-list and ksm-metric-labels-allow-list can be overridden or alternatively set using the [ama-metrics-settings-configmap](./prometheus-metrics-scrape-configuration.md/#kube-state-metrics)
+> Note that the parameters set using - ksm-metric-annotations-allow-list and ksm-metric-labels-allow-list can be overridden or alternatively set using the [ama-metrics-settings-configmap](../containers/prometheus-metrics-scrape-configuration.md#kube-state-metrics)
 
 #### Container logs
 
