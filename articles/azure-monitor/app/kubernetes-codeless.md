@@ -71,7 +71,7 @@ az provider show --namespace "Microsoft.ContainerService" --query "registrationS
 
 ## Prepare a cluster
 
-You may prepare a cluster using either the Azure portal or Azure CLI.
+You can prepare a cluster using either the Azure portal or Azure CLI.
 
 #### [Azure portal](#tab/portal)
 
@@ -115,10 +115,10 @@ Use the Azure portal for namespace-wide deployment onboarding.
 :::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-1.png":::
 
 3. Select the languages to be instrumented.
-4. Optionally check the box to restart deployments immediately, or you may [manually restart deployments](#restart-deployment) later.
+4. Optionally check the box to restart deployments immediately, or you can [manually restart deployments](#restart-deployment) later.
 5. Select **Configure**.
 
-:::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation and rollout restarts are set to deploy changes immediately." lightbox="media/kubernetes-codeless/deployment-2.png":::
+:::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation." lightbox="media/kubernetes-codeless/deployment-2.png":::
 
 6. Observe the "instrumented" status for each namespace in the deployment.
 
@@ -219,7 +219,7 @@ Use mixed mode when most deployments use a default configuration and a few deplo
 
 ## Restart deployment
 
-You may restart a deployment using either the Azure portal or the Kubernetes command line (`kubectl`) tool.
+You can restart a deployment using either the Azure portal or the Kubernetes command line (`kubectl`) tool.
 
 Run the following command after all custom resources are created and deployments are optionally annotated.
 
@@ -231,7 +231,7 @@ This command causes autoinstrumentation to take effect, enabling Application Ins
 
 ## Remove Autoinstrumentation for AKS
 
-You may remove AKS autoinstrumentation using either the Azure portal or Azure CLI.
+You can remove AKS autoinstrumentation using either the Azure portal or Azure CLI.
 
 > [!TIP]
 > * Removing AKS autoinstrumentation by using the Azure portal or Azure CLI removes it from the entire cluster.
@@ -239,9 +239,12 @@ You may remove AKS autoinstrumentation using either the Azure portal or Azure CL
 
 #### [Azure portal](#tab/portal)
 
-Use the Azure portal to remove autoinstrumentation.
+Use the Azure portal to remove autoinstrumentation from the cluster.
 
-:::image type="content" source="media/kubernetes-codeless/remove.png" alt-text="Azure portal view of the monitor settings pane for an AKS cluster, showing monitoring capabilities such as Prometheus metrics, Grafana dashboards, Log Analytics, and an unchecked enable application monitoring option." lightbox="media/kubernetes-codeless/remove.png":::
+1. Select the **Monitor** section.
+2. Uncheck the **Enable application monitoring** box. 
+
+:::image type="content" source="media/kubernetes-codeless/remove.png" alt-text="Azure portal view of the monitor settings pane for an AKS cluster showing monitoring capabilities." lightbox="media/kubernetes-codeless/remove.png":::
 
 #### [Azure CLI](#tab/programmatic)
 
