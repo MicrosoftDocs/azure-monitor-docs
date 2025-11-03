@@ -130,7 +130,7 @@ When you update a query and there are fewer fields in summary results, Azure Mon
 To create or update a summary rule, make this `PUT` API call:
 
 ```kusto
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2023-01-01-preview
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
 
 {
@@ -255,7 +255,7 @@ Use this template to create or update a summary rule. For more information about
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces/summaryLogs",
-      "apiVersion": "2023-01-01-preview",
+      "apiVersion": "2025-07-01",
       //"name": "[format('{0}/{1}', parameters('workspaceName'), parameters('summaryRuleName'))]",
       "name": "[concat(parameters('workspaceName'), '/', parameters('summaryRuleName'))]",
       "properties": {
@@ -379,14 +379,14 @@ In this example, the summary rule is created at on 2023-06-07 at 14:44, and the 
 Use this `GET` API call to view the configuration for a specific summary rule:
 
 ```kusto
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName1}?api-version=2023-01-01-preview
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName1}?api-version=2025-07-01
 Authorization: {credential}
 ```
 
 Use this `GET` API call to view the configuration to view the configuration of all summary rules in your Log Analytics workspace:
 
 ```kusto
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs?api-version=2023-01-01-preview
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs?api-version=2025-07-01
 Authorization: {credential}
 ```
 
@@ -397,14 +397,14 @@ You can stop a rule for a period of time - for example, if you want to verify th
 To stop a rule, use this `POST` API call:
 
 ```kusto
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/stop?api-version=2023-01-01-preview
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/stop?api-version=2025-07-01
 Authorization: {credential}
 ```
 
 To restart the rule, use this `POST` API call:
 
 ```kusto
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/start?api-version=2023-01-01-preview
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/start?api-version=2025-07-01
 Authorization: {credential}
 ```
 
@@ -415,7 +415,7 @@ You can have up to 30 active summary rules in your Log Analytics workspace. If y
 To delete a rule, use this `DELETE` API call:
 
 ```kusto
-DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2023-01-01-preview
+DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
 ```
 
