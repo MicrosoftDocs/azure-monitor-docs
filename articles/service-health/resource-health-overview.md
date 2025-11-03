@@ -25,7 +25,7 @@ For information and steps on how to create a Resource Health alert, see [Create 
 
 ## Health status
 
-The health of a resource is displayed with a status shown.
+The health of a resource is displayed with a status of *Available*, *Unavailable*, *Unknown*, or *Degraded* as described in this section.
 
 ### Available
 
@@ -74,8 +74,11 @@ For Virtual Machine Scale Sets, visit [Resource health state is "Degraded" in Az
 
 ### Health not supported
 
-There are two messages: **Health not supported**, or **Resource Provider (RP) has no information about the resource**, or **You don't have read/write access for that resource**. Either one means that your resource isn't supported for the health metrics.
-
+The following messages mean that your resource isn't supported for the health metrics.
+- **Health not supported**
+- **Resource Provider (RP) has no information about the resource**
+- **You don't have read/write access for that resource**
+ 
 To know which resources support health metrics, refer to [Supported Resource Types](resource-health-checks-resource-types.md).
 
 ## Resource health events sent to the activity log
