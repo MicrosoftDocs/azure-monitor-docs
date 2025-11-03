@@ -738,8 +738,8 @@ By default, the AzureMonitorExporter uses one of the following locations for off
 - Windows
   - %TEMP%\Microsoft-AzureMonitor-`<unique-identifier>`\ot-azure-exporter-test-`<your-instrumentation-key>`
 - Non-Windows
-  - %TMPDIR%/Microsoft/Microsoft-AzureMonitor-`<unique-identifier>`\ot-azure-exporter-test-`<your-instrumentation-key>`
-  - /var/tmp/Microsoft/Microsoft-AzureMonitor-`<unique-identifier>`\ot-azure-exporter-test-`<your-instrumentation-key>`
+  - %TMPDIR%/Microsoft/Microsoft-AzureMonitor-`<unique-identifier>`/ot-azure-exporter-test-`<your-instrumentation-key>`
+  - /var/tmp/Microsoft/Microsoft-AzureMonitor-`<unique-identifier>`/ot-azure-exporter-test-`<your-instrumentation-key>`
 
 The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. By generating a unique directory for each user context, every user gets their own storage location with proper access permissions.
 
