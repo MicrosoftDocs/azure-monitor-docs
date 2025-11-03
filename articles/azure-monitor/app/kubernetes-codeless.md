@@ -25,7 +25,7 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 > [!WARNING]
 > - This feature is incompatible with both Windows (any architecture) and Linux Arm64 node pools.
 
-## Install the aks-preview Azure CLI extension
+## Install the AKS-preview Azure CLI extension
 
 [!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
 
@@ -73,7 +73,7 @@ az provider show --namespace "Microsoft.ContainerService" --query "registrationS
 
 You may prepare a cluster using either the Azure portal or Azure CLI.
 
-#### [Azure Portal](#tab/portal)
+#### [Azure portal](#tab/portal)
 
 Use the Azure portal to prepare a cluster.
 
@@ -94,27 +94,35 @@ az aks update --resource-group={resource_group} --name={cluster_name} --enable-a
 > [!Tip]
 > AKS Clusters can be prepared for this feature during cluster creation. To learn more, see [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-aks-cluster-create).
 
----
-
 ## Onboard deployments
-
-You may use either the Azure Portal or YAML configuration to onboard deployments.
-
-#### [Azure Portal](#tab/portal)
-
-Use the Azure portal for namespace-wide deployment onboarding.
-
-:::image type="content" source="media/kubernetes-codeless/deployment-1.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-1.png":::
-
-:::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation and rollout restarts are set to deploy changes immediately." lightbox="media/kubernetes-codeless/deployment-2.png":::
-
-:::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal screenshot showing the configure application monitoring pane for the chaos-testing namespace, with Node.js and Java selected and both deployments (chaos-controller-manager and chaos-dashboard) showing as Instrumented.sdf" lightbox="media/kubernetes-codeless/deployment-3.png":::
-
-#### [YAML](#tab/programmatic)
 
 Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. Use the namespace-wide method to onboard all deployments within a namespace. For selective or variably configured onboarding across multiple deployments, employ the per-deployment approach.
 
 ### Namespace-wide onboarding
+
+#### [Azure portal](#tab/portal)
+
+Use the Azure portal for namespace-wide deployment onboarding.
+
+1. From the **Namespaces** pane, select the namespace to be instrumented.
+
+:::image type="content" source="media/kubernetes-codeless/deployment-1.png" alt-text="Azure portal view showing namespaces and an application monitoring button." lightbox="media/kubernetes-codeless/deployment-1.png":::
+
+2. Select **Application Monitoring**.
+
+:::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-1.png":::
+
+3. Select the languages to be instrumented.
+4. Optionally check the box to restart deployments immediately, or you may [manually restart deployments](#restart-deployment) later.
+5. Select **Configure**.
+
+:::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation and rollout restarts are set to deploy changes immediately." lightbox="media/kubernetes-codeless/deployment-2.png":::
+
+6. Observe the "instrumented" status for each namespace in the deployment.
+
+:::image type="content" source="media/kubernetes-codeless/deployment-4.png" alt-text="Azure portal screenshot showing the configure application monitoring pane for the chaos-testing namespace, with Node.js and Java selected and both deployments (chaos-controller-manager and chaos-dashboard) showing as Instrumented.sdf" lightbox="media/kubernetes-codeless/deployment-3.png":::
+
+#### [YAML](#tab/programmatic)
 
 To onboard all deployments within a namespace, create a single _Instrumentation_ custom resource named `default` in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource.
 
@@ -142,6 +150,8 @@ At a minimum, the following configuration is required:
 > [!TIP]
 > - Use [annotations](#annotations) if per-deployment overrides are required. For more information, see [annotations](#annotations).
 > - [Restart deployments](#restart-deployment) for settings to take effect.
+
+---
 
 ### Per-deployment onboarding
 
@@ -225,7 +235,7 @@ You may remove AKS autoinstrumentation using either the Azure portal or Azure CL
 > * Removing AKS autoinstrumentation by using the Azure portal or Azure CLI removes it from the entire cluster.
 > * To remove autoinstrumentation from a single namespace, delete the associated **Instrumentation** custom resource (CR). (for example, `kubectl delete instrumentation <instrumentation-name> -n <namespace-name>`) 
 
-#### [Azure Portal](#tab/portal)
+#### [Azure portal](#tab/portal)
 
 Use the Azure portal to remove autoinstrumentation.
 
