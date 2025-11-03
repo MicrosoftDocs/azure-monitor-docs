@@ -67,6 +67,8 @@ The **Machine configuration** page provides several views to help you manage the
 The management features automatically enabled for each VM in the enrolled subscription are listed in the following table. Any features in the Essentials tier are included with no additional charge. Features in the Additional tier incur an additional charge. See [XXX Pricing Details XXX]().
 
 **Essentials tier**
+The following features are automatically enabled at no additional cost.
+
 | Feature | Description |
 |:---|:---|
 | Azure Monitor | Monitors and provides insights into VM performance and health. |
@@ -76,6 +78,8 @@ The management features automatically enabled for each VM in the enrolled subscr
 | Machine configuration | Audits the Azure security baseline policy
 
 **Additional cost**
+The following features are only enabled if select and include an additional cost.
+
 | Feature | Description |
 |:---|:---|
 | Defender CSPM | Advanced cloud security posture management (CSPM) capabilities to enhance the security of your cloud resources. |
@@ -104,7 +108,8 @@ You must have the following roles to configure a subscription for machine enroll
 
 :::image type="content" source="./media/configuration/machine-enrollment.png" lightbox="./media/configuration/machine-enrollment.png" alt-text="Screenshot of machine enrollment screen with no subscriptions enabled.":::
 
-##### Scope
+<details>
+<summary>Scope tab</summary>
 
 The **Scope** tab includes the subscription that you want to enable and the managed identity.
 
@@ -117,7 +122,10 @@ The **Scope** tab includes the subscription that you want to enable and the mana
 | **Required identity role assignment** | Lists the required roles the managed identity must be assigned. |
 | **Current identity role assignment** | Lists the roles currently assigned to the managed identity. |
 
-#### Configure
+</details>
+
+<details>
+<summary>Configure tab</summary>
 
 The **Configure** tab includes the Log Analytics workspace and Azure Monitor workspace that will collect data from the managed VMs.
 
@@ -126,7 +134,10 @@ The **Configure** tab includes the Log Analytics workspace and Azure Monitor wor
 | **Log Analytics workspace** | Select the Log Analytics workspace to use for collecting log data from VMs. |
 | **Azure Monitor workspace** | Select the Azure Monitor workspace to use for collecting metrics data from VMs. |
 
-### Security
+</details>
+
+<details>
+<summary>Security tab</summary>
 
 The **Security** tab allows you to select additional security services for the managed VMs.
 
@@ -135,6 +146,7 @@ The **Security** tab allows you to select additional security services for the m
 | **Foundational CSPM** | Continuously assess your cloud environment with agentless, risk-prioritized insights. Recommended for all workloads.<br><br>This add-on incurs no additional charge.  |
 | **Defender CSPM** | Continuously assess your cloud environment with agentless, risk-prioritized insights. Recommended for all workloads.<br><br>This add-on incurs an additional charge. |
 | **Defender for cloud** | Comprehensive server protection with integrated endpoint detection and response (EDR), vulnerability management, file integrity monitoring, and advanced threat detection. Recommended for business-critical workloads.<br><br>This add-on incurs an additional charge. |
+</details>
 
 ### Existing VMs
 
@@ -149,55 +161,26 @@ Machine enrollment is enabled for each subscription to automatically onboard all
 ### Excluding VMs
 There is currently no ability to exclude VMs in the enabled subscription. All VMs in the subscription are onboarded and configured with the selected features.
 
-## Services
-This section describes configuration details of the services that are enabled for each VM in the enrolled subscription.
+### Configuration details
 
-### Essential tier
-Curated bundle of core management and monitoring capabilities provided at a fixed price. 
+The following table describes the specific configuration applied to each VM when machine enrollment is enabled.
 
 | Feature | Configuration details |
-
-
-- Azure Monitor
-  - Installs Azure Monitor agent.
-  - Collects standard set of performance counters.
-  - Collects basic set of events.
-    - Windows events (Critical and error only)
-    - Syslog (Critical and error only)
-    - IIS logs
-  - Configures recommended alerts
-- [Foundational CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans)
-- Azure update manager
-  - Installs extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)
-  - [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. 
-- Change tracking and inventory
-  - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`) 
-  - Uses Log Analytics workspace specified in onboarding.
-  - Collects basic files and registry keys.
-
-
-### Additional tiers
-
-- [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans)
-  - All settings on by default.
-- [Defender for cloud](/azure/defender-for-cloud/defender-for-servers-overview)
-  - All settings for [Plan 2](/azure/defender-for-cloud/defender-for-servers-overview#defender-for-servers-plans) enabled.
-
-
-## Policy assignments provisioned
-
-| Assignment | Initiative | Description |
-|:---|:---|:---|
-|  | [Preview]: Enable Essential Machine Management - Microsoft Azure | |
-
-
-## Data collection rules
-The following table lists the data collection rules (DCRs) created during onboarding. Relationships are created between these DCRs and the VMs being managed.
-
-| Name | Description |
 |:---|:---|
-| `MSVMI-PerfandDa-ama-vmi-default-perfAndda-dcr` | Performance data collection for Azure Monitor. |
-| `\<workspace\>-Managedops-CT-DCR` | Change tracking and inventory. Collects Files, Registry Keys, Softwares, Windows Services/Linux Daemons |
+| Azure Monitor | - Installs Azure Monitor agent<br>- Collects standard set of performance counters.<br>- Collects Windows events (critical and error)<br>- Collects Syslog (critical and error)<br>- Collects IIS logs<br>- Configures recommended alerts |
+| Azure update manager |- Installs extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)<br>- [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. |
+| Change tracking and inventory | - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.<br>ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`)<br>- Uses Log Analytics workspace specified in onboarding.<br>- Collects basic files and registry keys. |
+| [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans) | - All settings on by default. |
+| [Defender for cloud](/azure/defender-for-cloud/defender-for-servers-overview) | - All settings for [Plan 2](/azure/defender-for-cloud/defender-for-servers-overview#defender-for-servers-plans) enabled. |
+
+The following objects are added to the subscription when machine enrollment is enabled.
+
+| Type | Name | Description |
+|:---|:---|:---|
+| DCR | `\<workspace\>-Managedops-AM-DCR` | OpenTelemetry metrics from VM guests |
+| DCR | `\<workspace\>-Managedops-CT-DCR` | Change tracking and inventory. Collects files, registry keys, softwares, Windows services, Linux daemons |
+| Initiative | `[Preview]: Enable Essential Machine Management` | Includes multiple policies for configuring agent and associating DCRs to VMs.  |
+| Assignment | `Managedops-Policy-<SubscriptionID>` | Assignment of the initiative to the subscription. |
 
 
 ## Troubleshooting
