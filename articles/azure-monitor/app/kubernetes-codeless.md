@@ -94,6 +94,8 @@ az aks update --resource-group={resource_group} --name={cluster_name} --enable-a
 > [!Tip]
 > AKS Clusters can be prepared for this feature during cluster creation. To learn more, see [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-aks-cluster-create).
 
+---
+
 ## Onboard deployments
 
 Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. Use the namespace-wide method to onboard all deployments within a namespace. For selective or variably configured onboarding across multiple deployments, employ the per-deployment approach.
