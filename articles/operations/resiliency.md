@@ -31,7 +31,7 @@ The Resiliency pillar uses the following Azure services:
 | Recommendations | Azure Advisor recommendations related to resiliency. |
 
 ## Resiliency overview
-The resiliency overview page provides a single-pane snapshot of the resiliency status for your resources and service groups, summarizing key information from other pages in the Resiliency pillar. The **Top actions** section provides recommendations for actions to take to optimize your resources. Some of these actions may open the [Optimize agent](#optimize-agent) for guided assistance.
+The resiliency overview page provides a single-pane snapshot of the resiliency status for your resources and service groups, summarizing key information from other pages in the Resiliency pillar. The **Top actions** section provides recommendations for actions to take to optimize your resources.
 
 Drill down on any of the tiles to open other pages in the Optimization pillar for more details.
 

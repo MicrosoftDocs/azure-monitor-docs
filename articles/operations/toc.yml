@@ -3,7 +3,7 @@ items:
   href: index.yml
 - name: What is Azure operations center?
   href: overview.md
-- name: Pillars
+- name: Operations pillars
   items:
   - name: Observability
     href: observability.md
