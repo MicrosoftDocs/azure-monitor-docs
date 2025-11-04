@@ -112,17 +112,22 @@ Use the Azure portal for namespace-wide deployment onboarding.
 
 2. Select **Application Monitoring**.
 
-:::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-1.png":::
+:::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-2.png":::
 
 3. Select the languages to be instrumented.
-4. Optionally check the box to restart deployments immediately, or you can [manually restart deployments](#restart-deployment) later.
+4. Don't check the box to restart deployments immediately.
 5. Select **Configure**.
 
-:::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation." lightbox="media/kubernetes-codeless/deployment-2.png":::
+:::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation." lightbox="media/kubernetes-codeless/deployment-3.png":::
 
-6. Observe the "instrumented" status for each namespace in the deployment.
+6. Observe the **Application Monitoring Progress** and wait for it to complete.
 
-:::image type="content" source="media/kubernetes-codeless/deployment-4.png" alt-text="Azure portal screenshot showing the configure application monitoring pane for the chaos-testing namespace, with Node.js and Java selected and both deployments (chaos-controller-manager and chaos-dashboard) showing as Instrumented.sdf" lightbox="media/kubernetes-codeless/deployment-3.png":::
+:::image type="content" source="media/kubernetes-codeless/app-monitoring-progress.png" alt-text="Azure portal view showing the progress of application monitoring instrumentation." lightbox="media/kubernetes-codeless/app-monitoring-progress.png":::
+
+7. Manually [restart deployments](#restart-deployment).
+8. Observe the "instrumented" status for each namespace in the deployment.
+
+:::image type="content" source="media/kubernetes-codeless/deployment-4.png" alt-text="Azure portal screenshot showing the configure application monitoring pane for the chaos-testing namespace, with Node.js and Java selected and both deployments (chaos-controller-manager and chaos-dashboard) showing as Instrumented.sdf" lightbox="media/kubernetes-codeless/deployment-4.png":::
 
 #### [YAML](#tab/programmatic)
 
@@ -263,7 +268,7 @@ az aks update --resource-group={resource_group} --name={cluster_name} --disable-
 
 ### Disabling autoinstrumentation
 
-The following annotations disable autoinstrumentation for the language indicated.
+The following annotations disable autoinstrumentation.
 
 - Java: `instrumentation.opentelemetry.io/inject-java`
 - Node.js: `instrumentation.opentelemetry.io/inject-nodejs`
