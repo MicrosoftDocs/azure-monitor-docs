@@ -13,6 +13,7 @@ This article shows you how to create and configure Azure Resource Health alerts 
 Resource Health alerts notify you when your Azure resources experience a change in health status, such as becoming unavailable or degraded. These alerts help you stay informed and respond quickly to service issues affecting your workloads.
 
 **Prerequisites**
+
 To create or edit an alert rule, you must have the following permissions:
 
 - Read permission on the target resource of the alert rule.
