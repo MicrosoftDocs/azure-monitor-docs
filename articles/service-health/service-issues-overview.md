@@ -110,7 +110,7 @@ This tab shows a list of your specific resources that are or might be affected, 
 For more information about Impacted resources, see [Impacted Resources from Outages](./impacted-resources-outage.md).
 
 
-### Next steps:
+### For more information
 
 - [Service Health Frequently asked questions](service-health-faq.yml)
 - [Service Health Portal](service-health-portal-update.md)
