@@ -413,7 +413,7 @@ The following configuration removes all telemetry data emitted from methods of t
 
 ## Troubleshooting
 
-See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/telemetry/java-standalone-troubleshoot).
+See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/telemetry/java-standalone-troubleshoot#regex-issues-in-java-sampling-overrides).
 
 ## Next steps
 
