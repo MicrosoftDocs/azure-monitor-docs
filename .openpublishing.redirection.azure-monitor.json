@@ -2,32 +2,32 @@
  "redirections": [
   {
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis-troubleshoot.md",
-   "redirect_url": "/azure/governance/change/resource-graph-changes",
+   "redirect_url": "/azure/governance/resoure-graph/change/resource-graph-changes",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis-migration.md",
-   "redirect_url": "/azure/governance/change/resource-graph-changes",
+   "redirect_url": "/azure/governance/resoure-graph/change/resource-graph-changes",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis-visualizations.md",
-   "redirect_url": "/azure/governance/change/view-resource-changes",
+   "redirect_url": "/azure/governance/resoure-graph/change/view-resource-changes",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis-track-outages.md",
-   "redirect_url": "/azure/governance/change/resource-graph-changes",
+   "redirect_url": "/azure/governance/resoure-graph/change/resource-graph-changes",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis-enable.md",
-   "redirect_url": "/azure/governance/change/view-resource-changes",
+   "redirect_url": "/azure/governance/resoure-graph/change/view-resource-changes",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis.md",
-   "redirect_url": "/azure/governance/change/resource-graph-changes",
+   "redirect_url": "/azure/governance/resoure-graph/change/resource-graph-changes",
    "redirect_document_id": false
   },
   {
