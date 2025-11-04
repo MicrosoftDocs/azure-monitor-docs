@@ -94,12 +94,12 @@ The observability agent also offers smart scoping for Application Insight resour
 
 ## Issue and investigation initial workflow example
 
-1. An alert email from Azure Monitor is received.
-1. A select on the investigate button in the email creates an issue and starts an observability agent investigation. The issue page on the Azure portal opens in your browser.
-1. On the Issue page, you're presented with:
-    1. The issue overview where the findings of the last investigation are presented with summarized supporting data.
-    1. Each finding contains the observability agent analysis summary, suggested actions to take and the supporting data used for the analysis.
-1.  Every finding produced by the observability agent presents more details on the potential cause and present next steps to choose from.
+- An alert email from Azure Monitor is received.
+- A select on the investigate button in the email creates an issue and starts an observability agent investigation. The issue page on the Azure portal opens in your browser.
+- On the Issue page, you're presented with:
+    - The issue overview where the findings of the last investigation are presented with summarized supporting data.
+    - Each finding contains the observability agent analysis summary, suggested actions to take and the supporting data used for the analysis.
+- Every finding produced by the observability agent presents more details on the potential cause and present next steps to choose from.
 
 ## Regions
 

@@ -39,10 +39,10 @@ For detailed information about each capability and the supporting data types the
 
 The observability agent operates within the context of Azure Monitor issues:
 
-1. **Issue creation** - When you create an issue, it triggers the observability agent
-2. **Investigation execution** - The agent analyzes telemetry from the issue impact time (see [technical details](aiops-issue-and-investigation-overview.md#what-is-an-investigation) for scope and timing)
-3. **Finding generation** - Results are organized into findings that explain what happened, possible causes, and next steps
-4. **Supporting data correlation** - Supporting data is attached to each finding for validation and deeper analysis
+- **Issue creation** - When you create an issue, it triggers the observability agent
+- **Investigation execution** - The agent analyzes telemetry from the issue impact time (see [technical details](aiops-issue-and-investigation-overview.md#what-is-an-investigation) for scope and timing)
+- **Finding generation** - Results are organized into findings that explain what happened, possible causes, and next steps
+- **Supporting data correlation** - Supporting data is attached to each finding for validation and deeper analysis
 
 :::image type="content" source="media/issue-frame.png" alt-text="Screenshot of an Azure Monitor issue showing investigation findings and supporting data." lightbox="media/issue-frame.png":::
 
