@@ -1950,6 +1950,8 @@ items:
             href: tables/azfwapplicationrule.md
           - name: AZFWApplicationRuleAggregation
             href: tables/azfwapplicationruleaggregation.md
+          - name: AZFWDnsFlowTrace
+            href: tables/azfwdnsflowtrace.md
           - name: AZFWDnsQuery
             href: tables/azfwdnsquery.md
           - name: AZFWFatFlow
@@ -2262,6 +2264,8 @@ items:
             href: tables/containerlog.md
           - name: ContainerLogV2
             href: tables/containerlogv2.md
+          - name: ContainerNetworkLogs
+            href: tables/containernetworklogs.md
           - name: ContainerNodeInventory
             href: tables/containernodeinventory.md
           - name: ContainerRegistryLoginEvents
@@ -3614,6 +3618,8 @@ items:
             href: queries/ContainerLog.md
           - name: ContainerLogV2
             href: queries/ContainerLogV2.md
+          - name: ContainerNetworkLogs
+            href: queries/ContainerNetworkLogs.md
           - name: ContainerNodeInventory
             href: queries/ContainerNodeInventory.md
           - name: ContainerRegistryLoginEvents
