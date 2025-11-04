@@ -7,6 +7,9 @@ ms.date: 09/24/2025
 
 # Overview of Azure operations center (preview)
 
+[!INCLUDE [Preview-register](./includes/preview-register.md)]
+
+
 Azure operations center is a unified operations management platform designed to streamline monitoring, troubleshooting, and automation across cloud and hybrid environments. It allows you to retain your existing investments in Azure management tools while consolidating the configuration and administration of these services into a common portal, enhanced by agentic workflows powered by Copilot. 
 
 ## Value of operations center
@@ -16,11 +19,13 @@ Operations center provides a unified portal to manage and monitor your Azure and
 
 Enhancing the portal experience, operations center leverages Copilot agents to proactively surfaces issues and guide you through resolution steps. This helps you quickly identify and remediate issues to optimize your environment without needing to search for solutions or navigate complex documentation.
 
-
 :::image type="content" source="./media/overview/operations-center-concept.png" lightbox="./media/overview/operations-center-concept.png" alt-text="Diagram showing the benefits of Operations Center." border="false":::
 
 ## Operations pillars
-Operations center is organized into the five management pillars described in the following table. Each pillar consolidates related Azure services to provide a focused experience for managing specific aspects of your environment. See the documentation for each pillar for details.
+Operations center is organized into management pillars, each consolidating related Azure services to provide a focused experience for managing specific aspects of your environment. See the documentation for each pillar for details.
+
+:::image type="content" source="./media/overview/pillars.png" lightbox="./media/overview/pillars.png" alt-text="Diagram showing the Operations Center management pillars." border="false":::
+
 
 | Area |Description | Services |
 |:---|:---|:---|

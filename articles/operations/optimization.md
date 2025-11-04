@@ -8,6 +8,8 @@ ms.date: 10/30/2025
 
 # Optimization in Operations center (preview)
 
+[!INCLUDE [Preview-register](./includes/preview-register.md)]
+
 The **Optimization** pillar in [Azure operations center](./overview.md) helps you identify opportunities to improve the cost efficiency and carbon emissions of your Azure resources. It provides insights and recommendations based on best practices and usage patterns and leverages the Optimize agent to provide proactive recommendations and guided assistance.
 
 The Optimization pillar uses the following Azure services:

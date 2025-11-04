@@ -8,6 +8,8 @@ ms.date: 09/24/2025
 
 # Resiliency in Azure Operations Center (preview)
 
+[!INCLUDE [Preview-register](./includes/preview-register.md)]
+
 The **Resiliency** pillar in [Azure operations center](./overview.md) provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources. It helps you with the following tasks::
 
 - Understand zonal availability to keep workloads online during failures.

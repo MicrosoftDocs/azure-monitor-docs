@@ -8,6 +8,8 @@ ms.date: 09/24/2025
 
 # Configuration in Azure Operations Center (preview)
 
+[!INCLUDE [Preview-register](./includes/preview-register.md)]
+
 The **Configuration** pillar of [Azure operations center](./overview.md) helps you manage the configuration of your Azure VMs and Arc-enabled servers. Manage the policies that define their configuration and track changes and operating system updates. The pillar also provides a streamlined onboarding experience to automatically enroll your virtual machines for different Azure management and monitoring services.
 
 The Configuration pillar uses the following Azure services:
