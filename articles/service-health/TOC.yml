@@ -68,8 +68,10 @@
       items:
       - name: Resource health alerts overview
         href: resource-health-alert-monitor-guide.md
-      - name: Create and configure Resource health alerts
+      - name: Create Resource health alerts in Service Health
         href: resource-health-alert-arm-template-guide.md
+      - name: Create Resource Health alerts programmatically
+        href: resource-health-alert-powershell-template.md
     - name: Impacted Resources
       items:
       - name: Impacted Resources from outages
