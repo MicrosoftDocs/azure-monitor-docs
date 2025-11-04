@@ -106,7 +106,7 @@ Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. 
 
 Use the Azure portal for namespace-wide deployment onboarding.
 
-1. From the **Namespaces** pane, select the namespace to be instrumented.
+1. From the **Namespaces** pane, choose the namespace to be instrumented and select **Configure**.
 
 :::image type="content" source="media/kubernetes-codeless/deployment-1.png" alt-text="Azure portal view showing namespaces and an application monitoring button." lightbox="media/kubernetes-codeless/deployment-1.png":::
 
