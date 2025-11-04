@@ -32,7 +32,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
 
 
-#### PowerShell guide
+#### PowerShell 
 
 1. Use PowerShell to sign-in to Azure using your account, and select the subscription you want to use.
 
@@ -50,7 +50,7 @@ To follow the instructions on this page, you need to set up a few things in adva
     ```
 
 
-3. Create and save an ARM template for Resource Health alerts as `resourcehealthalert.json` ([see details](#Templates-to-create-Resource-health-alerts))
+3. Create and save an ARM template for Resource Health alerts as `resourcehealthalert.json` ([see details](#create-resource-health-alerts-using-template-options))
 
 
 1. Create a new Azure Resource Manager deployment using this template.
@@ -96,7 +96,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 
 
 
-## Templates to create Resource health alerts
+## Create Resource health alerts using template options
 
 ### [Base template](#tab/basetemplate)
 
@@ -505,7 +505,7 @@ You know best what configurations are effective for you, so use the tools shown 
 ---
 
 
-## For more Information
+## For more information
 
 Learn more about Resource Health:
 
