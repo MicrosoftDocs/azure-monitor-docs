@@ -2,7 +2,7 @@
 title: Service Issues overview
 description: This article describes how to view and use the Service Issues pane
 ms.topic: overview
-ms.date: 10/22/2025
+ms.date: 11/04/2025
 
 ---
 
@@ -33,7 +33,7 @@ For each Service issue listed on this panel, the information includes:
 - Last updated 
 - Event tags
 
-Select the Issue name **link** to open the tabs and see more detailed information about the issue.
+Select the link in the  **Issue name** column to open the tabs and see more detailed information about the issue.
 >[!Note]
 >Service issue events are displayed in the panel for 3 days if they are still active or have been updated during that time. After that they are moved to the health history panel where they are displayed for 90 days. 
 >
