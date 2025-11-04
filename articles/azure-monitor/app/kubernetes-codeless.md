@@ -125,7 +125,7 @@ Use the Azure portal for namespace-wide deployment onboarding.
 :::image type="content" source="media/kubernetes-codeless/app-monitoring-progress.png" alt-text="Azure portal view showing the progress of application monitoring instrumentation." lightbox="media/kubernetes-codeless/app-monitoring-progress.png":::
 
 7. Manually [restart deployments](#restart-deployment).
-8. Observe the "instrumented" status for each namespace in the deployment.
+8. Check the "instrumented" status for each namespace in the deployment.
 
 :::image type="content" source="media/kubernetes-codeless/deployment-4.png" alt-text="Azure portal screenshot showing the configure application monitoring pane for the chaos-testing namespace, with Node.js and Java selected and both deployments (chaos-controller-manager and chaos-dashboard) showing as Instrumented.sdf" lightbox="media/kubernetes-codeless/deployment-4.png":::
 
