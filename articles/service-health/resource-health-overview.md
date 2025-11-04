@@ -78,7 +78,6 @@ The following messages mean that your resource isn't supported for Resource Heal
 - **Health not supported**
 - **Resource Provider (RP) has no information about the resource**
 - **You don't have read/write access for that resource**
- 
 To see which resources work with Resource Health, refer to [Supported Resource Types](resource-health-checks-resource-types.md).
 
 ## Resource health events sent to the activity log
@@ -88,7 +87,7 @@ A resource health event is recorded in the activity log when:
 - A resource transitioned to or from Unhealthy.
 - A resource is Unhealthy for more than 15 minutes.
 
-For more information about the Activity log, see [Activity Log Schema](azure-monitor/platform/activity-log-schema#resource-health-category)
+For more information about the Activity log, see [Activity Log Schema](/azure-monitor/platform/activity-log-schema#resource-health-category)
 
 The following resource health transitions aren't recorded in the activity log:
 - A transition to Unknown state.
