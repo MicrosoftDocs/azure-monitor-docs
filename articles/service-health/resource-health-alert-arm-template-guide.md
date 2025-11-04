@@ -2,13 +2,13 @@
 title: How to create Resource Health alerts
 description: Create alerts in Azure Service Health, or programmatically to notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 6/26/2025 
+ms.date: 11/04/2025 
 
 ---
 
 # Create and configure Resource Health alerts 
 
-This article shows how to create and configure Azure Resource Health alerts using the Azure portal, Azure PowerShell, Azure Resource Manager (ARM) templates, and Azure CLI.
+This article shows you how to create and configure Azure Resource Health alerts using the Azure portal, Azure PowerShell, Azure Resource Manager (ARM) templates, and Azure CLI.
 
 Resource Health alerts notify you when your Azure resources experience a change in health status, such as becoming unavailable or degraded. These alerts help you stay informed and respond quickly to service issues affecting your workloads.
 
@@ -16,13 +16,11 @@ Resource Health alerts notify you when your Azure resources experience a change 
 ## Create a Resource Health alert rule in the Service Health portal
 
 1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
+:::image type="content" source="./media/resource-health-alert-monitor-guide/service-health-selection-1.png" alt-text="Screenshot of Resource Health option." lightbox="./media/resource-health-alert-monitor-guide/service-health-selection-1.PNG":::
 
-
-:::image type="content" source="./media/alerts-activity-log-service-notifications/resource-health-select.png" alt-text="Screenshot of Service Health option." lightbox="./media/alerts-activity-log-service-notifications/resource-health-select.png":::
 
 2. Select **Resource Health**.
-
-:::image type="content" source="./media/resource-health-alert-monitor-guide/service-health-selection-1.png" alt-text="Screenshot of Resource Health option." lightbox="./media/resource-health-alert-monitor-guide/service-health-selection-1.PNG":::
+:::image type="content" source="./media/alerts-activity-log-service-notifications/resource-health-select.png" alt-text="Screenshot of Service Health option." lightbox="./media/alerts-activity-log-service-notifications/resource-health-select.png":::
 
     
 3. Select **Add resource health alert**.
