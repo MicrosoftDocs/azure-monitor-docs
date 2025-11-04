@@ -2,7 +2,7 @@
 title: Azure Resource Health overview
 description: Learn how Azure Resource Health helps you diagnose and get support for service problems that affect your Azure resources.
 ms.topic: concept-article
-ms.date: 11/03/2025
+ms.date: 11/04/2025
 
 ---
 # Resource Health overview
@@ -74,12 +74,12 @@ For Virtual Machine Scale Sets, visit [Resource health state is "Degraded" in Az
 
 ### Health not supported
 
-The following messages mean that your resource isn't supported for the health metrics.
+The following messages mean that your resource isn't supported for Resource Health.
 - **Health not supported**
 - **Resource Provider (RP) has no information about the resource**
 - **You don't have read/write access for that resource**
  
-To know which resources support health metrics, refer to [Supported Resource Types](resource-health-checks-resource-types.md).
+To see which resources work with Resource Health, refer to [Supported Resource Types](resource-health-checks-resource-types.md).
 
 ## Resource health events sent to the activity log
 
@@ -87,6 +87,8 @@ A resource health event is recorded in the activity log when:
 - An annotation, for example *ResourceDegraded,* or *AccountClientThrottling*, is submitted for a resource.
 - A resource transitioned to or from Unhealthy.
 - A resource is Unhealthy for more than 15 minutes.
+
+For more information about the Activity log, see [Activity Log Schema](azure-monitor/platform/activity-log-schema#resource-health-category)
 
 The following resource health transitions aren't recorded in the activity log:
 - A transition to Unknown state.
