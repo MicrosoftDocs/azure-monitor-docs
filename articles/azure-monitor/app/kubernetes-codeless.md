@@ -106,7 +106,7 @@ Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. 
 
 Use the Azure portal for namespace-wide deployment onboarding.
 
-1. From the **Namespaces** pane, choose the namespace to be instrumented and select **Configure**.
+1. From the **Namespaces** pane, choose the namespace to be instrumented.
 
 :::image type="content" source="media/kubernetes-codeless/deployment-1.png" alt-text="Azure portal view showing namespaces and an application monitoring button." lightbox="media/kubernetes-codeless/deployment-1.png":::
 
@@ -247,7 +247,8 @@ You can remove AKS autoinstrumentation using either the Azure portal or Azure CL
 Use the Azure portal to remove autoinstrumentation from the cluster.
 
 1. Select the **Monitor** section.
-2. Uncheck the **Enable application monitoring** box. 
+2. Uncheck the **Enable application monitoring** box.
+3. Select **Review + enable**.
 
 :::image type="content" source="media/kubernetes-codeless/remove.png" alt-text="Azure portal view of the monitor settings pane for an AKS cluster showing monitoring capabilities." lightbox="media/kubernetes-codeless/remove.png":::
 
