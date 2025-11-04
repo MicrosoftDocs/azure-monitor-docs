@@ -10,30 +10,23 @@ ms.date: 09/24/2025
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
 
-Azure operations center is a unified operations management platform designed to streamline monitoring, troubleshooting, and automation across cloud and hybrid environments. It allows you to retain your existing investments in Azure management tools while consolidating the configuration and administration of these services into a common portal, enhanced by agentic workflows powered by Copilot. 
+Azure operations center is a unified operations management platform designed to streamline monitoring, troubleshooting, and automation across cloud and hybrid environments. It allows you to retain your existing investments in Azure management tools while consolidating the configuration and administration of these services into a common portal, enhanced by agentic workflows powered by Azure Copilot. 
 
 ## Value of operations center
 Azure includes a rich set of services to manage and monitor your cloud resources. Working with the entire set of services can be frustrating though because they're scattered across different menus in the Azure portal. You also need to identify the different services available and configure each separately for your applications and resources.
 
-Operations center provides a unified portal to manage and monitor your Azure and hybrid environments. It consolidates the experience of multiple Azure management services into a single location and adds features to improve usability and streamline common tasks. Continue to use the Azure services that you already rely on, but save time by accessing them in a consolidated portal experience.
-
-Enhancing the portal experience, operations center leverages Copilot agents to proactively surfaces issues and guide you through resolution steps. This helps you quickly identify and remediate issues to optimize your environment without needing to search for solutions or navigate complex documentation.
-
 :::image type="content" source="./media/overview/operations-center-concept.png" lightbox="./media/overview/operations-center-concept.png" alt-text="Diagram showing the benefits of Operations Center." border="false":::
 
+
+Azure Operations Center provides a unified portal to manage and monitor your Azure and hybrid environments. It consolidates the experience of multiple Azure management services into a single location and adds features to improve usability and streamline common tasks. Continue to use the Azure services that you already rely on, but save time by accessing them in a consolidated portal experience.
+
+Operations center enhances the portal experience by leveraging Azure Copilot agents to proactively surface issues and guide you through resolution steps. This helps you quickly identify and remediate issues to optimize your environment without needing to search for solutions or navigate complex documentation.
+
+
 ## Operations pillars
-Operations center is organized into management pillars, each consolidating related Azure services to provide a focused experience for managing specific aspects of your environment. See the documentation for each pillar for details.
+Operations center is organized into management pillars, each consolidating related Azure services to provide a focused experience for managing specific aspects of your environment. 
 
 :::image type="content" source="./media/overview/pillars.png" lightbox="./media/overview/pillars.png" alt-text="Diagram showing the Operations Center management pillars." border="false":::
-
-
-| Area |Description | Services |
-|:---|:---|:---|
-| [Observability](./observability.md) | Provides a deep understanding of a system to diagnose and resolve unknown or complex problems. | [Azure Monitor]()<br>[Service health]() |
-| [Security](./security.md) | Protect systems and data. | [Defender for Cloud ]() |
-| [Resiliency](./resiliency.md) | Emphasizes the systems ability to recover from failures and maintain functionality | [Policy]()<br>[Machine configuration]()<br>[Update management]()<br>[Change tracking + inventory]() | 
-| [Configuration](./configuration.md) | Defining standards, assessing compliance, and changing the settings of a system. | [Business continuity center]()<br>[Backup]()<br>[Site Recovery]() |
-| [Optimization](./optimization.md) | Finds the best possible solution within given constraints, improving factors like cost, performance, and carbon emissions. | [Cost optimization]()<br>[Carbon emissions]() |
 
 Each pillar includes the following in the operations center portal: 
 
@@ -41,8 +34,20 @@ Each pillar includes the following in the operations center portal:
 - Menu items that provide access to the different Azure services related to the pillar. Many of these menu items correspond directly to existing Azure services, while others provide consolidated views across multiple services.
 - Recommendations page that consolidates relevant Azure Advisor recommendations for the pillar. 
 
+The following table describes each pillar and the Azure services it uses. All pillars also use [Azure Advisor]() to provide recommendations for improving your configuration. See the documentation for each pillar for more details.
+
+| Area |Description | Services |
+|:---|:---|:---|
+| [Observability](./observability.md) | Provides a deep understanding of a system to diagnose and resolve unknown or complex problems. | [Azure Monitor]()<br>[Service health]() |
+| [Security](./security.md) | Protect systems and data. | [Defender for Cloud ]() |
+| [Resiliency](./resiliency.md) | Emphasizes the systems ability to recover from failures and maintain functionality | [Business continuity center]()<br>[Backup]()<br>[Site Recovery]() | 
+| [Configuration](./configuration.md) | Defining standards, assessing compliance, and changing the settings of a system. | [Policy]()<br>[Machine configuration]()<br>[Update management]()<br>[Change tracking + inventory]() |
+| [Optimization](./optimization.md) | Finds the best possible solution within given constraints, improving factors like cost, performance, and carbon emissions. | [Cost optimization]()<br>[Carbon emissions]() |
+
+
+
 ## Overview page
-To further increase your efficiency, a top level overview provides you with an overall summary across your management spectrum. Use this page as a starting point to quickly identify any critical issues or actions that require your attention before drilling down into specific pillars for more details. The overview page includes a summary from each of the five pillars and an **Actions** tile that helps you quickly identify the actions being recommended across all pillars.
+Each pillar includes a top level overview page that summarizes key information and identifies any critical actions. Use this page as a starting point to quickly identify any critical issues or actions that require your attention before drilling down into specific pillars for more details. The overview page includes a summary from each of the five pillars and an **Actions** tile that helps you quickly identify the actions being recommended across all pillars.
 
 :::image type="content" source="./media/overview/operations-center.png" lightbox="./media/overview/operations-center.png" alt-text="Screenshot of operations center showing the five pillars":::
 
