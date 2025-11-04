@@ -1,6 +1,6 @@
 ---
-title: Create Resource Health alerts with Azure Powershell, ARM and templates
-description: Create Resource health programmatically to notify you when your Azure resources become unavailable.
+title: Create Resource Health alerts with Azure PowerShell, Azure Resource Manager, and templates
+description: Create Resource health alerts programmatically to notify you when your Azure resources become unavailable.
 ms.topic: conceptual
 ms.date: 11/04/2025 
 
@@ -327,7 +327,7 @@ It's possible for the `currentHealthStatus` and `previousHealthStatus` propertie
 
 ### Adjusting the alert to avoid user initiated events
 
-Resource Health events are triggered by platform-initiated and user-initiated events. To reduce noise, it's often best to send notifications only for events caused by the Azure platform.
+Platform-initiated and user-initiated events trigger Resource Health events. To reduce any noise, it's often best to send notifications only for events caused by the Azure platform.
 
 It's easy to configure your alert to filter for only these kinds of events:
 
