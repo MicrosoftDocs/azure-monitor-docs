@@ -6,7 +6,7 @@ ms.date: 11/04/2025
 
 ---
 
-# Create and configure Resource Health alerts 
+# How to create Resource Health alerts 
 
 This article shows you how to create and configure Azure Resource Health alerts using Azure PowerShell, Azure Resource Manager (ARM) templates, and Azure CLI.
 
