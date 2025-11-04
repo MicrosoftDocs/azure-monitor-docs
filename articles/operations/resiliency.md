@@ -16,6 +16,7 @@ The **Resiliency** pillar in [Azure operations center](./overview.md) provides a
 
 The Resiliency pillar uses the following Azure services:
 - [Azure Business Continuity Center](/azure/business-continuity-center/business-continuity-center-overview)
+- [Azure Advisor](/azure/advisor/advisor-overview)
 
 ## Menu items
 

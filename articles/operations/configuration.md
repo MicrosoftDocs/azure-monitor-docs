@@ -96,8 +96,7 @@ You must have the following roles to configure a subscription for machine enroll
 
 - [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace) to collect log data collected from VMs.
 - [Azure Monitor workspace](/azure/azure-monitor/metrics/azure-monitor-workspace-manage) to collect metrics data collected from VMs.
-- User assigned managed identity with the following roles assigned for the subscription:
-  - Monitoring Reader
+- User assigned managed identity with Contributor permission for the subscription.
 
 ### Enable a subscription
  To enable machine management for a subscription, select **Machine enrollment** from the **Configuration** pillar, and click **Enable**.

@@ -13,7 +13,7 @@ The **Security** pillar of [Azure operations center](./overview.md) helps you ma
 The Security pillar uses the following Azure services:
 
 - [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction)
-
+- [Azure Advisor](/azure/advisor/advisor-overview)
 
 
 ## Menu items

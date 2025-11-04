@@ -16,7 +16,7 @@ The Observability pillar uses the following Azure services:
 - [Azure Monitor](/azure/azure-monitor/)
 - [Azure Service Health](/azure/service-health/overview)
 - [Change analysis](/azure/governance/resource-graph/changes/view-resource-changes)
-
+- [Azure Advisor](/azure/advisor/advisor-overview)
 
 ## Observability pillar
 The Observability pillar includes the following menu items:
@@ -38,7 +38,7 @@ The Observability pillar includes the following menu items:
 ## Monitor overview
 The **Monitor** page provides a consolidated view of the key information from the other pages in the Observability pillar. It leverages the Observability agent to surface important information and identify top actions that you can take to improve the monitoring and health of your Azure resources. Start here to identify any critical issues or other matters that require your attention before drilling down into specific areas.
 
-:::image type="content" source="./media/portal/Observability-pillar.png" lightbox="./media/portal/Observability-pillar.png" alt-text="Screenshot of Monitor menu in the Azure portal":::
+:::image type="content" source="./media/Observability-pillar.png" lightbox="./media/Observability-pillar.png" alt-text="Screenshot of Monitor menu in the Azure portal":::
 
 
 | Section | Description |

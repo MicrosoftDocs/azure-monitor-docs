@@ -1,23 +1,38 @@
 ### YamlMime:Landing
 
-title: Ops360 documentation
-summary: Learn about monitoring Azure and on-premises services. Understand how to aggregate and analyze metrics, logs, and traces. Respond to issues by firing alerts that can send notifications or by calling automated solutions.
+title: Azure Operations Center documentation
+summary: Learn about Azure Operations Center, a unified operations management platform for monitoring, troubleshooting, and automation across cloud and hybrid environments.
 
 metadata:
-  title: Ops360 documentation
-  description: Azure Monitor, which now includes Log Analytics and Application Insights, provides sophisticated tools for collecting and analyzing telemetry that allow you to maximize the performance and availability of your cloud and on-premises resources and applications.
+  title: Azure Operations Center documentation
+  description: Azure Operations Center, which is a unified operations management platform for monitoring, troubleshooting, and automation across cloud and hybrid environments.
   ms.topic: landing-page
   ms.service: operations
-  ms.date: 03/11/2024
+  ms.date: 11/03/2025
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
 # Card 
-  - title: Ops360
+  - title: Azure Operation Center
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Ops360?
-            url: fundamentals/overview.md
+          - text: What is Operations Center?
+            url: ./overview.md
+
+  - title: Pillars
+    linkLists:
+      - linkListType: learn
+        links:
+          - text: Observability
+            url: ./observability.md
+          - text: Security
+            url: ./security.md
+          - text: Resiliency
+            url: ./resiliency.md
+          - text: Configuration
+            url: ./configuration.md
+          - text: Optimization
+            url: ./optimization.md
