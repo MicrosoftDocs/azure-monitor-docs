@@ -2,9 +2,9 @@
 ms.assetid: 
 title: Configure the network firewall for Azure Monitor SCOM Managed Instance
 description: This article describes how to configure the network firewall.
-author: jyothisuri
-ms.author: jsuri
-ms.date: 09/08/2025
+author: Jeronika-MS
+ms.author: v-gajeronika
+ms.date: 09/30/2025
 ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -13,10 +13,9 @@ ms.topic: how-to
 
 # Configure the network firewall for Azure Monitor SCOM Managed Instance
 
-This article describes how to configure the network firewall and Azure network security group (NSG) rules.
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
-> [!NOTE]
-> To learn about the Azure Monitor SCOM Managed Instance architecture, see [Azure Monitor SCOM Managed Instance](overview.md).
+This article describes how to configure the network firewall and Azure network security group (NSG) rules.
 
 ## Network prerequisites
 

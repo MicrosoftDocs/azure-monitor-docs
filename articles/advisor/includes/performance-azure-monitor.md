@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 09/23/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Monitor

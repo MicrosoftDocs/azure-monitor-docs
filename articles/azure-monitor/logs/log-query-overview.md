@@ -21,7 +21,7 @@ Areas in Azure Monitor where you use queries include:
 | [Azure dashboards](../visualize/tutorial-logs-dashboards.md) | Pin the results of any query into an Azure dashboard, which allows you to visualize log and metric data together and optionally share with other Azure users. |
 | [Azure Logic Apps](/azure/connectors/connectors-azure-monitor-logs) | Use the results of a log query in an automated workflow by using a logic app workflow. |
 | [PowerShell](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) | Use the results of a log query in a PowerShell script from a command line or an Azure Automation runbook that uses `Invoke-AzOperationalInsightsQuery`. |
-| [Log Analytics query API](/rest/api/loganalytics/query) | Retrieve log data from the workspace from any REST API client. The API request includes a query that runs against Azure Monitor to determine the data to retrieve. |
+| [Log Analytics query API](/azure/azure-monitor/logs/api/overview) | Retrieve log data from the workspace from any REST API client. The API request includes a query that runs against Azure Monitor to determine the data to retrieve. |
 
 > [!IMPORTANT]
 > Since July 1, 2025, querying log data and events requires TLS 1.2 or higher when using [query API endpoints for Log Analytics or Application Insights](../fundamentals/azure-monitor-network-access.md#logs-query-api-endpoints). For more information, see [Secure data in transit](../fundamentals/best-practices-security.md#secure-logs-data-in-transit).

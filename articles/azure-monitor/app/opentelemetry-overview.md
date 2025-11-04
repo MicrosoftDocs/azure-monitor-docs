@@ -99,12 +99,8 @@ Check out the [Azure Monitor Application Insights FAQ](./application-insights-fa
 Select your enablement approach:
 
 - [Autoinstrumentation](codeless-overview.md)
-- Application Insights SDKs
-    - [ASP.NET](./asp-net.md)
-    - [ASP.NET Core](./asp-net-core.md)
-    - [Node.js](./nodejs.md)
-    - [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
-    - [JavaScript: Web](./javascript.md)
 - [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
-
-
+- Application Insights SDKs
+    - [.NET](./asp-net.md)
+    - [Node.js](./nodejs.md)
+    - [JavaScript (Browser)](./javascript.md)

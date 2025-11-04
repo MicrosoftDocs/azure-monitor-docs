@@ -538,6 +538,7 @@ This section describes different error conditions you might receive and how to c
 |:---|---|
 | Error code 403  | Ensure that you have the correct permissions for your application to the DCR. You might also need to wait up to 30 minutes for permissions to propagate. |
 | Error code 413 or warning of `TimeoutExpired` with the message `ReadyBody_ClientConnectionAbort` in the response | The message is too large. The maximum message size is currently 1 MB per call. |
+| Error code `RecordsTimeRangeIsMoreThan30Minutes` | This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed. This restriction does not apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md). |
 | Error code 429 | API limits have been exceeded. The limits are currently set to 500 MB of data per minute for both compressed and uncompressed data and 300,000 requests per minute. Retry after the duration listed in the `Retry-After` header in the response. |
 | No data | The data might take some time to be ingested, especially the first time data is being sent to a particular table. It shouldn't take longer than 15 minutes. |
 | IntelliSense in Log Analytics doesn't recognize the new table. | The cache that drives IntelliSense might take up to 24 hours to update. |

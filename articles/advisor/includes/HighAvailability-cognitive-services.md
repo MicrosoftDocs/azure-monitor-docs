@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -47,5 +47,23 @@ Recommendation ID: 3f83aee8-222d-445c-9a46-2af5fe5b4777
 Subcategory: Scalability
 
 <!--3f83aee8-222d-445c-9a46-2af5fe5b4777_end-->
+
+<!--41853861-bc9a-42b9-8ffc-f34dbaf07c00_begin-->
+
+#### Migrate to named entity recognition  
+  
+Entity linking in Azure AI Language is retiring. Consider a replacement solution such as named entity recognition in Azure AI Language that supports entity and doesn't provide a link to a public page.  
+  
+**Potential benefits**: Maintain entity identification capabilities  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=499851)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 41853861-bc9a-42b9-8ffc-f34dbaf07c00  
+Subcategory: undefined
+
+<!--41853861-bc9a-42b9-8ffc-f34dbaf07c00_end-->
 
 <!--articleBody-->

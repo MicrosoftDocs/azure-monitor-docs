@@ -13,7 +13,7 @@ ms.date: 04/14/2025
 
 # Queries for the AppRequests table
 
-For information on using these queries in the Azure portal, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial). For the REST API, see [Query](/rest/api/loganalytics/query).
+For information on using these queries in the Azure portal, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial). For the REST API, see [Query](/azure/azure-monitor/logs/api/overview).
 
 
 ### Response time trend  
@@ -74,7 +74,7 @@ AppRequests
 
 
 
-### Top 10 countries by traffic  
+### Top 10 countries/regions by traffic  
 
 
 Chart the amount of requests from the top 10 countries.  

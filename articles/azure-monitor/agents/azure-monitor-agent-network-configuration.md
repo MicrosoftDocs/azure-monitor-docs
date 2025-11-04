@@ -30,11 +30,14 @@ The following table provides the endpoints that firewalls must provide access to
 | Endpoint | Purpose | Example |
 |:---------|:--------|:--------|
 | `global.handler.control.monitor.azure.com` | Access the control service | Not applicable |
+| `global.prod.microsoftmetrics.com` | Access the metrics service | Not applicable |
 | `<virtual-machine-region-name>.handler.control.monitor.azure.com` | Fetch DCRs for a specific machine | `westus2.handler.control.monitor.azure.com` |
 |`<log-analytics-workspace-id>.ods.opinsights.azure.com` | Ingest log data | `1234a123-aa1a-123a-aaa1-a1a345aa6789.ods.opinsights.azure.com` |
 | `management.azure.com` | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../metrics/metrics-custom-overview.md) database | Not applicable |
 | `<virtual-machine-region-name>.monitoring.azure.com` | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../metrics/metrics-custom-overview.md) database | `westus2.monitoring.azure.com` |
 | `<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` |Ingest log data | `275test-01li.eastus2euap-1.canary.ingest.monitor.azure.com` |
+
+
 
 Replace the suffix in the endpoints with the suffix in the following table for respective clouds:
 

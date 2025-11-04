@@ -1,13 +1,17 @@
 ---
-title: Monitor Node.js services with Application Insights | Microsoft Docs
-description: Monitor performance and diagnose problems in Node.js services with Application Insights.
+title: Monitor Node.js Applications and Services with Application Insights (Classic API) | Microsoft Docs
+description: Monitor Node.js applications and services with Application Insights (Classic API) for availability, performance, and usage.
 ms.topic: how-to
-ms.date: 3/21/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
+ms.date: 3/21/2025
 ---
 
-# Monitor your Node.js services and apps with Application Insights
+# Monitor your Node.js applications and services with Application Insights (Classic API)
+
+[!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
+
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 [Application Insights](./app-insights-overview.md) monitors your components after deployment to discover performance and other issues. You can use Application Insights for Node.js services that are hosted in your datacenter, Azure VMs and web apps, and even in other public clouds.
 
@@ -19,48 +23,44 @@ All events related to an incoming HTTP request are correlated for faster trouble
 
 You can use the TelemetryClient API to manually instrument and monitor more aspects of your app and system. We describe the TelemetryClient API in more detail later in this article.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
-
 ## Get started
 
 Complete the following tasks to set up monitoring for an app or service.
 
 ### Prerequisites
 
-Before you begin, make sure that you have an Azure subscription, or [get a new one for free][azure-free-offer]. If your organization already has an Azure subscription, an administrator can follow [these instructions][add-aad-user] to add you to it.
+Before you begin, make sure that you have an Azure subscription, or [get a new one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If your organization already has an Azure subscription, an administrator can follow [these instructions](/azure/active-directory/fundamentals/add-users-azure-active-directory) to add you to it.
 
-[azure-free-offer]: https://azure.microsoft.com/free/
-[add-aad-user]: /azure/active-directory/fundamentals/add-users-azure-active-directory
-
-### <a name="resource"></a> Set up an Application Insights resource
+### Set up an Application Insights resource
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 1. Create an [Application Insights resource](create-workspace-resource.md).
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
-### <a name="sdk"></a> Set up the Node.js client library
+### Set up the Node.js client library
 
 Include the SDK in your app so that it can gather data.
 
 1. Copy your resource's connection string from your new resource. Application Insights uses the connection string to map data to your Azure resource. Before the SDK can use your connection string, you must specify the connection string in an environment variable or in your code.
 
-   :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows the Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
+    :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows the Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
 
 1. Add the Node.js client library to your app's dependencies via `package.json`. From the root folder of your app, run:
 
-   ```bash
-   npm install applicationinsights --save
-   ```
+    ```bash
+    npm install applicationinsights --save
+    ```
 
     > [!NOTE]
     > If you're using TypeScript, don't install separate "typings" packages. This NPM package contains built-in typings.
 
 1. Explicitly load the library in your code. Because the SDK injects instrumentation into many other libraries, load the library as early as possible, even before other `require` statements.
 
-   ```javascript
-   let appInsights = require('applicationinsights');
-   ```
+    ```javascript
+    let appInsights = require('applicationinsights');
+    ```
+
 1. You also can provide a connection string via the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`, instead of passing it manually to `setup()` or `new appInsights.TelemetryClient()`. This practice lets you keep connection strings out of committed source code, and you can specify different connection strings for different environments. To manually configure, call `appInsights.setup('[your connection string]');`.
 
     For more configuration options, see the following sections.
@@ -72,7 +72,7 @@ Include the SDK in your app so that it can gather data.
 > [!NOTE]
 > As part of using Application Insights instrumentation, we collect and send diagnostic data to Microsoft. This data helps us run and improve Application Insights. You have the option to disable non-essential data collection. [Learn more](./statsbeat.md).
 
-### <a name="monitor"></a> Monitor your app
+### Monitor your app
 
 The SDK automatically gathers telemetry about the Node.js runtime and some common third-party modules. Use your application to generate some of this data.
 
@@ -88,17 +88,15 @@ Because the SDK batches data for submission, there might be a delay before items
 * Select **Refresh** in the portal resource view. Charts periodically refresh on their own, but manually refreshing forces them to refresh immediately.
 * Verify that [required outgoing ports](../fundamentals/azure-monitor-network-access.md) are open.
 * Use [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search) to look for specific events.
-* Check the [FAQ][FAQ].
+* Check the [FAQ](application-insights-faq.yml#node-js).
 
 ## Basic usage
 
 For out-of-the-box collection of HTTP requests, popular third-party library events, unhandled exceptions, and system metrics:
 
 ```javascript
-
 let appInsights = require("applicationinsights");
 appInsights.setup("[your connection string]").start();
-
 ```
 
 > [!NOTE]
@@ -114,9 +112,9 @@ There are breaking changes between releases prior to version 0.22 and after. The
 
 In general, you can migrate with the following actions:
 
-- Replace references to `appInsights.client` with `appInsights.defaultClient`.
-- Replace references to `appInsights.getClient()` with `new appInsights.TelemetryClient()`.
-- Replace all arguments to client.track* methods with a single object containing named properties as arguments. See your IDE's built-in type hinting or [TelemetryTypes](https://github.com/Microsoft/ApplicationInsights-node.js/tree/develop/Declarations/Contracts/TelemetryTypes) for the excepted object for each type of telemetry.
+* Replace references to `appInsights.client` with `appInsights.defaultClient`.
+* Replace references to `appInsights.getClient()` with `new appInsights.TelemetryClient()`.
+* Replace all arguments to client.track* methods with a single object containing named properties as arguments. See your IDE's built-in type hinting or [TelemetryTypes](https://github.com/Microsoft/ApplicationInsights-node.js/tree/develop/Declarations/Contracts/TelemetryTypes) for the excepted object for each type of telemetry.
 
 If you access SDK configuration functions without chaining them to `appInsights.setup()`, you can now find these functions at `appInsights.Configurations`. An example is `appInsights.Configuration.setAutoCollectDependencies(true)`. Review the changes to the default configuration in the next section.
 
@@ -196,17 +194,17 @@ or by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_ENAB
 
 Web Instrumentation is enabled on node server responses when all of the following requirements are met:
 
-- Response has status code `200`.
-- Response method is `GET`.
-- Server response has `Content-Type` html.
-- Server response contains both `<head>` and `</head>` Tags.
-- If response is compressed, it must have only one `Content-Encoding` type, and encoding type must be one of `gzip`, `br` or `deflate`.
-- Response does not contain current /backup web Instrumentation CDN endpoints.  (current and backup Web Instrumentation CDN endpoints [here](https://github.com/microsoft/ApplicationInsights-JS#active-public-cdn-endpoints))
+* Response has status code `200`.
+* Response method is `GET`.
+* Server response has `Content-Type` html.
+* Server response contains both `<head>` and `</head>` Tags.
+* If response is compressed, it must have only one `Content-Encoding` type, and encoding type must be one of `gzip`, `br` or `deflate`.
+* Response does not contain current /backup web Instrumentation CDN endpoints.  (current and backup Web Instrumentation CDN endpoints [here](https://github.com/microsoft/ApplicationInsights-JS#active-public-cdn-endpoints))
 
 Web Instrumentation CDN endpoint can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_SOURCE = "web Instrumentation CDN endpoints"`.
 Web Instrumentation connection string can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_CONNECTION_STRING = "web Instrumentation connection string"`
 
-> [!Note] 
+> [!NOTE] 
 > Web Instrumentation may slow down server response time, especially when response size is large or response is compressed. For the case in which some middle layers are applied, it may result in web Instrumentation not working and original response will be returned.
 
 ### Automatic third-party instrumentation
@@ -239,9 +237,9 @@ npm install applicationinsights-native-metrics
 
 Currently, the native metrics package performs autocollection of garbage collection CPU time, event loop ticks, and heap usage:
 
-- **Garbage collection**: The amount of CPU time spent on each type of garbage collection, and how many occurrences of each type.
-- **Event loop**: How many ticks occurred and how much CPU time was spent in total.
-- **Heap vs. non-heap**: How much of your app's memory usage is in the heap or non-heap.
+* **Garbage collection**: The amount of CPU time spent on each type of garbage collection, and how many occurrences of each type.
+* **Event loop**: How many ticks occurred and how much CPU time was spent in total.
+* **Heap vs. non-heap**: How much of your app's memory usage is in the heap or non-heap.
 
 ### Distributed tracing modes
 
@@ -257,7 +255,7 @@ appInsights
 
 ## TelemetryClient API
 
-For a full description of the TelemetryClient API, see [Application Insights API for custom events and metrics](./api-custom-events-metrics.md).
+For a full description of the TelemetryClient API, see [Application Insights API for custom events and metrics](#core-api-for-custom-events-and-metrics).
 
 You can track any request, event, metric, or exception by using the Application Insights client library for Node.js. The following code example demonstrates some of the APIs that you can use:
 
@@ -342,8 +340,8 @@ appInsights.defaultClient.commonProperties = {
 Use the following code to manually track HTTP GET requests:
 
 > [!NOTE]
-> - All requests are tracked by default. To disable automatic collection, call `.setAutoCollectRequests(false)` before calling `start()`.
-> - Native fetch API requests aren't automatically tracked by classic Application Insights; manual dependency tracking is required.
+> * All requests are tracked by default. To disable automatic collection, call `.setAutoCollectRequests(false)` before calling `start()`.
+> * Native fetch API requests aren't automatically tracked by classic Application Insights; manual dependency tracking is required.
 
 ```javascript
 appInsights.defaultClient.trackRequest({name:"GET /customers", url:"http://myserver/customers", duration:309, resultCode:200, success:true});
@@ -421,11 +419,34 @@ function removeStackTraces ( envelope, context ) {
 appInsights.defaultClient.addTelemetryProcessor(removeStackTraces);
 ```
 
+#### Add a cloud role name and cloud role instance
+
+**Set cloud role name via direct context tags:**
+
+```javascript
+var appInsights = require("applicationinsights");
+appInsights.setup('INSTRUMENTATION_KEY').start();
+appInsights.defaultClient.context.tags["ai.cloud.role"] = "your role name";
+appInsights.defaultClient.context.tags["ai.cloud.roleInstance"] = "your role instance";
+```
+
+**Set cloud role name via telemetry processor:**
+
+```javascript
+var appInsights = require("applicationinsights");
+appInsights.setup('INSTRUMENTATION_KEY').start();
+
+appInsights.defaultClient.addTelemetryProcessor(envelope => {
+    envelope.tags["ai.cloud.role"] = "your role name";
+    envelope.tags["ai.cloud.roleInstance"] = "your role instance"
+});
+```
+
 ## Use multiple connection strings
 
 You can create multiple Application Insights resources and send different data to each by using their respective connection strings.
 
- For example:
+For example:
 
 ```javascript
 let appInsights = require("applicationinsights");
@@ -448,21 +469,23 @@ client.config.PROPERTYNAME = VALUE;
 
 These properties are client specific, so you can configure `appInsights.defaultClient` separately from clients created with `new appInsights.TelemetryClient()`.
 
-| Property                        | Description                                                                                                |
-| ------------------------------- |------------------------------------------------------------------------------------------------------------|
-| connectionString                | An identifier for your Application Insights resource.                                                      |
-| endpointUrl                     | The ingestion endpoint to send telemetry payloads to.                                                      |
-| quickPulseHost                  | The Live Metrics Stream host to send live metrics telemetry to.                                            |
-| proxyHttpUrl                    | A proxy server for SDK HTTP traffic. (Optional. Default is pulled from `http_proxy` environment variable.)     |
-| proxyHttpsUrl                   | A proxy server for SDK HTTPS traffic. (Optional. Default is pulled from `https_proxy` environment variable.)   |
-| httpAgent                       | An http.Agent to use for SDK HTTP traffic. (Optional. Default is undefined.)                                   |
-| httpsAgent                      | An https.Agent to use for SDK HTTPS traffic. (Optional. Default is undefined.)                                 |
-| maxBatchSize                    | The maximum number of telemetry items to include in a payload to the ingestion endpoint. (Default is `250`.)   |
-| maxBatchIntervalMs              | The maximum amount of time to wait for a payload to reach maxBatchSize. (Default is `15000`.)               |
-| disableAppInsights              | A flag indicating if telemetry transmission is disabled. (Default is `false`.)                                 |
-| samplingPercentage              | The percentage of telemetry items tracked that should be transmitted. (Default is `100`.)                      |
-| correlationIdRetryIntervalMs    | The time to wait before retrying to retrieve the ID for cross-component correlation. (Default is `30000`.)     |
-| correlationHeaderExcludedDomains| A list of domains to exclude from cross-component correlation header injection. (Default. See [Config.ts](https://github.com/Microsoft/ApplicationInsights-node.js/blob/develop/Library/Config.ts).)|
+| Property | Description |
+|----------|-------------|
+| connectionString | An identifier for your Application Insights resource. |
+| endpointUrl | The ingestion endpoint to send telemetry payloads to. |
+| quickPulseHost | The Live Metrics Stream host to send live metrics telemetry to. |
+| proxyHttpUrl | A proxy server for SDK HTTP traffic. (Optional. Default is pulled from `http_proxy` environment variable.) |
+| proxyHttpsUrl | A proxy server for SDK HTTPS traffic. (Optional. Default is pulled from `https_proxy` environment variable.) |
+| httpAgent | An http.Agent to use for SDK HTTP traffic. (Optional. Default is undefined.) |
+| httpsAgent | An https.Agent to use for SDK HTTPS traffic. (Optional. Default is undefined.) |
+| maxBatchSize | The maximum number of telemetry items to include in a payload to the ingestion endpoint. (Default is `250`.) |
+| maxBatchIntervalMs | The maximum amount of time to wait for a payload to reach maxBatchSize. (Default is `15000`.) |
+| disableAppInsights | A flag indicating if telemetry transmission is disabled. (Default is `false`.) |
+| samplingPercentage | The percentage of telemetry items tracked that should be transmitted. (Default is `100`.) |
+| correlationIdRetryIntervalMs | The time to wait before retrying to retrieve the ID for cross-component correlation. (Default is `30000`.) |
+| correlationHeaderExcludedDomains| A list of domains to exclude from cross-component correlation header injection. (Default. See [Config.ts](https://github.com/Microsoft/ApplicationInsights-node.js/blob/develop/Library/Config.ts).) |
+
+[!INCLUDE [azure-monitor-custom-events-metrics](includes/application-insights-api-custom-events-metrics.md)]
 
 ## Troubleshooting
 
@@ -470,10 +493,8 @@ For troubleshooting information, including "no data" scenarios and customizing l
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [Node.js FAQ](application-insights-faq.yml#node-js).
+* To review frequently asked questions (FAQ), see:
+    * [Node.js FAQ](application-insights-faq.yml#node-js)
+    * [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
 * [Monitor your telemetry in the portal](./overview-dashboard.md).
 * [Learn to use Log Analytics](../logs/log-analytics-tutorial.md) and [write analytics queries over your telemetry](../logs/get-started-queries.md).
-
-<!--references-->
-
-[FAQ]: ./application-insights-faq.yml#overview

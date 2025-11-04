@@ -85,6 +85,17 @@ When you create an Azure Monitor workspace, a new resource group is created. The
  
 To connect your Azure Monitor managed service for Prometheus to your Azure Monitor workspace, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md)
 
+> [!TIP]
+> We recommend that you enable recommended alerts for your Azure Monitor Workspace to monitor the ingestion limits and quotas. To enable the recommended alerts, see [here](azure-monitor-workspace-monitor-ingest-limits.md).
+
+
+## Access mode
+Similar to [Log Analytics workspace](../logs/manage-access.md), Azure Monitor Workspaces offer a resource-context access mode to enable more granular Azure RBAC resource-permissions for users querying data in a workspace. This provides the following benefits:
+
+* Users do not need to know which workspace to query for the metrics they've scoped their query to
+* Users do not need direct access to the workspace(s) storing the metrics for their resources
+
+Read more about [how to manage the workspace Access Mode here.](../metrics/azure-monitor-workspace-manage-access.md)
 
 ## Delete an Azure Monitor workspace
 When you delete an Azure Monitor workspace, unlike with a [Log Analytics workspace](../logs/delete-workspace.md), there's no soft delete operation. The data in the workspace is immediately deleted, and there's no recovery option.

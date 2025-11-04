@@ -6,7 +6,7 @@ metadata:
   ms.author: 
   ms.service: azure-monitor
   ms.topic: faq 
-  ms.date: 05/23/2025
+  ms.date: 09/25/2025
 
 title: "Application Insights FAQ - Frequently Asked Questions"
 summary: |
@@ -105,20 +105,94 @@ sections:
 
       - question: How does Application Insights handle data collection, retention, storage, and privacy?
         answer: |
-          #### Collection
-
-          Application Insights collects telemetry about your app, including web server telemetry, web page telemetry, and performance counters. This data can be used to monitor your app's performance, health, and usage. You can select the location when you [create a new Application Insights resource](./create-workspace-resource.md).
-
-          #### Retention and Storage
-
-          Data is sent to an Application Insights [Log Analytics workspace](../logs/log-analytics-workspace-overview.md). You can choose the retention period for raw data, from 30 to 730 days. Aggregated data is retained for 90 days, and debug snapshots are retained for 15 days.
-
-          #### Privacy
-
-          Application Insights doesn't handle sensitive data by default. We recommend you don't put sensitive data in URLs as plain text and ensure your custom code doesn't collect personal or other sensitive details. During development and testing, check the sent data in your IDE and browser's debugging output windows.
+          #### Context
+          Application Insights collects telemetry from your app and stores it in a Log Analytics workspace. It works for apps hosted anywhere, not only in Azure.
+          
+          #### What is collected and from where
+          Telemetry comes from: (1) the SDK you add to your app, including any custom telemetry you send, (2) optional server agents, and (3) Microsoft-run availability tests. Typical data includes requests, dependencies, exceptions and crashes, performance counters, client and server context, traces, and any custom events or metrics you send.
+          To verify what is being sent, run your app in debug mode and check your IDE Output or Diagnostics windows. For webpages, open your browser developer tools and inspect the Network tab.
+          You can filter or enrich telemetry before it is sent by implementing a telemetry processor.
+          
+          #### Retention and storage
+          Raw data retention can be set to 30, 60, 90, 120, 180, 270, 365, 550, or 730 days. Retention beyond 90 days can incur extra charges. Aggregated metrics are retained at 1-minute granularity for 90 days. Debug snapshots are retained for 15 days. Data is stored in the region you choose when creating the resource.
+          Telemetry is immutable after ingestion. You cannot edit telemetry. Purge is available to delete data when required.
+          
+          #### Access, security, and encryption
+          Data is visible to you and teammates with access and can be exported. Microsoft uses your data only to provide the service with restricted personnel access and may use aggregate statistics to improve the service.
+          Telemetry is sent over HTTPS and data is encrypted at rest and as it moves between datacenters.
+          
+          #### Privacy and responsible use
+          Default SDK modules focus on performance, usage, and diagnostics and typically do not include sensitive personal data. Do not put sensitive data in URLs. Review custom telemetry so it does not include personal data. Client IP is used for geolocation, then the stored IP field is zeroed by default. If you need masking, add a telemetry initializer. If your app needs an opt-out, disable collection in code. Also review seemingly innocuous fields, for example device name on personal devices.
+          You can control or disable some collection in configuration or via code. For more information, see [Geolocation and IP address handling](ip-collection.md).
+          
+          #### TLS
+          Use modern TLS for data in transit. Do not hardcode older protocol versions. Allow the platform to negotiate newer versions as they become available. For more information, see [Secure your Azure Monitor deployment](../fundamentals/best-practices-security.md).
+          
+          #### Local buffering and outages
+          If connectivity to Azure is lost or throttled, SDKs buffer telemetry locally and retry. Stale items are dropped, for example after about 48 hours for logs and 30 minutes for metrics. Local temporary storage is not encrypted, so secure any storage directory you configure. In browsers, sessionStorage is used to buffer sends.
+          
+          #### Per-language local storage: quick reference
+          - **.NET (ServerTelemetryChannel)**: Defaults to `%LOCALAPPDATA%\Microsoft\ApplicationInsights` or `%TMP%`. You can set a persisted folder in config or code.
+          
+            _Config (ApplicationInsights.config)_:
+            ```xml
+            <TelemetryChannel Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel, Microsoft.AI.ServerTelemetryChannel">
+                <StorageFolder>D:\NewTestFolder</StorageFolder>
+            </TelemetryChannel>
+            ```
+          
+            _C# code_:
+            ```csharp
+            var channel = new Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel();
+            channel.StorageFolder = @"D:\NewTestFolder";
+            channel.Initialize(Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.Active);
+            Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.Active.TelemetryChannel = channel;
+            ```
+          
+          - **.NET (ASP.NET Core)**: Same defaults as above. On Linux and macOS, the SDK can auto-create a storage folder. Order of preference: `${TMPDIR}`, then `/var/tmp`, then `/tmp`. You can also set a folder in `Startup.cs`.
+          
+            _ASP.NET Core Startup_:
+            ```csharp
+            using Microsoft.ApplicationInsights.Channel;
+            using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
+            // inside ConfigureServices
+            services.AddSingleton(typeof(ITelemetryChannel), new ServerTelemetryChannel { StorageFolder = "/tmp/myfolder" });
+            ```
+          
+          - **Java**: Uses the OS temp folder, for example `C:\Users\username\AppData\Local\Temp` on Windows. This path is not configurable via the standard config file.
+          
+          - **Node.js**: Defaults to `%TEMP%/appInsights-node{INSTRUMENTATION KEY}`. You can change the file prefix used for the temp directory at runtime.
+          
+            _Node sample_:
+            ```js
+            const appInsights = require('applicationinsights');
+            appInsights.Sender.TEMPDIR_PREFIX = 'my-app-ai';
+            appInsights.setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING).start();
+            ```
+          
+          - **JavaScript (browser)**: Uses `sessionStorage` keys `AI_buffer` and `AI_sent_buffer`. To disable sessionStorage buffering:
+          
+            ```js
+            import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+            const appInsights = new ApplicationInsights({
+              config: {
+                connectionString: '<your-connection-string>',
+                enableSessionStorageBuffer: false
+              }
+            });
+            appInsights.loadAppInsights();
+            ```
+          
+          - **Python (OpenCensus)**: Defaults to `%USERNAME%/.opencensus/.azure/`. You can set a custom path:
+          
+            ```python
+            from opencensus.ext.azure.log_exporter import AzureLogHandler
+            handler = AzureLogHandler(connection_string='InstrumentationKey=00000000-0000-0000-0000-000000000000',
+                                      storage_path='/var/tmp/ai-cache')
+            ```
+          #### Archived Information
 
           For archived information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
-
       - question: What is the Application Insights pricing model?
         answer: |
           Application Insights is billed through the Log Analytics workspace into which its log data ingested. The default Pay-as-you-go Log Analytics pricing tier includes 5 GB per month of free data allowance per billing account. Learn more about [Azure Monitor logs pricing options](https://azure.microsoft.com/pricing/details/monitor/).

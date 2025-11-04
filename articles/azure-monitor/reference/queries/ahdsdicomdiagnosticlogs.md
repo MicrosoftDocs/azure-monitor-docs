@@ -13,7 +13,7 @@ ms.date: 04/14/2025
 
 # Queries for the AHDSDicomDiagnosticLogs table
 
-For information on using these queries in the Azure portal, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial). For the REST API, see [Query](/rest/api/loganalytics/query).
+For information on using these queries in the Azure portal, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial). For the REST API, see [Query](/azure/azure-monitor/logs/api/overview).
 
 
 ### Log count per log starting with Dicom100 error code and CorrelationId  

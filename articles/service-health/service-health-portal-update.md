@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of affected applications.
 ms.topic: overview
-ms.date: 8/21/2025
+ms.date: 10/16/2025
 ---
 
 # Azure Service Health portal
@@ -27,8 +27,9 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 ### The retention of Service Health events
 Azure Service Health retains all event types in the Health History section of the portal for up to 90 days after they become inactive. These events are archived in the Health History once they're resolved or inactive. You can filter and review them by type, date, and impact.
 > [!NOTE]
-> Active Service issues are only shown for the last three days. They're moved to the History pane though they're still active.
-> Data is stored for up to a year and can be accessed using an API query.
+> Service issues are displayed for 90 days in the Portal. They remain in the active tab if status is active or the issue is updated within 90 days and then  moved to the History pane once resolved.
+>
+> Issues older than 90 days aren't shown, but are stored for a year and can be accessed via an API query.
 
 - **Alerts**: Service Health alerts (for example, via email, webhook, Logic Apps) aren't subject to the 90-day limit because they're tied to your alerting infrastructure.
 - **Resource Health**: Resource Health events, like when a virtual machine (VM) goes offline aren’t part of Service Health. They’re saved for 90 days and viewed in a different section of the Azure portal.
@@ -58,7 +59,8 @@ Select **Planned maintenance** on the left menu to see a list of all planned mai
 
 Health advisories are notifications that inform users about changes in Azure services. These advisories can include information about the deprecation of Azure features, upgrade requirements, or other actions that users need to take to maintain the health and performance of their Azure resources.
 
-Select **Health advisories** on the left menu to see all the health advisories based on your subscription access. For more information, see [Health advisories](service-health-advisories.md). <br>
+Select **Health advisories** on the left menu to see all the health advisories based on your subscription access. For more information, see [Health advisories](service-health-advisories.md).
+
 For information on how to configure alerts for Service Health events, see [Create Service Health alerts by using the Azure portal](alerts-activity-log-service-notifications.md), [Create activity log alerts by using a Bicep file](alerts-activity-log-service-notifications-bicep.md), or [Create Service Health alerts by using an ARM template](alerts-activity-log-service-notifications-arm.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the Health advisories window." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::

@@ -79,7 +79,6 @@ The following tables list where preaggregation are preaggregated.
 | Java (2.x) | Telemetry channel endpoint | Telemetry channel endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
 | JavaScript (Browser) | Telemetry channel endpoint | Telemetry channel endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
 | Node.js | Telemetry channel endpoint | Telemetry channel endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
-| Python | Telemetry channel endpoint | SDK via [OpenCensus.stats (retired)](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics)<br>Telemetry channel endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
 
 > [!CAUTION]
 > * The Application Insights Java 2.x SDK is no longer recommended. Use the [OpenTelemetry-based Java offering](./opentelemetry-enable.md?tabs=java) instead.
@@ -768,7 +767,7 @@ exceptions
 
 ### Performance counters
 
-Use metrics in the **Performance counters** category to access [system performance counters collected by Application Insights](../app/asp-net-counters.md).
+Use metrics in the **Performance counters** category to access system performance counters collected by Application Insights.
 
 ### [Standard](#tab/standard)
 

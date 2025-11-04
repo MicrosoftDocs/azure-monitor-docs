@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 08/31/2025
+ms.date: 10/31/2025
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +10,41 @@ ms.date: 08/31/2025
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
+
+### September 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Application-Insights|[SDK Stats](../app/sdk-stats.md)|The SDK Stats Public Preview is available for Node.js and Python.|
+|Application-Insights|[Python deploy-as-code](../app/codeless-app-service.md?tabs=python#enable-application-insights)|Python deploy-as-code autoinstrumentation is now Generally Available (GA).|
+|Application-Insights|[Rate-limited sampling](../app/opentelemetry-configuration.md?tabs=nodejs#enable-sampling)|OpenTelemetry rate-limited sampling is now available for both Node.js and Python.|
+|Application-Insights|[.NET Classic API](../app/dotnet.md)|Classic API SDK information for .NET has been consolidated into a single article. Try the "Ask Learn" for AI assistance.|
+|Application-Insights|[Node.js Classic API](../app/nodejs.md)|Classic API SDK information for Node.js has been consolidated into a single article. Try the "Ask Learn" for AI assistance.|
+|Application-Insights|[Data collection, retention, storage, and privacy](../app/application-insights-faq.yml#how-does-application-insights-handle-data-collection--retention--storage--and-privacy)|Data collection, retention, storage, and privacy has been consolidated in the FAQ with additional granularity.|
+|Application-Insights|[Quarkus support](../app/opentelemetry-enable.md?tabs=java-native#install-the-client-library)|We've clarified Quarkus support across OpenTelemetry documentation and provided a link to get community assistance.|
+| Data Collection | [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md) | Added content for preview DCR experience. |
+| Kubernetes | [Analyze the health and status of your Kubernetes cluster with Azure Monitor](../containers/container-insights-analyze.md) | Rewrite to support latest portal experience. |
+| Kubernetes | [Filter container log collection with ConfigMap](../containers/container-insights-data-collection-filter.md) | Rewrite to improve clarity. |
+| Kubernetes | [View live data with Container insights](../containers/container-insights-livedata-overview.md) | Rewrite to support latest portal experience. |
+| Kubernetes | [Analyze Syslog data from Kubernetes cluster in Azure Monitor](../containers/container-insights-syslog.md) | Rewrite to improve clarity. |
+| Kubernetes | [Filter and transform Kubernetes container logs using data transformations in Azure Monitor](../containers/container-insights-transformations.md) | Rewrite to improve clarity. |
+| Kubernetes | [Disable monitoring of your Kubernetes cluster](../containers/kubernetes-monitoring-disable.md) | Added section on Prometheus metrics. |
+| Kubernetes | [Kubernetes monitoring in Azure Monitor](../containers/kubernetes-monitoring-overview.md) | Rewrite to include all layers of the Kubernetes stack. |
+| Kubernetes | [Enable monitoring for Arc-enabled Kubernetes clusters](../containers/kubernetes-monitoring-enable-arc.md) | New article with scope limited to arc-enabled clusters. |
+| Kubernetes | [Enable monitoring for AKS clusters](../containers/kubernetes-monitoring-enable.md) | Rewrite to improve clarity and reduce scope to AKS. |
+| Kubernetes | [Quickstart monitoring a Kubernetes cluster in Azure Monitor](../containers/kubernetes-monitoring-quickstart.md) | New article to walk  through basic enabling of monitoring. |
+| Kubernetes | [Kubernetes workbooks in Azure Monitor](../containers/kubernetes-workbooks.md) | Rewrite to emphasize latest Prometheus experience. |
+| Kubernetes | [Monitor Kubernetes clusters using Azure Monitor and cloud native tools](../containers/monitor-kubernetes.md) | Updated for Application insights updates and Azure Monitor dashboards with Grafana. Scope reduced to compliment rewritten overview. |
+| Metrics | [Connect Grafana to Azure Monitor managed service for Prometheus](../metrics/prometheus-grafana.md) | Updated for Azure Monitor dashboards with Grafana.  |
+| Metrics | [Azure Monitor managed service for Prometheus technical details](../metrics/prometheus-metrics-details.md) | New article to consolidate technical details related to Prometheus metrics. |
+| Metrics | [Overview of Azure Monitor with Prometheus](../metrics/prometheus-metrics-overview.md) | Rewrite to improve clarity and remove technical details moved to other article. |
+| Metrics | [Migrate from Self-Hosted Prometheus to Azure Monitor Managed Service for Prometheus](../metrics/prometheus-migrate.md) | Rewrite for clarity. |
+| Metrics | [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md) | Rewrite for clarity. |
+| Metrics | [Rule Groups in Azure Monitor Managed Service for Prometheus](../metrics/prometheus-rule-groups.md) | Rewrite for clarity. |
+| Virtual Machines | [Run Performance Diagnostics reports on Azure virtual machines](../vm/performance-diagnostics-run.md) | Removed known issue since resolved. | 
+| Virtual Machines | [Remove Dependency Agent from Azure Virtual Machines and Virtual Machine Scale Sets](../vm/vminsights-dependency-agent-uninstall.md) | New article. | 
+|Visualizations|[Visualize with Grafana](../visualize/visualize-grafana-overview.md)|We brought this feature forward as first choice over Managed Grafana.|
+
 
 ### August 2025
 
@@ -257,7 +292,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Microsoft Entra authentication for Application Insights](../app/azure-ad-authentication.md)|Options to enable Microsoft Entra authentication for .NET and Node.js autoinstrumentation are documented.|
 |Application-Insights|[Application Insights availability tests](../app/availability.md)|We clarified information about using an "availability test string identifier", which previously caused some confusion when referred to as a "GUID".|
 |Containers|[Optimize monitoring costs for Container insights](../containers/container-insights-cost.md)|Rewritten to consolidate cost saving options and analysis.|
-|Containers|[Configure log collection in Container insights](../containers/container-insights-data-collection-configure.md)|New article to consolidate all guidance for container location.|
 |Containers|[Filter log collection in Container insights](../containers/container-insights-data-collection-filter.md)|New article to describe all options to filter container logs.|
 |Containers|[Container insights log schema](../containers/container-insights-logs-schema.md)|Rewritten to focus on definition and configuration of log schema, including metadata option.|
 |Containers|[Access Syslog data in Container Insights](../containers/container-insights-syslog.md)|Removed duplicate information on configuration.|
@@ -866,8 +900,6 @@ Application-insights|[Sampling overrides (preview) - Azure Monitor Application I
 Autoscale|[Understand autoscale settings](../autoscale/autoscale-understanding-settings.md)|Refreshed and updated.|
 Autoscale|[Overview of common autoscale patterns](../autoscale/autoscale-common-scale-patterns.md)|Refreshed and updated.|
 Essentials|[Azure Monitor managed service for Prometheus (preview)](../containers/prometheus-metrics-scrape-default.md)|Restructured Prometheus content.|
-Essentials|[Configure remote write for Azure Monitor managed service for Prometheus by using Azure Active Directory authentication (preview)](../containers/prometheus-remote-write.md)|New article.|
-Essentials|[Azure Monitor workspace (preview)](../metrics/azure-monitor-workspace-overview.md)|Added Bicep example.|
 Essentials|[Migrate from diagnostic settings storage retention to Azure Storage lifecycle management](../platform/migrate-to-azure-storage-lifecycle-policy.md)|Added deprecation note.|
 Essentials|[Diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md)|All destination endpoints support TLS 1.2.|
 Logs|[Cost optimization and Azure Monitor](best-practices-cost.md)|Added cost information and removed preview label.|
