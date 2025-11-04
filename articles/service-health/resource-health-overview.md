@@ -87,7 +87,7 @@ A resource health event is recorded in the activity log when:
 - A resource transitioned to or from Unhealthy.
 - A resource is Unhealthy for more than 15 minutes.
 
-For more information about the Activity log, see [Activity Log Schema](/azure-monitor/platform/activity-log-schema#resource-health-category)
+For more information about the Activity log, see [Activity Log Schema](/azure/azure-monitor/platform/activity-log-schema#resource-health-category)
 
 The following resource health transitions aren't recorded in the activity log:
 - A transition to Unknown state.
