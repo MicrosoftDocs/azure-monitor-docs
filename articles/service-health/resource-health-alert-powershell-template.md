@@ -32,7 +32,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
 
 
-#### PowerShell 
+#### PowerShell instructions
 
 1. Use PowerShell to sign-in to Azure using your account, and select the subscription you want to use.
 
