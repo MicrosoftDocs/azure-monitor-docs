@@ -1,6 +1,6 @@
 ---
-title: Service Issues overview
-description: This article describes how to view and use the Service Issues pane
+title: View Service issues
+description: This article describes how to view and use the Service issues pane
 ms.topic: overview
 ms.date: 11/04/2025
 
