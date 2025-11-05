@@ -91,7 +91,7 @@ To prepare a cluster, run the following Azure CLI command.
 az aks update --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring 
 ```
 
-> [!Tip]
+> [!TIP]
 > AKS Clusters can be prepared for this feature during cluster creation. To learn more, see [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-aks-cluster-create).
 
 ---
@@ -115,17 +115,20 @@ Use the Azure portal for namespace-wide deployment onboarding.
 :::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-2.png":::
 
 3. Select the languages to be instrumented.
-4. Leave the **Perform rollout restart of all deployments** box unchecked.
+4. Check the **Perform rollout restart of all deployments** box.
 5. Select **Configure**.
 
 :::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation." lightbox="media/kubernetes-codeless/deployment-3.png":::
 
 6. Observe the **Application Monitoring Progress** and wait for it to complete.
 
+> [!NOTE]
+> * The affected deployments must be restarted before the changes take effect.
+> * Manually [restart deployments](#restart-deployment) if you observe progress failures.
+
 :::image type="content" source="media/kubernetes-codeless/app-monitoring-progress.png" alt-text="Azure portal view showing the progress of application monitoring instrumentation." lightbox="media/kubernetes-codeless/app-monitoring-progress.png":::
 
-7. Manually [restart deployments](#restart-deployment).
-8. Check the "instrumented" status for each namespace in the deployment.
+8. Verify the "instrumented" status for each namespace in the deployment.
 
 :::image type="content" source="media/kubernetes-codeless/deployment-4.png" alt-text="Azure portal screenshot showing the configure application monitoring pane for the chaos-testing namespace, with Node.js and Java selected and both deployments (chaos-controller-manager and chaos-dashboard) showing as Instrumented.sdf" lightbox="media/kubernetes-codeless/deployment-4.png":::
 
