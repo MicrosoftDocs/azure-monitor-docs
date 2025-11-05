@@ -80,7 +80,7 @@ The following diagram illustrates how data is ingested into a Log Analytics work
 
 See [Ingest events from Azure Event Hubs into Azure Monitor Logs (preview)](../logs/ingest-logs-event-hub.md) for details.
 
-:::image type="content" source="media/data-collection-rule-overview/data-collection-event-hub.png" lightbox="media/data-collection-rule-overview/data-collection-event-hub.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
+:::image type="content" source="media/data-collection-rule-overview/data-collection-event-hubs.png" lightbox="media/data-collection-rule-overview/data-collection-event-hubs.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
 
 #### Platform metrics (Preview)
 Platform metrics are automatically collected from Azure resources and sent to [Azure Monitor Metrics](../metrics/data-platform-metrics.md). The following diagram shows the process of using a DCR to send this data to a Log Analytics workspace for analysis using log queries. This replaces the current method of using [diagnostic settings](../platform/diagnostic-settings.md) to perform this function.
@@ -89,7 +89,7 @@ When the DCR is created, it specifies the workspace and table where the data sho
 
 See [Metrics export through data collection rules](./data-collection-metrics.md) for details.
 
-:::image type="content" source="media/data-collection-rule-overview/data-collection-event-hubs.png" lightbox="media/data-collection-rule-overview/data-collection-event-hubs.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
+:::image type="content" source="media/data-collection-rule-overview/data-collection-platform-metrics.png" lightbox="media/data-collection-rule-overview/data-collection-platform-metrics.png" alt-text="Diagram that shows basic operation for DCR collecting platform metrics." border="false":::
 
 ### Direct ingestion
 With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using Logs ingestion API. Each API call specifies the DCR that processes its data. The DCR understands the structure of the incoming data, includes a [transformation](#transformations) that ensures the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
