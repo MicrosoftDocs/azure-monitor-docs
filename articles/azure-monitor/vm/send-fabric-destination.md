@@ -13,15 +13,15 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 
 ## Prerequisites
 
-- Each VM resource must have the AMA installed. For more information, see [Install the Azure Monitor agent on virtual machines](../agents/azure-monitor-agent-manage.md).
-- Each VM must have a user-assigned managed identity associated to it. For more information, see [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). 
-- Each AMA must be configured to use the managed identity for authentication. For more information, see [Azure Monitor agent requirements](../agents/azure-monitor-agent-requirements.md#permissions).
+- Each VM resource must have the [AMA installed](../agents/azure-monitor-agent.-manage.md)
+- Each VM must have a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) assigned to it
+- Each [AMA must be configured to use the managed identity for authentication](../agents/azure-monitor-agent-requirements.md#permissions)
 
 ## Permissions
 
-The [general permissions to create a DCR and DCR associations](../data-collection/data-collection-rule-create-edit.md#permissions) are required.
+[Permissions to create a DCR and DCR associations](../data-collection/data-collection-rule-create-edit.md#permissions) are required.
 
-Also, the following permissions are required for sending data to ADX or Fabric:
+The following permissions are required depending on whether the destination is ADX or Fabric:
 
 | Destination | Role |
 |:---|:---|
@@ -85,5 +85,5 @@ The data types in the following table are agent-based telemetry sources supporte
 
 ## Related content
 
-[Fabric eventhouse overview](/fabric/real-time-intelligence/eventhouse)
-[Azure Data Explorer overview](/azure/data-explorer/data-explorer-overview)
+- [Fabric eventhouse overview](/fabric/real-time-intelligence/eventhouse)
+- [Azure Data Explorer overview](/azure/data-explorer/data-explorer-overview)
