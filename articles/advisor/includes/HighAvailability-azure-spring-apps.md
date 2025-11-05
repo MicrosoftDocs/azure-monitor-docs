@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Spring Apps
@@ -29,5 +29,23 @@ Recommendation ID: 39d862c8-445c-40c6-ba59-0e86134df606
 Subcategory: Other
 
 <!--39d862c8-445c-40c6-ba59-0e86134df606_end-->
+
+<!--eb6696fd-8e19-45c7-8679-7b40c398f07b_begin-->
+
+#### Azure Spring Apps is being retired.  
+  
+New customers are no longer be able to sign up for the service, existing customers remain operational until the plans are retired.  
+  
+**Potential benefits**: Avoid potential disruptions for the applications  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=Azure-Spring-Apps-will-be-retired-on-March-31-2028)  
+
+ResourceType: microsoft.appplatform/spring  
+Recommendation ID: eb6696fd-8e19-45c7-8679-7b40c398f07b  
+Subcategory: undefined
+
+<!--eb6696fd-8e19-45c7-8679-7b40c398f07b_end-->
 
 <!--articleBody-->

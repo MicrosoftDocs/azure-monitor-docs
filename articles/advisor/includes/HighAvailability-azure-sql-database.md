@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -26,9 +26,10 @@ For more information, see [Cloud Business Continuity - Disaster Recovery - Azure
 
 ResourceType: microsoft.sql/servers/databases  
 Recommendation ID: 2ea11bcb-dfd0-48dc-96f0-beba578b989a  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--2ea11bcb-dfd0-48dc-96f0-beba578b989a_end-->
+
 
 
 
@@ -45,13 +46,14 @@ To achieve high availability and resiliency, enable zone redundancy for the SQL 
 
 **Impact:** High
   
-For more information, see [Availability through local and zone redundancy - Azure SQL Database ](/azure/azure-sql/database/high-availability-sla?view=azuresql&tabs=azure-powershell#zone-redundant-availability)  
+For more information, see [Availability Through Local and Zone Redundancy - Azure SQL Database](/azure/azure-sql/database/high-availability-sla?view=azuresql&tabs=azure-powershell#zone-redundant-availability)  
 
 ResourceType: microsoft.sql/servers/databases  
 Recommendation ID: 807e58d0-e385-41ad-987b-4a4b3e3fb563  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--807e58d0-e385-41ad-987b-4a4b3e3fb563_end-->
+
 
 <!--e1967ca0-c0c3-4ae2-b69b-13d5676a4b18_begin-->
 
@@ -63,13 +65,14 @@ Consider deploying a failover group for the SQL Managed Instance to allow busine
 
 **Impact:** High
   
-For more information, see [Failover groups overview & best practices - Azure SQL Managed Instance](https://aka.ms/instanceFailoverGroups)  
+For more information, see [Failover Groups Overview & Best Practices - Azure SQL Managed Instance](https://aka.ms/instanceFailoverGroups)  
 
 ResourceType: microsoft.sql/managedinstances  
 Recommendation ID: e1967ca0-c0c3-4ae2-b69b-13d5676a4b18  
 Subcategory: DisasterRecovery
 
 <!--e1967ca0-c0c3-4ae2-b69b-13d5676a4b18_end-->
+
 
 <!--9b7e559c-2f7a-41ea-9b8f-43a53a12c273_begin-->
 

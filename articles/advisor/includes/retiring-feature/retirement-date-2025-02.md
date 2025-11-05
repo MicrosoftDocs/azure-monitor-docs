@@ -1,15 +1,29 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 04/03/2025
+ms.date: 09/03/2025
 
 ---
 
-| Service name <br />&#9492; Retiring feature | Retirement date | Impacted Resources available? |
-|:--- |:--- |:--- |
-| Azure Data Explorer <br />&#9492; Virtual Network Injection | February 1, 2025 |
-| Azure Cache for Redis <br />&#9500; Support for TLS 1.0 <br />&#9492; Support for TLS 1.1 | February 28, 2025 |  |
-| Event Grid <br />&#9500; Support for TLS 1.0 <br />&#9500; Support for TLS 1.0<br />&#9500; Support for TLS 1.1<br />&#9492; Support for TLS 1.1 | February 28, 2025 |  |
-| Relay <br />&#9500; Support for TLS 1.0<br />&#9492; Support for TLS 1.1 | February 28, 2025 |  |
-| Service Bus <br />&#9500; Support for TLS 1.0 <br />&#9492; Support for TLS 1.1 | February 28, 2025 |  |
-| Traffic Manager <br />&#9500; Support for TLS 1.0 <br />&#9492; Support for TLS 1.1 | February 28, 2025 |  |
+##### February 1, 2025
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Data Explorer | Virtual Network Injection | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### February 28, 2025
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Azure Cache for Redis | Support for TLS 1.0 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Cache for Redis | Support for TLS 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Event Grid | Support for TLS 1.0 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Event Grid | Support for TLS 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Relay | Support for TLS 1.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Relay | Support for TLS 1.1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Service Bus | Support for TLS 1.0 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Service Bus | Support for TLS 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Traffic Manager | Support for TLS 1.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Traffic Manager | Support for TLS 1.1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |

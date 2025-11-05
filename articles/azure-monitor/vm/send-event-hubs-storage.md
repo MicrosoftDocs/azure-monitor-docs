@@ -71,7 +71,7 @@ There's not currently a UI experience for creating a data collection rule (DCR) 
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "[resourceGroup().location]",
         "metadata": {
             "description": "Location for all resources."
@@ -510,7 +510,7 @@ Use the process above or any other valid method to deploy this template. It incl
     "type": "String"
     },
     "location": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[resourceGroup().location]",
     "metadata": {
         "description": "Location for all resources."
@@ -524,14 +524,14 @@ Use the process above or any other valid method to deploy this template. It incl
     }
     },
     "dcraName": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
     "metadata": {
         "description": "Name of the association."
     }
     },
     "identityName": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[concat(resourceGroup().name, 'UAI')]",
     "metadata": {
         "description": "Managed Identity"
@@ -587,7 +587,7 @@ Use the process above or any other valid method to deploy this template. It incl
     "type": "String"
     },
     "location": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[resourceGroup().location]",
     "metadata": {
         "description": "Location for all resources."
@@ -601,14 +601,14 @@ Use the process above or any other valid method to deploy this template. It incl
     }
     },
     "dcraName": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
     "metadata": {
         "description": "Name of the association."
     }
     },
     "identityName": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[concat(resourceGroup().name, 'UAI')]",
     "metadata": {
         "description": "Managed Identity"

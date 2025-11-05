@@ -48,7 +48,7 @@ landingContent:
           - text: Monitor virtual machines
             url: vm/monitor-virtual-machine.md
           - text: Monitor containers
-            url: containers/container-insights-overview.md
+            url: containers/kubernetes-monitoring-overview.md
           - text: Monitor Kubernetes clusters
             url: containers/kubernetes-monitoring-enable.md        
           - text: Multi-cloud monitoring
@@ -104,6 +104,8 @@ landingContent:
             url: metrics/data-platform-metrics.md
           - text: Azure Monitor managed service for Prometheus
             url: metrics/prometheus-metrics-overview.md
+          - text: OpenTelemetry Guest OS metrics (preview)
+            url: metrics/metrics-opentelemetry-guest.md
           - text: Custom metrics in Azure Monitor
             url: metrics/metrics-custom-overview.md
       - linkListType: how-to-guide

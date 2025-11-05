@@ -35,7 +35,7 @@ This article provides step-by-step guidance on using Azure Monitor managed servi
 
 ### Create an AKS cluster with managed service for Prometheus enabled
 
-First, you need to create an AKS cluster (or use an existing one), and enable managed service for Prometheus and Azure Managed Grafana. For instructions, see [Enable Prometheus and Grafana in an AKS cluster](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
+First, you need to create an AKS cluster (or use an existing one), and enable managed service for Prometheus and Azure Managed Grafana. For instructions, see [Enable Prometheus and Grafana in an AKS cluster](./kubernetes-monitoring-enable.md).
 
 If you're using the Azure CLI to create a new AKS cluster, you can use these commands:
 

@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 07/28/2025
+ms.date: 11/04/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -127,6 +127,14 @@ ms.reviewer: lualderm
 - [What entitlements was granted to my resource?](./queries/ACICollaborationAudit.md#what-entitlements-was-granted-to-my-resource)
 - [What resources was granted accessed by an entitlement?](./queries/ACICollaborationAudit.md#what-resources-was-granted-accessed-by-an-entitlement)
 - [Which participants was granted accessed to my resource?](./queries/ACICollaborationAudit.md#which-participants-was-granted-accessed-to-my-resource)
+
+## [ACLTransactionLogs](./queries/ACLTransactionLogs.md)
+
+- [Latest Transactions](./queries/ACLTransactionLogs.md#latest-transactions)
+
+## [ACLUserDefinedLogs](./queries/ACLUserDefinedLogs.md)
+
+- [Latest User Defined Logs](./queries/ACLUserDefinedLogs.md#latest-user-defined-logs)
 
 ## [ACRConnectedClientList](./queries/ACRConnectedClientList.md)
 
@@ -456,6 +464,11 @@ ms.reviewer: lualderm
 ## [AGSGrafanaLoginEvents](./queries/AGSGrafanaLoginEvents.md)
 
 - [Show login error events](./queries/AGSGrafanaLoginEvents.md#show-login-error-events)
+
+## [AHCIDiagnosticLogs](./queries/AHCIDiagnosticLogs.md)
+
+- [Most recent actionable Interop logs](./queries/AHCIDiagnosticLogs.md#most-recent-actionable-interop-logs)
+- [Log count per correlation ID](./queries/AHCIDiagnosticLogs.md#log-count-per-correlation-id)
 
 ## [AHDSDicomAuditLogs](./queries/AHDSDicomAuditLogs.md)
 
@@ -858,7 +871,7 @@ ms.reviewer: lualderm
 - [Request count trend](./queries/AppRequests.md#request-count-trend)
 - [Response time buckets](./queries/AppRequests.md#response-time-buckets)
 - [Operations performance](./queries/AppRequests.md#operations-performance)
-- [Top 10 countries by traffic](./queries/AppRequests.md#top-10-countries-by-traffic)
+- [Top 10 countries/regions by traffic](./queries/AppRequests.md#top-10-countries/regions-by-traffic)
 - [Failed requests – top 10](./queries/AppRequests.md#failed-requests--top-10)
 - [Failed operations](./queries/AppRequests.md#failed-operations)
 - [Exceptions causing request failures](./queries/AppRequests.md#exceptions-causing-request-failures)
@@ -1207,6 +1220,11 @@ ms.reviewer: lualderm
 
 - [Find In ContainerLogV2](./queries/ContainerLogV2.md#find-in-containerlogv2)
 
+## [ContainerNetworkLogs](./queries/ContainerNetworkLogs.md)
+
+- [Dropped network low Logs](./queries/ContainerNetworkLogs.md#dropped-network-low-logs)
+- [Top 10 network flow log metrics](./queries/ContainerNetworkLogs.md#top-10-network-flow-log-metrics)
+
 ## [ContainerNodeInventory](./queries/ContainerNodeInventory.md)
 
 - [Find In ContainerNodeInventory](./queries/ContainerNodeInventory.md#find-in-containernodeinventory)
@@ -1227,6 +1245,18 @@ ms.reviewer: lualderm
 
 - [Backup Items by Vault and Backup item type](./queries/CoreAzureBackup.md#backup-items-by-vault-and-backup-item-type)
 
+## [CrowdStrikeAlerts](./queries/CrowdStrikeAlerts.md)
+
+- [Critical alerts by tactic](./queries/CrowdStrikeAlerts.md#critical-alerts-by-tactic)
+
+## [CrowdStrikeDetections](./queries/CrowdStrikeDetections.md)
+
+- [High severity detections](./queries/CrowdStrikeDetections.md#high-severity-detections)
+
+## [CrowdStrikeIncidents](./queries/CrowdStrikeIncidents.md)
+
+- [Open incidents by state](./queries/CrowdStrikeIncidents.md#open-incidents-by-state)
+
 ## [DCRLogErrors](./queries/DCRLogErrors.md)
 
 - [Ingestion and Transformation errors from data collection rules](./queries/DCRLogErrors.md#ingestion-and-transformation-errors-from-data-collection-rules)
@@ -1234,6 +1264,14 @@ ms.reviewer: lualderm
 ## [DNSQueryLogs](./queries/DNSQueryLogs.md)
 
 - [DNS queries by virtual network and return code](./queries/DNSQueryLogs.md#dns-queries-by-virtual-network-and-return-code)
+
+## [DataSetOutput](./queries/DataSetOutput.md)
+
+- [Latest Data Collection Rule Conditional Data Set Output](./queries/DataSetOutput.md#latest-data-collection-rule-conditional-data-set-output)
+
+## [DataSetRuns](./queries/DataSetRuns.md)
+
+- [Latest Data Collection Rule Conditional Data Set Output](./queries/DataSetRuns.md#latest-data-collection-rule-conditional-data-set-output)
 
 ## [DataTransferOperations](./queries/DataTransferOperations.md)
 
@@ -1476,6 +1514,15 @@ ms.reviewer: lualderm
 
 - [Bin Rules Query Duration](./queries/LASummaryLogs.md#bin-rules-query-duration)
 
+## [LLMActivity](./queries/LLMActivity.md)
+
+- [Copilot Interactions by User](./queries/LLMActivity.md#copilot-interactions-by-user)
+- [Copilot Plugin Management Activity](./queries/LLMActivity.md#copilot-plugin-management-activity)
+- [Copilot PromptBook Management](./queries/LLMActivity.md#copilot-promptbook-management)
+- [Copilot Security and Compliance Events](./queries/LLMActivity.md#copilot-security-and-compliance-events)
+- [AI Model Usage Statistics](./queries/LLMActivity.md#ai-model-usage-statistics)
+- [Resources Accessed by Copilot](./queries/LLMActivity.md#resources-accessed-by-copilot)
+
 ## [LogicAppWorkflowRuntime](./queries/LogicAppWorkflowRuntime.md)
 
 - [Count of failed workflow operations from Logic App Workflow Runtime](./queries/LogicAppWorkflowRuntime.md#count-of-failed-workflow-operations-from-logic-app-workflow-runtime)
@@ -1507,6 +1554,10 @@ ms.reviewer: lualderm
 ## [MNFSystemStateMessageUpdates](./queries/MNFSystemStateMessageUpdates.md)
 
 - [Find all errors from Syslog](./queries/MNFSystemStateMessageUpdates.md#find-all-errors-from-syslog)
+
+## [MeshControlPlane](./queries/MeshControlPlane.md)
+
+- [Istiod logs](./queries/MeshControlPlane.md#istiod-logs)
 
 ## [MicrosoftDataShareReceivedSnapshotLog](./queries/MicrosoftDataShareReceivedSnapshotLog.md)
 
@@ -1548,6 +1599,10 @@ ms.reviewer: lualderm
 ## [NGXSecurityLogs](./queries/NGXSecurityLogs.md)
 
 - [Show NGINXaaS security logs](./queries/NGXSecurityLogs.md#show-nginxaas-security-logs)
+
+## [NTARuleRecommendation](./queries/NTARuleRecommendation.md)
+
+- [Display all the recommended rules for a Vnet in given time duration](./queries/NTARuleRecommendation.md#display-all-the-recommended-rules-for-a-vnet-in-given-time-duration)
 
 ## [NWConnectionMonitorPathResult](./queries/NWConnectionMonitorPathResult.md)
 
@@ -1603,6 +1658,18 @@ ms.reviewer: lualderm
 
 - [Count of successful warehouse delete requests](./queries/OLPSupplyChainEntityOperations.md#count-of-successful-warehouse-delete-requests)
 
+## [OTelEvents](./queries/OTelEvents.md)
+
+- [Exception events summary](./queries/OTelEvents.md#exception-events-summary)
+
+## [OTelLogs](./queries/OTelLogs.md)
+
+- [Log severity analysis](./queries/OTelLogs.md#log-severity-analysis)
+
+## [OTelSpans](./queries/OTelSpans.md)
+
+- [Application performance overview](./queries/OTelSpans.md#application-performance-overview)
+
 ## [OfficeActivity](./queries/OfficeActivity.md)
 
 - [All Office Activity](./queries/OfficeActivity.md#all-office-activity)
@@ -1615,6 +1682,50 @@ ms.reviewer: lualderm
 ## [OktaSystemLogs](./queries/OktaSystemLogs.md)
 
 - [Okta SSO Successful logins](./queries/OktaSystemLogs.md#okta-sso-successful-logins)
+
+## [PGSQLAutovacuumStats](./queries/PGSQLAutovacuumStats.md)
+
+- [Bloat ratio](./queries/PGSQLAutovacuumStats.md#bloat-ratio)
+- [Vacuum statistics](./queries/PGSQLAutovacuumStats.md#vacuum-statistics)
+- [Analyze statistics](./queries/PGSQLAutovacuumStats.md#analyze-statistics)
+
+## [PGSQLDbTransactionsStats](./queries/PGSQLDbTransactionsStats.md)
+
+- [Transactions and multixacts health](./queries/PGSQLDbTransactionsStats.md#transactions-and-multixacts-health)
+
+## [PGSQLPgBouncer](./queries/PGSQLPgBouncer.md)
+
+- [Error Logs](./queries/PGSQLPgBouncer.md#error-logs)
+
+## [PGSQLPgStatActivitySessions](./queries/PGSQLPgStatActivitySessions.md)
+
+- [Longest sessions](./queries/PGSQLPgStatActivitySessions.md#longest-sessions)
+- [Longest transactions](./queries/PGSQLPgStatActivitySessions.md#longest-transactions)
+- [Sessions with long queries](./queries/PGSQLPgStatActivitySessions.md#sessions-with-long-queries)
+
+## [PGSQLQueryStoreRuntime](./queries/PGSQLQueryStoreRuntime.md)
+
+- [Query execution exceeding a threshold](./queries/PGSQLQueryStoreRuntime.md#query-execution-exceeding-a-threshold)
+- [Slowest queries](./queries/PGSQLQueryStoreRuntime.md#slowest-queries)
+- [Query counts](./queries/PGSQLQueryStoreRuntime.md#query-counts)
+
+## [PGSQLQueryStoreWaits](./queries/PGSQLQueryStoreWaits.md)
+
+- [Wait event trends](./queries/PGSQLQueryStoreWaits.md#wait-event-trends)
+- [Top wait events](./queries/PGSQLQueryStoreWaits.md#top-wait-events)
+
+## [PGSQLServerLogs](./queries/PGSQLServerLogs.md)
+
+- [Error messages](./queries/PGSQLServerLogs.md#error-messages)
+- [Fatal messages](./queries/PGSQLServerLogs.md#fatal-messages)
+- [Detect deadlocks](./queries/PGSQLServerLogs.md#detect-deadlocks)
+- [Server restarts](./queries/PGSQLServerLogs.md#server-restarts)
+- [Connections received](./queries/PGSQLServerLogs.md#connections-received)
+- [Connections authorized](./queries/PGSQLServerLogs.md#connections-authorized)
+- [Connections failures](./queries/PGSQLServerLogs.md#connections-failures)
+- [Lock contention](./queries/PGSQLServerLogs.md#lock-contention)
+- [Autovacuum events](./queries/PGSQLServerLogs.md#autovacuum-events)
+- [Audit logs](./queries/PGSQLServerLogs.md#audit-logs)
 
 ## [Perf](./queries/Perf.md)
 
@@ -1634,6 +1745,10 @@ ms.reviewer: lualderm
 - [Container memory](./queries/Perf.md#container-memory)
 - [Instances Avg CPU usage growth from last week](./queries/Perf.md#instances-avg-cpu-usage-growth-from-last-week)
 - [Find In Perf](./queries/Perf.md#find-in-perf)
+
+## [PerfInsightsImpactedResources](./queries/PerfInsightsImpactedResources.md)
+
+- [PerfInsights Impacted Resources Details](./queries/PerfInsightsImpactedResources.md#perfinsights-impacted-resources-details)
 
 ## [PowerAppsActivity](./queries/PowerAppsActivity.md)
 
@@ -2025,3 +2140,4 @@ ms.reviewer: lualderm
 - [Analyze logs from Azure storage with Log Analytics](/azure/azure-monitor/essentials/resource-logs#send-to-log-analytics-workspace)
 - [Learn more about resource logs](/azure/azure-monitor/essentials/platform-logs-overview)
 - [Change resource log diagnostic settings using the Azure Monitor REST API](/rest/api/monitor/diagnosticsettings)
+

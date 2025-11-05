@@ -10,7 +10,7 @@ ms.date: 05/20/2025
 
 This article explains how to use Grafana with Azure Monitor. It covers free Azure dashboards for integrated data and Managed Grafana for advanced features.
 
-## Dashboards with Grafana
+## Dashboards with Grafana (Preview)
 
 Azure Monitor dashboards with [Grafana](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/) enable you to use Grafana's query, transformation, and visualization capability on: 
 
@@ -40,7 +40,7 @@ You can create and edit dashboards and create your own copy to modify them witho
 
 ### Limitations
 
-- **Preview limitations**. Support for Grafana Explore, Dashboard links and Exemplars isn't yet available.
+- **Preview limitations**. Support for Grafana Explore, Dashboard links and Exemplars isn't yet available. Dashboards are available in a limited number of Azure regions during Preview.
 - **Unsupported features**. Grafana evaluated alerts, reports, library panels, snapshots, playlists, app plugins, and copying panels across different dashboards.  
 
 ## Managed Grafana
@@ -63,7 +63,7 @@ The following is a list of related managed Grafana documentation. For general in
 
 ### Containers
 - [Monitor Kubernetes](../containers/monitor-kubernetes.md)
-- [Enable monitoring for Kubernetes clusters, Enable Prometheus, and Grafana](../containers/kubernetes-monitoring-enable.md?tabs=cli#enable-prometheus-and-grafana)
+- [Enable monitoring for Kubernetes clusters, Enable Prometheus, and Grafana](../containers/kubernetes-monitoring-enable.md?tabs=cli)
 - [Default Grafana dashboard configuration for Prometheus](../containers/prometheus-metrics-scrape-default.md#dashboards)
 - [Container insights log schema, Install Grafana dashboard](../containers/container-insights-logs-schema.md#install-grafana-dashboard)
 - Importing specific Grafana dashboards

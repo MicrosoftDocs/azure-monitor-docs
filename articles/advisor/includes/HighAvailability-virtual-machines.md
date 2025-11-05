@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -57,15 +57,16 @@ Virtual machines are resilient to regional outages when replication to another r
   
 **Potential benefits**: Ensure business continuity during an Azure region outage.  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Set up Azure VM disaster recovery to a secondary region with Azure Site Recovery - Azure Site Recovery](https://aka.ms/azure-site-recovery-dr-azure-vms)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: ed651749-cd37-4fd5-9897-01b416926745  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_end-->
+
 
 <!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_begin-->
 
@@ -265,13 +266,14 @@ VMSS in your subscription are running on images that have been scheduled for dep
 
 **Impact:** High
   
-For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines](https://aka.ms/DeprecatedImagesFAQ)  
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 3b739bd1-c193-4bb6-a953-1362ee3b03b2  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: undefined
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_end-->
+
 
 <!--3d18d7cd-bdec-4c68-9160-16a677d0f86a_begin-->
 
@@ -363,9 +365,10 @@ For more information, see [Virtual machine sizes overview - Azure Virtual Machin
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 7f71b153-c0b7-4e99-a23e-db8179183ec9  
-Subcategory: Scalability
+Subcategory: undefined
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_end-->
+
 
 
 <!--1670c0af-6536-4cbf-872f-152c91a51a80_begin-->
@@ -382,9 +385,10 @@ For more information, see [On-demand capacity reservation in Azure - Azure Virtu
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 1670c0af-6536-4cbf-872f-152c91a51a80  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--1670c0af-6536-4cbf-872f-152c91a51a80_end-->
+
 
 
 <!--5f2613df-629f-4b07-9425-2a47ea0dfad3_begin-->
@@ -457,9 +461,10 @@ For more information, see [Tutorial to run an Azure VM disaster recovery drill w
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 01c715f6-426a-47d3-87be-9f26e2ab2d8e  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_end-->
+
 
 <!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_begin-->
 
@@ -478,5 +483,203 @@ Recommendation ID: 4175946b-cd53-4a37-9e9a-0f8a418ef6ac
 Subcategory: HighAvailability
 
 <!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_end-->
+
+<!--00e4ac6c-afa3-4578-a021-5f15e18850a2_begin-->
+
+#### Align location of resource and resource group  
+  
+Move virtual machines to the same region as the related resource group. This way, Azure Resource Manager stores metadata related to all resources within the group in one region. By co-locating, you reduce the chance of being affected by region unavailability.  
+  
+**Potential benefits**: Reduce the impact of regional outages  
+
+**Impact:** Medium
+  
+For more information, see [What is Azure Resource Manager? - Azure Resource Manager](/azure/azure-resource-manager/management/overview#which-location-should-i-use-for-my-resource-group)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 00e4ac6c-afa3-4578-a021-5f15e18850a2  
+Subcategory: HighAvailability
+
+<!--00e4ac6c-afa3-4578-a021-5f15e18850a2_end-->
+
+<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_begin-->
+
+#### Shared disks should only be enabled in clustered servers  
+  
+Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.  
+  
+**Potential benefits**: Enhances clustered server availability  
+
+**Impact:** Medium
+  
+For more information, see [Share an Azure managed disk across VMs - Azure Virtual Machines](/azure/virtual-machines/disks-shared)  
+
+ResourceType: microsoft.compute/disks  
+Recommendation ID: 42d6dc9f-3e08-4a56-959d-0fd86310035f  
+Subcategory: Other
+
+<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_end-->
+
+<!--89496618-9e41-49e3-9db1-d08d61d9e820_begin-->
+
+#### Standard_NC24rs_v3 virtual machine (VM) size in NCv3-series is being retired.  
+  
+To avoid any disruption to your service, we recommend that you change the VM sizing for your workloads from the current Standard_NC24rs_v3 to the newer VM series in the same NC product line.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=standardnc24rsv3-virtual-machines-will-be-retired-on-march-31st-2025)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 89496618-9e41-49e3-9db1-d08d61d9e820  
+Subcategory: undefined
+
+<!--89496618-9e41-49e3-9db1-d08d61d9e820_end-->
+
+<!--71c69a25-0953-41d6-bf3a-1db323cd70b0_begin-->
+
+#### Migrate to zonal aware deployment model  
+  
+Migrate to zonal aware deployment model such as Virtual Machine Scale Sets, Azure Kubernetes Service (AKS), or App Service for zone redundant benefit.  
+  
+**Potential benefits**: Zone failover reduces service disruption  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.compute/cloudservices  
+Recommendation ID: 71c69a25-0953-41d6-bf3a-1db323cd70b0  
+Subcategory: undefined
+
+<!--71c69a25-0953-41d6-bf3a-1db323cd70b0_end-->
+
+<!--61bd0aa3-f2b0-485f-8e5e-95d02ac3483a_begin-->
+
+#### Spread dedicated hosts across zones for isolation of hardware failures  
+  
+Create host groups with hosts distributed across multiple zones. Assign virtual machine instances to hosts in different zones for isolation of faults.  
+  
+**Potential benefits**: Host isolation across zones for durability  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.compute/hostgroups  
+Recommendation ID: 61bd0aa3-f2b0-485f-8e5e-95d02ac3483a  
+Subcategory: undefined
+
+<!--61bd0aa3-f2b0-485f-8e5e-95d02ac3483a_end-->
+
+<!--3742247e-ea02-4202-bfef-a8a6be51fa4c_begin-->
+
+#### Use zone-scoped Proximity Placement Groups and duplicate across zones  
+  
+Use zone-scoped proximity placement groups and deploy dependent resources in the same zone for low latency. Ensure multiple proximity placement groups exist across zones for redundancy.  
+  
+**Potential benefits**: Low latency plus zone-level fault isolation  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.compute/proximityplacementgroups  
+Recommendation ID: 3742247e-ea02-4202-bfef-a8a6be51fa4c  
+Subcategory: undefined
+
+<!--3742247e-ea02-4202-bfef-a8a6be51fa4c_end-->
+
+<!--13cea0f1-c3f7-4c66-8b3b-9928a0f07cea_begin-->
+
+#### Review and migrate virtual machine workloads  
+  
+Azure Virtual Machine (VM) series F, Fs, Fsv2, Lsv2, G, Gs, Av2, and B are retiring. The VM series are no longer available for use or purchase. Applications and workloads currently operating on VM types must be migrated to newer VM series.  
+  
+**Potential benefits**: Avoid service disruptions by proactively migrating workloads  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500682)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 13cea0f1-c3f7-4c66-8b3b-9928a0f07cea  
+Subcategory: undefined
+
+<!--13cea0f1-c3f7-4c66-8b3b-9928a0f07cea_end-->
+
+<!--0e68ab45-c2c8-4d1f-9873-908dc5828252_begin-->
+
+#### Resize or migrate NVv3-series virtual machines  
+  
+To avoid service disruptions, migrate workloads to the Azure NVadsA10_v5-series VMs. Azure NVadsA10_v5-series VMs include increased GPU memory bandwidth per GPU, Small AI workloads and GPU accelerated graphics applications, virtual desktops, and visualizations.  
+  
+**Potential benefits**: Avoid service disruptions and loss of functionality  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500573)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 0e68ab45-c2c8-4d1f-9873-908dc5828252  
+Subcategory: undefined
+
+<!--0e68ab45-c2c8-4d1f-9873-908dc5828252_end-->
+
+<!--cfeba225-ca14-48fe-83ba-50d24f60f84e_begin-->
+
+#### Resize or migrate NVv4-series virtual machines  
+  
+To avoid service disruptions, migrate workloads to Azure NVads_V710_v5-series virtual machines. NVads_V710_v5-series virtual machines provide greater GPU memory bandwidth per GPU for small AI workloads and GPU accelerated graphics applications, virtual desktops, and visualizations.  
+  
+**Potential benefits**: Avoid service disruptions and loss of functionality  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500578)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: cfeba225-ca14-48fe-83ba-50d24f60f84e  
+Subcategory: undefined
+
+<!--cfeba225-ca14-48fe-83ba-50d24f60f84e_end-->
+
+<!--da4fe6f8-35f4-4ea0-8704-1732ee88f695_begin-->
+
+#### Contoso recommendation - R3  
+  
+Test recommendation for Contoso  
+  
+**Potential benefits**: Test potential benefits  
+
+**Impact:** Medium
+  
+For more information, see [nohello](https://aka.ms/nohello)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: da4fe6f8-35f4-4ea0-8704-1732ee88f695  
+Subcategory: undefined
+
+<!--da4fe6f8-35f4-4ea0-8704-1732ee88f695_end-->
+
+<!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_begin-->
+
+#### Migrate to encryption at host  
+  
+Azure Disk Encryption is retiring. Migrate to encryption at host before the retirement date to ensure continued security, functionality, and performance.  
+  
+**Potential benefits**: Ensure continued security, functionality, and performance  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=493779)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1  
+Subcategory: undefined
+
+<!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_end-->
 
 <!--articleBody-->

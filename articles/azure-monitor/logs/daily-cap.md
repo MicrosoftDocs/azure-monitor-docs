@@ -3,7 +3,7 @@ title: Set daily cap on Log Analytics workspace
 description: Set a 
 ms.topic: how-to
 ms.reviewer: Dale.Koetke
-ms.date: 10/23/2023
+ms.date: 08/29/2025
 ---
 
 # Set daily cap on Log Analytics workspace
@@ -37,7 +37,7 @@ Data collection resumes at the reset time which is a different hour of the day f
 > The daily cap can't stop data collection at precisely the specified cap level and some excess data is expected. The data collection beyond the daily cap can be particularly large if the workspace is receiving high rates of data. If data is collected above the cap, it's still billed. See [View the effect of the Daily Cap](#view-the-effect-of-the-daily-cap) for a query that is helpful in studying the daily cap behavior.
 
 > [!IMPORTANT]
-> Since late 2024, there are issues with the daily cap being accurately applied during ingestion into Log Analytics workspaces. In some cases, the daily cap may not get triggered even if data is ingested well above the daily cap. Given this, it is recommended that you rely on the myriad other tools available to control and reduce data ingestion such as data filtering and data transformations in your Data Collection Rules. These and more best practices are outlined the document [Cost optimization and Azure Monitor](../fundamentals/best-practices-cost.md).
+> Since late 2024, there are issues with the daily cap being accurately applied during ingestion into Log Analytics workspaces. In some cases, the daily cap may not get triggered even if data is ingested well above the daily cap. Given this, it is recommended that you rely on the myriad other tools available to control and reduce data ingestion such as data filtering and data transformations in your Data Collection Rules. These and more best practices are outlined in [Cost optimization and Azure Monitor](../fundamentals/best-practices-cost.md).
 
 ## When to use a daily cap
 Daily caps are typically used by organizations that are particularly cost conscious. They shouldn't be used as a method to reduce costs, but rather as a preventative measure to ensure that you don't exceed a particular budget. 
@@ -53,7 +53,7 @@ You should configure the daily cap setting for both Application Insights and Log
 The maximum cap for an Application Insights classic resource is 1,000 GB/day unless you request a higher maximum for a high-traffic application. When you create a resource in the Azure portal, the daily cap is set to 100 GB/day. When you create a resource in Visual Studio, the default is small (only 32.3 MB/day). The daily cap default is set to facilitate testing. It's intended that the user will raise the daily cap before deploying the app into production. 
 
 > [!NOTE]
-> If you are using connection strings to send data to Application Insights using [regional ingestion endpoints](../fundamentals/azure-monitor-network-access.md#outgoing-ports), then the Application Insights and Log Analytics daily cap settings are effective per region. If you are using only instrumentation key (ikey) to send data to Application Insights using the [global ingestion endpoint](../fundamentals/azure-monitor-network-access.md#outgoing-ports), then the Application Insights daily cap setting may not be effective across regions, but the Log Analytics daily cap setting will still apply.
+> If you are using connection strings to send data to Application Insights using [regional ingestion endpoints](../fundamentals/azure-monitor-network-access.md#application-insights-ingestion), then the Application Insights and Log Analytics daily cap settings are effective per region. If you are using only instrumentation key (ikey) to send data to Application Insights using the [global ingestion endpoint](../fundamentals/azure-monitor-network-access.md#application-insights-ingestion), then the Application Insights daily cap setting may not be effective across regions, but the Log Analytics daily cap setting will still apply.
 
 We've removed the restriction on some subscription types that have credit that couldn't be used for Application Insights. Previously, if the subscription has a spending limit, the daily cap dialog has instructions to remove the spending limit and enable the daily cap to be raised beyond 32.3 MB/day.
 
@@ -127,7 +127,7 @@ To receive an alert when the daily cap is reached, create a [log search alert ru
 
 
 ### Classic Application Insights resource
-When the daily cap is reach for a classic Application Insights resource, an event is created in the Azure Activity log with the following signal names. You can also optionally have an email sent to the subscription administrator both when the cap is reached and when a specified percentage of the daily cap has been reached.
+When the daily cap is reached for a classic Application Insights resource, an event is created in the Azure Activity log with the following signal names. You can also optionally have an email sent to the subscription administrator both when the cap is reached and when a specified percentage of the daily cap has been reached.
 
 * Application Insights component daily cap warning threshold reached
 * Application Insights component daily cap reached
@@ -163,6 +163,5 @@ Usage
 
 ## Next steps
 
-- See [Azure Monitor Logs pricing details](cost-logs.md) for details on how charges are calculated for data in a Log Analytics workspace and different configuration options to reduce your charges.
 - See [Azure Monitor Logs pricing details](cost-logs.md) for details on how charges are calculated for data in a Log Analytics workspace and different configuration options to reduce your charges.
 - See [Analyze usage in Log Analytics workspace](analyze-usage.md) for details on analyzing the data in your workspace to determine to source of any higher than expected usage and opportunities to reduce your amount of data collected.

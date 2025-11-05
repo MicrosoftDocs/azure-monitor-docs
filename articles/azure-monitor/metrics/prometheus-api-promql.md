@@ -1,12 +1,12 @@
 ---
-title: Query Prometheus Metrics by Using the API and PromQL
+title: Query Prometheus Metrics using the API and PromQL
 description: Learn how to use the API to query metrics in an Azure Monitor workspace by using PromQL.
 ms.topic: how-to
 ms.date: 09/17/2024
 ms.reviewer: aul
 ---
 
-# Query Prometheus metrics by using the API and PromQL
+# Query Prometheus metrics using the API and PromQL
 
 Azure Monitor managed service for Prometheus collects metrics from Azure Kubernetes clusters and stores them in an Azure Monitor workspace. Prometheus Query Language (PromQL) is a functional query language that you can use to query and aggregate time-series data. Use PromQL to query and aggregate metrics stored in an Azure Monitor workspace.
 
@@ -14,7 +14,7 @@ This article describes how to query an Azure Monitor workspace by using PromQL v
 
 ## Prerequisites
 
-To query an Azure monitor workspace by using PromQL, you need:
+To query an Azure monitor workspace using PromQL, you need:
 
 * An Azure Kubernetes cluster or remote Kubernetes cluster.
 * Azure Monitor managed service for Prometheus scraping metrics from a Kubernetes cluster.
@@ -22,7 +22,7 @@ To query an Azure monitor workspace by using PromQL, you need:
 
 ## Authentication
 
-To query your Azure Monitor workspace, authenticate by using Microsoft Entra ID. The API supports Microsoft Entra authentication by using client credentials. Register a client app with Microsoft Entra ID and request a token.
+To query your Azure Monitor workspace, authenticate using Microsoft Entra ID. The API supports Microsoft Entra authentication by using client credentials. Register a client app with Microsoft Entra ID and request a token.
 
 To set up Microsoft Entra authentication, follow these steps:
 

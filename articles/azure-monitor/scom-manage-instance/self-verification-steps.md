@@ -2,9 +2,10 @@
 ms.assetid: 
 title: Azure Monitor SCOM Managed Instance self-verification of steps
 description: This article describes the self-verification processes of the Operations Manager admin, Active Directory admin, and network admin.
-author: jyothisuri
-ms.author: jsuri
-ms.date: 05/22/2024
+author: Jeronika-MS
+ms.author: v-gajeronika
+ms.date: 09/30/2025
+ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: how-to
@@ -12,10 +13,9 @@ ms.topic: how-to
 
 # Azure Monitor SCOM Managed Instance self-verification of steps
 
-This article describes the self-verification processes of the Operations Manager admin, Active Directory admin, and network admin.
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
-> [!NOTE]
-> To learn about the Azure Monitor SCOM Managed Instance architecture, see [Azure Monitor SCOM Managed Instance](overview.md).
+This article describes the self-verification processes of the Operations Manager admin, Active Directory admin, and network admin.
 
 After you set up the required parameters, run the self-validation tool. Based on the experience and data collected from telemetry, Operations Manager administrators have spent considerable time validating the accuracy of parameters. Running this tool helps to identify any issues with your environment or parameters before you proceed with the deployment.
 

@@ -6,7 +6,6 @@ ms.date: 10/09/2024
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: devx-track-csharp
-ms.reviewer: rijolly
 
 #customer intent: As a developer, I want use the Application map and Intelligent view features in Azure Monitor so that I can monitor complex application topologies.
 ---
@@ -151,160 +150,16 @@ For more information about how to override the cloud role name property with tel
 
 ## Set cloud role names
 
-**Application map** uses the cloud role name property to identify the components on the map. This section provides examples to manually set or override cloud role names and change what appears on the application map. 
+**Application map** uses the cloud role name property to identify the components on the map. This section provides examples to manually set or override cloud role names and change what appears on the application map.
+
+To learn how to manually change the cloud role name and cloud role instance, see:
+
+* OpenTelemetry Distro: [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
+* Client-side JavaScript SDK: [Configure JavaScript SDK](javascript-sdk-configuration.md#add-a-cloud-role-name-and-cloud-role-instance)
+* Application Insights SDK (Classic API): [.NET](dotnet.md#add-a-cloud-role-name-and-cloud-role-instance) and [Node.js](nodejs.md#add-a-cloud-role-name-and-cloud-role-instance)
 
 > [!NOTE]
 > The Application Insights SDK or Agent automatically adds the cloud role name property to the telemetry emitted by components in an Azure App Service environment.
-
-The following snippet shows the schema definitions for the cloud role and cloud role instance:
-
-```dotnetcli
-[Description("Name of the role the application is a part of. Maps directly to the role name in Azure.")]
-[MaxStringLength("256")]
-705: string      CloudRole = "ai.cloud.role";
-
-[Description("Name of the instance where the application is running. Computer name for on-premises, instance name for Azure.")]
-[MaxStringLength("256")]
-715: string      CloudRoleInstance = "ai.cloud.roleInstance";
-```
-
-For the [official definitions](https://github.com/Microsoft/ApplicationInsights-dotnet/blob/39a5ef23d834777eefdd72149de705a016eb06b0/Schema/PublicSchema/ContextTagKeys.bond#L93):
-
-# [.NET/.NetCore](#tab/net)
-
-**Write custom TelemetryInitializer**
-
-```csharp
-using Microsoft.ApplicationInsights.Channel;
-using Microsoft.ApplicationInsights.Extensibility;
-
-namespace CustomInitializer.Telemetry
-{
-    public class MyTelemetryInitializer : ITelemetryInitializer
-    {
-        public void Initialize(ITelemetry telemetry)
-        {
-            if (string.IsNullOrEmpty(telemetry.Context.Cloud.RoleName))
-            {
-                //set custom role name here
-                telemetry.Context.Cloud.RoleName = "Custom RoleName";
-                telemetry.Context.Cloud.RoleInstance = "Custom RoleInstance";
-            }
-        }
-    }
-}
-```
-
-**ASP.NET apps: Load initializer in the active TelemetryConfiguration**
-
-In the _ApplicationInsights.config_ file:
-
-```xml
-    <ApplicationInsights>
-      <TelemetryInitializers>
-        <!-- Fully qualified type name, assembly name: -->
-        <Add Type="CustomInitializer.Telemetry.MyTelemetryInitializer, CustomInitializer"/>
-        ...
-      </TelemetryInitializers>
-    </ApplicationInsights>
-```
-
-An alternate method for ASP.NET Web apps is to instantiate the initializer in code. The following example shows code in the _Global.aspx.cs_ file:
-
-```csharp
- using Microsoft.ApplicationInsights.Extensibility;
- using CustomInitializer.Telemetry;
-
-    protected void Application_Start()
-    {
-        // ...
-        TelemetryConfiguration.Active.TelemetryInitializers.Add(new MyTelemetryInitializer());
-    }
-```
-
-> [!NOTE]
-> Adding an initializer by using the `ApplicationInsights.config` or `TelemetryConfiguration.Active` property isn't valid for ASP.NET Core applications.
-
-**ASP.NET Core apps: Load an initializer to TelemetryConfiguration**
-
-For [ASP.NET Core](asp-net-core.md#add-telemetryinitializers) applications, to add a new `TelemetryInitializer` instance, you add it to the Dependency Injection container. The following example shows this approach. Add this code in the `ConfigureServices` method of your `Startup.cs` class.
-
-```csharp
- using Microsoft.ApplicationInsights.Extensibility;
- using CustomInitializer.Telemetry;
- public void ConfigureServices(IServiceCollection services)
-{
-    services.AddSingleton<ITelemetryInitializer, MyTelemetryInitializer>();
-}
-```
-
-# [Java](#tab/java)
-
-**Set cloud role name**
-
-```json
-{
-  "role": {
-    "name": "my cloud role name"
-  }
-}
-```
-
-You can also set the cloud role name with an environment variable or system property. For more information, see [Configuring cloud role name](./java-standalone-config.md#cloud-role-name).
-
-# [Node.js](#tab/nodejs)
-
-**Set cloud role name**
-
-```javascript
-var appInsights = require("applicationinsights");
-appInsights.setup('INSTRUMENTATION_KEY').start();
-appInsights.defaultClient.context.tags["ai.cloud.role"] = "your role name";
-appInsights.defaultClient.context.tags["ai.cloud.roleInstance"] = "your role instance";
-```
-
-**Node.js: Set cloud role name**
-
-```javascript
-var appInsights = require("applicationinsights");
-appInsights.setup('INSTRUMENTATION_KEY').start();
-
-appInsights.defaultClient.addTelemetryProcessor(envelope => {
-    envelope.tags["ai.cloud.role"] = "your role name";
-    envelope.tags["ai.cloud.roleInstance"] = "your role instance"
-});
-```
-
-# [JavaScript](#tab/javascript)
-
-**Set cloud role name**
-
-```javascript
-appInsights.queue.push(() => {
-appInsights.addTelemetryInitializer((envelope) => {
-  envelope.tags["ai.cloud.role"] = "your role name";
-  envelope.tags["ai.cloud.roleInstance"] = "your role instance";
-});
-});
-```
-
-# [Python](#tab/python)
-
-**Set cloud role name**
-
-For Python, you can use [OpenCensus Python telemetry processors](api-filtering-sampling.md#opencensus-python-telemetry-processors).
-
-```python
-def callback_function(envelope):
-   envelope.tags['ai.cloud.role'] = 'new_role_name'
-
-# AzureLogHandler
-handler.add_telemetry_processor(callback_function)
-
-# AzureExporter
-exporter.add_telemetry_processor(callback_function)
-```
----
 
 ## Use Application map filters
 

@@ -60,7 +60,7 @@ An audit record is created each time a query is run. If you send the data to a L
 | RequestClientApp | Description |
 |:---|:---|
 |AAPBI|[Log Analytics integration with Power BI](../logs/log-powerbi.md).|
-|AppAnalytics|Experiences of Log Analytics in the Azure portal.|
+|AppAnalytics|Experiences of Log Analytics in the Azure portal (such as the **Logs** blade).|
 |AppInsightsPortalExtension|[Workbooks](../visualize/workbooks-data-sources.md#logs-analytics-tables-application-insights) or [Application insights](../app/app-insights-overview.md).|
 |ASC_Portal|Microsoft Defender for Cloud.|
 |ASI_Portal|Sentinel.|
@@ -70,7 +70,7 @@ An audit record is created each time a query is run. If you send the data to a L
 |Draft-Monitor|[Log search alert creation in the Azure portal.](../alerts/alerts-create-new-alert-rule.md?tabs=log)|
 |Grafana|[Grafana connector.](../visualize/visualize-grafana-overview.md)|
 |IbizaExtension|Experiences of Log Analytics in the Azure portal.|
-|infraInsights/container|[Container insights.](../containers/container-insights-overview.md)|
+|infraInsights/container|[Container insights.](../containers/kubernetes-monitoring-overview.md)|
 |infraInsights/vm|[VM insights.](../vm/vminsights-overview.md)|
 |LogAnalyticsExtension|[Azure Dashboard](/azure/azure-portal/azure-portal-dashboards).|
 |LogAnalyticsPSClient|[Log Analytics Query API.](../logs/api/overview.md)|
@@ -81,6 +81,7 @@ An audit record is created each time a query is run. If you send the data to a L
 |Sentinel-analyticsManagement-customerQuery|Sentinel.|
 |Unknown|[Log Analytics Query API.](../logs/api/overview.md)|
 |UpdateManagement|[Update Management.](/azure/automation/update-management/overview)|
+|M365D_AdvancedHunting| Advanced hunting in Microsoft Defender|
 
 
 ## Considerations

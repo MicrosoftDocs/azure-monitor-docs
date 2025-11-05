@@ -3,7 +3,7 @@ title: Best practices guide - Azure Monitor issues and investigations (preview)
 description: This article provides best practices guidance for Azure Monitor issues and investigations. The article explains how to ensure the investigations have rich data to produce most relevant insights. It also includes links to related Azure Monitor documentation for further reference.
 ms.topic: how-to
 ms.servce: azure-monitor
-ms.reviewer: yalavi
+ms.reviewer: enauerman
 ms.date: 07/23/2025
 ---
 

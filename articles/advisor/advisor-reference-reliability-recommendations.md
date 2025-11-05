@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 08/12/2025
+ms.date: 10/28/2025
 ---
 
 # Reliability recommendations
@@ -50,6 +50,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-database-for-postgresql.md](./includes/HighAvailability-azure-database-for-postgresql.md)]
 
+[!INCLUDE [HighAvailability-azure-databricks.md](./includes/HighAvailability-azure-databricks.md)]
+
 [!INCLUDE [HighAvailability-azure-iot-hub.md](./includes/HighAvailability-azure-iot-hub.md)]
 
 [!INCLUDE [HighAvailability-azure-kubernetes-service-(aks).md](./includes/HighAvailability-azure-kubernetes-service-(aks).md)]
@@ -85,6 +87,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
 
 [!INCLUDE [HighAvailability-service-bus.md](./includes/HighAvailability-service-bus.md)]
+
+[!INCLUDE [HighAvailability-service-fabric.md](./includes/HighAvailability-service-fabric.md)]
 
 [!INCLUDE [HighAvailability-sql-server-on-azure-virtual-machines.md](./includes/HighAvailability-sql-server-on-azure-virtual-machines.md)]
 

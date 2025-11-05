@@ -1,25 +1,71 @@
 ---
 title:  Use Azure Monitor issues and investigations (preview)
-description: This article helps guide you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provide next steps to mitigate and resolve problems with Azure resources.
+description: This article guides you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
 ms.topic: how-to
 ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.date: 05/05/2025
+ms.date: 09/04/2025
 ---
 
 # Use Azure Monitor issues and investigations (preview)
 
-This article helps guide you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provide next steps to mitigate and resolve problems with Azure resources.
-
-> [!NOTE]
-> For preview, investigation only supports Application Insights resource alert. 
+This article guides you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provides next steps to mitigate and resolve problems with Azure resources.
 
 ## Prerequisites
 
 - Read the [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md).
 - Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigations.
-- Identify an alert fired on an Application Insights resource to investigate.
-- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the resource you’re investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+- Be sure that the subscription containing the investigated resource is associated with an Azure Monitor Workspace (AMW).
+- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the AMW you’re investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+
+### Associate an AMW in the Azure portal
+> [!NOTE]
+> This is a one-time step required for each subscription you'd like to investigate, and should be performed by a user with the Contributor role on the associated subscription.
+
+Associating a subscription with an Azure Monitor Workspace is required to create issues and run investigations:
+
+1. If the alert’s target resource subscription isn’t already linked to an AMW, you’ll see a message indicating that an Azure Monitor Workspace is required. The **Select an Azure Monitor workspace** screen will appear.
+1. Select an existing Azure Monitor Workspace or create a new one as needed.
+1. After confirming your selection, the Issue page will reload and the investigation will automatically start running.
+
+
+### Associate an AMW via REST API
+
+You can create, update, view, and delete an AMW association to a subscription using the following REST API commands.
+
+#### Create or update an association
+
+```
+PUT https://management.azure.com/subscriptions/<subscription_id>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
+Host: management.azure.com
+Content-Type: application/json
+Authorization: Bearer <bearerToken>
+
+{
+  "properties": {
+    "defaultAzureMonitorWorkspace": "<amw_id>"
+  }
+}
+
+```
+
+#### View an association
+
+```
+GET https://management.azure.com/subscriptions/<subscription_id>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
+Host: management.azure.com
+Authorization: Bearer <bearerToken>
+```
+
+#### Delete an association
+
+```
+DELETE https://management.azure.com/subscriptions/<subscription_id>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
+Host: management.azure.com
+Authorization: Bearer <bearerToken>
+```
+
+
 
 ## Ways to start an investigation on an alert
 
@@ -27,8 +73,8 @@ There are two ways to start an investigation on an alert:
 
 1.  From the home page in the Azure portal:
     1.  From the home page in the [Azure portal](https://portal.azure.com/), select **Monitor** \> **Alerts**.
-    2.  From the **Alerts** page, select the alert that you want to investigate.
-    3.  In the alert details pane, select **Investigate (preview)**.
+    1.  From the **Alerts** page, select the alert that you want to investigate.
+    1.  In the alert details pane, select **Investigate (preview)**.
     
     :::image type="content" source="media/investigate-an-alert.png" alt-text="Screenshot of alerts screen with investigate an alert link." lightbox="media/investigate-an-alert.png":::
 
@@ -67,16 +113,17 @@ An investigation will present findings based on the evidence it analyzed. To inv
 ### Change the impact time of the investigation
 
 1.  Select the **Overview** tab.
-2.  Select **impact time** and adjust it. Changing the time of the investigation will automatically start a new investigation.
+1.  Select **impact time** and adjust it. Changing the time of the investigation will automatically start a new investigation.
 
 ### Change the resources included in the investigation
 
 1.  Select the **Resources** tab.
-2.  Select **Edit resources**.
-3.  Select the additional resources you want to include in the investigation. A new investigation will begin.
+1.  Select **Edit resources**.
+1.  Select the additional resources you want to include in the investigation. A new investigation will begin.
 
 ## Related content
 
 - [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
+
 - [Azure Monitor issues and investigations (preview) responsible use](aiops-issue-and-investigation-responsible-use.md)
 - [Azure Monitor issues and investigations (preview) troubleshooting](aiops-issue-and-investigation-troubleshooting.md)
