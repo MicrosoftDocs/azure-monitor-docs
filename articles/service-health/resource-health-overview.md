@@ -2,7 +2,7 @@
 title: Azure Resource Health overview
 description: Learn how Azure Resource Health helps you diagnose and get support for service problems that affect your Azure resources.
 ms.topic: concept-article
-ms.date: 11/04/2025
+ms.date: 11/05/2025
 
 ---
 # Resource Health overview
@@ -43,7 +43,7 @@ Multiple components of the Azure infrastructure trigger Platform events. They in
 
 Resource Health provides more details about the event and the recovery process. It also enables you to contact Microsoft Support even if you don't have an active support agreement.
 
-:::image type="content"source="./media/resource-health-overview/Unavailable.png"alt-text="Screenshot of Status of *Unavailable* for an unplanned virtual network gateway in standby mode."Lightbox="./media/resource-health-overview/Unavailable.png":::
+:::image type="content"source="./media/resource-health-overview/unavailable.png"alt-text="Screenshot of Status of *Unavailable* for an unplanned virtual network gateway in standby mode."Lightbox="./media/resource-health-overview/unavailable.png":::
 
 #### Non-platform events
 
