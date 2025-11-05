@@ -59,12 +59,12 @@ The DCR creation process adds the VM user-assigned managed identity as a NativeI
 1. Select **Add new data flow**.
 1. In the **Data source** tab, choose one of the [supported data types](#supported-data-types). Each data source listed has a link to general steps and special instructions.    
 1. In the **Destination** tab > **Destination type** pull down menu, select either **Azure Data Explorer** or **Microsoft Fabric**.
-1. **Configure Destination** and select the eventhouse or ADX cluster and database.
+1. **Configure Destination** and choose the eventhouse or ADX cluster and database > **Select**.
 
    :::image type="content" source="./media/send-fabric-destination/configure-data-source.png" alt-text="Screenshot showing destination configuration for Microsoft Fabric.":::
    <sup>*The ADX free tier cluster isn't supported*</sup>
 
-1. Select **Apply**
+1. Select **Save**
 
    :::image type="content" source="./media/send-fabric-destination/data-flow-destination.png" alt-text="Screenshot showing dataflow destination of ADX.":::
 
