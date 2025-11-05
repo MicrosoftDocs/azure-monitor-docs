@@ -33,7 +33,23 @@ The **Create an alert rule** wizard opens the **Condition** tab, with the **Scop
 
 :::image type="content" source="./media/resource-health/resource-health-create-scope.PNG" alt-text="Screenshot of Resource Health scope tab." lightbox="./media/resource-health/resource-health-create-scope.PNG":::
 
-4. Follow the steps to create Resource Health alerts, starting from the **Condition** tab, in the [Alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
+4. Follow the steps to create Resource Health alerts, starting from the **Condition** tab.<br>
+    Alert Conditions you can configure:
+    - **Active** - the health event is ongoing.
+    - **Resolved** - The event has ended.
+    - **In Progress** - Azure is working on mitigation
+   
+ >[!TIP]
+ > Use **Active** to get notified when an issue starts, and use **Resolved** for Post Incident Reviews (PIR).
+     
+1. Select how you want to recieve the alerts in the **Actions** tab.
+    1. 
+1. In the **Details** tab you set up the subscription and resource group you will save the alert rule for.
+1. In the **Tags** pane you pick the name and value of tags that you want to apply to different resources. For more information see [Learn more about using tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
+1. Finally, in the **review + create** tab you see all the settings you selected and can select **Create** to finish, or **Previous** to change any settings. 
+
+ 
+in the [Alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
 
 :::image type="content" source="./media/resource-health/resource-health-create-condition.PNG" alt-text="Screenshot of Resource Health condition tab." lightbox="./media/resource-health/resource-health-create-condition.PNG":::
 
