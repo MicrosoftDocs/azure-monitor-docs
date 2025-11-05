@@ -1,6 +1,6 @@
 ---
-title: Optimization in Azure Operations Center (preview)
-description: Describes the Optimization pillar in Azure Operations Center, which includes cost and carbon optimization features and the Optimize agent.
+title: Optimization in Operations center (preview)
+description: Describes the Optimization pillar in Operations center, which includes cost and carbon optimization features and the Optimize agent.
 ms.topic: conceptual
 ms.date: 10/30/2025
 ---
@@ -10,7 +10,7 @@ ms.date: 10/30/2025
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Optimization** pillar in [Azure operations center](./overview.md) helps you identify opportunities to improve the cost efficiency and carbon emissions of your Azure resources. It provides insights and recommendations based on best practices and usage patterns and leverages the Optimize agent to provide proactive recommendations and guided assistance.
+The **Optimization** pillar in [Operations center](./overview.md) helps you identify opportunities to improve the cost efficiency and carbon emissions of your Azure resources. It provides insights and recommendations based on best practices and usage patterns and leverages the Optimize agent to provide proactive recommendations and guided assistance.
 
 The Optimization pillar uses the following Azure services:
 - [Cost management](/azure/cost-management-billing/costs/overview-cost-management)
@@ -36,7 +36,7 @@ The Optimization overview page includes the following sections. Modify the scope
 
 | Section | Description |
 |:---|:---|
-| Top actions | Surfaces the most impactful and actionable recommendations to maximize cost and carbon savings. This is a unified and prioritized list across Cost recommendations and Cost alerts so you can immediately identify where to focus your attention. Some of these actions may open the [Optimize agent](#optimize-agent) which allows you to interact with Copilot to act on the recommendation. |
+| Top actions | Surfaces the most impactful and actionable recommendations to maximize cost and carbon savings. This is a unified and prioritized list across Cost recommendations and Cost alerts so you can immediately identify where to focus your attention. Some of these actions may open the [Optimize agent](#optimize-agent) which allows you to interact with Azure Copilot to act on the recommendation. |
 | Cost and carbon emissions summary | Summarizes the data from the previous month and forecasts the next month for all selected subscriptions and the top contributing subscriptions. Drill into any of these views to open other pages in the Optimization pillar for additional details. |
 | Optimization recommendations | Displays the top Advisor recommendations for resiliency.  |
 
@@ -48,7 +48,7 @@ The **Cost + emissions** page lists your subscriptions with a quick summary of t
 :::image type="content" source="./media/optimization/cost-emissions.png" lightbox="./media/optimization/cost-emissions.png" alt-text="Screenshot of Cost + emissions page in the Azure portal":::
 
 ## Optimize agent
-The Optimize agent in operations center provides an agentic experience to help you identify and implement cost-saving and carbon-reduction measures. The agent uses Copilot to analyze your resource usage patterns and recommend actions to optimize your Azure environment. You can either initiate a conversation with the agent using prompts or select specific recommendations to get guided assistance.
+The Optimize agent in operations center provides an agentic experience to help you identify and implement cost-saving and carbon-reduction measures. The agent uses Azure Copilot to analyze your resource usage patterns and recommend actions to optimize your Azure environment. You can either initiate a conversation with the agent using prompts or select specific recommendations to get guided assistance.
 
 Examples of tasks you can perform with the Optimize agent include:
 
@@ -60,7 +60,7 @@ Examples of tasks you can perform with the Optimize agent include:
 There are multiple ways to open the Optimize agent in operations center. How you open it determines context of the conversation. 
 
 **Optimize option**<br>
-In both of the following cases, Copilot invokes the Optimize agent and initiates a conversation around the selected recommendation. The scope of the conversation is limited to the Optimize agent. If you want to switch to a different agent or the general Copilot experience, open Copilot from the top of the portal.
+In both of the following cases, Azure Copilot invokes the Optimize agent and initiates a conversation around the selected recommendation. The scope of the conversation is limited to the Optimize agent. If you want to switch to a different agent or the general Azure Copilot experience, open Azure Copilot from the top of the portal.
 
 - Click on **Optimize with Copilot** button on any recommendations that offer that option in the **Optimization** overview page.  
 
@@ -74,17 +74,15 @@ In both of the following cases, Copilot invokes the Optimize agent and initiates
 > Recommendations with the Optimize option are currently limited to those related to VM and VM scale sets.
 
 
-**Copilot option**<br>
-- Click the **Copilot** button at the top of the portal. Ensure **Agent** is enabled and then enter a prompt related to optimization. Copilot determines which agents it uses based on the conversation, and your conversation doesn't need to be limited to optimization topics. See [Sample prompts](#sample-prompts) for examples. You can also click on the suggested prompts that Copilot provides.
+**Azure Copilot option**<br>
+- Click the **Copilot** button at the top of the portal. Ensure **Agent** is enabled and then enter a prompt related to optimization. Azure Copilot determines which agents it uses based on the conversation, and your conversation doesn't need to be limited to optimization topics. See [Sample prompts](#sample-prompts) for examples. You can also click on the suggested prompts that Azure Copilot provides.
 
-    :::image type="content" source="./media/optimization/optimization-agent.png" lightbox="./media/optimization/optimization-agent.png" alt-text="Screenshot of starting a conversation with Copilot using the Optimization agent.":::
-
+    :::image type="content" source="./media/optimization/optimization-agent.png" lightbox="./media/optimization/optimization-agent.png" alt-text="Screenshot of starting a conversation with Azure Copilot using the Optimization agent.":::
 
 
 ### Use the agent
 Once the Optimize agent is open, you can interact with it using natural language prompts. It will also offer you links to perform recommended actions or get additional information. See [Copilot documentation](/azure/copilot/overview) for more information on how to best use the agent experience.
 
-:::image type="content" source="./media/optimization/agent-conversation.png" lightbox="./media/optimization/agent-conversation.png" alt-text="Screenshot of a conversation susing the Optimization agent.":::
 
 ### Sample prompts
 Here are some sample prompts and responses to get you started with the Optimize agent:

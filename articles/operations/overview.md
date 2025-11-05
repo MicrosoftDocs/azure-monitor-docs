@@ -1,16 +1,16 @@
 ---
-title: Overview of Azure Operations Center
-description: Provides an overview of Azure Operations Center, a unified operations management platform for monitoring, troubleshooting, and automation across cloud and hybrid environments.
+title: Overview of Operations center (preview)
+description: Provides an overview of Operations center, a unified operations management platform in the Azure portal for monitoring, troubleshooting, and automation across cloud and hybrid environments.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
 
-# Overview of Azure operations center (preview)
+# Overview of Operations center (preview)
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
 
-Azure operations center is a unified operations management platform designed to streamline monitoring, troubleshooting, and automation across cloud and hybrid environments. It allows you to retain your existing investments in Azure management tools while consolidating the configuration and administration of these services into a common portal, enhanced by agentic workflows powered by Azure Copilot. 
+Operations center is a unified operations management platform designed to streamline monitoring, troubleshooting, and automation across cloud and hybrid environments. It allows you to retain your existing investments in Azure management tools while consolidating the configuration and administration of these services into a common portal, enhanced by agentic workflows powered by Azure Copilot. 
 
 ## Value of operations center
 Azure includes a rich set of services to manage and monitor your cloud resources. Working with the entire set of services can be frustrating though because they're scattered across different menus in the Azure portal. You also need to identify the different services available and configure each separately for your applications and resources.
@@ -18,7 +18,7 @@ Azure includes a rich set of services to manage and monitor your cloud resources
 :::image type="content" source="./media/overview/operations-center-concept.png" lightbox="./media/overview/operations-center-concept.png" alt-text="Diagram showing the benefits of Operations Center." border="false":::
 
 
-Azure Operations Center provides a unified portal to manage and monitor your Azure and hybrid environments. It consolidates the experience of multiple Azure management services into a single location and adds features to improve usability and streamline common tasks. Continue to use the Azure services that you already rely on, but save time by accessing them in a consolidated portal experience.
+Operations center provides a unified portal to manage and monitor your Azure and hybrid environments. It consolidates the experience of multiple Azure management services into a single location and adds features to improve usability and streamline common tasks. Continue to use the Azure services that you already rely on, but save time by accessing them in a consolidated portal experience.
 
 Operations center enhances the portal experience by leveraging Azure Copilot agents to proactively surface issues and guide you through resolution steps. This helps you quickly identify and remediate issues to optimize your environment without needing to search for solutions or navigate complex documentation.
 

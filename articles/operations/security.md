@@ -1,16 +1,16 @@
 ---
-title: Security in Azure Operations Center (preview)
-description: Describes the Security pillar in Azure Operations Center, which helps you manage the security of your your Azure resources and any non-Azure resources you've connected.
+title: Security in Operations center (preview)
+description: Describes the Security pillar in Operations center, which helps you manage the security of your your Azure resources and any non-Azure resources you've connected.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
 
 
-# Security in Azure Operations Center (preview)
+# Security in Operations center (preview)
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Security** pillar of [Azure operations center](./overview.md) helps you manage the security of your your Azure resources and any non-Azure resources you've connected. It consolidates security information and recommendations from [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) into a unified view to help you improve your security posture and respond to threats.
+The **Security** pillar of [Operations center](./overview.md) helps you manage the security of your your Azure resources and any non-Azure resources you've connected. It consolidates security information and recommendations from [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) into a unified view to help you improve your security posture and respond to threats.
 
 The Security pillar uses the following Azure services:
 

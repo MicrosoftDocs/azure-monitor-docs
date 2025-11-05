@@ -1,16 +1,16 @@
 ---
-title: Resiliency in Azure Operations Center (preview)
-description: Describes the Resiliency pillar in Azure Operations Center, which provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources.
+title: Resiliency in Operations center (preview)
+description: Describes the Resiliency pillar in Operations center, which provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
 
 
-# Resiliency in Azure Operations Center (preview)
+# Resiliency in Operations center (preview)
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Resiliency** pillar in [Azure operations center](./overview.md) provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources. It helps you with the following tasks::
+The **Resiliency** pillar in [Operations center](./overview.md) provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources. It helps you with the following tasks::
 
 - Understand zonal availability to keep workloads online during failures.
 - Validate recovery readiness through checks that predict failover success.

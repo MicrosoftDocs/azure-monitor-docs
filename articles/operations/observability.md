@@ -1,16 +1,16 @@
 ---
-title: Observability in Azure Operations Center (preview)
-description: Describes the Observability pillar in Azure Operations Center, which helps you monitor the health and performance of your cloud applications and resources.
+title: Observability in Operations center (preview)
+description: Describes the Observability pillar in Operations center, which helps you monitor the health and performance of your cloud applications and resources.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
 
 
-# Observability in Azure Operations Center (preview)
+# Observability in Operations center (preview)
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Observability** pillar of [Azure operations center](./overview.md) helps you monitor the health and performance of your cloud applications and resources. It consolidates multiple Azure services to assess the current health of your environment, identify issues, and provide recommendations for maintaining optimal performance and availability. I
+The **Observability** pillar of [Operations center](./overview.md) helps you monitor the health and performance of your cloud applications and resources. It consolidates multiple Azure services to assess the current health of your environment, identify issues, and provide recommendations for maintaining optimal performance and availability. I
 
 
 The Observability pillar uses the following Azure services:
