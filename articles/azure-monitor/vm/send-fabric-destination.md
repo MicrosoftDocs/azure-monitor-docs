@@ -17,7 +17,8 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 - Each VM must have a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) assigned to it
 - Each [AMA must be configured to use the managed identity for authentication](../agents/azure-monitor-agent-requirements.md#permissions)
 - The DCR region must match the region of the ADX cluster or Fabric eventhouse destination.
-- The minimum AMA version required is 1.39.00 for Windows and Linux. For more information, see [Azure Monitor agent release notes](../agents/azure-monitor-agent-release-notes.md).
+- The minimum AMA version required is 1.39.0 for Windows and 1.38.0 Linux. 
+  <br>For more information, see [Azure Monitor agent version details](../agents/azure-monitor-agent-extension-versions.md#version-details).
 
 ## Permissions
 
@@ -51,7 +52,9 @@ The DCR creation process adds the VM user-assigned managed identity as a NativeI
 
 ### Resources
 
-1. Select the **Resources** tab and add the VMs you want to collect data from. For more information, see [Add data collection rule resources](./data-collection.md#add-resources-1).
+1. Select the **Resources** tab and add the VMs you want to collect data from. 
+   <br>For more information, see [Add data collection rule resources](./data-collection.md#add-resources-1).
+1. Add or remove VM resources from the DCR as needed after the DCR is created.
 
 
 ### Collect and deliver
