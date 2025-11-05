@@ -347,7 +347,8 @@ class SpanFilteringProcessor(SpanProcessor):
 ---
 
 ## Filter logs using minimum severity level and trace based sampling parameters
-### [Python](#tab/python)
+
+**Python**
 
 Log records can be filtered out on the basis of two parameters -
 
