@@ -359,7 +359,7 @@ Configure the minimum severity level using the `MINIMUM_SEVERITY_LEVEL` environm
 MINIMUM_SEVERITY_LEVEL="SeverityNumber.ERROR"
 ```
 
-If a log record's severity number is less than the specified minimum_severity_level, the log record will be dropped. Log records with an unspecified severity (i.e. `0`) are not affected by this parameter and therefore bypass minimum severity level filtering. 
+If a log record's severity number is less than the specified minimum_severity_level, the log record will be dropped. Log records with an unspecified severity (i.e. `0`) are not affected by this parameter and therefore bypass minimum severity level filtering.
 
 When this environment variable is not configured, it defaults to unspecified severity `0`.
 
