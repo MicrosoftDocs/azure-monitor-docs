@@ -2,7 +2,7 @@
 title: Responsible AI FAQ for Azure Monitor observability agent (preview)
 description: This article explains the responsible use of Azure Monitor observability agent and investigation capabilities.
 ms.topic: faq
-ms.servce: azure-monitor
+ms.service: azure-monitor
 ms.reviewer: enauerman
 ms.date: 05/05/2025
 ---

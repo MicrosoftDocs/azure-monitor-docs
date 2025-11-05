@@ -59,7 +59,7 @@ The observability agent scans the application logs for anomalies. The top three 
 - **Explanation**: An explanation of what happened is generated for the failure.
 - **Transaction Examples**: A list of examples of transactions in which the specific failure event exists. Selecting the example displays the end-to-end transaction in Application Insights.
 - **Exceptions**: If there are specific exception problem identifiers (IDs) that correlate with the failure, they are displayed with the count of appearance in the logs. The problem IDs are explained in natural language and an example is provided.
-- **Transaction Pattern**: If there's a specific transaction pattern the failure, it's displayed. This information can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
+- **Transaction Pattern**: If there's a specific transaction pattern for the failure, it's displayed. This information can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
 - **Trace Message Patterns**: If there are specific trace message patterns that correlate with the failure, they are displayed with the count of appearance in the logs. The patterns are explained in natural language and an example is provided.
 
 :::image type="content" source="media/application-anomalies.png" alt-text="Screenshot of application anomalies." lightbox="media/application-anomalies.png":::
@@ -94,12 +94,12 @@ The observability agent also offers smart scoping for Application Insight resour
 
 ## Issue and investigation initial workflow example
 
-- An alert email from Azure Monitor is received.
-- A select on the investigate button in the email creates an issue and starts an observability agent investigation. The issue page on the Azure portal opens in your browser.
-- On the Issue page, you're presented with:
+1. An alert email from Azure Monitor is received.
+1. A select on the investigate button in the email creates an issue and starts an observability agent investigation. The issue page on the Azure portal opens in your browser.
+1. On the Issue page, you're presented with:
     - The issue overview where the findings of the last investigation are presented with summarized supporting data.
     - Each finding contains the observability agent analysis summary, suggested actions to take and the supporting data used for the analysis.
-- Every finding produced by the observability agent presents more details on the potential cause and present next steps to choose from.
+1. Every finding produced by the observability agent presents more details on the potential cause and present next steps to choose from.
 
 ## Regions
 

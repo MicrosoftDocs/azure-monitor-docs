@@ -69,14 +69,14 @@ Authorization: Bearer <bearerToken>
 
 There are two ways to start an observability agent investigation on an alert:
 
-1.  From the home page in the Azure portal:
-    1.  From the home page in the [Azure portal](https://portal.azure.com/), select **Monitor** \> **Alerts**.
-    1.  From the **Alerts** page, select the alert that you want to investigate.
-    1.  In the alert details pane, select **Investigate (preview)**.
+- From the home page in the Azure portal:
+    1. From the home page in the [Azure portal](https://portal.azure.com/), select **Monitor** \> **Alerts**.
+    1. From the **Alerts** page, select the alert that you want to investigate.
+    1. In the alert details pane, select **Investigate (preview)**.
     
     :::image type="content" source="media/investigate-an-alert.png" alt-text="Screenshot of alerts screen with investigate an alert link." lightbox="media/investigate-an-alert.png":::
 
-1.  From the alert email notification: Alternatively, you can select **Investigate** from the email notification about an alert. An issue is created, and the observability agent begins investigating.
+- From the alert email notification: Alternatively, you can select **Investigate** from the email notification about an alert. An issue is created, and the observability agent begins investigating.
 
 When the observability agent completes its investigation, a set of findings is displayed. For next steps, see the [Working with investigation findings](#work-with-investigation-findings) section of this article.
 
