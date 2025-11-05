@@ -109,7 +109,7 @@ The **Basics** tab includes basic information about the DCR.
 
 ## Add resources
 
-On the **Resources** pane, select **Add resources** to add resources that will use the DCR. You don't need to add any resources yet since you can update the DCR after creation and add/remove any resources. The region of the DCR is displayed a reminder since some telemetry types require the DCR and resources to be in the same region.
+On the **Resources** pane, select **Add resources** to add resources that will use the DCR. You don't need to add any resources yet since you can update the DCR after creation and add/remove any resources. The region of the DCR is displayed as a reminder, since some telemetry types require the DCR and resources to be in the same region.
 
 > [!NOTE]
 > You can't add a virtual machine scale set (VMSS) with flexible orchestration as a resource for a DCR. Instead, add each VM included in the VMSS.
