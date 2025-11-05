@@ -51,7 +51,7 @@ The data collection process supported by DCRs provides a common processing path 
 
 ## Data collection rule associations (DCRAs)
 
-[Data collection rule associations (DCRAs)](#data-collection-rule-associations-dcra) are created between the resource and the DCR to enable certain data collection scenarios. This is a many-to-many relationship, where a single DCR can be associated with multiple resources and a single resource can be associated with up to 30 DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.
+Data collection rule associations (DCRAs) are created between the resource and the DCR to enable certain data collection scenarios. This is a many-to-many relationship, where a single DCR can be associated with multiple resources and a single resource can be associated with up to 30 DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.
 
 
 ## Using a DCR
