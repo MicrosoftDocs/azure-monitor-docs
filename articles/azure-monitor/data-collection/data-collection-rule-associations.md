@@ -71,7 +71,7 @@ Using the **Resources** view, you can create a new DCR for the selected resource
 In addition to the preview Azure portal experience, you can create a new association using any of the following methods. The DCRA object that's created is a child of the target object and uses the resource ID of the DCR.
 
 > [!NOTE]
-> To associate DCRs with a virtual machine scale set (VMSS) with flexible orchestration, use a policy to deploy the agent and associate the DCR with each VM. The policy will install the agent and associate the DCR with VMs as during scale out.
+> To associate DCRs with a virtual machine scale set with flexible orchestration, use a policy to deploy the agent and associate the DCR with each VM. The policy will install the agent and associate the DCR with VMs as during scale out.
 
 ### [CLI](#tab/cli)
 
