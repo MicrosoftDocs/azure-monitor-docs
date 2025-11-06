@@ -14,27 +14,12 @@ This article explains how to use Azure Monitor dashboards with Grafana.
 
 Dashboards with Grafana supports the following data sources:
 
-- Azure Monitor
+- Azure Monitor - Metrics, Logs, Traces
 - Azure Data Explorer
-- Prometheus
+- Azure Monitor managed service for Prometheus
+- Azure Resource Graph
 
-## Azure resources with dashboard templates
-
-The Azure portal offers a curated set of dashboard templates from the Monitoring > Dashboards with Grafana menu item for the following resources:
-
-- Azure Kubernetes
-- AKS Automatic
-- AKS Arc
-- App Insights
-- SQL DB
-- Azure Container Apps
-- Azure Monitor Workspace
  
-There are also non-resource dashboards for:
-
-- AI Foundry
-- Microsoft Agent Framework
-
 ## Prerequisites
 
 - Running Azure resources that have created data over at least a 15-minute period.
@@ -54,13 +39,22 @@ Azure managed template dashboards are pre-provisioned and automatically updated 
 1.  Select a dashboard, for example **Azure | Insights | Storage Accounts** or **Azure | Insights | Key Vaults**. 
 1.  Choose a *subscription* and *resource group* where the target resource exists. The dashboard loads based on the dashboard you chose and the selected resources.
 
+Other Azure resources with built-in dashboard templates include the following. Access  from the Monitoring > Dashboards with Grafana menu item for the following resources:
+
+- Azure Kubernetes
+- AKS Automatic
+- AKS Arc
+- App Insights
+- SQL DB
+- Azure Container Apps
+- Azure Monitor Workspace
+
 ## Create a new Grafana dashboard
  
-1. Select **New Dashboard** from within the Grafana interface.
-1. Create the dashboard by specifying a **subscription**, **resource group**, and **region**.
-1. Add a visualization.
-1. Choose a supported data source (*Azure Monitor*, *Azure Data Explorer* or *Prometheus*) for the first panel.
-1. Add panels using built-in or code-based query editors.
+1. Select **New** > **New Dashboard** from within the Grafana interface.
+2. Select **Add visualization**.
+3. Choose a supported data source (*Azure Monitor*, *Azure Data Explorer* or *Prometheus*) for the first panel.
+6. Add panels using built-in or code-based query editors.
 
 ## Save a copy of a dashboard
 
