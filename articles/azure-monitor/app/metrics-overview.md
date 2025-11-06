@@ -841,7 +841,7 @@ For a complete list of available performance counters, which varies depending on
 Alternately run the following query.
 
 ```kusto
-// Validate which dimension names exist and have data in the selected range
+// Validate which counters exist and have data in the selected range
 performanceCounters
 | where timestamp > ago(1d)
 | summarize samples = count(), minTime = min(timestamp), maxTime = max(timestamp) by name
