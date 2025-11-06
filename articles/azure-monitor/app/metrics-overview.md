@@ -769,7 +769,7 @@ exceptions
 
 [Application Insights](./app-insights-overview.md) uses system and process metrics, called performance counters, to help diagnose performance issues and support built-in experiences.
 
-The Azure Monitor OpenTelemetry Distro exports these counters as custom metrics to the `performanceCounters` table, each identified by a unique metric name.
+The [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) exports these counters as custom metrics to the `performanceCounters` table, each identified by a unique metric name.
 
 ### Counter names and descriptions
 
