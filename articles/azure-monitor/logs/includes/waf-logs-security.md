@@ -27,7 +27,32 @@ Don't explicitly configure your agents, data connectors or API applications to *
 
 **Recommended action**
 
-To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols.
+To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols. 
+
+For example, use the following Azure Resource Graphy query from resource graph explorer to find the Windows OS versions you have a VM agent installed on. Use the [table of TLS 1.2 support by Windows OS referenced here](/security/engineering/solving-tls1-problem#supported-versions-of-tls-in-windows) to find what OS versions are at risk of still using TLS versions lower than 1.2.
+<details>
+```KQL
+Resources
+| where type =~ 'microsoft.compute/virtualmachines' 
+ | project id,
+  JoinID = toupper(id),
+  ComputerName = tostring(properties.osProfile.computerName),
+  OSName = tostring(properties.extended.instanceView.osName),
+  OSVersion = tostring(properties.extended.instanceView.osVersion),
+  osOffer = tostring(properties.storageProfile.imageReference.offer),
+  osSku = tostring(properties.storageProfile.imageReference.sku)
+| join kind=leftouter(
+  Resources
+  | where type == 'microsoft.compute/virtualmachines/extensions'
+  | project
+    MachineId = toupper(substring(id, 0, indexof(id, '/extensions'))),
+    ExtensionName = name,
+    ExtensionVersion = properties.typeHandlerVersion
+) on $left.JoinID == $right.MachineId
+| summarize Extensions = make_list(ExtensionName) by id, ComputerName, OSName, OSVersion, osOffer, osSku, tostring(ExtensionVersion)
+| order by tolower(OSName) asc
+```
+</details>
 
 For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
