@@ -120,7 +120,7 @@ Use the Azure portal for namespace-wide deployment onboarding.
 
 :::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation." lightbox="media/kubernetes-codeless/deployment-3.png":::
 
-6. Observe the **Application Monitoring Progress** and wait for it to complete.
+6. Revisit the **Application Monitoring** section from step two. Observe the **Application Monitoring Progress** and wait for it to complete.
 
 > [!NOTE]
 > * The affected deployments must be restarted before the changes take effect.
