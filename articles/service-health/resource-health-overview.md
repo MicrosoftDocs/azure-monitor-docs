@@ -19,7 +19,7 @@ A **resource** is a specific instance of an Azure service, such as a virtual mac
 
 If a resource is unhealthy, Resource Health analyzes additional information to determine the source of the problem. It also reports on actions that Microsoft is taking to fix the problem and identifies actions that you can do to address it.
 
-For more information on how health is assessed, see the list of resource types and health checks at [Azure Resource Health](resource-health-checks-resource-types.md).
+For more information on how health is assessed, see the list of resource types and health checks at [Azure Resource Health](resource-health-checks-resource-types.md). 
 
 For information and steps on how to create a Resource Health alert, see [Create a Resource Health alert](resource-health-alert-monitor-guide.md).
 
