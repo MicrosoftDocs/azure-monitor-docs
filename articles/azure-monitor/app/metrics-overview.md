@@ -822,6 +822,13 @@ The [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) exports thes
   - **Description:** Total machine CPU utilization.  
   - **Measure:** Percent  
   - **Name:** `% Processor Time`
+  - **Category:** Processor
+
+- **Processor Time %**  
+  - **Description:** Process CPU utilization.  
+  - **Measure:** Percent  
+  - **Name:** `% Processor Time`
+  - **Category:** Process
 
 #### Experiences enhanced by performance counters
 
@@ -841,11 +848,11 @@ For a complete list of available performance counters, which varies depending on
 Alternately run the following query.
 
 ```kusto
-// Validate which counters exist and have data in the selected range
+// List distinct performance counter names with category and counter.
 performanceCounters
 | where timestamp > ago(1d)
-| summarize samples = count(), minTime = min(timestamp), maxTime = max(timestamp) by name
-| order by name asc
+| summarize by name, category, counter
+| order by name asc, category asc
 ```
 
 ### Server metrics
