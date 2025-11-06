@@ -3,14 +3,14 @@ title: Visualize with Grafana
 description: This article explains how to use Grafana with Azure Monitor. It covers free Azure dashboards for integrated data and Managed Grafana for advanced features.
 ms.topic: article
 ms.reviewer: kayodeprinceMS
-ms.date: 05/20/2025
+ms.date: 10/29/2025
 ---
 
 # Visualize with Grafana
 
 This article explains how to use Grafana with Azure Monitor. It covers free Azure dashboards for integrated data and Managed Grafana for advanced features.
 
-## Dashboards with Grafana (Preview)
+## Dashboards with Grafana
 
 Azure Monitor dashboards with [Grafana](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/) enable you to use Grafana's query, transformation, and visualization capability on: 
 
@@ -32,16 +32,15 @@ You can access Azure Monitor dashboards with Grafana through the Azure portal fr
 
 You can create and edit dashboards and create your own copy to modify them without editing the original. You can also tag the dashboards.
 
-:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-azure-insights-applications.png" alt-text="Screenshot of dashboards with grafana azure insights application.":::
+:::image type="content" source="./media/visualizations-grafana/dashboards-with-grafana-azure-insights-applications.png" alt-text="Screenshot of dashboards with grafana azure insights application.":::
 
-:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-api-server.png" alt-text="Screenshot of dashboards with grafana kubernetes api server.":::
+:::image type="content" source="./media/visualizations-grafana/dashboards-with-grafana-kubernetes-api-server.png" alt-text="Screenshot of dashboards with grafana kubernetes api server.":::
 
-:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespace-pods.png" alt-text="Screenshot of dashboards with grafana kubernetes namespace pods.":::
+:::image type="content" source="./media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespace-pods.png" alt-text="Screenshot of dashboards with grafana kubernetes namespace pods.":::
 
 ### Limitations
 
-- **Preview limitations**. Support for Grafana Explore, Dashboard links and Exemplars isn't yet available. Dashboards are available in a limited number of Azure regions during Preview.
-- **Unsupported features**. Grafana evaluated alerts, reports, library panels, snapshots, playlists, app plugins, and copying panels across different dashboards.  
+**Unsupported features**. Grafana evaluated alerts, reports, library panels, snapshots, playlists, and app plugins.  
 
 ## Managed Grafana
 
@@ -88,7 +87,7 @@ Choose managed Grafana if you need access to external data sources and automatio
 
 ## Solution comparison
 
-| **Feature** | **Azure Monitor dashboards with Grafana (preview)** | **Azure Managed Grafana** |
+| **Feature** | **Azure Monitor dashboards with Grafana** | **Azure Managed Grafana** |
 |--|--|--|
 | Access | Azure portal | Grafana Web Interface |
 | Pricing | No cost | [Per user pricing](https://azure.microsoft.com/pricing/details/managed-grafana/?msockid=01a84dc8ec106f122df65931ed6b6e5d) plus compute costs for Standard SKU |
@@ -108,6 +107,8 @@ Choose managed Grafana if you need access to external data sources and automatio
 
 ## Next steps
 
-- [Use Azure Monitor dashboards with Grafana](visualize-use-grafana-dashboards.md)
-- [Use Manged Grafana](visualize-use-managed-grafana-how-to.md)
+- [Use Azure Monitor Dashboards with Grafana](visualize-use-grafana-dashboards.md)
+
+- [Use Dashboards with Grafana with Azure Kubernetes Service](visualize-use-grafana-dashboards-azure-kubernetes-service.md)
+- [Use Managed Grafana](visualize-use-managed-grafana-how-to.md)
  

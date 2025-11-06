@@ -1,17 +1,39 @@
 ---
 title: Use Azure Monitor Dashboards with Grafana
-description: This article explains how to use Azure Monitor dashboards with Grafana. It covers creating, editing, importing, and sharing dashboards for monitoring data.
+description: This article explains how to use Azure Monitor dashboards with Grafana.
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 08/22/2025
+ms.date: 11/03/2025
 ---
 
-# Use Azure Monitor dashboards with Grafana (preview)
+# Use Azure Monitor dashboards with Grafana
 
-> [!IMPORTANT]
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+This article explains how to use Azure Monitor dashboards with Grafana.
 
-This article explains how to use Azure Monitor dashboards with Grafana. It covers creating, editing, importing, and sharing dashboards for monitoring data.
+## Supported data sources
+
+Dashboards with Grafana supports the following data sources:
+
+- Azure Monitor
+- Azure Data Explorer
+- Prometheus
+
+## Azure resources with dashboard templates
+
+The Azure portal offers a curated set of dashboard templates from the Monitoring > Dashboards with Grafana menu item for the following resources:
+
+- Azure Kubernetes
+- AKS Automatic
+- AKS Arc
+- App Insights
+- SQL DB
+- Azure Container Apps
+- Azure Monitor Workspace
+ 
+There are also non-resource dashboards for:
+
+- AI Foundry
+- Microsoft Agent Framework
 
 ## Prerequisites
 
@@ -24,10 +46,10 @@ For more information about RBAC and assigning roles, see [Azure RBAC](/azure/rol
 
 Azure managed template dashboards are pre-provisioned and automatically updated dashboards for frequently used Azure resources and Azure Kubernetes Services. They help you get started quickly. The following steps are for using these Grafana dashboards that are already available in the Azure portal. Azure managed templates are identified with a tag.
 
-:::image type="content" source="media/visualizations-grafana/azure-managed-templates.png" alt-text="Screenshot of Azure managed template listing the gallery.":::
+:::image type="content" source="./media/visualizations-grafana/azure-managed-templates.png" alt-text="Screenshot of Azure managed template listing the gallery.":::
 
 1.  Navigate to **Azure Monitor** in the Azure portal.
-1.  Select **Dashboards with Grafana (Preview)**.
+1.  Select **Dashboards with Grafana**.
 1.  Browse the list of available dashboards in the Azure Monitor or Azure Managed Prometheus listings.
 1.  Select a dashboard, for example **Azure | Insights | Storage Accounts** or **Azure | Insights | Key Vaults**. 
 1.  Choose a *subscription* and *resource group* where the target resource exists. The dashboard loads based on the dashboard you chose and the selected resources.
@@ -37,7 +59,7 @@ Azure managed template dashboards are pre-provisioned and automatically updated 
 1. Select **New Dashboard** from within the Grafana interface.
 1. Create the dashboard by specifying a **subscription**, **resource group**, and **region**.
 1. Add a visualization.
-1. Choose a supported data source (*Azure Monitor* or *Prometheus*) for the first panel.
+1. Choose a supported data source (*Azure Monitor*, *Azure Data Explorer* or *Prometheus*) for the first panel.
 1. Add panels using built-in or code-based query editors.
 
 ## Save a copy of a dashboard
@@ -65,12 +87,12 @@ For more details on editing a Grafana dashboard, see the [Grafana documentation]
 
 ## Import Grafana dashboards using JSON
 
-The following instructions assume you signed in to your Azure account, are in the Azure Monitor area of the Azure portal, and selected **Dashboards with Grafana (preview)**.
+The following instructions assume you signed in to your Azure account, are in the Azure Monitor area of the Azure portal, and selected **Dashboards with Grafana**.
 
 Using the Grafana website window or tab, navigate to the dashboard you want to import.
 
 1.  Download the JSON file for the dashboard.
-1.  Using the Azure portal window or tab, on the Dashboards with Grafana (Preview) screen, select **New** \> **Import**.
+1.  Using the Azure portal window or tab, on the Dashboards with Grafana screen, select **New** \> **Import**.
 1.  Select the JSON file.
 1.  Select **Load**.
 1.  Enter a name for the dashboard.
@@ -86,6 +108,33 @@ Using the Grafana website window or tab, navigate to the dashboard you want to i
 
 > [!NOTE]
 > Only Azure Monitor and Prometheus dashboards using supported data sources can be imported.
+
+## Use Explore to copy and edit a query and graph
+
+You can copy and edit a query and graph without breaking or changing the original query with the Explore feature.
+
+1. Select the resource you want to monitor, for example an AKS cluster.
+1. Select *Dashboards with Grafana*. A list of available dashboards appears.
+1.	Select a dashboard, for example the *Kubernetes | Compute Resources | Cluster dashboard*.
+1.	Select the **vertical ellipsis** in one of the graphs in the dashboard, then select **Explore**. The Explore screen appears. A copy of query of the graph is copied (populated) to the new screen for you to work with.
+1. You can now edit the copied query without breaking or changing the original query.
+
+## Save the new graph to a dashboard
+When you are happy with the results of the changes you made to the copied query and the graph, you can save it to a dashboard. 
+
+1. Select **Add to dashboard**. The Add Panel to Dashboard screen appears.
+1. From the **Subscription dropdown list**, select the subscription you want to work with.
+1. From the **Resource groups dropdown list**, select the resource group you want to work with. A list of dashboard for that resource group appears.
+1. Select the dashboard from the list. The dashboard screen appears with the new query and graph added to it. Alternatively, you can create a new dashboard by selecting **New dashboard**.
+
+## Use explore from the dashboard gallery
+
+1.	From the resource page in the Azure portal, select **Dashboards with Grafana**. The explore screen appears without data. 
+1.	Select **Select a resource** and then select a resource from the list of resources in the subscription you are currently working with.
+1.	Select the **metric**, **aggregation**, **time grain**, **dimensions**, etc for the query and graph.
+1.	When you are happy with the query and the graph, select **Add to dashboard** to save it to a dashboard or create a new dashboard by selecting **New dashboard**.
+
+For more information about Grafana Explore, see the [Grafana documentation](https://grafana.com/docs/grafana/latest/explore/).
 
 ## Share links to dashboards
 
@@ -103,52 +152,35 @@ Dashboards that you import or create require RBAC access configuration to share 
 1.	Copy the link to the dashboard to your clipboard.
 1. Paste the link into your preferred communication method to share it.
 
-
-
-## Use dashboards with Azure Kubernetes Service (AKS)
-
-The Kubernetes cluster must be onboarded to Azure Managed Prometheus.
-
-### Prometheus prerequisites
-
-To query Prometheus metrics from an Azure Monitor workspace with Azure Monitor dashboards with Grafana, you need to do the following: 
-
-1. [Create an Azure Monitor workspace](/azure/azure-monitor/metrics/azure-monitor-workspace-overview). 
-1. Ensure that the Azure Monitor workspace is collecting Prometheus metrics from an AKS cluster.
-1. Enable Managed Prometheus on an existing AKS cluster (Prometheus only): 
-    1. Navigate to your cluster in the Azure portal. 
-    1. In the service menu, under Monitoring, select **Insights** > **Monitor Settings**. 
-    1. Select the **Enable Prometheus metrics** checkbox only. *You do not need to enable Azure Managed Grafana.*
-    1. Select **Advanced settings** if you want to select alternate workspaces or create new ones. 
-    1. Select **Configure**. 
-
-> [!NOTE] 
-> Azure Managed Grafana is not required to view Prometheus in Azure Monitor dashboards with Grafana. See a comparison of the solutions [here](visualize-grafana-overview.md#solution-comparison). 
-
-### Role assignment
-The user must be assigned role that can perform the microsoft.monitor/accounts/read operation on the Azure Monitor workspace.
-
-### Select a dashboard
-
-1. Navigate to the AKS cluster you want to work with in the Azure portal.
-1. Select **Dashboards with Grafana (preview)**.
-1. Select a dashboard. The dashboard is populated with the Data source and the cluster.
-
-The relevant filters for Data Source and Cluster are pre-populated based on your AKS Cluster. Apply additional filters as needed. The dashboard visuals update to reflect selections.
-
 ## Tag a dashboard
 
 Azure Monitor dashboards with Grafana tags are managed using Azure tags. Open-source Grafana dashboard tags remain in the dashboard JSON during import and export but are not used for populating Azure tags.
 
 To add Dashboard tags to a saved dashboard, add or update the Azure tag with the key GrafanaDashboardTags with your tag names using commas to separate entries.
 
-:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-edit-tags.png" alt-text="Screenshot of tagging interface.":::
+:::image type="content" source="./media/visualizations-grafana/dashboards-with-grafana-edit-tags.png" alt-text="Screenshot of tagging interface.":::
 
 Dashboards created or saved from the context of an Azure Kubernetes Service cluster automatically have the Azure tag *GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters* added.  
 
 You can also add this tag *GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters* to a saved dashboard to be able to access and view the dashboard in the context of AKS clusters.
 
+## Export JSON
+
+You can export a dashboard as JSON.
+
+1. In the dashboard screen, select **Export** then **JSON**.
+1. Save the file.
+
+## Export a dashboard ARM template
+
+You can export a dashboard as an ARM template that contains the JSON for the dashboard.
+
+1. In the dashboard screen, select **Export** then **Export as ARM template**.
+1. Select **Download** and save the file.
+
 ## Related content
 
 - [Azure Monitor Grafana overview](visualize-grafana-overview.md)
-- [Use Manged Grafana](visualize-use-managed-grafana-how-to.md)
+- [Use Dashboards with Grafana with Azure Data Explorer](visualize-use-grafana-dashboards-azure-data-explorer.md)
+- [Use Dashboards with Grafana with Azure Kubernetes Service](visualize-use-grafana-dashboards-azure-kubernetes-service.md)
+- [Use Managed Grafana](visualize-use-managed-grafana-how-to.md)
