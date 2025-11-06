@@ -27,12 +27,15 @@ Don't explicitly configure your agents, data connectors or API applications to *
 
 **Recommended action**
 
-To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols. 
+To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols.  
 
+<br>
 <details>
- <summary>Click here for an example of how to confirm what VM resources are interacting with the Logs ingestion API endpoints that might still have dependency on TLS 1.1 or earlier.</summary>
-Use the following Azure Resource Graph query to audit operating system versions of your VMs. From the Azure portal, go to **Resource Manager** and select **Resource graph explorer**.
+<summary>Click here for an example.</summary>
+<br>
+Here's an example of how to confirm what VM resources interacting with the Logs ingestion API endpoint might still have a dependency on TLS 1.0 or 1.1 protocols. 
 
+1. Use the following Azure Resource Graph query to audit operating system versions of your VMs. From the Azure portal, go to **Resource Manager** and select **Resource graph explorer**.
 This query finds all VMs in the given scope that have an extension installed. If the VMs are on, the OS name and version will be listed. Look for VMs with the Azure Monitor Agent or one of the legacy agent versions installed.
 
 <pre>
@@ -57,9 +60,11 @@ Resources
 | order by tolower(OSName) asc
 </pre>
 
-Then, use this [table of supported versions of TLS in Windows](/security/engineering/solving-tls1-problem#supported-versions-of-tls-in-windows) to find Windows VMs in your query you need to verify have disabled TLS versions earlier than 1.2. Practically any Windows version older than the latest releases still have TLS 1.0/1.1 available. Windows 7 and later can use TLS 1.2, but they do not automatically disable TLS 1.0/1.1. Only upcoming Windows releases plan to turn these off by default. This means organizations should identify Windows XP/Vista/Server 2003/2008 systems (which are stuck on TLS 1.0) and Windows 7/8/10/Server 2008R2-2019 systems (which allow TLS 1.0/1.1) in order to update or reconfigure them. Windows 7 / Server 2008 R2 are the minimum OS versions that support modern TLS 1.2, so anything older will fail to connect to servers requiring TLS 1.2+.
+1. Use this [table of supported versions of TLS in Windows](/security/engineering/solving-tls1-problem#supported-versions-of-tls-in-windows) to find Windows VMs in your query you need to verify have disabled TLS versions earlier than 1.2.
 
-In Linux, TLS protocol support is provided by libraries (like OpenSSL, NSS, GnuTLS) shipped with the OS. Many earlier Linux releases (prior to ~2018-2020) support TLS 1.0/1.1 and leave them enabled by default, whereas newer releases have started to disable legacy TLS by default for security.
+Practically any Windows version older than the latest releases still have TLS 1.0 or 1.1 available. Windows 7 and later can enable TLS 1.2, but they do not automatically disable TLS 1.0 and 1.1. Only upcoming Windows releases plan to turn these off by default. Identify systems with no ability to support TLS 1.2 and systems that require an update or registry change to support TLS 1.2.
+
+In Linux, TLS protocol support is provided by libraries (like OpenSSL, NSS, GnuTLS) shipped with the OS. Many earlier Linux releases (prior to circa 2018-2020) support TLS 1.0/1.1 and leave them enabled by default, whereas newer releases have started to disable legacy TLS by default for security.
 </details>
 
 For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
