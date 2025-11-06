@@ -771,57 +771,57 @@ exceptions
 
 The Azure Monitor OpenTelemetry Distro exports these counters as custom metrics to the `performanceCounters` table, each identified by a unique metric name.
 
-### Counters and dimensions
+### Counter names and descriptions
 
 - **Available Memory**  
   - **Description:** Physical memory available to running processes.  
-  - **Measure:** Bytes
-  - **Dimension name:** `Available Bytes`
+  - **Measure:** Bytes  
+  - **Name:** `Available Bytes`
 
 - **Exception Rate**  
   - **Description:** Exceptions thrown by the application per second.  
-  - **Measure:** Exceptions per second
-  - **Dimension name:** `# of Exceps Thrown / sec`
+  - **Measure:** Exceptions per second  
+  - **Name:** `# of Exceps Thrown / sec`
 
 - **Request Execution Time**  
   - **Description:** Average time to complete a request.  
-  - **Measure:** Milliseconds
-  - **Dimension name:** `Request Execution Time`
+  - **Measure:** Milliseconds  
+  - **Name:** `Request Execution Time`
 
 - **Request Rate**  
   - **Description:** Requests processed each second.  
-  - **Measure:** Requests per second
-  - **Dimension name:** `Requests/Sec`
+  - **Measure:** Requests per second  
+  - **Name:** `Requests/Sec`
 
 - **Requests in Queue**  
   - **Description:** Requests currently waiting in the application queue.  
-  - **Measure:** Count
-  - **Dimension name:** `Requests In Application Queue`
+  - **Measure:** Count  
+  - **Name:** `Requests In Application Queue`
 
 - **Process CPU %**  
   - **Description:** CPU utilization of the application process.  
-  - **Measure:** Percent
-  - **Dimension name:** `% Processor Time`
+  - **Measure:** Percent  
+  - **Name:** `% Processor Time`
 
 - **Process CPU % Normalized**  
   - **Description:** Process CPU utilization divided by logical processor count.  
-  - **Measure:** Percent
-  - **Dimension name:** `% Processor Time Normalized`
+  - **Measure:** Percent  
+  - **Name:** `% Processor Time Normalized`
 
 - **Process I/O Rate**  
   - **Description:** I/O throughput for the application process.  
-  - **Measure:** Bytes per second
-  - **Dimension name:** `IO Data Bytes/sec`
+  - **Measure:** Bytes per second  
+  - **Name:** `IO Data Bytes/sec`
 
 - **Process Private Bytes**  
   - **Description:** Private memory used by the application process.  
-  - **Measure:** Bytes
-  - **Dimension name:** `Private Bytes`
+  - **Measure:** Bytes  
+  - **Name:** `Private Bytes`
 
 - **Processor Time %**  
   - **Description:** Total machine CPU utilization.  
-  - **Measure:** Percent
-  - **Dimension name:** `% Processor Time`
+  - **Measure:** Percent  
+  - **Name:** `% Processor Time`
 
 #### Experiences enhanced by performance counters
 
