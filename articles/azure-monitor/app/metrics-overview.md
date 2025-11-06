@@ -775,7 +775,7 @@ The Azure Monitor OpenTelemetry Distro exports these counters as custom metrics 
 
 - **Available Memory**  
   - **Description:** Physical memory available to running processes.  
-  - **Measure:** Bytes.  
+  - **Measure:** Bytes
   - **Dimension name:** `Available Bytes`
 
 - **Exception Rate**  
