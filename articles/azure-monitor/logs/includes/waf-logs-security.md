@@ -31,7 +31,8 @@ To avoid potential service disruptions, confirm that your resources interacting 
 
 For example, use the following Azure Resource Graphy query from resource graph explorer to find the Windows OS versions you have a VM agent installed on. Use the [table of TLS 1.2 support by Windows OS referenced here](/security/engineering/solving-tls1-problem#supported-versions-of-tls-in-windows) to find what OS versions are at risk of still using TLS versions lower than 1.2.
 <details>
-```KQL
+ <summary>Click to see the Azure Resource Graph query</summary>
+<pre>
 Resources
 | where type =~ 'microsoft.compute/virtualmachines' 
  | project id,
@@ -51,7 +52,7 @@ Resources
 ) on $left.JoinID == $right.MachineId
 | summarize Extensions = make_list(ExtensionName) by id, ComputerName, OSName, OSVersion, osOffer, osSku, tostring(ExtensionVersion)
 | order by tolower(OSName) asc
-```
+</pre>
 </details>
 
 For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
