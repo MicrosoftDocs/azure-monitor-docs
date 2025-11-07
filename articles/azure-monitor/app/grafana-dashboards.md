@@ -59,8 +59,6 @@ Azure provides several Azure‑managed dashboards that focus on Application Insi
 
 To view a dashboard, select the dashboard name from the list.
 
-:::image type="content" source="media/grafana-dashboards/4.png" alt-text="Alt text 4." lightbox="media/grafana-dashboards/4.png":::
-
 Example of an OpenTelemetry‑focused dashboard:
 
 :::image type="content" source="media/grafana-dashboards/6.png" alt-text="Alt text 6." lightbox="media/grafana-dashboards/6.png":::
