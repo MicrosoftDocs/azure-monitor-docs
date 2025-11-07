@@ -1,29 +1,29 @@
 ---
-title: Dashboards with Grafana in Application Insights (Preview)
+title: Dashboards with Grafana in Application Insights
 description: Create, customize, and share Grafana dashboards for Application Insights directly in the Azure portal.
 ms.topic: conceptual
 ms.date: 11/07/2025
 ---
 
-# Dashboards with Grafana in Application Insights (Preview)
+# Dashboards with Grafana in Application Insights
 
 Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Application Insights](./app-insights-overview.md) integrates [Azure Monitor’s](../fundamentals/overview.md) Grafana experience directly into the Azure portal. You create and customize Grafana dashboards by using your Application Insights data without running your own Grafana instance or using a separate managed Grafana service. Built‑in Grafana controls support a wide range of visualization panels and client‑side transformations across metrics, logs, and traces.
 
-> [!IMPORTANT]
-> The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
-> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
 ## What you can do
 
-- **Start from Azure‑managed dashboards.** <br>
-  Use prebuilt dashboards for common Application Insights scenarios. <br>
-- **Create and edit dashboards.** <br>
-  Add panels, modify queries, and apply client‑side transformations. <br>
-- **Save and share as Azure resources.** <br>
-  Store dashboards as standard Azure resources with [Azure role‑based access control (RBAC)](/azure/role-based-access-control/overview) and automate with [Azure Resource Manager (ARM)](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure/azure-resource-manager/bicep/overview). <br>
-- **Import from the Grafana community.** <br>
-  Bring in dashboards that use Azure Monitor, Azure Monitor managed service for Prometheus, or Azure Data Explorer data sources. <br>
-- **Explore data ad‑hoc.** <br>
+- **Start from Azure-managed dashboards.**  
+  Use prebuilt dashboards for common Application Insights scenarios.
+
+- **Create and edit dashboards.**  
+  Add panels, modify queries, and apply client-side transformations.
+
+- **Save and share as Azure resources.**  
+  Store dashboards as standard Azure resources with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) and automate with [Azure Resource Manager (ARM)](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure/azure-resource-manager/bicep/overview).
+
+- **Import from the Grafana community.**  
+  Bring in dashboards that use Azure Monitor, Azure Monitor managed service for Prometheus, or Azure Data Explorer data sources.
+
+- **Explore data ad-hoc.**  
   Use Grafana **Explore** to run queries and add the results to new or existing dashboards.
 
 ## Prerequisites
@@ -41,7 +41,7 @@ Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Applic
 
 The gallery lists **Azure‑managed** dashboards and your **Saved dashboards** for the current Application Insights resource.
 
-The gallery filters to dashboards created for Application Insights. Use the **Resource type** filter to ensure **Application Insights** is selected.  
+The gallery automatically filters to dashboards created for Application Insights. This filter is applied by default and can’t be changed when you use Dashboards with Grafana within Application Insights.  
 
 :::image type="content" source="media/grafana-dashboards/3.png" alt-text="Alt text 3." lightbox="media/grafana-dashboards/3.png":::
 
@@ -67,13 +67,15 @@ Example of an OpenTelemetry‑focused dashboard:
 
 ## Create, edit, and save dashboards
 
-You can customize any Azure‑managed dashboard or start from a blank dashboard.
+You can customize any Azure-managed dashboard or start from a blank dashboard.
 
-- **Edit an Azure‑managed dashboard.** <br>
-  Open the dashboard and select **Edit**. Modify panels, queries, and transformations. <br>
-- **Save a copy.** <br>
-  Select **Save As** to save your changes as a new dashboard. Choose a subscription, resource group, and name. <br>
-- **Start from scratch.** <br>
+- **Edit an Azure-managed dashboard.**  
+  Open the dashboard and select **Edit**. Modify panels, queries, and transformations.
+
+- **Save a copy.**  
+  Select **Save As** to save your changes as a new dashboard. Choose a subscription, resource group, and name.
+
+- **Start from scratch.**  
   In the gallery, select **New** to create a dashboard and add panels.
 
 Every saved dashboard is an **Azure resource**. You manage it with Azure RBAC, export an ARM template, and add the dashboard to automation pipelines.
@@ -99,18 +101,21 @@ You can import dashboards from the Grafana public gallery that rely on Azure dat
 - **Azure Monitor managed service for Prometheus**: Prometheus metrics
 - **Azure Data Explorer**: Kusto Query Language (KQL) queries
 
-To import:
+To import a dashboard:
 
-1. In the gallery, select **Browse Grafana dashboards Gallery**.
-2. To import a dashboard, choose it and follow the prompts.
-3. Save the imported dashboard as an Azure resource.
+1. In **Dashboards with Grafana**, select **Browse Grafana dashboards Gallery**.  
+2. Choose a dashboard and copy the **Dashboard ID**.  
+3. Return to **Dashboards with Grafana** and select **New**.  
+4. Select **Import** and follow the prompts.  
+
+The imported dashboard is saved as an Azure resource.
 
 > [!IMPORTANT]
 > The Application Insights Grafana experience supports **Azure data sources only**. Use Azure Managed Grafana if you need non‑Azure data sources or other Grafana enterprise features.
 
 ## Ensure dashboards show in Application Insights
 
-Dashboards visible in **Dashboards with Grafana (Preview)** inside an Application Insights resource use a specific resource tag:
+Dashboards visible in **Dashboards with Grafana** inside an Application Insights resource use a specific resource tag:
 
 - **Name:** `GrafanaDashboardResourceType`  
 - **Value:** `microsoft.insights/components`
@@ -138,7 +143,7 @@ After you add the tag, refresh the gallery in the Application Insights resource.
 
 Dashboards with Grafana in Application Insights has **no additional cost** for the Grafana experience. Standard charges for Azure Monitor, Azure Monitor managed service for Prometheus, and Azure Data Explorer apply when queries run or data is stored.
 
-## Limitations in preview
+## Limitations
 
 - Supports **Azure data sources only**: Azure Monitor, Azure Monitor managed service for Prometheus, and Azure Data Explorer.
 - Dashboards appear in the Application Insights Grafana gallery only when the `GrafanaDashboardResourceType=microsoft.insights/components` tag is present.
