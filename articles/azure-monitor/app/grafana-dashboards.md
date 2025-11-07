@@ -16,13 +16,13 @@ Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Applic
 ## What you can do
 
 - **Start from Azure‑managed dashboards.** <br>
-  Use prebuilt dashboards for common Application Insights scenarios.
+  Use prebuilt dashboards for common Application Insights scenarios. <br>
 - **Create and edit dashboards.** <br>
-  Add panels, modify queries, and apply client‑side transformations.
+  Add panels, modify queries, and apply client‑side transformations. <br>
 - **Save and share as Azure resources.** <br>
-  Store dashboards as standard Azure resources with [Azure role‑based access control (RBAC)](/azure/role-based-access-control/overview) and automate with [Azure Resource Manager (ARM)](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure/azure-resource-manager/bicep/overview).
+  Store dashboards as standard Azure resources with [Azure role‑based access control (RBAC)](/azure/role-based-access-control/overview) and automate with [Azure Resource Manager (ARM)](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure/azure-resource-manager/bicep/overview). <br>
 - **Import from the Grafana community.** <br>
-  Bring in dashboards that use Azure Monitor, Azure Monitor managed service for Prometheus, or Azure Data Explorer data sources.
+  Bring in dashboards that use Azure Monitor, Azure Monitor managed service for Prometheus, or Azure Data Explorer data sources. <br>
 - **Explore data ad‑hoc.** <br>
   Use Grafana **Explore** to run queries and add the results to new or existing dashboards.
 
@@ -69,9 +69,12 @@ Example of an OpenTelemetry‑focused dashboard:
 
 You can customize any Azure‑managed dashboard or start from a blank dashboard.
 
-- **Edit an Azure‑managed dashboard.** Open the dashboard and select **Edit**. Modify panels, queries, and transformations.
-- **Save a copy.** Select **Save As** to save your changes as a new dashboard. Choose a subscription, resource group, and name.
-- **Start from scratch.** In the gallery, select **New** to create a dashboard and add panels.
+- **Edit an Azure‑managed dashboard.** <br>
+  Open the dashboard and select **Edit**. Modify panels, queries, and transformations. <br>
+- **Save a copy.** <br>
+  Select **Save As** to save your changes as a new dashboard. Choose a subscription, resource group, and name. <br>
+- **Start from scratch.** <br>
+  In the gallery, select **New** to create a dashboard and add panels.
 
 Every saved dashboard is an **Azure resource**. You manage it with Azure RBAC, export an ARM template, and add the dashboard to automation pipelines.
 
