@@ -16,7 +16,7 @@ To support of the experience of viewing Impacted Resources, Service Health has f
 This article details what communication is available to users, and where they can view information about their impacted resources.
 
 >[!NOTE]
->The Impacted Resources tab for retirements displays information for a subset of services and features currently in the retirement lifecycle.
+>The Impacted Resources tab for retirements displays information for services and features currently in the retirement lifecycle.
 
 ## Viewing impacted resources for Retirements in the Service Health portal
 
