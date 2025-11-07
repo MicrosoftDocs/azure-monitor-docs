@@ -150,23 +150,31 @@ Dashboards with Grafana in Application Insights has **no additional cost** for t
 
 ## Troubleshooting
 
-<details>
-<summary><b>A dashboard doesn’t appear in the gallery.</b></summary>
-Confirm the dashboard resource has the `GrafanaDashboardResourceType` tag with value `microsoft.insights/components`. Refresh the gallery after you add the tag.
-</details>
-<br>
+- <details>
+  <summary><b>A dashboard doesn’t appear in the gallery.</b></summary>
 
-<details>
-<summary><b>You can’t save a dashboard.</b></summary>
-Verify you have permissions to create resources in the target subscription and resource group.
-</details>
-<br>
+  > Confirm the dashboard resource has the `GrafanaDashboardResourceType` tag with value
+  > `microsoft.insights/components`. Refresh the gallery after you add the tag.
 
-<details>
-<summary><b>Data doesn’t load.</b></summary>
-Check that the Application Insights resource and the selected data source contain data for the time range.
-</details>
-<br>
+  </details>
+
+  ---
+
+- <details>
+  <summary><b>You can’t save a dashboard.</b></summary>
+
+  > Verify you have permissions to create resources in the target subscription and resource group.
+
+  </details>
+
+  ---
+
+- <details>
+  <summary><b>Data doesn’t load.</b></summary>
+
+  > Check that the Application Insights resource and the selected data source contain data for the time range.
+
+  </details>
 
 ## Next steps
 
