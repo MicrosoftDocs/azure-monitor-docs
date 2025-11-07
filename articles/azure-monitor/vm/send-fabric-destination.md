@@ -70,7 +70,7 @@ The DCR creation process adds the VM user-assigned managed identity as a NativeI
 
 1. Select **Apply** > **Save**
 
-   :::image type="content" source="./media/send-fabric-destination/data-flow-destination.png" alt-text="Screenshot showing dataflow destination of ADX.":::
+   :::image type="content" source="./media/send-fabric-destination/datasource-destination.png" alt-text="Screenshot showing dataflow destination of ADX.":::
 
 1. Review and create the DCR.
 
