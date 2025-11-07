@@ -5,7 +5,7 @@ ms.topic: article
 ms.date: 11/07/2025
 ---
 
-# Roles with tenant admin access
+# Tenant roles with admin access
 ## Overview
 This document provides a comprehensive list of Microsoft Entra built-in roles that grant tenant-level administrative access in Azure. This information is useful if you're an administrator who manages access and permissions across tenants.
 
