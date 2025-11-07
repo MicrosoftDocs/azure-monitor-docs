@@ -61,7 +61,7 @@ To view a dashboard, select the dashboard name from the list.
 
 Example of an OpenTelemetry‑focused dashboard:
 
-:::image type="content" source="media/grafana-dashboards/grafana-otel-dashboard.png" alt-text="A screenshot of an OpenTelemetry Grafana dashboard." lightbox="media/grafana-dashboards/grafana-otel-dashboard.png":::
+:::image type="content" source="media/grafana-dashboards/grafana-opentelemetry-dashboard.png" alt-text="A screenshot of an OpenTelemetry Grafana dashboard." lightbox="media/grafana-dashboards/grafana-opentelemetry-dashboard.png":::
 
 ## Create, edit, and save dashboards
 
