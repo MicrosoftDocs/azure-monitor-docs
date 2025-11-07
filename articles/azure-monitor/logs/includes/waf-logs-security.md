@@ -61,7 +61,7 @@ Resources
 </pre>
 
 3. Then use this [table of supported versions of TLS in Windows](/security/engineering/solving-tls1-problem#supported-versions-of-tls-in-windows) to determine what Windows VMs in your query results you need to verify TLS enablement.
-4. Disable TLS 1.0 and 1.1 and enable TLS 1.2. For more information, see [Configure TLS 1.2 for the agent](/previous-versions/azure/azure-monitor/agents/agent-windows&tabs=setup-wizard#configure-agent-to-use-tls-12).
+4. Disable TLS 1.0 and 1.1 and enable TLS 1.2. For more information, see [Configure TLS 1.2 for the agent](/previous-versions/azure/azure-monitor/agents/agent-windows#configure-agent-to-use-tls-12).
 
 Practically any Windows version older than the latest releases still has TLS 1.0 or 1.1 available. Windows 7 and later can enable TLS 1.2, but they do not automatically disable TLS 1.0 and 1.1. Only upcoming Windows releases plan to turn these off by default. Identify systems with no ability to support TLS 1.2 and systems that require an update or registry change to support TLS 1.2.
 
