@@ -12,6 +12,10 @@ items:
   - name: Resiliency
     href: resiliency.md
   - name: Configuration
-    href: configuration.md
+    items:
+    - name: Overview
+      href: configuration-overview.md
+    - name: Machine enrollment
+      href: configuration-enrollment.md
   - name: Optimization
     href: optimization.md
