@@ -30,7 +30,7 @@ Resource Health alerts notify you when your Azure resources experience a change 
    
 :::image type="content" source="./media/resource-health/resource-health-create.PNG" alt-text="Screenshot of Resource Health create option." lightbox="./media/resource-health/resource-health-create.PNG":::
 
-1. The **Create an alert rule** wizard opens with the **Scope** tab already populated. <br> Use this tab to select the Subscription and Resource Type. For more information about creating alerts, see [Configure alert rule conditions](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log#configure-alert-rule-conditions).
+1. The **Create an alert rule** wizard opens with the **Scope** tab already populated. <br> Use this tab to select the Subscription and Resource Type. For more information about creating alerts, see [Configure alert rule conditions](/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log#configure-alert-rule-conditions).
 
 :::image type="content" source="./media/resource-health/resource-health-create-scope.PNG" alt-text="Screenshot of Resource Health scope tab." lightbox="./media/resource-health/resource-health-create-scope.PNG":::
 
