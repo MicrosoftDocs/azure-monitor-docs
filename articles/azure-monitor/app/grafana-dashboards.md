@@ -7,7 +7,7 @@ ms.date: 11/07/2025
 
 # Dashboards with Grafana in Application Insights (Preview)
 
-Dashboards with Grafana in [Application Insights](./app-insights-overview.md) integrates Azure Monitor’s [Grafana](../visualize/visualize-grafana-overview.md) experience directly into the Azure portal. You create and customize Grafana dashboards by using your Application Insights data without running your own Grafana instance or using a separate managed Grafana service. Built‑in Grafana controls support a wide range of visualization panels and client‑side transformations across metrics, logs, and traces.
+Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Application Insights](./app-insights-overview.md) integrates [Azure Monitor’s](../fundamentals/overview.md) [Grafana](../visualize/visualize-grafana-overview.md) experience directly into the Azure portal. You create and customize [Grafana](../visualize/visualize-grafana-overview.md) dashboards by using your [Application Insights](./app-insights-overview.md) data without running your own [Grafana](../visualize/visualize-grafana-overview.md) instance or using a separate managed Grafana service. Built‑in [Grafana](../visualize/visualize-grafana-overview.md) controls support a wide range of visualization panels and client‑side transformations across metrics, logs, and traces.
 
 > [!IMPORTANT]
 > The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
@@ -15,21 +15,27 @@ Dashboards with Grafana in [Application Insights](./app-insights-overview.md) in
 
 ## What you can do
 
-- **Start from Azure‑managed dashboards.** Use prebuilt dashboards for common Application Insights scenarios.
-- **Create and edit dashboards.** Add panels, modify queries, and apply client‑side transformations.
-- **Save and share as Azure resources.** Store dashboards as standard Azure resources with Azure role‑based access control (Azure role-based access control (RBAC)) and automate with Azure Resource Manager (ARM) or Bicep.
-- **Import from the Grafana community.** Bring in dashboards that use Azure Monitor, Azure Monitor managed service for Prometheus, or Azure Data Explorer data sources.
-- **Explore data ad‑hoc.** Use Grafana **Explore** to run queries and add the results to new or existing dashboards.
+- **Start from Azure‑managed dashboards.**
+  Use prebuilt dashboards for common Application Insights scenarios.
+- **Create and edit dashboards.**
+  Add panels, modify queries, and apply client‑side transformations.
+- **Save and share as Azure resources.**
+  Store dashboards as standard Azure resources with [Azure role‑based access control (RBAC)](/azure/role-based-access-control/overview) and automate with [Azure Resource Manager (ARM)](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure-resource-manager/bicep/overview).
+- **Import from the Grafana community.**
+  Bring in dashboards that use Azure Monitor, Azure Monitor managed service for Prometheus, or Azure Data Explorer data sources.
+- **Explore data ad‑hoc.**
+  Use Grafana **Explore** to run queries and add the results to new or existing dashboards.
 
 ## Prerequisites
 
-- An [Application Insights resource](./create-workspace-resource.md).
-- Permissions to read Application Insights data and create resources in the target subscription and resource group. Use Azure RBAC to assign access to dashboard resources after you save them.
+> [!div class="checklist"]
+> - An [Application Insights resource](./create-workspace-resource.md).
+> - Permissions to read Application Insights data and create resources in the target subscription and resource group. Use Azure RBAC to assign access to dashboard resources after you save them.
 
 ## Open the Grafana experience in Application Insights
 
 1. In the Azure portal, open your **Application Insights** resource.
-2. In the left menu, select **Dashboards with Grafana (Preview)**.
+2. In the left menu, select **Dashboards with Grafana**.
 
 :::image type="content" source="media/grafana-dashboards/1.png" alt-text="Alt text 1." lightbox="media/grafana-dashboards/1.png":::
 
@@ -48,8 +54,8 @@ Azure provides several Azure‑managed dashboards that focus on Application Insi
 - **Azure | Insights | Applications – Performance – Dependencies**
 - **Azure | Insights | Applications – Failures – Operations**
 - **Azure | Insights | Applications – Failures – Dependencies**
-- **Azure | Insights | Applications | OTel (OpenTelemetry)** for HTTP, RPC, and Azure Kubernetes Service (AKS) workloads
-- **Agent Framework** dashboards for Generative AI applications instrumented with the Microsoft Agent Framework
+- **Azure | Insights | Applications | OTel (OpenTelemetry)**
+- **Agent Framework** dashboards for generative AI applications instrumented with the [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview)
 
 To view a dashboard, select the dashboard name from the list.
 
@@ -118,27 +124,45 @@ After you add the tag, refresh the gallery in the Application Insights resource.
 
 ## Manage access and automate at scale
 
-- **Control access with Azure RBAC.** Assign roles at the dashboard resource, resource group, or subscription scope.
-- **Automate with ARM or Bicep.** Export an ARM template from a dashboard and use it to deploy consistently across environments.
-- **Use portal language settings.** The Grafana user interface honors the language you set in the Azure portal.
+- **Control access with Azure RBAC.**
+  Assign roles at the dashboard resource, resource group, or subscription scope.
+- **Automate with ARM or Bicep.**
+  Export an ARM template from a dashboard and use it to deploy consistently across environments.
+- **Use portal language settings.**
+  The Grafana user interface honors the language you set in the Azure portal.
 
 ## Costs
 
 Dashboards with Grafana in Application Insights has **no additional cost** for the Grafana experience. Standard charges for Azure Monitor, Azure Monitor managed service for Prometheus, and Azure Data Explorer apply when queries run or data is stored.
 
-## Limitations in public preview
+## Limitations in preview
 
 - Supports **Azure data sources only**: Azure Monitor, Azure Monitor managed service for Prometheus, and Azure Data Explorer.
 - Dashboards appear in the Application Insights Grafana gallery only when the `GrafanaDashboardResourceType=microsoft.insights/components` tag is present.
 
 ## Troubleshooting
 
-- **A dashboard doesn’t appear in the gallery.** Confirm the dashboard resource has the `GrafanaDashboardResourceType` tag with value `microsoft.insights/components`. Refresh the gallery after you add the tag.
-- **You can’t save a dashboard.** Verify you have permissions to create resources in the target subscription and resource group.
-- **Data doesn’t load.** Check that the Application Insights resource and the selected data source contain data for the time range.
+<details>
+<summary><b>A dashboard doesn’t appear in the gallery.</b></summary>
+Confirm the dashboard resource has the `GrafanaDashboardResourceType` tag with value `microsoft.insights/components`. Refresh the gallery after you add the tag.
+</details>
+<br>
+
+<details>
+<summary><b>You can’t save a dashboard.</b></summary>
+Verify you have permissions to create resources in the target subscription and resource group.
+</details>
+<br>
+
+<details>
+<summary><b>Data doesn’t load.</b></summary>
+Check that the Application Insights resource and the selected data source contain data for the time range.
+</details>
+<br>
 
 ## Next steps
 
-- Build a custom dashboard from the **Overview** Azure‑managed dashboard and save it as your own Azure resource.
-- Use **Grafana Explore** to run ad‑hoc queries across Application Insights logs and add the results to a dashboard.
-- Export an ARM template for a saved dashboard and add it to your deployment pipeline.
+- Learn more about [visualizing with Grafana](../visualize/visualize-grafana-overview.md)
+- Instrument with the [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview).
+- Secure your environment with [Azure role‑based access control (RBAC)](/azure/role-based-access-control/overview).
+- Build [ARM](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure-resource-manager/bicep/overview) templates.
