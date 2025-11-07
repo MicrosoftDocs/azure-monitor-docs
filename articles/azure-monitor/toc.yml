@@ -166,6 +166,8 @@ items:
         href: app/usage.md
       - name: Work item integration
         href: app/work-item-integration.md
+      - name: Grafana dashboards
+        href: app/grafana-dashboards.md
     - name: Code analysis
       items:
       - name: Code Optimizations
