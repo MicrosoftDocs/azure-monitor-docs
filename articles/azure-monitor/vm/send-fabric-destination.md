@@ -9,7 +9,7 @@ ms.reviewer: aprilbadger
 
 # Send virtual machine client data to Fabric and Azure Data Explorer (Preview)
 
-This article describes how to create data collection rules (DCRs) for the Azure Monitor agent (AMA) to send VM data to [Azure Data Explorer (ADX)](/azure/data-explorer/data-explorer-overview) and [Fabric eventhouses](/fabric/real-time-intelligence/eventhouse). This feature is in public preview.
+This article describes how to create data collection rules (DCRs) for the Azure Monitor Agent (AMA) to send VM data to [Azure Data Explorer (ADX)](/azure/data-explorer/data-explorer-overview) and [Fabric eventhouses](/fabric/real-time-intelligence/eventhouse). This feature is in public preview.
 
 ## Prerequisites
 
@@ -60,15 +60,15 @@ The DCR creation process adds the VM user-assigned managed identity as a NativeI
 ### Collect and deliver
 
 1. Select the **Collect and deliver** tab. 
-1. Select **Add new data flow**.
+1. Select **Add new datasource**.
 1. In the **Data source** tab, choose one of the [supported data types](#supported-data-types). Each data source listed has a link to general steps and special instructions.    
-1. In the **Destination** tab > **Destination type** pull down menu, select either **Azure Data Explorer** or **Microsoft Fabric**.
+1. In the **Destination** tab > **Add destination** >**Destination type** pull down menu, select either **Azure Data Explorer** or **Microsoft Fabric**.
 1. **Configure Destination** and choose the eventhouse or ADX cluster and database > **Select**.
 
    :::image type="content" source="./media/send-fabric-destination/configure-data-source.png" alt-text="Screenshot showing destination configuration for Microsoft Fabric.":::
    <sup>*The ADX free tier cluster isn't supported*</sup>
 
-1. Select **Save**
+1. Select **Apply** > **Save**
 
    :::image type="content" source="./media/send-fabric-destination/data-flow-destination.png" alt-text="Screenshot showing dataflow destination of ADX.":::
 
