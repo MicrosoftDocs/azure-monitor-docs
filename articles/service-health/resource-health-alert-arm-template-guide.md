@@ -8,7 +8,9 @@ ms.date: 11/07/2025
 
 # Create and configure Resource Health alerts 
 
-A Resource Health alert is a proactive notification that tells you when the health status of an individual Azure resource changes. Unlike Service Health alerts (which cover platform-wide issues), Resource Health alerts are resource-specific and can detect problems even if there’s no broader Azure outage. 
+A Resource Health alert is a proactive notification that tells you when the health status of an individual Azure resource changes. 
+
+Unlike Service Health alerts which cover platform-wide issues, Resource Health alerts are resource-specific and can detect problems even if there’s no broader Azure outage. 
 
 Resource Health alerts notify you when your Azure resources experience a change in health status, such as becoming unavailable or degraded. These alerts help you stay informed and respond quickly to service issues affecting your workloads.
 
@@ -23,15 +25,16 @@ This article shows you how to create and configure Azure Resource Health alerts 
 :::image type="content" source="./media/alerts-activity-log-service-notifications/resource-health-select.png" alt-text="Screenshot of Service Health option." lightbox="./media/alerts-activity-log-service-notifications/resource-health-select.png":::
 
     
-3. Select **Add resource health alert** which opens the wizard you use to create your alert.
+2. Select **Add resource health alert** which opens the wizard you use to create your alert.
    
 :::image type="content" source="./media/resource-health/resource-health-create.PNG" alt-text="Screenshot of Resource Health create option." lightbox="./media/resource-health/resource-health-create.PNG":::
 
-1. The **Create an alert rule** wizard opens with the **Scope** tab already populated. <br> Use this tab to select the Subscription and Resource Type. For more information about creating alerts, see [Configure alert rule conditions](/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log#configure-alert-rule-conditions).
+3. The **Create an alert rule** wizard opens with the **Scope** tab already populated. <br> Use this tab to select the Subscription and Resource Type. For more information about creating alerts, see [Configure alert rule conditions](/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log#configure-alert-rule-conditions).
 
 :::image type="content" source="./media/resource-health/resource-health-create-scope.PNG" alt-text="Screenshot of Resource Health scope tab." lightbox="./media/resource-health/resource-health-create-scope.PNG":::
 
-4. Select the *Next: condition* button at the bottom to open the **Condition** tab.<br>
+>[!TIP]
+>Select the *Next:* button at the bottom of each tab to open the next one, or select the name at the top of the wizard.<br>
 
 :::image type="content" source="./media/resource-health/resource-health-create-condition.PNG" alt-text="Screenshot of Resource Health condition tab." lightbox="./media/resource-health/resource-health-create-condition.PNG":::
 
