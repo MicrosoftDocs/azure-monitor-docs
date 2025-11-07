@@ -108,7 +108,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Log Analytics workspace data export in Azure Monitor](../logs/logs-data-export.md)|Clarified data export considerations.|
 |Logs|[Granular RBAC (Preview) in Azure Monitor](../logs/granular-rbac-log-analytics.md)|New article for granular RBAC|
 |Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|Significant refresh of search job article updated with new UI.|
-|Virtual-Machines|[Send virtual machine client data to Event Hubs and Storage (Preview)](../vm/send-event-hubs-storage.md)|General rewrite of article.|
 
 ### April 2025
 
@@ -479,7 +478,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Subservice | Article | Description |
 |---|---|---|
 |Agents|[MMA Discovery and Removal Utility](../agents/azure-monitor-agent-mma-removal-tool.md)|Added a PowerShell script that discovers and removes the Log Analytics agent from machines as part of the migration to Azure Monitor Agent.|
-|Agents|[Send data to Event Hubs and Storage (Preview)](../agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md)|Update azure-monitor-agent-send-data-to-event-hubs-and-storage.md|
 |Alerts|[Resource Manager template samples for metric alert rules in Azure Monitor](../alerts/resource-manager-alerts-metric.md)|We added a clarification about the parameters used when creating metric alert rules programatically.|
 |Alerts|[Manage your alert instances](../alerts/alerts-manage-alert-instances.md)|We've added documentation about the new alerts timeline view.|
 |Alerts|[Create or edit a log search alert rule](../alerts/alerts-create-log-alert-rule.md)|Added limitations to log search alert queries.|
