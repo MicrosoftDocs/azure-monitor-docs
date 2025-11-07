@@ -2,7 +2,7 @@
 title: Roles with tenant admin access
 description: This article defines the tenant roles with access to tenant scope view.
 ms.topic: article
-ms.date: 07/22/2025
+ms.date: 11/07/2025
 ---
 
 # Roles with tenant admin access
@@ -66,6 +66,7 @@ For descriptions of each role, see [Microsoft Entra built-in roles](/azure/activ
 | SharePoint Administrator |
 | Skype for Business Administrator |
 | Teams Administrator |
+| Tenant based communications|
 | Teams Communications Administrator |
 | Teams Communications Support Engineer |
 | Teams Communications Support Specialist |
