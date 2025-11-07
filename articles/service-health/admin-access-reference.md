@@ -66,7 +66,7 @@ For descriptions of each role, see [Microsoft Entra built-in roles](/azure/activ
 | SharePoint Administrator |
 | Skype for Business Administrator |
 | Teams Administrator |
-| Tenant based communications|
+| Tenant Based communications|
 | Teams Communications Administrator |
 | Teams Communications Support Engineer |
 | Teams Communications Support Specialist |
