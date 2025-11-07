@@ -9,7 +9,7 @@ ms.date: 11/07/2025
 
 Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Application Insights](./app-insights-overview.md) integrates [Azure Monitor’s](../fundamentals/overview.md) Grafana experience directly into the Azure portal. You create and customize Grafana dashboards by using your Application Insights data without running your own Grafana instance or using a separate managed Grafana service. Built‑in Grafana controls support a wide range of visualization panels and client‑side transformations across metrics, logs, and traces.
 
-## What you can do
+## Key capabilities
 
 - **Start from Azure-managed dashboards.**  
   Use prebuilt dashboards for common Application Insights scenarios.
