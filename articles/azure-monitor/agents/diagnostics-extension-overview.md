@@ -14,12 +14,10 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > [!IMPORTANT]
 > ### Migrate from Azure Diagnostic extension
 > 
-> Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension. 
+> Azure Diagnostics extension will be deprecated on **March 31, 2026**. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension. 
 > 
-> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to [Azure Monitor Agent](./azure-monitor-agent-overview.md), which can collect the same data and send it to multiple destinations including Log Analytics workspaces, Azure Event Hubs, and Azure Storage. Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data. 
->
-> As an alternative to storage, you should send data to a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
->
+> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to [Azure Monitor Agent](./azure-monitor-agent-overview.md), which can collect the same data and send it to multiple destinations. Follow the [migration guidance below](#migration-guidance) for more information. Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data.
+> 
 > To check which extensions are installed on a single VM, select **Extensions + applications** under **Settings** on your VM. To review the extensions installed on all virtual machines in subscriptions where you have access, use the following query in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal):
 >
 > ``` kql
@@ -36,7 +34,14 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > 
 > :::image type="content" source="media/diagnostics-extension-overview/query-results.png" lightbox="media/diagnostics-extension-overview/query-results.png" alt-text="Screenshot showing the results of a sample Azure Resource Graph Query.":::
 
-
+## Migration Guidance
+To ensure continued support after March 31, 2026 and access to new features, migrate using the following options based on the data destination: 
+ 
+| Destination | Migration Options |   
+|-------------|----------------------------------------------------------------------|
+| Azure Storage blobs | Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) to send data to custom table(s) with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) in your Log Analytics workspace for cost-effective logging. | 
+| Azure Event Hubs | <ul><li> [Configure Event Hubs using VM watch](/azure/virtual-machines/configure-eventhub-vm-watch) (Note: VM Watch does not collect application logs) </li><li> **Event Hub -> Azure Data Explorer**: Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) to send data [directly to ADX databases(s)]() </li> <li> **Event Hub -> OTLP destinations**: Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) and Azure Monitor pipeline to send data to OTLP compliant external destinations Splunk, Grafana, Datadog, etc. </li><li> **Event Hub -> Other destination(s)**: [Contact us for further assistance]  </li></ul> |
+| Azure Monitor metrics | Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) to send data to Azure Monitor metrics databases. |
 
 ## Primary scenarios
 
@@ -49,18 +54,9 @@ Use Azure Diagnostics extension if you need to:
 
 Limitations of Azure Diagnostics extension:
 
+* It will be deprecated on March 31, 2026.
 * It can only be used with Azure resources.
 * It has limited ability to send data to Azure Monitor Logs.
-
-## Comparison to Log Analytics agent
-
-The Log Analytics agent in Azure Monitor can also be used to collect monitoring data from the guest operating system of virtual machines. You can choose to use either or both depending on your requirements. For a comparison of the Azure Monitor agents, see [Overview of the Azure Monitor agents](../agents/agents-overview.md).
-
-The key differences to consider are:
-
-* Azure Diagnostics Extension can be used only with Azure virtual machines. The Log Analytics agent can be used with virtual machines in Azure, other clouds, and on-premises.
-* Azure Diagnostics extension sends data to Azure Storage, [Azure Monitor Metrics](../essentials/data-platform-metrics.md) (Windows only) and Azure Event Hubs. The Log Analytics agent collects data to [Azure Monitor Logs](../logs/data-platform-logs.md).
-* The Log Analytics agent is required for retired [solutions](/previous-versions/azure/azure-monitor/insights/solutions), [VM insights](../vm/vminsights-overview.md), and other services such as [Microsoft Defender for Cloud](/azure/security-center/).
 
 ## Costs
 
