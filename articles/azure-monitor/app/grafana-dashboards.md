@@ -37,13 +37,13 @@ Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Applic
 1. In the Azure portal, open your **Application Insights** resource.
 2. In the left menu, select **Dashboards with Grafana**.
 
-:::image type="content" source="media/grafana-dashboards/1.png" alt-text="Alt text 1." lightbox="media/grafana-dashboards/1.png":::
+:::image type="content" source="media/grafana-dashboards/dashboards-with-grafana.png" alt-text="A screenshot of the Azure portal with dashboards for grafana selected." lightbox="media/grafana-dashboards/dashboards-with-grafana.png":::
 
 The gallery lists **Azure‑managed** dashboards and your **Saved dashboards** for the current Application Insights resource.
 
 The gallery automatically filters to dashboards created for Application Insights. This filter is applied by default and can’t be changed when you use Dashboards with Grafana within Application Insights.  
 
-:::image type="content" source="media/grafana-dashboards/3.png" alt-text="Alt text 3." lightbox="media/grafana-dashboards/3.png":::
+:::image type="content" source="media/grafana-dashboards/grafana-dashboards.png" alt-text="A screenshot of grafana dashboards that can be selected." lightbox="media/grafana-dashboards/grafana-dashboards.png":::
 
 ## Start quickly with prebuilt dashboards
 
@@ -61,7 +61,7 @@ To view a dashboard, select the dashboard name from the list.
 
 Example of an OpenTelemetry‑focused dashboard:
 
-:::image type="content" source="media/grafana-dashboards/6.png" alt-text="Alt text 6." lightbox="media/grafana-dashboards/6.png":::
+:::image type="content" source="media/grafana-dashboards/grafana-otel-dashboard.png" alt-text="A screenshot of an OpenTelemetry Grafana dashboard." lightbox="media/grafana-dashboards/grafana-otel-dashboard.png":::
 
 ## Create, edit, and save dashboards
 
@@ -89,7 +89,7 @@ Grafana **Explore** helps you run ad‑hoc queries without starting inside a das
 2. Choose a data source and build queries for the desired time range.
 3. Select **Add to dashboard** to turn the visualization into a panel.  
 
-:::image type="content" source="media/grafana-dashboards/5.png" alt-text="Alt text 5." lightbox="media/grafana-dashboards/5.png":::
+:::image type="content" source="media/grafana-dashboards/grafana-explore.png" alt-text="A screenshot of the Grafana explore experience." lightbox="media/grafana-dashboards/grafana-explore.png":::
 
 ## Import dashboards from the Grafana community
 
@@ -124,7 +124,7 @@ Dashboards you create **inside** an Application Insights resource receive this t
 2. Select **Tags** and add the name and value.
 3. Save the changes.  
 
-:::image type="content" source="media/grafana-dashboards/2.png" alt-text="Alt text 2." lightbox="media/grafana-dashboards/2.png":::
+:::image type="content" source="media/grafana-dashboards/edit-tags.png" alt-text="A screenshot of the Grafana dashboard edit tags window." lightbox="media/grafana-dashboards/edit-tags.png":::
 
 After you add the tag, refresh the gallery in the Application Insights resource. The dashboard appears under **Saved dashboards**.
 
