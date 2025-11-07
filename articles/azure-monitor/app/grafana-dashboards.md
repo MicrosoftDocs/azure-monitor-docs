@@ -130,11 +130,13 @@ After you add the tag, refresh the gallery in the Application Insights resource.
 
 ## Manage access and automate at scale
 
-- **Control access with Azure RBAC.** <br>
+- **Control access with Azure RBAC.**  
   Assign roles at the dashboard resource, resource group, or subscription scope.
-- **Automate with ARM or Bicep.** <br>
+
+- **Automate with ARM or Bicep.**  
   Export an ARM template from a dashboard and use it to deploy consistently across environments.
-- **Use portal language settings.** <br>
+
+- **Use portal language settings.**  
   The Grafana user interface honors the language you set in the Azure portal.
 
 ## Costs
@@ -143,8 +145,11 @@ Dashboards with Grafana in Application Insights has **no additional cost** for t
 
 ## Limitations
 
-- Supports **Azure data sources only**: Azure Monitor, Azure Monitor managed service for Prometheus, and Azure Data Explorer.
-- Dashboards appear in the Application Insights Grafana gallery only when the `GrafanaDashboardResourceType=microsoft.insights/components` tag is present.
+- **Supports Azure data sources only.**  
+  Azure Monitor, Azure Monitor managed service for Prometheus, and Azure Data Explorer.
+
+- **Dashboard visibility.**  
+  Dashboards appear in the Application Insights Grafana gallery only when the `GrafanaDashboardResourceType=microsoft.insights/components` tag is present.
 
 ## Troubleshooting
 
