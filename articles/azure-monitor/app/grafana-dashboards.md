@@ -7,7 +7,7 @@ ms.date: 11/07/2025
 
 # Dashboards with Grafana in Application Insights (Preview)
 
-Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Application Insights](./app-insights-overview.md) integrates [Azure Monitor’s](../fundamentals/overview.md) [Grafana](../visualize/visualize-grafana-overview.md) experience directly into the Azure portal. You create and customize [Grafana](../visualize/visualize-grafana-overview.md) dashboards by using your [Application Insights](./app-insights-overview.md) data without running your own [Grafana](../visualize/visualize-grafana-overview.md) instance or using a separate managed Grafana service. Built‑in [Grafana](../visualize/visualize-grafana-overview.md) controls support a wide range of visualization panels and client‑side transformations across metrics, logs, and traces.
+Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Application Insights](./app-insights-overview.md) integrates [Azure Monitor’s](../fundamentals/overview.md) Grafana experience directly into the Azure portal. You create and customize Grafana dashboards by using your Application Insights data without running your own Grafana instance or using a separate managed Grafana service. Built‑in Grafana controls support a wide range of visualization panels and client‑side transformations across metrics, logs, and traces.
 
 > [!IMPORTANT]
 > The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
@@ -15,15 +15,15 @@ Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Applic
 
 ## What you can do
 
-- **Start from Azure‑managed dashboards.**
+- **Start from Azure‑managed dashboards.** <br>
   Use prebuilt dashboards for common Application Insights scenarios.
-- **Create and edit dashboards.**
+- **Create and edit dashboards.** <br>
   Add panels, modify queries, and apply client‑side transformations.
-- **Save and share as Azure resources.**
-  Store dashboards as standard Azure resources with [Azure role‑based access control (RBAC)](/azure/role-based-access-control/overview) and automate with [Azure Resource Manager (ARM)](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure-resource-manager/bicep/overview).
-- **Import from the Grafana community.**
+- **Save and share as Azure resources.** <br>
+  Store dashboards as standard Azure resources with [Azure role‑based access control (RBAC)](/azure/role-based-access-control/overview) and automate with [Azure Resource Manager (ARM)](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure/azure-resource-manager/bicep/overview).
+- **Import from the Grafana community.** <br>
   Bring in dashboards that use Azure Monitor, Azure Monitor managed service for Prometheus, or Azure Data Explorer data sources.
-- **Explore data ad‑hoc.**
+- **Explore data ad‑hoc.** <br>
   Use Grafana **Explore** to run queries and add the results to new or existing dashboards.
 
 ## Prerequisites
@@ -124,11 +124,11 @@ After you add the tag, refresh the gallery in the Application Insights resource.
 
 ## Manage access and automate at scale
 
-- **Control access with Azure RBAC.**
+- **Control access with Azure RBAC.** <br>
   Assign roles at the dashboard resource, resource group, or subscription scope.
-- **Automate with ARM or Bicep.**
+- **Automate with ARM or Bicep.** <br>
   Export an ARM template from a dashboard and use it to deploy consistently across environments.
-- **Use portal language settings.**
+- **Use portal language settings.** <br>
   The Grafana user interface honors the language you set in the Azure portal.
 
 ## Costs
@@ -165,4 +165,4 @@ Check that the Application Insights resource and the selected data source contai
 - Learn more about [visualizing with Grafana](../visualize/visualize-grafana-overview.md)
 - Instrument with the [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview).
 - Secure your environment with [Azure role‑based access control (RBAC)](/azure/role-based-access-control/overview).
-- Build [ARM](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure-resource-manager/bicep/overview) templates.
+- Build [ARM](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure/azure-resource-manager/bicep/overview) templates.
