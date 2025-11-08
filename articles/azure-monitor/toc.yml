@@ -1709,6 +1709,12 @@ items:
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: fundamentals/policy-reference.md
+  - name: Limited previews
+    items:
+    - name: OTLP Signal Ingestion in Azure Monitor
+      href: /agents/opentelemetry-signal-ingestion.md
+    - name: Using Application Insights with OTLP Signals
+      href: /app/opentelemetry-signal-integration.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources

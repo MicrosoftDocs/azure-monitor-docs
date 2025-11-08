@@ -1,0 +1,67 @@
+---
+title: Using Application Insights with OTLP Signals (Limited Preview)
+description: Use Application Insights to orchestrate OTLP resources and to explore OpenTelemetry signals ingested into Azure Monitor.
+ms.topic: how-to
+ms.date: 11/08/2025
+ROBOTS: NOINDEX
+---
+
+# Using Application Insights with OTLP Signals (Limited Preview)
+
+This article shows how to use **Application Insights** to orchestrate resources for OpenTelemetry Protocol (OTLP) signal ingestion and how to explore OTLP **metrics**, **logs**, and **traces** after ingestion.
+
+> [!IMPORTANT]
+> This feature is a **limited preview**:
+>
+> - **Use** only allow-listed subscriptions.
+> - **Deploy** in **South Central US** or **West Europe**.
+> - **Instrument** applications with **OpenTelemetry (OTel) SDKs**.
+
+## Prerequisites
+
+- An allow-listed Azure subscription.
+- Permission to create Application Insights and Azure Monitor resources.
+- OpenTelemetry SDK instrumentation in your applications.
+
+## Orchestrate OTLP collection with Application Insights
+
+1. **Create an Application Insights resource.**
+   - Select an allow-listed subscription.
+   - Select **South Central US** or **West Europe**.
+   - Keep **Enable OTLP Support** selected to create the supporting Azure Monitor artifacts and links.
+
+   :::image type="content" source="./media/1.png" alt-text="Create an Application Insights resource with the OTLP support checkbox selected, showing subscription, and region.":::
+
+2. **Capture connection details.** Open the **Overview** page and copy:
+   - The **Data Collection Rule (DCR)** link.
+   - The **endpoint URLs** for **traces**, **metrics**, and **logs**.
+
+   :::image type="content" source="./media/2.png" alt-text="Application Insights overview displaying OTLP connection info with Data Collection Rule (DCR) link and endpoints for traces, metrics, and logs.":::
+
+> [!TIP]
+> Use the endpoint URLs when you configure the OpenTelemetry Collector. Use the DCR link when you associate collection with compute resources.
+
+## Explore OTLP data in Application Insights
+
+After you set up ingestion, Application Insights provides experiences on your OTLP signals:
+
+- **Investigate distributed traces.** Use end-to-end transaction views to follow requests across services.
+- **Analyze application performance.** Review response times, failure rates, and dependencies.
+- **Use logs for diagnostics.** Run **Kusto Query Language (KQL)** queries to filter and correlate events.
+- **Chart metrics.** Use charts and dashboards to visualize custom and system metrics.
+- **Use workbooks.** Build interactive views that combine metrics, logs, and traces.
+
+## Troubleshooting
+
+- **No data appears.** Confirm ingestion is configured. Verify that DCR associations exist and that the application generates traffic.
+- **Endpoints or DCR missing.** Reopen the Application Insights **Overview** page and retrieve the **OTLP connection info** section.
+- **Wrong region.** Ensure the Application Insights resource and its related resources are in **South Central US** or **West Europe**.
+
+## Next steps
+
+- Configure ingestion using **Azure Monitor Agent** or the **OpenTelemetry Collector**. For the Collector, use the endpoints and DCR created by Application Insights.
+- Use **Log Analytics** and **Metrics explorer** for advanced queries and charts across workspaces.
+
+## Support
+
+If documentation and the steps in this article don't resolve your issue, email the Azure Monitor OpenTelemetry team at **otel@microsoft.com**.
