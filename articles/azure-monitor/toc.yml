@@ -147,6 +147,8 @@ items:
           displayName: SDK, Node.js, nodejs, JavaScript, js
     - name: Experiences
       items:
+      - name: Agent details
+        href: app/agents-view.md
       - name: Application dashboard
         displayName: dashboard, Application Insights dashboard
         href: app/overview-dashboard.md
