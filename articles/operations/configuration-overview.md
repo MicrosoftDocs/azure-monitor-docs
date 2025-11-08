@@ -1,6 +1,6 @@
 ---
 title: Configuration in Operations center (preview)
-description: Describes the Configuration pillar in Operations center and provides details on using machine enrollment to automatically configure management for VMs in your subscription.
+description: Describes the Configuration pillar in Operations center which helps you manage the configuration of your Azure VMs and Arc-enabled servers.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
@@ -47,7 +47,7 @@ The **Configuration** overview page includes the following sections. Modify the 
 | Update management | Summary of the update status for your virtual machines. Click **View details** to open the **Update Management** page. |
 | Baselines compliance | Summary of the machines that that are compliant with baselines. Click **View details** to open the **Machine configuration** page. |
 | Patch orchestration configuration of Azure virtual machines | Summary of the patching status for the machines inventoried in your subscription. This is similar to the tile in the **Update Management** page described at [View update Manager status](/azure/update-manager/manage-multiple-machines#view-update-manager-status). | 
-| Machine assignments by compliance state |  |
+| Machine assignments by compliance state |   |
 
 
 ## Machine configuration
@@ -55,10 +55,10 @@ The **Machine configuration** page provides several views to help you manage the
 
 | Tab | Description |
 |:---|:---|
-| Overview | Shows assignments by compliance state 
-| Definitions | Lists the policy definitions for **Guest Configuration**. This is the same as the **Definitions** tab in the **Policy** menu. |
-| Baseline Rules (preview) | Lists Azure baseline rules and the number of compliant machines. |
-| Assignments | Lists the policy assignments for **Guest Configuration**. This is the same as the **Assignments** tab in the **Policy** menu. | 
-| Windows recovery (preview) | |
+| Overview | Shows assignments by compliance state |
+| Definitions | Lists the policy definitions for guest configurations. This is the same as the **Definitions** tab in the **Policy** menu with a filter for **Guest Configuration**. |
+| Baseline Rules (preview) | Lists Azure security baseline rules and the number of compliant machines. See [Azure security baseline for Microsoft Defender for Cloud](/security/benchmark/azure/baselines/microsoft-defender-for-cloud-security-baseline). |
+| Assignments | Lists the policy assignments for guest configurations. This is the same as the **Assignments** tab in the **Policy** menu with a filter for **Guest Configuration**. | 
+| Windows recovery (preview) | Lists your Arc-enabled servers and their Windows recovery status. See [Public Preview: Audit and Enable Windows Recovery Environment (WinRE) for Azure Arc-enabled Servers](https://techcommunity.microsoft.com/blog/azurearcblog/public-preview-audit-and-enable-windows-recovery-environment-winre-for-azure-arc/4462939). |
 
 

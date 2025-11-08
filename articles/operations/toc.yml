@@ -17,5 +17,7 @@ items:
       href: configuration-overview.md
     - name: Machine enrollment
       href: configuration-enrollment.md
+    - name: Troubleshoot
+      href: configuration-enrollment-troubleshoot.md
   - name: Optimization
     href: optimization.md

@@ -19,6 +19,14 @@ You must have the following roles to configure a subscription for machine enroll
 - Managed Identity Operator roles
 - Resource Policy Contributor
 
+
+### Permissions across subscriptions
+If you're using a Log Analytics workspace or Azure Monitor workspace in a different subscription than the one being enabled for machine enrollment, then use the following guidance to set the required permissions.
+
+- The user account performing the enrollment must have the **Essential Machine Management Administrator** role in the resource group of the Log analytics workspace or Azure Monitor workspace.
+- The User assigned managed identity must have **Contributor** permissions in the resource group of the Log Analytics workspace or Azure Monitor workspace.
+
+
 ### Prerequisites
 
 - [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace) to collect log data collected from VMs.
@@ -125,6 +133,16 @@ Machine enrollment is enabled for each subscription to automatically onboard all
 
 There is currently no ability to exclude VMs in the enabled subscription. All VMs in the subscription are onboarded and configured with the selected features.
 
+
+## Disable a subscription
+
+Disable a subscription by selecting it and then clicking **Offboard**. When you disable a subscription, any VMs added to that subscription are no longer configured with the selected management features. The configuration isn't changed for existing VMs though. They will continue to be managed with the existing features until you manually remove them.
+
+> [!WARNING]
+> When you disable a subscription, machines in that subscription no longer use consolidated pricing. Pricing for these machines will revert to standard pricing for each individual service, which will most likely increase your costs. Ensure that you disable any unneeded services on existing VMs to avoid additional charges.
+
+
+
 ## Detailed configuration
 
 
@@ -147,97 +165,3 @@ The following table describes the specific configuration applied to each VM when
 | Assignment | `Managedops-Policy-<SubscriptionID>` | Assignment of the initiative to the subscription. |
 
 
-## Verify configuration
-
-
-First, verify that the objects in the following table are created in the resource group for the Log Analytics workspace and Azure Monitor workspace. These are the DCRs and solutions that enable change tracking and data collection for Azure Monitor.
-
-| Type | Name | Description |
-|:---|:---|:---|
-| DCR | `<workspace>-Managedops-AM-DCR` | OpenTelemetry metrics from VM guests |
-| DCR | `<workspace>-Managedops-CT-DCR` | Change tracking and inventory. Collects files, registry keys, softwares, Windows services, Linux daemons |
-| Solution | `ChangeTracking(workspace)` | Solution added to Log Analytics workspace to support Change tracking and inventory. |
-
-
-Verify that the alerts have been created by checking for the following rules in the resource group for the Azure Monitor workspace.
-
-- `ManagedOps-High-CPU-Usage-Alert`
-- `ManagedOps-High-Disk-IOPS-Alert`
-- `ManagedOps-High-Network-Errors-Alert`
-- `ManagedOps-High-Network-Inbound-Traffic-Alert`
-- `ManagedOps-High-Network-Outbound-Traffic-Alert`
-- `ManagedOps-Low-Available-Memory-Alert`
-- `ManagedOps-Slow-Disk-Operations-Alert`
-- `ManagedOps-VM-Availability-Alert`
-
-
-If you don't see any of these objects within a few minutes of enabling the subscription, check for any errors in the deployments that are responsible for creating them. Open **Deployments** in the resource group and search for deployments with `Managedops` in the name. For example, `Managedops-ChangeTracking-{Subscription Id}` and `Managedops-AzureMonitor-{Subscription Id}`.
-
-
-
-If you're not able to locate the deployments, check the activity log for the resource group. Search for `Managedops` to identify any activity related to machine enablement.
-
-:::image type="content" source="./media/configuration-enrollments/activity-log.png" lightbox = "./media/configuration-enrollments/activity-log.png" alt-text="Screenshot of searching activity log for deployments.":::
-
-If the required objects have been created, and there are no errors in the deployments, verify that the policy assignment exists in the subscription.
-
-Open the **Policy** page in Operations Center and select **Assignments**. Search for `ManagedOps-Policy`. If you don’t see the policy assignment, then you may not have enough permission to make a policy assignment in that subscription. Check for the permissions section below.
-
-
-Finally, check the remediation tasks. Remediation tasks are created to enable the selected features on all existing VMs in the subscription. Open the **Policy** page in Operations Center and select **Remediation**. 
-
-
-
-
-
-
-
-## Disable a subscription
-
-
-
-## Troubleshooting
-
-### Change Log Analytics workspace or Azure Monitor workspace
-If you've already configured machine enrollment and then enable it again using a different Log Analytics workspace or Azure Monitor workspace, you'll get an error saying that the workspace can't be changed once it's set. 
-
-To change either of the workspaces, you must first [disable the subscription](#disable-a-subscription) and then re-enable it with the new workspaces. All machines in the subscription will be re-enrolled and configured with the new workspaces, but any data already collected in the old workspace will be retained. 
-
-### Disable Defender for cloud
-You'll receive and error if you attempt to disable Defender for cloud for subscription that was already enabled for machine enrollment. You must disable the subscription from the Defender for cloud portal.
-
-### DCRs not seen
-
-Start by verifying that the objects are created in the subscription.
-
-Check the deployments. 
-
-Managedops-ChangeTracking-{SubId}
-Managedops-AzureMonitor-{SubId} 
-
-If you don't see the deployments, check the activity log.
-
-If these resources are created, then check the policy assignments to verify that the initiative is assigned to the subscription.
-
-From the **Policy** page, select **Assignments** and search for `ManagedOpsPolicy-<subscription ID>` 
-
-
-If you don’t see the policy assignment, most likely you don’t have enough permission to make a policy assignment in that subscription . Make sure you have permission. Check for the permissions section below.
-
-
-
-### Permissions across subscriptions
-If you're using a Log Analytics workspace or Azure Monitor workspace in a different subscription than the one being enabled for machine enrollment, then use the following guidance to set the required permissions.
-
-- The user account performing the enrollment must have the **Essential Machine Management Administrator** role in the resource group of the Log analytics workspace or Azure Monitor workspace.
-- The User assigned managed identity must have **Contributor** permissions in the resource group of the Log Analytics workspace or Azure Monitor workspace.
-
-
-
-
-
-
-| Type | Region | Subscription | Resource Group | Name | 
-|:---|:---|:---|:---|:---|
-| DCR | Same as LAW | Same as LAW | Same as LAW | `<workspace>-Managedops-CT-DCR` |
-| DCR | Same as AMW | Same as AMW | Same as AMW | `<workspace>-Managedops-AM-DCR` |
