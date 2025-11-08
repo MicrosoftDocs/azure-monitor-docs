@@ -17,6 +17,8 @@ The new **Agent details** view in Application Insights provides a unified experi
 
 ## Get started
 
+### Enable AI agent monitoring
+
 To instrument and configure your AI agent to send telemetry to Application Insights:
 
 * **Azure AI Foundry:** [Connect an Application Insights resource to your Azure AI Foundry project](/azure/ai-foundry/how-to/monitor-applications#how-to-enable-monitoring).
@@ -24,12 +26,25 @@ To instrument and configure your AI agent to send telemetry to Application Insig
 * **Microsoft Agent Framework:** [Enable observability for Agents](/agent-framework/tutorials/agents/enable-observability).
 * **Third-party agents:** Use the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and [Instrument tracing in your code](/azure/ai-foundry/how-to/develop/trace-agents-sdk#instrument-tracing-in-your-code).
 
+### Go to the Agent details experience
+
 To go to the **Agent details** view:
+
+# [Azure portal](#tab/portal)
 
 1. In the Azure portal, go to **Application Insights**.
 1. In the navigation menu, select **Agents (Preview)**.
 
     :::image type="content" source="media/agents-view/agent-details-goto.png" lightbox="media/agents-view/agent-details-goto.png" alt-text="A screenshot showing how to get to the Agent details experience.":::
+
+# [AI Foundry](#tab/foundry)
+
+1. In AI Foundry, go to your agent.
+1. On the **Monitoring** tab, select **View in Azure Monitor**.
+
+> *Screenshot missing*
+
+---
 
 ## Investigate traces
 
