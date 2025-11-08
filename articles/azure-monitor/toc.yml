@@ -1712,9 +1712,9 @@ items:
   - name: Limited previews
     items:
     - name: OTLP Signal Ingestion in Azure Monitor
-      href: /agents/opentelemetry-signal-ingestion.md
+      href: /agents/signal-ingestion.md
     - name: Using Application Insights with OTLP Signals
-      href: /app/opentelemetry-signal-integration.md
+      href: /app/signal-integration.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources

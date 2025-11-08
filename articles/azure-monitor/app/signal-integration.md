@@ -30,13 +30,13 @@ This article shows how to use **Application Insights** to orchestrate resources 
    - Select **South Central US** or **West Europe**.
    - Keep **Enable OTLP Support** selected to create the supporting Azure Monitor artifacts and links.
 
-   :::image type="content" source="./media/1.png" alt-text="Create an Application Insights resource with the OTLP support checkbox selected, showing subscription, and region.":::
+   :::image type="content" source="./media/signal-integration/1.png" alt-text="Create an Application Insights resource with the OTLP support checkbox selected, showing subscription, and region.":::
 
 2. **Capture connection details.** Open the **Overview** page and copy:
    - The **Data Collection Rule (DCR)** link.
    - The **endpoint URLs** for **traces**, **metrics**, and **logs**.
 
-   :::image type="content" source="./media/2.png" alt-text="Application Insights overview displaying OTLP connection info with Data Collection Rule (DCR) link and endpoints for traces, metrics, and logs.":::
+   :::image type="content" source="./media/signal-integration/2.png" alt-text="Application Insights overview displaying OTLP connection info with Data Collection Rule (DCR) link and endpoints for traces, metrics, and logs.":::
 
 > [!TIP]
 > Use the endpoint URLs when you configure the OpenTelemetry Collector. Use the DCR link when you associate collection with compute resources.
