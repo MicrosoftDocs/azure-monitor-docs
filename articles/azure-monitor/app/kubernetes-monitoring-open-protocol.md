@@ -3,7 +3,7 @@ title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) (Limited Prev
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
 ms.date: 11/10/2025
-ms.reviewer: kayodeprinceMS
+ms.reviewer: kaprince
 ROBOTS: NOINDEX
 ---
 
