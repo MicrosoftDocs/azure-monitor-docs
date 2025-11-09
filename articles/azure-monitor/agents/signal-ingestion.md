@@ -16,7 +16,7 @@ This article shows how to ingest OpenTelemetry Protocol (OTLP) **signals**—met
 > - **Use** only allow-listed subscriptions.
 > - **Deploy** in **South Central US** or **West Europe**.
 > - **Instrument** applications with **OpenTelemetry SDKs**.
-> - **Use** OTLP over **HTTP/protobuf** with the OTel Collector. The team plans to add **gRPC** in a future milestone.
+> - **Use** OTLP over **HTTP/protobuf** with the OTel Collector.
 > - **Contact** the team with questions or feedback at **otel@microsoft.com**.
 
 ## Prerequisites
@@ -180,7 +180,7 @@ Use a configuration that authenticates to Azure Monitor and exports to the three
 
 ### Supported protocols
 
-- OTel Collector: OTLP over **HTTP/protobuf** (current). The team plans to add OTLP over **gRPC** in a future milestone.
+- OTel Collector: OTLP over **HTTP/protobuf** (current).
 - AMA-based path: Application-to-agent communication over **gRPC** on local ports.
 
 ### Ports for AMA-based ingestion

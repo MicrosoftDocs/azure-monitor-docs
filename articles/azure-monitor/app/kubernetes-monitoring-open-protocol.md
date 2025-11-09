@@ -1,5 +1,5 @@
 ---
-title: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
+title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) (Limited Preview)
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
 ms.date: 11/08/2025
@@ -137,8 +137,7 @@ Use Container Insights to explore application performance in the context of your
 
 ## Advanced onboarding (custom resources)
 
-Use the Kubernetes custom resources when you need more control. Full instructions are available in **Codeless Application Insights for Kubernetes**.  
-Reference: <https://learn.microsoft.com/azure/azure-monitor/app/kubernetes-codeless#onboard-deployments>
+Use the Kubernetes custom resources when you need more control. Full instructions are available [here](./kubernetes-codeless.md).
 
 ### Autoinstrumentation (Java, Node.js)
 
@@ -190,7 +189,5 @@ metadata:
 
 ## Next steps
 
-- Learn how codeless instrumentation works for Kubernetes and how to onboard deployments:  
-  <https://learn.microsoft.com/azure/azure-monitor/app/kubernetes-codeless#onboard-deployments>
-- Review the **Enable monitoring for AKS clusters** article to understand infrastructure monitoring with Azure Monitor:  
-  <https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-enable-aks>
+- Learn how [codeless instrumentation works for Kubernetes and how to onboard deployments](./kubernetes-codeless.md#onboard-deployments).
+- Review the **Enable monitoring for AKS clusters** article to understand infrastructure monitoring with Azure Monitor.
