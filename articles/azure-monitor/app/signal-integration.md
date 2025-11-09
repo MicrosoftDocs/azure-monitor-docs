@@ -12,10 +12,9 @@ This article shows how to use **Application Insights** to orchestrate resources 
 
 > [!IMPORTANT]
 > This feature is a **limited preview**:
->
-> - **Use** only allow-listed subscriptions.
-> - **Deploy** in **South Central US** or **West Europe**.
-> - **Instrument** applications with **OpenTelemetry (OTel) SDKs**.
+>  
+> Preview features are provided without a service-level agreement and aren't recommended for production workloads. 
+> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites
 

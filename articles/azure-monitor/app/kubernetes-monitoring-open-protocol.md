@@ -10,6 +10,12 @@ ROBOTS: NOINDEX
 
 OpenTelemetry provides a standardized way to emit traces, logs, metrics, and exceptions. Azure Monitor adds **Limited Preview** support for monitoring applications that run on Azure Kubernetes Service (AKS) by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection.
 
+> [!IMPORTANT]
+> This feature is a **limited preview**.
+>  
+> The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
+> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
 ## Key capabilities:
 
 - Enable cluster-level monitoring to install Azure Monitor components on the AKS cluster.
@@ -20,9 +26,10 @@ OpenTelemetry provides a standardized way to emit traces, logs, metrics, and exc
 Telemetry flows to **Application Insights**, where you analyze application performance in context with Container Insights.
 
 > [!IMPORTANT]
-> - This feature is a **Limited Preview**. It isn't covered by a service-level agreement (SLA) and isn't intended for production workloads.
 > - Supported regions: **South Central US** and **West Europe**.
 > - Unsupported node pools: **Windows (any architecture)** and **Linux Arm64**.
+> The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
+> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites
 
@@ -191,3 +198,7 @@ metadata:
 
 - Learn how [codeless instrumentation works for Kubernetes and how to onboard deployments](./kubernetes-codeless.md#onboard-deployments).
 - Review the **Enable monitoring for AKS clusters** article to understand infrastructure monitoring with Azure Monitor.
+
+## Support
+
+If documentation and the steps in this article don't resolve your issue, email the Azure Monitor OpenTelemetry team at **otel@microsoft.com**.

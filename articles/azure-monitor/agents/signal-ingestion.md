@@ -12,18 +12,16 @@ This article shows how to ingest OpenTelemetry Protocol (OTLP) **signals**—met
 
 > [!IMPORTANT]
 > This feature is a **limited preview**:
->
-> - **Use** only allow-listed subscriptions.
-> - **Deploy** in **South Central US** or **West Europe**.
-> - **Instrument** applications with **OpenTelemetry SDKs**.
-> - **Use** OTLP over **HTTP/protobuf** with the OTel Collector.
-> - **Contact** the team with questions or feedback at **otel@microsoft.com**.
+>  
+> The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
+> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites
 
-- An allow-listed Azure subscription.
+- An allow-listed Azure subscription deployed in **South Central US** or **West Europe**.
 - Permission to create Azure Monitor resources.
 - OpenTelemetry SDK instrumentation in your applications.
+- OTLP over **HTTP/protobuf** with the OTel Collector.
 
 ## Components
 
@@ -196,3 +194,7 @@ Confirm subscription and region eligibility, verify DCR associations, validate a
 
 **Which OTel Collector distribution should I use?**  
 Use the `contrib` distribution **0.132.0** or later, or a custom build with Azure authentication components.
+
+## Support
+
+If documentation and the steps in this article don't resolve your issue, email the Azure Monitor OpenTelemetry team at **otel@microsoft.com**.
