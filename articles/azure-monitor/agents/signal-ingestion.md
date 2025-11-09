@@ -2,7 +2,8 @@
 title: OTLP Signal Ingestion in Azure Monitor (Limited Preview)
 description: Configure OpenTelemetry Protocol (OTLP) ingestion into Azure Monitor using Azure Monitor Agent, Data Collection Rules and Endpoints, or the OpenTelemetry Collector.
 ms.topic: how-to
-ms.date: 11/08/2025
+ms.date: 11/10/2025
+ms.reviewer: kayodeprinceMS
 ROBOTS: NOINDEX
 ---
 
@@ -11,9 +12,8 @@ ROBOTS: NOINDEX
 This article shows how to ingest OpenTelemetry Protocol (OTLP) **signals**—metrics, logs, and traces—into Azure Monitor using platform ingestion components. It covers **Azure Monitor Agent (AMA)**, **Data Collection Rules (DCRs)**, **Data Collection Endpoints (DCEs)**, and the **OpenTelemetry (OTel) Collector**. Applications running on Azure Kubernetes Service (AKS) can use the AKS add-on, which is covered in a separate guide.
 
 > [!IMPORTANT]
-> This feature is a **limited preview**:
+> This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads. 
 >  
-> The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites

@@ -2,7 +2,8 @@
 title: Using Application Insights with OTLP Signals (Limited Preview)
 description: Use Application Insights to orchestrate OTLP resources and to explore OpenTelemetry signals ingested into Azure Monitor.
 ms.topic: how-to
-ms.date: 11/08/2025
+ms.date: 11/10/2025
+ms.reviewer: kayodeprinceMS
 ROBOTS: NOINDEX
 ---
 
@@ -11,9 +12,8 @@ ROBOTS: NOINDEX
 This article shows how to use **Application Insights** to orchestrate resources for OpenTelemetry Protocol (OTLP) signal ingestion and how to explore OTLP **metrics**, **logs**, and **traces** after ingestion.
 
 > [!IMPORTANT]
-> This feature is a **limited preview**:
+> This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads. 
 >  
-> Preview features are provided without a service-level agreement and aren't recommended for production workloads. 
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites
