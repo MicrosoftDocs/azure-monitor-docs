@@ -2,7 +2,7 @@
 title: How to create Resource Health alerts in Service Health
 description: Create alerts in Azure Service Health to notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 11/07/2025 
+ms.date: 11/10/2025 
 
 ---
 
@@ -36,7 +36,6 @@ This article shows you how to create and configure Azure Resource Health alerts 
 >[!TIP]
 >Select the *Next:* button at the bottom of each tab to open the next one, or select the name at the top of the wizard.<br>
 
-:::image type="content" source="./media/resource-health/resource-health-create-condition.PNG" alt-text="Screenshot of Resource Health condition tab." lightbox="./media/resource-health/resource-health-create-condition.PNG":::
 
 On this tab, you can set the alert for: 
 - Event status
@@ -53,11 +52,10 @@ On this tab, you can set the alert for:
     -     
 Alert Conditions you can configure:
     
-   
+  :::image type="content" source="./media/resource-health/resource-health-create-condition.PNG" alt-text="Screenshot of Resource Health condition tab." lightbox="./media/resource-health/resource-health-create-condition.PNG"::: 
  
      
 1. Select how you want to receive the alerts in the **Actions** tab.<br>
-    1. 
 1. In the **Details** tab, you set up the subscription and resource group you save the alert rule for.
 1. In the **Tags** pane, you pick the name and value of tags that you want to apply to different resources. For more information, see [Learn more about using tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 1. Finally, in the **review + create** tab you see all the settings you selected and can select **Create** to finish, or **Previous** to change any settings. 
