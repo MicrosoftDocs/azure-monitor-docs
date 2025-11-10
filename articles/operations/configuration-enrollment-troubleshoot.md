@@ -15,14 +15,14 @@ This article provides troubleshooting steps for issues that may occur when enabl
 
 
 ## Errors during enrollment
-The following sections describe common errors that may occur when enabling machine enrollment for a subscription.
+Following are common errors that may occur when enabling machine enrollment for a subscription.
 
-### Change Log Analytics workspace or Azure Monitor workspace
+**Change Log Analytics workspace or Azure Monitor workspace**
 If you've already configured machine enrollment and then enable it again using a different Log Analytics workspace or Azure Monitor workspace, you'll get an error saying that the workspace can't be changed once it's set. 
 
 To change either of the workspaces, you must first [disable the subscription](#disable-a-subscription) and then re-enable it with the new workspaces. All machines in the subscription will be re-enrolled and configured with the new workspaces, but any data already collected in the old workspace will be retained. 
 
-### Disable Defender for cloud
+**Disable Defender for cloud**
 You'll receive and error if you attempt to disable Defender for cloud for subscription that was already enabled for machine enrollment. You must disable the subscription from the Defender for cloud portal.
 
 
@@ -30,7 +30,7 @@ You'll receive and error if you attempt to disable Defender for cloud for subscr
 If you don't get any errors during enrollment, but the machines in the subscription are not being onboarded to the selected services, then use the following sections to verify that the enrollment worked as expected.
 
 ## Verify objects created
-First, verify that the objects in the following table are created in the resource group for the Log Analytics workspace and Azure Monitor workspace. These are the DCRs and solutions that enable change tracking and data collection for Azure Monitor.
+Start by verifying that the objects in the following table are created in the resource group for the Log Analytics workspace and Azure Monitor workspace. These are the DCRs and solutions that enable change tracking and data collection for Azure Monitor.
 
 | Type | Name | Description |
 |:---|:---|:---|
@@ -49,10 +49,15 @@ Verify that the alerts have been created by checking for the following rules in 
 - `ManagedOps-Slow-Disk-Operations-Alert`
 - `ManagedOps-VM-Availability-Alert`
 
+:::image type="content" source="./media/configuration-enrollment-troubleshoot/resource-group-objects.png" lightbox="./media/configuration-enrollment-troubleshoot/resource-group-objects.png" alt-text="Screenshot showing objects in the resource group created by subscription enablement.":::
+
 
 ## Check deployments for errors
 
 If you don't see any of these objects within a few minutes of enabling the subscription, check for any errors in the deployments that are responsible for creating them. Open **Deployments** in the resource group and search for deployments with `Managedops` in the name. For example, `Managedops-ChangeTracking-{Subscription Id}` and `Managedops-AzureMonitor-{Subscription Id}`.
+
+:::image type="content" source="./media/configuration-enrollment-troubleshoot/deployments.png" lightbox="./media/configuration-enrollment-troubleshoot/deployments.png" alt-text="Screenshot showing deployments in the resource group created by subscription enablement.":::
+
 
 If you're not able to locate the deployments, check the activity log for the resource group. Search for `Managedops` to identify any activity related to machine enablement.
 
