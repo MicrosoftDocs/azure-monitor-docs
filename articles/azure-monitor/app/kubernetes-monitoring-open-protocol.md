@@ -2,7 +2,7 @@
 title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) (Limited Preview)
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 11/11/2025
 ms.reviewer: kaprince
 ROBOTS: NOINDEX
 ---
@@ -78,7 +78,9 @@ Telemetry flows to **Application Insights**, where you analyze application perfo
 2. In the Azure portal, open the AKS **Monitor** pane and then **Monitor settings**.  
    Turn on **Enable application monitoring** and select **Review + enable**.
 
-:::image type="content" source="./media/kubernetes-monitoring-open-protocol/14.png" alt-text="Monitor settings in AKS with the 'Enable application monitoring' option selected under Application monitoring (preview).":::
+:::image type="content" source="./media/kubernetes-monitoring-open-protocol/14a.png" alt-text="Monitor settings in AKS with the 'Enable application monitoring' option selected under Application monitoring (preview).":::
+
+:::image type="content" source="./media/kubernetes-monitoring-open-protocol/14b.png" alt-text="Another Monitor settings in AKS with the 'Enable application monitoring' option selected under Application monitoring (preview).":::
 
 ## 3. Create an Application Insights resource with OTLP support
 
@@ -140,7 +142,9 @@ Return to **Application Monitoring (Preview)** for the namespace. Expand **Deplo
 
 Use Container Insights to explore application performance in the context of your cluster. From **Monitor** in the AKS resource, open **Controllers** and then select a controller to review request failures, slow operations, and suggested investigations.
 
-:::image type="content" source="./media/kubernetes-monitoring-open-protocol/20.png" alt-text="Container Insights Controllers view with a controller details pane that shows Application Performance Metrics for top failing and slowest requests.":::
+:::image type="content" source="./media/kubernetes-monitoring-open-protocol/20a.png" alt-text="Container Insights Controllers view with a controller details pane that shows Application Performance Metrics for top failing and slowest requests.":::
+
+:::image type="content" source="./media/kubernetes-monitoring-open-protocol/20b.png" alt-text="Another Container Insights Controllers view with a controller details pane that shows Application Performance Metrics for top failing and slowest requests.":::
 
 ## Advanced onboarding (custom resources)
 

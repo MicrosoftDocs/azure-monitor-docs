@@ -2,7 +2,7 @@
 title: OTLP Signal Ingestion in Azure Monitor (Limited Preview)
 description: Configure OpenTelemetry Protocol (OTLP) ingestion into Azure Monitor using Azure Monitor Agent, Data Collection Rules and Endpoints, or the OpenTelemetry Collector.
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 11/11/2025
 ms.reviewer: kaprince
 ROBOTS: NOINDEX
 ---
