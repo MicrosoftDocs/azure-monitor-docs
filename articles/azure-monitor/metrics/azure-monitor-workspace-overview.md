@@ -100,10 +100,12 @@ When you create a new Azure Monitor workspace, you provide a region which sets t
 | Italy         | Italy North                                                                                      |
 | Japan         | Japan East, Japan West                                                                           |
 | Korea         | Korea Central, Korea South                                                                       |
+| Mexico        | Mexico Central                                                                                   |
 | Norway        | Norway East, Norway West                                                                         |
 | Spain         | Spain Central                                                                                    |
 | Sweden        | Sweden South, Sweden Central                                                                     |
 | Switzerland   | Switzerland North, Switzerland West                                                              |
+| Taiwan        | Taiwan North, Taiwan North West                                                                  |
 | UAE           | UAE North, UAE Central                                                                           |
 | UK            | UK South, UK West                                                                                |
 | US            | Central US, East US, East US 2, South Central US, West Central US, West US, West US 2, West US 3 |
