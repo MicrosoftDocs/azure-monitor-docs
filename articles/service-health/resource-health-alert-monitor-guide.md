@@ -2,7 +2,7 @@
 title: Resource Health Alerts in Azure portal
 description: Resource health alerts notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 6/26/2025
+ms.date: 11/11/2025
 ---
 
 # Resource Health alerts 
@@ -23,10 +23,21 @@ Resource Health alerts are created when the health status of a specific Azure re
 **Degraded** – The resource is experiencing performance or connectivity issues.<br>
 **Unknown** – Azure is unable to determine the health of the resource.
 
-Unlike Service Health alerts, which are tied to known platform-wide issues (like regional outages), Resource Health alerts are resource-specific and can detect issues even when no broader Azure incident is occurring. For more information, see [Resource Health overview](resource-health-overview.md)
+Unlike Service Health alerts, which are tied to known platform-wide issues (like regional outages), Resource Health alerts are resource-specific and can detect issues even when no broader Azure incident is occurring. For more information, see [Resource Health overview](resource-health-overview.md).
+
+Here's a quick reference table for Resource Health alert conditions:
 
 
-For more information on how to create a Resource Health alert see [Create a Resource Health alert](resource-health-alert-arm-template-guide.md)
+|Condition type    |Possible values  |When to use |
+|------------------|-----------------|---------|
+|Event status      |Active, Resolved, In progress |**Active**: Get notified when an issue starts.<br> **Resolved**: Track the recovery.<br> **In progress**: Monitor any ongoing corrections and repairs.        |
+|Resource status   |Available, Unavailable, Degraded, Unknown |**Unavailable**: Respond to outages. <br> **Degraded**: Address any performance issues.<br>**Unknown**: Investigate and missing health information.         |
+|Status transition |Previous to Current |**Example**: A resource that was unavailable now is available. *Use this option for SLA tracking or recovery alerts.*         |
+|Reason type       |Platform Initiated or User Initiated |**Platform initiated**: This setting would be an Azure maintenance or incident. <br>**User initiated**: a user stops or deallocates a resource.          |
+
+
+
+For more information on how to create a Resource Health alert, see [Create a Resource Health alert](resource-health-alert-arm-template-guide.md).
 
 ## Resource Health alerts in Azure portal
 Azure Resource Health keeps you informed about the current and historical health status of your Azure resources. These alerts notify you when these resources have a change in their health status.
