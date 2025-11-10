@@ -77,9 +77,9 @@ Telemetry flows to **Application Insights**, where you analyze application perfo
 
 If the cluster wasn't previously onboarded, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
 
-:::image type="content" source="./media/kubernetes-open-protocol/14a.png" alt-text="Monitor settings in AKS with the 'Enable application monitoring' option selected under Application monitoring (preview).":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-settings-enable-application.png" alt-text="Azure settings page showing enable application option.":::
 
-:::image type="content" source="./media/kubernetes-open-protocol/14b.png" alt-text="Another Monitor settings in AKS with the 'Enable application monitoring' option selected under Application monitoring (preview).":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-settings-review-enable.png" alt-text="Azure settings review page showing enable application option.":::
 
 ## 3. Create an Application Insights resource with OTLP support
 
@@ -89,7 +89,7 @@ Create or select an Application Insights resource that supports OTLP and uses **
 2. Turn on **Enable OTLP Support (Preview)**.
 3. Set **Use managed workspaces** to **Yes**.
 
-:::image type="content" source="./media/kubernetes-open-protocol/15.png" alt-text="Create Application Insights page showing 'Enable OTLP Support (Preview)' selected and 'Use managed workspaces' set to Yes.":::
+:::image type="content" source="./media/kubernetes-open-protocol/application-insights-create-enable.png" alt-text="Create Application Insights resource with enable option selected.":::
 
 > [!IMPORTANT]
 > - Use an **Azure Monitor workspace** that's **different** from the workspace used for infrastructure metrics in step 2.
@@ -104,7 +104,7 @@ You can onboard **all deployments in a namespace** or target **individual deploy
 1. In the AKS resource, expand **Kubernetes resources**.
 2. Open **Namespaces**, then select the namespace that hosts your workloads.
 
-:::image type="content" source="./media/kubernetes-open-protocol/16.png" alt-text="Namespaces list in the AKS resource under Kubernetes resources.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-namespaces-list.png" alt-text="Azure namespaces list under Kubernetes resources.":::
 
 ### 4.2 Configure Application Monitoring (Preview)
 
@@ -117,7 +117,7 @@ You can onboard **all deployments in a namespace** or target **individual deploy
 5. Leave **Perform rollout restart of all deployments** cleared. You perform the restart manually in the next step.
 6. Select **Configure**.
 
-:::image type="content" source="./media/kubernetes-open-protocol/17.png" alt-text="Configure Application Monitoring (Preview) pane for a namespace showing Application Insights selection, Instrumentation type, and Application language.":::
+:::image type="content" source="./media/kubernetes-open-protocol/application-configuration-pane.png" alt-text="Configuration pane for application with resource and language selections.":::
 
 ### 4.3 Restart deployments to apply changes
 
@@ -127,13 +127,13 @@ Perform a rollout restart for deployments in the target namespace from **Run com
 kubectl rollout restart deployment -n <your-namespace>
 ```
 
-:::image type="content" source="./media/kubernetes-open-protocol/18.png" alt-text="Run command pane showing a kubectl rollout restart deployment command that targets a namespace.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-run-command-rollout.png" alt-text="Azure run command screen showing rollout restart command.":::
 
 ### 4.4 Confirm instrumented status
 
 Return to **Application Monitoring (Preview)** for the namespace. Expand **Deployments in this namespace** and confirm that deployments show **Instrumented** status.
 
-:::image type="content" source="./media/kubernetes-open-protocol/19.png" alt-text="Application Monitoring (Preview) pane listing deployments with status 'Instrumented'.":::
+:::image type="content" source="./media/kubernetes-open-protocol/application-deployments-status.png" alt-text="Application deployments list showing instrumented status.":::
 
 > [!TIP]
 > After a few minutes, telemetry appears in the connected Application Insights resource.
@@ -142,9 +142,9 @@ Return to **Application Monitoring (Preview)** for the namespace. Expand **Deplo
 
 Explore application performance in the context of your cluster using Container Insights. From **Monitor** in the AKS resource, open **Controllers** and then select a controller to review request failures, slow operations, and suggested investigations.
 
-:::image type="content" source="./media/kubernetes-open-protocol/20a.png" alt-text="Container Insights Controllers view with a controller details pane that shows Application Performance Metrics for top failing and slowest requests.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-view.png" alt-text="Controller view showing performance metrics and failed requests.":::
 
-:::image type="content" source="./media/kubernetes-open-protocol/20b.png" alt-text="Another Container Insights Controllers view with a controller details pane that shows Application Performance Metrics for top failing and slowest requests.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-altview.png" alt-text="Alternate controller view showing performance metrics and failed requests.":::
 
 To drill down to Container Insights, select an application component node in the Application Map.
 
