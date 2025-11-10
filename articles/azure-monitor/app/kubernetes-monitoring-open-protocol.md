@@ -9,7 +9,7 @@ ROBOTS: NOINDEX
 
 # Monitor AKS applications with OpenTelemetry Protocol (OTLP) Limited Preview
 
-OpenTelemetry provides a standardized way to emit traces, logs, metrics, and exceptions. Azure Monitor adds **Limited Preview** support for monitoring applications that run on Azure Kubernetes Service (AKS) by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection.
+OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azure Monitor adds **Limited Preview** support for monitoring applications that run on Azure Kubernetes Service (AKS) by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection.
 
 > [!IMPORTANT]
 > This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads. 
@@ -19,6 +19,7 @@ OpenTelemetry provides a standardized way to emit traces, logs, metrics, and exc
 ## Key capabilities:
 
 - Enable cluster-level monitoring to install Azure Monitor components on the AKS cluster.
+- Create an Application Insights resource with OTLP ingestion enabled.
 - Onboard applications at the namespace or deployment scope by using either:
   - **Autoinstrumentation** with the Azure Monitor OpenTelemetry distribution.
   - **Autoconfiguration** for applications already instrumented with the open-source OpenTelemetry Software Development Kits (SDKs).
@@ -26,7 +27,6 @@ OpenTelemetry provides a standardized way to emit traces, logs, metrics, and exc
 Telemetry flows to **Application Insights**, where you analyze application performance in context with Container Insights.
 
 > [!IMPORTANT]
-> - Supported regions: **South Central US** and **West Europe**.
 > - Unsupported node pools: **Windows (any architecture)** and **Linux Arm64**.
 > The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -66,9 +66,6 @@ Telemetry flows to **Application Insights**, where you analyze application perfo
    az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
    az feature list -o table --query "[?contains(name, 'Microsoft.Insights/OtlpApplicationInsights')].{Name:name,State:properties.state}"
 
-   az feature register --name testingLogsOtelManagedResourcesEnabled --namespace Microsoft.Insights
-   az feature list -o table --query "[?contains(name, 'Microsoft.Insights/testingLogsOtelManagedResourcesEnabled')].{Name:name,State:properties.state}"
-
    az provider register -n Microsoft.Insights
    ```
 
@@ -77,6 +74,8 @@ Telemetry flows to **Application Insights**, where you analyze application perfo
 1. Ensure the cluster is onboarded to Azure Monitor metrics and logs. Use **Enable monitoring for AKS clusters** in Azure Monitor (Application Insights isn't required yet).
 2. In the Azure portal, open the AKS **Monitor** pane and then **Monitor settings**.  
    Turn on **Enable application monitoring** and select **Review + enable**.
+
+If the cluster was not previously onboarded, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
 
 :::image type="content" source="./media/kubernetes-monitoring-open-protocol/14a.png" alt-text="Monitor settings in AKS with the 'Enable application monitoring' option selected under Application monitoring (preview).":::
 
@@ -93,7 +92,8 @@ Create or select an Application Insights resource that supports OTLP and uses **
 :::image type="content" source="./media/kubernetes-monitoring-open-protocol/15.png" alt-text="Create Application Insights page showing 'Enable OTLP Support (Preview)' selected and 'Use managed workspaces' set to Yes.":::
 
 > [!IMPORTANT]
-> Use an **Azure Monitor workspace** that's **different** from the workspace used for infrastructure metrics in step 2.
+> - Use an **Azure Monitor workspace** that's **different** from the workspace used for infrastructure metrics in step 2.
+> - Managed workspaces create a separate Azure Monitor workspace for Application Insights application telemetry; use a distinct workspace from the one used for infrastructure metrics.
 
 ## 4. Onboard applications to Application Insights
 
@@ -145,6 +145,10 @@ Use Container Insights to explore application performance in the context of your
 :::image type="content" source="./media/kubernetes-monitoring-open-protocol/20a.png" alt-text="Container Insights Controllers view with a controller details pane that shows Application Performance Metrics for top failing and slowest requests.":::
 
 :::image type="content" source="./media/kubernetes-monitoring-open-protocol/20b.png" alt-text="Another Container Insights Controllers view with a controller details pane that shows Application Performance Metrics for top failing and slowest requests.":::
+
+Select an application component node in the Application Map to drill down to Container Insights.
+
+Select the node and click on Investigate Pods in the AKS monitoring tile.
 
 ## Advanced onboarding (custom resources)
 
