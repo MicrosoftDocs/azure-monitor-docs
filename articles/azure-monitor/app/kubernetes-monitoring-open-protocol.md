@@ -75,7 +75,7 @@ Telemetry flows to **Application Insights**, where you analyze application perfo
 2. In the Azure portal, open the AKS **Monitor** pane and then **Monitor settings**.  
    Turn on **Enable application monitoring** and select **Review + enable**.
 
-If the cluster was not previously onboarded, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
+If the cluster wasn't previously onboarded, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
 
 :::image type="content" source="./media/kubernetes-monitoring-open-protocol/14a.png" alt-text="Monitor settings in AKS with the 'Enable application monitoring' option selected under Application monitoring (preview).":::
 
@@ -140,15 +140,15 @@ Return to **Application Monitoring (Preview)** for the namespace. Expand **Deplo
 
 ## 5. View application signals in Container Insights
 
-Use Container Insights to explore application performance in the context of your cluster. From **Monitor** in the AKS resource, open **Controllers** and then select a controller to review request failures, slow operations, and suggested investigations.
+Explore application performance in the context of your cluster using Container Insights. From **Monitor** in the AKS resource, open **Controllers** and then select a controller to review request failures, slow operations, and suggested investigations.
 
 :::image type="content" source="./media/kubernetes-monitoring-open-protocol/20a.png" alt-text="Container Insights Controllers view with a controller details pane that shows Application Performance Metrics for top failing and slowest requests.":::
 
 :::image type="content" source="./media/kubernetes-monitoring-open-protocol/20b.png" alt-text="Another Container Insights Controllers view with a controller details pane that shows Application Performance Metrics for top failing and slowest requests.":::
 
-Select an application component node in the Application Map to drill down to Container Insights.
+To drill down to Container Insights, select an application component node in the Application Map.
 
-Select the node and click on Investigate Pods in the AKS monitoring tile.
+Select the node and then **Investigate Pods** in the AKS monitoring tile.
 
 ## Advanced onboarding (custom resources)
 
