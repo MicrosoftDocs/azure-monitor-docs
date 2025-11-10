@@ -28,7 +28,7 @@ Benefits of the new OTel-based collection pipeline include the following:
 ## Enable OpenTelemetry for VM insights
 
 > [!NOTE]
-> The Azure portal is currently the only supported method to enable OpenTelemetry for VM insights.
+> Onboarding to VM Insights through the Azure portal automatically creates a new Data Collection Rule (DCR) for each VM. To use an existing DCR, see [Collect performance counters from virtual machine with Azure Monitor](./data-collection-performance.md)
 
 1. Select a VM in the Azure portal and navigate to the **Insights** pane under the **Monitoring** section. 
 
@@ -82,7 +82,6 @@ See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/da
                     "samplingFrequencyInSeconds": 60,
                     "counterSpecifiers": [
                         "system.filesystem.usage",
-                        "system.filesystem.utilization",
                         "system.disk.io",
                         "system.disk.operation_time",
                         "system.disk.operations",
@@ -118,7 +117,6 @@ See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/da
     }
 }
 ```
-
 
 
 ## Troubleshooting
