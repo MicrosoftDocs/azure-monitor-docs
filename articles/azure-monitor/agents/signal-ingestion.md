@@ -85,45 +85,45 @@ If the Collector runs on **Azure VMs or VMSS**, enable a **system-assigned manag
 
 1. **Register an application.** In **Microsoft Entra ID**, open **App registrations** and select **New registration**.
 
-   :::image type="content" source="./media/signal-ingestion/3.png" alt-text="Microsoft Entra ID App registrations menu listing existing applications.":::
+   :::image type="content" source="./media/signal-ingestion/microsoft-entra-application-registrations.png" alt-text="Microsoft Entra application registrations with new registration action.":::
 
-   :::image type="content" source="./media/signal-ingestion/4.png" alt-text="Register an application form with name and supported account types fields.":::
+   :::image type="content" source="./media/signal-ingestion/microsoft-entra-register-application.png" alt-text="Register an application form with name and account types.":::
 
 2. **Capture IDs.** After registration, note the **Application (client) ID** and **Directory (tenant) ID**.
 
-   :::image type="content" source="./media/signal-ingestion/5.png" alt-text="Application registration overview showing the client ID and tenant ID values.":::
+   :::image type="content" source="./media/signal-ingestion/microsoft-entra-application-overview.png" alt-text="Application overview with client identifier and directory identifier values.":::
 
 3. **Create a client secret.** Open **Certificates & secrets**, select **New client secret**, provide a description, and select an expiration.
 
-   :::image type="content" source="./media/signal-ingestion/6.png" alt-text="Add a client secret panel with description and expiration options.":::
+   :::image type="content" source="./media/signal-ingestion/microsoft-entra-add-client-secret.png" alt-text="Add client secret with description and expiration.":::
 
 4. **Store the secret.** Select **Add**, then copy the secret value and store it securely.
 
-   :::image type="content" source="./media/signal-ingestion/7.png" alt-text="Certificates & secrets list showing a newly created client secret and its value.":::
+   :::image type="content" source="./media/signal-ingestion/microsoft-entra-client-secret-value.png" alt-text="Client secrets list showing new secret value.":::
 
 #### Assign permissions to the DCR
 
 1. Open the **DCR** and navigate to **Access control (IAM)**. Select **Add role assignment**.
 
-   :::image type="content" source="./media/signal-ingestion/8.png" alt-text="Access control (IAM) menu for the Data Collection Rule.":::
+   :::image type="content" source="./media/signal-ingestion/data-collection-rule-access-control.png" alt-text="Data collection rule access control menu.":::
 
 2. Select **Monitoring Metrics Publisher** and continue.
 
-   :::image type="content" source="./media/signal-ingestion/9.png" alt-text="Add role assignment flow highlighting the Monitoring Metrics Publisher role.":::
+   :::image type="content" source="./media/signal-ingestion/role-assignment-metrics-publisher.png" alt-text="Role selection list highlighting metrics publisher role.":::
 
 3. For **Assign access to**, select **User, group, or service principal**, choose the application or managed identity, and select **Select**.
 
-   :::image type="content" source="./media/signal-ingestion/10.png" alt-text="Member selection dialog for choosing a service principal.":::
+   :::image type="content" source="./media/signal-ingestion/role-assignment-select-members.png" alt-text="Member selection dialog for service principal.":::
 
 4. Review and assign the role.
 
-   :::image type="content" source="./media/signal-ingestion/11.png" alt-text="Review and assign step confirming the role assignment to the selected principal.":::
+   :::image type="content" source="./media/signal-ingestion/role-assignment-review-assign.png" alt-text="Review and assign step with selected application.":::
 
 #### Build the ingestion endpoint URLs
 
 1. Open the **DCE** and select **JSON view**. Copy the **logsIngestion** and **metricsIngestion** endpoint domains.
 
-   :::image type="content" source="./media/signal-ingestion/12.png" alt-text="Data Collection Endpoint page with JSON view selected, showing logsIngestion and metricsIngestion endpoint values.":::
+   :::image type="content" source="./media/signal-ingestion/data-collection-endpoint-details.png" alt-text="Data collection endpoint page with structured data view link.":::
 
    Example structure:
 
@@ -138,7 +138,7 @@ If the Collector runs on **Azure VMs or VMSS**, enable a **system-assigned manag
 
 2. Open the **DCR** and copy the **Immutable ID** from the **Overview** menu.
 
-   :::image type="content" source="./media/signal-ingestion/13.png" alt-text="Data Collection Rule overview showing the Immutable ID value.":::
+   :::image type="content" source="./media/signal-ingestion/data-collection-rule-immutable-identifier.png" alt-text="Data collection rule overview with immutable identifier.":::
 
 3. Combine the values to form the three OTLP endpoints:
 

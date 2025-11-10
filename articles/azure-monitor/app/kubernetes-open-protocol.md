@@ -144,7 +144,7 @@ Explore application performance in the context of your cluster using Container I
 
 :::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-view.png" alt-text="Controller view showing performance metrics and failed requests.":::
 
-:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-altview.png" alt-text="Alternate controller view showing performance metrics and failed requests.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-alternate-view.png" alt-text="Alternate controller view showing performance metrics and failed requests.":::
 
 To drill down to Container Insights, select an application component node in the Application Map.
 
