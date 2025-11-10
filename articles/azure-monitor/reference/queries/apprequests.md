@@ -74,10 +74,10 @@ AppRequests
 
 
 
-### Top 10 countries by traffic  
+### Top 10 countries/regions by traffic  
 
 
-Chart the amount of requests from the top 10 countries.  
+Chart the amount of requests from the top 10 countries/regions.  
 
 ```query
 AppRequests
