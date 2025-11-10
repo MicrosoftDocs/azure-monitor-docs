@@ -7,7 +7,7 @@ ms.date: 11/10/2025
 
 # Resource Health alerts 
 
-Resource Health alerts in Azure Service Health are a proactive monitoring feature that notifies you when the health status of individual Azure resources such as virtual machines, storage accounts, or web apps, change.
+Resource Health alerts in Azure Service Health are a proactive monitoring feature that notifies you when the health status of individual Azure resources such as virtual machines, storage accounts, or web apps change.
 <br>
 These alerts are distinct from general Service Health alerts, which focus on broader platform-level issues. 
 
