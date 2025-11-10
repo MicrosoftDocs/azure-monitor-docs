@@ -23,7 +23,7 @@ The default pricing for Log Analytics is a pay-as-you-go model that's based on i
 
 A list of Azure Monitor billing meter names is available [here](../cost-meters.md). 
 
-If a workspace as Microsoft Sentinel enabled, data ingestion for Auxiliary and Basic Logs is billed using Sentinel meters.  If a workspace has Microsoft Sentinel enabled and is in a Sentinel simplified plan tier, data ingestion for Analytics Logs is billed using Sentinel meters. If Sentinel has data lake enabled, then query, search job and long-term retention on the workspace is billed using Sentinel meters. 
+If a workspace has [Microsoft Sentinel](https://azure.microsoft.com/pricing/details/azure-sentinel) enabled, data ingestion for Auxiliary and Basic Logs is billed using Sentinel meters.  If a workspace has Microsoft Sentinel enabled and is in a Sentinel simplified plan tier, data ingestion for Analytics Logs is billed using Sentinel meters. If Sentinel has data lake enabled, then query, search job and long-term retention on the workspace is billed using Sentinel meters. 
 
 ## Data size calculation
 
