@@ -1716,7 +1716,7 @@ items:
     - name: Using Application Insights with OTLP Signals
       href: app/signal-integration.md
     - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
-      href: app/kubernetes-monitoring-open-protocol.md
+      href: app/kubernetes-open-protocol.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources
