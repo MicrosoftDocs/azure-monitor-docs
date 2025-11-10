@@ -15,7 +15,8 @@ Learn about the latest updates and changes in Azure Advisor with the items in th
 Azure Advisor now supports the concept of Critical Risks. Critical Risks are associated with a prioritized set of recommendations designed to protect your most essential workloads from outages. Instead of navigating long lists of suggestions, you see a small set of key risks and corresponding recommendations that matter most for availability and business continuity. 
 
 >[!NOTE]
->Currently this experience is only available to customers on enhanced support plans with account managers. 
+>Currently this experience is only available to customers on enhanced support plans with account managers.
+
 Advisor flags the following risks as foundational to application availability: 
 
 * Zonal Resiliency for Networking Services 
