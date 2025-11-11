@@ -24,7 +24,7 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 
 ### Choose your monitoring approach
 
-Getting started will look different depending on how and where you're building your agents:
+Getting started looks different depending on how and where you're building your agents:
 
 * **Azure AI Foundry:** You can collect telemetry from your agentic application using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and the [Azure AI Foundry SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk).
 
@@ -40,11 +40,11 @@ Getting started will look different depending on how and where you're building y
     * [Enable tracing for Agents built on LangChain & LangGraph](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-langchain--langgraph).
     * [Enable tracing for Agents built on OpenAI Agents SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-openai-agents-sdk)
 
-Regardless of which approach you use, consider the following:
+> [TIP]
+> If your agentic components are part of a larger application, it may make sense to send them to an existing Application Insights resource.
 
-* If your agentic components are part of a larger application, it may make sense to send them to an existing Application Insights resource.
-
-* To see your Agents in AI Foundry (in addition to Azure Monitor), you need to [connect an Application Insights resource to your Foundry Project](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
+> [!NOTE]
+> To see your Agents in AI Foundry (in addition to Azure Monitor), you need to [connect an Application Insights resource to your Foundry Project](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
 
 ### Set up evaluations
 
@@ -102,7 +102,7 @@ To drill into specific agent runs:
 
 The end-to-end transaction details now offer a *simple view*, which shows agent steps in a clear, story-like fashion, including the invoked agent, underlying LLM, executed tools, and more.
 
-This allows you to quickly find the relevant telemetry and transition to Azure AI Foundry or other tools to make the necessary changes.
+Simple view allows you to quickly find the relevant telemetry and transition to Azure AI Foundry or other tools to make the necessary changes.
 
 > [!NOTE]
 > To return to the traditional view, select **Leave simple view** in the top action bar.
