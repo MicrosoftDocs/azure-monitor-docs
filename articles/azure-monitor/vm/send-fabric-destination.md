@@ -17,8 +17,7 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 - Each VM must have a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) assigned to it.
 - Each [AMA must be configured to use the managed identity for authentication](../agents/azure-monitor-agent-requirements.md#permissions).
 - The DCR region must match the region of the ADX cluster or Fabric eventhouse destination.
-- The minimum AMA version required is 1.39.0 for Windows and 1.38.0 Linux. 
-  <br>For more information, see [Azure Monitor agent version details](../agents/azure-monitor-agent-extension-versions.md#version-details).
+- The minimum [AMA version](../agents/azure-monitor-agent-extension-versions.md#version-details) required is 1.39.0 for Windows and 1.38.0 Linux. 
 
 ## Permissions
 
@@ -36,7 +35,7 @@ The DCR creation process adds the [NativeIngestion](/azure/data-explorer/ingest-
 ## Create a data collection rule
 
 1. In the Azure portal, on the **Monitor** menu, select **Data Collection Rules** > **Create** to open the DCR creation pane.
-1. Select the option presented by the informational banner to preview the new Data Collection Rule creation experience. For more information, see [Create a data collection rule](../vm/data-collection.md?tabs=preview#create-a-data-collection-rule).
+1. Select the option presented by the informational banner to preview the [new Data Collection Rule creation experience](../vm/data-collection.md?tabs=preview#create-a-data-collection-rule).
 
    :::image type="content" source="./media/send-fabric-destination/preview-experience.png" alt-text="Screenshot of the informational banner to click in order to preview the new Data Collection Rule creation experience.":::
 
