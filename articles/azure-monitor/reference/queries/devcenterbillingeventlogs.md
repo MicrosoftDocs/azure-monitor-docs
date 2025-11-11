@@ -13,7 +13,7 @@ ms.date: 05/06/2025
 
 # Queries for the DevCenterBillingEventLogs table
 
-For information on using these queries in the Azure portal, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial). For the REST API, see [Query](/rest/api/loganalytics/query).
+For information on using these queries in the Azure portal, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial). For the REST API, see [Query](/azure/azure-monitor/logs/api/overview).
 
 
 ### DevCenter - DevBox storage and compute usage breakdown by dev box  

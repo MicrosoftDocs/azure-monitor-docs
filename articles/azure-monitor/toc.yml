@@ -147,6 +147,8 @@ items:
           displayName: SDK, Node.js, nodejs, JavaScript, js
     - name: Experiences
       items:
+      - name: Agent details
+        href: app/agents-view.md
       - name: Application dashboard
         displayName: dashboard, Application Insights dashboard
         href: app/overview-dashboard.md
@@ -166,6 +168,8 @@ items:
         href: app/usage.md
       - name: Work item integration
         href: app/work-item-integration.md
+      - name: Grafana dashboards
+        href: app/grafana-dashboards.md
     - name: Code analysis
       items:
       - name: Code Optimizations
@@ -1431,20 +1435,6 @@ items:
           href: logs/api/migrate-batch-and-beta.md
   - name: Get the Activity log using the REST API
     href: platform/rest-activity-log.md
-  - name: Change Analysis (classic)
-    items:
-    - name: Overview
-      href: change/change-analysis.md
-    - name: Migrate Change Analysis
-      href: change/change-analysis-migration.md
-    - name: Enable
-      href: change/change-analysis-enable.md
-    - name: Visualizations
-      href: change/change-analysis-visualizations.md
-    - name: Track a web outage
-      href: change/change-analysis-track-outages.md
-    - name: Troubleshoot
-      href: change/change-analysis-troubleshoot.md
 - name: Respond
   items:
   - name: Alerts

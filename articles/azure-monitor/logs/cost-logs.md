@@ -23,6 +23,8 @@ The default pricing for Log Analytics is a pay-as-you-go model that's based on i
 
 A list of Azure Monitor billing meter names is available [here](../cost-meters.md). 
 
+If a workspace has [Microsoft Sentinel](https://azure.microsoft.com/pricing/details/azure-sentinel) enabled, data ingestion for Auxiliary and Basic Logs is billed using Sentinel meters.  If a workspace has Microsoft Sentinel enabled and is in a Sentinel simplified plan tier, data ingestion for Analytics Logs is billed using Sentinel meters. If Sentinel has data lake enabled, then query, search job and long-term retention on the workspace is billed using Sentinel meters. 
+
 ## Data size calculation
 
 Azure Monitor Logs bills for the amount of data you send to a Log Analytics workspace in GB (10^9 bytes). 
@@ -33,7 +35,7 @@ The billed size of a single record as follows:
 
 - For events ingested as Auxiliary Logs, the size is calculated as the uncompressed size of the column entries that Azure Monitor Logs needs to write to the Log Analytics workspace. 
 
-The billable size includes data both data is collected from the data source or added during the ingestion process. For example, this calculation includes any custom columns added by the [logs ingestion API](logs-ingestion-api-overview.md), [transformations](../essentials/data-collection-transformations.md), and [custom fields](custom-fields.md). If you send columns entries that don't match the destination table schema, Azure Monitor Logs bills you for those column entries, even though the destination table can't store the data. Make sure your data collection rules match the destination table schema to avoid being charged for data that your destination table can't store. 
+The billable size includes data collected from the data source or added during the ingestion process. For example, this calculation includes any custom columns added by the [logs ingestion API](logs-ingestion-api-overview.md), [transformations](../essentials/data-collection-transformations.md), and [custom fields](custom-fields.md). If you send columns entries that don't match the destination table schema, Azure Monitor Logs bills you for those column entries, even though the destination table can't store the data. Make sure your data collection rules match the destination table schema to avoid being charged for data that your destination table can't store. 
 
 > [!NOTE]
 > The billable data volume calculation is generally substantially smaller than the size of the entire incoming JSON-packaged event. On average across all event types, the billed size is around 25 percent less than the incoming data size for Analytics and Basic Logs. It can be up to 50 percent for small events. The percentage includes the effect of the standard columns excluded from billing (see below). It's essential to understand this calculation of billed data size when you estimate costs and compare other pricing models.
@@ -132,7 +134,7 @@ Retrieve data from long-term retention by running [search jobs](search-jobs.md).
 
 ## Log data restore
 
-When you need to intensively queried large volumes of data, or data in long-term retention with the full analytic query capabilities, the [data restore](restore.md) feature is a powerful tool. The restore operation makes a specific time range of data in a table available in the hot cache for high-performance queries. You can later dismiss the data when you're finished. Log data restore is billed by the amount of data restored, and by the time the restore is kept active. The minimal values billed for any data restore are 2 TB and 12 hours. Data restored of more than 2 TB and/or more than 12 hours in duration is billed on a pro-rated basis.
+When you need to intensively query large volumes of data, or data in long-term retention with the full analytic query capabilities, the [data restore](restore.md) feature is a powerful tool. The restore operation makes a specific time range of data in a table available in the hot cache for high-performance queries. You can later dismiss the data when you're finished. Log data restore is billed by the amount of data restored, and by the time the restore is kept active. The minimal values billed for any data restore are 2 TB and 12 hours. Data restored of more than 2 TB and/or more than 12 hours in duration is billed on a pro-rated basis.
 
 ## Log data export
 

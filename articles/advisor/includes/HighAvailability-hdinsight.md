@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability HDInsight
@@ -177,5 +177,23 @@ Recommendation ID: f0466e91-184d-4a0d-8e18-25c1cf7a4c1c
 Subcategory: undefined
 
 <!--f0466e91-184d-4a0d-8e18-25c1cf7a4c1c_end-->
+
+<!--66bfeb4c-1351-4672-b410-3ecea872b17d_begin-->
+
+#### Deploy nodes across zones or multi-cluster to keep analytics running  
+  
+Deploy HDInsight clusters in a zone-aware configuration or use multiple clusters pinned to different zones.  
+  
+**Potential benefits**: Continuous analytics during zone failures  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: 66bfeb4c-1351-4672-b410-3ecea872b17d  
+Subcategory: undefined
+
+<!--66bfeb4c-1351-4672-b410-3ecea872b17d_end-->
 
 <!--articleBody-->
