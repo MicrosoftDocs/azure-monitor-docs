@@ -28,9 +28,6 @@ This article explains how to enable and configure [Application Insights](app-ins
 
 ### [.NET](#tab/dotnet)
 
-> [!NOTE]
-> The Application Insights [SDK for ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) and [SDK for Worker Service](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) can monitor your applications no matter where or how they run. If your application is running and has network connectivity to Azure, telemetry can be collected.
-
 | Supported | ASP.NET | ASP.NET Core | Worker Service |
 |-----------|---------|--------------|----------------|
 | **Operating system** | Windows | Windows, Linux, or macOS | Windows, Linux, or macOS |
@@ -41,10 +38,10 @@ This article explains how to enable and configure [Application Insights](app-ins
 | **.NET version** | .NET Framework 4.6.1 and later | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview |
 | **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line | Visual Studio, Visual Studio Code, or command line |
 
+The Worker Service SDK doesn't do any telemetry collection by itself. Instead, it brings in other well-known Application Insights auto collectors like [DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/), [PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector/), and [ApplicationInsightsLoggingProvider](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights). This SDK exposes extension methods on `IServiceCollection` to enable and configure telemetry collection.
+
 > [!NOTE]
 > A worker service is a long-running background application that executes tasks outside of an HTTP request/response pipeline. The [Application Insights SDK for Worker Service](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) can be used in the newly introduced [.NET Core Worker Service](https://devblogs.microsoft.com/aspnet/dotnet-core-workers-in-azure-container-instances), [background tasks in ASP.NET Core](/aspnet/core/fundamentals/host/hosted-services), and console apps like .NET Core and .NET Framework. 
->
-> The Worker Service SDK doesn't do any telemetry collection by itself. Instead, it brings in other well-known Application Insights auto collectors like [DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/), [PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector/), and [ApplicationInsightsLoggingProvider](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights). This SDK exposes extension methods on `IServiceCollection` to enable and configure telemetry collection.
 
 ### [Node.js](#tab/nodejs)
 
@@ -57,6 +54,12 @@ This article explains how to enable and configure [Application Insights](app-ins
 | **Hosting platform** | Azure App Service, Azure Virtual Machines, Azure Kubernetes Service (AKS), Docker, on-premises, or any environment where Node.js is supported |
 | **Node.js version** | All officially supported Node.js LTS versions (currently 18.19.0+ or 20.6.0+ for SDK 3.X) |
 | **IDE** | Visual Studio Code, Visual Studio, or command line |
+
+The Node.js client library can automatically monitor incoming and outgoing HTTP requests, exceptions, and some system metrics. Beginning in version 0.20, the client library also can monitor some common [third-party packages](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers#currently-supported-modules), like MongoDB, MySQL, and Redis.
+
+All events related to an incoming HTTP request are correlated for faster troubleshooting.
+
+You can use the TelemetryClient API to manually instrument and monitor more aspects of your app and system. We describe the TelemetryClient API in more detail later in this article.
 
 ---
 
@@ -71,6 +74,8 @@ This article explains how to enable and configure [Application Insights](app-ins
 > * The latest version of [Visual Studio](https://www.visualstudio.com/downloads/) with the following workloads:
 >     * ASP.NET and web development
 >     * Azure development
+
+# [.NET](#tab/dotnet)
 
 ### Create a basic web application
 
@@ -825,7 +830,47 @@ The full example is shared at this [GitHub page](https://github.com/microsoft/Ap
 
 This console application also uses the same default `TelemetryConfiguration`. It can be customized in the same way as the examples in earlier sections.
 
+# [Node.js](#tab/nodejs)
+
+### Set up the Node.js client library
+
+Include the SDK in your app so that it can gather data.
+
+1. Copy your resource's connection string from your new resource. Application Insights uses the connection string to map data to your Azure resource. Before the SDK can use your connection string, you must specify the connection string in an environment variable or in your code.
+
+    :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows the Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
+
+1. Add the Node.js client library to your app's dependencies via `package.json`. From the root folder of your app, run:
+
+    ```bash
+    npm install applicationinsights --save
+    ```
+
+    > [!NOTE]
+    > If you're using TypeScript, don't install separate "typings" packages. This NPM package contains built-in typings.
+
+1. Explicitly load the library in your code. Because the SDK injects instrumentation into many other libraries, load the library as early as possible, even before other `require` statements.
+
+    ```javascript
+    let appInsights = require('applicationinsights');
+    ```
+
+1. You also can provide a connection string via the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`, instead of passing it manually to `setup()` or `new appInsights.TelemetryClient()`. This practice lets you keep connection strings out of committed source code, and you can specify different connection strings for different environments. To manually configure, call `appInsights.setup('[your connection string]');`.
+
+    For more configuration options, see the following sections.
+
+    You can try the SDK without sending telemetry by setting `appInsights.defaultClient.config.disableAppInsights = true`.
+
+1. Start automatically collecting and sending data by calling `appInsights.start();`.
+
+> [!NOTE]
+> As part of using Application Insights instrumentation, we collect and send diagnostic data to Microsoft. This data helps us run and improve Application Insights. You have the option to disable non-essential data collection. [Learn more](./statsbeat.md).
+
+---
+
 ### Verify Application Insights receives telemetry
+
+# [.NET](#tab/dotnet)
 
 #### ASP.NET
 
@@ -844,6 +889,26 @@ Application Insights collects these ILogger logs, with a severity of Warning or 
 This custom operation of `RequestTelemetry` can be thought of as the equivalent of an incoming web request in a typical web application. It isn't necessary to use an operation, but it fits best with the [Application Insights correlation data model](#distributed-tracing). `RequestTelemetry` acts as the parent operation and every telemetry generated inside the worker iteration is treated as logically belonging to the same operation.
 
 This approach also ensures all the telemetry generated, both automatic and manual, has the same `operation_id`. Because sampling is based on `operation_id`, the sampling algorithm either keeps or drops all the telemetry from a single iteration.
+
+# [Node.js](#tab/nodejs)
+
+The SDK automatically gathers telemetry about the Node.js runtime and some common third-party modules. Use your application to generate some of this data.
+
+Then, in the [Azure portal](https://portal.azure.com) go to the Application Insights resource that you created earlier. In the **Overview timeline**, look for your first few data points. To see more detailed data, select different components in the charts.
+
+To view the topology that's discovered for your app, you can use [Application Map](app-map.md).
+
+#### No data
+
+Because the SDK batches data for submission, there might be a delay before items appear in the portal. If you don't see data in your resource, try some of the following fixes:
+
+* Continue to use the application. Take more actions to generate more telemetry.
+* Select **Refresh** in the portal resource view. Charts periodically refresh on their own, but manually refreshing forces them to refresh immediately.
+* Verify that [required outgoing ports](../fundamentals/azure-monitor-network-access.md) are open.
+* Use [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search) to look for specific events.
+* Check the [FAQ](application-insights-faq.yml#node-js).
+
+---
 
 ## Configure telemetry
 
@@ -1547,7 +1612,7 @@ Exceptions in web applications can be reported with [Application Insights](app-i
 
 You can set up Application Insights to report exceptions that occur in either the server or the client. Depending on the platform your application is dependent on, you need the appropriate extension or SDK.
 
-##### Server side
+##### Server-side
 
 To have exceptions reported from your server-side application, consider the following scenarios:
 
@@ -1555,7 +1620,7 @@ To have exceptions reported from your server-side application, consider the foll
 * Add the [Application Monitoring Extension](azure-vm-vmss-apps.md) for Azure VMs and Azure virtual machine scale sets IIS-hosted apps.
 * [Add the Application Insights SDK](#add-application-insights-automatically-visual-studio) to your app code, run [Application Insights Agent](application-insights-asp-net-agent.md) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
 
-##### Client side
+##### Client-side
 
 The JavaScript SDK provides the ability for client-side reporting of exceptions that occur in web browsers. To set up exception reporting on the client, see [Application Insights for webpages](javascript-sdk.md).
 
@@ -3610,6 +3675,8 @@ appInsights.defaultClient.addTelemetryProcessor(envelope => {
 
 ### Sampling
 
+# [.NET](#tab/dotnet)
+
 To learn how to configure sampling for ASP.NET and ASP.NET Core applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
 #### Worker Service
@@ -3642,6 +3709,23 @@ builder.Services.AddApplicationInsightsTelemetryWorkerService(new ApplicationIns
 
 var app = builder.Build();
 ```
+
+# [Node.js](#tab/nodejs)
+
+By default, the SDK sends all collected data to the Application Insights service. If you want to enable sampling to reduce the amount of data, set the `samplingPercentage` field on the `config` object of a client. Setting `samplingPercentage` to 100 (the default) means all data will be sent, and 0 means nothing will be sent.
+
+If you're using automatic correlation, all data associated with a single request is included or excluded as a unit.
+
+Add code such as the following to enable sampling:
+
+```javascript
+const appInsights = require("applicationinsights");
+appInsights.setup("<connection_string>");
+appInsights.defaultClient.config.samplingPercentage = 33; // 33% of all telemetry will be sent to Application Insights
+appInsights.start();
+```
+
+---
 
 ### Enrich data through HTTP
 
@@ -4412,6 +4496,8 @@ To learn how to configure snapshot collection for ASP.NET and ASP.NET Core appli
 
 ## Add client-side monitoring
 
+# [.NET](#tab/dotnet)
+
 The previous sections provided guidance on methods to automatically and manually configure server-side monitoring. To add client-side monitoring, use the [client-side JavaScript SDK](javascript.md). You can monitor any web page's client-side transactions by adding a [JavaScript (Web) SDK Loader Script](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) before the closing `</head>` tag of the page's HTML.
 
 Although it's possible to manually add the JavaScript (Web) SDK Loader Script to the header of each HTML page, we recommend that you instead add the JavaScript (Web) SDK Loader Script to a primary page. That action injects the JavaScript (Web) SDK Loader Script into all pages of a site.
@@ -4453,6 +4539,41 @@ If your project doesn't include *_Layout.cshtml*, you can still add [client-side
 > JavaScript injection provides a default configuration experience. If you require [configuration](javascript-sdk-configuration.md) beyond setting the connection string, you're required to remove autoinjection as described and manually add the [JavaScript SDK](javascript-sdk.md).
 
 [!INCLUDE [azure-monitor-custom-events-metrics](includes/application-insights-api-custom-events-metrics.md)]
+
+# [Node.js](#tab/nodejs)
+
+> [!NOTE]
+> Available as a public preview. [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)
+
+Automatic web Instrumentation can be enabled for node server via JavaScript (Web) SDK Loader Script injection by configuration.
+
+<!-- This feature enables web instrumentation for node server. It automatically injects the [Browser SDK Loader Script](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) into your application's HTML pages, including configuring the appropriate Connection String. -->
+
+```javascript
+let appInsights = require("applicationinsights");
+appInsights.setup("<connection_string>")
+    .enableWebInstrumentation(true)
+    .start();
+```
+
+or by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_ENABLED = true`.
+
+Web Instrumentation is enabled on node server responses when all of the following requirements are met:
+
+* Response has status code `200`.
+* Response method is `GET`.
+* Server response has `Content-Type` html.
+* Server response contains both `<head>` and `</head>` Tags.
+* If response is compressed, it must have only one `Content-Encoding` type, and encoding type must be one of `gzip`, `br` or `deflate`.
+* Response does not contain current /backup web Instrumentation CDN endpoints.  (current and backup Web Instrumentation CDN endpoints [here](https://github.com/microsoft/ApplicationInsights-JS#active-public-cdn-endpoints))
+
+Web Instrumentation CDN endpoint can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_SOURCE = "web Instrumentation CDN endpoints"`.
+Web Instrumentation connection string can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_CONNECTION_STRING = "web Instrumentation connection string"`
+
+> [!NOTE] 
+> Web Instrumentation may slow down server response time, especially when response size is large or response is compressed. For the case in which some middle layers are applied, it may result in web Instrumentation not working and original response will be returned.
+
+---
 
 ## Sample applications
 
