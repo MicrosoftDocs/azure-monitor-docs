@@ -171,11 +171,6 @@ Use a configuration that authenticates to Azure Monitor and exports to the three
 
 ## Reference
 
-### Supported regions
-
-- South Central US
-- West Europe
-
 ### Supported protocols
 
 - OTel Collector: OTLP over **HTTP/protobuf** (current).
