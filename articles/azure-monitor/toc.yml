@@ -1484,9 +1484,9 @@ items:
           href: alerts/alerts-create-activity-log-alert-rule.md
         - name: Set up a Prometheus alert
           href: alerts/prometheus-alerts.md
-        - name: Query-based metric alerts overview
+        - name: Query-based metric alerts overview (preview)
           href: alerts/alerts-query-based-metric-alerts-overview.md
-        - name: Create query-based metric alerts
+        - name: Create query-based metric alerts (preview)
           href: alerts/alerts-create-query-based-metric-alerts.md
         - name: Set up a metric alert rule with dynamic thresholds
           href: alerts/alerts-dynamic-thresholds.md
