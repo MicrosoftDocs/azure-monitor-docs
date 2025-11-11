@@ -1,11 +1,11 @@
 ---
-title: Service Health history overview
+title: Health history overview
 description: The Health history pane in Azure Service is designed to help you review and manage your historical health events.
 ms.topic: overview
 ms.date: 11/11/2025
 ---
 
-# Service Health history overview
+# Health history overview
 
 The Health history pane in Azure Service Health is an archive of past health events (such as service issues, planned maintenance, health advisories, and security notices) that move out of the active view. Use this pane to review and manage the historical health events of your Azure resources.
 
