@@ -2,7 +2,7 @@
 title: Azure Resource Health overview
 description: Learn how Azure Resource Health helps you diagnose and get support for service problems that affect your Azure resources.
 ms.topic: concept-article
-ms.date: 11/06/2025
+ms.date: 11/10/2025
 
 ---
 # Resource Health overview
@@ -68,7 +68,7 @@ If you experience problems with the resource, the **Unknown** health status migh
 
 Different resources have their own criteria for when they report they're degraded.
 
-:::image type="content"source="./media/resource-health-overview/degraded.png"alt-text="Screenshot that shows status of **Degraded** for a virtual machine."Lightbox="./media/resource-health-overview/degraded.png"
+:::image type="content"source="./media/resource-health-overview/resource-health-degraded.png"alt-text="Screenshot that shows status of **Degraded** for a virtual machine."Lightbox="./media/resource-health-overview/resource-health-degraded.png"
 
 For Virtual Machine Scale Sets, visit [Resource health state is "Degraded" in Azure Virtual Machine Scale Set](/troubleshoot/azure/virtual-machine-scale-sets/resource-health-degraded-state) page for more information.
 
