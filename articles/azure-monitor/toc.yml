@@ -734,7 +734,7 @@ items:
       - name: Encryption at rest
         href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
   - name: Monitoring coverage
-    href: fundamentals/monitor-coverage.md
+    href: fundamentals/monitoring-coverage.md
   - name: Multicloud monitoring
     href: fundamentals/best-practices-multicloud.md
   - name: Enterprise architecture
@@ -982,8 +982,6 @@ items:
     href: data-collection/edge-pipeline-configure.md
   - name: Custom metrics ingestion using REST
     href: metrics/metrics-store-custom-rest-api.md
-  - name: Monitor coverage
-    href: fundamentals/monitor-coverage.md
   - name: Troubleshoot
     href: logs/data-collection-troubleshoot.md
 - name: Data platform
