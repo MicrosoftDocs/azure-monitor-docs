@@ -38,16 +38,16 @@ The following table describes each pillar and the Azure services it uses. All pi
 
 | Area |Description | Services |
 |:---|:---|:---|
-| [Observability](./observability.md) | Provides a deep understanding of a system to diagnose and resolve unknown or complex problems. | [Azure Monitor]()<br>[Service health]() |
-| [Security](./security.md) | Protect systems and data. | [Defender for Cloud ]() |
-| [Resiliency](./resiliency.md) | Emphasizes the systems ability to recover from failures and maintain functionality | [Business continuity center]()<br>[Backup]()<br>[Site Recovery]() | 
-| [Configuration](./configuration-overview.md) | Defining standards, assessing compliance, and changing the settings of a system. | [Policy]()<br>[Machine configuration]()<br>[Update management]()<br>[Change tracking + inventory]() |
-| [Optimization](./optimization.md) | Finds the best possible solution within given constraints, improving factors like cost, performance, and carbon emissions. | [Cost optimization]()<br>[Carbon emissions]() |
+| [Observability](./observability.md) | Provides a deep understanding of a system to diagnose and resolve unknown or complex problems. | [Azure Monitor](/azure/azure-monitor/fundamentals/overview)<br>[Service health](/azure/service-health/overview) |
+| [Security](./security.md) | Protect systems and data. | [Defender for Cloud ](/azure/defender-for-cloud/defender-for-cloud-introduction) |
+| [Resiliency](./resiliency.md) | Emphasizes the systems ability to recover from failures and maintain functionality | [Business continuity center](/azure/business-continuity-center/business-continuity-center-overview)<br>[Backup](/azure/backup/backup-overview)<br>[Site Recovery](/azure/site-recovery/site-recovery-overview) | 
+| [Configuration](./configuration-overview.md) | Defining standards, assessing compliance, and changing the settings of a system. | [Policy](/azure/governance/policy/overview)<br>[Machine configuration](/azure/governance/machine-configuration/overview)<br>[Update Manager](/azure/update-manager/overview)<br>[Change tracking + inventory](/azure/azure-change-tracking-inventory/overview-monitoring-agent) |
+| [Optimization](./optimization.md) | Finds the best possible solution within given constraints, improving factors like cost, performance, and carbon emissions. | [Cost optimization](/azure/cost-management-billing/costs/overview-cost-management)<br>[Carbon emissions](/azure/carbon-optimization/overview) |
 
 
 
 ## Overview page
-Each pillar includes a top level overview page that summarizes key information and identifies any critical actions. Use this page as a starting point to quickly identify any critical issues or actions that require your attention before drilling down into specific pillars for more details. The overview page includes a summary from each of the five pillars and an **Actions** tile that helps you quickly identify the actions being recommended across all pillars.
+In addition to an overview for each pillar, operations center includes a top-level **Overview** page that provides a consolidated view across all five pillars. Use this page as a starting point to quickly identify any critical issues or actions that require your attention before drilling down into specific pillars for more details. The overview page includes a summary from each of the five pillars and an **Actions** tile that helps you quickly identify the actions being recommended across all pillars.
 
 :::image type="content" source="./media/overview/operations-center.png" lightbox="./media/overview/operations-center.png" alt-text="Screenshot of operations center showing the five pillars":::
 
@@ -57,5 +57,6 @@ Operations center leverages [Azure service groups](/azure/governance/service-gro
 
 Create service groups to represent the various applications and workloads that you support. Different pages in operations center will allow you to filter different views by service group or report on the health and status of the service group itself, making it easier to focus on the resources that matter most to you. 
 
-## VM Onboarding
-The [Configuration](./configuration.md) pillar includes a **Machine enrollment** menu item that helps you configure your subscription to automatically onboard virtual machines and Arc-enabled servers to the Azure management services used by operations center. This streamlines the process of ensuring that your machines are constantly configured for monitoring, security, and management. See [Machine enrollment](./configuration.md#machine-enrollment) for details. 
+## Virtual machine onboarding
+While many of the experiences in operations center are available in other areas of the Azure portal, one experience that's unique to operations center is a streamlined virtual machine onboarding process. The [Configuration](./configuration.md) pillar includes a machine enrollment feature that helps you configure your subscription to automatically onboard virtual machines and Arc-enabled servers to the Azure management services used by operations center. This streamlines the process of ensuring that your machines are constantly configured for monitoring, security, and management. See [Machine enrollment](./configuration.md#machine-enrollment) for details. 
+
