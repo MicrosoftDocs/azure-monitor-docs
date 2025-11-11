@@ -4,6 +4,7 @@ description: "This article provides an overview of query-based metric alerts in 
 ms.topic: how-to
 ms.date: 10/11/2025
 ms.reviewer: eliotgra
+ms.custom: references_regions
 ---
 
 # Query-based metric alerts overview (preview)
