@@ -63,6 +63,7 @@ This article explains how to enable and configure [Application Insights](app-ins
 If you don't have a functioning web application yet, you can use the following guidance to create one.
 
 #### ASP.NET
+
 1. Open Visual Studio.
 1. Select **Create a new project**.
 1. Choose **ASP.NET Web Application (.NET Framework)** with **C#** and select **Next**.
@@ -1027,11 +1028,11 @@ Application Insights captures logs from ASP.NET Core and other .NET apps through
 >
 > * To review frequently asked questions (FAQ), see [Logging with .NET FAQ](application-insights-faq.yml#logging-with--net).
 
-# [ASP.NET](#tab/net)
+#### Install logging on your app
+
+##### ASP.NET
 
 Choose a logging approach to emit diagnostic logs that Application Insights can collect.
-
-#### Install logging on your app
 
 For classic ASP.NET apps that use **System.Diagnostics** tracing, configure an **Application Insights TraceListener** in configuration.
 
@@ -1053,7 +1054,7 @@ Add a listener to `web.config` or `app.config`:
 > [!NOTE]
 > The *log-capture module* is a useful adapter for third-party loggers. However, if you aren't already using *NLog*, *log4Net*, or `System.Diagnostics.Trace`, consider calling [Application Insights TrackTrace()](#tracktrace) directly.
 
-#### Configure Application Insights to collect logs
+###### Configure Application Insights to collect logs
 
 **Option 1:** Add Application Insights to your project if you haven't done so already. When adding Application Insights in Visual Studio, there's an option to include the log collector.
 
@@ -1062,13 +1063,11 @@ Add a listener to `web.config` or `app.config`:
 > [!NOTE]
 > If you're missing the Application Insights menu or log collector option, refer to the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
 
-# [ASP.NET Core](#tab/core)
+##### ASP.NET Core
 
 The Application Insights SDK for ASP.NET Core already collects ILogger logs by default. If you use the SDK, you typically don't need to also call `builder.Logging.AddApplicationInsights()` and can disregard the following ILogger installation instructions.
 
 If you only need log forwarding and not the full telemetry stack, you can use the [`Microsoft.Extensions.Logging.ApplicationInsights`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) provider package to capture logs.
-
----
 
 #### Manual installation
 
@@ -1480,8 +1479,6 @@ Alternatively, `TelemetryClient` provides the extension methods `StartOperation`
 
 For more information, see [telemetry modules](#telemetry-modules).
 
----
-
 #### Advanced SQL tracking to get full SQL query
 
 For SQL calls, the name of the server and database is always collected and stored as the name of the collected `DependencyTelemetry`. Another field, called data, can contain the full SQL query text.
@@ -1489,7 +1486,7 @@ For SQL calls, the name of the server and database is always collected and store
 > [!NOTE]
 > Azure Functions requires separate settings to enable SQL text collection. For more information, see [Enable SQL query collection](/azure/azure-functions/configure-monitoring#enable-sql-query-collection).
 
-# [ASP.NET](#tab/net)
+##### ASP.NET
 
 For ASP.NET applications, the full SQL query text is collected with the help of byte code instrumentation, which requires using the instrumentation engine or by using the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package instead of the System.Data.SqlClient library. Platform-specific steps to enable full SQL Query collection are described in the following table.
 
@@ -1510,15 +1507,13 @@ In addition to the preceding platform-specific steps, you *must also explicitly 
   </Add>
 ```
 
-# [ASP.NET Core](#tab/core)
+##### ASP.NET Core
 
 For ASP.NET Core applications, It's required to opt in to SQL Text collection by using:
 
 ```csharp
 services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) => { module. EnableSqlCommandTextInstrumentation = true; });
 ```
-
----
 
 In the preceding cases, the proper way of validating that the instrumentation engine is correctly installed is by validating that the SDK version of collected `DependencyTelemetry` is `rddp`. Use of `rdddsd` or `rddf` indicates dependencies are collected via `DiagnosticSource` or `EventSource` callbacks, so the full SQL query isn't captured.
 
@@ -1530,7 +1525,7 @@ Exceptions in web applications can be reported with [Application Insights](app-i
 
 You can set up Application Insights to report exceptions that occur in either the server or the client. Depending on the platform your application is dependent on, you need the appropriate extension or SDK.
 
-# [Server side](#tab/server)
+##### Server side
 
 To have exceptions reported from your server-side application, consider the following scenarios:
 
@@ -1538,11 +1533,11 @@ To have exceptions reported from your server-side application, consider the foll
 * Add the [Application Monitoring Extension](azure-vm-vmss-apps.md) for Azure VMs and Azure virtual machine scale sets IIS-hosted apps.
 * [Add the Application Insights SDK](#add-application-insights-automatically-visual-studio) to your app code, run [Application Insights Agent](application-insights-asp-net-agent.md) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
 
-# [Client side](#tab/client)
+##### Client side
 
 The JavaScript SDK provides the ability for client-side reporting of exceptions that occur in web browsers. To set up exception reporting on the client, see [Application Insights for webpages](javascript-sdk.md).
 
-# [Application frameworks](#tab/app)
+##### Application frameworks
 
 With some application frameworks, more configuration is required. Consider the following technologies:
 
@@ -1552,20 +1547,18 @@ With some application frameworks, more configuration is required. Consider the f
 * [Web API 2.*](#prior-versions-support)
 * [WCF](#wcf)
 
----
-
 > [!IMPORTANT]
 > This section is focused on .NET Framework apps from a code example perspective. Some of the methods that work for .NET Framework are obsolete in the .NET Core SDK.
 
 #### Diagnose failures and exceptions
 
-# [Azure portal](#tab/portal)
+##### Azure portal
 
 Application Insights comes with a curated Application Performance Management experience to help you diagnose failures in your monitored applications.
 
 For detailed instructions, see [Investigate failures, performance, and transactions with Application Insights](failures-performance-transactions.md).
 
-# [Visual Studio](#tab/vs)
+##### Visual Studio
 
 1. Open the app solution in Visual Studio. Run the app, either on your server or on your development machine by using <kbd>F5</kbd>. Re-create the exception.
 
@@ -1576,8 +1569,6 @@ For detailed instructions, see [Investigate failures, performance, and transacti
     If CodeLens is enabled, you see data about the exceptions:
 
     :::image type="content" source="media/dotnet/codelens.png" lightbox="media/dotnet/codelens.png" alt-text="Screenshot that shows CodeLens notification of exceptions.":::
-
----
 
 #### Custom tracing and log data
 
@@ -1617,7 +1608,7 @@ You can:
 
 The simplest way to report is to insert a call to `trackException()` in an exception handler.
 
-# [C#](#tab/csharp)
+###### C#
 
 ```csharp
 var telemetry = new TelemetryClient();
@@ -1643,7 +1634,7 @@ catch (Exception ex)
 }
 ```
 
-# [JavaScript](#tab/js)
+###### JavaScript
 
 ```javascript
 try
@@ -1659,8 +1650,6 @@ catch (ex)
     });
 }
 ```
-
----
 
 The properties and measurements parameters are optional, but they're useful for [filtering and adding](failures-performance-transactions.md?tabs=transaction-search) extra information. For example, if you have an app that can run several games, you could find all the exception reports related to a particular game. You can add as many items as you want to each dictionary.
 
@@ -2468,7 +2457,7 @@ The Storage queue has an HTTP API. All calls to the queue are tracked by the App
 
 You also might want to correlate the Application Insights operation ID with the Storage request ID. For information on how to set and get a Storage request client and a server request ID, see [Monitor, diagnose, and troubleshoot Azure Storage](/azure/storage/common/storage-monitoring-diagnosing-troubleshooting#end-to-end-tracing).
 
-# [Enqueue](#tab/enqueue)
+###### Enqueue
 
 Because Storage queues support the HTTP API, all operations with the queue are automatically tracked by Application Insights. In many cases, this instrumentation should be enough. To correlate traces on the consumer side with producer traces, you must pass some correlation context similarly to how we do it in the HTTP Protocol for Correlation.
 
@@ -2525,7 +2514,7 @@ To reduce the amount of telemetry your application reports or if you don't want 
 * Create (and start) a new `Activity` instead of starting the Application Insights operation. You *don't* need to assign any properties on it except the operation name.
 * Serialize `yourActivity.Id` into the message payload instead of `operation.Telemetry.Id`. You can also use `Activity.Current.Id`.
 
-# [Dequeue](#tab/dequeue)
+###### Dequeue
 
 Similarly to `Enqueue`, an actual HTTP request to the Storage queue is automatically tracked by Application Insights. The `Enqueue` operation presumably happens in the parent context, such as an incoming request context. Application Insights SDKs automatically correlate such an operation, and its HTTP part, with the parent request and other telemetry reported in the same scope.
 
@@ -2559,7 +2548,7 @@ public async Task<MessagePayload> Dequeue(CloudQueue queue)
 }
 ```
 
-# [Process](#tab/process)
+###### Process
 
 In the following example, an incoming message is tracked in a manner similar to an incoming HTTP request:
 
@@ -2591,8 +2580,6 @@ public async Task Process(MessagePayload message)
     }
 }
 ```
-
----
 
 Similarly, other queue operations can be instrumented. A peek operation should be instrumented in a similar way as a dequeue operation. Instrumenting queue management operations isn't necessary. Application Insights tracks operations such as HTTP, and in most cases, it's enough.
 
@@ -2774,7 +2761,7 @@ net localgroup "Performance Monitor Users" /add "IIS APPPOOL\NameOfYourPool"
 
 The **Metrics** pane shows the default set of performance counters.
 
-# [ASP.NET](#tab/net)
+##### ASP.NET
 
 Default counters for ASP.NET web applications:
 
@@ -2789,7 +2776,7 @@ Default counters for ASP.NET web applications:
 * ASP.NET Applications\\Requests In Application Queue
 * Processor(_Total)\\% Processor Time
 
-# [ASP.NET Core](#tab/core)
+##### ASP.NET Core
 
 Default counters for ASP.NET Core web applications:
 
@@ -2808,13 +2795,11 @@ Default counters for ASP.NET Core web applications:
 > * For applications that target the .NET Framework, all versions of the SDK support performance counters.
 > * SDK versions 2.8.0 and later support the CPU/Memory counter in Linux. No other counter is supported in Linux. To get system counters in Linux (and other non-Windows environments), use event counters.
 
----
-
 #### Add counters
 
 If the performance counter you want isn't included in the list of metrics, you can add it.
 
-# [ASP.NET](#tab/net)
+##### ASP.NET
 
 **Option 1: Configuration in ApplicationInsights.config**
 
@@ -2856,7 +2841,7 @@ If you specify an instance, it becomes a dimension `CounterInstanceName` of the 
 
 See the following section.
 
-# [ASP.NET Core](#tab/core)
+##### ASP.NET Core
 
 Configure `PerformanceCollectorModule` after the `WebApplication.CreateBuilder()` method in `Program.cs`:
 
@@ -2877,8 +2862,6 @@ builder.Services.ConfigureTelemetryModule<PerformanceCollectorModule>((module, o
 
 var app = builder.Build();
 ```
-
----
 
 #### Collect performance counters in code for ASP.NET web applications or .NET/.NET Core console applications
 
@@ -3124,7 +3107,7 @@ The standard initializers are all set either by the web or WindowsServer NuGet p
 
 1. Load your initializer
 
-# [ASP.NET](#tab/net-1)
+##### ASP.NET
 
 **Option 1: Configuration in code**
 
@@ -3153,7 +3136,7 @@ See more of [this sample](https://github.com/MohanGsk/ApplicationInsights-Home/t
 > [!NOTE]
 > Make sure the *applicationinsights.config* file is in your output directory and contains any recent changes.
 
-# [ASP.NET Core](#tab/core-1)
+##### ASP.NET Core
 
 > Adding an initializer by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for ASP.NET Core applications.
 
@@ -3170,7 +3153,7 @@ var app = builder.Build();
 > [!NOTE]
 > `builder.Services.AddSingleton<ITelemetryInitializer, MyCustomTelemetryInitializer>();` works for simple initializers. For others, `builder.Services.AddSingleton(new MyCustomTelemetryInitializer() { fieldName = "myfieldName" });` is required.
 
-##### Remove telemetry initializers
+###### Remove telemetry initializers
 
 By default, telemetry initializers are present. To remove all or specific telemetry initializers, use the following sample code *after* calling `AddApplicationInsightsTelemetry()`.
 
@@ -3194,7 +3177,7 @@ builder.Services.RemoveAll(typeof(ITelemetryInitializer));
 var app = builder.Build();
 ```
 
-# [Worker Service](#tab/worker-1)
+##### Worker Service
 
 > Adding an initializer by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for Worker Service SDK.
 
@@ -3210,7 +3193,7 @@ For apps written using Worker Service, adding a new telemetry initializer is don
     }
 ```
 
-##### Remove telemetry initializers
+###### Remove telemetry initializers
 
 Telemetry initializers are present by default. To remove all or specific telemetry initializers, use the following sample code *after* calling `AddApplicationInsightsTelemetryWorkerService()`.
 
@@ -3231,8 +3214,6 @@ Telemetry initializers are present by default. To remove all or specific telemet
         services.RemoveAll(typeof(ITelemetryInitializer));
    }
 ```
-
----
 
 #### Example ITelemetryInitializers
 
@@ -3280,7 +3261,7 @@ namespace CustomInitializer.Telemetry
 
 **Step 2: Load an initializer to TelemetryConfiguration**
 
-# [ASP.NET](#tab/net)
+###### ASP.NET
 
 In the *ApplicationInsights.config* file:
 
@@ -3307,7 +3288,7 @@ An alternate method for ASP.NET Web apps is to instantiate the initializer in co
     }
 ```
 
-# [ASP.NET Core](#tab/core)
+###### ASP.NET Core
 
 To add a new `TelemetryInitializer` instance, you add it to the Dependency Injection container. The following example shows this approach. Add this code in the `ConfigureServices` method of your `Startup.cs` class.
 
@@ -3319,8 +3300,6 @@ To add a new `TelemetryInitializer` instance, you add it to the Dependency Injec
     services.AddSingleton<ITelemetryInitializer, MyTelemetryInitializer>();
 }
 ```
-
----
 
 ##### Control the client IP address used for geolocation mappings
 
@@ -3340,153 +3319,152 @@ public void Initialize(ITelemetry telemetry)
 
 Telemetry processors can filter and modify each telemetry item before it's sent from the SDK to the portal.
 
-1. Implement `ITelemetryProcessor`.
+#### Implement `ITelemetryProcessor`
 
-    Telemetry processors construct a chain of processing. When you instantiate a telemetry processor, you're given a reference to the next processor in the chain. When a telemetry data point is passed to the process method, it does its work and then calls (or doesn't call) the next telemetry processor in the chain.
+Telemetry processors construct a chain of processing. When you instantiate a telemetry processor, you're given a reference to the next processor in the chain. When a telemetry data point is passed to the process method, it does its work and then calls (or doesn't call) the next telemetry processor in the chain.
 
-    ```csharp
-    using Microsoft.ApplicationInsights.Channel;
-    using Microsoft.ApplicationInsights.Extensibility;
-    using Microsoft.ApplicationInsights.DataContracts;
+```csharp
+using Microsoft.ApplicationInsights.Channel;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.DataContracts;
 
-    public class SuccessfulDependencyFilter : ITelemetryProcessor
+public class SuccessfulDependencyFilter : ITelemetryProcessor
+{
+    private ITelemetryProcessor Next { get; set; }
+
+    // next will point to the next TelemetryProcessor in the chain.
+    public SuccessfulDependencyFilter(ITelemetryProcessor next)
     {
-        private ITelemetryProcessor Next { get; set; }
-
-        // next will point to the next TelemetryProcessor in the chain.
-        public SuccessfulDependencyFilter(ITelemetryProcessor next)
-        {
-            this.Next = next;
-        }
-
-        public void Process(ITelemetry item)
-        {
-            // To filter out an item, return without calling the next processor.
-            if (!OKtoSend(item)) { return; }
-
-            this.Next.Process(item);
-        }
-
-        // Example: replace with your own criteria.
-        private bool OKtoSend (ITelemetry item)
-        {
-            var dependency = item as DependencyTelemetry;
-            if (dependency == null) return true;
-
-            return dependency.Success != true;
-        }
+        this.Next = next;
     }
-    ```
 
-1. Add your processor.
+    public void Process(ITelemetry item)
+    {
+        // To filter out an item, return without calling the next processor.
+        if (!OKtoSend(item)) { return; }
 
-    # [ASP.NET](#tab/net-1)
-    Insert this snippet in ApplicationInsights.config:
-    
-    ```xml
+        this.Next.Process(item);
+    }
+
+    // Example: replace with your own criteria.
+    private bool OKtoSend (ITelemetry item)
+    {
+        var dependency = item as DependencyTelemetry;
+        if (dependency == null) return true;
+
+        return dependency.Success != true;
+    }
+}
+```
+
+#### Add your processor
+
+##### ASP.NET
+
+Insert this snippet in *ApplicationInsights.config*:
+
+```xml
+<TelemetryProcessors>
+    <Add Type="WebApplication9.SuccessfulDependencyFilter, WebApplication9">
+    <!-- Set public property -->
+    <MyParamFromConfigFile>2-beta</MyParamFromConfigFile>
+    </Add>
+</TelemetryProcessors>
+```
+
+You can pass string values from the .config file by providing public named properties in your class.
+
+> [!WARNING]
+> Take care to match the type name and any property names in the .config file to the class and property names in the code. If the .config file references a nonexistent type or property, the SDK may silently fail to send any telemetry.
+
+Alternatively, you can initialize the filter in code. In a suitable initialization class, for example, AppStart in `Global.asax.cs`, insert your processor into the chain:
+
+> [!NOTE]
+> The following code sample is obsolete, but is made available here for posterity. Consider [getting started with OpenTelemetry](opentelemetry-enable.md) or [migrating to OpenTelemetry](opentelemetry-dotnet-migrate.md).
+
+```csharp
+var builder = TelemetryConfiguration.Active.DefaultTelemetrySink.TelemetryProcessorChainBuilder;
+builder.Use((next) => new SuccessfulDependencyFilter(next));
+
+// If you have more processors:
+builder.Use((next) => new AnotherProcessor(next));
+
+builder.Build();
+```
+
+Telemetry clients created after this point use your processors.
+
+###### Adaptive sampling telemetry processor (from 2.0.0-beta3)
+
+This functionality is enabled by default. If your app sends considerable telemetry, this processor removes some of it.
+
+```xml
+
     <TelemetryProcessors>
-      <Add Type="WebApplication9.SuccessfulDependencyFilter, WebApplication9">
-        <!-- Set public property -->
-        <MyParamFromConfigFile>2-beta</MyParamFromConfigFile>
-      </Add>
+        <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.AdaptiveSamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
+        <MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>
+        </Add>
     </TelemetryProcessors>
-    ```
-    
-    You can pass string values from the .config file by providing public named properties in your class.
-    
-    > [!WARNING]
-    > Take care to match the type name and any property names in the .config file to the class and property names in the code. If the .config file references a nonexistent type or property, the SDK may silently fail to send any telemetry.
-    
-    Alternatively, you can initialize the filter in code. In a suitable initialization class, for example, AppStart in `Global.asax.cs`, insert your processor into the chain:
-    
-    > [!NOTE]
-    > The following code sample is obsolete, but is made available here for posterity. Consider [getting started with OpenTelemetry](opentelemetry-enable.md) or [migrating to OpenTelemetry](opentelemetry-dotnet-migrate.md).
 
-    ```csharp
-    var builder = TelemetryConfiguration.Active.DefaultTelemetrySink.TelemetryProcessorChainBuilder;
-    builder.Use((next) => new SuccessfulDependencyFilter(next));
-    
-    // If you have more processors:
-    builder.Use((next) => new AnotherProcessor(next));
-    
-    builder.Build();
-    ```
-    
-    Telemetry clients created after this point use your processors.
+```
 
-    #### Adaptive sampling telemetry processor (from 2.0.0-beta3)
-    
-    This functionality is enabled by default. If your app sends considerable telemetry, this processor removes some of it.
-    
-    ```xml
-    
-        <TelemetryProcessors>
-          <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.AdaptiveSamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
-            <MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>
-          </Add>
-        </TelemetryProcessors>
-    
-    ```
-    
-    The parameter provides the target that the algorithm tries to achieve. Each instance of the SDK works independently. So, if your server is a cluster of several machines, the actual volume of telemetry is multiplied accordingly.
-    
-    Learn more about [sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-    
-    #### Fixed-rate sampling telemetry processor (from 2.0.0-beta1)
-    
-    There's also a standard sampling telemetry processor (from 2.0.1):
-    
-    ```xml
-        <TelemetryProcessors>
-         <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.SamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
-    
-         <!-- Set a percentage close to 100/N where N is an integer. -->
-         <!-- E.g. 50 (=100/2), 33.33 (=100/3), 25 (=100/4), 20, 1 (=100/100), 0.1 (=100/1000) -->
-         <SamplingPercentage>10</SamplingPercentage>
-         </Add>
-       </TelemetryProcessors>
-    ```
+The parameter provides the target that the algorithm tries to achieve. Each instance of the SDK works independently. So, if your server is a cluster of several machines, the actual volume of telemetry is multiplied accordingly.
 
-    # [ASP.NET Core](#tab/core-1)
-    
-    > [!NOTE]
-    > Adding a processor by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for ASP.NET Core applications or if you're using the Microsoft.ApplicationInsights.WorkerService SDK.
-    
-    For ASP.NET Core, adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
-    
-    ```csharp
-    var builder = WebApplication.CreateBuilder(args);
-    
-    // ...
-    builder.Services.AddApplicationInsightsTelemetry();
-    builder.Services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
-    
-    // If you have more processors:
-    builder.Services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
-    
-    var app = builder.Build();
-    ```
-    
-    To register telemetry processors that need parameters in ASP.NET Core, create a custom class implementing **ITelemetryProcessorFactory**. Call the constructor with the desired parameters in the **Create** method and then use **AddSingleton<ITelemetryProcessorFactory, MyTelemetryProcessorFactory>()**.
+Learn more about [sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
-    # [Worker Service](#tab/worker-1)
-    
-    > [!NOTE]
-    > Adding a processor by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for ASP.NET Core applications or if you're using the Microsoft.ApplicationInsights.WorkerService SDK.
-    
-    For Worker Service, adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
-    
-    ```csharp
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddApplicationInsightsTelemetryWorkerService();
-            services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
-            // If you have more processors:
-            services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
-        }
-    ```
+###### Fixed-rate sampling telemetry processor (from 2.0.0-beta1)
 
-    ---
+There's also a standard sampling telemetry processor (from 2.0.1):
+
+```xml
+    <TelemetryProcessors>
+        <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.SamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
+
+        <!-- Set a percentage close to 100/N where N is an integer. -->
+        <!-- E.g. 50 (=100/2), 33.33 (=100/3), 25 (=100/4), 20, 1 (=100/100), 0.1 (=100/1000) -->
+        <SamplingPercentage>10</SamplingPercentage>
+        </Add>
+    </TelemetryProcessors>
+```
+
+##### ASP.NET Core
+
+> [!NOTE]
+> Adding a processor by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for ASP.NET Core applications or if you're using the Microsoft.ApplicationInsights.WorkerService SDK.
+
+For ASP.NET Core, adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// ...
+builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
+
+// If you have more processors:
+builder.Services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
+
+var app = builder.Build();
+```
+
+To register telemetry processors that need parameters in ASP.NET Core, create a custom class implementing **ITelemetryProcessorFactory**. Call the constructor with the desired parameters in the **Create** method and then use **AddSingleton<ITelemetryProcessorFactory, MyTelemetryProcessorFactory>()**.
+
+##### Worker Service
+
+> [!NOTE]
+> Adding a processor by using `ApplicationInsights.config` or `TelemetryConfiguration.Active` isn't valid for ASP.NET Core applications or if you're using the Microsoft.ApplicationInsights.WorkerService SDK.
+
+For Worker Service, adding a new telemetry processor is done by using the `AddApplicationInsightsTelemetryProcessor` extension method on `IServiceCollection`, as shown. This method is called in the `ConfigureServices` method of your `Startup.cs` class.
+
+```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddApplicationInsightsTelemetryWorkerService();
+        services.AddApplicationInsightsTelemetryProcessor<MyFirstCustomTelemetryProcessor>();
+        // If you have more processors:
+        services.AddApplicationInsightsTelemetryProcessor<MySecondCustomTelemetryProcessor>();
+    }
+```
 
 #### Example filters
 
@@ -3547,15 +3525,9 @@ public void Process(ITelemetry item)
 
 ### Sampling
 
-# [ASP.NET](#tab/net-1)
+To learn how to configure sampling for ASP.NET and ASP.NET Core applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
-To learn how to configure sampling for ASP.NET applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-
-# [ASP.NET Core](#tab/core-1)
-
-To learn how to configure sampling for ASP.NET Core applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-
-# [Worker Service](#tab/worker-1)
+#### Worker Service
 
 The Application Insights SDK for Worker Service supports both [fixed-rate sampling](sampling.md#fixed-rate-sampling) and [adaptive sampling](sampling.md#adaptive-sampling). Adaptive sampling is enabled by default. Sampling can be disabled by using the `EnableAdaptiveSampling` option in [ApplicationInsightsServiceOptions](#configure-telemetry-modules).
 
@@ -3586,11 +3558,9 @@ builder.Services.AddApplicationInsightsTelemetryWorkerService(new ApplicationIns
 var app = builder.Build();
 ```
 
----
-
 ### Enrich data through HTTP
 
-# [ASP.NET](#tab/net)
+#### ASP.NET
 
 ```csharp
 var requestTelemetry = HttpContext.Current?.Items["Microsoft.ApplicationInsights.RequestTelemetry"] as RequestTelemetry;
@@ -3601,13 +3571,11 @@ if (requestTelemetry != null)
 }
 ```
 
-# [ASP.NET Core](#tab/core)
+#### ASP.NET Core
 
 ```csharp
 HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
 ```
-
----
 
 ## Manage SDK components
 
@@ -3621,7 +3589,7 @@ HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
 
 You can customize the Application Insights SDK for ASP.NET, ASP.NET Core, and Worker Service to change the default configuration.
 
-# [ASP.NET](#tab/net-1)
+#### ASP.NET
 
 The Application Insights .NET SDK consists of many NuGet packages. The [core package](https://www.nuget.org/packages/Microsoft.ApplicationInsights) provides the API for sending telemetry to the Application Insights. [More packages](https://www.nuget.org/packages?q=Microsoft.ApplicationInsights) provide telemetry *modules* and *initializers* for automatically tracking telemetry from your application and its context. By adjusting the configuration file, you can enable or disable telemetry modules and initializers. You can also set parameters for some of them.
 
@@ -3634,14 +3602,14 @@ By default, when you use the automated experience from the Visual Studio templat
 
 There isn't an equivalent file to control the [SDK in a webpage](javascript-sdk.md).
 
-# [ASP.NET Core](#tab/core-1)
+#### ASP.NET Core
 
 In ASP.NET Core applications, all configuration changes are made in the `ConfigureServices()` method of your *Startup.cs* class, unless otherwise directed.
 
 > [!NOTE]
 > In ASP.NET Core applications, changing configuration by modifying `TelemetryConfiguration.Active` isn't supported.
 
-# [Worker Service](#tab/worker-1)
+#### Worker Service
 
 The default `TelemetryConfiguration` used by the Worker Service SDK is similar to the automatic configuration used in an ASP.NET or ASP.NET Core application, minus the telemetry initializers used to enrich telemetry from `HttpContext`.
 
@@ -3649,8 +3617,6 @@ You can customize the Application Insights SDK for Worker Service to change the 
 
 > [!NOTE]
 > When you use the Worker Service SDK, changing configuration by modifying `TelemetryConfiguration.Active` isn't supported and changes won't be reflected.
-
----
 
 ### Telemetry channels
 
@@ -3687,7 +3653,7 @@ You configure a telemetry channel by setting it to the active telemetry configur
 
 The following sections show examples of configuring the `StorageFolder` setting for the channel in various application types. `StorageFolder` is just one of the configurable settings. For the full list of configuration settings, see the [Configurable settings in channels](#configurable-settings-in-channels) section later in this article.
 
-# [ASP.NET](#tab/net-1)
+##### ASP.NET
 
 **Option 1: Configuration in code**
 
@@ -3722,7 +3688,7 @@ The following section from *ApplicationInsights.config* shows the `ServerTelemet
     </TelemetrySinks>
 ```
 
-# [ASP.NET Core](#tab/core-1)
+##### ASP.NET Core
 
 Modify the `ConfigureServices` method of the `Startup.cs` class as shown here:
 
@@ -3742,7 +3708,7 @@ public void ConfigureServices(IServiceCollection services)
 > [!IMPORTANT]
 > Configuring the channel by using `TelemetryConfiguration.Active` isn't supported for ASP.NET Core applications.
 
-#### Overriding ServerTelemetryChannel
+###### Overriding ServerTelemetryChannel
 
 The default [telemetry channel](#telemetry-channels) is `ServerTelemetryChannel`. The following example shows how to override it.
 
@@ -3763,7 +3729,7 @@ var app = builder.Build();
 > [!NOTE]
 > If you want to flush the buffer, see [Flushing data](#flushing-data). For example, you might need to flush the buffer if you're using the SDK in an application that shuts down.
 
-# [Worker Service](#tab/worker-1)
+##### Worker Service
 
 The default channel is `ServerTelemetryChannel`. You can override it as the following example shows:
 
@@ -3779,8 +3745,6 @@ using Microsoft.ApplicationInsights.Channel;
         services.AddApplicationInsightsTelemetryWorkerService();
     }
 ```
-
----
 
 #### Configuration in code for console applications
 
@@ -3838,7 +3802,7 @@ Application Insights automatically collects telemetry about specific workloads w
 
 By default, the following automatic-collection modules are enabled. You can disable or configure them to alter their default behavior.
 
-# [ASP.NET](#tab/net)
+##### ASP.NET
 
 Each telemetry module collects a specific type of data and uses the core API to send the data. The modules are installed by different NuGet packages, which also add the required lines to the .config file.
 
@@ -3859,7 +3823,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | **ETW collector** | Sends configured ETW provider events to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
 | **Core API (not a module)** | [Core API](/dotnet/api/microsoft.applicationinsights) used by other telemetry components and for [custom telemetry](#core-api-for-custom-events-and-metrics).<br><br>**Module:** `Microsoft.ApplicationInsights package`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights)<br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
 
-# [ASP.NET Core](#tab/core)
+##### ASP.NET Core
 
 | Area | Description |
 |------|-------------|
@@ -3878,12 +3842,9 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | **ETW collector** | Windows-only (ETW). Sends configured ETW provider events to Application Insights as traces.<br><br>**Module:** `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.EtwCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) |
 | **Core API (not a module)** | Core API used by other telemetry components and for custom telemetry.<br><br>**Module:** `Microsoft.ApplicationInsights package`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) |
 
-
----
-
 #### Configure telemetry modules
 
-# [ASP.NET](#tab/net-1)
+##### ASP.NET
 
 Use the `TelemetryModules` section in *ApplicationInsights.config* to configure, add, or remove modules. The following examples:
 
@@ -3923,7 +3884,7 @@ Use the `TelemetryModules` section in *ApplicationInsights.config* to configure,
 > [!NOTE]
 > The exact set of modules present in your `ApplicationInsights.config` depends on which SDK packages you installed.
 
-# [ASP.NET Core](#tab/core-1)
+##### ASP.NET Core
 
 **Option 1: Configure telemetry modules using ConfigureTelemetryModule**
 
@@ -3999,7 +3960,7 @@ This table has the full list of `ApplicationInsightsServiceOptions` settings:
 
 For the most current list, see the [configurable settings in `ApplicationInsightsServiceOptions`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs).
 
-#### Configuration recommendation for Microsoft.ApplicationInsights.AspNetCore SDK 2.15.0 and later
+###### Configuration recommendation for Microsoft.ApplicationInsights.AspNetCore SDK 2.15.0 and later
 
 In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore/2.15.0) and later, configure every setting available in `ApplicationInsightsServiceOptions`, including `ConnectionString`. Use the application's `IConfiguration` instance. The settings must be under the section `ApplicationInsights`, as shown in the following example. The following section from *appsettings.json* configures the connection string and disables adaptive sampling and performance counter collection.
 
@@ -4015,7 +3976,7 @@ In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nug
 
 If `builder.Services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 6.0 or `services.AddApplicationInsightsTelemetry(aiOptions)` for ASP.NET Core 3.1 and earlier is used, it overrides the settings from `Microsoft.Extensions.Configuration.IConfiguration`.
 
-# [Worker Service](#tab/worker-1)
+##### Worker Service
 
 **Option 1: Configure telemetry modules using ConfigureTelemetryModule**
 
@@ -4090,15 +4051,13 @@ The following table lists commonly used settings in `ApplicationInsightsServiceO
 
 For the most up-to-date list, see the [configurable settings in `ApplicationInsightsServiceOptions`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs).
 
----
-
 ### Disable telemetry
 
-# [ASP.NET](#tab/net-1)
+#### ASP.NET
 
 There's a node in the configuration file for each module. To disable a module, delete the node or comment it out.
 
-# [ASP.NET Core](#tab/core-1)
+#### ASP.NET Core
 
 If you want to disable telemetry conditionally and dynamically, you can resolve the `TelemetryConfiguration` instance with an ASP.NET Core dependency injection container anywhere in your code and set the `DisableTelemetry` flag on it.
 
@@ -4115,7 +4074,7 @@ var app = builder.Build();
 
 The preceding code sample prevents the sending of telemetry to Application Insights. It doesn't prevent any automatic collection modules from collecting telemetry. If you want to remove a particular autocollection module, see [telemetry modules](#telemetry-modules).
 
-# [Worker Service](#tab/worker-1)
+#### Worker Service
 
 If you want to disable telemetry conditionally and dynamically, you can resolve the `TelemetryConfiguration` instance with an ASP.NET Core dependency injection container anywhere in your code and set the `DisableTelemetry` flag on it.
 
@@ -4132,8 +4091,6 @@ If you want to disable telemetry conditionally and dynamically, you can resolve 
     }
 ```
 
----
-
 ### Connection String
 
 This setting determines the Application Insights resource in which your data appears. Typically, you create a separate resource, with a separate connection string, for each of your applications.
@@ -4142,7 +4099,7 @@ See [Connection strings in Application Insights](connection-strings.md#code-samp
 
 If you want to set the connection string dynamically, for example, to send results from your application to different resources, you can omit the connection string from the configuration file and set it in code instead.
 
-# [ASP.NET](#tab/net)
+#### ASP.NET
 
 To set the connection string for all instances of `TelemetryClient`, including standard telemetry modules, do this step in an initialization method, such as global.aspx.cs in an ASP.NET service:
 
@@ -4171,7 +4128,7 @@ If you want to send a specific set of events to a different resource, you can se
 
 To get a new connection string, [create a new resource in the Application Insights portal](create-workspace-resource.md).
 
-# [ASP.NET Core](#tab/core)
+#### ASP.NET Core
 
 In ASP.NET Core, configure the connection string in `Program.cs` during application startup using the `TelemetryConfiguration` from the dependency injection (DI) container:
 
@@ -4204,8 +4161,6 @@ tc.TrackEvent("myEvent");
 // ...
 ```
 
----
-
 ### ApplicationId Provider
 
 > [!NOTE]
@@ -4234,7 +4189,7 @@ The class exposes an optional property called `ProfileQueryEndpoint`. By default
 
 If you need to configure a proxy, we recommend proxying the base address and ensuring the path includes `/api/profiles/{0}/appId`. At runtime, `{0}` is replaced with the instrumentation key for each request.
 
-# [ASP.NET](#tab/net)
+##### ASP.NET
 
 **Example configuration via ApplicationInsights.config**
 
@@ -4254,7 +4209,7 @@ If you need to configure a proxy, we recommend proxying the base address and ens
 TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApplicationIdProvider();
 ```
 
-# [ASP.NET Core](#tab/core)
+##### ASP.NET Core
 
 > [!NOTE]
 > In ASP.NET Core, there's no *ApplicationInsights.config* file. Configuration is done through dependency injection (DI) in *Program.cs* or *Startup.cs*.
@@ -4280,8 +4235,6 @@ var app = builder.Build();
 app.Run();
 ```
 
----
-
 #### DictionaryApplicationIdProvider
 
 This static provider relies on your configured instrumentation key/application ID pairs.
@@ -4290,7 +4243,7 @@ This class has the `Defined` property, which is a `Dictionary<string,string>` of
 
 This class has the optional property `Next`, which can be used to configure another provider to use when a connection string is requested that doesn't exist in your configuration.
 
-# [ASP.NET](#tab/net)
+##### ASP.NET
 
 **Example configuration via ApplicationInsights.config**
 
@@ -4320,7 +4273,7 @@ TelemetryConfiguration.Active.ApplicationIdProvider = new DictionaryApplicationI
 };
 ```
 
-# [ASP.NET Core](#tab/core)
+##### ASP.NET Core
 
 ```csharp
 using Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId;
@@ -4345,8 +4298,6 @@ var app = builder.Build();
 app.Run();
 ```
 
----
-
 ### Configure snapshot collection
 
 To learn how to configure snapshot collection for ASP.NET and ASP.NET Core applications, see [Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Cloud Services, and Virtual Machines](snapshot-debugger-vm.md).
@@ -4357,11 +4308,11 @@ The previous sections provided guidance on methods to automatically and manually
 
 Although it's possible to manually add the JavaScript (Web) SDK Loader Script to the header of each HTML page, we recommend that you instead add the JavaScript (Web) SDK Loader Script to a primary page. That action injects the JavaScript (Web) SDK Loader Script into all pages of a site.
 
-# [ASP.NET](#tab/net)
+### ASP.NET
 
 For the template-based ASP.NET MVC app from this article, the file that you need to edit is *_Layout.cshtml*. You can find it under **Views** > **Shared**. To add client-side monitoring, open *_Layout.cshtml* and follow the [JavaScript (Web) SDK Loader Script-based setup instructions](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) from the article about client-side JavaScript SDK configuration.
 
-# [ASP.NET Core](#tab/core)
+### ASP.NET Core
 
 If your application has client-side components, follow the next steps to start collecting [usage telemetry](usage.md) using JavaScript (Web) SDK Loader Script injection by configuration.
 
@@ -4392,8 +4343,6 @@ If your project doesn't include *_Layout.cshtml*, you can still add [client-side
 
 > [!NOTE]
 > JavaScript injection provides a default configuration experience. If you require [configuration](javascript-sdk-configuration.md) beyond setting the connection string, you're required to remove autoinjection as described and manually add the [JavaScript SDK](javascript-sdk.md).
-
----
 
 [!INCLUDE [azure-monitor-custom-events-metrics](includes/application-insights-api-custom-events-metrics.md)]
 
