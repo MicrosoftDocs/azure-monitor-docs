@@ -42,22 +42,6 @@ Content-Type: application/json
 }
 ```
 
-### Edit the resource JSON
-
-Edit the Workspace JSON in the Azure portal.
-
-1. In the Azure portal, navigate to the Workspace.
-1. On the overview page, select **JSON view**.
-1. For metrics in properties, add the following:
-
-```
-  "properties": {
-    "metrics": {
-      "enableAccessUsingResourcePermissions": true
-    }
-...
-```
-
 ## Deploy a query-based metric alert
 
 ## [Azure portal](#tab/portal)
