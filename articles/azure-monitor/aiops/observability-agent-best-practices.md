@@ -1,13 +1,13 @@
 ---
-title: Best practices guide - Azure Monitor observability agent (preview)
-description: This article provides best practices guidance for Azure Monitor observability agent. The article explains how to ensure observability agent investigations have rich data to produce most relevant insights. It also includes links to related Azure Monitor documentation for further reference.
+title: Best practices guide - Azure Copilot observability agent (preview)
+description: This article provides best practices guidance for Azure Copilot observability agent. The article explains how to ensure observability agent investigations have rich data to produce most relevant insights. It also includes links to related Azure Monitor documentation for further reference.
 ms.topic: how-to
 ms.servce: azure-monitor
 ms.reviewer: enauerman
 ms.date: 07/23/2025
 ---
 
-# Best practices guide: Azure Monitor observability agent (preview)
+# Best practices guide: Azure Copilot observability agent (preview)
 
 Azure Monitor's **[issues and investigations](aiops-issue-and-investigation-overview.md)** feature uses the [observability agent](observability-agent-overview.md) to analyze your Application Insights telemetry and help troubleshoot problems. By following these best practices, you can ensure observability agent investigations have rich data to produce most relevant insights.
 
@@ -109,7 +109,7 @@ For most purposes, setting up a couple of Standard availability tests on your ke
 
 ## Related content
 
-- [Azure Monitor observability agent overview](observability-agent-overview.md)
+- [Azure Copilot observability agent overview](observability-agent-overview.md)
 - [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
 - [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
-- [Azure Monitor observability agent responsible use](observability-agent-responsible-use.md)
+- [Azure Copilot observability agent responsible use](observability-agent-responsible-use.md)

@@ -9,15 +9,15 @@ items:
     href: visualize/insights-overview.md
   - name: Azure Monitor AIOPs
     items:
-    - name: Observability agent
+    - name: Azure Copilot observability agent
       items:
-      - name: Observability agent overview
+      - name: Azure Copilot observability agent overview
         href: aiops/observability-agent-overview.md
-      - name: Observability agent best practices guide
+      - name: Azure Copilot observability agent best practices guide
         href: aiops/observability-agent-best-practices.md
-      - name: Observability agent troubleshooting guide
+      - name: Azure Copilot observability agent troubleshooting guide
         href: aiops/observability-agent-troubleshooting.md
-      - name: Observability agent responsible use
+      - name: Azure Copilot observability agent responsible use
         href: aiops/observability-agent-responsible-use.md
     - name: Issues and investigations
       items:

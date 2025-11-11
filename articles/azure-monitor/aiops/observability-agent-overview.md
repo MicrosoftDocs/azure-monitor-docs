@@ -1,6 +1,6 @@
 ---
-title: Azure Monitor observability agent (preview)
-description: This article explains what Azure Monitor observability agent is and how it investigates issues within Azure Monitor to provide automated troubleshooting insights.
+title: Azure Copilot observability agent (preview)
+description: This article explains what Azure Copilot observability agent is and how it investigates issues within Azure Monitor to provide automated troubleshooting insights.
 ms.topic: how-to
 ms.service: azure-monitor
 ms.reviewer: yalavi
@@ -8,9 +8,9 @@ ms.date: 10/28/2025
 ms.custom: references_regions
 ---
 
-# Azure Monitor observability agent (preview)
+# Azure Copilot observability agent (preview)
 
-Azure Monitor observability agent is an AI-powered system that automatically investigates issues within Azure Monitor. When problems occur with your applications and Azure resources, the observability agent analyzes telemetry data, identifies anomalies, and produces findings to help you understand and resolve issues faster.
+Azure Copilot observability agent is an AI-powered system that automatically investigates issues within Azure Monitor. When problems occur with your applications and Azure resources, the observability agent analyzes telemetry data, identifies anomalies, and produces findings to help you understand and resolve issues faster.
 
 ## What does the observability agent do?
 

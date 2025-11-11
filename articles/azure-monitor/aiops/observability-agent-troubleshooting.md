@@ -1,12 +1,12 @@
 ---
-title: Troubleshooting guide - Azure Monitor observability agent (preview)
-description: This article provides troubleshooting guidance for Azure Monitor observability agent. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
+title: Troubleshooting guide - Azure Copilot observability agent (preview)
+description: This article provides troubleshooting guidance for Azure Copilot observability agent. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
 ms.topic: troubleshooting-general
 ms.servce: azure-monitor
 ms.date: 09/04/2025
 ---
 
-# Troubleshooting guide: Azure Monitor observability agent (preview)
+# Troubleshooting guide: Azure Copilot observability agent (preview)
 
 This article provides troubleshooting guidance for Azure Monitor issues and investigations. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
 
@@ -31,7 +31,7 @@ The observability agent depends on OpenAI for the text generation to function co
 
 ## Related content
 
-- [Azure Monitor observability agent overview](observability-agent-overview.md)
+- [Azure Copilot observability agent overview](observability-agent-overview.md)
 - [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
 - [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
-- [Azure Monitor observability agent responsible use](observability-agent-responsible-use.md)
+- [Azure Copilot observability agent responsible use](observability-agent-responsible-use.md)

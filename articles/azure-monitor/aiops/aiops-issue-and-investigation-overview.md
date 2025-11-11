@@ -155,7 +155,7 @@ These regions are the supported Azure regions for issues and investigation servi
 
 ## Next steps
 
-- [Azure Monitor observability agent overview](observability-agent-overview.md)
+- [Azure Copilot observability agent overview](observability-agent-overview.md)
 - [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
-- [Azure Monitor issues and investigations (preview) responsible use](observability-agent-responsible-use.md)
-- [Azure Monitor issues and investigations (preview) troubleshooting](observability-agent-troubleshooting.md)
+- [Azure Copilot observability agent responsible use](observability-agent-responsible-use.md)
+- [Azure Copilot observability agent troubleshooting](observability-agent-troubleshooting.md)

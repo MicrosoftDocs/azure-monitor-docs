@@ -14,7 +14,7 @@ This article guides you through getting started with Azure Monitor issues and in
 ## Prerequisites
 
 - Read the [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md).
-- Learn about the [Azure Monitor observability agent](observability-agent-overview.md).
+- Learn about the [Azure Copilot observability agent](observability-agent-overview.md).
 - Learn about the [responsible use](observability-agent-responsible-use.md) of Azure Monitor investigations.
 - Be sure that the subscription containing the investigated resource is associated with an Azure Monitor Workspace (AMW).
 - Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor*, or *Issue Contributor* role on the AMW you're investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
@@ -121,7 +121,7 @@ The observability agent presents findings based on the data it analyzed. To revi
 
 ## Related content
 
-- [Azure Monitor observability agent overview](observability-agent-overview.md)
+- [Azure Copilot observability agent overview](observability-agent-overview.md)
 - [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
-- [Azure Monitor issues and investigations (preview) responsible use](observability-agent-responsible-use.md)
-- [Azure Monitor issues and investigations (preview) troubleshooting](observability-agent-troubleshooting.md)
+- [Azure Copilot observability agent responsible use](observability-agent-responsible-use.md)
+- [Azure Copilot observability agent troubleshooting](observability-agent-troubleshooting.md)
