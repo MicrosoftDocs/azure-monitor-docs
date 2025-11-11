@@ -861,6 +861,8 @@ This approach also ensures all the telemetry generated, both automatic and manua
 
 [Live metrics](live-stream.md) can be used to quickly verify if application monitoring with Application Insights is configured correctly. Telemetry can take a few minutes to appear in the Azure portal, but the live metrics pane shows CPU usage of the running process in near real time. It can also show other telemetry like requests, dependencies, and traces.
 
+# [.NET](#tab/dotnet)
+
 > [!NOTE]
 > Live metrics are enabled by default when you onboard it by using the recommended instructions for .NET applications.
 
@@ -1026,6 +1028,12 @@ It's important to note that the following example doesn't cause the Application 
 > Application Insights respects the log levels configured via ConfigureLogging(...) in code. If only appsettings.json is used, and ConfigureLogging isn't overridden explicitly, the default log level is **Warning**.
 
 For more information, follow [ILogger docs](/dotnet/core/extensions/logging#configure-logging) to customize which log levels are captured by Application Insights.
+
+# [Node.js](#tab/nodejs)
+
+To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
+
+---
 
 ### Traces (logs)
 
@@ -3333,6 +3341,8 @@ public void Initialize(ITelemetry telemetry)
 
 Telemetry processors can filter and modify each telemetry item before it's sent from the SDK to the portal.
 
+# [.NET](#tab/dotnet)
+
 #### Implement `ITelemetryProcessor`
 
 Telemetry processors construct a chain of processing. When you instantiate a telemetry processor, you're given a reference to the next processor in the chain. When a telemetry data point is passed to the process method, it does its work and then calls (or doesn't call) the next telemetry processor in the chain.
@@ -3535,6 +3545,67 @@ public void Process(ITelemetry item)
     }
     this.Next.Process(item);
 }
+```
+
+# [Node.js](#tab/nodejs)
+
+You can process and filter collected data before it's sent for retention by using *telemetry processors*. Telemetry processors are called one by one in the order they were added before the telemetry item is sent to the cloud.
+
+```javascript
+public addTelemetryProcessor(telemetryProcessor: (envelope: Contracts.Envelope, context: { http.RequestOptions, http.ClientRequest, http.ClientResponse, correlationContext }) => boolean)
+```
+
+If a telemetry processor returns `false`, that telemetry item isn't sent.
+
+All telemetry processors receive the telemetry data and its envelope to inspect and modify. They also receive a context object. The contents of this object are defined by the `contextObjects` parameter when calling a track method for manually tracked telemetry. For automatically collected telemetry, this object is filled with available request information and the persistent request content as provided by `appInsights.getCorrelationContext()` (if automatic dependency correlation is enabled).
+
+The TypeScript type for a telemetry processor is:
+
+```javascript
+telemetryProcessor: (envelope: ContractsModule.Contracts.Envelope, context: { http.RequestOptions, http.ClientRequest, http.ClientResponse, correlationContext }) => boolean;
+```
+
+For example, a processor that removes stacks trace data from exceptions might be written and added as follows:
+
+```javascript
+function removeStackTraces ( envelope, context ) {
+  if (envelope.data.baseType === "Microsoft.ApplicationInsights.ExceptionData") {
+    var data = envelope.data.baseData;
+    if (data.exceptions && data.exceptions.length > 0) {
+      for (var i = 0; i < data.exceptions.length; i++) {
+        var exception = data.exceptions[i];
+        exception.parsedStack = null;
+        exception.hasFullStack = false;
+      }
+    }
+  }
+  return true;
+}
+
+appInsights.defaultClient.addTelemetryProcessor(removeStackTraces);
+```
+
+#### Add a cloud role name and cloud role instance
+
+**Set cloud role name via direct context tags:**
+
+```javascript
+var appInsights = require("applicationinsights");
+appInsights.setup('INSTRUMENTATION_KEY').start();
+appInsights.defaultClient.context.tags["ai.cloud.role"] = "your role name";
+appInsights.defaultClient.context.tags["ai.cloud.roleInstance"] = "your role instance";
+```
+
+**Set cloud role name via telemetry processor:**
+
+```javascript
+var appInsights = require("applicationinsights");
+appInsights.setup('INSTRUMENTATION_KEY').start();
+
+appInsights.defaultClient.addTelemetryProcessor(envelope => {
+    envelope.tags["ai.cloud.role"] = "your role name";
+    envelope.tags["ai.cloud.roleInstance"] = "your role instance"
+});
 ```
 
 ### Sampling
@@ -4113,6 +4184,8 @@ See [Connection strings in Application Insights](connection-strings.md#code-samp
 
 If you want to set the connection string dynamically, for example, to send results from your application to different resources, you can omit the connection string from the configuration file and set it in code instead.
 
+# [.NET](#tab/dotnet)
+
 #### ASP.NET
 
 To set the connection string for all instances of `TelemetryClient`, including standard telemetry modules, do this step in an initialization method, such as global.aspx.cs in an ASP.NET service:
@@ -4174,6 +4247,27 @@ tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000
 tc.TrackEvent("myEvent");
 // ...
 ```
+
+# [Node.js](#tab/nodejs)
+
+#### Use multiple connection strings
+
+You can create multiple Application Insights resources and send different data to each by using their respective connection strings.
+
+For example:
+
+```javascript
+let appInsights = require("applicationinsights");
+
+// configure auto-collection under one connection string
+appInsights.setup("Connection String A").start();
+
+// track some events manually under another connection string
+let otherClient = new appInsights.TelemetryClient("Connection String B");
+otherClient.trackEvent({name: "my custom event"});
+```
+
+---
 
 ### ApplicationId Provider
 

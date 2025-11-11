@@ -1,5 +1,3 @@
-
-
 [Application Insights](./app-insights-overview.md) monitors your components after deployment to discover performance and other issues. You can use Application Insights for Node.js services that are hosted in your datacenter, Azure VMs and web apps, and even in other public clouds.
 
 To receive, store, and explore your monitoring data, include the SDK in your code. Then set up a corresponding Application Insights resource in Azure. The SDK sends data to that resource for further analysis and exploration.
@@ -13,15 +11,6 @@ You can use the TelemetryClient API to manually instrument and monitor more aspe
 ## Get started
 
 Complete the following tasks to set up monitoring for an app or service.
-
-### Prerequisites
-
-Before you begin, make sure that you have an Azure subscription, or [get a new one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If your organization already has an Azure subscription, an administrator can follow [these instructions](/azure/active-directory/fundamentals/add-users-azure-active-directory) to add you to it.
-
-### Set up an Application Insights resource
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-1. Create an [Application Insights resource](create-workspace-resource.md).
 
 ### Set up the Node.js client library
 
@@ -205,9 +194,6 @@ Currently, nine packages are instrumented: `bunyan`,`console`,`mongodb`,`mongodb
 
 The `bunyan`, `winston`, and `console` patches generate Application Insights trace events based on whether `setAutoCollectConsole` is enabled. The rest generates Application Insights dependency events based on whether `setAutoCollectDependencies` is enabled.
 
-### Live metrics
-
-To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
 
 ### Extended metrics
 
@@ -365,84 +351,6 @@ If the SDK detects that your application is crashing, it calls flush for you by 
 [!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
 
 [!INCLUDE [Telemetry processor and telemetry initializer](./includes/application-insights-processor-initializer.md)]
-
-### Preprocess data with telemetry processors
-
-You can process and filter collected data before it's sent for retention by using *telemetry processors*. Telemetry processors are called one by one in the order they were added before the telemetry item is sent to the cloud.
-
-```javascript
-public addTelemetryProcessor(telemetryProcessor: (envelope: Contracts.Envelope, context: { http.RequestOptions, http.ClientRequest, http.ClientResponse, correlationContext }) => boolean)
-```
-
-If a telemetry processor returns `false`, that telemetry item isn't sent.
-
-All telemetry processors receive the telemetry data and its envelope to inspect and modify. They also receive a context object. The contents of this object are defined by the `contextObjects` parameter when calling a track method for manually tracked telemetry. For automatically collected telemetry, this object is filled with available request information and the persistent request content as provided by `appInsights.getCorrelationContext()` (if automatic dependency correlation is enabled).
-
-The TypeScript type for a telemetry processor is:
-
-```javascript
-telemetryProcessor: (envelope: ContractsModule.Contracts.Envelope, context: { http.RequestOptions, http.ClientRequest, http.ClientResponse, correlationContext }) => boolean;
-```
-
-For example, a processor that removes stacks trace data from exceptions might be written and added as follows:
-
-```javascript
-function removeStackTraces ( envelope, context ) {
-  if (envelope.data.baseType === "Microsoft.ApplicationInsights.ExceptionData") {
-    var data = envelope.data.baseData;
-    if (data.exceptions && data.exceptions.length > 0) {
-      for (var i = 0; i < data.exceptions.length; i++) {
-        var exception = data.exceptions[i];
-        exception.parsedStack = null;
-        exception.hasFullStack = false;
-      }
-    }
-  }
-  return true;
-}
-
-appInsights.defaultClient.addTelemetryProcessor(removeStackTraces);
-```
-
-#### Add a cloud role name and cloud role instance
-
-**Set cloud role name via direct context tags:**
-
-```javascript
-var appInsights = require("applicationinsights");
-appInsights.setup('INSTRUMENTATION_KEY').start();
-appInsights.defaultClient.context.tags["ai.cloud.role"] = "your role name";
-appInsights.defaultClient.context.tags["ai.cloud.roleInstance"] = "your role instance";
-```
-
-**Set cloud role name via telemetry processor:**
-
-```javascript
-var appInsights = require("applicationinsights");
-appInsights.setup('INSTRUMENTATION_KEY').start();
-
-appInsights.defaultClient.addTelemetryProcessor(envelope => {
-    envelope.tags["ai.cloud.role"] = "your role name";
-    envelope.tags["ai.cloud.roleInstance"] = "your role instance"
-});
-```
-
-## Use multiple connection strings
-
-You can create multiple Application Insights resources and send different data to each by using their respective connection strings.
-
-For example:
-
-```javascript
-let appInsights = require("applicationinsights");
-
-// configure auto-collection under one connection string
-appInsights.setup("Connection String A").start();
-
-// track some events manually under another connection string
-let otherClient = new appInsights.TelemetryClient("Connection String B");
-otherClient.trackEvent({name: "my custom event"});
-```
 
 ## Advanced configuration options
 
