@@ -147,7 +147,7 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 - Health history: up to one year
 
 
-## Next steps:
+## Next steps
 
 - Read [Impacted resources from Azure Retirements](impacted-resources-retirements.md)
 - Read [Service Health Frequently asked questions](service-health-faq.yml)
