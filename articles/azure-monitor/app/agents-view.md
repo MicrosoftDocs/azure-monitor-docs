@@ -24,20 +24,26 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 
 ### Choose your monitoring approach
 
-Getting started looks different depending on how and where you're building your agents:
+Getting started looks different depending on how and where you're building your agents.
 
-* **Azure AI Foundry:** You can collect telemetry from your agentic application using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and the [Azure AI Foundry SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk).
+**Managed hosting**
 
-* **Microsoft Agent Framework:** If you're building an agent from scratch and are self-hosting, you can use the [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-observability#enable-observability) to orchestrate your agent and emit telemetry to Azure Monitor.
-
-    If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the [Transaction Details](#end-to-end-transaction-details-view) view.
+* **Azure AI Foundry:** You can collect telemetry from your agentic application using the Azure Monitor OpenTelemetry Distro and the [Azure AI Foundry SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk).
 
 * **Copilot Studio:** You can use built-in configuration to emit your telemetry to Azure Monitor, see [Connect your Copilot Studio agent to Application Insights](/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry#connect-your-copilot-studio-agent-to-application-insights).
 
-* **Third-party agents:** If you built an agent elsewhere, you can emit your telemetry to Azure Monitor using the Azure AI OpenTelemetry Tracer. For more information, see:
+**Self-hosting**
+
+* **Microsoft Agent Framework:** If you're building an agent from scratch and are self-hosting, you can use the [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-observability#enable-observability) to orchestrate your agent and emit telemetry to Azure Monitor.
+
+* **Third-party agents:** If you built an agent elsewhere, you can emit your telemetry to Azure Monitor using the Azure AI OpenTelemetry Tracer.
+
+    For more information, see:
 
     * [Enable tracing for Agents built on LangChain & LangGraph](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-langchain--langgraph).
     * [Enable tracing for Agents built on OpenAI Agents SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-openai-agents-sdk)
+
+If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag in Agent Framework), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the [Transaction Details](#end-to-end-transaction-details-view) view.
 
 > [!TIP]
 > * Make sure to give each of your agents a name, so you tell them apart from each other in the Agent details view.
