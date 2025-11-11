@@ -19,7 +19,7 @@ To view past health events that affected your Azure resources, select **Health h
 
 When you open the Health history pane, you can see detailed information about each historical event, including the type of event, its effect, and the actions taken to resolve it.
 
-Select the **Issue name** link to open the tabs with the complete information about each event. For instance, if you select on the link for a Service issue Event type, it opens the page with all the information in the Service issue pane. 
+Select the **Issue name** link to open the tabs with the complete information about each event. For instance, if you select the link for a Service issue event type, it opens the page with all the information in the Service issue pane. 
 
 This pane contains the following information:
 - Issue Name
@@ -53,28 +53,28 @@ There are several options how to sort the information at the top of the pane.
 
 The information on this pane can be used for:
 
-**Troubleshooting** 
+#### Troubleshooting 
 
 One of the primary uses of the Health history pane is to aid in troubleshooting. By reviewing past health events, you can quickly determine whether an issue is due to Azure service disruptions or user configuration errors. This historical context can help you identify patterns or recurring issues that might need to be addressed.
 
 
-**SLA Validation** 
+#### SLA Validation
 
 The Health history pane is also useful for validating Service Level Agreements (SLAs). By examining the downtime history of your resources, you can verify whether Azure meets its SLA commitments. This information can be crucial for ensuring that you're receiving the level of service you're paying for.
 
-**Alerting**
+#### Alerting
 
 Setting up alerts based on historical health events is another common use case. You can configure Activity Log-based alerts to notify you of health status changes via email, SMS, or webhook. This proactive approach ensures that you're immediately informed of any issues that could affect your resources.
 
-**Compliance and Reporting**
+#### Compliance and Reporting
 
 For organizations that need to maintain compliance with regulatory requirements, the Health history pane provides a detailed record of all health events. This information can be used for auditing purposes and generating reports that demonstrate compliance with industry standards.
 
-**Resource Management**
+#### Resource Management
 
 The Health history pane can help you manage your resources more effectively by providing insights into their historical performance. This information can be used to make informed decisions about resource allocation, scaling, and optimization.
 
-### More information:
+## More information
 
 - [Azure Service Health portal](service-health-portal-update.md)
 - [Resource Health FAQs](resource-health-faq.yml)
