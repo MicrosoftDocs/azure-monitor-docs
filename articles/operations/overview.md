@@ -34,7 +34,7 @@ Each pillar includes the following in the operations center portal:
 - Menu items that provide access to the different Azure services related to the pillar. Many of these menu items correspond directly to existing Azure services, while others provide consolidated views across multiple services.
 - Recommendations page that consolidates relevant Azure Advisor recommendations for the pillar. 
 
-The following table describes each pillar and the Azure services it uses. All pillars also use [Azure Advisor]() to provide recommendations for improving your configuration. See the documentation for each pillar for more details.
+The following table describes each pillar and the Azure services it uses. All pillars also use [Azure Advisor](/azure/advisor/advisor-overview) to provide recommendations for improving your configuration. See the documentation for each pillar for more details.
 
 | Area |Description | Services |
 |:---|:---|:---|
