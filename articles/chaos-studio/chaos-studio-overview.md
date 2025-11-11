@@ -54,6 +54,8 @@ Chaos Studio supports two types of faults:
 
 Each fault has specific parameters you can configure, like which process to kill or how much memory pressure to generate.
 
+Chaos Studio now supports IPv6 connectivity for agent-based and service-direct targets (dual-stack IPv4/IPv6).
+
 When you build a chaos experiment, you define one or more *steps* that execute sequentially. Each step contains one or more *branches* that run in parallel within the step. Each branch contains one or more *actions*, such as injecting a fault or waiting for a certain duration.
 
 You organize resource *targets* to run faults against into groups called *selectors* so that you can easily reference a group of resources in each action.

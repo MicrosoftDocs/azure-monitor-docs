@@ -52,6 +52,9 @@ The following RBAC roles must be assigned to the managed identity depending on t
 
 ## Create a data collection rule
 
+> [!TIP]
+> There is now a preview feature to create a data collection rule (DCR) that sends data to Event Hubs or storage using the Azure portal. See [Create a data collection rule](../vm/data-collection.md?tabs=preview#create-a-data-collection-rule).
+
 There's not currently a UI experience for creating a data collection rule (DCR) that sends data to Event Hubs or storage. The following process describes the steps for creating a DCR using an ARM template in the Azure portal. Alternatively, you can use the sample DCR here to [create a new DCR using any other methods](../essentials/data-collection-rule-create-edit.md).
 
 > [!WARNING]
@@ -71,7 +74,7 @@ There's not currently a UI experience for creating a data collection rule (DCR) 
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "[resourceGroup().location]",
         "metadata": {
             "description": "Location for all resources."
@@ -510,7 +513,7 @@ Use the process above or any other valid method to deploy this template. It incl
     "type": "String"
     },
     "location": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[resourceGroup().location]",
     "metadata": {
         "description": "Location for all resources."
@@ -524,14 +527,14 @@ Use the process above or any other valid method to deploy this template. It incl
     }
     },
     "dcraName": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
     "metadata": {
         "description": "Name of the association."
     }
     },
     "identityName": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[concat(resourceGroup().name, 'UAI')]",
     "metadata": {
         "description": "Managed Identity"
@@ -587,7 +590,7 @@ Use the process above or any other valid method to deploy this template. It incl
     "type": "String"
     },
     "location": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[resourceGroup().location]",
     "metadata": {
         "description": "Location for all resources."
@@ -601,14 +604,14 @@ Use the process above or any other valid method to deploy this template. It incl
     }
     },
     "dcraName": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
     "metadata": {
         "description": "Name of the association."
     }
     },
     "identityName": {
-    "type": "string",
+    "type": "String",
     "defaultValue": "[concat(resourceGroup().name, 'UAI')]",
     "metadata": {
         "description": "Managed Identity"

@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, build-2023
-ms.reviewer: mmcc
 ---
 
 # Dependency tracking in Application Insights

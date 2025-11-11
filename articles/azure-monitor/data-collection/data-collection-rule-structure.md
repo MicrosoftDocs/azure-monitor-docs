@@ -111,7 +111,7 @@ The possible data types that can be assigned to the properties are:
 * `real`
 * `boolean`
 * `dynamic`
-* `datetime`.
+* `datetime`
 
 ## Destinations
 

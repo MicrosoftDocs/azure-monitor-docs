@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: python
 ms.custom: devx-track-python
-ms.reviewer: mmcc
 ---
 
 # Migrating from OpenCensus Python SDK and Azure Monitor OpenCensus exporter for Python to Azure Monitor OpenTelemetry Python Distro
@@ -118,7 +117,7 @@ If you would like to suggest a community instrumentation library us to include i
 
 ### TelemetryProcessors
 
-OpenCensus Python telemetry [processors](./api-filtering-sampling.md#opencensus-python-telemetry-processors) are a powerful mechanism in which allowed users to modify their telemetry before they're sent to the exporter. There's no concept of TelemetryProcessors in the OpenTelemetry world, but there are APIs and classes that you can use to replicate the same behavior.
+There's no concept of TelemetryProcessors in the OpenTelemetry world, but there are APIs and classes that you can use to replicate the same behavior.
 
 #### Setting Cloud Role Name and Cloud Role Instance
 

@@ -30,26 +30,30 @@
     href: advisor-recommendations-digest.md      
 - name: How-to guides
   items:
-  - name: Use Azure Well Architected Framework Assessments
-    href: advisor-assessments.md
-  - name: Use Azure Advisor resiliency reviews
-    href: advisor-resiliency-reviews.md
-  - name: Optimize virtual machine spend by resizing or shutting down underutilized instances
-    href: advisor-cost-recommendations.md
-  - name: Improve security
-    href: advisor-security-recommendations.md
-  - name: Improve the performance of highly used VMs
-    href: advisor-how-to-performance-resize-high-usage-vm-recommendations.md
-  - name: Use tags to filter recommendations and score
-    href: advisor-tag-filtering.md
-  - name: Bulk remediation for recommendations
-    href: advisor-quick-fix.md
   - name: Advisor data in Azure Resource Graph
-    href: advisor-azure-resource-graph.md
+    href: ./advisor-azure-resource-graph.md
+  - name: Bulk remediation for recommendations
+    href: ./advisor-quick-fix.md
   - name: Calculate total cost savings
-    href: advisor-how-to-calculate-total-cost-savings.md
+    href: ./advisor-how-to-calculate-total-cost-savings.md
+  - name: Evaluate cost implications of recommendations
+    href: ./advisor-how-to-evaluate-cost-implications-of-recommendations.md
+  - name: Improve the performance of highly used VMs
+    href: ./advisor-how-to-performance-resize-high-usage-vm-recommendations.md
+  - name: Optimize virtual machine spend by resizing or shutting down underutilized instances
+    href: ./advisor-cost-recommendations.md
+  - name: Review security recommendations
+    href: /azure/defender-for-cloud/review-security-recommendations
+  - name: Use Azure Advisor resiliency reviews
+    href: ./advisor-resiliency-reviews.md
+  - name: Use Azure Well Architected Framework Assessments
+    href: ./advisor-assessments.md
   - name: Use Service Upgrade and Retirement recommendations
     href: ./advisor-how-to-use-service-upgrade-retirement-recommendations.md
+  - name: Use tags to filter recommendations and score
+    href: ./advisor-tag-filtering.md
+  - name: Use Critical Risks
+    href: ./advisor-critical-risks.md
 - name: Recommendations
   items:
   - name: Cost

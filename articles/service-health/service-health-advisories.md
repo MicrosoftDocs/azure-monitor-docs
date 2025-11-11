@@ -2,12 +2,12 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 8/21/2025
+ms.date: 10/17/2025
 ---
 
 # Health advisories 
 
-The Health Advisories pane in Azure Service Health is a vital tool that helps you proactively manage your environment by highlighting non-incident issues that might need attention. This article explains its purpose, and outlines the types of information it provides.
+The Health advisories pane in Azure Service Health is a vital tool that helps you proactively manage your environment by highlighting non-incident issues that might need attention. This article explains its purpose, and outlines the types of information found on this pane.
 
 :::image type="content"source="./media/service-health-advisories/health-advisories-main-tab.png" alt-text= "A screenshot of health advisories main pane with more information." Lightbox= "./media/service-health-advisories/health-advisories-main-tab.png":::
 
@@ -44,7 +44,7 @@ At the top of each tab, there are several options of how to view the information
 
 :::image type="content"source="./media/service-health-advisories/health-advisories-summary.png"alt-text="A screenshot of the health advisories summary tab." Lightbox= "./media/service-health-advisories/health-advisories-summary.png":::
 
-When you open the Health Advisories pane, you see a list of relevant advisories tailored to your subscriptions, services, and regions. Each advisory includes:
+When you open the Health advisories pane, you see a list of relevant notifications tailored to your subscriptions, services, and regions. Each advisory includes:
 
 
 |Field  |Description |
@@ -63,27 +63,28 @@ When you open the Health Advisories pane, you see a list of relevant advisories 
 
 The Impacted Services section in Azure Service Health advisories outlines how a given advisory can affect the specific Azure services. It typically includes the following information:
 
-- Service Names: Lists the specific Azure services affected by the advisory (for example, Azure Synapse, Azure SQL, etc.).
-- Regions: Indicates the geographic regions where the services are impacted.
-- Scope of Impact: It might include whether the impact is global, regional, or limited to specific subscriptions or tenants.
-- Service Categories: Sometimes grouped by service type (for example, compute, storage, networking).
+- **Service Names**: Lists the specific Azure services affected by the advisory (for example, Azure Synapse, Azure SQL, etc.).
+- **Regions**: Indicates the geographic regions where the services are impacted.
+- **Scope of Impact**: It might include whether the impact is global, regional, or limited to specific subscriptions or tenants.
+- **Service Categories**: Sometimes grouped by service type (for example, compute, storage, networking).
 
 
 ### Issue Updates tab
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-issue-updates.png"alt-text="A screenshot of health advisories Issue Updates tab."Lightbox="./media/service-health-advisories/health-advisories-issue-updates.png":::
+:::image type="content"source="./media/service-health-advisories/health-advisories-issue-updates.png"alt-text="A screenshot of Health advisories Issue Updates tab."Lightbox="./media/service-health-advisories/health-advisories-issue-updates.png":::
 
 The Issue Updates section in the Health advisories pane provides detailed, time-stamped progress reports and contextual updates about nonincident issues that could affect your Azure environment. It typically includes the following information:
-- Chronological Updates: These updates track the progression of the advisory—detailing when it was initially identified, any modifications in scope or severity, and the point at which it was resolved or mitigated.
-- Contextual Details: Clarifications about the root cause, mitigation steps, or any changes in the recommended actions.
-- Status Transitions: Updates on whether the advisory is moved from “Active” to “Resolved” or “Scheduled.”
+- **Chronological Updates**: These updates track the progression of the advisory—detailing when it was initially identified, any modifications in scope or severity, and the point at which it was resolved or mitigated.
+- **Contextual Details**: Clarifications about the root cause, mitigation steps, or any changes in the recommended actions.
+- **Status Transitions**: Updates on whether the advisory is moved from “Active” to “Resolved” or “Scheduled.”
 
 
 
 
-### More information:
+### More information
 
 - [Resource Health overview](resource-health-overview.md)
 - [Service Health FAQs](service-health-faq.yml)
 - [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
+- [Resource Health FAQs](resource-health-faq.yml)
 

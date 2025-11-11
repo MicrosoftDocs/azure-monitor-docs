@@ -12,6 +12,7 @@ ms.date: 12/11/2024
 > As [announced](https://azure.microsoft.com/updates/switch-api-preference-log-alerts/), the Log Analytics Alert API will be retired on October 1, 2025. You must transition to using the Scheduled Query Rules API for log search alerts by that date.
 > Log Analytics workspaces created after June 1, 2019 use the [scheduledQueryRules API](/rest/api/monitor/scheduledqueryrule-2021-08-01/scheduled-query-rules) to manage log search alert rules. [Switch to the current API](./alerts-log-api-switch.md) in older workspaces to take advantage of Azure Monitor scheduledQueryRules [benefits](./alerts-log-api-switch.md#benefits). 
 > Once you migrate rules to the [scheduledQueryRules API](/rest/api/monitor/scheduledqueryrule-2021-08-01/scheduled-query-rules), you cannot revert back to the older [legacy Log Analytics Alert API](/azure/azure-monitor/alerts/api-alerts).
+> This API retirement has no impact on Log search alert rules created using scheduledQueryRules API versions 2018-04-16 or newer.
 
 In the past, users used the [legacy Log Analytics Alert API](/azure/azure-monitor/alerts/api-alerts) to manage log search alert rules. Currently workspaces use the [Scheduled Query Rules API](/rest/api/monitor/scheduledqueryrule-2021-08-01/scheduled-query-rules) for new rules. This article describes the benefits and the process of switching legacy log search alert rules management from the legacy API to the current API.
 

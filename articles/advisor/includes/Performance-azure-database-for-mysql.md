@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for MySQL
@@ -34,19 +34,20 @@ Recommendation ID: fba7355d-0f26-4015-9b14-17bdc584081a
 
 #### Enable Accelerated Logs for improved performance  
   
-For servers in the Azure Database for MySQL - Business-Critical service tier, enable Accelerated Logs to enhance performance by reducing write latency, potentially doubling application performance at no extra cost.  
+For servers in the Azure Database for MySQL - Business Critical service tier, enable Accelerated Logs to enhance performance by reducing write latency, potentially doubling application performance at no extra cost.  
   
-**Potential benefits**: Up to 2x increase in throughput for Business-Critical workloads at no extra cost.  
+**Potential benefits**: Reduced write latency and improved application performance  
 
 **Impact:** High
   
-For more information, see [Accelerated Logs Feature in Azure Database for MySQL - Flexible Server - Azure Database for MySQL - Flexible Server](https://go.microsoft.com/fwlink/?linkid=2249089)  
+For more information, see [Accelerated Logs Feature in Azure Database for MySQL - Flexible Server - Azure Database for MySQL](https://go.microsoft.com/fwlink/?linkid=2249089)  
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: 2aa0da9d-b0f0-4924-92e0-1518441f40ac  
 
 
 <!--2aa0da9d-b0f0-4924-92e0-1518441f40ac_end-->
+
 
 <!--d397f019-f52e-47e9-ba3f-106399c829a8_begin-->
 
@@ -58,12 +59,13 @@ The replica server is approaching maximum threshold for IOPS utilization and has
 
 **Impact:** High
   
-For more information, see [Zone-Redundant HA - Azure Database for MySQL - Flexible Server](/azure/mysql/flexible-server/concepts-high-availability)  
+For more information, see [Zone-Redundant High-Availability (HA) - Azure Database for MySQL](/azure/mysql/flexible-server/concepts-high-availability)  
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: d397f019-f52e-47e9-ba3f-106399c829a8  
 
 
 <!--d397f019-f52e-47e9-ba3f-106399c829a8_end-->
+
 
 <!--articleBody-->

@@ -1,11 +1,11 @@
 ---
-title: High scale logs collection in Container Insights (Preview)
-description: Enable high scale logs collection in Container Insights.
+title: High scale log collection in Container Insights 
+description: Enable high scale log collection in Container Insights.
 ms.topic: article
-ms.date: 08/06/2024
+ms.date: 08/25/2025
 ---
 
-# High scale logs collection in Container Insights (Preview)
+# High scale log collection in Container Insights 
 
 High scale mode is a feature in Container Insights that enables you to collect container console (stdout & stderr) logs with high throughput from your Azure Kubernetes Service (AKS) cluster nodes. This feature enables you to collect up to 50,000 logs/sec per node.
 
@@ -15,11 +15,11 @@ When high scale mode is enabled, Container Insights performs multiple configurat
 
 High scale mode impacts only the data collection layer. The rest of the Container Insights experience remains the same, with logs being ingested into same `ContainerLogV2` table. Existing queries and alerts continue to work since the same data is being collected.
 
-To achieve the maximum supported logs throughput, you should use high-end VM SKUs with 16 CPU cores or more for your AKS cluster nodes. Using low end VM SKUs impacts your logs throughput.
+To achieve the maximum supported log throughput, you should use high-end VM SKUs with 16 CPU cores or more for your AKS cluster nodes. Using low end VM SKUs impacts your logs throughput.
 
 ## Does my cluster qualify?
 
-High scale logs collection is suited for environments sending more than 2,000 logs/sec (or 2 MB/sec) per node in their Kubernetes clusters and has been designed and tested for sending up to 50,000 logs/sec per node. Use the following [log queries](../logs/log-query-overview.md) to determine whether your cluster is suitable for high scale logs collection.
+High scale log collection is suited for environments sending more than 2,000 logs/sec (or 2 MB/sec) per node in their Kubernetes clusters and has been designed and tested for sending up to 50,000 logs/sec per node. Use the following [log queries](../logs/log-query-overview.md) to determine whether your cluster is suitable for high scale logs collection.
 
 **Logs per second and per node**
 
@@ -56,21 +56,21 @@ In addition to the [network firewall requirements](kubernetes-monitoring-firewal
 | Microsoft Azure operated by 21Vianet cloud | `<dce-name>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.cn`  | 443  |
 | Azure Government cloud                     | `<dce-name>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.us`  | 443  |
 
-The endpoint is the **Logs Ingestion** endpoint from the data collection endpoint (DCE) for the data collection rule (DCR) used by the cluster. This DCE is created when you enable high scale mode for the cluster and starts with the prefix `MSCI-ingest`.
+The endpoint is the **Log Ingestion** endpoint from the data collection endpoint (DCE) for the data collection rule (DCR) used by the cluster. This DCE is created when you enable high scale mode for the cluster and starts with the prefix `MSCI-ingest`.
 
 :::image type="content" source="media/container-insights-high-scale/logs-ingestion-endpoint.png" lightbox="media/container-insights-high-scale/logs-ingestion-endpoint.png" alt-text="Screenshot of logs ingestion endpoint for DCE.":::
 
 ## Limitations 
 
-The following scenarios aren't supported.
+The following scenarios aren't supported:
 
 * HTTP proxy with trusted certificate
 * Onboarding through Azure portal
-* Onboarding through Bicep, Terraform, Azure Policy for Azure Arc-enabled Kubernetes
 * Configuring through **Monitor Settings** in the AKS Insights portal experience
 * Automatic migration from existing Container Insights
+*	Onboarding via Bicep, Terraform, Azure Policy for Azure Arc-enabled Kubernetes
 
-## Enable high scale logs collection
+## Enable high scale log collection
 
 Follow the two steps in the following sections to enable high scale mode for your cluster.
 
@@ -81,7 +81,7 @@ Follow the two steps in the following sections to enable high scale mode for you
 
 The first step is to update configmap for the cluster to instruct the Container Insights ama-logs deamonset pods to run in high scale mode. 
 
-1. Follow the guidance in [Configure and deploy ConfigMap](container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
+1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-filter.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
 
 1. Enable high scale mode with the following setting under `agent-settings`.
 
@@ -103,12 +103,6 @@ The first step is to update configmap for the cluster to instruct the Container 
     kubectl config set-context <cluster-name>
     kubectl apply -f <configmap_yaml_file.yaml>
     ```
-    
-    Example:
-    ```bash
-    kubectl config set-context my-cluster
-    kubectl apply -f container-azm-ms-agentconfig.yaml
-    ```
 
 
 After applying this configmap, `ama-logs-*` pods will get restarted automatically and configure the ama-logs daemonset pods to run in high scale mode. 
@@ -118,7 +112,7 @@ After applying this configmap, `ama-logs-*` pods will get restarted automaticall
 Enable the Monitoring Add-on with high scale mode using the following Azure CLI commands to enable high scale logs mode for the Monitoring add-on depending on your AKS configuration.
 
 > [!NOTE]
-> See [Enable Container Insights](kubernetes-monitoring-enable.md?tabs=arm#enable-container-insights) for guidance on enabling Container Insights other methods such as ARM, Bicep, and Terraform. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Configure DCR with ARM templates](container-insights-data-collection-configure.md?tabs=arm#configure-dcr-with-arm-templates).
+> See [Enable Container Insights](./kubernetes-monitoring-enable.md) for guidance on enabling Container Insights other methods such as ARM, Bicep, and Terraform. To enable high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2` in the `streams` parameter as described in [Container logs](./kubernetes-monitoring-enable.md?tabs=arm#container-logs-1).
 
 **Existing AKS cluster**
 
