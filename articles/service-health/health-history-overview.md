@@ -52,7 +52,6 @@ There are several options how to sort the information at the top of the pane.
 ### Health history common use cases and features
 
 The information on this pane can be used for:
-
 #### Troubleshooting 
 
 One of the primary uses of the Health history pane is to aid in troubleshooting. By reviewing past health events, you can quickly determine whether an issue is due to Azure service disruptions or user configuration errors. This historical context can help you identify patterns or recurring issues that might need to be addressed.
