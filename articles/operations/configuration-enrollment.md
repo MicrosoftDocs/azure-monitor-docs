@@ -1,6 +1,6 @@
 ---
 title: Configuration in Operations center (preview)
-description: Describes the Configuration pillar in Operations center and provides details on using machine enrollment to automatically configure management for VMs in your subscription.
+description: Describes how to enable machine enrollment in the Configuration pillar of Operations center to automatically configure management for VMs in your subscription.
 ms.topic: conceptual
 ms.date: 09/24/2025
 ---
@@ -12,26 +12,28 @@ ms.date: 09/24/2025
 
 **Machine enrollment** in the [Configuration](./configuration-overview.md) pillar of [Operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. When you enable a subscription for machine enrollment, all VMs and arc-enabled servers in that subscription are automatically enrolled and configured with a curated set of management features. This ensures that your machines are consistently configured for monitoring, security, and management.
 
+## Prerequisites
+
+- [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace) to collect log data collected from VMs.
+- [Azure Monitor workspace](/azure/azure-monitor/metrics/azure-monitor-workspace-manage) to collect metrics data collected from VMs.
+
 ## Required permissions
 
-You must have the following roles to configure a subscription for machine enrollment:
+### User account
+The user account performing the enrollment must have the following roles in the subscription being enabled:
+
 - Essential Machine Management Administrator
 - Managed Identity Operator roles
 - Resource Policy Contributor
 
+If you're using a Log Analytics workspace or Azure Monitor workspace in a different subscription than the one being enabled for machine enrollment, then the user account must also have the **Essential Machine Management Administrator** role in the resource group of the Log analytics workspace or Azure Monitor workspace.
 
-### Permissions across subscriptions
-If you're using a Log Analytics workspace or Azure Monitor workspace in a different subscription than the one being enabled for machine enrollment, then use the following guidance to set the required permissions.
+### Managed identity
 
-- The user account performing the enrollment must have the **Essential Machine Management Administrator** role in the resource group of the Log analytics workspace or Azure Monitor workspace.
-- The User assigned managed identity must have **Contributor** permissions in the resource group of the Log Analytics workspace or Azure Monitor workspace.
+The enrollment requires a [user assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal) with **Contributor** permission for the subscription.
 
+If you're using a Log Analytics workspace or Azure Monitor workspace in a different subscription than the one being enabled for machine enrollment, then the managed identity must also have **Contributor** permissions in the resource group of the Log Analytics workspace or Azure Monitor workspace.
 
-### Prerequisites
-
-- [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace) to collect log data collected from VMs.
-- [Azure Monitor workspace](/azure/azure-monitor/metrics/azure-monitor-workspace-manage) to collect metrics data collected from VMs.
-- User assigned managed identity with Contributor permission for the subscription.
 
 
 ## Features enabled
@@ -52,7 +54,7 @@ The following features are part of the essentials tier. These features are autom
 | Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
 | Machine configuration | Audits the Azure security baseline policy |
 
-### Security
+### Security tier
 
 The following security features are available as part of machine enrollment. You can choose to enable any combination of these features for the enrolled VMs. Features in this section may incur an additional charge.
 
@@ -71,7 +73,7 @@ The following security features are available as part of machine enrollment. You
 
 
 
-:::image type="content" source="./media/configuration/machine-enrollment.png" lightbox="./media/configuration/machine-enrollment.png" alt-text="Screenshot of machine enrollment screen with no subscriptions enabled.":::
+:::image type="content" source="./media/configuration-enrollment/machine-enrollment.png" lightbox="./media/configuration-enrollment/machine-enrollment.png" alt-text="Screenshot of machine enrollment screen with no subscriptions enabled.":::
 
 
 
@@ -129,7 +131,7 @@ Machine enrollment is enabled for each subscription to automatically onboard all
 > Use caution with the gated preview if you have existing VMs with Change Tracking enabled. In this case, an additional Change Tracking DCR will be created and associated with the VM. Since Change Tracking supports only a single DCR though, either DCR could be assigned. 
 
 
-### Excluding VMs
+## Excluding VMs
 
 There is currently no ability to exclude VMs in the enabled subscription. All VMs in the subscription are onboarded and configured with the selected features.
 
@@ -142,9 +144,11 @@ Disable a subscription by selecting it and then clicking **Offboard**. When you 
 > When you disable a subscription, machines in that subscription no longer use consolidated pricing. Pricing for these machines will revert to standard pricing for each individual service, which will most likely increase your costs. Ensure that you disable any unneeded services on existing VMs to avoid additional charges.
 
 
+## Troubleshooting
+See [Troubleshoot machine enrollment in Operations center (preview)](./configuration-enrollment-troubleshoot.md) for help resolving common issues with machine enrollment. This article also identifies the objects created during enrollment and how to verify their creation.
+
 
 ## Detailed configuration
-
 
 The following table describes the specific configuration applied to each VM when machine enrollment is enabled.
 
@@ -155,13 +159,4 @@ The following table describes the specific configuration applied to each VM when
 | Change tracking and inventory | - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.<br>ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`)<br>- Uses Log Analytics workspace specified in onboarding.<br>- Collects basic files and registry keys. |
 | [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans) | - All settings on by default. |
 | [Defender for cloud](/azure/defender-for-cloud/defender-for-servers-overview) | - All settings for [Plan 2](/azure/defender-for-cloud/defender-for-servers-overview#defender-for-servers-plans) enabled. |
-
-| Type | Name | Description |
-|:---|:---|:---|
-| DCR | `<workspace>-Managedops-AM-DCR` | OpenTelemetry metrics from VM guests |
-| DCR | `<workspace>-Managedops-CT-DCR` | Change tracking and inventory. Collects files, registry keys, softwares, Windows services, Linux daemons |
-| Solution | `ChangeTracking(workspace)` | Solution added to Log Analytics workspace to support Change tracking and inventory. |
-| Initiative | `[Preview]: Enable Essential Machine Management` | Includes multiple policies for configuring agent and associating DCRs to VMs. |
-| Assignment | `Managedops-Policy-<SubscriptionID>` | Assignment of the initiative to the subscription. |
-
 
