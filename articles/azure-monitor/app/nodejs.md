@@ -1,17 +1,4 @@
----
-title: Monitor Node.js Applications and Services with Application Insights (Classic API) | Microsoft Docs
-description: Monitor Node.js applications and services with Application Insights (Classic API) for availability, performance, and usage.
-ms.topic: how-to
-ms.devlang: javascript
-ms.custom: devx-track-js
-ms.date: 3/21/2025
----
 
-# Monitor your Node.js applications and services with Application Insights (Classic API)
-
-[!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
-
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 [Application Insights](./app-insights-overview.md) monitors your components after deployment to discover performance and other issues. You can use Application Insights for Node.js services that are hosted in your datacenter, Azure VMs and web apps, and even in other public clouds.
 
@@ -35,8 +22,6 @@ Before you begin, make sure that you have an Azure subscription, or [get a new o
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 1. Create an [Application Insights resource](create-workspace-resource.md).
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ### Set up the Node.js client library
 
@@ -486,15 +471,3 @@ These properties are client specific, so you can configure `appInsights.defaultC
 | correlationHeaderExcludedDomains| A list of domains to exclude from cross-component correlation header injection. (Default. See [Config.ts](https://github.com/Microsoft/ApplicationInsights-node.js/blob/develop/Library/Config.ts).) |
 
 [!INCLUDE [azure-monitor-custom-events-metrics](includes/application-insights-api-custom-events-metrics.md)]
-
-## Troubleshooting
-
-For troubleshooting information, including "no data" scenarios and customizing logs, see [Troubleshoot Application Insights monitoring of Node.js apps and services](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-app-insights-nodejs).
-
-## Next steps
-
-* To review frequently asked questions (FAQ), see:
-    * [Node.js FAQ](application-insights-faq.yml#node-js)
-    * [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
-* [Monitor your telemetry in the portal](./overview-dashboard.md).
-* [Learn to use Log Analytics](../logs/log-analytics-tutorial.md) and [write analytics queries over your telemetry](../logs/get-started-queries.md).

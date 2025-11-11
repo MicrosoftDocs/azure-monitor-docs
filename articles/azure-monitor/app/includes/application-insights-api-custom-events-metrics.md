@@ -56,7 +56,7 @@ Get an instance of `TelemetryClient`:
 # [.NET](#tab/api-net)
 
 > [!NOTE]
-> For [ASP.NET Core](../dotnet.md) apps and [Non-HTTP/Worker for .NET/.NET Core](../application-insights-faq.yml#how-can-i-track-telemetry-that-s-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
+> For [ASP.NET Core](../classic-api.md) apps and [Non-HTTP/Worker for .NET/.NET Core](../application-insights-faq.yml#how-can-i-track-telemetry-that-s-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
 
 ```csharp
 private TelemetryClient telemetry = new TelemetryClient();
@@ -117,7 +117,7 @@ If [sampling](../sampling.md) is in operation, the `itemCount` property shows a 
 
 ### GetMetric
 
-To learn how to effectively use the `GetMetric()` call to capture locally preaggregated metrics for .NET and .NET Core applications, see [Custom metric collection in .NET and .NET Core](../dotnet.md#custom-metric-collection).
+To learn how to effectively use the `GetMetric()` call to capture locally preaggregated metrics for .NET and .NET Core applications, see [Custom metric collection in .NET and .NET Core](../classic-api.md#custom-metric-collection).
 
 ### TrackMetric
 
@@ -253,7 +253,7 @@ using (var operation = telemetryClient.StartOperation<RequestTelemetry>("operati
 } // When operation is disposed, telemetry item is sent.
 ```
 
-For more information on correlation, see [Telemetry correlation in Application Insights](../dotnet.md#traces-logs).
+For more information on correlation, see [Telemetry correlation in Application Insights](../classic-api.md#traces-logs).
 
 # [Node.js](#tab/api-node)
 
@@ -284,9 +284,9 @@ Telemetry items reported within a scope of operation become children of such an 
 
 In **Search**, the operation context is used to create the **Related Items** list.
 
-:::image type="content" source="../media/dotnet/related-items-list.png" lightbox="../media/dotnet/related-items-list.png" alt-text="Screenshot that shows the Related Items list.":::
+:::image type="content" source="../media/classic-api/related-items-list.png" lightbox="../media/classic-api/related-items-list.png" alt-text="Screenshot that shows the Related Items list.":::
 
-For more information on custom operations tracking, see [Track custom operations with Application Insights .NET SDK](../dotnet.md#custom-operations-tracking).
+For more information on custom operations tracking, see [Track custom operations with Application Insights .NET SDK](../classic-api.md#custom-operations-tracking).
 
 #### Requests in Log Analytics
 
@@ -369,7 +369,7 @@ Use `TrackTrace` to help diagnose problems by sending a "breadcrumb trail" to Ap
 
 # [.NET](#tab/api-net)
 
-In .NET [Log adapters](../dotnet.md#traces-logs), use this API to send third-party logs to the portal.
+In .NET [Log adapters](../classic-api.md#traces-logs), use this API to send third-party logs to the portal.
 
 ```csharp
 telemetry.TrackTrace(message, SeverityLevel.Warning, properties);
@@ -427,7 +427,7 @@ If [sampling](../sampling.md) is in operation, the `itemCount` property shows a 
 Use the `TrackDependency` call to track the response times and success rates of calls to an external piece of code. The results appear in the dependency charts in the portal. The following code snippet must be added wherever a dependency call is made.
 
 > [!NOTE]
-> For .NET and .NET Core, you can alternatively use the `TelemetryClient.StartOperation` (extension) method that fills the `DependencyTelemetry` properties that are needed for correlation and some other properties like the start time and duration, so you don't need to create a custom timer as with the following examples. For more information, see the section on outgoing dependency tracking in [Track custom operations with Application Insights .NET SDK](../dotnet.md#custom-operations-tracking).
+> For .NET and .NET Core, you can alternatively use the `TelemetryClient.StartOperation` (extension) method that fills the `DependencyTelemetry` properties that are needed for correlation and some other properties like the start time and duration, so you don't need to create a custom timer as with the following examples. For more information, see the section on outgoing dependency tracking in [Track custom operations with Application Insights .NET SDK](../classic-api.md#custom-operations-tracking).
 
 # [.NET](#tab/api-net)
 
@@ -475,7 +475,7 @@ finally
 
 ---
 
-Remember that the server SDKs include a [dependency module](../dotnet.md#dependencies) that discovers and tracks certain dependency calls automatically, for example, to databases and REST APIs. You have to install an agent on your server to make the module work.
+Remember that the server SDKs include a [dependency module](../classic-api.md#dependencies) that discovers and tracks certain dependency calls automatically, for example, to databases and REST APIs. You have to install an agent on your server to make the module work.
 
 You use this call if you want to track calls that the automated tracking doesn't catch.
 
@@ -552,7 +552,7 @@ You can also [search](../failures-performance-transactions.md?tabs=transaction-s
 > [!NOTE]
 > The [EnableAuthenticationTrackingJavaScript property in the ApplicationInsightsServiceOptions class](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs) in the .NET Core SDK simplifies the JavaScript configuration needed to inject the user name as the Auth ID for each trace sent by the Application Insights JavaScript SDK.
 >
-> When this property is set to `true`, the user name from the user in the ASP.NET Core is printed along with [client-side telemetry](../dotnet.md#add-client-side-monitoring). For this reason, adding `appInsights.setAuthenticatedUserContext` manually isn't required anymore because it's already injected by the SDK for ASP.NET Core. The Auth ID is also sent to the server where the SDK in .NET Core identifies and uses it for any server-side telemetry, as described in the [JavaScript API reference](https://github.com/microsoft/ApplicationInsights-JS/blob/master/API-reference.md#setauthenticatedusercontext).
+> When this property is set to `true`, the user name from the user in the ASP.NET Core is printed along with [client-side telemetry](../classic-api.md#add-client-side-monitoring). For this reason, adding `appInsights.setAuthenticatedUserContext` manually isn't required anymore because it's already injected by the SDK for ASP.NET Core. The Auth ID is also sent to the server where the SDK in .NET Core identifies and uses it for any server-side telemetry, as described in the [JavaScript API reference](https://github.com/microsoft/ApplicationInsights-JS/blob/master/API-reference.md#setauthenticatedusercontext).
 >
 > For JavaScript applications that don't work in the same way as ASP.NET Core MVC, such as SPA web apps, you still need to add `appInsights.setAuthenticatedUserContext` manually.
 
@@ -691,7 +691,7 @@ gameTelemetry.TrackEvent({name: "WinGame"});
 
 Individual telemetry calls can override the default values in their property dictionaries.
 
-*To add properties to all telemetry*, including the data from standard collection modules, [implement `ITelemetryInitializer`](../dotnet.md#telemetry-initializers).
+*To add properties to all telemetry*, including the data from standard collection modules, [implement `ITelemetryInitializer`](../classic-api.md#telemetry-initializers).
 
 ### Disable telemetry
 

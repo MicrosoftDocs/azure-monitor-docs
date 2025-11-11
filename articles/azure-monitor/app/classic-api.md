@@ -4373,7 +4373,7 @@ Use this sample if you have a [.NET](/dotnet/fundamentals/) Worker Service appli
 
 ## Troubleshooting
 
-See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
+See the dedicated troubleshooting articles for [.NET](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data) and [Node.js](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-app-insights-nodejs).
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
