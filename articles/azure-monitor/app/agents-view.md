@@ -1,52 +1,74 @@
 ---
 title: Monitor AI Agents with Application Insights
-description: Learn how to monitor AI agents across multiple sources with Application Insights.
+description: Learn how to monitor AI agents across multiple sources with Application Insights for performance tracking and troubleshooting.
 ms.topic: overview
-ms.date: 11/07/2025
+ms.date: 11/11/2025
 ---
 
 # Monitor AI agents with Application Insights
 
-The new **Agent details** view in Application Insights provides a unified experience for monitoring AI agents across multiple sources, including [Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry), [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio), and third-party agents. This feature consolidates telemetry and diagnostics, enabling customers to track agent performance and troubleshoot issues in one place.
+The **Agent details** view in Application Insights provides a unified experience for monitoring AI agents across multiple sources, including [Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry), [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio), and third-party agents.
+
+This feature consolidates telemetry and diagnostics, enabling customers to track agent performance, analyze token usage and costs, troubleshoot errors, and optimize your agent's behavior.
+
+> [!NOTE]
+> Azure Monitor Agent Observability is based on [OpenTelemetry Generative AI Semantics](https://opentelemetry.io/docs/specs/semconv/gen-ai/).
 
 ## Prerequisites
 
 > [!div class="checklist"]
-> * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-> * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
+> * Azure subscription: If you don't have one, [Create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+> * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource) to collect and store your agent telemetry.
 
 ## Get started
 
-### Enable AI agent monitoring
+### Choose your monitoring approach
 
-To instrument and configure your AI agent to send telemetry to Application Insights:
+Getting started will look different depending on how and where you're building your agents:
 
-* **Azure AI Foundry:** [Connect an Application Insights resource to your Azure AI Foundry project](/azure/ai-foundry/how-to/monitor-applications#how-to-enable-monitoring).
-* **Copilot Studio:** [Connect your Copilot Studio agent to Application Insights](/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry#connect-your-copilot-studio-agent-to-application-insights)
-* **Microsoft Agent Framework:** [Enable observability for Agents](/agent-framework/tutorials/agents/enable-observability).
-* **Third-party agents:** Use the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and [Instrument tracing in your code](/azure/ai-foundry/how-to/develop/trace-agents-sdk#instrument-tracing-in-your-code).
+* **Azure AI Foundry:** You can collect telemetry from your agentic application using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and the [Azure AI Foundry SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk).
 
-### Go to the Agent details experience
+* **Microsoft Agent Framework:** If you're building an agent from scratch and are self-hosting, you can use the [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-observability#enable-observability) to orchestrate your agent and emit telemetry to Azure Monitor.
 
-To go to the **Agent details** view:
+    * Make sure to give each of your agents a name, so you tell them apart from each other in the Agent details view.
+    * If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the Transaction Details view.
 
-# [Azure portal](#tab/portal)
+* **Copilot Studio:** You can use built-in configuration to emit your telemetry to Azure Monitor, see [Connect your Copilot Studio agent to Application Insights](/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry#connect-your-copilot-studio-agent-to-application-insights).
 
-1. In the Azure portal, go to **Application Insights**.
+* **Third-party agents:** If you built an agent elsewhere using LangChain & LangGraph, you can emit your telemetry to Azure Monitor using the [Azure AI OpenTelemetry Tracer](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-langchain--langgraph).
+
+    > [!NOTE]
+    > You ***can't*** use the OpenAI instrumentation approach with Azure Monitor, since it doesn't conform to OpenTelemetry Semantics.
+
+Regardless of which approach you use, consider the following:
+
+* If your agentic components are part of a larger application, it may make sense to send them to an existing Application Insights resource.
+* To see your Agents in AI Foundry (in addition to Azure Monitor), you need to [connect an Application Insights resource to your Foundry Project](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
+
+### Set up evaluations
+
+To set up evaluations, there are several approaches.
+
+* Local evaluations with the Azure AI Evaluation SDK. [Learn More](/azure/ai-foundry/how-to/develop/evaluate-sdk)
+* Cloud and/or local evaluations with the Azure AI Foundry SDK. [Learn More](/azure/ai-foundry/how-to/develop/cloud-evaluation)
+* Set up evaluations using the Azure AI Foundry Portal. [Learn More](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
+* Set up continuous evaluations using the Azure AI Foundry Portal. [Learn More](/azure/ai-foundry/how-to/continuous-evaluation-agents)
+
+## Monitor your AI agents
+
+### Access the Agent details view
+
+Once telemetry is flowing to Application Insights:
+
+1. In the Azure portal, go to your **Application Insights** resource.
 1. In the navigation menu, select **Agents (Preview)**.
 
     :::image type="content" source="media/agents-view/agent-details-goto.png" lightbox="media/agents-view/agent-details-goto.png" alt-text="A screenshot showing how to get to the Agent details experience.":::
 
-# [AI Foundry](#tab/foundry)
+> [!NOTE]
+> You can also get to the Agent details view from AI Foundry. From your agent, go to the **Monitoring** tab, then select **View in Azure Monitor**.
 
-1. In AI Foundry, go to your agent.
-1. On the **Monitoring** tab, select **View in Azure Monitor**.
-
-> *Screenshot missing*
-
----
-
-## Investigate traces
+### Investigate traces
 
 To open the **Search** overlay, select either **View Traces with Agent Runs**, **View Traces with Gen AI Errors**, or any of the calls listed in the **Tool Calls** tile or models listed in the **Models** tile.
 
@@ -68,7 +90,6 @@ The end-to-end transaction details now offer a *simple view*, which shows agent 
 In our example, we were researching high token use. Transaction details allow you to identify that large prompt context and/or an expensive model is driving up token use and costs.
 
 By selecting **Resolve in Foundry**, you can go to directly to your agent in **Azure AI Foundry** to update the prompt and publish changes​.
-
 
 ## Next steps
 
