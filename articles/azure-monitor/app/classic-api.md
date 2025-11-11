@@ -1485,7 +1485,25 @@ traces
 
 #### Enable W3C distributed tracing support
 
+# [.NET](#tab/dotnet)
+
 W3C TraceContext-based distributed tracing is enabled by default in all recent .NET Framework/.NET Core SDKs, along with backward compatibility with legacy `Request-Id` protocol.
+
+# [Node.js](#tab/nodejs)
+
+By default, the SDK sends headers understood by other applications or services instrumented with an Application Insights SDK. You can enable sending and receiving of [W3C Trace Context](https://github.com/w3c/trace-context) headers in addition to the existing AI headers. In this way, you won't break correlation with any of your existing legacy services.
+
+Enabling W3C headers allows your app to correlate with other services not instrumented with Application Insights but that do adopt this W3C standard.
+
+```Javascript
+const appInsights = require("applicationinsights");
+appInsights
+  .setup("<your connection string>")
+  .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
+  .start()
+```
+
+---
 
 #### Telemetry correlation
 
@@ -1496,6 +1514,8 @@ Correlation is handled by default when onboarding an app. No special actions are
 The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to collect and correlate telemetry.
 
 ### Dependencies
+
+# [.NET](#tab/dotnet)
 
 #### Automatically tracked dependencies
 
@@ -1603,6 +1623,57 @@ services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o)
 ```
 
 In the preceding cases, the proper way of validating that the instrumentation engine is correctly installed is by validating that the SDK version of collected `DependencyTelemetry` is `rddp`. Use of `rdddsd` or `rddf` indicates dependencies are collected via `DiagnosticSource` or `EventSource` callbacks, so the full SQL query isn't captured.
+
+# [Node.js](#tab/nodejs)
+
+Use the following code to track your dependencies:
+
+```javascript
+let appInsights = require("applicationinsights");
+let client = new appInsights.TelemetryClient();
+
+var success = false;
+let startTime = Date.now();
+// execute dependency call here....
+let duration = Date.now() - startTime;
+success = true;
+
+client.trackDependency({target:"http://dbname", name:"select customers proc", data:"SELECT * FROM Customers", duration:duration, resultCode:0, success: true, dependencyTypeName: "ZSQL"});;
+```
+
+An example utility using `trackMetric` to measure how long event loop scheduling takes:  
+
+```javascript
+function startMeasuringEventLoop() {
+  var startTime = process.hrtime();
+  var sampleSum = 0;
+  var sampleCount = 0;
+
+  // Measure event loop scheduling delay
+  setInterval(() => {
+    var elapsed = process.hrtime(startTime);
+    startTime = process.hrtime();
+    sampleSum += elapsed[0] * 1e9 + elapsed[1];
+    sampleCount++;
+  }, 0);
+
+  // Report custom metric every second
+  setInterval(() => {
+    var samples = sampleSum;
+    var count = sampleCount;
+    sampleSum = 0;
+    sampleCount = 0;
+
+    if (count > 0) {
+      var avgNs = samples / count;
+      var avgMs = Math.round(avgNs / 1e6);
+      client.trackMetric({name: "Event Loop Delay", value: avgMs});
+    }
+  }, 1000);
+}
+```
+
+---
 
 ### Exceptions
 
