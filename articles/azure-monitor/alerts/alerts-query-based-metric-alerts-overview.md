@@ -27,7 +27,7 @@ PromQL is an open-source-based metrics query language with:
 - **Resource centric and Workspace centric rule scopes**. 
     - Resource-centric rules apply queries to metrics from specific Azure resources like Azure Kubernetes Services (AKS) or VMs, with RBAC granularity by requiring access only to the monitored resource.
     - Workspace-centric rules allow authorized users to query any metric emitted to the Workspace by any resource, including cross-resource queries.
-- **Managed Identity-based authorization**. You can authorize access to Workspaces using [Azure Managed Identity](../entra/identity/managed-identities-azure-resources/overview). Managed Identity provides secure, Azure-managed access to resources, enhancing RBAC granularity by separating user and rule access rights. Metric alerts support both User-assigned and System-assigned identities.
+- **Managed Identity-based authorization**. You can authorize access to Workspaces using [Azure Managed Identity](/entra/identity/managed-identities-azure-resources/overview). Managed Identity provides secure, Azure-managed access to resources, enhancing RBAC granularity by separating user and rule access rights. Metric alerts support both User-assigned and System-assigned identities.
 - **Fired alert customization**. You can customize query-based metric alerts to include more contextual, scenario-specific information.
     - Custom email subject: [Configure alert notification email subjects](alerts-customize-email-subject-how-to.md) with scenario-specific information. Use the [common alert schema](alerts-common-schema.md) to identify fields in the payload.
     - [Custom properties](alerts-payload-samples.md): Add scenario-specific text, links, or metadata to the alert payload.
