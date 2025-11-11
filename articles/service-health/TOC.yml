@@ -35,7 +35,7 @@
     - name: View Service Health advisories
     - name: Health advisories overview
       href: Service-health-advisories.md
-    - name: Service Health history overview
+    - name: Health history overview
       href: health-history-overview.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
