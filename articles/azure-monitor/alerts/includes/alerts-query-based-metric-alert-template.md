@@ -1,5 +1,7 @@
 ---
 ms.topic: include
+title: Query Based Metric Alerts
+description: "This template shows an example ARM template for creating a query-based metric alert rule in Azure Monitor using PromQL."
 ms.date: 09/18/2022
 ---
 
