@@ -37,7 +37,7 @@ Gets 100 AVS distributed firewall logs.
 
 ```query
 AVSSyslog
-| where AppName == "FIREWALL"
+| where AppName == "FIREWALL-PKTLOG"
 | take 100
 ```
 
@@ -262,4 +262,5 @@ AVSSyslog
 
 | take 100
 ```
+
 
