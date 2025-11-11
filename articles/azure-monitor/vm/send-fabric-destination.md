@@ -24,14 +24,14 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 
 [Permissions to create a DCR and DCR associations](../data-collection/data-collection-rule-create-edit.md#permissions) are required.
 
-The following permissions are required depending on whether the destination is ADX or Fabric:
+The following permissions are required depending on whether the DCR destination is ADX or Fabric eventhouse:
 
 | Destination | Role |
 |:---|:---|
-| ADX | Database Admin at the database scope where the DCR is pointing to, or Azure contributor at the ADX cluster scope where the DCR is pointing to. |
-| Fabric | Workspace contributor where the eventhouse is located. For more information, see [Give users access to eventhouse workspaces](/fabric/fundamentals/give-access-workspaces). |
+| ADX | [Database Admin](/kusto/access-control/role-based-access-control?view=azure-data-explorer#roles-and-permissions) at the database scope or Azure contributor at the ADX cluster scope. |
+| Fabric | [Workspace contributor](/fabric/fundamentals/roles-workspaces#-workspace-roles). |
 
-The DCR creation process adds the VM user-assigned managed identity as a NativeIngestor to the ADX database or eventhouse. For more information, see [Ingest data using managed identity authentication - Azure Data Explorer](/azure/data-explorer/ingest-data-managed-identity).
+The DCR creation process adds the [NativeIngestion](/azure/data-explorer/ingest-data-managed-identity#set-the-managed-identity-policy-in-azure-data-explorer) usage option for the VM user-assigned managed identity.
 
 ## Create a data collection rule
 
