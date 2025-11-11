@@ -17,8 +17,8 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 ## Prerequisites
 
 > [!div class="checklist"]
-> * Azure subscription: If you don't have one, [Create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-> * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource) to collect and store your agent telemetry.
+> * **Azure subscription:** If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+> * **Application Insights resource:** [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource) to collect and store your agent telemetry.
 
 ## Get started
 
@@ -31,28 +31,34 @@ Getting started will look different depending on how and where you're building y
 * **Microsoft Agent Framework:** If you're building an agent from scratch and are self-hosting, you can use the [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-observability#enable-observability) to orchestrate your agent and emit telemetry to Azure Monitor.
 
     * Make sure to give each of your agents a name, so you tell them apart from each other in the Agent details view.
-    * If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the Transaction Details view.
+    * If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the [Transaction Details](#end-to-end-transaction-details-view) view.
 
 * **Copilot Studio:** You can use built-in configuration to emit your telemetry to Azure Monitor, see [Connect your Copilot Studio agent to Application Insights](/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry#connect-your-copilot-studio-agent-to-application-insights).
 
-* **Third-party agents:** If you built an agent elsewhere using LangChain & LangGraph, you can emit your telemetry to Azure Monitor using the [Azure AI OpenTelemetry Tracer](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-langchain--langgraph).
+* **Third-party agents:** If you built an agent elsewhere, you can emit your telemetry to Azure Monitor using the Azure AI OpenTelemetry Tracer. For more information, see:
 
-    > [!NOTE]
-    > You ***can't*** use the OpenAI instrumentation approach with Azure Monitor, since it doesn't conform to OpenTelemetry Semantics.
+    * [Enable tracing for Agents built on LangChain & LangGraph](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-langchain--langgraph).
+    * [Enable tracing for Agents built on OpenAI Agents SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-openai-agents-sdk)
 
 Regardless of which approach you use, consider the following:
 
 * If your agentic components are part of a larger application, it may make sense to send them to an existing Application Insights resource.
+
 * To see your Agents in AI Foundry (in addition to Azure Monitor), you need to [connect an Application Insights resource to your Foundry Project](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
 
 ### Set up evaluations
 
 To set up evaluations, there are several approaches.
 
-* Local evaluations with the Azure AI Evaluation SDK. [Learn More](/azure/ai-foundry/how-to/develop/evaluate-sdk)
-* Cloud and/or local evaluations with the Azure AI Foundry SDK. [Learn More](/azure/ai-foundry/how-to/develop/cloud-evaluation)
-* Set up evaluations using the Azure AI Foundry Portal. [Learn More](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
-* Set up continuous evaluations using the Azure AI Foundry Portal. [Learn More](/azure/ai-foundry/how-to/continuous-evaluation-agents)
+**Development-time evaluations**:
+
+* [Local evaluations with Azure AI Evaluation SDK](/azure/ai-foundry/how-to/develop/evaluate-sdk): Run evaluations on your development machine during testing.
+* [Cloud evaluations with Azure AI Foundry SDK](/azure/ai-foundry/how-to/develop/cloud-evaluation): Execute evaluations in Azure for larger datasets or team collaboration.
+* [Azure Foundry Portal-based evaluations](/azure/ai-foundry/how-to/evaluate-generative-ai-app): Use the Azure AI Foundry Portal for no-code evaluation workflows.
+
+**Production monitoring**:
+
+* [Continuous evaluations](/azure/ai-foundry/how-to/continuous-evaluation-agents): Set up automated evaluations that run against production traffic to detect quality regressions.
 
 ## Monitor your AI agents
 
@@ -70,17 +76,33 @@ Once telemetry is flowing to Application Insights:
 
 ### Investigate traces
 
-To open the **Search** overlay, select either **View Traces with Agent Runs**, **View Traces with Gen AI Errors**, or any of the calls listed in the **Tool Calls** tile or models listed in the **Models** tile.
+To drill into specific agent runs:
 
-:::image type="content" source="media/agents-view/agent-details-open-search.png" lightbox="media/agents-view/agent-details-open-search.png" alt-text="A screenshot showing how to open Search in the Agent details experience.":::
+1. Select one of the following from the Agent details view:
 
-On the **Search** overlay, select any of the traces to get to the **End-to-end transaction details** view. You can also sort traces, for example by **Most tokens used**, to investigate high token consumption.
+   * **View Traces with Agent Runs** - See all agent executions
+   * **View Traces with Gen AI Errors** - Focus on failed or problematic runs
+   * Any individual tool call or model in the **Tool Calls** or **Models** tiles
 
-:::image type="content" source="media/agents-view/agent-details-search.png" lightbox="media/agents-view/agent-details-search.png" alt-text="A screenshot showing the Search overlay in the Agent details experience.":::
+    :::image type="content" source="media/agents-view/agent-details-open-search.png" lightbox="media/agents-view/agent-details-open-search.png" alt-text="A screenshot showing how to open Search in the Agent details experience.":::
+
+    The **Search** overlay displays filtered traces matching your selection.
+
+1. Use the search capabilities to:
+
+   * Sort traces by metrics like **Most tokens used** to identify expensive operations
+   * Filter by time range to isolate specific incidents
+   * Search through prompt content (if sensitive data logging is enabled)
+
+1. Select any trace to get to the **End-to-end transaction details** view for comprehensive analysis.
+
+    :::image type="content" source="media/agents-view/agent-details-search.png" lightbox="media/agents-view/agent-details-search.png" alt-text="A screenshot showing the Search overlay in the Agent details experience.":::
 
 ### End-to-end transaction details view
 
-The end-to-end transaction details now offer a *simple view*, which shows agent steps in a clear, story-like fashion. This allows you to quickly find the relevant telemetry and transition to Azure AI Foundry or other tools to make the necessary changes.
+The end-to-end transaction details now offer a *simple view*, which shows agent steps in a clear, story-like fashion, including the invoked agent, underlying LLM, executed tools, and more.
+
+This allows you to quickly find the relevant telemetry and transition to Azure AI Foundry or other tools to make the necessary changes.
 
 > [!NOTE]
 > To return to the traditional view, select **Leave simple view** in the top action bar.
