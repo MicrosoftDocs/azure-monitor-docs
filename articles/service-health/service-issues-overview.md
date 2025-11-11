@@ -2,7 +2,7 @@
 title: View Service issues
 description: This article describes how to view and use the Service issues pane
 ms.topic: overview
-ms.date: 11/04/2025
+ms.date: 11/11/2025
 
 ---
 
@@ -45,9 +45,9 @@ At the top of each tab, there's a command bar with several options of how to vie
 
 :::image type="content" source="./media/service-issue-overview/service-issues-tool-bar.png" alt-text="Screenshot that shows options." Lightbox="./media/service-issue-overview/service-issues-tool-bar.PNG":::
 
-- **Download as a PDF**: Select to download and open a PDF with the information about this event.
-- **Request post incident review**: Select to start the creation of a Post Incident Review (PIR).
-- **Track issue on mobile**: Select to open and point your mobile phone camera at the QR code.
+- **Download as a PDF**: Select this link to download and open a PDF with the information about this event.
+- **Request post incident review**: Select this button to start the creation of a Post Incident Review (PIR).
+- **Track issue on mobile**: Select this link to open and point your mobile phone camera at the QR code.
 - **Create a support request**: See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
 - **Create a service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md). 
 
