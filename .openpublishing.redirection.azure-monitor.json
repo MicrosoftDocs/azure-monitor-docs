@@ -8715,7 +8715,7 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/app/dot-net.md",
+   "source_path": "articles/azure-monitor/app/dotnet.md",
    "redirect_url": "/azure/azure-monitor/app/classic-api",
    "redirect_document_id": false
   },
