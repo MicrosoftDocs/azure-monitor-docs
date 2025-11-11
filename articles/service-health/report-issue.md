@@ -1,19 +1,19 @@
 ---
-title: Report an issue in Azure Service Health 
-description: Learn how to access and report an issue in Azure Service Health.
+title: Report an impact in Azure Service Health 
+description: Learn how to access and report an impact in Azure Service Health.
 ms.topic: overview
-ms.date: 10/15/2025
+ms.date: 11/11/2025
 ---
 
-# How to report an issue in Azure Service Health (Preview)
+# How to report an impact in Azure Service Health (Preview)
 
-Even if there are no active issues shown in the Service Health portal, you can now report a service-level or resource-level impact. This tool allows you to notify Microsoft about an issue even when it isn't identified as part of a broader outage.<br>
+Even if there are no active issues shown in the Service Health portal, you can now report a service-level or resource-level impact. This tool allows you to notify Microsoft about an impact even when it isn't identified as part of a broader outage.<br>
 
-When you submit an issue, our team reviews the submitted report, and if an outage is identified you see it on the Azure Service Health portal. For more information, see [Azure Impact Reporting](/azure/azure-impact-reporting).
+When you submit an impact, our team reviews the submitted report, and if an outage is identified you see it on the Azure Service Health portal. For more information, see [Azure Impact Reporting](/azure/azure-impact-reporting).
 
 ## Access permission
 
-You don’t  need to be a subscription owner or an administrator to report service-level issues.
+You don’t need to be a subscription owner or an administrator to report service-level impacts.
 
 To generate resource-level impact reports, ensure the following prerequisites are met:
 
@@ -21,17 +21,17 @@ To generate resource-level impact reports, ensure the following prerequisites ar
 - **Role assignment**: If you're not a subscription administrator, the Impact Reporter role must be assigned to you on the subscription where the resource is located.
 
 
-To report a single issue, you must have the correct permission.
+To report a single impact, you must have the correct permission.
 
 >[!NOTE]
->This option to report an issue isn't available on the Billing panel.
+>This option to report an impact isn't available on the Billing panel.
 
-## How to report a resource-level issue
+## How to report a resource-level impact
 
-To report an issue, follow these steps.
-1. Select **Report an Issue**.
+To report an impact, follow these steps.
+1. Select **Report an impact**.
 
-:::image type="content" source="media/report-issue/report-an-issue-main.png" alt-text="Screenshot of the screen to report an issue." lightbox="media/report-issue/report-an-issue-main.png":::
+:::image type="content" source="media/report-issue/report-an-issue-main.png" alt-text="Screenshot of the screen to report an impact." lightbox="media/report-issue/report-an-issue-main.png":::
 
 2. Select **Single resource**.
 
@@ -48,8 +48,8 @@ To report an issue, follow these steps.
 
 4. Select **Submit**.
 
-When your issue is reported, you should see this message. 
-:::image type="content" source="media/report-issue/report-an-issue-success.png" alt-text="Screenshot of the message your report on a resource issue is a success." lightbox="media/report-issue/report-an-issue-success.png":::
+When your impact is reported, you should see this message. 
+:::image type="content" source="media/report-issue/report-an-issue-success.png" alt-text="Screenshot of the message your report on a resource impact is a success." lightbox="media/report-issue/report-an-issue-success.png":::
 
 If an outage is found, you will see it on the portal.
 
@@ -57,21 +57,21 @@ If you get this error, it means you don’t have permission.
 
 :::image type="content" source="media/report-issue/report-an-issue-error.png" alt-text="Screenshot of the message you don't have access." lightbox="media/report-issue/report-an-issue-error.png":::
 
-## How to report service-level issues
+## How to report service-level impacts
 
-The steps to report an issue about Multiple resources is the same a reporting a single resource issue. The difference is that you don’t need the same permission.
+The steps to report an impact about Multiple resources is the same a reporting a single resource impact. The difference is that you don’t need the same permission.
 
 1. Select **Multiple resources / entire service**.
 
-:::image type="content" source="media/report-issue/report-an-issue-multiple.png" alt-text="Screenshot of screen to report several issues." lightbox="media/report-issue/report-an-issue-multiple.png":::
+:::image type="content" source="media/report-issue/report-an-issue-multiple.png" alt-text="Screenshot of screen to report several impacts." lightbox="media/report-issue/report-an-issue-multiple.png":::
 
 2. Fill out the required fields.
 1. Select **Submit**.
 
 When your issue is reported, you should see this message. 
-:::image type="content" source="media/report-issue/report-an-issue-success-service-level.png" alt-text="Screenshot of the message your service issue report is a success." lightbox="media/report-issue/report-an-issue-success-service-level.png":::
+:::image type="content" source="media/report-issue/report-an-issue-success-service-level.png" alt-text="Screenshot of the message your service impact report is a success." lightbox="media/report-issue/report-an-issue-success-service-level.png":::
 
-## What to expect after you submit an issue
+## What to expect after you submit an impact
 We review your report, and if an outage is confirmed, it appears on the Service Issues page in Azure Service Health.
 
 For more information about reporting, see [Azure Impact reporting](/azure/azure-impact-reporting/view-impact-insights).

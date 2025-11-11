@@ -40,7 +40,7 @@
       href: service-health-planned-maintenance.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
-    - name: How to report an issue
+    - name: How to report an impact
       href: report-issue.md
     - name: How to create alerts
       items:
