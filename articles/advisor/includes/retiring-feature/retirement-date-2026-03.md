@@ -1,7 +1,7 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 09/03/2025
+ms.date: 11/11/2025
 
 ---
 
@@ -26,6 +26,7 @@ ms.date: 09/03/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Azure Machine Learning | Batch Endpoints Preview APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Kubernetes Cluster | AKS on VMware | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### March 29, 2026
 
@@ -33,6 +34,13 @@ ms.date: 09/03/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Azure Site Recovery | Classic VMware protection | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### March 30, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Container Apps | Service Connector in ACA | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### March 31, 2026
 
