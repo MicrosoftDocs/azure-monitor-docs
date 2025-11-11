@@ -30,8 +30,7 @@ Getting started looks different depending on how and where you're building your 
 
 * **Microsoft Agent Framework:** If you're building an agent from scratch and are self-hosting, you can use the [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-observability#enable-observability) to orchestrate your agent and emit telemetry to Azure Monitor.
 
-    * Make sure to give each of your agents a name, so you tell them apart from each other in the Agent details view.
-    * If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the [Transaction Details](#end-to-end-transaction-details-view) view.
+    If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the [Transaction Details](#end-to-end-transaction-details-view) view.
 
 * **Copilot Studio:** You can use built-in configuration to emit your telemetry to Azure Monitor, see [Connect your Copilot Studio agent to Application Insights](/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry#connect-your-copilot-studio-agent-to-application-insights).
 
@@ -40,8 +39,9 @@ Getting started looks different depending on how and where you're building your 
     * [Enable tracing for Agents built on LangChain & LangGraph](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-langchain--langgraph).
     * [Enable tracing for Agents built on OpenAI Agents SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-openai-agents-sdk)
 
-> [TIP]
-> If your agentic components are part of a larger application, it may make sense to send them to an existing Application Insights resource.
+> [!TIP]
+> * Make sure to give each of your agents a name, so you tell them apart from each other in the Agent details view.
+> * If your agentic components are part of a larger application, it may make sense to send them to an existing Application Insights resource.
 
 > [!NOTE]
 > To see your Agents in AI Foundry (in addition to Azure Monitor), you need to [connect an Application Insights resource to your Foundry Project](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
@@ -50,15 +50,15 @@ Getting started looks different depending on how and where you're building your 
 
 To set up evaluations, there are several approaches.
 
-**Development-time evaluations**:
+**Development-time evaluations**
 
-* [Local evaluations with Azure AI Evaluation SDK](/azure/ai-foundry/how-to/develop/evaluate-sdk): Run evaluations on your development machine during testing.
-* [Cloud evaluations with Azure AI Foundry SDK](/azure/ai-foundry/how-to/develop/cloud-evaluation): Execute evaluations in Azure for larger datasets or team collaboration.
-* [Azure Foundry Portal-based evaluations](/azure/ai-foundry/how-to/evaluate-generative-ai-app): Use the Azure AI Foundry Portal for no-code evaluation workflows.
+* **Local evaluations with Azure AI Evaluation SDK:** [Run evaluations on your development machine during testing.](/azure/ai-foundry/how-to/develop/evaluate-sdk)
+* **Cloud evaluations with Azure AI Foundry SDK:** [Execute evaluations in Azure for larger datasets or team collaboration.](/azure/ai-foundry/how-to/develop/cloud-evaluation)
+* **Azure Foundry Portal-based evaluations:** [Use the Azure AI Foundry Portal for no-code evaluation workflows.](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
 
-**Production monitoring**:
+**Production monitoring**
 
-* [Continuous evaluations](/azure/ai-foundry/how-to/continuous-evaluation-agents): Set up automated evaluations that run against production traffic to detect quality regressions.
+* **Continuous evaluations:** [Set up automated evaluations that run against production traffic](/azure/ai-foundry/how-to/continuous-evaluation-agents) to detect quality regressions.
 
 ## Monitor your AI agents
 
