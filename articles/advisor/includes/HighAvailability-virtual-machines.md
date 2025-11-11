@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 11/11/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -681,5 +681,23 @@ Recommendation ID: d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1
 Subcategory: undefined
 
 <!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_end-->
+
+<!--779dbd8a-6102-47d0-b36c-75eb070b86d6_begin-->
+
+#### Migrate D, Ds, Dv2, Dsv2, and Ls series VM instances to latest series VMs  
+  
+Migrate D, Ds, Dv2, Dsv2, and Ls series VM instances to newer VM generation instances. D, Ds, Dv2, Dsv2, and Ls series VMs in Azure Virtual Machines are retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485569)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 779dbd8a-6102-47d0-b36c-75eb070b86d6  
+Subcategory: undefined
+
+<!--779dbd8a-6102-47d0-b36c-75eb070b86d6_end-->
 
 <!--articleBody-->
