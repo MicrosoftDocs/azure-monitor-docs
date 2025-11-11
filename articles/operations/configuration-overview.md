@@ -49,7 +49,7 @@ The **Configuration** overview page includes the following sections. Modify the 
 | Update management | Summary of the update status for your virtual machines. Click **View details** to open the **Update Management** page. |
 | Baselines compliance | Summary of the machines that that are compliant with baselines. Click **View details** to open the **Machine configuration** page. |
 | Patch orchestration configuration of Azure virtual machines | Summary of the patching status for the machines inventoried in your subscription. This is similar to the tile in the **Update Management** page described at [View update Manager status](/azure/update-manager/manage-multiple-machines#view-update-manager-status). | 
-| Machine assignments by compliance state |   |
+| Machine assignments by compliance state | Summary of machines with policy assignments. Details are in the **Assignments** tab of the [Machine configuration](#machine-configuration) page.  |
 
 
 ## Machine configuration

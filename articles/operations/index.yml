@@ -29,6 +29,6 @@ landingContent:
           - text: Resiliency
             url: ./resiliency.md
           - text: Configuration
-            url: ./configuration.md
+            url: ./configuration-overview.md
           - text: Optimization
             url: ./optimization.md

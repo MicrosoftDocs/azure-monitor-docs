@@ -1,5 +1,5 @@
 ---
-title: Configuration in Operations center (preview)
+title: Troubleshoot machine enrollment in Operations center (preview)
 description: Describes how to troubleshoot machine enrollment in the Configuration pillar of Operations center to automatically configure management for VMs in your subscription.
 ms.topic: conceptual
 ms.date: 09/24/2025
@@ -19,7 +19,7 @@ Following are common errors that may occur when enabling machine enrollment for 
 **Change Log Analytics workspace or Azure Monitor workspace**<br>
 If you've already configured machine enrollment and then enable it again using a different Log Analytics workspace or Azure Monitor workspace, you'll get an error saying that the workspace can't be changed once it's set. 
 
-To change either of the workspaces, you must first [disable the subscription](#disable-a-subscription) and then re-enable it with the new workspaces. All machines in the subscription will be re-enrolled and configured with the new workspaces, but any data already collected in the old workspace will be retained. 
+To change either of the workspaces, you must first [disable the subscription](./configuration-enrollment.md#disable-a-subscription) and then re-enable it with the new workspaces. All machines in the subscription will be re-enrolled and configured with the new workspaces, but any data already collected in the old workspace will be retained. 
 
 **Disable Defender for cloud**<br>
 You'll receive and error if you attempt to disable Defender for cloud for subscription that was already enabled for machine enrollment. You must disable the subscription from the Defender for cloud portal.

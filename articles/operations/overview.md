@@ -41,7 +41,7 @@ The following table describes each pillar and the Azure services it uses. All pi
 | [Observability](./observability.md) | Provides a deep understanding of a system to diagnose and resolve unknown or complex problems. | [Azure Monitor]()<br>[Service health]() |
 | [Security](./security.md) | Protect systems and data. | [Defender for Cloud ]() |
 | [Resiliency](./resiliency.md) | Emphasizes the systems ability to recover from failures and maintain functionality | [Business continuity center]()<br>[Backup]()<br>[Site Recovery]() | 
-| [Configuration](./configuration.md) | Defining standards, assessing compliance, and changing the settings of a system. | [Policy]()<br>[Machine configuration]()<br>[Update management]()<br>[Change tracking + inventory]() |
+| [Configuration](./configuration-overview.md) | Defining standards, assessing compliance, and changing the settings of a system. | [Policy]()<br>[Machine configuration]()<br>[Update management]()<br>[Change tracking + inventory]() |
 | [Optimization](./optimization.md) | Finds the best possible solution within given constraints, improving factors like cost, performance, and carbon emissions. | [Cost optimization]()<br>[Carbon emissions]() |
 
 
