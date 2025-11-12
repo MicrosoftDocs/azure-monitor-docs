@@ -4,7 +4,7 @@ description: Delete data from a table in your Log Analytics workspace.
 ms.reviewer: yossiy
 ms.service: azure-monitor
 ms.topic: how-to 
-ms.date: 03/11/2025
+ms.date: 11/12/2025
 
 # Customer intent: As a Log Analytics workspace administrator, I want to delete data from tables in my Log Analytics workspace if the data is ingested by mistake, corrupt, or includes personal identifiable details.
 ---
@@ -67,16 +67,14 @@ If you enable [workspace replication](workspace-replication.md) on your Log Anal
 
 ## Call the Delete Data API to delete data from a specific table
 
-To delete rows from a table, use this command: 
+To delete rows from a table, use this command with one or more filters in the body. This example filters on the `TimeGenerated` and `Resource` columns.
+
+### [API](#tab/api)
 
 ```http  
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table_name}/deleteData?api-version=2023-09-01
 Authorization: Bearer eyJ0e...
-```
 
-Specify one or more filters in the body of the API call. This example filters on the `TimeGenerated` and `Resource` columns:
-
-```json 
 {
   "filters": [
     {
@@ -93,6 +91,80 @@ Specify one or more filters in the body of the API call. This example filters on
 }
 ```
 
+#### [PowerShell](#tab/powershell)
+
+```powershell
+# Connect to Azure
+Connect-AzAccount
+
+# Define variables
+$subscriptionId = "<subscription-id>"
+$resourceGroup = "<resource-group-name>"
+$workspace = "<workspace-name>"
+$tableName = "<table-name>"
+$apiVersion = "api-version"
+
+Set-AzContext -SubscriptionId $subscriptionId
+
+# Get the access token for Azure Resource Manager
+$tokenResponse = Get-AzAccessToken -ResourceUrl "https://management.azure.com/"
+$token = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
+    [Runtime.InteropServices.Marshal]::SecureStringToBSTR($tokenResponse.Token)
+)
+
+# Construct the URI
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/tables/$tableName/deleteData?api-version=$apiVersion"
+
+# Define headers
+$headers = @{
+    Authorization = "Bearer $token"
+    "Content-Type" = "application/json"
+}
+
+# Define body
+$body = @{
+    filters = @(
+        @{
+            column   = "TimeGenerated"
+            operator = "=="
+            value    = "2024-09-23T00:00:00"
+        },
+        @{
+            column   = "Resource"
+            operator = "=="
+            value    = "VM-1"
+        }
+    )
+} | ConvertTo-Json -Depth 3
+
+# Make the POST request
+$response = Invoke-WebRequest -Uri $uri -Method Post -Headers $headers -Body $body
+
+# Check for operation status URL in headers
+$operationId = $response.Headers["Azure-AsyncOperation"]
+if (-not $operationId) {
+    $operationId = $response.Headers["Location"]
+}
+
+if ($operationId) {
+    $operationUrl = $operationId[0]  # Take first value
+    Write-Host "Polling operation status at: $operationUrl"
+
+    while ($true) {
+        $statusResponse = Invoke-RestMethod -Uri $operationUrl -Headers $headers -Method Get
+        Write-Host "Status: $($statusResponse.status)"
+        if ($statusResponse.status -eq "Succeeded" -or $statusResponse.status -eq "Failed") {
+            Write-Host "Final status: $($statusResponse.status)"
+            break
+        }
+        Start-Sleep -Seconds 30 # Check status every 30 seconds
+    }
+} else {
+    Write-Host "No operation tracking URL found. Response body:"
+    $response.Content
+    }
+```
+
 #### Filter parameters
 
 | Name | Description|
@@ -103,11 +175,28 @@ Specify one or more filters in the body of the API call. This example filters on
  
 #### Responses
 
+### [API](#tab/api)
+
+```http
+202 (accepted) with header including the OperationId
+```
+
+#### [PowerShell](#tab/powershell)
+
+```powershell
+Status: Updating
+Status: Updating
+Status: Updating
+Status: Updating
+---
+Status: Succeeded
+Final status: Succeeded
+```
+
 | Response | Description| 
 | - | - |
 |202 (accepted)|Asynchronous request received successfully. To check whether your operation succeeded or failed, use the `Azure-AsyncOperation` URL provided in the response header. |
 |Other status codes|Error response describing why the operation failed.|
-
 
 
 ## Check delete data operations and status 
