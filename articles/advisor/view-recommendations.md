@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.date: 11/11/2025
 ---
 
-# Configure the Azure Advisor recommendations view
+# Configure recommendations
 
 Azure Advisor provides recommendations to help you optimize your Azure deployments. Within Advisor, you have access to a few features that help you narrow down your recommendations to only the ones that matter to you.
 
@@ -75,6 +75,6 @@ You can activate a recommendation that was postponed or dismissed. This action c
 
 ## Related articles
 
-*   [Customize recommendations view](./advisor-customize-list-view.md)
+*   [Customize recommendations view](./advisor-customize-view.md)
 
 *   [Roles and permissions](./permissions.md)
