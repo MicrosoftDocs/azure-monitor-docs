@@ -871,7 +871,7 @@ ms.reviewer: lualderm
 - [Request count trend](./queries/AppRequests.md#request-count-trend)
 - [Response time buckets](./queries/AppRequests.md#response-time-buckets)
 - [Operations performance](./queries/AppRequests.md#operations-performance)
-- [Top 10 countries/regions by traffic](./queries/AppRequests.md#top-10-countries/regions-by-traffic)
+- [Top 10 countries/regions by traffic](./queries/AppRequests.md#top-10-countriesregions-by-traffic)
 - [Failed requests – top 10](./queries/AppRequests.md#failed-requests--top-10)
 - [Failed operations](./queries/AppRequests.md#failed-operations)
 - [Exceptions causing request failures](./queries/AppRequests.md#exceptions-causing-request-failures)
@@ -2140,4 +2140,5 @@ ms.reviewer: lualderm
 - [Analyze logs from Azure storage with Log Analytics](/azure/azure-monitor/essentials/resource-logs#send-to-log-analytics-workspace)
 - [Learn more about resource logs](/azure/azure-monitor/essentials/platform-logs-overview)
 - [Change resource log diagnostic settings using the Azure Monitor REST API](/rest/api/monitor/diagnosticsettings)
+
 
