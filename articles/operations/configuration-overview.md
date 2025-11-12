@@ -34,7 +34,7 @@ The Configuration pillar includes the following menu items:
 | Update management | Use Azure Update Manager to manage and govern updates for all your machines. The tabs across the top of this view correspond to menu items in the **Azure Update Manager** menu. See [About Azure Update Manager](/azure/update-manager/overview) for details. |
 | Machine configuration | Audit or configure operating system settings as code for VMs and Arc-enabled servers. See [Understanding Azure Machine Configuration](/azure/governance/machine-configuration/overview) for details. |
 | Machines changes + inventory | Use Change tracking and inventory to monitor changes and access detailed inventory logs for servers across your different virtual machines. The tabs across the top of this view correspond to menu items in the **Change Tracking and Inventory Center** menu. See [Manage change tracking and inventory using Azure Monitoring Agent](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent) for details. |
-| Recommendations | Azure Advisor recommendations related to resiliency. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
+| Recommendations | Azure Advisor recommendations related to configuration. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
 
 ## Configuration overview
 The **Configuration** overview page provides a single-pane snapshot of policy compliance and update requirements across your Azure resources. Drill down on any of the tiles to open other pages in the Configuration pillar for more details.

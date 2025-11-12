@@ -38,7 +38,7 @@ The Optimization overview page includes the following sections. Modify the scope
 |:---|:---|
 | Top actions | Surfaces the most impactful and actionable recommendations to maximize cost and carbon savings. This is a unified and prioritized list across Cost recommendations and Cost alerts so you can immediately identify where to focus your attention. Some of these actions may open the [Optimize agent](#optimize-agent) which allows you to interact with Azure Copilot to act on the recommendation. |
 | Cost and carbon emissions summary | Summarizes the data from the previous month and forecasts the next month for all selected subscriptions and the top contributing subscriptions. Drill into any of these views to open other pages in the Optimization pillar for additional details. |
-| Optimization recommendations | Displays the top Advisor recommendations for resiliency.  |
+| Optimization recommendations | Azure Advisor recommendations related to optimization. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details.  |
 
 
 ## Cost + emissions

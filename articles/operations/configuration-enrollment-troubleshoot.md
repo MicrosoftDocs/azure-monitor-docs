@@ -75,5 +75,8 @@ If the assignments look correct, check the remediation tasks which are created t
 :::image type="content" source="./media/configuration-enrollment-troubleshoot/remediations.png" lightbox="./media/configuration-enrollment-troubleshoot/remediations.png" alt-text="Screenshot showing remediation tasks for the initiative created by subscription enablement.":::
 
 ## Contact Microsoft
-If you've completed all of the previous steps and are still having issues with machine enrollment, contact Microsoft at [machineenrollmentsupport@microsoft.com](machineenrollmentsupport@microsoft.com).
+If you've completed all of the previous steps and are still having issues with machine enrollment, contact Microsoft at machineenrollmentsupport@microsoft.com](mailto:machineenrollmentsupport@microsoft.com).
+
+
+
 
