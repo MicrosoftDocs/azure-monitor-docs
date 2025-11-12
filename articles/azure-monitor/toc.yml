@@ -737,12 +737,12 @@ items:
         href: scom-manage-instance/use-managed-identities-with-scom-mi.md
       - name: Encryption at rest
         href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
+  - name: Monitoring coverage
+    href: fundamentals/monitoring-coverage.md
   - name: Multicloud monitoring
     href: fundamentals/best-practices-multicloud.md
   - name: Enterprise architecture
     href: fundamentals/enterprise-monitoring-architecture.md
-  - name: Monitor Azure Monitor
-    href: fundamentals/monitor-azure-monitor.md
 - name: Data sources
   items:
   - name: List of data sources
