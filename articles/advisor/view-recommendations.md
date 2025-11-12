@@ -2,7 +2,7 @@
 title: Configure Azure Advisor recommendations view
 description: View and filter Azure Advisor recommendations to reduce noise.
 ms.topic: how-to
-ms.date: 09/26/2024
+ms.date: 10/15/2025
 ---
 
 # Configure the Azure Advisor recommendations view
@@ -24,15 +24,6 @@ To make changes in the Azure portal:
 1. Select the checkbox in the **Include** column for any subscriptions or resource groups to receive Advisor recommendations. If the box is disabled, you might not have permission to make a configuration change on that subscription or resource group. Learn more about [permissions in Azure Advisor](permissions.md).
 
 1. Select **Apply** at the bottom after you make a change.
-
-## Filter your view in the Azure portal
-
-Configuration settings remain active until changed. If you want to limit the view of recommendations for a single viewing, you can use the dropdown lists provided at the top of the Advisor pane. You can filter recommendations by subscription, resource group, workload, resource type, recommendation status, and impact. These filters are available for **Overview**, **Score**, **Cost**, **Security**, **Reliability**, **Operational excellence**, **Performance**, and **All recommendations** pages.
-
-:::image alt-text="Screenshot showing the filter options for recommendations in Azure Advisor." lightbox="./media/azure-advisor-overview-filters.png" source="./media/azure-advisor-overview-filters-preview.png" type="content":::
-
-> [!NOTE]
-> Contact your account team to add new workloads to the workload filter or edit workload names.
 
 ## Dismiss and postpone recommendations
 
@@ -82,10 +73,14 @@ You can activate a recommendation that was postponed or dismissed. This action c
 
      :::image type="content" source="./media/view-recommendations/activate-postponed-2.png" alt-text="Screenshot showing the Enable Soft Delete pane highlighting the Postponed & Dismissed heading and the Activate action in the Action column.":::
 
-## Related content
+## Related articles
 
-This article explains how you can view recommendations that matter to you in Advisor. To learn more about Advisor, see:
+For more information about Azure Advisor, see the following articles.
 
-- [What is Azure Advisor?](advisor-overview.md)
-- [Get started with Advisor](advisor-get-started.md)
-- [Permissions in Azure Advisor](permissions.md)
+*   [Introduction to Azure Advisor](./advisor-overview.md)
+
+*   [Azure Advisor portal basics](./advisor-get-started.md)
+
+*   [Customize Azure Advisor recommendations view using filters and grouping](./advisor-how-to-customize-recommendations-view.md)
+
+*   [Roles and permissions](./permissions.md)
