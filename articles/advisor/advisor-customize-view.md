@@ -6,7 +6,7 @@ ms.date: 11/11/2025
 
 ---
 
-# Customize recommendations view
+# Customize view
 
 This article explains how to effectively use filtering and grouping options when viewing recommendations.
 
@@ -34,7 +34,7 @@ Some filters, like **Subscription**, **Resource Group**, and **Resource Type**, 
 > [!TIP]
 > **Tags** are especially useful for comparing Advisor scores across teams or prioritizing actions based on ownership.
 
-### Recommendations filters for all categories
+### Recommendations filters
 
 *   **Recommendation status**: Choose between `Active` and `Postponed & Dismissed`.
 
@@ -42,11 +42,9 @@ Some filters, like **Subscription**, **Resource Group**, and **Resource Type**, 
 
 *   **Recommendation Type**: Focus on specific recommendation.
 
-### Recommendations filters for a specific category
-
 *   **Subcategory**: Focus on specific optimization area. Available for `Cost`, `Reliability`, `Performance`, and `Operational excellence`.
 
-*   **Commitments**: Applies to reservations recommendations only.
+*   **Commitments**: Applies to reservations recommendations, available for `Cost` only.
 
 ## Grouping
 
