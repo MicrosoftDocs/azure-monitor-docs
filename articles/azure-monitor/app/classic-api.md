@@ -2,7 +2,7 @@
 title: Monitor .NET and Node.js Applications with Application Insights (Classic API) | Microsoft Docs
 description: Monitor .NET and Node.js applications and services with Application Insights (Classic API) for availability, performance, and usage.
 ms.topic: how-to
-ms.date: 11/04/2025
+ms.date: 11/11/2025
 ---
 
 # Monitor .NET and Node.js applications with Application Insights (Classic API)
@@ -3914,7 +3914,7 @@ HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
 * [Telemetry initializers](#telemetry-initializers)
 * [Telemetry processor](#telemetry-processors)
 * [Sampling](#sampling)
-* [Enrich data through HTTP](#enrich-data-through-http)
+* [Multiple roles for multi-component applications](#multiple-roles-for-multi-component-applications)
 
 [!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
 
@@ -3993,6 +3993,19 @@ Add code such as the following to enable sampling:
 const appInsights = require("applicationinsights");
 appInsights.setup("<connection_string>");
 appInsights.defaultClient.config.samplingPercentage = 33; // 33% of all telemetry will be sent to Application Insights
+appInsights.start();
+```
+
+### Multiple roles for multi-component applications
+
+In some scenarios, your application might consist of multiple components that you want to instrument all with the same connection string. You want to still see these components as separate units in the portal, as if they were using separate connection strings. An example is separate nodes on Application Map. You need to manually configure the `RoleName` field to distinguish one component's telemetry from other components that send data to your Application Insights resource.
+
+Use the following code to set the `RoleName` field:
+
+```javascript
+const appInsights = require("applicationinsights");
+appInsights.setup("<connection_string>");
+appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = "MyRoleName";
 appInsights.start();
 ```
 
@@ -4830,8 +4843,6 @@ If your project doesn't include *_Layout.cshtml*, you can still add [client-side
 > [!NOTE]
 > JavaScript injection provides a default configuration experience. If you require [configuration](javascript-sdk-configuration.md) beyond setting the connection string, you're required to remove autoinjection as described and manually add the [JavaScript SDK](javascript-sdk.md).
 
-[!INCLUDE [azure-monitor-custom-events-metrics](includes/application-insights-api-custom-events-metrics.md)]
-
 # [Node.js](#tab/nodejs)
 
 > [!NOTE]
@@ -4866,6 +4877,8 @@ Web Instrumentation connection string can be changed by setting environment vari
 > Web Instrumentation may slow down server response time, especially when response size is large or response is compressed. For the case in which some middle layers are applied, it may result in web Instrumentation not working and original response will be returned.
 
 ---
+
+[!INCLUDE [azure-monitor-custom-events-metrics](includes/application-insights-api-custom-events-metrics.md)]
 
 ## Sample applications
 
