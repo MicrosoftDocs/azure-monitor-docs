@@ -346,30 +346,20 @@ class SpanFilteringProcessor(SpanProcessor):
 
 ---
 
-## Filter logs using minimum severity level and trace based sampling parameters
+## Filter logs using trace based sampling parameter
 
 **Python**
 
-Log records can be filtered out on the basis of two parameters -
-
-#### Minimum Severity Level
-
-Configure the minimum severity level using the `MINIMUM_SEVERITY_LEVEL` environment variable:
-
-```console
-MINIMUM_SEVERITY_LEVEL="SeverityNumber.ERROR"
-```
-
-If a log record's severity number is less than the specified minimum_severity_level, the log record will be dropped. Log records with an unspecified severity (i.e. `0`) are not affected by this parameter and therefore bypass minimum severity level filtering.
-
-When this environment variable is not configured, it defaults to unspecified severity `0`.
 
 #### Trace Based Sampling
 
-Configure trace-based sampling using the `TRACE_BASED_SAMPLING` environment variable:
+Configure trace-based sampling using the distro's `configure_azure_monitor`:
 
 ```console
-TRACE_BASED_SAMPLING="True"
+configure_azure_monitor (
+    connection_string=connection_string,
+    enable_trace_based_sampling=True
+)
 ```
 
 If `trace_based_sampling` is `true`, log records associated with unsampled traces are dropped.
@@ -378,7 +368,7 @@ A log record is considered associated with an unsampled trace if it has a valid 
 `TraceFlags` indicate that the trace is unsampled. A log record that isn't associated with a trace
 context is not affected by this parameter and therefore bypasses trace based sampling filtering.
 
-When this environment variable is not configured, it defaults to False.
+When `enable_trace_based_sampling` is not specified, it defaults to False.
 
 ---
 
