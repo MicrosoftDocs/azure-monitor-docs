@@ -42,7 +42,7 @@
     href: ./advisor-how-to-calculate-total-cost-savings.md
   - name: Evaluate cost implications of recommendations
     href: ./advisor-how-to-evaluate-cost-implications-of-recommendations.md
-  - name: Improve the performance of highly used VMs
+  - name: Improve the performance of highly used virtual machines
     href: ./advisor-how-to-performance-resize-high-usage-vm-recommendations.md
   - name: Optimize virtual machine spend by resizing or shutting down underutilized instances
     href: ./advisor-cost-recommendations.md
