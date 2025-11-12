@@ -2,7 +2,7 @@
 title: Configure Azure Advisor recommendations view
 description: View and filter Azure Advisor recommendations to reduce noise.
 ms.topic: how-to
-ms.date: 10/15/2025
+ms.date: 11/11/2025
 ---
 
 # Configure the Azure Advisor recommendations view
@@ -75,12 +75,6 @@ You can activate a recommendation that was postponed or dismissed. This action c
 
 ## Related articles
 
-For more information about Azure Advisor, see the following articles.
-
-*   [Introduction to Azure Advisor](./advisor-overview.md)
-
-*   [Azure Advisor portal basics](./advisor-get-started.md)
-
-*   [Customize Azure Advisor recommendations view using filters and grouping](./advisor-how-to-customize-recommendations-view.md)
+*   [Customize recommendations view](./advisor-customize-list-view.md)
 
 *   [Roles and permissions](./permissions.md)
