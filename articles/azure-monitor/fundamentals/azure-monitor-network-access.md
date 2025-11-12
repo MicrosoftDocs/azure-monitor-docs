@@ -27,7 +27,10 @@ Each of the following Azure Monitor service sections require outbound traffic ru
 You need to open the following outbound ports in your firewall to allow the Application Insights SDK or Application Insights agent to send data to the portal.
 
 > [!NOTE]
-> These endpoints support IPv4 and IPv6.
+> IPv6 support is limited to specific endpoints:
+> - `{region].in.applicationinsights.azure.com` supports both IPv4 and IPv6.
+> - `{region}.livediagnostics.monitor.azure.com` currently supports IPv4 only; IPv6 support is planned.
+> - Global ingestion endpoints do **not** support IPv6 and are deprecated. For details, see [Retirement announcement](https://azure.microsoft.com/updates?id=technical-support-for-instrumentation-key-based-global-ingestion-in-application-insights-will-end-on-31-march-2025)
 
 | Purpose | Hostname | Type | Ports |
 |---------|-----|------|-------|
