@@ -26,7 +26,7 @@ This article explains how to enable and configure [Application Insights](app-ins
 
 ## Supported scenarios
 
-### [.NET](#tab/dotnet)
+# [.NET](#tab/dotnet)
 
 | Supported | ASP.NET | ASP.NET Core | Worker Service |
 |-----------|---------|--------------|----------------|
@@ -43,7 +43,7 @@ The Worker Service SDK doesn't do any telemetry collection by itself. Instead, i
 > [!NOTE]
 > A worker service is a long-running background application that executes tasks outside of an HTTP request/response pipeline. The [Application Insights SDK for Worker Service](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService) can be used in the newly introduced [.NET Core Worker Service](https://devblogs.microsoft.com/aspnet/dotnet-core-workers-in-azure-container-instances), [background tasks in ASP.NET Core](/aspnet/core/fundamentals/host/hosted-services), and console apps like .NET Core and .NET Framework. 
 
-### [Node.js](#tab/nodejs)
+# [Node.js](#tab/nodejs)
 
 | Supported | Node.js |
 |-----------|---------|
@@ -65,6 +65,8 @@ You can use the TelemetryClient API to manually instrument and monitor more aspe
 
 ## Add Application Insights
 
+# [.NET](#tab/dotnet)
+
 ### Prerequisites
 
 > [!div class="checklist"]
@@ -74,8 +76,6 @@ You can use the TelemetryClient API to manually instrument and monitor more aspe
 > * The latest version of [Visual Studio](https://www.visualstudio.com/downloads/) with the following workloads:
 >     * ASP.NET and web development
 >     * Azure development
-
-# [.NET](#tab/dotnet)
 
 ### Create a basic web application
 
@@ -832,6 +832,13 @@ This console application also uses the same default `TelemetryConfiguration`. It
 
 # [Node.js](#tab/nodejs)
 
+### Prerequisites
+
+> [!div class="checklist"]
+> * An Azure subscription. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+> * An [Application Insights workspace-based resource](create-workspace-resource.md).
+> * A functioning application. If you don't have one already, see [Create a basic web application](#create-a-basic-web-application).
+
 ### Set up the Node.js client library
 
 Include the SDK in your app so that it can gather data.
@@ -865,6 +872,34 @@ Include the SDK in your app so that it can gather data.
 
 > [!NOTE]
 > As part of using Application Insights instrumentation, we collect and send diagnostic data to Microsoft. This data helps us run and improve Application Insights. You have the option to disable non-essential data collection. [Learn more](./statsbeat.md).
+
+### Basic usage
+
+For out-of-the-box collection of HTTP requests, popular third-party library events, unhandled exceptions, and system metrics:
+
+```javascript
+let appInsights = require("applicationinsights");
+appInsights.setup("[your connection string]").start();
+```
+
+> [!NOTE]
+> If the connection string is set in the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`, `.setup()` can be called with no arguments. This makes it easy to use different connection strings for different environments.
+
+Load the Application Insights library `require("applicationinsights")` as early as possible in your scripts before you load other packages. This step is needed so that the Application Insights library can prepare later packages for tracking. If you encounter conflicts with other libraries doing similar preparation, try loading the Application Insights library afterwards.
+
+Because of the way JavaScript handles callbacks, more work is necessary to track a request across external dependencies and later callbacks. By default, this extra tracking is enabled. Disable it by calling `setAutoDependencyCorrelation(false)` as described in the [SDK configuration](#sdk-configuration) section.
+
+### Migrate from versions prior to 0.22
+
+There are breaking changes between releases prior to version 0.22 and after. These changes are designed to bring consistency with other Application Insights SDKs and allow future extensibility.
+
+In general, you can migrate with the following actions:
+
+* Replace references to `appInsights.client` with `appInsights.defaultClient`.
+* Replace references to `appInsights.getClient()` with `new appInsights.TelemetryClient()`.
+* Replace all arguments to client.track* methods with a single object containing named properties as arguments. See your IDE's built-in type hinting or [TelemetryTypes](https://github.com/Microsoft/ApplicationInsights-node.js/tree/develop/Declarations/Contracts/TelemetryTypes) for the excepted object for each type of telemetry.
+
+If you access SDK configuration functions without chaining them to `appInsights.setup()`, you can now find these functions at `appInsights.Configurations`. An example is `appInsights.Configuration.setAutoCollectDependencies(true)`. Review the changes to the default configuration in the next section.
 
 ---
 
@@ -912,6 +947,8 @@ Because the SDK batches data for submission, there might be a delay before items
 
 ## Configure telemetry
 
+# [.NET](#tab/dotnet)
+
 #### In this section
 
 * [Live metrics](#live-metrics)
@@ -925,8 +962,6 @@ Because the SDK batches data for submission, there might be a delay before items
 ### Live metrics
 
 [Live metrics](live-stream.md) can be used to quickly verify if application monitoring with Application Insights is configured correctly. Telemetry can take a few minutes to appear in the Azure portal, but the live metrics pane shows CPU usage of the running process in near real time. It can also show other telemetry like requests, dependencies, and traces.
-
-# [.NET](#tab/dotnet)
 
 > [!NOTE]
 > Live metrics are enabled by default when you onboard it by using the recommended instructions for .NET applications.
@@ -1093,12 +1128,6 @@ It's important to note that the following example doesn't cause the Application 
 > Application Insights respects the log levels configured via ConfigureLogging(...) in code. If only appsettings.json is used, and ConfigureLogging isn't overridden explicitly, the default log level is **Warning**.
 
 For more information, follow [ILogger docs](/dotnet/core/extensions/logging#configure-logging) to customize which log levels are captured by Application Insights.
-
-# [Node.js](#tab/nodejs)
-
-To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
-
----
 
 ### Traces (logs)
 
@@ -1485,25 +1514,7 @@ traces
 
 #### Enable W3C distributed tracing support
 
-# [.NET](#tab/dotnet)
-
 W3C TraceContext-based distributed tracing is enabled by default in all recent .NET Framework/.NET Core SDKs, along with backward compatibility with legacy `Request-Id` protocol.
-
-# [Node.js](#tab/nodejs)
-
-By default, the SDK sends headers understood by other applications or services instrumented with an Application Insights SDK. You can enable sending and receiving of [W3C Trace Context](https://github.com/w3c/trace-context) headers in addition to the existing AI headers. In this way, you won't break correlation with any of your existing legacy services.
-
-Enabling W3C headers allows your app to correlate with other services not instrumented with Application Insights but that do adopt this W3C standard.
-
-```Javascript
-const appInsights = require("applicationinsights");
-appInsights
-  .setup("<your connection string>")
-  .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
-  .start()
-```
-
----
 
 #### Telemetry correlation
 
@@ -1514,8 +1525,6 @@ Correlation is handled by default when onboarding an app. No special actions are
 The Application Insights .NET SDK uses `DiagnosticSource` and `Activity` to collect and correlate telemetry.
 
 ### Dependencies
-
-# [.NET](#tab/dotnet)
 
 #### Automatically tracked dependencies
 
@@ -1623,57 +1632,6 @@ services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o)
 ```
 
 In the preceding cases, the proper way of validating that the instrumentation engine is correctly installed is by validating that the SDK version of collected `DependencyTelemetry` is `rddp`. Use of `rdddsd` or `rddf` indicates dependencies are collected via `DiagnosticSource` or `EventSource` callbacks, so the full SQL query isn't captured.
-
-# [Node.js](#tab/nodejs)
-
-Use the following code to track your dependencies:
-
-```javascript
-let appInsights = require("applicationinsights");
-let client = new appInsights.TelemetryClient();
-
-var success = false;
-let startTime = Date.now();
-// execute dependency call here....
-let duration = Date.now() - startTime;
-success = true;
-
-client.trackDependency({target:"http://dbname", name:"select customers proc", data:"SELECT * FROM Customers", duration:duration, resultCode:0, success: true, dependencyTypeName: "ZSQL"});;
-```
-
-An example utility using `trackMetric` to measure how long event loop scheduling takes:  
-
-```javascript
-function startMeasuringEventLoop() {
-  var startTime = process.hrtime();
-  var sampleSum = 0;
-  var sampleCount = 0;
-
-  // Measure event loop scheduling delay
-  setInterval(() => {
-    var elapsed = process.hrtime(startTime);
-    startTime = process.hrtime();
-    sampleSum += elapsed[0] * 1e9 + elapsed[1];
-    sampleCount++;
-  }, 0);
-
-  // Report custom metric every second
-  setInterval(() => {
-    var samples = sampleSum;
-    var count = sampleCount;
-    sampleSum = 0;
-    sampleCount = 0;
-
-    if (count > 0) {
-      var avgNs = samples / count;
-      var avgMs = Math.round(avgNs / 1e6);
-      client.trackMetric({name: "Event Loop Delay", value: avgMs});
-    }
-  }, 1000);
-}
-```
-
----
 
 ### Exceptions
 
@@ -2886,7 +2844,98 @@ Activities are top-level features in Application Insights. Automatic dependency 
 
 Each Application Insights operation (request or dependency) involves `Activity`. When `StartOperation` is called, it creates `Activity` underneath. `StartOperation` is the recommended way to track request or dependency telemetries manually and ensure everything is correlated.
 
+# [Node.js](#tab/nodejs)
+
+#### In this section
+
+* [Live metrics](#live-metrics)
+* [Distributed tracing](#distributed-tracing)
+* [Dependencies](#dependencies)
+* [Exceptions](#exceptions)
+* [Custom metrics](#custom-metric-collection)
+* [Custom operations](#custom-operations-tracking)
+
+## Live metrics
+
+To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
+
+[!INCLUDE [Distributed tracing](./includes/application-insights-distributed-trace-data.md)]
+
+#### Enable W3C distributed tracing support
+
+By default, the SDK sends headers understood by other applications or services instrumented with an Application Insights SDK. You can enable sending and receiving of [W3C Trace Context](https://github.com/w3c/trace-context) headers in addition to the existing AI headers. In this way, you won't break correlation with any of your existing legacy services.
+
+Enabling W3C headers allows your app to correlate with other services not instrumented with Application Insights but that do adopt this W3C standard.
+
+```Javascript
+const appInsights = require("applicationinsights");
+appInsights
+  .setup("<your connection string>")
+  .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
+  .start()
+```
+
+### Dependencies
+
+Use the following code to track your dependencies:
+
+```javascript
+let appInsights = require("applicationinsights");
+let client = new appInsights.TelemetryClient();
+
+var success = false;
+let startTime = Date.now();
+// execute dependency call here....
+let duration = Date.now() - startTime;
+success = true;
+
+client.trackDependency({target:"http://dbname", name:"select customers proc", data:"SELECT * FROM Customers", duration:duration, resultCode:0, success: true, dependencyTypeName: "ZSQL"});;
+```
+
+An example utility using `trackMetric` to measure how long event loop scheduling takes:  
+
+```javascript
+function startMeasuringEventLoop() {
+  var startTime = process.hrtime();
+  var sampleSum = 0;
+  var sampleCount = 0;
+
+  // Measure event loop scheduling delay
+  setInterval(() => {
+    var elapsed = process.hrtime(startTime);
+    startTime = process.hrtime();
+    sampleSum += elapsed[0] * 1e9 + elapsed[1];
+    sampleCount++;
+  }, 0);
+
+  // Report custom metric every second
+  setInterval(() => {
+    var samples = sampleSum;
+    var count = sampleCount;
+    sampleSum = 0;
+    sampleCount = 0;
+
+    if (count > 0) {
+      var avgNs = samples / count;
+      var avgMs = Math.round(avgNs / 1e6);
+      client.trackMetric({name: "Event Loop Delay", value: avgMs});
+    }
+  }, 1000);
+}
+```
+
+---
+
+
+
+
+
+
+
+
 ## Counters in Application Insights
+
+# [.NET](#tab/dotnet)
 
 [Application Insights](app-insights-overview.md) supports performance counters and event counters. This guide provides an overview of both, including their purpose, configuration, and usage in .NET applications.
 
@@ -3179,7 +3228,15 @@ Like other telemetry, **customMetrics** also has a column `cloud_RoleInstance` t
 
 To review frequently asked questions (FAQ), see [Event counters FAQ](application-insights-faq.yml#asp-net-event-counters).
 
+# [Node.js](#tab/nodejs)
+
+...
+
+---
+
 ## Filter and enrich telemetry
+
+# [.NET](#tab/dotnet)
 
 #### In this section
 
@@ -3477,8 +3534,6 @@ public void Initialize(ITelemetry telemetry)
 
 Telemetry processors can filter and modify each telemetry item before it's sent from the SDK to the portal.
 
-# [.NET](#tab/dotnet)
-
 #### Implement `ITelemetryProcessor`
 
 Telemetry processors construct a chain of processing. When you instantiate a telemetry processor, you're given a reference to the next processor in the chain. When a telemetry data point is passed to the process method, it does its work and then calls (or doesn't call) the next telemetry processor in the chain.
@@ -3683,7 +3738,75 @@ public void Process(ITelemetry item)
 }
 ```
 
+### Sampling
+
+To learn how to configure sampling for ASP.NET and ASP.NET Core applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+
+#### Worker Service
+
+The Application Insights SDK for Worker Service supports both [fixed-rate sampling](sampling.md#fixed-rate-sampling) and [adaptive sampling](sampling.md#adaptive-sampling). Adaptive sampling is enabled by default. Sampling can be disabled by using the `EnableAdaptiveSampling` option in [ApplicationInsightsServiceOptions](#configure-telemetry-modules).
+
+To configure other sampling settings, you can use the following example:
+
+```csharp
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+using Microsoft.ApplicationInsights.Extensibility;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<TelemetryConfiguration>(telemetryConfiguration =>
+{
+   var telemetryProcessorChainBuilder = telemetryConfiguration.DefaultTelemetrySink.TelemetryProcessorChainBuilder;
+
+   // Using adaptive sampling
+   telemetryProcessorChainBuilder.UseAdaptiveSampling(maxTelemetryItemsPerSecond: 5);
+
+   // Alternately, the following configures adaptive sampling with 5 items per second, and also excludes DependencyTelemetry from being subject to sampling:
+   // telemetryProcessorChainBuilder.UseAdaptiveSampling(maxTelemetryItemsPerSecond:5, excludedTypes: "Dependency");
+});
+
+builder.Services.AddApplicationInsightsTelemetryWorkerService(new ApplicationInsightsServiceOptions
+{
+   EnableAdaptiveSampling = false,
+});
+
+var app = builder.Build();
+```
+
+### Enrich data through HTTP
+
+#### ASP.NET
+
+```csharp
+var requestTelemetry = HttpContext.Current?.Items["Microsoft.ApplicationInsights.RequestTelemetry"] as RequestTelemetry;
+
+if (requestTelemetry != null)
+{
+    requestTelemetry.Properties["myProp"] = "someData";
+}
+```
+
+#### ASP.NET Core
+
+```csharp
+HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
+```
+
 # [Node.js](#tab/nodejs)
+
+#### In this section
+
+* [Filter and preprocess telemetry](#filter-and-preprocess-telemetry)
+* [Telemetry initializers](#telemetry-initializers)
+* [Telemetry processor](#telemetry-processors)
+* [Sampling](#sampling)
+* [Enrich data through HTTP](#enrich-data-through-http)
+
+[!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
+
+[!INCLUDE [Telemetry processor and telemetry initializer](./includes/application-insights-processor-initializer.md)]
+
+### Telemetry processors
 
 You can process and filter collected data before it's sent for retention by using *telemetry processors*. Telemetry processors are called one by one in the order they were added before the telemetry item is sent to the cloud.
 
@@ -3727,7 +3850,7 @@ appInsights.defaultClient.addTelemetryProcessor(removeStackTraces);
 
 ```javascript
 var appInsights = require("applicationinsights");
-appInsights.setup('INSTRUMENTATION_KEY').start();
+appInsights.setup('CONNECTION_STRING').start();
 appInsights.defaultClient.context.tags["ai.cloud.role"] = "your role name";
 appInsights.defaultClient.context.tags["ai.cloud.roleInstance"] = "your role instance";
 ```
@@ -3736,7 +3859,7 @@ appInsights.defaultClient.context.tags["ai.cloud.roleInstance"] = "your role ins
 
 ```javascript
 var appInsights = require("applicationinsights");
-appInsights.setup('INSTRUMENTATION_KEY').start();
+appInsights.setup('CONNECTION_STRING').start();
 
 appInsights.defaultClient.addTelemetryProcessor(envelope => {
     envelope.tags["ai.cloud.role"] = "your role name";
@@ -3745,43 +3868,6 @@ appInsights.defaultClient.addTelemetryProcessor(envelope => {
 ```
 
 ### Sampling
-
-# [.NET](#tab/dotnet)
-
-To learn how to configure sampling for ASP.NET and ASP.NET Core applications, see [Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-
-#### Worker Service
-
-The Application Insights SDK for Worker Service supports both [fixed-rate sampling](sampling.md#fixed-rate-sampling) and [adaptive sampling](sampling.md#adaptive-sampling). Adaptive sampling is enabled by default. Sampling can be disabled by using the `EnableAdaptiveSampling` option in [ApplicationInsightsServiceOptions](#configure-telemetry-modules).
-
-To configure other sampling settings, you can use the following example:
-
-```csharp
-using Microsoft.ApplicationInsights.AspNetCore.Extensions;
-using Microsoft.ApplicationInsights.Extensibility;
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.Configure<TelemetryConfiguration>(telemetryConfiguration =>
-{
-   var telemetryProcessorChainBuilder = telemetryConfiguration.DefaultTelemetrySink.TelemetryProcessorChainBuilder;
-
-   // Using adaptive sampling
-   telemetryProcessorChainBuilder.UseAdaptiveSampling(maxTelemetryItemsPerSecond: 5);
-
-   // Alternately, the following configures adaptive sampling with 5 items per second, and also excludes DependencyTelemetry from being subject to sampling:
-   // telemetryProcessorChainBuilder.UseAdaptiveSampling(maxTelemetryItemsPerSecond:5, excludedTypes: "Dependency");
-});
-
-builder.Services.AddApplicationInsightsTelemetryWorkerService(new ApplicationInsightsServiceOptions
-{
-   EnableAdaptiveSampling = false,
-});
-
-var app = builder.Build();
-```
-
-# [Node.js](#tab/nodejs)
 
 By default, the SDK sends all collected data to the Application Insights service. If you want to enable sampling to reduce the amount of data, set the `samplingPercentage` field on the `config` object of a client. Setting `samplingPercentage` to 100 (the default) means all data will be sent, and 0 means nothing will be sent.
 
@@ -3798,32 +3884,16 @@ appInsights.start();
 
 ---
 
-### Enrich data through HTTP
-
-#### ASP.NET
-
-```csharp
-var requestTelemetry = HttpContext.Current?.Items["Microsoft.ApplicationInsights.RequestTelemetry"] as RequestTelemetry;
-
-if (requestTelemetry != null)
-{
-    requestTelemetry.Properties["myProp"] = "someData";
-}
-```
-
-#### ASP.NET Core
-
-```csharp
-HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
-```
-
 ## Manage SDK components
+
+# [.NET](#tab/dotnet)
 
 #### In this section
 
 * [Telemetry channels](#telemetry-channels)
 * [Telemetry modules](#telemetry-modules)
 * [Disable telemetry](#disable-telemetry)
+* [Connection string](#connection-string)
 * [ApplicationId Provider](#applicationid-provider)
 * [Snapshot collection](#configure-snapshot-collection)
 
@@ -4331,15 +4401,13 @@ If you want to disable telemetry conditionally and dynamically, you can resolve 
     }
 ```
 
-### Connection String
+### Connection string
 
 This setting determines the Application Insights resource in which your data appears. Typically, you create a separate resource, with a separate connection string, for each of your applications.
 
 See [Connection strings in Application Insights](connection-strings.md#code-samples) for code samples.
 
 If you want to set the connection string dynamically, for example, to send results from your application to different resources, you can omit the connection string from the configuration file and set it in code instead.
-
-# [.NET](#tab/dotnet)
 
 #### ASP.NET
 
@@ -4402,27 +4470,6 @@ tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000
 tc.TrackEvent("myEvent");
 // ...
 ```
-
-# [Node.js](#tab/nodejs)
-
-#### Use multiple connection strings
-
-You can create multiple Application Insights resources and send different data to each by using their respective connection strings.
-
-For example:
-
-```javascript
-let appInsights = require("applicationinsights");
-
-// configure auto-collection under one connection string
-appInsights.setup("Connection String A").start();
-
-// track some events manually under another connection string
-let otherClient = new appInsights.TelemetryClient("Connection String B");
-otherClient.trackEvent({name: "my custom event"});
-```
-
----
 
 ### ApplicationId Provider
 
@@ -4564,6 +4611,44 @@ app.Run();
 ### Configure snapshot collection
 
 To learn how to configure snapshot collection for ASP.NET and ASP.NET Core applications, see [Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Cloud Services, and Virtual Machines](snapshot-debugger-vm.md).
+
+# [Node.js](#tab/nodejs)
+
+#### In this section
+
+* [Telemetry channels](#telemetry-channels)
+* [Telemetry modules](#telemetry-modules)
+* [Disable telemetry](#disable-telemetry)
+* [Connection string](#connection-string)
+* [ApplicationId Provider](#applicationid-provider)
+* [Snapshot collection](#configure-snapshot-collection)
+
+### Connection string
+
+This setting determines the Application Insights resource in which your data appears. Typically, you create a separate resource, with a separate connection string, for each of your applications.
+
+See [Connection strings in Application Insights](connection-strings.md#code-samples) for code samples.
+
+If you want to set the connection string dynamically, for example, to send results from your application to different resources, you can omit the connection string from the configuration file and set it in code instead.
+
+#### Use multiple connection strings
+
+You can create multiple Application Insights resources and send different data to each by using their respective connection strings.
+
+For example:
+
+```javascript
+let appInsights = require("applicationinsights");
+
+// configure auto-collection under one connection string
+appInsights.setup("Connection String A").start();
+
+// track some events manually under another connection string
+let otherClient = new appInsights.TelemetryClient("Connection String B");
+otherClient.trackEvent({name: "my custom event"});
+```
+
+---
 
 ## Add client-side monitoring
 

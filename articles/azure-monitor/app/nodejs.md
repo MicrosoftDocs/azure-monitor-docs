@@ -1,37 +1,3 @@
-## Basic usage
-
-For out-of-the-box collection of HTTP requests, popular third-party library events, unhandled exceptions, and system metrics:
-
-```javascript
-let appInsights = require("applicationinsights");
-appInsights.setup("[your connection string]").start();
-```
-
-> [!NOTE]
-> If the connection string is set in the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`, `.setup()` can be called with no arguments. This makes it easy to use different connection strings for different environments.
-
-Load the Application Insights library `require("applicationinsights")` as early as possible in your scripts before you load other packages. This step is needed so that the Application Insights library can prepare later packages for tracking. If you encounter conflicts with other libraries doing similar preparation, try loading the Application Insights library afterwards.
-
-Because of the way JavaScript handles callbacks, more work is necessary to track a request across external dependencies and later callbacks. By default, this extra tracking is enabled. Disable it by calling `setAutoDependencyCorrelation(false)` as described in the [SDK configuration](#sdk-configuration) section.
-
-
-
-
-
-
-## Migrate from versions prior to 0.22
-
-There are breaking changes between releases prior to version 0.22 and after. These changes are designed to bring consistency with other Application Insights SDKs and allow future extensibility.
-
-In general, you can migrate with the following actions:
-
-* Replace references to `appInsights.client` with `appInsights.defaultClient`.
-* Replace references to `appInsights.getClient()` with `new appInsights.TelemetryClient()`.
-* Replace all arguments to client.track* methods with a single object containing named properties as arguments. See your IDE's built-in type hinting or [TelemetryTypes](https://github.com/Microsoft/ApplicationInsights-node.js/tree/develop/Declarations/Contracts/TelemetryTypes) for the excepted object for each type of telemetry.
-
-If you access SDK configuration functions without chaining them to `appInsights.setup()`, you can now find these functions at `appInsights.Configurations`. An example is `appInsights.Configuration.setAutoCollectDependencies(true)`. Review the changes to the default configuration in the next section.
-
-
 
 
 
@@ -61,6 +27,8 @@ Review their descriptions in your IDE's built-in type hinting or [applicationins
 
 > [!NOTE]
 > By default, `setAutoCollectConsole` is configured to *exclude* calls to `console.log` and other console methods. Only calls to supported third-party loggers (for example, winston and bunyan) will be collected. You can change this behavior to include calls to `console` methods by using `setAutoCollectConsole(true, true)`.
+
+
 
 [!INCLUDE [Distributed tracing](./includes/application-insights-distributed-trace-data.md)]
 
