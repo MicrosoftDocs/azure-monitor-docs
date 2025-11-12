@@ -20,7 +20,7 @@
     href: advisor-dismiss-postpone.md
   - name: Configuration
     href: view-recommendations.md
-  - name: Alerts alerts
+  - name: Alerts
     items:
     - name: Azure portal
       href: advisor-alerts-portal.md
