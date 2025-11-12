@@ -6,11 +6,11 @@ ms.date: 11/11/2025
 
 ---
 
-## Dismiss and postpone recommendations
+# Dismiss and postpone recommendations
 
 Advisor allows you to dismiss or postpone recommendations on a single resource. If you dismiss a recommendation, you don't see it again unless you manually activate it. However, postponing a recommendation allows you to specify a duration after which the recommendation is automatically activated again. Postponing can be done in the Azure portal or programmatically.
 
-### Postpone a single recommendation in the Azure portal 
+## Postpone a recommendation in the Azure portal 
 
 1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
 1. To view your recommendations, select a recommendation category.
@@ -19,7 +19,7 @@ Advisor allows you to dismiss or postpone recommendations on a single resource. 
 
      :::image type="content" source="./media/view-recommendations/postpone-dismiss.png" alt-text="Screenshot showing the Use Managed Disks page highlighting the Select column and the Postpone or Dismiss actions for a single recommendation.":::
 
-### Postpone or dismiss multiple recommendations in the Azure portal
+## Postpone or dismiss multiple recommendations in the Azure portal
 
 1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
 1. To view your recommendations, select a recommendation category.
@@ -34,7 +34,7 @@ Advisor allows you to dismiss or postpone recommendations on a single resource. 
 
 If the selection boxes are disabled, recommendations might still be loading. Wait for all recommendations to load before you try to postpone or dismiss.
 
-### Reactivate a postponed or dismissed recommendation
+## Reactivate a postponed or dismissed recommendation
 
 You can activate a recommendation that was postponed or dismissed. This action can be done in the Azure portal or programmatically. In the Azure portal:
 
