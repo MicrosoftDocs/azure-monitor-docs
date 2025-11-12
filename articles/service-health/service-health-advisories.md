@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 11/07/2025
+ms.date: 11/12/2025
 ---
 
 # Health advisories 
@@ -30,8 +30,8 @@ Select the **Issue name** link to open the tabs with the information you need.
 
 ## Who can view Health advisories
 
-- Users with a [Subscription Reader role](/azure/role-based-access-control/built-in-roles#reader) or higher, can view issues affecting their Azure subscription workloads.
-- Users with [Tenant admin access](admin-access-reference.md) can view issues affecting their Azure tenant workloads.
+- Users with a [Subscription Reader role](/azure/role-based-access-control/built-in-roles#reader) or higher, can view issues affecting their Azure subscription scope.
+- Users with [Tenant admin access](admin-access-reference.md) can view issues affecting their Azure tenant scope.
 
 ### Filtering and sorting
 At the top of each tab, there are several options of how to view the information on this page.
