@@ -16,7 +16,7 @@ Filters help you to focus on the recommendations that are most relevant to your 
 
 Some filters, like **Subscription**, **Resource Group**, and **Resource Type**, are visible by default in Azure Advisor. Others can be added as needed with the **Add filter** button, allowing you further customize your recommendations view.
 
-:::image alt-text="Screenshot of all recommendations list with filters in Azure Advisor" lightbox="./media/advisor-all-recommendations-filters.png" source="./media/advisor-all-recommendations-filters-preview.png" type="content":::
+:::image alt-text="Screenshot of all recommendations list with filters in Azure Advisor." lightbox="./media/advisor-all-recommendations-filters.png" source="./media/advisor-all-recommendations-filters-preview.png" type="content":::
  
 ### Resources filters
 
@@ -64,7 +64,7 @@ Grouping helps you organize recommendations into logical categories.
 
 *   `No grouping`
 
-:::image alt-text="Screenshot of Cost recommendations grouped by subcategory in Azure Advisor" lightbox="./media/advisor-cost-grouping.png" source="./media/advisor-cost-grouping-preview.png" type="content":::
+:::image alt-text="Screenshot of Cost recommendations grouped by subcategory in Azure Advisor." lightbox="./media/advisor-cost-grouping.png" source="./media/advisor-cost-grouping-preview.png" type="content":::
  
 ## Related resources
 
