@@ -16,7 +16,7 @@ Filters help you to focus on the recommendations that are most relevant to your 
 
 Some filters, like **Subscription**, **Resource Group**, and **Resource Type**, are visible by default in Azure Advisor. Others can be added as needed with the **Add filter** button, allowing you further customize your recommendations view.
 
-:::image alt-text="Screeshot of all recommendations list with filters in Azure Advisor" lightbox="./media/advisor-all-recommendations-filters.png" source="./media/advisor-all-recommendations-filters-preview.png" type="content":::
+:::image alt-text="Screenshot of all recommendations list with filters in Azure Advisor" lightbox="./media/advisor-all-recommendations-filters.png" source="./media/advisor-all-recommendations-filters-preview.png" type="content":::
  
 ### Resources filters
 
