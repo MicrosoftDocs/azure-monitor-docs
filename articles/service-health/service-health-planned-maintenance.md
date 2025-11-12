@@ -145,6 +145,7 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 5. How long is the maintenance history available?
 - Active view: up to 90 days
 - Health history: 90 days from most recent published date
+
 For more information on event retention, see [Service Health notification transitions](service-health-notification-transitions.md).
 
 
