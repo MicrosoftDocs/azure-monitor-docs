@@ -1313,6 +1313,8 @@ items:
       href: visualize/visualize-grafana-overview.md
     - name: Use Grafana dashboards
       href: visualize/visualize-use-grafana-dashboards.md
+    - name: Azure Data Explorer
+      href: visualize/visualize-connect-grafana-azure-monitor.md
     - name: Use managed Grafana
       href: visualize/visualize-use-managed-grafana-how-to.md
     - name: Call Grafana APIs programmatically
