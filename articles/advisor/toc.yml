@@ -15,10 +15,10 @@
   - name: Advisor score
     href: ./advisor-score.md
   - name: Customize view
-    href: advisor-customize-list-view.md
+    href: advisor-customize-view.md
   - name: Configure recommendations
     href: view-recommendations.md
-  - name: Configure alerts for new recommendations
+  - name: Create alerts
     items:
     - name: Azure portal
       href: advisor-alerts-portal.md
@@ -28,7 +28,7 @@
     - name: ARM template
       displayName: Resource Manager
       href: advisor-alerts-arm.md
-  - name: Configure recommendation digest
+  - name: Create digests
     href: advisor-recommendations-digest.md      
 - name: How-to guides
   items:
