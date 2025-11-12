@@ -62,7 +62,7 @@ You can activate a recommendation that was postponed or dismissed. This action c
 
 ## Automate with REST API
 
-You can manage these actions programmatically using [Suppressions API](https://learn.microsoft.com/rest/api/advisor/suppressions).
+You can manage these actions programmatically, for details see [Suppressions](/rest/api/advisor/suppressions).
 
 ## Related resources
 
