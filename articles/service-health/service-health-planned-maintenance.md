@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 11/11/2025
+ms.date: 11/12/2025
 
 ---
 
@@ -78,7 +78,7 @@ Each event includes:
 |Impacted regions       | A list of all the regions impacted by this event and shown on the calendar. |
 |Impacted subscriptions | A list of any subscriptions impacted by this event.                         |
 |Status                 | The current status of this event.                                           |
-|Health event type      | The type of health event (Planned Maintence/Security)                       |
+|Health event type      | The type of health event (Planned maintence/Security advisory)                       |
 |Event tags             | The information that explains or names the nature and status of this event. |
 |Start time             | The time the event started.                                                 |
 |End time               | The time the event ended.                                                   |
@@ -144,7 +144,8 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
     - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
 5. How long is the maintenance history available?
 - Active view: up to 90 days
-- Health history: up to one year
+- Health history: 90 days from most recent published date
+For more information on event retention, see [Service Health notification transitions](service-health-notifications-transitions.md).
 
 
 ## Next steps
