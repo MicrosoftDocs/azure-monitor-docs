@@ -28,7 +28,7 @@ The following permissions are required depending on whether the DCR destination 
 | ADX | [Database Admin](/kusto/access-control/role-based-access-control?view=azure-data-explorer&preserve-view=true#roles-and-permissions) at the database scope or Azure contributor at the ADX cluster scope. |
 | Fabric | [Workspace contributor](/fabric/fundamentals/roles-workspaces#-workspace-roles). |
 
-The DCR creation process adds the [NativeIngestion](/azure/data-explorer/ingest-data-managed-identity#set-the-managed-identity-policy-in-azure-data-explorer) usage option for the VM user-assigned managed identity.
+The DCR creation process gives the user-assigned managed identity the [NativeIngestion](/azure/data-explorer/ingest-data-managed-identity#set-the-managed-identity-policy-in-azure-data-explorer) usage option on the destination you choose, then associates the user-assigned managed identity with the DCR.
 
 ## Create a data collection rule
 
