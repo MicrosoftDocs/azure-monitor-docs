@@ -14,7 +14,9 @@
     href: permissions.md
   - name: Advisor score
     href: ./advisor-score.md
-  - name: Configure recommendations view
+  - name: Customize view
+    href: advisor-customize-list-view.md
+  - name: Configure recommendations
     href: view-recommendations.md
   - name: Configure alerts for new recommendations
     items:
