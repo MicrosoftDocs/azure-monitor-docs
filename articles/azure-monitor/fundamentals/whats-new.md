@@ -11,6 +11,8 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
 
+### October 2025
+
 |Subservice | Article | Description |
 |---|---|---|
 |Application-Insights|[Troubleshooting](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-aks-autoinstrumentation)| We're rapidly growing and updating our list of Application Insights troubleshooting content.|
