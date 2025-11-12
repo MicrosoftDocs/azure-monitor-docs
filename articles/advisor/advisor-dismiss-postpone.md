@@ -25,7 +25,7 @@ Azure Advisor provides personalized best-practice recommendations to help you op
 1. Select a recommendation from the list of recommendations.
 1. Select **Postpone** or **Dismiss** for the recommendation you want to postpone or dismiss.
 
-     :::image type="content" source="./media/view-recommendations/postpone-dismiss.png" alt-text="Screenshot showing the Review Disks recommendation highlighting the Select column and the Postpone or Dismiss actions for a single recommendation.":::
+     :::image type="content" lightbox="./media/view-recommendations/postpone-dismiss.png" source="./media/view-recommendations/postpone-dismiss.png" alt-text="Screenshot showing the Review Disks recommendation highlighting the Select column and the Postpone or Dismiss actions for a single recommendation.":::
 
 ## Postpone or dismiss recommendation  for multiple resources
 
@@ -35,7 +35,7 @@ Azure Advisor provides personalized best-practice recommendations to help you op
 1. Select the checkbox at the left of the row for all resources you want to postpone or dismiss the recommendation.
 1. Select **Postpone** or **Dismiss** in the upper-left corner of the table.
 
-     :::image type="content" source="./media/view-recommendations/postpone-dismiss-multiple.png" alt-text="Screenshot showing the Review Disks recommendation highlighting the Select column and the Postpone or Dismiss actions.":::
+     :::image type="content" lightbox="./media/view-recommendations/postpone-dismiss-multiple.png" source="./media/view-recommendations/postpone-dismiss-multiple.png" alt-text="Screenshot showing the Review Disks recommendation highlighting the Select column and the Postpone or Dismiss actions.":::
 
 > [!TIP]
 > If the selection boxes are disabled, recommendations might still be loading. Wait for all recommendations to load before you try to postpone or dismiss.
@@ -54,7 +54,7 @@ You can activate a recommendation that was postponed or dismissed. This action c
 
 1. Select **Activate** at the end of the row. The recommendation is now active for that resource and removed from the table. The recommendation is visible on the **Active** tab.
 
-     :::image type="content" source="./media/view-recommendations/activate-postponed-2.png" alt-text="Screenshot showing the Review Disks recommendation highlighting the Postponed & Dismissed heading and the Activate action in the Action column.":::
+     :::image type="content" lightbox="./media/view-recommendations/activate-postponed-2.png" source="./media/view-recommendations/activate-postponed-2.png" alt-text="Screenshot showing the Review Disks recommendation highlighting the Postponed & Dismissed heading and the Activate action in the Action column.":::
 
 ## Automate with REST API
 
