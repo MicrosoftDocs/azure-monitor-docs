@@ -10,7 +10,7 @@ ms.date: 09/24/2025
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Resiliency** pillar in [Operations center](./overview.md) provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources. It helps you with the following tasks::
+The **Resiliency** pillar in [Operations center](./overview.md) provides an aggregated view of resiliency across virtual machines, containers, data, storage, and networking resources. It helps you with the following tasks::
 
 - Assign zonal resiliency goals for critical applications.
 - View summaries of zonal resiliency configuration across your resource and application estate.
@@ -27,7 +27,7 @@ The Resiliency pillar includes the following menu items:
 | Menu | Description |
 |:---|:---|
 | Resiliency | Summary of resiliency recommendations. See [Resiliency overview](#resiliency-overview) for details. |
-| Resource resiliency | Aggregated view of the resiliency status of your resources across computers, containers, data, storage, and networking. Identify resources may be at risk and take proactive measures to enhance their resiliency. |
+| Resource resiliency | Aggregated view of the resiliency status of your resources across virtual machines, containers, data, storage, and networking. Identify resources may be at risk and take proactive measures to enhance their resiliency. |
 | Service group resiliency | Listing of all service groups in your subscriptions identifying the resiliency status of the resources in each group. Assign resiliency goals to each  |
 | Backup + recovery | Use [Azure Business Continuity Center](/azure/business-continuity-center/business-continuity-center-overview) to manage your protection estate across solutions and environments. The tabs across the top of this view correspond to menu items in the **Business Continuity Center** menu. |
 | Recommendations | Azure Advisor recommendations related to resiliency. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
@@ -46,7 +46,7 @@ The Resiliency overview page includes the following sections.
 
 | Section | Description |
 |:---|:---|
-| Top actions | Surfaces the most impactful and actionable recommendations to maximize cost and carbon savings. This is a unified and prioritized list across Cost recommendations and Cost alerts so you can immediately identify where to focus your attention. |
+| Top actions | Actionable recommendations to improve resiliency. |
 | Resource resiliency | Count of resources that have been configured with a zone resiliency solution and those for which the zone resiliency wasn't detected. |
 | Service group resiliency | Count of service groups with different resiliency statuses for their contained resources. |
 | Optimization recommendations | Displays the top Advisor recommendations for resiliency. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
