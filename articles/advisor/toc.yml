@@ -12,11 +12,13 @@
     href: advisor-get-started.md
   - name: Roles and permissions
     href: permissions.md
-  - name: Advisor score
+  - name: Score
     href: ./advisor-score.md
-  - name: Customize view
+  - name: Customize
     href: advisor-customize-view.md
-  - name: Configure recommendations
+  - name: Dismiss and postpone
+    href: advisor-dismis-postpone.md
+  - name: Configure
     href: view-recommendations.md
   - name: Create alerts
     items:
