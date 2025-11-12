@@ -7,7 +7,7 @@ ms.date: 01/15/2025
 
 # Migrate to VM insights OpenTelemetry (preview)
 
-[VM insights](./vminsights-overview.md) in Azure Monitor currently uses a Log Analytics workspace to collect client performance data from your virtual machines and to power visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VMinsights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
+[VM insights](./vminsights-overview.md) in Azure Monitor currently uses a Log Analytics workspace to collect client performance data from your virtual machines and to power visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VM insights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
 
 ## Benefits of OpenTelemetry for VM insights
 
@@ -28,7 +28,7 @@ Benefits of the new OTel-based collection pipeline include the following:
 ## Enable OpenTelemetry for VM insights
 
 > [!NOTE]
-> Onboarding to VM Insights through the Azure portal automatically creates a new Data Collection Rule (DCR) for each VM. To use an existing DCR, see [Collect performance counters from virtual machine with Azure Monitor](./data-collection-performance.md)
+> Onboarding to VM insights in the Azure portal automatically creates a new data collection rule (DCR) for each VM. To use an existing DCR, see [Collect performance counters from a virtual machine by using Azure Monitor](./data-collection-performance.md).
 
 1. Select a VM in the Azure portal and navigate to the **Insights** pane under the **Monitoring** section. 
 
