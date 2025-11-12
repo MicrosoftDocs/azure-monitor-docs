@@ -91,7 +91,9 @@ Authorization: Bearer eyJ0e...
 }
 ```
 
-#### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
+
+Script includes operation status check.
 
 ```powershell
 # Connect to Azure
@@ -165,7 +167,7 @@ if ($operationId) {
     }
 ```
 
-#### Filter parameters
+### Filter parameters
 
 | Name | Description|
 | - | - |
@@ -173,9 +175,9 @@ if ($operationId) {
 | `operator` | The supported operators are `==`, `=~`, `in`, `in~`, `>`, `>=`, `<`, `<=`, `between`. |
 | `value` | The value to filter by, in the supported format. The value can be a specific date, string, or other data type depending on the column. |
  
-#### Responses
+### Responses
 
-### [API](#tab/api)
+#### [API](#tab/api)
 
 ```http
 202 (accepted) with header including the OperationId
@@ -188,7 +190,7 @@ Status: Updating
 Status: Updating
 Status: Updating
 Status: Updating
----
+Status: Updating
 Status: Succeeded
 Final status: Succeeded
 ```
@@ -204,13 +206,48 @@ Final status: Succeeded
 You can track data deletion activities in a workspace through the Azure Activity Log. In the **Log Analytics workspace** menu within the Azure portal, choose **Activity Log** and find **Delete Data from log analytics workspace** events. Select an event and open it in JSON format for details such as number of records deleted, caller, and message.
 
 To check the status of your operation and view the number of deleted records, send a GET request with the `Azure-AsyncOperation` URL provided in the response header:
- 
+
+### [API](#tab/api)
+
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
 Authorization: Bearer eyJ0e...
 ```
 
-#### Responses
+### [PowerShell](#tab/powershell)
+
+To check operation status, run this powershell.
+
+```powershell
+# Check for operation status URL in headers
+$operationId = $response.Headers["Azure-AsyncOperation"]
+if (-not $operationId) {
+    $operationId = $response.Headers["Location"]
+}
+
+if ($operationId) {
+    $operationUrl = $operationId[0]  # Take first value
+    Write-Host "Polling operation status at: $operationUrl"
+
+    while ($true) {
+        $statusResponse = Invoke-RestMethod -Uri $operationUrl -Headers $headers -Method Get
+        Write-Host "Status: $($statusResponse.status)"
+        if ($statusResponse.status -eq "Succeeded" -or $statusResponse.status -eq "Failed") {
+            Write-Host "Final status: $($statusResponse.status)"
+            break
+        }
+        Start-Sleep -Seconds 30 # Check status every 30 seconds
+    }
+} else {
+    Write-Host "No operation tracking URL found. Response body:"
+    $response.Content
+    }
+```
+
+### Responses
+
+### [API](#tab/api)
+
 ```http
 {
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.OperationalInsights/locations/eastus/operationstatuses/00000000-0000-0000-0000-000000001234",
@@ -223,6 +260,18 @@ Authorization: Bearer eyJ0e...
     "Status": "Completed"
   }
 }
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+Status: Updating
+Status: Updating
+Status: Updating
+Status: Updating
+Status: Updating
+Status: Succeeded
+Final status: Succeeded
 ```
 
 For more information, see [Track asynchronous Azure operations](/azure/azure-resource-manager/management/async-operations).
