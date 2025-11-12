@@ -15,7 +15,7 @@ Azure Advisor provides personalized best-practice recommendations to help you op
 
 ## Key differences
 
-* Postpone: Temporarily hide an item for a set period — 1, 7, 30, or 90 days. After that, it automatically reappears.
+* Postpone: Temporarily hide an item for a set period—1, 7, 30, or 90 days. After that, it automatically reappears.
 * Dismiss: Permanently remove an item from view until you choose to reactivate it.
 
 ## Postpone a recommendation
@@ -62,7 +62,7 @@ You can activate a recommendation that was postponed or dismissed. This action c
 
 ## Automate with REST API
 
-You can manage these actions programmatically, for details see [Suppressions](/rest/api/advisor/suppressions).
+You can manage these actions programmatically. See [Suppressions](/rest/api/advisor/suppressions) for details.
 
 ## Related resources
 
