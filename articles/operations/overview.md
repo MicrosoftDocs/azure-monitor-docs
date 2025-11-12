@@ -52,11 +52,6 @@ In addition to an overview for each pillar, operations center includes a top-lev
 :::image type="content" source="./media/overview/operations-center.png" lightbox="./media/overview/operations-center.png" alt-text="Screenshot of operations center showing the five pillars":::
 
 
-## Service groups
-Operations center leverages [Azure service groups](/azure/governance/service-groups/overview), which offer a flexible way to organize and manage resources across subscriptions and resource groups. A service group that represents an application, for example, includes a collection of the various resources that make up the application, such as virtual machines, databases, and networking components, regardless of where they're located.
-
-Create service groups to represent the various applications and workloads that you support. Different pages in operations center will allow you to filter different views by service group or report on the health and status of the service group itself, making it easier to focus on the resources that matter most to you. 
-
 ## Virtual machine onboarding
 While many of the experiences in operations center are available in other areas of the Azure portal, one experience that's unique to operations center is a streamlined virtual machine onboarding process. The [Configuration](./configuration-enrollment.md) pillar includes a machine enrollment feature that helps you configure your subscription to automatically onboard virtual machines and Arc-enabled servers to the Azure management services used by operations center. This streamlines the process of ensuring that your machines are constantly configured for monitoring, security, and management. See [Machine enrollment](./configuration.md#machine-enrollment) for details. 
 
