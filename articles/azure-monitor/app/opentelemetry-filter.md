@@ -346,9 +346,6 @@ class SpanFilteringProcessor(SpanProcessor):
 
 ---
 
-
----
-
 ## Next steps
 
 ### [ASP.NET Core](#tab/aspnetcore)
