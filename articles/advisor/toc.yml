@@ -12,15 +12,15 @@
     href: advisor-get-started.md
   - name: Roles and permissions
     href: permissions.md
-  - name: Score
+  - name: Advisor score
     href: ./advisor-score.md
-  - name: Customize
+  - name: Customize your view
     href: advisor-customize-view.md
   - name: Dismiss and postpone
-    href: advisor-dissmis-postpone.md
-  - name: Configure
+    href: advisor-dismiss-postpone.md
+  - name: Configuration
     href: view-recommendations.md
-  - name: Create alerts
+  - name: Alerts alerts
     items:
     - name: Azure portal
       href: advisor-alerts-portal.md
@@ -30,7 +30,7 @@
     - name: ARM template
       displayName: Resource Manager
       href: advisor-alerts-arm.md
-  - name: Create digests
+  - name: Digests
     href: advisor-recommendations-digest.md      
 - name: How-to guides
   items:
