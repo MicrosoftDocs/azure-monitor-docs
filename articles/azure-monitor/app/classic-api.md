@@ -958,6 +958,7 @@ Because the SDK batches data for submission, there might be a delay before items
 * [Exceptions](#exceptions)
 * [Custom metrics](#custom-metric-collection)
 * [Custom operations](#custom-operations-tracking)
+* [Counters](#counters)
 
 ### Live metrics
 
@@ -2844,20 +2845,332 @@ Activities are top-level features in Application Insights. Automatic dependency 
 
 Each Application Insights operation (request or dependency) involves `Activity`. When `StartOperation` is called, it creates `Activity` underneath. `StartOperation` is the recommended way to track request or dependency telemetries manually and ensure everything is correlated.
 
+### Counters
+
+[Application Insights](app-insights-overview.md) supports performance counters and event counters. This guide provides an overview of both, including their purpose, configuration, and usage in .NET applications.
+
+> [!div class="checklist"]
+> * **Performance counters** are built into the Windows operating system and offer predefined metrics like CPU usage, memory consumption, and disk activity. These counters are ideal for monitoring standard performance metrics with minimal setup. They help track resource utilization or troubleshoot system-level bottlenecks in Windows-based applications but don't support custom application-specific metrics.
+> 
+> * **Event counters** work across multiple platforms, including Windows, Linux, and macOS. They allow developers to define and monitor lightweight, customizable application-specific metrics, providing more flexibility than performance counters. Event counters are useful when system metrics are insufficient or when detailed telemetry is needed in cross-platform applications. They require explicit implementation and configuration, which makes setup more effort-intensive.
+
+#### Performance counters
+
+Windows provides various [performance counters](/windows/desktop/perfctrs/about-performance-counters), such as those used to gather processor, memory, and disk usage statistics. You can also define your own performance counters. 
+
+Your application supports performance counter collection if it runs under Internet Information Server (IIS) on an on-premises host or a virtual machine with administrative access. Applications running as Azure Web Apps can't directly access performance counters, but Application Insights collects a subset of available counters.
+
+> [!TIP]
+> Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a counter goes outside a specified limit.
+> To set an alert, open the **Alerts** pane and select **Add Alert**.
+
+##### Prerequisites
+
+Grant the app pool service account permission to monitor performance counters by adding it to the [Performance Monitor Users](/windows/security/identity-protection/access-control/active-directory-security-groups#bkmk-perfmonitorusers) group.
+
+```shell
+net localgroup "Performance Monitor Users" /add "IIS APPPOOL\NameOfYourPool"
+```
+
+##### View counters
+
+The **Metrics** pane shows the default set of performance counters.
+
+###### ASP.NET
+
+Default counters for ASP.NET web applications:
+
+* % Process\\Processor Time
+* % Process\\Processor Time Normalized
+* Memory\\Available Bytes
+* ASP.NET Requests/Sec
+* .NET Common Language Runtime (CLR) Exceptions Thrown / sec
+* ASP.NET ApplicationsRequest Execution Time
+* Process\\Private Bytes
+* Process\\IO Data Bytes/sec
+* ASP.NET Applications\\Requests In Application Queue
+* Processor(_Total)\\% Processor Time
+
+###### ASP.NET Core
+
+Default counters for ASP.NET Core web applications:
+
+* % Process\\Processor Time
+* % Process\\Processor Time Normalized
+* Memory\\Available Bytes
+* Process\\Private Bytes
+* Process\\IO Data Bytes/sec
+* Processor(_Total)\\% Processor Time
+
+> [!NOTE]
+> Support for performance counters in ASP.NET Core is limited:
+>
+> * [SDK](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) versions 2.4.1 and later collect performance counters if the application is running in Azure Web Apps (Windows).
+> * SDK versions 2.7.1 and later collect performance counters if the application is running in Windows and targets `NETSTANDARD2.0` or later.
+> * For applications that target the .NET Framework, all versions of the SDK support performance counters.
+> * SDK versions 2.8.0 and later support the CPU/Memory counter in Linux. No other counter is supported in Linux. To get system counters in Linux (and other non-Windows environments), use event counters.
+
+##### Add counters
+
+If the performance counter you want isn't included in the list of metrics, you can add it.
+
+###### ASP.NET
+
+**Option 1: Configuration in ApplicationInsights.config**
+
+1. Find out what counters are available in your server by using this PowerShell command on the local server:
+
+    ```shell
+    Get-Counter -ListSet *
+    ```
+
+    For more information, see [`Get-Counter`](/powershell/module/microsoft.powershell.diagnostics/get-counter).
+
+1. Open `ApplicationInsights.config`.
+
+    If you added Application Insights to your app during development:
+    1. Edit `ApplicationInsights.config` in your project.
+    1. Redeploy it to your servers.
+
+1. Edit the performance collector directive:
+
+    ```xml
+
+        <Add Type="Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule, Microsoft.AI.PerfCounterCollector">
+          <Counters>
+            <Add PerformanceCounter="\Objects\Processes"/>
+            <Add PerformanceCounter="\Sales(photo)\# Items Sold" ReportAs="Photo sales"/>
+          </Counters>
+        </Add>
+    ```
+
+You capture both standard counters and counters you implement yourself. `\Objects\Processes` is an example of a standard counter that's available on all Windows systems. `\Sales(photo)\# Items Sold` is an example of a custom counter that might be implemented in a web service.
+
+The format is `\Category(instance)\Counter`, or for categories that don't have instances, just `\Category\Counter`.
+
+The `ReportAs` parameter is required for counter names that don't match `[a-zA-Z()/-_ \.]+`.
+
+If you specify an instance, it becomes a dimension `CounterInstanceName` of the reported metric.
+
+**Option 2: Configuration in code**
+
+See the following section.
+
+###### ASP.NET Core
+
+Configure `PerformanceCollectorModule` after the `WebApplication.CreateBuilder()` method in `Program.cs`:
+
+```csharp
+using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApplicationInsightsTelemetry();
+
+// The following configures PerformanceCollectorModule.
+
+builder.Services.ConfigureTelemetryModule<PerformanceCollectorModule>((module, o) =>
+    {
+        // The application process name could be "dotnet" for ASP.NET Core self-hosted applications.
+        module.Counters.Add(new PerformanceCounterCollectionRequest(@"\Process([replace-with-application-process-name])\Page Faults/sec", "DotnetPageFaultsPerfSec"));
+    });
+
+var app = builder.Build();
+```
+
+##### Collect performance counters in code for ASP.NET web applications or .NET/.NET Core console applications
+
+To collect system performance counters and send them to Application Insights, you can adapt the following snippet:
+
+```csharp
+    var perfCollectorModule = new PerformanceCollectorModule();
+    perfCollectorModule.Counters.Add(new PerformanceCounterCollectionRequest(
+      @"\Process([replace-with-application-process-name])\Page Faults/sec", "PageFaultsPerfSec"));
+    perfCollectorModule.Initialize(TelemetryConfiguration.Active);
+```
+
+Or you can do the same thing with custom metrics that you created:
+
+```csharp
+    var perfCollectorModule = new PerformanceCollectorModule();
+    perfCollectorModule.Counters.Add(new PerformanceCounterCollectionRequest(
+      @"\Sales(photo)\# Items Sold", "Photo sales"));
+    perfCollectorModule.Initialize(TelemetryConfiguration.Active);
+```
+
+##### Performance counters for applications running in Azure Web Apps and Windows containers on Azure App Service
+
+Both ASP.NET and ASP.NET Core applications deployed to Azure Web Apps run in a special sandbox environment. Applications deployed to Azure App Service can utilize a [Windows container](/azure/app-service/quickstart-custom-container?pivots=container-windows&tabs=dotnet) or be hosted in a sandbox environment. If the application is deployed in a Windows container, all standard performance counters are available in the container image.
+
+The sandbox environment doesn't allow direct access to system performance counters. However, a limited subset of counters is exposed as environment variables as described in [Perf Counters exposed as environment variables](https://github.com/projectkudu/kudu/wiki/Perf-Counters-exposed-as-environment-variables). Only a subset of counters is available in this environment. For the full list, see [Perf Counters exposed as environment variables](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/WEB/Src/PerformanceCollector/PerformanceCollector/Implementation/WebAppPerformanceCollector/CounterFactory.cs).
+
+The Application Insights SDK for [ASP.NET](https://nuget.org/packages/Microsoft.ApplicationInsights.Web) and [ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) detects if code is deployed to a web app or a non-Windows container. The detection determines whether it collects performance counters in a sandbox environment or utilizes the standard collection mechanism when hosted on a Windows container or virtual machine.
+
+##### Log Analytics queries for performance counters
+
+You can search and display performance counter reports in [Log Analytics](../logs/log-query-overview.md).
+
+The **performanceCounters** schema exposes the `category`, `counter` name, and `instance` name of each performance counter. In the telemetry for each application, you see only the counters for that application. For example, to see what counters are available:
+
+```kusto
+performanceCounters | summarize count(), avg(value) by category, instance, counter
+```
+
+Here, `Instance` refers to the performance counter instance, not the role, or server machine instance. The performance counter instance name typically segments counters, such as processor time, by the name of the process or application.
+
+To get a chart of available memory over the recent period:
+
+```kusto
+performanceCounters | where counter == "Available Bytes" | summarize avg(value), min(value) by bin(timestamp, 1h) | render timechart
+```
+
+Like other telemetry, **performanceCounters** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. For example, to compare the performance of your app on the different machines:
+
+```kusto
+performanceCounters | where counter == "% Processor Time" and instance == "SendMetrics" | summarize avg(value) by cloud_RoleInstance, bin(timestamp, 1d)
+```
+
+##### Performance counters FAQ
+
+To review frequently asked questions (FAQ), see [Performance counters FAQ](application-insights-faq.yml#asp-net-performance-counters).
+
+#### Event counters
+
+[`EventCounter`](/dotnet/core/diagnostics/event-counters) is .NET/.NET Core mechanism to publish and consume counters or statistics. EventCounters are supported in all OS platforms - Windows, Linux, and macOS. It can be thought of as a cross-platform equivalent for the [PerformanceCounters](/dotnet/api/system.diagnostics.performancecounter) that's only supported in Windows systems.
+
+While users can publish any custom event counters to meet their needs, [.NET](/dotnet/fundamentals/) publishes a set of these counters by default. This document walks through the steps required to collect and view event counters (system defined or user defined) in Azure Application Insights.
+
+> [!TIP]
+> Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a counter goes outside a specified limit.
+> To set an alert, open the **Alerts** pane and select **Add Alert**.
+
+##### Using Application Insights to collect EventCounters
+
+Application Insights supports collecting `EventCounters` with its `EventCounterCollectionModule`, which is part of the newly released NuGet package [Microsoft.ApplicationInsights.EventCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventCounterCollector). `EventCounterCollectionModule` is automatically enabled when using either [AspNetCore](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) or [WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService). `EventCounterCollectionModule` collects counters with a nonconfigurable collection frequency of 60 seconds. There are no special permissions required to collect EventCounters. For ASP.NET Core applications, you also want to add the [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) package.
+
+```dotnetcli
+dotnet add package Microsoft.ApplicationInsights.EventCounterCollector
+dotnet add package Microsoft.ApplicationInsights.AspNetCore
+```
+
+##### Default counters collected
+
+Starting with 2.15.0 version of either [AspNetCore SDK](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) or [WorkerService SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService), no counters are collected by default. The module itself is enabled, so users can add the desired counters to collect them.
+
+To get a list of well known counters published by the .NET Runtime, see [Available Counters](/dotnet/core/diagnostics/event-counters#available-counters) document.
+
+##### Customizing counters to be collected
+
+The following example shows how to add/remove counters. This customization would be done as part of your application service configuration after Application Insights telemetry collection is enabled using either `AddApplicationInsightsTelemetry()` or `AddApplicationInsightsWorkerService()`. Following is an example code from an ASP.NET Core application. For other type of applications, refer to [configure telemetry modules](#configure-telemetry-modules).
+
+```csharp
+using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;
+using Microsoft.Extensions.DependencyInjection;
+
+builder.Services.ConfigureTelemetryModule<EventCounterCollectionModule>(
+        (module, o) =>
+        {
+            // Removes all default counters, if any.
+            module.Counters.Clear();
+
+            // Adds a user defined counter "MyCounter" from EventSource named "MyEventSource"
+            module.Counters.Add(
+                new EventCounterCollectionRequest("MyEventSource", "MyCounter"));
+
+            // Adds the system counter "gen-0-size" from "System.Runtime"
+            module.Counters.Add(
+                new EventCounterCollectionRequest("System.Runtime", "gen-0-size"));
+        }
+    );
+```
+
+##### Disabling EventCounter collection module
+
+`EventCounterCollectionModule` can be disabled by using `ApplicationInsightsServiceOptions`.
+
+The following example uses the ASP.NET Core SDK.
+
+```csharp
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+
+var applicationInsightsServiceOptions = new ApplicationInsightsServiceOptions();
+applicationInsightsServiceOptions.EnableEventCounterCollectionModule = false;
+builder.Services.AddApplicationInsightsTelemetry(applicationInsightsServiceOptions);
+```
+
+A similar approach can be used for the Worker Service SDK as well, but the namespace must be changed as shown in the following example.
+
+```csharp
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+
+var applicationInsightsServiceOptions = new ApplicationInsightsServiceOptions();
+applicationInsightsServiceOptions.EnableEventCounterCollectionModule = false;
+builder.Services.AddApplicationInsightsTelemetry(applicationInsightsServiceOptions);
+```
+
+##### Log Analytics queries for event counters
+
+You can search and display event counter reports in [Log Analytics](../logs/log-query-overview.md), in the **customMetrics** table.
+
+For example, run the following query to see what counters are collected and available to query:
+
+```Kusto
+customMetrics | summarize avg(value) by name
+```
+
+To get a chart of a specific counter (for example: `ThreadPool Completed Work Item Count`) over the recent period, run the following query.
+
+```Kusto
+customMetrics 
+| where name contains "System.Runtime|ThreadPool Completed Work Item Count"
+| where timestamp >= ago(1h)
+| summarize avg(value) by cloud_RoleInstance, bin(timestamp, 1m)
+| render timechart
+```
+
+Like other telemetry, **customMetrics** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. The prior query shows the counter value per instance, and can be used to compare performance of different server instances.
+
+##### Event counters FAQ
+
+To review frequently asked questions (FAQ), see [Event counters FAQ](application-insights-faq.yml#asp-net-event-counters).
+
 # [Node.js](#tab/nodejs)
 
 #### In this section
 
-* [Live metrics](#live-metrics)
+* [SDK configuration](#sdk-configuration)
 * [Distributed tracing](#distributed-tracing)
-* [Dependencies](#dependencies)
-* [Exceptions](#exceptions)
-* [Custom metrics](#custom-metric-collection)
-* [Custom operations](#custom-operations-tracking)
+* [Automatic third-party instrumentation](#automatic-third-party-instrumentation)
+* [Live metrics](#live-metrics)
+* [Extended metrics](#extended-metrics)
 
-## Live metrics
+### SDK configuration
 
-To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
+The `appInsights` object provides many configuration methods. They're listed in the following snippet with their default values.
+
+```javascript
+let appInsights = require("applicationinsights");
+appInsights.setup("<connection_string>")
+    .setAutoDependencyCorrelation(true)
+    .setAutoCollectRequests(true)
+    .setAutoCollectPerformance(true, true)
+    .setAutoCollectExceptions(true)
+    .setAutoCollectDependencies(true)
+    .setAutoCollectConsole(true)
+    .setUseDiskRetryCaching(true)
+    .setSendLiveMetrics(false)
+    .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
+    .start();
+```
+
+To fully correlate events in a service, be sure to set `.setAutoDependencyCorrelation(true)`. With this option set, the SDK can track context across asynchronous callbacks in Node.js.
+
+Review their descriptions in your IDE's built-in type hinting or [applicationinsights.ts](https://github.com/microsoft/ApplicationInsights-node.js/blob/develop/applicationinsights.ts) for detailed information and optional secondary arguments.
+
+> [!NOTE]
+> By default, `setAutoCollectConsole` is configured to *exclude* calls to `console.log` and other console methods. Only calls to supported third-party loggers (for example, winston and bunyan) will be collected. You can change this behavior to include calls to `console` methods by using `setAutoCollectConsole(true, true)`.
 
 [!INCLUDE [Distributed tracing](./includes/application-insights-distributed-trace-data.md)]
 
@@ -2875,7 +3188,64 @@ appInsights
   .start()
 ```
 
-### Dependencies
+### Automatic third-party instrumentation
+
+To track context across asynchronous calls, some changes are required in third-party libraries, such as MongoDB and Redis. By default, Application Insights uses [`diagnostic-channel-publishers`](https://github.com/Microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers) to monkey-patch some of these libraries. This feature can be disabled by setting the `APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL` environment variable.
+
+> [!NOTE]
+> By setting that environment variable, events might not be correctly associated with the right operation.
+
+ Individual monkey patches can be disabled by setting the `APPLICATION_INSIGHTS_NO_PATCH_MODULES` environment variable to a comma-separated list of packages to disable. For example, use `APPLICATION_INSIGHTS_NO_PATCH_MODULES=console,redis` to avoid patching the `console` and `redis` packages.
+
+Currently, nine packages are instrumented: `bunyan`,`console`,`mongodb`,`mongodb-core`,`mysql`,`redis`,`winston`,`pg`, and `pg-pool`. For information about exactly which version of these packages are patched, see the [diagnostic-channel-publishers' README](https://github.com/Microsoft/node-diagnostic-channel/blob/master/src/diagnostic-channel-publishers/README.md).
+
+The `bunyan`, `winston`, and `console` patches generate Application Insights trace events based on whether `setAutoCollectConsole` is enabled. The rest generates Application Insights dependency events based on whether `setAutoCollectDependencies` is enabled.
+
+### Live metrics
+
+To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
+
+### Extended metrics
+
+> [!NOTE]
+> The ability to send extended native metrics was added in version 1.4.0.
+
+To enable sending extended native metrics from your app to Azure, install the separate native metrics package. The SDK automatically loads when it's installed and start collecting Node.js native metrics.
+
+```bash
+npm install applicationinsights-native-metrics
+```
+
+Currently, the native metrics package performs autocollection of garbage collection CPU time, event loop ticks, and heap usage:
+
+* **Garbage collection**: The amount of CPU time spent on each type of garbage collection, and how many occurrences of each type.
+* **Event loop**: How many ticks occurred and how much CPU time was spent in total.
+* **Heap vs. non-heap**: How much of your app's memory usage is in the heap or non-heap.
+
+### TelemetryClient API
+
+For a full description of the TelemetryClient API, see [Application Insights API for custom events and metrics](#core-api-for-custom-events-and-metrics).
+
+You can track any request, event, metric, or exception by using the Application Insights client library for Node.js. The following code example demonstrates some of the APIs that you can use:
+
+```javascript
+let appInsights = require("applicationinsights");
+appInsights.setup().start(); // assuming connection string in env var. start() can be omitted to disable any non-custom data
+let client = appInsights.defaultClient;
+client.trackEvent({name: "my custom event", properties: {customProperty: "custom property value"}});
+client.trackException({exception: new Error("handled exceptions can be logged with this method")});
+client.trackMetric({name: "custom metric", value: 3});
+client.trackTrace({message: "trace message"});
+client.trackDependency({target:"http://dbname", name:"select customers proc", data:"SELECT * FROM Customers", duration:231, resultCode:0, success: true, dependencyTypeName: "ZSQL"});
+client.trackRequest({name:"GET /customers", url:"http://myserver/customers", duration:309, resultCode:200, success:true});
+
+let http = require("http");
+http.createServer( (req, res) => {
+  client.trackNodeHttpRequest({request: req, response: res}); // Place at the beginning of your request handler
+});
+```
+
+### Track your dependencies
 
 Use the following code to track your dependencies:
 
@@ -2924,313 +3294,57 @@ function startMeasuringEventLoop() {
 }
 ```
 
----
+### Add a custom property to all events
 
+Use the following code to add a custom property to all events:
 
-
-
-
-
-
-
-## Counters in Application Insights
-
-# [.NET](#tab/dotnet)
-
-[Application Insights](app-insights-overview.md) supports performance counters and event counters. This guide provides an overview of both, including their purpose, configuration, and usage in .NET applications.
-
-### Overview
-
-> [!div class="checklist"]
-> * **Performance counters** are built into the Windows operating system and offer predefined metrics like CPU usage, memory consumption, and disk activity. These counters are ideal for monitoring standard performance metrics with minimal setup. They help track resource utilization or troubleshoot system-level bottlenecks in Windows-based applications but don't support custom application-specific metrics.
-> 
-> * **Event counters** work across multiple platforms, including Windows, Linux, and macOS. They allow developers to define and monitor lightweight, customizable application-specific metrics, providing more flexibility than performance counters. Event counters are useful when system metrics are insufficient or when detailed telemetry is needed in cross-platform applications. They require explicit implementation and configuration, which makes setup more effort-intensive.
-
-### Performance counters
-
-Windows provides various [performance counters](/windows/desktop/perfctrs/about-performance-counters), such as those used to gather processor, memory, and disk usage statistics. You can also define your own performance counters. 
-
-Your application supports performance counter collection if it runs under Internet Information Server (IIS) on an on-premises host or a virtual machine with administrative access. Applications running as Azure Web Apps can't directly access performance counters, but Application Insights collects a subset of available counters.
-
-> [!TIP]
-> Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a counter goes outside a specified limit.
-> To set an alert, open the **Alerts** pane and select **Add Alert**.
-
-#### Prerequisites
-
-Grant the app pool service account permission to monitor performance counters by adding it to the [Performance Monitor Users](/windows/security/identity-protection/access-control/active-directory-security-groups#bkmk-perfmonitorusers) group.
-
-```shell
-net localgroup "Performance Monitor Users" /add "IIS APPPOOL\NameOfYourPool"
+```javascript
+appInsights.defaultClient.commonProperties = {
+  environment: process.env.SOME_ENV_VARIABLE
+};
 ```
 
-#### View counters
+### Track HTTP GET requests
 
-The **Metrics** pane shows the default set of performance counters.
-
-##### ASP.NET
-
-Default counters for ASP.NET web applications:
-
-* % Process\\Processor Time
-* % Process\\Processor Time Normalized
-* Memory\\Available Bytes
-* ASP.NET Requests/Sec
-* .NET Common Language Runtime (CLR) Exceptions Thrown / sec
-* ASP.NET ApplicationsRequest Execution Time
-* Process\\Private Bytes
-* Process\\IO Data Bytes/sec
-* ASP.NET Applications\\Requests In Application Queue
-* Processor(_Total)\\% Processor Time
-
-##### ASP.NET Core
-
-Default counters for ASP.NET Core web applications:
-
-* % Process\\Processor Time
-* % Process\\Processor Time Normalized
-* Memory\\Available Bytes
-* Process\\Private Bytes
-* Process\\IO Data Bytes/sec
-* Processor(_Total)\\% Processor Time
+Use the following code to manually track HTTP GET requests:
 
 > [!NOTE]
-> Support for performance counters in ASP.NET Core is limited:
->
-> * [SDK](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) versions 2.4.1 and later collect performance counters if the application is running in Azure Web Apps (Windows).
-> * SDK versions 2.7.1 and later collect performance counters if the application is running in Windows and targets `NETSTANDARD2.0` or later.
-> * For applications that target the .NET Framework, all versions of the SDK support performance counters.
-> * SDK versions 2.8.0 and later support the CPU/Memory counter in Linux. No other counter is supported in Linux. To get system counters in Linux (and other non-Windows environments), use event counters.
+> * All requests are tracked by default. To disable automatic collection, call `.setAutoCollectRequests(false)` before calling `start()`.
+> * Native fetch API requests aren't automatically tracked by classic Application Insights; manual dependency tracking is required.
 
-#### Add counters
-
-If the performance counter you want isn't included in the list of metrics, you can add it.
-
-##### ASP.NET
-
-**Option 1: Configuration in ApplicationInsights.config**
-
-1. Find out what counters are available in your server by using this PowerShell command on the local server:
-
-    ```shell
-    Get-Counter -ListSet *
-    ```
-
-    For more information, see [`Get-Counter`](/powershell/module/microsoft.powershell.diagnostics/get-counter).
-
-1. Open `ApplicationInsights.config`.
-
-    If you added Application Insights to your app during development:
-    1. Edit `ApplicationInsights.config` in your project.
-    1. Redeploy it to your servers.
-
-1. Edit the performance collector directive:
-
-    ```xml
-
-        <Add Type="Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule, Microsoft.AI.PerfCounterCollector">
-          <Counters>
-            <Add PerformanceCounter="\Objects\Processes"/>
-            <Add PerformanceCounter="\Sales(photo)\# Items Sold" ReportAs="Photo sales"/>
-          </Counters>
-        </Add>
-    ```
-
-You capture both standard counters and counters you implement yourself. `\Objects\Processes` is an example of a standard counter that's available on all Windows systems. `\Sales(photo)\# Items Sold` is an example of a custom counter that might be implemented in a web service.
-
-The format is `\Category(instance)\Counter`, or for categories that don't have instances, just `\Category\Counter`.
-
-The `ReportAs` parameter is required for counter names that don't match `[a-zA-Z()/-_ \.]+`.
-
-If you specify an instance, it becomes a dimension `CounterInstanceName` of the reported metric.
-
-**Option 2: Configuration in code**
-
-See the following section.
-
-##### ASP.NET Core
-
-Configure `PerformanceCollectorModule` after the `WebApplication.CreateBuilder()` method in `Program.cs`:
-
-```csharp
-using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector;
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddApplicationInsightsTelemetry();
-
-// The following configures PerformanceCollectorModule.
-
-builder.Services.ConfigureTelemetryModule<PerformanceCollectorModule>((module, o) =>
-    {
-        // The application process name could be "dotnet" for ASP.NET Core self-hosted applications.
-        module.Counters.Add(new PerformanceCounterCollectionRequest(@"\Process([replace-with-application-process-name])\Page Faults/sec", "DotnetPageFaultsPerfSec"));
-    });
-
-var app = builder.Build();
+```javascript
+appInsights.defaultClient.trackRequest({name:"GET /customers", url:"http://myserver/customers", duration:309, resultCode:200, success:true});
 ```
 
-#### Collect performance counters in code for ASP.NET web applications or .NET/.NET Core console applications
+Alternatively, you can track requests by using the `trackNodeHttpRequest` method:
 
-To collect system performance counters and send them to Application Insights, you can adapt the following snippet:
-
-```csharp
-    var perfCollectorModule = new PerformanceCollectorModule();
-    perfCollectorModule.Counters.Add(new PerformanceCounterCollectionRequest(
-      @"\Process([replace-with-application-process-name])\Page Faults/sec", "PageFaultsPerfSec"));
-    perfCollectorModule.Initialize(TelemetryConfiguration.Active);
+```javascript
+var server = http.createServer((req, res) => {
+  if ( req.method === "GET" ) {
+      appInsights.defaultClient.trackNodeHttpRequest({request:req, response:res});
+  }
+  // other work here....
+  res.end();
+});
 ```
 
-Or you can do the same thing with custom metrics that you created:
+### Track server startup time
 
-```csharp
-    var perfCollectorModule = new PerformanceCollectorModule();
-    perfCollectorModule.Counters.Add(new PerformanceCounterCollectionRequest(
-      @"\Sales(photo)\# Items Sold", "Photo sales"));
-    perfCollectorModule.Initialize(TelemetryConfiguration.Active);
+Use the following code to track server startup time:
+
+```javascript
+let start = Date.now();
+server.on("listening", () => {
+  let duration = Date.now() - start;
+  appInsights.defaultClient.trackMetric({name: "server startup time", value: duration});
+});
 ```
 
-#### Performance counters for applications running in Azure Web Apps and Windows containers on Azure App Service
+### Flush
 
-Both ASP.NET and ASP.NET Core applications deployed to Azure Web Apps run in a special sandbox environment. Applications deployed to Azure App Service can utilize a [Windows container](/azure/app-service/quickstart-custom-container?pivots=container-windows&tabs=dotnet) or be hosted in a sandbox environment. If the application is deployed in a Windows container, all standard performance counters are available in the container image.
+By default, telemetry is buffered for 15 seconds before it's sent to the ingestion server. If your application has a short lifespan, such as a CLI tool, it might be necessary to manually flush your buffered telemetry when the application terminates by using `appInsights.defaultClient.flush()`.
 
-The sandbox environment doesn't allow direct access to system performance counters. However, a limited subset of counters is exposed as environment variables as described in [Perf Counters exposed as environment variables](https://github.com/projectkudu/kudu/wiki/Perf-Counters-exposed-as-environment-variables). Only a subset of counters is available in this environment. For the full list, see [Perf Counters exposed as environment variables](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/WEB/Src/PerformanceCollector/PerformanceCollector/Implementation/WebAppPerformanceCollector/CounterFactory.cs).
-
-The Application Insights SDK for [ASP.NET](https://nuget.org/packages/Microsoft.ApplicationInsights.Web) and [ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) detects if code is deployed to a web app or a non-Windows container. The detection determines whether it collects performance counters in a sandbox environment or utilizes the standard collection mechanism when hosted on a Windows container or virtual machine.
-
-#### Log Analytics queries for performance counters
-
-You can search and display performance counter reports in [Log Analytics](../logs/log-query-overview.md).
-
-The **performanceCounters** schema exposes the `category`, `counter` name, and `instance` name of each performance counter. In the telemetry for each application, you see only the counters for that application. For example, to see what counters are available:
-
-```kusto
-performanceCounters | summarize count(), avg(value) by category, instance, counter
-```
-
-Here, `Instance` refers to the performance counter instance, not the role, or server machine instance. The performance counter instance name typically segments counters, such as processor time, by the name of the process or application.
-
-To get a chart of available memory over the recent period:
-
-```kusto
-performanceCounters | where counter == "Available Bytes" | summarize avg(value), min(value) by bin(timestamp, 1h) | render timechart
-```
-
-Like other telemetry, **performanceCounters** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. For example, to compare the performance of your app on the different machines:
-
-```kusto
-performanceCounters | where counter == "% Processor Time" and instance == "SendMetrics" | summarize avg(value) by cloud_RoleInstance, bin(timestamp, 1d)
-```
-
-#### Performance counters FAQ
-
-To review frequently asked questions (FAQ), see [Performance counters FAQ](application-insights-faq.yml#asp-net-performance-counters).
-
-### Event counters
-
-[`EventCounter`](/dotnet/core/diagnostics/event-counters) is .NET/.NET Core mechanism to publish and consume counters or statistics. EventCounters are supported in all OS platforms - Windows, Linux, and macOS. It can be thought of as a cross-platform equivalent for the [PerformanceCounters](/dotnet/api/system.diagnostics.performancecounter) that's only supported in Windows systems.
-
-While users can publish any custom event counters to meet their needs, [.NET](/dotnet/fundamentals/) publishes a set of these counters by default. This document walks through the steps required to collect and view event counters (system defined or user defined) in Azure Application Insights.
-
-> [!TIP]
-> Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a counter goes outside a specified limit.
-> To set an alert, open the **Alerts** pane and select **Add Alert**.
-
-#### Using Application Insights to collect EventCounters
-
-Application Insights supports collecting `EventCounters` with its `EventCounterCollectionModule`, which is part of the newly released NuGet package [Microsoft.ApplicationInsights.EventCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.EventCounterCollector). `EventCounterCollectionModule` is automatically enabled when using either [AspNetCore](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) or [WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService). `EventCounterCollectionModule` collects counters with a nonconfigurable collection frequency of 60 seconds. There are no special permissions required to collect EventCounters. For ASP.NET Core applications, you also want to add the [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) package.
-
-```dotnetcli
-dotnet add package Microsoft.ApplicationInsights.EventCounterCollector
-dotnet add package Microsoft.ApplicationInsights.AspNetCore
-```
-
-#### Default counters collected
-
-Starting with 2.15.0 version of either [AspNetCore SDK](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) or [WorkerService SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService), no counters are collected by default. The module itself is enabled, so users can add the desired counters to collect them.
-
-To get a list of well known counters published by the .NET Runtime, see [Available Counters](/dotnet/core/diagnostics/event-counters#available-counters) document.
-
-#### Customizing counters to be collected
-
-The following example shows how to add/remove counters. This customization would be done as part of your application service configuration after Application Insights telemetry collection is enabled using either `AddApplicationInsightsTelemetry()` or `AddApplicationInsightsWorkerService()`. Following is an example code from an ASP.NET Core application. For other type of applications, refer to [configure telemetry modules](#configure-telemetry-modules).
-
-```csharp
-using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;
-using Microsoft.Extensions.DependencyInjection;
-
-builder.Services.ConfigureTelemetryModule<EventCounterCollectionModule>(
-        (module, o) =>
-        {
-            // Removes all default counters, if any.
-            module.Counters.Clear();
-
-            // Adds a user defined counter "MyCounter" from EventSource named "MyEventSource"
-            module.Counters.Add(
-                new EventCounterCollectionRequest("MyEventSource", "MyCounter"));
-
-            // Adds the system counter "gen-0-size" from "System.Runtime"
-            module.Counters.Add(
-                new EventCounterCollectionRequest("System.Runtime", "gen-0-size"));
-        }
-    );
-```
-
-#### Disabling EventCounter collection module
-
-`EventCounterCollectionModule` can be disabled by using `ApplicationInsightsServiceOptions`.
-
-The following example uses the ASP.NET Core SDK.
-
-```csharp
-using Microsoft.ApplicationInsights.AspNetCore.Extensions;
-using Microsoft.Extensions.DependencyInjection;
-
-var applicationInsightsServiceOptions = new ApplicationInsightsServiceOptions();
-applicationInsightsServiceOptions.EnableEventCounterCollectionModule = false;
-builder.Services.AddApplicationInsightsTelemetry(applicationInsightsServiceOptions);
-```
-
-A similar approach can be used for the Worker Service SDK as well, but the namespace must be changed as shown in the following example.
-
-```csharp
-using Microsoft.ApplicationInsights.AspNetCore.Extensions;
-using Microsoft.Extensions.DependencyInjection;
-
-var applicationInsightsServiceOptions = new ApplicationInsightsServiceOptions();
-applicationInsightsServiceOptions.EnableEventCounterCollectionModule = false;
-builder.Services.AddApplicationInsightsTelemetry(applicationInsightsServiceOptions);
-```
-
-#### Log Analytics queries for event counters
-
-You can search and display event counter reports in [Log Analytics](../logs/log-query-overview.md), in the **customMetrics** table.
-
-For example, run the following query to see what counters are collected and available to query:
-
-```Kusto
-customMetrics | summarize avg(value) by name
-```
-
-To get a chart of a specific counter (for example: `ThreadPool Completed Work Item Count`) over the recent period, run the following query.
-
-```Kusto
-customMetrics 
-| where name contains "System.Runtime|ThreadPool Completed Work Item Count"
-| where timestamp >= ago(1h)
-| summarize avg(value) by cloud_RoleInstance, bin(timestamp, 1m)
-| render timechart
-```
-
-Like other telemetry, **customMetrics** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. The prior query shows the counter value per instance, and can be used to compare performance of different server instances.
-
-#### Event counters FAQ
-
-To review frequently asked questions (FAQ), see [Event counters FAQ](application-insights-faq.yml#asp-net-event-counters).
-
-# [Node.js](#tab/nodejs)
-
-...
+If the SDK detects that your application is crashing, it calls flush for you by using `appInsights.defaultClient.flush({ isAppCrashing: true })`. With the flush option `isAppCrashing`, your application is assumed to be in an abnormal state and isn't suitable to send telemetry. Instead, the SDK saves all buffered telemetry to [persistent storage](/previous-versions/azure/azure-monitor/app/data-retention-privacy#nodejs) and lets your application terminate. When your application starts again, it tries to send any telemetry that was saved to persistent storage.
 
 ---
 
@@ -4616,12 +4730,8 @@ To learn how to configure snapshot collection for ASP.NET and ASP.NET Core appli
 
 #### In this section
 
-* [Telemetry channels](#telemetry-channels)
-* [Telemetry modules](#telemetry-modules)
-* [Disable telemetry](#disable-telemetry)
 * [Connection string](#connection-string)
-* [ApplicationId Provider](#applicationid-provider)
-* [Snapshot collection](#configure-snapshot-collection)
+* [Advanced configuration option](#advanced-configuration-options)
 
 ### Connection string
 
@@ -4647,6 +4757,32 @@ appInsights.setup("Connection String A").start();
 let otherClient = new appInsights.TelemetryClient("Connection String B");
 otherClient.trackEvent({name: "my custom event"});
 ```
+
+### Advanced configuration options
+
+The client object contains a `config` property with many optional settings for advanced scenarios. To set them, use:
+
+```javascript
+client.config.PROPERTYNAME = VALUE;
+```
+
+These properties are client specific, so you can configure `appInsights.defaultClient` separately from clients created with `new appInsights.TelemetryClient()`.
+
+| Property | Description |
+|----------|-------------|
+| connectionString | An identifier for your Application Insights resource. |
+| endpointUrl | The ingestion endpoint to send telemetry payloads to. |
+| quickPulseHost | The Live Metrics Stream host to send live metrics telemetry to. |
+| proxyHttpUrl | A proxy server for SDK HTTP traffic. (Optional. Default is pulled from `http_proxy` environment variable.) |
+| proxyHttpsUrl | A proxy server for SDK HTTPS traffic. (Optional. Default is pulled from `https_proxy` environment variable.) |
+| httpAgent | An http.Agent to use for SDK HTTP traffic. (Optional. Default is undefined.) |
+| httpsAgent | An https.Agent to use for SDK HTTPS traffic. (Optional. Default is undefined.) |
+| maxBatchSize | The maximum number of telemetry items to include in a payload to the ingestion endpoint. (Default is `250`.) |
+| maxBatchIntervalMs | The maximum amount of time to wait for a payload to reach maxBatchSize. (Default is `15000`.) |
+| disableAppInsights | A flag indicating if telemetry transmission is disabled. (Default is `false`.) |
+| samplingPercentage | The percentage of telemetry items tracked that should be transmitted. (Default is `100`.) |
+| correlationIdRetryIntervalMs | The time to wait before retrying to retrieve the ID for cross-component correlation. (Default is `30000`.) |
+| correlationHeaderExcludedDomains| A list of domains to exclude from cross-component correlation header injection. (Default. See [Config.ts](https://github.com/Microsoft/ApplicationInsights-node.js/blob/develop/Library/Config.ts).) |
 
 ---
 
