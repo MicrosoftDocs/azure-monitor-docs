@@ -69,7 +69,7 @@ If you enable [workspace replication](workspace-replication.md) on your Log Anal
 
 To delete rows from a table, use this command with one or more filters in the body. This example filters on the `TimeGenerated` and `Resource` columns.
 
-### [API](#tab/api)
+### [API](#tab/api1)
 
 ```http  
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table_name}/deleteData?api-version=2023-09-01
@@ -91,7 +91,7 @@ Authorization: Bearer eyJ0e...
 }
 ```
 
-### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell1)
 
 Script includes operation status check.
 
@@ -177,13 +177,13 @@ if ($operationId) {
  
 ### Responses
 
-#### [API](#tab/api)
+#### [API](#tab/api2)
 
 ```http
 202 (accepted) with header including the OperationId
 ```
 
-#### [PowerShell](#tab/powershell)
+#### [PowerShell](#tab/powershell2)
 
 ```powershell
 Status: Updating
@@ -207,14 +207,14 @@ You can track data deletion activities in a workspace through the Azure Activity
 
 To check the status of your operation and view the number of deleted records, send a GET request with the `Azure-AsyncOperation` URL provided in the response header:
 
-### [API](#tab/api)
+### [API](#tab/api3)
 
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
 Authorization: Bearer eyJ0e...
 ```
 
-### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell3)
 
 To check operation status, run this powershell.
 
@@ -246,7 +246,7 @@ if ($operationId) {
 
 ### Responses
 
-### [API](#tab/api)
+### [API](#tab/api4)
 
 ```http
 {
@@ -262,7 +262,7 @@ if ($operationId) {
 }
 ```
 
-### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell4)
 
 ```powershell
 Status: Updating
