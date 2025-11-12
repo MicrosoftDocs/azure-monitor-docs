@@ -27,6 +27,14 @@ The services above underpin mission-critical workloads. If the services fail, th
 
 To learn more, see [Use Critical Risks](/azure/advisor/advisor-critical-risks) in Azure Advisor. 
 
+## October 2025
+
+### Cost implications
+
+Azure Advisor now includes **Cost Implications** indicators for selected reliability recommendations. Each recommendation displays a `High`, `Medium`, or `Low` label with context on potential cost factors, helping you assess trade-offs between reliability and cost.
+
+To learn more, see [Evaluate cost implications of recommendations](advisor-how-to-evaluate-cost-implications-of-recommendations.md).
+
 ## May 2025
 
 ### New Recommendations for Zonal Resiliency
