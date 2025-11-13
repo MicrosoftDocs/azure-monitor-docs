@@ -93,17 +93,17 @@ To set up your alert for the following information, select from each of the foll
 You can select **All** or:<br>
 - Available - Healthy
 - Degraded - Performance issues
-- Unavailable- Down
+- Unavailable - Down
 
 ### Previous resource status
 You can select **All** or:<br>
-- Available- Healthy
-- Degraded- Performance issues
+- Available - Healthy
+- Degraded - Performance issues
 - Unavailable - Down
 - Unknown - health information is missing
 
 >[!Note]
-> You can set alerts based on status transitions for example:<br> `Previous` = Unavailable and `Current` = Available.<br> This would show the >resource is recovered and it's helpful for tracking recovery or SLA compliance.
+> You can set alerts based on status transitions for example:<br> `Previous` = Unavailable and `Current` = Available.<br> This would show the resource is recovered and it's helpful for tracking recovery or SLA compliance.
 
 ### Reason type
 - Platform Initiated – Azure maintenance or incident.
