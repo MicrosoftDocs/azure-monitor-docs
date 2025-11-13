@@ -23,7 +23,7 @@ Azure Monitor ingests OpenTelemetry (OTel) **signals**—traces, metrics, and lo
 
 Select one of the following paths based on where your workloads run.
 
-### Monitor applications on AKS with OpenTelemetry
+### Monitor applications on Azure Kubernetes Service (AKS) with OpenTelemetry
 
 Enable application monitoring for **Azure Kubernetes Service (AKS)** and send OTLP telemetry **to Azure Monitor**. Application Insights orchestrates ingestion and provides investigation experiences.
 
@@ -40,7 +40,7 @@ For more information, see [Monitor AKS applications with OpenTelemetry Protocol 
 Use the **Azure Monitor Agent** or **OpenTelemetry Collector** to send OTLP signals from compute resources outside AKS **into Azure Monitor**.
 
 - **Use Application Insights to orchestrate ingestion into Azure Monitor.** Create an Application Insights resource to automatically create the required workspaces (**AMW** and **LAW**), and capture the **Data Collection Rule (DCR)** link and **OTLP endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page.
-- **Orchestrate ingestion manually.** Create an Azure Monitor Workspace (AMW), Log Analytics workspace (LAW), DCEs, and DCRs, then build the three OTLP endpoint URLs for metrics, logs, and traces.
+- **Orchestrate ingestion manually.** Create an Azure Monitor Workspace (AMW), Log Analytics workspace (LAW), Data Collection Endpoints (DCEs), and Data Collection Rules (DCRs), then build the three OTLP endpoint URLs for metrics, logs, and traces.
 - **Export from the OpenTelemetry Collector.** Use the Collector `contrib` distribution and authenticate with Microsoft Entra ID or a managed identity. Use the Collector’s **Azure Auth extension** to authenticate with Microsoft Entra. For details, see the extension README: https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#readme
 
 For more information, see [OTLP signal ingestion in Azure Monitor](../agents/signal-ingestion.md) and [Use Application Insights with OTLP signals](../app/signal-integration.md).
