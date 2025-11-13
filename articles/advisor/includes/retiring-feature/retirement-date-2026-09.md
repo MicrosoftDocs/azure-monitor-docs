@@ -1,7 +1,7 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 09/03/2025
+ms.date: 11/11/2025
 
 ---
 
@@ -69,7 +69,7 @@ ms.date: 09/03/2025
 > | Azure Monitor | ContainerLog table | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Virtual Desktop | Classic | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Service Bus | com.microsoft.azure.servicebus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Service Bus | Microsoft.Azure.ServiceBus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Service Bus | WindowsAzure.ServiceBus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Speech | Speaker Recognition | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Service Bus | Outdated Azure SDK libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Virtual Machines | NVv3-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual Machines | NVv4-series Azure Virtual Machines | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | VPN Gateway | Non-availability zones VPNs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

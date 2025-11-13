@@ -34,7 +34,7 @@ Audit logs and sign in logs in Microsoft Entra ID are similar to the activity lo
 
 | Data type | Description | Data collection method |
 |:----------|:------------|:-----------------------|
-| Audit logs<br><br>Signin logs | Enable you to assess many aspects of your Microsoft Entra ID environment, including history of sign-in activity, audit trail of changes made within a particular tenant, and activities performed by the provisioning service. | Collected automatically with activity logs. View in the Azure portal or create a diagnostic setting to send it to other destinations. |
+| Audit logs<br><br>Sign-in logs | Enable you to assess many aspects of your Microsoft Entra ID environment, including history of sign-in activity, audit trail of changes made within a particular tenant, and activities performed by the provisioning service. | Collected automatically with activity logs. View in the Azure portal or create a diagnostic setting to send it to other destinations. |
 
 ## Apps and workloads
 
@@ -54,7 +54,7 @@ See [Application Insights overview](../app/app-insights-overview.md) for further
 
 ### Virtual machine data
 
-Azure virtual machines create the same activity logs and platform metrics as other Azure resources. In addition to this host data though, you need to monitor the guest operating system and the workloads running on it, which requires the [Azure Monitor agent](../agents/agents-overview.md) or [SCOM Managed Instance](../vm/scom-managed-instance-overview.md). The following table includes the most common data to collect from VMs. See [Monitor virtual machines with Azure Monitor: Collect data](../vm/monitor-virtual-machine-data-collection.md) for a more complete description of the different kinds of data you can collect from virtual machines.
+Azure virtual machines create the same activity logs and platform metrics as other Azure resources. In addition to this host data though, you need to monitor the guest operating system and the workloads running on it, which requires the [Azure Monitor agent](../agents/agents-overview.md) or [Azure Monitor SCOM Managed Instance](../vm/scom-managed-instance-overview.md). The following table includes the most common data to collect from VMs. See [Monitor virtual machines with Azure Monitor: Collect data](../vm/monitor-virtual-machine-data-collection.md) for a more complete description of the different kinds of data you can collect from virtual machines.
 
 | Data type | Description | Data collection method |
 |:----------|:------------|:-----------------------|
@@ -65,7 +65,7 @@ Azure virtual machines create the same activity logs and platform metrics as oth
 | Text logs | Application logs written to a text file. | Deploy the Azure Monitor agent (AMA) and create a data collection rule (DCR) to send data to Log Analytics workspace. See [Collect logs from a text or JSON file with Azure Monitor Agent](../agents/data-collection-text-log.md). |
 | IIS logs | Logs created by Internet Information Service (IIS). | Deploy the Azure Monitor agent (AMA) and create a data collection rule (DCR) to send data to Log Analytics workspace. See [Collect IIS logs with Azure Monitor Agent](../agents/data-collection-iis.md). |
 | SNMP traps | Widely deployed management protocol for monitoring and configuring Linux devices and appliances. | See [Collect SNMP trap data with Azure Monitor Agent](../agents/data-collection-snmp-data.md). |
-| Management pack data | If you have an existing investment in SCOM, you can migrate to the cloud while retaining your investment in existing management packs using [SCOM MI](../vm/scom-managed-instance-overview.md). | SCOM MI stores data collected by management packs in an instance of SQL MI. See [Configure Log Analytics for Azure Monitor SCOM Managed Instance](/system-center/scom/configure-log-analytics-for-scom-managed-instance) to send this data to a Log Analytics workspace. |
+| Management pack data | If you have an existing investment in System Center Operations Manager, you can migrate to the cloud while retaining your investment in existing management packs using [Azure Monitor SCOM Managed Instance](../vm/scom-managed-instance-overview.md). | Azure Monitor SCOM Managed Instance stores data collected by management packs in an instance of SQL MI. See [Configure Log Analytics for Azure Monitor SCOM Managed Instance](/system-center/scom/configure-log-analytics-for-scom-managed-instance) to send this data to a Log Analytics workspace. |
 
 ### Kubernetes cluster data
 
@@ -78,10 +78,11 @@ Azure Kubernetes Service (AKS) clusters create the same activity logs and platfo
 
 ## Custom sources
 
-For any monitoring data that you can't collect with the other methods described in this article, you can use the APIs in the following table to send data to Azure Monitor. 
+For any monitoring data that you can't collect with the other methods described in this article, you can methods in the following table to send data to Azure Monitor. 
 
 | Data type | Description | Data collection method |
 |:----------|:------------|:-----------------------|
+| Logs | Collect data from Azure Event Hubs. | Create a data collection rule to define destination workspace and structure of incoming data. See [Ingest events from Azure Event Hubs into Azure Monitor Logs (preview)](../logs/ingest-logs-event-hub.md). |
 | Logs | Collect log data from any REST client and store in Log Analytics workspace. | Create a data collection rule to define destination workspace and any data transformations. See [Logs ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md). |
 | Metrics | Collect custom metrics for Azure resources from any REST client. | See [Send custom metrics for an Azure resource to the Azure Monitor metric store by using a REST API](../essentials/metrics-store-custom-rest-api.md). |
 

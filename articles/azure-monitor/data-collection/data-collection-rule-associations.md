@@ -36,7 +36,7 @@ Select the option on the displayed banner to enable this experience.
 
 ### Data collection rule view
 
-In the **Data collection rule** view, the **Resource count** represents the number of resources that have a [data collection rule association](data-collection-rule-overview.md#data-collection-rule-associations-dcra) with the DCR. Click this value to open the **Resources** view for that DCR.
+In the **Data collection rule** view, the **Resource count** represents the number of resources that have a [data collection rule association](data-collection-rule-overview.md#data-collection-rule-associations-dcras) with the DCR. Click this value to open the **Resources** view for that DCR.
 
 :::image type="content" source="media/data-collection-rule-view/data-collection-rules-view.png" alt-text="Screenshot of data collection rules view in the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/data-collection-rules-view.png":::
 
@@ -71,7 +71,7 @@ Using the **Resources** view, you can create a new DCR for the selected resource
 In addition to the preview Azure portal experience, you can create a new association using any of the following methods. The DCRA object that's created is a child of the target object and uses the resource ID of the DCR.
 
 > [!NOTE]
-> To associate DCRs with a virtual machine scale set (VMSS) with flexible orchestration, use a policy to deploy the agent and associate the DCR with each VM. The policy will install the agent and associate the DCR with VMs as during scale out.
+> To associate DCRs with a virtual machine scale set with flexible orchestration, use a policy to deploy the agent and associate the DCR with each VM. The policy will install the agent and associate the DCR with VMs as during scale out.
 
 ### [CLI](#tab/cli)
 
