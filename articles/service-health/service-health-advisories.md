@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 11/12/2025
+ms.date: 11/13/2025
 ---
 
 # Health advisories 
