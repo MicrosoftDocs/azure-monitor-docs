@@ -1,6 +1,6 @@
 ---
 title: Use Azure Monitor Dashboards with Grafana
-description: This article explains how to use Azure Monitor dashboards with Grafana.
+description: Explains how to use Azure Monitor dashboards with Grafana.
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
 ms.date: 11/03/2025
@@ -9,15 +9,6 @@ ms.date: 11/03/2025
 # Use Azure Monitor dashboards with Grafana
 
 This article explains how to use Azure Monitor dashboards with Grafana.
-
-## Supported data sources
-
-Dashboards with Grafana supports the following data sources:
-
-- Azure Monitor - Metrics, Logs, Traces
-- Azure Data Explorer
-- Azure Monitor managed service for Prometheus
-- Azure Resource Graph
 
  
 ## Prerequisites
@@ -29,9 +20,12 @@ For more information about RBAC and assigning roles, see [Azure RBAC](/azure/rol
 
 ## Use dashboard templates
 
-Azure managed template dashboards are pre-provisioned and automatically updated dashboards for frequently used Azure resources and Azure Kubernetes Services. They help you get started quickly. The following steps are for using these Grafana dashboards that are already available in the Azure portal. Azure managed templates are identified with a tag.
+Azure managed template dashboards help you get started quickly with pre-provisioned and automatically updated dashboards for frequently used Azure resources and Azure Kubernetes Services. They're identified with an `Azure-managed` tag.
 
 :::image type="content" source="./media/visualizations-grafana/azure-managed-templates.png" alt-text="Screenshot of Azure managed template listing the gallery.":::
+
+Use the following steps to use the Grafana dashboards that are already available in the Azure portal. 
+
 
 1.  Navigate to **Azure Monitor** in the Azure portal.
 1.  Select **Dashboards with Grafana**.

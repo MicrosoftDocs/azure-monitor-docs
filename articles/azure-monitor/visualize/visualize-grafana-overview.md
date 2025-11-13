@@ -7,15 +7,12 @@ ms.date: 10/29/2025
 ---
 
 # Visualize Azure Monitor data with Grafana
-
-This article describes the different options for visualizing monitoring data in Azure using [Grafana ](https://grafana.com/), which is an open-source analytics and visualization platform that enables users to query, monitor, and create interactive dashboards for metrics, logs, and traces from multiple data sources.
+[Grafana](https://grafana.com/) is an open-source analytics and visualization platform that enables you to query, monitor, and create interactive dashboards for metrics, logs, and traces from multiple data sources. This article describes the different options that Azure provides for using Grafana to visualize Azure Monitor data.
 
 Azure provides the following two options for using Grafana. The rest of the article describes each option in detail and provides guidance for the scenarios when each should be used.
 
-| Feature | Description |
-|:--|:--|
-| [Azure Monitor dashboards with Grafana](#azure-monitor-dashboards-with-grafana) | Delivers Grafana dashboards for data collected in Azure Monitor directly in the Azure portal with no cost and no configuration requirements. |
-| [Azure Managed Grafana](#azure-managed-grafana) | A fully managed Grafana service that supports dashboards using a variety of data sources. |
+[Azure Monitor dashboards with Grafana](#azure-monitor-dashboards-with-grafana). Delivers Grafana dashboards for data collected in Azure Monitor directly in the Azure portal with no cost and no configuration requirements.
+[Azure Managed Grafana](#azure-managed-grafana). Fully managed Grafana service that supports dashboards using a variety of data sources.
 
 
 ## Azure Monitor dashboards with Grafana
@@ -33,7 +30,7 @@ Azure Monitor dashboards with Grafana enables the following capabilities:
 
 ### How to access
 
-Navigate to **Azure Monitor** in the Azure portal, and then select **Dashboards with Grafana** under the **Insights** section. Click on any of the available dashboards to open it.
+Navigate to **Azure Monitor** in the Azure portal, and then select **Dashboards with Grafana** under the **Insights** section.
 
 :::image type="content" source="./media/visualizations-grafana/default-dashboards.png" lightbox="./media/visualizations-grafana/default-dashboards.png" alt-text="Screenshot of dashboards with grafana default dashboards.":::
 
@@ -41,9 +38,6 @@ You can also access **Dashboards with Grafana** from the **Monitoring** section 
 
 :::image type="content" source="./media/visualizations-grafana/default-dashboards-kubernetes.png" lightbox="./media/visualizations-grafana/default-dashboards-kubernetes.png" alt-text="Screenshot of dashboards with grafana default dashboards for Kubernetes clusters.":::
 
-Click on a dashboard to open it. Use the dropdowns at the top of the dashboard to select different options for the data displayed.
-
-:::image type="content" source="./media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespace-pods.png" lightbox="./media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespace-pods.png" alt-text="Screenshot of dashboards with grafana kubernetes namespace pods.":::
 
 ### Data sources
 Azure Monitor dashboards with Grafana supports the following data sources. If you require other data sources, then see [Azure Managed Grafana](#azure-managed-grafana).
@@ -67,9 +61,9 @@ Azure Monitor dashboards with Grafana doesn't support the following Grafana feat
 - App plugins
 
 ## Azure Managed Grafana
-[Azure Managed Grafana](/azure/managed-grafana/overview) is a fully managed Grafana service that supports dashboards using a variety of data sources. Access the Grafana dashboard through the same browser experience as other Grafana deployments. The included [Azure Monitor data source plug-in](https://grafana.com/docs/grafana/latest/datasources/azuremonitor/) gives you access to the same data sources as [Azure Monitor dashboards with Grafana](#data-sources).
+[Azure Managed Grafana](/azure/managed-grafana/overview) is a fully managed Grafana service that supports dashboards using a variety of data sources. Access the Grafana dashboard through the same browser experience as other Grafana deployments. 
 
-Add the Grafana Prometheus plugin to query and visualize data from Azure Monitor managed service for Prometheus. See [Connect Grafana to Azure Monitor Prometheus metrics](../essentials/prometheus-grafana.md).
+The included [Azure Monitor data source plug-in](https://grafana.com/docs/grafana/latest/datasources/azuremonitor/) gives you access to the same data sources as [Azure Monitor dashboards with Grafana](#data-sources). Add the Grafana Prometheus plugin to query and visualize data from Azure Monitor managed service for Prometheus. See [Connect Grafana to Azure Monitor Prometheus metrics](../essentials/prometheus-grafana.md).
 
 ### Managed Grafana related content
 
@@ -89,7 +83,7 @@ Choose **Azure Monitor managed service for Prometheus** if you require any of th
 
 - Access to external data sources and automation, including open-source and Grafana enterprise data sources
 - Grafana alerts
-- scheduled reports
+- Scheduled reports
 - Ability to share access to dashboards without sharing access to the underlying data store
 
 
@@ -120,13 +114,3 @@ The following table provides a complete comparison of the two solutions.
 - [Use Dashboards with Grafana with Azure Kubernetes Service](visualize-use-grafana-dashboards-azure-kubernetes-service.md)
 - [Use Managed Grafana](visualize-use-managed-grafana-how-to.md)
  
-
-
-
-
-:::image type="content" source="./media/visualizations-grafana/dashboards-with-grafana-azure-insights-applications.png" lightbox="./media/visualizations-grafana/dashboards-with-grafana-azure-insights-applications.png" alt-text="Screenshot of dashboards with grafana azure insights application.":::
-
-
-:::image type="content" source="./media/visualizations-grafana/dashboards-with-grafana-kubernetes-api-server.png" lightbox="./media/visualizations-grafana/dashboards-with-grafana-kubernetes-api-server.png" alt-text="Screenshot of dashboards with grafana kubernetes api server.":::
-
-:::image type="content" source="./media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespace-pods.png" lightbox="./media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespace-pods.png" alt-text="Screenshot of dashboards with grafana kubernetes namespace pods.":::
