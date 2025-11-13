@@ -2,7 +2,7 @@
 title: View Service issues
 description: This article describes how to view and use the Service issues pane
 ms.topic: overview
-ms.date: 11/11/2025
+ms.date: 11/13/2025
 
 ---
 
@@ -108,8 +108,8 @@ This tab shows a list of your specific resources that are or might be affected, 
 - Subscription Name
 
 For more information about Impacted resources, see: 
-- [Impacted Resources from Outages](./impacted-resources-outage.md).
-- [Impacted Resources from planned maintenance events](impacted-resources-planed-maintenance.md)
+- [Impacted Resources from Outages](impacted-resources-outage.md).
+- [Impacted Resources from planned maintenance events](impacted-resources-planned-maintenance.md)
 - [Impacted Resources from Azure security incidents](impacted-resources-security.md)
 - [Impacted Resources from Azure retirements](impacted-resources-retirements.md)
 
