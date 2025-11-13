@@ -7995,12 +7995,12 @@
    "redirect_document_id": false
   },
   {
-   "source_path_from_root": "/articles/azure-monitor/agents/signal-ingestion.md",
+   "source_path": "articles/azure-monitor/agents/signal-ingestion.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/collect-use-observability-data",
    "redirect_document_id": false
   },
   {
-   "source_path_from_root": "/articles/azure-monitor/app/signal-integration.md",
+   "source_path": "articles/azure-monitor/app/signal-integration.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/collect-use-observability-data",
    "redirect_document_id": false
   },
