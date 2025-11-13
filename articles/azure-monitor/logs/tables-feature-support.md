@@ -111,7 +111,6 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AEWExperimentAssignmentSummary](/azure/azure-monitor/reference/tables/aewexperimentassignmentsummary) | |
 | [AEWExperimentScorecardMetricPairs](/azure/azure-monitor/reference/tables/aewexperimentscorecardmetricpairs) | |
 | [AEWExperimentScorecards](/azure/azure-monitor/reference/tables/aewexperimentscorecards) | |
-| [AFDAccessLog](/azure/azure-monitor/reference/tables/afdaccesslog) | |
 | [AFDClassicCdnAccessLog](/azure/azure-monitor/reference/tables/afdclassiccdnaccesslog) | |
 | [AFDHealthProbeLog](/azure/azure-monitor/reference/tables/afdhealthprobelog) | |
 | [AFDWebApplicationFirewallLog](/azure/azure-monitor/reference/tables/afdwebapplicationfirewalllog) | |
