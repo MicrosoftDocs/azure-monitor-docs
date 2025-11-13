@@ -3,6 +3,7 @@ title: Collect and analyze OpenTelemetry data with Azure Monitor
 description: Onboard OpenTelemetry Protocol (OTLP) signals to Azure Monitor for AKS and other environments. Learn the supported onboarding paths and how to use Dashboards with Grafana, Application Insights experiences, and Log Analytics with OpenTelemetry semantic conventions.
 ms.topic: how-to
 ms.date: 11/13/2025
+ROBOTS: NOINDEX
 ---
 
 # Use OpenTelemetry with Azure Monitor
@@ -65,17 +66,17 @@ After onboarding, use the following experiences to investigate and visualize you
 
 ### Use Application Insights troubleshooting and diagnostics
 
-- Investigate **distributed traces** end‑to‑end and correlate requests, dependencies, and failures.  
+- [Investigate **distributed traces** end‑to‑end and correlate requests, dependencies, and failures](../app/failures-performance-transactions.md).  
   Most Application Insights experiences continue to work with OTel data (for example, **Performance**, **Failures**, **Search**, and **end‑to‑end transaction** views).
 
 - Use **Search** and **Transaction details** to analyze events across services and drill into problem areas.
 
-- For agentic workloads, use the **Agents (Preview)** experience to monitor AI agents that emit OpenTelemetry data.
+- For agentic workloads, use the [**Agents details (Preview)**](../app/agents-view.md) experience to monitor AI agents that emit OpenTelemetry data.
 
-- For metrics scenarios, prefer **Dashboards with Grafana**.  
+- For metrics scenarios, prefer [**Dashboards with Grafana**](../app/grafana-dashboards.md).  
   **Metrics Explorer** on OTel metrics can require manual PromQL authoring, and **Live Metrics** isn't available with the OTel path today.
 
-For more information, see [OpenTelemetry on Azure](../app/opentelemetry.md) and [Monitor AI agents with Application Insights](../app/agents-view.md).
+For more information, see  and [Monitor AI agents with Application Insights](../app/agents-view.md).
 
 ### Use Dashboards with Grafana for Prometheus metrics
 
@@ -126,6 +127,7 @@ For more information, see [OpenTelemetry semantic conventions](https://opentelem
 
 ## Related resources
 
+- [OpenTelemetry on Azure](../app/opentelemetry.md)
 - [Monitor AKS with OpenTelemetry](../app/kubernetes-open-protocol.md)
 - [OTLP signal ingestion in Azure Monitor](../agents/signal-ingestion.md)
 - [Use Application Insights with OTLP signals](../app/signal-integration.md)
