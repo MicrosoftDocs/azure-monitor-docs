@@ -871,7 +871,7 @@ Include the SDK in your app so that it can gather data.
 1. Start automatically collecting and sending data by calling `appInsights.start();`.
 
 > [!NOTE]
-> As part of using Application Insights instrumentation, we collect and send diagnostic data to Microsoft. This data helps us run and improve Application Insights. You have the option to disable non-essential data collection. [Learn more](./statsbeat.md).
+> As part of using Application Insights instrumentation, we collect and send diagnostic data to Microsoft. This data helps us run and improve Application Insights. You have the option to disable nonessential data collection. [Learn more](./statsbeat.md).
 
 ### Basic usage
 
@@ -919,7 +919,7 @@ Application Insights collects these ILogger logs, with a severity of Warning or 
 
 This custom operation of `RequestTelemetry` can be thought of as the equivalent of an incoming web request in a typical web application. It isn't necessary to use an operation, but it fits best with the [Application Insights correlation data model](#distributed-tracing). `RequestTelemetry` acts as the parent operation and every telemetry generated inside the worker iteration is treated as logically belonging to the same operation.
 
-This approach also ensures all the telemetry generated, both automatic and manual, has the same `operation_id`. Because sampling is based on `operation_id`, the sampling algorithm either keeps or drops all the telemetry from a single iteration.
+This approach also ensures that the telemetry generated, both automatic and manual, has the same `operation_id`. Because sampling is based on `operation_id`, the sampling algorithm either keeps or drops all telemetry from a single iteration.
 
 # [Node.js](#tab/nodejs)
 
@@ -1765,7 +1765,7 @@ catch (ex)
 }
 ```
 
-The properties and measurements parameters are optional, but they're useful for [filtering and adding](failures-performance-transactions.md?tabs=transaction-search) extra information. For example, if you have an app that can run several games, you could find all the exception reports related to a particular game. You can add as many items as you want to each dictionary.
+The properties and measurements parameters are optional, but they're useful for [filtering and adding](failures-performance-transactions.md?tabs=transaction-search) extra information. For example, if you have an app that can run several games, you could find the exception reports related to a particular game. You can add as many items as you want to each dictionary.
 
 #### Browser exceptions
 
@@ -2421,7 +2421,7 @@ computersSold.TrackValue(100, "Dim1Value1", "Dim2Value2");
 
 // The following call gives 3rd unique value for dimension2, which is above the limit of 2.
 computersSold.TrackValue(100, "Dim1Value1", "Dim2Value3");
-// The above call does not track the metric, and returns false.
+// The above call doesn't track the metric, and returns false.
 ```
 
 * `seriesCountLimit` is the maximum number of data time series a metric can contain. When this limit is reached, calls to `TrackValue()` that would normally result in a new series return `false`.
@@ -3181,7 +3181,7 @@ Currently, the native metrics package performs autocollection of garbage collect
 
 * **Garbage collection**: The amount of CPU time spent on each type of garbage collection, and how many occurrences of each type.
 * **Event loop**: How many ticks occurred and how much CPU time was spent in total.
-* **Heap vs. non-heap**: How much of your app's memory usage is in the heap or non-heap.
+* **Heap vs. nonheap**: How much of your app's memory usage is in the heap or non-heap.
 
 ### TelemetryClient API
 
@@ -3611,7 +3611,7 @@ Telemetry processors can filter and modify each telemetry item before it's sent 
 
 #### Implement `ITelemetryProcessor`
 
-Telemetry processors construct a chain of processing. When you instantiate a telemetry processor, you're given a reference to the next processor in the chain. When a telemetry data point is passed to the process method, it does its work and then calls (or doesn't call) the next telemetry processor in the chain.
+Telemetry processors construct a chain of processing. When you instantiate a telemetry processor, you get a reference to the next processor in the chain. When a telemetry data point is passed to the process method, it does its work and then calls (or doesn't call) the next telemetry processor in the chain.
 
 ```csharp
 using Microsoft.ApplicationInsights.Channel;
@@ -4865,7 +4865,7 @@ Web Instrumentation is enabled on node server responses when all of the followin
 * Server response has `Content-Type` html.
 * Server response contains both `<head>` and `</head>` Tags.
 * If response is compressed, it must have only one `Content-Encoding` type, and encoding type must be one of `gzip`, `br` or `deflate`.
-* Response does not contain current /backup web Instrumentation CDN endpoints.  (current and backup Web Instrumentation CDN endpoints [here](https://github.com/microsoft/ApplicationInsights-JS#active-public-cdn-endpoints))
+* Response doesn't contain current /backup web Instrumentation CDN endpoints.  (current and backup Web Instrumentation CDN endpoints [here](https://github.com/microsoft/ApplicationInsights-JS#active-public-cdn-endpoints))
 
 Web Instrumentation CDN endpoint can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_SOURCE = "web Instrumentation CDN endpoints"`.
 Web Instrumentation connection string can be changed by setting environment variable `APPLICATIONINSIGHTS_WEB_INSTRUMENTATION_CONNECTION_STRING = "web Instrumentation connection string"`
