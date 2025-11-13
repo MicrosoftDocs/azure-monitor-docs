@@ -256,3 +256,4 @@ Consider the following constraints when you use dimensions in an alert rule that
 ## Next steps
 
 * [View and manage your alert instances](alerts-manage-alert-instances.md).
+* Learn about [query-based metric alerts](alerts-query-based-metric-alerts-overview.md) to create alert rules on Prometheus or custom (OTel) metrics stored in an Azure Monitor Workspace.

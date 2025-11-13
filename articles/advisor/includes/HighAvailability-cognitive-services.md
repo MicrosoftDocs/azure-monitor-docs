@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 11/11/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -65,5 +65,23 @@ Recommendation ID: 41853861-bc9a-42b9-8ffc-f34dbaf07c00
 Subcategory: undefined
 
 <!--41853861-bc9a-42b9-8ffc-f34dbaf07c00_end-->
+
+<!--49949bb6-679f-44cc-adc7-205078543df4_begin-->
+
+#### Migrate service to a region that supports availability zones  
+  
+Migrate service to a region that supports availability zones for increased resiliency.  
+  
+**Potential benefits**: Ensures high availability during zonal outages  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 49949bb6-679f-44cc-adc7-205078543df4  
+Subcategory: HighAvailability
+
+<!--49949bb6-679f-44cc-adc7-205078543df4_end-->
 
 <!--articleBody-->

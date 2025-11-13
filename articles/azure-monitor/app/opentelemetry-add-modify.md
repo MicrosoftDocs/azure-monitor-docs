@@ -478,6 +478,9 @@ Depending on your language and signal type, there are different ways to collect 
 * OpenTelemetry API
 * Language-specific logging/metrics libraries
 * Application Insights [Classic API](api-custom-events-metrics.md)
+
+> [!NOTE]
+> The [Micrometer Tracing API](https://mvnrepository.com/artifact/io.micrometer/micrometer-tracing-bridge-otel) for Java is not supported.
  
 The following table represents the currently supported custom telemetry types:
 

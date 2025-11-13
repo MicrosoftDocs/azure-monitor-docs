@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 11/11/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -360,5 +360,23 @@ Recommendation ID: 37652095-cbe3-4132-9c62-526eeb6f4d75
 
 
 <!--37652095-cbe3-4132-9c62-526eeb6f4d75_end-->
+
+<!--88ecf03e-51dc-4aa4-9a4d-2ee48c407f56_begin-->
+
+#### Enable Admin State for both links of the ExpressRoute Direct  
+  
+In Azure ExpressRoute Direct, the Admin State specifies the administrative status of the layer 1 link as Enabled or Disabled. The Admin State is the same as turning the physical port on or off. Billing begins when Admin State for either link is set to Enabled.  
+  
+**Potential benefits**: Ensure optimal connectivity  
+
+**Impact:** High
+  
+For more information, see [Configure Azure ExpressRoute Direct](/azure/expressroute/how-to-expressroute-direct-portal?tabs=portal#state)  
+
+ResourceType: microsoft.network/expressrouteports  
+Recommendation ID: 88ecf03e-51dc-4aa4-9a4d-2ee48c407f56  
+
+
+<!--88ecf03e-51dc-4aa4-9a4d-2ee48c407f56_end-->
 
 <!--articleBody-->
