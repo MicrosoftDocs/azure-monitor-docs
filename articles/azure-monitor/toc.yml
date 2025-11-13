@@ -1314,8 +1314,8 @@ items:
     - name: Use Grafana dashboards
       href: visualize/visualize-use-grafana-dashboards.md
     - name: Azure Data Explorer
-      href: visualize/visualize-connect-grafana-azure-monitor.md
-    - name: AKS
+      href: visualize/visualize-use-grafana-dashboards-azure-data-explorer.md
+    - name: Kubernetes clusters
       href: visualize/visualize-use-grafana-dashboards-azure-kubernetes-service.md
     - name: Call Grafana APIs programmatically
       href: visualize/visualize-call-grafana-api.md
