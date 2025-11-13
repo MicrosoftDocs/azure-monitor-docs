@@ -122,7 +122,7 @@ On this tab, you decide how you're notified. Action Groups let you send alerts b
 Based on your subscription, there's  a list of all available action groups you can choose. Select up to 5 and then select **Select**. Each action group contains actions that are defined for that group as in emails or roles
 
 >![TIP] **Select Create action groups** to create your own action groups.
-For more information about Action groups, see [Action Groups](azure/azure-monitor/alerts/action-groups?WT.mc_id=Portal-Microsoft_Azure_Monitoring).
+For more information about Action groups, see [Action Groups](/azure/azure-monitor/alerts/action-groups?WT.mc_id=Portal-Microsoft_Azure_Monitoring).
 
 
 ## Details
@@ -149,11 +149,11 @@ For example, adding tags like *Environment: Production* or *Team: Operations* ma
 
 Select from the **Name** drop-down menu and then choose the value from the **Value** drop-down.
 
-For more information about using tags, see [Use tags to organize your resources](azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
+For more information about using tags, see [Use tags to organize your resources](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 
 ## Review + Create
 This is your final check before activating the alert. Review all the settings from scope, conditions, actions, and details to make sure they’re correct. 
-:::image type="content" source="./media/resource-health/resource-health-create-rule.PNG" alt-text="Screenshot of Resource Health Tags tab." lightbox="./media/resource-health/resource-health-create-rule.PNG":::
+:::image type="content" source="./media/resource-health/resource-health-create-rule.PNG" alt-text="Screenshot of Resource Health Review tab." lightbox="./media/resource-health/resource-health-create-rule.PNG":::
 
 When everything looks good, select **Create** to start monitoring.
 
