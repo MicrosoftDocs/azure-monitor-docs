@@ -1,5 +1,5 @@
 ---
-title: Collect and analyze OpenTelemetry data with Azure Monitor (preview)
+title: Collect and analyze OpenTelemetry data with Azure Monitor
 description: Onboard OpenTelemetry Protocol (OTLP) signals to Azure Monitor for AKS and other environments. Learn the supported onboarding paths and how to use Dashboards with Grafana, Application Insights experiences, and Log Analytics with OpenTelemetry semantic conventions.
 ms.topic: how-to
 ms.date: 11/13/2025
@@ -37,9 +37,12 @@ For more information, see [Monitor AKS applications with OpenTelemetry Protocol 
 
 Use the OpenTelemetry Collector or AMA to send OTLP signals from compute resources outside AKS.
 
-- **Use Application Insights to orchestrate ingestion.** Create an Application Insights resource and capture the **Data Collection Rule (DCR)** link and **endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page.
-- **Orchestrate ingestion manually.** Create an Azure Monitor Workspace (AMW), Log Analytics workspace (LAW), DCEs, and DCRs, then build the three OTLP endpoint URLs for metrics, logs, and traces.
-- **Export from the OpenTelemetry Collector.** Use the Collector `contrib` distribution and authenticate with Microsoft Entra ID or a managed identity where applicable.
+- **Use Application Insights to orchestrate ingestion.**  
+  Create an Application Insights resource and capture the **Data Collection Rule (DCR)** link and **endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page.
+- **Orchestrate ingestion manually.**  
+  Create an Azure Monitor Workspace (AMW), Log Analytics workspace (LAW), DCEs, and DCRs, then build the three OTLP endpoint URLs for metrics, logs, and traces.
+- **Export from the OpenTelemetry Collector.**  
+  Use the Collector `contrib` distribution and authenticate with Microsoft Entra ID or a managed identity where applicable.
 
 For more information, see [OTLP signal ingestion in Azure Monitor](../agents/signal-ingestion.md) and [Use Application Insights with OTLP signals](../app/signal-integration.md).
 
@@ -50,17 +53,6 @@ For more information, see [OTLP signal ingestion in Azure Monitor](../agents/sig
 
 After onboarding, use the following experiences to investigate and visualize your telemetry.
 
-### Use Application Insights troubleshooting and diagnostics
-
-- Investigate **distributed traces** end‑to‑end and correlate requests, dependencies, and failures.
-- Use **Search** and **Transaction details** to analyze events across services and drill into problem areas.
-- For agentic workloads, use the **Agents (Preview)** experience to monitor AI agents that emit OpenTelemetry data.
-
-> [!NOTE]
-> Most **Application Insights** experiences work as expected with OpenTelemetry data (for example, **Performance**, **Failures**, **Trace Explorer**, end‑to‑end **Transaction details**). However, **Live Metrics** and **Metrics Explorer** don't currently support the OpenTelemetry ingestion path. For metrics scenarios, use **Dashboards with Grafana** with Prometheus queries.
-
-For more information, see [OpenTelemetry on Azure](../app/opentelemetry.md) and [Monitor AI agents with Application Insights](../app/agents-view.md).
-
 ### Use Dashboards with Grafana for Prometheus metrics
 
 - Start from **Azure‑managed dashboards** that cover OpenTelemetry and common Application Insights scenarios.
@@ -68,6 +60,14 @@ For more information, see [OpenTelemetry on Azure](../app/opentelemetry.md) and 
 - Use **Grafana Explore** for ad‑hoc queries and add results to dashboards.
 
 For more information, see [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md).
+
+### Use Application Insights troubleshooting and diagnostics
+
+- Investigate **distributed traces** end‑to‑end and correlate requests, dependencies, and failures.
+- Use **Search** and **Transaction details** to analyze events across services and drill into problem areas.
+- For agentic workloads, use the **Agents details (Preview)** experience to monitor AI agents that emit OpenTelemetry data.
+
+For more information, see [OpenTelemetry on Azure](../app/opentelemetry.md) and [Monitor AI agents with Application Insights](../app/agents-view.md).
 
 ### Query logs and traces with OpenTelemetry semantic conventions
 
