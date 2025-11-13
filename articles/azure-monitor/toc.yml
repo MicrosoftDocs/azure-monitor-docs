@@ -138,13 +138,8 @@ items:
         - name: ASP.NET on-premises agent
           href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)
-        items:
-        - name: .NET
-          displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp
-          href: app/dotnet.md
-        - name: Node.js
-          href: app/nodejs.md
-          displayName: SDK, Node.js, nodejs, JavaScript, js
+        displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
+        href: app/classic-api.md
     - name: Experiences
       items:
       - name: Agent details

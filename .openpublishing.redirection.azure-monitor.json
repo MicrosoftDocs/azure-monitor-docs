@@ -8723,6 +8723,16 @@
    "source_path": "articles/azure-monitor/containers/enable-windows-metrics.md",
    "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-windows-metrics-preview",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/dotnet.md",
+   "redirect_url": "/azure/azure-monitor/app/classic-api",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/nodejs.md",
+   "redirect_url": "/azure/azure-monitor/app/classic-api",
+   "redirect_document_id": false
   }
  ]
 }
