@@ -20,7 +20,7 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 
 > [!NOTE]
 > * Only .NET Core [Long Term Support](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) (LTS) releases are supported.
-> * [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) is *not supported*. Use [manual instrumentation](/azure/azure-monitor/app/classic-api&tabs=dotnet#manual-installation) instead.
+> * [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) is *not supported*. Use [manual instrumentation](classic-api.md&tabs=dotnet#manual-installation) instead.
 
 ### Autoinstrumentation in the Azure portal
 

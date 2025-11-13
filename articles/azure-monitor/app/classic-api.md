@@ -4699,12 +4699,9 @@ app.Run();
 
 #### In this section
 
-* [SDK configuration](#sdk-configuration)
 * [Connection string](#connection-string)
 * [Advanced configuration option](#advanced-configuration-options)
 * [Automatic third-party instrumentation](#automatic-third-party-instrumentation)
-
-### SDK configuration
 
 The `appInsights` object provides many configuration methods. They're listed in the following snippet with their default values.
 
