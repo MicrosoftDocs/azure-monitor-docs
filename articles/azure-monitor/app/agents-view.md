@@ -56,13 +56,11 @@ If you choose to collect full prompt information (for example, using the `Enable
 
 To set up evaluations, there are several approaches.
 
-**Development-time evaluations**
+* **Batch evaluations:**
 
-* **Local evaluations with Azure AI Evaluation SDK:** [Run evaluations on your development machine during testing.](/azure/ai-foundry/how-to/develop/evaluate-sdk)
-* **Cloud evaluations with Azure AI Foundry SDK:** [Execute evaluations in Azure for larger datasets or team collaboration.](/azure/ai-foundry/how-to/develop/cloud-evaluation)
-* **Azure Foundry Portal-based evaluations:** [Use the Azure AI Foundry Portal for no-code evaluation workflows.](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
-
-**Production monitoring**
+    * **Local evaluations with Azure AI Evaluation SDK:** [Run evaluations on your development machine during testing.](/azure/ai-foundry/how-to/develop/evaluate-sdk)
+    * **Cloud evaluations with Azure AI Foundry SDK:** [Execute evaluations in Azure for larger datasets or team collaboration.](/azure/ai-foundry/how-to/develop/cloud-evaluation)
+    * **Azure Foundry Portal-based evaluations:** [Use the Azure AI Foundry Portal for no-code evaluation workflows.](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
 
 * **Continuous evaluations:** [Set up automated evaluations that run against production traffic](/azure/ai-foundry/how-to/continuous-evaluation-agents) to detect quality regressions.
 
@@ -116,8 +114,6 @@ Simple view allows you to quickly find the relevant telemetry and transition to 
 :::image type="content" source="media/agents-view/agent-details-search-details.png" lightbox="media/agents-view/agent-details-search-details.png" alt-text="A screenshot showing the end-to-end transaction details view.":::
 
 In our example, we were researching high token use. Transaction details allow you to identify that large prompt context and/or an expensive model is driving up token use and costs.
-
-By selecting **Resolve in Foundry**, you can go to directly to your agent in **Azure AI Foundry** to update the prompt and publish changes​.
 
 ## Next steps
 
