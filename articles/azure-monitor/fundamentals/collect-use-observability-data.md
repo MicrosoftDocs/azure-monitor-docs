@@ -7,14 +7,16 @@ ms.date: 11/13/2025
 
 # Use OpenTelemetry with Azure Monitor
 
-Azure Monitor ingests OpenTelemetry Protocol (OTLP) **signals**—traces, metrics, and logs—from your applications and platforms. Use the OpenTelemetry Collector or Application Insights to export telemetry to Azure Monitor. After onboarding, use troubleshooting and exploration experiences in Application Insights, work with Prometheus metrics and **Dashboards with Grafana**, and analyze logs and traces in Log Analytics by using OpenTelemetry semantic conventions.
+Azure Monitor ingests OpenTelemetry (OTel) **signals**—traces, metrics, and logs—from your applications and platforms. Application Insights orchestrates ingestion into Azure Monitor and provides experiences to explore the data. You can also use the OpenTelemetry Collector to export telemetry to Azure Monitor. After onboarding, use troubleshooting and exploration experiences in Application Insights, work with Prometheus metrics in **Dashboards with Grafana**, and analyze logs and traces in Log Analytics using OpenTelemetry semantic conventions.
 
 ## Review capabilities
 
-- Ingest OTLP **traces, metrics, and logs** into Azure Monitor with platform ingestion components such as Azure Monitor Agent (AMA), Data Collection Rules (DCRs), and Data Collection Endpoints (DCEs).
+- Ingest OTel **traces, metrics, and logs** into **Azure Monitor** with platform ingestion components such as Azure Monitor Agent (AMA), Data Collection Rules (DCRs), and Data Collection Endpoints (DCEs).
+- Explore application signals in **Application Insights**, including distributed tracing and diagnostics experiences.  
+  Use familiar blades such as **Performance**, **Failures**, **Search**, and **Transaction details** with OTel data.
+- Use **Dashboards with Grafana** in the Azure portal for Application Insights data.  
+  Start from Azure‑managed dashboards that focus on OpenTelemetry and common application scenarios.
 - Use the **OpenTelemetry Collector** to export to Azure Monitor ingestion endpoints that Application Insights or your own orchestration provides.
-- Explore application signals in **Application Insights**, including distributed tracing and diagnostics experiences.
-- Use **Dashboards with Grafana** in the Azure portal for Application Insights data, and start from Azure‑managed dashboards that focus on OpenTelemetry and common application scenarios.
 - Query logs and traces in **Log Analytics** by using an **OpenTelemetry semantic conventions**–based schema.
 
 ## Choose an onboarding path
@@ -23,7 +25,7 @@ Select one of the following paths based on where your workloads run.
 
 ### Monitor AKS with OpenTelemetry
 
-Enable application monitoring for Azure Kubernetes Service (AKS) and send OTLP telemetry to Application Insights.
+Enable application monitoring for Azure Kubernetes Service (AKS) and send OTLP telemetry **to Azure Monitor**. Application Insights orchestrates ingestion and provides investigation experiences.
 
 - **Enable the AKS integration** in the cluster’s **Monitor** settings to add the required Azure Monitor components.
 - **Create or select** an Application Insights resource with **Enable OTLP Support (Preview)** and **Use managed workspaces** set to **Yes**.
@@ -35,9 +37,9 @@ For more information, see [Monitor AKS applications with OpenTelemetry Protocol 
 
 ### Configure other environments
 
-Use the OpenTelemetry Collector or AMA to send OTLP signals from compute resources outside AKS.
+Use the OpenTelemetry Collector or AMA to send OTLP signals from compute resources outside AKS **into Azure Monitor**.
 
-- **Use Application Insights to orchestrate ingestion.**  
+- **Use Application Insights to orchestrate ingestion into Azure Monitor.**  
   Create an Application Insights resource and capture the **Data Collection Rule (DCR)** link and **endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page.
 - **Orchestrate ingestion manually.**  
   Create an Azure Monitor Workspace (AMW), Log Analytics workspace (LAW), DCEs, and DCRs, then build the three OTLP endpoint URLs for metrics, logs, and traces.
@@ -53,21 +55,27 @@ For more information, see [OTLP signal ingestion in Azure Monitor](../agents/sig
 
 After onboarding, use the following experiences to investigate and visualize your telemetry.
 
-### Use Dashboards with Grafana for Prometheus metrics
-
-- Start from **Azure‑managed dashboards** that cover OpenTelemetry and common Application Insights scenarios.
-- Create, edit, and save dashboards as **Azure resources** and manage access with Azure role based access control (RBAC).
-- Use **Grafana Explore** for ad‑hoc queries and add results to dashboards.
-
-For more information, see [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md).
-
 ### Use Application Insights troubleshooting and diagnostics
 
-- Investigate **distributed traces** end‑to‑end and correlate requests, dependencies, and failures.
+- Investigate **distributed traces** end‑to‑end and correlate requests, dependencies, and failures.  
+  Most Application Insights experiences continue to work with OTel data (for example, **Performance**, **Failures**, **Search**, and **end‑to‑end transaction** views).
 - Use **Search** and **Transaction details** to analyze events across services and drill into problem areas.
-- For agentic workloads, use the **Agents details (Preview)** experience to monitor AI agents that emit OpenTelemetry data.
+- For agentic workloads, use the **Agents (Preview)** experience to monitor AI agents that emit OpenTelemetry data.
+- For metrics scenarios, prefer **Dashboards with Grafana**.  
+  **Metrics Explorer** on OTel metrics can require manual PromQL authoring, and **Live Metrics** isn't available with the OTel path today.
 
 For more information, see [OpenTelemetry on Azure](../app/opentelemetry.md) and [Monitor AI agents with Application Insights](../app/agents-view.md).
+
+### Use Dashboards with Grafana for Prometheus metrics
+
+- Start from **Azure‑managed dashboards** that cover OpenTelemetry and common Application Insights scenarios.  
+  You can customize, copy, or use them as a reference for your own dashboards.
+- Create, edit, and save dashboards as **Azure resources** and manage access with Azure role‑based access control (RBAC).  
+  Use Azure Resource Manager (ARM) or Bicep to automate deployments.
+- Use **Grafana Explore** for ad‑hoc queries and add results to dashboards.  
+  Prometheus metrics queried here complement the Application Insights experiences above.
+
+For more information, see [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md).
 
 ### Query logs and traces with OpenTelemetry semantic conventions
 
