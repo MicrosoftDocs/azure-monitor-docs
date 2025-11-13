@@ -41,7 +41,7 @@ To set up your alert, use the six tabs in this window: **Scope**, **Condition**,
 
 
 >[!TIP]
->- Select the *Next: ...* button at the bottom of each tab, or select the name at the top of the wizard to open the next tab.
+>- Select the **Next: ...** button at the bottom of each tab, or select the name at the top of the wizard to open the next tab.
 >- All fields with an asterisk * next to the name are required fields.
 
 
@@ -86,8 +86,8 @@ To set up your alert for the following information, select from each of the foll
 - In Progress – Azure is working on mitigation. 
 
 >[!Tip] 
-> -Use **Active** to get notified immediately when an issue starts.<br>
-> -Use **Resolved** for post-incident reviews
+>- Use **Active** to get notified immediately when an issue starts.<br>
+>- Use **Resolved** for post-incident reviews
 
 ### Current resource status
 You can select **All** or:<br>
@@ -102,8 +102,8 @@ You can select **All** or:<br>
 - Unavailable - Down
 - Unknown - health information is missing
 
->[!NOTE]>
-> You can set alerts based on status transitions for example:<br> `Previous` = Unavailable and `Current` = Available.<br> This would show the resource is recovered and it's helpful for tracking recovery or SLA compliance.
+>[!Note]
+> You can set alerts based on status transitions for example:<br> `Previous` = Unavailable and `Current` = Available.<br> This would show the >resource is recovered and it's helpful for tracking recovery or SLA compliance.
 
 ### Reason type
 - Platform Initiated – Azure maintenance or incident.
@@ -116,18 +116,26 @@ On this tab, you decide how you're notified. Action Groups let you send alerts b
 :::image type="content" source="./media/resource-health/resource-health-create-actions.PNG" alt-text="Screenshot of Resource Health actions tab." lightbox="./media/resource-health/resource-health-create-actions.PNG":::
 
 
-Based on your subscription, there's  a list of all available action groups you can choose. Select up to 5 and then select **Select**. Each action group contains actions that are defined for that group as in emails or roles
+Based on your subscription, there's  a list of all available action groups you can choose. 
+1. Select **Select action groups**. 
+1. You can pick up to five groups. 
+1. Select the **Select** button at the bottom to finish.<br>
+Each action group contains actions that are defined for that group as in emails or roles.
 
->[!TIP] **Select Create action groups** to create your own action groups.
+>[!TIP] 
+> To set up your own action group select **Create action groups** and follow the prompts.
+
 For more information about Action groups, see [Action Groups](/azure/azure-monitor/alerts/action-groups?WT.mc_id=Portal-Microsoft_Azure_Monitoring).
 
 
 ## Details
-The Details tab is where you name and describe your alert. This information is needed so you can easily identify the alert later and understand its purpose immediately. A clear name and description help you manage multiple alerts, avoid confusion, and ensure the right alert is triggered for the right scenario.  
+The Details tab is where you name and describe your alert. This information is needed so you can easily identify the alert later and understand its purpose immediately. 
+
+A clear name and description help you manage multiple alerts, avoid confusion, and ensure the right alert is triggered for the right scenario.  
 
 :::image type="content" source="./media/resource-health/resource-health-create-details.PNG" alt-text="Screenshot of Resource Health Details tab." lightbox="./media/resource-health/resource-health-create-details.PNG"::: 
 
-On this tab you can give your alert a clear name and description so it’s easy to recognize later. Use names that explain the purpose, like *Critical VM Health Alert.*<br> Choose how to set up your details with the following fields. 
+On this tab you can give your alert a clear name and description so it’s easy to recognize later. Use names that explain the purpose, like *Critical VM* or *Health Alert.*<br> Choose how to set up your details with the following fields. 
 
 **Project details**
 - Resource group
@@ -146,14 +154,14 @@ Tags help you organize and filter your alerts easily.
 For example, adding tags like *Environment: Production* or *Team: Operations* make it simple to find and manage alerts later, especially when you have many rules.
 :::image type="content" source="./media/resource-health/resource-health-create-tags.PNG" alt-text="Screenshot of Resource Health Tags tab." lightbox="./media/resource-health/resource-health-create-tags.PNG"::: 
 
-Select from the **Name** drop-down menu and then choose the value from the **Value** drop-down.
+Select from the **Name** drop-down menu, and then choose the value from the **Value** drop-down menu.
 
 For more information about using tags, see [Use tags to organize your resources](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 
 ## Review + Create
 This is your final check before activating the alert. 
 
-Review all the settings from **Scope**, **Condition**, **Actions**, and **Details** to make sure they’re correct. 
+Review all the settings from **Scope**, **Condition**, **Actions**, **Tags**, and **Details** to make sure they’re correct. 
 :::image type="content" source="./media/resource-health/resource-health-create-rule.PNG" alt-text="Screenshot of Resource Health Review tab." lightbox="./media/resource-health/resource-health-create-rule.PNG":::
 
 When everything looks good, select **Create** to start monitoring your resources.
@@ -165,6 +173,7 @@ Learn more about Resource Health:
 
 * [Azure Resource Health overview](Resource-health-overview.md)
 * [Resource types and health checks available through Azure Resource Health](resource-health-checks-resource-types.md)
+* [Resource Health Frequently asked Questions](resource-health-faq.yml)
 
 Create Service Health Alerts:
 
