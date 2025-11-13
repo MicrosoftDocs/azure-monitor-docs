@@ -6,7 +6,7 @@ ms.date: 11/13/2025
 
 ---
 
-# Create and configure Resource Health alerts 
+# Create Resource Health alerts 
 
 A Resource Health alert is a proactive notification that tells you when the health status of an individual Azure resource changes. 
 
@@ -14,7 +14,7 @@ Unlike Service Health alerts that cover platform-wide issues, Resource Health al
 
 Resource Health alerts notify you when your Azure resources experience a change in health status, such as becoming unavailable or degraded. These alerts help you stay informed and respond quickly to service issues affecting your workloads.
 
-You can create Resource Health alerts to get:
+You can create Resource Health alerts to get the following information:
 - **Immediate Action**: To respond to outages before they impact customers. 
 - **Compliance**: So you can track SLA violations and recovery times. 
 - **Operational Insight**: To understand whether issues are platform or initiated by users. 
@@ -61,7 +61,6 @@ On this panel you can select any or all of the following from the drop-down menu
 
 You can also select either or both boxes to include all future resource groups and future resources.
 
-Select *Next: Condition >* to open the Condition tab.
 
 ## Condition
 
@@ -71,7 +70,7 @@ Pick the conditions that matter most so you only get alerts when action is neede
 
 :::image type="content" source="./media/resource-health/resource-health-create-condition.PNG" alt-text="Screenshot of Resource Health condition tab." lightbox="./media/resource-health/resource-health-create-condition.PNG"::: 
 
-The **Signal name** field is automatically populated and shows the type of event that will trigger your alert. For Resource Health alerts, it's usually *Resource Health*. It tells Azure which signal to monitor so your alert fires when the resource’s health status changes.
+The **Signal name** field is automatically populated and shows the type of event that triggers your alert. For Resource Health alerts, it's usually *Resource Health*. It tells Azure what signal to monitor so your alert fires when the resource’s health status changes.
 This tab is where you select from the health-related conditions you want for alerts such as:
 
 - **Event status**: is it active or resolved or ongoing?
@@ -87,7 +86,7 @@ To set up your alert for the following information, select from each of the foll
 - In Progress – Azure is working on mitigation. 
 
 >[!Tip] 
-> -Use **Active** to get notified immediately when an issue starts. 
+> -Use **Active** to get notified immediately when an issue starts.<br>
 > -Use **Resolved** for post-incident reviews
 
 ### Current resource status
@@ -103,8 +102,8 @@ You can select **All** or:<br>
 - Unavailable - Down
 - Unknown - health information is missing
 
->![NOTE]>
-> You can set alerts based on status transistions for example: `Previous` = Unavaiable and `Current` = Available. This would show the resource is recovered. This is helpful for tracking recovery or SLA compliance.
+>[!NOTE]>
+> You can set alerts based on status transitions for example:<br> `Previous` = Unavailable and `Current` = Available.<br> This would show the resource is recovered and it's helpful for tracking recovery or SLA compliance.
 
 ### Reason type
 - Platform Initiated – Azure maintenance or incident.
@@ -112,15 +111,14 @@ You can select **All** or:<br>
 - Unknown
 
 ## Actions
-On this tab, you decide how you're notified. Action Groups let you send alerts by email, SMS, push notifications, or even trigger automation through webhooks, Logic Apps, or Functions. Use multiple channels to make sure the right people respond quickly.
+On this tab, you decide how you're notified. Action Groups let you send alerts by email, SMS, push notifications, or even trigger automation through webhooks, Logic Apps, or Functions.<br> Use multiple channels to make sure all the right people respond quickly.
 
 :::image type="content" source="./media/resource-health/resource-health-create-actions.PNG" alt-text="Screenshot of Resource Health actions tab." lightbox="./media/resource-health/resource-health-create-actions.PNG":::
 
 
-
 Based on your subscription, there's  a list of all available action groups you can choose. Select up to 5 and then select **Select**. Each action group contains actions that are defined for that group as in emails or roles
 
->![TIP] **Select Create action groups** to create your own action groups.
+>[!TIP] **Select Create action groups** to create your own action groups.
 For more information about Action groups, see [Action Groups](/azure/azure-monitor/alerts/action-groups?WT.mc_id=Portal-Microsoft_Azure_Monitoring).
 
 
@@ -129,15 +127,17 @@ The Details tab is where you name and describe your alert. This information is n
 
 :::image type="content" source="./media/resource-health/resource-health-create-details.PNG" alt-text="Screenshot of Resource Health Details tab." lightbox="./media/resource-health/resource-health-create-details.PNG"::: 
 
-On this tab you can give your alert a clear name and description so it’s easy to recognize later. Use names that explain the purpose, like *Critical VM Health Alert.* Choose how to set your details with the following fields. 
+On this tab you can give your alert a clear name and description so it’s easy to recognize later. Use names that explain the purpose, like *Critical VM Health Alert.*<br> Choose how to set up your details with the following fields. 
 
 **Project details**
 - Resource group
-- Region<br>
+- Region
+
 **Alert rule details**
 - Alert rule name
-- Alert rule description<br>
-**Advanced options**
+- Alert rule description
+
+**Advanced options**<br>
 *Select this tool to add your own custom properties to the alert rule.*
 
 ## Tags
@@ -151,10 +151,12 @@ Select from the **Name** drop-down menu and then choose the value from the **Val
 For more information about using tags, see [Use tags to organize your resources](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 
 ## Review + Create
-This is your final check before activating the alert. Review all the settings from scope, conditions, actions, and details to make sure they’re correct. 
+This is your final check before activating the alert. 
+
+Review all the settings from **Scope**, **Condition**, **Actions**, and **Details** to make sure they’re correct. 
 :::image type="content" source="./media/resource-health/resource-health-create-rule.PNG" alt-text="Screenshot of Resource Health Review tab." lightbox="./media/resource-health/resource-health-create-rule.PNG":::
 
-When everything looks good, select **Create** to start monitoring.
+When everything looks good, select **Create** to start monitoring your resources.
 
 
 ## For more information
