@@ -907,11 +907,7 @@ If you access SDK configuration functions without chaining them to `appInsights.
 
 # [.NET](#tab/dotnet)
 
-#### ASP.NET
-
-Run your application and make requests to it. Telemetry should now flow to Application Insights. The Application Insights SDK automatically collects incoming web requests to your application, along with the following telemetry.
-
-#### ASP.NET Core
+#### ASP.NET & ASP.NET Core
 
 Run your application and make requests to it. Telemetry should now flow to Application Insights. The Application Insights SDK automatically collects incoming web requests to your application, along with the following telemetry.
 
@@ -945,7 +941,7 @@ Because the SDK batches data for submission, there might be a delay before items
 
 ---
 
-## Configure telemetry
+## Collecting telemetry data
 
 # [.NET](#tab/dotnet)
 
@@ -959,6 +955,7 @@ Because the SDK batches data for submission, there might be a delay before items
 * [Custom metrics](#custom-metric-collection)
 * [Custom operations](#custom-operations-tracking)
 * [Counters](#counters)
+* [Snapshot collection](#snapshot-collection)
 
 ### Live metrics
 
@@ -3136,41 +3133,22 @@ Like other telemetry, **customMetrics** also has a column `cloud_RoleInstance` t
 
 To review frequently asked questions (FAQ), see [Event counters FAQ](application-insights-faq.yml#asp-net-event-counters).
 
+### Snapshot collection
+
+To learn how to configure snapshot collection for ASP.NET and ASP.NET Core applications, see [Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Cloud Services, and Virtual Machines](snapshot-debugger-vm.md).
+
 # [Node.js](#tab/nodejs)
 
 #### In this section
 
-* [SDK configuration](#sdk-configuration)
-* [Distributed tracing](#distributed-tracing)
-* [Automatic third-party instrumentation](#automatic-third-party-instrumentation)
 * [Live metrics](#live-metrics)
+* [Distributed tracing](#distributed-tracing)
 * [Extended metrics](#extended-metrics)
+* [TelemetryClient API](#telemetryclient-api)
 
-### SDK configuration
+### Live metrics
 
-The `appInsights` object provides many configuration methods. They're listed in the following snippet with their default values.
-
-```javascript
-let appInsights = require("applicationinsights");
-appInsights.setup("<connection_string>")
-    .setAutoDependencyCorrelation(true)
-    .setAutoCollectRequests(true)
-    .setAutoCollectPerformance(true, true)
-    .setAutoCollectExceptions(true)
-    .setAutoCollectDependencies(true)
-    .setAutoCollectConsole(true)
-    .setUseDiskRetryCaching(true)
-    .setSendLiveMetrics(false)
-    .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
-    .start();
-```
-
-To fully correlate events in a service, be sure to set `.setAutoDependencyCorrelation(true)`. With this option set, the SDK can track context across asynchronous callbacks in Node.js.
-
-Review their descriptions in your IDE's built-in type hinting or [applicationinsights.ts](https://github.com/microsoft/ApplicationInsights-node.js/blob/develop/applicationinsights.ts) for detailed information and optional secondary arguments.
-
-> [!NOTE]
-> By default, `setAutoCollectConsole` is configured to *exclude* calls to `console.log` and other console methods. Only calls to supported third-party loggers (for example, winston and bunyan) will be collected. You can change this behavior to include calls to `console` methods by using `setAutoCollectConsole(true, true)`.
+To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
 
 [!INCLUDE [Distributed tracing](includes/application-insights-distributed-trace-data.md)]
 
@@ -3187,23 +3165,6 @@ appInsights
   .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
   .start()
 ```
-
-### Automatic third-party instrumentation
-
-To track context across asynchronous calls, some changes are required in third-party libraries, such as MongoDB and Redis. By default, Application Insights uses [`diagnostic-channel-publishers`](https://github.com/Microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers) to monkey-patch some of these libraries. This feature can be disabled by setting the `APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL` environment variable.
-
-> [!NOTE]
-> By setting that environment variable, events might not be correctly associated with the right operation.
-
- Individual monkey patches can be disabled by setting the `APPLICATION_INSIGHTS_NO_PATCH_MODULES` environment variable to a comma-separated list of packages to disable. For example, use `APPLICATION_INSIGHTS_NO_PATCH_MODULES=console,redis` to avoid patching the `console` and `redis` packages.
-
-Currently, nine packages are instrumented: `bunyan`,`console`,`mongodb`,`mongodb-core`,`mysql`,`redis`,`winston`,`pg`, and `pg-pool`. For information about exactly which version of these packages are patched, see the [diagnostic-channel-publishers' README](https://github.com/Microsoft/node-diagnostic-channel/blob/master/src/diagnostic-channel-publishers/README.md).
-
-The `bunyan`, `winston`, and `console` patches generate Application Insights trace events based on whether `setAutoCollectConsole` is enabled. The rest generates Application Insights dependency events based on whether `setAutoCollectDependencies` is enabled.
-
-### Live metrics
-
-To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
 
 ### Extended metrics
 
@@ -3245,7 +3206,7 @@ http.createServer( (req, res) => {
 });
 ```
 
-### Track your dependencies
+#### Track your dependencies
 
 Use the following code to track your dependencies:
 
@@ -3294,7 +3255,7 @@ function startMeasuringEventLoop() {
 }
 ```
 
-### Add a custom property to all events
+#### Add a custom property to all events
 
 Use the following code to add a custom property to all events:
 
@@ -3304,7 +3265,7 @@ appInsights.defaultClient.commonProperties = {
 };
 ```
 
-### Track HTTP GET requests
+#### Track HTTP GET requests
 
 Use the following code to manually track HTTP GET requests:
 
@@ -3328,7 +3289,7 @@ var server = http.createServer((req, res) => {
 });
 ```
 
-### Track server startup time
+#### Track server startup time
 
 Use the following code to track server startup time:
 
@@ -3340,7 +3301,7 @@ server.on("listening", () => {
 });
 ```
 
-### Flush
+#### Flush
 
 By default, telemetry is buffered for 15 seconds before it's sent to the ingestion server. If your application has a short lifespan, such as a CLI tool, it might be necessary to manually flush your buffered telemetry when the application terminates by using `appInsights.defaultClient.flush()`.
 
@@ -3348,7 +3309,7 @@ If the SDK detects that your application is crashing, it calls flush for you by 
 
 ---
 
-## Filter and enrich telemetry
+## Processing and filtering telemetry
 
 # [.NET](#tab/dotnet)
 
@@ -4011,7 +3972,7 @@ appInsights.start();
 
 ---
 
-## Manage SDK components
+## SDK configuration
 
 # [.NET](#tab/dotnet)
 
@@ -4022,7 +3983,6 @@ appInsights.start();
 * [Disable telemetry](#disable-telemetry)
 * [Connection string](#connection-string)
 * [ApplicationId Provider](#applicationid-provider)
-* [Snapshot collection](#configure-snapshot-collection)
 
 You can customize the Application Insights SDK for ASP.NET, ASP.NET Core, and Worker Service to change the default configuration.
 
@@ -4735,16 +4695,40 @@ var app = builder.Build();
 app.Run();
 ```
 
-### Configure snapshot collection
-
-To learn how to configure snapshot collection for ASP.NET and ASP.NET Core applications, see [Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Cloud Services, and Virtual Machines](snapshot-debugger-vm.md).
-
 # [Node.js](#tab/nodejs)
 
 #### In this section
 
+* [SDK configuration](#sdk-configuration)
 * [Connection string](#connection-string)
 * [Advanced configuration option](#advanced-configuration-options)
+* [Automatic third-party instrumentation](#automatic-third-party-instrumentation)
+
+### SDK configuration
+
+The `appInsights` object provides many configuration methods. They're listed in the following snippet with their default values.
+
+```javascript
+let appInsights = require("applicationinsights");
+appInsights.setup("<connection_string>")
+    .setAutoDependencyCorrelation(true)
+    .setAutoCollectRequests(true)
+    .setAutoCollectPerformance(true, true)
+    .setAutoCollectExceptions(true)
+    .setAutoCollectDependencies(true)
+    .setAutoCollectConsole(true)
+    .setUseDiskRetryCaching(true)
+    .setSendLiveMetrics(false)
+    .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
+    .start();
+```
+
+To fully correlate events in a service, be sure to set `.setAutoDependencyCorrelation(true)`. With this option set, the SDK can track context across asynchronous callbacks in Node.js.
+
+Review their descriptions in your IDE's built-in type hinting or [applicationinsights.ts](https://github.com/microsoft/ApplicationInsights-node.js/blob/develop/applicationinsights.ts) for detailed information and optional secondary arguments.
+
+> [!NOTE]
+> By default, `setAutoCollectConsole` is configured to *exclude* calls to `console.log` and other console methods. Only calls to supported third-party loggers (for example, winston and bunyan) will be collected. You can change this behavior to include calls to `console` methods by using `setAutoCollectConsole(true, true)`.
 
 ### Connection string
 
@@ -4796,6 +4780,22 @@ These properties are client specific, so you can configure `appInsights.defaultC
 | samplingPercentage | The percentage of telemetry items tracked that should be transmitted. (Default is `100`.) |
 | correlationIdRetryIntervalMs | The time to wait before retrying to retrieve the ID for cross-component correlation. (Default is `30000`.) |
 | correlationHeaderExcludedDomains| A list of domains to exclude from cross-component correlation header injection. (Default. See [Config.ts](https://github.com/Microsoft/ApplicationInsights-node.js/blob/develop/Library/Config.ts).) |
+
+
+### Automatic third-party instrumentation
+
+To track context across asynchronous calls, some changes are required in third-party libraries, such as MongoDB and Redis. By default, Application Insights uses [`diagnostic-channel-publishers`](https://github.com/Microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers) to monkey-patch some of these libraries. This feature can be disabled by setting the `APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL` environment variable.
+
+> [!NOTE]
+> By setting that environment variable, events might not be correctly associated with the right operation.
+
+ Individual monkey patches can be disabled by setting the `APPLICATION_INSIGHTS_NO_PATCH_MODULES` environment variable to a comma-separated list of packages to disable. For example, use `APPLICATION_INSIGHTS_NO_PATCH_MODULES=console,redis` to avoid patching the `console` and `redis` packages.
+
+Currently, nine packages are instrumented: `bunyan`,`console`,`mongodb`,`mongodb-core`,`mysql`,`redis`,`winston`,`pg`, and `pg-pool`. For information about exactly which version of these packages are patched, see the [diagnostic-channel-publishers' README](https://github.com/Microsoft/node-diagnostic-channel/blob/master/src/diagnostic-channel-publishers/README.md).
+
+The `bunyan`, `winston`, and `console` patches generate Application Insights trace events based on whether `setAutoCollectConsole` is enabled. The rest generates Application Insights dependency events based on whether `setAutoCollectDependencies` is enabled.
+
+
 
 ---
 
