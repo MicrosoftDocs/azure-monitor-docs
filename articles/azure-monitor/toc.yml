@@ -1718,7 +1718,7 @@ items:
   - name: Limited previews
     items:
     - name: Collect and analyze OpenTelemetry data with Azure Monitor
-      href: fundamentals/collect-and-use-observability-data.md
+      href: fundamentals/collect-use-observability-data.md
     - name: OTLP Signal Ingestion in Azure Monitor
       href: agents/signal-ingestion.md
     - name: Using Application Insights with OTLP Signals
