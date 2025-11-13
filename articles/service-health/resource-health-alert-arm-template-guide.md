@@ -2,7 +2,7 @@
 title: How to create Resource Health alerts in Service Health
 description: Create alerts in Azure Service Health to notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 11/12/2025 
+ms.date: 11/13/2025 
 
 ---
 
@@ -23,7 +23,7 @@ You can create Resource Health alerts to get:
 This article shows you how to create and configure Azure Resource Health alerts from the Service Health portal.
 
 
-## Create a Resource Health alert rule in the Service Health portal
+## Create a Resource Health alert rule
 
 1. In the Service Health portal, select **Resource Health**.
 
@@ -31,25 +31,23 @@ This article shows you how to create and configure Azure Resource Health alerts 
 :::image type="content" source="./media/alerts-activity-log-service-notifications/resource-health-select.png" alt-text="Screenshot of Service Health option." lightbox="./media/alerts-activity-log-service-notifications/resource-health-select.png":::
 
     
-2. Select **Add resource health alert** which opens the wizard you use to create your alert.
+2. Select **Add resource health alert** to open the **Create an alert rule** window.
    
 :::image type="content" source="./media/resource-health/resource-health-create.PNG" alt-text="Screenshot of Resource Health create option." lightbox="./media/resource-health/resource-health-create.PNG":::
 
-3. Select **Add resource health alert** to open the **Create an alert rule** window.
 
 To set up your alert, use the six tabs in this window: **Scope**, **Condition**, **Actions**, **Details**, **Tags**, and **Review + create**.
 <!--For more information about creating alerts, see [Configure alert rule conditions](/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log#configure-alert-rule-conditions).-->
 
 
-
 >[!TIP]
->- Select the *Next:* button at the bottom of each tab to open the next one, or select the name at the top of the wizard.
->- All fields with an asterisk next to the name are required fields.
+>- Select the *Next: ...* button at the bottom of each tab, or select the name at the top of the wizard to open the next tab.
+>- All fields with an asterisk * next to the name are required fields.
 
 
 ## Scope
 
-Scope defines which resources your alert monitors. In this tab, you select the subscription, resource group, or individual resources that matter most to your business. This information is needed because Resource Health alerts only trigger for the resources you include in the scope. 
+Scope defines which resources your alert monitors. In this tab, you select the subscription, resource group, or individual resources that matter most to your business. This information is needed because Resource health alerts only trigger for the resources you include in the scope. 
 
 By choosing the right scope, you ensure alerts are relevant and actionable, helping you respond quickly to issues that could have an impact on your critical workloads without unnecessary noise.
 
@@ -73,12 +71,13 @@ Pick the conditions that matter most so you only get alerts when action is neede
 
 :::image type="content" source="./media/resource-health/resource-health-create-condition.PNG" alt-text="Screenshot of Resource Health condition tab." lightbox="./media/resource-health/resource-health-create-condition.PNG"::: 
 
-When this tab opens your subscription is automatically shown as the *Signal* name. This tab is where you select from the health-related conditions you want for alerts such as:
+The **Signal name** field is automatically populated and shows the type of event that will trigger your alert. For Resource Health alerts, it's usually *Resource Health*. It tells Azure which signal to monitor so your alert fires when the resource’s health status changes.
+This tab is where you select from the health-related conditions you want for alerts such as:
 
 - **Event status**: is it active or resolved or ongoing?
 - **Resource status**: how is the resource now?
 - **Previous vs current status**: you can create an alert based on the status transition – is it in progress or being resolved?
-- The reason type: is the event platform or user initiated?
+- **The reason type**: is the event platform or user initiated?
 
 To set up your alert for the following information, select from each of the following drop-down menu options.
 
