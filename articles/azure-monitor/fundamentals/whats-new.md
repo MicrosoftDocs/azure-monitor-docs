@@ -20,7 +20,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Rate-limited sampling](../app/opentelemetry-configuration.md?tabs=nodejs#enable-sampling)|OpenTelemetry rate-limited sampling is now available for both Node.js and Python.|
 |Application-Insights|[.NET Classic API](../app/dotnet.md)|Classic API SDK information for .NET has been consolidated into a single article. Try the "Ask Learn" for AI assistance.|
 |Application-Insights|[Node.js Classic API](../app/nodejs.md)|Classic API SDK information for Node.js has been consolidated into a single article. Try the "Ask Learn" for AI assistance.|
-|Application-Insights|[Data collection, retention, storage, and privacy](../app/application-insights-faq.yml#how-does-application-insights-handle-data-collection--retention--storage--and-privacy)|Data collection, retention, storage, and privacy has been consolidated in the FAQ with additional granularity.|
+|Application-Insights|[Data collection, retention, storage, and privacy](../app/application-insights-faq.yml#how-does-application-insights-handle-data-collection--retention--storage--and-privacy)|Data collection, retention, storage, and privacy have been consolidated in the FAQ with additional granularity.|
 |Application-Insights|[Quarkus support](../app/opentelemetry-enable.md?tabs=java-native#install-the-client-library)|We've clarified Quarkus support across OpenTelemetry documentation and provided a link to get community assistance.|
 | Data Collection | [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md) | Added content for preview DCR experience. |
 | Kubernetes | [Analyze the health and status of your Kubernetes cluster with Azure Monitor](../containers/container-insights-analyze.md) | Rewrite to support latest portal experience. |
@@ -134,7 +134,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Migrate from using batch and beta queries to the standard Log Analytics query API](../logs/api/migrate-batch-and-beta.md)|Announcement of deprecation for Beta and Batch APIs|
 |Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace](../logs/create-custom-table-auxiliary.md)|Auxiliary logs now GA|
 |Logs|[Delete data from a Log Analytics workspace by using the Delete Data API](../logs/delete-log-data.md)|New Delete data API to make async requests to remove sensitive, personal or corrupt log entries from LA tables.|
-|Logs|[Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)|Our tutorial page title are now consistent, making it easier to find what you're looking for.|
+|Logs|[Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)|Our tutorial page titles are now consistent, making it easier to find what you're looking for.|
 |Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](../logs/workspace-replication.md)|Log Analytics workspace replication now GA with additional regions added.|
 |Logs|[Log Analytics workspace data export in Azure Monitor](../logs/logs-data-export.md)|Added permissions prerequisite and updated API version for data export calls.|
 |Virtual-Machines|[Collect IIS logs from virtual machine with Azure Monitor](../vm/data-collection-iis.md)|Rewritten for clarity and simplicity.|
@@ -167,7 +167,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Containers|[Recommended alert rules for Kubernetes clusters](../containers/kubernetes-metric-alerts.md)|Added table mapping legacy Container insights metrics to Prometheus metrics.|
 |Containers|[Troubleshoot Container insights](../containers/container-insights-troubleshoot.md)|General cleanup of article and added troubleshooting for additional error conditions.|
 |Essentials|[Virtual machine guest performance counters](../vm/virtual-machine-guest-metrics.md)|A new article listing guest performance counters for Windows and Linux VMs.|
-|Essentials|[Connect Grafana to Azure Monitor Prometheus metrics](../metrics/prometheus-grafana.md)|All Grafana configuration for Prometheus are now in a single article|
+|Essentials|[Connect Grafana to Azure Monitor Prometheus metrics](../metrics/prometheus-grafana.md)|All Grafana configurations for Prometheus are now in a single article|
 |Logs|[Get started with log queries in Azure Monitor](../logs/get-started-queries.md)|Added examples of how to query data in your Log Analytics workspace using simple mode, alongside Kusto Query Language (KQL) examples.|
 |Visualizations|[Azure Monitor Logs overview](../logs/data-platform-logs.md)|We now recommend using summary rules for custom dashboards, workbooks, and reports to improve query performance and reduce query errors and timeouts.|
 
