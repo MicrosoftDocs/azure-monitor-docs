@@ -16,11 +16,12 @@ ms.date: 09/24/2025
 
 - [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace) to collect log data collected from VMs.
 - [Azure Monitor workspace](/azure/azure-monitor/metrics/azure-monitor-workspace-manage) to collect metrics data collected from VMs.
+- [User assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal) as described in [Managed identity](#managed-identity) section below.
 
 ## Required permissions
 
-### User account
-The user account performing the enrollment must have the following roles in the subscription being enabled:
+### User
+The user performing the enrollment must have the following roles in the subscription being enabled:
 
 - Essential Machine Management Administrator
 - Managed Identity Operator roles
