@@ -138,13 +138,8 @@ items:
         - name: ASP.NET on-premises agent
           href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)
-        items:
-        - name: .NET
-          displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp
-          href: app/dotnet.md
-        - name: Node.js
-          href: app/nodejs.md
-          displayName: SDK, Node.js, nodejs, JavaScript, js
+        displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
+        href: app/classic-api.md
     - name: Experiences
       items:
       - name: Agent details
@@ -1717,10 +1712,8 @@ items:
     href: fundamentals/policy-reference.md
   - name: Limited previews
     items:
-    - name: OTLP Signal Ingestion in Azure Monitor
-      href: agents/signal-ingestion.md
-    - name: Using Application Insights with OTLP Signals
-      href: app/signal-integration.md
+    - name: Collect and analyze OpenTelemetry data with Azure Monitor
+      href: fundamentals/collect-use-observability-data.md
     - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
       href: app/kubernetes-open-protocol.md
   - name: Archived documentation
