@@ -73,8 +73,8 @@ custom template in the search bar in the Azure portal.":::
 Step 2 – Select “Build your own template in the editor”.
 
 :::image type="content" source="./media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-edit-template-portal.png" lightbox="./media/azure-monitor-agent-settings/azure-
-monitor-agent-dcr-edit-template-portal.png" alt-text="Screenshot that shows how to open 
+agent-dcr-edit-template-portal" lightbox="./media/azure-monitor-agent-settings/azure-
+monitor-agent-dcr-edit-template-portal" alt-text="Screenshot that shows how to open 
 the custom template editor in the Azure portal.":::
 
  
@@ -83,8 +83,8 @@ the editor. Make sure that you modify the parameters in the JSON in the editor t
 needs. 
 
 :::image type="content" source="./media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-paste-template-portal.png" lightbox="./media/azure-monitor-agent-
-settings/azure-monitor-agent-dcr-paste-template-portal.png" alt-text="Screenshot that 
+agent-dcr-paste-template-portal" lightbox="./media/azure-monitor-agent-
+settings/azure-monitor-agent-dcr-paste-template-portal" alt-text="Screenshot that 
 shows how to open the custom template editor in the Azure portal.":::
 
 
@@ -130,7 +130,7 @@ shows how to open the custom template editor in the Azure portal.":::
         }
     ]
 }
-    ```
+```
 
 Follow the step to validate and deploy the template. Make sure that you do not get any 
 errors
@@ -142,13 +142,13 @@ selecting the JSON View in the upper right corner. Use the copy button and then 
 into the template. For the vmName just use the string name of the VM.
 
 :::image type="content" source="./media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-resource-id-portal.png" ="./media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-resource-id-portal.png" alt-text="Screenshot that shows how to copy the DCR 
+agent-dcr-resource-id-portal" ="./media/azure-monitor-agent-settings/azure-monitor-
+agent-dcr-resource-id-portal" alt-text="Screenshot that shows how to copy the DCR 
 resource id from the DCR json in the Azure portal.":::
 
 
  
-    ```json
+```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-
 01/deploymentTemplate.json#",
@@ -187,6 +187,7 @@ the data collection for this virtual machine."
   ]
 }
 ```
+
 Follow the step to validate and deploy the template. Make sure that you do not get any 
 errors
 Step 5 – Apply the changes
@@ -198,5 +199,6 @@ Restart AMA on the VM
 
 [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and 
 send it to Azure Monitor.
+
 
 
