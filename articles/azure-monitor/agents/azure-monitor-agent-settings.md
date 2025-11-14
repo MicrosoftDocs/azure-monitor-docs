@@ -1,11 +1,13 @@
 
 ---
-title: Install and Manage the Azure Monitor Agent 
+
+title: Manage the Azure Monitor Agent Configuration
 description: Learn options for configuring the Azure Monitor Agent on Azure virtual machines 
 and Azure Arc-enabled servers. 
 ms.topic: install-set-up-deploy 
 ms.date: 11/11/2025 
 ms.reviewer: jeffwo
+
 ---
 
 
@@ -196,3 +198,4 @@ Restart AMA on the VM
 
 [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and 
 send it to Azure Monitor.
+
