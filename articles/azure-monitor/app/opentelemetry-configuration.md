@@ -587,7 +587,7 @@ A log record is considered associated with an unsampled trace if it has a valid 
 `TraceFlags` indicate that the trace is unsampled. A log record that isn't associated with a trace
 context is not affected by this parameter and therefore bypasses trace based sampling filtering.
 
-When `enable_trace_based_sampling_for_logs` is not specified, it defaults to False.
+When `enable_trace_based_sampling_for_logs` isn't specified, it defaults to False.
 
 ## Live metrics
 
