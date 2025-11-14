@@ -577,17 +577,17 @@ Configure trace-based sampling using the distro's `configure_azure_monitor`:
 ```console
 configure_azure_monitor (
     connection_string=connection_string,
-    enable_trace_based_sampling=True
+    enable_trace_based_sampling_for_logs=True
 )
 ```
 
-If `trace_based_sampling` is `true`, log records associated with unsampled traces are dropped.
+If `enable_trace_based_sampling_for_logs` is `true`, log records associated with unsampled traces are dropped.
 
 A log record is considered associated with an unsampled trace if it has a valid `SpanId` and its
 `TraceFlags` indicate that the trace is unsampled. A log record that isn't associated with a trace
 context is not affected by this parameter and therefore bypasses trace based sampling filtering.
 
-When `enable_trace_based_sampling` is not specified, it defaults to False.
+When `enable_trace_based_sampling_for_logs` is not specified, it defaults to False.
 
 ## Live metrics
 
