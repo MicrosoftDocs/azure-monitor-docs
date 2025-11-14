@@ -43,8 +43,6 @@ Use the **Azure Monitor Agent** or **OpenTelemetry Collector** to send OTLP sign
 - **Orchestrate ingestion manually.** Create an Azure Monitor Workspace (AMW), Log Analytics workspace (LAW), Data Collection Endpoints (DCEs), and Data Collection Rules (DCRs), then build the three OTLP endpoint URLs for metrics, logs, and traces.
 - **Export from the OpenTelemetry Collector.** Use the Collector `contrib` distribution and authenticate with Microsoft Entra ID or a managed identity. Use the Collector’s **Azure Auth extension** to authenticate with Microsoft Entra. For details, see the extension README: https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#readme
 
-For more information, see [OTLP signal ingestion in Azure Monitor](../agents/signal-ingestion.md) and [Use Application Insights with OTLP signals](../app/signal-integration.md).
-
 > [!TIP]
 > Endpoint URLs also appear on the Application Insights **Overview** page when OTLP support is enabled. Use these values in your Collector exporters or SDK configuration.
 
@@ -93,15 +91,7 @@ For more information, see [OpenTelemetry semantic conventions](https://opentelem
 
 ## Next steps
 
-- Start with **Monitor applications on AKS with OpenTelemetry** or **Configure other environments** and complete onboarding.
-- Open **Dashboards with Grafana** or **Application Insights** to validate signals.
-- Use **Log Analytics** to run Kusto Query Language (KQL) queries and confirm the data model meets your needs.
-
-## Related resources
-
 - [OpenTelemetry on Azure](../app/opentelemetry.md)
 - [Monitor AKS with OpenTelemetry](../app/kubernetes-open-protocol.md)
-- [OTLP signal ingestion in Azure Monitor](../agents/signal-ingestion.md)
-- [Use Application Insights with OTLP signals](../app/signal-integration.md)
 - [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md)
 - [OpenTelemetry documentation](https://opentelemetry.io/docs/)
