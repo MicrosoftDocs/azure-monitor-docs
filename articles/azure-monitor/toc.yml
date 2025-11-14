@@ -1486,6 +1486,8 @@ items:
           href: alerts/prometheus-alerts.md
         - name: Set up a metric alert rule with dynamic thresholds
           href: alerts/alerts-dynamic-thresholds.md
+        - name: Create a metric alert rule with dynamic thresholds
+          href: alerts/alerts-dynamic-thresholds-create-rule.md
         - name: Set up a metric alert on Azure Monitor Logs
           href: alerts/alerts-metric-logs.md
         - name: Create one alert rule for multiple time series
