@@ -53,8 +53,8 @@ This ensures that once the outage ends, thresholds remain consistent with normal
 - Dynamic thresholds need at least three weeks of historical data to detect weekly seasonality. Some detailed patterns, such as bihourly or semiweekly patterns, might not be detected.
 - Changes in data behavior – If the behavior of a metric changed recently, the changes aren't immediately reflected in the dynamic threshold's upper and lower bounds. The borders are calculated based on metric data from the last 10 days.
 - Dynamic thresholds are good for detecting significant deviations, as opposed to slowly evolving issues. Slow behavior changes probably won't trigger an alert.
-- You cannot use dynamic thresholds in alert rules that monitor multiple conditions.
-- You cannot use dynamic thresholds in Log search alert rules with 1-minute frequency.
+- You can't use dynamic thresholds in alert rules that monitor multiple conditions.
+- You can't use dynamic thresholds in Log search alert rules with 1-minute frequency.
 
 ## Create a metric alert rule with dynamic thresholds
 
@@ -96,12 +96,12 @@ Use the following information to interpret the chart:
   - **Lookback period** (for Metric alert rules) or **Aggregation granularity** (for Log search alert rules) - Increasing the data window makes the rule less susceptible to transient deviations.
   - **Number of violations** (under **Advanced settings**): Configure the alert rule to trigger only if several deviations occur within a certain period of time. This setting makes the rule less susceptible to transient deviations.
 
-- You might find that an alert rule that uses dynamic thresholds doesn't fire or isn't sensitive enough, even though it's configured with high sensitivity. This scenario can happen when the metric's distribution is highly irregular. Consider one of the following solutions:
+- You might find that an alert rule that uses dynamic thresholds doesn't fire or isn't sensitive enough, even though the rule is configured with high sensitivity. This scenario can happen when the metric's distribution is highly irregular. Consider one of the following solutions:
 
   - Move to monitoring a complementary metric that's suitable for your scenario, if applicable. For example, check for changes in success rate rather than failure rate.
   - Try selecting a different value for **Aggregation granularity (Period)**.
   - Check if a drastic change happened in the metric behavior in the last 10 days, such as an outage. An abrupt change can affect the upper and lower thresholds calculated for the metric and make them broader. Wait a few days until the outage is no longer included in the threshold calculation. You can also edit the alert rule to use the **Ignore data before** option in **Advanced settings**.
-  - If your data has weekly seasonality, but not enough history is available for the metric, the calculated thresholds can result in broad upper and lower bounds. For example, the calculation can treat weekdays and weekends in the same way and build wide borders that don't always fit the data. This issue should resolve itself after enough metric or log query result history is availableThen, the correct seasonality is detected and the calculated thresholds are updated accordingly.
+  - If your data has weekly seasonality, but not enough history is available for the metric, the calculated thresholds can result in broad upper and lower bounds. For example, the calculation can treat weekdays and weekends in the same way and build wide borders that don't always fit the data. This issue should resolve itself after enough results from metric or log query history is available. Then, the Azure Monitor detects the correct seasonality and updates the calculated thresholds accordingly.
 
 - When data exhibits large fluctuations, dynamic thresholds might build a wide model around the data values, which can result in a lower or higher boundary than expected. This scenario can happen when:
 
@@ -196,19 +196,19 @@ Dynamic thresholds support most metrics, but the following metrics can't use dyn
 
 To configure dynamic thresholds, follow the procedure for creating an alert rule. Use these settings on the Condition tab:
 
-- Configure your query, measurement and dimensions the same way as with static threshold. 
+- Configure your query, measurement, and dimensions the same way as with static threshold. 
 - For Threshold, select Dynamic.
 - Select Preview Chart to see historical query results alongside the calculated dynamic threshold, helping you visualize how the threshold adapts to normal patterns and where potential alerts would fire.
 - After any change is made in the condition tab, select Refresh Chart to see the updated preview. 
 
-:::image type="content" source="media/alerts-dynamic-thresholds/alerts-threshold-refresh-chart.png" lightbox="media/alerts-dynamic-thresholds/alerts-threshold-refresh-chart.png" alt-text="Screenshot of the UI that shows the location of the Refresh chart link to the right."::: 
+:::image type="content" source="media/alerts-dynamic-thresholds/alerts-threshold-refresh-chart.png" lightbox="media/alerts-dynamic-thresholds/alerts-threshold-refresh-chart.png" alt-text="Screenshot of the UI that shows the location of the Refresh chart link."::: 
 
 > [!NOTE]
 > 1-minute frequency is not supported in Log search alert rules with dynamic threshold.
 
 ### Dynamic threshold preview chart
 
-The following chart shows the value of a log alert rule query result, its dynamic threshold limits, threshold violations and alerts that fired when the value was outside the allowed thresholds. In this scenario the number of violations required to fire an alert is 2.
+The following chart shows the value of a log alert rule query result, its dynamic threshold limits, threshold violations, and alerts that fired when the value was outside the allowed thresholds. In this scenario, the number of violations required to fire an alert is 2.
 
 :::image type="content" source="media/alerts-dynamic-thresholds/alerts-threshold-dynamic-threshold-preview-chart.png" lightbox="media/alerts-dynamic-thresholds/alerts-threshold-dynamic-threshold-preview-chart.png" alt-text="Screenshot of a log alert rule query result, its dynamic threshold limits, threshold violations and alerts that fired when the value was outside the allowed thresholds."::: 
  
@@ -218,7 +218,7 @@ The following chart shows the value of a log alert rule query result, its dynami
 •	Pink bars: Represent a fired Log search alert. 
 
 > [!NOTE]
-> To ensure the preview chart performance, we enforce a limitation on the number of data points returned, and consequently, the allowed time range displayed, depending on alert rule frequency. 5-minute frequency supports 6 hours, 10–15-minute frequency support 6 and 12 hours, 30-minute frequency supports 6 and 12 hours and 1 day. Frequency of 1 hour or more supports 6 and 12 hours as well as 1 and 2 days.
+> To ensure the preview chart performance, we enforce a limitation on the number of data points returned and, consequently, the allowed time range displayed, depending on alert rule frequency. A 5-minute frequency supports 6 hours. A 10–15-minute frequency supports 6 and 12 hours. A 30-minute frequency supports 6 and 12 hours and 1 day. Frequency of 1 hour or more supports 6 and 12 hours as well as 1 and 2 days.
 
 
 ## Related content
