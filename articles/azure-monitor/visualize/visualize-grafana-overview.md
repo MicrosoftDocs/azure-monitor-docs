@@ -34,10 +34,6 @@ Navigate to **Azure Monitor** in the Azure portal, and then select **Dashboards 
 
 :::image type="content" source="./media/visualizations-grafana/default-dashboards.png" lightbox="./media/visualizations-grafana/default-dashboards.png" alt-text="Screenshot of dashboards with grafana default dashboards.":::
 
-You can also access **Dashboards with Grafana** from the **Monitoring** section of an AKS or Arc-enabled cluster.
-
-:::image type="content" source="./media/visualizations-grafana/default-dashboards-kubernetes.png" lightbox="./media/visualizations-grafana/default-dashboards-kubernetes.png" alt-text="Screenshot of dashboards with grafana default dashboards for Kubernetes clusters.":::
-
 
 ### Data sources
 Azure Monitor dashboards with Grafana supports the following data sources. If you require other data sources, then see [Azure Managed Grafana](#azure-managed-grafana).
