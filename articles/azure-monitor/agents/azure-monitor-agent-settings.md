@@ -63,15 +63,15 @@ This example sets the maximum amount of disk space used by the Azure Monitor Age
 cache to 5GB. 
 Step 1 - Use the search bar to find “Deploy a custom template” option
 
- :::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
-agent-deploy-template-portal.png" lightbox="media/azure-monitor-agent-settings/azure-
+ :::image type="content" source="./media/azure-monitor-agent-settings/azure-monitor-
+agent-deploy-template-portal.png" lightbox="./media/azure-monitor-agent-settings/azure-
 monitor-agent-deploy-template-portal.png" alt-text="Screenshot that shows the deploy 
 custom template in the search bar in the Azure portal.":::
  
 Step 2 – Select “Build your own template in the editor”.
 
-:::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-edit-template-portal.png" lightbox="media/azure-monitor-agent-settings/azure-
+:::image type="content" source="./media/azure-monitor-agent-settings/azure-monitor-
+agent-dcr-edit-template-portal.png" lightbox="./media/azure-monitor-agent-settings/azure-
 monitor-agent-dcr-edit-template-portal.png" alt-text="Screenshot that shows how to open 
 the custom template editor in the Azure portal.":::
 
@@ -80,8 +80,8 @@ the custom template editor in the Azure portal.":::
 the editor. Make sure that you modify the parameters in the JSON in the editor to meet your 
 needs. 
 
-:::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-paste-template-portal.png" lightbox="media/azure-monitor-agent-
+:::image type="content" source="./media/azure-monitor-agent-settings/azure-monitor-
+agent-dcr-paste-template-portal.png" lightbox="./media/azure-monitor-agent-
 settings/azure-monitor-agent-dcr-paste-template-portal.png" alt-text="Screenshot that 
 shows how to open the custom template editor in the Azure portal.":::
 
@@ -139,8 +139,8 @@ parameters to meet your needs. You can copy the resource ID by going to the DCR 
 selecting the JSON View in the upper right corner. Use the copy button and then paste it 
 into the template. For the vmName just use the string name of the VM.
 
-:::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-resource-id-portal.png" ="media/azure-monitor-agent-settings/azure-monitor-
+:::image type="content" source="./media/azure-monitor-agent-settings/azure-monitor-
+agent-dcr-resource-id-portal.png" ="./media/azure-monitor-agent-settings/azure-monitor-
 agent-dcr-resource-id-portal.png" alt-text="Screenshot that shows how to copy the DCR 
 resource id from the DCR json in the Azure portal.":::
 
