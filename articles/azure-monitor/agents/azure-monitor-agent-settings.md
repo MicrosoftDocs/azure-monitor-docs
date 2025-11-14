@@ -63,29 +63,18 @@ This example sets the maximum amount of disk space used by the Azure Monitor Age
 cache to 5GB. 
 Step 1 - Use the search bar to find “Deploy a custom template” option
 
-:::image type="content" source="media/azure-monitor-agent-dce/data-collection-rule-virtual-machines-with-endpoint.png" lightbox="media/azure-monitor-agent-dce/data-collection-rule-virtual-machines-with-endpoint.png" alt-text="Screenshot that shows configuring data collection endpoints for an agent.":::
-
- :::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
-agent-deploy-template-portal" lightbox="media/azure-monitor-agent-settings/azure-
-monitor-agent-deploy-template-portal" alt-text="Screenshot that shows the deploy 
-custom template in the search bar in the Azure portal.":::
+ :::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-agent-deploy-template-portal" lightbox="media/azure-monitor-agent-settings/azure-monitor-agent-deploy-template-portal" alt-text="Screenshot that shows the deploy custom template in the search bar in the Azure portal.":::
  
 Step 2 – Select “Build your own template in the editor”.
 
-:::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-edit-template-portal" lightbox="media/azure-monitor-agent-settings/azure-
-monitor-agent-dcr-edit-template-portal" alt-text="Screenshot that shows how to open 
-the custom template editor in the Azure portal.":::
+:::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-agent-dcr-edit-template-portal" lightbox="media/azure-monitor-agent-settings/azure-monitor-agent-dcr-edit-template-portal" alt-text="Screenshot that shows how to open the custom template editor in the Azure portal.":::
 
  
  Step 3 – Delete the existing JSON in the template editor and copy the JSON code below into 
 the editor. Make sure that you modify the parameters in the JSON in the editor to meet your 
 needs. 
 
-:::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-paste-template-portal" lightbox="media/azure-monitor-agent-
-settings/azure-monitor-agent-dcr-paste-template-portal" alt-text="Screenshot that 
-shows how to open the custom template editor in the Azure portal.":::
+:::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-agent-dcr-paste-template-portal" lightbox="media/azure-monitor-agent-settings/azure-monitor-agent-dcr-paste-template-portal" alt-text="Screenshot that shows how to open the custom template editor in the Azure portal.":::
 
 
  
@@ -141,10 +130,7 @@ parameters to meet your needs. You can copy the resource ID by going to the DCR 
 selecting the JSON View in the upper right corner. Use the copy button and then paste it 
 into the template. For the vmName just use the string name of the VM.
 
-:::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-resource-id-portal" ="media/azure-monitor-agent-settings/azure-monitor-
-agent-dcr-resource-id-portal" alt-text="Screenshot that shows how to copy the DCR 
-resource id from the DCR json in the Azure portal.":::
+:::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-agent-dcr-resource-id-portal" ="media/azure-monitor-agent-settings/azure-monitor-agent-dcr-resource-id-portal" alt-text="Screenshot that shows how to copy the DCR resource id from the DCR json in the Azure portal.":::
 
 
  
@@ -199,6 +185,7 @@ Restart AMA on the VM
 
 [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and 
 send it to Azure Monitor.
+
 
 
 
