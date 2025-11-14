@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 10/17/2025
+ms.date: 11/13/2025
 ---
 
 # Health advisories 
@@ -27,6 +27,11 @@ Select the **Issue name** link to open the tabs with the information you need.
 >Service Health advisories are displayed in the pane for up to 28 days if they are still active and if the `impactMitigationTime` is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
 >For more information regarding Service health advisories from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
+
+## Who can view Health advisories
+
+- Users with a [Subscription Reader role](/azure/role-based-access-control/built-in-roles#reader) or higher, can view issues affecting their Azure subscription scope.
+- Users with [Tenant admin access](admin-access-reference.md) can view issues affecting their Azure tenant scope.
 
 ### Filtering and sorting
 At the top of each tab, there are several options of how to view the information on this page.
