@@ -107,6 +107,5 @@ The following table provides a complete comparison of the two solutions.
 ## Next steps
 
 - [Use Azure Monitor Dashboards with Grafana](visualize-use-grafana-dashboards.md)
-- [Use Dashboards with Grafana with Azure Kubernetes Service](visualize-use-grafana-dashboards-azure-kubernetes-service.md)
 - [Use Managed Grafana](visualize-use-managed-grafana-how-to.md)
  

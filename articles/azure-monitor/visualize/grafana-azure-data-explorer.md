@@ -43,5 +43,4 @@ If you have existing dashboards in Grafana that use the [Azure Data Explorer dat
 ## Related content
 
 - [Azure Monitor Grafana overview](visualize-grafana-overview.md)
-- [Use Dashboards with Grafana with Azure Kubernetes Service](visualize-use-grafana-dashboards-azure-kubernetes-service.md)
 - [Use Managed Grafana](visualize-use-managed-grafana-how-to.md)

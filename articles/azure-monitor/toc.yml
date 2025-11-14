@@ -1314,9 +1314,9 @@ items:
     - name: Use Grafana dashboards
       href: visualize/visualize-use-grafana-dashboards.md
     - name: Azure Data Explorer
-      href: visualize/visualize-use-grafana-dashboards-azure-data-explorer.md
+      href: visualize/grafana-azure-data-explorer.md
     - name: Kubernetes clusters
-      href: visualize/visualize-use-grafana-dashboards-azure-kubernetes-service.md
+      href: visualize/grafana-kubernetes.md
     - name: Call Grafana APIs programmatically
       href: visualize/visualize-call-grafana-api.md
   - name: Power BI

@@ -47,5 +47,4 @@ For Container logs, select **Azure Monitor**. Then select **Logs** for the **Ser
 ## Related content
 
 - [Azure Monitor Grafana overview](visualize-grafana-overview.md)
-- [Use Dashboards with Grafana with Azure Data Explorer](visualize-use-grafana-dashboards-azure-data-explorer.md)
 - [Use Managed Grafana](visualize-use-managed-grafana-how-to.md)

@@ -169,6 +169,4 @@ You can export a dashboard as an ARM template that contains the JSON for the das
 ## Related content
 
 - [Azure Monitor Grafana overview](visualize-grafana-overview.md)
-- [Use Dashboards with Grafana with Azure Data Explorer](visualize-use-grafana-dashboards-azure-data-explorer.md)
-- [Use Dashboards with Grafana with Azure Kubernetes Service](visualize-use-grafana-dashboards-azure-kubernetes-service.md)
 - [Use Managed Grafana](visualize-use-managed-grafana-how-to.md)
