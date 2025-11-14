@@ -2,7 +2,7 @@
 title: Resiliency in Operations center (preview)
 description: Describes the Resiliency pillar in Operations center, which provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources.
 ms.topic: conceptual
-ms.date: 09/24/2025
+ms.date: 11/14/2025
 ---
 
 
@@ -33,7 +33,7 @@ The Resiliency pillar includes the following menu items:
 | Recommendations | Azure Advisor recommendations related to resiliency. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
 
 ## Resiliency overview
-The Resiliency overview page provides a summary of your zone resiliency posture and associated recommendations. It includes a single-pane snapshot of the resiliency status for your resources and service groups, summarizing key information from other pages in the Resiliency pillar. 
+The **Resiliency** overview page provides a summary of your zone resiliency posture and associated recommendations. It includes a single-pane snapshot of the resiliency status for your resources and service groups, summarizing key information from other pages in the Resiliency pillar. 
 
 Modify the scope of tiles by selecting any of the filters at the top of the page.
 
@@ -51,4 +51,5 @@ The Resiliency overview page includes the following sections.
 | Service group resiliency | Count of service groups with different resiliency statuses for their contained resources. |
 | Optimization recommendations | Displays the top Advisor recommendations for resiliency. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
 
-
+## Next steps
+- Learn more about [operations center](./overview.md)

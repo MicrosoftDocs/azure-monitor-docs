@@ -1,16 +1,16 @@
 ---
-title: Optimization in Operations center (preview)
-description: Describes the Optimization pillar in Operations center, which includes cost and carbon optimization features and the Optimize agent.
+title: Optimization in operations center (preview)
+description: Describes the Optimization pillar in operations center, which includes cost and carbon optimization features and the Optimize agent.
 ms.topic: conceptual
-ms.date: 10/30/2025
+ms.date: 11/14/2025
 ---
 
 
-# Optimization in Operations center (preview)
+# Optimization in operations center (preview)
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Optimization** pillar in [Operations center](./overview.md) helps you identify opportunities to improve the cost efficiency and carbon emissions of your Azure resources. It provides insights and recommendations based on best practices and usage patterns and leverages the Optimize agent to provide proactive recommendations and guided assistance.
+The **Optimization** pillar in [operations center](./overview.md) helps you identify opportunities to improve the cost efficiency and carbon emissions of your Azure resources. It provides insights and recommendations based on best practices and usage patterns and leverages the Optimize agent to provide proactive recommendations and guided assistance.
 
 The Optimization pillar uses the following Azure services:
 - [Cost management](/azure/cost-management-billing/costs/overview-cost-management)
@@ -97,3 +97,6 @@ Here are some sample prompts and responses to get you started with the Optimize 
 - "What are some alternatives to this recommendation?"
 - "Generate a powershell script for the rightsize recommendation."
 - "Generate an Azure CLI script for the rightsize recommendation."
+
+## Next steps
+- Learn more about [operations center](./overview.md)

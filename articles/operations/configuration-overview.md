@@ -1,16 +1,16 @@
 ---
-title: Configuration in Operations center (preview)
-description: Describes the Configuration pillar in Operations center which helps you manage the configuration of your Azure VMs and Arc-enabled servers.
+title: Configuration in operations center (preview)
+description: Describes the Configuration pillar in operations center which helps you manage the configuration of your Azure VMs and Arc-enabled servers.
 ms.topic: conceptual
-ms.date: 09/24/2025
+ms.date: 11/14/2025
 ---
 
 
-# Configuration in Operations center (preview)
+# Configuration in operations center (preview)
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Configuration** pillar of [Operations center](./overview.md) helps you manage the configuration of your Azure VMs and Arc-enabled servers. It provides a streamlined onboarding experience to automatically enroll your machines for different Azure management and monitoring services. You can then use different pages in the pillar to manage the configuration of your machines and updates to their client operating systems.
+The **Configuration** pillar of [operations center](./overview.md) helps you manage the configuration of your Azure VMs and Arc-enabled servers. It provides a streamlined onboarding experience to automatically enroll your machines for different Azure management and monitoring services. You can then use different pages in the pillar to manage the configuration of your machines and updates to their client operating systems.
 
  Manage the policies that define their configuration and track changes and operating system updates. 
 
@@ -63,4 +63,6 @@ The **Machine configuration** page provides several views to help you manage the
 | Assignments | Lists the policy assignments for guest configurations. This is the same as the **Assignments** tab in the **Policy** menu with a filter for **Guest Configuration**. | 
 | Windows recovery (preview) | Lists your Arc-enabled servers and their Windows recovery status. See [Public Preview: Audit and Enable Windows Recovery Environment (WinRE) for Azure Arc-enabled Servers](https://techcommunity.microsoft.com/blog/azurearcblog/public-preview-audit-and-enable-windows-recovery-environment-winre-for-azure-arc/4462939). |
 
-
+## Next steps
+- Configure [machine enrollment](./configuration-enrollment.md) to automatically onboard your VMs and Arc-enabled servers to Azure management services.
+- Learn more about [operations center](./overview.md)

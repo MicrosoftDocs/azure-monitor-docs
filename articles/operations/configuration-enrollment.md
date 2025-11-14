@@ -1,16 +1,16 @@
 ---
-title: Machine enrollment in Operations center (preview)
-description: Describes how to enable machine enrollment in the Configuration pillar of Operations center to automatically configure management for VMs in your subscription.
+title: Machine enrollment in operations center (preview)
+description: Describes how to enable machine enrollment in the Configuration pillar of operations center to automatically configure management for VMs in your subscription.
 ms.topic: conceptual
-ms.date: 09/24/2025
+ms.date: 11/14/2025
 ---
 
 
-# Machine enrollment in Operations center (preview)
+# Machine enrollment in operations center (preview)
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-**Machine enrollment** in the [Configuration](./configuration-overview.md) pillar of [Operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. When you enable a subscription for machine enrollment, all VMs and arc-enabled servers in that subscription are automatically enrolled and configured with a curated set of management features. This ensures that your machines are consistently configured for monitoring, security, and management.
+**Machine enrollment** in the [Configuration](./configuration-overview.md) pillar of [operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. When you enable a subscription for machine enrollment, all VMs and arc-enabled servers in that subscription are automatically enrolled and configured with a curated set of management features. This ensures that your machines are consistently configured for monitoring, security, and management.
 
 ## Prerequisites
 
@@ -146,7 +146,7 @@ Disable a subscription by selecting it and then clicking **Offboard**. When you 
 
 
 ## Troubleshooting
-See [Troubleshoot machine enrollment in Operations center (preview)](./configuration-enrollment-troubleshoot.md) for help resolving common issues with machine enrollment. This article also identifies the objects created during enrollment and how to verify their creation.
+See [Troubleshoot machine enrollment in operations center (preview)](./configuration-enrollment-troubleshoot.md) for help resolving common issues with machine enrollment. This article also identifies the objects created during enrollment and how to verify their creation.
 
 
 ## Detailed configuration
@@ -161,3 +161,7 @@ The following table describes the specific configuration applied to each VM when
 | [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans) | - All settings on by default. |
 | [Defender for cloud](/azure/defender-for-cloud/defender-for-servers-overview) | - All settings for [Plan 2](/azure/defender-for-cloud/defender-for-servers-overview#defender-for-servers-plans) enabled. |
 
+
+## Next steps
+
+- [Troubleshoot any issues with machine enrollment](./configuration-enrollment-troubleshoot.md).

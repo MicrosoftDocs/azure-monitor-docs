@@ -1,16 +1,16 @@
 ---
-title: Security in Operations center (preview)
-description: Describes the Security pillar in Operations center, which helps you manage the security of your your Azure resources and any non-Azure resources you've connected.
+title: Security in operations center (preview)
+description: Describes the Security pillar in operations center, which helps you manage the security of your your Azure resources and any non-Azure resources you've connected.
 ms.topic: conceptual
-ms.date: 09/24/2025
+ms.date: 11/14/2025
 ---
 
 
-# Security in Operations center (preview)
+# Security in operations center (preview)
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Security** pillar of [Operations center](./overview.md) helps you manage the security of your your Azure resources and any non-Azure resources you've connected. It consolidates security information and recommendations from [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) into a unified view to help you improve your security posture and respond to threats.
+The **Security** pillar of [operations center](./overview.md) helps you manage the security of your your Azure resources and any non-Azure resources you've connected. It consolidates security information and recommendations from [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) into a unified view to help you improve your security posture and respond to threats.
 
 The Security pillar uses the following Azure services:
 
@@ -29,3 +29,6 @@ The Security pillar uses the following Azure services:
 | Security alerts | Manage and respond to [security alerts](/azure/defender-for-cloud/managing-and-responding-alerts)  This view is the same as the **Security alerts** item in the **General** section of the **Microsoft Defender for Cloud** menu.<br><br>See [Manage and respond to security alerts](/azure/defender-for-cloud/manage-respond-alerts) for details. |
 | Resource protections | Analyze threat detection and protection for protected resources. This view is the same as the **Workload protections** item in the **Cloud Security** section of the **Microsoft Defender for Cloud** menu.<br><br>See [Review workload protection](/azure/defender-for-cloud/workload-protections-dashboard) for details. |
 | Recommendations | Recommendations to remediate security issues and improve security posture based on based on assessments of your resources and subscriptions against security standards. This view is the same as the **Recommendations** item in the **General** section of the **Microsoft Defender for Cloud** menu.<br><br>See [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations) for details. |
+
+## Next steps
+- Learn more about [operations center](./overview.md)
