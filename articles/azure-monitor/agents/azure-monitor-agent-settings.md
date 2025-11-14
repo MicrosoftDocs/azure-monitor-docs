@@ -61,14 +61,14 @@ your VM.
 
 This example sets the maximum amount of disk space used by the Azure Monitor Agent 
 cache to 5GB. 
-Step 1 - Use the search bar to find ìDeploy a custom templateî option
+Step 1 - Use the search bar to find ‚ÄúDeploy a custom template‚Äù option
 
  :::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
 agent-deploy-template-portal.png" lightbox="media/azure-monitor-agent-settings/azure-
 monitor-agent-deploy-template-portal.png" alt-text="Screenshot that shows the deploy 
 custom template in the search bar in the Azure portal.":::
  
-Step 2 ñ Select ìBuild your own template in the editorî.
+Step 2 ‚Äì Select ‚ÄúBuild your own template in the editor‚Äù.
 
 :::image type="content" source="media/azure-monitor-agent-settings/azure-monitor-
 agent-dcr-edit-template-portal.png" lightbox="media/azure-monitor-agent-settings/azure-
@@ -76,7 +76,7 @@ monitor-agent-dcr-edit-template-portal.png" alt-text="Screenshot that shows how 
 the custom template editor in the Azure portal.":::
 
  
- Step 3 ñ Delete the existing JSON in the template editor and copy the JSON code below into 
+ Step 3 ‚Äì Delete the existing JSON in the template editor and copy the JSON code below into 
 the editor. Make sure that you modify the parameters in the JSON in the editor to meet your 
 needs. 
 
@@ -133,7 +133,7 @@ shows how to open the custom template editor in the Azure portal.":::
 Follow the step to validate and deploy the template. Make sure that you do not get any 
 errors
 Step 4 Associate the DCR with a virtual machine
-Go to the ìDeploy custom template in the editorî again. Delete the existing JSON in the 
+Go to the ‚ÄúDeploy custom template in the editor‚Äù again. Delete the existing JSON in the 
 template editor and copy the JSON code below into the editor. Make sure you modify the 
 parameters to meet your needs. You can copy the resource ID by going to the DCR and 
 selecting the JSON View in the upper right corner. Use the copy button and then paste it 
@@ -187,7 +187,7 @@ the data collection for this virtual machine."
 ```
 Follow the step to validate and deploy the template. Make sure that you do not get any 
 errors
-Step 5 ñ Apply the changes
+Step 5 ‚Äì Apply the changes
 Restart AMA on the VM
 
 ---
