@@ -212,10 +212,10 @@ The following chart shows the value of a log alert rule query result, its dynami
 
 :::image type="content" source="media/alerts-dynamic-thresholds/alerts-threshold-dynamic-threshold-preview-chart.png" lightbox="media/alerts-dynamic-thresholds/alerts-threshold-dynamic-threshold-preview-chart.png" alt-text="Screenshot of a log alert rule query result, its dynamic threshold limits, threshold violations and alerts that fired when the value was outside the allowed thresholds."::: 
  
-•	Blue line: The query result measured value over time.
-•	Purple shaded area: The calculated Dynamic threshold range. Allowed value range for the query result. If the values stay within this range, no alert is triggered.
-•	Red dots: Red dots represent violations - evaluations that resulted in the threshold being met. 
-•	Pink bars: Represent a fired Log search alert. 
+- Blue line: The query result measured value over time.
+- Purple shaded area: The calculated Dynamic threshold range. Allowed value range for the query result. If the values stay within this range, no alert is triggered.
+- Red dots: Red dots represent violations - evaluations that resulted in the threshold being met. 
+- Pink bars: Represent a fired Log search alert. 
 
 > [!NOTE]
 > To ensure the preview chart performance, we enforce a limitation on the number of data points returned and, consequently, the allowed time range displayed, depending on alert rule frequency. A 5-minute frequency supports 6 hours. A 10–15-minute frequency supports 6 and 12 hours. A 30-minute frequency supports 6 and 12 hours and 1 day. Frequency of 1 hour or more supports 6 and 12 hours as well as 1 and 2 days.
