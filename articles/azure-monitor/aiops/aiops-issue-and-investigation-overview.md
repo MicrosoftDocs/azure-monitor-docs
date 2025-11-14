@@ -107,20 +107,51 @@ These are the supported Azure regions for issues and investigation services:
 
 | **Public preview region availability** |
 |----------------------------------------|
+| australiacentral                       |
 | australiaeast                          |
+| australisoutheast                      |
+| brazilsouth                            |
+| canadacentral                          |
+| canadaeast                             |
+| centralindia                           |
 | centralus                              |
+| chilecentral                           |
 | eastasia                               |
 | eastus                                 |
-| eastus2euap                            |
-| southcentralus                         |
-| uksouth                                |
-| westeurope                             |
-| canadacentral                          |
-| westus                                 |
-| northcentralus                         |
 | eastus2                                |
+| eastus2euap                            |
+| francecentral                          |
+| germanywestcentral                     |
+| indonesiacentral                       |
+| israelcentral                          |
+| italynorth                             |
+| japaneast                              |
+| japanwest                              |
+| koreacentral                           |
+| koreasouth                             |
+| malaysiawest                           |
+| mexicocentral                          |
+| newzealandnorth                        |
+| northcentralus                         |
 | northeurope                            |
+| northwayeast                           |
+| polandcentral                          |
+| southafricanorth                       |
+| southcentralus                         |
+| southindia                             |
+| southeastasia                          |
+| spaincentral                           |
+| swedencentral                          |
+| swedensouth                            |
+| switzerland north                      |
+| uaenorth                               |        
+| uksouth                                |
+| ukwest                                 |
+| westcentralus                          |
+| westeurope                             |
+| westus                                 |
 | westus2                                |
+| westus3                                | 
 
 
 ## Next steps

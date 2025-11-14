@@ -1,6 +1,36 @@
 {
  "redirections": [
   {
+   "source_path_from_root": "/articles/azure-monitor/change/change-analysis-troubleshoot.md",
+   "redirect_url": "/azure/governance/resource-graph/changes/resource-graph-changes",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/change/change-analysis-migration.md",
+   "redirect_url": "/azure/governance/resource-graph/changes/resource-graph-changes",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/change/change-analysis-visualizations.md",
+   "redirect_url": "/azure/governance/resource-graph/changes/view-resource-changes",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/change/change-analysis-track-outages.md",
+   "redirect_url": "/azure/governance/resource-graph/changes/resource-graph-changes",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/change/change-analysis-enable.md",
+   "redirect_url": "/azure/governance/resource-graph/changes/view-resource-changes",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/change/change-analysis.md",
+   "redirect_url": "/azure/governance/resource-graph/changes/resource-graph-changes",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/profiler/profiler-cloudservice.md",
    "redirect_url": "/azure/azure-monitor/profiler/profiler-overview",
    "redirect_document_id": false
@@ -7965,6 +7995,16 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/agents/signal-ingestion.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/collect-use-observability-data",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/signal-integration.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/collect-use-observability-data",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/fundamentals/ip-addresses.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-network-access",
    "redirect_document_id": false
@@ -8682,6 +8722,16 @@
   {
    "source_path": "articles/azure-monitor/containers/enable-windows-metrics.md",
    "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-windows-metrics-preview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/dotnet.md",
+   "redirect_url": "/azure/azure-monitor/app/classic-api",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/nodejs.md",
+   "redirect_url": "/azure/azure-monitor/app/classic-api",
    "redirect_document_id": false
   }
  ]

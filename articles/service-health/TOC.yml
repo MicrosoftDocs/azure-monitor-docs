@@ -32,8 +32,12 @@
       href: security-advisories-elevated-access.md
     - name: Manage Azure security notifications
       href: stay-informed-security.md
-    - name: View Health advisories
+    - name: Health advisories overview
       href: Service-health-advisories.md
+    - name: Health history overview
+      href: health-history-overview.md
+    - name: Planned maintenance overview
+      href: service-health-planned-maintenance.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
     - name: How to report an issue

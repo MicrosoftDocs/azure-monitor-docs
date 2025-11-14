@@ -36,11 +36,8 @@ To create a custom table and collect log data, you need:
 To create a custom table, call the [Tables - Create API](/rest/api/loganalytics/tables/create-or-update) by using this command:
 
 ```http
-PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table name_CL}?api-version=2023-01-01-preview
+PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table name_CL}?api-version={api-version}
 ```
-
-> [!NOTE]
-> Only version `2023-01-01-preview` of the API allows you to set the Auxiliary table plan.
 
 Provide this payload as the body of your request. Update the table name and adjust the columns based on your table schema. This sample lists all the supported column data types.
 
