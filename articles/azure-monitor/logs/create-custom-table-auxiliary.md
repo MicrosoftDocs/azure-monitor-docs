@@ -77,9 +77,10 @@ Provide this payload as the body of your request. Update the table name and adju
 
 ## Send data to a table with the Auxiliary plan
 
-There are currently two ways to ingest data to a custom table with the Auxiliary plan. 
-* Use the Azure Monitor Agent (AMA)
-* Use the logs ingestion API
+There are multiple ways to ingest data to a custom table with the Auxiliary plan. 
+* Azure Monitor Agent (AMA)
+* Logs ingestion API
+* Workspace transform
 
 ### Use the AMA
 
@@ -176,6 +177,12 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
 > When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. This API call might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed.
 >
 > This restriction does not apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md).
+
+### Use a workspace transformation
+
+For more information, see the following articles:
+* [Overview of workspace transformation DCRs](../data-collection/data-collection-transformations.md#workspace-transformation-dcr)
+* [How-to create a workspace transformation](../data-collection/data-collection-transformations-create.md#create-workspace-transformation-dcr)
 
 ## Related content
 
