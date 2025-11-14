@@ -1,14 +1,22 @@
 ---
-title: Collect and analyze OpenTelemetry data with Azure Monitor
+title: Collect and analyze OpenTelemetry data with Azure Monitor (Limited Preview)
 description: Onboard OpenTelemetry Protocol (OTLP) signals to Azure Monitor for AKS and other environments. Learn the supported onboarding paths and how to use Dashboards with Grafana, Application Insights experiences, and Log Analytics with OpenTelemetry semantic conventions.
 ms.topic: how-to
 ms.date: 11/13/2025
 ROBOTS: NOINDEX
 ---
 
-# Use OpenTelemetry with Azure Monitor
+# Use OpenTelemetry with Azure Monitor (Limited Preview)
 
 Azure Monitor ingests OpenTelemetry (OTel) **signals**—traces, metrics, and logs—from your applications and platforms. Application Insights orchestrates ingestion into Azure Monitor and provides experiences to explore the data. You can also use the OpenTelemetry Collector to export telemetry to Azure Monitor. After onboarding, use troubleshooting and exploration experiences in Application Insights, work with Prometheus metrics in **Dashboards with Grafana**, and analyze logs and traces in Log Analytics using OpenTelemetry semantic conventions.
+
+> [!IMPORTANT]
+> * This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
+> * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+> [!NOTE]
+> * [Support](#support) for this feature is limited to enrolled subscriptions.
+> * [Submit a request](https://aka.ms/azuremonitorotelpreview) to participate.
 
 ## Review capabilities
 
@@ -33,7 +41,7 @@ Enable application monitoring for **Azure Kubernetes Service (AKS)** and send OT
   - **Autoinstrumentation** for **Java** and **Node.js**.
   - **Autoconfiguration** for apps already instrumented with OpenTelemetry Software Development Kits (SDKs).
 
-For more information, see [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Limited Preview](../app/kubernetes-open-protocol.md).
+For more information, see [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Limited Preview](https://aka.ms/otelignitedoc).
 
 ### Configure other environments
 
@@ -88,6 +96,10 @@ For more information, see [OpenTelemetry semantic conventions](https://opentelem
   - Unsupported node pools: **Windows** and **Linux Arm64**.
   - OTLP **HTTP/protobuf** only; JSON payloads and **OTLP/gRPC** aren't supported.
   - Selected networking scenarios such as Istio mTLS aren't supported.
+
+## Support
+
+Assistance for enrolled subscriptions is available only through `otel@microsoft.com`.
 
 ## Next steps
 
