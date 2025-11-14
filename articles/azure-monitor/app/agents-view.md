@@ -119,8 +119,6 @@ In our example, we were researching high token use. Transaction details allow yo
 
 The Agent details view in Application Insights provides an opinionated, out-of-the-box experience for monitoring your AI agents. For more advanced customization and visualization needs, you can select **Explore in Grafana** from the top navigation bar on the Agent details view.
 
-:::image type="content" source="media/agents-view/agent-details-grafana.png" lightbox="media/agents-view/agent-details-grafana.png" alt-text="A screenshot showing the 'Explore in Grafana' button.":::
-
 Azure Monitor includes pre-built Grafana dashboards specifically designed for Gen AI monitoring to help you get started:
 
 * **Agent Framework -** Monitor agent execution and performance
