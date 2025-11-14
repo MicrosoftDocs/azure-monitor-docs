@@ -32,9 +32,11 @@ If you didn't see any errors during enrollment, start by verifying that the obje
 
 | Type | Name | Description |
 |:---|:---|:---|
-| DCR | `<workspace>-Managedops-AM-DCR` | OpenTelemetry metrics from VM guests |
-| DCR | `<workspace>-Managedops-CT-DCR` | Change tracking and inventory. Collects files, registry keys, softwares, Windows services, Linux daemons |
-| Solution | `ChangeTracking(workspace)` | Solution added to Log Analytics workspace to support Change tracking and inventory. |
+| DCR | `<workspace id>-Managedops-AM-DCR` <sup>1</sup> | OpenTelemetry metrics from VM guests |
+| DCR | `<workspace id>-Managedops-CT-DCR` <sup>1</sup> | Change tracking and inventory. Collects files, registry keys, softwares, Windows services, Linux daemons |
+| Solution | `ChangeTracking(workspace name)` | Solution added to Log Analytics workspace to support Change tracking and inventory. |
+
+<sup>1</sup> The `<workspace id>` in the DCR name may be truncated.
 
 Verify that the alert rules were created by checking for the following rules in the resource group for the Azure Monitor workspace.
 
@@ -70,9 +72,13 @@ Open the **Policy** page in Operations Center and select **Assignments**. Search
 
 
 ## Check remediation tasks
-If the assignments look correct, check the remediation tasks which are created to enable the selected features on all existing VMs in the subscription. Click on the assignment and select **Remediation**. 
+If the assignments look correct, check the remediation tasks which are created to enable the selected features on all existing VMs in the subscription. Click on the assignment and select **Remediation**. If any of the **Remediated Resources** are not showing that all resources are remediated, or if the **Remediation State** is **Failed**, then click on the **Complete** or **Failed** status to open the details for that remediation task.
 
 :::image type="content" source="./media/configuration-enrollment-troubleshoot/remediations.png" lightbox="./media/configuration-enrollment-troubleshoot/remediations.png" alt-text="Screenshot showing remediation tasks for the initiative created by subscription enablement.":::
+
+In the details of the remediation task, click on **Related Events** or **View Deployment** to locate a detailed error message. 
+
+:::image type="content" source="./media/configuration-enrollment-troubleshoot/remediation-task.png" lightbox="./media/configuration-enrollment-troubleshoot/remediation-task.png" alt-text="Screenshot showing details of a remediation task.":::
 
 ## Contact Microsoft
 If you've completed all of the previous steps and are still having issues with machine enrollment, contact Microsoft at machineenrollmentsupport@microsoft.com](mailto:machineenrollmentsupport@microsoft.com).
