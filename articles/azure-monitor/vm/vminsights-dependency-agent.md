@@ -24,7 +24,10 @@ Dependency Agent collects data about processes running on the virtual machine an
 
 ## Supported operating systems
 
-The Dependency agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022, except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. The Dependency Agent only supports x64 architectures.
+The Dependency agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022 , except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. The Dependency Agent only supports x64 architectures.
+
+- [full support matrix for Linux](../../virtual-machines/extensions/agent-dependency-linux.md)
+- [full support matrix for Windows](../../virtual-machines/extensions/agent-dependency-windows.md)
 
 Consider the following before you install Dependency agent on a Linux machine:
 
