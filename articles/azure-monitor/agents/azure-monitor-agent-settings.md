@@ -65,6 +65,8 @@ This example sets the maximum amount of disk space used by the Azure Monitor Age
 cache to 5GB. 
 Step 1 - Use the search bar to find “Deploy a custom template” option
 
+:::image type="content" source="media/azure-monitor-agent-dce/data-collection-rule-virtual-machines-with-endpoint.png" lightbox="media/azure-monitor-agent-dce/data-collection-rule-virtual-machines-with-endpoint.png" alt-text="Screenshot that shows configuring data collection endpoints for an agent.":::
+
  :::image type="content" source="./media/azure-monitor-agent-settings/azure-monitor-
 agent-deploy-template-portal" lightbox="./media/azure-monitor-agent-settings/azure-
 monitor-agent-deploy-template-portal" alt-text="Screenshot that shows the deploy 
@@ -199,6 +201,7 @@ Restart AMA on the VM
 
 [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and 
 send it to Azure Monitor.
+
 
 
 
