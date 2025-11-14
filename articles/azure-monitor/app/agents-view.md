@@ -131,7 +131,7 @@ These dashboards serve as a starting point for your monitoring strategy. You can
 * Editing or creating new queries to surface specific metrics
 * Using Save as to create tailored dashboards for your specific environment and use cases
 
-To learn more about using Grafana with Application Insights, see [Dashboards with Grafana in Application Insights](grafana-dashboards.md) and [Use Azure Monitor Dashboards with Grafana](../../visualize/visualize-use-grafana-dashboards.md).
+To learn more about using Grafana with Application Insights, see [Dashboards with Grafana in Application Insights](grafana-dashboards.md) and [Use Azure Monitor Dashboards with Grafana](../visualize/visualize-use-grafana-dashboards.md).
 
 ## Next steps
 
