@@ -66,8 +66,8 @@ cache to 5GB.
 Step 1 - Use the search bar to find “Deploy a custom template” option
 
  :::image type="content" source="./media/azure-monitor-agent-settings/azure-monitor-
-agent-deploy-template-portal.png" lightbox="./media/azure-monitor-agent-settings/azure-
-monitor-agent-deploy-template-portal.png" alt-text="Screenshot that shows the deploy 
+agent-deploy-template-portal" lightbox="./media/azure-monitor-agent-settings/azure-
+monitor-agent-deploy-template-portal" alt-text="Screenshot that shows the deploy 
 custom template in the search bar in the Azure portal.":::
  
 Step 2 – Select “Build your own template in the editor”.
@@ -198,4 +198,5 @@ Restart AMA on the VM
 
 [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and 
 send it to Azure Monitor.
+
 
