@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 11/13/2025
+ms.date: 11/14/2025
 ---
 
 # Health advisories 
@@ -17,7 +17,6 @@ The Health advisories pane is used to notify you about important but noncritical
 - Service retirements (for example, deprecated APIs or features)
 - Configuration issues (for example, misconfigured resources)
 - Upgrade requirements (for example, moving to a supported framework)
-- Security-related guidance (for example, compliance updates or vulnerabilities)
 
 These advisories are communicated at least 90 days in advance, except in urgent cases such as misconfigurations, which are reported immediately.
 
@@ -59,7 +58,7 @@ When you open the Health advisories pane, you see a list of relevant notificatio
 |Impacted services | The Azure services affected by the advisory       |
 |Impacted regions  |The geographic regions where the advisory applies         |
 |Event level  | Tags to help users quickly assess the severity and urgency of the advisory <br> - Informational <br>- Warning     |
-|Event tags   | Tags to define the categorization of the advisory <br>- Action recommended<br> - Final Post Incident Review (PIR)<br> - Preliminary PIR<br> - False Positive        |
+|Event tags   | Tags to define the categorization of the advisory <br>- Action recommended        |
 |Last update  | Information entered to provide information as it is gathered        |
 
 ### Impacted Services tab
