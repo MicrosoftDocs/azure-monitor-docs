@@ -45,6 +45,8 @@ The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
 - **Sampling options**: The sampler supports both fixed-rate and rate-limited sampling:
   - **Fixed-rate (percentage)**: Set a sampling ratio between 0 and 1 (for example, `0.1` sends about 10% of traces to Azure Monitor).
   - **Rate-limited**: Set a maximum number of traces per second (for example, `0.5` ≈ one trace every two seconds; `5.0` = five traces per second).
+  - **Trace-based log sampling**: For languages supporting it, logs tied to unsampled traces are dropped.
+
 - The Azure Monitor Application Insights service relies on this sampler to show you complete traces and avoid broken ones.
 
 <u> **Benefits** </u>
