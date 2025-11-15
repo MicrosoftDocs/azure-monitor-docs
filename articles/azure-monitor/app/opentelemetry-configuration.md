@@ -428,7 +428,9 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
 - If `EnableTraceBasedLogsSampler` is `true`, **log records associated with unsampled traces are dropped**.  
 - A log record is considered associated with a trace if it carries a valid `SpanId` and its `TraceFlags` indicate the trace is **not sampled**.  
 - **Logs without any trace context are not affected** and bypass this filter.  
-- Default is **`false`**.### [.NET](#tab/net)
+- Default is **`false`**.
+
+### [.NET](#tab/net)
 
 You can choose between two sampling strategies for **traces** and optionally enable **trace‑based sampling for logs**:
 
@@ -504,9 +506,13 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 - If `EnableTraceBasedLogsSampler` is `true`, **log records associated with unsampled traces are dropped**.  
 - A log record is associated with a trace if it has a valid `SpanId` and its `TraceFlags` indicate the trace is **not sampled**.  
 - **Logs without any trace context are not affected** and bypass this filter.  
-- Default is **`false`**.### [Java](#tab/java)
+- Default is **`false`**.
+
+### [Java](#tab/java)
 
 Starting from 3.4.0, rate-limited sampling is available and is now the default. For more information about sampling, see [Java sampling]( java-standalone-config.md#sampling).
+
+
 
 ### [Java native](#tab/java-native)
 
@@ -515,6 +521,8 @@ For Spring Boot native applications, the [sampling configurations of the OpenTel
 For Quarkus native applications, configure sampling using the [Quarkus OpenTelemetry guide](https://quarkus.io/guides/opentelemetry#sampler), then use the [Quarkus OpenTelemetry Exporter](https://docs.quarkiverse.io/quarkus-opentelemetry-exporter/dev/quarkus-opentelemetry-exporter-azure.html) to send telemetry to Application Insights.
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
+
 
 ### [Node.js](#tab/nodejs)
 
@@ -579,6 +587,8 @@ export OTEL_TRACES_SAMPLER_ARG=1.5
 
 > [!NOTE]
 > Sampling configuration via environment variables will have precedence over the sampling exporter/distro options. If neither environment variables nor `tracesPerSecond` are specified, sampling defaults to ApplicationInsightsSampler.
+
+
 
 ### [Python](#tab/python)
 
