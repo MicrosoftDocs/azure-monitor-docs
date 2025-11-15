@@ -2,7 +2,7 @@
 title: Create a metric alert rule with dynamic threshold
 description: Create a metric alert rule and configure dynamic thresholds. 
 ms.reviewer: harelbr
-ms.topic: howto
+ms.topic: how-to
 ms.date: 11/18/2025
 ---
 
