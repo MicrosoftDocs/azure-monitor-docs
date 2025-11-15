@@ -348,37 +348,33 @@ You might want to enable sampling to reduce your data ingestion volume, which re
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
-The sampler expects a sample rate of between 0 and 1 inclusive. A rate of 0.1 means approximately 10% of your traces are sent.
+You can choose between two sampling strategies for **traces** and optionally enable **trace‑based sampling for logs**:
+
+- **Fixed‑percentage (ApplicationInsightsSampler):** sample a fraction of traces (0.0–1.0).  
+- **Rate‑limited (RateLimitedSampler):** cap the number of traces per second (e.g., `1.5` ≈ 1–2 traces/sec).  
+- **Trace‑based sampling for logs (opt‑in):** when enabled, **logs that are part of unsampled traces are dropped** to keep your logs aligned with sampled traces.
+
+> [!IMPORTANT]
+> Fixed‑percentage and rate‑limited sampling affect **traces only**. **Logs are unaffected unless you explicitly enable trace‑based sampling for logs** (see below). Metrics are unaffected by any sampling choice.
+
+#### Fixed‑percentage sampling (code)
 
 ```csharp
 // Create a new ASP.NET Core web application builder.
 var builder = WebApplication.CreateBuilder(args);
 
-// Add the OpenTelemetry telemetry service to the application.
-// This service will collect and send telemetry data to Azure Monitor.
+// Configure Azure Monitor with ~10% sampling.
 builder.Services.AddOpenTelemetry().UseAzureMonitor(options =>
 {
-    // Set the sampling ratio to 10%. This means that 10% of all traces will be sampled and sent to Azure Monitor.
-    options.SamplingRatio = 0.1F;
+    options.SamplingRatio = 0.1F; // 0.1 = 10%
 });
 
-// Build the ASP.NET Core web application.
 var app = builder.Build();
-
-// Start the ASP.NET Core web application.
 app.Run();
 ```
 
-**Rate-limited sampling** is also supported. Configure sampling using the following environment variables:
+#### Rate‑limited sampling (code)
 
-- **`OTEL_TRACES_SAMPLER`**: Specifies the sampler type  
-  - `microsoft.fixed.percentage` for Application Insights sampler  
-  - `microsoft.rate_limited` for Rate Limited sampler
-- **`OTEL_TRACES_SAMPLER_ARG`**: Defines the sampling rate  
-  - **ApplicationInsightsSampler**: Valid range 0 to 1 (0 = 0%, 1 = 100%)  
-  - **RateLimitedSampler**: Maximum traces per second (e.g., 0.5 = one trace every two seconds, 5.0 = five traces per second)
-
-**Alternative configuration (programmatic, RateLimitedSampler):**
 ```csharp
 // Create a new ASP.NET Core web application builder.
 var builder = WebApplication.CreateBuilder(args);
@@ -386,29 +382,39 @@ var builder = WebApplication.CreateBuilder(args);
 // Configure Azure Monitor with rate-limited sampling (~1.5 traces/sec).
 builder.Services.AddOpenTelemetry().UseAzureMonitor(options =>
 {
-    options.TracesPerSecond = 1.5; // ~1.5 traces per second
+    options.TracesPerSecond = 1.5;
 });
 
 var app = builder.Build();
 app.Run();
 ```
 
-> [!NOTE]
-> Sampling configuration via environment variables will have precedence over the sampling exporter/distro options. If neither environment variables nor `TracesPerSecond` are specified, sampling defaults to ApplicationInsightsSampler.
+#### Configure via environment variables
 
-#### ApplicationInsightsSampler example
+- **`OTEL_TRACES_SAMPLER`** — sampler type  
+  - `microsoft.fixed.percentage` (fixed‑percentage)  
+  - `microsoft.rate_limited` (rate‑limited)
+- **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument  
+  - **Fixed‑percentage:** `0.0`–`1.0` (e.g., `0.1` = 10%)  
+  - **Rate‑limited:** max traces per second (e.g., `1.5`)
+
+**Examples**
 ```console
+# Fixed-percentage (~30%)
 export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
 export OTEL_TRACES_SAMPLER_ARG=0.3
-```
 
-#### RateLimitedSampler example
-```console
+# Rate-limited (~1.5 traces/sec)
 export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=1.5
 ```
 
-#### Trace based sampling example
+> [!NOTE]
+> If set, **environment variables take precedence** over options specified in code. If neither env vars nor `TracesPerSecond` are set, the default sampler is ApplicationInsightsSampler.
+
+#### Trace‑based sampling for logs (opt‑in)
+
+Enable this when you want logs to follow trace sampling decisions.
 
 ```csharp
 builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
@@ -417,59 +423,72 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
 });
 ```
 
-### [.NET](#tab/net)
+**How it works**
 
-The sampler expects a sample rate of between 0 and 1 inclusive. A rate of 0.1 means approximately 10% of your traces are sent.
+- If `EnableTraceBasedLogsSampler` is `true`, **log records associated with unsampled traces are dropped**.  
+- A log record is considered associated with a trace if it carries a valid `SpanId` and its `TraceFlags` indicate the trace is **not sampled**.  
+- **Logs without any trace context are not affected** and bypass this filter.  
+- Default is **`false`**.### [.NET](#tab/net)
+
+You can choose between two sampling strategies for **traces** and optionally enable **trace‑based sampling for logs**:
+
+- **Fixed‑percentage (ApplicationInsightsSampler):** sample a fraction of traces (0.0–1.0).  
+- **Rate‑limited (RateLimitedSampler):** cap the number of traces per second.  
+- **Trace‑based sampling for logs (opt‑in):** align logs with trace sampling by dropping logs that belong to unsampled traces.
+
+> [!IMPORTANT]
+> Fixed‑percentage and rate‑limited sampling affect **traces only**. **Logs are unaffected unless you explicitly enable trace‑based sampling for logs** (see below). Metrics are unaffected by any sampling choice.
+
+#### Fixed‑percentage sampling (code)
 
 ```csharp
-// Create a new OpenTelemetry tracer provider.
-// It is important to keep the TracerProvider instance active throughout the process lifetime.
-var tracerProvider = Sdk.CreateTracerProviderBuilder()
-    .AddAzureMonitorTraceExporter(options =>
-    {   
-        // Set the sampling ratio to 10%. This means that 10% of all traces will be sampled and sent to Azure Monitor.
-        options.SamplingRatio = 0.1F;
-    })
-    .Build();
-```
-
-**Rate-limited sampling** is also supported. Configure sampling using the following environment variables:
-
-- **`OTEL_TRACES_SAMPLER`**: Specifies the sampler type  
-  - `microsoft.fixed.percentage` for Application Insights sampler  
-  - `microsoft.rate_limited` for Rate Limited sampler
-- **`OTEL_TRACES_SAMPLER_ARG`**: Defines the sampling rate  
-  - **ApplicationInsightsSampler**: Valid range 0 to 1 (0 = 0%, 1 = 100%)  
-  - **RateLimitedSampler**: Maximum traces per second (e.g., 0.5 = one trace every two seconds, 5.0 = five traces per second)
-
-**Alternative configuration (programmatic, RateLimitedSampler):**
-```csharp
-// Create a new OpenTelemetry tracer provider with rate-limited sampling (~1.5 traces/sec).
-// Keep the TracerProvider instance active throughout the process lifetime.
+// Keep the TracerProvider alive for the process lifetime.
 var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddAzureMonitorTraceExporter(options =>
     {
-        options.TracesPerSecond = 1.5; // ~1.5 traces per second
+        options.SamplingRatio = 0.1F; // 0.1 = 10%
     })
     .Build();
 ```
 
-> [!NOTE]
-> Sampling configuration via environment variables will have precedence over the sampling exporter/distro options. If neither environment variables nor `TracesPerSecond` are specified, sampling defaults to ApplicationInsightsSampler.
+#### Rate‑limited sampling (code)
 
-#### ApplicationInsightsSampler example
-```console
-export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
-export OTEL_TRACES_SAMPLER_ARG=0.1
+```csharp
+// Keep the TracerProvider alive for the process lifetime.
+var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddAzureMonitorTraceExporter(options =>
+    {
+        options.TracesPerSecond = 1.5; // ~1.5 traces/sec
+    })
+    .Build();
 ```
 
-#### RateLimitedSampler example
+#### Configure via environment variables
+
+- **`OTEL_TRACES_SAMPLER`** — sampler type  
+  - `microsoft.fixed.percentage` (fixed‑percentage)  
+  - `microsoft.rate_limited` (rate‑limited)
+- **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument  
+  - **Fixed‑percentage:** `0.0`–`1.0` (e.g., `0.1` = 10%)  
+  - **Rate‑limited:** max traces per second (e.g., `0.5`, `5.0`)
+
+**Examples**
 ```console
+# Fixed-percentage (~10%)
+export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
+export OTEL_TRACES_SAMPLER_ARG=0.1
+
+# Rate-limited (~0.5 traces/sec)
 export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=0.5
 ```
 
-#### Trace based sampling example
+> [!NOTE]
+> If set, **environment variables take precedence** over options specified in code. If neither env vars nor `TracesPerSecond` are set, the default sampler is ApplicationInsightsSampler.
+
+#### Trace‑based sampling for logs (opt‑in)
+
+Enable this when you want logs to follow trace sampling decisions.
 
 ```csharp
 var tracerProvider = Sdk.CreateTracerProviderBuilder()
@@ -480,7 +499,12 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-### [Java](#tab/java)
+**How it works**
+
+- If `EnableTraceBasedLogsSampler` is `true`, **log records associated with unsampled traces are dropped**.  
+- A log record is associated with a trace if it has a valid `SpanId` and its `TraceFlags` indicate the trace is **not sampled**.  
+- **Logs without any trace context are not affected** and bypass this filter.  
+- Default is **`false`**.### [Java](#tab/java)
 
 Starting from 3.4.0, rate-limited sampling is available and is now the default. For more information about sampling, see [Java sampling]( java-standalone-config.md#sampling).
 
