@@ -408,6 +408,15 @@ export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=1.5
 ```
 
+#### Trace based sampling example
+
+```csharp
+builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
+{
+    o.EnableTraceBasedLogsSampler = true;
+});
+```
+
 ### [.NET](#tab/net)
 
 The sampler expects a sample rate of between 0 and 1 inclusive. A rate of 0.1 means approximately 10% of your traces are sent.
@@ -458,6 +467,17 @@ export OTEL_TRACES_SAMPLER_ARG=0.1
 ```console
 export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=0.5
+```
+
+#### Trace based sampling example
+
+```csharp
+var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddAzureMonitorTraceExporter(options =>
+    {
+        options.EnableTraceBasedLogsSampler = true;
+    })
+    .Build();
 ```
 
 ### [Java](#tab/java)
@@ -563,12 +583,6 @@ export OTEL_TRACES_SAMPLER_ARG=0.1
 export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=0.5
 ```
----
-
-> [!TIP]
-> When using fixed-rate/percentage sampling and you aren't sure what to set the sampling rate as, start at 5%. (0.05 sampling ratio) Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. A higher rate generally results in higher accuracy. However, ANY sampling affects accuracy so we recommend alerting on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
-
-<a name='enable-entra-id-formerly-azure-ad-authentication'></a>
 
 #### Trace Based Sampling
 
@@ -588,6 +602,11 @@ A log record is considered associated with an unsampled trace if it has a valid 
 context is not affected by this parameter and therefore bypasses trace based sampling filtering.
 
 When `enable_trace_based_sampling_for_logs` isn't specified, it defaults to False.
+
+---
+
+> [!TIP]
+> When using fixed-rate/percentage sampling and you aren't sure what to set the sampling rate as, start at 5%. (0.05 sampling ratio) Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. A higher rate generally results in higher accuracy. However, ANY sampling affects accuracy so we recommend alerting on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
 
 ## Live metrics
 
