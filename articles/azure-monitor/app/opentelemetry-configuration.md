@@ -351,7 +351,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor’s OpenTele
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
-### Configure sampling (all languages)
+### Configure sampling
 
 Use standard OpenTelemetry environment variables to select the sampler and provide its argument:
 
@@ -376,7 +376,7 @@ export OTEL_TRACES_SAMPLER_ARG=1.5
 > [!NOTE]
 > When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language—see the tabs.
 
-### Trace‑based sampling for logs (optional)
+### Trace‑based sampling for logs
 
 When enabled, log records that belong to **unsampled traces** are dropped so that your logs remain aligned with trace sampling.
 
@@ -418,7 +418,7 @@ app.Run();
 ```
 
 > [!NOTE]
-> If neither environment variables nor the options above are set, the default sampler is **ApplicationInsightsSampler**.
+> If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
 #### Trace‑based sampling for logs
 
@@ -450,7 +450,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 ```
 
 > [!NOTE]
-> If neither environment variables nor the options above are set, the default sampler is **ApplicationInsightsSampler**.
+> If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
 #### Trace‑based sampling for logs
 
@@ -503,7 +503,7 @@ const monitor = useAzureMonitor({
 ```
 
 > [!NOTE]
-> If neither environment variables nor the options above are set, sampling defaults to **ApplicationInsightsSampler**.
+> If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
 ### [Python](#tab/python)
 
@@ -522,7 +522,7 @@ configure_azure_monitor(
 ```
 
 > [!NOTE]
-> If neither environment variables nor `traces_per_second` are specified, `configure_azure_monitor()` defaults to **ApplicationInsightsSampler**.
+> If you do not set any environment variables or the `traces_per_second` option, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
 
 #### Trace‑based sampling for logs
 
