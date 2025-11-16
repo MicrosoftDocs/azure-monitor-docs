@@ -51,7 +51,7 @@ Use the **Azure Monitor Agent** or **OpenTelemetry Collector** to send OTLP sign
 - **Orchestrate ingestion manually.** Create an Azure Monitor Workspace (AMW), Log Analytics workspace (LAW), Data Collection Endpoints (DCEs), and Data Collection Rules (DCRs), then build the three OTLP endpoint URLs for metrics, logs, and traces.
 - **Export from the OpenTelemetry Collector.** Use the Collector `contrib` distribution and authenticate with Microsoft Entra ID or a managed identity. Use the Collector’s **Azure Auth extension** to authenticate with Microsoft Entra. For details, see the extension README: https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#readme
 
-For more information, see [OpenTelemetry Support in Azure Monitor - Limited Public Preview](https://aka.ms/otelignitedoc]).
+For more information, see [OpenTelemetry Support in Azure Monitor - Limited Public Preview](https://aka.ms/otelignitedoc).
 
 > [!TIP]
 > Endpoint URLs also appear on the Application Insights **Overview** page when OTLP support is enabled. Use these values in your Collector exporters or SDK configuration.
