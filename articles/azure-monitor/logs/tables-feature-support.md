@@ -532,7 +532,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [MNFSystemStateMessageUpdates](/azure/azure-monitor/reference/tables/mnfsystemstatemessageupdates) | |
 | MPTOperation | |
 | [MySqlAuditLogs](/azure/azure-monitor/reference/tables/mysqlauditlogs) | |
-| [MySqlErrorLogs] | |
+| MySqlErrorLogs | |
 | [MySqlSlowLogs](/azure/azure-monitor/reference/tables/mysqlslowlogs) | |
 | [NCBMBreakGlassAuditLogs](/azure/azure-monitor/reference/tables/ncbmbreakglassauditlogs) | |
 | [NCBMSecurityDefenderLogs](/azure/azure-monitor/reference/tables/ncbmsecuritydefenderlogs) | |
