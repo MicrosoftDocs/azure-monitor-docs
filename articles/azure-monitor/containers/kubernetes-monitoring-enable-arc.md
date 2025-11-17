@@ -25,17 +25,14 @@ The onboarding and configuration processes described in this article support the
 - Canonical
 - Cluster API Provider on Azure
 - K8s on Azure Stack Edge
-- Red Hat OpenShift version 4.x
+- Red Hat OpenShift distributions, including Azure Red Hat OpenShift (ARO)
 - SUSE Rancher (Rancher Kubernetes engine)
 - SUSE Rancher K3s
 - VMware (TKG)
 
-The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations. For Arc-enabled clusters with Windows nodes, you can set up Managed Prometheus on a Linux node within the cluster, and configure scraping metrics from metrics endpoints running on the Windows nodes.
- 
-* Red Hat Openshift distributions, including Azure Red Hat OpenShift (ARO)
-* Windows nodes
+For Arc-enabled clusters with **Windows nodes**, you can set up Managed Prometheus on a Linux node within the cluster, and configure scraping metrics from metrics endpoints running on the Windows nodes. See [Enable metrics collection in Arc-enabled clusters with Windows nodes](#enable-windows-metrics-preview)
 
-ARM64 nodes on AKSare supported. See [Cluster requirements](/azure/azure-arc/kubernetes/system-requirements#cluster-requirements) for the details of Azure Arc-enabled clusters that support ARM64 nodes.
+ARM64 nodes on Azure Arc-enabled clusters are supported. See [Cluster requirements](/azure/azure-arc/kubernetes/system-requirements#cluster-requirements) for the details of Azure Arc-enabled clusters that support ARM64 nodes.
 
 ## Prerequisites
 
@@ -128,7 +125,7 @@ The following additional optional parameters are available for Azure Arc-enabled
 
 #### Container logs
 
-Use the `azuremonitor-containers` option with [az k8s-extension create](/cli/azure/k8s-extension#az-k8s-extension-create) to install the metrics add-on that scrapes Prometheus metrics. This will use the configuration described in [Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md). To modify this configuration, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](./prometheus-metrics-scrape-configuration.md).
+Use the `azuremonitor-containers` option with [az k8s-extension create](/cli/azure/k8s-extension#az-k8s-extension-create) to install the logs add-on.
 
 See the following examples.
 
@@ -171,9 +168,9 @@ If the cluster is configured with a forward proxy, then proxy settings are autom
 az k8s-extension create --name azuremonitor-containers --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers --configuration-settings amalogs.ignoreExtensionProxySettings=true
 ```
 
-**Arc-enabled cluster with ARO or OpenShift or Windows nodes**
+**Arc-enabled cluster with Windows nodes**
 
-Managed identity authentication is not supported for Arc-enabled Kubernetes clusters with ARO (Azure Red Hat OpenShift) or OpenShift or Windows nodes. Use legacy authentication by specifying `amalogs.useAADAuth=false` as in the following example.
+Managed identity authentication is not supported for Arc-enabled Kubernetes clusters with Windows nodes. Use legacy authentication by specifying `amalogs.useAADAuth=false` as in the following example.
 
 ```azurecli
 az k8s-extension create --name azuremonitor-containers --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers --configuration-settings amalogs.useAADAuth=false
