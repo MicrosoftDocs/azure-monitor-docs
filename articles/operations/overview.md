@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.date: 09/24/2025
 ---
 
-# Overview of Operations center (preview)
+# Overview of operations center (preview)
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
@@ -55,3 +55,9 @@ In addition to an overview for each pillar, operations center includes a top-lev
 ## Virtual machine onboarding
 While many of the experiences in operations center are available in other areas of the Azure portal, one experience that's unique to operations center is a streamlined virtual machine onboarding process. The [Configuration](./configuration-enrollment.md) pillar includes a machine enrollment feature that helps you configure your subscription to automatically onboard virtual machines and Arc-enabled servers to the Azure management services used by operations center. This streamlines the process of ensuring that your machines are constantly configured for monitoring, security, and management. See [Machine enrollment](./configuration-enrollment.md) for details. 
 
+## Next steps
+- Learn more about [Observability](./observability.md)
+- Learn more about [Security](./security.md)
+- Learn more about [Resiliency](./resiliency.md)
+- Learn more about [Configuration](./configuration-overview.md)
+- Learn more about [Optimization](./optimization.md)

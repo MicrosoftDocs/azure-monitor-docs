@@ -1,7 +1,7 @@
 items:
 - name: Operations Center Documentation
   href: index.yml
-- name: What is Azure operations center?
+- name: What is operations center?
   href: overview.md
 - name: Operations pillars
   items:

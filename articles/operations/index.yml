@@ -4,8 +4,8 @@ title: Azure Operations Center documentation
 summary: Learn about Azure Operations Center, a unified operations management platform for monitoring, troubleshooting, and automation across cloud and hybrid environments.
 
 metadata:
-  title: Azure Operations Center documentation
-  description: Azure Operations Center, which is a unified operations management platform for monitoring, troubleshooting, and automation across cloud and hybrid environments.
+  title: Operations center documentation
+  description: Operations center, which is a unified operations management platform for monitoring, troubleshooting, and automation across cloud and hybrid environments.
   ms.topic: landing-page
   ms.date: 11/03/2025
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
@@ -14,7 +14,7 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
 # Card 
-  - title: Azure Operation Center
+  - title: Operation center
     linkLists:
       - linkListType: overview
         links:
