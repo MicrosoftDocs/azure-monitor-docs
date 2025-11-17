@@ -155,4 +155,6 @@ Data flows match input streams with destinations. Each data source may optionall
 
 ## Related content
 
-[Overview of data collection rules and methods for creating them](data-collection-rule-overview.md)
+- [Overview of data collection rules and methods for creating them](data-collection-rule-overview.md)
+- [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md)
+- [Collect data from VM clients](../vm/data-collection.md)
