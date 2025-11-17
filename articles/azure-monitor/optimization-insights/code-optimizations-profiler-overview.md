@@ -116,10 +116,16 @@ You can set an explicit region using connection strings. [Learn more about conne
 
 ## Limitations
 
-**Profiling web apps**:
+### Profiler 
 
-* Although you can use the .NET Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
-* You can attach only one profiler to each web app.
+- **Profiling web apps:**
+  - Although you can use the .NET Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
+  - You can attach only one profiler to each web app.
+
+### Code Optimizations
+
+- **Storage requirements:**
+  - Code Optimizations currently only works with the Azure Storage tenant for storing your trace data in Application Insights. 
 
 ## Troubleshooting
 
