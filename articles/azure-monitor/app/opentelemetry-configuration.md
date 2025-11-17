@@ -462,7 +462,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 ### [Java](#tab/java)
 
-Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling]( java-standalone-config.md#sampling).
+Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
 
 ### [Java native](#tab/java-native)
 
