@@ -51,7 +51,7 @@ Select **Service issues** on the left menu to see a map with all user services a
 
 ## See planned maintenance events
 
-Select **Planned maintenance** on the left menu to see a list of all planned maintenance events. For more information, see [View affected resources for planned maintenance events](impacted-resources-planned-maintenance.md).
+Select **Planned maintenance** on the left menu to see a list of all planned maintenance events. For more information, see [Planned maintenance overview](service-health-planned-maintenance.md). 
 
 :::image type="content" source="media/service-health-portal-update/services-issue-planned-maintenance.png" alt-text="A screenshot of the Planned maintenance window." lightbox="media/service-health-portal-update/services-issue-planned-maintenance.png":::
 
@@ -80,7 +80,7 @@ Select **Billing updates** from the left menu to see billing updates. Only users
 
 ## View the history of all your Service Health events
 
-Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents and configure alerts.
+Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents and configure alerts. For more information, see [Health history overview](health-history-overview.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-history.png" alt-text="A screenshot of the health history window." lightbox="media/service-health-portal-update/services-issue-health-history.png":::
 
