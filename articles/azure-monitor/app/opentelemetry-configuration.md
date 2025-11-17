@@ -462,7 +462,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 ### [Java](#tab/java)
 
-Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling]( java-standalone-config.md#sampling).
+Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
 
 ### [Java native](#tab/java-native)
 
@@ -505,6 +505,18 @@ const monitor = useAzureMonitor({
 > [!NOTE]
 > If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
+#### Trace‑based sampling for logs
+
+```typescript
+const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+const monitor = useAzureMonitor({
+  enableTraceBasedSamplingForLogs: true,
+  azureMonitorExporterOptions: {
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+  },
+});
+```
 ### [Python](#tab/python)
 
 Configure sampling in code or by using the environment variables shown above.
