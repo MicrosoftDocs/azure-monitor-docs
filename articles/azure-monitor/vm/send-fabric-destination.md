@@ -73,16 +73,18 @@ The DCR creation process gives the user-assigned managed identity the [NativeIng
 
 ## Supported data types
 
-The data types in the following table are agent-based telemetry sources supported to send to Fabric and ADX. Each has a link to an article describing the details of that source and the managed identity required and whether the DCR must use a data collection endpoint (DCE).
+The data types in the following table are agent-based telemetry sources supported to send to Fabric and ADX. Each data type in the table has a link to an article describing the details of that source and the managed identity required and whether the DCR must use a data collection endpoint (DCE).
 
 | Data source | special instructions | 
 |:---|:---|
-| [Performance counters](./data-collection-performance.md) | None |
-| [IIS logs](./data-collection-iis.md) |  None|
+| [Performance counters](./data-collection-performance.md) | Table created is `Perf` |
+| [IIS logs](./data-collection-iis.md) |  Table created is `W3CIISLog`|
 | [Windows Event Logs](./data-collection-windows-events.md) | Table created is `Event` |
-| [Linux Syslog](./data-collection-syslog.md) | None |
+| [Linux Syslog](./data-collection-syslog.md) | Table created is `Syslog` |
 | [Custom Text logs](./data-collection-log-text.md) |  A transform is required. If no transform is desired, use the default `source`. |
 | [Custom JSON logs](./data-collection-log-json.md) |  A transform is required. If no transform is desired, use the default `source`. |
+
+For more information, see []
 
 ## Verify data ingestion
 
