@@ -18,18 +18,17 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 - The DCR region must match the region of the ADX cluster or Fabric eventhouse destination.
 
 > [!NOTE]
-> This feature is in [public preview](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).<br>
-> The following regions are blocked due to capacity constraints: WCUS, SouthIndia, ItalyNorth, IsraelCentral, WestUS3, WestUS2, EUS, EUS2 and Qatar.
+> This feature is in [public preview](https://azure.microsoft.com/support/legal/preview-supplemental-terms/), and the following regions are blocked due to capacity constraints: WCUS, SouthIndia, ItalyNorth, IsraelCentral, WestUS3, WestUS2, EUS, EUS2 and Qatar.
 
 ## Permissions
 
 | Description | Role |
 |:---|:---|
-| DCR creation and association | [Multiple roles](../data-collection/data-collection-rule-create-edit.md#permissions) |
-| ADX destination-specific permission | [Database Admin](/kusto/access-control/role-based-access-control?view=azure-data-explorer&preserve-view=true#roles-and-permissions) at the database scope or Azure contributor at the ADX cluster scope. |
-| Fabric destination-specific permission | [Workspace contributor](/fabric/fundamentals/roles-workspaces#-workspace-roles). |
+| DCR creation and association | Multiple roles - see [Create and edit DCRs](../data-collection/data-collection-rule-create-edit.md#permissions) |
+| ADX destination-specific permission | [Database Admin](/kusto/access-control/role-based-access-control?view=azure-data-explorer&preserve-view=true#roles-and-permissions) at the database scope<br>or Azure contributor at the ADX cluster scope |
+| Fabric destination-specific permission | [Fabric Workspace Contributor](/fabric/fundamentals/roles-workspaces#-workspace-roles) |
 
-The DCR creation process gives the required user-assigned managed identity the [NativeIngestion](/azure/data-explorer/ingest-data-managed-identity#set-the-managed-identity-policy-in-azure-data-explorer) usage option permission on the destination you choose, then associates the user-assigned managed identity with the DCR.
+The DCR creation process gives the required user-assigned managed identity the [NativeIngestion usage option](/azure/data-explorer/ingest-data-managed-identity#set-the-managed-identity-policy-in-azure-data-explorer) permission on the destination you choose, then associates the user-assigned managed identity with the DCR.
 
 ## Create a data collection rule
 
