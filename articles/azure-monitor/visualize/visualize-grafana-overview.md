@@ -21,8 +21,8 @@ Azure Monitor dashboards with Grafana delivers Grafana dashboards directly in th
 
 Azure Monitor dashboards with Grafana enables the following capabilities:
 
-- Use a set of prebuilt dashboards to visualize monitoring data for your Azure resources
-- Import thousands of publicly available [Grafana community dashboards](https://grafana.com/grafana/dashboards/?dataSource=prometheus).
+- Use a set of prebuilt dashboards to visualize monitoring data for your Azure resources.
+- Import thousands of publicly available [Grafana community dashboards](https://grafana.com/grafana/dashboards/?dataSource=prometheus) for supported resources.
 - Create your own dashboards in the Azure portal and apply a wide range of Grafana [visualizations](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/) and client-side [transformations](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/transform-data/) to Azure monitoring data.
 - Manage Grafana dashboards as native Azure resources, including using [Azure RBAC](/azure/role-based-access-control/overview) and automation via ARM template and Bicep templates. 
 
@@ -30,7 +30,7 @@ Azure Monitor dashboards with Grafana enables the following capabilities:
 
 ### How to access
 
-Navigate to **Azure Monitor** in the Azure portal, and then select **Dashboards with Grafana** under the **Insights** section.
+Navigate to **Azure Monitor** in the Azure portal, and then select **Dashboards with Grafana** for Prometheus metrics scraped from Kubernetes clusters or ingested into Azure Monitor..
 
 :::image type="content" source="./media/visualizations-grafana/default-dashboards.png" lightbox="./media/visualizations-grafana/default-dashboards.png" alt-text="Screenshot of dashboards with grafana default dashboards.":::
 
@@ -43,7 +43,7 @@ Azure Monitor dashboards with Grafana supports the following data sources. If yo
 - [Azure Monitor Logs](../logs/data-platform-logs.md) for log and performance data from Azure resources that enables you to query by using the powerful Kusto Query Language (KQL).
 - [Azure Monitor Traces](./../app/distributed-trace-data.md) to query and visualize distributed tracing data from Application Insights.
 - [Azure Resource Graph](/azure/governance/resource-graph/overview) to quickly query and identify Azure resources across subscriptions.
-
+- [Azure Data Explorer](/azure/data-explorer/data-explorer-overview) to query data directly from your ADX clusters using Kusto Query Language (KQL).
 
 ### Limitations
 
@@ -59,7 +59,7 @@ Azure Monitor dashboards with Grafana doesn't support the following Grafana feat
 ## Azure Managed Grafana
 [Azure Managed Grafana](/azure/managed-grafana/overview) is a fully managed Grafana service that supports dashboards using a variety of data sources. Access the Grafana dashboard through the same browser experience as other Grafana deployments. 
 
-The included [Azure Monitor data source plug-in](https://grafana.com/docs/grafana/latest/datasources/azuremonitor/) gives you access to the same data sources as [Azure Monitor dashboards with Grafana](#data-sources). Add the Grafana Prometheus plugin to query and visualize data from Azure Monitor managed service for Prometheus. See [Connect Grafana to Azure Monitor Prometheus metrics](../essentials/prometheus-grafana.md).
+The included [Azure Monitor data source plug-in](https://grafana.com/docs/grafana/latest/datasources/azuremonitor/) gives you access to the same data sources as [Azure Monitor dashboards with Grafana](#data-sources). Add the Prometheus plugin to query and visualize data from Azure Monitor managed service for Prometheus. See [Connect Grafana to Azure Monitor Prometheus metrics](../essentials/prometheus-grafana.md).
 
 ### Managed Grafana related content
 
@@ -75,7 +75,7 @@ See [Azure Managed Grafana overview](/azure/managed-grafana/overview) for full d
 
 Since **Azure Monitor dashboards with Grafana** is available in the Azure portal at no cost and with no configuration, it should be your first choice if you only want to use Azure Monitor data.
 
-Choose **Azure Monitor managed service for Prometheus** if you require any of the following:
+Choose **Azure Managed Grafana** if you require any of the following:
 
 - Access to external data sources and automation, including open-source and Grafana enterprise data sources
 - Grafana alerts

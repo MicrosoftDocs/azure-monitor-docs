@@ -13,7 +13,7 @@ ms.date: 11/03/2025
 ## Prerequisites
 
 - The Kubernetes cluster must be enabled for Azure Monitor. See [Enable monitoring for AKS clusters](../containers/kubernetes-monitoring-enable.md).
-- To open the dashboards, you must have read access to the Log Analytics workspace and Azure Monitor workspace holding the log and metric data.
+- To open the dashboards, you must have read access to the logs and Azure Monitor workspace holding the log and metric data. [Analytics tier logs](/azure/azure-monitor/logs/data-platform-logs#table-plans) can be queried using the Kubernetes cluster as its [scope](/azure/azure-monitor/logs/scope), so direct access to the Log Analytics workspace is not required. [Basic logs](/azure/azure-monitor/logs/data-platform-logs#table-plans) only support workspace scoped queries so access to the Log Analytics workspace is required.
 
 ## Open a Kubernetes dashboard
 Dashboards included with Azure Monitor dashboards with Grafana related to Kubernetes clusters include the following:

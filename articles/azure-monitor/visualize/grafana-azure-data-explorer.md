@@ -8,12 +8,13 @@ ms.date: 11/03/2025
 
 # Use Dashboards with Grafana with Azure Data Explorer (ADX)
 
-Azure Monitor dashboards with Grafana allow you to use and create [Grafana](https://grafana.com/) directly in the Azure portal. This article explains how to create dashboards with data from Azure Data Explorer (ADX).
+Azure Monitor dashboards with Grafana allow you to use and create [Grafana](https://grafana.com/) dashboardss directly in the Azure portal. This article explains how to create dashboards with data from Azure Data Explorer (ADX).
+
 
 ### Prerequisites
 
 - Existing Azure Data Explorer cluster
-- Control plane read access for clusters not currently in use with Azure Data Explorer.
+- [Database viewer role](/kusto/access-control/role-based-access-control#roles-and-permissions) or higher on the relevant ADX cluster
 
 ### Select the Azure Data Explorer data
 Use the following process to add Azure Data Explorer data to a new or existing Grafana dashboard.

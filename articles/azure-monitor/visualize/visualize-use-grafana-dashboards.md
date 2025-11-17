@@ -39,7 +39,6 @@ Other Azure resources with built-in dashboard templates include the following. A
 - AKS Automatic
 - AKS Arc
 - App Insights
-- SQL DB
 - Azure Container Apps
 - Azure Monitor Workspace
 
@@ -97,30 +96,30 @@ Using the Grafana website window or tab, navigate to the dashboard you want to i
 > [!NOTE]
 > Only Azure Monitor and Prometheus dashboards using supported data sources can be imported.
 
-## Use Explore to copy and edit a query and graph
+## Use Explore to copy and edit a query and panel
 
-You can copy and edit a query and graph without breaking or changing the original query with the Explore feature.
+You can copy and edit a query and panel without breaking or changing the original query with the Explore feature.
 
 1. Select the resource you want to monitor, for example an AKS cluster.
 1. Select *Dashboards with Grafana*. A list of available dashboards appears.
 1.	Select a dashboard, for example the *Kubernetes | Compute Resources | Cluster dashboard*.
-1.	Select the **vertical ellipsis** in one of the graphs in the dashboard, then select **Explore**. The Explore screen appears. A copy of query of the graph is copied (populated) to the new screen for you to work with.
+1.	Select the **vertical ellipsis** in one of the panels in the dashboard, then select **Explore**. The Explore screen appears. A copy of query of the panel is copied (populated) to the new screen for you to work with.
 1. You can now edit the copied query without breaking or changing the original query.
 
-## Save the new graph to a dashboard
-When you are happy with the results of the changes you made to the copied query and the graph, you can save it to a dashboard. 
+## Save the new panel to a dashboard
+When you are happy with the results of the changes you made to the copied query and the panel, you can save it to a dashboard. 
 
 1. Select **Add to dashboard**. The Add Panel to Dashboard screen appears.
 1. From the **Subscription dropdown list**, select the subscription you want to work with.
 1. From the **Resource groups dropdown list**, select the resource group you want to work with. A list of dashboard for that resource group appears.
-1. Select the dashboard from the list. The dashboard screen appears with the new query and graph added to it. Alternatively, you can create a new dashboard by selecting **New dashboard**.
+1. Select the dashboard from the list. The dashboard screen appears with the new query and panel added to it. Alternatively, you can create a new dashboard by selecting **New dashboard**.
 
 ## Use explore from the dashboard gallery
 
 1.	From the resource page in the Azure portal, select **Dashboards with Grafana**. The explore screen appears without data. 
 1.	Select **Select a resource** and then select a resource from the list of resources in the subscription you are currently working with.
-1.	Select the **metric**, **aggregation**, **time grain**, **dimensions**, etc for the query and graph.
-1.	When you are happy with the query and the graph, select **Add to dashboard** to save it to a dashboard or create a new dashboard by selecting **New dashboard**.
+1.	Select the **metric**, **aggregation**, **time grain**, **dimensions**, etc for the query and panel.
+1.	When you are happy with the query and the panel, select **Add to dashboard** to save it to a dashboard or create a new dashboard by selecting **New dashboard**.
 
 For more information about Grafana Explore, see the [Grafana documentation](https://grafana.com/docs/grafana/latest/explore/).
 
@@ -148,13 +147,11 @@ To add Dashboard tags to a saved dashboard, add or update the Azure tag with the
 
 :::image type="content" source="./media/visualizations-grafana/dashboards-with-grafana-edit-tags.png" alt-text="Screenshot of tagging interface.":::
 
-Dashboards created or saved from the context of an Azure Kubernetes Service cluster automatically have the Azure tag *GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters* added.  
-
-You can also add this tag *GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters* to a saved dashboard to be able to access and view the dashboard in the context of AKS clusters.
+Dashboards created or saved from the context of an Azure Kubernetes Service cluster automatically have the Azure tag *GrafanaDashboardResourceType* added. For example, dashboards created or saved from the context of an Azure Kubernetes Service cluster automatically have the Azure tag *GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters* added. You can also add this tag to a saved dashboard to be able to access and view the dashboard in the context of AKS clusters.
 
 ## Export JSON
 
-You can export a dashboard as JSON.
+You can export a dashboard as JSON which can be saved, imported and re-used across any Grafana instance.
 
 1. In the dashboard screen, select **Export** then **JSON**.
 1. Save the file.
