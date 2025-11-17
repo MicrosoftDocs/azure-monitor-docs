@@ -61,7 +61,10 @@ Health advisories are notifications that inform users about changes in Azure ser
 
 Select **Health advisories** on the left menu to see all the health advisories based on your subscription access. For more information, see [Health advisories](service-health-advisories.md).
 
-For information on how to configure alerts for Service Health events, see [Create Service Health alerts by using the Azure portal](alerts-activity-log-service-notifications.md), [Create activity log alerts by using a Bicep file](alerts-activity-log-service-notifications-bicep.md), or [Create Service Health alerts by using an ARM template](alerts-activity-log-service-notifications-arm.md).
+For information on how to configure alerts for Service Health events, refer to:
+- [Create Service Health alerts by using the Azure portal](alerts-activity-log-service-notifications.md) 
+- [Create activity log alerts by using a Bicep file](alerts-activity-log-service-notifications-bicep.md) 
+- [Create Service Health alerts by using an ARM template](alerts-activity-log-service-notifications-arm.md)
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the Health advisories window." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::
 
