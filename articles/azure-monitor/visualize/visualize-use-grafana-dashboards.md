@@ -114,11 +114,11 @@ When you are happy with the results of the changes you made to the copied query 
 1. From the **Resource groups dropdown list**, select the resource group you want to work with. A list of dashboard for that resource group appears.
 1. Select the dashboard from the list. The dashboard screen appears with the new query and panel added to it. Alternatively, you can create a new dashboard by selecting **New dashboard**.
 
-## Use explore from the dashboard gallery
+## Use Explore from the dashboard gallery
 
 1.	From the resource page in the Azure portal, select **Dashboards with Grafana**. The Explore screen appears without data. 
 1.	Select **Select a resource** and then select a resource from the list of resources in the subscription you are currently working with.
-1.	Select the **metric**, **aggregation**, **time grain**, **dimensions**, etc for the query and panel.
+1.	Select the **metric**, **aggregation**, **time grain**, and **dimensions** for the query and panel.
 1.	When you are happy with the query and the panel, select **Add to dashboard** to save it to a dashboard or create a new dashboard by selecting **New dashboard**.
 
 For more information about Grafana Explore, see the [Grafana documentation](https://grafana.com/docs/grafana/latest/explore/).
@@ -134,9 +134,9 @@ Dashboards that you import or create require RBAC access configuration to share 
     - **Lock time range** - If the dashboard is using a relative time range e.g. *now-30m to now*, enabling this option converts the time range in the link to an absolute time range. This enables link recipients to view the same absolute time range as used when shared.
     - **Keep variables** - If the dashboard includes variables, enabling this option retains the current values of the variables and includes them in the generated link.
 1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is required for viewing the dashboard. **Contributor** is required to edit the dashboard. The link recipient will also need access to any data source used in the content of this Grafana dashboard. **Monitoring Reader** role is required for Azure Monitor data and **Monitoring Data Reader** is required for Prometheus data.
-> [!NOTE]
-> 'Microsoft.Dashboard/dashboard/read' and 'Microsoft.Dashboard/dashboard/write' can also be used to assign permissions with more fine-grained control.
-1.	Copy the link to the dashboard to your clipboard.
+    > [!NOTE]
+    > 'Microsoft.Dashboard/dashboard/read' and 'Microsoft.Dashboard/dashboard/write' can also be used to assign permissions with more fine-grained control.
+1. Copy the link to the dashboard to your clipboard.
 1. Paste the link into your preferred communication method to share it.
 
 ## Tag a dashboard

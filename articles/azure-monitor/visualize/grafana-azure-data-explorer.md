@@ -1,12 +1,12 @@
 ---
-title: Use Dashboards with Grafana with Azure Data Explorer (ADX)
+title: Use dashboards with Grafana with Azure Data Explorer (ADX)
 description: This article explains how to use Azure Monitor dashboards with Grafana with Azure Data Explorer (ADX).
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
 ms.date: 11/03/2025
 ---
 
-# Use Dashboards with Grafana with Azure Data Explorer (ADX)
+# Use dashboards with Grafana with Azure Data Explorer (ADX)
 
 Azure Monitor dashboards with Grafana allow you to use and create [Grafana](https://grafana.com/) dashboards directly in the Azure portal. This article explains how to create dashboards with data from Azure Data Explorer (ADX).
 
@@ -31,7 +31,7 @@ Use the following process to add Azure Data Explorer data to a new or existing G
 If you have existing dashboards in Grafana that use the [Azure Data Explorer data source](https://grafana.com/grafana/plugins/grafana-azure-data-explorer-datasource/), you can use the following process to import them into Azure Monitor dashboards with Grafana.
 
 1. Export the JSON for the dashboard from Grafana.
-2. From the Dashboards with Grafana screen, select **New > Import**. The import screen appears.
+2. From the dashboards with Grafana screen, select **New > Import**. The import screen appears.
 3. Select the option to import the JSON file and select the saved JSON.
 5. Select a subscription from the **Subscription** dropdown list that has the resource provider.
 6. Select **Azure Data Explorer** for the data source.

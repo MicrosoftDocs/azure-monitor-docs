@@ -1,14 +1,14 @@
 ---
-title: Use Dashboards with Grafana with Azure Kubernetes Service (AKS)
-description: This article explains how to use Dashboards with Grafana with Azure Kubernetes Service (AKS).
+title: Use dashboards with Grafana with Azure Kubernetes Service (AKS)
+description: This article explains how to use Azure Monitor dashboards with Grafana with Azure Kubernetes Service (AKS).
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
 ms.date: 11/03/2025
 ---
 
-# Use Dashboards with Grafana with Azure Kubernetes Service (AKS)
+# Use dashboards with Grafana with Azure Kubernetes Service (AKS)
 
-[Azure Monitor dashboards with Grafana](./visualize-grafana-overview.md) allow you to view and create [Grafana](https://grafana.com/) dashboards directly in the Azure portal. This article describes the dashboards that are available for Kubernetes clusters enabled for monitoring with Azure Monitor and also how to create your own dashboards.
+[Azure Monitor panel with Grafana](./visualize-grafana-overview.md) allow you to view and create [Grafana](https://grafana.com/) panel directly in the Azure portal. This article describes the dashboards that are available for Kubernetes clusters enabled for monitoring with Azure Monitor and also how to create your own dashboards.
 
 ## Prerequisites
 
