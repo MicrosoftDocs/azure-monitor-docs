@@ -111,6 +111,10 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AEWExperimentAssignmentSummary](/azure/azure-monitor/reference/tables/aewexperimentassignmentsummary) | |
 | [AEWExperimentScorecardMetricPairs](/azure/azure-monitor/reference/tables/aewexperimentscorecardmetricpairs) | |
 | [AEWExperimentScorecards](/azure/azure-monitor/reference/tables/aewexperimentscorecards) | |
+| [AFDAccessLog] | |
+| [AFDClassicCdnAccessLog] | |
+| [AFDHealthProbeLog] | |
+| [AFDWebApplicationFirewallLog] | |
 | [AFSAuditLogs](/azure/azure-monitor/reference/tables/afsauditlogs) | |
 | [AGCAccessLogs](/azure/azure-monitor/reference/tables/agcaccesslogs) | |
 | [AggregatedSecurityAlert](/azure/azure-monitor/reference/tables/aggregatedsecurityalert) | |
@@ -141,6 +145,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [Alert](/azure/azure-monitor/reference/tables/alert) | |
 | [AlertEvidence](/azure/azure-monitor/reference/tables/alertevidence) | |
 | [AlertInfo](/azure/azure-monitor/reference/tables/alertinfo) | |
+| [AMATelemetryEvents] | |
 | [AmlComputeClusterEvent](/azure/azure-monitor/reference/tables/amlcomputeclusterevent) | |
 | [AmlComputeCpuGpuUtilization](/azure/azure-monitor/reference/tables/amlcomputecpugpuutilization) | |
 | [AmlComputeInstanceEvent](/azure/azure-monitor/reference/tables/amlcomputeinstanceevent) | |
@@ -239,8 +244,11 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AVSSyslog](/azure/azure-monitor/reference/tables/avssyslog) | |
 | [AVSVcSyslog](/azure/azure-monitor/reference/tables/avsvcsyslog) | |
 | [AWSCloudTrail](/azure/azure-monitor/reference/tables/awscloudtrail) | |
+| [AWSCloudTrailCCP] | |
 | [AWSCloudWatch](/azure/azure-monitor/reference/tables/awscloudwatch) | |
+| [AWSCloudWatchCCP] | |
 | [AWSGuardDuty](/azure/azure-monitor/reference/tables/awsguardduty) | |
+| [AWSGuardDutyCCP] | |
 | [AWSNetworkFirewallAlert](/azure/azure-monitor/reference/tables/awsnetworkfirewallalert) | |
 | [AWSNetworkFirewallFlow](/azure/azure-monitor/reference/tables/awsnetworkfirewallflow) | |
 | [AWSNetworkFirewallTls](/azure/azure-monitor/reference/tables/awsnetworkfirewalltls) | |
@@ -248,6 +256,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AWSS3ServerAccess](/azure/azure-monitor/reference/tables/awss3serveraccess) | |
 | [AWSSecurityHubFindings](/azure/azure-monitor/reference/tables/awssecurityhubfindings) | |
 | [AWSVPCFlow](/azure/azure-monitor/reference/tables/awsvpcflow) | |
+| [AWSVPCFlowLogsCCP] | |
 | [AWSWAF](/azure/azure-monitor/reference/tables/awswaf) | |
 | [AZFWApplicationRule](/azure/azure-monitor/reference/tables/azfwapplicationrule) | |
 | [AZFWApplicationRuleAggregation](/azure/azure-monitor/reference/tables/azfwapplicationruleaggregation) | |
@@ -283,6 +292,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [AzureBackupOperations](/azure/azure-monitor/reference/tables/azurebackupoperations) | |
 | [AzureDevOpsAuditing](/azure/azure-monitor/reference/tables/azuredevopsauditing) | |
 | [AzureLoadTestingOperation](/azure/azure-monitor/reference/tables/azureloadtestingoperation) | |
+| [AzureLogAnalyticsIngestionDiagnosticLogs] | |
 | [BehaviorAnalytics](/azure/azure-monitor/reference/tables/behavioranalytics) | |
 | [BehaviorEntities](/azure/azure-monitor/reference/tables/behaviorentities) | |
 | [BehaviorInfo](/azure/azure-monitor/reference/tables/behaviorinfo) | |
@@ -325,11 +335,13 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [ContainerRegistryRepositoryEvents](/azure/azure-monitor/reference/tables/containerregistryrepositoryevents) | |
 | [ContainerServiceLog](/azure/azure-monitor/reference/tables/containerservicelog) | |
 | [CoreAzureBackup](/azure/azure-monitor/reference/tables/coreazurebackup) | |
+| [CosmosDBPostgresLogs]) | |
 | [CrowdStrikeAlerts](/azure/azure-monitor/reference/tables/crowdstrikealerts) | |
 | [CrowdStrikeDetections](/azure/azure-monitor/reference/tables/crowdstrikedetections) | |
 | [CrowdStrikeHosts](/azure/azure-monitor/reference/tables/crowdstrikehosts) | |
 | [CrowdStrikeIncidents](/azure/azure-monitor/reference/tables/crowdstrikeincidents) | |
 | [CrowdStrikeVulnerabilities](/azure/azure-monitor/reference/tables/crowdstrikevulnerabilities) | |
+| [CSARequestResponse] | |
 | [DatabricksAccounts](/azure/azure-monitor/reference/tables/databricksaccounts) | |
 | [DatabricksApps](/azure/azure-monitor/reference/tables/databricksapps) | |
 | [DatabricksBrickStoreHttpGateway](/azure/azure-monitor/reference/tables/databricksbrickstorehttpgateway) | |
@@ -371,7 +383,10 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [DatabricksWorkspaceFiles](/azure/azure-monitor/reference/tables/databricksworkspacefiles) | |
 | [DataTransferOperations](/azure/azure-monitor/reference/tables/datatransferoperations) | |
 | [DataverseActivity](/azure/azure-monitor/reference/tables/dataverseactivity) | |
+| [DCPlanBillingEventLogs] | |
 | [DCRLogErrors](/azure/azure-monitor/reference/tables/dcrlogerrors) | |
+| [DefenderForSqlAlerts] | |
+| [DefenderForSqlTelemetry] | |
 | [DevCenterBillingEventLogs](/azure/azure-monitor/reference/tables/devcenterbillingeventlogs) | |
 | [DevCenterDiagnosticLogs](/azure/azure-monitor/reference/tables/devcenterdiagnosticlogs) | |
 | [DevCenterResourceOperationLogs](/azure/azure-monitor/reference/tables/devcenterresourceoperationlogs) | |
@@ -390,12 +405,14 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [DeviceTvmSoftwareInventory](/azure/azure-monitor/reference/tables/devicetvmsoftwareinventory) | |
 | [DeviceTvmSoftwareVulnerabilities](/azure/azure-monitor/reference/tables/devicetvmsoftwarevulnerabilities) | |
 | [DeviceTvmSoftwareVulnerabilitiesKB](/azure/azure-monitor/reference/tables/devicetvmsoftwarevulnerabilitieskb) | |
+| [DFPPurchaseLogs] | |
 | [DnsAuditEvents](/azure/azure-monitor/reference/tables/dnsauditevents) | |
 | [DnsEvents](/azure/azure-monitor/reference/tables/dnsevents) | |
 | [DnsInventory](/azure/azure-monitor/reference/tables/dnsinventory) | |
 | [DNSQueryLogs](/azure/azure-monitor/reference/tables/dnsquerylogs) | |
 | [DSMDataClassificationLogs](/azure/azure-monitor/reference/tables/dsmdataclassificationlogs) | |
 | [DSMDataLabelingLogs](/azure/azure-monitor/reference/tables/dsmdatalabelinglogs) | |
+| [DummyHydrationFact] | |
 | [DynamicEventCollection](/azure/azure-monitor/reference/tables/dynamiceventcollection) | |
 | [Dynamics365Activity](/azure/azure-monitor/reference/tables/dynamics365activity) | |
 | [EGNFailedHttpDataPlaneOperations](/azure/azure-monitor/reference/tables/egnfailedhttpdataplaneoperations) | |
@@ -415,6 +432,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [ExchangeOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/exchangeonlineassessmentrecommendation) | |
 | [FailedIngestion](/azure/azure-monitor/reference/tables/failedingestion) | |
 | [FileMaliciousContentInfo](/azure/azure-monitor/reference/tables/filemaliciouscontentinfo) | |
+| [FSPGPGBouncer] | |
 | [FunctionAppLogs](/azure/azure-monitor/reference/tables/functionapplogs) | |
 | [GCPApigee](/azure/azure-monitor/reference/tables/gcpapigee) | |
 | [GCPAuditLogs](/azure/azure-monitor/reference/tables/gcpauditlogs) | |
@@ -512,7 +530,9 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [MNFDeviceUpdates](/azure/azure-monitor/reference/tables/mnfdeviceupdates) | |
 | [MNFSystemSessionHistoryUpdates](/azure/azure-monitor/reference/tables/mnfsystemsessionhistoryupdates) | |
 | [MNFSystemStateMessageUpdates](/azure/azure-monitor/reference/tables/mnfsystemstatemessageupdates) | |
+| [MPTOperation] | |
 | [MySqlAuditLogs](/azure/azure-monitor/reference/tables/mysqlauditlogs) | |
+| [MySqlErrorLogs] | |
 | [MySqlSlowLogs](/azure/azure-monitor/reference/tables/mysqlslowlogs) | |
 | [NCBMBreakGlassAuditLogs](/azure/azure-monitor/reference/tables/ncbmbreakglassauditlogs) | |
 | [NCBMSecurityDefenderLogs](/azure/azure-monitor/reference/tables/ncbmsecuritydefenderlogs) | |
@@ -564,6 +584,9 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [PGSQLQueryStoreRuntime](/azure/azure-monitor/reference/tables/pgsqlquerystoreruntime) | |
 | [PGSQLQueryStoreWaits](/azure/azure-monitor/reference/tables/pgsqlquerystorewaits) | |
 | [PGSQLServerLogs](/azure/azure-monitor/reference/tables/pgsqlserverlogs) | |
+| [PipelineTestVehicles] | |
+| [PipelineTestVehiclesInternalUseOnly] | |
+| [PlatformTelemetryMetricsLaTable] | |
 | [PowerAppsActivity](/azure/azure-monitor/reference/tables/powerappsactivity) | |
 | [PowerAutomateActivity](/azure/azure-monitor/reference/tables/powerautomateactivity) | |
 | [PowerBIActivity](/azure/azure-monitor/reference/tables/powerbiactivity) | |
@@ -572,6 +595,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [PowerPlatformAdminActivity](/azure/azure-monitor/reference/tables/powerplatformadminactivity) | |
 | [PowerPlatformConnectorActivity](/azure/azure-monitor/reference/tables/powerplatformconnectoractivity) | |
 | [PowerPlatformDlpActivity](/azure/azure-monitor/reference/tables/powerplatformdlpactivity) | |
+| [ProcessInvestigator] | |
 | [ProjectActivity](/azure/azure-monitor/reference/tables/projectactivity) | |
 | [ProtectionStatus](/azure/azure-monitor/reference/tables/protectionstatus) | |
 | [PurviewDataSensitivityLogs](/azure/azure-monitor/reference/tables/purviewdatasensitivitylogs) | |
@@ -619,6 +643,11 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [StorageCacheUpgradeEvents](/azure/azure-monitor/reference/tables/storagecacheupgradeevents) | |
 | [StorageCacheWarningEvents](/azure/azure-monitor/reference/tables/storagecachewarningevents) | |
 | [StorageFileLogs](/azure/azure-monitor/reference/tables/storagefilelogs) | |
+| [StorageInsightsAccountPropertiesDaily] | |
+| [StorageInsightsDailyMetrics] | |
+| [StorageInsightsHourlyMetrics] | |
+| [StorageInsightsMonthlyMetrics] | |
+| [StorageInsightsWeeklyMetrics] | |
 | [StorageMalwareScanningResults](/azure/azure-monitor/reference/tables/storagemalwarescanningresults) | |
 | [StorageMoverCopyLogsFailed](/azure/azure-monitor/reference/tables/storagemovercopylogsfailed) | |
 | [StorageMoverCopyLogsTransferred](/azure/azure-monitor/reference/tables/storagemovercopylogstransferred) | |
