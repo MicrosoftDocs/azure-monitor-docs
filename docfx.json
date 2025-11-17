@@ -224,7 +224,7 @@
         "articles/azure-monitor/**/*": "azure-monitor",
         "articles/chaos-studio/**/**/*": "azure-chaos-studio",
         "articles/service-health/**/*": "azure-service-health",
-        "articles/operations/**/*": "operations"
+        "articles/operations/**/*": "azure-monitor"
       },
       "ms.reviewer": {
         "articles/advisor/**/*": "ikhapova"
@@ -247,7 +247,8 @@
         "articles/azure-monitor/referece/**/*": "reference",
         "articles/azure-monitor/snapshot-debugger/**/*": "snapshot-debugger",
         "articles/azure-monitor/visualize/**/*": "visualizations",
-        "articles/azure-monitor/vm/**/*": "virtual-machines"
+        "articles/azure-monitor/vm/**/*": "virtual-machines",
+        "articles/operations/**/*": "operations"
       },
       "searchScope": {
         "articles/advisor/**/*.md": [
