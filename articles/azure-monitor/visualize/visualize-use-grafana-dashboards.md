@@ -116,7 +116,7 @@ When you are happy with the results of the changes you made to the copied query 
 
 ## Use explore from the dashboard gallery
 
-1.	From the resource page in the Azure portal, select **Dashboards with Grafana**. The explore screen appears without data. 
+1.	From the resource page in the Azure portal, select **Dashboards with Grafana**. The Explore screen appears without data. 
 1.	Select **Select a resource** and then select a resource from the list of resources in the subscription you are currently working with.
 1.	Select the **metric**, **aggregation**, **time grain**, **dimensions**, etc for the query and panel.
 1.	When you are happy with the query and the panel, select **Add to dashboard** to save it to a dashboard or create a new dashboard by selecting **New dashboard**.

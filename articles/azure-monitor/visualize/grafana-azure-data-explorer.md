@@ -8,7 +8,7 @@ ms.date: 11/03/2025
 
 # Use Dashboards with Grafana with Azure Data Explorer (ADX)
 
-Azure Monitor dashboards with Grafana allow you to use and create [Grafana](https://grafana.com/) dashboardss directly in the Azure portal. This article explains how to create dashboards with data from Azure Data Explorer (ADX).
+Azure Monitor dashboards with Grafana allow you to use and create [Grafana](https://grafana.com/) dashboards directly in the Azure portal. This article explains how to create dashboards with data from Azure Data Explorer (ADX).
 
 
 ### Prerequisites
@@ -25,7 +25,7 @@ Use the following process to add Azure Data Explorer data to a new or existing G
 1. Select a **Database** and **Table** with the data you want.
 1. Use the query editor to write a KQL (Kusto) query to retrieve the data that should populate the dashboard.
 
-:::image type="content" source="./media/grafana-azure-data-explorer/data-source.png" lightbox="./media/grafana-azure-data-explorer/data-source.png" alt-text="Screenshot of Azure Dat Explorer data source.":::
+:::image type="content" source="./media/grafana-azure-data-explorer/data-source.png" lightbox="./media/grafana-azure-data-explorer/data-source.png" alt-text="Screenshot of Azure Data Explorer data source.":::
 
 ## Import ADX dashboard JSON
 If you have existing dashboards in Grafana that use the [Azure Data Explorer data source](https://grafana.com/grafana/plugins/grafana-azure-data-explorer-datasource/), you can use the following process to import them into Azure Monitor dashboards with Grafana.
@@ -39,7 +39,7 @@ If you have existing dashboards in Grafana that use the [Azure Data Explorer dat
 8. If you don't see the cluster in the list, select the **Override cluster URI** toggle, and then select *Enter Azure Data Explorer cluster URI manually* from the **Cluster URI Source** dropdown list. Enter the URL of the cluster in the **Cluster URI** field.
 9. Select **Import**.
 
-:::image type="content" source="./media/grafana-azure-data-explorer/import.png" lightbox="./media/grafana-azure-data-explorer/import.png" alt-text="Screenshot of Azure Dat Explorer import screen.":::
+:::image type="content" source="./media/grafana-azure-data-explorer/import.png" lightbox="./media/grafana-azure-data-explorer/import.png" alt-text="Screenshot of Azure Data Explorer import screen.":::
 
 ## Related content
 

@@ -20,7 +20,7 @@ In this tutorial, you learn how to:
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure Monitor dashboards with Grafana. [Create an Azure Monitor dashboards with Grafana resource](/azure/azure-monitor/visualize/visualize-use-grafana-dashboards).
+- An Azure Monitor dashboards with Grafana resource. [Create an Azure Monitor dashboards with Grafana resource](/azure/azure-monitor/visualize/visualize-use-grafana-dashboards).
 - A Microsoft Entra application with a service principal. [Create a Microsoft Entra application and service principal](/entra/identity-platform/howto-create-service-principal-portal). For simplicity, use an application located in the same Microsoft Entra tenant as your Azure Monitor dashboards with Grafana resource.
 
 ## Sign in to Azure
@@ -38,7 +38,7 @@ Sign in to the Azure portal at [https://portal.azure.com/](https://portal.azure.
 1. Find and open your Azure Monitor dashboards with Grafana resource.
 1. Select **Access control (IAM)** in the navigation menu.
 1. Select **Add**, then **Add role assignment**.
-1. There're multi roles that works, you could check the description of each role and select the minimum access to keep security.
+1. There are multiple roles that work, you could check the description of each role and select the minimum access to keep security.
     1. *Azure Monitor Dashboards with Grafana Contributor* role under *Job function roles* tab.
     1. *Monitoring Contributor* role under *Job function roles* tab.
     1. *Monitoring Reader* role under *Job function roles* tab.
@@ -151,7 +151,7 @@ For more details about these APIs, see [Grafana public doc](https://aka.ms/helio
 > [!NOTE]
 > You cannot import or delete dashboards through the Grafana API, as these operations require Azure Resource Manager (ARM) requests.  
 > - Importing a dashboard requires the ARM to create a new Azure Monitor dashboard with the Grafana resource first, this can be done using [ARM templates or Bicep](/azure/templates/microsoft.dashboard/dashboards?pivots=deployment-language-arm-template). The ARM request will create a resource with empty dashboard by default. After resource is created, then you could use Grafana data plane API(`POST /api/dashboards/db/`) to update the dashboard.
-> - Deleting a dashboard is a ARM operation, no Grafana API call is needed.
+> - Deleting a dashboard is an ARM operation, no Grafana API call is needed.
 > - Find annotations and find annotations tags require `dashboardUID` parameter
 > - Create, update and patch annotations require `dashboardUID` in request body
 
