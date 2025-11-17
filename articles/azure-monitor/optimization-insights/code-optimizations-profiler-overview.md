@@ -14,9 +14,9 @@ ms.update-cycle: 180-days
 
 # Monitor and analyze runtime behavior with Code Optimizations
 
-Diagnosing your application's performance issues can be difficult, especially when running on a production environment in the dynamic cloud. Slow responses in your application could be caused by infrastructure, framework, or application code handling the request in the pipeline. 
+Diagnosing your application's performance issues can be difficult, especially when running on a production environment in the dynamic cloud. Slow responses in your application may be caused by infrastructure, framework, or application code handling the request in the pipeline. 
 
-Code Optimizations, an AI-based service in Azure Application Insights, works in tandem with the Application Insights Profiler for .NET to detect CPU and memory usage performance issues at a code level and provide recommendations on how to fix them. 
+Code Optimizations, an AI-based service in Azure Application Insights, works in tandem with the Application Insights Profiler for .NET. Together, they detect CPU and memory usage performance issues at a code level and provide recommendations on how to fix them. 
 
 Make informed decisions and optimize your code using real-time performance data and insights gathered from your production environment.
 
@@ -41,7 +41,7 @@ Using the [Code Optimizations consolidated overview page](view-code-optimization
 
 #### Analyze
 
-Once your environment's data has been collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identified issues, with a 30-day history for you to review and analyze past events.
+Once your environment's data is collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identified issues, with a 30-day history for you to review and analyze past events.
 
 #### Resolve
 
@@ -86,7 +86,7 @@ As frameworks and Azure services evolve, you can enable .NET Profiler for your .
 |---------------|---------------|---------|
 | Most Azure services | Code change in your application<br>(most universal) | If your .NET app runs on variants of Azure PaaS services or Containers, you can choose between two options for enabling .NET Profiler:<br>- [Application Insights Profiler for ASP.NET Core](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore) that uses the [Application Insights SDK](../app/asp-net-core.md), or<br>- ***New*** [Azure Monitor OpenTelemetry Profiler for NET (Preview)](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net) that uses [Azure Monitor OpenTelemetry Distro](../app/application-insights-faq.yml#why-should-i-use-the-azure-monitor-opentelemetry-distro) |
 | Azure App Service | No code change for your application | Since the Profiler is pre-installed, you can enable Profiler for .NET in the portal for:<br>- [Azure App Service - .NET app on Windows](../profiler/profiler.md)<br>- [Azure Functions - App Service plan](../profiler/profiler-azure-functions.md) |
-| Virtual Machines | No code change for your application | Once you've enabled the Application Insights SDK in your application code, you can enable the Profiler for .NET in your ARM template.<br>- [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)<br>- [Azure Service Fabric](../profiler/profiler-servicefabric.md) | 
+| Virtual Machines | No code change for your application | Once the Application Insights SDK is enabled in your application code, you can enable the Profiler for .NET in your ARM template.<br>- [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)<br>- [Azure Service Fabric](../profiler/profiler-servicefabric.md) | 
 
 
 ### Details and examples for enabling Profiler for .NET
@@ -131,7 +131,7 @@ You can set an explicit region using connection strings. [Learn more about conne
 
 - **Profiler**
 
-    If you've enabled the Profiler for .NET but aren't seeing traces, see the [Troubleshooting guide](../profiler/profiler-troubleshooting.md).
+    If you enabled the Profiler for .NET but aren't seeing traces, see the [Troubleshooting guide](../profiler/profiler-troubleshooting.md).
 
 - **Code Optimizations**
  
