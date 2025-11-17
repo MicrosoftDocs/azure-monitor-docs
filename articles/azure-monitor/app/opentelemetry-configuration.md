@@ -511,6 +511,16 @@ Configure sampling in code or by using the environment variables shown above.
 
 #### Configure in code
 
+**Fixed percentage**
+```python
+from azure.monitor.opentelemetry import configure_azure_monitor
+
+configure_azure_monitor(
+    connection_string="<your-connection-string>",
+    sampling_ratio=0.1,  # 0.1 = 10% of traces sampled
+)
+```
+
 **Rate-limited**
 ```python
 from azure.monitor.opentelemetry import configure_azure_monitor
@@ -521,8 +531,8 @@ configure_azure_monitor(
 )
 ```
 
-> [!NOTE]
-> If you do not set any environment variables or the `traces_per_second` option, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
+> [!NOTE]  
+> If you do not set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
 
 #### Trace‑based sampling for logs
 
