@@ -42,6 +42,7 @@ Azure Service Health retains all event types in the Health History section of th
 > However, all updates for each tracking ID are still available on the **Issue Updates** tab, and the number of unique tracking IDs is the same in both Resource Graph and the Service Health portal.
 
 ## Get started with Service Health
+This section provide an overview of each pane in the Service Health portal.
 
 ## See issues that might affect your services
 
