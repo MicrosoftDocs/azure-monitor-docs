@@ -25,9 +25,48 @@ Don't explicitly configure your agents, data connectors or API applications to *
 | **1 July 2025** | [Logs Query API endpoints](../../fundamentals/azure-monitor-network-access.md#logs-query-api-endpoints) | TLS 1.2 or higher | 
 | **1 March 2026** | [Logs Ingestion API endpoints](../../fundamentals/azure-monitor-network-access.md#logs-ingestion-api-endpoints) | TLS 1.2 or higher |
 
-**Recommended action**
+##### Recommended action
 
-To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols.
+To avoid potential service disruptions, confirm that your resources interacting with the Logs API endpoints have no dependencies on TLS 1.0 or 1.1 protocols.  
+
+<br>
+<details>
+<summary>Click here for a recommended action you can take to audit VMs.</summary>
+
+**Confirm VM resources using a monitoring agent with an unsupported TLS dependency**
+
+1. Use an Azure Resource Graph query to audit the operating system versions of your VMs that have a version of the monitoring agent installed.  
+2. From the Azure portal, go to **Resource Manager** and select **Resource graph explorer**. The following query finds all VMs in the given scope that have an extension installed. If the VMs are started, the OS name and version are also listed. Look for VMs with the Azure Monitor Agent or one of the legacy agents installed.  
+
+<pre>
+Resources
+| where type =~ 'microsoft.compute/virtualmachines' 
+ | project id,
+  JoinID = toupper(id),
+  ComputerName = tostring(properties.osProfile.computerName),
+  OSName = tostring(properties.extended.instanceView.osName),
+  OSVersion = tostring(properties.extended.instanceView.osVersion),
+  osOffer = tostring(properties.storageProfile.imageReference.offer),
+  osSku = tostring(properties.storageProfile.imageReference.sku)
+| join kind=leftouter(
+  Resources
+  | where type == 'microsoft.compute/virtualmachines/extensions'
+  | project
+    MachineId = toupper(substring(id, 0, indexof(id, '/extensions'))),
+    ExtensionName = name,
+    ExtensionVersion = properties.typeHandlerVersion
+) on $left.JoinID == $right.MachineId
+| summarize Extensions = make_list(ExtensionName) by id, ComputerName, OSName, OSVersion, osOffer, osSku, tostring(ExtensionVersion)
+| order by tolower(OSName) asc
+</pre>
+
+3. Then use this [table of supported versions of TLS in Windows](/security/engineering/solving-tls1-problem#supported-versions-of-tls-in-windows) to determine what Windows VMs in your query results you need to verify TLS enablement.
+4. Disable TLS 1.0 and 1.1 and enable TLS 1.2. For more information, see [Configure TLS 1.2 for the agent](/previous-versions/azure/azure-monitor/agents/agent-windows#configure-agent-to-use-tls-12).
+
+Practically any Windows version older than the latest releases still has TLS 1.0 or 1.1 available. Windows 7 and later can enable TLS 1.2, but they do not automatically disable TLS 1.0 and 1.1. Only upcoming Windows releases plan to turn these off by default. Identify systems with no ability to support TLS 1.2 and systems that require an update or registry change to support TLS 1.2.
+
+In Linux, TLS protocol support is provided by libraries (like OpenSSL, NSS, GnuTLS) shipped with the OS. ManyLinux releases earlier than 2018-2020 support TLS 1.0 and 1.1 and leave them enabled by default. Newer releases have started to disable legacy TLS by default.
+</details>
 
 For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 

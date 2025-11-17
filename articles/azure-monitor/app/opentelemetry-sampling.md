@@ -41,8 +41,20 @@ Sampling is **not enabled by default** in Application Insights OpenTelemetry dis
 The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
 
 - Live Metrics and the Application Insights classic API SDKs require this sampler for compatibility.
+
 - The sampler is disabled by default. You must explicitly enable and configure sampling to use the sampler.
-- It uses a fixed-rate algorithm. For example, a rate of 10% sends about 10% of traces to Azure Monitor.
+
+- **Sampling options**
+
+  - **Fixed-rate (percentage)**  
+    Set a sampling ratio between 0 and 1 (for example, `0.1` sends about 10% of traces to Azure Monitor).
+
+  - **Rate-limited**  
+    Set a maximum number of traces per second (for example, `0.5` ≈ one trace every two seconds; `5.0` = five traces per second).
+
+  - **Trace-based log sampling**  
+    For languages supporting it, logs tied to unsampled traces are dropped.
+
 - The Azure Monitor Application Insights service relies on this sampler to show you complete traces and avoid broken ones.
 
 <u> **Benefits** </u>

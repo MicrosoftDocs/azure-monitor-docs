@@ -138,15 +138,12 @@ items:
         - name: ASP.NET on-premises agent
           href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)
-        items:
-        - name: .NET
-          displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp
-          href: app/dotnet.md
-        - name: Node.js
-          href: app/nodejs.md
-          displayName: SDK, Node.js, nodejs, JavaScript, js
+        displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
+        href: app/classic-api.md
     - name: Experiences
       items:
+      - name: Agent details
+        href: app/agents-view.md
       - name: Application dashboard
         displayName: dashboard, Application Insights dashboard
         href: app/overview-dashboard.md
@@ -166,6 +163,8 @@ items:
         href: app/usage.md
       - name: Work item integration
         href: app/work-item-integration.md
+      - name: Grafana dashboards
+        href: app/grafana-dashboards.md
     - name: Code analysis
       items:
       - name: Code Optimizations
@@ -348,8 +347,6 @@ items:
         maintainContext: true
       - name: Send data to Fabric and Azure Data Explorer
         href: vm/send-fabric-destination.md
-      - name: Send data to Event Hubs and Storage
-        href: vm/send-event-hubs-storage.md
     - name: VM insights
       items:
       - name: Overview
@@ -735,12 +732,12 @@ items:
         href: scom-manage-instance/use-managed-identities-with-scom-mi.md
       - name: Encryption at rest
         href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
+  - name: Monitoring coverage
+    href: fundamentals/monitoring-coverage.md
   - name: Multicloud monitoring
     href: fundamentals/best-practices-multicloud.md
   - name: Enterprise architecture
     href: fundamentals/enterprise-monitoring-architecture.md
-  - name: Monitor Azure Monitor
-    href: fundamentals/monitor-azure-monitor.md
 - name: Data sources
   items:
   - name: List of data sources
@@ -1459,6 +1456,10 @@ items:
           href: alerts/alerts-create-activity-log-alert-rule.md
         - name: Set up a Prometheus alert
           href: alerts/prometheus-alerts.md
+        - name: Query-based metric alerts overview (preview)
+          href: alerts/alerts-query-based-metric-alerts-overview.md
+        - name: Create query-based metric alerts (preview)
+          href: alerts/alerts-create-query-based-metric-alerts.md
         - name: Set up a metric alert rule with dynamic thresholds
           href: alerts/alerts-dynamic-thresholds.md
         - name: Set up a metric alert on Azure Monitor Logs
@@ -1709,6 +1710,12 @@ items:
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: fundamentals/policy-reference.md
+  - name: Limited previews
+    items:
+    - name: Collect and analyze OpenTelemetry data with Azure Monitor
+      href: fundamentals/collect-use-observability-data.md
+    - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
+      href: app/kubernetes-open-protocol.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources
