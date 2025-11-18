@@ -183,7 +183,7 @@ if ($operationId) {
 202 (accepted) with header including the OperationId
 ```
 
-#### [PowerShell](#tab/powershell2)
+#### [PowerShell](#tab/powershell)
 
 ```powershell
 Status: Updating
