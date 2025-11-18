@@ -129,8 +129,10 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     | Field | Description |
     |-------|-------------|
-    | **Operator** | The query results are transformed into a number. In this field, select the operator to use for comparing the number against the threshold. |
-    | **Threshold value** | A number value for the threshold. |
+    | **Threshold** | Select if the threshold should be evaluated based on a static value or a dynamic value.<br>A **static threshold** evaluates the rule by using the threshold value that you configure.<br>**Dynamic thresholds** use machine learning algorithms to continuously learn the query result behavior patterns and calculate the appropriate thresholds for unexpected behavior. Learn more about using [dynamic thresholds](./alerts-dynamic-thresholds.md). |
+    | **Operator** | Select the operator for comparing the query result value against the threshold.<br>If you're using dynamic thresholds, alert rules can use tailored thresholds based on data behavior for both upper and lower bounds in the same alert rule. Select one of these operators:<br>• Greater than the upper threshold or lower than the lower threshold (default)<br>• Greater than the upper threshold<br>• Lower than the lower threshold |
+    | **Threshold value** | If you selected a **static** threshold, enter the threshold value for the condition logic. |
+    | **Threshold sensitivity** | If you selected a **dynamic** threshold, enter the sensitivity level. The sensitivity level affects the amount of deviation from the query results pattern that's required to trigger an alert.<br>• **High**: Thresholds are tight and close to the query result series pattern. An alert rule is triggered on the smallest deviation, resulting in more alerts.<br>• **Medium**: Thresholds are less tight and more balanced. There are fewer alerts than with high sensitivity (default).<br>• **Low**: Thresholds are loose, allowing greater deviation from the query results pattern. Alert rules are only triggered on large deviations, resulting in fewer alerts. |
     | **Frequency of evaluation** | How often the query is run. You can set it anywhere from one minute to one day (24 hours). |
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-create-log-rule-logic.png" alt-text="Screenshot that shows the section for alert logic in a new log search alert rule.":::
