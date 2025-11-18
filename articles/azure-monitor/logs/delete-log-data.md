@@ -91,7 +91,7 @@ Authorization: Bearer eyJ0e...
 }
 ```
 
-### [PowerShell](#tab/powershell1)
+### [PowerShell](#tab/powershell)
 
 Script includes operation status check.
 
