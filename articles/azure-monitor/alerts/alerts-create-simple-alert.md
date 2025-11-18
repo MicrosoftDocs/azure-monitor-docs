@@ -11,8 +11,8 @@ author: IngridAtMicrosoft
 
 This article shows you how to create a new simple log alert rule or edit an existing simple log alert rule in Azure Monitor. To learn more about alerts, see the [alerts overview](alerts-overview.md).
 
-    > [!NOTE] 
-    > Simple log alert rules support querying either Analytics or Basic logs table plan.
+> [!NOTE] 
+> Simple log alert rules support querying either Analytics or Basic logs table plan.
 
 ## Alert rules
 
