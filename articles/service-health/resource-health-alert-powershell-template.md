@@ -2,11 +2,11 @@
 title: Create Resource Health alerts with Azure PowerShell, Azure Resource Manager, and templates
 description: Create Resource health alerts programmatically to notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 11/04/2025 
+ms.date: 11/18/2025 
 
 ---
 
-# Creating Resource Health alerts 
+# Create Resource Health alerts programatically
 
 This article shows you how to create and configure Azure Resource Health alerts using Azure PowerShell, Azure Resource Manager (ARM) templates, and Azure CLI.
 
