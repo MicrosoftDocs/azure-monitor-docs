@@ -162,7 +162,8 @@
         "articles/azure-monitor/reference/**/*": "EliotSeattle",
         "articles/azure-monitor/vm/**/*": "bwren",
         "articles/chaos-studio/**/*": "EliotSeattle",
-        "articles/service-health/**/*": "jocalland"
+        "articles/service-health/**/*": "jocalland",
+        "articles/operations/**/*": "bwren"
       },
       "featureFlags": {
         "articles/**/*": [
@@ -215,13 +216,15 @@
         "articles/azure-monitor/visualize/**/*": "bwren",
         "articles/azure-monitor/vm/**/*": "bwren",
         "articles/chaos-studio/**/*": "eliotgra",
-        "articles/service-health/**/*": "v-jocalland"
+        "articles/service-health/**/*": "v-jocalland",
+        "articles/operations/**/*": "bwren"
       },
       "ms.service": {
         "articles/advisor/**/**/*": "azure-advisor",
         "articles/azure-monitor/**/*": "azure-monitor",
         "articles/chaos-studio/**/**/*": "azure-chaos-studio",
-        "articles/service-health/**/*": "azure-service-health"
+        "articles/service-health/**/*": "azure-service-health",
+        "articles/operations/**/*": "azure-monitor"
       },
       "ms.reviewer": {
         "articles/advisor/**/*": "ikhapova"
@@ -244,7 +247,8 @@
         "articles/azure-monitor/referece/**/*": "reference",
         "articles/azure-monitor/snapshot-debugger/**/*": "snapshot-debugger",
         "articles/azure-monitor/visualize/**/*": "visualizations",
-        "articles/azure-monitor/vm/**/*": "virtual-machines"
+        "articles/azure-monitor/vm/**/*": "virtual-machines",
+        "articles/operations/**/*": "operations"
       },
       "searchScope": {
         "articles/advisor/**/*.md": [
@@ -278,13 +282,18 @@
         "articles/service-health/**/*.yml": [
           "Azure",
           "Service Health"
+        ],
+        "articles/operations/**/*.yml": [
+          "Azure",
+          "Operations"
         ]
       },
     "titleSuffix": {
         "articles/advisor/**/*": "Azure Advisor",
         "articles/azure-monitor/**/*": "Azure Monitor",
         "articles/chaos-studio/**/*": "Azure Chaos Studio",
-        "articles/service-health/**/*": "Azure Service Health"
+        "articles/service-health/**/*": "Azure Service Health",
+        "articles/operations/**/*": "Azure Operations Center"
       }
     },
     "overwrite": [],
