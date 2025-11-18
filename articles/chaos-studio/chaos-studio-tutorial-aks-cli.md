@@ -211,7 +211,7 @@ az rest --method get --uri https://management.azure.com/subscriptions/$SUBSCRIPT
 
 
 ```azurecli-interactive
-az role assignment create --role "Azure Kubernetes Service RBAC Admin Role" --assignee-principal-type "ServicePrincipal" --assignee-object-id $EXPERIMENT_PRINCIPAL_ID --scope subscriptions/$SUBSCRIPTION_ID/resourceGroups/$resourceGroupName/providers/Microsoft.ContainerService/managedClusters/$AKS_CLUSTER_NAME
+az role assignment create --role "Azure Kubernetes Service RBAC Cluster Admin" --assignee-principal-type "ServicePrincipal" --assignee-object-id $EXPERIMENT_PRINCIPAL_ID --scope subscriptions/$SUBSCRIPTION_ID/resourceGroups/$resourceGroupName/providers/Microsoft.ContainerService/managedClusters/$AKS_CLUSTER_NAME
 
 az role assignment create --role "Azure Kubernetes Service Cluster User Role" --assignee-principal-type "ServicePrincipal" --assignee-object-id $EXPERIMENT_PRINCIPAL_ID --scope subscriptions/$SUBSCRIPTION_ID/resourceGroups/$resourceGroupName/providers/Microsoft.ContainerService/managedClusters/$AKS_CLUSTER_NAME
 ```

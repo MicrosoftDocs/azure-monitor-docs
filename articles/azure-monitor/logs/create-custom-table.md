@@ -4,7 +4,7 @@ description: Create a table with a custom schema to collect logs from any data s
 ms.reviewer: adi.biran
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to 
-ms.date: 01/28/2024
+ms.date: 08/29/2025
 # Customer intent: As a Log Analytics workspace administrator, I want to manage table schemas and be able create a table with a custom schema to store logs from an Azure or non-Azure data source.
 ---
 
@@ -17,11 +17,13 @@ ms.date: 01/28/2024
 
 ## Prerequisites
 
-To create a custom table, you need:
+| Action | Permission required |
+|---|---|
+| Manage a table | `Microsoft.OperationalInsights/workspaces/*` permission at the Log Analytics workspace scope or higher. </br>For example, as provided by the privileged built-in role, [Log Analytics contributor](../logs/manage-access.md#log-analytics-contributor). |
 
-* A Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
-* A [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md).
-* A JSON file with at least one record of sample for your custom table, which looks similar to the following example:
+To ingest data to the table, you might need the following:
+* Data collection endpoint (DCE). For more information, see [DCE](../data-collection/data-collection-endpoint-overview.md).
+* A sample of at least one record of the source data in a JSON file. This is used to create custom tables in the portal, such as what's required to collect [text and JSON data sources from VMs](../vm/data-collection.md#add-data-sources)
 
     ```json
     [
@@ -43,7 +45,7 @@ To create a custom table, you need:
     ]
     ``` 
 
-    All tables in a Log Analytics workspace must have a `TimeGenerated` column, which is used to identify the ingestion time of the record. If the column is missing, it's added to the transformation in your DCR for the table. For information about the `TimeGenerated` format, see [supported datetime formats](/azure/data-explorer/kusto/query/scalar-data-types/datetime#supported-formats).
+* All tables in a Log Analytics workspace must have a `TimeGenerated` column, which is used to identify the ingestion time of the record. If the column is missing, it's automatically added to the transformation in your DCR for the table. For information, see [supported datetime formats](/azure/data-explorer/kusto/query/scalar-data-types/datetime#supported-formats).
 
 ## Create a custom table
 
@@ -148,7 +150,7 @@ Use the [Tables - Update PATCH API](/rest/api/loganalytics/tables/update) to cre
 
 ## Delete a table
 
-There are several types of tables in Azure Monitor Logs. You can delete any table that's not an Azure table, but what happens to the data when you delete the table is different for each type of table.
+You can delete any table that's not an Azure table, but how the data is deleted depends on the table type.
 
 For more information, see [What happens to data when you delete a table in a Log Analytics workspace](../logs/data-retention-configure.md#what-happens-to-data-when-you-delete-a-table-in-a-log-analytics-workspace).
 
@@ -192,7 +194,7 @@ To delete a table using PowerShell:
 
 ## Add or delete a custom column
 
-You can modify the schema of custom tables and add custom columns to, or delete columns from, a standard table.
+Custom tables allow modification of the schema by adding or deleting columns after table creation. Azure tables only allow adding and deleting custom columns.
 
 Use these rules when defining column names for custom tables:
  
@@ -200,8 +202,10 @@ Use these rules when defining column names for custom tables:
 * After the first character, use only letters, digits, or underscores.
 * Don't use spaces, dots, dashes, or other punctuation in column names.
 * Non-ASCII letters (for example, Æ, É, Ö) aren't supported in column names.
-* Column names are case sensitive.
-* Column names must be 1 to 45 characters long.
+* Column names are only case sensitive for Analytics and Basic tables. Auxiliary log table ingestion drops data to duplicate column names when the only difference is case.
+* Column names must be 2 to 45 characters long.
+* Custom column names in Azure tables must end in `_CF`
+
 * Don't use names that conflict with system or reserved columns, including `id`, `BilledSize`, `IsBillable`, `InvalidTimeGenerated`, `TenantId`, `Title`, `Type`, `UniqueId`, `_ItemId`, `_ResourceGroup`, `_ResourceId`, `_SubscriptionId`, `_TimeReceived`.
 
 > [!IMPORTANT]
@@ -338,10 +342,8 @@ Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourc
 
 ---
 
-## Next steps
-
-Learn more about:
+## Related content
 
 * [Collecting logs with the Log Ingestion API](../logs/logs-ingestion-api-overview.md)
 * [Collecting logs with Azure Monitor Agent](../agents/agents-overview.md)
-* [Data collection rules](../data-collection/data-collection-endpoint-overview.md)
+* [Collect data from virtual machines](../vm/data-collection.md)

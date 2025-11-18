@@ -2,7 +2,7 @@
 title: Network firewall requirements for monitoring Kubernetes cluster
 description: Proxy and firewall configuration information required for the containerized agent to communicate with Managed Prometheus and Container insights.
 ms.topic: article
-ms.date: 11/14/2023
+ms.date: 08/25/2025
 ms.reviewer: aul
 ---
 

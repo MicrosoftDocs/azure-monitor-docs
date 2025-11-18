@@ -26,8 +26,8 @@ The following limits apply to the data collection rule (DCR) and data collection
 
 | Limit | Value |
 |:---|:---|
-| Ingestion requests per minute to a data collection endpoint | 15,000<br>This limit can't be increased. |
-| Data ingestion per minute to a data collection endpoint | 50 GB<br>This limit can't be increased. |
+| Ingestion requests per minute to a data collection rule | 15,000<br>This limit can't be increased. |
+| Data ingestion per minute to a data collection rule | 50 GB<br>This limit can't be increased. |
 
 #### Queries
 

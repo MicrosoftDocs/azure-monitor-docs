@@ -3,7 +3,6 @@ title: Usage analysis with Application Insights | Azure Monitor
 description: Understand your users and what they do with your application.
 ms.topic: how-to
 ms.date: 05/31/2025
-ms.reviewer: mmcc
 ---
 
 # Usage analysis with Application Insights
@@ -39,7 +38,7 @@ This article covers the following areas:
 #### Prerequisites
 
 > [!div class="checklist"]
-> * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
+> * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 > * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 
 #### Instrument your application
@@ -544,7 +543,7 @@ These dimensions are measured independently, but they interact with each other.
 
 #### Prerequisites
 
-* **Azure subscription**: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
+* **Azure subscription**: [Create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * **Application Insights resource**: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 

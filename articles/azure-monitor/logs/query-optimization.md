@@ -3,7 +3,7 @@ title: Optimize log queries in Azure Monitor
 description: Best practices for optimizing log queries in Azure Monitor.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 10/11/2024
+ms.date: 10/07/2025
 
 
 ---
@@ -297,10 +297,11 @@ SecurityEvent
 | summarize LoginSessions = dcount(LogonGuid) by Account
 ```
 
-### Avoid multiple scans of the same source data by using conditional aggregation functions and the materialize function
-When a query has several subqueries that are merged by using join or union operators, each subquery scans the entire source separately. Then it merges the results. This action multiplies the number of times that data is scanned, which is a critical factor in large datasets.
+### Avoid multiple scans of the same source data
 
-A technique to avoid this scenario is by using the conditional aggregation functions. Most of the [aggregation functions](/azure/data-explorer/kusto/query/summarizeoperator#list-of-aggregation-functions) that are used in a summary operator have a conditioned version that you can use for a single summarize operator with multiple conditions.
+When a query has several subqueries that are merged by using join or union operators, each subquery scans the entire source separately. Then it merges the results. This action multiplies the number of times that data is scanned, which is a critical factor in large dataset query performance.
+
+A technique to avoid this performance problem is using the conditional aggregation functions. Most of the [aggregation functions](/azure/data-explorer/kusto/query/summarizeoperator#list-of-aggregation-functions) that are used in a summary operator have a conditional version. Use the conditional version to get a single summarize operator with multiple conditions.
 
 For example, the following queries show the number of login events and the number of process execution events for each account. They return the same results, but the first query scans the data twice. The second query scans it only once:
 
@@ -353,7 +354,7 @@ SecurityEvent
 
 When the preceding query doesn't allow you to avoid using subqueries, another technique is to hint to the query engine that there's a single source of data used in each one of them by using the [materialize() function](/azure/data-explorer/kusto/query/materializefunction?pivots=azuremonitor). This technique is useful when the source data is coming from a function that's used several times within the query. `Materialize` is effective when the output of the subquery is much smaller than the input. The query engine will cache and reuse the output in all occurrences.
 
-### Reduce the number of columns that's retrieved
+### Reduce the number of columns retrieved
 
 Because Azure Data Explorer is a columnar data store, retrieval of every column is independent of the others. The number of columns that are retrieved directly influences the overall data volume. You should only include the columns in the output that are needed by [summarizing](/azure/kusto/query/summarizeoperator) the results or [projecting](/azure/kusto/query/projectoperator) the specific columns.
 
@@ -508,7 +509,9 @@ A query that spans more than five workspaces is considered a query that consumes
 
 > [!IMPORTANT]
 > - In some multi-workspace scenarios, the CPU and data measurements won't be accurate and will represent the measurement of only a few of the workspaces.
-> - Cross workspace queries having an explicit identifier: workspace ID, or workspace Azure Resource ID, consume less resources and are more performant. 
+> - Cross workspace queries having an explicit identifier: workspace ID, or workspace Azure Resource ID, consume less resources and perform better. 
+
+For more information, see [Query across resources](cross-workspace-query.md).
 
 ## Parallelism
 Azure Monitor Logs uses large clusters of Azure Data Explorer to run queries. These clusters vary in scale and potentially get up to dozens of compute nodes. The system automatically scales the clusters according to workspace placement logic and capacity.
@@ -533,6 +536,6 @@ It's a leading indicator for runaway memory conditions that trigger protections 
 - If using [join](/azure/kusto/query/joinoperator?pivots=azuremonitor), use best practices where applicable. See [Query best practices](/azure/kusto/query/best-practices).
 - Consider using sampling.
 
-## Next steps
+## Related content
 
 [Reference documentation for the Kusto Query Language](/azure/kusto/query/)

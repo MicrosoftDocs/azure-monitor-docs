@@ -1,0 +1,13 @@
+---
+title: Include file
+description: Include file with retirement banner of Azure Monitor SCOM Managed Instance
+author: Jeronika-MS
+ms.author: v-gajeronika
+ms.date:  09/08/2025
+ms.topic:  include
+ms.service: azure-monitor
+ms.subservice: operations-manager-managed-instance
+---
+
+>[!NOTE]
+>Azure Monitor SCOM Managed Instance is no longer in support and is planned to be deprecated by 30 September 2026. This content will no longer be updated. We recommend [Azure Monitor](/azure/azure-monitor/scom-manage-instance/migrate-to-azure-monitor) or [System Center Operations Manager](/azure/azure-monitor/scom-manage-instance/migrate-to-operations-manager) as an alternative solution, based on your requirements.

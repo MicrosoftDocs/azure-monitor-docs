@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, build-2023
-ms.reviewer: mmcc
 ---
 
 # Dependency tracking in Application Insights
@@ -104,11 +103,11 @@ Select the left-hand **Performance** tab and select the **Dependencies** tab at 
 
 Select a **Dependency Name** under **Overall**. After you select a dependency, it shows a graph of that dependency's distribution of durations.
 
-:::image type="content" source="media/asp-net-dependencies/2-perf-dependencies.png" lightbox="media/asp-net-dependencies/2-perf-dependencies.png" alt-text="Screenshot that shows the Dependencies tab open to select a Dependency Name in the chart.":::
+:::image type="content" source="media/dependencies/perf-dependencies.png" lightbox="media/dependencies/perf-dependencies.png" alt-text="Screenshot that shows the Dependencies tab open to select a Dependency Name in the chart.":::
 
 Select the **Samples** button at the bottom right. Then select a sample to see the end-to-end transaction details.
 
-:::image type="content" source="media/asp-net-dependencies/3-end-to-end.png" lightbox="media/asp-net-dependencies/3-end-to-end.png" alt-text="Screenshot that shows selecting a sample to see the end-to-end transaction details.":::
+:::image type="content" source="media/dependencies/end-to-end.png" lightbox="media/dependencies/end-to-end.png" alt-text="Screenshot that shows selecting a sample to see the end-to-end transaction details.":::
 
 ### Profile your live site
 
@@ -120,7 +119,7 @@ Failed requests might also be associated with failed calls to dependencies.
 
 Select the left-hand **Failures** tab and then select the **Dependencies** tab at the top.
 
-:::image type="content" source="media/asp-net-dependencies/4-fail.png" lightbox="media/asp-net-dependencies/4-fail.png" alt-text="Screenshot that shows selecting the failed requests chart.":::
+:::image type="content" source="media/dependencies/fail.png" lightbox="media/dependencies/fail.png" alt-text="Screenshot that shows selecting the failed requests chart.":::
 
 Here you see the failed dependency count. To get more information about a failed occurrence, select a **Dependency Name** in the bottom table. Select the **Dependencies** button at the bottom right to see the end-to-end transaction details.
 

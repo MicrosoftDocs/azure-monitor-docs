@@ -6,7 +6,7 @@ services: azure-monitor
 sub-service: logs
 ms.topic: how-to
 ms.reviewer: rofrenke
-ms.date: 05/22/2024
+ms.date: 11/02/2025
 ms.custom: devx-track-azurepowershell
 
 # Customer intent: As an Azure Monitor Log Analytics administrator, I want to understand the best method for creating access at the table level.
@@ -27,12 +27,12 @@ Granular RBAC lets you finely tune access at the table or row level. Users with 
 Table-level access configuration using granular RBAC is less complex than earlier methods and offers the flexibility to implement row-level conditions. These steps just focus on configuring table-level access though. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
 
 Configuring granular RBAC for table-level access requires these steps:
-1. Create granular RBAC custom role
-1. Build condition for the assigned role (permissive or restrictive)
+1. Select the built-in **Log Analytics Data Reader** role, or create a custom role
+1. Build the condition for the assigned role (permissive or restrictive)
 
 #### Create granular RBAC custom role 
 
-The control plane "data action" is one of the things that sets granular RBAC apart from earlier methods of configuring table-level access. For more information, see [Create granular RBAC custom role](granular-rbac-use-case.md#create-custom-roles).
+The control plane "data action" differentiates granular RBAC apart from earlier methods of configuring table-level access, and it's already configured in the built-in **Log Analytics Data Reader** role. If you don't select the built-in role, follow these steps to create a custom role. For more information, see [Create granular RBAC role assignment](granular-rbac-use-case.md#assign-selected-role).
 
 Here's the JSON for an example custom role:
 
@@ -60,7 +60,7 @@ Here's the JSON for an example custom role:
 }
 ```
 
-Assign the custom role to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#conditions-and-expressions).
+Assign the role to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#conditions-and-expressions).
  
 1. From the Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add role assignment**.
