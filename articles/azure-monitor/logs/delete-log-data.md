@@ -246,7 +246,7 @@ if ($operationId) {
 ---
 ### Responses
 
-### [API](#tab/api4)
+### [API](#tab/api)
 
 ```http
 {
