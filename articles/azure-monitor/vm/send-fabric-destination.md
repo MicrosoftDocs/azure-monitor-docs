@@ -84,7 +84,7 @@ The data types in the following table are agent-based telemetry sources supporte
 | [Custom Text logs](./data-collection-log-text.md) |  A transform is required. If no transform is desired, use the default `source`. |
 | [Custom JSON logs](./data-collection-log-json.md) |  A transform is required. If no transform is desired, use the default `source`. |
 
-For more information, see [Transformations in Azure Monitor](./data-collection/data-collection-transformations).
+For more information, see [Transformations in Azure Monitor](./data-collection/data-collection-transformations.md).
 
 ## Verify data ingestion
 
