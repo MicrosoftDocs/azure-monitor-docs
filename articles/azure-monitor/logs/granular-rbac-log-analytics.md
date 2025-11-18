@@ -1,5 +1,5 @@
 ---
-title: Granular RBAC (Preview)
+title: Granular RBAC
 titleSuffix: Azure Monitor Log Analytics
 description: Granular RBAC in Log Analytics enables you to define data access in a fine-grained manner.
 services: azure-monitor
@@ -11,7 +11,7 @@ ms.date: 11/02/2025
 # Customer intent: As an Azure administrator, I want to understand how to use attribute-based access control to granularly define access in Log Analytics workspaces.
 ---
 
-# Granular RBAC (Preview) in Azure Monitor 
+# Granular RBAC in Azure Monitor 
 
 Granular role-based access control (RBAC) in Azure Monitor Log Analytics allows you to filter workspace data that each user can view or query, based on conditions you specify to meet your business and security needs. Benefits of this access control include:
 - Row level access
