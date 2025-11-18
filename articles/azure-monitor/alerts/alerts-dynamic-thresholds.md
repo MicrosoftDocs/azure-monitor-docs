@@ -1,26 +1,21 @@
 ---
-title: Create an Azure Monitor metric alert with dynamic thresholds
+title: Create a Log Search alert rule with dynamic threshold
 description: Get information about creating metric alerts with dynamic thresholds that are based on machine learning.
 ms.reviewer: harelbr
 ms.topic: article
-ms.date: 11/28/2024
+ms.date: 11/18/2025
 ---
 
-# Create a metric alert with dynamic thresholds
+# Alert rules with dynamic thresholds overview
 
-You may be unsure of the correct numbers to use as the thresholds for your alert rules. Dynamic thresholds apply advanced machine learning and use a set of algorithms and methods to:
+When you're unsure of the best values to use as the thresholds for your alert rules, dynamic thresholds apply advanced machine learning and use a set of algorithms and methods to:
 
-- Learn the historical behavior of metrics.
-- Analyze metrics over time and identify patterns such as hourly, daily, or weekly patterns.
-- Recognize anomalies that indicate possible service issues.
-- Calculate the most appropriate thresholds for metrics.
+- Learn the historical behavior of metrics and log query results.
+- Analyze data over time and identify patterns such as hourly, daily, or weekly patterns.
+- Recognize anomalies that indicate possible issues.
+- Calculate the most appropriate thresholds. 
 
 When you use dynamic thresholds, you don't have to know the right threshold for each metric. Dynamic thresholds calculate the most appropriate thresholds for you.
-
-We recommend configuring alert rules with dynamic thresholds on these metrics:
-
-- Virtual machine CPU percentage
-- Application Insights HTTP request execution time
 
 Dynamic thresholds help you:
 
@@ -31,16 +26,18 @@ Dynamic thresholds help you:
 
 You can use dynamic thresholds on:
 
-- Most Azure Monitor platform and custom metrics.
+- Most Azure Monitor platform and custom metrics.
 - Common application and infrastructure metrics.
-- Noisy metrics, such as machine CPU or memory.
-- Metrics with low dispersion, such as availability and error rate.
+- Noisy metrics, like that from Virtual machine CPU or memory or metrics with low dispersion, such as availability and error rate.
+- Log query results (Preview).
 
 You can configure dynamic thresholds by using:
 
 - The [Azure portal](https://portal.azure.com/).
-- The fully automated [Azure Resource Manager API](/rest/api/resources/).
 - [Metric alert templates](./alerts-metric-create-templates.md).
+- PowerShell, CLI, or Azure Resource Manager templates for [Metric alert rules](./alerts-create-rule-cli-powershell-arm.md).
+- Azure Resource Manager templates for [Log search alert rules](./resource-manager-alerts-log.md). PowerShell and CLI are not yet supported.
+
 
 ## Alert threshold calculation and preview
 
@@ -48,17 +45,18 @@ When an alert rule is created, dynamic thresholds use 10 days of historical data
 
 Dynamic thresholds continually use all available historical data to learn, and they make adjustments to be more accurate. After three weeks, dynamic thresholds have enough data to identify weekly patterns, and the model is adjusted to include weekly seasonality.
 
-The system automatically recognizes prolonged outages and removes them from the threshold learning algorithm. If there's a prolonged outage, dynamic thresholds understand the data. They detect system issues with the same level of sensitivity as before the outage occurred.
+This ensures that once the outage ends, thresholds remain consistent with normal behavior rather than adapting to the outage as the new normal. Short spikes or flapping values are handled differently: dynamic thresholds apply seasonality and trend detection, along with minimum violation duration, to reduce false positives from brief anomalies.
 
 ## Considerations for using dynamic thresholds
 
-- To help ensure accurate threshold calculation, alert rules that use dynamic thresholds don't trigger an alert before collecting three days and at least 30 samples of metric data. New resources or resources that are missing metric data don't trigger an alert until enough data is available.
+- To help ensure accurate threshold calculation, alert rules that use dynamic thresholds don't trigger an alert before collecting three days and at least 30 samples of data. New resources or resources that are missing data don't trigger an alert until enough data is available.
 - Dynamic thresholds need at least three weeks of historical data to detect weekly seasonality. Some detailed patterns, such as bihourly or semiweekly patterns, might not be detected.
-- If the behavior of a metric changed recently, the changes aren't immediately reflected in the dynamic threshold's upper and lower bounds. The borders are calculated based on metric data from the last 10 days. When you view the dynamic threshold's borders for a particular metric, look at the metric trend in the last week and not only for recent hours or days.
+- Changes in data behavior – If the behavior of the data changed recently, the changes aren't immediately reflected in the dynamic threshold's upper and lower bounds. The borders are calculated based on metric data from the last 10 days.
 - Dynamic thresholds are good for detecting significant deviations, as opposed to slowly evolving issues. Slow behavior changes probably won't trigger an alert.
-- You cannot use dynamic thresholds in alert rules that monitor multiple conditions.
+- You can't use dynamic thresholds in alert rules that monitor multiple conditions.
+- You can't use dynamic thresholds in Log search alert rules with 1-minute frequency.
 
-## Configure dynamic thresholds
+## Create a metric alert rule with dynamic thresholds
 
 To configure dynamic thresholds, follow the [procedure for creating an alert rule](alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). Use these settings on the **Condition** tab:
 
@@ -89,27 +87,6 @@ Use the following information to interpret the chart:
 - **Red dots**: Other measured values outside the allowed range. They don't trigger more metric alerts, but the alert stays in the active state.
 - **Red area**: The time when the metric value was outside the allowed range. The alert remains in the active state as long as subsequent measured values are outside the allowed range, but no new alerts are fired.
 - **End of red area**: A return to allowed values. When the blue line is back inside the allowed values, the red area stops and the measured value line turns blue. The status of the metric alert fired at the time of the red dot with a black circle is set to resolved.
-
-## Known issues with dynamic threshold sensitivity
-
-- If an alert rule that uses dynamic thresholds is too noisy or fires too much, you might need to reduce its sensitivity. Use one of the following options:
-
-  - **Threshold sensitivity**: Set the sensitivity to **Low** to be more tolerant of deviations.
-  - **Number of violations** (under **Advanced settings**): Configure the alert rule to trigger only if several deviations occur within a certain period of time. This setting makes the rule less susceptible to transient deviations.
-
-- You might find that an alert rule that uses dynamic thresholds doesn't fire or isn't sensitive enough, even though it's configured with high sensitivity. This scenario can happen when the metric's distribution is highly irregular. Consider one of the following solutions:
-
-  - Move to monitoring a complementary metric that's suitable for your scenario, if applicable. For example, check for changes in success rate rather than failure rate.
-  - Try selecting a different value for **Aggregation granularity (Period)**.
-  - Check if a drastic change happened in the metric behavior in the last 10 days, such as an outage. An abrupt change can affect the upper and lower thresholds calculated for the metric and make them broader. Wait a few days until the outage is no longer included in the threshold calculation. You can also edit the alert rule to use the **Ignore data before** option in **Advanced settings**.
-  - If your data has weekly seasonality, but not enough history is available for the metric, the calculated thresholds can result in broad upper and lower bounds. For example, the calculation can treat weekdays and weekends in the same way and build wide borders that don't always fit the data. This issue should resolve itself after enough metric history is available. Then, the correct seasonality is detected and the calculated thresholds are updated accordingly.
-
-- When a metric value exhibits large fluctuations, dynamic thresholds might build a wide model around the metric values, which can result in a lower or higher boundary than expected. This scenario can happen when:
-
-  - The sensitivity is set to low.
-  - The metric exhibits an irregular behavior with high variance, which appears as spikes or dips in the data.
-
-  Consider making the model less sensitive by choosing a higher sensitivity or selecting a larger **Lookback period** value. You can also use the **Ignore data before** option to exclude a recent irregularity from the historical data that's used to build the model.
 
 ## Metrics not supported by dynamic thresholds
 
@@ -192,6 +169,60 @@ Dynamic thresholds support most metrics, but the following metrics can't use dyn
 | Microsoft.Storage/storageAccounts/fileServices | FileShareSnapshotSize |
 | Microsoft.Storage/storageAccounts/fileServices | FileShareCapacityQuota |
 | Microsoft.Storage/storageAccounts/fileServices | FileShareProvisionedIOPS |
+
+
+## Create a Log search alert rule with dynamic threshold (Preview)
+
+To configure dynamic thresholds, follow the [procedure for creating an alert rule](./alerts-create-log-alert-rule.md). Use these settings on the Condition tab:
+
+- Configure your query, measurement, and dimensions the same way as with static threshold. 
+- For Threshold, select Dynamic.
+- Select Preview Chart to see historical query results alongside the calculated dynamic threshold, helping you visualize how the threshold adapts to normal patterns and where potential alerts would fire.
+- After any change is made in the condition tab, select Refresh Chart to see the updated preview. 
+
+:::image type="content" source="media/alerts-dynamic-thresholds/alerts-threshold-refresh-chart.png" lightbox="media/alerts-dynamic-thresholds/alerts-threshold-refresh-chart.png" alt-text="Screenshot of the UI that shows the location of the Refresh chart link."::: 
+
+> [!NOTE]
+> 1-minute frequency is not supported in Log search alert rules with dynamic threshold.
+
+## Dynamic threshold preview chart
+
+The following chart shows the value of a log alert rule query result, its dynamic threshold limits, threshold violations, and alerts that fired when the value was outside the allowed thresholds. In this scenario, the number of violations required to fire an alert is 2.
+
+:::image type="content" source="media/alerts-dynamic-thresholds/alerts-threshold-dynamic-threshold-preview-chart.png" lightbox="media/alerts-dynamic-thresholds/alerts-threshold-dynamic-threshold-preview-chart.png" alt-text="Screenshot of a log alert rule query result, its dynamic threshold limits, threshold violations and alerts that fired when the value was outside the allowed thresholds."::: 
+ 
+- Blue line: The query result measured value over time.
+- Purple shaded area: The calculated Dynamic threshold range. Allowed value range for the query result. If the values stay within this range, no alert is triggered.
+- Red dots: Red dots represent violations - evaluations that resulted in the threshold being met. 
+- Pink bars: Represent a fired Log search alert. 
+
+> [!NOTE]
+> To ensure the preview chart performance, we enforce a limitation on the number of data points returned and, consequently, the allowed time range displayed, depending on alert rule frequency. A 5-minute frequency supports 6 hours. A 10–15-minute frequency supports 6 and 12 hours. A 30-minute frequency supports 6 and 12 hours and 1 day. Frequency of 1 hour or more supports 6 and 12 hours as well as 1 and 2 days.
+
+
+## Known issues with dynamic threshold sensitivity
+
+- If an alert rule that uses dynamic thresholds is too noisy or fires too much, you might need to reduce its sensitivity. Use one of the following options:
+
+  - **Threshold sensitivity**: Set the sensitivity to **Low** to be more tolerant of deviations.
+  - **Lookback period** (for Metric alert rules) or **Aggregation granularity** (for Log search alert rules) - Increasing the data window makes the rule less susceptible to transient deviations.
+  - **Number of violations** (under **Advanced settings**): Configure the alert rule to trigger only if several deviations occur within a certain period of time. This setting makes the rule less susceptible to transient deviations.
+
+- You might find that an alert rule that uses dynamic thresholds doesn't fire or isn't sensitive enough, even though the rule is configured with high sensitivity. This scenario can happen when the metric or query result’s distribution is highly irregular. Consider one of the following solutions:
+
+  - Move to monitoring a complementary metric or log query that's suitable for your scenario, if applicable. For example, check for changes in success rate rather than failure rate.
+  - Try selecting a different value for **Aggregation granularity (Period)**.
+  - Check if a drastic change happened in the data behavior in the last 10 days, such as an outage. An abrupt change can affect the upper and lower thresholds calculated for the data and make them broader. Wait a few days until the outage is no longer included in the threshold calculation. If you use Metric alert rules, you can also edit the alert rule to use the **Ignore data before** option in **Advanced settings**.
+  - If your data has weekly seasonality, but not enough history is available, the calculated thresholds can result in broad upper and lower bounds. For example, the calculation can treat weekdays and weekends in the same way and build wide borders that don't always fit the data. This issue should resolve itself after enough results from metric or log query history is available. Then, the Azure Monitor detects the correct seasonality and updates the calculated thresholds accordingly.
+
+- When data exhibits large fluctuations, dynamic thresholds might build a wide model around the data values, which can result in a lower or higher boundary than expected. This scenario can happen when:
+
+  - The sensitivity is set to low.
+  - The metric or query result exhibits an irregular behavior with high variance, which appears as spikes or dips in the data.
+
+  Consider making the model less sensitive by choosing a higher sensitivity or selecting a larger **Lookback period** value. 
+
+  In Metric alert rules, you can also use the **Ignore data before** option to exclude a recent irregularity from the historical data that's used to build the model.
 
 ## Related content
 
