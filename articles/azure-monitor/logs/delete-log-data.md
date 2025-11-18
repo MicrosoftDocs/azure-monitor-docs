@@ -194,7 +194,7 @@ Status: Updating
 Status: Succeeded
 Final status: Succeeded
 ```
-
+---
 | Response | Description| 
 | - | - |
 |202 (accepted)|Asynchronous request received successfully. To check whether your operation succeeded or failed, use the `Azure-AsyncOperation` URL provided in the response header. |
