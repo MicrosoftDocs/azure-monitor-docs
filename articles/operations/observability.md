@@ -27,7 +27,7 @@ The Observability pillar includes the following menu items:
 |:---|:---|
 | Monitor | Summary of monitoring issues including top recommendation actions, summary of health and open issues, and recommended maintenance. See [Monitor overview](#monitor-overview) for details. |
 | Azure service health | All features of [Azure service health](/azure/service-health/overview) which reports on current and upcoming issues such as service impacting events, planned maintenance, and other changes that might affect your availability. The tabs across the top of this view correspond to the menu items in the Azure service health portal. See [Azure service health portal](/azure/service-health/service-health-portal-update) for details. |
-| Service Group health | Listing of your [service groups](/azure/governance/service-groups/overview) identifying any open health alerts. Select a service group to open its **Monitoring** page.  |
+| Service Group health | Listing of your [service groups](./overview.md#service-groups) identifying any open health alerts. Select a service group to open its **Monitoring** page.  |
 | Alerts | View and manage [Azure Monitor alerts](/azure/azure-monitor/alerts/alerts-overview). The tabs across the top of this view correspond to the options at the top of the **Alerts** page in the Azure Monitor menu. See [Manage your alert instances](/azure/azure-monitor/alerts/alerts-manage-alert-instances) for details. |
 | Logs | **Logs** tab with access to Log Analytics, which allows you to use [log queries](/azure/azure-monitor/logs/log-query-overview) to analyze data collected in a [Log Analytics workspace](/azure/azure-monitor/logs/log-analytics-workspace-overview). Select the menu on the **New Query** tab to change the [scope of the query](/azure/azure-monitor/logs/scope). See [Overview of Log Analytics in Azure Monitor](/azure/azure-monitor/logs/log-analytics-overview) for details.<br><br>**Activity Logs** tab that allows you to view and export activity logs which report on create, update, delete operations for each Azure resource. See [Activity log in Azure Monitor](/azure/azure-monitor/platform/activity-log) for details. |
 | Metrics | Use metrics explorer to interactively analyze metrics data collected from Azure resources. See [Azure Monitor Metrics overview](/azure/azure-monitor/metrics/data-platform-metrics) for details. |
@@ -40,14 +40,14 @@ The Observability pillar includes the following menu items:
 
 
 ## Monitor overview
-The **Monitor** overview page provides a consolidated view of the key information from the other pages in the Observability pillar. It leverages the Observability agent to surface important information and identify top actions that you can take to improve the monitoring and health of your Azure resources. Start here to identify any critical issues or other matters that require your attention before drilling down into specific areas.
+The **Monitor** overview page provides a consolidated view of the key information from the other pages in the Observability pillar. It surfaces important information and identify top actions that you can take to improve the monitoring and health of your Azure resources. Start here to identify any critical issues or other matters that require your attention before drilling down into specific areas.
 
 :::image type="content" source="./media/observability/observability-pillar.png" lightbox="./media/observability/observability-pillar.png" alt-text="Screenshot of Monitor menu in the Azure portal":::
 
 
 | Section | Description |
 |:---|:---|
-| Top actions | Combination of recommended actions based on Azure Advisor recommendations and suggested actions from the Observability agent. Click on any of these actions to open the relevant page in the Observability pillar or to open the Observability agent for guided assistance. |
+| Top actions | Top recommended actions based on Azure Advisor recommendations to ensure that your resources are being appropriately monitored. Click on any of these actions to open the relevant page in the Observability pillar. |
 | Health and Issues Summary | Identifies any recent service incidents from **Azure service health** and a summary of [issues](/azure/azure-monitor/aiops/aiops-issue-and-investigation-overview) created over the previous 24 hours.  |
 | Recommendations and maintenance | Summary of open Azure Advisor recommendations separated by relative impact and any upcoming planned maintenance events from **Azure service health**. |
 

@@ -1,5 +1,5 @@
 items:
-- name: Operations Center Documentation
+- name: Operations center documentation
   href: index.yml
 - name: What is operations center?
   href: overview.md

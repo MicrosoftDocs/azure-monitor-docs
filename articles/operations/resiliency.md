@@ -35,9 +35,7 @@ The Resiliency pillar includes the following menu items:
 ## Resiliency overview
 The **Resiliency** overview page provides a summary of your zone resiliency posture and associated recommendations. It includes a single-pane snapshot of the resiliency status for your resources and service groups, summarizing key information from other pages in the Resiliency pillar. 
 
-Modify the scope of tiles by selecting any of the filters at the top of the page.
-
-Drill down on any of the tiles to open other pages in the Resiliency pillar for more details.
+Modify the scope of tiles by selecting any of the filters at the top of the page. Drill down on any of the tiles to open other pages in the Resiliency pillar for more details.
 
 :::image type="content" source="./media/resiliency/resiliency-pillar.png" lightbox="./media/resiliency/resiliency-pillar.png" alt-text="Screenshot of Resiliency menu in the Azure portal":::
 
@@ -46,7 +44,7 @@ The Resiliency overview page includes the following sections.
 
 | Section | Description |
 |:---|:---|
-| Top actions | Actionable recommendations to improve resiliency. |
+| Top actions | Combination of recommended actions based on Azure Advisor recommendations and suggested actions from the [Resiliency agent](/azure/copilot/resiliency-agent). Click on any of these actions to open the relevant page in the Resiliency pillar or to open the Resiliency agent for guided assistance. |
 | Resource resiliency | Count of resources that have been configured with a zone resiliency solution and those for which the zone resiliency wasn't detected. |
 | Service group resiliency | Count of service groups with different resiliency statuses for their contained resources. |
 | Optimization recommendations | Displays the top Advisor recommendations for resiliency. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
