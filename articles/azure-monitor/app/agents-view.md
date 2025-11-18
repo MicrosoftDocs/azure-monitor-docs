@@ -36,7 +36,7 @@ Getting started looks different depending on how and where you're building your 
 
 * **Microsoft Agent Framework:** If you're building an agent from scratch and are self-hosting, you can use the [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-observability#enable-observability) to orchestrate your agent and emit telemetry to Azure Monitor.
 
-* **Third-party agents:** If you built an agent elsewhere, you can emit your telemetry to Azure Monitor using the Azure AI OpenTelemetry Tracer.
+* **Third-party agents:** If you built an agent elsewhere, you can emit your telemetry to Azure Monitor using the Azure AI OpenTelemetry Tracer. These agents can also be registered in Azure AI Foundry.
 
     For more information, see:
 
@@ -56,15 +56,13 @@ If you choose to collect full prompt information (for example, using the `Enable
 
 To set up evaluations, there are several approaches.
 
-**Development-time evaluations**
+**Batch evaluations:**
 
 * **Local evaluations with Azure AI Evaluation SDK:** [Run evaluations on your development machine during testing.](/azure/ai-foundry/how-to/develop/evaluate-sdk)
 * **Cloud evaluations with Azure AI Foundry SDK:** [Execute evaluations in Azure for larger datasets or team collaboration.](/azure/ai-foundry/how-to/develop/cloud-evaluation)
 * **Azure Foundry Portal-based evaluations:** [Use the Azure AI Foundry Portal for no-code evaluation workflows.](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
 
-**Production monitoring**
-
-* **Continuous evaluations:** [Set up automated evaluations that run against production traffic](/azure/ai-foundry/how-to/continuous-evaluation-agents) to detect quality regressions.
+**Continuous evaluations:** [Set up automated evaluations that run against production traffic](/azure/ai-foundry/how-to/continuous-evaluation-agents) to detect quality regressions.
 
 ## Monitor your AI agents
 
@@ -117,7 +115,25 @@ Simple view allows you to quickly find the relevant telemetry and transition to 
 
 In our example, we were researching high token use. Transaction details allow you to identify that large prompt context and/or an expensive model is driving up token use and costs.
 
-By selecting **Resolve in Foundry**, you can go to directly to your agent in **Azure AI Foundry** to update the prompt and publish changes​.
+## Customize monitoring views with Grafana
+
+The Agent details view in Application Insights provides an opinionated, out-of-the-box experience for monitoring your AI agents. For more advanced customization and visualization needs, you can select **Explore in Grafana** from the top navigation bar on the Agent details view.
+
+Azure Monitor includes pre-built Grafana dashboards specifically designed for Gen AI monitoring to help you get started:
+
+* **Agent Framework -** Monitor agent execution and performance
+* **Agent Framework workflow -** Track agent workflow patterns and dependencies
+* **AI Foundry -** Visualize AI Foundry-specific metrics and telemetry
+
+:::image type="content" source="media/agents-view/grafana-monitoring-agents.png" lightbox="media/agents-view/grafana-monitoring-agents.png" alt-text="A screenshot showing Grafana dashboard when monitoring AI agents.":::
+
+These dashboards serve as a starting point for your monitoring strategy. You can customize them by:
+
+* Using different visualization panels to match your preferences
+* Editing or creating new queries to surface specific metrics
+* Using Save as to create tailored dashboards for your specific environment and use cases
+
+To learn more about using Grafana with Application Insights, see [Dashboards with Grafana in Application Insights](grafana-dashboards.md) and [Use Azure Monitor Dashboards with Grafana](../visualize/visualize-use-grafana-dashboards.md).
 
 ## Next steps
 
