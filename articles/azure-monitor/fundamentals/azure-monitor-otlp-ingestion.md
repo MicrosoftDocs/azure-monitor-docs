@@ -1,16 +1,22 @@
 ---
-title: Ingest OpenTelemetry Data Into Azure Monitor (Preview)
+title: Ingest OpenTelemetry Protocol Signals Into Azure Monitor (Limited Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor using native ingestion endpoints.
 ms.topic: how-to
 ms.date: 11/18/2025
+ROBOTS: NOINDEX
 ---
 
-# Ingest OpenTelemetry data into Azure Monitor (Preview)
+# Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)
 
 Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals, enabling you to send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor without vendor-specific agents or exporters.
 
 > [!IMPORTANT]
-> This feature is currently in limited public preview. [Sign up for the preview](https://aka.ms/AzureMonitorOTelPreview) to receive support, participate in Q&A sessions, and share feedback before onboarding.
+> * This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
+> * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+> [!NOTE]
+> * [Support](#support) for this feature is limited to enrolled subscriptions.
+> * [Submit a request](https://aka.ms/azuremonitorotelpreview) to participate.
 
 ## Overview
 
@@ -20,7 +26,7 @@ Azure Monitor can receive OTLP signals through three ingestion mechanisms:
 * **Azure Monitor Agent (AMA)** - Ingest data from applications running on Azure VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers
 * **Azure Kubernetes Service (AKS) add-on** - Collect telemetry from containerized applications in AKS clusters
 
-This article covers the OpenTelemetry Collector and Azure Monitor Agent methods. For AKS deployments, see [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](https://learn.microsoft.com/azure/azure-monitor/app/kubernetes-open-protocol).
+This article covers the OpenTelemetry Collector and Azure Monitor Agent methods. For AKS deployments, see [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](../app/kubernetes-open-protocol.md).
 
 ## Prerequisites
 
@@ -51,7 +57,7 @@ This method automatically provisions all required Azure resources and configures
 
 1. On the **Basics** tab, select the **Enable OTLP support** checkbox.
 
-    :::image type="content" source="./media/azure-monitor-otel-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with Enable OTLP support option selected.":::
+    :::image type="content" source="./media/azure-monitor-otlp-ingestion/create-app-insights-resource.png" lightbox="./media/azure-monitor-otlp-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with Enable OTLP support option selected.":::
 
 1. Complete the resource creation process.
 
@@ -62,7 +68,7 @@ This method automatically provisions all required Azure resources and configures
     * Data Collection Rule (DCR) resource ID
     * Endpoint URLs for traces, logs, and metrics (if using OpenTelemetry Collector)
     
-    :::image type="content" source="./media/azure-monitor-otel-ingestion/otlp-connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
+    :::image type="content" source="./media/azure-monitor-otlp-ingestion/otlp-connection-info.png" lightbox="./media/azure-monitor-otlp-ingestion/otlp-connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
 Proceed to [Configure your telemetry pipeline](#configure-your-telemetry-pipeline).
 
@@ -116,7 +122,7 @@ The Azure Monitor Agent provides a simplified ingestion path for Azure-hosted an
 
 #### Deploy Azure Monitor Agent
 
-Install the Azure Monitor Agent using Azure CLI or PowerShell. For detailed instructions, see [Install and manage Azure Monitor Agent](https://learn.microsoft.com/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-powershell).
+Install the Azure Monitor Agent using Azure CLI or PowerShell. For detailed instructions, see [Install and manage Azure Monitor Agent](../agents/azure-monitor-agent-manage.md?tabs=azure-powershell).
 
 Verify you're installing the minimum required version:
 
@@ -131,7 +137,7 @@ Create an association between your Data Collection Rule and the VMs, Virtual Mac
 1. Select **Resources** under **Configuration**.
 1. Select **Add** and choose the compute resources to associate.
 
-For programmatic association, see [Manage data collection rule associations](https://learn.microsoft.com/azure/azure-monitor/data-collection/data-collection-rule-associations?tabs=cli).
+For programmatic association, see [Manage data collection rule associations](../data-collection/data-collection-rule-associations.md).
 
 #### Configure application environment
 
@@ -193,21 +199,21 @@ The identity used by your collector needs permission to write data to your DCR:
 
 1. Select **Add** > **Add role assignment**.
 
-    :::image type="content" source="./media/azure-monitor-otel-ingestion/data-collection-rule-access-control.png" alt-text="Screenshot showing how to add a role assignment to a Data Collection Rule.":::
+    :::image type="content" source="./media/azure-monitor-otlp-ingestion/data-collection-rule-access-control.png" lightbox="./media/azure-monitor-otlp-ingestion/data-collection-rule-access-control.png" alt-text="Screenshot showing how to add a role assignment to a Data Collection Rule.":::
 
 1. Select **Monitoring Metrics Publisher** and select **Next**.
 
-    :::image type="content" source="./media/azure-monitor-otel-ingestion/role-assignment-metrics-publisher.png" alt-text="Screenshot showing the Monitoring Metrics Publisher role selection.":::
+    :::image type="content" source="./media/azure-monitor-otlp-ingestion/role-assignment-metrics-publisher.png" lightbox="./media/azure-monitor-otlp-ingestion/role-assignment-metrics-publisher.png" alt-text="Screenshot showing the Monitoring Metrics Publisher role selection.":::
 
 1. For **Assign access to**, select **User, group, or service principal**.
 
 1. Select **Select members** and choose your application or managed identity.
 
-    :::image type="content" source="./media/azure-monitor-otel-ingestion/role-assignment-select-members.png" alt-text="Screenshot showing member selection for role assignment.":::
+    :::image type="content" source="./media/azure-monitor-otlp-ingestion/role-assignment-select-members.png" lightbox="./media/azure-monitor-otlp-ingestion/role-assignment-select-members.png" alt-text="Screenshot showing member selection for role assignment.":::
 
 1. Select **Review + assign** to save the role assignment.
 
-    :::image type="content" source="./media/azure-monitor-otel-ingestion/role-assignment-review-assign.png" alt-text="Screenshot showing the Review and assign page for the role assignment.":::
+    :::image type="content" source="./media/azure-monitor-otlp-ingestion/role-assignment-review-assign.png" lightbox="./media/azure-monitor-otlp-ingestion/role-assignment-review-assign.png" alt-text="Screenshot showing the Review and assign page for the role assignment.":::
 
 #### Construct endpoint URLs
 
