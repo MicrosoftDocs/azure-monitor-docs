@@ -262,7 +262,7 @@ if ($operationId) {
 }
 ```
 
-### [PowerShell](#tab/powershell4)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 Status: Updating
