@@ -47,8 +47,8 @@ The **Cost + emissions** page lists your subscriptions with a quick summary of t
 
 :::image type="content" source="./media/optimization/cost-emissions.png" lightbox="./media/optimization/cost-emissions.png" alt-text="Screenshot of Cost + emissions page in the Azure portal":::
 
-## Optimize agent
-The Optimize agent in operations center provides an agentic experience to help you identify and implement cost-saving and carbon-reduction measures. The agent uses Azure Copilot to analyze your resource usage patterns and recommend actions to optimize your Azure environment. You can either initiate a conversation with the agent using prompts or select specific recommendations to get guided assistance.
+## Optimization agent
+The [Optimization agent](/azure/copilot/optimization-agent) in operations center provides an agentic experience to help you identify and implement cost-saving and carbon-reduction measures. The agent uses Azure Copilot to analyze your resource usage patterns and recommend actions to optimize your Azure environment. You can either initiate a conversation with the agent using prompts or select specific recommendations to get guided assistance.
 
 Examples of tasks you can perform with the Optimize agent include:
 
