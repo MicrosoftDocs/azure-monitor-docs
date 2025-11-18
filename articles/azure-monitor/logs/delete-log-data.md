@@ -177,7 +177,7 @@ if ($operationId) {
  
 ### Responses
 
-#### [API](#tab/api2)
+#### [API](#tab/api)
 
 ```http
 202 (accepted) with header including the OperationId
