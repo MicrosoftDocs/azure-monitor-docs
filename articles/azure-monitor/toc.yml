@@ -7,8 +7,26 @@ items:
     href: fundamentals/overview.md
   - name: Insights and curated visualizations
     href: visualize/insights-overview.md
-  - name: AIOps and machine learning
-    href: aiops/aiops-machine-learning.md
+  - name: Azure Monitor AIOPs
+    items:
+    - name: Azure Copilot observability agent
+      items:
+      - name: Azure Copilot observability agent overview
+        href: aiops/observability-agent-overview.md
+      - name: Azure Copilot observability agent best practices guide
+        href: aiops/observability-agent-best-practices.md
+      - name: Azure Copilot observability agent troubleshooting guide
+        href: aiops/observability-agent-troubleshooting.md
+      - name: Azure Copilot observability agent responsible use
+        href: aiops/observability-agent-responsible-use.md
+    - name: Issues and investigations
+      items:
+      - name: Issues and investigations overview
+        href: aiops/aiops-issue-and-investigation-overview.md
+      - name: Use issues and investigations
+        href: aiops/aiops-issue-and-investigation-how-to.md
+    - name: AIOps and machine learning
+      href: aiops/aiops-machine-learning.md
   - name: What's new?
     href: fundamentals/whats-new.md
 - name: Getting started
@@ -1549,26 +1567,6 @@ items:
         href: alerts/alerts-log-api-switch.md
       - name: Edit log search alerts created in previous versions
         href: alerts/alerts-manage-alerts-previous-version.md
-  - name: Azure Copilot observability agent
-    items:
-    - name: Overview
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-overview.md
-    - name: Best practices
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-best-practices.md
-    - name: Troubleshooting
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-troubleshooting.md
-    - name: Responsible use
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-responsible-use.md
-  - name: Issues and investigations
-    items:
-    - name: Issues and investigations overview
-      href: aiops/aiops-issue-and-investigation-overview.md
-    - name: Use issues and investigations
-      href: aiops/aiops-issue-and-investigation-how-to.md
   - name: AutoScale
     items:
     - name: Overview
