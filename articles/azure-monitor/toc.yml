@@ -843,6 +843,8 @@ items:
     - name: Install and configure
       displayName: Azure Monitor agent
       items:
+      - name: Configure agent settings
+        href: agents/agent-settings.md
       - name: Virtual machines
         href: agents/azure-monitor-agent-manage.md
       - name: Windows clients

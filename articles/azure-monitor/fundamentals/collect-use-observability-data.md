@@ -41,7 +41,7 @@ Enable application monitoring for **Azure Kubernetes Service (AKS)** and send OT
   - **Autoinstrumentation** for **Java** and **Node.js**.
   - **Autoconfiguration** for apps already instrumented with OpenTelemetry Software Development Kits (SDKs).
 
-For more information, see [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Limited Preview](https://aka.ms/otelignitedoc).
+For more information, see [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Limited Preview](../app/kubernetes-open-protocol.md).
 
 ### Configure other environments
 
