@@ -345,6 +345,8 @@ items:
       - name: Configure a syslog forwarder
         href: /azure/sentinel/forward-syslog-monitor-agent
         maintainContext: true
+      - name: Send data to Fabric and Azure Data Explorer
+        href: vm/send-fabric-destination.md
     - name: VM insights
       items:
       - name: Overview
