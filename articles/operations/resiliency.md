@@ -18,7 +18,7 @@ The **Resiliency** pillar in [Operations center](./overview.md) provides an aggr
 
 
 The Resiliency pillar uses the following Azure services:
-- [Azure Business Continuity Center](/azure/business-continuity-center/business-continuity-center-overview)
+- [Resiliency](/azure/resiliency/resiliency-overview)
 - [Azure Advisor](/azure/advisor/advisor-overview)
 
 ## Menu items
@@ -29,7 +29,7 @@ The Resiliency pillar includes the following menu items:
 | Resiliency | Summary of resiliency recommendations. See [Resiliency overview](#resiliency-overview) for details. |
 | Resource resiliency | Aggregated view of the resiliency status of your resources across virtual machines, containers, data, storage, and networking. Identify resources may be at risk and take proactive measures to enhance their resiliency. |
 | Service group resiliency | Listing of all service groups in your subscriptions identifying the resiliency status of the resources in each group. Assign resiliency goals to each  |
-| Backup + recovery | Use [Azure Business Continuity Center](/azure/business-continuity-center/business-continuity-center-overview) to manage your protection estate across solutions and environments. The tabs across the top of this view correspond to menu items in the **Business Continuity Center** menu. |
+| Backup + recovery | Use [Resiliency in Azure](/azure/resiliency/resiliency-overview) to manage your protection estate across solutions and environments. The tabs across the top of this view correspond to menu items in the **Resiliency** menu. |
 | Recommendations | Azure Advisor recommendations related to resiliency. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
 
 ## Resiliency overview
