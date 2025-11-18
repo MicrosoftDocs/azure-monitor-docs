@@ -207,7 +207,7 @@ You can track data deletion activities in a workspace through the Azure Activity
 
 To check the status of your operation and view the number of deleted records, send a GET request with the `Azure-AsyncOperation` URL provided in the response header:
 
-### [API](#tab/api3)
+### [API](#tab/api)
 
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
