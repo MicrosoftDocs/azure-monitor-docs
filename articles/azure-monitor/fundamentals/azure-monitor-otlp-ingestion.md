@@ -310,7 +310,7 @@ Access your data through:
 
 ## Limitations and known issues
 
-The following Azure regions are not supported during the preview:
+The following Azure regions aren't supported during the preview:
 
 * North Central US
 * Qatar Central
@@ -323,16 +323,13 @@ The following Azure regions are not supported during the preview:
 * Mexico Central
 * Austria East
 
-## Provide feedback
+## Support
 
-We welcome your feedback on this preview feature. To report issues, ask questions, or share suggestions:
-
-* Email the preview team at otel@microsoft.com
-* Use the feedback mechanisms available through the [preview sign-up page](https://aka.ms/AzureMonitorOTelPreview)
+Assistance for enrolled subscriptions is available only through `otel@microsoft.com`.
 
 ## Next steps
 
-* [Learn more about OpenTelemetry](https://opentelemetry.io/docs/)
-* [Explore OpenTelemetry SDKs for different languages](https://opentelemetry.io/docs/languages/)
-* [Query data in Azure Monitor Logs](../logs/get-started-queries.md)
-* [Analyze application performance with Application Insights](../app/app-insights-overview.md)
+* [OpenTelemetry on Azure](../app/opentelemetry.md)
+* [Monitor AKS with OpenTelemetry](../app/kubernetes-open-protocol.md)
+* [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md)
+* [OpenTelemetry documentation](https://opentelemetry.io/docs/)
