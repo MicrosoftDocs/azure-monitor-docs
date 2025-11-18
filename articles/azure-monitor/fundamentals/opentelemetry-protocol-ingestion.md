@@ -57,7 +57,7 @@ This method automatically provisions all required Azure resources and configures
 
 1. On the **Basics** tab, select the **Enable OTLP support** checkbox.
 
-    :::image type="content" source="./media/azure-monitor-otlp-ingestion/create-app-insights-resource.png" lightbox="./media/azure-monitor-otlp-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with Enable OTLP support option selected.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" lightbox="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with Enable OTLP support option selected.":::
 
 1. Complete the resource creation process.
 
@@ -68,7 +68,7 @@ This method automatically provisions all required Azure resources and configures
     * Data Collection Rule (DCR) resource ID
     * Endpoint URLs for traces, logs, and metrics (if using OpenTelemetry Collector)
     
-    :::image type="content" source="./media/azure-monitor-otlp-ingestion/otlp-connection-info.png" lightbox="./media/azure-monitor-otlp-ingestion/otlp-connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/otlp-connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/otlp-connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
 Proceed to [Configure your telemetry pipeline](#configure-your-telemetry-pipeline).
 
@@ -199,21 +199,21 @@ The identity used by your collector needs permission to write data to your DCR:
 
 1. Select **Add** > **Add role assignment**.
 
-    :::image type="content" source="./media/azure-monitor-otlp-ingestion/data-collection-rule-access-control.png" lightbox="./media/azure-monitor-otlp-ingestion/data-collection-rule-access-control.png" alt-text="Screenshot showing how to add a role assignment to a Data Collection Rule.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/data-collection-rule-access-control.png" lightbox="./media/opentelemetry-protocol-ingestion/data-collection-rule-access-control.png" alt-text="Screenshot showing how to add a role assignment to a Data Collection Rule.":::
 
 1. Select **Monitoring Metrics Publisher** and select **Next**.
 
-    :::image type="content" source="./media/azure-monitor-otlp-ingestion/role-assignment-metrics-publisher.png" lightbox="./media/azure-monitor-otlp-ingestion/role-assignment-metrics-publisher.png" alt-text="Screenshot showing the Monitoring Metrics Publisher role selection.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/role-assignment-metrics-publisher.png" lightbox="./media/opentelemetry-protocol-ingestion/role-assignment-metrics-publisher.png" alt-text="Screenshot showing the Monitoring Metrics Publisher role selection.":::
 
 1. For **Assign access to**, select **User, group, or service principal**.
 
 1. Select **Select members** and choose your application or managed identity.
 
-    :::image type="content" source="./media/azure-monitor-otlp-ingestion/role-assignment-select-members.png" lightbox="./media/azure-monitor-otlp-ingestion/role-assignment-select-members.png" alt-text="Screenshot showing member selection for role assignment.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/role-assignment-select-members.png" lightbox="./media/opentelemetry-protocol-ingestion/role-assignment-select-members.png" alt-text="Screenshot showing member selection for role assignment.":::
 
 1. Select **Review + assign** to save the role assignment.
 
-    :::image type="content" source="./media/azure-monitor-otlp-ingestion/role-assignment-review-assign.png" lightbox="./media/azure-monitor-otlp-ingestion/role-assignment-review-assign.png" alt-text="Screenshot showing the Review and assign page for the role assignment.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/role-assignment-review-assign.png" lightbox="./media/opentelemetry-protocol-ingestion/role-assignment-review-assign.png" alt-text="Screenshot showing the Review and assign page for the role assignment.":::
 
 #### Construct endpoint URLs
 
