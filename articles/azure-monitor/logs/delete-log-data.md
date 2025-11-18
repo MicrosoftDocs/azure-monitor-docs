@@ -243,7 +243,7 @@ if ($operationId) {
     $response.Content
     }
 ```
-
+---
 ### Responses
 
 ### [API](#tab/api4)
