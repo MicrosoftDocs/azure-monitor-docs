@@ -2,7 +2,7 @@
 title: Create Azure Monitor metric alert rules
 description: This article shows you how to create a new metric alert rule.
 ms.reviewer: harelbr
-ms.date: 07/09/2025
+ms.date: 11/18/2025
 ms.topic: how-to
 ---
 
@@ -103,7 +103,7 @@ Follow these steps:
 
     | Field | Description |
     |-------|-------------|
-    | Threshold | Select if the threshold should be evaluated based on a static value or a dynamic value.<br>A **static threshold** evaluates the rule by using the threshold value that you configure.<br>**Dynamic thresholds** use machine learning algorithms to continuously learn the metric behavior patterns and calculate the appropriate thresholds for unexpected behavior. You can learn more about using [dynamic thresholds for metric alerts](alerts-types.md#apply-advanced-machine-learning-with-dynamic-thresholds). |
+    | Threshold | Select if the threshold should be evaluated based on a static value or a dynamic value.<br>A **static threshold** evaluates the rule by using the threshold value that you configure.<br>**Dynamic thresholds** use machine learning algorithms to continuously learn the metric behavior patterns and calculate the appropriate thresholds for unexpected behavior. Learn more about using [dynamic thresholds](alerts-types.md#apply-advanced-machine-learning-with-dynamic-thresholds). |
     | Operator | Select the operator for comparing the metric value against the threshold.<br>If you're using dynamic thresholds, alert rules can use tailored thresholds based on metric behavior for both upper and lower bounds in the same alert rule. Select one of these operators:<br>• Greater than the upper threshold or lower than the lower threshold (default)<br>• Greater than the upper threshold<br>• Lower than the lower threshold |
     | Aggregation type | Select the aggregation function to apply on the data points: Sum, Count, Average, Min, or Max. |
     | Threshold value | If you selected a **static** threshold, enter the threshold value for the condition logic. |

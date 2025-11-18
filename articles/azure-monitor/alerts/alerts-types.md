@@ -2,7 +2,7 @@
 title: Types of Azure Monitor alerts
 description: This article explains the different types of Azure Monitor alerts and when to use each type.
 ms.topic: concept-article
-ms.date: 07/06/2025
+ms.date: 11/18/2025
 ---
 
 # Choosing the right type of alert rule
@@ -67,6 +67,25 @@ To monitor for the same condition on multiple Azure resources, you can use split
 
 You might also decide not to split when you want a condition applied to multiple resources in the scope. For example, you might want to fire an alert if at least five machines in the resource group scope have CPU usage over 80%.
 
+### Apply advanced machine learning with dynamic thresholds
+
+Dynamic thresholds use advanced machine learning to:
+
+- Learn the historical behavior of log query results.
+- Analyze data over time and identify patterns such as hourly, daily, or weekly patterns.
+- Recognize anomalies that indicate possible issues.
+- Calculate the most appropriate thresholds. 
+
+Machine learning continuously uses new data to learn more and make the threshold more accurate. Because the system adapts to the log query results behavior over time, and alerts based on deviations from its pattern, you don't have to know the "right" threshold for each rule.
+
+Dynamic thresholds help you:
+
+- Create scalable alert rules for hundreds of time series with one alert rule. If you have fewer alert rules, you spend less time creating and managing them. Scalable alert rules are especially useful for multiple dimensions or for multiple resources, such as all resources in a subscription.
+- Create rules without having to know what threshold to configure.
+- Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern.
+
+See [dynamic thresholds](./alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
+ 
 ### Monitor multiple resources with one alert rule
 
 You can monitor at scale by applying the same metric alert rule to multiple resources of the same type for resources that exist in the same Azure region. Individual notifications are sent for each monitored resource.

@@ -1,5 +1,5 @@
 ---
-title: Create an Azure Monitor metric alert with dynamic thresholds
+title: Create a Log Search alert rule with dynamic threshold
 description: Get information about creating metric alerts with dynamic thresholds that are based on machine learning.
 ms.reviewer: harelbr
 ms.topic: article
@@ -10,10 +10,10 @@ ms.date: 11/18/2025
 
 When you're unsure of the best values to use as the thresholds for your alert rules, dynamic thresholds apply advanced machine learning and use a set of algorithms and methods to:
 
-- Learn the historical behavior of metrics.
-- Analyze metrics over time and identify patterns such as hourly, daily, or weekly patterns.
-- Recognize anomalies that indicate possible service issues.
-- Calculate the most appropriate thresholds for metrics.
+- Learn the historical behavior of metrics and log query results.
+- Analyze data over time and identify patterns such as hourly, daily, or weekly patterns.
+- Recognize anomalies that indicate possible issues.
+- Calculate the most appropriate thresholds. 
 
 When you use dynamic thresholds, you don't have to know the right threshold for each metric. Dynamic thresholds calculate the most appropriate thresholds for you.
 
@@ -26,10 +26,10 @@ Dynamic thresholds help you:
 
 You can use dynamic thresholds on:
 
-- Most Azure Monitor platform and custom metrics.
+- Most Azure Monitor platform and custom metrics.
 - Common application and infrastructure metrics.
-- Noisy metrics, such as machine CPU or memory.
-- Metrics with low dispersion, such as availability and error rate.
+- Noisy metrics, like that from Virtual machine CPU or memory or metrics with low dispersion, such as availability and error rate.
+- Log query results (Preview).
 
 You can configure dynamic thresholds by using:
 
@@ -55,6 +55,38 @@ This ensures that once the outage ends, thresholds remain consistent with normal
 - Dynamic thresholds are good for detecting significant deviations, as opposed to slowly evolving issues. Slow behavior changes probably won't trigger an alert.
 - You can't use dynamic thresholds in alert rules that monitor multiple conditions.
 - You can't use dynamic thresholds in Log search alert rules with 1-minute frequency.
+
+## Create a metric alert rule with dynamic thresholds
+
+To configure dynamic thresholds, follow the [procedure for creating an alert rule](alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). Use these settings on the **Condition** tab:
+
+- For **Threshold**, select **Dynamic**.
+- For **Aggregation type**, we recommend that you don't select **Maximum**.
+- For **Operator**, select **Greater than** unless the behavior represents the application usage.
+- For **Threshold sensitivity**, select **Medium** or **Low** to reduce alert noise.
+- For **Check every**, select how often the alert rule checks if the condition is met. To minimize the business impact of the alert, consider using a lower frequency. Make sure that this value is less than or equal to the **Lookback period** value.
+- For **Lookback period**, set the time period to look back at each time that the data is checked. Make sure that this value is greater than or equal to the **Check every** value.
+- For **Advanced options**, choose how many violations will trigger the alert within a specific time period. Optionally, set the date from which to start learning the metric historical data and calculate the dynamic thresholds.
+
+> [!NOTE]
+> Metric alert rules that you create through the portal are created in the same resource group as the target resource.
+
+## Dynamic threshold chart
+
+The following chart shows a metric, its dynamic threshold limits, and some alerts that fired when the value was outside the allowed thresholds.
+
+:::image type="content" source="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" lightbox="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" alt-text="Screenshot of a chart that shows a metric, its dynamic threshold limits, and some alerts that fired.":::
+
+Use the following information to interpret the chart:
+
+- **Blue line**: The metric measured over time.
+- **Blue shaded area**: The allowed range for the metric. If the metric values stay within this range, no alert is triggered.
+- **Blue dots**: Aggregated metric values. If you select part of the chart and then hover over the blue line, a blue dot appears under your cursor to indicate an individual aggregated metric value.
+- **Pop-up box with blue dot**: The measured metric value (blue dot) and the upper and lower values of the allowed range.  
+- **Red dot with a black circle**: The first metric value outside the allowed range. This value fires a metric alert and puts it in an active state.
+- **Red dots**: Other measured values outside the allowed range. They don't trigger more metric alerts, but the alert stays in the active state.
+- **Red area**: The time when the metric value was outside the allowed range. The alert remains in the active state as long as subsequent measured values are outside the allowed range, but no new alerts are fired.
+- **End of red area**: A return to allowed values. When the blue line is back inside the allowed values, the red area stops and the measured value line turns blue. The status of the metric alert fired at the time of the red dot with a black circle is set to resolved.
 
 ## Metrics not supported by dynamic thresholds
 
@@ -138,26 +170,10 @@ Dynamic thresholds support most metrics, but the following metrics can't use dyn
 | Microsoft.Storage/storageAccounts/fileServices | FileShareCapacityQuota |
 | Microsoft.Storage/storageAccounts/fileServices | FileShareProvisionedIOPS |
 
-## Dynamic threshold chart
-
-The following chart shows a metric, its dynamic threshold limits, and some alerts that fired when the value was outside the allowed thresholds.
-
-:::image type="content" source="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" lightbox="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" alt-text="Screenshot of a chart that shows a metric, its dynamic threshold limits, and some alerts that fired.":::
-
-Use the following information to interpret the chart:
-
-- **Blue line**: The metric measured over time.
-- **Blue shaded area**: The allowed range for the metric. If the metric values stay within this range, no alert is triggered.
-- **Blue dots**: Aggregated metric values. If you select part of the chart and then hover over the blue line, a blue dot appears under your cursor to indicate an individual aggregated metric value.
-- **Pop-up box with blue dot**: The measured metric value (blue dot) and the upper and lower values of the allowed range.  
-- **Red dot with a black circle**: The first metric value outside the allowed range. This value fires a metric alert and puts it in an active state.
-- **Red dots**: Other measured values outside the allowed range. They don't trigger more metric alerts, but the alert stays in the active state.
-- **Red area**: The time when the metric value was outside the allowed range. The alert remains in the active state as long as subsequent measured values are outside the allowed range, but no new alerts are fired.
-- **End of red area**: A return to allowed values. When the blue line is back inside the allowed values, the red area stops and the measured value line turns blue. The status of the metric alert fired at the time of the red dot with a black circle is set to resolved.
 
 ## Create a Log search alert rule with dynamic threshold (Preview)
 
-To configure dynamic thresholds, follow the procedure for creating an alert rule. Use these settings on the Condition tab:
+To configure dynamic thresholds, follow the [procedure for creating an alert rule](./alerts-create-log-alert-rule.md). Use these settings on the Condition tab:
 
 - Configure your query, measurement, and dimensions the same way as with static threshold. 
 - For Threshold, select Dynamic.
@@ -169,7 +185,7 @@ To configure dynamic thresholds, follow the procedure for creating an alert rule
 > [!NOTE]
 > 1-minute frequency is not supported in Log search alert rules with dynamic threshold.
 
-### Dynamic threshold preview chart
+## Dynamic threshold preview chart
 
 The following chart shows the value of a log alert rule query result, its dynamic threshold limits, threshold violations, and alerts that fired when the value was outside the allowed thresholds. In this scenario, the number of violations required to fire an alert is 2.
 
@@ -182,6 +198,7 @@ The following chart shows the value of a log alert rule query result, its dynami
 
 > [!NOTE]
 > To ensure the preview chart performance, we enforce a limitation on the number of data points returned and, consequently, the allowed time range displayed, depending on alert rule frequency. A 5-minute frequency supports 6 hours. A 10–15-minute frequency supports 6 and 12 hours. A 30-minute frequency supports 6 and 12 hours and 1 day. Frequency of 1 hour or more supports 6 and 12 hours as well as 1 and 2 days.
+
 
 ## Known issues with dynamic threshold sensitivity
 
