@@ -273,7 +273,7 @@ Status: Updating
 Status: Succeeded
 Final status: Succeeded
 ```
-
+---
 For more information, see [Track asynchronous Azure operations](/azure/azure-resource-manager/management/async-operations).
 
 ## Next steps
