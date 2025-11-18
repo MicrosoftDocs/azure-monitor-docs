@@ -214,7 +214,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 Authorization: Bearer eyJ0e...
 ```
 
-### [PowerShell](#tab/powershell3)
+### [PowerShell](#tab/powershell)
 
 To check operation status, run this powershell.
 
