@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.date: 07/06/2025
 ---
 
-# Choosing the right type of alert rule
+# Choose the right type of alert rule
 
 This article describes the kinds of Azure Monitor alerts you can create. It helps you understand when to use each type of alert. For more information about pricing, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
@@ -26,7 +26,7 @@ The types of alerts are:
 |------------|-------------|---------------------|
 | Metric alert | Metric data is stored in the system already precomputed. Metric alerts are useful when you want to be alerted about data that requires little or no manipulation. Use metric alerts if the data you want to monitor is available in metric data. | Each metric alert rule is charged based on the number of time series that are monitored. |
 | Log search alert | You can use log search alerts to perform advanced logic operations on your data. If the data you want to monitor is available in logs, or requires advanced logic, you can use the robust features of Kusto Query Language (KQL) for data manipulation by using log search alerts. | Each log search alert rule is billed based on the interval at which the log query is evaluated. More frequent query evaluation results in a higher cost. For log search alerts configured for at-scale monitoring using splitting by dimensions, the cost also depends on the number of time series created by the dimensions resulting from your query. |
-| Simple log search alert | Ideal for monitoring applications, or network traffic where unaggregated real-time monitoring and quick incident response are critical. Each error triggers an alert, allowing you to take immediate action. For example, alerting for every failed job either backup job or any other automation, ability to alert on windows events that affects our system as storage or security. | Each simple log alert rule is billed based is the same as 1-min frequency alerts. |
+| Simple log search alert | Ideal for monitoring applications, or network traffic where unaggregated real-time monitoring and quick incident response are critical. Each error triggers an alert, allowing you to take immediate action. For example, alerting for every failed job either backup job or any other automation, ability to alert on windows events that affects our system as storage or security. | Each simple log alert rule is billed the same as 1-min frequency alerts. |
 | Activity log alert | Activity logs provide auditing of all actions that occurred on resources. Use activity log alerts to be alerted when a specific event happens to a resource like a restart, a shutdown, or the creation or deletion of a resource. Service Health alerts and Resource Health alerts let you know when there's an issue with one of your services or resources. | For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/). |
 | Prometheus alerts | Prometheus alerts are used for alerting on Prometheus metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). The alert rules are based on the PromQL open-source query language. | Prometheus alert rules are only charged on the data queried by the rules. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/). |
 
@@ -66,6 +66,26 @@ For instructions on using dimensions in metric alert rules, see [Monitor multipl
 To monitor for the same condition on multiple Azure resources, you can use splitting by dimensions. When you use splitting by dimensions, you can create resource-centric alerts at scale for a subscription or resource group. Alerts are split into separate alerts by grouping combinations. Splitting on an Azure resource ID column makes the specified resource into the alert target.
 
 You might also decide not to split when you want a condition applied to multiple resources in the scope. For example, you might want to fire an alert if at least five machines in the resource group scope have CPU usage over 80%.
+
+### Apply advanced machine learning with dynamic thresholds
+
+Dynamic thresholds use advanced machine learning to:
+
+- Learn the historical behavior of log query results.
+- Analyze data over time and identify patterns such as hourly, daily, or weekly patterns.
+- Recognize anomalies that indicate possible issues.
+- Calculate the most appropriate thresholds. 
+
+Machine learning continuously uses new data to learn more and make the threshold more accurate. Because the system adapts to the log query results behavior over time, and alerts based on deviations from its pattern, you don't have to know the "right" threshold for each rule.
+
+Dynamic thresholds help you:
+
+- Create scalable alert rules for hundreds of time series with one alert rule. If you have fewer alert rules, you spend less time creating and managing them. Scalable alert rules are especially useful for multiple dimensions or for multiple resources, such as all   
+  resources in a subscription.
+- Create rules without having to know what threshold to configure.
+- Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern. 
+
+See [dynamic thresholds](alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
 
 ### Monitor multiple resources with one alert rule
 
