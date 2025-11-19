@@ -153,6 +153,3 @@ If Container Insights is already enabled for your cluster, then you need to disa
 
 When the volume of logs generated is substantial, it can lead to throttling and log loss. See the *[Configure throttling for Container Insights](/azure/azure-monitor/containers/container-insights-throttling)* article for guidance on configuring throttling parameters and monitoring for log loss. 
 
-## Next steps
-
-* Share any feedback or issues with High Scale mode at [https://aka.ms/cihsfeedback](https://aka.ms/cihsfeedback).
