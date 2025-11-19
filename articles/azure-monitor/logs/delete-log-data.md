@@ -216,7 +216,7 @@ Authorization: Bearer eyJ0e...
 
 ### [PowerShell](#tab/powershell)
 
-To check operation status, run this powershell.
+To check operation status, run this PowerShell.
 
 ```powershell
 # Check for operation status URL in headers
