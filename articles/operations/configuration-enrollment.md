@@ -42,11 +42,11 @@ If you're using a Log Analytics workspace or Azure Monitor workspace in a differ
 Machine enrollment enables a standard set of features and allows you to optionally enable additional security features.
 
 > [!NOTE]
-> During gated preview, there are no charges for the additional features.
+> During gated preview, the essential tier core services are available at no additional cost. Customers will still pay for the log ingestion rates from Change Tracking and Inventory. 
 
 ### Essentials tier
 
-The following features are part of the essentials tier. These features are automatically enabled at no additional cost.
+The following features are part of the essentials tier. 
 
 | Feature | Description |
 |:---|:---|
@@ -85,7 +85,7 @@ The **Scope** tab includes the subscription that you want to enable and the mana
 
 | **Setting** | **Description** |
 |:---|:---|
-| **Select a subscription** | Click to select the subscription to enable. A list is provided with all subscriptions you have access to and the number of Azure VMs and Arc-enable dVMs in each. |
+| **Select a subscription** | Click to select the subscription to enable. A list is provided with all subscriptions you have access to and the number of Azure VMs and Arc-enabled VMs in each. |
 | **Required user role assignments** | Lists the required roles that your user account must be assigned to. |
 | **Current user role assignments** | Lists the roles that are currently assigned to your user account. |
 | **User assigned managed identity** | Select the managed identity to use for onboarding VMs in the subscription. |
@@ -129,8 +129,7 @@ Machine enrollment is enabled for each subscription to automatically onboard all
 - After the subscription is enabled, operations center will create [remediation tasks](/azure/governance/policy/how-to/remediate-resources) to enable the selected service for all existing VMs in the subscription.
 
 > [!WARNING]
-> Use caution with the gated preview if you have existing VMs with Change Tracking enabled. In this case, an additional Change Tracking DCR will be created and associated with the VM. Since Change Tracking supports only a single DCR though, either DCR could be assigned. 
-
+> Use caution with the gated preview if you have existing VMs with Change Tracking enabled. In this case, an additional Change Tracking DCR will be created and associated with the VM. Since Change Tracking supports only a single DCR though, either DCR could be assigned. If you would like to use the ManagedOps DCR, please remove the existing DCR.
 
 ## Excluding VMs
 
@@ -159,7 +158,6 @@ The following table describes the specific configuration applied to each VM when
 | Azure update manager |- Installs extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)<br>- [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. |
 | Change tracking and inventory | - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.<br>ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`)<br>- Uses Log Analytics workspace specified in onboarding.<br>- Collects basic files and registry keys. |
 | [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans) | - All settings on by default. |
-| [Defender for cloud](/azure/defender-for-cloud/defender-for-servers-overview) | - All settings for [Plan 2](/azure/defender-for-cloud/defender-for-servers-overview#defender-for-servers-plans) enabled. |
 
 
 ## Next steps
