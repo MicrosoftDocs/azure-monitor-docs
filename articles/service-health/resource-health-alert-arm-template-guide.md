@@ -2,7 +2,7 @@
 title: How to create Resource Health alerts in Service Health
 description: Create alerts in Azure Service Health to notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 11/17/2025 
+ms.date: 11/19/2025 
 
 ---
 
@@ -22,6 +22,15 @@ You can create Resource Health alerts to get the following information:
 
 This article shows you how to create and configure Azure Resource Health alerts from the Service Health portal.
 
+**Prerequisites**
+
+To create or edit an alert rule, you must have the following permissions:
+
+- Read permission on the target resource of the alert rule.
+- Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
+- Read permission on any action group associated to the alert rule, if applicable.
+
+For more information about Roles and access permissions, read [Roles, permissions and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
 
 ## Create a Resource Health alert rule
 
