@@ -15,7 +15,7 @@ Unlike Service Health alerts that cover platform-wide issues, Resource Health al
 Resource Health alerts notify you when your Azure resources experience a change in health status, such as becoming unavailable or degraded. These alerts help you stay informed and respond quickly to service issues affecting your workloads.
 
 You can create Resource Health alerts to get the following information:
-- **Immediate Action**: To respond to outages before, they affect customers. 
+- **Immediate Action**: To respond to outages before they affect customers. 
 - **Compliance**: So you can track SLA violations and recovery times. 
 - **Operational Insight**: To understand whether issues are platform or initiated by users. 
 - **Automation**: To trigger workflows via Action Groups (for example, auto-scale, failover). 
