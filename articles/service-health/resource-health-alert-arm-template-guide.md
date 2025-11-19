@@ -58,7 +58,7 @@ To set up your alert, use the six tabs in this window: **Scope**, **Condition**,
 
 Scope defines which resources your alert monitors. In this tab, you select the subscription, resource group, or individual resources that matter most to your business. This information is needed because Resource health alerts only trigger for the resources you include in the scope. 
 
-By choosing the right scope, you ensure alerts are relevant and actionable, helping you respond quickly to issues that could affect on your critical workloads without unnecessary noise.
+By choosing the right scope, you ensure alerts are relevant and actionable, helping you respond quickly to issues that could affect your critical workloads without unnecessary noise.
 
 :::image type="content" source="./media/resource-health/resource-health-create-scope.PNG" alt-text="Screenshot of Resource Health scope tab." lightbox="./media/resource-health/resource-health-create-scope.PNG":::
 
