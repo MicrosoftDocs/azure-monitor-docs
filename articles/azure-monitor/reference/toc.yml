@@ -2510,6 +2510,8 @@ items:
             href: tables/dnsevents.md
           - name: DnsInventory
             href: tables/dnsinventory.md
+          - name: DurableTaskSchedulerLogs
+            href: tables/durabletaskschedulerlogs.md
           - name: DynamicEventCollection
             href: tables/dynamiceventcollection.md
           - name: DynamicSummary
