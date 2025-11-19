@@ -16,6 +16,14 @@ This article provides troubleshooting steps for issues that may occur when [enab
 ## Errors during enrollment
 Following are common errors that may occur when enabling machine enrollment for a subscription.
 
+**Could not validate resource existence.**<br>
+The error message will include the resource ID of the Log Analytics workspace or Azure Monitor workspace that you selected during enrollment.
+
+1. Check whether you have the **Essential Machine Management Administrator** role in the resource group of the Log analytics workspace or Azure Monitor workspace. 
+2. If the workspaces are in a different subscription than the one being enabled for machine enrollment, verify that you have `Microsoft.ManagedOps` resource provider registered in the subscription.  
+
+
+
 **Change Log Analytics workspace or Azure Monitor workspace**<br>
 If you've already configured machine enrollment and then enable it again using a different Log Analytics workspace or Azure Monitor workspace, you'll get an error saying that the workspace can't be changed once it's set. 
 
@@ -23,9 +31,6 @@ To change either of the workspaces, you must first [disable the subscription](./
 
 **Disable Defender for cloud**<br>
 You'll receive and error if you attempt to disable Defender for cloud for subscription that was already enabled for machine enrollment. You must disable the subscription from the Defender for cloud portal.
-
-
-## Verify configuration
 
 ## Verify objects created
 If you didn't see any errors during enrollment, start by verifying that the objects in the following table are created in the resource group for the Log Analytics workspace and Azure Monitor workspace. These are the [data collection rules (DCRs)](/azure/azure-monitor/data-collection/data-collection-rule-overview) and solutions that enable change tracking and data collection for Azure Monitor.
