@@ -1,15 +1,15 @@
 ---
-title: Set up Prometheus remote write by using Microsoft Entra Workload ID authentication
+title: Set up Prometheus remote write using Microsoft Entra Workload ID authentication
 description: Learn how to set up remote write in Azure Monitor managed service for Prometheus. Use Microsoft Entra Workload ID (preview) authentication to send data from a self-managed Prometheus server to your Azure Monitor workspace.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-ms.date: 4/18/2024
+ms.date: 09/18/2025
 ms.reviewer: rapadman
 ---
 
-# Send Prometheus data to Azure Monitor by using Microsoft Entra Workload ID authentication
+# Send Prometheus data to Azure Monitor using Microsoft Entra Workload ID authentication
 
-This article describes how to set up [remote write](prometheus-remote-write.md) to send data from your Azure Monitor managed Prometheus cluster by using Microsoft Entra Workload ID authentication.
+This article describes how to set up [remote write](../metrics/prometheus-metrics-overview.md) to send data from your Azure Monitor managed Prometheus cluster using Microsoft Entra Workload ID authentication.
 
 ## Prerequisites
 
@@ -199,13 +199,13 @@ az ad app federated-credential create --id ${APPLICATION_OBJECT_ID} --parameters
 
 ## Verification and troubleshooting
 
-For verification and troubleshooting information, see [Troubleshooting remote write](/azure/azure-monitor/containers/prometheus-remote-write-troubleshooting)  and [Azure Monitor managed service for Prometheus remote write](prometheus-remote-write.md#verify-remote-write-is-working-correctly).
+For verification and troubleshooting information, see [Troubleshooting remote write](/azure/azure-monitor/containers/prometheus-remote-write-troubleshooting) and [Azure Monitor managed service for Prometheus remote write](../metrics/prometheus-remote-write.md#troubleshoot).
 
 ## Next steps
 
-- [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+- [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md)
 - [Learn more about Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md)
-- [Remote write in Azure Monitor managed service for Prometheus](prometheus-remote-write.md)
+- [Remote write in Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md)
 - [Send Prometheus data to Azure Monitor by using Microsoft Entra authentication](./prometheus-remote-write-active-directory.md)
 - [Send Prometheus data to Azure Monitor by using managed identity authentication](./prometheus-remote-write-managed-identity.md)
 - [Send Prometheus data to Azure Monitor by using Microsoft Entra pod-managed identity (preview) authentication](./prometheus-remote-write-azure-ad-pod-identity.md)

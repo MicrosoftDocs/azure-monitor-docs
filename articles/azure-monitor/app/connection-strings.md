@@ -3,7 +3,6 @@ title: Connection strings in Application Insights
 description: This article explains the components of connection strings and how to use them.
 ms.topic: how-to
 ms.date: 10/10/2024
-ms.reviewer: cogoodson
 ---
 
 # Connection strings in Application Insights
@@ -138,7 +137,6 @@ All our OpenTelemetry offerings and the following SDK versions onwards support c
 * .NET v2.12.0
 * JavaScript v2.3.0
 * NodeJS v1.5.0
-* Python v1.0.0
 * Java v3.1.1
 
 You can set a connection string in code, by using an environment variable, or a configuration file.
@@ -156,7 +154,7 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 | Java | [N/A](java-standalone-upgrade-from-2x.md) | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
 | JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) | [N/A](application-insights-faq.yml#can-opentelemetry-be-used-for-web-browsers) |
 | Node.js | [Application Insights SDK](nodejs.md#basic-usage) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=nodejs#connection-string) |
-| Python | [OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
+| Python | *The OpenCensus Python SDK has been retired.* | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
 
 ## Next steps
 
@@ -172,9 +170,6 @@ Get started at runtime with:
 
 Get started at development time with:
 
-* [ASP.NET Core](./asp-net-core.md)
-* [ASP.NET](./asp-net.md)
+* [.NET](/azure/azure-monitor/app/classic-api&tabs=dotnet)
 * [Java](./opentelemetry-enable.md?tabs=java)
-* [Node.js](./nodejs.md)
-* [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
-
+* [Node.js](/azure/azure-monitor/app/classic-api&tabs=nodejs)

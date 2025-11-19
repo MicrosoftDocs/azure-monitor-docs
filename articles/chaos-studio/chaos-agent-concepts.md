@@ -25,6 +25,7 @@ Without this connectivity, the agent won't receive instructions or be able to re
   - Regularly verify that NSG rules and firewall settings permit outbound traffic to the required Chaos Agent service endpoints.
 - **Private Connectivity:** Private Link can be configured for fully private connectivity. For more details, review the [Chaos Studio private link for agent documentation](chaos-studio-private-link-agent-service.md).
 - **Explicit Outbound Access Required:** The agent requires explicit outbound network access. Ensure your VM has a NAT Gateway, Load Balancer outbound rule, or public IP configured, as default outbound access may not be available in future deployments.
+- 
 
 ## Security
 

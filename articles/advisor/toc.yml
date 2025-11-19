@@ -14,9 +14,13 @@
     href: permissions.md
   - name: Advisor score
     href: ./advisor-score.md
-  - name: Configure recommendations view
+  - name: Customize your view
+    href: advisor-customize-view.md
+  - name: Dismiss and postpone
+    href: advisor-dismiss-postpone.md
+  - name: Configuration
     href: view-recommendations.md
-  - name: Configure alerts for new recommendations
+  - name: Alerts
     items:
     - name: Azure portal
       href: advisor-alerts-portal.md
@@ -26,30 +30,34 @@
     - name: ARM template
       displayName: Resource Manager
       href: advisor-alerts-arm.md
-  - name: Configure recommendation digest
+  - name: Digests
     href: advisor-recommendations-digest.md      
 - name: How-to guides
   items:
-  - name: Use Azure Well Architected Framework Assessments
-    href: advisor-assessments.md
-  - name: Use Azure Advisor resiliency reviews
-    href: advisor-resiliency-reviews.md
-  - name: Optimize virtual machine spend by resizing or shutting down underutilized instances
-    href: advisor-cost-recommendations.md
-  - name: Improve security
-    href: advisor-security-recommendations.md
-  - name: Improve the performance of highly used VMs
-    href: advisor-how-to-performance-resize-high-usage-vm-recommendations.md
-  - name: Use tags to filter recommendations and score
-    href: advisor-tag-filtering.md
-  - name: Bulk remediation for recommendations
-    href: advisor-quick-fix.md
   - name: Advisor data in Azure Resource Graph
-    href: advisor-azure-resource-graph.md
+    href: ./advisor-azure-resource-graph.md
+  - name: Bulk remediation for recommendations
+    href: ./advisor-quick-fix.md
   - name: Calculate total cost savings
-    href: advisor-how-to-calculate-total-cost-savings.md
+    href: ./advisor-how-to-calculate-total-cost-savings.md
+  - name: Evaluate cost implications of recommendations
+    href: ./advisor-how-to-evaluate-cost-implications-of-recommendations.md
+  - name: Improve the performance of highly used virtual machines
+    href: ./advisor-how-to-performance-resize-high-usage-vm-recommendations.md
+  - name: Optimize virtual machine spend by resizing or shutting down underutilized instances
+    href: ./advisor-cost-recommendations.md
+  - name: Review security recommendations
+    href: /azure/defender-for-cloud/review-security-recommendations
+  - name: Use Azure Advisor resiliency reviews
+    href: ./advisor-resiliency-reviews.md
+  - name: Use Azure Well Architected Framework Assessments
+    href: ./advisor-assessments.md
   - name: Use Service Upgrade and Retirement recommendations
     href: ./advisor-how-to-use-service-upgrade-retirement-recommendations.md
+  - name: Use tags to filter recommendations and score
+    href: ./advisor-tag-filtering.md
+  - name: Use Critical Risks
+    href: ./advisor-critical-risks.md
 - name: Recommendations
   items:
   - name: Cost
@@ -130,15 +138,15 @@
 - name: Resources
   items:
   - name: Azure Roadmap
-    href: https://techcommunity.microsoft.com/discussions/microsoft-entra/introducing-the-azure-roadmap/113500
+    href: https://azure.microsoft.com/updates
   - name: Pricing
     href: https://azure.microsoft.com/pricing/details/advisor/
   - name: Pricing calculator
     href: https://azure.microsoft.com/pricing/calculator/
   - name: Service updates
-    href: https://azure.microsoft.com/updates/?product=advisor
+    href: https://azure.microsoft.com/updates?filters=["Azure+Advisor"]
   - name: Regional availability
-    href: https://azure.microsoft.com/global-infrastructure/services/?products=advisor
+    href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table
   - name: Stack Overflow
     href: https://stackoverflow.com/search?q=azure+advisor
   - name: Code samples

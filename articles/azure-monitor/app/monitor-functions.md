@@ -4,7 +4,6 @@ description: Azure Monitor integrates with your Azure Functions application, all
 ms.topic: how-to
 ms.custom: devx-track-extended-java, devx-track-python, devx-track-js
 ms.date: 07/30/2025
-ms.reviewer: abinetabate
 ---
 
 # Monitor Azure Functions with Azure Monitor Application Insights
@@ -22,7 +21,7 @@ For a list of supported autoinstrumentation scenarios, see [Supported environmen
 ## Distributed tracing for Java applications
 
 > [!Note]
-> This feature used to have an 8- to 9-second cold startup implication, which has been reduced to less than 1 second. If you were an early adopter of this feature (for example, prior to February 2023), review the "Troubleshooting" section to update to the current version and benefit from the new faster startup.
+> This feature used to have an 8- to 9-second cold startup implication, which has been reduced to less than 1 second. If you were an early adopter of this feature (for example, prior to February 2023), review [Slow startup times](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot#issues-with-java-app-running-on-azure-functions) to update to the current version and benefit from the new faster startup.
 
 To view more data from your Java-based Azure Functions applications than is [collected by default](/azure/azure-functions/functions-monitoring?tabs=cmd), enable the [Application Insights Java 3.x agent](./java-in-process-agent.md). This agent allows Application Insights to automatically collect and correlate dependencies, logs, and metrics from popular libraries and Azure Software Development Kits (SDKs). This telemetry is in addition to the request telemetry already captured by Functions.
 
@@ -47,103 +46,7 @@ Deploying your own agent will result in a longer cold start implication for cons
 
 ### Troubleshooting
 
-Your Java functions might have slow startup times if you adopted this feature before February 2023. From the function app **Overview** pane, go to **Configuration** in the left-hand side navigation menu. Then select **Application settings** and use the following steps to fix the issue.
-
-#### Windows
-
-1. Check to see if the following settings exist and remove them:
-
-    ```
-    XDT_MicrosoftApplicationInsights_Java -> 1
-    ApplicationInsightsAgent_EXTENSION_VERSION -> ~2
-    ```
-
-2. Enable the latest version by adding this setting:
-    
-    ```
-    APPLICATIONINSIGHTS_ENABLE_AGENT: true
-    ```
-
-#### Linux Dedicated/Premium
-
-1. Check to see if the following settings exist and remove them:
-
-    ```
-    ApplicationInsightsAgent_EXTENSION_VERSION -> ~3
-    ```
-
-2. Enable the latest version by adding this setting:
-    
-    ```
-    APPLICATIONINSIGHTS_ENABLE_AGENT: true
-    ```
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
-
-#### Duplicate logs
-
-If you're using `log4j` or `logback` for console logging, distributed tracing for Java Functions creates duplicate logs. These duplicate logs are then sent to Application Insights. To avoid this behavior, use the following workarounds.
-
-##### Log4j
-
-Add the following filter to your log4j.xml:
-
-```xml
-<Filters>
-  <ThresholdFilter level="ALL" onMatch="DENY" onMismatch="NEUTRAL"/>
-</Filters>
-```
-
-Example:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
-  <Appenders>
-    <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-      <Filters>
-        <ThresholdFilter level="ALL" onMatch="DENY" onMismatch="NEUTRAL"/>
-      </Filters>
-    </Console>
-  </Appenders>
-  <Loggers>
-    <Root level="error">
-      <AppenderRef ref="Console"/>
-    </Root>
-  </Loggers>
-</Configuration>
-```
-
-##### Logback
-
-Add the following filter to your logback.xml: 
-
-```xml
-<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-  <level>OFF</level>
-</filter>  
-```
-
-Example:
-
-```xml
-<configuration debug="true">
-  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    <!-- encoders are  by default assigned the type
-         ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
-    <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%kvp- %msg%n</pattern>
-      <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-        <level>OFF</level>
-      </filter>  
-    </encoder>
-  </appender>
-  <root level="debug">
-    <appender-ref ref="STDOUT" />
-  </root>
-</configuration>
-```
+For troubleshooting guidance, see [Issues with Java app running on Azure Functions](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot#issues-with-java-app-running-on-azure-functions).
 
 ## Distributed tracing for Node.js function apps
 

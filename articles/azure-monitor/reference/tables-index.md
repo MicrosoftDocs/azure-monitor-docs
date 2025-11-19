@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 08/18/2025
+ms.date: 11/04/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -101,6 +101,12 @@ microsoft.insights/components
 - [AppSystemEvents](./tables/appsystemevents.md)
 - [AppTraces](./tables/apptraces.md)
 - [AppExceptions](./tables/appexceptions.md)
+
+### AppLinks  
+
+Microsoft.AppLink/applinks/applinksmembers  
+
+- [MeshControlPlane](./tables/meshcontrolplane.md)
 
 ### Automation account  
 
@@ -244,6 +250,13 @@ Microsoft.HardwareSecurityModules/cloudHsmClusters
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [CloudHsmServiceOperationAuditLogs](./tables/cloudhsmserviceoperationauditlogs.md)
+
+### Azure confidential ledger  
+
+Microsoft.ConfidentialLedger/Ledgers  
+
+- [ACLTransactionLogs](./tables/acltransactionlogs.md)
+- [ACLUserDefinedLogs](./tables/acluserdefinedlogs.md)
 
 ### Azure Cosmos DB  
 
@@ -580,6 +593,8 @@ microsoft.securityinsights
 - [SecurityEvent](./tables/securityevent.md)
 - [DnsAuditEvents](./tables/dnsauditevents.md)
 - [AggregatedSecurityAlert](./tables/aggregatedsecurityalert.md)
+- [SentinelBehaviorInfo](./tables/sentinelbehaviorinfo.md)
+- [SentinelBehaviorEntities](./tables/sentinelbehaviorentities.md)
 - [CommonSecurityLog](./tables/commonsecuritylog.md)
 - [ASimWebSessionLogs](./tables/asimwebsessionlogs.md)
 - [PurviewDataSensitivityLogs](./tables/purviewdatasensitivitylogs.md)
@@ -992,6 +1007,7 @@ Microsoft.Network/azureFirewalls
 - [AZFWNetworkRuleAggregation](./tables/azfwnetworkruleaggregation.md)
 - [AZFWApplicationRuleAggregation](./tables/azfwapplicationruleaggregation.md)
 - [AZFWNatRuleAggregation](./tables/azfwnatruleaggregation.md)
+- [AZFWDnsFlowTrace](./tables/azfwdnsflowtrace.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
@@ -1049,6 +1065,12 @@ Microsoft.HealthcareApis/workspaces
 - [AHDSDicomDiagnosticLogs](./tables/ahdsdicomdiagnosticlogs.md)
 - [AHDSDicomAuditLogs](./tables/ahdsdicomauditlogs.md)
 
+### HealthCare Interoperability Service  
+
+Microsoft.HealthcareInterop/workspaces  
+
+- [AHCIDiagnosticLogs](./tables/ahcidiagnosticlogs.md)
+
 ### Integration Account.  
 
 Microsoft.Logic/integrationAccounts  
@@ -1086,6 +1108,7 @@ Microsoft.KeyVault/vaults
 Microsoft.ContainerService/managedClusters  
 
 - [RetinaNetworkFlowLogs](./tables/retinanetworkflowlogs.md)
+- [ContainerNetworkLogs](./tables/containernetworklogs.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
@@ -1122,12 +1145,19 @@ Microsoft.Network/LoadBalancers
 
 Microsoft.OperationalInsights/Workspaces  
 
+- [Event](./tables/event.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [Syslog](./tables/syslog.md)
 - [LAQueryLogs](./tables/laquerylogs.md)
 - [LASummaryLogs](./tables/lasummarylogs.md)
 - [AzureMetricsV2](./tables/azuremetricsv2.md)
 - [LAJobLogs](./tables/lajoblogs.md)
+- [OTelResources](./tables/otelresources.md)
+- [OTelSpans](./tables/otelspans.md)
+- [OTelEvents](./tables/otelevents.md)
+- [OTelLogs](./tables/otellogs.md)
+- [OTelTraces](./tables/oteltraces.md)
+- [OTelTracesAgent](./tables/oteltracesagent.md)
 
 ### Logic Apps  
 
@@ -1657,9 +1687,14 @@ Microsoft.Compute/virtualMachineScaleSets
 - [ConfigurationChange](./tables/configurationchange.md)
 - [ConfigurationData](./tables/configurationdata.md)
 - [ContainerLog](./tables/containerlog.md)
+- [DataSetOutput](./tables/datasetoutput.md)
+- [DataSetRuns](./tables/datasetruns.md)
 - [Event](./tables/event.md)
 - [Heartbeat](./tables/heartbeat.md)
 - [Perf](./tables/perf.md)
+- [PerfInsightsFindings](./tables/perfinsightsfindings.md)
+- [PerfInsightsImpactedResources](./tables/perfinsightsimpactedresources.md)
+- [PerfInsightsRun](./tables/perfinsightsrun.md)
 - [ProtectionStatus](./tables/protectionstatus.md)
 - [SecurityBaseline](./tables/securitybaseline.md)
 - [SecurityEvent](./tables/securityevent.md)
@@ -1689,6 +1724,8 @@ Microsoft.Compute/VirtualMachines
 - [ADReplicationResult](./tables/adreplicationresult.md)
 - [ComputerGroup](./tables/computergroup.md)
 - [ContainerLog](./tables/containerlog.md)
+- [DataSetOutput](./tables/datasetoutput.md)
+- [DataSetRuns](./tables/datasetruns.md)
 - [DnsEvents](./tables/dnsevents.md)
 - [DnsInventory](./tables/dnsinventory.md)
 - [SecurityBaselineSummary](./tables/securitybaselinesummary.md)
@@ -1697,6 +1734,9 @@ Microsoft.Compute/VirtualMachines
 - [ConfigurationData](./tables/configurationdata.md)
 - [Event](./tables/event.md)
 - [Perf](./tables/perf.md)
+- [PerfInsightsFindings](./tables/perfinsightsfindings.md)
+- [PerfInsightsImpactedResources](./tables/perfinsightsimpactedresources.md)
+- [PerfInsightsRun](./tables/perfinsightsrun.md)
 - [ProtectionStatus](./tables/protectionstatus.md)
 - [SecurityBaseline](./tables/securitybaseline.md)
 - [SecurityEvent](./tables/securityevent.md)

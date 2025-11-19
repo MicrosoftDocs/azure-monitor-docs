@@ -24,12 +24,9 @@ To use the templates below, you'll need:
 * To [create a user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-arm#create-a-user-assigned-managed-identity-3) and [assign the user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#user-assigned-managed-identity), or [enable a system-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#system-assigned-managed-identity). A managed identity is required for Azure Monitor agent to collect and publish data. User-assigned managed identities are _strongly recommended_ over system-assigned managed identities due to their ease of management at scale.
 * To configure data collection for Azure Monitor Agent, you must also deploy [Resource Manager template data collection rules and associations](./resource-manager-data-collection-rules.md).
 
-### Permissions required
+### Required permissions
 
-| Built-in Role | Scope(s) | Reason |
-|:--------------|:---------|:-------|
-| <ul><li>[Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor)</li><li>[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles#azure-connected-machine-resource-administrator)</li></ul> | <ul><li>Virtual machines, virtual machine scale sets</li><li>Arc-enabled servers</li></ul> | To deploy agent extension |
-| Any role that includes the action *Microsoft.Resources/deployments/* | <ul><li>Subscription and/or</li><li>Resource group and/or </li><li>An existing data collection rule</li></ul> | To deploy ARM templates |
+For required permissions, see [Azure Monitor Agent requirements](azure-monitor-agent-requirements.md#permissions) and [Create data collection rules (DCRs)](../data-collection/data-collection-rule-create-edit.md#permissions).
 
 ### Azure Windows virtual machine
 

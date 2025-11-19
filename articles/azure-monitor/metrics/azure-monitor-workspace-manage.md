@@ -83,8 +83,19 @@ resource workspace 'microsoft.monitor/accounts@2021-06-03-preview' = {
 
 When you create an Azure Monitor workspace, a new resource group is created. The resource group name has the following format: `MA_<azure-monitor-workspace-name>_<location>_managed`, where the tokenized elements are lowercased. The resource group contains both a data collection endpoint and a data collection rule with the same name as the workspace. The resource group and its resources are automatically deleted when you delete the workspace.
  
-To connect your Azure Monitor managed service for Prometheus to your Azure Monitor workspace, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+To connect your Azure Monitor managed service for Prometheus to your Azure Monitor workspace, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md)
 
+> [!TIP]
+> We recommend that you enable recommended alerts for your Azure Monitor Workspace to monitor the ingestion limits and quotas. To enable the recommended alerts, see [here](azure-monitor-workspace-monitor-ingest-limits.md).
+
+
+## Access mode
+Similar to [Log Analytics workspace](../logs/manage-access.md), Azure Monitor Workspaces offer a resource-context access mode to enable more granular Azure RBAC resource-permissions for users querying data in a workspace. This provides the following benefits:
+
+* Users do not need to know which workspace to query for the metrics they've scoped their query to
+* Users do not need direct access to the workspace(s) storing the metrics for their resources
+
+Read more about [how to manage the workspace Access Mode here.](../metrics/azure-monitor-workspace-manage-access.md)
 
 ## Delete an Azure Monitor workspace
 When you delete an Azure Monitor workspace, unlike with a [Log Analytics workspace](../logs/delete-workspace.md), there's no soft delete operation. The data in the workspace is immediately deleted, and there's no recovery option.
@@ -163,7 +174,7 @@ Output
 
 ### [Resource Manager](#tab/resource-manager)
 
-To set up an Azure monitor workspace as a data source for Grafana using a Resource Manager template, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md?tabs=arm#enable-prometheus-and-grafana).
+To set up an Azure monitor workspace as a data source for Grafana using a Resource Manager template, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md?tabs=arm).
 
 ---
 

@@ -2,7 +2,7 @@
 title: Create Azure Monitor metric alert rules
 description: This article shows you how to create a new metric alert rule.
 ms.reviewer: harelbr
-ms.date: 07/09/2025
+ms.date: 11/18/2025
 ms.topic: how-to
 ---
 
@@ -16,11 +16,13 @@ You can define what payload is included in alerts triggered by these alert rules
 
 ## Prerequisites
 
-To create a metric alert rule, you must have the following permissions:
+Before creating a metric alert rule, ensure you have the following permissions:
 
-* Read permission on the target resource of the alert rule.
-* Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
+* Read permission (such as *Reader*) on the target resource of the alert rule.
 * Read permission on any action group associated to the alert rule, if applicable.
+* Write permission (such as *Contributor*) on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
+
+These permissions are managed through [Azure Role-Based Access Control (RBAC)](/azure/role-based-access-control/overview). For more information, see [Roles, permissions, and security in Azure Monitor](../fundamentals/roles-permissions-security.md) and [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## Create or edit an alert rule from the portal home page
 
@@ -103,7 +105,7 @@ Follow these steps:
 
     | Field | Description |
     |-------|-------------|
-    | Threshold | Select if the threshold should be evaluated based on a static value or a dynamic value.<br>A **static threshold** evaluates the rule by using the threshold value that you configure.<br>**Dynamic thresholds** use machine learning algorithms to continuously learn the metric behavior patterns and calculate the appropriate thresholds for unexpected behavior. You can learn more about using [dynamic thresholds for metric alerts](alerts-types.md#apply-advanced-machine-learning-with-dynamic-thresholds). |
+    | Threshold | Select if the threshold should be evaluated based on a static value or a dynamic value.<br>A **static threshold** evaluates the rule by using the threshold value that you configure.<br>**Dynamic thresholds** use machine learning algorithms to continuously learn the metric behavior patterns and calculate the appropriate thresholds for unexpected behavior. Learn more about using [dynamic thresholds](alerts-types.md#apply-advanced-machine-learning-with-dynamic-thresholds). |
     | Operator | Select the operator for comparing the metric value against the threshold.<br>If you're using dynamic thresholds, alert rules can use tailored thresholds based on metric behavior for both upper and lower bounds in the same alert rule. Select one of these operators:<br>• Greater than the upper threshold or lower than the lower threshold (default)<br>• Greater than the upper threshold<br>• Lower than the lower threshold |
     | Aggregation type | Select the aggregation function to apply on the data points: Sum, Count, Average, Min, or Max. |
     | Threshold value | If you selected a **static** threshold, enter the threshold value for the condition logic. |
@@ -254,3 +256,4 @@ Consider the following constraints when you use dimensions in an alert rule that
 ## Next steps
 
 * [View and manage your alert instances](alerts-manage-alert-instances.md).
+* Learn about [query-based metric alerts](alerts-query-based-metric-alerts-overview.md) to create alert rules on Prometheus or custom (OTel) metrics stored in an Azure Monitor Workspace.

@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 05/31/2025
 ms.devlang: csharp
 ms.custom: devx-track-dotnet
-ms.reviewer: mmcc
 ---
 
 # Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry

@@ -2,7 +2,7 @@
 title: Types of Azure Monitor alerts
 description: This article explains the different types of Azure Monitor alerts and when to use each type.
 ms.topic: concept-article
-ms.date: 07/06/2025
+ms.date: 11/18/2025
 ---
 
 # Choose the right type of alert rule
@@ -80,13 +80,12 @@ Machine learning continuously uses new data to learn more and make the threshold
 
 Dynamic thresholds help you:
 
-- Create scalable alert rules for hundreds of time series with one alert rule. If you have fewer alert rules, you spend less time creating and managing them. Scalable alert rules are especially useful for multiple dimensions or for multiple resources, such as all   
-  resources in a subscription.
+- Create scalable alert rules for hundreds of time series with one alert rule. If you have fewer alert rules, you spend less time creating and managing them. Scalable alert rules are especially useful for multiple dimensions or for multiple resources, such as all resources in a subscription.
 - Create rules without having to know what threshold to configure.
-- Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern. 
+- Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern.
 
-See [dynamic thresholds](alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
-
+See [dynamic thresholds](./alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
+ 
 ### Monitor multiple resources with one alert rule
 
 You can monitor at scale by applying the same metric alert rule to multiple resources of the same type for resources that exist in the same Azure region. Individual notifications are sent for each monitored resource.

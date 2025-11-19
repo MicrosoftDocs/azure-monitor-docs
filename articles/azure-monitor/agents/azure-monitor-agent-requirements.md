@@ -64,7 +64,7 @@ This table lists the Azure Monitor Agent disk space requirements. Azure Monitor 
 
 | Purpose | Environment | Path | Suggested space |
 |:---|:---|:---|:---|
-| Download and install packages | Linux | */var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{Version}/* | 500 MB |
+| Download and install packages | Linux | */var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{Version}/* | 700 MB |
 | Download and install packages | Windows | *C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent* | 500 MB |
 | Extension logs | Linux (Azure VM) | */var/log/azure/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent/* | 100 MB |
 | Extension logs | Linux (Azure Arc) | */var/lib/GuestConfig/extension_logs/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{version}/* | 100 MB |

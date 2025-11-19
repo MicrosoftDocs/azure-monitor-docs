@@ -2,7 +2,7 @@
 title: Structure of a data collection rule (DCR) in Azure Monitor
 description: Details on the structure of different kinds of data collection rule in Azure Monitor.
 ms.topic: article
-ms.date: 12/04/2024
+ms.date: 11/17/2025
 ms.reviwer: nikeist
 ---
 
@@ -111,7 +111,7 @@ The possible data types that can be assigned to the properties are:
 * `real`
 * `boolean`
 * `dynamic`
-* `datetime`.
+* `datetime`
 
 ## Destinations
 
@@ -129,11 +129,13 @@ The destinations currently available are listed in the following table.
 
 | Destination | Description | Required parameters |
 |:------------|:------------|:--------------------|
-| `logAnalytics` | Log Analytics workspace | `workspaceResourceId` - Resource ID of the workspace.<br>`workspaceID` - ID of the workspace<br><br>This only specifies the workspace, not the table where the data will be sent. If it's a known destination, then no table needs to be specified. For custom tables, the table is specified in the data source. |
+| `azureDataExplorer` | Azure Data Explorer | `resourceId` - Resource ID of the ADX cluster<br>`databaseName` - Name of the database in the ADX cluster<br>`ingestionUri` - Ingestion URI of the cluster |
 | `azureMonitorMetrics` | Azure Monitor metrics | No configuration is required since there's only a single metrics store for the subscription. |
+| `eventHubsDirect` | Event Hubs | `eventHubsDirect` - Resource ID of the event hub. |
+| `logAnalytics` | Log Analytics workspace | `workspaceResourceId` - Resource ID of the workspace.<br>`workspaceID` - ID of the workspace<br><br>This only specifies the workspace, not the table where the data will be sent. If it's a known destination, then no table needs to be specified. For custom tables, the table is specified in the data source. |
+| `microsoftFabric` | Microsoft Fabric eventhouse | `tenantId` - Tenant ID of the Fabric workspace<br>`databaseName` - Name of the database in the Fabric eventhouse<br>`ingestionUri` - [Ingestion URI of the Fabric eventhouse database](/fabric/real-time-intelligence/manage-monitor-database#database-details) |
 | `storageTablesDirect` | Azure Table storage | `storageAccountResourceId` - Resource ID of the storage account<br>`tableName` - Name of the table |
 | `storageBlobsDirect` | Azure Blob storage | `storageAccountResourceId` - Resource ID of the storage account<br>`containerName` - Name of the blob container |
-| `eventHubsDirect` | Event Hubs | `eventHubsDirect` - Resource ID of the event hub. |
 
 > [!IMPORTANT]
 > One stream can only send to one Log Analytics workspace in a DCR. You can have multiple `dataFlow` entries for a single stream if they're using different tables in the same workspace. If you need to send data to multiple Log Analytics workspaces from a single stream, create a separate DCR for each workspace.
@@ -151,6 +153,8 @@ Data flows match input streams with destinations. Each data source may optionall
 | `transformKql` | Optional [transformation](data-collection-transformations.md) applied to the incoming stream. The transformation must understand the schema of the incoming data and output data in the schema of the target table. If you use a transformation, the data flow should only use a single stream. |
 | `outputStream` | Describes which table in the workspace specified under the `destination` property the data will be sent to. The value of `outputStream` has the format `Microsoft-[tableName]` when data is being ingested into a standard table, or `Custom-[tableName]` when ingesting data into a custom table. Only one destination is allowed per stream.<br><br>This property isn't used for known data sources from Azure Monitor such as events and performance data since these are sent to predefined tables. |
 
-## Next steps
+## Related content
 
-[Overview of data collection rules and methods for creating them](data-collection-rule-overview.md)
+- [Overview of data collection rules and methods for creating them](data-collection-rule-overview.md)
+- [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md)
+- [Collect data from VM clients](../vm/data-collection.md)
