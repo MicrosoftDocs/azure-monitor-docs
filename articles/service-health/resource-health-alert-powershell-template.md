@@ -2,7 +2,7 @@
 title: Create Resource Health alerts with Azure PowerShell, Azure Resource Manager, and templates
 description: Create Resource health alerts programmatically to notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 11/18/2025 
+ms.date: 11/19/2025 
 
 ---
 
@@ -17,7 +17,7 @@ Resource Health alerts notify you when your Azure resources experience a change 
 To create or edit an alert rule, you must have the following permissions:
 
 - Read permission on the target resource of the alert rule.
-- Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
+- Write permission on the resource group in which the alert rule is created.
 - Read permission on any action group associated to the alert rule, if applicable.
 
 
