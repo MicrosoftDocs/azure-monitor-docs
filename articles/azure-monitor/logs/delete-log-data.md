@@ -69,7 +69,7 @@ If you enable [workspace replication](workspace-replication.md) on your Log Anal
 
 To delete rows from a table, use this command with one or more filters in the body. This example filters on the `TimeGenerated` and `Resource` columns.
 
-### [API](#tab/api1)
+### [API](#tab/api)
 
 ```http  
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table_name}/deleteData?api-version=2023-09-01
