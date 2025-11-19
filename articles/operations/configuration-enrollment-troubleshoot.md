@@ -32,9 +32,6 @@ To change either of the workspaces, you must first [disable the subscription](./
 **Disable Defender for cloud**<br>
 You'll receive and error if you attempt to disable Defender for cloud for subscription that was already enabled for machine enrollment. You must disable the subscription from the Defender for cloud portal.
 
-
-## Verify configuration
-
 ## Verify objects created
 If you didn't see any errors during enrollment, start by verifying that the objects in the following table are created in the resource group for the Log Analytics workspace and Azure Monitor workspace. These are the [data collection rules (DCRs)](/azure/azure-monitor/data-collection/data-collection-rule-overview) and solutions that enable change tracking and data collection for Azure Monitor.
 
