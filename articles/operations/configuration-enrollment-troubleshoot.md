@@ -16,6 +16,14 @@ This article provides troubleshooting steps for issues that may occur when [enab
 ## Errors during enrollment
 Following are common errors that may occur when enabling machine enrollment for a subscription.
 
+**Could not validate resource existence.**<br>
+The error message will include the resource ID of the Log Analytics workspace or Azure Monitor workspace that you selected during enrollment.
+
+1. Check whether you have the **Essential Machine Management Administrator** role in the resource group of the Log analytics workspace or Azure Monitor workspace. 
+2. If the workspaces are in a different subscription than the one being enabled for machine enrollment, verify that you have `Microsoft.ManagedOps` resource provider registered in the subscription.  
+
+
+
 **Change Log Analytics workspace or Azure Monitor workspace**<br>
 If you've already configured machine enrollment and then enable it again using a different Log Analytics workspace or Azure Monitor workspace, you'll get an error saying that the workspace can't be changed once it's set. 
 
