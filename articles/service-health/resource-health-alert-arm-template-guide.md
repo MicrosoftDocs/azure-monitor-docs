@@ -15,10 +15,10 @@ Unlike Service Health alerts that cover platform-wide issues, Resource Health al
 Resource Health alerts notify you when your Azure resources experience a change in health status, such as becoming unavailable or degraded. These alerts help you stay informed and respond quickly to service issues affecting your workloads.
 
 You can create Resource Health alerts to get the following information:
-- **Immediate Action**: To respond to outages before they affect customers. 
-- **Compliance**: So you can track SLA violations and recovery times. 
-- **Operational Insight**: To understand whether issues are platform or initiated by users. 
-- **Automation**: To trigger workflows via Action Groups (for example, auto-scale, failover). 
+- **Immediate Action**: Respond to outages before they affect customers. 
+- **Compliance**: So you can track Service Level Agreement (SLA) violations and recovery times. 
+- **Operational Insight**: To understand whether the issues originate from the platform or from users. 
+- **Automation**: To trigger workflows via Action Groups (for example, autoscale, failover). 
 
 This article shows you how to create and configure Azure Resource Health alerts from the Service Health portal.
 
@@ -93,7 +93,7 @@ To set up your alert for the following information, select from each of the foll
 - Active – The health event is ongoing.
 - Resolved – The event ended.
 - In Progress – Azure is working on mitigation.
-- Updated - The event associated with a resource changes state or received new information.
+- Updated - The event associated with a resource changes state or receives new information.
 
 >[!Tip] 
 >- Use **Active** to get notified immediately when an issue starts.<br>
@@ -122,7 +122,7 @@ You can select **All** or:<br>
 - Unknown
 
 ## Actions
-On this tab, you decide how you're notified. Action Groups let you send alerts by email, SMS, push notifications, or even trigger automation through webhooks, Logic Apps, or Functions.<br> Use multiple channels to make sure all the right people respond quickly.
+On this tab, you decide how you're notified. Action Groups let you send alerts by email, Short Message Service (SMS), push notifications, or even trigger automation through webhooks, Logic Apps, or Functions.<br> Use multiple channels to make sure all the right people respond quickly.
 
 :::image type="content" source="./media/resource-health/resource-health-create-actions.PNG" alt-text="Screenshot of Resource Health actions tab." lightbox="./media/resource-health/resource-health-create-actions.PNG":::
 
