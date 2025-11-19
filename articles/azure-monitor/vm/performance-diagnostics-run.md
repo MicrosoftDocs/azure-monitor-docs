@@ -107,7 +107,7 @@ You can install the Performance Diagnostics tool from multiple locations in the 
 
 Each location displays the same configuration screen with options you must configure before selecting **Apply** to install the tool. 
 
-    :::image type="content" source="./media/performance-diagnostics-run/install-screen.png" alt-text="Screenshot of the installation screen with the configuration options." lightbox="./media/performance-diagnostics-run/install-screen.png":::
+:::image type="content" source="./media/performance-diagnostics-run/install-screen.png" alt-text="Screenshot of the installation screen with the configuration options." lightbox="./media/performance-diagnostics-run/install-screen.png":::
 
 Each option is described in the following table.
 
