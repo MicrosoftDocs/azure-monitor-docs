@@ -27,7 +27,12 @@ The user performing the enrollment must have the following roles in the subscrip
 - Managed Identity Operator roles
 - Resource Policy Contributor
 
-If you're using a Log Analytics workspace or Azure Monitor workspace in a different subscription than the one being enabled for machine enrollment, then the user account must also have the **Essential Machine Management Administrator** role in the resource group of the Log analytics workspace or Azure Monitor workspace.
+If you're using a Log Analytics workspace or Azure Monitor workspace in a different subscription than the one being enabled for machine enrollment:
+
+- The user account must also have the **Essential Machine Management Administrator** role in the resource group of the Log analytics workspace or Azure Monitor workspace.
+- The **Microsoft.ManagedOps** resource provider needs to be registered in the subscription of the Log analytics workspace or Azure Monitor workspace. Use the Azure PowerShell command:  `Register-AzResourceProvider -ProviderNamespace "Microsoft.ManagedOps"`.
+
+
 
 ### Managed identity
 
