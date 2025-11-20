@@ -25,7 +25,7 @@ Before creating a metric alert rule, ensure you have the following permissions:
 These permissions are managed through [Azure Role-Based Access Control (RBAC)](/azure/role-based-access-control/overview). For more information, see [Roles, permissions, and security in Azure Monitor](../fundamentals/roles-permissions-security.md) and [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 > [!NOTE]
-> It may take 10 to 15 minutes after the resource is created to a metric be available.
+> It may take 10 to 15 minutes after the resource is created for a metric to be available.
 
 ## Create or edit an alert rule from the portal home page
 
