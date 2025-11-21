@@ -35,16 +35,6 @@ This article covers the OpenTelemetry Collector and Azure Monitor Agent methods.
 * For VM/VMSS deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux)
 * For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension
 
-## Choose a deployment method
-
-Select the deployment method that best fits your compute environment:
-
-| Compute environment | Recommended method | Benefits |
-|---------------------|--------------------|----------|
-| Azure VM, VMSS, or Arc-enabled servers | Azure Monitor Agent | Simplified configuration, no collector management, automatic credential handling |
-| Non-Azure compute, containers, or multi-cloud | OpenTelemetry Collector | Maximum flexibility, vendor-neutral, works across any environment |
-| Azure Kubernetes Service | AKS add-on | Native integration, automatic pod discovery, minimal configuration |
-
 ## Set up OTLP data collection
 
 You can configure OTLP data collection in Azure Monitor using one of two approaches. The Application Insights-based approach is recommended for most scenarios as it automates resource creation and enables built-in troubleshooting experiences.
