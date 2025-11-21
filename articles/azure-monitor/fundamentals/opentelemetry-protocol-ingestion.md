@@ -8,7 +8,7 @@ ROBOTS: NOINDEX
 
 # Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)
 
-Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals, enabling you to send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor without vendor-specific agents or exporters.
+Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals, enabling you to send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
 
 > [!IMPORTANT]
 > * This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
@@ -22,18 +22,19 @@ Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) sig
 
 Azure Monitor can receive OTLP signals through three ingestion mechanisms:
 
-* **OpenTelemetry Collector** - Send data directly to Azure Monitor cloud ingestion endpoints from any OTel Collector deployment
-* **Azure Monitor Agent (AMA)** - Ingest data from applications running on Azure VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers
-* **Azure Kubernetes Service (AKS) add-on** - Collect telemetry from containerized applications in AKS clusters
+* **OpenTelemetry Collector** - Send data directly to Azure Monitor cloud ingestion endpoints from any OTel Collector deployment.
+* **Azure Monitor Agent (AMA)** - Ingest data from applications running on Azure VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers.
+* **Azure Kubernetes Service (AKS) add-on** - Collect telemetry from containerized applications in AKS clusters.
 
 This article covers the OpenTelemetry Collector and Azure Monitor Agent methods. For AKS deployments, see [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](../app/kubernetes-open-protocol.md).
 
 ## Prerequisites
 
-* An Azure subscription
-* [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/) instrumented application (any supported language)
-* For VM/VMSS deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux)
-* For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension
+> [!div class="checklist"]
+> * **Azure subscription:** If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+> * [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/) instrumented application (any supported language)
+> For VM/VMSS deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux)
+> For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension
 
 ## Set up OTLP data collection
 
@@ -70,8 +71,8 @@ This option requires you to manually create and configure Data Collection Endpoi
 
 If you don't have existing workspaces, create the following resources in the same Azure region:
 
-* **Log Analytics workspace** - Stores log and trace data
-* **Azure Monitor workspace** - Stores metrics data
+* **Log Analytics workspace (LAW)** - Stores log and trace data
+* **Azure Monitor workspace (AMW)** - Stores metrics data
 
 Record the resource IDs of both workspaces for later use.
 
@@ -154,7 +155,7 @@ export OTEL_RESOURCE_ATTRIBUTES="microsoft.applicationId=<your-application-id>"
 
 For non-Azure environments or when you need maximum flexibility, configure the OpenTelemetry Collector to send data directly to Azure Monitor endpoints.
 
-#### Configure authentication
+#### Configure Microsoft Entra authentication
 
 The OpenTelemetry Collector requires Microsoft Entra authentication to send data to Azure Monitor.
 
@@ -253,10 +254,20 @@ For manually orchestrated resources, construct the endpoint URLs:
 Configure your OpenTelemetry Collector with the authentication extension and Azure Monitor endpoints. Here's a sample configuration:
 
 ```yaml
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: localhost:4317
+      http:
+        endpoint: localhost:4318
+
+processors:
+  batch:
+
 extensions:
   azureauth/monitor:
-    managed_identity:
-      client_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    use_default: true
     scopes:
       - https://monitor.azure.com/.default
 
@@ -269,20 +280,22 @@ exporters:
       authenticator: azureauth/monitor
 
 service:
-  extensions: [azureauth/monitor]
+  extensions:
+    - azureauth/monitor
   pipelines:
     traces:
       receivers: [otlp]
+      processors: [batch]
       exporters: [otlphttp/azuremonitor]
     metrics:
       receivers: [otlp]
+      processors: [batch]
       exporters: [otlphttp/azuremonitor]
     logs:
       receivers: [otlp]
+      processors: [batch]
       exporters: [otlphttp/azuremonitor]
 ```
-
-For a complete configuration example, see the [sample configuration file](https://github.com/microsoft/AzureMonitorCommunity/blob/master/Azure%20Services/Azure%20Monitor/OpenTelemetry/SampleOTelCollectorConfig.yaml) in the Azure Monitor Community repository.
 
 ## Limitations
 
