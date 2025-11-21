@@ -879,7 +879,7 @@ items:
       - name: Migration custom text log tables
         href: agents/azure-monitor-agent-custom-text-log-migration.md
     - name: Migrate from Azure Diagnostic extensions
-      displayName: Azure Diagnostic extensions (WAD/LAD)
+      displayName: Migrate from Azure Diagnostic extensions (WAD,LAD)
       href: agents/azure-monitor-agent-migration-wad-lad.md
     - name: Troubleshoot
       items:
