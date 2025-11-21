@@ -294,38 +294,24 @@ service:
 
 For a complete configuration example, see the [sample configuration file](https://github.com/microsoft/AzureMonitorCommunity/blob/master/Azure%20Services/Azure%20Monitor/OpenTelemetry/SampleOTelCollectorConfig.yaml) in the Azure Monitor Community repository.
 
-## View and analyze your data
-
-After configuring data ingestion, telemetry data flows into your Azure Monitor workspaces:
-
-* **Traces and logs** are stored in your Log Analytics workspace
-* **Metrics** are stored in your Azure Monitor workspace
-* If you associated an Application Insights resource, you can use Application Insights experiences for end-to-end transaction analysis, application maps, live metrics, and performance profiling
-
-Access your data through:
-
-* **Azure Monitor Logs** - Query traces and logs using Kusto Query Language (KQL)
-* **Azure Monitor Metrics Explorer** - Visualize and alert on metrics
-* **Application Insights** - Use dedicated troubleshooting and monitoring experiences
-
-## Limitations and known issues
+## Limitations
 
 The following Azure regions aren't supported during the preview:
 
-* North Central US
-* Qatar Central
-* Poland Central
-* New Zealand North
-* Malaysia West
-* Indonesia Central
-* West India
-* Chile Central
-* Mexico Central
 * Austria East
+* Chile Central
+* Indonesia Central
+* Malaysia West
+* Mexico Central
+* New Zealand North
+* North Central US
+* Poland Central
+* Qatar Central
+* West India
 
 ## Support
 
-Assistance for enrolled subscriptions is available only through `otel@microsoft.com`.
+Assistance for enrolled subscriptions is available exclusivelty through [otel@microsoft.com](mailto:otel@microsoft.com).
 
 ## Next steps
 
