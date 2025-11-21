@@ -29,8 +29,8 @@ As one of the migration options, customers can migrate to [Azure Monitor Agent (
 
 ### Phase 1: Discover & assess
 1. Inventory machines running WAD/LAD
-  1. For per-VM view in Azure portal, navigate to **Extensions + applications** tab.
-  2. For fleet view, use Azure Resource Graph query from the [WAD/LAD overview article](./diagnostics-extension-overview.md) to find extensions by publisher == "Microsoft.Azure.Diagnostics".
+   1. For per-VM view in Azure portal, navigate to **Extensions + applications** tab.
+   1. For fleet view, use Azure Resource Graph query from the [WAD/LAD overview article](./diagnostics-extension-overview.md) to find extensions by publisher == "Microsoft.Azure.Diagnostics".
 
 3. Extract current diagnostics config - Gather WAD public config XML (Windows) and LAD JSON (Linux) to list counters, events, syslog facilities/severities, file paths, transfer schedules, and destinations. 
 
@@ -38,9 +38,9 @@ As one of the migration options, customers can migrate to [Azure Monitor Agent (
 
 ### Phase 2: Design DCRs
 1. Create DCRs that replicate the WAD/LAD intent:
-  1. [Standard VM data sources](../vm/data-collection.md#add-data-sources) like Windows events (e.g., System, Application, Security), Linux syslog, performance counters.
-  2. [Custom text logs](../vm/data-collection-log-text.md) (same file paths wildcards; ensure custom tables exist; often requires a DCE) sent to low-cost [Auxiliary tier](../logs/data-platform-logs.md#table-plans) in Log Analytics.
-  3. [ADX-destination routing] (../vm/send-fabric-destination.md#create-a-data-collection-rule)
+   1. [Standard VM data sources](../vm/data-collection.md#add-data-sources) like Windows events (e.g., System, Application, Security), Linux syslog, performance counters.
+   1. [Custom text logs](../vm/data-collection-log-text.md) (same file paths wildcards; ensure custom tables exist; often requires a DCE) sent to low-cost [Auxiliary tier](../logs/data-platform-logs.md#table-plans) in Log Analytics.
+   1. [ADX-destination routing] (../vm/send-fabric-destination.md#create-a-data-collection-rule)
 
 > [!NOTE]
 > Keep Windows and Linux in separate DCRs to avoid accidental counter duplication (same metric from both naming styles).
@@ -54,8 +54,8 @@ As one of the migration options, customers can migrate to [Azure Monitor Agent (
 
 1. Agent health: Confirm AzureMonitorWindowsAgent / AzureMonitorLinuxAgent extension status is **Provisioning succeeded** on VMs.
 2. Data flow:
-  1. Logs: Query in Log Analytics workspace (e.g., Event, Syslog, custom table) as per the DCR data source.
-  2. Performance counters to Metrics: switch VM Metrics blade to the Virtual machine guest namespace to see counters via AMA-to-Metrics routing.
+   1. Logs: Query in Log Analytics workspace (e.g., Event, Syslog, custom table) as per the DCR data source.
+   1. Performance counters to Metrics: switch VM Metrics blade to the Virtual machine guest namespace to see counters via AMA-to-Metrics routing.
 
 ### Phase 5: Remove WAD/LAD
 1. Coordinate a cutover window per environment (Dev → Test → Prod).
