@@ -12,7 +12,9 @@ Kubernetes clusters generate a large amount of data that's collected by Containe
 
 Once you've analyzed your collected data and determined if there's any data that you're collecting that you don't require, there are several options to filter any data that you don't want to collect. This ranges from selecting from a set of predefined cost configurations to leveraging different features to filter data based on specific criteria. This article provides a walkthrough of guidance on how to analyze and optimize your data collection for Container insights. 
 
+## Enable collection of metrics through Azure Monitor managed service for Prometheus.
 
+Container Insights previously used data from Log Analytics to power the visualizations in the Azure portal. With the release of Managed Prometheus, the format of metrics collection is cheaper and more efficient. Container Insights now offers the ability to visualize using Managed Prometheus metric. To start using Managed Prometheus, see [Switch to using Managed Prometheus visualizations in Azure Monitor](./container-insights-experience-v2.md).
 
 ## Analyze your data ingestion
 
