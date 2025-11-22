@@ -33,8 +33,8 @@ This article covers the OpenTelemetry Collector and Azure Monitor Agent methods.
 > [!div class="checklist"]
 > * **Azure subscription:** If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 > * [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/) instrumented application (any supported language)
-> For VM/VMSS deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux)
-> For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension
+> * For VM/VMSS deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux)
+> * For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension
 
 ## Set up OTLP data collection
 
