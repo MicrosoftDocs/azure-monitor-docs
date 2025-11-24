@@ -32,9 +32,9 @@ This article covers the OpenTelemetry Collector and Azure Monitor Agent methods.
 
 > [!div class="checklist"]
 > * Azure subscription: If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-> * [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/) instrumented application (any supported language)
-> * For VM/VMSS deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux)
-> * For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension
+> * [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/) instrumented application (any supported language).
+> * For VM/VMSS deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux).
+> * For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension.
 
 ## Set up OTLP data collection
 
@@ -204,8 +204,6 @@ The identity used by your collector needs permission to write data to your DCR:
 
 1. Select **Review + assign** to save the role assignment.
 
-    :::image type="content" source="./media/opentelemetry-protocol-ingestion/role-assignment-review-assign.png" lightbox="./media/opentelemetry-protocol-ingestion/role-assignment-review-assign.png" alt-text="Screenshot showing the Review and assign page for the role assignment.":::
-
 #### Construct endpoint URLs
 
 If you created your resources using the Application Insights method, you already have the endpoint URLs from the OTLP Connection Info section. Skip to [Update collector configuration](#update-collector-configuration).
@@ -220,10 +218,10 @@ For manually orchestrated resources, construct the endpoint URLs:
 
     ```json
     "logsIngestion": {
-        "endpoint": "https://example-xyz.southcentralus-1.ingest.monitor.azure.com"
+        "endpoint": "https://<name>.<location>-1.ingest.monitor.azure.com"
     },
     "metricsIngestion": {
-        "endpoint": "https://example-xyz.southcentralus-1.metrics.ingest.monitor.azure.com"
+        "endpoint": "https://<name>.<location>-1.metrics.ingest.monitor.azure.com"
     }
     ```
 
@@ -247,7 +245,7 @@ For manually orchestrated resources, construct the endpoint URLs:
     ```
     
     > [!NOTE]
-    > The traces endpoint uses the logs DCE domain, not the metrics domain.
+    > The traces endpoint uses the logs DCE domain.
 
 #### Update collector configuration
 
@@ -273,9 +271,9 @@ extensions:
 
 exporters:
   otlphttp/azuremonitor:
-    traces_endpoint: "https://<your-logs-dce-domain>/datacollectionRules/<dcr-id>/streams/opentelemetry_traces/otlp/v1/traces"
-    logs_endpoint: "https://<your-logs-dce-domain>/datacollectionRules/<dcr-id>/streams/opentelemetry_logs/otlp/v1/logs"
-    metrics_endpoint: "https://<your-metrics-dce-domain>/datacollectionRules/<dcr-id>/streams/microsoft-otelmetrics/otlp/v1/metrics"
+    traces_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/opentelemetry_traces/otlp/v1/traces"
+    logs_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/opentelemetry_logs/otlp/v1/logs"
+    metrics_endpoint: "https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/microsoft-otelmetrics/otlp/v1/metrics"
     auth:
       authenticator: azureauth/monitor
 
