@@ -93,7 +93,7 @@ To follow the instructions on this page, you need to set up a few things in adva
 > [!NOTE]   
 > If you're planning on fully automating this process, you simply need to edit the ARM template to not prompt for the values in Step 5.
 
-For more information on using PowerShell and CLI, refer to [Azure PowerShell](/powershell/module/az.monitor/new-azactivitylogalert?view=azps-15.0.0), and Azure CLI [Azure CLI](/cli/azure/monitor/activity-log/alert?view=azure-cli-latest).
+For more information on using PowerShell and CLI, see [Azure PowerShell](/powershell/module/az.monitor/new-azactivitylogalert?view=azps-15.0.0), and Azure CLI [Azure CLI](/cli/azure/monitor/activity-log/alert?view=azure-cli-latest).
 
 
 ## Create Resource health alerts using template options
