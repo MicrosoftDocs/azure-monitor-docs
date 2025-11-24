@@ -15,8 +15,9 @@ Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) sig
 > * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 > [!NOTE]
-> * [Support](#support) for this feature is limited to enrolled subscriptions.
-> * [Submit a request](https://aka.ms/azuremonitorotelpreview) to participate.
+> You must [sign up](https://aka.ms/AzureMonitorOTelPreview) for the preview before onboarding to receive support, participate in Q&A sessions, and share feedback.
+> 
+> We're committed to addressing any issues or questions you encounter and appreciate your feedback on what works well and what doesn't. Please reach out to us at [otel@microsoft.com] with your experiences, questions, or suggestions.
 
 ## Overview
 
@@ -31,7 +32,7 @@ This article covers the OpenTelemetry Collector and Azure Monitor Agent methods.
 ## Prerequisites
 
 > [!div class="checklist"]
-> * **Azure subscription:** If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+> * Azure subscription: If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > * [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/) instrumented application (any supported language)
 > * For VM/VMSS deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux)
 > * For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension
@@ -48,7 +49,7 @@ This method automatically provisions all required Azure resources and configures
 
 1. On the **Basics** tab, select the **Enable OTLP support** checkbox.
 
-    :::image type="content" source="./media/otel-protocol-ingestion/create-app-insights-resource.png" lightbox="./media/otel-protocol-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with Enable OTLP support option selected.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" lightbox="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with Enable OTLP support option selected.":::
 
 1. Complete the resource creation process.
 
@@ -59,7 +60,7 @@ This method automatically provisions all required Azure resources and configures
     * Data Collection Rule (DCR) resource ID
     * Endpoint URLs for traces, logs, and metrics (if using OpenTelemetry Collector)
     
-    :::image type="content" source="./media/otel-protocol-ingestion/otlp-connection-info.png" lightbox="./media/otel-protocol-ingestion/otlp-connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/otlp-connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/otlp-connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
 Proceed to [Configure your telemetry pipeline](#configure-your-telemetry-pipeline).
 
@@ -190,21 +191,21 @@ The identity used by your collector needs permission to write data to your DCR:
 
 1. Select **Add** > **Add role assignment**.
 
-    :::image type="content" source="./media/otel-protocol-ingestion/data-collection-rule-access-control.png" lightbox="./media/otel-protocol-ingestion/data-collection-rule-access-control.png" alt-text="Screenshot showing how to add a role assignment to a Data Collection Rule.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/data-collection-rule-access-control.png" lightbox="./media/opentelemetry-protocol-ingestion/data-collection-rule-access-control.png" alt-text="Screenshot showing how to add a role assignment to a Data Collection Rule.":::
 
 1. Select **Monitoring Metrics Publisher** and select **Next**.
 
-    :::image type="content" source="./media/otel-protocol-ingestion/role-assignment-metrics-publisher.png" lightbox="./media/otel-protocol-ingestion/role-assignment-metrics-publisher.png" alt-text="Screenshot showing the Monitoring Metrics Publisher role selection.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/role-assignment-metrics-publisher.png" lightbox="./media/opentelemetry-protocol-ingestion/role-assignment-metrics-publisher.png" alt-text="Screenshot showing the Monitoring Metrics Publisher role selection.":::
 
 1. For **Assign access to**, select **User, group, or service principal**.
 
 1. Select **Select members** and choose your application or managed identity.
 
-    :::image type="content" source="./media/otel-protocol-ingestion/role-assignment-select-members.png" lightbox="./media/otel-protocol-ingestion/role-assignment-select-members.png" alt-text="Screenshot showing member selection for role assignment.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/role-assignment-select-members.png" lightbox="./media/opentelemetry-protocol-ingestion/role-assignment-select-members.png" alt-text="Screenshot showing member selection for role assignment.":::
 
 1. Select **Review + assign** to save the role assignment.
 
-    :::image type="content" source="./media/otel-protocol-ingestion/role-assignment-review-assign.png" lightbox="./media/otel-protocol-ingestion/role-assignment-review-assign.png" alt-text="Screenshot showing the Review and assign page for the role assignment.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/role-assignment-review-assign.png" lightbox="./media/opentelemetry-protocol-ingestion/role-assignment-review-assign.png" alt-text="Screenshot showing the Review and assign page for the role assignment.":::
 
 #### Construct endpoint URLs
 
@@ -311,10 +312,6 @@ The following Azure regions aren't supported during the preview:
 * Poland Central
 * Qatar Central
 * West India
-
-## Support
-
-Assistance for enrolled subscriptions is available exclusivelty through [otel@microsoft.com](mailto:otel@microsoft.com).
 
 ## Next steps
 
