@@ -1,6 +1,6 @@
 ---
-title: Example log table queries for MeshControlPlane
-description:  Example queries for MeshControlPlane log table
+title: Example log table queries for EdgeActionConsoleLog
+description:  Example queries for EdgeActionConsoleLog log table
 ms.topic: generated-reference
 ms.service: azure-monitor
 ms.author: edbaynash
@@ -11,21 +11,19 @@ ms.date: 11/24/2025
 
 ---
 
-# Queries for the MeshControlPlane table
+# Queries for the EdgeActionConsoleLog table
 
 For information on using these queries in the Azure portal, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial). For the REST API, see [Query](/azure/azure-monitor/logs/api/overview).
 
 
-### Istiod logs  
+### Top 100 Log Messages by Edge Action Version  
 
 
-Query for Istiod logs.  
+Top 100 log messages emitted by an action, grouped by action version.  
 
 ```query
-MeshControlPlane
-| where Category=="istiod"
-| limit 100
-| project TimeGenerated, Level, Message, PodName
-
+EdgeActionConsoleLog
+| summarize InvocationCount = count() by EdgeActionVersion, LogMessage
+| top 100 by InvocationCount
 ```
 
