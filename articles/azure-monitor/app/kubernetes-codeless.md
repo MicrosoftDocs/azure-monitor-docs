@@ -115,7 +115,7 @@ Use the Azure portal for namespace-wide deployment onboarding.
 :::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-2.png":::
 
 3. Select the languages to be instrumented.
-4. Check the **Perform rollout restart of all deployments** box.
+4. Leave the **Perform rollout restart of all deployments** box unchecked. It's recommended to manually [restart deployments](#restart-deployment) later.
 5. Select **Configure**.
 
 :::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation." lightbox="media/kubernetes-codeless/deployment-3.png":::
