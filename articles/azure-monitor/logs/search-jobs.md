@@ -23,7 +23,7 @@ This video explains when and how to use search jobs:
 | Run a search job | `Microsoft.OperationalInsights/workspaces/tables/write` and `Microsoft.OperationalInsights/workspaces/searchJobs/write` permissions to the Log Analytics workspace, for example, as provided by the [Log Analytics Contributor built-in role](../logs/manage-access.md#built-in-roles). |
 
 > [!NOTE]
-> Cross-tenant search jobs aren't supported. Azure Lighthouse delegated access is also not supported for search jobs even when a delegated role is assigned which includes the searchJobs/write permission.
+> Cross-tenant search jobs aren't supported. Azure Lighthouse delegated access is also not supported for search jobs (or restore) even when a delegated role is assigned which includes the searchJobs/write permission.
 
 ## When to use search jobs
 

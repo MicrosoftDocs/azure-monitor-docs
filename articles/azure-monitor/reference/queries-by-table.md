@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 11/18/2025
+ms.date: 11/24/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1340,6 +1340,11 @@ ms.reviewer: lualderm
 
 - [Clients Resolving Malicious Domains](./queries/DnsEvents.md#clients-resolving-malicious-domains)
 
+## [DurableTaskSchedulerLogs](./queries/DurableTaskSchedulerLogs.md)
+
+- [Recent Errors](./queries/DurableTaskSchedulerLogs.md#recent-errors)
+- [Worker Connection Summary](./queries/DurableTaskSchedulerLogs.md#worker-connection-summary)
+
 ## [EGNFailedHttpDataPlaneOperations](./queries/EGNFailedHttpDataPlaneOperations.md)
 
 - [TLS 1.3 Lower query](./queries/EGNFailedHttpDataPlaneOperations.md#tls-13-lower-query)
@@ -1360,6 +1365,10 @@ ms.reviewer: lualderm
 ## [EGNSuccessfulMqttConnections](./queries/EGNSuccessfulMqttConnections.md)
 
 - [Session connections query](./queries/EGNSuccessfulMqttConnections.md#session-connections-query)
+
+## [EdgeActionConsoleLog](./queries/EdgeActionConsoleLog.md)
+
+- [Top 100 Log Messages by Edge Action Version](./queries/EdgeActionConsoleLog.md#top-100-log-messages-by-edge-action-version)
 
 ## [EmailAttachmentInfo](./queries/EmailAttachmentInfo.md)
 
@@ -2134,6 +2143,10 @@ ms.reviewer: lualderm
 ## [WorkloadDiagnosticLogs](./queries/WorkloadDiagnosticLogs.md)
 
 - [Workload Monitoring Insights data collection warnings or errors](./queries/WorkloadDiagnosticLogs.md#workload-monitoring-insights-data-collection-warnings-or-errors)
+
+## [ZTSRequest](./queries/ZTSRequest.md)
+
+- [View failed requests](./queries/ZTSRequest.md#view-failed-requests)
 
 ## Next steps
 
