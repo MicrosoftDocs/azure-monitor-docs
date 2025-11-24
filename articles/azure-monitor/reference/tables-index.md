@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 11/04/2025
+ms.date: 11/24/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -881,6 +881,13 @@ Microsoft.Network/dnsResolverPolicies
 - [AzureActivity](./tables/azureactivity.md)
 - [DNSQueryLogs](./tables/dnsquerylogs.md)
 
+### Durable Task Schedulers  
+
+Microsoft.DurableTask/schedulers  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [DurableTaskSchedulerLogs](./tables/durabletaskschedulerlogs.md)
+
 ### Dynamics 365 Customer Insights  
 
 Microsoft.D365CustomerInsights/instances  
@@ -888,6 +895,12 @@ Microsoft.D365CustomerInsights/instances
 - [AzureActivity](./tables/azureactivity.md)
 - [CIEventsAudit](./tables/cieventsaudit.md)
 - [CIEventsOperational](./tables/cieventsoperational.md)
+
+### Edge Actions  
+
+Microsoft.Cdn/edgeactions  
+
+- [EdgeActionConsoleLog](./tables/edgeactionconsolelog.md)
 
 ### Event Grid Domains  
 
@@ -1836,6 +1849,12 @@ Microsoft.Edge/diagnostics
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [WOUserAudits](./tables/wouseraudits.md)
 - [WOUserDiagnostics](./tables/wouserdiagnostics.md)
+
+### Zero Trust Segmentation  
+
+Microsoft.ZeroTrustSegmentation/segmentationManagers  
+
+- [ZTSRequest](./tables/ztsrequest.md)
 
 ## Next steps
 
