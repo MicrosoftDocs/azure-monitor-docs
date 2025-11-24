@@ -72,7 +72,7 @@
       items:
       - name: Resource health alerts overview
         href: resource-health-alert-monitor-guide.md
-      - name: Create and configure Resource health alerts
+      - name: Create Resource health alerts in the Service Health portal
         href: resource-health-alert-arm-template-guide.md
     - name: Impacted Resources
       items:
