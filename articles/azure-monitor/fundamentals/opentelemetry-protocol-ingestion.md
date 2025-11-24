@@ -15,9 +15,9 @@ Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) sig
 > * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 > [!NOTE]
-> You must [sign up](https://aka.ms/AzureMonitorOTelPreview) for the preview before onboarding to receive support, participate in Q&A sessions, and share feedback.
+> [Sign up](https://aka.ms/AzureMonitorOTelPreview) for the preview before onboarding to receive support, participate in Q&A sessions, and share feedback.
 > 
-> We're committed to addressing any issues or questions you encounter and appreciate your feedback on what works well and what doesn't. Please reach out to us at [otel@microsoft.com] with your experiences, questions, or suggestions.
+> Reach out to us at [otel@microsoft.com](mailto:otel@microsoft.com) with your experiences, questions, or suggestions. We're committed to addressing any issues or questions you encounter and appreciate your feedback on what works well and what doesn't.
 
 ## Overview
 
@@ -60,7 +60,7 @@ This method automatically provisions all required Azure resources and configures
     * Data Collection Rule (DCR) resource ID
     * Endpoint URLs for traces, logs, and metrics (if using OpenTelemetry Collector)
     
-    :::image type="content" source="./media/opentelemetry-protocol-ingestion/otlp-connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/otlp-connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
 Proceed to [Configure your telemetry pipeline](#configure-your-telemetry-pipeline).
 
