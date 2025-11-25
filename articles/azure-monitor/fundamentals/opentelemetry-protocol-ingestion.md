@@ -44,6 +44,15 @@ You can configure OTLP data collection in Azure Monitor using one of two approac
 
 This method automatically provisions all required Azure resources and configures their relationships, enabling you to use Application Insights for application performance monitoring, distributed tracing, and failure analysis.
 
+1. Register the Application Insights OTLP preview features and provider:
+
+    ```bash
+    az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
+    az feature list -o table --query "[?contains(name, 'Microsoft.Insights/OtlpApplicationInsights')].{Name:name,State:properties.state}"
+    
+    az provider register -n Microsoft.Insights
+    ```
+
 1. In the Azure portal, create a new Application Insights resource.
 
 1. On the **Basics** tab, select the **Enable OTLP support** checkbox.
