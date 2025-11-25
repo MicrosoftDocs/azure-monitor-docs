@@ -973,6 +973,8 @@ items:
       href: platform/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline (preview)
     href: data-collection/edge-pipeline-configure.md
+  - name: Custom metrics in Azure Monitor (preview)
+    href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
     href: metrics/metrics-store-custom-rest-api.md
   - name: Troubleshoot
@@ -1039,8 +1041,6 @@ items:
             displayName: Prometheus
           - name: OpenTelemetry Guest OS metrics (preview)
             href: metrics/metrics-opentelemetry-guest.md
-          - name: Custom metrics
-            href: metrics/metrics-custom-overview.md
   - name: Logs
     items:
     - name: Overview
