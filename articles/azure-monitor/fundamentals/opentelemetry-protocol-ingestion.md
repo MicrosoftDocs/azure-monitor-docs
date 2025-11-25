@@ -16,7 +16,7 @@ Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) sig
 
 > [!NOTE]
 > * [Sign up](https://aka.ms/AzureMonitorOTelPreview) for the preview before onboarding to receive support, participate in Q&A sessions, and share feedback.
-> * Reach out to us at [otel@microsoft.com](mailto:otel@microsoft.com) with your experiences, questions, or suggestions.
+> * [Support](#support) for this feature is limited to enrolled subscriptions.
 
 ## Overview
 
@@ -309,6 +309,10 @@ The following Azure regions aren't supported during the preview:
 * Poland Central
 * Qatar Central
 * West India
+
+## Support
+
+Reach out to us at [otel@microsoft.com](mailto:otel@microsoft.com) with your experiences, questions, or suggestions.
 
 ## Next steps
 
