@@ -200,6 +200,9 @@ AutoscaleScaleActionsLog
 
 Create alert rules to get notified of autoscale actions or failures. You can also create alert rules to get notified on autoscale events.
 
+> [!NOTE]
+> It's not recommended to manipulate instance number manually outside of Autoscale which will introduce a out of sync state between VMSS and Autoscale. Synchronization takes up to 1 hr.
+
 ## Schema of autoscale resource logs
 
 For more information, see [Autoscale resource logs](autoscale-resource-log-schema.md).
