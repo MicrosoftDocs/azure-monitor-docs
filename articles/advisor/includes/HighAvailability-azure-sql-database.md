@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -91,5 +91,23 @@ Recommendation ID: 9b7e559c-2f7a-41ea-9b8f-43a53a12c273
 Subcategory: HighAvailability
 
 <!--9b7e559c-2f7a-41ea-9b8f-43a53a12c273_end-->
+
+<!--cdbef351-5bba-4639-abcd-34b594310b97_begin-->
+
+#### Migrate Azure Monitor SCOM Managed Instance to System Center Operations Manager or Azure Monitor  
+  
+Migrate monitoring workloads using Azure Monitor SCOM Managed Instance to supported alternatives based on environment type.  
+  
+**Potential benefits**: Avoid loss of access and service disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=501673)  
+
+ResourceType: microsoft.sql/managedinstances  
+Recommendation ID: cdbef351-5bba-4639-abcd-34b594310b97  
+Subcategory: undefined
+
+<!--cdbef351-5bba-4639-abcd-34b594310b97_end-->
 
 <!--articleBody-->
