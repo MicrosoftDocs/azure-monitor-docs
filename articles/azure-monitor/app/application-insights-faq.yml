@@ -1813,12 +1813,12 @@ sections:
           | [Microsoft Entra authentication](../app/azure-ad-authentication.md)                                                  | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
           | [Live metrics](../app/live-stream.md)                                                                                | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
           | [Live Metrics Filtering](../app/live-stream.md#select-and-filter-your-metrics)                                       | :white_check_mark: | :x:                | :x:                | :x:                |
-          | Detect Resource Context for VM/VMSS and App Service                                                                  | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
+          | Detect Resource Context for VM/VMSS and App Service                                                                  | :white_check_mark: | :white_check_mark  | :white_check_mark: | :white_check_mark: |
           | Detect Resource Context for Azure Kubernetes Service (AKS) and Functions                                             | :x:                | :x:                | :x:                | :white_check_mark: |
           | Availability Testing Events generated using the Track Availability API                                               | :x:                | :x:                | :x:                | :white_check_mark: |
-          | Filter requests, dependencies, logs, and exceptions by anonymous user ID and synthetic source                        | :x:                | :x:                | :x:                | :white_check_mark: |
+          | Filter requests, dependencies, logs, and exceptions by anonymous user ID and synthetic source                        | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
           | Filter dependencies, logs, and exceptions by operation name                                                          | :x:                | :x:                | :x:                | :white_check_mark: |
-          | [Adaptive sampling](../app/sampling.md#adaptive-sampling)                                                            | :x:                | :x:                | :x:                | :white_check_mark: |
+          | [Rate-limited sampling](../app/sampling.md#adaptive-sampling)                                                        | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
           | [.NET Profiler](../profiler/profiler-overview.md)                                                                    | :warning:          | :x:                | :x:                | :warning:          |
           | [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)                                                       | :x:                | :x:                | :x:                | :x:                |
 
