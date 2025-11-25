@@ -517,23 +517,7 @@ The **Collected data** option allows you to select the tables that are populated
 
 After the policy is assigned to the subscription, whenever you create a new cluster without Prometheus enabled, the policy will run and deploy to enable Prometheus monitoring.
 
-#### Azure portal
-
-1. From the **Definitions** tab of the **Policy** menu in the Azure portal, create a policy definition with the following details.
-
-    - **Definition location**: Azure subscription where the policy definition should be stored.
-    - **Name**: AKS-Monitoring-Addon
-    - **Description**: Azure custom policy to enable the Monitoring Add-on onto Azure Kubernetes clusters.
-    - **Category**: Select **Use existing** and then *Kubernetes* from the dropdown list.
-    - **Policy rule**: Replace the existing sample JSON with the contents of [https://aka.ms/aks-enable-monitoring-custom-policy](https://aka.ms/aks-enable-monitoring-custom-policy).
-
-1. Select the new policy definition **AKS Monitoring Addon**.
-1. Select **Assign** and specify a **Scope** of where the policy should be assigned.
-1. Select **Next** and provide the resource ID of the Log Analytics workspace.
-1. Create a remediation task if you want to apply the policy to existing AKS clusters in the selected scope.
-1. Select **Review + create** to create the policy assignment.
-
-#### Azure CLI
+#### Container logging
 
 1. Download Azure Policy template and parameter files.
 
@@ -871,7 +855,7 @@ Windows metric collection is enabled for AKS clusters as of version 6.4.0-main-0
 
 Manually install windows-exporter on AKS nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors. For more collectors, see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
 
-   * `[defaults]`
+* `[defaults]`
    * `container`
    * `memory`
    * `process`
@@ -891,7 +875,7 @@ Set the `windowsexporter` and `windowskubeproxy` Booleans to `true` in your metr
 
 Enable the recording rules that are required for the out-of-the-box dashboards:
 
- * If onboarding using CLI, include the option `--enable-windows-recording-rules`.
+* If onboarding using CLI, include the option `--enable-windows-recording-rules`.
  * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
  * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
 
