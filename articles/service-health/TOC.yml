@@ -74,7 +74,7 @@
         href: resource-health-alert-monitor-guide.md
       - name: Create Resource Health alerts in the Service Health portal
         href: resource-health-alert-arm-template-guide.md
-      - name: Create Resource Health alerts with Powershell and ARM templates
+      - name: Create Resource Health alerts with PowerShell and ARM templates
         href: resource-health-alert-powershell-template.md
     - name: Impacted Resources
       items:
