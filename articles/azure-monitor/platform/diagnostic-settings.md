@@ -202,8 +202,6 @@ If you do use category groups in a diagnostic setting, you can't select individu
 > [!NOTE]
 > Enabling the Audit category in the diagnostic settings for Azure SQL Database does not activate auditing for the database. To enable database auditing, you have to enable it from the auditing blade for Azure Database. 
 
-
-
 ## Metrics limitations
 
 Not all metrics can be sent to a Log Analytics workspace with diagnostic settings. See the **Exportable** column in the [list of supported metrics](./metrics-supported.md).
@@ -228,7 +226,14 @@ After you create a diagnostic setting, data should start flowing to your selecte
 
 If you're experiencing an issue, disable the configuration and then reenable it. Contact Azure support through the Azure portal if you continue to have issues.
 
+## Application Insights
 
+Consider the following for diagnostic settings for Application insights applications:
+
+- The destination can't be the same Log Analytics workspace that your Application Insights resource is based on.
+- The Application Insights user can't have access to both workspaces. Set the Log Analytics **[access control mode](/azure/azure-monitor/logs/log-analytics-workspace-overview)** to **Requires workspace permissions**. Through **[Azure role-based access control](/azure/azure-monitor/app/resources-roles-access-control)**, ensure the user only has access to the Log Analytics workspace the Application Insights resource is based on.
+
+These steps are necessary because Application Insights accesses telemetry across Application Insight resources, including Log Analytics workspaces, to provide complete end-to-end transaction operations and accurate application maps. Because diagnostic logs use the same table names, duplicate telemetry can be displayed if the user has access to multiple resources that contain the same data.
 
 ## Troubleshooting
 
@@ -243,8 +248,7 @@ When a resource is inactive and exporting zero-value metrics, the diagnostic set
 
 When a resource is inactive for one hour, the export mechanism backs off to 15 minutes. This means that there is a potential latency of up to 15 minutes for the next nonzero value to be exported. The maximum backoff time of two hours is reached after seven days of inactivity. Once the resource starts exporting nonzero values, the export mechanism reverts to the original export latency of three minutes. 
 
-**Duplicate data for Application Insights**<br>
-Diagnostic settings for workspace-based Application insights applications collect the same data as Application insights itself. This results in duplicate data being collected if the destination is the same Log Analytics workspace that the application is using. Create a diagnostic setting for Application insights to send data to a different Log Analytics workspace or another destination. 
+
 
 ## Next steps
 
