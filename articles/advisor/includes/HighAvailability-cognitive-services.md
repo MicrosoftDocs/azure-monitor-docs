@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/11/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -83,5 +83,41 @@ Recommendation ID: 49949bb6-679f-44cc-adc7-205078543df4
 Subcategory: HighAvailability
 
 <!--49949bb6-679f-44cc-adc7-205078543df4_end-->
+
+<!--d5da3480-071a-49d8-b4ce-06a196d844c9_begin-->
+
+#### Migrate away from Azure Custom Vision  
+  
+Azure Custom Vision is retiring. Plan for migration to alternative solutions.  
+  
+**Potential benefits**: Ensure business continuity and minimize disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=502914)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: d5da3480-071a-49d8-b4ce-06a196d844c9  
+Subcategory: undefined
+
+<!--d5da3480-071a-49d8-b4ce-06a196d844c9_end-->
+
+<!--85c750a4-a0cb-4610-a2df-074a5e775ddc_begin-->
+
+#### Migrate away from Azure AI Vision - Image Analysis API  
+  
+The Azure AI Vision - Image Analysis API is retiring. Full support for all existing Image Analysis customers continues until retirement. To ensure business continuity and minimize disruption, customers should plan for migration to alternative solutions.  
+  
+**Potential benefits**: Avoid service disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=502909)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 85c750a4-a0cb-4610-a2df-074a5e775ddc  
+Subcategory: undefined
+
+<!--85c750a4-a0cb-4610-a2df-074a5e775ddc_end-->
 
 <!--articleBody-->

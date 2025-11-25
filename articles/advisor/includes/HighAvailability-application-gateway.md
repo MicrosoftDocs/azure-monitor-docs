@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/11/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -672,5 +672,23 @@ Recommendation ID: 96e232d0-9b01-4e96-8c24-f9160ba3535a
 Subcategory: undefined
 
 <!--96e232d0-9b01-4e96-8c24-f9160ba3535a_end-->
+
+<!--830e326a-d280-4d4e-887a-884d7d8994ce_begin-->
+
+#### Monitor changes in Route Tables with Azure Monitor  
+  
+Create Alerts with Azure Monitor for operations like Create or Update Route Table to spot unauthorized and undesired changes in production resources. This setup aids in identifying improper routing changes, including efforts to evade firewalls or access resources from outside.  
+  
+**Potential benefits**: Enhanced security and change detection  
+
+**Impact:** Medium
+  
+For more information, see [Azure Monitor activity log - Azure Monitor](/azure/azure-monitor/essentials/activity-log)  
+
+ResourceType: microsoft.network/routetables  
+Recommendation ID: 830e326a-d280-4d4e-887a-884d7d8994ce  
+Subcategory: undefined
+
+<!--830e326a-d280-4d4e-887a-884d7d8994ce_end-->
 
 <!--articleBody-->
