@@ -23,12 +23,12 @@ This article describes how to install and run Performance Diagnostics on the fol
 
 - Azure VMs
 - Arc-enabled servers
-- Azure virtual machine scale sets (VMSS) running in [flexible orchestration mode](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#scale-sets-with-flexible-orchestration)
+- Azure virtual machine scale sets running in [flexible orchestration mode](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#scale-sets-with-flexible-orchestration)
 
 Install the [Azure Performance Diagnostics VM extension](./performance-diagnostics-extension.md) for the following:
 
 - Azure classic VMs
-- Azure virtual machine scale sets (VMSS) running in [uniform orchestration mode](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#scale-sets-with-uniform-orchestration)
+- Azure virtual machine scale sets running in [uniform orchestration mode](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#scale-sets-with-uniform-orchestration)
 
 ## Supported operating systems
 
