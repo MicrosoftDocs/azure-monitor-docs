@@ -10,11 +10,6 @@ ms.reviewer: jagummersall
 
 This article describes troubleshooting steps for error messages you may get when using the test action group feature.
 
-> [!NOTE]
-> Azure Action Groups don't support the use of [Azure Private Link](/azure/private-link/private-link-overview) for most receivers. We recommend using public network access to avoid issues. For other networking concerns, ensure you're properly using the [Action Group Service Tag](/azure/virtual-network/service-tags-overview).
->
-> **Exception:** Event Hub receivers are supported with Azure Private Link. If your Event Hubs namespace uses private endpoints, enable **Allow trusted Microsoft services** to bypass the firewall to let Azure Monitor write to and read from the event hub. Configure [RBAC](../fundamentals/roles-permissions-security.md) as needed, then add the Event Hub receiver to your action group.
-
 ## Troubleshooting error codes for actions
 
 The error messages in this section are related to these **actions**:
@@ -32,7 +27,7 @@ The error messages in this section are related to these **actions**:
 | Error Codes | Troubleshooting Steps |
 | ------------| --------------------- |
 | HTTP 400: The \<action\> returned a `bad request` error. | Check the alert payload received on your endpoint, and make sure the endpoint can process the request successfully. |
-| HTTP 400: The \<action\> couldn't be triggered because this alert type doesn't support the common alert schema. | 1. Check if the alert type supports the common alert schema. See [Common alert schema for Azure Monitor alerts](alerts-common-schema.md) for support and exceptions.<br>2. If your alert type supports the common schema, open your action group in the Azure portal and verify the **Enable the common alert schema** setting. For more information, see [Action groups](action-groups.md). |
+| HTTP 400: The \<action\> couldn't be triggered because this alert type doesn't support the common alert schema. | 1. Check if the alert type supports the common alert schema. See [Common alert schema for Azure Monitor alerts](alerts-common-schema.md) for support and exceptions.<br>2. If your alert type supports the common schema, open your action group in the Azure portal and verify the **Enable the common alert schema** setting. For more information, see [Action groups](action-groups.md) and [Sample alert payloads](alerts-payload-samples.md). |
 | HTTP 400: The \<action\> couldn't be triggered because the payload is empty or invalid. | Check if the payload is valid, and included as part of the request. |
 | HTTP 400: The \<action\> couldn't be triggered because Microsoft Entra auth is enabled but no auth context provided in the request. | 1. Check your Secure Webhook actio settings. In the Azure portal, open the action group and make sure the Secure Webhook action is correctly set up with Microsoft Entra authentication enabled. For more information, see [Action groups](action-groups.md#configure-authentication-for-secure-webhook).<br>2. Check your Microsoft Entra configuration. |
 | HTTP 400: ServiceNow returned error: No such host is known. | Check your ServiceNow host url to make sure it's valid and retry. For more information, see [Connect ServiceNow with IT Service Management Connector](./itsmc-connections-servicenow.md). |
