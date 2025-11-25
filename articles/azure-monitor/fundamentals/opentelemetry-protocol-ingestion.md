@@ -33,7 +33,7 @@ This article covers the OpenTelemetry Collector and Azure Monitor Agent methods.
 > [!div class="checklist"]
 > * Azure subscription: If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > * [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/) instrumented application (any supported language).
-> * For VM/VMSS deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux).
+> * For VMs and Virtual Machine Scale Sets deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux).
 > * For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension.
 
 ## Set up OTLP data collection
@@ -107,7 +107,7 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 
 Choose the configuration method based on your compute environment.
 
-### Option 1: Azure Monitor Agent (for Azure VMs, VMSS, and Arc-enabled servers)
+### Option 1: Azure Monitor Agent (for Azure VMs, Virtual Machine Scale Sets, and Arc-enabled servers)
 
 The Azure Monitor Agent provides a simplified ingestion path for Azure-hosted and Arc-enabled compute resources.
 
@@ -159,7 +159,7 @@ For non-Azure environments or when you need maximum flexibility, configure the O
 
 The OpenTelemetry Collector requires Microsoft Entra authentication to send data to Azure Monitor.
 
-**For Azure VMs and VMSS:**
+**For Azure VMs and Virtual Machine Scale Sets:**
 
 1. Enable system-assigned managed identity on your compute resource.
 1. Assign the **Monitoring Metrics Publisher** role to the managed identity.
