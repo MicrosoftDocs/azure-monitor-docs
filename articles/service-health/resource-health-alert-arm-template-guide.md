@@ -2,7 +2,7 @@
 title: How to create Resource Health alerts
 description: Create alerts in Azure Service Health, or programmatically to notify you when your Azure resources become unavailable.
 ms.topic: article
-ms.date: 11/10/2025 
+ms.date: 11/25/2025 
 
 ---
 
