@@ -201,8 +201,7 @@ AutoscaleScaleActionsLog
 Create alert rules to get notified of autoscale actions or failures. You can also create alert rules to get notified on autoscale events.
 
 > [!NOTE]
-> Manipulating an instance number manually outside of Autoscale is not recommended. Doing so will introduce an out of sync state between VMSS and Autoscale.
-> Synchronization takes up to 1 hr.
+> To maintain the sync state between Azure Virtual Machine Scale Sets and the autoscale service, we recommend that you don't manually change an instance number outside of the autoscale service. Synchronization takes up to 1 hour.
 
 ## Schema of autoscale resource logs
 
