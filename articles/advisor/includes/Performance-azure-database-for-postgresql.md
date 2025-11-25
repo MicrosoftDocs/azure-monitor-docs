@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -42,13 +42,14 @@ The server is encountering frequent checkpoints, which can impact performance. T
 
 **Impact:** High
   
-For more information, see [High IOPS utilization - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-high-io-utilization#checkpoint-timings)  
+For more information, see [High IOPS utilization - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-high-io-utilization#checkpoint-timings)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 3e62d12b-2de5-411b-97ec-092250fb488c  
 
 
 <!--3e62d12b-2de5-411b-97ec-092250fb488c_end-->
+
 
 
 <!--3e7c94fd-89c6-4355-b72f-a8cd0451c3e7_begin-->
@@ -81,13 +82,14 @@ Over the last 7 days your CPU usage is one of the following: greater than 90% fo
 
 **Impact:** High
   
-For more information, see [Troubleshooting guides - Azure portal - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-troubleshooting-guides)  
+For more information, see [Troubleshooting guides - Azure portal - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-troubleshooting-guides)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 5a05c081-028d-45cc-9530-cfee8bf04a0e  
 
 
 <!--5a05c081-028d-45cc-9530-cfee8bf04a0e_end-->
+
 
 
 <!--7f791293-46af-423d-b23c-355fc9db5474_begin-->
@@ -138,13 +140,14 @@ The server has crossed the 50% wraparound limit, with greater than 1 billion tra
 
 **Impact:** High
   
-For more information, see [Autovacuum tuning - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#autovacuum-transaction-id-txid-wraparound-protection)  
+For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#autovacuum-transaction-id-txid-wraparound-protection)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: b35d2b04-2c01-4f4c-91af-7abe3b0cc697  
 
 
 <!--b35d2b04-2c01-4f4c-91af-7abe3b0cc697_end-->
+
 
 
 <!--b50dc645-82f7-442b-a8cf-687867100179_begin-->
@@ -255,13 +258,14 @@ Your server has orphaned prepared transactions. Rollback or commit the orphaned 
 
 **Impact:** High
   
-For more information, see [Autovacuum tuning - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
+For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40  
 
 
 <!--eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40_end-->
+
 
 <!--b26edab6-a8dc-4903-b29f-d3b7fb9e0f9c_begin-->
 
