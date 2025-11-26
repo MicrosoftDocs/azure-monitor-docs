@@ -25,7 +25,7 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 > [!WARNING]
 > - This feature is incompatible with both Windows (any architecture) and Linux Arm64 node pools.
 
-## Install the aks-preview Azure CLI extension
+## Install the AKS-preview Azure CLI extension
 
 [!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
 
@@ -71,20 +71,69 @@ az provider show --namespace "Microsoft.ContainerService" --query "registrationS
 
 ## Prepare a cluster
 
+You can prepare a cluster using either the Azure portal or Azure CLI.
+
+#### [Azure portal](#tab/portal)
+
+Use the Azure portal to prepare a cluster.
+
+1. Select the **Monitor** pane.
+1. Check the "Enable application monitoring" box.
+1. Select the "Review and enable" button.
+
+:::image type="content" source="media/kubernetes-codeless/prepare-a-cluster-1.png" alt-text="Azure portal screenshot showing how to enable Application monitoring for an AKS cluster under monitor settings along with Prometheus, Grafana, and Log Analytics options." lightbox="media/kubernetes-codeless/prepare-a-cluster-1.png":::
+
+#### [Azure CLI](#tab/programmatic)
+
 To prepare a cluster, run the following Azure CLI command.
 
 ```azurecli
 az aks update --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring 
 ```
 
-> [!Tip]
+> [!TIP]
 > AKS Clusters can be prepared for this feature during cluster creation. To learn more, see [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-aks-cluster-create).
+
+---
 
 ## Onboard deployments
 
 Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. Use the namespace-wide method to onboard all deployments within a namespace. For selective or variably configured onboarding across multiple deployments, employ the per-deployment approach.
 
 ### Namespace-wide onboarding
+
+#### [Azure portal](#tab/portal)
+
+Use the Azure portal for namespace-wide deployment onboarding.
+
+1. From the **Namespaces** pane, choose the namespace to be instrumented.
+
+:::image type="content" source="media/kubernetes-codeless/deployment-1.png" alt-text="Azure portal view showing namespaces and an application monitoring button." lightbox="media/kubernetes-codeless/deployment-1.png":::
+
+2. Select **Application Monitoring**.
+
+:::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-2.png":::
+
+3. Select the languages to be instrumented.
+4. Leave the **Perform rollout restart of all deployments** box unchecked. It's recommended to manually [restart deployments](#restart-deployment) later.
+5. Select **Configure**.
+
+:::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation." lightbox="media/kubernetes-codeless/deployment-3.png":::
+
+6. Observe the **Application Monitoring Progress** and wait for it to complete.
+
+> [!NOTE]
+> * The affected deployments must be restarted before the changes take effect.
+> * Manually [restart deployments](#restart-deployment) if you observe progress failures.
+
+:::image type="content" source="media/kubernetes-codeless/app-monitoring-progress.png" alt-text="Azure portal view showing the progress of application monitoring instrumentation." lightbox="media/kubernetes-codeless/app-monitoring-progress.png":::
+
+7. Revisit the **Application Monitoring** section.
+8. Verify the "instrumented" status for each namespace in the deployment.
+
+:::image type="content" source="media/kubernetes-codeless/deployment-4.png" alt-text="Azure portal screenshot showing deployments as Instrumented." lightbox="media/kubernetes-codeless/deployment-4.png":::
+
+#### [YAML](#tab/programmatic)
 
 To onboard all deployments within a namespace, create a single _Instrumentation_ custom resource named `default` in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource.
 
@@ -112,6 +161,8 @@ At a minimum, the following configuration is required:
 > [!TIP]
 > - Use [annotations](#annotations) if per-deployment overrides are required. For more information, see [annotations](#annotations).
 > - [Restart deployments](#restart-deployment) for settings to take effect.
+
+---
 
 ### Per-deployment onboarding
 
@@ -170,10 +221,14 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
 
 Use mixed mode when most deployments use a default configuration and a few deployments must use different configurations.
 
-1. Implement [namespace-wide onboarding](#namespace-wide-onboarding) to define the default configuration.
+1. Implement [namespace-wide onboarding](#onboard-deployments) to define the default configuration.
 2. Create [per-deployment onboarding](#per-deployment-onboarding) configurations, which override the default configuration for specific resources.
 
+---
+
 ## Restart deployment
+
+You can restart a deployment using either the Azure portal or the Kubernetes command line (`kubectl`) tool.
 
 Run the following command after all custom resources are created and deployments are optionally annotated.
 
@@ -185,6 +240,24 @@ This command causes autoinstrumentation to take effect, enabling Application Ins
 
 ## Remove Autoinstrumentation for AKS
 
+You can remove AKS autoinstrumentation using either the Azure portal or Azure CLI.
+
+> [!TIP]
+> * Removing AKS autoinstrumentation by using the Azure portal or Azure CLI removes it from the entire cluster.
+> * To remove autoinstrumentation from a single namespace, delete the associated **Instrumentation** custom resource (CR). (for example, `kubectl delete instrumentation <instrumentation-name> -n <namespace-name>`) 
+
+#### [Azure portal](#tab/portal)
+
+Use the Azure portal to remove autoinstrumentation from the cluster.
+
+1. Select the **Monitor** section.
+2. Uncheck the **Enable application monitoring** box.
+3. Select **Review + enable**.
+
+:::image type="content" source="media/kubernetes-codeless/remove.png" alt-text="Azure portal view of the monitor settings pane for an AKS cluster showing monitoring capabilities." lightbox="media/kubernetes-codeless/remove.png":::
+
+#### [Azure CLI](#tab/programmatic)
+
 Ensure that you don't have any instrumented deployments. To uninstrument an instrumented deployment, remove the associated Instrumentation custom resource and run `kubectl rollout restart` on the deployment. Next run the following command.
 
 ```azurecli
@@ -194,11 +267,13 @@ az aks update --resource-group={resource_group} --name={cluster_name} --disable-
  > [!NOTE]
  > If instrumented deployments remain after the feature is disabled, they continue to be instrumented until redeployed to their original uninstrumented state or deleted.
 
+---
+
 ## Annotations
 
 ### Disabling autoinstrumentation
 
-The following annotations disable autoinstrumentation for the language indicated.
+The following annotations disable autoinstrumentation.
 
 - Java: `instrumentation.opentelemetry.io/inject-java`
 - Node.js: `instrumentation.opentelemetry.io/inject-nodejs`

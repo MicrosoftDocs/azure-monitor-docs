@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 10/17/2025
+ms.date: 11/14/2025
 ---
 
 # Health advisories 
@@ -17,7 +17,6 @@ The Health advisories pane is used to notify you about important but noncritical
 - Service retirements (for example, deprecated APIs or features)
 - Configuration issues (for example, misconfigured resources)
 - Upgrade requirements (for example, moving to a supported framework)
-- Security-related guidance (for example, compliance updates or vulnerabilities)
 
 These advisories are communicated at least 90 days in advance, except in urgent cases such as misconfigurations, which are reported immediately.
 
@@ -27,6 +26,11 @@ Select the **Issue name** link to open the tabs with the information you need.
 >Service Health advisories are displayed in the pane for up to 28 days if they are still active and if the `impactMitigationTime` is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
 >For more information regarding Service health advisories from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
+
+## Who can view Health advisories
+
+- Users with a [Subscription Reader role](/azure/role-based-access-control/built-in-roles#reader) or higher, can view issues affecting their Azure subscription scope.
+- Users with [Tenant admin access](admin-access-reference.md) can view issues affecting their Azure tenant scope.
 
 ### Filtering and sorting
 At the top of each tab, there are several options of how to view the information on this page.
@@ -54,7 +58,7 @@ When you open the Health advisories pane, you see a list of relevant notificatio
 |Impacted services | The Azure services affected by the advisory       |
 |Impacted regions  |The geographic regions where the advisory applies         |
 |Event level  | Tags to help users quickly assess the severity and urgency of the advisory <br> - Informational <br>- Warning     |
-|Event tags   | Tags to define the categorization of the advisory <br>- Action recommended<br> - Final Post Incident Review (PIR)<br> - Preliminary PIR<br> - False Positive        |
+|Event tags   | Tags to define the categorization of the advisory <br>- Action recommended        |
 |Last update  | Information entered to provide information as it is gathered        |
 
 ### Impacted Services tab

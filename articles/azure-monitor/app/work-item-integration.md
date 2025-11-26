@@ -58,5 +58,4 @@ Use a template from [**End-to-end transaction details**](failures-performance-tr
 
 ## Troubleshooting
 
-- **Create work item** doesn't appear in **End-to-end transaction details**. First create a template or start with **Start with a workbook template** from the **Create a work item** flow.
-- On-premises Azure DevOps URL is rejected. To match your host, update the workbook's repository URL text parameter and its validation rule (regular expression).
+See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-work-item-integration).

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Arc-enabled Kubernetes
@@ -47,5 +47,23 @@ Recommendation ID: 7e161911-fa97-4d8c-88a0-d7c4b9432eb0
 Subcategory: undefined
 
 <!--7e161911-fa97-4d8c-88a0-d7c4b9432eb0_end-->
+
+<!--988cb7a5-1439-41f5-a07a-a71de67827b5_begin-->
+
+#### Upgrade to a supported version of Windows Server  
+  
+Windows Server 2022 image support is retiring, upgrade to the latest version to take advantage of the fixes, improvements, and new functionality.  
+  
+**Potential benefits**: Take advantage of fixes, improvements, and new functionality  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499906)  
+
+ResourceType: microsoft.kubernetes/connectedclusters  
+Recommendation ID: 988cb7a5-1439-41f5-a07a-a71de67827b5  
+Subcategory: undefined
+
+<!--988cb7a5-1439-41f5-a07a-a71de67827b5_end-->
 
 <!--articleBody-->

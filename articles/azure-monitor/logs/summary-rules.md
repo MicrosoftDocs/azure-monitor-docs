@@ -4,7 +4,7 @@ description: Aggregate data in Log Analytics workspace with summary rules featur
 ms.subservice: logs
 ms.topic: how-to
 ms.reviewer: yossi-y
-ms.date: 07/22/2025
+ms.date: 11/02/2025
 
 # Customer intent: As a Log Analytics workspace administrator or developer, I want to optimize my query performance, cost-effectiveness, security, and analysis capabilities by using summary rules to aggregate data I ingest to specific tables.
 ---
@@ -80,12 +80,12 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 ## Implementation considerations
 
 - The maximum number of active rules in a workspace is 100.
-- THe API version labeled preview. A stable version, SDKs, and cmdlets are expected in September 2025.
 - Summary rules are currently only available in the public cloud.
 - The summary rule processes incoming data and can't be configured on a historical time range. 
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
 - Creating a summary rule with query across another tenant under Lighthouse isn't supported.
 - Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
+- Using `union *` and `isfuzzy=true` in Summary rules query aren't supported. 
 
 ## Pricing model
 
@@ -130,7 +130,7 @@ When you update a query and there are fewer fields in summary results, Azure Mon
 To create or update a summary rule, make this `PUT` API call:
 
 ```kusto
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2023-01-01-preview
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
 
 {
@@ -255,7 +255,7 @@ Use this template to create or update a summary rule. For more information about
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces/summaryLogs",
-      "apiVersion": "2023-01-01-preview",
+      "apiVersion": "2025-07-01",
       //"name": "[format('{0}/{1}', parameters('workspaceName'), parameters('summaryRuleName'))]",
       "name": "[concat(parameters('workspaceName'), '/', parameters('summaryRuleName'))]",
       "properties": {
@@ -379,14 +379,14 @@ In this example, the summary rule is created at on 2023-06-07 at 14:44, and the 
 Use this `GET` API call to view the configuration for a specific summary rule:
 
 ```kusto
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName1}?api-version=2023-01-01-preview
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName1}?api-version=2025-07-01
 Authorization: {credential}
 ```
 
 Use this `GET` API call to view the configuration to view the configuration of all summary rules in your Log Analytics workspace:
 
 ```kusto
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs?api-version=2023-01-01-preview
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs?api-version=2025-07-01
 Authorization: {credential}
 ```
 
@@ -397,14 +397,14 @@ You can stop a rule for a period of time - for example, if you want to verify th
 To stop a rule, use this `POST` API call:
 
 ```kusto
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/stop?api-version=2023-01-01-preview
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/stop?api-version=2025-07-01
 Authorization: {credential}
 ```
 
 To restart the rule, use this `POST` API call:
 
 ```kusto
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/start?api-version=2023-01-01-preview
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/start?api-version=2025-07-01
 Authorization: {credential}
 ```
 
@@ -415,7 +415,7 @@ You can have up to 30 active summary rules in your Log Analytics workspace. If y
 To delete a rule, use this `DELETE` API call:
 
 ```kusto
-DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2023-01-01-preview
+DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
 ```
 

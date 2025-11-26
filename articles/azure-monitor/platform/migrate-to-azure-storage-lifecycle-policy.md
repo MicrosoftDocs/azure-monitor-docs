@@ -11,7 +11,7 @@ ms.date: 11/07/2024
 
 # Migrate from diagnostic settings storage retention to Azure Storage lifecycle management
 
-The Diagnostic Settings Storage Retention feature has being deprecated. You can no longer create new retention rules, although you can still see and modify any existing retention settings. All retention functionality for the Diagnostic Settings Storage Retention feature will be disabled across all environments on September 30, 2025.
+The Diagnostic Settings Storage Retention feature has being deprecated. All retention functionality for the Diagnostic Settings Storage Retention feature were disabled across all environments on September 30, 2025.
 
 This article walks through migrating from using Azure diagnostic settings storage retention to using [Azure Storage lifecycle management](/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal) for retention.
 For logs sent to a Log Analytics workspace, retention is set for each table on the **Tables** page of your workspace. For more information on Log Analytics workspace retention, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md).
@@ -66,55 +66,6 @@ The output shows whether the diagnostic setting sends the data to a storage acco
   }
 ]
 ```
-
-## [Azure portal](#tab/portal)
-
-To migrate your diagnostics settings retention rules, follow the steps below:
-
-1. Go to the Diagnostic Settings page for your logging resource and locate the diagnostic setting you wish to migrate.
-
-1. Set the retention for your logged categories to *0*.
-
-1. Select **Save**
-
-    :::image type="content" source="media/retention-migration/diagnostics-setting.png" lightbox="media/retention-migration/diagnostics-setting.png" alt-text="A screenshot showing a diagnostics setting page.":::
-
-1. Navigate to the storage account you're logging to.
-
-1. Under **Data management**, select **Lifecycle Management** to view or change lifecycle management policies.
-
-1. Select List View, and select **Add a rule**.
-
-    :::image type="content" source="media/retention-migration/lifecycle-management.png" lightbox="media/retention-migration/lifecycle-management.png" alt-text="A screenshot showing the lifecycle management screen for a storage account.":::
-
-1. Enter a **Rule name**.
-
-1. Under **Rule Scope**, select **Limit blobs with filters**.
-
-1. Under **Blob Type**, select **Append Blobs** and **Base blobs** under **Blob subtype**.
-
-1. Select **Next**.
-
-    :::image type="content" source="media/retention-migration/lifecycle-management-add-rule-details.png" lightbox="media/retention-migration/lifecycle-management-add-rule-details.png" alt-text="A screenshot showing the details tab for adding a lifecycle rule.":::
-    
-1. Set your retention time, then select **Next**.
-
-    :::image type="content" source="media/retention-migration/lifecycle-management-add-rule-base-blobs.png" lightbox="media/retention-migration/lifecycle-management-add-rule-base-blobs.png" alt-text="A screenshot showing the Base blobs tab for adding a lifecycle rule.":::
-
-1. On the **Filters** tab, under **Blob prefix** set path or prefix to the container or logs you want the retention rule to apply to. The path or prefix can be at any level within the container and will apply to all blobs under that path or prefix.
-
-    For example, for *all* insight activity logs, use the container *insights-activity-logs* to set the retention for all of the logs in that container.
-    To set the rule for a specific webapp app, use *insights-activity-logs/ResourceId=/SUBSCRIPTIONS/\<your subscription Id\>/RESOURCEGROUPS/\<your resource group\>/PROVIDERS/MICROSOFT.WEB/SITES/\<your webapp name\>*. 
-
-    Use the Storage browser to help you find the path or prefix.
-    The example below shows the prefix for a specific web app: **insights-activity-logs/ResourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/rg-001/PROVIDERS/MICROSOFT.WEB/SITES/appfromdocker1*.
-    To set the rule for all resources in the resource group, use *insights-activity-logs/ResourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e7/RESOURCEGROUPS/rg-001*.
-
-    :::image type="content" source="media/retention-migration/blob-prefix.png" lightbox="media/retention-migration/blob-prefix.png" alt-text="A screenshot showing the Storage browser and resource path.":::
-
-1. Select **Add** to save the rule.
-
-    :::image type="content" source="media/retention-migration/lifecycle-management-add-rule-filter-set.png" lightbox="media/retention-migration/lifecycle-management-add-rule-filter-set.png" alt-text="A screenshot showing the filters tab for adding a lifecycle rule.":::
 
 
 ## [CLI](#tab/cli)

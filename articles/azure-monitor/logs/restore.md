@@ -2,7 +2,7 @@
 title: Restore logs in Azure Monitor
 description: Restore a specific time range of data in a Log Analytics workspace for high-performance queries.
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 11/24/2025
 ms.reviewer: adi.biran
 ---
 
@@ -18,6 +18,9 @@ The restore operation makes a specific time range of data in a table available i
 ## Permissions
 
 To restore data from long-term retention, you need `Microsoft.OperationalInsights/workspaces/tables/write` and `Microsoft.OperationalInsights/workspaces/restoreLogs/write` permissions to the Log Analytics workspace, for example, as provided by the [Log Analytics Contributor built-in role](../logs/manage-access.md#built-in-roles).
+
+> [!NOTE]
+> Azure Lighthouse delegated access is also not supported for restore jobs (or search) even when a delegated role is assigned which includes the restoreLogs/write permission.
 
 ## When to restore logs
 Use the restore operation to query data in [long-term retention](data-retention-configure.md). You can also use the restore operation to run powerful queries within a specific time range on any Analytics table when the log queries you run on the source table can't complete within the log query timeout of 10 minutes.

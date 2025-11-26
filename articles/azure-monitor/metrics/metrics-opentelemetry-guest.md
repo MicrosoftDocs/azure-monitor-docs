@@ -15,11 +15,11 @@ Before reading this article, users are recommended to first understand the diffe
 This article is about Guest OS performance counters that users must opt-in to collecting, either via Azure Monitor Agent with DCR, VM Insights with DCR, or user-collected with the OTelCollector as part of OTel instrumentation libraries. Users are recommended to store all metrics in the metrics-optimized Azure Monitor Workspace, where they are cheaper and faster to query than in Log Analytics Workspaces. 
  
 This article provides users with the following information:
-* Overview of performance counters[#performance-counters]
-* Benefits of using OpenTelemetry system metrics[#benefits-of-opentelemetry]
-* Benefits of using Azure Monitor Workspace for metrics[#benefits-of-azure-monitor-workspace]
-* Comparison of OpenTelemetry naming convention to traditional performance counters[#performance-counter-names]
-* Resource Attributes[#resource-attributes]
+* [Overview of performance counters](#performance-counters)
+* [Benefits of using OpenTelemetry system metrics](#benefits-of-opentelemetry)
+* [Benefits of using Azure Monitor Workspace for metrics](#benefits-of-azure-monitor-workspace)
+* [Comparison of OpenTelemetry naming convention to traditional performance counters](#performance-counter-names)
+* [Resource Attributes](#resource-attributes)
 
 OpenTelemetry Guest OS Performance Counters are currently in public preview.
 
@@ -233,15 +233,17 @@ The following performance counters are collected by the Azure Monitor Agent for 
 | System(*)\\Unique Users | System |
 | System(*)\\CPUs | System |
 
+---
+
 > [!TIP]
-> Feel free to share your feedback on new performance counters or functionality you would like to see by posting to our [Github Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](/answers/questions/564554/where-can-i-submit-suggestions-for-azure).
+> Feel free to share your feedback on new performance counters or functionality you would like to see by posting to our [GitHub Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](/answers/questions/564554/where-can-i-submit-suggestions-for-azure).
 
 ## Resource Attributes
 
 The OpenTelemetry [Resource semantic convention](https://opentelemetry.io/docs/specs/semconv/resource/) is still in development. We are actively engaging with the OSS community to improve and standardize this naming convention for a variety of scenarios - please share your feedback to help us continuously improve your experience.
 
 In general, OpenTelemetry metrics collected via Azure Monitor Agent + Data Collection Rules and sent to Azure Monitor workspaces have the following cloud resource attributes automatically added as dimensions to support resource-scoped querying:
- * Microsoft.resourceid
+* Microsoft.resourceid
  * Microsoft.subscriptionid
  * Microsoft.resourcegroupname
  * Microsoft.resourcetype
@@ -266,6 +268,6 @@ The process.command_line attribute can contain extremely long strings with thous
 
 Use custom metrics from various services:
 
- * How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection
- * How to begin collecting OpenTelemetry Guest OS performance counters: VM Insights (v2)
+* [How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection](../vm/data-collection-performance.md)
+ * [How to begin collecting OpenTelemetry Guest OS performance counters: VM Insights](../vm/vminsights-opentelemetry.md)
  * How to query OpenTelemetry Guest OS performance counters with PromQl

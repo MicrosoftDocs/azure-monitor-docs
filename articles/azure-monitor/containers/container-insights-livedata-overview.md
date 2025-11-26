@@ -20,6 +20,8 @@ For help with setting up or troubleshooting the Live Data feature, see the [Setu
 
 > [!NOTE]
 > You must be on a machine on the same private network to access live logs from a private cluster.
+>
+> You can't view live logs for a pod with more than three containers.
 
 To view the live logs for pods, deployments, replica sets, stateful sets, daemon sets, jobs, or cron jobs with or without Container insights from the AKS resource view:
 
