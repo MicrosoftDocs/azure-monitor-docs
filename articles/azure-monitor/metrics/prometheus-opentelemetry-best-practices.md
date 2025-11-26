@@ -1,7 +1,7 @@
 ---
 title: PromQL best practices for OpenTelemetry metrics
 description: Learn best practices for querying OpenTelemetry metrics using PromQL in Azure Monitor, including UTF-8 character handling and temporality considerations.
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/26/2025
 author: tylerkight
 ms.author: tylerkight
@@ -28,7 +28,7 @@ OpenTelemetry metrics often contain characters that require special handling in 
 
 - **Dots in metric names**: OpenTelemetry uses dots (`.`) in metric names like `http.server.duration`
 - **Special characters in labels**: Resource attributes may contain non-alphanumeric characters
-- **UTF-8 encoding**: With [Prometheus 3.0](https://prometheus.io/blog/2024/11/21/prometheus-3-0-release/), full UTF-8 support enables querying without character escaping
+- **UTF-8 encoding**: With [Prometheus 3.0](https://prometheus.io/blog/2024/11/14/prometheus-3-0/#utf-8-support), full UTF-8 support enables querying without character escaping
 
 ### Data model differences
 
@@ -43,7 +43,7 @@ OpenTelemetry metrics often contain characters that require special handling in 
 
 ### Prometheus 3.0 and later (Recommended)
 
-With [Prometheus 3.0's UTF-8 support](https://prometheus.io/blog/2024/11/21/prometheus-3-0-release/), you can query OpenTelemetry metrics directly using their original names:
+With [Prometheus 3.0's UTF-8 support](https://prometheus.io/blog/2024/11/14/prometheus-3-0/#utf-8-support), you can query OpenTelemetry metrics directly using their original names:
 
 ```promql
 # Direct querying with UTF-8 support using curly braces
