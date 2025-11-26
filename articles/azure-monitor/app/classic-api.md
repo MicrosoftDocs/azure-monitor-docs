@@ -519,7 +519,7 @@ At this point, you successfully configured server-side application monitoring. I
             },
             "AllowedHosts": "*",
             "ApplicationInsights": {
-                "ConnectionString": "<YOUR-CONNECTION-STRING-HERE>"
+                "ConnectionString": "<YOUR-CONNECTION-STRING>"
             }
         }
         ```
@@ -646,7 +646,7 @@ The full example is shared at the [NuGet website](https://github.com/microsoft/A
         {
             "ApplicationInsights":
             {
-                "ConnectionString" : "<YOUR-CONNECTION-STRING-HERE>"
+                "ConnectionString" : "<YOUR-CONNECTION-STRING>"
             },
             "Logging":
             {
@@ -784,7 +784,7 @@ The full example is shared at this [GitHub page](https://github.com/microsoft/Ap
                     // Being a regular console app, there is no appsettings.json or configuration providers enabled by default.
                     // Hence connection string and any changes to default logging level must be specified here.
                     services.AddLogging(loggingBuilder => loggingBuilder.AddFilter<Microsoft.Extensions.Logging.ApplicationInsights.ApplicationInsightsLoggerProvider>("Category", LogLevel.Information));
-                    services.AddApplicationInsightsTelemetryWorkerService((ApplicationInsightsServiceOptions options) => options.ConnectionString = "<YOUR-CONNECTION-STRING-HERE>");
+                    services.AddApplicationInsightsTelemetryWorkerService((ApplicationInsightsServiceOptions options) => options.ConnectionString = "<YOUR-CONNECTION-STRING>");
     
                     // To pass a connection string
                     // - aiserviceoptions must be created
@@ -989,7 +989,7 @@ namespace LiveMetricsDemo
         {
             // Create a TelemetryConfiguration instance.
             TelemetryConfiguration config = TelemetryConfiguration.CreateDefault();
-            config.ConnectionString = "<YOUR-CONNECTION-STRING-HERE>";
+            config.ConnectionString = "<YOUR-CONNECTION-STRING>";
             QuickPulseTelemetryProcessor quickPulseProcessor = null;
             config.DefaultTelemetrySink.TelemetryProcessorChainBuilder
                 .Use((next) =>
@@ -1003,7 +1003,7 @@ namespace LiveMetricsDemo
 
             // Secure the control channel.
             // This is optional, but recommended.
-            quickPulseModule.AuthenticationApiKey = "<YOUR-API-KEY-HERE>";
+            quickPulseModule.AuthenticationApiKey = "<YOUR-API-KEY>";
             quickPulseModule.Initialize(config);
             quickPulseModule.RegisterTelemetryProcessor(quickPulseProcessor);
 
@@ -1045,7 +1045,7 @@ using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPuls
 
 // Create a TelemetryConfiguration instance.
 TelemetryConfiguration config = TelemetryConfiguration.CreateDefault();
-config.ConnectionString = "<YOUR-CONNECTION-STRING-HERE>";
+config.ConnectionString = "<YOUR-CONNECTION-STRING>";
 QuickPulseTelemetryProcessor quickPulseProcessor = null;
 config.DefaultTelemetrySink.TelemetryProcessorChainBuilder
     .Use((next) =>
@@ -1059,7 +1059,7 @@ var quickPulseModule = new QuickPulseTelemetryModule();
 
 // Secure the control channel.
 // This is optional, but recommended.
-quickPulseModule.AuthenticationApiKey = "<YOUR-API-KEY-HERE>";
+quickPulseModule.AuthenticationApiKey = "<YOUR-API-KEY>";
 quickPulseModule.Initialize(config);
 quickPulseModule.RegisterTelemetryProcessor(quickPulseProcessor);
 
@@ -4364,7 +4364,7 @@ In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nug
 ```json
 {
     "ApplicationInsights": {
-    "ConnectionString": "<YOUR-CONNECTION-STRING-HERE>",
+    "ConnectionString": "<YOUR-CONNECTION-STRING>",
     "EnableAdaptiveSampling": false,
     "EnablePerformanceCounterCollectionModule": false
     }
@@ -4507,7 +4507,7 @@ using Microsoft.ApplicationInsights;
     protected void Application_Start()
     {
         TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
-        configuration.ConnectionString = "<YOUR-CONNECTION-STRING-HERE>";
+        configuration.ConnectionString = "<YOUR-CONNECTION-STRING>";
         var telemetryClient = new TelemetryClient(configuration);
 
 ```
@@ -4517,7 +4517,7 @@ If you want to send a specific set of events to a different resource, you can se
 ```csharp
 
     var tc = new TelemetryClient();
-    tc.Context.ConnectionString = "<YOUR-CONNECTION-STRING-HERE>";
+    tc.Context.ConnectionString = "<YOUR-CONNECTION-STRING>";
     tc.TrackEvent("myEvent");
     // ...
 
@@ -4542,7 +4542,7 @@ var app = builder.Build();
 
 // Resolve TelemetryConfiguration from DI and set the connection string
 var config = app.Services.GetRequiredService<TelemetryConfiguration>();
-config.ConnectionString = "<YOUR-CONNECTION-STRING-HERE>";
+config.ConnectionString = "<YOUR-CONNECTION-STRING>";
 
 app.Run();
 ```
@@ -4553,7 +4553,7 @@ If you want to send a specific set of events to a different resource, you can cr
 using Microsoft.ApplicationInsights;
 
 var tc = new TelemetryClient();
-tc.Context.ConnectionString = "<YOUR-CONNECTION-STRING-HERE>";
+tc.Context.ConnectionString = "<YOUR-CONNECTION-STRING>";
 tc.TrackEvent("myEvent");
 // ...
 ```
