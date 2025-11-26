@@ -48,11 +48,11 @@ https://query.<region>.prometheus.monitor.azure.com
 ```
 
 **Examples:**
-- `https://query.eastus.prometheus.monitor.azure.com`
+- `https://query.centralus.prometheus.monitor.azure.com`
 - `https://query.westeurope.prometheus.monitor.azure.com`
 
 > [!TIP]
-> While you can query from any region, querying from the same region as your workspace(s) provides optimal performance. Cross-region queries are automatically routed but may have slightly higher latency.
+> While you can query from any region, querying from the same region as your workspace(s) provides optimal performance. Cross-region queries are automatically routed but may have slightly higher latency. In addition, consider GDPR compliance when collecting Query Diagnostic Logs, as the regional endpoint you query against informs the region those logs are stored in.
 
 ### Scoping header
 
@@ -74,9 +74,6 @@ x-ms-azure-scoping: /subscriptions/{subscription-id}/resourceGroups/{resource-gr
 # Subscription scope
 x-ms-azure-scoping: /subscriptions/{subscription-id}
 ```
-
-> [!NOTE]
-> Support for comma-separated resource IDs (querying multiple unrelated resources in a single request) will be available in a future update.
 
 ### Authentication
 
@@ -187,7 +184,7 @@ Resource-scoped query behavior depends on the workspace [access control mode](az
 | **Require workspace permissions** | Resource read access AND workspace read access required |
 
 > [!TIP]
-> Configure your workspaces with **Use resource or workspace permissions** mode to enable true resource-scoped access without workspace permissions.
+> Configure your workspaces with **Use resource or workspace permissions** mode to enable true resource-scoped access without workspace permissions. This is enabled by default on all newly created AMWs after October 2025.
 
 ## Supported scenarios
 
@@ -391,7 +388,7 @@ He can create alerts and dashboards for his namespace without accessing cluster-
 
 - **Comma-separated scopes**: Querying multiple unrelated resources in a single request (comma-separated resource IDs) is not yet supported
 - **Non-Azure resources**: Resource-scoped queries require Azure Resource IDs. Arc-enabled resources are supported.
-- **Dimension stamping**: Only metrics ingested via Azure Monitor Agent (since September 2024) have `Microsoft.*` dimensions automatically stamped
+- **Dimension stamping**: Only metrics ingested via Azure Monitor Agent (since September 2025) have `Microsoft.*` dimensions automatically stamped
 - **Cross-workspace queries**: Implicit cross-workspace queries within a resource scope are supported, but explicit workspace identifiers cannot be used in resource-scoped queries
 
 ## Related content

@@ -270,4 +270,4 @@ Use custom metrics from various services:
 
 * [How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection](../vm/data-collection-performance.md)
  * [How to begin collecting OpenTelemetry Guest OS performance counters: VM Insights](../vm/vminsights-opentelemetry.md)
- * How to query OpenTelemetry Guest OS performance counters with PromQl
+ * [How to query OpenTelemetry Guest OS performance counters with PromQl](./prometheus-system-metrics-best-practices.md)
