@@ -187,6 +187,11 @@ To create or edit a diagnostic setting with the Azure Monitor REST API, see [Dia
 
 ---
 
+> [!WARNING]
+> From Azure portal when creating or updating Diagnostic Settings for an Azure Storage account or Azure Event Hub namespace, you could be unable to select itself as a destination for the resource logs or metrics data.
+> This is by design as it is possible to get into a state where resource logs or metrics being sent from a resource to the same resource would generate an infinite loop of generating and writing data.  
+> This design is only applied at the Azure portal UX layer, if there is truly a need to write data to the same resource and you are willing to accept the associated risks, you can create the Diagnostic Setting using Azure PowerShell, Azure CLI, REST API, ARM Template or other supported Microsoft SDK.
+
 
    
 ## Category groups
