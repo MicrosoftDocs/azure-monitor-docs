@@ -26,7 +26,7 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Azure Machine Learning | Batch Endpoints Preview APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Kubernetes Cluster | AKS on VMware | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Kubernetes Service | AKS on VMware | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### March 29, 2026
 
@@ -40,7 +40,7 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Container Apps | Service Connector in ACA | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Container Apps | Service Connector on ACA | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### March 31, 2026
 
@@ -57,3 +57,5 @@ ms.date: 11/11/2025
 > | Azure Log Analytics | Custom fields | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Monitor | Azure Diagnostic Extensions | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Intelligent Recommendations | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure App Service | Azure App Service on Arc-enabled Kubernetes | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Machine Learning | Azure Machine Learning - Preview Features | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

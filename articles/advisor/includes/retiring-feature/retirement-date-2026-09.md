@@ -73,3 +73,5 @@ ms.date: 11/11/2025
 > | Virtual Machines | NVv3-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual Machines | NVv4-series Azure Virtual Machines | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | VPN Gateway | Non-availability zones VPNs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Monitor | Legacy authentication for Container Insights - Azure Monitor | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Monitor | Azure Monitor SCOM Managed Instance | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

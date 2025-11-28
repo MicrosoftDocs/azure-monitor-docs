@@ -12,6 +12,7 @@ ms.date: 11/11/2025
 > |:--- |:--- |:--- |
 > | Storage Account | Support for TLS 1.0 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Storage Account | Support for TLS 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Static Web Apps | Azure Static Web Apps database connection | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### November 9, 2025
 
