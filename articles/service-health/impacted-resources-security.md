@@ -2,7 +2,7 @@
 title: Impacted resources from Azure security incidents
 description: This article details where to find information from Azure Service Health about how Azure security incidents impact your resources.
 ms.topic: concept-article
-ms.date: 11/25/2025
+ms.date: 12/01/2025
 ---
 
 # Impacted resources from Azure security incidents
@@ -38,12 +38,11 @@ Users with the authorized roles shown here can view security impacted resource i
 - Custom Roles with <br>Microsoft.ResourceHealth/events/fetchEventDetails/action <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action <br>Microsoft.ResourceHealth/events/action permissions
 
 **Contributor level**
-- Service Health Security reader
 - Custom Roles with
   <br>Microsoft.ResourceHealth/events/fetchEventDetails/action <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action <br>Microsoft.ResourceHealth/events/action permissions
+- Built-in Roles see [Azure Built-in roles](/azure/role-based-access-control/built-in-roles/privileged#contributor).
 
->[!NOTE]
-> Users with the Contributor role have access to...
+
 
 
 ## Viewing Impacted Resources for Security Incidents on the Service Health Portal
