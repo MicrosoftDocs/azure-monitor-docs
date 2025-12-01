@@ -386,10 +386,10 @@ He can create alerts and dashboards for his namespace without accessing cluster-
 
 ## Limitations
 
-- **Comma-separated scopes**: Querying multiple unrelated resources in a single request (comma-separated resource IDs) is not yet supported
+- **Comma-separated scopes**: Querying multiple unrelated resources in a single request (comma-separated resource IDs) is not currently supported.
 - **Non-Azure resources**: Resource-scoped queries require Azure Resource IDs. Arc-enabled resources are supported.
-- **Dimension stamping**: Only metrics ingested via Azure Monitor Agent (since September 2025) have `Microsoft.*` dimensions automatically stamped
-- **Cross-workspace queries**: Implicit cross-workspace queries within a resource scope are supported, but explicit workspace identifiers cannot be used in resource-scoped queries
+- **Dimension stamping**: Only metrics ingested via Azure Monitor Agent (since September 2025) have `Microsoft.*` dimensions automatically stamped.
+- **Cross-workspace queries**: Implicit cross-workspace queries within a resource scope are supported, but only up to 10 Azure Monitor Workspaces can be queried simultaneously.
 
 ## Related content
 
