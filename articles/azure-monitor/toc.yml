@@ -1004,7 +1004,7 @@ items:
       - name: Best practices for scaling
         href: metrics/azure-monitor-workspace-scaling-best-practice.md
         displayName: Azure Monitor workspace
-      - name: Monitor Performance
+      - name: Monitor performance
         items:
           - name: Metrics usage insights
             href: metrics/metrics-usage-insights.md
