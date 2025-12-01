@@ -401,7 +401,7 @@ The **Collected data** option allows you to select the tables that are populated
 
 ### Stream values
 
-[!INCLUDE [data-collection-rule-streams](../../advisor/includes/data-collection-rule-streams.md)]
+[!INCLUDE [data-collection-rule-streams](./includes/data-collection-rule-streams.md)]
 
 ### Applicable tables and metrics
 The settings for **collection frequency** and **namespace filtering** don't apply to all log data. The following tables list the tables in the Log Analytics workspace along with the settings that apply to each. 
