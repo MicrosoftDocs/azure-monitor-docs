@@ -6,228 +6,169 @@ ms.date: 09/22/2025
 ms.reviewer: aul
 ---
 
-# Filter container log collection with ConfigMap
-
-Kubernetes clusters generate a large amount of data that's collected by Azure Monitor. Since you're charged for the ingestion and retention of this data, you can significantly reduce your monitoring costs by filtering out data that you don't need. This article describes how to use a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) to configure and filter the collection of container logs and environment variables from your cluster. You can also use a ConfigMap to enable collection of platform logs from system Kubernetes namespaces and to enable annotation-based filtering for workloads.
-
-> [!TIP]
-> Before implementing any of the filtering options described in this article, ensure that you select a [log collection profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) that matches your requirements. Use the information in this article to further refine the data collection settings for your cluster.
-
-## Prerequisites 
-- The minimum agent version supported to collect stdout, stderr, and environmental variables from container workloads is **ciprod06142019** or later. 
-
-## Configure and deploy ConfigMap
-
-Use the following procedure to configure and deploy your ConfigMap configuration file to your cluster:
-
-1. Download the agent configuration ConfigMap template at [https://aka.ms/container-azm-ms-agentconfig](https://aka.ms/container-azm-ms-agentconfig) and open it in an editor.
-
-1. Edit the ConfigMap YAML file with your customizations. The template includes all valid settings with descriptions. To enable a setting, remove the comment character (#) and set its value. 
-
-1. Create a ConfigMap by running the following kubectl command: 
-
-    ```azurecli
-    kubectl config set-context <cluster-name>
-    kubectl apply -f <configmap_yaml_file.yaml>
-    
-    # Example: 
-    kubectl config set-context my-cluster
-    kubectl apply -f container-azm-ms-agentconfig.yaml
-    ```
-
-
-    The configuration change can take a few minutes to finish before taking effect. Then all Azure Monitor Agent pods in the cluster will restart. The restart is a rolling restart for all Azure Monitor Agent pods, so not all of them restart at the same time. When the restarts are finished, you'll receive a message similar to the following result: 
-    
-    ```output
-    configmap "container-azm-ms-agentconfig" created`.
-    ```
-
-### Verify configuration
-
-To verify the configuration was successfully applied to a cluster, use the following command to review the logs from an agent pod.
-
-```azurecli
-kubectl logs ama-logs-fdf58 -n kube-system -c ama-logs
-```
-
-If there are configuration errors from the Azure Monitor Agent pods, the output will show errors similar to the following:
-
-```output 
-***************Start Config Processing******************** 
-config::unsupported/missing config schema version - 'v21' , using defaults
-```
-
-Use the following options to perform more troubleshooting of configuration changes:
-
-- Use the same `kubectl logs` command from an agent pod.
-- Review live logs for errors similar to the following:
-
-    ```
-    config::error::Exception while parsing config map for log collection/env variable settings: \nparse error on value \"$\" ($end), using defaults, please check config map for errors
-    ```
-
-Data is sent to the `KubeMonAgentEvents` table in your Log Analytics workspace every hour with error severity for configuration errors. If there are no errors, the entry in the table will have data with severity info, which reports no errors. The `Tags` column contains more information about the pod and container ID on which the error occurred and also the first occurrence, last occurrence, and count in the last hour.
+# Customize log and metric collection for Kubernetes clusters
+The data that Azure Monitor initially collects from your Kubernetes clusters depends on the options you chose when you [enabled collection of logs and metrics](./kubernetes-monitoring-enable.md). After this initial onboarding, you can further customize the data collection either to add data that you require to properly monitor your Kubernetes environment, or to filter out data that you don't need to reduce your monitoring costs. You can further optimize costs by sending different types of data to different storage . 
  
-### Verify schema version
+This article describes the different types of customization you can perform for data collection from your Kubernetes clusters and the methods required to implement each.
 
-Supported config schema versions are available as pod annotation (schema-versions) on the Azure Monitor Agent pod. You can see them with the following kubectl command. 
+## Types of data
+There are two fundamental types of data that Azure Monitor collects from your Kubernetes clusters: logs and metrics. The configuration methods to customize each are similar but have some differences as described in the sections below.
 
-```bash
-kubectl describe pod ama-logs-fdf58 -n=kube-system.
-```
+| Data | Methods | Destination |
+|:---|:---|:---|
+| Logs | Logs collected for a Kubernetes cluster typically include container logs from pods (stdout/stderr) and system logs from nodes and control plane components, providing visibility into application behavior and cluster health for troubleshooting and monitoring. In addition to filtering for logs that you don't require and adding logs that aren't collected by default, you may want to send different logs to different storage tiers to optimize your costs.  | Log Analytics workspace |
+| Metrics | Numerical values that represent the state and performance of various components in your Kubernetes cluster. You may want to filter metrics that you don't require or add metrics that aren't collected by default. | Azure Monitor workspace |
+
+## Types of customization
+
+:::image type="content" source="./media/kubernetes-data-collection-configure/custom-data-collection.png" lightbox="./media/kubernetes-data-collection-configure/custom-data-collection.png" alt-text="{alt-text}":::
+
+:::image type="content" source="./media/kubernetes-data-collection-configure/data-configuration-options.png" lightbox="./media/kubernetes-data-collection-configure/data-configuration-options.png" alt-text="{alt-text}":::
+
+### Logs
+
+| Data | Method |
+|:---|:---|
+| Collected tables | There are multiple types of logs that Azure Monitor can collect listed in [Stream values](./containers/kubernetes-monitoring-enable.md?tabs=cli#stream-values). These are defined exclusively in the DCR. Modify the tables collected using the Azure portal as described at [Configuration options](./containers/kubernetes-monitoring-enable.md?tabs=portal#configuration-options) or by manually modifying the DCR. |
+| Container logs | Container logs are stdout/stderr logs that are sent to ContainerLogsV2 in the Log Analytics workspace. You can enable or disable collection of these logs using either the ConfigMap or the DCR. With ConfigMap, you can control stdout and stderr separately, while the DCR can only enable or disable collection of both together. |
+| Namespaces | Filter logs for namespaces that you don't need to monitor. You may also want to enable platform logs which are disabled by default in order to support specific troubleshooting scenarios. Namespace filtering for container logs is done in ConfigMap. Filtering for other logs is done with the DCR. |
+| Annotation filtering | Exclude log collection for certain pods and containers by annotating the pod. This is done with ConfigMap.  |
+| Environment variables | ConfigMap |
+| Metadata enrichment | ConfigMap |
+| Transformations | Use [data transformations](./container-insights-transformations.md) in the DCR as a last resort for filtering data that you can't filter using other methods. While a powerful feature, transformations are more complex to implement. They also filter data after it's sent from the cluster, increasing your network usage. 
+
+### Metrics
+
+
+## Filtering methods
+When you enable monitoring for a Kubernetes cluster in Azure Monitor, the [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) is installed in the cluster. This agent is responsible for collecting logs and metrics from the cluster and sending them to Azure Monitor.
+
+There are two methods to define the configuration the agent will use to collect data. Since each method controls different aspects of data collection, you need to use both methods together to achieve your requirements.
+
+### Data Collection Rule (DCR)
+[Data collection rule (DCR)](../data-collection/data-collection-rule-overview.md) define several data collection scenarios in Azure Monitor. They allow you to define what data is collected from a monitored resource and where it's sent. You can add [transformations](../data-collection/data-collection-rule-transformations.md) to a DCR to use a KQL query to further filter and transform data before it's ingested into the Log Analytics workspace.
+
+When you enable monitoring for a cluster, two DCRs are created automati
+
+
+ConfigMap
+Controls data that's. Filtering is performed before data is sent to the Log Analytics workspace. |
 
 
 
-## Filter container logs
+## DCR filtering
 
-Container logs are stderr and stdout logs generated by containers in your Kubernetes cluster. These logs are stored in the [ContainerLogV2 table](./container-insights-logs-schema.md) in your Log Analytics workspace. By default all container logs are collected, but you can filter out logs from specific namespaces or disable collection of container logs entirely.
 
-Edit the `log_collection_settings` section of the ConfigMap to configure the collection of `stderr` and `stdout` logs separately for the cluster. The following example shows the ConfigMap settings to collect stdout and stderr excluding the `kube-system` and `gatekeeper-system` namespaces. 
+When you enable monitoring for a Kubernetes cluster in Azure Monitor,
 
-```yml
-[log_collection_settings]
-    [log_collection_settings.stdout]
-        enabled = true
-        exclude_namespaces = ["kube-system","gatekeeper-system"]
+ one for log collection and another for metrics collection. These DCRs will be 
 
-    [log_collection_settings.stderr]
-        enabled = true
-        exclude_namespaces = ["kube-system","gatekeeper-system"]
 
-    [log_collection_settings.enrich_container_logs]
-        enabled = true
-```
+
+### Filtering supported
+
+
+Advanced data transformations that can perform the following:
+- Filtering rows based on specific criteria
+- Drop or rename columns
+- Mask sensitive fields
+- Add calculated fields
+
+
+## Challenges
+
+- Logs are still delivered from the cluster. May still incur network cost.
+- Cannot prevent container stdout/stderr logs from being collected.
+
+
+When to Use DCR for Filtering and Transformations
+Purpose:
+Controls ingestion and transformation at the workspace level in Azure Monitor.
+•	DCR filtering applies to metrics, events, and inventory tables
+
+•	Centralized and dynamic; no agent restart needed.
+
+Why Use It:
+•	Apply governance and filtering across multiple clusters without touching cluster config.
+•	Enrich or sanitize data before ingestion for compliance and cost optimization.
+
+
+
+
+
+
+
+
+## ConfigMap filtering
+[ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/) in Kubernetes are used to store configuration data for applications running in the cluster. Download and install the ConfigMap used by the Azure Monitor agent to configure data collection filtering as described in [Configure container log collection with ConfigMap](./prometheus-metrics-scrape-configmap.md).
 
 > [!NOTE]
-> You can also configure namespace filtering in the [log profile for the cluster](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging), but this doesn't apply to data sent to ContainerLogV2. This data can only be filtered using the ConfigMap.
+> Multiple ConfigMaps are available to configure collection of metrics. See [Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap](./prometheus-metrics-scrape-configuration.md).
 
-## Platform log filtering (System Kubernetes namespaces)
-By default, container logs from the system namespace are excluded from collection to minimize the Log Analytics cost. Container logs of system containers can be critical though in specific troubleshooting scenarios. This feature is restricted to the following system namespaces:  
+### Filtering supported
+Log filtering that you can configure using the ConfigMap includes the following:
 
-- `kube-system`
-- `gatekeeper-system`
-- `calico-system`
-- `azure-arc`
-- `kube-public`
-- `kube-node-lease`.
+- Exclude container log collection from specific Kubernetes namespaces
+- Include or exclude system pod logs
+- Exclude log collection for certain pods and containers by annotating the pod
+- Enable or disable collection of environment variables
 
 
-Edit the `collect_system_pod_logs` setting in the `log_collection_settings` section of the ConfigMap to enable platform logs for the cluster. You must also ensure that the system namespace is not in the `exclude_namespaces` setting. 
-
-The following example shows the ConfigMap settings to collect stdout and stderr logs of `coredns` container in the `kube-system` namespace. 
-
-```yaml
-[log_collection_settings]
-    [log_collection_settings.stdout]
-        enabled = true
-        exclude_namespaces = ["gatekeeper-system"]
-        collect_system_pod_logs = ["kube-system:coredns"]
-
-    [log_collection_settings.stderr]
-        enabled = true
-        exclude_namespaces = ["kube-system","gatekeeper-system"]
-        collect_system_pod_logs = ["kube-system:coredns"]
-```
-
-## Annotation based filtering for workloads
-Annotation-based filtering enables you to exclude log collection for certain pods and containers by annotating the pod. This can reduce your logs ingestion cost significantly and allow you to focus on relevant information without sifting through noise. 
-
-Edit the `filter_using_annotations` setting in the `log_collection_settings` section of the ConfigMap to enable annotation based filtering.
-
-```yml
-[log_collection_settings.filter_using_annotations]
-   enabled = true
-```
-
-You must also add the required annotations on your workload pod spec. The following table highlights different possible pod annotations.
-
-| Annotation | Description |
-| ------------ | ------------- |
-| `fluentbit.io/exclude: "true"` | Excludes both stdout & stderr streams on all the containers in the Pod |
-| `fluentbit.io/exclude_stdout: "true"` | Excludes only stdout stream on all the containers in the Pod |
-| `fluentbit.io/exclude_stderr: "true"` | Excludes only stderr stream on all the containers in the Pod |
-| `fluentbit.io/exclude_container1: "true"` | Exclude both stdout & stderr streams only for the container1 in the pod |
-| `fluentbit.io/exclude_stdout_container1: "true"` | Exclude only stdout only for the container1 in the pod |
-
->[!NOTE]
->These annotations are fluent bit based. If you use your own fluent-bit based log collection solution with the Kubernetes plugin filter and annotation based exclusion, it will stop collecting logs from both Container Insights and your solution.
-
-Following is an example of `fluentbit.io/exclude: "true"` annotation in a Pod spec:
-
-```
-apiVersion: v1 
-kind: Pod 
-metadata: 
- name: apache-logs 
- labels: 
-  app: apache-logs 
- annotations: 
-  fluentbit.io/exclude: "true" 
-spec: 
- containers: 
- - name: apache 
-  image: edsiper/apache_logs 
-```
-
-## Filter environment variables
-Edit the `log_collection_settings.env_var` setting in the `log_collection_settings` section of the ConfigMap to enable collection of environment variables across all pods and nodes. 
-
-```yaml
-[log_collection_settings.env_var]
-    enabled = true
-```
-
-If collection of environment variables is globally enabled, you can disable it for a specific container by setting the environment variable `AZMON_COLLECT_ENV` to `False` either with a Dockerfile setting or in the [configuration file for the Pod](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/) under the `env:` section. If collection of environment variables is globally disabled, you can't enable collection for a specific container. The only override that can be applied at the container level is to disable collection when it's already enabled globally.
-
-## ConfigMap settings
-
-The following table describes the settings you can configure to control data collection with agent configuration ConfigMap.
+### Challenges
+- Each cluster requires its own ConfigMap. It can be difficult to manage settings across multiple clusters.
+- Static configuration that requires redeployment for changes, which triggers agent pod rolling restart.
 
 
-| Setting | Data type | Value | Description |
-|:---|:---|:---|:---|
-| `schema-version` | String (case sensitive) | v1 | Used by the agent when parsing this ConfigMap. Currently supported schema-version is v1. Modifying this value isn't supported and will be rejected when the ConfigMap is evaluated. |
-| `config-version` | String |  | Allows you to keep track of this config file's version in your source control system/repository. Maximum allowed characters are 10, and all other characters are truncated. |
-| **[log_collection_settings]** | | | |
-| `[stdout]`<br>`enabled` | Boolean | true<br>false | Controls whether stdout container log collection is enabled. When set to `true` and no namespaces are excluded for stdout log collection, stdout logs will be collected from all containers across all pods and nodes in the cluster. If not specified in the ConfigMap, the default value is `true`. |
-| `[stdout]`<br>`exclude_namespaces` | String | Comma-separated array | Array of Kubernetes namespaces for which stdout logs won't be collected. This setting is effective only if `enabled` is set to `true`. If not specified in the ConfigMap, the default value is<br> `["kube-system","gatekeeper-system"]`. |
-| `[stderr]`<br>`enabled` | Boolean | true<br>false | Controls whether stderr container log collection is enabled. When set to `true` and no namespaces are excluded for stderr log collection, stderr logs will be collected from all containers across all pods and nodes in the cluster. If not specified in the ConfigMap, the default value is `true`. |
-| `[stderr]`<br>`exclude_namespaces` | String | Comma-separated array | Array of Kubernetes namespaces for which stderr logs won't be collected. This setting is effective only if `enabled` is set to `true`. If not specified in the ConfigMap, the default value is<br> `["kube-system","gatekeeper-system"]`. |
-| `[env_var]`<br>`enabled` | Boolean | true<br>false | Controls environment variable collection across all pods and nodes in the cluster. If not specified in the ConfigMap, the default value is `true`.  |
-| `[enrich_container_logs]`<br>`enabled` | Boolean | true<br>false | Controls container log enrichment to populate the `Name` and `Image` property values for every log record written to the **ContainerLog** table for all container logs in the cluster. If not specified in the ConfigMap, the default value is `false`. |
-| `[collect_all_kube_events]`<br>`enabled` | Boolean | true<br>false| Controls whether Kube events of all types are collected. By default, the Kube events with type **Normal** aren't collected. When this setting is `true`, the **Normal** events are no longer filtered, and all events are collected. If not specified in the ConfigMap, the default value is `false`. |
-| `[schema]`<br>`containerlog_schema_version` | String (case sensitive) | v2<br>v1 | Sets the log ingestion format. If `v2`, the **ContainerLogV2** table is used. If `v1`, the **ContainerLog** table is used (this table has been deprecated). For clusters enabling container insights using Azure CLI version 2.54.0 or greater, the default setting is `v2`. See [Container insights log schema](./container-insights-logs-schema.md) for details. |
-| `[enable_multiline_logs]`<br>`enabled` | Boolean | true<br>false | Controls whether multiline container logs are enabled. See [Multi-line logging in Container Insights](./container-insights-logs-schema.md#multi-line-logging) for details. If not specified in the ConfigMap, the default value is `false`. This requires the `schema` setting to be `v2`. |
-| `[metadata_collection]`<br>`enabled` | Boolean | true<br>false | Controls whether metadata is collected in the `KubernetesMetadata` column of the `ContainerLogV2` table. |
-| `[metadata_collection]`<br>`include_fields` | String | Comma-separated array | List of metadata fields to include. If the setting isn't used then all fields are collected. Valid values are  `["podLabels","podAnnotations","podUid","image","imageID","imageRepo","imageTag"]` |
-| `[log_collection_settings.multi_tenancy]`<br>`enabled` | Boolean | true<br>false | Controls whether multitenancy is enabled. See  [Multitenant managed logging](./container-insights-multitenant.md) for details. If not specified in the ConfigMap, the default value is `false`. |
-| **[metric_collection_settings]** | | | |
-| `[collect_kube_system_pv_metrics]`<br>`enabled` | Boolean | true<br>false | Allows persistent volume (PV) usage metrics to be collected in the kube-system namespace. By default, usage metrics for persistent volumes with persistent volume claims in the kube-system namespace aren't collected. When this setting is set to `true`, PV usage metrics for all namespaces are collected. If not specified in the ConfigMap, the default value is `false`. |
-| **[agent_settings]** | | | |
-| `[proxy_config]`<br>`ignore_proxy_settings` | Boolean | true<br>false | When `true`, proxy settings are ignored. For both AKS and Arc-enabled Kubernetes environments, if your cluster is configured with forward proxy, then proxy settings are automatically applied and used for the agent. For certain configurations, such as with AMPLS + Proxy, you might want the proxy configuration to be ignored. If not specified in the ConfigMap, the default value is `false`. |
-| **[agent_settings.fbit_config]** | | | |
-| `enable_internal_metrics` | Boolean | true<br>false | Controls whether collection of internal metrics are enabled. If not specified in the ConfigMap, the default value is `false`. |
+### Scenarios for using ConfigMap filtering
+You should start with any filtering you can do at the ConfigMap level before considering DCR filtering. This reduces load on the agent and network by preventing unwanted data from leaving the cluster.
 
-## Impact on visualizations and alerts
+- Only method to filter container logs (stdout/stderr) before being sent to Azure Monitor and without using a transformation. 
 
-If you have any custom alerts or workbooks using Container insights data, then modifying your data collection settings might degrade those experiences. If you're excluding namespaces or reducing data collection frequency, review your existing alerts, dashboards, and workbooks using this data.
+## Data collection rules
 
-To scan for alerts that reference these tables, run the following Azure Resource Graph query:
+The resources that are created when you enable monitoring Prometheus metrics and container logging for your Kubernetes clusters in the Azure monitor are described in the following tables. 
 
-```Kusto
-resources
-| where type in~ ('microsoft.insights/scheduledqueryrules') and ['kind'] !in~ ('LogToMetric')
-| extend severity = strcat("Sev", properties["severity"])
-| extend enabled = tobool(properties["enabled"])
-| where enabled in~ ('true')
-| where tolower(properties["targetResourceTypes"]) matches regex 'microsoft.operationalinsights/workspaces($|/.*)?' or tolower(properties["targetResourceType"]) matches regex 'microsoft.operationalinsights/workspaces($|/.*)?' or tolower(properties["scopes"]) matches regex 'providers/microsoft.operationalinsights/workspaces($|/.*)?'
-| where properties contains "Perf" or properties  contains "InsightsMetrics" or properties  contains "ContainerInventory" or properties  contains "ContainerNodeInventory" or properties  contains "KubeNodeInventory" or properties  contains"KubePodInventory" or properties  contains "KubePVInventory" or properties  contains "KubeServices" or properties  contains "KubeEvents" 
-| project id,name,type,properties,enabled,severity,subscriptionId
-| order by tolower(name) asc
-```
+**Log collection**
+
+| Resource Name | Resource Type | Resource Group | Region/Location | Description |
+|:---|:---|:---|:---|:---|
+| `MSCI-<aksclusterregion>-<clustername>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | Same as cluster | Same as Log Analytics workspace | Associated with the AKS cluster resource, defines configuration of logs collection by the Azure Monitor agent. **This is the DCR to add the transformation.** |
+
+**Managed Prometheus**
+
+| Resource Name | Resource Type | Resource Group | Region/Location | Description |
+|:---|:---|:---|:---|:---|
+| `MSPROM-<aksclusterregion>-<clustername>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | Same as cluster | Same as Azure Monitor workspace | Associated with the AKS cluster resource, defines configuration of prometheus metrics collection by metrics addon. |
+| `MSPROM-<aksclusterregion>-<clustername>` | [Data Collection endpoint](../data-collection/data-collection-endpoint-overview.md) | Same as cluster | Same as Azure Monitor workspace | Used by the DCR for ingesting Prometheus metrics from the metrics addon. |
+    
+When you create a new Azure Monitor workspace, the following additional resources are created.
+
+| Resource Name | Resource Type | Resource Group | Region/Location | Description |
+|:---|:---|:---|:---|:---|
+| `<azuremonitor-workspace-name>` | [Data Collection Rule](../data-collection/data-collection-rule-overview.md) | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCR to be used if you use Remote Write from a Prometheus server. |
+| `<azuremonitor-workspace-name>` | [Data Collection endpoint](../data-collection/data-collection-endpoint-overview.md) | MA_\<azuremonitor-workspace-name>_\<azuremonitor-workspace-region>_managed | Same as Azure Monitor Workspace | DCE to be used if you use Remote Write from a Prometheus server. |
+
+
 
 
 ## Next steps
 
 - See [Data transformations in Container insights](./container-insights-transformations.md) to add transformations to the DCR that will further filter data based on detailed criteria.
 
+
+
+
+
+
+
+| Stage | Method | Streams |
+|:---|:---|:---|
+| Creation | UI (Logs and Events)) |  "Microsoft-ContainerLog", ContainerLogV2", "Microsoft-KubeEvents","Microsoft-KubePodInventory" |
+| Creation 
+
+
+Time stamp to clearly specify UTC/TZ and in 24hr format at (https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-store-custom-rest-api?tabs=rest#timestamp)
+
+-NameSpace and Name cannot contain spaces at (https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-store-custom-rest-api?tabs=rest#namespace & https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-store-custom-rest-api?tabs=rest#name)
+
+-Sample JSON to show 24HR UTC and compliant namespace and name (they have spaces in them https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-store-custom-rest-api?tabs=rest#sample-custom-metric-publication)

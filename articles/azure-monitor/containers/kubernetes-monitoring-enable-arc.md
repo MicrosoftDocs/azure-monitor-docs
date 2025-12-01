@@ -206,11 +206,11 @@ Each of the settings in the configuration is described in the following table.
 | `namespaceFilteringMode` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collect data on all namespaces.<br><br>Default: Off |
 | `namespaces` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored.<br><br>None. |
 |  `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are ingested to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are ingested to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2.<br><br>Default: True |
-| `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>Default: ContainerLogV2, KubeEvents, KubePodInventory |
+| `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>Default: Microsoft-ContainerInsights-Group-Default |
 
 
 
-### [ARM](#tab/arm)
+### [BICEP/ARM](#tab/arm)
 
 ### Prerequisites
 
@@ -400,28 +400,8 @@ The **Collected data** option allows you to select the tables that are populated
 ---
 
 ### Stream values
-When you specify the tables to collect using CLI or ARM, you specify a stream name that corresponds to a particular table in the Log Analytics workspace. The following table lists the stream name for each table.
 
-> [!NOTE]
-> If you're familiar with the [structure of a data collection rule](../essentials/data-collection-rule-structure.md), the stream names in this table are specified in the [Data flows](../essentials/data-collection-rule-structure.md#data-flows) section of the DCR.
-
-| Stream | Container insights table |
-| --- | --- |
-| Microsoft-ContainerInventory | ContainerInventory |
-| Microsoft-ContainerLog | ContainerLog |
-| Microsoft-ContainerLogV2 | ContainerLogV2 |
-| Microsoft-ContainerLogV2-HighScale | ContainerLogV2 (High scale mode)<sup>1</sup> |
-| Microsoft-ContainerNodeInventory | ContainerNodeInventory |
-| Microsoft-InsightsMetrics | InsightsMetrics |
-| Microsoft-KubeEvents | KubeEvents |
-| Microsoft-KubeMonAgentEvents | KubeMonAgentEvents |
-| Microsoft-KubeNodeInventory | KubeNodeInventory |
-| Microsoft-KubePodInventory | KubePodInventory |
-| Microsoft-KubePVInventory | KubePVInventory |
-| Microsoft-KubeServices | KubeServices |
-| Microsoft-Perf | Perf |
-
-<sup>1</sup> Don't use both Microsoft-ContainerLogV2 and Microsoft-ContainerLogV2-HighScale together. This will result in duplicate data.
+[!INCLUDE [data-collection-rule-streams](../../advisor/includes/data-collection-rule-streams.md)]
 
 ### Applicable tables and metrics
 The settings for **collection frequency** and **namespace filtering** don't apply to all log data. The following tables list the tables in the Log Analytics workspace along with the settings that apply to each. 
@@ -477,7 +457,7 @@ az monitor diagnostic-settings create \
 --export-to-resource-specific true
 ```
 
-### [ARM](#tab/arm)
+### [BICEP/ARM](#tab/arm)
 Following are sample template and parameter files to create a diagnostic setting for control plane logs. Modify the templates to collect different categories or to send the logs to a different destination.
 
 **Bicep**
