@@ -125,10 +125,10 @@ Unfortunately, PromQL cannot automatically detect temporality. You need to know 
 
 ### Best practices for temporality
 
-1. **Document your data sources** - Keep track of which metrics use which temporality
-2. **Use consistent naming** - Consider adding temporality hints to your metric names
-3. **Create separate dashboards** - Build different views for cumulative vs. delta metrics
-4. **Test your queries** - Verify that rate calculations produce expected results vs. raw values
+* **Document your data sources**: Keep track of which metrics use which temporality
+* **Use consistent naming**: Consider adding temporality hints to your metric names
+* **Create separate dashboards**: Build different views for cumulative vs. delta metrics
+* **Test your queries**: Verify that rate calculations produce expected results vs. raw values
 
 ## Histogram query patterns
 
@@ -153,9 +153,9 @@ OpenTelemetry histograms can use different bucket strategies. Azure Monitor's ma
 
 When querying histogram metrics in Azure Monitor, keep these performance considerations in mind:
 
-1. **Non-histogram functions on histogram metrics**: When you apply a non-histogram function to a histogram metric, the function operates only on the total sum value and does not retrieve bucket values from the data store.
+* Non-histogram functions on histogram metrics: When you apply a non-histogram function to a histogram metric, the function operates only on the total sum value and does not retrieve bucket values from the data store.
 
-2. **Histogram query costs**: Histogram metrics queried with histogram functions cost at least 10.5 times more than normal counter samples. Consider this when:
+* Histogram query costs: Histogram metrics queried with histogram functions cost at least 10.5 times more than normal counter samples. Consider this when:
    - Performing long lookbacks on histogram data
    - Applying histogram functions on high-cardinality metrics
    - Designing queries that may approach query throttling limits
@@ -204,45 +204,37 @@ histogram_fraction(0, 0.2, rate({"http.server.request.duration"}[1h]))
 
 ## Resource attribute handling
 
-OpenTelemetry resource attributes become PromQL labels but may need special handling:
+OpenTelemetry resource attributes become PromQL labels that can be filtered:
 
 ```promql
 # Service identification
-{__name__=~"http.*", "service.name"="frontend"}
-
-# Version filtering  
-{__name__=~"http.*", "service.version"=~"v1.*"}
+{__name__="http.server.duration", "service.name"="frontend"}
 
 # Environment separation
-{__name__=~"system.*", "deployment.environment"="production"}
+{__name__="http.server.duration", "deployment.environment"="production"}
+
+# Grouping on unique cloud resources
+Count by ("Microsoft.resourceid") ({"http.server.duration"})
 ```
+> [!NOTE]
+> regex filtering on the reserved "\_\_name\_\_" label is not recommended for the best queryperformance. Avoid patterns like {\_\_name\_\_=~"http.*"}. 
 
 ## Query optimization tips
 
-### 1. Use efficient label selectors
-
-```promql
-# Efficient - specific metric name first
-{"http.server.duration"}{"service.name"="frontend"}
-
-# Less efficient - starts with label matching
-{"service.name"="frontend", __name__=~"http.*"}
-```
-
-### 2. Limit time ranges for high-cardinality metrics
+### Limit time ranges for high-cardinality metrics
 
 ```promql
 # Be cautious with broad queries over long time ranges
 sum by ("service.name") ({"http.server.duration"}[1h])
 ```
 
-### 3. Aggregate early when possible
+### Aggregate early when possible
 
 ```promql
 # Better - aggregate before complex operations
 sum(rate({"http.server.request.count"}[5m])) by ("service.name")
 
-# Avoid - complex operations on high cardinality
+# Avoid - complex operations on high cardinality labels unless necessary
 rate(sum({"http.server.request.count"}[5m]) by ("service.name", "http.method", "http.status_code"))
 ```
 

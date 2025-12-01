@@ -34,7 +34,7 @@ A subset of OpenTelemetry Metrics are known as [system metrics](https://opentele
 ## Benefits of OpenTelemetry
 
 **Cross-OS observability**
-The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for users to manage their virtual machines / nodes across their fleet with a single set of queries used for either Windows or Linux OS images. The same configuration-as-code (ARM/Bicep templates, Terraform, etc) using the same PromQl queries can be used for any hosting resource that adopts OpenTelemetry system metrics. 
+The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for users to manage their virtual machines / nodes across their fleet with a single set of queries used for either Windows or Linux OS images. The same configuration-as-code (ARM/Bicep templates, Terraform, etc.) using the same PromQl queries can be used for any hosting resource that adopts OpenTelemetry system metrics. 
 
 **More performance counters**
 The OpenTelemetry Collector Host Metrics Receiver collects many more performance counters than Azure Monitor currently makes available for collection via DCR with Log Analytics workspace as a destination. For example, users can now monitor per-process CPU utilization, disk I/O, memory usage and more.
