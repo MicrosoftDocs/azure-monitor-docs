@@ -170,6 +170,6 @@ Get started at runtime with:
 
 Get started at development time with:
 
-* [.NET](./dotnet.md)
+* [.NET](/azure/azure-monitor/app/classic-api&tabs=dotnet)
 * [Java](./opentelemetry-enable.md?tabs=java)
-* [Node.js](./nodejs.md)
+* [Node.js](/azure/azure-monitor/app/classic-api&tabs=nodejs)

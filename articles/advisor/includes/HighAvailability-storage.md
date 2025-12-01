@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -104,5 +104,41 @@ Recommendation ID: ebe76d14-0f9e-4fd2-b453-f04f8852dc8f
 Subcategory: undefined
 
 <!--ebe76d14-0f9e-4fd2-b453-f04f8852dc8f_end-->
+
+<!--1d70919c-1a4a-4f79-8300-bb576c291e9d_begin-->
+
+#### Upgrade general-purpose v1 storage accounts  
+  
+Migrate to general-purpose v2 storage account or specialized alternatives based on workload requirements, such as BlockBlobStorage or FileStorage.  
+  
+**Potential benefits**: Avoid service disruptions and gain improved performance  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=496964)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: 1d70919c-1a4a-4f79-8300-bb576c291e9d  
+Subcategory: undefined
+
+<!--1d70919c-1a4a-4f79-8300-bb576c291e9d_end-->
+
+<!--42dbf883-9e4b-4f84-9da4-232b87c4b5e9_begin-->
+
+#### Enable Soft Delete to protect your blob data  
+  
+Soft Delete puts deleted data into a soft deleted state instead of permanently deleted. When data is overwritten, a soft deleted snapshot is generated to save the state of the overwritten data. You can configure the amount of time soft deleted data is recoverable before it permanently expires.  
+  
+**Potential benefits**: Restore blobs or snapshots after overwrite or deletion  
+
+**Impact:** Medium
+  
+For more information, see [Soft delete for blobs - Azure Storage](https://aka.ms/softdelete)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: 42dbf883-9e4b-4f84-9da4-232b87c4b5e9  
+Subcategory: undefined
+
+<!--42dbf883-9e4b-4f84-9da4-232b87c4b5e9_end-->
 
 <!--articleBody-->

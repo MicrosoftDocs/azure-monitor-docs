@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Virtual Machines
@@ -66,5 +66,23 @@ Recommendation ID: acc30c87-0979-4a35-b4c4-918869897844
 
 
 <!--acc30c87-0979-4a35-b4c4-918869897844_end-->
+
+<!--2881ca3a-070d-40fb-9471-83783ff487c0_begin-->
+
+#### Enable VM Insights for virtual machines  
+  
+Your virtual machines don’t have VM Insights enabled. Turn it on to collect performance and dependency data for better troubleshooting, right-sizing, and health monitoring in Azure Monitor.  
+  
+**Potential benefits**: Gain performance and dependency visibility  
+
+**Impact:** Medium
+  
+For more information, see [Enable VM Insights - Azure Monitor](/azure/azure-monitor/vm/vminsights-enable-overview)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 2881ca3a-070d-40fb-9471-83783ff487c0  
+
+
+<!--2881ca3a-070d-40fb-9471-83783ff487c0_end-->
 
 <!--articleBody-->

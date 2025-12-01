@@ -7995,6 +7995,16 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/agents/signal-ingestion.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/collect-use-observability-data",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/signal-integration.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/collect-use-observability-data",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/fundamentals/ip-addresses.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-network-access",
    "redirect_document_id": false
@@ -8712,6 +8722,31 @@
   {
    "source_path": "articles/azure-monitor/containers/enable-windows-metrics.md",
    "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-windows-metrics-preview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/aiops/aiops-issue-and-investigation-best-practices.md",
+   "redirect_url": "/azure/azure-monitor/aiops/observability-agent-best-practices",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/aiops/aiops-issue-and-investigation-responsible-use.md",
+   "redirect_url": "/azure/azure-monitor/aiops/observability-agent-responsible-use",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/aiops/aiops-issue-and-investigation-troubleshooting.md",
+   "redirect_url": "/azure/azure-monitor/aiops/observability-agent-troubleshooting",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/dotnet.md",
+   "redirect_url": "/azure/azure-monitor/app/classic-api",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/nodejs.md",
+   "redirect_url": "/azure/azure-monitor/app/classic-api",
    "redirect_document_id": false
   }
  ]
