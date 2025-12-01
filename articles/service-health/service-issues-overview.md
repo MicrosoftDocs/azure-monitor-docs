@@ -2,7 +2,7 @@
 title: View Service issues
 description: This article describes how to view and use the Service issues pane
 ms.topic: overview
-ms.date: 11/17/2025
+ms.date: 12/01/2025
 
 ---
 
@@ -52,7 +52,7 @@ At the top of each tab, there's a command bar with several options of how to vie
 - **Create a service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md). 
 
 
-## Summary tab
+### Summary tab
 
 The Summary tab shows detailed information about the Service issue.
 
@@ -76,7 +76,7 @@ The information on this tab includes the following data:
 
 
 
-## Impacted Services tab
+### Impacted Services tab
 
 :::image type="content" source="./media/service-issue-overview/service-issues-impacted-services.png" alt-text="Screenshot that shows the Issues Impacted tab." Lightbox="./media/service-issue-overview/service-issues-impacted-services.PNG":::
 
@@ -86,7 +86,7 @@ This tab displays all the impacted services that are affected:
 - Last update time 
 - The storage that is affected
 
-## Issue Updates tab
+### Issue Updates tab
 
 :::image type="content" source="./media/service-issue-overview/service-issues-issue-updates.png" alt-text="Screenshot that shows the Issue Updates tab." Lightbox="./media/service-issue-overview/service-issues-issue-updates.PNG":::
 
@@ -94,7 +94,7 @@ This tab provides a timeline of updates from Azure Service Health, including:
 - The Root Cause Analyses (RCAs) and mitigation steps. 
 - Each message update is listed with the time of creation.
 
-## Impacted Resources tab
+### Impacted Resources tab
 
 :::image type="content" source="./media/service-issue-overview/service-issues-impacted-resources.png" alt-text="Screenshot that shows the Impacted Resources tab." Lightbox="./media/service-issue-overview/service-issues-impacted-resources.PNG":::
 This tab shows a list of your specific resources that are or might be affected, which includes:
