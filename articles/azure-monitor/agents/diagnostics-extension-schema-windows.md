@@ -157,7 +157,7 @@ Configures collection of events generated from [EventSource Class](/dotnet/api/s
 | Child Elements | Description |
 |----------------|-------------|
 | **DefaultEvents** | Optional attribute:<br><br> **eventDestination** - The name of the table to store the events in |
-| **Event** | Required attribute:<br><br> **id** - The id of the event.<br><br> Optional attribute:<br><br> **eventDestination** - The name of the table to store the events in |
+| **Event** | Required attribute:<br><br> **id** - The ID of the event.<br><br> Optional attribute:<br><br> **eventDestination** - The name of the table to store the events in |
 
 ## EtwManifestProviderConfiguration Element
 
@@ -166,7 +166,7 @@ Configures collection of events generated from [EventSource Class](/dotnet/api/s
 | Child Elements | Description |
 |----------------|-------------|
 | **DefaultEvents** | Optional attribute:<br><br> **eventDestination** - The name of the table to store the events in |
-| **Event** | Required attribute:<br><br> **id** - The id of the event.<br><br> Optional attribute:<br><br> **eventDestination** - The name of the table to store the events in |
+| **Event** | Required attribute:<br><br> **id** - The ID of the event.<br><br> Optional attribute:<br><br> **eventDestination** - The name of the table to store the events in |
 
 ## Metrics Element
 
@@ -660,4 +660,4 @@ The *PublicConfig* and *PrivateConfig* are separated because in most JSON usage 
 
 > [!NOTE]
 > The public config Azure Monitor sink definition has two properties, resourceId and region. These are only required for Classic VMs and Classic Cloud services. These properties should not be used for Resource Manager Virtual Machines or Virtual Machine Scale sets.
-> There is also an additional Private Config element for the Azure Monitor sink, that passes in a Principal Id and Secret. This is only required for Classic VMs and Classic Cloud Services. For Resource Manager VMs and VMSS the Azure Monitor definition in the private config element can be excluded.
+> There is also an additional Private Config element for the Azure Monitor sink that passes in a Principal Id and Secret. This is only required for Classic VMs and Classic Cloud Services. For Resource Manager VMs and VMSS the Azure Monitor definition in the private config element can be excluded.

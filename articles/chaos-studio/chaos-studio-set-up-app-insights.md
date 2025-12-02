@@ -15,15 +15,16 @@ In this guide, we'll show you the steps needed to configure a Chaos Studio **Age
 
 ## Prerequisites
 
-* An Azure subscription
-* An existing Chaos Studio [**Agent-based** Experiment](chaos-studio-tutorial-agent-based-portal.md)
-* [Required for Application Insights Resource as well] An existing [Log Analytics Workspace](../azure-monitor/logs/quick-create-workspace.md)
-* An existing [Application Insights Resource](../azure-monitor/app/create-workspace-resource.md)
-* [Required for Agent-based Chaos Experiments] A [User-Assigned Managed Identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities)
+> [!div class="checklist"]
+> * Azure subscription
+> * Chaos Studio [**agent-based** experiment](chaos-studio-tutorial-agent-based-portal.md)
+> * [Application Insights resource](../azure-monitor/app/create-workspace-resource.md)
+> * [Log Analytics workspace](../azure-monitor/logs/quick-create-workspace.md)
+> * [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities)
 
 ## Step 1: Copy the Connection String from your Application Insights Resource
 
-Once you have met all the prerequisite steps, copy the **Connection String** found in the overview page of your Application Insights Resource (see screenshot)
+Once you have met all the prerequisite steps, copy the **Connection String** found in the overview page of your Application Insights Resource (see screenshot).
 
 :::image type="content" source="images/step-1a-app-insights.png" lightbox="images/step-1a-app-insights.png" alt-text="Screenshot that shows Connection String in App Insights.":::
 
@@ -37,7 +38,7 @@ See screenshot below for an example:
 
 ## Step 3: Add your Application Insights account and Connection String
 
-At this point, the Agent target configuration page seen in the screenshot should come up . After configuring your managed identity, make sure Application Insights is "Enabled" and then select your desired Application Insights Account and enter the Connection String you copied in Step 1. Once you have filled out the required information, you can click "Review+Create" to deploy your resource.
+At this point, the Agent target configuration page seen in the screenshot should come up. After configuring your managed identity, make sure Application Insights is "Enabled" and then select your desired Application Insights Account and enter the Connection String you copied in Step 1. Once you have filled out the required information, you can click "Review+Create" to deploy your resource.
 
 :::image type="content" source="images/step-3a-app-insights.png" lightbox="images/step-3a-app-insights.png" alt-text="Screenshot of Targets Deployment Page.":::
 
