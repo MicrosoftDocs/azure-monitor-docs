@@ -29,6 +29,9 @@ Azure Monitor automatically collects host metrics and activity logs from your Az
 
 ## Create a data collection rule
 
+[!INCLUDE [data-collection-rule-edit-warning](../data-collection/includes/data-collection-rule-edit-warning.md)]
+
+
 In the Azure portal, on the **Monitor** menu, select **Data Collection Rules** > **Create** to open the DCR creation pane.
 
 :::image type="content" source="media/data-collection/create-data-collection-rule.png" lightbox="media/data-collection/create-data-collection-rule.png" alt-text="Screenshot that shows the Create button for a new data collection rule.":::
@@ -102,7 +105,7 @@ The **Basics** tab includes basic information about the DCR.
 | **Subscription** | The subscription to store the DCR. The subscription doesn't need to be the same subscription as the virtual machines. |
 | **Resource group** | A resource group to store the DCR. The resource group doesn't need to be the same resource group as the virtual machines. |
 | **Region** | The Azure region to store the DCR. The region must be the *same* region as any Log Analytics workspace or Azure Monitor workspace that's used in a destination of the DCR. If you have workspaces in different regions, create multiple DCRs to associate with the same set of machines. |
-| **Type of telemetry** | Specifies the type of telemetry the DCR will collect. This selection will affect the resources that you can select and the data flows that you can create for the DCR. Select the drop down to get a short description of each option. Select **Help me choose** to get further details including the types of data source and destination you can select for each option and whether they require a DCE or a managed entity.<sup>1</sup><br><br>For **Platform Telemetry**, see [Create a data collection rule (DCR) for metrics export](../data-collection/metrics-export-create.md). |
+| **Type of telemetry** | Specifies the type of telemetry the DCR will collect. This selection will affect the resources that you can select and the data flows that you can create for the DCR. Select the drop-down to get a short description of each option. Select **Help me choose** to get further details including the types of data source and destination you can select for each option and whether they require a DCE or a managed entity.<sup>1</sup><br><br>For **Platform Telemetry**, see [Create a data collection rule (DCR) for metrics export](../data-collection/metrics-export-create.md). |
 | **Data Collection Endpoint** | Specifies the [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md) that's used to collect data. A DCE is required only if you're using a data source that requires one. Select **Help me choose** next to **Type of telemetry** to identify the data sources that require a DCE. For most implementations, you can use a single DCE for each Log Analytics workspace. See [Create a data collection rule (DCR) for metrics export](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) for details on how to create a DCE. |
 | Enable Managed Identity | Specifies whether to enable managed identity for the DCR. Select **Help me choose** next to **Type of telemetry** to identify the data sources that require a managed identity. |
 
