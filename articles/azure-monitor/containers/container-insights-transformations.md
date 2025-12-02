@@ -26,7 +26,6 @@ To create a transformation, perform one of the following actions:
 
 
 
-
 ## Data sources
 The [Data sources section of the DCR](../essentials/data-collection-rule-structure.md#data-sources) defines the different types of incoming data that the DCR will process. For Container insights, this is the Container insights extension, which includes one or more predefined `streams` starting with the prefix *Microsoft-*.
 

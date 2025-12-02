@@ -462,6 +462,10 @@ items:
           href: containers/container-insights-livedata-setup.md
     - name: Customize data collection
       items:
+      - name: Overview
+        href: containers/kubernetes-data-collection-configuration.md
+      - name: Data collection rules
+        href: containers/kubernetes-data-collection-rules.md
       - name: Metrics
         items:
         - name: Customize data collection
@@ -526,8 +530,6 @@ items:
               displayName: Prometheus,remote-write
       - name: Logs
         items:
-        - name: Filter container logs
-          href: containers/container-insights-data-collection-filter.md
         - name: Filter control plane logs
           href: containers/control-plane-transformations.md
         - name: Container log schema
