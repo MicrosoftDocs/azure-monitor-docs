@@ -145,11 +145,11 @@ x-ms-azure-scoping: /subscriptions/12345678-1234-1234-1234-123456789012
 
 ### Using with Grafana
 
-1. Create a new Prometheus data source in Grafana
-2. Set the Prometheus server URL to `https://query.eastus.prometheus.monitor.azure.com` (or your region)
+1. Create a new Prometheus data source in Grafana.
+2. Set the Prometheus server URL to `https://query.eastus.prometheus.monitor.azure.com` (or your region).
 3. Configure authentication:
-   - For Azure Managed Prometheus data source: Use Azure authentication
-   - For OSS Prometheus data source: Use Managed Identity with Monitoring Reader role
+   - For Azure Managed Prometheus data source: Use Azure authentication.
+   - For OSS Prometheus data source: Use Managed Identity with Monitoring Reader role.
 4. Add a custom HTTP header:
    - Key: `x-ms-azure-scoping`
    - Value: Resource ID, resource group ID, or subscription ID
@@ -211,9 +211,9 @@ Resource-scoped querying is supported in the following Azure Monitor experiences
 
 Resource-scoped querying is the default for:
 
-- **VM Insights v2**: OpenTelemetry-based performance counters
-- **Application Insights**: OpenTelemetry metrics in Azure Monitor workspace
-- **Container Insights**: Post-migration to resource-scoped model
+- **VM Insights v2**: OpenTelemetry system metrics (performance counters) stored in Azure Monitor Workspaces
+- **Application Insights**: OpenTelemetry HTTP + RPC metrics stored in Azure Monitor Workspace
+- **Container Insights**: Post-GA migration to resource-scoped model
 
 ## Error handling
 
@@ -281,7 +281,7 @@ Resource-scoped queries may return the following errors:
 }
 ```
 
-**Solution**: Ensure the token is valid, not expired, and obtained for the correct resource (`https://prometheus.monitor.azure.com`).
+**Solution**: Ensure the token is valid, not expired, and obtained for the correct resource. If using Grafana, ensure the Managed Identity used to configure the data source has appropriate access to the resource(s) queried. Also consider the scope of the query (subscription vs resourceGroup vs resource) when validating access.
 
 ### Query syntax errors
 
@@ -296,7 +296,7 @@ Resource-scoped queries may return the following errors:
 }
 ```
 
-**Solution**: Verify PromQL syntax. See [PromQL documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) for query syntax reference.
+**Solution**: Verify PromQL syntax. See [PromQL documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) for query syntax reference, or explore best practices for PromQL querying via Copilot.
 
 ### Query timeout
 
@@ -343,7 +343,7 @@ Resource-scoped queries may return the following errors:
    avg({"system.cpu.utilization"}) by ("Microsoft.resourceid")
    ```
 
-3. **Leverage recording rules**: For complex or frequently-run queries, use [recording rules](prometheus-rule-groups.md) to pre-aggregate data and reduce query load
+3. **Leverage recording rules**: For complex or frequently run queries, use [recording rules](prometheus-rule-groups.md) to pre-aggregate data and reduce query load
 
 4. **Configure workspace access mode**: Set workspaces to "Use resource or workspace permissions" mode to enable true resource-scoped access
 
@@ -363,15 +363,15 @@ Resource-scoped queries may return the following errors:
 
 She can query all metrics for her resources without workspace access.
 
-### Multi-tenant monitoring
+### Multitenant monitoring
 
 **Scenario**: Bob manages infrastructure for multiple application teams and needs to grant each team access to only their resources.
 
 **Solution**:
-1. Bob configures the central workspace with "Use resource or workspace permissions" access mode
-2. Each team receives Monitoring Reader role on their resource group
-3. Teams create resource-scoped queries using their resource group ID
-4. Bob maintains workspace-scoped queries for cross-team monitoring
+1. Bob configures the central workspace with "Use resource or workspace permissions" access mode.
+2. Each team receives Monitoring Reader role on their resource group.
+3. Teams create resource-scoped queries using their resource group ID.
+4. Bob maintains workspace-scoped queries for cross-team monitoring.
 
 ### Kubernetes namespace isolation
 
