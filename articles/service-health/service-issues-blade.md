@@ -40,8 +40,8 @@ Select the link in the  **Issue name** column to open the tabs and see more deta
 >
 >For more information about Service issue events using ARG queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
-### Command bar
-At the top of each tab, there's a command bar with several options of how to view the information displayed.
+### Filtering and sorting
+At the top of each tab, there's a command bar with several options of how to view the information on this page.
 
 :::image type="content" source="./media/service-issue-overview/service-issues-tool-bar.png" alt-text="Screenshot that shows options." Lightbox="./media/service-issue-overview/service-issues-tool-bar.PNG":::
 
