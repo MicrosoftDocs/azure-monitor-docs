@@ -26,9 +26,9 @@ OpenTelemetry metrics differ from traditional Prometheus metrics in several impo
 
 OpenTelemetry metrics often contain characters that require special handling in PromQL:
 
-- **Dots in metric names**: OpenTelemetry uses dots (`.`) in metric names like `http.server.duration`
-- **Special characters in labels**: Resource attributes may contain non-alphanumeric characters
-- **UTF-8 encoding**: With [Prometheus 3.0](https://prometheus.io/blog/2024/11/14/prometheus-3-0/#utf-8-support), full UTF-8 support enables querying without character escaping
+- **Dots in metric names**: OpenTelemetry uses dots (`.`) in metric names like `http.server.duration`.
+- **Special characters in labels**: Resource attributes may contain non-alphanumeric characters.
+- **UTF-8 encoding**: With [Prometheus 3.0](https://prometheus.io/blog/2024/11/14/prometheus-3-0/#utf-8-support), full UTF-8 support enables querying without character escaping.
 
 ### Data model differences
 
@@ -244,7 +244,7 @@ For more information on aggregation operators, see [Prometheus aggregation opera
 
 ### Missing metrics with dots in names
 
-**Problem**: Queries return no data for metrics like `http.server.duration`
+**Problem**: Queries return no data for metrics like `http.server.duration`.
 
 **Solution**: Use UTF-8 quoting with curly braces or `__name__` selector:
 
@@ -258,7 +258,7 @@ For more information on aggregation operators, see [Prometheus aggregation opera
 
 ### Incorrect rate calculations
 
-**Problem**: Rate calculations show unexpected spikes or drops
+**Problem**: Rate calculations show unexpected spikes or drops.
 
 **Solution**: Verify temporality and adjust queries:
 
@@ -272,7 +272,7 @@ rate({"http.server.request.count"}[5m])
 
 ### Label name conflicts
 
-**Problem**: OpenTelemetry resource attributes conflict with Prometheus conventions
+**Problem**: OpenTelemetry resource attributes conflict with Prometheus conventions.
 
 **Solution**: Use explicit label selection:
 
