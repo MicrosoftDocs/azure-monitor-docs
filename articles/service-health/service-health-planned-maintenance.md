@@ -49,7 +49,7 @@ Select the **Issue name** link to open the tabs with the information you need.
 >[!Note]
 >Planned maintenance events are displayed in the panel for 90 days if they are still active and if the `impactMitigationTime/endtime` is set in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
 >
->For more information about Planned maintenance events using ARG queries, refer to:
+>For more information about Planned maintenance events using ARG queries, see:
 >- [Resource graph sample queries](resource-graph-health-samples.md) 
 >- [Service Health graph sample queries](resource-graph-samples.md)
 >- [Impacted resources graph sample queries](resource-graph-impacted-samples.md)<br>
@@ -71,8 +71,7 @@ At the top of each tab, there's a command bar with several options of how to vie
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-summary.PNG" alt-text="Screenshot of Summary tab." lightbox="media/planned-maintenance/planned-maintenance-summary.png":::
 
-When you open the Planned maintenance event, it opens the Summary tab, which shows you a list of information about this event. 
-Each event includes:
+When you open the Planned maintenance event, it opens the Summary tab, which shows you a list of information about this event, which includes:
 
 |Field                  |Description  |
 |-----------------------|-------------|
@@ -82,10 +81,10 @@ Each event includes:
 |Impacted regions       | A list of all the regions impacted by this event and shown on the calendar. |
 |Impacted subscriptions | A list of any subscriptions impacted by this event.                         |
 |Status                 | The current status of this event.                                           |
-|Health event type      | The type of health event (Planned maintence/Security advisory)                       |
+|Health event type      | The type of health event (Planned maintence/Security advisory).             |
 |Event tags             | The information that explains or names the nature and status of this event. |
-|Start time             | The time the event started.                                                 |
-|End time               | The time the event ended.                                                   |
+|Start time             | The time the event started. <br> *All times displayed are in Coordinated Universal Time (UTC).* |
+|End time               | The time the event ended.<br> *All times displayed are in Coordinated Universal Time (UTC).* |
 |Last update            | The most current notification information about this event.                 |
 
 
