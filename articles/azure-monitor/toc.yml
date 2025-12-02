@@ -987,6 +987,31 @@ items:
     items:
     - name: Overview of Azure Monitor Metrics
       href: metrics/data-platform-metrics.md
+    - name: Azure Monitor workspace
+      items:
+      - name: Overview
+        href: metrics/azure-monitor-workspace-overview.md
+        displayName: Azure Monitor workspace
+      - name: Create an Azure Monitor workspace
+        href: metrics/azure-monitor-workspace-manage.md
+        displayName: Azure Monitor workspace
+      - name: Manage access
+        href: metrics/azure-monitor-workspace-manage-access.md
+        displayName: Azure Monitor workspace
+      - name: Monitor metrics ingestion limits
+        href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
+        displayName: Azure Monitor workspace
+      - name: Best practices for scaling
+        href: metrics/azure-monitor-workspace-scaling-best-practice.md
+        displayName: Azure Monitor workspace
+      - name: Monitor performance
+        items:
+          - name: Metrics usage insights
+            href: metrics/metrics-usage-insights.md
+            displayName: Azure Monitor workspace
+          - name: Monitor metrics ingestion errors
+            href: metrics/azure-monitor-workspace-monitor-health.md
+            displayName: Azure Monitor workspace
     - name: Prometheus metrics
       items:
       - name: Overview
@@ -994,6 +1019,7 @@ items:
         displayName: Prometheus
       - name: Technical details
         href: metrics/prometheus-metrics-details.md
+        displayName: Prometheus
       - name: Connect Grafana
         href: metrics/prometheus-grafana.md
         displayName: Prometheus Grafana
@@ -1001,46 +1027,28 @@ items:
         items:
         - name: Integrate
           href: metrics/prometheus-remote-write.md
-          displayName: remote write, Prometheus
         - name: Migrate
           href: metrics/prometheus-migrate.md
           displayName: remote write, Prometheus
-      - name: Azure Monitor workspace
-        items:
-          - name: Overview
-            href: metrics/azure-monitor-workspace-overview.md
-            displayName: Prometheus
-          - name: Create an Azure Monitor workspace
-            href: metrics/azure-monitor-workspace-manage.md
-          - name: Manage access
-            href: metrics/azure-monitor-workspace-manage-access.md
-            displayName: Prometheus
-          - name: Monitor metrics ingestion limits
-            href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
-            displayName: Prometheus Azure Monitor workspace
-          - name: Best practices for scaling
-            href: metrics/azure-monitor-workspace-scaling-best-practice.md
-          - name: Monitor Performance
-            items:
-              - name: Metrics usage insights
-                href: metrics/metrics-usage-insights.md
-                displayName: Azure Monitor workspace
-              - name: Monitor metrics ingestion errors
-                href: metrics/azure-monitor-workspace-monitor-health.md
-                displayName: Azure Monitor workspace
-      - name: Alerting and rule groups
-        href: metrics/prometheus-rule-groups.md
+    - name: Query Azure Monitor workspace metrics
+      items:
+      - name: Resource-scoped queries
+        href: metrics/prometheus-resource-scoped-queries.md
+        displayName: Azure Monitor workspace, PromQL
+      - name: PromQL for OpenTelemetry metrics
+        href: metrics/prometheus-opentelemetry-best-practices.md
+        displayName: OpenTelemetry, PromQL
+      - name: PromQL for OpenTelemetry system metrics
+        href: metrics/prometheus-system-metrics-best-practices.md
+        displayName: OpenTelemetry, PromQL, performance counters, Guest OS, virtual machines
+      - name: PromQL using Azure workbooks
+        href: metrics/prometheus-workbooks.md
         displayName: Prometheus
-      - name: Query Prometheus metrics
-        items:
-          - name: Query using Azure workbooks
-            href: metrics/prometheus-workbooks.md
-            displayName: Prometheus
-          - name: Query using the API and PromQL
-            href: metrics/prometheus-api-promql.md
-            displayName: Prometheus
-          - name: OpenTelemetry Guest OS metrics (preview)
-            href: metrics/metrics-opentelemetry-guest.md
+      - name: PromQL using Prometheus HTTP APIs
+        href: metrics/prometheus-api-promql.md
+        displayName: Prometheus
+    - name: OpenTelemetry Guest OS metrics (preview)
+      href: metrics/metrics-opentelemetry-guest.md
   - name: Logs
     items:
     - name: Overview
