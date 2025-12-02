@@ -64,23 +64,23 @@ The information on this tab includes the following data:
 |---------|---------|
 |Title    | A summary of the issue |
 |Tracking ID |A unique identifier for the incident |
-|Status   |Whether the issue is Active, Resolved, or Scheduled<br> Select the **See details** link to open the Impacted Services tab for more detailed information. |
-|Start/End Time |When the issue began and when it was resolved (if applicable) |
+|Status   |Whether the issue is Active, Resolved, or Scheduled<br> Select the **See details** link to open the Impacted Services tab for more detailed information. <br> The issue is **Resolved** only if all the services in the region are resolved.|
+|Start/End Time |When the issue began and when it was resolved (if applicable)<br>All times displayed are in Coordinated Universal Time (UTC). |
 |Impacted Services |Azure services affected by the issue|
 |Impacted Regions |Geographic regions where the issue is occurring |
 |Impacted Subscriptions    |Your subscriptions that are affected|
 |Impacted Resources| The resources affected by this service issue. Select the **View details** link to open the Impacted Resources tab for more detailed information. |
-|Event level   | Severity of the issue (for example, Informational, Warning, Critical)|
-|Event tags    | Definition of the nature and status of the event|
+|Event level   | Severity of the issue (for example, Informational, Warning, Critical)<br> Each communication for an incident includes its own event level, but the summary tab always shows the highest severity across all affected regions and services.|
+|Event tags    | Definition of the nature and status of the event<br> The tags are a combination of all communications for the incident.|
 |Last update    | Timestamp of the most recent update from Azure Service Health. Select the **See all updates** link to open the Issue Updates tab for more detailed information.|
 
 
 
 ### Impacted Services tab
 
-:::image type="content" source="./media/service-issue-overview/service-issues-impacted-services.png" alt-text="Screenshot that shows the Issues Impacted tab." Lightbox="./media/service-issue-overview/service-issues-impacted-services.PNG":::
+:::image type="content" source="./media/service-issue-overview/service-issues-impacted-services-02.png" alt-text="Screenshot that shows the Issues Impacted tab." Lightbox="./media/service-issue-overview/service-issues-impacted-services-02.PNG":::
 
-This tab displays all the impacted services that are affected:
+This tab displays all the impacted resources that are affected:
 - Region 
 - Status 
 - Last update time 
