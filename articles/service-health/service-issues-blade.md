@@ -38,7 +38,7 @@ Select the link in the  **Issue name** column to open the tabs and see more deta
 >Service issue events are displayed in the panel for 3 days if they are still active or have been updated during that time. After that they are moved to the health history panel where they are displayed for 90 days. 
 >
 >
->For more information about Service issue events using ARG queries, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+>For more information about Service issue events using ARG queries, see [Resource graph sample queries](resource-graph-samples.md) which provides guidance on how to utilize the available queries.
 
 ### Filtering and sorting
 At the top of each tab, there's a command bar with several options of how to view the information on this page.
@@ -62,10 +62,10 @@ The information on this tab includes the following data:
 
 |Field  |Description  |
 |---------|---------|
-|Title    | A summary of the issue. |
-|Tracking ID |A unique identifier for the incident. |
+|Title    | A summary of the issue |
+|Tracking ID |A unique identifier for the incident |
 |Status   |Whether the issue is Active, Resolved, or Scheduled<br> Select the **See details** link to open the Impacted Services tab for more detailed information. <br> *The issue is **Resolved** only if all the services in the region are resolved.*|
-|Start/End Time |When the issue began and when it was resolved (if applicable).<br> *All times displayed are in Coordinated Universal Time (UTC).* |
+|Start/End Time |When the issue began and when it was resolved (if applicable)<br> *All times displayed are in Coordinated Universal Time (UTC).* |
 |Impacted Services |The Azure services affected by the issue.|
 |Impacted Regions |All geographic regions where the issue is occurring. |
 |Impacted Subscriptions    |Your subscriptions that are affected.|
