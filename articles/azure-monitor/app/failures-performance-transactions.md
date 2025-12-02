@@ -307,18 +307,18 @@ Release annotations mark deployments and other significant events on Application
 [Azure Pipelines](/azure/devops/pipelines) creates a release annotation during deployment when all the following conditions are true:
 
 > [!div class="checklist"]
-> - The target resource links to Application Insights through the `APPINSIGHTS_INSTRUMENTATIONKEY` app setting.
-> - The Application Insights resource is in the same subscription as the target resource.
-> - The deployment uses one of the following Azure Pipelines tasks:
+> * The target resource links to Application Insights through the `APPLICATIONINSIGHTS_CONNECTION_STRING` app setting.
+> * The Application Insights resource is in the same subscription as the target resource.
+> * The deployment uses one of the following Azure Pipelines tasks:
 
-  | Task code                 | Task name                     | Versions     |
-  |---------------------------|-------------------------------|--------------|
-  | AzureAppServiceSettings   | Azure App Service Settings    | Any          |
-  | AzureRmWebAppDeployment   | Azure App Service             | V3+          |
-  | AzureFunctionApp          | Azure Functions               | Any          |
-  | AzureFunctionAppContainer | Azure Functions for container | Any          |
-  | AzureWebAppContainer      | Azure Web App for Containers  | Any          |
-  | AzureWebApp               | Azure Web App                 | Any          |
+| Task code                 | Task name                     | Versions     |
+|---------------------------|-------------------------------|--------------|
+| AzureAppServiceSettings   | Azure App Service Settings    | Any          |
+| AzureRmWebAppDeployment   | Azure App Service             | V3+          |
+| AzureFunctionApp          | Azure Functions               | Any          |
+| AzureFunctionAppContainer | Azure Functions for container | Any          |
+| AzureWebAppContainer      | Azure Web App for Containers  | Any          |
+| AzureWebApp               | Azure Web App                 | Any          |
 
 > [!NOTE]
 > If you still use the older Application Insights annotation deployment task, delete it.
@@ -333,17 +333,17 @@ If you don't use the tasks in the previous section, add an inline script in the 
 1. Add the PowerShell script from step 2 in [Create release annotations with the Azure CLI](#create-release-annotations-with-the-azure-cli) to **Inline Script**.
 1. Add script arguments. Replace placeholders in angle brackets.
 
-   ```powershell
-   -aiResourceId "<aiResourceId>" `
-   -releaseName "<releaseName>" `
-   -releaseProperties @{"ReleaseDescription"="<a description>";
+    ```powershell
+    -aiResourceId "<aiResourceId>" `
+    -releaseName "<releaseName>" `
+    -releaseProperties @{"ReleaseDescription"="<a description>";
         "TriggerBy"="<Your name>" }
-   ```
-
-   The following example shows metadata you can set in the optional `releaseProperties` argument by using build and release variables. Select **Save**.
-
-   ```powershell
-   -releaseProperties @{
+    ```
+    
+    The following example shows metadata you can set in the optional `releaseProperties` argument by using build and release variables. Select **Save**.
+    
+    ```powershell
+    -releaseProperties @{
     "BuildNumber"="$(Build.BuildNumber)";
     "BuildRepositoryName"="$(Build.Repository.Name)";
     "BuildRepositoryProvider"="$(Build.Repository.Provider)";
@@ -356,7 +356,7 @@ If you don't use the tasks in the previous section, add an inline script in the 
     "ReleaseWebUrl"="$(Release.ReleaseWebUrl)";
     "SourceBranch"="$(Build.SourceBranch)";
     "TeamFoundationCollectionUri"="$(System.TeamFoundationCollectionUri)" }
-   ```
+    ```
 
 ### Create release annotations with the Azure CLI
 
@@ -365,67 +365,67 @@ Use the following PowerShell script to create a release annotation from any proc
 1. Sign in to the [Azure CLI](/cli/azure/authenticate-azure-cli).
 1. Save the following script as `CreateReleaseAnnotation.ps1`.
 
-   ```powershell
-   param(
-       [parameter(Mandatory = $true)][string]$aiResourceId,
-       [parameter(Mandatory = $true)][string]$releaseName,
-       [parameter(Mandatory = $false)]$releaseProperties = @()
-   )
-
-   # Function to ensure all Unicode characters in a JSON string are properly escaped
-   function Convert-UnicodeToEscapeHex {
-     param (
-       [parameter(Mandatory = $true)][string]$JsonString
-     )
-     $JsonObject = ConvertFrom-Json -InputObject $JsonString
-     foreach ($property in $JsonObject.PSObject.Properties) {
-       $name = $property.Name
-       $value = $property.Value
-       if ($value -is [string]) {
-         $value = [regex]::Unescape($value)
-         $OutputString = ""
-         foreach ($char in $value.ToCharArray()) {
-           $dec = [int]$char
-           if ($dec -gt 127) {
-             $hex = [convert]::ToString($dec, 16)
-             $hex = $hex.PadLeft(4, '0')
-             $OutputString += "\u$hex"
-           }
-           else {
-             $OutputString += $char
-           }
-         }
-         $JsonObject.$name = $OutputString
-       }
-     }
-     return ConvertTo-Json -InputObject $JsonObject -Compress
-   }
-   
-   $annotation = @{
-       Id = [GUID]::NewGuid();
-       AnnotationName = $releaseName;
-       EventTime = (Get-Date).ToUniversalTime().GetDateTimeFormats("s")[0];
-       Category = "Deployment"; #Application Insights only displays annotations from the "Deployment" Category
-       Properties = ConvertTo-Json $releaseProperties -Compress
-   }
-   
-   $annotation = ConvertTo-Json $annotation -Compress
-   $annotation = Convert-UnicodeToEscapeHex -JsonString $annotation  
- 
-   $accessToken = (az account get-access-token | ConvertFrom-Json).accessToken
-   $headers = @{
-       "Authorization" = "Bearer $accessToken"
-       "Accept"        = "application/json"
-       "Content-Type"  = "application/json"
-   }
-   $params = @{
-       Headers = $headers
-       Method  = "Put"
-       Uri     = "https://management.azure.com$($aiResourceId)/Annotations?api-version=2015-05-01"
-       Body    = $annotation
-   }
-   Invoke-RestMethod @params
-   ```
+    ```powershell
+    param(
+        [parameter(Mandatory = $true)][string]$aiResourceId,
+        [parameter(Mandatory = $true)][string]$releaseName,
+        [parameter(Mandatory = $false)]$releaseProperties = @()
+    )
+    
+    # Function to ensure all Unicode characters in a JSON string are properly escaped
+    function Convert-UnicodeToEscapeHex {
+      param (
+        [parameter(Mandatory = $true)][string]$JsonString
+      )
+      $JsonObject = ConvertFrom-Json -InputObject $JsonString
+      foreach ($property in $JsonObject.PSObject.Properties) {
+        $name = $property.Name
+        $value = $property.Value
+        if ($value -is [string]) {
+          $value = [regex]::Unescape($value)
+          $OutputString = ""
+          foreach ($char in $value.ToCharArray()) {
+            $dec = [int]$char
+            if ($dec -gt 127) {
+              $hex = [convert]::ToString($dec, 16)
+              $hex = $hex.PadLeft(4, '0')
+              $OutputString += "\u$hex"
+            }
+            else {
+              $OutputString += $char
+            }
+          }
+          $JsonObject.$name = $OutputString
+        }
+      }
+      return ConvertTo-Json -InputObject $JsonObject -Compress
+    }
+    
+    $annotation = @{
+        Id = [GUID]::NewGuid();
+        AnnotationName = $releaseName;
+        EventTime = (Get-Date).ToUniversalTime().GetDateTimeFormats("s")[0];
+        Category = "Deployment"; #Application Insights only displays annotations from the "Deployment" Category
+        Properties = ConvertTo-Json $releaseProperties -Compress
+    }
+    
+    $annotation = ConvertTo-Json $annotation -Compress
+    $annotation = Convert-UnicodeToEscapeHex -JsonString $annotation  
+    
+    $accessToken = (az account get-access-token | ConvertFrom-Json).accessToken
+    $headers = @{
+        "Authorization" = "Bearer $accessToken"
+        "Accept"        = "application/json"
+        "Content-Type"  = "application/json"
+    }
+    $params = @{
+        Headers = $headers
+        Method  = "Put"
+        Uri     = "https://management.azure.com$($aiResourceId)/Annotations?api-version=2015-05-01"
+        Body    = $annotation
+    }
+    Invoke-RestMethod @params
+    ```
 
 > [!NOTE]
 > Set **Category** to **Deployment** or annotations don't appear in the Azure portal.
@@ -440,11 +440,11 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
      "TriggerBy"="<Your name>" }
 ```
 
-| Argument            | Definition                                                   | Note |
-|---------------------|--------------------------------------------------------------|------|
-| `aiResourceId`      | Resource ID of the target Application Insights resource.     | Example: `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
-| `releaseName`       | Name of the new release annotation.                          |      |
-| `releaseProperties` | Custom metadata to attach to the annotation.                 | Optional |
+| Argument | Definition | Note |
+|----------|------------|------|
+| `aiResourceId` | Resource ID of the target Application Insights resource. | Example: `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
+| `releaseName` | Name of the new release annotation. | |
+| `releaseProperties` | Custom metadata to attach to the annotation. | Optional |
 
 ### View annotations
 
@@ -453,9 +453,9 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
 
 Application Insights displays release annotations in the following experiences:
 
-- [**Performance and Failures**](#investigate-failures-performance-and-transactions-with-application-insights)
-- [**Usage**](usage.md)
-- [**Workbooks**](../visualize/best-practices-visualize.md) (for any time-series visualization)
+* [**Performance and Failures**](#investigate-failures-performance-and-transactions-with-application-insights)
+* [**Usage**](usage.md)
+* [**Workbooks**](../visualize/best-practices-visualize.md) (for any time-series visualization)
 
 Annotations are visualized as markers at the top of charts.
 
@@ -476,7 +476,7 @@ Components are independently deployable parts of your distributed or microservic
 
 * Components are different from "observed" external dependencies, such as SQL and event hubs, which your team or organization might not have access to (code or telemetry).
 * Components run on any number of server, role, or container instances.
-* Components can be separate Application Insights instrumentation keys, even if subscriptions are different. Components also can be different roles that report to a single Application Insights instrumentation key. The new experience shows details across all components, regardless of how they were set up.
+* Components can be separate Application Insights connection strings, even if subscriptions are different. Components also can be different roles that report to a single Application Insights connection string. The new experience shows details across all components, regardless of how they were set up.
 </details>
 
 <br>
@@ -510,7 +510,7 @@ Components are independently deployable parts of your distributed or microservic
 
 * Components are different from "observed" external dependencies, such as SQL and event hubs, which your team or organization might not have access to (code or telemetry).
 * Components run on any number of server, role, or container instances.
-* Components can be separate Application Insights instrumentation keys, even if subscriptions are different. Components also can be different roles that report to a single Application Insights instrumentation key. The new experience shows details across all components, regardless of how they were set up.
+* Components can be separate Application Insights connection strings, even if subscriptions are different. Components also can be different roles that report to a single Application Insights connection string. The new experience shows details across all components, regardless of how they were set up.
 
 #### How much data is retained?
 
