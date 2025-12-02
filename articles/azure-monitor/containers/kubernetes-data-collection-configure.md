@@ -11,21 +11,16 @@ The data that Azure Monitor initially collects from your Kubernetes clusters dep
  
 This article describes the different types of customization you can perform for data collection from your Kubernetes clusters and the methods required to implement each. Links are provided to detailed instructions for each method.
 
-## Types of data
-There are two fundamental types of data that Azure Monitor collects from your Kubernetes clusters: logs and metrics. The configuration methods to customize each are similar but have some differences as described in the sections below.
-
-| Data | Description | Destination |
-|:---|:---|:---|
-| Logs | Logs collected for a Kubernetes cluster typically include container logs from pods (stdout/stderr) and system logs from nodes and control plane components, providing visibility into application behavior and cluster health for troubleshooting and monitoring. In addition to filtering for logs that you don't require and adding logs that aren't collected by default, you may want to send different logs to different storage tiers to optimize your costs.  | Log Analytics workspace |
-| Metrics | Numerical values that represent the state and performance of various components in your Kubernetes cluster. You may want to filter metrics that you don't require or add metrics that aren't collected by default. | Azure Monitor workspace |
 
 ## Configuration methods
-When you enable monitoring for a Kubernetes cluster in Azure Monitor, the [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) is installed in the cluster. This agent is responsible for collecting logs and metrics from the cluster and sending them to Azure Monitor. There are two methods to define the configuration the agent will use to collect data. Each method controls different aspects of data collection, so you need to use both methods together to achieve your requirements. For some configuration options, you can choose either method.
+When you enable monitoring for a Kubernetes cluster in Azure Monitor, the [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) is installed in the cluster. This agent is responsible for collecting logs and metrics from the cluster and sending them to Azure Monitor. 
+
+There are two methods to define the configuration the agent will use to collect data. Each method controls different aspects of data collection, so you need to use both methods together to achieve your requirements. For some configuration options, you can choose either method. While both logs and metrics use the same configuration options, configuration for each data is done separately.
 
 
 | Method | Description |
 |:---|:---|
-| ConfigMap | [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/) in Kubernetes store configuration data for applications running in the cluster. Multiple ConfigMaps are provided by Microsoft that are read by the Azure Monitor to modify different aspects of data collection. Modify these ConfigMaps to customize data collection for these data types. |
+| ConfigMap | [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/) in Kubernetes store configuration data for applications running in the cluster. Multiple ConfigMaps are provided by Microsoft for bother logs and metrics that are read by the Azure Monitor to modify different aspects of data collection. Modify these ConfigMaps and apply them to your cluster to customize data collection for these data types. |
 | Data Collection Rule (DCR) | [Data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) in Azure Monitor define what data is collected from a monitored resource and where it's sent and also allow you to perform advanced configurations using [transformations](../data-collection/data-collection-rule-transformations.md) which filter and transform data before it's ingested into the Log Analytics workspace. DCRs are automatically created  |
 
 
