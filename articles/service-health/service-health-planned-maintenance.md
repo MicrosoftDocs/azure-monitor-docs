@@ -2,7 +2,7 @@
 title: Service Health Planned maintenance
 description: Overview of the features and information found on the pane. 
 ms.topic: reference
-ms.date: 11/12/2025
+ms.date: 12/02/2025
 
 ---
 
@@ -55,7 +55,7 @@ Select the **Issue name** link to open the tabs with the information you need.
 >- [Impacted resources graph sample queries](resource-graph-impacted-samples.md)<br>
 >These resources provide guidance on how to utilize the available queries.
 
-### Command bar
+### Filtering and sorting
 
 At the top of each tab, there's a command bar with several options of how to view the information displayed.
 
