@@ -519,7 +519,7 @@ At this point, you successfully configured server-side application monitoring. I
             },
             "AllowedHosts": "*",
             "ApplicationInsights": {
-                "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000"
+                "ConnectionString": "<YOUR-CONNECTION-STRING>"
             }
         }
         ```
@@ -646,7 +646,7 @@ The full example is shared at the [NuGet website](https://github.com/microsoft/A
         {
             "ApplicationInsights":
             {
-                "ConnectionString" : "InstrumentationKey=00000000-0000-0000-0000-000000000000;"
+                "ConnectionString" : "<YOUR-CONNECTION-STRING>"
             },
             "Logging":
             {
@@ -782,9 +782,9 @@ The full example is shared at this [GitHub page](https://github.com/microsoft/Ap
                     IServiceCollection services = new ServiceCollection();
     
                     // Being a regular console app, there is no appsettings.json or configuration providers enabled by default.
-                    // Hence instrumentation key/ connection string and any changes to default logging level must be specified here.
+                    // Hence connection string and any changes to default logging level must be specified here.
                     services.AddLogging(loggingBuilder => loggingBuilder.AddFilter<Microsoft.Extensions.Logging.ApplicationInsights.ApplicationInsightsLoggerProvider>("Category", LogLevel.Information));
-                    services.AddApplicationInsightsTelemetryWorkerService((ApplicationInsightsServiceOptions options) => options.ConnectionString = "InstrumentationKey=<instrumentation key here>");
+                    services.AddApplicationInsightsTelemetryWorkerService((ApplicationInsightsServiceOptions options) => options.ConnectionString = "<YOUR-CONNECTION-STRING>");
     
                     // To pass a connection string
                     // - aiserviceoptions must be created
@@ -989,7 +989,7 @@ namespace LiveMetricsDemo
         {
             // Create a TelemetryConfiguration instance.
             TelemetryConfiguration config = TelemetryConfiguration.CreateDefault();
-            config.InstrumentationKey = "INSTRUMENTATION-KEY-HERE";
+            config.ConnectionString = "<YOUR-CONNECTION-STRING>";
             QuickPulseTelemetryProcessor quickPulseProcessor = null;
             config.DefaultTelemetrySink.TelemetryProcessorChainBuilder
                 .Use((next) =>
@@ -1003,7 +1003,7 @@ namespace LiveMetricsDemo
 
             // Secure the control channel.
             // This is optional, but recommended.
-            quickPulseModule.AuthenticationApiKey = "YOUR-API-KEY-HERE";
+            quickPulseModule.AuthenticationApiKey = "<YOUR-API-KEY>";
             quickPulseModule.Initialize(config);
             quickPulseModule.RegisterTelemetryProcessor(quickPulseProcessor);
 
@@ -1045,7 +1045,7 @@ using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPuls
 
 // Create a TelemetryConfiguration instance.
 TelemetryConfiguration config = TelemetryConfiguration.CreateDefault();
-config.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+config.ConnectionString = "<YOUR-CONNECTION-STRING>";
 QuickPulseTelemetryProcessor quickPulseProcessor = null;
 config.DefaultTelemetrySink.TelemetryProcessorChainBuilder
     .Use((next) =>
@@ -1059,7 +1059,7 @@ var quickPulseModule = new QuickPulseTelemetryModule();
 
 // Secure the control channel.
 // This is optional, but recommended.
-quickPulseModule.AuthenticationApiKey = "YOUR-API-KEY-HERE";
+quickPulseModule.AuthenticationApiKey = "<YOUR-API-KEY>";
 quickPulseModule.Initialize(config);
 quickPulseModule.RegisterTelemetryProcessor(quickPulseProcessor);
 
@@ -4364,7 +4364,7 @@ In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nug
 ```json
 {
     "ApplicationInsights": {
-    "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+    "ConnectionString": "<YOUR-CONNECTION-STRING>",
     "EnableAdaptiveSampling": false,
     "EnablePerformanceCounterCollectionModule": false
     }
@@ -4401,7 +4401,7 @@ To configure any default telemetry module, use the extension method `ConfigureTe
             // Similarly, any other default modules can be configured.
             services.ConfigureTelemetryModule<QuickPulseTelemetryModule>((module, o) =>
             {
-                module.AuthenticationApiKey = "keyhere";
+                module.AuthenticationApiKey = "<YOUR-API-KEY-HERE>";
             });
 
             // The following removes PerformanceCollectorModule to disable perf-counter collection.
@@ -4507,7 +4507,7 @@ using Microsoft.ApplicationInsights;
     protected void Application_Start()
     {
         TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
-        configuration.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+        configuration.ConnectionString = "<YOUR-CONNECTION-STRING>";
         var telemetryClient = new TelemetryClient(configuration);
 
 ```
@@ -4517,7 +4517,7 @@ If you want to send a specific set of events to a different resource, you can se
 ```csharp
 
     var tc = new TelemetryClient();
-    tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+    tc.Context.ConnectionString = "<YOUR-CONNECTION-STRING>";
     tc.TrackEvent("myEvent");
     // ...
 
@@ -4542,7 +4542,7 @@ var app = builder.Build();
 
 // Resolve TelemetryConfiguration from DI and set the connection string
 var config = app.Services.GetRequiredService<TelemetryConfiguration>();
-config.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+config.ConnectionString = "<YOUR-CONNECTION-STRING>";
 
 app.Run();
 ```
@@ -4553,7 +4553,7 @@ If you want to send a specific set of events to a different resource, you can cr
 using Microsoft.ApplicationInsights;
 
 var tc = new TelemetryClient();
-tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+tc.Context.ConnectionString = "<YOUR-CONNECTION-STRING>";
 tc.TrackEvent("myEvent");
 // ...
 ```
@@ -4572,7 +4572,7 @@ This functionality is available by setting `TelemetryConfiguration.ApplicationId
 ```csharp
 public interface IApplicationIdProvider
 {
-    bool TryGetApplicationId(string instrumentationKey, out string applicationId);
+    bool TryGetApplicationId(string connectionString, out string applicationId);
 }
 ```
 
@@ -4584,7 +4584,7 @@ This wrapper is for our Profile API. It throttles requests and cache results. Th
 
 The class exposes an optional property called `ProfileQueryEndpoint`. By default, it's set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`.
 
-If you need to configure a proxy, we recommend proxying the base address and ensuring the path includes `/api/profiles/{0}/appId`. At runtime, `{0}` is replaced with the instrumentation key for each request.
+If you need to configure a proxy, we recommend proxying the base address and ensuring the path includes `/api/profiles/{0}/appId`. At runtime, `{0}` is replaced with the connection string for each request.
 
 ##### ASP.NET
 
@@ -4634,9 +4634,9 @@ app.Run();
 
 #### DictionaryApplicationIdProvider
 
-This static provider relies on your configured instrumentation key/application ID pairs.
+This static provider relies on your configured connection string/application ID pairs.
 
-This class has the `Defined` property, which is a `Dictionary<string,string>` of instrumentation key/application ID pairs.
+This class has the `Defined` property, which is a `Dictionary<string,string>` of connection string/application ID pairs.
 
 This class has the optional property `Next`, which can be used to configure another provider to use when a connection string is requested that doesn't exist in your configuration.
 
@@ -4649,8 +4649,8 @@ This class has the optional property `Next`, which can be used to configure anot
     ...
     <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.DictionaryApplicationIdProvider, Microsoft.ApplicationInsights">
         <Defined>
-            <Type key="InstrumentationKey_1" value="ApplicationId_1"/>
-            <Type key="InstrumentationKey_2" value="ApplicationId_2"/>
+            <Type key="ConnectionString_1" value="ApplicationId_1"/>
+            <Type key="ConnectionString_2" value="ApplicationId_2"/>
         </Defined>
         <Next Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights" />
     </ApplicationIdProvider>
@@ -4664,8 +4664,8 @@ This class has the optional property `Next`, which can be used to configure anot
 TelemetryConfiguration.Active.ApplicationIdProvider = new DictionaryApplicationIdProvider{
  Defined = new Dictionary<string, string>
     {
-        {"InstrumentationKey_1", "ApplicationId_1"},
-        {"InstrumentationKey_2", "ApplicationId_2"}
+        {"ConnectionString_1", "ApplicationId_1"},
+        {"ConnectionString_2", "ApplicationId_2"}
     }
 };
 ```
@@ -4685,8 +4685,8 @@ builder.Services.AddSingleton<IApplicationIdProvider>(sp =>
     {
         Defined = new Dictionary<string, string>
         {
-            { "InstrumentationKey_1", "ApplicationId_1" },
-            { "InstrumentationKey_2", "ApplicationId_2" }
+            { "ConnectionString_1", "ApplicationId_1" },
+            { "ConnectionString_2", "ApplicationId_2" }
         },
         Next = new ApplicationInsightsApplicationIdProvider() // optional fallback
     });

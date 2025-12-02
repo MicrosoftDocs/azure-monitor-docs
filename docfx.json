@@ -288,7 +288,7 @@
           "Operations"
         ]
       },
-    "titleSuffix": {
+      "titleSuffix": {
         "articles/advisor/**/*": "Azure Advisor",
         "articles/azure-monitor/**/*": "Azure Monitor",
         "articles/chaos-studio/**/*": "Azure Chaos Studio",
@@ -298,14 +298,14 @@
     },
     "overwrite": [],
     "externalReference": [],
-    "template": []
-  },
-"dest": "azure monitor",
-"rules": {
+    "template": [],
+    "rules": {
       "sensitive-language-ma": {
         "exclude": [
           "articles/azure-monitor/reference/tables/dnsauditevents.md"
         ]
       }
     }
+  },
+  "dest": "azure monitor"
 }  

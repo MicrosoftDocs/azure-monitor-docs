@@ -35,9 +35,9 @@ There are two query scopes:
 
 * **Workspace-scope**: You can view all metrics in the workspace for which you have permission. These queries are scoped to all data in the workspace you have access to. When you select an **Azure Monitor Workspace** scope on any **Azure Monitor** dashboard in the Azure portal, the workspace scope is used.
 
-* **Resource-scope**: When you access the metrics for a particular resource, resource group, or subscription, such as when you select **Metrics** from a resource menu in the Azure portal, Azure RBAC is used so you can view metrics for only resources that you have access to. Depending on the access control mode configured for the workspaces hosting your resource metrics, you may need direct access to the workspaces in addition to resources queried.
+* **Resource-scope**: When you access the metrics for a particular resource, resource group, or subscription, such as when you select **Metrics** from a resource menu in the Azure portal, Azure RBAC is used so you can view metrics for only resources that you have access to. Depending on the access control mode configured for the workspaces hosting your resource metrics, you may need direct access to the workspaces in addition to resources queried. For detailed information on resource-scoped queries, see [Resource-scoped queries for Azure Monitor workspace](prometheus-resource-scoped-queries.md).
 
-Metrics are only available in resource-scope queries if they're associated with the relevant resource. To check this association, run a query and verify that the `Microsoft.resourceid` dimension is populated.
+Metrics are only available in resource-scope queries if they're associated with the relevant resource. To check this association, run a query and verify that the `Microsoft.resourceid` dimension is populated. For more information, see [Resource dimensions](prometheus-resource-scoped-queries.md#resource-dimensions).
 
 There are limitations with the following resources:
 
