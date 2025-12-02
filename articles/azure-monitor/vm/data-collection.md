@@ -29,6 +29,9 @@ Azure Monitor automatically collects host metrics and activity logs from your Az
 
 ## Create a data collection rule
 
+[!INCLUDE [data-collection-rule-edit-warning](./includes/data-collection-rule-edit-warning.md)]
+
+
 In the Azure portal, on the **Monitor** menu, select **Data Collection Rules** > **Create** to open the DCR creation pane.
 
 :::image type="content" source="media/data-collection/create-data-collection-rule.png" lightbox="media/data-collection/create-data-collection-rule.png" alt-text="Screenshot that shows the Create button for a new data collection rule.":::
