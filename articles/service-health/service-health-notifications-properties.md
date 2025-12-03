@@ -2,7 +2,7 @@
 title: Azure Service Health notifications overview
 description: Service Health notifications allow you to view Service Health messages published by Microsoft Azure.
 ms.topic: article
-ms.date: 10/29/2025
+ms.date: 12/03/2025
 
 ---
 
@@ -16,7 +16,7 @@ Depending on the notification’s type, it could be purely informational or indi
 
 For information on how long Service Health notifications stay active in the portal see [Service Health data transitions](service-health-notification-transitions.md).
 
-## How to access and use Service Health notifications
+## Access and view Service Health notifications
 Once logged into Azure, you can access Service Health notifications in one of three ways:
 
 - **Azure Portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard showing any active notifications for your subscriptions. The notifications are organized into the categories corresponding to the types (Incidents, Maintenance, etc.), and there’s also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details (impact, status updates, resolution, etc.). See [Azure Service Health Portal](service-health-portal-update.md).  
@@ -33,7 +33,7 @@ For more information, see [View and retrieve the activity log](/azure/azure-moni
 For information about using Azure Resource Graph (ARG) queries to create reports on your Service health notifications, see [Resource graph sample queries](resource-graph-samples.md). This document provides guidance on how to utilize the available queries.
 
 
-## Service Health notification types
+### Service Health notification types
 
 To help you stay ahead of potential disruptions, Azure categorizes service health events into six types, each indicating a different type of situation. Some event types are *actionable* (meaning you need to do something) and others are purely *informational*.
  
@@ -58,9 +58,9 @@ Here’s a breakdown of each notification type, what it means, and how you can a
 - **Billing** – *Informational (account notices)*. These notifications provide information about billing or subscription changes. They might notify subscription owners/contributors about things like upcoming billing updates, credit expiration, or other billing-related issues. Billing notifications are purely informational. You don't fix anything in Azure—if there’s a billing issue, you’d contact support or check your billing settings.<br>
 *These notifications are shown in the Billing updates pane*.
 
-## Service Health notification data properties
+### Service Health notification data properties
 
-### Event type
+#### Event type
 Service Health event properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. 
 
 Key properties include *properties.incidentTyp*e (for example, *ServiceIssue*, or *PlannedMaintenance*), status (*Active* or *Resolved*), and timestamps such as *properties.impactStartTime* and *properties.impactMitigationTime*. <br>For more information about the data properties, see [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
@@ -99,7 +99,7 @@ Properties.stage | The possible values for **Incident**, and **Security** are **
 Properties.communicationId | The communication this event is associated with.
 
 
-### Incident type
+#### Incident type
 
 The `properties.incidentType` field in Azure Service Health identifies the category of a health event, such as *ActionRequired*, *Incident*, *Maintenance*, *Security*, or *Informational*. Each type signals a different scenario—for example, *Incident* means an unplanned outage or degradation, while *Maintenance* indicates scheduled work, and *ActionRequired* alerts you to changes needing your intervention.
 
@@ -134,7 +134,7 @@ Service Health event type (`properties.incidentType`)
 - -->
 
 >[!NOTE]
-> Billing notifications aren't shown in the Activity log found in the Azure portal. You see them in Azure Service Health. 
+> Billing notifications aren't shown in the Activity log in the Azure portal. You only see them in Azure Service Health. 
 
  ## For more information
 
