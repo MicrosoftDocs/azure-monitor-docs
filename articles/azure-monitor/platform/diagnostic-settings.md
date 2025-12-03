@@ -22,7 +22,7 @@ The following video walks through routing resource platform logs with diagnostic
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=2e9e11cc-fc03-4caa-8fee-4386abf454bc]
 
 > [!WARNING] 
-> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
+> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. For some resource types this would resume the collection of resource logs as defined in the diagnostic setting. 
 
 ## Sources
 
@@ -186,6 +186,11 @@ To create or edit a diagnostic setting with the Azure Monitor REST API, see [Dia
 
 
 ---
+
+> [!WARNING]
+> From Azure portal when creating or updating Diagnostic Settings for an Azure Storage account or Azure Event Hub namespace, you could be unable to select itself as a destination for the resource logs or metrics data.
+> This is by design as it is possible to get into a state where resource logs or metrics being sent from a resource to the same resource would generate an infinite loop of generating and writing data.  
+> This design is only applied at the Azure portal UX layer, if there is truly a need to write data to the same resource and you are willing to accept the associated risks, you can create the Diagnostic Setting using Azure PowerShell, Azure CLI, REST API, ARM Template or other supported Microsoft SDK.
 
 
    
