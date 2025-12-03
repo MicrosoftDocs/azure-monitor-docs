@@ -78,7 +78,7 @@ The following example shows a query returning the data from a table created for 
 
 ### Create custom table
 
-If the destination table doesn't already exist then you must create it before creating the DCR. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table. 
+If the destination table doesn't already exist then you must create it before creating the DCR. Olny use the Powershell script below to create the table. No other method will work. 
 For example, you can use the following PowerShell script to create a custom table to receive the data from the sample JSON file above. This example also adds the optional columns.
 
 ```powershell
