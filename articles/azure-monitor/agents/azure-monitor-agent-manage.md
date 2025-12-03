@@ -506,10 +506,11 @@ Currently not supported.
       ]
     }
     ```
-> [!NOTE]
-> If you are associating the DCR with an **Azure Arc-enabled machine**, you must modify the `scope` property and `parameters` name.
->
-> "scope": "[format('Microsoft.HybridCompute/machines/{0}', parameters('name'))]"
+
+    > [!NOTE]
+    > If you are associating the DCR with an **Azure Arc-enabled machine**, you must modify the `scope` property and `parameters` name.
+    >
+    > "scope": "[format('Microsoft.HybridCompute/machines/{0}', parameters('name'))]"
 
     Parameter file:
 
