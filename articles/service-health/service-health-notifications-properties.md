@@ -134,7 +134,7 @@ Service Health event type (`properties.incidentType`)
 - -->
 
 >[!NOTE]
-> Billing notifications aren't shown in the Activity log in the Azure portal. You see them in Azure Service Health. 
+> Billing notifications aren't shown in the Activity log in the Azure portal. You only see them in Azure Service Health. 
 
  ## For more information
 
