@@ -2,24 +2,24 @@
 title: In-portal Billing Communications
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 7/24/2025
+ms.date: 10/15/2025
 ---
 
 # In-portal Billing Communications
 
 ## Overview
 
-The in-portal billing communication in [Service Health](service-health-overview.md) shows billing updates for users with the **subscription owner** or **subscription contributor** roles. These users can view updates in both the **Billing Updates** pane and the Service Health API.
+The in-portal billing communication in [Service Health](service-health-overview.md) shows billing updates for users with the **subscription owner** or **subscription contributor** roles. These users can view updates in both the **Billing updates** pane and the Service Health API.
 
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-main.png"alt-text="A screenshot of the In-portal billing main pane."Lightbox="./media/billing-elevated-access/in-portal-billing-main.png":::
 
 
-To help you track billing changes, the communication includes updates that relate to your subscription. Users without these roles can’t access the **Billing Updates** pane.
+To help you track billing changes, the communication includes updates that relate to your subscription. Users without these roles can’t access the **Billing updates** pane.
 
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-2.png"alt-text="A screenshot of in-portal billing main pane with more information."Lightbox="./media/billing-elevated-access/in-portal-billing-2.png":::
 
 
-The **Billing Updates** pane includes billing communication types such as:
+The **Billing updates** pane includes billing communication types such as:
 
 - Overbilling notifications
 - Underbilling notifications
@@ -37,9 +37,9 @@ You can view up to three months of billing updates in the user interface and ret
 
 ## Access requirements
 
-The detail pages for billing communication event types appear in the **Billing Updates** pane in [Service Health](service-health-overview.md). Only users with elevated access can open the pane.
+The detail pages for billing communication event types appear in the **Billing updates** pane in [Service Health](service-health-overview.md). Only users with elevated access can open the pane.
 
-To view the **Billing Updates** pane, you need to have access as one of the following roles:
+To view the **Billing updates** pane, you need to have access as one of the following roles:
 
 - Subscription owner
 - Subscription contributor
@@ -51,7 +51,7 @@ Users without access see a message at the top of the pane.
 
 ## How to view billing events
 
-Azure customers with any of the elevated accesses defined here can view billing communication events through the **Billing Updates pane**  in the [Service Health](service-health-overview.md) portal, and through the API access to retrieve billing event data,
+Azure customers with any of the elevated accesses defined here can view billing communication events through the **Billing updates** pane  in the [Service Health](service-health-overview.md) portal, and through the API access to retrieve billing event data,
   
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-details.png"alt-text="A screenshot of Billing event details."Lightbox="./media/billing-elevated-access/in-portal-billing-details.png":::
 

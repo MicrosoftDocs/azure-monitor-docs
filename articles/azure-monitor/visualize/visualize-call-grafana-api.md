@@ -3,7 +3,7 @@ title: Call Grafana APIs programmatically
 description: Learn how to call Grafana APIs programmatically with Microsoft Entra ID and an Azure service principal
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 06/17/2025
+ms.date: 10/29/2025
 ---
 
 # Tutorial: Call Grafana APIs programmatically
@@ -19,8 +19,8 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
-- An Azure Monitor dashboards with Grafana. [Create an Azure Monitor dashboards with Grafana resource](/azure/azure-monitor/visualize/visualize-use-grafana-dashboards).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure Monitor dashboards with Grafana resource. [Create an Azure Monitor dashboards with Grafana resource](/azure/azure-monitor/visualize/visualize-use-grafana-dashboards).
 - A Microsoft Entra application with a service principal. [Create a Microsoft Entra application and service principal](/entra/identity-platform/howto-create-service-principal-portal). For simplicity, use an application located in the same Microsoft Entra tenant as your Azure Monitor dashboards with Grafana resource.
 
 ## Sign in to Azure
@@ -30,15 +30,15 @@ Sign in to the Azure portal at [https://portal.azure.com/](https://portal.azure.
 ## Assign a role to the service principal of your application
 
 1. In the Azure portal, enter *Azure Monitor dashboards with Grafana* in the **Search resources, services, and docs (G+ /)**.
-1. Select **Azure Monitor dashboards with Grafana (Preview)** to open the gallery blade.
+1. Select **Azure Monitor dashboards with Grafana** to open the gallery blade.
 1. Select **Browse Saved dashboards** in the top command bar to open the browse blade.
 
-    :::image type="content" source="media/visualizations-grafana/monitor-gallery-blade.png" alt-text="Screenshot of gallery blade in the Azure platform.":::
+    :::image type="content" source="./media/visualizations-grafana/monitor-gallery-blade.png" alt-text="Screenshot of gallery blade in the Azure platform.":::
 
 1. Find and open your Azure Monitor dashboards with Grafana resource.
 1. Select **Access control (IAM)** in the navigation menu.
 1. Select **Add**, then **Add role assignment**.
-1. There're multi roles that works, you could check the description of each role and select the minimum access to keep security.
+1. There are multiple roles that work, you could check the description of each role and select the minimum access to keep security.
     1. *Azure Monitor Dashboards with Grafana Contributor* role under *Job function roles* tab.
     1. *Monitoring Contributor* role under *Job function roles* tab.
     1. *Monitoring Reader* role under *Job function roles* tab.
@@ -49,7 +49,7 @@ Sign in to the Azure portal at [https://portal.azure.com/](https://portal.azure.
 1. Select **Select members**, select your service principal, and hit **Select**.
 1. Select **Review + assign**.
 
-    :::image type="content" source="media/visualizations-grafana/grafana-role-assignment.png" alt-text="Screenshot of Add role assignment in the Azure platform.":::
+    :::image type="content" source="./media/visualizations-grafana/grafana-role-assignment.png" alt-text="Screenshot of Add role assignment in the Azure platform.":::
 
 ## Retrieve application details
 
@@ -80,9 +80,9 @@ You now need to gather some information, which you'll use to get a Grafana API a
 
 The Grafana endpoint usually follows the format: https://local-<your_dashboard_region>.gateway.dashboard.azure.com. You could get the region info by the following steps.
    1. In the Azure portal, enter *Azure Monitor dashboards with Grafana* in the **Search resources, services, and docs (G+ /)** bar.
-   1. Select **Azure Monitor dashboards with Grafana (Preview)** to open the gallery blade.
+   1. Select **Azure Monitor dashboards with Grafana** to open the gallery blade.
    1. Select **Browse Saved dashboards** in the top command bar to open the browse blade.
-    :::image type="content" source="media/visualizations-grafana/monitor-gallery-blade.png" alt-text="Screenshot of gallery blade in the Azure platform.":::
+    :::image type="content" source="./media/visualizations-grafana/monitor-gallery-blade.png" alt-text="Screenshot of browse blade in the Azure platform.":::
 
    1. Find and open your Azure Monitor dashboards with Grafana resource.
    1. Select **Overview** from the left menu and get the **location** value from **JSON View**.
@@ -90,21 +90,7 @@ The Grafana endpoint usually follows the format: https://local-<your_dashboard_r
 
 ## Get an access token
 
-To access Grafana APIs, you need to get an access token. You can get the access token using the Azure CLI or making a POST request.
-
-### [Azure CLI](#tab/azure-cli)
-
-Sign in to the Azure CLI by running the [az login](/cli/azure/reference-index#az-login) command and replace `<client-id>`, `<client-secret>`, and `<tenant-id>` with the application (client) ID, client secret, and tenant ID collected in the previous step:
-
-```
-az login --service-principal --username "<client-id>" --password "<client-secret>" --tenant "<tenant-id>"
-```
-
-Use the command [az account get-access-token](/cli/azure/account#az-account-get-access-token) to get an access token. Here's an example:
-
-```
-az account get-access-token --tenant 00000000-0000-0000-0000-000000000000
-```
+To access Grafana APIs, you need to get an access token. You can get the access token by making a POST request.
 
 ### [POST request](#tab/post)
 
@@ -112,7 +98,7 @@ Follow the example below to call Microsoft Entra ID and retrieve a token. Replac
 
 ```bash
 curl -X POST -H 'Content-Type: application/x-www-form-urlencoded' \
--d 'grant_type=client_credentials&client_id=<client-id>&client_secret=<client-secret>&resource=ce34e7e5-485f-4d76-964f-b3d2b16d1e4f' \
+-d 'grant_type=client_credentials&client_id=<client-id>&client_secret=<client-secret>&resource=6f2d169c-08f3-4a4c-a982-bcaf2d038c45' \
 https://login.microsoftonline.com/<tenant-id>/oauth2/token
 ```
 
@@ -125,7 +111,7 @@ Here's an example of response:
   "ext_expires_in": "599",
   "expires_on": "1575500555",
   "not_before": "1575499766",
-  "resource": "ce34...1e4f",
+  "resource": "6f2d...8c45",
   "access_token": "eyJ0eXAiOiJ......AARUQ"
 }
 ```
@@ -145,13 +131,19 @@ curl -X GET \
 Replace `<access-token>` and `<grafana-endpoint>` with the access token retrieved in the previous step and the endpoint URL of your dashboard resource. For example `https://local-westcentralus.gateway.dashboard.azure.com`.
 
 Currently, only a subset of Grafana APIs is supported, including:
-- Get dashboard by uid, `GET /api/dashboards/uid/:uid`
+- Get dashboard by UID, `GET /api/dashboards/uid/:uid`
 - Update dashboard, `POST /api/dashboards/db/`
 - Get all dashboard versions by dashboard UID, `GET /api/dashboards/uid/:uid/versions`
 - Get dashboard version by dashboard UID, `GET /api/dashboards/uid/:uid/versions/:version`
 - Restore dashboard by dashboard UID, `POST /api/dashboards/id/:dashboardId/restore`
-- Get a single data source by uid, `GET /api/datasources/uid/:uid`
+- Get a single data source by UID, `GET /api/datasources/uid/:uid`
 - Query a data source, `POST /api/ds/query`
+- Get dashboard annotations by UID, `GET /api/annotations?dashboardUID=:uid`
+- Create dashboard annotations, `POST /api/annotations`
+- Update a dashboard annotation by annotation ID, `PUT /api/annotations/:id`
+- Patch a dashboard annotation by annotation ID, `PATCH /api/annotations/:id`
+- Delete annotation by annotation id and dashboard UID, `DELETE /api/annotations/:id?dashboardUID=:uid`
+- Find annotation tags by dashboard UID, `GET /api/annotations/tags?dashboardUID=:uid`
 
 For more details about these APIs, see [Grafana public doc](https://aka.ms/helios/grafana-api-doc).
 
@@ -159,7 +151,9 @@ For more details about these APIs, see [Grafana public doc](https://aka.ms/helio
 > [!NOTE]
 > You cannot import or delete dashboards through the Grafana API, as these operations require Azure Resource Manager (ARM) requests.  
 > - Importing a dashboard requires the ARM to create a new Azure Monitor dashboard with the Grafana resource first, this can be done using [ARM templates or Bicep](/azure/templates/microsoft.dashboard/dashboards?pivots=deployment-language-arm-template). The ARM request will create a resource with empty dashboard by default. After resource is created, then you could use Grafana data plane API(`POST /api/dashboards/db/`) to update the dashboard.
-> - Deleting a dashboard is a ARM operation, no Grafana API call is needed.
+> - Deleting a dashboard is an ARM operation, no Grafana API call is needed.
+> - Find annotations and find annotations tags require `dashboardUID` parameter
+> - Create, update and patch annotations require `dashboardUID` in request body
 
 
 Below are some commonly used APIs example:
@@ -203,7 +197,7 @@ Example post request:
 ```bash
 curl -X POST \
 -H 'Authorization: Bearer <access-token>' \
--d '{"Dashboard": {...}} \
+-d '{"Dashboard": {...}}' \
 <grafana-endpoint>/api/dashboards/db
 ```
 
@@ -222,6 +216,37 @@ Example response:
    "folderUid": "",
    "message": "Made changes to xyz",
    "overwrite": false
+}
+```
+
+### Create Annotation by dashboardUID
+
+`POST /api/annotations`
+
+Example post request:
+
+```bash
+curl -X POST \
+  -H "Authorization: Bearer <access-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "dashboardUID": "jcIIG-07z",
+    "panelId": 1,
+    "time": 1507037197339,
+    "timeEnd": 1507180805056,
+    "tags": ["tag1", "tag2"],
+    "text": "Annotation Description"
+  }' \
+  <grafana-endpoint>/api/annotations
+
+```
+
+Example response:
+
+```bash
+{
+    "message":"Annotation added",
+    "id": 1,
 }
 ```
 

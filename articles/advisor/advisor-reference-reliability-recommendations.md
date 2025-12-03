@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 08/12/2025
+ms.date: 11/25/2025
 ---
 
 # Reliability recommendations
@@ -50,11 +50,21 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-database-for-postgresql.md](./includes/HighAvailability-azure-database-for-postgresql.md)]
 
+[!INCLUDE [HighAvailability-azure-databricks.md](./includes/HighAvailability-azure-databricks.md)]
+
 [!INCLUDE [HighAvailability-azure-iot-hub.md](./includes/HighAvailability-azure-iot-hub.md)]
 
 [!INCLUDE [HighAvailability-azure-kubernetes-service-(aks).md](./includes/HighAvailability-azure-kubernetes-service-(aks).md)]
 
+[!INCLUDE [HighAvailability-azure-machine-learning.md](./includes/HighAvailability-azure-machine-learning.md)]
+
+[!INCLUDE [HighAvailability-azure-managed-workspace-for-grafana.md](./includes/HighAvailability-azure-managed-workspace-for-grafana.md)]
+
+[!INCLUDE [HighAvailability-azure-maps.md](./includes/HighAvailability-azure-maps.md)]
+
 [!INCLUDE [HighAvailability-azure-netapp-files.md](./includes/HighAvailability-azure-netapp-files.md)]
+
+[!INCLUDE [HighAvailability-azure-relay.md](./includes/HighAvailability-azure-relay.md)]
 
 [!INCLUDE [HighAvailability-azure-site-recovery.md](./includes/HighAvailability-azure-site-recovery.md)]
 
@@ -63,6 +73,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-azure-sql-database.md](./includes/HighAvailability-azure-sql-database.md)]
 
 [!INCLUDE [HighAvailability-azure-stack-hci.md](./includes/HighAvailability-azure-stack-hci.md)]
+
+[!INCLUDE [HighAvailability-azure-vmware-solution.md](./includes/HighAvailability-azure-vmware-solution.md)]
 
 [!INCLUDE [HighAvailability-classic-deployment-model-storage.md](./includes/HighAvailability-classic-deployment-model-storage.md)]
 
@@ -82,9 +94,13 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-hdinsight.md](./includes/HighAvailability-hdinsight.md)]
 
+[!INCLUDE [HighAvailability-key-vault.md](./includes/HighAvailability-key-vault.md)]
+
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
 
 [!INCLUDE [HighAvailability-service-bus.md](./includes/HighAvailability-service-bus.md)]
+
+[!INCLUDE [HighAvailability-service-fabric.md](./includes/HighAvailability-service-fabric.md)]
 
 [!INCLUDE [HighAvailability-sql-server-on-azure-virtual-machines.md](./includes/HighAvailability-sql-server-on-azure-virtual-machines.md)]
 

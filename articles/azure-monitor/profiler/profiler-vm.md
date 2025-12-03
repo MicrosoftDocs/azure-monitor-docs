@@ -63,7 +63,7 @@ In this guide, you learn how to:
 
 1. Select **Update**.
 
-   :::image type="content" source="../app/media/asp-net/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
+   :::image type="content" source="../app/media/classic-api/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
 
 ## Enable the .NET Profiler
 

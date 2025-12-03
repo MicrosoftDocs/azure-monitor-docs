@@ -22,7 +22,7 @@ The following video walks through routing resource platform logs with diagnostic
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=2e9e11cc-fc03-4caa-8fee-4386abf454bc]
 
 > [!WARNING] 
-> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
+> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. For some resource types this would resume the collection of resource logs as defined in the diagnostic setting. 
 
 ## Sources
 
@@ -46,7 +46,7 @@ Any destinations used by the diagnostic setting must exist before the setting ca
 |:---|:---|:---|
 | [Log Analytics workspace](../logs/workspace-design.md) | Retrieve data using [log queries](../logs/log-query-overview.md) and [workbooks](../visualize/workbooks-overview.md). Use [log alerts](../alerts/alerts-types.md#log-alerts) to proactively alert on data. See [Azure Monitor Resource log reference](/azure/azure-monitor/reference/tables-index) for the tables used by different Azure resources. | Any tables in a Log Analytics workspace are created automatically when the first data is sent to the workspace, so only the workspace itself must exist. |
 | [Azure Storage account](/azure/storage/blobs/) | Store for audit, static analysis, or back up. Storage may be less expensive than other options and can be kept indefinitely. Send data to immutable storage to prevent its modification. Set the immutable policy for the storage account as described in [Set and manage immutability policies for Azure Blob Storage](/azure/storage/blobs/immutable-policy-configure-version-scope). | Storage accounts must be in the same region as the resource being monitored if the resource is regional.<br><br>Diagnostic settings can't access storage accounts when virtual networks are enabled. You must enable **Allow trusted Microsoft services** to bypass this firewall setting in storage accounts so that the Azure Monitor diagnostic settings service is granted access to your storage account.<br><br>[Azure DNS zone endpoints (preview)](/azure/storage/common/storage-account-overview#azure-dns-zone-endpoints-preview) and any [Premium storage accounts](/azure/storage/common/storage-account-overview#types-of-storage-accounts) aren't supported as a destination. Any [Standard storage accounts](/azure/storage/common/storage-account-overview#types-of-storage-accounts) are supported. | 
-| [Azure Event Hubs](/azure/event-hubs/) | Stream data to external systems such as third-party SIEMs and other Log Analytics solutions. | Event hubs must be in the same region as the resource being monitored if the resource is regional.<br><br>Diagnostic settings can't access event hubs when virtual networks are enabled. You must enable **Allow trusted Microsoft services** to bypass this firewall setting in storage accounts so that the Azure Monitor diagnostic settings service is granted access to your storage account.<br><br>The shared access policy for event hub namespace defines the permissions that the streaming mechanism has. Streaming to Event Hubs requires `Manage`, `Send`, and `Listen` permissions. To update the diagnostic setting to include streaming, you must have the `ListKey` permission on that Event Hubs authorization rule. |
+| [Azure Event Hubs](/azure/event-hubs/) | Stream data to external systems such as third-party SIEMs and other Log Analytics solutions. | Event hubs must be in the same region as the resource being monitored if the resource is regional. You cannot use a [compacted event hub](/azure/event-hubs/log-compaction) because this requires the message to have a partition key, which Azure Monitor doesn't include.<br><br>Diagnostic settings can't access event hubs when virtual networks are enabled. You must enable **Allow trusted Microsoft services** to bypass this firewall setting in event hubs so that the Azure Monitor diagnostic settings service is granted access to your event hubs resources.<br><br>The shared access policy for event hub namespace defines the permissions that the streaming mechanism has. Streaming to Event Hubs requires `Manage`, `Send`, and `Listen` permissions. To update the diagnostic setting to include streaming, you must have the `ListKey` permission on that Event Hubs authorization rule. |
 | [Azure Monitor partner solutions](/azure/partner-solutions/partners#observability)| Specialized integrations can be made between Azure Monitor and other non-Microsoft monitoring platforms. The solutions vary by partner. | See [Azure Native ISV Services documentation](/azure/partner-solutions/overview) for details.|
 
 
@@ -69,6 +69,9 @@ Use the following steps to create a new diagnostic setting or edit an existing o
 3. Give your setting a descriptive name if it doesn't already have one. 
 
     :::image type="Add diagnostic setting" source="media/diagnostic-settings/setting-new-blank.png" lightbox="media/diagnostic-settings/setting-new-blank.png" alt-text="Screenshot that shows Diagnostic setting details.":::
+
+   > [!NOTE]
+   > The categories will vary for different types of Azure resources. This screenshot shows an example Key Vault. Other types of resources will have a different set of categories.
 
 4. **Logs and metrics to route**: For logs, either choose a [category group](#category-groups) or select the individual checkboxes for each category of data you want to send to the destinations specified later. The list of categories varies for each Azure service. Select **AllMetrics** if you want to collect platform metrics.
 
@@ -184,10 +187,12 @@ To create or edit a diagnostic setting with the Azure Monitor REST API, see [Dia
 
 ---
 
-> [!NOTE]
-> Diagnostic settings in Azure only export data generated after the diagnostic setting is enabled.
-> Historical data that was created before the diagnostic setting was configured will not be exported.
-> To ensure you capture all necessary logs moving forward, enable diagnostic settings as early as possible.
+> [!WARNING]
+> From Azure portal when creating or updating Diagnostic Settings for an Azure Storage account or Azure Event Hub namespace, you could be unable to select itself as a destination for the resource logs or metrics data.
+> This is by design as it is possible to get into a state where resource logs or metrics being sent from a resource to the same resource would generate an infinite loop of generating and writing data.  
+> This design is only applied at the Azure portal UX layer, if there is truly a need to write data to the same resource and you are willing to accept the associated risks, you can create the Diagnostic Setting using Azure PowerShell, Azure CLI, REST API, ARM Template or other supported Microsoft SDK.
+
+
    
 ## Category groups
 
@@ -201,8 +206,6 @@ If you do use category groups in a diagnostic setting, you can't select individu
 
 > [!NOTE]
 > Enabling the Audit category in the diagnostic settings for Azure SQL Database does not activate auditing for the database. To enable database auditing, you have to enable it from the auditing blade for Azure Database. 
-
-
 
 ## Metrics limitations
 
@@ -228,7 +231,14 @@ After you create a diagnostic setting, data should start flowing to your selecte
 
 If you're experiencing an issue, disable the configuration and then reenable it. Contact Azure support through the Azure portal if you continue to have issues.
 
+## Application Insights
 
+Consider the following for diagnostic settings for Application insights applications:
+
+- The destination can't be the same Log Analytics workspace that your Application Insights resource is based on.
+- The Application Insights user can't have access to both workspaces. Set the Log Analytics **[access control mode](/azure/azure-monitor/logs/log-analytics-workspace-overview)** to **Requires workspace permissions**. Through **[Azure role-based access control](/azure/azure-monitor/app/resources-roles-access-control)**, ensure the user only has access to the Log Analytics workspace the Application Insights resource is based on.
+
+These steps are necessary because Application Insights accesses telemetry across Application Insight resources, including Log Analytics workspaces, to provide complete end-to-end transaction operations and accurate application maps. Because diagnostic logs use the same table names, duplicate telemetry can be displayed if the user has access to multiple resources that contain the same data.
 
 ## Troubleshooting
 
@@ -243,8 +253,7 @@ When a resource is inactive and exporting zero-value metrics, the diagnostic set
 
 When a resource is inactive for one hour, the export mechanism backs off to 15 minutes. This means that there is a potential latency of up to 15 minutes for the next nonzero value to be exported. The maximum backoff time of two hours is reached after seven days of inactivity. Once the resource starts exporting nonzero values, the export mechanism reverts to the original export latency of three minutes. 
 
-**Duplicate data for Application Insights**<br>
-Diagnostic settings for workspace-based Application insights applications collect the same data as Application insights itself. This results in duplicate data being collected if the destination is the same Log Analytics workspace that the application is using. Create a diagnostic setting for Application insights to send data to a different Log Analytics workspace or another destination. 
+
 
 ## Next steps
 

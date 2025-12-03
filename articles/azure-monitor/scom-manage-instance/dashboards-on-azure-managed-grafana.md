@@ -2,15 +2,18 @@
 ms.assetid: 
 title: Dashboards on Azure Managed Grafana
 description: This article describes how to create a SCOM Managed Instance dashboard on Azure Managed Grafana.
-author: jyothisuri
-ms.author: jsuri
-ms.date: 05/22/2024
+author: Jeronika-MS
+ms.author: v-gajeronika
+ms.date: 09/30/2025
+ms.update-cycle: 1825-days
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: how-to
 ---
 
 # Dashboards on Azure Managed Grafana
+
+[!INCLUDE [retirement-banner.md](includes/retirement-banner.md)]
 
 Azure Managed Grafana (AMG) is a data visualization platform, built on top of the Grafana software by Grafana Labs. Grafana helps you bring together metrics, logs, and traces into a single user interface.
 

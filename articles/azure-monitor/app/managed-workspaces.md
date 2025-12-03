@@ -3,7 +3,6 @@ title: Application Insights managed workspaces
 description: This article explains automatically created managed workspaces
 ms.topic: how-to
 ms.date: 08/28/2025
-ms.reviewer: cogoodson
 ---
 
 # Managed workspaces in Application Insights
@@ -30,7 +29,7 @@ Managed workspaces have the following limitations:
 
 - Support only the Application Insights resource that created them. A managed workspace can't be used for diagnostic settings, custom logs, or another Application Insights instance.
 - Changes to workspace settings, such as quotas, are allowed, but the workspace can't be repurposed for other uses.
-- Tags can't be added to a managed workspace.
+- Tagging is supported only for newly created managed resource groups and managed workspaces. Existing managed resource groups and workspaces created before this change can't be tagged.
 - Removal follows one of two paths:
   - Delete the Application Insights resource. Azure deletes the managed resource group and the managed workspace automatically.
   - Keep the Application Insights resource by connecting it to a different Log Analytics workspace, then delete the managed resource group that contains the managed workspace.

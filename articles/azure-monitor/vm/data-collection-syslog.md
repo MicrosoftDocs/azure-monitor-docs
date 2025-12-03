@@ -24,6 +24,15 @@ Create the DCR using the process in [Collect data from virtual machine client wi
 
 [!INCLUDE [configure-syslog-ama](~/reusable-content/ce-skilling/azure/includes/azure-monitor/agents/configure-syslog-ama.md)]
 
+
+>[!Note]
+>When ingesting syslog data using a log forwarder, inconsistencies may arise between the TimeGenerated and EventTime fields.
+> - TimeGenerated reflects the UTC time when the syslog message was processed by the machine hosting the log forwarder or collector.
+> - EventTime is extracted from the syslog header, which doesn't include time zone information and is converted to UTC using the local time zone offset of the forwarder/collector.
+> 
+> This can lead to differences between the two fields when the forwarder/collector and the device generating the log are in different time zones.
+
+
 ## Configure Syslog on the Linux agent
 When Azure Monitor Agent is installed on a Linux machine, it installs a default Syslog configuration file that defines the facility and severity of the messages that are collected if Syslog is enabled in a DCR. The configuration file is different depending on the Syslog daemon that the client has installed.
 

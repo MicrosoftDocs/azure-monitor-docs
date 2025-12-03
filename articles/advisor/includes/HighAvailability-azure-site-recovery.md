@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 11/11/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Site Recovery
@@ -47,5 +47,23 @@ Recommendation ID: 9b1308f1-4c25-4347-a061-7cc5cd6a44ab
 Subcategory: DisasterRecovery
 
 <!--9b1308f1-4c25-4347-a061-7cc5cd6a44ab_end-->
+
+<!--21ac578c-0fb9-42eb-9c58-69716f87e7fb_begin-->
+
+#### Enable Zone Redundant Storage (ZRS) for vault storage to protect backups from zone failures  
+  
+Create vaults in regions that support zone-redundant storage (ZRS) for backup data.  
+  
+**Potential benefits**: ZRS backups survive zone-level failures  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.recoveryservices/vaults  
+Recommendation ID: 21ac578c-0fb9-42eb-9c58-69716f87e7fb  
+Subcategory: undefined
+
+<!--21ac578c-0fb9-42eb-9c58-69716f87e7fb_end-->
 
 <!--articleBody-->

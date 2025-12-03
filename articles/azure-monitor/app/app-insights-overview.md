@@ -2,7 +2,7 @@
 title: Application Insights OpenTelemetry observability overview
 description: Learn how Azure Monitor Application Insights integrates with OpenTelemetry (OTel) for comprehensive application observability.
 ms.topic: overview
-ms.date: 09/25/2025
+ms.date: 11/14/2025
 
 #customer intent: As a developer or site reliability engineer, I want to use OpenTelemetry (OTel), often searched as 'Open Telemetry', with Application Insights so that I can collect, analyze, and monitor application telemetry in a standardized way for improved observability and performance diagnostics.
 
@@ -29,6 +29,7 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 * [Availability view](availability-overview.md): Proactively monitor and test the availability and responsiveness of application endpoints.
 * [Failures view](failures-and-performance-views.md?tabs=failures-view): Identify and analyze failures in your application to minimize downtime.
 * [Performance view](failures-and-performance-views.md?tabs=performance-view): Review application performance metrics and potential bottlenecks.
+* [Agents details](agents-view.md): A unified view for monitoring AI agents across Azure AI Foundry, Copilot Studio, and third-party agents.
 
 ### Monitoring
 
@@ -37,6 +38,8 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 * [Diagnostic settings](../essentials/diagnostic-settings.md): Configure streaming export of platform logs and metrics to the destination of your choice. 
 * [Logs](../logs/log-analytics-overview.md): Retrieve, consolidate, and analyze all data collected into Azure Monitoring Logs.
 * [Workbooks](../visualize/workbooks-overview.md): Create interactive reports and dashboards that visualize application monitoring data.
+* [Dashboards with Grafana](grafana-dashboards.md): Create, customize, and share Grafana dashboards for Application Insights data directly in the Azure portal.
+* [SDK Stats](sdk-stats.md): Visualize exporter success, dropped counts, retry counts, and drop reasons from Application Insights SDKs and agents.
 
 ### Usage
 

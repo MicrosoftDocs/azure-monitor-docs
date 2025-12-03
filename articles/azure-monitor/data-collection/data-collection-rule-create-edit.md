@@ -40,35 +40,16 @@ The Azure portal provides a simplified experience for creating a DCR for particu
 | Kubernetes monitoring | To monitor a Kubernetes cluster, you enable Container Insights for logs and Prometheus for metrics. A DCR for each is created and associated with the containerized version of Azure Monitor agent in the cluster. You may need to modify the Container insights DCR to add a transformation. See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) and [Data transformations in Container insights](../containers/container-insights-transformations.md). |
 | Workspace transformation DCR | Workspace transformation DCRs provide transformations for data collection scenarios that don't yet use DCRs. You can create this DCR by using the Azure portal to create a transformation for a particular table. See [Create workspace transformation DCR](data-collection-transformations-create.md#create-workspace-transformation-dcr). |
 
-## DCR definition
-
-Regardless of how it's created, each DCR has a definition that follows a [standard JSON schema](data-collection-rule-structure.md). To create or edit a DCR using a method other than the Azure portal, you need to work directly with its JSON definition. For some scenarios you must work with the JSON definition because the Azure portal doesn't provide a way to configure the DCR as needed.
-
-You can view the JSON for a DCR in the Azure portal by clicking **JSON view** in the **Overview** menu.
-
-:::image type="content" source="media/data-collection-rule-create-edit/json-view-option.png" lightbox="media/data-collection-rule-create-edit/json-view-option.png" alt-text="Screenshot that shows the option to view the JSON for a DCR in the Azure portal.":::
-
-Verify that the latest version of the API is selected in the **API version** dropdown. If not, some of the JSON may not be displayed.
-
-:::image type="content" source="media/data-collection-rule-create-edit/json-view.png" lightbox="media/data-collection-rule-create-edit/json-view.png" alt-text="Screenshot that shows the JSON for a DCR in the Azure portal.":::
-
-You can also retrieve the JSON for the DCR by calling the DCR REST API. For example, the following PowerShell script retrieves the JSON for a DCR and saves it to a file.
-
-```powershell
-$ResourceId = "<ResourceId>" # Resource ID of the DCR to edit
-$FilePath = "<FilePath>" # File to store DCR content
-$DCR = Invoke-AzRestMethod -Path ("$ResourceId"+"?api-version=2023-03-11") -Method GET
-$DCR.Content | ConvertFrom-Json | ConvertTo-Json -Depth 20 | Out-File -FilePath $FilePath
-```
-
-> [!NOTE]
-> You can get the details for a DCR using `Get-AzDataCollectionRule` cmdlet in PowerShell or `az monitor data-collection rule show` command in Azure CLI, but they don't provide the JSON in the format that you require for editing. Instead, use PowerShell or CLI to call the REST API as shown in the example.
-
 ## Create or edit a DCR using JSON
 
 In addition to editing an existing DCR, you can create a new one using one of the [sample DCRs](data-collection-rule-samples.md) which provide the JSON for several common scenarios. Use information in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
 
+[!INCLUDE [data-collection-rule-edit-warning](./includes/data-collection-rule-edit-warning.md)]
+
 Once you have the definition of your DCR, you can deploy it to Azure Monitor using the Azure portal, CLI, PowerShell, API, or ARM templates. 
+
+> [!TIP]
+> To view the JSON definition of a DCR, see [View DCR definition](./data-collection-rule-view.md#view-dcr-definition).
 
 ### [CLI](#tab/cli)
 

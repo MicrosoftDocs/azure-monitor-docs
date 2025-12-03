@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 12/07/2024
 ms.devlang: javascript
 ms.custom: devx-track-js
-ms.reviewer: mmcc
 ---
 
 # Enable Azure Monitor Application Insights Real User Monitoring
@@ -25,7 +24,7 @@ We provide the [Debug plugin](https://github.com/microsoft/ApplicationInsights-J
 
 ## Prerequisites
 
-* Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
+* Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 * An application that uses [JavaScript](/visualstudio/javascript)
 

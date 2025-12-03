@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 07/15/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
-ms.reviewer: mmcc
 ---
 
 # Migrate from the Node.js Application Insights SDK 2.X to Azure Monitor OpenTelemetry

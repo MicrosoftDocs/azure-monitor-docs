@@ -3,7 +3,6 @@ title: Deploy Application Insights Agent
 description: Learn how to use Application Insights Agent to monitor website performance. It works with ASP.NET web apps hosted on-premises, in Virtual Machines (VMs), or on Azure.
 ms.topic: how-to
 ms.date: 09/25/2025
-ms.reviewer: abinetabate
 ---
 
 # Deploy Azure Monitor Application Insights Agent for on-premises servers
@@ -40,7 +39,7 @@ This tab contains the quickstart commands that are expected to work for most env
 
 For an explanation of these commands, customization instructions, and information about troubleshooting, see the [detailed instructions](?tabs=detailed-instructions#instructions).
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ### Download and install via PowerShell Gallery
 

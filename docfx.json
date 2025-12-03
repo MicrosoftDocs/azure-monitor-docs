@@ -143,10 +143,10 @@
       "author": {
         "articles/advisor/**/*": "ikhapova",
         "articles/azure-monitor/**/*": "bwren",
-        "articles/azure-monitor/agents/**/*": "bwren",
-        "articles/azure-monitor/alerts/**/*": "IngridAtMicrosoft",
+        "articles/azure-monitor/agents/**/*": "bandersmsft",
+        "articles/azure-monitor/alerts/**/*": "bwren",
         "articles/azure-monitor/app/**/*": "AarDavMax",
-        "articles/azure-monitor/autoscale/**/*": "IngridAtMicrosoft",
+        "articles/azure-monitor/autoscale/**/*": "EliotSeattle",
         "articles/azure-monitor/change/**/*": "hhunter-ms",
         "articles/azure-monitor/containers/**/*": "bwren",
         "articles/azure-monitor/data-collection/**/*": "bwren",
@@ -158,11 +158,12 @@
         "articles/azure-monitor/platform/**/*": "bwren",
         "articles/azure-monitor/profiler/**/*": "hhunter-ms",
         "articles/azure-monitor/snapshot-debugger/**/*": "hhunter-ms",
-        "articles/azure-monitor/visualize/**/*": "IngridAtMicrosoft",
-        "articles/azure-monitor/reference/**/*": "IngridAtMicrosoft",
+        "articles/azure-monitor/visualize/**/*": "bwren",
+        "articles/azure-monitor/reference/**/*": "EliotSeattle",
         "articles/azure-monitor/vm/**/*": "bwren",
-        "articles/chaos-studio/**/*": "IngridAtMicrosoft",
-        "articles/service-health/**/*": "jocalland"
+        "articles/chaos-studio/**/*": "EliotSeattle",
+        "articles/service-health/**/*": "jocalland",
+        "articles/operations/**/*": "bwren"
       },
       "featureFlags": {
         "articles/**/*": [
@@ -196,10 +197,10 @@
       "ms.author": {
         "articles/advisor/**/*": "ikhapova",
         "articles/azure-monitor/**/*": "bwren",
-        "articles/azure-monitor/agents/**/*": "bwren",
-        "articles/azure-monitor/alerts/**/*": "inhenkel",
+        "articles/azure-monitor/agents/**/*": "banders",
+        "articles/azure-monitor/alerts/**/*": "bwren",
         "articles/azure-monitor/app/**/*": "aaronmax",
-        "articles/azure-monitor/autoscale/**/*": "inhenkel",
+        "articles/azure-monitor/autoscale/**/*": "eliotgra",
         "articles/azure-monitor/change/**/*": "hannahhunter",
         "articles/azure-monitor/containers/**/*": "bwren",
         "articles/azure-monitor/data-collection/**/*": "bwren",
@@ -210,18 +211,20 @@
         "articles/azure-monitor/optimization-insights/**/*": "bwren",
         "articles/azure-monitor/platform/**/*": "bwren",
         "articles/azure-monitor/profiler/**/*": "hannahhunter",
-        "articles/azure-monitor/reference/**/*": "inhenkel",
+        "articles/azure-monitor/reference/**/*": "eliotgra",
         "articles/azure-monitor/snapshot-debugger/**/*": "hannahhunter",
-        "articles/azure-monitor/visualize/**/*": "inhenkel",
+        "articles/azure-monitor/visualize/**/*": "bwren",
         "articles/azure-monitor/vm/**/*": "bwren",
-        "articles/chaos-studio/**/*": "inhenkel",
-        "articles/service-health/**/*": "v-jocalland"
+        "articles/chaos-studio/**/*": "eliotgra",
+        "articles/service-health/**/*": "v-jocalland",
+        "articles/operations/**/*": "bwren"
       },
       "ms.service": {
         "articles/advisor/**/**/*": "azure-advisor",
         "articles/azure-monitor/**/*": "azure-monitor",
         "articles/chaos-studio/**/**/*": "azure-chaos-studio",
-        "articles/service-health/**/*": "azure-service-health"
+        "articles/service-health/**/*": "azure-service-health",
+        "articles/operations/**/*": "azure-monitor"
       },
       "ms.reviewer": {
         "articles/advisor/**/*": "ikhapova"
@@ -244,7 +247,8 @@
         "articles/azure-monitor/referece/**/*": "reference",
         "articles/azure-monitor/snapshot-debugger/**/*": "snapshot-debugger",
         "articles/azure-monitor/visualize/**/*": "visualizations",
-        "articles/azure-monitor/vm/**/*": "virtual-machines"
+        "articles/azure-monitor/vm/**/*": "virtual-machines",
+        "articles/operations/**/*": "operations"
       },
       "searchScope": {
         "articles/advisor/**/*.md": [
@@ -278,25 +282,30 @@
         "articles/service-health/**/*.yml": [
           "Azure",
           "Service Health"
+        ],
+        "articles/operations/**/*.yml": [
+          "Azure",
+          "Operations"
         ]
       },
-    "titleSuffix": {
+      "titleSuffix": {
         "articles/advisor/**/*": "Azure Advisor",
         "articles/azure-monitor/**/*": "Azure Monitor",
         "articles/chaos-studio/**/*": "Azure Chaos Studio",
-        "articles/service-health/**/*": "Azure Service Health"
+        "articles/service-health/**/*": "Azure Service Health",
+        "articles/operations/**/*": "Azure Operations Center"
       }
     },
     "overwrite": [],
     "externalReference": [],
-    "template": []
-  },
-"dest": "azure monitor",
-"rules": {
+    "template": [],
+    "rules": {
       "sensitive-language-ma": {
         "exclude": [
           "articles/azure-monitor/reference/tables/dnsauditevents.md"
         ]
       }
     }
+  },
+  "dest": "azure monitor"
 }  

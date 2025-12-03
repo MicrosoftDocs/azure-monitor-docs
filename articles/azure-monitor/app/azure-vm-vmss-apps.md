@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 09/25/2025
 ms.devlang: csharp
 ms.custom: devx-track-azurepowershell
-ms.reviewer: abinetabate
 ---
 
 # Application Insights for Azure virtual machines (VMs) and virtual machine scale sets
@@ -196,20 +195,7 @@ Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName -Name $vmss.Name -Virtu
 
 ## Troubleshooting
 
-Use these troubleshooting tips for the Application Insights Monitoring Agent extension. The tips apply to .NET applications on Azure Virtual Machines and Azure Virtual Machine Scale Sets.
-
-If you have trouble deploying the extension, review the execution output that the extension logs to files in the following directories:
-
-```Windows
-C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.ApplicationMonitoringWindows\<version>\
-```
-
-If your extension deployed successfully but you're unable to see telemetry, it could be one of the following issues covered in [Agent troubleshooting](/troubleshoot/azure/azure-monitor/app-insights/status-monitor-v2-troubleshoot#known-issues):
-
-* Conflicting dynamic link libraries (DLLs) in an app's bin directory
-* Conflict with IIS shared configuration
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
+For dedicated troubleshooting steps, see [Trouble deploying the Application Insights Monitoring Agent extension for VMs and virtual machine scale sets](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot#trouble-deploying-the-application-insights-monitoring-agent-extension-for-vms-and-virtual-machine-scale-sets).
 
 ## Release notes
 

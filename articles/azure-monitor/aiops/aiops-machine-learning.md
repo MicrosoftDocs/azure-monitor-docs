@@ -3,7 +3,7 @@ title: AIOps and machine learning in Azure Monitor
 description: Use machine learning to improve your ability to predict IT needs and identify and respond to anomalous patterns in log data. 
 ms.reviewer: ilanawaitser
 ms.topic: concept-article
-ms.date: 11/17/2024
+ms.date: 09/02/2025
 ms.collection: ce-skilling-ai-copilot
 ms.update-cycle: 180-days
 
@@ -30,6 +30,7 @@ This article describes Azure Monitor's built-in AIOps capabilities and explains 
 ||[Smart detection](../alerts/proactive-diagnostics.md)|Analyzes the telemetry your application sends to Application Insights, alerts on performance problems and failure anomalies, and identifies potential root causes of application performance issues.|
 |Metric alerts|[Dynamic thresholds for metric alerting](../alerts/alerts-dynamic-thresholds.md)| Learns metrics patterns, automatically sets alert thresholds based on historical data, and identifies anomalies that might indicate service issues.|
 |Virtual machine scale sets|[Predictive autoscale](../autoscale/autoscale-predictive.md)|Forecasts the overall CPU requirements of a virtual machine scale set, based on historical CPU usage patterns, and automatically scales out to meet these needs.|
+|Issue investigation|[Observability agent](observability-agent-overview.md)|Uses machine learning to automatically investigate issues and correlate findings across Azure Monitor data sources, providing consolidated insights within the Issues and Investigations experience.|
 
 ## Machine learning in Azure Monitor Logs
 

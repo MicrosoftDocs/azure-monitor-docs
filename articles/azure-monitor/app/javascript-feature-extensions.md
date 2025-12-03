@@ -6,7 +6,6 @@ ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
-ms.reviewer: mmcc
 ---
 
 # Enable Click Analytics Auto-Collection plug-in
@@ -25,28 +24,28 @@ The following key properties are captured by default when the plug-in is enabled
 
 ### Custom event properties
 
-| Name                  | Description                            | Sample          |
-| --------------------- | ---------------------------------------|-----------------|
-| Name                  | The name of the custom event. For more information on how a name gets populated, see [Name column](#name).| About              |
-| itemType              | Type of event.                                      | customEvent      |
-|sdkVersion             | Version of Application Insights SDK along with click plug-in.|JavaScript:2_ClickPlugin2|
+| Name | Description | Sample |
+|------|-------------|--------|
+| Name | The name of the custom event. For more information on how a name gets populated, see [Name column](#name). | About |
+| itemType | Type of event. | customEvent |
+|sdkVersion | Version of Application Insights SDK along with click plug-in. | JavaScript:2_ClickPlugin2 |
 
 ### Custom dimensions
 
-| Name                  | Description                            | Sample          |
-| --------------------- | ---------------------------------------|-----------------|
-| actionType            | Action type that caused the click event. It can be a left or right click. | CL              |
-| baseTypeSource        | Base Type source of the custom event.                                      | ClickEvent      |
-| clickCoordinates      | Coordinates where the click event is triggered.                            | 659X47          |
-| content               | Placeholder to store extra `data-*` attributes and values.            | [{sample1:value1, sample2:value2}] |
-| pageName              | Title of the page where the click event is triggered.                      | Sample Title    |
-| parentId              | ID or name of the parent element. For more information on how a parentId is populated, see [parentId key](#parentid-key).        | navbarContainer |
+| Name | Description | Sample |
+|------|-------------|--------|
+| actionType | Action type that caused the click event. It can be a left or right click. | CL |
+| baseTypeSource | Base Type source of the custom event. | ClickEvent |
+| clickCoordinates | Coordinates where the click event is triggered. | 659X47 |
+| content | Placeholder to store extra `data-*` attributes and values. | [{sample1:value1, sample2:value2}] |
+| pageName | Title of the page where the click event is triggered. | Sample Title |
+| parentId | ID or name of the parent element. For more information on how a parentId is populated, see [parentId key](#parentid-key). | navbarContainer |
 
 ### Custom measurements
 
-| Name                  | Description                            | Sample          |
-| --------------------- | ---------------------------------------|-----------------|
-| timeToAction          | Time taken in milliseconds for the user to click the element since the initial page load. | 87407              |
+| Name | Description | Sample |
+|------|-------------|--------|
+| timeToAction | Time taken in milliseconds for the user to click the element since the initial page load. | 87407 |
 
 
 ## Add the Click Analytics plug-in
@@ -76,9 +75,6 @@ var clickPluginConfig = {
 // Application Insights configuration
 var configObj = {
     connectionString: "YOUR_CONNECTION_STRING",
-    // Alternatively, you can pass in the instrumentation key,
-    // but support for instrumentation key ingestion will end on March 31, 2025.
-    // instrumentationKey: "YOUR INSTRUMENTATION KEY",
     extensions: [
         clickPluginInstance
     ],
@@ -119,9 +115,6 @@ const clickPluginConfig = {
 // Application Insights Configuration
 const configObj = {
   connectionString: "YOUR_CONNECTION_STRING", 
-  // Alternatively, you can pass in the instrumentation key,
-  // but support for instrumentation key ingestion will end on March 31, 2025.  
-  // instrumentationKey: "YOUR INSTRUMENTATION KEY",
   extensions: [clickPluginInstance],
   extensionConfig: {
     [clickPluginInstance.identifier]: clickPluginConfig
@@ -154,24 +147,25 @@ Telemetry data generated from the click events are stored as `customEvents` in t
 ### `name`
 
 The `name` column of the `customEvent` is populated based on the following rules:
-  1. If [`customDataPrefix`](#customdataprefix) isn't declared in the advanced configuration, the `id` provided in the `data-id` is used as the `customEvent` name.
-  1. If [`customDataPrefix`](#customdataprefix) is declared, the `id` provided in the `data-*-id`, which means it must start with `data` and end with `id`, is used as the `customEvent` name. For example, if the clicked HTML element has the attribute `"data-sample-id"="button1"`, then `"button1"` is the `customEvent` name.
-  1. If the `data-id` or `data-*-id` attribute doesn't exist and if [`useDefaultContentNameOrId`](#icustomdatatags) is set to `true`, the clicked element's HTML attribute `id` or content name of the element is used as the `customEvent` name. If both `id` and the content name are present, precedence is given to `id`.
-  1. If `useDefaultContentNameOrId` is `false`, the `customEvent` name is `"not_specified"`. We recommend setting `useDefaultContentNameOrId` to `true` for generating meaningful data.
+
+1. If [`customDataPrefix`](#customdataprefix) isn't declared in the advanced configuration, the `id` provided in the `data-id` is used as the `customEvent` name.
+1. If [`customDataPrefix`](#customdataprefix) is declared, the `id` provided in the `data-*-id`, which means it must start with `data` and end with `id`, is used as the `customEvent` name. For example, if the clicked HTML element has the attribute `"data-sample-id"="button1"`, then `"button1"` is the `customEvent` name.
+1. If the `data-id` or `data-*-id` attribute doesn't exist and if [`useDefaultContentNameOrId`](#icustomdatatags) is set to `true`, the clicked element's HTML attribute `id` or content name of the element is used as the `customEvent` name. If both `id` and the content name are present, precedence is given to `id`.
+1. If `useDefaultContentNameOrId` is `false`, the `customEvent` name is `"not_specified"`. We recommend setting `useDefaultContentNameOrId` to `true` for generating meaningful data.
 
 ### `contentName`
 
 If you have the [`contentName` callback function](#ivaluecallback) in advanced configuration defined, the `contentName` column of the `customEvent` is populated based on the following rules:
 
-- For a clicked HTML `<a>` element, the plugin attempts to collect the value of its innerText (text) attribute. If the plugin can't find this attribute, it attempts to collect the value of its innerHtml attribute.
-- For a clicked HTML `<img>` or `<area>` element, the plugin collects the value of its `alt` attribute.
-- For all other clicked HTML elements, `contentName` is populated based on the following rules, which are listed in order of precedence:
+* For a clicked HTML `<a>` element, the plugin attempts to collect the value of its innerText (text) attribute. If the plugin can't find this attribute, it attempts to collect the value of its innerHtml attribute.
+* For a clicked HTML `<img>` or `<area>` element, the plugin collects the value of its `alt` attribute.
+* For all other clicked HTML elements, `contentName` is populated based on the following rules, which are listed in order of precedence:
 
-  1. The value of the `value` attribute for the element
-  1. The value of the `name` attribute for the element
-  1. The value of the `alt` attribute for the element
-  1. The value of the innerText attribute for the element
-  1. The value of the `id` attribute for the element
+    1. The value of the `value` attribute for the element
+    1. The value of the `name` attribute for the element
+    1. The value of the `alt` attribute for the element
+    1. The value of the innerText attribute for the element
+    1. The value of the `id` attribute for the element
 
 ### `parentId` key
 
@@ -179,11 +173,11 @@ To populate the `parentId` key within `customDimensions` of the `customEvent` ta
      
 The value for `parentId` is fetched based on the following rules:
 
-- When you declare the `parentDataTag`, the plug-in fetches the value of `id` or `data-*-id` defined within the element that is closest to the clicked element as `parentId`. 
-- If both `data-*-id` and `id` are defined, precedence is given to `data-*-id`. 
-- If `parentDataTag` is defined but the plug-in can't find this tag under the DOM tree, the plug-in uses the `id` or `data-*-id` defined within the element that is closest to the clicked element as `parentId`. However, we recommend defining the `data-{parentDataTag}` or `customDataPrefix-{parentDataTag}` attribute to reduce the number of loops needed to find `parentId`. Declaring `parentDataTag` is useful when you need to use the plug-in with customized options.
-- If no `parentDataTag` is defined and no `parentId` information is included in current element, no `parentId` value is collected. 
-- If `parentDataTag` is defined, `useDefaultContentNameOrId` is set to `false`, and only an `id` attribute is defined within the element closest to the clicked element, the `parentId` populates as `"not_specified"`. To fetch the value of `id`, set `useDefaultContentNameOrId` to `true`.
+* When you declare the `parentDataTag`, the plug-in fetches the value of `id` or `data-*-id` defined within the element that is closest to the clicked element as `parentId`. 
+* If both `data-*-id` and `id` are defined, precedence is given to `data-*-id`. 
+* If `parentDataTag` is defined but the plug-in can't find this tag under the DOM tree, the plug-in uses the `id` or `data-*-id` defined within the element that is closest to the clicked element as `parentId`. However, we recommend defining the `data-{parentDataTag}` or `customDataPrefix-{parentDataTag}` attribute to reduce the number of loops needed to find `parentId`. Declaring `parentDataTag` is useful when you need to use the plug-in with customized options.
+* If no `parentDataTag` is defined and no `parentId` information is included in current element, no `parentId` value is collected. 
+* If `parentDataTag` is defined, `useDefaultContentNameOrId` is set to `false`, and only an `id` attribute is defined within the element closest to the clicked element, the `parentId` populates as `"not_specified"`. To fetch the value of `id`, set `useDefaultContentNameOrId` to `true`.
 
 When you define the `data-parentid` or `data-*-parentid` attribute, the plug-in fetches the instance of this attribute that is closest to the clicked element, including within the clicked element if applicable. 
 
@@ -194,57 +188,58 @@ If the "Click Event rows with no parentId value" telemetry warning appears, see 
 For examples showing which value is fetched as the `parentId` for different configurations, see [Examples of `parentid` key](#examples-of-parentid-key).
 
 > [!CAUTION]
-> - Once `parentDataTag` is included in *any* HTML element across your application *the SDK begins looking for parents tags across your entire application* and not just the HTML element where you used it.
-> - If you're using the HEART workbook with the Click Analytics plug-in, for HEART events to be logged or detected, the tag `parentDataTag` must be declared in all other parts of an end user's application.
+> * Once `parentDataTag` is included in *any* HTML element across your application *the SDK begins looking for parents tags across your entire application* and not just the HTML element where you used it.
+> * If you're using the HEART workbook with the Click Analytics plug-in, for HEART events to be logged or detected, the tag `parentDataTag` must be declared in all other parts of an end user's application.
 
 ### `customDataPrefix`
 
 The [`customDataPrefix` option in advanced configuration](#icustomdatatags) provides the user the ability to configure a data attribute prefix to help identify where heart is located within the individual's codebase. The prefix must always be lowercase and start with `data-`. For example:
 
-- `data-heart-` 
-- `data-team-name-`
-- `data-example-`
+* `data-heart-` 
+* `data-team-name-`
+* `data-example-`
   
 In HTML, the `data-*` global attributes are called custom data attributes that allow proprietary information to be exchanged between the HTML and its DOM representation by scripts. Older browsers like Internet Explorer and Safari drop attributes they don't understand, unless they start with `data-`.
 
 You can replace the asterisk (`*`) in `data-*` with any name following the [production rule of XML names](https://www.w3.org/TR/REC-xml/#NT-Name) with the following restrictions.
-- The name must not start with "xml," whatever case is used for the letters.
-- The name must not contain a semicolon (U+003A).
-- The name must not contain capital letters.
+
+* The name must not start with "xml," whatever case is used for the letters.
+* The name must not contain a semicolon (U+003A).
+* The name must not contain capital letters.
 
 ## Add advanced configuration
 
-| Name                  | Type                               | Default | Description                                                                                                                              |
-| --------------------- | -----------------------------------| --------| ---------------------------------------------------------------------------------------------------------------------------------------- |
-| autoCapture           | Boolean                            | True    | Automatic capture configuration.                                |
-| callback              | [IValueCallback](#ivaluecallback)  | Null    | Callbacks configuration.                               |
-| pageTags              | Object                             | Null    | Page tags.                                             |
-| dataTags              | [ICustomDataTags](#icustomdatatags)| Null    | Custom Data Tags provided to override default tags used to capture click data. |
-| urlCollectHash        | Boolean                            | False   | Enables the logging of values after a "#" character of the URL.                |
-| urlCollectQuery       | Boolean                            | False   | Enables the logging of the query string of the URL.                            |
-| behaviorValidator     | Function                           | Null  | Callback function to use for the `data-*-bhvr` value validation. For more information, see the [behaviorValidator section](#behaviorvalidator).|
-| defaultRightClickBhvr | String (or) number                 | ''      | Default behavior value when a right-click event has occurred. This value is overridden if the element has the `data-*-bhvr` attribute. |
-| dropInvalidEvents     | Boolean                            | False   | Flag to drop events that don't have useful click data.                                                                                   |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| autoCapture | Boolean | True | Automatic capture configuration. |
+| callback | [IValueCallback](#ivaluecallback) | Null | Callbacks configuration. |
+| pageTags | Object | Null | Page tags. |
+| dataTags | [ICustomDataTags](#icustomdatatags) | Null | Custom Data Tags provided to override default tags used to capture click data. |
+| urlCollectHash | Boolean | False | Enables the logging of values after a "#" character of the URL. |
+| urlCollectQuery | Boolean | False | Enables the logging of the query string of the URL. |
+| behaviorValidator | Function | Null | Callback function to use for the `data-*-bhvr` value validation. For more information, see the [behaviorValidator section](#behaviorvalidator). |
+| defaultRightClickBhvr | String (or) number | '' | Default behavior value when a right-click event has occurred. This value is overridden if the element has the `data-*-bhvr` attribute. |
+| dropInvalidEvents | Boolean | False | Flag to drop events that don't have useful click data. |
 
 ### IValueCallback
 
-| Name               | Type     | Default | Description                                                                             |
-| ------------------ | -------- | ------- | --------------------------------------------------------------------------------------- |
-| pageName           | Function | Null    | Function to override the default `pageName` capturing behavior.                           |
-| pageActionPageTags | Function | Null    | A callback function to augment the default `pageTags` collected during a `pageAction` event.  |
-| contentName        | Function | Null    | A callback function to populate customized `contentName`.                                 |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| pageName | Function | Null | Function to override the default `pageName` capturing behavior. |
+| pageActionPageTags | Function | Null | A callback function to augment the default `pageTags` collected during a `pageAction` event. |
+| contentName | Function | Null | A callback function to populate customized `contentName`. |
 
 ### ICustomDataTags
 
-| Name                      | Type    | Default   | Default tag to use in HTML |   Description                                                                                |
-|---------------------------|---------|-----------|-------------|----------------------------------------------------------------------------------------------|
-| useDefaultContentNameOrId | Boolean | False     | N/A         | If `true`, collects standard HTML attribute `id` for `contentName` when a particular element isn't tagged with default data prefix or `customDataPrefix`. Otherwise, the standard HTML attribute `id` for `contentName` isn't collected. |
-| customDataPrefix          | String  | `data-`   | `data-*`| Automatic capture content name and value of elements that are tagged with provided prefix. For example, `data-*-id`, `data-<yourcustomattribute>` can be used in the HTML tags.   |
-| aiBlobAttributeTag        | String  | `ai-blob` |  `data-ai-blob`| Plug-in supports a JSON blob attribute instead of individual `data-*` attributes. |
-| metaDataPrefix            | String  | Null      | N/A  | Automatic capture HTML Head's meta element name and content with provided prefix when captured. For example, `custom-` can be used in the HTML meta tag. |
-| captureAllMetaDataContent | Boolean | False     | N/A   | Automatic capture all HTML Head's meta element names and content. Default is false. If enabled, it overrides provided `metaDataPrefix`. |
-| parentDataTag             | String  | Null      |  N/A  | Fetches the `parentId` in the logs when `data-parentid` or `data-*-parentid` isn't encountered. For efficiency, stops traversing up the DOM to capture content name and value of elements when `data-{parentDataTag}` or `customDataPrefix-{parentDataTag}` attribute is encountered. For more information, see [parentId key](#parentid-key). |
-| dntDataTag                | String  | `ai-dnt`  |  `data-ai-dnt`| The plug-in for capturing telemetry data ignores HTML elements with this attribute.|
+| Name | Type | Default | Default tag to use in HTML | Description |
+|------|------|---------|----------------------------|-------------|
+| useDefaultContentNameOrId | Boolean | False | N/A | If `true`, collects standard HTML attribute `id` for `contentName` when a particular element isn't tagged with default data prefix or `customDataPrefix`. Otherwise, the standard HTML attribute `id` for `contentName` isn't collected. |
+| customDataPrefix | String | `data-` | `data-*` | Automatic capture content name and value of elements that are tagged with provided prefix. For example, `data-*-id`, `data-<yourcustomattribute>` can be used in the HTML tags. |
+| aiBlobAttributeTag | String | `ai-blob` | `data-ai-blob` | Plug-in supports a JSON blob attribute instead of individual `data-*` attributes. |
+| metaDataPrefix | String  | Null | N/A | Automatic capture HTML Head's meta element name and content with provided prefix when captured. For example, `custom-` can be used in the HTML meta tag. |
+| captureAllMetaDataContent | Boolean | False | N/A | Automatic capture all HTML Head's meta element names and content. Default is false. If enabled, it overrides provided `metaDataPrefix`. |
+| parentDataTag | String  | Null | N/A | Fetches the `parentId` in the logs when `data-parentid` or `data-*-parentid` isn't encountered. For efficiency, stops traversing up the DOM to capture content name and value of elements when `data-{parentDataTag}` or `customDataPrefix-{parentDataTag}` attribute is encountered. For more information, see [parentId key](#parentid-key). |
+| dntDataTag | String | `ai-dnt` | `data-ai-dnt`| The plug-in for capturing telemetry data ignores HTML elements with this attribute. |
 
 ### behaviorValidator
 
@@ -256,11 +251,11 @@ Behaviors show up in the customDimensions field within the CustomEvents table.
 
 Three different `behaviorValidator` callback functions are exposed as part of this extension. You can also use your own callback functions if the exposed functions don't solve your requirement. The intent is to bring your own behavior's data structure. The plug-in uses this validator function while extracting the behaviors from the data tags.
 
-| Name                   | Description                                                                        |
-| ---------------------- | -----------------------------------------------------------------------------------|
-| BehaviorValueValidator | Use this callback function if your behavior's data structure is an array of strings.|
-| BehaviorMapValidator   | Use this callback function if your behavior's data structure is a dictionary.       |
-| BehaviorEnumValidator  | Use this callback function if your behavior's data structure is an Enum.            |
+| Name | Description |
+|------|-------------|
+| BehaviorValueValidator | Use this callback function if your behavior's data structure is an array of strings. |
+| BehaviorMapValidator | Use this callback function if your behavior's data structure is a dictionary. |
+| BehaviorEnumValidator | Use this callback function if your behavior's data structure is an Enum. |
 
 #### Passing in string vs. numerical values
 
@@ -439,9 +434,6 @@ var behaviorMap = {
 // Application Insights Configuration
 var configObj = {
   connectionString: "YOUR_CONNECTION_STRING", 
-  // Alternatively, you can pass in the instrumentation key,
-  // but support for instrumentation key ingestion will end on March 31, 2025. 
-  // instrumentationKey: "YOUR INSTRUMENTATION KEY",
   extensions: [clickPluginInstance],
   extensionConfig: {
     [clickPluginInstance.identifier]: {

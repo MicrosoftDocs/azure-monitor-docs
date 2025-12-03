@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -22,13 +22,14 @@ Your server has inactive Logical Replication Slots, which can result in degraded
 
 **Impact:** High
   
-For more information, see [Autovacuum tuning - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#unused-replication-slots)  
+For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#unused-replication-slots)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 114c6710-6c60-4163-b582-ac573199c40d  
 
 
 <!--114c6710-6c60-4163-b582-ac573199c40d_end-->
+
 
 
 <!--3e62d12b-2de5-411b-97ec-092250fb488c_begin-->
@@ -41,13 +42,14 @@ The server is encountering frequent checkpoints, which can impact performance. T
 
 **Impact:** High
   
-For more information, see [High IOPS utilization - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-high-io-utilization#checkpoint-timings)  
+For more information, see [High IOPS utilization - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-high-io-utilization#checkpoint-timings)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 3e62d12b-2de5-411b-97ec-092250fb488c  
 
 
 <!--3e62d12b-2de5-411b-97ec-092250fb488c_end-->
+
 
 
 <!--3e7c94fd-89c6-4355-b72f-a8cd0451c3e7_begin-->
@@ -60,13 +62,14 @@ The server has a bloat_ratio (dead tuples/(live tuples + dead tuples)) > 80%.
 
 **Impact:** High
   
-For more information, see [Troubleshooting guides - Azure portal - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-troubleshooting-guides)  
+For more information, see [Troubleshooting guides - Azure portal - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-troubleshooting-guides)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 3e7c94fd-89c6-4355-b72f-a8cd0451c3e7  
 
 
 <!--3e7c94fd-89c6-4355-b72f-a8cd0451c3e7_end-->
+
 
 
 <!--5a05c081-028d-45cc-9530-cfee8bf04a0e_begin-->
@@ -79,13 +82,14 @@ Over the last 7 days your CPU usage is one of the following: greater than 90% fo
 
 **Impact:** High
   
-For more information, see [Troubleshooting guides - Azure portal - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-troubleshooting-guides)  
+For more information, see [Troubleshooting guides - Azure portal - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-troubleshooting-guides)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 5a05c081-028d-45cc-9530-cfee8bf04a0e  
 
 
 <!--5a05c081-028d-45cc-9530-cfee8bf04a0e_end-->
+
 
 
 <!--7f791293-46af-423d-b23c-355fc9db5474_begin-->
@@ -136,13 +140,14 @@ The server has crossed the 50% wraparound limit, with greater than 1 billion tra
 
 **Impact:** High
   
-For more information, see [Autovacuum tuning - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#autovacuum-transaction-id-txid-wraparound-protection)  
+For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#autovacuum-transaction-id-txid-wraparound-protection)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: b35d2b04-2c01-4f4c-91af-7abe3b0cc697  
 
 
 <!--b35d2b04-2c01-4f4c-91af-7abe3b0cc697_end-->
+
 
 
 <!--b50dc645-82f7-442b-a8cf-687867100179_begin-->
@@ -155,13 +160,14 @@ Your log_statement_stats server parameter is turned ON, which can lead to potent
 
 **Impact:** High
   
-For more information, see [Statistics / Monitoring server parameters - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/server-parameters-table-statistics-monitoring?pivots=postgresql-16#log_statement_stats)  
+For more information, see [Statistics / Monitoring server parameters - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/server-parameters-table-statistics-monitoring?pivots=postgresql-16#log_statement_stats)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: b50dc645-82f7-442b-a8cf-687867100179  
 
 
 <!--b50dc645-82f7-442b-a8cf-687867100179_end-->
+
 
 
 <!--b8c1d4bc-a7f1-49ab-b8d6-b13b0c456d30_begin-->
@@ -174,13 +180,14 @@ Your log_min_duration_statement server parameter is set to less than 60,000 ms (
 
 **Impact:** High
   
-For more information, see [Reporting and Logging / When to Log server parameters - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/server-parameters-table-reporting-and-logging-when-to-log?pivots=postgresql-16#log_min_duration_statement)  
+For more information, see [Reporting and Logging / When to Log server parameters - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/server-parameters-table-reporting-and-logging-when-to-log?pivots=postgresql-16#log_min_duration_statement)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: b8c1d4bc-a7f1-49ab-b8d6-b13b0c456d30  
 
 
 <!--b8c1d4bc-a7f1-49ab-b8d6-b13b0c456d30_end-->
+
 
 
 <!--cac74222-5aa1-4778-9f50-6826c462650c_begin-->
@@ -193,13 +200,14 @@ The server has transactions running for more than 24 hours. Long running transac
 
 **Impact:** High
   
-For more information, see [High CPU utilization - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-high-cpu-utilization?tabs=mean-postgres13%2Ctotal-postgres13#long-running-transactions)  
+For more information, see [High CPU utilization - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-high-cpu-utilization?tabs=mean-postgres13%2Ctotal-postgres13#long-running-transactions)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: cac74222-5aa1-4778-9f50-6826c462650c  
 
 
 <!--cac74222-5aa1-4778-9f50-6826c462650c_end-->
+
 
 
 <!--dfecf01a-aac2-4429-bc03-7de5756e8bc8_begin-->
@@ -250,13 +258,14 @@ Your server has orphaned prepared transactions. Rollback or commit the orphaned 
 
 **Impact:** High
   
-For more information, see [Autovacuum tuning - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
+For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40  
 
 
 <!--eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40_end-->
+
 
 <!--b26edab6-a8dc-4903-b29f-d3b7fb9e0f9c_begin-->
 
@@ -286,13 +295,14 @@ The server has enable_indexscan server parameter set to off. Turn on enable_inde
 
 **Impact:** Medium
   
-  
+For more information, see [Query Tuning / Planner Method Configuration server parameters - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/server-parameters-table-query-tuning-planner-method-configuration?pivots=postgresql-17#enable_indexscan)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 6772abda-0192-4e70-bfeb-409c7e7cf73c  
 
 
 <!--6772abda-0192-4e70-bfeb-409c7e7cf73c_end-->
+
 
 
 <!--bb641db9-591e-4a7e-b4f0-6d9409d646fe_begin-->
@@ -305,13 +315,14 @@ The enable_indexonlyscan setting is turned off for the server. Turn on the enabl
 
 **Impact:** Medium
   
-For more information, see [Query Tuning / Planner Method Configuration server parameters - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/server-parameters-table-query-tuning-planner-method-configuration?pivots=postgresql-17#enable_indexonlyscan)  
+For more information, see [Query Tuning / Planner Method Configuration server parameters - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/server-parameters-table-query-tuning-planner-method-configuration?pivots=postgresql-17#enable_indexonlyscan)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: bb641db9-591e-4a7e-b4f0-6d9409d646fe  
 
 
 <!--bb641db9-591e-4a7e-b4f0-6d9409d646fe_end-->
+
 
 <!--e77d49af-7101-4e7e-a184-472fbf882c35_begin-->
 
@@ -342,12 +353,32 @@ The server's table stats are reset. Run ANALYZE on the databases. It collects st
 
 **Impact:** High
   
-For more information, see [Autovacuum tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#what-is-autovacuum)  
+For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#what-is-autovacuum)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 278ffae3-fa57-463b-a9f6-4b04a8b320b0  
 
 
 <!--278ffae3-fa57-463b-a9f6-4b04a8b320b0_end-->
+
+
+<!--ed0b346c-26a6-4c2b-850b-32a449d94e56_begin-->
+
+#### Review the server for connection pooler  
+  
+The server has high client connection errors, frequent disconnects, and high idle connections with CPU/connection spikes and workload anomalies. Enable PgBouncer to stabilize and improve performance.  
+  
+**Potential benefits**: Enable PgBouncer to improve server performance  
+
+**Impact:** High
+  
+For more information, see [PgBouncer in Azure Database for PostgreSQL flexible server - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/concepts-pgbouncer)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: ed0b346c-26a6-4c2b-850b-32a449d94e56  
+
+
+<!--ed0b346c-26a6-4c2b-850b-32a449d94e56_end-->
+
 
 <!--articleBody-->

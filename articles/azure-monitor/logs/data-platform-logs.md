@@ -84,7 +84,7 @@ The diagram and table below compare the Analytics, Basic, and Auxiliary table pl
 | Query capabilities                                            | [Full query capabilities](../logs/get-started-queries.md).                                     | [Full Kusto Query Language (KQL) on a single table](basic-logs-query.md), which you can extend with data from an Analytics table using [lookup](/azure/data-explorer/kusto/query/lookup-operator). | [Full KQL on a single table](basic-logs-query.md), which you can extend with data from an Analytics table using [lookup](/azure/data-explorer/kusto/query/lookup-operator). |
 | [Alerts](../alerts/alerts-overview.md)                                                 | ✅                                                            | ✅ (Simple Log Alerts)                                                           | ❌                                                            |
 | [Insights](../insights/insights-overview.md)                                             | ✅                                                            |     ❌                                                        |                                             ❌               |
-| [Dashboards](../visualize/tutorial-logs-dashboards.md)                                             | ✅                                                            |     ✅ Cost per query for dashboard refreshes not included.<sup>1</sup>                                                        |                                             Possible, but slow to refresh, cost per query for dashboard refreshes not included.<sup>1</sup>               |
+| [Dashboards](../visualize/best-practices-visualize.md)                                             | ✅                                                            |     ✅ Cost per query for dashboard refreshes not included.<sup>1</sup>                                                        |                                             Possible, but slow to refresh, cost per query for dashboard refreshes not included.<sup>1</sup>               |
 | [Data export](logs-data-export.md)                                             | ✅                                                            |     ✅                                                        |                                             ❌               |
 | [Microsoft Sentinel](/azure/sentinel/overview)                                             | ✅                                                         |     ✅                                                        |                                             ✅               |
 | [Search jobs](../logs/search-jobs.md)                  | ✅                                                            | ✅                                                            | ✅                                                            |
@@ -93,7 +93,7 @@ The diagram and table below compare the Analytics, Basic, and Auxiliary table pl
 | Analytics retention                                  | 30 days (90 days for Microsoft Sentinel and Application Insights).<br> Can be extended to up to two years at a prorated monthly long-term retention charge. | Not Applicable      | Not Applicable                                                |
 | Total retention                                        | Up to 12 years                                               | Up to 12 years                                               | Up to 12 years                  |
 
-<sup>1</sup> Basic and Auxiliary table plans currently support Workbooks and Grafana.
+<sup>1</sup> Basic and Auxiliary table plans currently support Workbooks and Grafana, while Azure Monitor Dashboards are not supported.
 
 > [!NOTE]
 > The Basic and Auxiliary table plans aren't available for workspaces in [legacy pricing tiers](cost-logs.md#legacy-pricing-tiers).
@@ -121,7 +121,7 @@ For more information about Log Analytics, see [Overview of Log Analytics in Azur
 
 Many of Azure Monitor's [ready-to-use, curated Insights experiences](../insights/insights-overview.md) store data in Azure Monitor Logs, and present this data in an intuitive way so you can monitor the performance and availability of your cloud and hybrid applications and their supporting components.
 
-:::image type="content" source="../containers/media/container-insights-overview/azmon-containers-experience.png" lightbox="../containers/media/container-insights-overview/azmon-containers-experience.png" alt-text="A screenshot that shows the built-in Container Insights monitoring experience in Azure Monitor.":::
+:::image type="content" source="../containers/media/kubernetes-monitoring-overview/containers-insights-experience.png" lightbox="../containers/media/kubernetes-monitoring-overview/containers-insights-experience.png" alt-text="A screenshot that shows the built-in Container Insights monitoring experience in Azure Monitor.":::
 
 [Create your own visualizations and reports](../best-practices-analysis.md#built-in-visualization-tools) using workbooks, dashboards, and Power BI.  
 

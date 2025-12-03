@@ -2,19 +2,19 @@
 title: Use Event Level to Prioritize Notifications and Communications
 description: Learn how to use a new metadata field to filter event notifications in Azure Service Health.
 ms.topic: overview
-ms.date: 07/11/2025
+ms.date: 10/16/2025
 ---
 
-# Filter notifications using Event Level in Azure Service Health
+# Filter notifications using event levels in Azure Service Health
 
-To help you prioritize Azure Service Health event communications, the **Service issues,** **Health advisories,** and **Security advisories** panes include a new metadata field called **Event Level**. This field can help you understand the significance of each communication and rapidly evaluate the importance of each alert.
+To help you prioritize Azure Service Health event communications, the **Service issues,** **Health advisories,** and **Security advisories** panes include a new metadata field called **Event level**. This field can help you understand the significance of each communication and rapidly evaluate the importance of each alert.
 
 You can use this feature to filter and sort events, and more effectively prioritize your actions.
 
-## Access to the Event level metadata field
-Everyone with access to the subscription can view and filter by **Event Level**.
+## Access to the event level metadata field
+Everyone with access to the subscription can view and filter by **Event level**.
 
-## Service Issues event level alert definitions
+## Service issues event level definitions
 
 |Alert type|Definition|
 |-----|-----|
@@ -23,15 +23,15 @@ Everyone with access to the subscription can view and filter by **Event Level**.
 |**Critical**|We recommend immediate attention. Widespread problems affect multiple regions or services, which risk the failure of high availability or disaster recovery measures.|
 
 > [!TIP]
-> You can use the **Event Level** field to filter by alert.
+> You can use the **Event level** field to filter by alert.
 
 :::image type="content" source="media/metadata/metadata-screen.png" alt-text="Screenshot of the new metadata filter screen." lightbox="media/metadata/metadata-screen.png":::
 
 
 > [!NOTE]
-> This field is currently available on the **Service Issues,** **Health advisories,** and the **Security advisories** panes.
+> This field is currently available on the **Service issues,** **Health advisories,** and the **Security advisories** panes.
 
-## Health advisories event level alert definitions
+## Health advisories event level definitions
 
 
 |Alert type|Definition|
@@ -42,7 +42,7 @@ Everyone with access to the subscription can view and filter by **Event Level**.
 
 :::image type="content" source="media/metadata/metadata-health-advisory-screen.png" alt-text="Screenshot of the health advisory metadata filter screen." lightbox="media/metadata/metadata-health-advisory-screen.png":::
 
-## Security advisories event level alert definitions
+## Security advisories event level definitions
 
 |Alert type|Definition|
 |-----|-----|
@@ -52,5 +52,8 @@ Everyone with access to the subscription can view and filter by **Event Level**.
 
 :::image type="content" source="media/metadata/metadata-security-screen.png" alt-text="Screenshot of the security advisory metadata filter screen." lightbox="media/metadata/metadata-security-screen.png":::
 
-> [!NOTE]
-> For more information about access to the Security advisories pane, see [Elevated access to Security advisories](security-advisories-elevated-access.md).
+
+### More information
+Access to the Security advisories pane, see [Elevated access to Security advisories](security-advisories-elevated-access.md).
+
+Event and event level tags, see [Service Health event tags](service-health-event-tags.md).

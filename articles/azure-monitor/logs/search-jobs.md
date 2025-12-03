@@ -2,7 +2,7 @@
 title: Run search jobs in Azure Monitor
 description: Search jobs are asynchronous log queries in Azure Monitor that make results available as a table for further analytics.
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 10/14/2025
 ms.custom: references_regions
 ms.reviewer: adi.biran
 # Customer intent: As a data scientist or workspace administrator, I want an efficient way to search through large volumes of data in a table, including data in long-term retention.
@@ -23,7 +23,7 @@ This video explains when and how to use search jobs:
 | Run a search job | `Microsoft.OperationalInsights/workspaces/tables/write` and `Microsoft.OperationalInsights/workspaces/searchJobs/write` permissions to the Log Analytics workspace, for example, as provided by the [Log Analytics Contributor built-in role](../logs/manage-access.md#built-in-roles). |
 
 > [!NOTE]
-> Cross-tenant search jobs aren't currently supported, even when Entra ID tenants are managed through Azure Lighthouse.
+> Cross-tenant search jobs aren't supported. Azure Lighthouse delegated access is also not supported for search jobs (or restore) even when a delegated role is assigned which includes the searchJobs/write permission.
 
 ## When to use search jobs
 
@@ -265,19 +265,25 @@ We recommend you [delete the search job table](../logs/create-custom-table.md#de
 
 Search jobs are subject to the following considerations:
 
-* Optimized to query one table at a time.
-* Search date range is any period within the total retention.
-* Supports long running searches up to a 24-hour time-out.
-* Results are limited to 100 million records in the record set.
+* Optimized to query one table at a time
+* Search date range is any period within the total retention
+* Supports long running searches up to a 24-hour time-out
+* Results are limited to 100 million records in the record set - if limit is surpassed, Azure Monitor aborts the job with a status of *partial success*, and the table contains only records ingested up to that point
 * Concurrent execution is limited to ten search jobs per workspace.
-* Limited to 200 search results tables per workspace.
-* Limited to 200 search job executions per day per workspace. 
-
-When you reach the record limit, Azure aborts the job with a status of *partial success*, and the table contains only records ingested up to that point. 
+* Limited to 200 search results tables per workspace
+* Limited to 200 search job executions per day per workspace
+* Cross-tenant search jobs aren't supported
+* Azure Lighthouse delegated access isn't supported for search jobs even if the delegation contains the proper searchJobs/write permission - fails with error message:
+   :::row:::
+   :::column span="3":::
+   *User* \<managing-tenant-userId\> *does not maintain access to action Microsoft.OperationalInsights/workspaces/searchJobs/write at scope* 
+   <delegated-workspace-resourceID\>.
+   :::column-end:::
+   :::row-end:::
 
 ### KQL query considerations
 
-Search jobs are intended to scan large volumes of data in a specific table, so search job queries must always start with a table name. To enable asynchronous execution using distribution and segmentation, the query supports a subset of KQL, including these operators: 
+Search jobs are intended to scan large volumes of data in a specific table, so search job queries must always start with a table name. To enable asynchronous execution using distribution and segmentation, the query supports a subset of KQL, including these tabular operators: 
 
 * [`where`](/azure/data-explorer/kusto/query/whereoperator)
 * [`extend`](/azure/data-explorer/kusto/query/extendoperator)
@@ -290,6 +296,9 @@ Search jobs are intended to scan large volumes of data in a specific table, so s
 * [`parse-where`](/azure/data-explorer/kusto/query/parse-where-operator)
 
 All functions and binary operators within these operators are usable.
+
+The [`contains`](/azure/data-explorer/kusto/query/contains-operator) string operator is blocked from use in search jobs since advanced text matches have significant impact on performance. Instead, use the [`has`](/azure/data-explorer/kusto/query/has-operator) string operator. For more information on performance considerations, see [Optimize log queries in Azure Monitor](../logs/query-optimization.md#use-effective-aggregation-commands-and-dimensions-in-summarize-and-join).
+
 
 ## Pricing model
 
