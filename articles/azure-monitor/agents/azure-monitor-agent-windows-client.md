@@ -485,7 +485,7 @@ $auth = Get-AzAccessToken
 
 $AuthenticationHeader = @{
     "Content-Type" = "application/json"
-    "Authorization" = "Bearer " + $auth.Token
+    "Authorization" = "Bearer " + $(ConvertFrom-SecureString $auth.Token -AsPlainText)
 }
 
 #Get the monitored object
