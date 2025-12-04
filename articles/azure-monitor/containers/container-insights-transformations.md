@@ -1,13 +1,12 @@
 ---
-title: Filter and transform Kubernetes container logs using data transformations in Azure Monitor
+title: Advanced filtering and transformations for Kubernetes logs in Azure Monitor
 description: Describes how to transform data using a DCR transformation with container logs from your Kubernetes cluster using Azure Monitor.
 ms.topic: article
 ms.date: 09/14/2025
 ms.reviewer: aul
 ---
 
-# Filter and transform Kubernetes container logs using data transformations in Azure Monitor
-
+# Advanced filtering and transformations for Kubernetes logs in Azure Monitor
 This article describes how to implement data transformations with container log data from your Kubernetes cluster. [Transformations](../essentials/data-collection-transformations.md) in Azure Monitor allow you to modify or filter data before it's ingested in your Log Analytics workspace. They allow you to perform such actions as filtering out data collected from your cluster to save costs or processing incoming data to assist in your data queries.
 
 > [!IMPORTANT]
