@@ -28,10 +28,10 @@
       href: service-health-notification-transitions.md
     - name: Service Health event tags
       href: service-health-event-tags.md  
-    - name: View and access Security advisories
-      href: security-advisories-elevated-access.md
     - name: Manage Azure security notifications
       href: stay-informed-security.md
+    - name: Security advisories overview
+      href: security-advisories-elevated-access.md
     - name: Health advisories overview
       href: Service-health-advisories.md
     - name: Health history overview
