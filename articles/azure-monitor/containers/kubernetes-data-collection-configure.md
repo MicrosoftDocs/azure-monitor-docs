@@ -18,14 +18,12 @@ When you enable monitoring for a Kubernetes cluster in Azure Monitor, the [Azure
 There are two methods to define the configuration the agent will use to collect data. Each method controls different aspects of data collection, so you need to use both methods together to achieve your requirements. For some configuration options, you can choose either method. While both logs and metrics use the same configuration options, configuration for each data is done separately.
 
 
-| Method | Description |
-|:---|:---|
-| ConfigMap | [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/) in Kubernetes store configuration data for applications running in the cluster. Multiple ConfigMaps are provided by Microsoft for both logs and metrics that are read by the Azure Monitor to modify different aspects of data collected by the agent from the cluster. Modify these ConfigMaps and apply them to your cluster to customize data collection for each data type. |
-| Data Collection Rule (DCR) | [Data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) in Azure Monitor define what data is collected from a monitored resource and where that data is sent. Separate DCRs are automatically created for logs and metrics when you enable monitoring for your Kubernetes cluster. You can also share a single DCR across multiple clusters to centralize configuration and simplify management. Some settings in the DCR are read by the agent to determine the data it collects by the cluster. Other settings are used by Azure Monitor to determine how to process that data after it's sent from the cluster. This includes [transformations](../data-collection/data-collection-rule-transformations.md), which provide advanced filtering and manipulation of data before it's ingested into the Log Analytics workspace.|
+**ConfigMap**<br>
+[ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/) in Kubernetes store configuration data for applications running in the cluster. Multiple ConfigMaps are provided by Microsoft for both logs and metrics that are read by the Azure Monitor to modify different aspects of data collected by the agent from the cluster. Modify these ConfigMaps and apply them to your cluster to customize data collection for each data type. |
 
-:::image type="content" source="./media/kubernetes-data-collection-configure/data-configuration-options.png" lightbox="./media/kubernetes-data-collection-configure/data-configuration-options.png" alt-text="{alt-text}":::
+**Data Collection Rule (DCR)**<br>
+[Data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) in Azure Monitor define what data is collected from a monitored resource and where that data is sent. Separate DCRs are automatically created for logs and metrics when you enable monitoring for your Kubernetes cluster. Some settings in the DCR are read by the agent to determine the data it collects by the cluster. Other settings are used by Azure Monitor to determine how to process that data after it's sent from the cluster. This includes [transformations](../data-collection/data-collection-rule-transformations.md), which provide advanced filtering and manipulation of data before it's ingested into the Log Analytics workspace.|
 
-## Comparison
 The follow table provides a comparison of the two configuration methods.
 
 | | ConfigMap | Data Collection Rule (DCR) |
@@ -33,6 +31,10 @@ The follow table provides a comparison of the two configuration methods.
 | Logs | - Enable/disable container logs separately<br>- Namespace filtering for container logs<br>- Annotation filtering<br>- Collect environment variables | - Enable/disable all container logs<br>- Namespace filtering for other logs<br>- Specify collected tables<br>- Log Analytics workspace(s)<br>- Custom filtering with transformations |
 | Metrics | - Enable/disable targets<br>- Enable/disable specific metrics<br>- Annotation-based scraping  | - Azure Monitor workspace(s) |
 | Deployment | - Apply ConfigMap to each cluster.<br>- Requires redeployment for changes. | - Configure single DCR for multiple clusters<br>- Modify DCR with no restart required |
+
+
+:::image type="content" source="./media/kubernetes-data-collection-configure/data-configuration-options.png" lightbox="./media/kubernetes-data-collection-configure/data-configuration-options.png" alt-text="{alt-text}":::
+
 
 ## Common settings
 Some settings can be configured with both ConfigMap and DCR, but there are important differences as described in the following table.

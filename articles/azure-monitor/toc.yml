@@ -530,6 +530,8 @@ items:
               displayName: Prometheus,remote-write
       - name: Logs
         items:
+        - name: Filter container logs
+          href: containers/kubernetes-data-collection-configmap.md
         - name: Filter control plane logs
           href: containers/control-plane-transformations.md
         - name: Container log schema
