@@ -119,7 +119,7 @@ With multiline logging enabled, previously split container logs are stitched tog
 ### Limitations
 
 - Multiline logging only stitches exception stack traces from the containers using Java, Python, .NET, and Go. Other multiline log entries, including custom exceptions and arbitrary log messages, are not stitched together.
-
+- Multiline logging isn't supported for Python exception stack traces with [fine-grained-error-locations-in-tracebacks](https://docs.python.org/3/whatsnew/3.11.html#pep-657-fine-grained-error-locations-in-tracebacks). For multiline logging to work, you need to opt-out of this feature as described in [Python documentation](https://peps.python.org/pep-0657/#opt-out-mechanism).
 - If the log line which larger than 16KB instead of truncated by container runtime by default and log line will be supported up to 64KB. 
 
 ### Examples
