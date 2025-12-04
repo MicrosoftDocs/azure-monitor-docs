@@ -4,7 +4,7 @@ description: Aggregate data in Log Analytics workspace with summary rules featur
 ms.subservice: logs
 ms.topic: how-to
 ms.reviewer: yossi-y
-ms.date: 11/02/2025
+ms.date: 01/04/2026
 
 # Customer intent: As a Log Analytics workspace administrator or developer, I want to optimize my query performance, cost-effectiveness, security, and analysis capabilities by using summary rules to aggregate data I ingest to specific tables.
 ---
@@ -40,7 +40,7 @@ You can aggregate data from any table, regardless of whether the table has an [A
 - `_BinSize`: The aggregation interval.  
 - `_BinStartTime`: The aggregation start time.
 
-You can configure up to 30 active rules to aggregate data from multiple tables and send the aggregated data to separate destination tables or the same table. 
+You can configure up to 100 active rules to aggregate data from multiple tables and send the aggregated data to separate destination tables or the same table. 
 
 You can export summarized data from a custom log table to a storage account or Event Hubs for further integrations by defining a [data export rule](logs-data-export.md).
 
@@ -114,7 +114,7 @@ The operators you can use in summary rule your query depend on the plan of the s
  - Basic: Supports all KQL operators on a single table. You can join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
  - Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported. 
 
-Summary rules are most beneficial in term of cost and query experiences when results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify the followings:
+Summary rules are most beneficial in term of cost and query experiences when the query in rule includes `summarize` operator and results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify the followings:
 
 1. Check that the query produces the intended expected results and schema.
 1. The query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces).
