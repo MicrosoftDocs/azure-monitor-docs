@@ -7,6 +7,9 @@ ms.reviewer: aul
 ---
 
 # Data collection rules for Kubernetes clusters
+When you enable monitoring for your Kubernetes clusters in Azure Monitor, [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) are created to define how logs and metrics are collected from your clusters. You can continue to use methods such as CLI and the Azure portal to configure log and metric collection settings for your clusters rather than working with the DCRs directly. 
+
+This article describes 
 
 
 ## DCRs created
@@ -37,7 +40,11 @@ When you create a new Azure Monitor workspace, the following additional resource
 ## Transformations
 
 
+
 ## Reusing existing DCRs
+
+When you enable monitoring for a cluster, new DCRs for both logs and metrics are created for that cluster. If you have multiple clusters that you want to monitor with the same DCR configuration, then you can share DCRs across clusters. 
+
 
 
 
