@@ -1,13 +1,12 @@
 ---
-title: View and access Security advisories
+title: Security advisories overview
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
-
-ms.topic: conceptual
-ms.date: 10/17/2025
+ms.topic: article
+ms.date: 12/04/2025
 ---
 
 
-# View and access Security advisories
+# Security advisories
 
 The Security advisories pane in Azure Service Health is a specialized dashboard designed to notify you about urgent security-related events that might affect your subscriptions.
 
@@ -53,7 +52,7 @@ Users who have [roles with tenant admin access](admin-access-reference.md) can a
 
 
 
-## Service Health API endpoint
+### Access Service advisories through API endpoint
 
 To access Security advisories through APIs, you must update your code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security advisories notification details. Users with the specified roles can view sensitive event details for a specific event with the new endpoint.
 
