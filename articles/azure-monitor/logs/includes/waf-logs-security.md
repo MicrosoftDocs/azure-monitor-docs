@@ -31,10 +31,10 @@ To avoid potential service disruptions, confirm that your resources interacting 
 
 <br>
 <details>
-<summary>Click here for a recommended action you can take to audit VMs.</summary>
-
+<summary>Click here for recommended actions you can take to audit VMs.</summary>
+<br>
 <details>
- <summary>List VMs with operating systems that lack TLS 1.2 support**</summary>
+ <summary><b>List VMs with operating systems that lack TLS 1.2 support</b></summary>
 
 1. Use an Azure Resource Graph query to audit the operating system versions of your VMs.  
 2. From the Azure portal, go to **Resource Manager** and select **Resource graph explorer**. The following query finds all VMs in the given scope that have an operating system that doesn't support TLS 1.2. This query only lists the OS version for VMs that are started.
@@ -63,9 +63,9 @@ or (osName has 'Windows Server 2008' and osVersion !contains 'R2')  // special c
 
 3. Prioritize updating these VMs to an OS version that supports TLS 1.2, or migrate the workload to a VM that does.
 </details>
-
+<br>
 <details>
-<summary>**List VMs that support TLS 1.2 but not by default**</summary>
+<summary><b>List VMs that support TLS 1.2 but should be verified</b></summary>
 
 1. Use an Azure Resource Graph query to audit the operating system versions of your VMs. 
 2. From the Azure portal, go to **Resource Manager** and select **Resource graph explorer**. The following query finds all VMs in the given scope that have an [operating system that supports TLS 1.2](/security/engineering/solving-tls1-problem#supported-versions-of-tls-in-windows). Some of these operating systems don't support TLS 1.2 by default, or might have TLS 1.2 disabled. This query only lists the OS version for VMs that are started.
