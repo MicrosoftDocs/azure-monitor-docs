@@ -6,7 +6,7 @@ ms.date: 11/21/2025
 When you specify the tables to collect using CLI or BICEP/ARM, you specify stream names that correspond to particular tables in the Log Analytics workspace. The following table lists the stream names and their corresponding table.
 
 > [!NOTE]
-> If you're familiar with the [structure of a data collection rule](../essentials/data-collection-rule-structure.md), the stream names in this table are specified in the [Data flows](../essentials/data-collection-rule-structure.md#data-flows) section of the DCR.
+> If you're familiar with the [structure of a data collection rule](../../data-collection/data-collection-rule-structure.md), the stream names in this table are specified in the [Data flows](../../data-collection/data-collection-rule-structure.md#data-flows) section of the DCR.
 
 | Stream | Container insights table |
 | --- | --- |
