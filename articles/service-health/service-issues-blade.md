@@ -2,7 +2,7 @@
 title: View Service issues
 description: This article describes how to view and use the Service issues pane
 ms.topic: overview
-ms.date: 12/01/2025
+ms.date: 12/05/2025
 
 ---
 
@@ -80,7 +80,7 @@ The information on this tab includes the following data:
 
 :::image type="content" source="./media/service-issue-overview/service-issues-impacted-services-02.png" alt-text="Screenshot that shows the Issues Impacted tab." Lightbox="./media/service-issue-overview/service-issues-impacted-services-02.PNG":::
 
-This tab displays all the impacted resources that are affected:
+This tab displays all the impacted services that are affected:
 - Region 
 - Status 
 - Last update time 
