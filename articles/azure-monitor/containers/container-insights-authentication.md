@@ -62,16 +62,6 @@ KubernetesConfigurationResources
 
 If you enabled Container insights before managed identity authentication was available, you can use the following methods to migrate your clusters.
 
-## [Azure portal](#tab/portal-azure-monitor)
-
-You can migrate to Managed Identity authentication from the *Monitor settings* panel for your AKS cluster. From the **Monitoring** section, click on the **Insights** tab. In the Insights tab, click on the *Monitor Settings* option and check the box for *Use managed identity*
-
-:::image type="content" source="./media/container-insights-authentication/monitor-settings.png" alt-text="Screenshot that shows the settings panel." lightbox="media/container-insights-authentication/monitor-settings.png":::
-
-If you don't see the *Use managed identity* option, you are using an SPN cluster. In that case, you must use command line tools to migrate. See other tabs for migration instructions and templates.
-
-
-
 ## [Azure CLI](#tab/cli)
 
 ### AKS
@@ -139,4 +129,5 @@ If you require legacy authentication, see [Enable Container insights](kubernetes
 
 ## Next steps
 If you experience issues when you upgrade the agent, review the [troubleshooting guide](container-insights-troubleshoot.md) for support.
+
 
