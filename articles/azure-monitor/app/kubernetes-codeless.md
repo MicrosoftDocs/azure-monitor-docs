@@ -310,7 +310,7 @@ Conversely, Application Insights might not be able to instrument all microservic
 
 You can also choose to enable both sources for logs if you have multiple observability teams such as infra engineers using Container Insights and developers using Application Insights.
 
-Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, container logs, or both. If you disable container log collection, see [Filter container log collection with ConfigMap](../containers/container-insights-data-collection-filter.md).
+Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, container logs, or both. If you disable container log collection, see [Filter container log collection with ConfigMap](../containers/kubernetes-data-collection-configmap.md).
 
 > [!IMPORTANT]
 > To avoid unnecessary duplication and increased cost, enable logs in Application Insights to allow the feature to collect application logs from standard logging frameworks and send them to Application Insights.

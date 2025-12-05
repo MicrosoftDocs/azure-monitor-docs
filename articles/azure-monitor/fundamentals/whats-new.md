@@ -36,7 +36,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Quarkus support](../app/opentelemetry-enable.md?tabs=java-native#install-the-client-library)|We've clarified Quarkus support across OpenTelemetry documentation and provided a link to get community assistance.|
 | Data Collection | [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md) | Added content for preview DCR experience. |
 | Kubernetes | [Analyze the health and status of your Kubernetes cluster with Azure Monitor](../containers/container-insights-analyze.md) | Rewrite to support latest portal experience. |
-| Kubernetes | [Filter container log collection with ConfigMap](../containers/container-insights-data-collection-filter.md) | Rewrite to improve clarity. |
+| Kubernetes | [Filter container log collection with ConfigMap](../containers/kubernetes-data-collection-configure) | Rewrite to improve clarity. |
 | Kubernetes | [View live data with Container insights](../containers/container-insights-livedata-overview.md) | Rewrite to support latest portal experience. |
 | Kubernetes | [Analyze Syslog data from Kubernetes cluster in Azure Monitor](../containers/container-insights-syslog.md) | Rewrite to improve clarity. |
 | Kubernetes | [Filter and transform Kubernetes container logs using data transformations in Azure Monitor](../containers/container-insights-transformations.md) | Rewrite to improve clarity. |
@@ -303,7 +303,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Microsoft Entra authentication for Application Insights](../app/azure-ad-authentication.md)|Options to enable Microsoft Entra authentication for .NET and Node.js autoinstrumentation are documented.|
 |Application-Insights|[Application Insights availability tests](../app/availability.md)|We clarified information about using an "availability test string identifier", which previously caused some confusion when referred to as a "GUID".|
 |Containers|[Optimize monitoring costs for Container insights](../containers/container-insights-cost.md)|Rewritten to consolidate cost saving options and analysis.|
-|Containers|[Filter log collection in Container insights](../containers/container-insights-data-collection-filter.md)|New article to describe all options to filter container logs.|
+|Containers|[Filter log collection in Container insights](../containers/kubernetes-data-collection-configure)|New article to describe all options to filter container logs.|
 |Containers|[Container insights log schema](../containers/container-insights-logs-schema.md)|Rewritten to focus on definition and configuration of log schema, including metadata option.|
 |Containers|[Access Syslog data in Container Insights](../containers/container-insights-syslog.md)|Removed duplicate information on configuration.|
 |Containers|[Data transformations in Container insights](../containers/container-insights-transformations.md)|Added details to filtering example and added a new example to send data to multiple tables.|

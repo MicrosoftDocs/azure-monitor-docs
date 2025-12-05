@@ -81,7 +81,7 @@ Follow the two steps in the following sections to enable high scale mode for you
 
 The first step is to update configmap for the cluster to instruct the Container Insights ama-logs deamonset pods to run in high scale mode. 
 
-1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-filter.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
+1. Follow the guidance in [Configure and deploy ConfigMap](./kubernetes-data-collection-configure#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
 
 1. Enable high scale mode with the following setting under `agent-settings`.
 
