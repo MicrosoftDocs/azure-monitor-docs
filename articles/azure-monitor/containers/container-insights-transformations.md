@@ -38,7 +38,7 @@ The [Data sources section of the DCR](../essentials/data-collection-rule-structu
 
 The list of Container insights streams in the DCR depends on the [Cost preset](container-insights-cost-config.md#cost-presets) that you selected for the cluster. If you collect all tables, the DCR will use the `Microsoft-ContainerInsights-Group-Default` stream, which is a group stream that includes all of the streams listed in [Stream values](container-insights-cost-config.md#stream-values). You must change this to individual streams if you're going to use a transformation. Any other cost preset settings will already use individual streams.
 
-The sample below shows the `Microsoft-ContainerInsights-Group-Default` stream. See the [Sample DCRs](#sample-dcrs) for samples using individual streams.
+The sample below shows the `Microsoft-ContainerInsights-Group-Default` stream. See the sections below for samples using individual streams.
 
 ```json
 "dataSources": {
@@ -69,7 +69,7 @@ The [Data flows section of the DCR](../essentials/data-collection-rule-structure
 
 Create a separate entry for streams that require a transformation. This should include the workspace destination and the `transformKql` property. If you're sending data to an alternate table, then you need to include the `outputStream` property which specifies the name of the destination table.
 
-The sample below shows the `dataFlows` section for a single stream with a transformation. See the [Sample DCRs](#sample-dcrs) for multiple data flows in a single DCR.
+The sample below shows the `dataFlows` section for a single stream with a transformation. See the samples below for multiple data flows in a single DCR.
 
 ```json
 "dataFlows": [
@@ -87,7 +87,7 @@ The sample below shows the `dataFlows` section for a single stream with a transf
 
 ## Filter data
 
-The first example filters out data from the `ContainerLogV2` based on the `LogLevel` column. Only records with a `LogLevel` of `error` or `critical` will be collected since these are the entries that you might use for alerting and identifying issues in the cluster. Collecting and storing other levels such as `info` and `debug` generate cost without significant value.
+The following example filters out data from the `ContainerLogV2` based on the `LogLevel` column. Only records with a `LogLevel` of `error` or `critical` will be collected since these are the entries that you might use for alerting and identifying issues in the cluster. Collecting and storing other levels such as `info` and `debug` generate cost without significant value.
 
 You can retrieve these records using the following log query. 
 

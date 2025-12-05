@@ -1,6 +1,6 @@
 ---
-title: Filter container log collection with ConfigMap
-description: Options for filtering Container insights data that you don't require.
+title: Filter and customize data collection for Kubernetes clusters
+description: Describes the different types of customization you can perform for data collection from your Kubernetes clusters and the methods required to implement each.
 ms.topic: how-to
 ms.date: 09/22/2025
 ms.reviewer: aul

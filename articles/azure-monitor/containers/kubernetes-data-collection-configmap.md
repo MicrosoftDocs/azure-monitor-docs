@@ -1,6 +1,6 @@
 ---
 title: Configure container log collection with ConfigMap
-description: Options for filtering Container insights data that you don't require.
+description: Learn how to use a ConfigMap to configure and filter the collection of container logs and environment variables from your Kubernetes cluster.
 ms.topic: how-to
 ms.date: 09/22/2025
 ms.reviewer: aul
