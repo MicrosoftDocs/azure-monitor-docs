@@ -20,6 +20,9 @@ This article describes how to implement data transformations with container log 
 ## Data collection rules
 Transformations are implemented in [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) which are used to configure data collection in Azure Monitor. When you enable monitoring Prometheus metrics and container logging for your Kubernetes clusters in the Azure monitor, separate DCRs are created for each type of data. Transformations can be added to the DCR that collects container logs.
 
+> [!NOTE]
+> See [DCRs and related resources](./kubernetes-data-collection-configure.md#dcrs-and-related-resources) for a detailed listing of the DCRs that are created for Kubernetes clusters.
+
 To create a transformation, perform one of the following actions:
 
 - **New cluster**. Use an existing [ARM template](https://github.com/microsoft/Docker-Provider/tree/ci_prod/scripts/onboarding/aks/onboarding-using-msi-auth) to onboard an AKS cluster to Container insights. Modify the DCR in that template with your required configuration, including a transformation similar to one of the samples below.

@@ -15,11 +15,11 @@ This article describes the different types of customization you can perform for 
 ## Configuration methods
 When you enable monitoring for a Kubernetes cluster in Azure Monitor, the [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) is installed in the cluster. This agent is responsible for collecting logs and metrics from the cluster and sending them to Azure Monitor. 
 
-There are two methods to define the configuration the agent will use to collect data. Each method controls different aspects of data collection, so you need to use both methods together to achieve your requirements. For some configuration options, you can choose either method. While both logs and metrics use the same configuration options, configuration for each data is done separately.
+There are two methods to define the configuration the agent will use to collect data. Each method controls different aspects of data collection, so you need to use both methods together to achieve your requirements. While both logs and metrics use the same configuration options, configuration for each data type is done separately.
 
 | Method | Description |
 |:---|:---|
-| ConfigMap | [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/) in Kubernetes store configuration data for applications running in the cluster. Multiple ConfigMaps are provided by Microsoft for both logs and metrics that are read by the Azure Monitor to modify different aspects of data collected by the agent from the cluster. Modify these ConfigMaps and apply them to your cluster to customize data collection for each data type. |
+| ConfigMap | [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/) in Kubernetes store configuration data for applications running in the cluster. Multiple ConfigMaps are provided by Microsoft for both logs and metrics that are read by the Azure Monitor agent to modify different aspects of data collected by the agent from the cluster. Modify these ConfigMaps and apply them to your cluster to customize data collection for each data type. |
 | Data Collection Rule (DCR) | [Data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) in Azure Monitor define what data is collected from a monitored resource and where that data is sent. Separate DCRs are automatically created for logs and metrics when you enable monitoring for your Kubernetes cluster. Some settings in the DCR are read by the agent to determine the data it collects by the cluster. Other settings are used by Azure Monitor to determine how to process that data after it's sent from the cluster. This includes [transformations](../data-collection/data-collection-rule-transformations.md), which provide advanced filtering and manipulation of data before it's ingested into the Log Analytics workspace. |
 
 The following image illustrates how each of the configuration methods are used in the collection of data from your Kubernetes clusters. There is only one DCR used for logs collection. It's shown twice in the image to illustrate that some information in the DCR is used by the agent at the cluster level, while other information in the DCR is used by Azure Monitor after that data is delivered.
@@ -40,7 +40,7 @@ Some settings can be configured with both ConfigMap and DCR, but there are impor
 
 | Setting | Recommendation |
 |:---|:---|
-| Container logs | For container logs to be collected, they must be enabled in both ConfigMap and DCR (ContainerLogV2 stream). ConfigMap allows you to separately enable stdout and stderr logs. If you disable either of the logs in ConfigMap, they won't be collected. |
+| Container logs | Container logs are stdout/stderr logs from the cluster. For container logs to be collected, they must be enabled in both ConfigMap and DCR (ContainerLogV2 stream). ConfigMap allows you to separately enable stdout and stderr logs. If you disable either of the logs in ConfigMap, they won't be collected. |
 | Namespace filtering | Namespace filtering is configured in both the ConfigMap and DCR but for different logs. Namespace filtering in ConfigMap only applies to container logs and can be configured separately for stdout and stderr logs. Namespace filtering in the DCR applies to all other logs. To fully exclude a namespace from log collection, you must exclude it in both places. |
 
 
@@ -55,31 +55,32 @@ Separate ConfigMaps are provided for logs and metrics as described below. Both l
 
 
 ## DCR configuration
-When you enable log collection for your cluster, [separate DCRs are automatically created  for logs and metrics](#dcrs-and-related-resources) that include the settings that you specified in the [onboarding process](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging). 
+When you enable log collection for your cluster, separate DCRs are automatically created for logs and metrics that include the settings that you specified in the [onboarding process](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging). See [DCRs and related resources](#dcrs-and-related-resources) below for details of the DCRs and related objects that are created during onboarding.
 
 
 | Data | Description |
 |:---|:---|
-| Metrics | The DCR for metrics is called `MSProm-<region>-<cluster name>`. It includes the Azure Monitor workspace but is used minimally to define details for the metrics collected. Use `ConfigMap` configure these details. The primary scenario for modifying the DCR is to send metrics to multiple Azure Monitor workspaces as described in [Send Prometheus metrics to multiple Azure Monitor workspaces](./prometheus-metrics-multiple-workspaces.md). |
+| Metrics | The DCR for metrics is called `MSProm-<region>-<cluster name>`. It includes the Azure Monitor workspace but is used minimally to define details for the metrics collected. Use `ConfigMap` instead to configure these details. The primary scenario for modifying the DCR is to send metrics to multiple Azure Monitor workspaces as described in [Send Prometheus metrics to multiple Azure Monitor workspaces](./prometheus-metrics-multiple-workspaces.md). |
 | Logs | The DCR for logs is called `MSCI-<region>-<cluster name>`. It includes the Log Analytics workspace and other configuration that's specified in the onboarding process, such as streams of data collected and namespace filtering. You can use the same methods to modify these settings after onboarding. For example, select a different **Logs preset** in the Azure portal to change the streams collected, or run a CLI command with a new log configuration file to add namespace filtering. In these cases, you don't need to work interactively with the DCR. Alternatively, you can [modify the DCR directly](../data-collection/data-collection-rule-create-edit.md) to change these settings. You can also directly modify the DCR to achieve the advanced scenarios described below. |
 
 
 ## Advanced filtering
 
-[Transformations](../data-collection/data-collection-transformations.md) in DCRs allow you to apply a KQL query to filter and manipulate data sent to Azure Monitor before it's ingested into the Log Analytics workspace. This allows you to enrich or sanitize data before ingestion for compliance and cost optimization. Filter rows and columns of incoming data, mask sensitive fields, and create new calculated fields. See [Advanced filtering and transformations for Kubernetes logs in Azure Monitor](./container-insights-transformations.md) for details on how to implement transformations for container logs collected from your Kubernetes clusters.
+[Transformations](../data-collection/data-collection-transformations.md) in DCRs allow you to apply a KQL query to filter and manipulate data sent to Azure Monitor before it's ingested into the Log Analytics workspace. This allows you to enrich or sanitize data before ingestion for compliance and cost optimization. Examples include filtering rows and columns of incoming data, masking sensitive fields, and creating new calculated fields. See [Advanced filtering and transformations for Kubernetes logs in Azure Monitor](./container-insights-transformations.md) for details on how to implement transformations for logs collected from your Kubernetes clusters.
 
 > [!NOTE]
 > Transformations only apply to data sent to a Log Analytics workspace, so they can't be used to filter metrics data which is sent to an Azure Monitor workspace.
 
 
 ## Send to multiple workspaces and tables
-The DCR specifies the workspace and table where data is sent. A DCR for Kubernetes can only specify a single Log Analytics workspace for log data and a single Azure Monitor workspace for metrics data. You can create to create additional DCRs and associate them with your cluster though. For example, you may have different teams responsible for different applications running in the same cluster, and each team requires their own set of data. See [Send Prometheus metrics to multiple Azure Monitor workspaces](./prometheus-metrics-multiple-workspaces.md).
+The DCR specifies the workspace and table where data is sent. A DCR for Kubernetes can only specify a single Log Analytics workspace for log data and a single Azure Monitor workspace for metrics data. You can create to create additional DCRs and associate them with your cluster though. For example, you may have different teams responsible for different applications running in the same cluster, and each team requires their own set of data. See [Send Prometheus metrics to multiple Azure Monitor workspaces](./prometheus-metrics-multiple-workspaces.md) for a detailed example that uses both the ConfigMap and DCR.
 
-Log Analytics workspaces have different data tiers that provide different capabilities and costs. You can reduce your monitoring costs by sending certain data to tables configured for lower-cost. See [Send data to different tables](./control-plane-transformations.md#send-data-to-different-tables).
+Log Analytics workspaces have different data tiers that provide different capabilities and costs. You can reduce your monitoring costs by sending certain data to tables configured for lower-cost. Rather than configuring an entire table for another tier, for example configuring ContainerLogV2 for [basic logs](../logs/manage-logs-tables.md#table-type-and-schema), you can use transformations in the DCR to select data to send to different tables configured for different tiers. See [Send data to different tables](./control-plane-transformations.md#send-data-to-different-tables) for a detailed example.
 
-## Use a DCR with multiple clusters
-If you have multiple clusters that use the same configuration, they can share a single DCR. This strategy reduces management overhead and ensures consistency across your clusters, especially when implementing complex configurations such as using transformations for advanced filtering.
+## Share a DCR with multiple clusters
+If you have multiple clusters that use the same configuration, they can share a single DCR. This strategy reduces management overhead and ensures consistency across your clusters, especially when implementing complex configurations such as using transformations for advanced filtering. A single cluster can also be associated with multiple DCRs, each defining different data to collect.
 
+To use a common DCR for multiple clusters, remove the association from each cluster's current DCR and create a new association to the shared DCR. Once the cluster is associated with the common DCR, you can remove the old DCR. See [Manage data collection rule associations in Azure Monitor](../data-collection/data-collection-rule-associations.md) for different methods to manage DCR associations. 
 
 
 ## DCRs and related resources

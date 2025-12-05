@@ -464,8 +464,6 @@ items:
       items:
       - name: Overview
         href: containers/kubernetes-data-collection-configure.md
-      - name: Data collection rules
-        href: containers/kubernetes-data-collection-rules.md
       - name: Metrics
         items:
         - name: Customize data collection
