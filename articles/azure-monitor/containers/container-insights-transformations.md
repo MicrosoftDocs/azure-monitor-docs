@@ -9,8 +9,13 @@ ms.reviewer: aul
 # Advanced filtering and transformations for Kubernetes logs in Azure Monitor
 This article describes how to implement data transformations with container log data from your Kubernetes cluster. [Transformations](../essentials/data-collection-transformations.md) in Azure Monitor allow you to modify or filter data before it's ingested in your Log Analytics workspace. They allow you to perform such actions as filtering out data collected from your cluster to save costs or processing incoming data to assist in your data queries.
 
-> [!IMPORTANT]
-> The article [Filter container log collection with ConfigMap](./container-insights-data-collection-filter.md) describes standard configuration settings to configure and filter container log collection. You should perform any required configuration using these features before using transformations. Use a transformation to perform filtering or other data configuration that you can't perform with the standard configuration settings.
+- Filtering rows based on specific criteria
+- Drop or rename columns
+- Mask sensitive fields
+- Add calculated fields
+
+> [!TIP]
+> While transformations are a powerful and reliable feature, they should be used only after using other filtering methods for your Kubernetes logs. Transformations are more complex to implement and increase network usage since data is sent from the cluster before it's filtered. See [Filter and customize data collection for Kubernetes clusters](./kubernetes-data-collection-configure.md) for a description of the different configuration 
 
 ## Data collection rules
 Transformations are implemented in [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) which are used to configure data collection in Azure Monitor. When you enable monitoring Prometheus metrics and container logging for your Kubernetes clusters in the Azure monitor, separate DCRs are created for each type of data. Transformations can be added to the DCR that collects container logs.
@@ -77,10 +82,7 @@ The sample below shows the `dataFlows` section for a single stream with a transf
 ]
 ```
 
-## Sample DCRs
-
-
-### Filter data
+## Filter data
 
 The first example filters out data from the `ContainerLogV2` based on the `LogLevel` column. Only records with a `LogLevel` of `error` or `critical` will be collected since these are the entries that you might use for alerting and identifying issues in the cluster. Collecting and storing other levels such as `info` and `debug` generate cost without significant value.
 
@@ -162,7 +164,7 @@ The following sample shows this transformation added to the Container insights D
 }
 ```
 
-### Send data to different tables
+## Send data to different tables
 
 In the example above, only records with a `LogLevel` of `error` or `critical` are collected. An alternate strategy instead of not collecting these records at all is to configure ContainerLogV2 for Basic logs and send these records to an alternate table. 
 
