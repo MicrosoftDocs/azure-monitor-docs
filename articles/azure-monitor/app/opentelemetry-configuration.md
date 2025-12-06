@@ -175,7 +175,7 @@ Use one of the following two ways to configure the connection string:
     APPLICATIONINSIGHTS_CONNECTION_STRING=<YOUR-CONNECTION-STRING>
     ```
 
-* Use the `configure_azure_monitor`function.
+* Use the `configure_azure_monitor` function.
 
     ```python
     # Import the `configure_azure_monitor()` function from the `azure.monitor.opentelemetry` package.
@@ -280,8 +280,8 @@ To set the cloud role instance, see [cloud role instance](java-standalone-config
 
 To set the cloud role name:
 
-* Use the `spring.application.name` for Spring Boot native image applications
-* Use the `quarkus.application.name` for Quarkus native image applications
+* Use the `spring.application.name` for Spring Boot native image applications.
+* Use the `quarkus.application.name` for Quarkus native image applications.
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
@@ -343,7 +343,7 @@ export OTEL_SERVICE_NAME="my-helloworld-service"
 Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTelemetry distro supports two sampling strategies for traces and (optionally) lets you align application logs to your trace sampling decisions. The sampler attaches the selected sampling ratio or rate to exported spans so Application Insights can adjust experience counts accurately. For a conceptual overview, see [Learn more about sampling](sampling.md#brief-summary).
 
 > [!IMPORTANT]
-> **Scope of sampling**
+> **Scope of sampling:**
 > * Sampling decisions apply to **traces** (spans).
 > * **Metrics are never sampled.**
 > * **Logs are not sampled by default.** You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped (details below).
@@ -351,7 +351,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
-### Trace‑based sampling for logs
+#### Trace‑based sampling for logs
 
 When enabled, log records that belong to **unsampled traces** are dropped so that your logs remain aligned with trace sampling.
 
@@ -389,7 +389,7 @@ export OTEL_TRACES_SAMPLER_ARG=1.5
 > [!NOTE]
 > When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language—see the tabs.
 
-### Configure sampling in code in code
+### Configure sampling in code
 
 # [ASP.NET Core](#tab/aspnetcore)
 
