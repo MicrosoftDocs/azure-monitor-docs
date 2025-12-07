@@ -1447,6 +1447,13 @@ items:
         items:
         - name: Set up a metric alert
           href: alerts/alerts-create-metric-alert-rule.md
+        - name: Query-based metric alerts
+          items:
+          - name: Overview
+            displayName: Query-based metric alerts
+            href: alerts/alerts-query-based-metric-alerts-overview.md
+          - name: Set up a query-based metric alert
+            href: alerts/alerts-create-query-based-metric-alerts.md
         - name: Set up a log search alert
           href: alerts/alerts-create-log-alert-rule.md
         - name: Set up a simple log search alert
