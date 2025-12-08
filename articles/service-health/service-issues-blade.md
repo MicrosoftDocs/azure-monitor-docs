@@ -6,7 +6,7 @@ ms.date: 12/08/2025
 
 ---
 
-# Service issues overview
+# Service issues
 
 The Service issues pane in Azure Service Health offers a detailed, real-time view of active Azure service problems. It highlights issues that could be affecting your resources.
 
