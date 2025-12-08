@@ -199,6 +199,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     * If the query is accessing a Log Analytics workspace, the identity must be assigned a *reader* role for all workspaces that the query accesses. If you're creating resource-centric log search alerts (scoped to a subscription or resource group), if the alert rule is scoped to a subscription for example, the identity must have reader access to all Log Analytics workspaces containing data for any resource within that subscription, even if those workspaces are in different subscriptions. This requirement also applies when a managed identity is not used and the alert is relying on the permissions of the user or service principal that last edited it.
       
         **Example:**
+        
         Suppose you have a subscription called *Subscription-A*. Within *Subscription-A*, there are resources (such as virtual machines) that send their logs to different Log Analytics workspaces:
         
         * Workspace-1 (located in Subscription-A)
