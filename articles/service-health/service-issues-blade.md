@@ -2,7 +2,7 @@
 title: View Service issues
 description: This article describes how to view and use the Service issues pane
 ms.topic: overview
-ms.date: 12/01/2025
+ms.date: 12/08/2025
 
 ---
 
@@ -12,7 +12,7 @@ The Service issues pane in Azure Service Health offers a detailed, real-time vie
 
 You can see which resources are impacted and review key details such as severity, status, scope, and timestamps. The information on this pane helps you stay informed and able to take action quickly if needed. This article provides a detailed explanation of the purpose of this panel and the information it provides.
 
-On the main panel you can sort the displayed list of Planned maintenance events by Scope, Subscription, Region, Service, Event levels, and Event tags. 
+On the main panel you can sort the displayed list of Pservice issue events by Scope, Subscription, Region, Service, Event levels, and Event tags. 
 
 And you can create a service health alert. See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
 
@@ -32,6 +32,7 @@ For each Service issue listed on this panel, the information includes:
 - Start time
 - Last updated 
 - Event tags
+- Scope
 
 Select the link in the  **Issue name** column to open the tabs and see more detailed information about the issue.
 >[!Note]
@@ -46,7 +47,7 @@ At the top of each tab, there's a command bar with several options of how to vie
 :::image type="content" source="./media/service-issue-overview/service-issues-tool-bar.png" alt-text="Screenshot that shows options." Lightbox="./media/service-issue-overview/service-issues-tool-bar.PNG":::
 
 - **Download as a PDF**: Select this link to download and open a PDF with the information about this event.
-- **Request post incident review**: Select this button to start the creation of a Post Incident Review (PIR).
+- **Request post incident review**: Select this button to open a window to start the creation of a Service health alert where you can recieve a Post Incident Review (PIR) when it's published.
 - **Track issue on mobile**: Select this link to open and point your mobile phone camera at the QR code.
 - **Create a support request**: See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
 - **Create a service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md). 
@@ -64,7 +65,7 @@ The information on this tab includes the following data:
 |---------|---------|
 |Title    | A summary of the issue |
 |Tracking ID |A unique identifier for the incident |
-|Status   |Whether the issue is Active, Resolved, or Scheduled<br> Select the **See details** link to open the Impacted Services tab for more detailed information. <br> *The issue is **Resolved** only if all the services in the region are resolved.*|
+|Status   |Whether the issue is Active or Resolved<br> Select the **See details** link to open the Impacted Services tab for more detailed information. <br> *The issue is **Resolved** only if all the services in the region are resolved.*|
 |Start/End Time |When the issue began and when it was resolved (if applicable)<br> *All times displayed are in Coordinated Universal Time (UTC).* |
 |Impacted Services |The Azure services affected by the issue.|
 |Impacted Regions |All geographic regions where the issue is occurring. |
@@ -84,7 +85,7 @@ This tab displays all the impacted resources that are affected:
 - Region 
 - Status 
 - Last update time 
-- The storage that is affected
+- The resource that is affected
 
 ### Issue Updates tab
 
