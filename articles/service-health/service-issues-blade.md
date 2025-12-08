@@ -12,7 +12,7 @@ The Service issues pane in Azure Service Health offers a detailed, real-time vie
 
 You can see which resources are impacted and review key details such as severity, status, scope, and timestamps. The information on this pane helps you stay informed and able to take action quickly if needed. This article provides a detailed explanation of the purpose of this panel and the information it provides.
 
-On the main panel you can sort the displayed list of Pservice issue events by Scope, Subscription, Region, Service, Event levels, and Event tags. 
+On the main panel you can sort the displayed list of Service issue events by Scope, Subscription, Region, Service, Event levels, and Event tags. 
 
 And you can create a service health alert. See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
 
@@ -47,7 +47,7 @@ At the top of each tab, there's a command bar with several options of how to vie
 :::image type="content" source="./media/service-issue-overview/service-issues-tool-bar.png" alt-text="Screenshot that shows options." Lightbox="./media/service-issue-overview/service-issues-tool-bar.PNG":::
 
 - **Download as a PDF**: Select this link to download and open a PDF with the information about this event.
-- **Request post incident review**: Select this button to open a window to start the creation of a Service health alert where you can recieve a Post Incident Review (PIR) when it's published.
+- **Request post incident review**: Select this button to open a window to start the creation of a Service health alert where you can receive a Post Incident Review (PIR) when it's available.
 - **Track issue on mobile**: Select this link to open and point your mobile phone camera at the QR code.
 - **Create a support request**: See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
 - **Create a service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md). 
