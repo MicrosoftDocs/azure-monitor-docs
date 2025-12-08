@@ -81,7 +81,7 @@ The information on this tab includes the following data:
 
 :::image type="content" source="./media/service-issue-overview/service-issues-impacted-services-02.png" alt-text="Screenshot that shows the Issues Impacted tab." Lightbox="./media/service-issue-overview/service-issues-impacted-services-02.PNG":::
 
-This tab displays all the impacted resources that are affected:
+This tab displays all the impacted services that are affected:
 - Region 
 - Status 
 - Last update time 
