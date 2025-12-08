@@ -92,7 +92,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     |-------|-------------|
     | **Measure** | Log search alerts can measure two things that you can use for various monitoring scenarios:<br> **Table rows**: You can use the number of returned rows to work with events such as Windows event logs, Syslog, and application exceptions.<br>**Calculation of a numeric column**: You can use calculations based on any numeric column to include any number of resources. An example is CPU percentage. |
     | **Aggregation type** | The calculation performed on multiple records to aggregate them to one numeric value by using the aggregation granularity. Examples are **Total**, **Average**, **Minimum**, and **Maximum**. |
-    | **Aggregation granularity** | The interval for aggregating multiple records to one numeric value. |
+    | **Aggregation granularity** (Window size) | The interval for aggregating multiple records to one numeric value. |
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-log-measurements.png" alt-text="Screenshot that shows the measurement options during the creation of a new log search alert rule.":::
 
