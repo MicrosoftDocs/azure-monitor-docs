@@ -163,6 +163,58 @@ You can export a dashboard as an ARM template that contains the JSON for the das
 1. In the dashboard screen, select **Export** then **Export as ARM template**.
 1. Select **Download** and save the file.
 
+## Add diagnostic settings
+
+You can configure your dashboard with diagnostic settings in order to have a record of when it was updated to a new version or restored to a previous one.
+
+You can create up to five different diagnostic settings to send the logs to independent destinations.
+
+1. In the dashboard screen, select **Diagnostic settings**, under **Monitoring**
+
+   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-menu.png" alt-text="Screenshot of the Azure platform. Diagnostic settings.":::
+
+1. Select **+ Add diagnostic setting**.
+
+1. For **Diagnostic setting name**, enter a unique name.
+
+1. Select **allLogs** from the following options:
+   - **audit** streams all audit logs (Update events are audit logs, and they are currently the only logs available, so this is the same as choosing all logs.)
+   - **allLogs** streams all logs
+   - **Update Events** streams all update events
+   - **AllMetrics** streams all metrics (Currently not supported.)
+
+1. Under **Destination details**, select one or more destinations, fill out details and select **Save**.
+
+   | Destination             | Description                            | Settings                                                                                                                                                                         |
+   |-------------------------|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   | Log Analytics workspace | Send data to a Log Analytics workspace | Select the **subscription** containing an existing Log Analytics workspace, then select the **Log Analytics workspace**                                                          |
+   | Storage account         | Archive data to a storage account      | Select the **subscription** containing an existing storage account, then select the **storage account**. Only storage accounts in the same region as the Grafana dashboard are displayed in the dropdown menu.                                                                          |
+   | Event hub               | Stream to an event hub                 | Select a **subscription** and an existing Azure Event Hubs **namespace**. Optionally also choose an existing **event hub**. Lastly, choose an **event hub policy** from the list. Only event hubs in the same region as the Grafana dashboard are displayed in the dropdown menu. |
+   | Partner solution        | Send to a partner solution             | Select a **subscription** and a **destination**. For more information about available destinations, go to [partner destinations](/azure/azure-monitor/partners).                 |
+
+   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-configuration.png" alt-text="Screenshot of the Azure platform. Diagnostic settings configuration.":::
+   
+After you create a diagnostic setting, data should start flowing to your selected destinations within 90 minutes.
+
+## View diagnostic settings in a Log Analytics workspace
+
+When sending data to a Log Analytics workspace, you can create queries and access logs to audit your dashboard in the same screen.
+
+1. In the dashboard screen, select **Logs** from the left menu. The Azure platform displays a **Queries** page, with suggestions of queries to choose from.
+
+   :::image type="content" source="media/visualizations-grafana/diagnostic-logs-menu.png" alt-text="Screenshot of the Azure platform. Open Logs.":::
+
+1. Select a query from the suggestions displayed under the **Queries** page, or close the page to create your own query.
+   1. To use a suggested query, select a query and select **Run**, or select **Load to editor** to review the code.
+   1. To create your own query, enter your query in the code editor and select **Run**. You can also perform some actions, such as editing the scope and the range of the query, as well as saving and sharing the query. The result of the query is displayed in the lower part of the screen.
+
+   :::image type="content" source="media/visualizations-grafana/diagnostic-logs-select-query.png" alt-text="Screenshot of the Azure platform. Log query editing.":::
+
+1. Select **Schema and Filter** on the left side of the screen to access tables, queries, and functions. You can also filter and group results, and find your favorites.
+1. Select **Columns** on the right of **Results** to edit the columns of the results table, and manage the table like a pivot table.
+
+   :::image type="content" source="media/visualizations-grafana/diagnostic-logs-query-filter.png" alt-text="Screenshot of the Azure platform. Log query filters and columns.":::
+
 ## Related content
 
 - [Azure Monitor Grafana overview](visualize-grafana-overview.md)
