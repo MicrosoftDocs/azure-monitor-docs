@@ -371,7 +371,7 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
     * For `microsoft.fixed.percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
-#### Sampling configuration examples uising environment variables
+The following examples show how to configure sampling using environment variables.
 
 **Fixed-percentage sampling (~10%)**
 
