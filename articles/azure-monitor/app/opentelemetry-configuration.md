@@ -343,10 +343,9 @@ export OTEL_SERVICE_NAME="my-helloworld-service"
 Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTelemetry distro supports two sampling strategies for traces and (optionally) lets you align application logs to your trace sampling decisions. The sampler attaches the selected sampling ratio or rate to exported spans so Application Insights can adjust experience counts accurately. For a conceptual overview, see [Learn more about sampling](sampling.md#brief-summary).
 
 > [!IMPORTANT]
-> **Scope of sampling:**
 > * Sampling decisions apply to **traces** (spans).
-> * **Metrics are never sampled.**
-> * **Logs are not sampled by default.** You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped (details below).
+> * **Metrics** are never sampled.
+> * **Logs** are not sampled by default. You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped (details below).
 
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
@@ -354,8 +353,6 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 #### Trace‑based sampling for logs
 
 When enabled, log records that belong to **unsampled traces** are dropped so that your logs remain aligned with trace sampling.
-
-**Behavior**
 
 * A log record is considered part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
@@ -374,22 +371,26 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
     * For `microsoft.fixed.percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
-**Examples**
+#### Sampling configuration examples uising environment variables
+
+**Fixed-percentage sampling (~10%)**
 
 ```console
-# Fixed percentage (~10%)
 export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
 export OTEL_TRACES_SAMPLER_ARG=0.1
+```
 
-# Rate-limited (~1.5 traces/sec)
+**Rate-limited sampling (~1.5 traces/sec)**
+
+```console
 export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=1.5
 ```
 
-> [!NOTE]
-> When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language—see the tabs.
-
 ### Configure sampling in code
+
+> [!NOTE]
+> When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language, see the following tabs.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
