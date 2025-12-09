@@ -2,8 +2,7 @@
 title: Planned maintenance overview
 description: Overview of the features and information found on the Planned maintenance pane. 
 ms.topic: concept-article
-ms.date: 12/08/2025
-
+ms.date: 12/09/2025
 ---
 
 # Planned maintenance
