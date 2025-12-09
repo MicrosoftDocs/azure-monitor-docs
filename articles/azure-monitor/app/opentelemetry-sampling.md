@@ -2,7 +2,7 @@
 title: Sampling in Azure Application Insights with OpenTelemetry
 description: Learn how OpenTelemetry sampling in Application Insights reduces telemetry volume, controls costs, and preserves key diagnostic data.
 ms.topic: how-to
-ms.date: 03/26/2025
+ms.date: 12/10/2025
 ---
 
 # Sampling in Azure Monitor Application Insights with OpenTelemetry
@@ -16,9 +16,9 @@ ms.date: 03/26/2025
 
 Before you continue, make sure you have:
 
-- A basic understanding of [data collection](./opentelemetry-overview.md) methods
-- A basic understanding of [OpenTelemetry sampling concepts](https://opentelemetry.io/docs/concepts/sampling/)
-- An application instrumented with [OpenTelemetry](./opentelemetry-enable.md)
+* A basic understanding of [data collection](./opentelemetry-overview.md) methods
+* A basic understanding of [OpenTelemetry sampling concepts](https://opentelemetry.io/docs/concepts/sampling/)
+* An application instrumented with [OpenTelemetry](./opentelemetry-enable.md)
 
 ## Why sampling matters
 
@@ -26,8 +26,8 @@ Sampling is essential for applications generating large amounts of telemetry.
 
 Without sampling, excessive data ingestion can:
 
-- Increase storage and processing costs
-- Cause Application Insights to throttle telemetry
+* Increase storage and processing costs
+* Cause Application Insights to throttle telemetry
 
 Effective sampling keeps enough data for meaningful diagnostics while controlling cost.
 
@@ -40,29 +40,29 @@ Sampling is **not enabled by default** in Application Insights OpenTelemetry dis
 
 The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
 
-- Live Metrics and the Application Insights classic API SDKs require this sampler for compatibility.
+* Live Metrics and the Application Insights classic API SDKs require this sampler for compatibility.
 
-- The sampler is disabled by default. You must explicitly enable and configure sampling to use the sampler.
+* The sampler is disabled by default. You must explicitly enable and configure sampling to use the sampler.
 
-- **Sampling options**
+* **Sampling options:**
 
-  - **Fixed-rate (percentage)**  
-    Set a sampling ratio between 0 and 1 (for example, `0.1` sends about 10% of traces to Azure Monitor).
+    * **Fixed-rate (percentage)**
+        Set a sampling ratio between 0 and 1 (for example, `0.1` sends about 10% of traces to Azure Monitor).
+    
+    * **Rate-limited**
+        Set a maximum number of traces per second (for example, `0.5` ≈ one trace every two seconds; `5.0` = five traces per second).
+    
+    * **Trace-based log sampling**
+        For languages supporting it, logs tied to unsampled traces are dropped.
 
-  - **Rate-limited**  
-    Set a maximum number of traces per second (for example, `0.5` ≈ one trace every two seconds; `5.0` = five traces per second).
+    To configure sampling, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
 
-  - **Trace-based log sampling**  
-    For languages supporting it, logs tied to unsampled traces are dropped.
+* The Azure Monitor Application Insights service relies on this sampler to show you complete traces and avoid broken ones.
 
-- The Azure Monitor Application Insights service relies on this sampler to show you complete traces and avoid broken ones.
+### Custom sampler benefits
 
-<u> **Benefits** </u>
-
-- Consistent sampling decisions during interoperability with applications using the Application Insights Classic API Software Development Kits (SDKs).
-- Full compatibility with [Live Metrics](./live-stream.md) because the sampler is aware of Live Metrics requirements.
-
-To configure the sampling percentage, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
+* Consistent sampling decisions during interoperability with applications using the Application Insights Classic API Software Development Kits (SDKs).
+* Full compatibility with [Live Metrics](./live-stream.md) because the sampler is aware of Live Metrics requirements.
 
 For more detailed information and sampling edge cases, see [Frequently Asked Questions](application-insights-faq.yml#opentelemetry-sampling).
 
@@ -72,15 +72,15 @@ Ingestion sampling is a fallback when source-level control isn't possible. It dr
 
 Scenarios where it's the only viable or most practical option include:
 
-- You can't modify the application source code.
-- You need to reduce telemetry volume immediately without redeploying applications.
-- You receive telemetry from multiple sources with inconsistent or unknown sampling configurations.
+* You can't modify the application source code.
+* You need to reduce telemetry volume immediately without redeploying applications.
+* You receive telemetry from multiple sources with inconsistent or unknown sampling configurations.
 
 To configure ingestion sampling:
 
 1. Go to **Application Insights** > **Usage and estimated costs**.
-2. Select **Data Sampling**.
-3. Choose the percentage of data to retain.
+1. Select **Data Sampling**.
+1. Choose the percentage of data to retain.
 
 ## Set a daily cap
 
@@ -92,9 +92,8 @@ To configure the cap, see [Set a daily cap for Azure Monitor](../logs/daily-cap.
 
 ## Next steps
 
-- To review frequently asked questions (FAQ), see [OpenTelemetry sampling FAQ](application-insights-faq.yml#opentelemetry-sampling)
-- [OpenTelemetry Sampling Concepts](https://opentelemetry.io/docs/concepts/sampling/).
-- [Enable Sampling in Application Insights](./opentelemetry-configuration.md#enable-sampling)
-- [Application Insights Overview](./app-insights-overview.md)
-- [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion)
-
+* To review frequently asked questions (FAQ), see [OpenTelemetry sampling FAQ](application-insights-faq.yml#opentelemetry-sampling)
+* [OpenTelemetry Sampling Concepts](https://opentelemetry.io/docs/concepts/sampling/).
+* [Enable Sampling in Application Insights](./opentelemetry-configuration.md#enable-sampling)
+* [Application Insights Overview](./app-insights-overview.md)
+* [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion)
