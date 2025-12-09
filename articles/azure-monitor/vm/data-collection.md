@@ -88,7 +88,7 @@ The following table lists the types of data you can collect from a VM client wit
 | [Text log](data-collection-log-text.md) | Information sent to a text log file on a local disk | Windows<br>Linux | Log Analytics workspace |
 | [JSON log](data-collection-log-json.md) | Information sent to a JSON log file on a local disk | Windows<br>Linux | Log Analytics workspace |
 | [IIS logs](data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
-| [SNMP traps](vm/data-collection-snmp-data.md) | SNMP poll and trap data sent to the Syslog data table or custom text table | Linux | Log Analytics workspace |
+| [SNMP traps](data-collection-snmp-data.md) | SNMP poll and trap data sent to the Syslog data table or custom text table | Linux | Log Analytics workspace |
 | [Windows Firewall logs](data-collection-firewall-logs.md) |  Windows client and server firewall log data collected by DCR and the Security and Audit solution from Marketplace in the Azure portal|  Windows | Log Analytics workspace |
 
 ### [Preview experience](#tab/preview)
