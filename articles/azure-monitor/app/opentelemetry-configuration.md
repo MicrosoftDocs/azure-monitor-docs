@@ -345,7 +345,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 > [!IMPORTANT]
 > * Sampling decisions apply to **traces** (spans).
 > * **Metrics** are never sampled.
-> * **Logs** are not sampled by default. You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped (details below).
+> * **Logs** aren't sampled by default. You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped. For more details, see the following section.
 
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
@@ -356,7 +356,7 @@ When enabled, log records that belong to **unsampled traces** are dropped so tha
 
 * A log record is considered part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
-* Log records **without** any trace context are **not** affected.
+* Log records **without** any trace context **aren't** affected.
 * The feature is **disabled by default**. Enablement is language-specific—see the tabs.
 
 ### Configure sampling using environment variables
@@ -419,7 +419,7 @@ app.Run();
 ```
 
 > [!NOTE]
-> If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
+> If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
 #### Trace‑based sampling for logs
 
@@ -449,7 +449,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 ```
 
 > [!NOTE]
-> If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
+> If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
 #### Trace‑based sampling for logs
 
@@ -500,7 +500,7 @@ const monitor = useAzureMonitor({
 ```
 
 > [!NOTE]
-> If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
+> If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
 #### Trace‑based sampling for logs
 
@@ -540,7 +540,7 @@ configure_azure_monitor(
 ```
 
 > [!NOTE]
-> If you do not set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
+> If you don't set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
 
 #### Trace‑based sampling for logs
 
@@ -711,7 +711,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenTelemetry().UseAzureMonitor(options =>
 {
     // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
-    // This is the directory where the OpenTelemetry SDK will store any telemetry data that cannot be sent to Azure Monitor immediately.
+    // This is the directory where the OpenTelemetry SDK will store any telemetry data that can't be sent to Azure Monitor immediately.
     options.StorageDirectory = "C:\\SomeDirectory";
 });
 
@@ -746,7 +746,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddAzureMonitorTraceExporter(options =>
     {
         // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
-        // This is the directory where the OpenTelemetry SDK will store any trace data that cannot be sent to Azure Monitor immediately.
+        // This is the directory where the OpenTelemetry SDK will store any trace data that can't be sent to Azure Monitor immediately.
         options.StorageDirectory = "C:\\SomeDirectory";
         })
         .Build();
@@ -757,7 +757,7 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
     .AddAzureMonitorMetricExporter(options =>
     {
         // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
-        // This is the directory where the OpenTelemetry SDK will store any metric data that cannot be sent to Azure Monitor immediately.
+        // This is the directory where the OpenTelemetry SDK will store any metric data that can't be sent to Azure Monitor immediately.
         options.StorageDirectory = "C:\\SomeDirectory";
         })
         .Build();
@@ -771,7 +771,7 @@ var loggerFactory = LoggerFactory.Create(builder =>
         logging.AddAzureMonitorLogExporter(options =>
         {
             // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
-            // This is the directory where the OpenTelemetry SDK will store any log data that cannot be sent to Azure Monitor immediately.
+            // This is the directory where the OpenTelemetry SDK will store any log data that can't be sent to Azure Monitor immediately.
             options.StorageDirectory = "C:\\SomeDirectory";
         });
     });
