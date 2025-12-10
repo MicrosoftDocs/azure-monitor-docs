@@ -1,14 +1,14 @@
 ---
-title: Manage Azure security notifications with Service Health
-description: This article shows you where Azure customers receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
-ms.topic: article
-ms.date: 10/17/2025
+title: Security notifications in Azure Service Health
+description: This article shows where you can receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
+ms.topic: concept-article
+ms.date: 12/10/2025
 ---
 
-# Manage Azure security notifications with Service Health
+# Security notifications in Azure Service Health
 Security advisories and Security issues are two types of notifications that Azure provides to help you stay informed about security-related matters. 
 
-**Security advisories** address broad threats across the environment, while **Security issues** focus on particular assets needing attention. By staying informed about both types of notifications, you can better protect your Azure environment.
+**Security advisories** address broad threats across the environment, while **Security issues** focus on particular assets needing attention. By staying informed about both types of notifications, you have better protection over your Azure environment.
 
 This article explains how you receive Azure security notifications, and the three steps you can follow to ensure the security alerts reach the right people in your organization.
 
