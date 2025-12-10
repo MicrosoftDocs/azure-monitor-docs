@@ -771,21 +771,21 @@ exceptions
 
 The [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) exports these counters as custom metrics to the `performanceCounters` table, each identified by a unique metric name.
 
-### Counter names and descriptions
+#### Counter names and descriptions
 
 | Counter | Name | Description | Measure |
 |---|---|---|---|
-| **Available Memory** | `Available Bytes` | Physical memory available to running processes. | Bytes |
-| **Exception Rate** | `# of Exceps Thrown / sec` | Exceptions thrown by the application per second. | Exceptions per second |
-| **Request Execution Time** | `Request Execution Time` | Average time to complete a request. | Milliseconds |
-| **Request Rate** | `Requests/Sec` | Requests processed each second. | Requests per second |
-| **Requests in Queue** | `Requests In Application Queue` | Requests currently waiting in the application queue. | Count |
-| **Process CPU %** | `% Processor Time` | CPU utilization of the application process. | Percent |
-| **Process CPU % Normalized** | `% Processor Time Normalized` | Process CPU utilization divided by logical processor count. | Percent |
-| **Process I/O Rate** | `IO Data Bytes/sec` | I/O throughput for the application process. | Bytes per second |
-| **Process Private Bytes** | `Private Bytes` | Private memory used by the application process. | Bytes |
-| **Processor Time %**<br>Category: Processor | `% Processor Time` | Total machine CPU utilization. | Percent | 
-| **Processor Time %**<br>Category: Process | `% Processor Time` | Process CPU utilization. | Percent |
+| Available Memory | `Available Bytes` | Physical memory available to running processes. | Bytes |
+| Exception Rate | `# of Exceps Thrown / sec` | Exceptions thrown by the application per second. | Exceptions per second |
+| Request Execution Time | `Request Execution Time` | Average time to complete a request. | Milliseconds |
+| Request Rate | `Requests/Sec` | Requests processed each second. | Requests per second |
+| Requests in Queue | `Requests In Application Queue` | Requests currently waiting in the application queue. | Count |
+| Process CPU % | `% Processor Time` | CPU utilization of the application process. | Percent |
+| Process CPU % Normalized | `% Processor Time Normalized` | Process CPU utilization divided by logical processor count. | Percent |
+| Process I/O Rate | `IO Data Bytes/sec` | I/O throughput for the application process. | Bytes per second |
+| Process Private Bytes | `Private Bytes` | Private memory used by the application process. | Bytes |
+| Processor Time %<br>**Category:** Processor | `% Processor Time` | Total machine CPU utilization. | Percent | 
+| Processor Time %<br>**Category:** Process | `% Processor Time` | Process CPU utilization. | Percent |
 
 #### Experiences enhanced by performance counters
 
