@@ -125,7 +125,7 @@ You can set an explicit region using connection strings. [Learn more about conne
 ### Code Optimizations
 
 - **Storage requirements:**
-  - Code Optimizations currently only works with the Azure Storage tenant for storing your trace data in Application Insights. 
+  - Currently, Code Optimizations only works with the default Profiler/Application Insights storage; it's not compatible with Bring-Your-Own-Storage (BYOS). 
 
 ## Troubleshooting
 
