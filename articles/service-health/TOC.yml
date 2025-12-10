@@ -28,7 +28,7 @@
       href: service-health-notification-transitions.md
     - name: Service Health event tags
       href: service-health-event-tags.md  
-    - name: Security notifications in Azure Service Health
+    - name: Security notifications overview
       href: stay-informed-security.md
     - name: Security advisories overview
       href: security-advisories-elevated-access.md
