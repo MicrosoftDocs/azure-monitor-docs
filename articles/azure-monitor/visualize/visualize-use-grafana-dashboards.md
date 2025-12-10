@@ -196,25 +196,6 @@ You can create up to five different diagnostic settings to send the logs to inde
    
 After you create a diagnostic setting, data should start flowing to your selected destinations within 90 minutes.
 
-## View diagnostic settings in a Log Analytics workspace
-
-When sending data to a Log Analytics workspace, you can create queries and access logs to audit your dashboard in the same screen.
-
-1. In the dashboard screen, select **Logs** from the left menu. The Azure platform displays a **Queries** page, with suggestions of queries to choose from.
-
-   :::image type="content" source="media/visualizations-grafana/diagnostic-logs-menu.png" alt-text="Screenshot of the Azure platform. Open Logs.":::
-
-1. Select a query from the suggestions displayed under the **Queries** page, or close the page to create your own query.
-   1. To use a suggested query, select a query and select **Run**, or select **Load to editor** to review the code.
-   1. To create your own query, enter your query in the code editor and select **Run**. You can also perform some actions, such as editing the scope and the range of the query, as well as saving and sharing the query. The result of the query is displayed in the lower part of the screen.
-
-   :::image type="content" source="media/visualizations-grafana/diagnostic-logs-select-query.png" alt-text="Screenshot of the Azure platform. Log query editing.":::
-
-1. Select **Schema and Filter** on the left side of the screen to access tables, queries, and functions. You can also filter and group results, and find your favorites.
-1. Select **Columns** on the right of **Results** to edit the columns of the results table, and manage the table like a pivot table.
-
-   :::image type="content" source="media/visualizations-grafana/diagnostic-logs-query-filter.png" alt-text="Screenshot of the Azure platform. Log query filters and columns.":::
-
 ## Related content
 
 - [Azure Monitor Grafana overview](visualize-grafana-overview.md)
