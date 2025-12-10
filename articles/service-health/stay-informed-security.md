@@ -30,10 +30,10 @@ The **Security advisory** pane in [Azure Service Health](https://ms.portal.azure
 
 :::image type="content"source="./media/security-notifications/security-advisories-pane.png"alt-text="Screenshot that shows the Security advisories pane."Lightbox="./media/security-notifications/security-advisories-pane.png":::
 
-Azure publishes Service Health notifications, which contain information about the resources under your subscription. 
-- You can review these security advisories in the Service Health experience in the Azure portal and get notified about security advisories through your preferred channel by setting up Service Health alerts for this type of notification. 
-- You can create [Service Health alerts](../service-health/alerts-activity-log-service-notifications-portal.md) on Service Health notifications in the portal.
-- Depending on your requirements, you can use the same [action group](../azure-monitor/alerts/action-groups.md) or use different ones. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
+Azure publishes Service Health notifications, which contain information about the resources under your subscription so you can:
+- Review these security advisories in the Service Health experience in the Azure portal and get notified about security advisories through your preferred channel by setting up Service Health alerts for this type of notification. 
+- Create [Service Health alerts](../service-health/alerts-activity-log-service-notifications-portal.md) on Service Health notifications in the portal.
+- Use the same [action group](../azure-monitor/alerts/action-groups.md) or use different ones depending on your requirements. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 
 
 **Email notifications**
