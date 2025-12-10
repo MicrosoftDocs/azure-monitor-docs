@@ -34,7 +34,7 @@ Some considerations about components:
 
 The mapping experience starts with the progressive discovery of the components within the application and their dependencies. When you first load **Application map**, a query set triggers to discover the components related to the main component. As components are discovered, a status bar shows the current number of discovered components:
 
-:::image type="content" source="media/app-map/load-initial.png" alt-text="Screenshot that shows the initial load of an application map in the Azure portal." border="false" lightbox="media/app-map/load-initial.png":::
+:::image type="content" source="media/app-insights-overview/app-insights-overview.png" lightbox="media/app-insights-overview/app-insights-overview.png" alt-text="Screenshot that shows the initial load of an application map in the Azure portal." border="false" :::
 
 The following sections describe some of the actions available for working with **Application map** in the Azure portal.
 

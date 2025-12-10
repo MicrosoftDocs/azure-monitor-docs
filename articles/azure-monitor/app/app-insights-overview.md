@@ -12,7 +12,7 @@ ms.date: 11/14/2025
 
 Azure Monitor Application Insights is an OpenTelemetry feature of [Azure Monitor](..\overview.md) that offers application performance monitoring (APM) for live web applications. Integrating with OpenTelemetry (OTel) provides a vendor-neutral approach to collecting and analyzing telemetry data, enabling comprehensive observability of your applications.
 
-:::image type="content" source="media/app-insights-overview/app-insights-overview-screenshot.png" alt-text="A screenshot of the Azure Monitor Application Insights user interface displaying an application map." lightbox="media/app-insights-overview/app-insights-overview-screenshot.png":::
+:::image type="content" source="media/app-insights-overview/app-insights-overview.png" lightbox="media/app-insights-overview/app-insights-overview.png" alt-text="A screenshot of the Azure Monitor Application Insights user interface displaying an application map.":::
 
 ---------------------------
 
@@ -95,9 +95,8 @@ For more information about instrumenting applications to enable Application Insi
 > [!NOTE]
 > Review [Should I use OpenTelemetry or the Application Insights SDK](application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-sdk) before considering instrumentation with the Classic API.
 
-* [ASP.NET Core](./asp-net-core.md)
-* [ASP.NET](./asp-net.md)
-* [Node.js](./nodejs.md)
+* [.NET](./classic-api.md&tabs=dotnet)
+* [Node.js](./classic-api.md&tabs=nodejs)
 
 ### Automatic instrumentation (enable without code changes)
 

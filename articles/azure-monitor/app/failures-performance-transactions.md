@@ -9,11 +9,11 @@ ms.date: 05/30/2025
 
 [Application Insights](app-insights-overview.md) collects telemetry from your application to help diagnosing failures and investigating slow transactions. It includes four essential tools:
 
-* **Failures** - Tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
+* **Failures view** - Tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
 
-* **Performance** - Quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
+* **Performance view** - Quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
 
-* **Search** - Enables users to locate and examine individual telemetry items such as page views, exceptions, and custom events.
+* **Search view** - Enables users to locate and examine individual telemetry items such as page views, exceptions, and custom events.
 
 * **Transaction diagnostics** - Helps to quickly identify issues in components through comprehensive insight into end-to-end transaction details.
 
