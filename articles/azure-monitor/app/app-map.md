@@ -357,5 +357,5 @@ When **Intelligent view** doesn't highlight any edges on the application map, th
 ## Next steps
 - To review our dedicated troubleshooting guide, see [Application map troubleshooting](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-application-map-issues).
 - Learn how correlation works in Application Insights with [Telemetry correlation](distributed-trace-data.md).
-- Explore the [end-to-end transaction diagnostic experience](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) that correlates server-side telemetry from across all your Application Insights-monitored components into a single view.
+- Explore the [end-to-end transaction diagnostic experience](./failures-performance-transactions.md#transaction-diagnostics-experience) that correlates server-side telemetry from across all your Application Insights-monitored components into a single view.
 - Support advanced correlation scenarios in ASP.NET Core and ASP.NET with [Track custom operations](custom-operations-tracking.md).

@@ -1411,7 +1411,7 @@ Live Metrics can't split data by role name.
 
 ### Version and release tracking
 
-When you publish a new version of your application, you want to be able to separate the telemetry from different builds. You can set the **Application Version** property so you can filter [search](../../azure-monitor/app/transaction-search-and-diagnostics.md?tabs=transaction-search) and [metric explorer](../../azure-monitor/essentials/metrics-charts.md) results.
+When you publish a new version of your application, you want to be able to separate the telemetry from different builds. You can set the **Application Version** property so you can filter [search](../../azure-monitor/app/failures-performance-transactions.md?tabs=search-view) and [metric explorer](../../azure-monitor/essentials/metrics-charts.md) results.
 
 There are several different methods of setting the **Application Version** property.
 

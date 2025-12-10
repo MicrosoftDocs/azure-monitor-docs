@@ -395,7 +395,7 @@ An alert indicates that an abnormal rise in the failed request rate was detected
 
 To investigate further, click on 'View full details in Application Insights.' The links in this page take you straight to a [search page](../app/diagnostic-search.md) filtered to the relevant requests, exception, dependency, or traces.
 
-To investigate further, click on 'View full details in Application Insights' the links in this page take you straight to a [search page](../app/transaction-search-and-diagnostics.md?tabs=transaction-search) filtered to the relevant requests, exception, dependency, or traces. 
+To investigate further, click on 'View full details in Application Insights' the links in this page take you straight to a [search page](../app/failures-performance-transactions.md?tabs=search-view) filtered to the relevant requests, exception, dependency, or traces. 
 
 You can also open the [Azure portal](https://portal.azure.com), navigate to the Application Insights resource for your app, and open the Failures page.
 
@@ -452,7 +452,7 @@ Click **Alerts** in the Application Insights resource page to get to the most re
 These diagnostic tools help you inspect the data from your app:
 
 * [Metric explorer](../essentials/metrics-charts.md)
-* [Search explorer](../app/transaction-search-and-diagnostics.md?tabs=transaction-search)
+* [Search explorer](../app/failures-performance-transactions.md?tabs=search-view)
 * [Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)
 
 Smart detections are automatic. But maybe you'd like to set up some more alerts?

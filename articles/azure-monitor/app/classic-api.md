@@ -936,7 +936,7 @@ Because the SDK batches data for submission, there might be a delay before items
 * Continue to use the application. Take more actions to generate more telemetry.
 * Select **Refresh** in the portal resource view. Charts periodically refresh on their own, but manually refreshing forces them to refresh immediately.
 * Verify that [required outgoing ports](../fundamentals/azure-monitor-network-access.md) are open.
-* Use [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search) to look for specific events.
+* Use [Search](./failures-performance-transactions.md?tabs=search-view) to look for specific events.
 * Check the [FAQ](application-insights-faq.yml#node-js).
 
 ---
@@ -1690,11 +1690,11 @@ To get diagnostic data specific to your app, you can insert code to send your ow
 
 Using the <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient?displayProperty=fullName>, you have several APIs available:
 
-* <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackEvent%2A?displayProperty=nameWithType> is typically used for monitoring usage patterns, but the data it sends also appears under **Custom Events** in diagnostic search. Events are named and can carry string properties and numeric metrics on which you can [filter your diagnostic searches](failures-performance-transactions.md?tabs=transaction-search).
+* <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackEvent%2A?displayProperty=nameWithType> is typically used for monitoring usage patterns, but the data it sends also appears under **Custom Events** in diagnostic search. Events are named and can carry string properties and numeric metrics on which you can [filter your diagnostic searches](failures-performance-transactions.md?tabs=search-view).
 * <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackTrace%2A?displayProperty=nameWithType> lets you send longer data such as POST information.
 * <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackException%2A?displayProperty=nameWithType> sends exception details, such as stack traces to Application Insights.
 
-To see these events, on the left menu, open [Search](failures-performance-transactions.md?tabs=transaction-searchh). Select the dropdown menu **Event types**, and then choose **Custom Event**, **Trace**, or **Exception**.
+To see these events, on the left menu, open [Search](failures-performance-transactions.md?tabs=search-view). Select the dropdown menu **Event types**, and then choose **Custom Event**, **Trace**, or **Exception**.
 
 :::image type="content" source="media/classic-api/custom-events.png" lightbox="media/classic-api/custom-events.png" alt-text="Screenshot that shows the Search screen.":::
 
@@ -1765,7 +1765,7 @@ catch (ex)
 }
 ```
 
-The properties and measurements parameters are optional, but they're useful for [filtering and adding](failures-performance-transactions.md?tabs=transaction-search) extra information. For example, if you have an app that can run several games, you could find the exception reports related to a particular game. You can add as many items as you want to each dictionary.
+The properties and measurements parameters are optional, but they're useful for [filtering and adding](failures-performance-transactions.md?tabs=search-view) extra information. For example, if you have an app that can run several games, you could find the exception reports related to a particular game. You can add as many items as you want to each dictionary.
 
 #### Browser exceptions
 
@@ -2708,7 +2708,7 @@ When you instrument message deletion, make sure you set the operation (correlati
 
 ##### Dependency types
 
-Application Insights uses dependency type to customize UI experiences. For queues, it recognizes the following types of `DependencyTelemetry` that improve [Transaction diagnostics experience](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics):
+Application Insights uses dependency type to customize UI experiences. For queues, it recognizes the following types of `DependencyTelemetry` that improve [Transaction diagnostics experience](./failures-performance-transactions.md#transaction-diagnostics-experience):
 
 * `Azure queue` for Azure Storage queues
 * `Azure Event Hubs` for Azure Event Hubs
@@ -4212,7 +4212,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | **Live Metrics (QuickPulse)** | Collects telemetry for Live Metrics pane.<br><br>**Module:** `QuickPulseTelemetryModule` |
 | **Heartbeats (App Service)** | Sends heartbeats and custom metrics for App Service environment.<br><br>**Module:** `AppServicesHeartbeatTelemetryModule` |
 | **Heartbeats (VMs and virtual machine scale sets)** | Sends heartbeats and custom metrics for Azure VM environment.<br><br>**Module:** `AzureInstanceMetadataTelemetryModule` |
-| **Diagnostics telemetry** | Reports errors in Application Insights instrumentation code (for example, missing counters, `ITelemetryInitializer` exceptions). Trace telemetry appears in [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights)<br><br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
+| **Diagnostics telemetry** | Reports errors in Application Insights instrumentation code (for example, missing counters, `ITelemetryInitializer` exceptions). Trace telemetry appears in [Diagnostic Search](failures-performance-transactions.md?tabs=search-view).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights)<br><br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
 | **Developer mode (debugger attached)** | Forces `TelemetryChannel` to send items immediately when debugger is attached. Reduces latency but increases CPU/network overhead.<br><br>**Module:** `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`<br>**NuGet:** [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
 | **Exception tracking (Web)** | Tracks unhandled exceptions in web apps. See [Failures and exceptions](#exceptions).<br><br>**Module:** `Microsoft.ApplicationInsights.Web.ExceptionTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) |
 | **Exception tracking (Unobserved/Unhandled)** | Tracks unobserved task exceptions and unhandled exceptions for worker roles, Windows services, and console apps.<br><br>**Modules:**<br>&nbsp;• `Microsoft.ApplicationInsights.WindowsServer.UnobservedExceptionTelemetryModule`<br>&nbsp;• `Microsoft.ApplicationInsights.WindowsServer.UnhandledExceptionTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.WindowsServer](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
@@ -4231,7 +4231,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | **Live Metrics (QuickPulse)** | Live Metrics enabled in ASP.NET Core Application Insights integration.<br><br>**Module:** *No separate module class.*<br>**NuGet:** [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) |
 | **Heartbeats collector (App Service)** | Sends heartbeats (as custom metrics) with details about the App Service environment. Built-in via base SDK when hosted in App Service.<br><br>**Module:** *No separate module class.*<br>**NuGet:** [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) |
 | **Heartbeats collector (VMs and virtual machine scale sets)** | Sends heartbeats (as custom metrics) with details about the Azure VM environment. Built-in via base SDK when hosted on Azure VMs and Azure virtual machine scale sets.<br><br>**Module:** *No separate module class.*<br>**NuGet:** [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) |
-| **Diagnostics telemetry** | Reports errors in the Application Insights instrumentation code itself (for example, can't access performance counters, `ITelemetryInitializer` throws an exception). Trace telemetry appears in [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) |
+| **Diagnostics telemetry** | Reports errors in the Application Insights instrumentation code itself (for example, can't access performance counters, `ITelemetryInitializer` throws an exception). Trace telemetry appears in [Diagnostic Search](failures-performance-transactions.md?tabs=search-view).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) |
 | **Developer mode (debugger attached)** | Same behavior available; class is part of Windows Server package.<br><br>**Module:** `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.WindowsServer](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
 | **Exception tracking (Web)** | Automatic exception tracking in ASP.NET Core Application Insights integration<br><br>**Module:** *No separate module class.*<br>**NuGet:** [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) |
 | **Exception tracking (Unobserved/Unhandled)** | Similar behavior via ASP.NET Core runtime/integration; class names are Windows Server–specific.<br><br>**NuGet:** [Microsoft.ApplicationInsights.WindowsServer](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
@@ -4958,7 +4958,7 @@ You can use `new applicationInsights.TelemetryClient(instrumentationKey?)` to cr
 
 ### TrackEvent
 
-In Application Insights, a *custom event* is a data point that you can display in [Metrics Explorer](../metrics/analyze-metrics.md) as an aggregated count and in [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search) as individual occurrences. (It isn't related to MVC or other framework "events.")
+In Application Insights, a *custom event* is a data point that you can display in [Metrics Explorer](../metrics/analyze-metrics.md) as an aggregated count and in [Search](failures-performance-transactions.md?tabs=search-view) as individual occurrences. (It isn't related to MVC or other framework "events.")
 
 Insert `TrackEvent` calls in your code to count various events. For example, you might want to track how often users choose a particular feature. Or you might want to know how often they achieve certain goals or make specific types of mistakes.
 
@@ -5099,7 +5099,7 @@ The recommended way to send request telemetry is where the request acts as an <a
 
 ### Operation context
 
-You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does it for exceptions and other events that are sent while an HTTP request is being processed. In [Search](failures-performance-transactions.md?tabs=transaction-search) and [Analytics](../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
+You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does it for exceptions and other events that are sent while an HTTP request is being processed. In [Search](failures-performance-transactions.md?tabs=search-view) and [Analytics](../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
 
 
 
@@ -5176,7 +5176,7 @@ requests
 Send exceptions to Application Insights:
 
 * To [count them](../metrics/analyze-metrics.md), as an indication of the frequency of a problem.
-* To [examine individual occurrences](failures-performance-transactions.md?tabs=transaction-search).
+* To [examine individual occurrences](failures-performance-transactions.md?tabs=search-view).
 
 The reports include the stack traces.
 
@@ -5237,7 +5237,7 @@ exceptions
 
 ### TrackTrace
 
-Use `TrackTrace` to help diagnose problems by sending a "breadcrumb trail" to Application Insights. You can send chunks of diagnostic data and inspect them in [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search).
+Use `TrackTrace` to help diagnose problems by sending a "breadcrumb trail" to Application Insights. You can send chunks of diagnostic data and inspect them in [Search](failures-performance-transactions.md?tabs=search-view).
 
 # [.NET](#tab/dotnet)
 
@@ -5288,7 +5288,7 @@ Not applicable.
 
 ---
 
-In [Search](failures-performance-transactions.md?tabs=transaction-search), you can then easily filter out all the messages of a particular severity level that relate to a particular database.
+In [Search](failures-performance-transactions.md?tabs=search-view), you can then easily filter out all the messages of a particular severity level that relate to a particular database.
 
 #### Traces in Log Analytics
 
@@ -5421,7 +5421,7 @@ If your app groups users into accounts, you can also pass an identifier for the 
 
 In [Metrics Explorer](../metrics/analyze-metrics.md), you can create a chart that counts **Users, Authenticated**, and **User accounts**.
 
-You can also [search](failures-performance-transactions.md?tabs=transaction-search) for client data points with specific user names and accounts.
+You can also [search](failures-performance-transactions.md?tabs=search-view) for client data points with specific user names and accounts.
 
 > [!NOTE]
 > The [EnableAuthenticationTrackingJavaScript property in the ApplicationInsightsServiceOptions class](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs) in the .NET Core SDK simplifies the JavaScript configuration needed to inject the user name as the Auth ID for each trace sent by the Application Insights JavaScript SDK.

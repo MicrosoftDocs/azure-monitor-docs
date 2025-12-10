@@ -368,7 +368,7 @@ Here you can:
 * Track the problem by logging an issue or work item in Git or Azure Boards. The bug contains a link to the event in the Azure portal.
 * Open the web test result in Visual Studio.
 
-To learn more about the end-to-end transaction diagnostics experience, see the [transaction diagnostics documentation](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics).
+To learn more about the end-to-end transaction diagnostics experience, see the [transaction diagnostics documentation](./failures-performance-transactions.md#transaction-diagnostics-experience).
 
 Select the exception row to see the details of the server-side exception that caused the synthetic availability test to fail. You can also get the [debug snapshot](./snapshot-debugger.md) for richer code-level diagnostics.
 

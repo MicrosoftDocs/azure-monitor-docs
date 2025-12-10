@@ -1944,7 +1944,7 @@ sections:
           Azure Functions doesn't log URL query strings. 
           
       - question: Where can I get more information about Search? 
-        answer: For more information, see [Search and Diagnostics](../app/transaction-search-and-diagnostics.md).
+        answer: For more information, see [Search and Diagnostics](../app/failures-performance-transactions.md?tabs=search-view).
 
   - name: Transaction Diagnostics
     questions:
