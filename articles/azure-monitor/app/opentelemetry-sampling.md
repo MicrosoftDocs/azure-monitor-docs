@@ -14,17 +14,15 @@ ms.date: 12/10/2025
 
 ## Prerequisites
 
-Before you continue, make sure you have:
-
-* A basic understanding of [data collection](./opentelemetry-overview.md) methods.
-* A basic understanding of [OpenTelemetry sampling concepts](https://opentelemetry.io/docs/concepts/sampling/).
-* An application instrumented with [OpenTelemetry](./opentelemetry-enable.md).
+> [!div class="checklist"]
+> Before you continue, make sure you have:
+> * A basic understanding of [data collection](./opentelemetry-overview.md) methods.
+> * A basic understanding of [OpenTelemetry sampling concepts](https://opentelemetry.io/docs/concepts/sampling/).
+> * An application instrumented with [OpenTelemetry](./opentelemetry-enable.md).
 
 ## Why sampling matters
 
-Sampling is essential for applications generating large amounts of telemetry.
-
-Without sampling, excessive data ingestion can:
+Sampling is essential for applications generating large amounts of telemetry. Without sampling, excessive data ingestion can:
 
 * Increase storage and processing costs
 * Cause Application Insights to throttle telemetry
@@ -41,23 +39,18 @@ Sampling is **not enabled by default** in Application Insights OpenTelemetry dis
 The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
 
 * The sampler is disabled by default. You must explicitly enable and configure sampling to use the sampler.
-* The Azure Monitor Application Insights service relies on this sampler to show you complete traces and avoid broken ones.
+* Application Insights relies on this sampler to show you complete traces and avoid broken ones.
 * Live Metrics and the Application Insights classic API SDKs require this sampler for compatibility.
 
 ### Sampling options
 
 Application Insights supports two sampling strategies:
 
-* **Fixed-rate (percentage)**
-    Set a sampling ratio between 0 and 1 (for example, `0.1` sends about 10% of traces to Azure Monitor).
+* **Fixed-rate (percentage)** - Set a sampling ratio between 0 and 1 (for example, `0.1` sends about 10% of traces to Azure Monitor).
 
-* **Rate-limited**
-    Set a maximum number of traces per second (for example, `0.5` ≈ one trace every two seconds; `5.0` = five traces per second).
+* **Rate-limited** - Set a maximum number of traces per second (for example, `0.5` ≈ one trace every two seconds; `5.0` = five traces per second).
 
-An optional trace-based log sampling feature is available for supported languages:
-
-* **Trace-based log sampling**
-    Logs tied to unsampled traces are dropped.
+An optional **trace-based log sampling** feature is available for supported languages which drops logs tied to unsampled traces.
 
 To configure sampling, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
 
