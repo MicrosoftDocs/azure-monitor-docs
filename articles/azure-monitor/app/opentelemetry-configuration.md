@@ -345,19 +345,10 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 > [!IMPORTANT]
 > * Sampling decisions apply to **traces** (spans).
 > * **Metrics** are never sampled.
-> * **Logs** aren't sampled by default. You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped. For more details, see the following section.
+> * **Logs** aren't sampled by default. You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped. For more details, [Configure trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
 
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
-
-#### Trace‑based sampling for logs
-
-When enabled, log records that belong to **unsampled traces** are dropped so that your logs remain aligned with trace sampling.
-
-* A log record is considered part of a trace when it has a valid `SpanId`.
-* If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
-* Log records **without** any trace context **aren't** affected.
-* The feature is **disabled by default**. Enablement is language-specific—see the tabs.
 
 ### Configure sampling using environment variables
 
@@ -421,15 +412,6 @@ app.Run();
 > [!NOTE]
 > If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
-#### Trace‑based sampling for logs
-
-```csharp
-builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
-{
-    o.EnableTraceBasedLogsSampler = true;
-});
-```
-
 # [.NET](#tab/net)
 
 #### Fixed percentage sampling
@@ -450,14 +432,6 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 > [!NOTE]
 > If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
-
-#### Trace‑based sampling for logs
-
-```csharp
-var tracerProvider = Sdk.CreateTracerProviderBuilder()
-    .AddAzureMonitorTraceExporter(o => o.EnableTraceBasedLogsSampler = true)
-    .Build();
-```
 
 # [Java](#tab/java)
 
@@ -502,19 +476,6 @@ const monitor = useAzureMonitor({
 > [!NOTE]
 > If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
-#### Trace‑based sampling for logs
-
-```typescript
-const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
-const monitor = useAzureMonitor({
-  enableTraceBasedSamplingForLogs: true,
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
-  },
-});
-```
-
 # [Python](#tab/python)
 
 #### Fixed percentage sampling
@@ -542,7 +503,65 @@ configure_azure_monitor(
 > [!NOTE]
 > If you don't set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
 
-#### Trace‑based sampling for logs
+---
+
+> [!TIP]
+> When using fixed‑percentage sampling and you aren't sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so we recommend alerting on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
+
+### Configure trace‑based sampling for logs
+
+When enabled, log records that belong to **unsampled traces** are dropped so that your logs remain aligned with trace sampling.
+
+* A log record is considered part of a trace when it has a valid `SpanId`.
+* If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
+* Log records **without** any trace context **aren't** affected.
+* The feature is **disabled by default**. Enablement is language-specific—see the tabs.
+
+Use the following setting in your configuration to enable trace-based log sampling:
+
+# [ASP.NET Core](#tab/aspnetcore)
+
+```csharp
+builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
+{
+    o.EnableTraceBasedLogsSampler = true;
+});
+```
+
+# [.NET](#tab/net)
+
+```csharp
+var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddAzureMonitorTraceExporter(o => o.EnableTraceBasedLogsSampler = true)
+    .Build();
+```
+
+# [Java](#tab/java)
+
+Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+
+# [Java native](#tab/java-native)
+
+For Spring Boot native applications, the [sampling configurations of the OpenTelemetry Java SDK are applicable](https://opentelemetry.io/docs/languages/java/configuration/#sampler).
+
+For Quarkus native applications, configure sampling using the [Quarkus OpenTelemetry guide](https://quarkus.io/guides/opentelemetry#sampler), then use the [Quarkus OpenTelemetry Exporter](https://docs.quarkiverse.io/quarkus-opentelemetry-exporter/dev/quarkus-opentelemetry-exporter-azure.html) to send telemetry to Application Insights.
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
+# [Node.js](#tab/nodejs)
+
+```typescript
+const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+const monitor = useAzureMonitor({
+  enableTraceBasedSamplingForLogs: true,
+  azureMonitorExporterOptions: {
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
+  },
+});
+```
+
+# [Python](#tab/python)
 
 ```python
 from azure.monitor.opentelemetry import configure_azure_monitor
@@ -554,9 +573,6 @@ configure_azure_monitor(
 ```
 
 ---
-
-> [!TIP]
-> When using fixed‑percentage sampling and you aren't sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so we recommend alerting on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
 
 ## Live metrics
 
