@@ -1404,7 +1404,7 @@ telemetryClient.TrackTrace("Slow database response",
                             new Dictionary<string, string> { { "database", "db.ID" } });
 ```
 
-Now you can easily filter out in **Transaction Search** all the messages of a particular severity level that relate to a particular database.
+Now you can easily filter out in **Search** all the messages of a particular severity level that relate to a particular database.
 
 #### Console application
 
@@ -1482,9 +1482,9 @@ using (_logger.BeginScope("hello scope"))
 
 Run your app in debug mode or deploy it live.
 
-##### Explore in Transaction Search
+##### Explore in Search
 
-In your app's overview pane in the Application Insights portal, select **Transaction Search** where you can:
+In your app's overview pane in the Application Insights portal, select **Search** where you can:
 
 * Filter on log traces or on items with specific properties.
 * Inspect a specific item in detail.

@@ -13,7 +13,7 @@ ms.date: 05/30/2025
 
 * **Performance** - Quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
 
-* **Transaction search** - Enables users to locate and examine individual telemetry items such as page views, exceptions, and custom events.
+* **Search** - Enables users to locate and examine individual telemetry items such as page views, exceptions, and custom events.
 
 * **Transaction diagnostics** - Helps to quickly identify issues in components through comprehensive insight into end-to-end transaction details.
 
@@ -35,11 +35,11 @@ To get to the **Performance** view in Application Insights, select either the **
 
 You can also get to the performance view from the [Application Map](app-map.md) by selecting a resource, then **Investigate performance** from the triage section.
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
-To get to the **Transaction search** view in Application Insights, select either **Search** from the command bar on the **Overview** pane, or **Transaction search** under the **Investigate** category in the resource menu.
+To get to the **Search** view in Application Insights, select either **Search** from the command bar on the **Overview** pane or under the **Investigate** category in the resource menu.
 
-:::image type="content" source="media/failures-performance-transactions/transaction-search-go-to.png" lightbox="media/failures-performance-transactions/transaction-search-go-to.png" alt-text="Screenshot showing how to reach the 'Transaction search' view in Application Insights.":::
+:::image type="content" source="media/failures-performance-transactions/search-go-to.png" lightbox="media/failures-performance-transactions/search-go-to.png" alt-text="Screenshot showing how to reach the 'Search' view in Application Insights.":::
 
 ---
 
@@ -60,11 +60,11 @@ The **Performance** view shows a list of all operations collected for your appli
 
 :::image type="content" source="media/failures-performance-transactions/performance-view.png" lightbox="media/failures-performance-transactions/performance-view.png" alt-text="Screenshot showing the 'Performance' view in Application Insights.":::
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
-**Transaction search** allows you to find and explore individual telemetry items.
+The **Search** view allows you to find and explore individual telemetry items.
 
-:::image type="content" source="media/failures-performance-transactions/transaction-search.png" lightbox="media/failures-performance-transactions/transaction-search.png" alt-text="Screenshot showing the 'Transaction search' view in Application Insights.":::
+:::image type="content" source="media/failures-performance-transactions/search-pane.png" lightbox="media/failures-performance-transactions/search-pane.png" alt-text="Screenshot showing the 'Search' view in Application Insights.":::
 
 ---
 
@@ -91,7 +91,7 @@ You can select which service (Cloud Role Name) or machine/container (Cloud Role 
 
 To learn how to set the *Cloud Role Name* and the *Cloud Role Instance*, see [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
 You can select which event types to view from the **Event types** dropdown menu, including:
 
@@ -117,7 +117,7 @@ If you want to restore the filters later, select **Reset** from the top navigati
 
 You can filter events on the values of their properties. The available properties depend on the event or telemetry types you selected. To add a filter:
 
-1. Select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: to add a filter.
+1. Select :::image type="content" source="media/failures-performance-transactions/search-filter-icon.png" alt-text="Filter icon" border="false"::: to add a filter.
 
     :::image type="content" source="media/failures-performance-transactions/filter-selection.png" alt-text="Filter pill" border="false":::
 
@@ -130,7 +130,7 @@ You can filter events on the values of their properties. The available propertie
     > [!NOTE]
     > Notice that the counts to the right of the filter values show how many occurrences there are in the current filtered set.
 
-1. To add another filter, select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: again.
+1. To add another filter, select :::image type="content" source="media/failures-performance-transactions/search-filter-icon.png" alt-text="Filter icon" border="false"::: again.
 
 ## Search telemetry
 
@@ -146,14 +146,14 @@ You can search for specific operations using the **Search to filter items...** f
 
 :::image type="content" source="media/failures-performance-transactions/performance-view-search.png" lightbox="media/failures-performance-transactions/performance-view-search.png" alt-text="Screenshot that shows the 'Search' field.":::
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
 You can search for terms in any of the property values. This capability is useful if you write [custom events](api-custom-events-metrics.md) with property values.
 
 > [!TIP]
 > You might want to set a time range because searches over a shorter range are faster.
 
-:::image type="content" source="media/failures-performance-transactions/transaction-search-property.png" lightbox="media/failures-performance-transactions/transaction-search-property.png" alt-text="Screenshot that shows opening a diagnostic search.":::
+:::image type="content" source="media/failures-performance-transactions/search-property.png" lightbox="media/failures-performance-transactions/search-property.png" alt-text="Screenshot that shows opening a diagnostic search.":::
 
 Search for complete words, not substrings. Use quotation marks to enclose special characters.
 
@@ -185,7 +185,7 @@ All data collected by Application Insights is stored in [Log Analytics](../logs/
 > [!TIP]
 > [Simple mode](../logs/log-analytics-simple-mode.md) in Log Analytics offers an intuitive point-and-click interface for analyzing and visualizing log data.
 
-1. On either the performance, failures, or transaction search view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
+1. On either the performance, failures, or search view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
 
     :::image type="content" source="media/failures-performance-transactions/logs-view-go-to.png" lightbox="media/failures-performance-transactions/logs-view-go-to.png" alt-text="Screenshot of the top action bar with the 'View in logs' button highlighted.":::
 
@@ -225,11 +225,11 @@ To investigate the root cause of a performance issue, you can drill into the pro
 	> [!NOTE]
 	> The **Suggested** samples contain related telemetry from all components, even if sampling is in effect in any of them.
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
 To investigate an event further, select any telemetry item to open the **End-to-end transaction details** view.
 
-:::image type="content" source="media/failures-performance-transactions/transaction-search-telemetry-item.png" lightbox="media/failures-performance-transactions/transaction-search-telemetry-item.png" alt-text="Screenshot that shows an individual dependency request.":::
+:::image type="content" source="media/failures-performance-transactions/search-telemetry-item.png" lightbox="media/failures-performance-transactions/search-telemetry-item.png" alt-text="Screenshot that shows an individual dependency request.":::
 
 ---
 
@@ -467,7 +467,7 @@ To enable annotations in a workbook, open **Advanced Settings** and then select 
 
 This section provides answers to common questions.
 
-### Transaction search
+### Search view
 
 <details>
 <summary><b>What is a component?</b></summary>
