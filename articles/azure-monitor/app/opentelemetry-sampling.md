@@ -22,12 +22,7 @@ ms.date: 12/10/2025
 
 ## Why sampling matters
 
-Sampling is essential for applications generating large amounts of telemetry. Without sampling, excessive data ingestion can:
-
-* Increase storage and processing costs
-* Cause Application Insights to throttle telemetry
-
-Effective sampling keeps enough data for meaningful diagnostics while controlling cost.
+Sampling is essential for applications generating large amounts of telemetry. Without sampling, excessive data ingestion can increase storage and processing costs, and cause Application Insights to throttle telemetry. Effective sampling keeps enough data for meaningful diagnostics while controlling cost.
 
 Sampling is **not enabled by default** in Application Insights OpenTelemetry distros. You must explicitly enable and configure sampling to manage your telemetry volume.
 
@@ -46,9 +41,13 @@ The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
 
 Application Insights supports two sampling strategies:
 
-* **Fixed-rate (percentage)** - Set a sampling ratio between 0 and 1 (for example, `0.1` sends about 10% of traces to Azure Monitor).
+* **Fixed-rate (percentage):** Set a sampling ratio between 0 and 1.
 
-* **Rate-limited** - Set a maximum number of traces per second (for example, `0.5` ≈ one trace every two seconds; `5.0` = five traces per second).
+    Example: `0.1` sends about 10% of traces to Azure Monitor.
+
+* **Rate-limited:** Set a maximum number of traces per second.
+
+    Example: `0.5` ≈ one trace every two seconds; `5.0` = five traces per second.
 
 An optional **trace-based log sampling** feature is available for supported languages which drops logs tied to unsampled traces.
 
