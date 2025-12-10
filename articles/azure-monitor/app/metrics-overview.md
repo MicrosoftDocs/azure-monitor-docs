@@ -773,69 +773,26 @@ The [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) exports thes
 
 ### Counter names and descriptions
 
-- **Available Memory**  
-  - **Description:** Physical memory available to running processes.  
-  - **Measure:** Bytes  
-  - **Name:** `Available Bytes`
-
-- **Exception Rate**  
-  - **Description:** Exceptions thrown by the application per second.  
-  - **Measure:** Exceptions per second  
-  - **Name:** `# of Exceps Thrown / sec`
-
-- **Request Execution Time**  
-  - **Description:** Average time to complete a request.  
-  - **Measure:** Milliseconds  
-  - **Name:** `Request Execution Time`
-
-- **Request Rate**  
-  - **Description:** Requests processed each second.  
-  - **Measure:** Requests per second  
-  - **Name:** `Requests/Sec`
-
-- **Requests in Queue**  
-  - **Description:** Requests currently waiting in the application queue.  
-  - **Measure:** Count  
-  - **Name:** `Requests In Application Queue`
-
-- **Process CPU %**  
-  - **Description:** CPU utilization of the application process.  
-  - **Measure:** Percent  
-  - **Name:** `% Processor Time`
-
-- **Process CPU % Normalized**  
-  - **Description:** Process CPU utilization divided by logical processor count.  
-  - **Measure:** Percent  
-  - **Name:** `% Processor Time Normalized`
-
-- **Process I/O Rate**  
-  - **Description:** I/O throughput for the application process.  
-  - **Measure:** Bytes per second  
-  - **Name:** `IO Data Bytes/sec`
-
-- **Process Private Bytes**  
-  - **Description:** Private memory used by the application process.  
-  - **Measure:** Bytes  
-  - **Name:** `Private Bytes`
-
-- **Processor Time %**  
-  - **Description:** Total machine CPU utilization.  
-  - **Measure:** Percent  
-  - **Name:** `% Processor Time`
-  - **Category:** Processor
-
-- **Processor Time %**  
-  - **Description:** Process CPU utilization.  
-  - **Measure:** Percent  
-  - **Name:** `% Processor Time`
-  - **Category:** Process
+| Counter | Name | Description | Measure |
+|---|---|---|---|
+| **Available Memory** | `Available Bytes` | Physical memory available to running processes. | Bytes |
+| **Exception Rate** | `# of Exceps Thrown / sec` | Exceptions thrown by the application per second. | Exceptions per second |
+| **Request Execution Time** | `Request Execution Time` | Average time to complete a request. | Milliseconds |
+| **Request Rate** | `Requests/Sec` | Requests processed each second. | Requests per second |
+| **Requests in Queue** | `Requests In Application Queue` | Requests currently waiting in the application queue. | Count |
+| **Process CPU %** | `% Processor Time` | CPU utilization of the application process. | Percent |
+| **Process CPU % Normalized** | `% Processor Time Normalized` | Process CPU utilization divided by logical processor count. | Percent |
+| **Process I/O Rate** | `IO Data Bytes/sec` | I/O throughput for the application process. | Bytes per second |
+| **Process Private Bytes** | `Private Bytes` | Private memory used by the application process. | Bytes |
+| **Processor Time %**<br>Category: Processor | `% Processor Time` | Total machine CPU utilization. | Percent | 
+| **Processor Time %**<br>Category: Process | `% Processor Time` | Process CPU utilization. | Percent |
 
 #### Experiences enhanced by performance counters
 
-- [**Performance view**](./failures-performance-transactions.md?tabs=performance-view): Available Memory, Process CPU %, Process I/O Rate.
-- [**Failures view**](./failures-performance-transactions.md?tabs=failures-view): Available Memory, Process CPU %, Process I/O Rate.
-- [**Smart Detection and Smart Alerts**](../alerts/proactive-diagnostics.md): Process Private Bytes.
-- [**Request count charts**](../visualize/workbooks-chart-visualizations.md): Charts display counts from the `requests` table.
+* [**Performance view**](./failures-performance-transactions.md?tabs=performance-view): Available Memory, Process CPU %, Process I/O Rate.
+* [**Failures view**](./failures-performance-transactions.md?tabs=failures-view): Available Memory, Process CPU %, Process I/O Rate.
+* [**Smart Detection and Smart Alerts**](../alerts/proactive-diagnostics.md): Process Private Bytes.
+* [**Request count charts**](../visualize/workbooks-chart-visualizations.md): Charts display counts from the `requests` table.
 
 #### List performance counter types
 
