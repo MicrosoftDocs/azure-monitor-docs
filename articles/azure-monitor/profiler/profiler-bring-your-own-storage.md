@@ -21,10 +21,9 @@ Meanwhile, when you "bring your own storage" (BYOS), artifacts are uploaded into
 - Network access.
 
 > [!NOTE]
-> BYOS is required if you're enabling Azure Private Link or customer-managed keys.
->
-> - [Learn more about Private Link for Application Insights](../logs/private-link-security.md).
-> - [Learn more about customer-managed keys for Application Insights](../logs/customer-managed-keys.md).
+> BYOS is:
+> - **Required** if you're enabling [Azure Private Link](../logs/private-link-security.md) or [customer-managed keys](../logs/customer-managed-keys.md).
+> - [**Currently _not supported_** for storing Code Optimizations trace data in Application Insights.](../optimization-insights/code-optimizations-profiler-overview.md#code-optimizations-1)
 
 In this guide, you learn how to:
 > [!div class="checklist"]
