@@ -1215,6 +1215,8 @@ sections:
 
           * Application Insights used `TelemetryProcessors` to filter telemetry. An OpenTelemetry [Processor](https://opentelemetry.io/docs/collector/configuration/#processors) can also be used to apply filtering rules on a specific signal.
 
+          For migration guidance, refer to [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](../app/opentelemetry-dotnet-migrate.md).
+
       - question: How do Application Insights telemetry types map to OpenTelemetry?
         answer: |
           This table maps Application Insights data types to OpenTelemetry concepts and their .NET implementations.
