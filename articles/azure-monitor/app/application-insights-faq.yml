@@ -1215,6 +1215,8 @@ sections:
 
           * Application Insights used `TelemetryProcessors` to filter telemetry. An OpenTelemetry [Processor](https://opentelemetry.io/docs/collector/configuration/#processors) can also be used to apply filtering rules on a specific signal.
 
+          For migration guidance, refer to [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](../app/opentelemetry-dotnet-migrate.md).
+
       - question: How do Application Insights telemetry types map to OpenTelemetry?
         answer: |
           This table maps Application Insights data types to OpenTelemetry concepts and their .NET implementations.
@@ -1929,7 +1931,7 @@ sections:
       - question: Where can I get more information about telemetry channels? 
         answer: For more information, see [Telemetry channels in Application Insights](../app/telemetry-channels.md).
 
-  - name: Transaction Search
+  - name: Search
     questions:
       - question: How much data is retained?
         answer: |
@@ -1943,8 +1945,8 @@ sections:
         answer: |
           Azure Functions doesn't log URL query strings. 
           
-      - question: Where can I get more information about Transaction Search? 
-        answer: For more information, see [Transaction Search and Diagnostics](../app/transaction-search-and-diagnostics.md).
+      - question: Where can I get more information about Search? 
+        answer: For more information, see [Search and Diagnostics](../app/failures-performance-transactions.md?tabs=search-view).
 
   - name: Transaction Diagnostics
     questions:
@@ -1986,7 +1988,7 @@ sections:
           This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate DNS or other network related issues from the client machine where the API calls are failing. If the portal error continues and needs more investigation, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior, then open a support case from the Azure portal.
 
       - question: Where can I get more information about Transaction Diagnostics? 
-        answer: For more information, see [Transaction Search and Diagnostics](../app/transaction-search-and-diagnostics.md).
+        answer: For more information, see [Investigate failures, performance, and transactions with Application Insights](../app/failures-performance-transactions.md?tabs=search-view).
 
   - name: Usage analysis
     questions:
