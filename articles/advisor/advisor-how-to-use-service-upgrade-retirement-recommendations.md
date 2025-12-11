@@ -244,7 +244,7 @@ Based on your need, use any of the listed ways to get the required information.
 
 #### Retiring June 2028
 
-[!INCLUDE [Table for retiring December 2025](./includes/retiring-feature/retirement-date-2028-06.md)]
+[!INCLUDE [Table for retiring June 2028](./includes/retiring-feature/retirement-date-2028-06.md)]
 
 #### Retiring September 2028
 
