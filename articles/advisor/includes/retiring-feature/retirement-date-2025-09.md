@@ -5,9 +5,9 @@ ms.date: 11/11/2025
 
 ---
 
-##### June 30, 2028
+##### September 30, 2025
 
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | AVS Private cloud | Azure VMware Solution AV36 Node | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Service Map | Entire Service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

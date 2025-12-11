@@ -5,9 +5,9 @@ ms.date: 11/11/2025
 
 ---
 
-##### June 30, 2028
+##### February 28, 2025
 
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | AVS Private cloud | Azure VMware Solution AV36 Node | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Event Grid topic | Support for TLS 1.0 and 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
