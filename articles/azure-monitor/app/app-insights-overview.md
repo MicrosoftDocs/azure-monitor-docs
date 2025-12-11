@@ -85,18 +85,18 @@ For more information about instrumenting applications to enable Application Insi
 
 #### Client-side JavaScript SDK
 
-* [JavaScript](./javascript.md)
-  * [React](./javascript-framework-extensions.md)
-  * [React Native](./javascript-framework-extensions.md)
-  * [Angular](./javascript-framework-extensions.md)
+* [JavaScript](javascript.md)
+  * [React](javascript-framework-extensions.md)
+  * [React Native](javascript-framework-extensions.md)
+  * [Angular](javascript-framework-extensions.md)
 
 #### Application Insights SDK (Classic API)
 
 > [!NOTE]
 > Review [Should I use OpenTelemetry or the Application Insights SDK](application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-sdk) before considering instrumentation with the Classic API.
 
-* [.NET](./classic-api.md&tabs=dotnet)
-* [Node.js](./classic-api.md&tabs=nodejs)
+* [.NET](classic-api.md?tabs=dotnet)
+* [Node.js](classic-api.md?tabs=nodejs)
 
 ### Automatic instrumentation (enable without code changes)
 
