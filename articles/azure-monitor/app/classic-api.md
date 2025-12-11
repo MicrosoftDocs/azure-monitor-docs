@@ -4166,7 +4166,7 @@ By default, a maximum of 10 `Transmission` instances can be sent in parallel. If
 
 For the full list of configurable settings for each channel, see:
 
-* [InMemoryChannel](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/BASE/Test/Microsoft.ApplicationInsights.Test/Microsoft.ApplicationInsights.Tests/Channel/InMemoryChannelTest.cs)
+* InMemoryChannel
 * [ServerTelemetryChannel](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/BASE/src/ServerTelemetryChannel/ServerTelemetryChannel.cs)
 
 Here are the most commonly used settings for `ServerTelemetryChannel`:
