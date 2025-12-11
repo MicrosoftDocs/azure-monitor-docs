@@ -1,12 +1,11 @@
 ---
-title: Service Health Planned maintenance
-description: Overview of the features and information found on the pane. 
-ms.topic: reference
-ms.date: 12/02/2025
-
+title: Planned maintenance overview
+description: Overview of the features and information found on the Planned maintenance pane. 
+ms.topic: concept-article
+ms.date: 12/09/2025
 ---
 
-# Planned maintenance overview
+# Planned maintenance
 
 The Planned Maintenance pane in Azure Service Health is a dedicated section in the Azure portal that keeps you informed about upcoming maintenance activities. It highlights events that can affect your Azure resources, helping you prepare in advance.<br> Here's a breakdown of its purpose and the information it provides:
 

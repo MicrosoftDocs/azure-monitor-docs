@@ -138,4 +138,4 @@ To learn more about using Grafana with Application Insights, see [Dashboards wit
 ## Next steps
 
 * Learn how correlation works in Application Insights with [Telemetry correlation](distributed-trace-data.md).
-* Explore the [end-to-end transaction diagnostic experience](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) that correlates server-side telemetry from across all your Application Insights-monitored components into a single view.
+* Explore the [end-to-end transaction diagnostic experience](./failures-performance-transactions.md#transaction-diagnostics-experience) that correlates server-side telemetry from across all your Application Insights-monitored components into a single view.
