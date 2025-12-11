@@ -356,16 +356,16 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor’s OpenTele
 Use standard OpenTelemetry environment variables to select the sampler and provide its argument:
 
 - **`OTEL_TRACES_SAMPLER`** — sampler type  
-  - `microsoft.fixed.percentage` — sample a fraction of traces.  
+  - `microsoft.fixed_percentage` — sample a fraction of traces.  
   - `microsoft.rate_limited` — cap traces per second.
 - **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument  
-  - For `microsoft.fixed.percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).  
+  - For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).  
   - For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
 **Examples**
 ```console
 # Fixed percentage (~10%)
-export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
+export OTEL_TRACES_SAMPLER="microsoft.fixed_percentage"
 export OTEL_TRACES_SAMPLER_ARG=0.1
 
 # Rate-limited (~1.5 traces/sec)
