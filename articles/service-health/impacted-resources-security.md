@@ -2,7 +2,7 @@
 title: Impacted resources from Azure security incidents
 description: This article details where to find information from Azure Service Health about how Azure security incidents impact your resources.
 ms.topic: concept-article
-ms.date: 12/01/2025
+ms.date: 12/11/2025
 ---
 
 # Impacted resources from Azure security incidents
@@ -10,7 +10,7 @@ ms.date: 12/01/2025
 To support of the experience of viewing impacted resources, Service Health contains a feature that:
 
 - Displays resources impacted by a security incident.
-- Enables role-based access control (RBAC) for viewing security incident impacted resource information.
+- Enables Role-Based Access Control (RBAC) for viewing security incident impacted resource information.
 
 This article explains what and where you can view information about your impacted resources.
 
