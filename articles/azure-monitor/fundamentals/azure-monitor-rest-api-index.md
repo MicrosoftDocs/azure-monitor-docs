@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor REST API index
 description: Lists the operation groups for the Azure Monitor REST API, which includes Application Insights, Log Analytics, and Monitor.
-ms.date: 012/11/2025
+ms.date: 12/11/2025
 ms.topic: reference
 ---
 
