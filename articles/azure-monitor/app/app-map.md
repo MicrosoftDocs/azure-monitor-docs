@@ -156,7 +156,7 @@ To learn how to manually change the cloud role name and cloud role instance, see
 
 * OpenTelemetry Distro: [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
 * Client-side JavaScript SDK: [Configure JavaScript SDK](javascript-sdk-configuration.md#add-a-cloud-role-name-and-cloud-role-instance)
-* Application Insights SDK (Classic API): [.NET](classic-api.md#add-a-cloud-role-name-and-cloud-role-instance?tabs=dotnet) and [Node.js](classic-api.md#add-a-cloud-role-name-and-cloud-role-instance?tabs=nodejs)
+* Application Insights SDK (Classic API): [.NET](classic-api.md?tabs=dotnet#add-a-cloud-role-name-and-cloud-role-instance) and [Node.js](classic-api.md?tabs=nodejs#add-a-cloud-role-name-and-cloud-role-instance)
 
 > [!NOTE]
 > The Application Insights SDK or Agent automatically adds the cloud role name property to the telemetry emitted by components in an Azure App Service environment.
