@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor REST API index
 description: Lists the operation groups for the Azure Monitor REST API, which includes Application Insights, Log Analytics, and Monitor.
-ms.date: 05/21/2025
+ms.date: 012/11/2025
 ms.topic: reference
 ---
 
@@ -25,16 +25,16 @@ Organized by subject area.
 | ***Alerts Management and Action Groups*** |  |
 | [Action groups](/rest/api/monitor/action-groups) | Manages and lists [action groups](../alerts/action-groups.md). |
 | [Activity log alerts](/rest/api/monitor/activity-log-alerts) | Manages and lists [activity log alert rules](../alerts/alerts-types.md#activity-log-alerts). |
-| [Alert management]([/rest/api/monitor/alertsmanagement/alert-processing-rules](https://learn.microsoft.com/en-us/rest/api/alerts-management/processing-rules/operation-groups)) | Lists and updates [fired alerts](../alerts/alerts-overview.md). |
-| [Alert processing rules](rest/api/alerts-management/processing-rules/operation-groups) | Manages and lists [alert processing rules](../alerts/alerts-processing-rules.md). |
+| [Alert management](/rest/api/alerts-management/alerts/alerts) | Lists and updates [fired alerts](../alerts/alerts-overview.md). |
+| [Alert processing rules](/rest/api/alerts-management/processing-rules/alert-processing-rules) | Manages and lists [alert processing rules](../alerts/alerts-processing-rules.md). |
 | [Metric alert baseline](/rest/api/monitor/baselines) | List the metric baselines used in alert rules with [dynamic thresholds](../alerts/alerts-dynamic-thresholds.md). |
 | [Metric alerts](/rest/api/monitor/metric-alerts) | Manages and lists [metric alert rules](../alerts/alerts-overview.md). |
 | [Metric alerts status](/rest/api/monitor/metric-alerts-status) | Lists the status of [metric alert rules](../alerts/alerts-overview.md). |
-| [Prometheus rule groups](/rest/api/monitor/prometheus-rule-groups) | Manages and lists [Prometheus rule groups](../essentials/prometheus-rule-groups.md) (alert rules and recording rules). |
+| [Prometheus rule groups](/rest/api/alerts-management/prometheus-rule-groups/prometheus-rule-groups) | Manages and lists [Prometheus rule groups](../essentials/prometheus-rule-groups.md) (alert rules and recording rules). |
 | [Scheduled query rules - 2023-03-15 (preview)](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2023-03-15-preview&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
 | [Scheduled query rules - 2018-04-16](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2018-04-16&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
 | [Scheduled query rules - 2021-08-01](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2021-08-01&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
-| [Smart Detector alert rules](/rest/api/monitor/smart-detector-alert-rules) | Manages and lists [smart detection alert rules](../alerts/alerts-types.md#smart-detection-alerts). |
+| Smart Detector alert rules | Manages and lists [smart detection alert rules](../alerts/alerts-types.md#smart-detection-alerts). |
 | ***Application Insights*** |  |
 | [Components](/rest/api/application-insights/components) | Enables you to manage components that contain Application Insights data. |
 | [Data Access](../logs/api/overview.md) | Query Application Insights data. |
