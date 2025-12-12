@@ -35,14 +35,14 @@ Many instrumentation libraries provide a filter option. For guidance, see the co
 
 * [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md#filter)
 * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
-* [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/main/src/OpenTelemetry.Instrumentation.SqlClient/README.md#filter) <sup>1</sup>
+* [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/main/src/OpenTelemetry.Instrumentation.SqlClient/README.md#filter) <!--<sup>1</sup>-->
 
 > [!NOTE]
 > Currently, the Azure Monitor OpenTelemetry Distro includes a copy of the SqlClient instrumentation source code to ensure stability while the upstream OpenTelemetry SqlClient library remains experimental.
 >
 > Options such as `SetDbStatementForStoredProcedure` aren't usable in our distribution because the code is embedded and not referencing the external package.
 >
-> Once the SqlClient instrumentation reaches a stable release in OpenTelemetry, Azure Monitor will switch to referencing the official package and customization via `builder.AddSqlClientInstrumentation(options => { ... })` will work.
+> Once the SqlClient instrumentation reaches a stable release, Azure Monitor will switch to referencing the official package and customization via `builder.AddSqlClientInstrumentation(options => { ... })` will be available.
 
 <!--
 <sup>1</sup> We include the [SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation in our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
