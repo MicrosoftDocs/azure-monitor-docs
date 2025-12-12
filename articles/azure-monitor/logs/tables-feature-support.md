@@ -605,7 +605,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [RemoteNetworkHealthLogs](/azure/azure-monitor/reference/tables/remotenetworkhealthlogs) | |
 | [ResourceManagementPublicAccessLogs](/azure/azure-monitor/reference/tables/resourcemanagementpublicaccesslogs) | |
 | [RetinaNetworkFlowLogs](/azure/azure-monitor/reference/tables/retinanetworkflowlogs) | |
-| [RomeDetectionEvent](/azure/azure-monitor/reference/tables/romedetectionevent) | |
+| [RomeDetectionEvent](/azure/azure-monitor/reference/) | |
 | [SCCMAssessmentRecommendation](/azure/azure-monitor/reference/tables/sccmassessmentrecommendation) | |
 | [SCGPoolExecutionLog](/azure/azure-monitor/reference/tables/scgpoolexecutionlog) | |
 | [SCGPoolRequestLog](/azure/azure-monitor/reference/tables/scgpoolrequestlog) | |
