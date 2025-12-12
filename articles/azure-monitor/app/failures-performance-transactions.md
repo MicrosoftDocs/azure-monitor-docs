@@ -298,6 +298,9 @@ This collapsible pane shows the detail of any selected item from the transaction
 
 ---
 
+> [!NOTE]
+> The **Transaction diagnostics** experience now offers a simple view, which shows agent steps in a clear, story-like fashion. For more information, see [Monitor AI agents with Application Insights](agents-view.md#end-to-end-transaction-details-view).
+
 ## Release annotations
 
 Release annotations mark deployments and other significant events on Application Insights charts, allowing correlation of changes with performance, failures, and usage.
