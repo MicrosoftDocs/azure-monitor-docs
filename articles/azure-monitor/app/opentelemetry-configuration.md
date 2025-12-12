@@ -515,7 +515,7 @@ When enabled, log records that belong to **unsampled traces** are dropped so tha
 * A log record is considered part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
 * Log records **without** any trace context **aren't** affected.
-* The feature is **disabled by default**. Enablement is language-specific—see the tabs.
+* The feature is **disabled by default**. Enablement is language, see the following tabs.
 
 Use the following setting in your configuration to enable trace-based log sampling:
 
@@ -538,13 +538,11 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 # [Java](#tab/java)
 
-Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+For Java applications, trace-based sampling is enabled by default.
 
 # [Java native](#tab/java-native)
 
-For Spring Boot native applications, the [sampling configurations of the OpenTelemetry Java SDK are applicable](https://opentelemetry.io/docs/languages/java/configuration/#sampler).
-
-For Quarkus native applications, configure sampling using the [Quarkus OpenTelemetry guide](https://quarkus.io/guides/opentelemetry#sampler), then use the [Quarkus OpenTelemetry Exporter](https://docs.quarkiverse.io/quarkus-opentelemetry-exporter/dev/quarkus-opentelemetry-exporter-azure.html) to send telemetry to Application Insights.
+For Spring Boot native and Quarkus native applications, trace-based sampling is enabled by default.
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
