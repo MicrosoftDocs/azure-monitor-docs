@@ -41,7 +41,7 @@ Th following targets are enabled when [control plane metrics (preview)](/azure/a
 - `controlplane-apiserver`
 - `controlplane-etcd` 
 
-The following targets are enable when [Container Network Observability](/azure/aks/advanced-network-observability-concepts) is enabled.
+The following targets are enabled when [Container Network Observability](/azure/aks/advanced-container-networking-services-overview) is enabled.
 
 - `networkobservabilityHubble`
 - `networkobservabilityCilium` 
