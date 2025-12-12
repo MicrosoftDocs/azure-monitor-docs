@@ -2,7 +2,7 @@
 title: Security advisories overview
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 ms.topic: article
-ms.date: 12/04/2025
+ms.date: 12/12/2025
 ---
 
 
@@ -49,6 +49,18 @@ For details about role requirements for accessing these resources, see [Viewing 
 
 Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
 
+### Configure a Tenant and Subscription to view Security advisories
+
+1.  **Access the Azure portal**: Log into the Azure portal and navigate to the **Subscriptions** section.
+1.  **Select the Subscription**: Choose the subscription that you want to manage for Security advisory access.
+1.  **Navigate to Access Control (IAM)**: Select **Access control (IAM)** to manage user roles.
+1.  **Add the role assignment**: Select **Add role assignment** to assign the necessary roles. <br>Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories. Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
+1.  **Verify the user roles**: Ensure that the user you're assigning has the appropriate Role-Based Access Control (RBAC) permissions. <br>Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
+1.  **Update the email addresses**: To ensure that security notifications are received, verify that the email address associated with the user in Azure Active Directory is current. 
+    1.  Navigate to Azure Active Directory 
+    1.  Select **Users**
+    1.  Check the user’s profile for the correct email address 
+Make sure that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.
 
 
 
