@@ -892,57 +892,57 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
 
 1. Install the [OpenTelemetry.Exporter.OpenTelemetryProtocol](https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol/) package in your project.
 
-```dotnetcli
-dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
-```
+    ```dotnetcli
+    dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
+    ```
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/examples/Console/TestOtlpExporter.cs).
 
-```csharp
-// Create a new ASP.NET Core web application builder.
-var builder = WebApplication.CreateBuilder(args);
-
-// Add the OpenTelemetry telemetry service to the application.
-// This service will collect and send telemetry data to Azure Monitor.
-builder.Services.AddOpenTelemetry().UseAzureMonitor();
-
-// Add the OpenTelemetry OTLP exporter to the application.
-// This exporter will send telemetry data to an OTLP receiver, such as Prometheus
-builder.Services.AddOpenTelemetry().WithTracing(builder => builder.AddOtlpExporter());
-builder.Services.AddOpenTelemetry().WithMetrics(builder => builder.AddOtlpExporter());
-
-// Build the ASP.NET Core web application.
-var app = builder.Build();
-
-// Start the ASP.NET Core web application.
-app.Run();
-```
+    ```csharp
+    // Create a new ASP.NET Core web application builder.
+    var builder = WebApplication.CreateBuilder(args);
+    
+    // Add the OpenTelemetry telemetry service to the application.
+    // This service will collect and send telemetry data to Azure Monitor.
+    builder.Services.AddOpenTelemetry().UseAzureMonitor();
+    
+    // Add the OpenTelemetry OTLP exporter to the application.
+    // This exporter will send telemetry data to an OTLP receiver, such as Prometheus
+    builder.Services.AddOpenTelemetry().WithTracing(builder => builder.AddOtlpExporter());
+    builder.Services.AddOpenTelemetry().WithMetrics(builder => builder.AddOtlpExporter());
+    
+    // Build the ASP.NET Core web application.
+    var app = builder.Build();
+    
+    // Start the ASP.NET Core web application.
+    app.Run();
+    ```
 
 ### [.NET](#tab/net)
 
 1. Install the [OpenTelemetry.Exporter.OpenTelemetryProtocol](https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol/) package in your project.
 
-```dotnetcli
-dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
-```
+    ```dotnetcli
+    dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
+    ```
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/examples/Console/TestOtlpExporter.cs).
 
-```csharp
-    // Create a new OpenTelemetry tracer provider and add the Azure Monitor trace exporter and the OTLP trace exporter.
-    // It is important to keep the TracerProvider instance active throughout the process lifetime.
-    var tracerProvider = Sdk.CreateTracerProviderBuilder()
-        .AddAzureMonitorTraceExporter()
-        .AddOtlpExporter()
-        .Build();
-
-    // Create a new OpenTelemetry meter provider and add the Azure Monitor metric exporter and the OTLP metric exporter.
-    // It is important to keep the MetricsProvider instance active throughout the process lifetime.
-    var metricsProvider = Sdk.CreateMeterProviderBuilder()
-        .AddAzureMonitorMetricExporter()
-        .AddOtlpExporter()
-        .Build();
-```
+    ```csharp
+        // Create a new OpenTelemetry tracer provider and add the Azure Monitor trace exporter and the OTLP trace exporter.
+        // It is important to keep the TracerProvider instance active throughout the process lifetime.
+        var tracerProvider = Sdk.CreateTracerProviderBuilder()
+            .AddAzureMonitorTraceExporter()
+            .AddOtlpExporter()
+            .Build();
+    
+        // Create a new OpenTelemetry meter provider and add the Azure Monitor metric exporter and the OTLP metric exporter.
+        // It is important to keep the MetricsProvider instance active throughout the process lifetime.
+        var metricsProvider = Sdk.CreateMeterProviderBuilder()
+            .AddAzureMonitorMetricExporter()
+            .AddOtlpExporter()
+            .Build();
+    ```
 
 ### [Java](#tab/java)
 
@@ -957,41 +957,41 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
 
 1. Install the [OpenTelemetry Collector Trace Exporter](https://www.npmjs.com/package/@opentelemetry/exporter-trace-otlp-http) and other OpenTelemetry packages in your project.
 
-```console
-npm install @opentelemetry/api
-npm install @opentelemetry/exporter-trace-otlp-http
-npm install @opentelemetry/sdk-trace-base
-npm install @opentelemetry/sdk-trace-node
-```
+    ```console
+    npm install @opentelemetry/api
+    npm install @opentelemetry/exporter-trace-otlp-http
+    npm install @opentelemetry/sdk-trace-base
+    npm install @opentelemetry/sdk-trace-node
+    ```
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-js/tree/main/examples/otlp-exporter-node).
 
-```typescript
-export class OtlpExporterSample {
-  static async run() {
-    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
-    const { BatchSpanProcessor } = await import("@opentelemetry/sdk-trace-base");
-    const { OTLPTraceExporter } = await import("@opentelemetry/exporter-trace-otlp-http");
-
-    // Create an OTLP trace exporter (set 'url' if your collector isn't on the default endpoint).
-    const otlpExporter = new OTLPTraceExporter({
-      // url: "http://localhost:4318/v1/traces",
-    });
-
-    // Configure Azure Monitor and add the OTLP exporter as an additional span processor.
-    const options = {
-      azureMonitorExporterOptions: {
-        connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
-      },
-      spanProcessors: [new BatchSpanProcessor(otlpExporter)],
-    };
-
-    const monitor = useAzureMonitor(options);
-    console.log("Azure Monitor initialized (OTLP exporter added)");
-  }
-}
-```
+    ```typescript
+    export class OtlpExporterSample {
+      static async run() {
+        const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+        const { BatchSpanProcessor } = await import("@opentelemetry/sdk-trace-base");
+        const { OTLPTraceExporter } = await import("@opentelemetry/exporter-trace-otlp-http");
+    
+        // Create an OTLP trace exporter (set 'url' if your collector isn't on the default endpoint).
+        const otlpExporter = new OTLPTraceExporter({
+          // url: "http://localhost:4318/v1/traces",
+        });
+    
+        // Configure Azure Monitor and add the OTLP exporter as an additional span processor.
+        const options = {
+          azureMonitorExporterOptions: {
+            connectionString:
+              process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
+          },
+          spanProcessors: [new BatchSpanProcessor(otlpExporter)],
+        };
+    
+        const monitor = useAzureMonitor(options);
+        console.log("Azure Monitor initialized (OTLP exporter added)");
+      }
+    }
+    ```
 
 ### [Python](#tab/python)
 
@@ -999,36 +999,36 @@ export class OtlpExporterSample {
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see this [README](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry-exporter/samples/traces#collector).
 
-```python
-    # Import the `configure_azure_monitor()`, `trace`, `OTLPSpanExporter`, and `BatchSpanProcessor` classes from the appropriate packages.
-    from azure.monitor.opentelemetry import configure_azure_monitor
-    from opentelemetry import trace
-    from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-    from opentelemetry.sdk.trace.export import BatchSpanProcessor
-
-    # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-    # Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
-    configure_azure_monitor(
-        connection_string="<YOUR-CONNECTION-STRING>",
-    )
+    ```python
+        # Import the `configure_azure_monitor()`, `trace`, `OTLPSpanExporter`, and `BatchSpanProcessor` classes from the appropriate packages.
+        from azure.monitor.opentelemetry import configure_azure_monitor
+        from opentelemetry import trace
+        from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+        from opentelemetry.sdk.trace.export import BatchSpanProcessor
     
-    # Get the tracer for the current module.
-    tracer = trace.get_tracer(__name__) 
-    
-    # Create an OTLP span exporter that sends spans to the specified endpoint.
-    # Replace `http://localhost:4317` with the endpoint of your OTLP collector.
-    otlp_exporter = OTLPSpanExporter(endpoint="http://localhost:4317")
-    
-    # Create a batch span processor that uses the OTLP span exporter.
-    span_processor = BatchSpanProcessor(otlp_exporter)
-    
-    # Add the batch span processor to the tracer provider.
-    trace.get_tracer_provider().add_span_processor(span_processor)
-    
-    # Start a new span with the name "test".
-    with tracer.start_as_current_span("test"):
-        print("Hello world!")
-```
+        # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
+        # Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
+        configure_azure_monitor(
+            connection_string="<YOUR-CONNECTION-STRING>",
+        )
+        
+        # Get the tracer for the current module.
+        tracer = trace.get_tracer(__name__) 
+        
+        # Create an OTLP span exporter that sends spans to the specified endpoint.
+        # Replace `http://localhost:4317` with the endpoint of your OTLP collector.
+        otlp_exporter = OTLPSpanExporter(endpoint="http://localhost:4317")
+        
+        # Create a batch span processor that uses the OTLP span exporter.
+        span_processor = BatchSpanProcessor(otlp_exporter)
+        
+        # Add the batch span processor to the tracer provider.
+        trace.get_tracer_provider().add_span_processor(span_processor)
+        
+        # Start a new span with the name "test".
+        with tracer.start_as_current_span("test"):
+            print("Hello world!")
+    ```
 
 ---
 
