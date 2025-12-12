@@ -29,7 +29,7 @@ To access the default dashboard, select **Application Dashboard**.
 
 If it's your first time accessing the dashboard, it opens a default view.
 
-:::image type="content" source="./media/overview-dashboard/dashboard.png" lightbox="./media/overview-dashboard/0001-dashboard.png" alt-text="Screenshot that shows the Dashboard view.":::
+:::image type="content" source="./media/overview-dashboard/dashboard.png" lightbox="./media/overview-dashboard/dashboard.png" alt-text="Screenshot that shows the Dashboard view.":::
 
 You can keep the default view if you like it. Or you can also add and delete from the dashboard to best fit the needs of your team.
 
