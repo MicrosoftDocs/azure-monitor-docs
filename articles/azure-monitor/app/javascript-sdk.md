@@ -154,7 +154,7 @@ If you want to use the extra features provided by plugins for specific framework
 ### Confirm data is flowing
 
 1. Go to your Application Insights resource that you enabled the SDK for. 
-1. In the Application Insights resource menu on the left, under **Investigate**, select the **Transaction search** pane.
+1. In the Application Insights resource menu on the left, under **Investigate**, select the **Search** pane.
 1. Open the **Event types** dropdown menu and select **Select all** to clear the checkboxes in the menu. 
 1. From the **Event types** dropdown menu, select:
 
@@ -165,7 +165,7 @@ If you want to use the extra features provided by plugins for specific framework
     
     In some cases, if multiple instances of different versions of Application Insights are running on the same page, errors can occur during initialization. For these cases and the error message that appears, see [Running multiple versions of the Application Insights JavaScript SDK in one session](https://github.com/microsoft/ApplicationInsights-JS/blob/main/versionConflict.md). If you encounter one of these errors, try changing the namespace by using the `name` setting. For more information, see [JavaScript (Web) SDK Loader Script configuration](#javascript-web-sdk-loader-script-configuration).
     
-    :::image type="content" source="media/javascript-sdk/confirm-data-flowing.png" alt-text="Screenshot of the Application Insights Transaction search pane in the Azure portal with the Page View option selected. The page views are highlighted." lightbox="media/javascript-sdk/confirm-data-flowing.png":::
+    :::image type="content" source="media/javascript-sdk/confirm-data-flowing.png" alt-text="Screenshot of the Application Insights Search pane in the Azure portal with the Page View option selected. The page views are highlighted." lightbox="media/javascript-sdk/confirm-data-flowing.png":::
 
 1. If you want to query data to confirm data is flowing:
 

@@ -21,6 +21,7 @@ This article describes the Microsoft internal benchmark that's used for testing 
 ## Best practices for agent as a forwarder
 
 - The Linux Azure Monitor Agent should target 10K EPS. A 20K EPS warning might occur, but it doesn't mean that data is lost. The Azure Monitor Agent doesn't guarantee a lossless connection. Loss is more likely when EPS is over 10K.
+•	The Windows Azure Monitor Agent should target 5K EPS. The EPS may be higher, but there is no warning or throttling that occurs. This threshold is set based on the limit of 5K EPS from the Windows Event service.
 - The forwarder should be on a dedicated system to eliminate potential interference from other workloads.
 - The forwarder system should be monitored for CPU, memory, and disk utilization to prevent overloads from causing data loss.
 - The load balancer and redundant forwarder systems should be used to improve reliability and scalability. For other considerations for forwarders, see the Log Analytics gateway documentation.

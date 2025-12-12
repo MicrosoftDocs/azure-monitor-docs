@@ -85,7 +85,7 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
 - Creating a summary rule with query across another tenant under Lighthouse isn't supported.
 - Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
-- Using `union *` and `isfuzzy=true` in Summary rules query aren't supported. 
+- Using `union *` and `isfuzzy=true` in Summary rules query aren't supported.
 
 ## Pricing model
 
@@ -117,13 +117,13 @@ The operators you can use in summary rule your query depend on the plan of the s
 Summary rules are most beneficial in term of cost and query experiences when the query in rule includes `summarize` operator and results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify the followings:
 
 1. Check that the query produces the intended expected results and schema.
-1. The query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces).
+1. The query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces). If the query is close to the query limits, consider using a smaller 'bin size' to process less data per bin. You can also modify the query to return fewer records or fields with higher volume. 
 1. A record size in results is less than 1MB.
 
-If the query is close to the query limits, consider using a smaller 'bin size' to process less data per bin. You can also modify the query to return fewer records or fields with higher volume. 
+> [!NOTE]
+> Do not use a time filter in a Summary rule query because the query already operates over the time range defined by the bin size. If you add a time filter, it will combine with the bin size, resulting in only the overlapping time period being used.
 
 When you update a query and there are fewer fields in summary results, Azure Monitor doesn't automatically remove the columns from the destination table, and you need to [delete columns from your table](create-custom-table.md#add-or-delete-a-custom-column) manually.
-
 
 ### [API](#tab/api)
 

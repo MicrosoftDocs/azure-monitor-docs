@@ -2,7 +2,7 @@
 title: Collect data from virtual machine client with Azure Monitor
 description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
 ms.topic: article
-ms.date: 10/28/2025
+ms.date: 12/09/2025
 ---
 
 # Collect data from virtual machine client with Azure Monitor
@@ -88,6 +88,8 @@ The following table lists the types of data you can collect from a VM client wit
 | [Text log](data-collection-log-text.md) | Information sent to a text log file on a local disk | Windows<br>Linux | Log Analytics workspace |
 | [JSON log](data-collection-log-json.md) | Information sent to a JSON log file on a local disk | Windows<br>Linux | Log Analytics workspace |
 | [IIS logs](data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
+| [SNMP traps](data-collection-snmp-data.md) | SNMP poll and trap data sent to the Syslog data table or custom text table | Linux | Log Analytics workspace |
+| [Windows Firewall logs](data-collection-firewall-logs.md) |  Windows client and server firewall log data collected by DCR and the Security and Audit solution from Marketplace in the Azure portal|  Windows | Log Analytics workspace |
 
 ### [Preview experience](#tab/preview)
 
