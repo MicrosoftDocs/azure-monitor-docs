@@ -62,6 +62,7 @@ Users who have [roles with tenant admin access](admin-access-reference.md) can a
     1.  Check the user’s profile for the correct email address 
 Make sure that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.
 
+For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 
 ### Access Service advisories through API endpoint
