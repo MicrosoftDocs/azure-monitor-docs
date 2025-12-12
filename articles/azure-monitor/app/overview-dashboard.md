@@ -13,11 +13,11 @@ Application Insights provides a summary in the overview pane to allow at-a-glanc
 
 A time range selection is available at the top of the interface.
 
-:::image type="content" source="./media/overview-dashboard/app-insights-overview-dashboard-03.png" lightbox="./media/overview-dashboard/app-insights-overview-dashboard-03.png" alt-text="Screenshot that shows the time range.":::
+:::image type="content" source="./media/overview-dashboard/time-range.png" lightbox="./media/overview-dashboard/time-range.png" alt-text="Screenshot that shows the time range.":::
 
 Each tile can be selected to navigate to the corresponding experience. As an example, selecting the **Failed requests** tile opens the **Failures** experience.
 
-:::image type="content" source="./media/overview-dashboard/app-insights-overview-dashboard-04.png" lightbox="./media/overview-dashboard/app-insights-overview-dashboard-04.png" alt-text="Screenshot that shows failures.":::
+:::image type="content" source="./media/overview-dashboard/failures.png" lightbox="./media/overview-dashboard/failures.png" alt-text="Screenshot that shows failures.":::
 
 ## Application dashboard
 
@@ -25,11 +25,11 @@ The application dashboard uses the existing dashboard technology within Azure to
 
 To access the default dashboard, select **Application Dashboard**.
 
-:::image type="content" source="./media/overview-dashboard/app-insights-overview-dashboard-05.png" lightbox="./media/overview-dashboard/app-insights-overview-dashboard-05.png" alt-text="Screenshot that shows the Application Dashboard button.":::
+:::image type="content" source="./media/overview-dashboard/dashboard-button.png" lightbox="./media/overview-dashboard/dashboard-button.png" alt-text="Screenshot that shows the Application Dashboard button.":::
 
 If it's your first time accessing the dashboard, it opens a default view.
 
-:::image type="content" source="./media/overview-dashboard/0001-dashboard.png" lightbox="./media/overview-dashboard/0001-dashboard.png" alt-text="Screenshot that shows the Dashboard view.":::
+:::image type="content" source="./media/overview-dashboard/dashboard.png" lightbox="./media/overview-dashboard/0001-dashboard.png" alt-text="Screenshot that shows the Dashboard view.":::
 
 You can keep the default view if you like it. Or you can also add and delete from the dashboard to best fit the needs of your team.
 
