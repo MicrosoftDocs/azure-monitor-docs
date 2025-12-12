@@ -2,7 +2,7 @@
 title: Configuring OpenTelemetry in Application Insights
 description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
 ms.topic: how-to
-ms.date: 10/29/2025
+ms.date: 12/10/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -21,42 +21,43 @@ This guide explains how to configure OpenTelemetry (OTel) in [Azure Monitor Appl
 ## Connection string
 
 A connection string in Application Insights defines the target location for sending telemetry data.
+
 ### [ASP.NET Core](#tab/aspnetcore)
 
 Use one of the following three ways to configure the connection string:
 
-- Add `UseAzureMonitor()` to your `program.cs` file:
+* Add `UseAzureMonitor()` to your `program.cs` file.
 
-```csharp
-    var builder = WebApplication.CreateBuilder(args);
+    ```csharp
+        var builder = WebApplication.CreateBuilder(args);
+    
+        // Add the OpenTelemetry telemetry service to the application.
+        // This service will collect and send telemetry data to Azure Monitor.
+        builder.Services.AddOpenTelemetry().UseAzureMonitor(options => {
+            options.ConnectionString = "<YOUR-CONNECTION-STRING>";
+        });
+    
+        var app = builder.Build();
+    
+        app.Run();
+    ```
 
-    // Add the OpenTelemetry telemetry service to the application.
-    // This service will collect and send telemetry data to Azure Monitor.
-    builder.Services.AddOpenTelemetry().UseAzureMonitor(options => {
-        options.ConnectionString = "<Your Connection String>";
-    });
+* Set an environment variable.
 
-    var app = builder.Build();
+    ```console
+    APPLICATIONINSIGHTS_CONNECTION_STRING=<YOUR-CONNECTION-STRING>
+    ```
 
-    app.Run();
-```
+* Add the following section to your `appsettings.json` config file.
 
-- Set an environment variable.
+    ```json
+      {
+        "AzureMonitor": {
+            "ConnectionString": "<YOUR-CONNECTION-STRING>"
+        }
+      }
+    ```
 
-```console
-   APPLICATIONINSIGHTS_CONNECTION_STRING=<Your Connection String>
-```
-
-- Add the following section to your `appsettings.json` config file.
-
-```json
-  {
-    "AzureMonitor": {
-        "ConnectionString": "<Your Connection String>"
-    }
-  }
-```
-  
 > [!NOTE]
 > If you set the connection string in more than one place, we adhere to the following precedence:
 > 1. Code
@@ -67,45 +68,46 @@ Use one of the following three ways to configure the connection string:
 
 Use one of the following two ways to configure the connection string:
 
-- Add the Azure Monitor Exporter to each OpenTelemetry signal in application startup.
+* Add the Azure Monitor Exporter to each OpenTelemetry signal in application startup.
 
-```csharp
-    // Create a new OpenTelemetry tracer provider.
-    // It is important to keep the TracerProvider instance active throughout the process lifetime.
-    var tracerProvider = Sdk.CreateTracerProviderBuilder()
-        .AddAzureMonitorTraceExporter(options =>
-        {
-            options.ConnectionString = "<Your Connection String>";
-        })
-        .Build();
-
-    // Create a new OpenTelemetry meter provider.
-    // It is important to keep the MetricsProvider instance active throughout the process lifetime.
-    var metricsProvider = Sdk.CreateMeterProviderBuilder()
-        .AddAzureMonitorMetricExporter(options =>
-        {
-            options.ConnectionString = "<Your Connection String>";
-        })
-        .Build();
-
-    // Create a new logger factory.
-    // It is important to keep the LoggerFactory instance active throughout the process lifetime.
-    var loggerFactory = LoggerFactory.Create(builder =>
-    {
-        builder.AddOpenTelemetry(logging =>
-        {
-            logging.AddAzureMonitorLogExporter(options =>
+    ```csharp
+        // Create a new OpenTelemetry tracer provider.
+        // It is important to keep the TracerProvider instance active throughout the process lifetime.
+        var tracerProvider = Sdk.CreateTracerProviderBuilder()
+            .AddAzureMonitorTraceExporter(options =>
             {
-                options.ConnectionString = "<Your Connection String>";
+                options.ConnectionString = "<YOUR-CONNECTION-STRING>";
+            })
+            .Build();
+    
+        // Create a new OpenTelemetry meter provider.
+        // It is important to keep the MetricsProvider instance active throughout the process lifetime.
+        var metricsProvider = Sdk.CreateMeterProviderBuilder()
+            .AddAzureMonitorMetricExporter(options =>
+            {
+                options.ConnectionString = "<YOUR-CONNECTION-STRING>";
+            })
+            .Build();
+    
+        // Create a new logger factory.
+        // It is important to keep the LoggerFactory instance active throughout the process lifetime.
+        var loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddOpenTelemetry(logging =>
+            {
+                logging.AddAzureMonitorLogExporter(options =>
+                {
+                    options.ConnectionString = "<YOUR-CONNECTION-STRING>";
+                });
             });
         });
-    });
-```
+    ```
 
-- Set an environment variable.
-```console
-   APPLICATIONINSIGHTS_CONNECTION_STRING=<Your Connection String>
-```
+* Set an environment variable.
+
+    ```console
+    APPLICATIONINSIGHTS_CONNECTION_STRING=<YOUR-CONNECTION-STRING>
+    ```
 
 > [!NOTE]
 > If you set the connection string in more than one place, we adhere to the following precedence:
@@ -120,72 +122,71 @@ To set the connection string, see [Connection string](java-standalone-config.md#
 
 Use one of the following two ways to configure the connection string:
 
-- Set an environment variable.
+* Set an environment variable.
 
-```console
-   APPLICATIONINSIGHTS_CONNECTION_STRING=<Your Connection String>
-```
+    ```console
+    APPLICATIONINSIGHTS_CONNECTION_STRING=<YOUR-CONNECTION-STRING>
+    ```
 
-- Set a property.
-```properties
-    applicationinsights.connection.string=<Your Connection String>
-```
+* Set a property.
+
+    ```properties
+    applicationinsights.connection.string=<YOUR-CONNECTION-STRING>
+    ```
 
 ### [Node.js](#tab/nodejs)
 
 > [!TIP]
-> - **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev/src
+> * **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev/src
 
 Use one of the following two ways to configure the connection string:
 
-- Set an environment variable.
+* Set an environment variable.
 
-```console
-APPLICATIONINSIGHTS_CONNECTION_STRING=<Your Connection String>
-```
+    ```console
+    APPLICATIONINSIGHTS_CONNECTION_STRING=<YOUR-CONNECTION-STRING>
+    ```
 
-- Use a configuration object.
+* Use a configuration object.
 
-```typescript
-export class BasicConnectionSample {
-  static async run() {
-    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
-    const options = {
-      azureMonitorExporterOptions: {
-        connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
-      },
-    };
-    const monitor = useAzureMonitor(options);
-    console.log("Azure Monitor initialized");
-  }
-}
-```
-
-
+    ```typescript
+    export class BasicConnectionSample {
+      static async run() {
+        const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+        const options = {
+          azureMonitorExporterOptions: {
+            connectionString:
+              process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
+          },
+        };
+        const monitor = useAzureMonitor(options);
+        console.log("Azure Monitor initialized");
+      }
+    }
+    ```
 
 ### [Python](#tab/python)
 
 Use one of the following two ways to configure the connection string:
 
-- Set an environment variable.
+* Set an environment variable.
 
-```console
-   APPLICATIONINSIGHTS_CONNECTION_STRING=<Your Connection String>
-```
+    ```console
+    APPLICATIONINSIGHTS_CONNECTION_STRING=<YOUR-CONNECTION-STRING>
+    ```
 
-- Use the `configure_azure_monitor`function.
+* Use the `configure_azure_monitor` function.
 
-```python
-# Import the `configure_azure_monitor()` function from the `azure.monitor.opentelemetry` package.
-from azure.monitor.opentelemetry import configure_azure_monitor
-
-# Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string of your Azure Monitor Application Insights resource.
-configure_azure_monitor(
-    connection_string="<your-connection-string>",
-)
-```
+    ```python
+    # Import the `configure_azure_monitor()` function from the `azure.monitor.opentelemetry` package.
+    from azure.monitor.opentelemetry import configure_azure_monitor
+    
+    # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
+    # Replace `<YOUR-CONNECTION-STRING>` with the connection string of your Azure Monitor Application Insights resource.
+    configure_azure_monitor(
+        connection_string="<YOUR-CONNECTION-STRING>",
+    )
+    ```
 
 ---
 
@@ -278,8 +279,9 @@ To set the cloud role instance, see [cloud role instance](java-standalone-config
 ### [Java native](#tab/java-native)
 
 To set the cloud role name:
-* Use the `spring.application.name` for Spring Boot native image applications
-* Use the `quarkus.application.name` for Quarkus native image applications
+
+* Use the `spring.application.name` for Spring Boot native image applications.
+* Use the `quarkus.application.name` for Quarkus native image applications.
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
@@ -306,7 +308,7 @@ export class CloudRoleSample {
       resource: customResource,
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     };
 
@@ -315,8 +317,6 @@ export class CloudRoleSample {
   }
 }
 ```
-
-
 
 ### [Python](#tab/python)
 
@@ -340,62 +340,53 @@ export OTEL_SERVICE_NAME="my-helloworld-service"
 
 ## Enable Sampling
 
-Sampling reduces telemetry ingestion volume and cost. Azure Monitor’s OpenTelemetry distro supports two sampling strategies for traces and (optionally) lets you align application logs to your trace sampling decisions. The sampler attaches the selected sampling ratio or rate to exported spans so Application Insights can adjust experience counts accurately. For a conceptual overview, see [Learn more about sampling](sampling.md#brief-summary).
+Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTelemetry distro supports two sampling strategies for traces and (optionally) lets you align application logs to your trace sampling decisions. The sampler attaches the selected sampling ratio or rate to exported spans so Application Insights can adjust experience counts accurately. For a conceptual overview, see [Learn more about sampling](sampling.md#brief-summary).
 
 > [!IMPORTANT]
-> **Scope of sampling**
-> - Sampling decisions apply to **traces** (spans).
-> - **Metrics are never sampled.**
-> - **Logs are not sampled by default.** You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped (details below).
+> * Sampling decisions apply to **traces** (spans).
+> * **Metrics** are never sampled.
+> * **Logs** aren't sampled by default. You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped. For more details, [Configure trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
 
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
-### Configure sampling
+### Configure sampling using environment variables
 
 Use standard OpenTelemetry environment variables to select the sampler and provide its argument:
 
-- **`OTEL_TRACES_SAMPLER`** — sampler type  
-  - `microsoft.fixed_percentage` — sample a fraction of traces.  
-  - `microsoft.rate_limited` — cap traces per second.
-- **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument  
-  - For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).  
-  - For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed.percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
 
-**Examples**
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed.percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+
+The following examples show how to configure sampling using environment variables.
+
+**Fixed-percentage sampling (~10%)**
+
 ```console
-# Fixed percentage (~10%)
-export OTEL_TRACES_SAMPLER="microsoft.fixed_percentage"
+export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
 export OTEL_TRACES_SAMPLER_ARG=0.1
+```
 
-# Rate-limited (~1.5 traces/sec)
+**Rate-limited sampling (~1.5 traces/sec)**
+
+```console
 export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=1.5
 ```
 
+### Configure sampling in code
+
 > [!NOTE]
-> When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language—see the tabs.
+> When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language, see the following tabs.
 
-### Trace‑based sampling for logs
+# [ASP.NET Core](#tab/aspnetcore)
 
-When enabled, log records that belong to **unsampled traces** are dropped so that your logs remain aligned with trace sampling.
+#### Fixed percentage sampling
 
-**Behavior**
-
-- A log record is considered part of a trace when it has a valid `SpanId`.
-- If the associated trace’s `TraceFlags` indicate **not sampled**, the log record is **dropped**.
-- Log records **without** any trace context are **not** affected.
-- The feature is **disabled by default**. Enablement is language-specific—see the tabs.
-
----
-
-### [ASP.NET Core](#tab/aspnetcore)
-
-You can configure sampling in code or by using the environment variables shown above.
-
-#### Configure in code
-
-**Fixed percentage**
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
@@ -406,7 +397,8 @@ var app = builder.Build();
 app.Run();
 ```
 
-**Rate-limited**
+#### Rate-limited sampling
+
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
@@ -418,9 +410,116 @@ app.Run();
 ```
 
 > [!NOTE]
-> If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
+> If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
 
-#### Trace‑based sampling for logs
+# [.NET](#tab/net)
+
+#### Fixed percentage sampling
+
+```csharp
+var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddAzureMonitorTraceExporter(o => o.SamplingRatio = 0.1F)
+    .Build();
+```
+
+#### Rate-limited sampling
+
+```csharp
+var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddAzureMonitorTraceExporter(o => o.TracesPerSecond = 1.5F)
+    .Build();
+```
+
+> [!NOTE]
+> If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
+
+# [Java](#tab/java)
+
+Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+
+# [Java native](#tab/java-native)
+
+For Spring Boot native applications, the [sampling configurations of the OpenTelemetry Java SDK are applicable](https://opentelemetry.io/docs/languages/java/configuration/#sampler).
+
+For Quarkus native applications, configure sampling using the [Quarkus OpenTelemetry guide](https://quarkus.io/guides/opentelemetry#sampler), then use the [Quarkus OpenTelemetry Exporter](https://docs.quarkiverse.io/quarkus-opentelemetry-exporter/dev/quarkus-opentelemetry-exporter-azure.html) to send telemetry to Application Insights.
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
+# [Node.js](#tab/nodejs)
+
+#### Fixed percentage sampling
+
+```typescript
+const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+const monitor = useAzureMonitor({
+  samplingRatio: 0.1, // ~10%
+  azureMonitorExporterOptions: {
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
+  },
+});
+```
+
+#### Rate-limited sampling
+
+```typescript
+const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+const monitor = useAzureMonitor({
+  tracesPerSecond: 1.5, // ~1.5 traces/sec
+  azureMonitorExporterOptions: {
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
+  },
+});
+```
+
+> [!NOTE]
+> If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
+
+# [Python](#tab/python)
+
+#### Fixed percentage sampling
+
+```python
+from azure.monitor.opentelemetry import configure_azure_monitor
+
+configure_azure_monitor(
+    connection_string="<YOUR-CONNECTION-STRING>",
+    sampling_ratio=0.1, # 0.1 = 10% of traces sampled
+)
+```
+
+#### Rate-limited sampling
+
+```python
+from azure.monitor.opentelemetry import configure_azure_monitor
+
+configure_azure_monitor(
+    connection_string="<YOUR-CONNECTION-STRING>",
+    traces_per_second=1.5, # ~1.5 traces/sec
+)
+```
+
+> [!NOTE]
+> If you don't set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
+
+---
+
+> [!TIP]
+> When using fixed‑percentage sampling and you aren't sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so we recommend alerting on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
+
+### Configure trace‑based sampling for logs
+
+When enabled, log records that belong to **unsampled traces** are dropped so that your logs remain aligned with trace sampling.
+
+* A log record is considered part of a trace when it has a valid `SpanId`.
+* If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
+* Log records **without** any trace context **aren't** affected.
+* The feature is **disabled by default**. Enablement is language, see the following tabs.
+
+Use the following setting in your configuration to enable trace-based log sampling:
+
+# [ASP.NET Core](#tab/aspnetcore)
 
 ```csharp
 builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
@@ -429,30 +528,7 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
 });
 ```
 
-### [.NET](#tab/net)
-
-You can configure sampling in code or by using the environment variables shown above.
-
-#### Configure in code
-
-**Fixed percentage**
-```csharp
-var tracerProvider = Sdk.CreateTracerProviderBuilder()
-    .AddAzureMonitorTraceExporter(o => o.SamplingRatio = 0.1F)
-    .Build();
-```
-
-**Rate-limited**
-```csharp
-var tracerProvider = Sdk.CreateTracerProviderBuilder()
-    .AddAzureMonitorTraceExporter(o => o.TracesPerSecond = 1.5F)
-    .Build();
-```
-
-> [!NOTE]
-> If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
-
-#### Trace‑based sampling for logs
+# [.NET](#tab/net)
 
 ```csharp
 var tracerProvider = Sdk.CreateTracerProviderBuilder()
@@ -460,52 +536,17 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-### [Java](#tab/java)
+# [Java](#tab/java)
 
-Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+For Java applications, trace-based sampling is enabled by default.
 
-### [Java native](#tab/java-native)
+# [Java native](#tab/java-native)
 
-For Spring Boot native applications, the [sampling configurations of the OpenTelemetry Java SDK are applicable](https://opentelemetry.io/docs/languages/java/configuration/#sampler).
-
-For Quarkus native applications, configure sampling using the [Quarkus OpenTelemetry guide](https://quarkus.io/guides/opentelemetry#sampler), then use the [Quarkus OpenTelemetry Exporter](https://docs.quarkiverse.io/quarkus-opentelemetry-exporter/dev/quarkus-opentelemetry-exporter-azure.html) to send telemetry to Application Insights.
+For Spring Boot native and Quarkus native applications, trace-based sampling is enabled by default.
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
-### [Node.js](#tab/nodejs)
-
-Configure sampling in code or by using the environment variables shown above.
-
-#### Configure in code
-
-**Fixed percentage**
-```typescript
-const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
-const monitor = useAzureMonitor({
-  samplingRatio: 0.1, // ~10%
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
-  },
-});
-```
-
-**Rate-limited**
-```typescript
-const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
-const monitor = useAzureMonitor({
-  tracesPerSecond: 1.5, // ~1.5 traces/sec
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
-  },
-});
-```
-
-> [!NOTE]
-> If you do not set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
-
-#### Trace‑based sampling for logs
+# [Node.js](#tab/nodejs)
 
 ```typescript
 const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
@@ -513,54 +554,24 @@ const monitor = useAzureMonitor({
   enableTraceBasedSamplingForLogs: true,
   azureMonitorExporterOptions: {
     connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
   },
 });
 ```
-### [Python](#tab/python)
 
-Configure sampling in code or by using the environment variables shown above.
-
-#### Configure in code
-
-**Fixed percentage**
-```python
-from azure.monitor.opentelemetry import configure_azure_monitor
-
-configure_azure_monitor(
-    connection_string="<your-connection-string>",
-    sampling_ratio=0.1,  # 0.1 = 10% of traces sampled
-)
-```
-
-**Rate-limited**
-```python
-from azure.monitor.opentelemetry import configure_azure_monitor
-
-configure_azure_monitor(
-    connection_string="<your-connection-string>",
-    traces_per_second=1.5,  # ~1.5 traces/sec
-)
-```
-
-> [!NOTE]  
-> If you do not set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
-
-#### Trace‑based sampling for logs
+# [Python](#tab/python)
 
 ```python
 from azure.monitor.opentelemetry import configure_azure_monitor
 
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
     enable_trace_based_sampling_for_logs=True,
 )
 ```
 
 ---
 
-> [!TIP]
-> When using fixed‑percentage sampling and you aren't sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so we recommend alerting on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
 ## Live metrics
 
 [Live metrics](live-stream.md) provides a real-time analytics dashboard for insight into application activity and performance.
@@ -612,7 +623,7 @@ export class LiveMetricsSample {
     const options = {
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
       enableLiveMetrics: true, // set to false to disable
     };
@@ -621,8 +632,6 @@ export class LiveMetricsSample {
   }
 }
 ```
-
-
 
 <!--
 
@@ -696,13 +705,14 @@ Azure Monitor OpenTelemetry-based offerings cache telemetry when an application 
 
 The Distro package includes the AzureMonitorExporter, which by default uses one of the following locations for offline storage (listed in order of precedence):
 
-- Windows
-  - %LOCALAPPDATA%\Microsoft\AzureMonitor
-  - %TEMP%\Microsoft\AzureMonitor
-- Non-Windows
-  - %TMPDIR%/Microsoft/AzureMonitor
-  - /var/tmp/Microsoft/AzureMonitor
-  - /tmp/Microsoft/AzureMonitor
+* Windows
+    * %LOCALAPPDATA%\Microsoft\AzureMonitor
+    * %TEMP%\Microsoft\AzureMonitor
+
+* Non-Windows
+    * %TMPDIR%/Microsoft/AzureMonitor
+    * /var/tmp/Microsoft/AzureMonitor
+    * /tmp/Microsoft/AzureMonitor
 
 To override the default directory, you should set `AzureMonitorOptions.StorageDirectory`.
 
@@ -715,7 +725,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenTelemetry().UseAzureMonitor(options =>
 {
     // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
-    // This is the directory where the OpenTelemetry SDK will store any telemetry data that cannot be sent to Azure Monitor immediately.
+    // This is the directory where the OpenTelemetry SDK will store any telemetry data that can't be sent to Azure Monitor immediately.
     options.StorageDirectory = "C:\\SomeDirectory";
 });
 
@@ -732,13 +742,14 @@ To disable this feature, you should set `AzureMonitorOptions.DisableOfflineStora
 
 By default, the AzureMonitorExporter uses one of the following locations for offline storage (listed in order of precedence):
 
-- Windows
-  - %LOCALAPPDATA%\Microsoft\AzureMonitor
-  - %TEMP%\Microsoft\AzureMonitor
-- Non-Windows
-  - %TMPDIR%/Microsoft/AzureMonitor
-  - /var/tmp/Microsoft/AzureMonitor
-  - /tmp/Microsoft/AzureMonitor
+* Windows
+    * %LOCALAPPDATA%\Microsoft\AzureMonitor
+    * %TEMP%\Microsoft\AzureMonitor
+
+* Non-Windows
+    * %TMPDIR%/Microsoft/AzureMonitor
+    * /var/tmp/Microsoft/AzureMonitor
+    * /tmp/Microsoft/AzureMonitor
 
 To override the default directory, you should set `AzureMonitorExporterOptions.StorageDirectory`.
 
@@ -749,7 +760,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddAzureMonitorTraceExporter(options =>
     {
         // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
-        // This is the directory where the OpenTelemetry SDK will store any trace data that cannot be sent to Azure Monitor immediately.
+        // This is the directory where the OpenTelemetry SDK will store any trace data that can't be sent to Azure Monitor immediately.
         options.StorageDirectory = "C:\\SomeDirectory";
         })
         .Build();
@@ -760,7 +771,7 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
     .AddAzureMonitorMetricExporter(options =>
     {
         // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
-        // This is the directory where the OpenTelemetry SDK will store any metric data that cannot be sent to Azure Monitor immediately.
+        // This is the directory where the OpenTelemetry SDK will store any metric data that can't be sent to Azure Monitor immediately.
         options.StorageDirectory = "C:\\SomeDirectory";
         })
         .Build();
@@ -774,7 +785,7 @@ var loggerFactory = LoggerFactory.Create(builder =>
         logging.AddAzureMonitorLogExporter(options =>
         {
             // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
-            // This is the directory where the OpenTelemetry SDK will store any log data that cannot be sent to Azure Monitor immediately.
+            // This is the directory where the OpenTelemetry SDK will store any log data that can't be sent to Azure Monitor immediately.
             options.StorageDirectory = "C:\\SomeDirectory";
         });
     });
@@ -801,16 +812,16 @@ The agent stores up to 50 MB of telemetry data by default. Attempts to send stor
 
 By default, the AzureMonitorExporter uses one of the following locations for offline storage.
 
-- Windows
-  - %TEMP%\Microsoft\AzureMonitor
-- Non-Windows
-  - %TMPDIR%/Microsoft/AzureMonitor
-  - /var/tmp/Microsoft/AzureMonitor
+* Windows
+    * %TEMP%\Microsoft\AzureMonitor
+
+* Non-Windows
+    * %TMPDIR%/Microsoft/AzureMonitor
+    * /var/tmp/Microsoft/AzureMonitor
 
 To override the default directory, you should set `storageDirectory`.
 
 For example:
-
 
 ```typescript
 export class OfflineStorageSample {
@@ -819,7 +830,7 @@ export class OfflineStorageSample {
     const options = {
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<Your Connection String>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
         storageDirectory: "C:\\\\SomeDirectory",
         disableOfflineStorage: false, // set to true to disable
       },
@@ -829,8 +840,6 @@ export class OfflineStorageSample {
   }
 }
 ```
-
-
 
 To disable this feature, you should set `disableOfflineStorage = true`.
 
@@ -843,17 +852,17 @@ By default, Azure Monitor exporters use the following path:
 To override the default directory, you should set `storage_directory` to the directory you want.
 
 For example:
+
 ```python
 ...
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string and storage directory.
-# Replace `your-connection-string` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 # Replace `C:\\SomeDirectory` with the directory where you want to store the telemetry data before it is sent to Azure Monitor.
 configure_azure_monitor(
-    connection_string="your-connection-string",
+    connection_string="<YOUR-CONNECTION-STRING>",
     storage_directory="C:\\SomeDirectory",
 )
 ...
-
 ```
 
 To disable this feature, you should set `disable_offline_storage` to `True`. Defaults to `False`.
@@ -862,13 +871,12 @@ For example:
 ```python
 ...
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string and disable offline storage.
-# Replace `your-connection-string` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="your-connection-string",
+    connection_string="<YOUR-CONNECTION-STRING>",
     disable_offline_storage=True,
 )
 ...
-
 ```
 
 ---
@@ -884,60 +892,57 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
 
 1. Install the [OpenTelemetry.Exporter.OpenTelemetryProtocol](https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol/) package in your project.
 
-```dotnetcli
+    ```dotnetcli
     dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
-```
+    ```
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/examples/Console/TestOtlpExporter.cs).
 
-```csharp
-// Create a new ASP.NET Core web application builder.
-var builder = WebApplication.CreateBuilder(args);
-
-// Add the OpenTelemetry telemetry service to the application.
-// This service will collect and send telemetry data to Azure Monitor.
-builder.Services.AddOpenTelemetry().UseAzureMonitor();
+    ```csharp
+    // Create a new ASP.NET Core web application builder.
+    var builder = WebApplication.CreateBuilder(args);
     
-// Add the OpenTelemetry OTLP exporter to the application.
-// This exporter will send telemetry data to an OTLP receiver, such as Prometheus
-builder.Services.AddOpenTelemetry().WithTracing(builder => builder.AddOtlpExporter());
-builder.Services.AddOpenTelemetry().WithMetrics(builder => builder.AddOtlpExporter());
-
-// Build the ASP.NET Core web application.
-var app = builder.Build();
-
-// Start the ASP.NET Core web application.
-app.Run();
-```
-
-
-
+    // Add the OpenTelemetry telemetry service to the application.
+    // This service will collect and send telemetry data to Azure Monitor.
+    builder.Services.AddOpenTelemetry().UseAzureMonitor();
+    
+    // Add the OpenTelemetry OTLP exporter to the application.
+    // This exporter will send telemetry data to an OTLP receiver, such as Prometheus
+    builder.Services.AddOpenTelemetry().WithTracing(builder => builder.AddOtlpExporter());
+    builder.Services.AddOpenTelemetry().WithMetrics(builder => builder.AddOtlpExporter());
+    
+    // Build the ASP.NET Core web application.
+    var app = builder.Build();
+    
+    // Start the ASP.NET Core web application.
+    app.Run();
+    ```
 
 ### [.NET](#tab/net)
 
 1. Install the [OpenTelemetry.Exporter.OpenTelemetryProtocol](https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol/) package in your project.
 
-```dotnetcli
+    ```dotnetcli
     dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
-```
+    ```
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/examples/Console/TestOtlpExporter.cs).
 
-```csharp
-    // Create a new OpenTelemetry tracer provider and add the Azure Monitor trace exporter and the OTLP trace exporter.
-    // It is important to keep the TracerProvider instance active throughout the process lifetime.
-    var tracerProvider = Sdk.CreateTracerProviderBuilder()
-        .AddAzureMonitorTraceExporter()
-        .AddOtlpExporter()
-        .Build();
-
-    // Create a new OpenTelemetry meter provider and add the Azure Monitor metric exporter and the OTLP metric exporter.
-    // It is important to keep the MetricsProvider instance active throughout the process lifetime.
-    var metricsProvider = Sdk.CreateMeterProviderBuilder()
-        .AddAzureMonitorMetricExporter()
-        .AddOtlpExporter()
-        .Build();
-```
+    ```csharp
+        // Create a new OpenTelemetry tracer provider and add the Azure Monitor trace exporter and the OTLP trace exporter.
+        // It is important to keep the TracerProvider instance active throughout the process lifetime.
+        var tracerProvider = Sdk.CreateTracerProviderBuilder()
+            .AddAzureMonitorTraceExporter()
+            .AddOtlpExporter()
+            .Build();
+    
+        // Create a new OpenTelemetry meter provider and add the Azure Monitor metric exporter and the OTLP metric exporter.
+        // It is important to keep the MetricsProvider instance active throughout the process lifetime.
+        var metricsProvider = Sdk.CreateMeterProviderBuilder()
+            .AddAzureMonitorMetricExporter()
+            .AddOtlpExporter()
+            .Build();
+    ```
 
 ### [Java](#tab/java)
 
@@ -952,43 +957,41 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
 
 1. Install the [OpenTelemetry Collector Trace Exporter](https://www.npmjs.com/package/@opentelemetry/exporter-trace-otlp-http) and other OpenTelemetry packages in your project.
 
-```console
-npm install @opentelemetry/api
-npm install @opentelemetry/exporter-trace-otlp-http
-npm install @opentelemetry/sdk-trace-base
-npm install @opentelemetry/sdk-trace-node
-```
-
+    ```console
+    npm install @opentelemetry/api
+    npm install @opentelemetry/exporter-trace-otlp-http
+    npm install @opentelemetry/sdk-trace-base
+    npm install @opentelemetry/sdk-trace-node
+    ```
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see the [example on GitHub](https://github.com/open-telemetry/opentelemetry-js/tree/main/examples/otlp-exporter-node).
 
-```typescript
-export class OtlpExporterSample {
-  static async run() {
-    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
-    const { BatchSpanProcessor } = await import("@opentelemetry/sdk-trace-base");
-    const { OTLPTraceExporter } = await import("@opentelemetry/exporter-trace-otlp-http");
-
-    // Create an OTLP trace exporter (set 'url' if your collector isn't on the default endpoint).
-    const otlpExporter = new OTLPTraceExporter({
-      // url: "http://localhost:4318/v1/traces",
-    });
-
-    // Configure Azure Monitor and add the OTLP exporter as an additional span processor.
-    const options = {
-      azureMonitorExporterOptions: {
-        connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
-      },
-      spanProcessors: [new BatchSpanProcessor(otlpExporter)],
-    };
-
-    const monitor = useAzureMonitor(options);
-    console.log("Azure Monitor initialized (OTLP exporter added)");
-  }
-}
-```
-
+    ```typescript
+    export class OtlpExporterSample {
+      static async run() {
+        const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+        const { BatchSpanProcessor } = await import("@opentelemetry/sdk-trace-base");
+        const { OTLPTraceExporter } = await import("@opentelemetry/exporter-trace-otlp-http");
+    
+        // Create an OTLP trace exporter (set 'url' if your collector isn't on the default endpoint).
+        const otlpExporter = new OTLPTraceExporter({
+          // url: "http://localhost:4318/v1/traces",
+        });
+    
+        // Configure Azure Monitor and add the OTLP exporter as an additional span processor.
+        const options = {
+          azureMonitorExporterOptions: {
+            connectionString:
+              process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
+          },
+          spanProcessors: [new BatchSpanProcessor(otlpExporter)],
+        };
+    
+        const monitor = useAzureMonitor(options);
+        console.log("Azure Monitor initialized (OTLP exporter added)");
+      }
+    }
+    ```
 
 ### [Python](#tab/python)
 
@@ -996,36 +999,36 @@ export class OtlpExporterSample {
 
 1. Add the following code snippet. This example assumes you have an OpenTelemetry Collector with an OTLP receiver running. For details, see this [README](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry-exporter/samples/traces#collector).
 
-```python
-    # Import the `configure_azure_monitor()`, `trace`, `OTLPSpanExporter`, and `BatchSpanProcessor` classes from the appropriate packages.    
-    from azure.monitor.opentelemetry import configure_azure_monitor
-    from opentelemetry import trace
-    from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-    from opentelemetry.sdk.trace.export import BatchSpanProcessor
-
-    # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-    # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
-    configure_azure_monitor(
-        connection_string="<your-connection-string>",
-    )
+    ```python
+        # Import the `configure_azure_monitor()`, `trace`, `OTLPSpanExporter`, and `BatchSpanProcessor` classes from the appropriate packages.
+        from azure.monitor.opentelemetry import configure_azure_monitor
+        from opentelemetry import trace
+        from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+        from opentelemetry.sdk.trace.export import BatchSpanProcessor
     
-    # Get the tracer for the current module.
-    tracer = trace.get_tracer(__name__) 
-    
-    # Create an OTLP span exporter that sends spans to the specified endpoint.
-    # Replace `http://localhost:4317` with the endpoint of your OTLP collector.
-    otlp_exporter = OTLPSpanExporter(endpoint="http://localhost:4317")
-    
-    # Create a batch span processor that uses the OTLP span exporter.
-    span_processor = BatchSpanProcessor(otlp_exporter)
-    
-    # Add the batch span processor to the tracer provider.
-    trace.get_tracer_provider().add_span_processor(span_processor)
-    
-    # Start a new span with the name "test".
-    with tracer.start_as_current_span("test"):
-        print("Hello world!")
-```
+        # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
+        # Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
+        configure_azure_monitor(
+            connection_string="<YOUR-CONNECTION-STRING>",
+        )
+        
+        # Get the tracer for the current module.
+        tracer = trace.get_tracer(__name__) 
+        
+        # Create an OTLP span exporter that sends spans to the specified endpoint.
+        # Replace `http://localhost:4317` with the endpoint of your OTLP collector.
+        otlp_exporter = OTLPSpanExporter(endpoint="http://localhost:4317")
+        
+        # Create a batch span processor that uses the OTLP span exporter.
+        span_processor = BatchSpanProcessor(otlp_exporter)
+        
+        # Add the batch span processor to the tracer provider.
+        trace.get_tracer_provider().add_span_processor(span_processor)
+        
+        # Start a new span with the name "test".
+        with tracer.start_as_current_span("test"):
+            print("Hello world!")
+    ```
 
 ---
 
@@ -1035,21 +1038,21 @@ The following OpenTelemetry configurations can be accessed through environment v
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
-| Environment variable       | Description                                        |
-| -------------------------- | -------------------------------------------------- |
+| Environment variable | Description |
+|----------------------|-------------|
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set it to the connection string for your Application Insights resource. |
 | `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` | Set it to `true` to opt out of internal metrics collection. |
 | `OTEL_RESOURCE_ATTRIBUTES` | Key-value pairs to be used as resource attributes. For more information about resource attributes, see the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.5.0/specification/resource/sdk.md#specifying-resource-information-via-an-environment-variable). |
-| `OTEL_SERVICE_NAME`        | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, then `OTEL_SERVICE_NAME` takes precedence. |
+| `OTEL_SERVICE_NAME` | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, then `OTEL_SERVICE_NAME` takes precedence. |
 
 ### [.NET](#tab/net)
 
-| Environment variable       | Description                                        |
-| -------------------------- | -------------------------------------------------- |
+| Environment variable | Description |
+|----------------------|-------------|
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set it to the connection string for your Application Insights resource. |
 | `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` | Set it to `true` to opt out of internal metrics collection. |
 | `OTEL_RESOURCE_ATTRIBUTES` | Key-value pairs to be used as resource attributes. For more information about resource attributes, see the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.5.0/specification/resource/sdk.md#specifying-resource-information-via-an-environment-variable). |
-| `OTEL_SERVICE_NAME`        | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, then `OTEL_SERVICE_NAME` takes precedence. |
+| `OTEL_SERVICE_NAME` | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, then `OTEL_SERVICE_NAME` takes precedence. |
 
 ### [Java](#tab/java)
 
@@ -1057,8 +1060,8 @@ For more information about Java, see the [Java supplemental documentation](java-
 
 ### [Java native](#tab/java-native)
 
-| Environment variable       | Description                                        |
-| -------------------------- | -------------------------------------------------- |
+| Environment variable | Description |
+|----------------------|-------------|
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set it to the connection string for your Application Insights resource. |
 
 For Spring Boot native applications, the [OpenTelemetry Java SDK configurations](https://opentelemetry.io/docs/languages/java/configuration/) are available.
@@ -1088,9 +1091,10 @@ Our distro package sets Query String Redaction off by default.
 
 To change this behavior, you must set an environment variable to either `true` or `false`.
 
-- ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
+* ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
     Query String Redaction is disabled by default. To enable, set this environment variable to `false`.
-- Http Client Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION`
+
+* Http Client Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION`
     Query String Redaction is disabled by default. To enable, set this environment variable to `false`.
 
 ### [.NET](#tab/net)
@@ -1100,9 +1104,10 @@ These Instrumentation libraries have QueryString Redaction enabled by default.
 
 To change this behavior, you must set an environment variable to either `true` or `false`.
 
-- ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
+* ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
     Query String Redaction is enabled by default. To disable, set this environment variable to `true`.
-- Http Client Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION`
+
+* Http Client Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION`
     Query String Redaction is enabled by default. To disable, set this environment variable to `true`.
 
 ### [Java](#tab/java)
@@ -1178,7 +1183,7 @@ export class RedactQueryStringsSample {
     const options = {
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
       spanProcessors: [new RedactQueryStringProcessor()],
     };
@@ -1188,8 +1193,6 @@ export class RedactQueryStringsSample {
   }
 }
 ```
-
-
 
 ### [Python](#tab/python)
 
@@ -1211,5 +1214,5 @@ The default value is `60000` milliseconds (60 seconds). This setting controls ho
 
 For reference, see the following OpenTelemetry specifications:
 
-- [Environment variable definitions](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#periodic-exporting-metricreader)
-- [Periodic exporting metric reader](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#periodic-exporting-metricreader)
+* [Environment variable definitions](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#periodic-exporting-metricreader)
+* [Periodic exporting metric reader](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#periodic-exporting-metricreader)
