@@ -231,7 +231,6 @@ The Log Analytics Contributor role includes the following Azure actions:
 |------------|-------------|
 | `*/read` | Ability to view all Azure resources and resource configuration.<br><br>Includes viewing:<br>- Virtual machine extension status.<br>- Configuration of Azure diagnostics on resources.<br>- All properties and settings of all resources.<br><br>For workspaces, allows full unrestricted permissions to read the workspace settings and query data. See more granular options in the preceding list. |
 | `Microsoft.Automation/automationAccounts/*` | Ability to create and configure Azure Automation accounts, including adding and editing runbooks. |
-| `Microsoft.ClassicCompute/virtualMachines/extensions/*`<br>`Microsoft.Compute/virtualMachines/extensions/*` | Add, update, and remove virtual machine extensions, including the Microsoft Monitoring Agent extension and the OMS Agent for Linux extension. |
 | `Microsoft.ClassicStorage/storageAccounts/listKeys/action`<br>`Microsoft.Storage/storageAccounts/listKeys/action` | View the storage account key. Required to configure Log Analytics to read logs from Azure Storage accounts. |
 | `Microsoft.Insights/alertRules/*` | Add, update, and remove alert rules. |
 | `Microsoft.Insights/diagnosticSettings/*` | Add, update, and remove diagnostics settings on Azure resources. |

@@ -271,7 +271,7 @@ This zone also covers the resource-specific endpoints for the following DCEs:
 
 Log Analytics uses the following four DNS zones:
 
-* `privatelink-oms-opinsights-azure-com`: Covers workspace-specific mapping to OMS endpoints. You should see an entry for each workspace linked to the AMPLS connected with this private endpoint.
+* `privatelink-oms-opinsights-azure-com`: Covers workspace-specific mapping to AMA endpoints. You should see an entry for each workspace linked to the AMPLS connected with this private endpoint.
 * `privatelink-ods-opinsights-azure-com`: Covers workspace-specific mapping to ODS endpoints, which are the ingestion endpoints of Log Analytics. You should see an entry for each workspace linked to the AMPLS connected with this private endpoint.
 * `privatelink-agentsvc-azure-automation-net*`: Covers workspace-specific mapping to the agent service automation endpoints. You should see an entry for each workspace linked to the AMPLS connected with this private endpoint.
 * `privatelink-blob-core-windows-net`: Configures connectivity to the global agents' solution packs storage account. Through it, agents can download new or updated solution packs, which are also known as management packs. Only one entry is required to handle all Log Analytics agents, no matter how many workspaces are used. This entry is only added to private link setups created at or after April 19, 2021 (or starting June 2021 on Azure sovereign clouds).
