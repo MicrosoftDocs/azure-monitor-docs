@@ -29,7 +29,7 @@ Users with the authorized roles shown here can view security impacted resource i
 - Service Health Security reader
 - Subscription Owner
 - Subscription Admin/Contributor 
-- Any other Built-in or Custom roles with the following permissions on the subscription:
+- Any other Built-in or Custom roles with the following permissions on the subscription level:
   <br>Microsoft.ResourceHealth/events/fetchEventDetails/action 
   <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action 
   <br>Microsoft.ResourceHealth/events/action permissions
@@ -37,7 +37,7 @@ Users with the authorized roles shown here can view security impacted resource i
 **Tenant level**
 - Security Admin
 - Global Admin/Tenant Admin
-- Custom Roles with the following permissions on the tenant:
+- Custom roles with the following permissions on the tenant level:
   <br>Microsoft.ResourceHealth/events/fetchEventDetails/action 
   <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action 
   <br>Microsoft.ResourceHealth/events/action permissions
