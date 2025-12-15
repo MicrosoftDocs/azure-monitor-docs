@@ -2,7 +2,7 @@
 title: Impacted resources from Azure security incidents
 description: This article details where to find information from Azure Service Health about how Azure security incidents impact your resources.
 ms.topic: concept-article
-ms.date: 12/11/2025
+ms.date: 12/15/2025
 ---
 
 # Impacted resources from Azure security incidents
@@ -28,19 +28,21 @@ Users with the authorized roles shown here can view security impacted resource i
 **Subscription level**
 - Service Health Security reader
 - Subscription Owner
-- Subscription Admin
-- Custom Roles with
-  <br>Microsoft.ResourceHealth/events/fetchEventDetails/action <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action <br>Microsoft.ResourceHealth/events/action permissions
+- Subscription Admin/Contributor 
+- Any other Built-in or Custom roles with the following permissions on the subscription level:
+  <br>Microsoft.ResourceHealth/events/fetchEventDetails/action 
+  <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action 
+  <br>Microsoft.ResourceHealth/events/action permissions
 
 **Tenant level**
 - Security Admin
 - Global Admin/Tenant Admin
-- Custom Roles with <br>Microsoft.ResourceHealth/events/fetchEventDetails/action <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action <br>Microsoft.ResourceHealth/events/action permissions
+- Any other Built-in or Custom roles with the following permissions on the tenant level:
+  <br>Microsoft.ResourceHealth/events/fetchEventDetails/action 
+  <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action 
+  <br>Microsoft.ResourceHealth/events/action permissions
 
-**Contributor level**
-- Custom Roles with
-  <br>Microsoft.ResourceHealth/events/fetchEventDetails/action <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action <br>Microsoft.ResourceHealth/events/action permissions
-- Built-in Roles see [Azure Built-in roles](/azure/role-based-access-control/built-in-roles/privileged#contributor).
+For more information on Built-in roles, see [Azure Built-in roles](/azure/role-based-access-control/built-in-roles/privileged#contributor).
 
 
 
