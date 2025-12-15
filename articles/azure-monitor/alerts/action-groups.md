@@ -141,14 +141,12 @@ When you create or update an action group in the Azure portal, you can test the 
 
 ### Use Managed Identity with Azure Action Groups (Preview)
 
-Azure Action Groups now support [Managed Identities](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) for secure, credential-free authentication when invoking downstream services. This feature is available now available in preview.
+Azure Action Groups now support [Managed Identities](azure/active-directory/managed-identities-azure-resources/overview) for secure, credential-free authentication when invoking downstream services. This feature is available now available in preview.
 
 Use existing managed identites in action groups by 
 1. Configuring the action group to use the preffered identity for each action within the action group.
 2. Ensure required roles are assigned to the selected identity
-3. Grant a managed identities access to a resource (action type) for the call to authenticate ([Learn more](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/grant-managed-identity-resource-access-azure-portal)).
-
-:::image type="content" source="media/action-groups/action_group_managed_identity.png" alt-text="Screenshot of azure action group configuration screen with Identiy drop down.":::
+3. Grant a managed identities access to a resource (action type) for the call to authenticate ([Learn more](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/grant-managed-identity-resource-access-azure-portal)).
 
 #### Supported Action Types
 
