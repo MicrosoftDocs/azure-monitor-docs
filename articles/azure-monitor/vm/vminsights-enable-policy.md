@@ -3,7 +3,7 @@ title: Enable VM insights using Azure Policy
 description: This article describes how you enable VM insights for multiple Azure virtual machines or virtual machine scale sets by using Azure Policy.
 ms.topic: how-to
 ms.reviewer: Rahul.Bagaria
-ms.date: 05/21/2025
+ms.date: 12/12/2025
 
 ---
 
@@ -58,20 +58,30 @@ To assign a VM insights policy initiative to a subscription or management group 
 
     :::image type="content" source="media/vminsights-enable-policy/assign-initiative.png" lightbox="media/vminsights-enable-policy/assign-initiative.png" alt-text="Screenshot that shows Assign initiative.":::
 
-1. Configure the initiative assignment:
+**Basics** tab
 
-    1. In the **Scope** field, select the management group or subscription to which you'll assign the initiative.
-    1. (Optional) Select **Exclusions** to exclude specific resources from the initiative assignment. For example, if your scope is a management group, you might specify a subscription in that management group to be excluded from the assignment.
-    1. Select the ellipsis (**...**) next to **Initiative assignment** to start the policy definition picker. Select one of the VM insights initiatives.
-    1. (Optional) Change the **Assignment name** and add a **Description**.
-    1. On the **Parameters** tab, select a **Log Analytics workspace** to which all virtual machines in the assignment will send data. For virtual machines to send data to different workspaces, create multiple assignments, each with their own scope.  This step will have different parameters depending on which Policy Initiative you are working with at the time.
+| Setting | Description |
+|:---|:---|
+| Scope | The management group or subscription to which you'll assign the initiative. |
+| Exclusions | (Optional) Specific resources to exclude from the initiative assignment. For example, if your scope is a management group, you might specify a subscription in that management group to be excluded from the assignment. |
+| Initiative definition | The policy initiative to assign. Select the ellipsis (**...**) to open the policy definition picker and select one of the [VM insights initiatives](#vm-insights-initiatives). |
+| Assignment name | (Optional) The name of the initiative assignment. The name of the initiative is used by default, but you can change this to something descriptive for you. |
 
-    :::image type="content" source="media/vminsights-enable-policy/assignment-workspace.png" lightbox="media/vminsights-enable-policy/assignment-workspace.png" alt-text="Screenshot that shows a workspace.":::
+**Parameters** tab
 
-    > [!NOTE]
-    > If you select a workspace that's not within the scope of the assignment, grant *Log Analytics Contributor* permissions to the policy assignment's principal ID. Otherwise, you might get a deployment failure like:
-    >
-    > `The client 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' with object id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' does not have authorization to perform action 'microsoft.operationalinsights/workspaces/read' over scope ...`
+| Setting | Description |
+|:---|:---|
+| Enable Processes and Dependencies | Specify whether to enable collection of process and dependency data supporting the [Map feature](/azure/azure-monitor/vm/vminsights-maps). |
+| Bring Your Own User-Assigned Managed Identity | Specify whether the agent installed on the virtual machine should use a managed identity that you select or to use one automatically created for the region. See [Use Azure Policy to assign managed identities](/entra/identity/managed-identities-azure-resources/how-to-assign-managed-identity-via-azure-policy). |
+| Restrict Bring Your Own User-Assigned Identity to Subscription | When enabled, the user assigned identity must exist in the same subscription as the virtual machine. In this case, you must provide *User-Assigned Managed Identity Name* and *User-Assigned Managed Identity Resource Group Name* parameters. When disabled, the parameter *User Assigned Managed Identity Resource Id* is used instead.|
+| User-Assigned Managed Identity Resource ID | Resource ID of the user-assigned managed identity used by the agent installed on the virtual machine when *Restrict Bring Your Own User-Assigned Identity To Subscription* parameter is false. |
+| User-Assigned Managed Identity Name | Name of the user-assigned managed identity used by the agent when *Bring Your Own User-Assigned Managed Identity* is true. |
+| User-Assigned Managed Identity Resource Group | Resource group of the user-assigned managed identity used by the agent when *Bring Your Own User-Assigned Managed Identity* is true. |
+| Effect for all constituent policies | DeployIfNotExists |
+| Scope Policy to supported Operating Systems | When enabled, the policy will apply only to virtual machines with supported operating systems. Otherwise, the policy will apply to all virtual machine resources in the assignment scope. |
+| VMI Data Collection Rule Resource Id | Resource ID of the data collection rule (DCR) that will be associated with each virtual machine. This is the DCR identified in [prerequisites](#prerequisites). |
+| Optional: List of VM images that have supported Linux OS to add to scope | Resource ID of Linux VMs that aren't in the scope of the assignment to include in it. |
+| Optional: List of VM images that have supported Windows OS to add to scope | Resource ID of Windows VMs that aren't in the scope of the assignment to include in it. |
 
 1. Select **Review + create** to review the initiative assignment details. Select **Create** to create the assignment.
 
@@ -83,8 +93,8 @@ After you assign an initiative, you can review and manage compliance for the ini
 
 To see how many virtual machines exist in each of the management groups or subscriptions and their compliance status:
 
-1. Search for and open **Azure Monitor**.
-1. Select **Virtual machines** > **Overview** > **Other onboarding options**. Then under **Enable using policy**, select **Enable**.
+1. Open **Azure Monitor** in the Azure portal.
+2. Select **Virtual machines** > **Overview** > **Other onboarding options**. Under **Enable using policy**, select **Enable**.
 
     :::image type="content" source="media/vminsights-enable-policy/other-onboarding-options.png" lightbox="media/vminsights-enable-policy/other-onboarding-options.png" alt-text="Screenshot that shows other onboarding options page of VM insights with the Enable using policy option.":::
 
