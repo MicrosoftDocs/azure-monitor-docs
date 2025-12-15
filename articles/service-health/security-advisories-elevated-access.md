@@ -2,7 +2,7 @@
 title: Security advisories overview
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 ms.topic: article
-ms.date: 12/04/2025
+ms.date: 12/15/2025
 ---
 
 
@@ -35,21 +35,35 @@ Select the **Advisory name** link to open the tabs with the information you need
 >Security advisories are displayed in the pane for up to 28 days if they are still active and if the impact time is in the future. After that they are moved to the health history panel where they are displayed for 90 days.
 >
 >
->For more information about Sercurity advisories using ARG queries, see [Azure Resource Graph sample queries for Service health](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+>For more information about Sercurity advisories using ARG queries, see [Azure Resource Graph sample queries for Service health](/azure/service-health/resource-graph-samples?branch=main&tabs=azure-cli#all-active-service-health-events). This resource provides guidance on how to utilize the available queries.
 
 ## Who can view Security advisories?
 
 Because the information in this tab is sensitive, specific Role-Based Access Control (RBAC) permissions are required to view security-impacted resources and sensitive details in the Azure portal or through APIs.
 
 - Users must have appropriate **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
-- Only users with elevated roles can access sensitive information on the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
+- The **Summary** and **Issue Updates** tabs require an elevated role for **sensitive** security events.
+- The **Impacted Resources** tab requires an elevated role for all security events.
 - Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
 
 For details about role requirements for accessing these resources, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
 
 Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
+<!--
+### Configure a Tenant and Subscription to view Security advisories
 
+1.  **Access the Azure portal**: Log into the Azure portal and navigate to the **Subscriptions** section.
+1.  **Select the Subscription**: Choose the subscription that you want to manage for Security advisory access.
+1.  **Navigate to Access Control (IAM)**: Select **Access control (IAM)** to manage user roles.
+1.  **Add the role assignment**: Select **Add role assignment** to assign the necessary roles. <br>Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories. Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
+1.  **Verify the user roles**: Ensure that the user you're assigning has the appropriate Role-Based Access Control (RBAC) permissions. <br>Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
+1.  **Update the email addresses**: To ensure that security notifications are received, verify that the email address associated with the user in Azure Active Directory is current. 
+    1.  Navigate to Azure Active Directory 
+    1.  Select **Users**
+    1.  Check the user’s profile for the correct email address 
+Make sure that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.
 
+For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).-->
 
 
 ### Access Service advisories through API endpoint
