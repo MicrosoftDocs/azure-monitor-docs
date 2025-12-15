@@ -17,18 +17,4 @@ ms.date: 11/11/2025
 > | Cognitive Services Translator | S2 price instance | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Cognitive Services Translator | S3 price instance  | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Cognitive Services Translator | S4 price instance | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Databricks Workspace | Azure Databricks - Standard Tier | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-
-##### October 13, 2026
-
-> [!div class="mx-tdCol3BreakAll"]
-> | Service name | Retiring feature | Impacted Resources available? |
-> |:--- |:--- |:--- |
-> | Storage Account | Legacy Blob and General-Purpose v1 storage accounts | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-
-##### October 31, 2026
-
-> [!div class="mx-tdCol3BreakAll"]
-> | Service name | Retiring feature | Impacted Resources available? |
-> |:--- |:--- |:--- |
-> | Kubernetes - Azure Arc | Windows Server 2022 SKU on AKS Arc | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Databricks Workspaces | Azure Databricks - Standard Tier | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
