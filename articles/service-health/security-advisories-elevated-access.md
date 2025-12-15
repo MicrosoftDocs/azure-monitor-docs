@@ -39,31 +39,16 @@ Select the **Advisory name** link to open the tabs with the information you need
 
 ## Who can view Security advisories?
 
-Because the information in this tab is sensitive, specific Role-Based Access Control (RBAC) permissions are required to view security-impacted resources and sensitive details in the Azure portal or through APIs.
+Because the information in this tab is sensitive, access to Security Advisories requires specific **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
 
-- Users must have appropriate **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
-- The **Summary** and **Issue Updates** tabs require an elevated role for **sensitive** security events.
-- The **Impacted Resources** tab requires an elevated role for all security events.
-- Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
+- To view sensitive Security Advisory details, users must be assigned an elevated built‑in role such as Owner or Contributor, or a custom role that includes the required Security Advisory permissions. 
+- The **Summary** and **Issue Updates** tabs require elevated permissions for any advisory that contains *sensitive* security information.
+- The **Impacted Resources** tab always requires elevated permissions, because resource‑level details are classified as sensitive.
+- Users with only Reader or Monitoring Reader roles can't view sensitive fields. They’ll see an access‑required message unless they’re assigned a higher‑privilege built‑in role or a custom role that includes Security Advisory permissions.
 
 For details about role requirements for accessing these resources, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
 
 Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
-<!--
-### Configure a Tenant and Subscription to view Security advisories
-
-1.  **Access the Azure portal**: Log into the Azure portal and navigate to the **Subscriptions** section.
-1.  **Select the Subscription**: Choose the subscription that you want to manage for Security advisory access.
-1.  **Navigate to Access Control (IAM)**: Select **Access control (IAM)** to manage user roles.
-1.  **Add the role assignment**: Select **Add role assignment** to assign the necessary roles. <br>Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories. Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
-1.  **Verify the user roles**: Ensure that the user you're assigning has the appropriate Role-Based Access Control (RBAC) permissions. <br>Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
-1.  **Update the email addresses**: To ensure that security notifications are received, verify that the email address associated with the user in Azure Active Directory is current. 
-    1.  Navigate to Azure Active Directory 
-    1.  Select **Users**
-    1.  Check the user’s profile for the correct email address 
-Make sure that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.
-
-For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).-->
 
 
 ### Access Service advisories through API endpoint
