@@ -35,15 +35,15 @@ Select the **Advisory name** link to open the tabs with the information you need
 >Security advisories are displayed in the pane for up to 28 days if they are still active and if the impact time is in the future. After that they are moved to the health history panel where they are displayed for 90 days.
 >
 >
->For more information about Sercurity advisories using ARG queries, see [Azure Resource Graph sample queries for Service health](/azure/service-health/resource-graph-samples?branch=main&tabs=azure-cli#all-active-service-issue-events). This resource provides guidance on how to utilize the available queries.
+>For more information about Sercurity advisories using ARG queries, see [Azure Resource Graph sample queries for Service health](/azure/service-health/resource-graph-samples?branch=main&tabs=azure-cli#all-active-service-health-events). This resource provides guidance on how to utilize the available queries.
 
 ## Who can view Security advisories?
 
 Because the information in this tab is sensitive, specific Role-Based Access Control (RBAC) permissions are required to view security-impacted resources and sensitive details in the Azure portal or through APIs.
 
 - Users must have appropriate **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
-- The **Summary** and **Issue Updates** tabs require an elevated role for sensitive security events, but for **Impacted Resources** you need Elevated access to view sensitive security communication.
-
+- The **Summary** and **Issue Updates** tabs require an elevated role for **sensitive** security events.
+- The **Impacted Resources** tab requires an elevated role for all security events.
 - Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
 
 For details about role requirements for accessing these resources, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
