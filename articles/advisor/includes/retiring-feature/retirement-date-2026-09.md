@@ -70,6 +70,11 @@ ms.date: 11/11/2025
 > | Azure Virtual Desktop | Classic | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Service Bus | com.microsoft.azure.servicebus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Service Bus | Outdated Azure SDK libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Virtual Machines | NVv3-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Virtual Machines | NVv4-series Azure Virtual Machines | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual Machine | NVv3-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual Machine | NVv4-series Azure Virtual Machines | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | VPN Gateway | Non-availability zones VPNs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Kubernetes service | Legacy authentication for Container Insights - Azure Monitor | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Monitor | Azure Monitor SCOM Managed Instance | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Storage Account | Azure Blob Storage - BlobFuse v1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Kubernetes service | Azure Network Policy Manager (NPM) For Windows | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Workspace | Azure Machine Learning - Data Labeling | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |

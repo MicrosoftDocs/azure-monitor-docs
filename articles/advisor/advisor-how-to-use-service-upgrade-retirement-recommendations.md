@@ -136,9 +136,37 @@ Based on your need, use any of the listed ways to get the required information.
 
 ### [Retiring in 2025](#tab/service-retire-2025)
 
+#### Retiring February 2025
+
+[!INCLUDE [Open Azure Advisor overview](./includes/retiring-feature/retirement-date-2025-02.md)]
+
+#### Retiring March 2025
+
+[!INCLUDE [Table for retiring March 2025](./includes/retiring-feature/retirement-date-2025-03.md)]
+
+#### Retiring April 2025
+
+[!INCLUDE [Table for retiring April 2025](./includes/retiring-feature/retirement-date-2025-04.md)]
+
+#### Retiring August 2025
+
+[!INCLUDE [Table for retiring August 2025](./includes/retiring-feature/retirement-date-2025-08.md)]
+
+#### Retiring September 2025
+
+[!INCLUDE [Table for retiring September 2025](./includes/retiring-feature/retirement-date-2025-09.md)]
+
+#### Retiring October 2025
+
+[!INCLUDE [Table for retiring October 2025](./includes/retiring-feature/retirement-date-2025-10.md)]
+
 #### Retiring November 2025
 
-[!INCLUDE [Open Azure Advisor overview](./includes/retiring-feature/retirement-date-2025-11.md)]
+[!INCLUDE [Table for retiring November 2025](./includes/retiring-feature/retirement-date-2025-11.md)]
+
+#### Retiring December 2025
+
+[!INCLUDE [Table for retiring December 2025](./includes/retiring-feature/retirement-date-2025-12.md)]
 
 ### [Retiring in 2026](#tab/service-retire-2026)
 
@@ -214,9 +242,17 @@ Based on your need, use any of the listed ways to get the required information.
 
 [!INCLUDE [Table for retiring March 2028](./includes/retiring-feature/retirement-date-2028-03.md)]
 
+#### Retiring June 2028
+
+[!INCLUDE [Table for retiring June 2028](./includes/retiring-feature/retirement-date-2028-06.md)]
+
 #### Retiring September 2028
 
 [!INCLUDE [Table for retiring September 2028](./includes/retiring-feature/retirement-date-2028-09.md)]
+
+#### Retiring October 2028
+
+[!INCLUDE [Table for retiring October 2028](./includes/retiring-feature/retirement-date-2028-10.md)]
 
 #### Retiring November 2028
 
