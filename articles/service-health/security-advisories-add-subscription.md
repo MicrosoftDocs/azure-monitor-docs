@@ -38,14 +38,13 @@ Select **Access control (IAM)** to manage user roles.
 
 **5. Verify the user roles** 
 
-Ensure that the user you're assigning has the appropriate Role-Based Access Control (RBAC) permissions. <br>Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
+Ensure that the user you're assigning has the appropriate **Role-Based Access Control (RBAC)** permissions. <br>Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
 
 **6. Update the email addresses** 
 
-To ensure that security notifications are received, verify that the email address associated with the user is current. 
-    1. Navigate to Azure Active Directory. 
-    1. Select **Users**.
-    1. Check the user’s profile for the correct email address.
-
+To ensure that security notifications are received, verify that the email address associated with the user is current.<br> 
+    1. Navigate to Azure Active Directory.<br>
+    2. Select **Users**.<br>
+    3. Check the user’s profile for the correct email address.
 Make sure that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.
-For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal)
+For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
