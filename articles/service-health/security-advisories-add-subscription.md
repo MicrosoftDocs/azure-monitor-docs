@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.date: 12/16/2025
 ---
 
-# Configure Tenant and Subscription access to view Security advisories
+# Configure Subscription access to view Security advisories
 
 To access and view Security advisories, you must have the correct role access. This article describes the steps to create tenant or subscription - based access.
 
