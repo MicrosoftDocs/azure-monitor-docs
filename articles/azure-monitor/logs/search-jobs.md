@@ -2,7 +2,7 @@
 title: Run search jobs in Azure Monitor
 description: Search jobs are asynchronous log queries in Azure Monitor that make results available as a table for further analytics.
 ms.topic: how-to
-ms.date: 10/14/2025
+ms.date: 12/16/2025
 ms.custom: references_regions
 ms.reviewer: adi.biran
 # Customer intent: As a data scientist or workspace administrator, I want an efficient way to search through large volumes of data in a table, including data in long-term retention.
@@ -129,8 +129,8 @@ PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000
         "searchResults": {
                 "query": "Syslog | where * has 'suspected.exe'",
                 "limit": 1000,
-                "startSearchTime": "2020-01-01T00:00:00Z",
-                "endSearchTime": "2020-01-31T00:00:00Z"
+                "startSearchTime": "2025-01-01T00:00:00Z",
+                "endSearchTime": "2025-11-30T00:00:00Z"
             }
     }
 }
@@ -176,9 +176,10 @@ New-AzOperationalInsightsSearchTable -ResourceGroupName ContosoRG -WorkspaceName
 
 ### [API](#tab/api-2)
 
-Call the **Tables - Get** API to get the status and details of a search job:
+Use the `Get` operation of the [Tables](/rest/api/loganalytics/tables) API to check the status and details of a search job.
+
 ```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/<TableName>_SRCH?api-version=2021-12-01-preview
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_SRCH}?api-version={api-version}
 ```
 
 **Table status**
@@ -199,7 +200,7 @@ This example retrieves the table status for the search job in the previous examp
 **Request**
 
 ```http
-GET https://management.azure.com/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/Microsoft.OperationalInsights/workspaces/testWS/tables/Syslog_SRCH?api-version=2021-12-01-preview
+GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/ContosoResourceGroup/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Syslog_SRCH?api-version={api-version}
 ```
 
 **Response**
@@ -231,7 +232,7 @@ GET https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000
         },
         "provisioningState": "Succeeded"
     },
-    "id": "subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/Microsoft.OperationalInsights/workspaces/testWS/tables/Syslog_SRCH",
+    "id": "subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/ContosoResourceGroup/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Syslog_SRCH",
     "name": "Syslog_SRCH"
 }
 ```
@@ -243,7 +244,7 @@ To check the status and details of a search job table, run the [az monitor log-a
 **Example**
 
 ```azurecli
-az monitor log-analytics workspace table show --subscription ContosoSID --resource-group ContosoRG --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --output table \
+az monitor log-analytics workspace table show --subscription aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e --resource-group ContosoResourceGroup --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --output table \
 ```
 
 ### [PowerShell](#tab/powershell-2)
@@ -253,7 +254,7 @@ To check the status and details of a search job table, run the [Get-AzOperationa
 **Example**
 
 ```powershell
-Get-AzOperationalInsightsTable -ResourceGroupName "ContosoRG" -WorkspaceName "ContosoWorkspace" -tableName "HeartbeatByIp_SRCH"
+Get-AzOperationalInsightsTable -ResourceGroupName "ContosoResourceGroup" -WorkspaceName "ContosoWorkspace" -tableName "HeartbeatByIp_SRCH"
 ```
 
 > [!NOTE]
