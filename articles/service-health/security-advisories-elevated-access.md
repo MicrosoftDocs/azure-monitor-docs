@@ -2,7 +2,7 @@
 title: Security advisories overview
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 ms.topic: article
-ms.date: 12/15/2025
+ms.date: 12/16/2025
 ---
 
 
@@ -35,7 +35,7 @@ Select the **Advisory name** link to open the tabs with the information you need
 >Security advisories are displayed in the pane for up to 28 days if they are still active and if the impact time is in the future. After that they are moved to the health history panel where they are displayed for 90 days.
 >
 >
->For more information about Sercurity advisories using ARG queries, see [Azure Resource Graph sample queries for Service health](/azure/service-health/resource-graph-samples?branch=main&tabs=azure-cli#all-active-service-health-events). This resource provides guidance on how to utilize the available queries.
+>For more information about Security advisories using ARG queries, see [Azure Resource Graph sample queries for Service health](/azure/service-health/resource-graph-samples?branch=main&tabs=azure-cli#all-active-service-health-events). This resource provides guidance on how to utilize the available queries.
 
 ## Who can view Security advisories?
 
