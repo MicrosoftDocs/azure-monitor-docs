@@ -38,7 +38,19 @@ Select **Access control (IAM)** to manage user roles.
 
 **5. Verify the user roles** 
 
-Ensure that the user you're assigning has the appropriate **Role-Based Access Control (RBAC)** permissions. <br>Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
+Ensure that the user you're assigning has the appropriate **Role-Based Access Control (RBAC)** permissions. <br>Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions. 
+- The **Reader** role can only view. 
+- The **Contributor** role:
+    - Create, modify, and delete any Azure resource in the subscription.
+    - Deploy and manage VMs, storage accounts, networks, and functions
+    - Cannot Manage Access (IAM)
+- The **Co-administrator** role:
+    - Can view, modify resources, Manage Access (IAM) with almost the same access as a full subscription.
+    - Cannot change the service administrator for a subscription.
+- The **Custom Role**:
+    - This is defined by you or your subscription administrator.
+
+
 
 **6. Update the email addresses** 
 
