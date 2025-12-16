@@ -44,4 +44,4 @@ ms.date: 09/03/2025
 > | Azure Kubernetes Service | Open Service Mesh add-on | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Load Balancer | Inbound NAT rule V1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Azure SQL | Data Sync | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Network Watcher | NSG Flow Logs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Flow Log | NSG Flow Logs | [!INCLUDE [Available](../../includes/inline-reusable-text/not-available-option.md)] |
