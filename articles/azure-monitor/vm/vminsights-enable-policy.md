@@ -15,30 +15,26 @@ This article explains how to enable VM insights for Azure virtual machines, virt
 
 ## Prerequisites
 
-Before you can enable VM insights using Azure Policy, you need to have a VM insights DCR created. The DCR specifies what data to collect from the agent and how it should be processed. See [VM insights DCR](./vminsights-enable.md#vm-insights-dcr) for details on creating this DCR.
+- Before you can enable VM insights using Azure Policy, you need to have a VM insights DCR created. The DCR specifies what data to collect from the agent and how it should be processed. See [VM insights DCR](./vminsights-enable.md#vm-insights-dcr) for details on creating this DCR.
+- Uninstall the Dependency Agent extension on any virtual machines. The VM Insights initiatives don't update a Dependency agent extension that already exist on your VM with Azure Monitoring agent settings. 
 
 ## VM insights initiatives
 
-VM insights policy initiatives install Azure Monitor Agent and the Dependency agent on new virtual machines in your Azure environment. Assign these initiatives to a management group, subscription, or resource group to install the agents on Windows or Linux Azure virtual machines in the defined scope automatically.
+VM insights policy initiatives install the Azure Monitor Agent and configure data collection for VM insights to virtual machines in the scope of the policy assignment. The Dependency agent is also installed if the option to collect process and dependency data is selected to support the [Map feature](./vminsights-maps.md) of VM insights. Assign these initiatives to a management group, subscription, or resource group to automatically install the agents on Windows or Linux Azure virtual machines in the defined scope.
+
+The following VM insights initiatives are available, depending on the type of virtual machine you want to enable:
+
+- Enable Azure Monitor for VMs with Azure Monitoring Agent(AMA)
+- Enable Azure Monitor for VMSS with Azure Monitoring Agent(AMA)
+- Enable Azure Monitor for Hybrid VMs with AMA
+
 
 > [!NOTE]
-> The VM Insights initiatives listed below don't update a Dependency Agent extension that already exists on your VM with Azure Monitoring Agent settings. Make sure to uninstall the Dependency Agent extension from your VM before deploying these initiatives.
+> The following legacy initiatives use the Log Analytics agent instead of the Azure Monitor agent. This agent was deprecated on August 31, 2024. Microsoft will no longer provide any support for the Log Analytics agent. If you're using these legacy initiatives, transition to the Azure Monitor agent-based initiatives.
+> 
+> - Legacy: Enable Azure Monitor for VMs
+> - Legacy: Enable Azure Monitor for virtual machine scale sets
 
-Enable Azure Monitor for VMs with Azure Monitoring Agent
-Enable Azure Monitor for virtual machine scale sets with Azure Monitoring Agent
-Enable Azure Monitor for Hybrid VMs with Azure Monitoring Agent
-
-The initiatives apply to new machines you create and machines you modify, but not to existing VMs.
-
-| Policy Initiative Name | Description |
-|------------------------|-------------|
-| Enable Azure Monitor for VMs with Azure Monitoring Agent | Installs Azure Monitor Agent and the Dependency agent on Azure VMs. |
-| Enable Azure Monitor for virtual machine scale sets with Azure Monitoring Agent | Installs Azure Monitor Agent and the Dependency agent on virtual machine scale sets. |
-| Enable Azure Monitor for Hybrid VMs with Azure Monitoring Agent | Installs Azure Monitor Agent and Dependency agent on hybrid VMs connected with Azure Arc. |
-| Legacy: Enable Azure Monitor for VMs | Installs the Log Analytics agent and Dependency agent on virtual machine scale sets. |
-| Legacy: Enable Azure Monitor for virtual machine scale sets | Installs the Log Analytics agent and Dependency agent on virtual machine scale sets. |
-
-[!INCLUDE [Log Analytics agent deprecation](../agents/includes/log-analytics-agent-deprecation.md)]
 
 ## Support for custom images
 
@@ -48,7 +44,7 @@ Azure Monitor Agent-based VM insights policy and initiative definitions have a `
 
 To assign a VM insights policy initiative to a subscription or management group from the Azure portal:
 
-1. Search for and open **Policy**.
+1. Open **Policy** in the Azure portal and then select 
 
 1. Select **Assignments** > **Assign initiative**.
 
@@ -58,16 +54,24 @@ To assign a VM insights policy initiative to a subscription or management group 
 
     :::image type="content" source="media/vminsights-enable-policy/assign-initiative.png" lightbox="media/vminsights-enable-policy/assign-initiative.png" alt-text="Screenshot that shows Assign initiative.":::
 
-**Basics** tab
+
+## [Basics](#tab/basics)
+
+The **Basics** tab includes general settings for the initiative assignment.
 
 | Setting | Description |
 |:---|:---|
-| Scope | The management group or subscription to which you'll assign the initiative. |
+| Scope | The management group or subscription the initiative is assigned to. The initiative will be applied to all virtual machines in the scope. |
 | Exclusions | (Optional) Specific resources to exclude from the initiative assignment. For example, if your scope is a management group, you might specify a subscription in that management group to be excluded from the assignment. |
+| Resource selectors | (Optional) Further refine the scope of the assignment by including or excluding specific resource groups or resources. |
 | Initiative definition | The policy initiative to assign. Select the ellipsis (**...**) to open the policy definition picker and select one of the [VM insights initiatives](#vm-insights-initiatives). |
-| Assignment name | (Optional) The name of the initiative assignment. The name of the initiative is used by default, but you can change this to something descriptive for you. |
+| Version | Select the version of the initiative. See [Version](/azure/governance/policy/concepts/initiative-definition-structure#version-preview) for details about this setting. |
+| Overrides| Change the effect or referenced version of the policy definition for all or a subset of resources in the scope. |
+| Assignment name | The name of the initiative assignment. The name of the initiative is used by default, but you can change this to something descriptive for you. |
+| Policy enforcement | Specify whether to enforce the policies in the initiative. If enforcement is disabled, the policies are evaluated but noncompliant resources aren't remediated. |
 
-**Parameters** tab
+## [Parameters](#tab/parameters)
+The **Parameters** tab includes settings specific to the selected initiative. The following table describes the parameters used by the VM insights initiatives. Each of the initiatives may not use all of these parameters. Uncheck *Only show parameters that need input or review* to see all parameters.
 
 | Setting | Description |
 |:---|:---|
@@ -83,9 +87,21 @@ To assign a VM insights policy initiative to a subscription or management group 
 | Optional: List of VM images that have supported Linux OS to add to scope | Resource ID of Linux VMs that aren't in the scope of the assignment to include in it. |
 | Optional: List of VM images that have supported Windows OS to add to scope | Resource ID of Windows VMs that aren't in the scope of the assignment to include in it. |
 
-1. Select **Review + create** to review the initiative assignment details. Select **Create** to create the assignment.
+## [Remediation](#tab/remediation)
+The **Remediation** tab lets you create a remediation task to evaluate and enable existing virtual machines in the scope of the initiative assignment. Instead of creating a remediation task at this point, see [Review compliance for a VM insights policy initiative](#review-compliance-for-a-vm-insights-policy-initiative) to perform the remediation after the association has been created.
 
-    Don't create a remediation task at this point because you'll probably need multiple remediation tasks to enable existing virtual machines. For more information about how to create remediation tasks, see [Remediate compliance results](#create-a-remediation-task).
+## [Managed identity](#tab/managed-identity)
+The **Managed identity** tab allows you to specify the managed identity that the policies in the initiative will use to perform installation and configuration tasks on the virtual machine. This is different than the managed identity used by the agent installed on the virtual machine, which is specified in the **Parameters** tab.
+
+## [Non-compliance messages](#tab/non-compliance-messages)
+The **Non-compliance messages** tab allows you to provide customized messages that will be displayed when a resource is found to be non-compliant with the policies in the initiative.
+
+## [Review + create](#tab/review-create)
+The **Review + create** tab allows you to review the initiative assignment details. Select **Create** to create the assignment.
+
+
+---
+
 
 ## Review compliance for a VM insights policy initiative
 
