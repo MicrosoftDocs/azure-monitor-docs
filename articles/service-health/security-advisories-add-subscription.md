@@ -26,7 +26,7 @@ Choose the subscription that you want to manage for Security advisory access.
 
 Select **Access control (IAM)** to manage user roles.
 
-:::image type="content"source="./media/assign-roles/access-control-screen.png"alt-text="A screenshot of the Access control screen screen panel."Lightbox="./media/assign-roles/access-control-screen.png":::
+:::image type="content"source="./media/assign-roles/access-control-screen.png"alt-text="A screenshot of the Access control screen panel."Lightbox="./media/assign-roles/access-control-screen.png":::
 
 
 **4. Add the role assignment**
@@ -43,12 +43,12 @@ Ensure that the user you're assigning has the appropriate **Role-Based Access Co
 - The **Contributor** role:
     - Can create, modify, and delete any Azure resource in the subscription.
     - Can deploy and manage VMs, storage accounts, networks, and functions
-    - Cannot Manage Access (IAM)
+    - Can't Manage Access (IAM)
 - The **Co-administrator** role:
     - Can view, modify resources, Manage Access (IAM) with almost the same access as a full subscription.
-    - Cannot change the service administrator for a subscription.
+    - Can't change the service administrator for a subscription.
 - The **Custom Role**:
-    - This is defined by you or your subscription administrator.
+    - You or your subscription administrator define the permissions for this role.
 
 
 
