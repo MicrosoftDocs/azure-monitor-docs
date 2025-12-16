@@ -166,7 +166,7 @@ Secure Webhook     |  No                       |                              |
 Webhook            |  No                       |                              |
 
 > [!NOTE]
-> If you configure managed identity using the Azure Portal, role assignments will automatically be added to your identity. For PowerShell, CLI, or SDK configurations you must manually assign the roles. 
+> If you configure managed identity using the Azure portal, role assignments will automatically be added to your identity. For PowerShell, CLI, or SDK configurations you must manually assign the roles. 
 
 ### Role requirements for test action groups
 
