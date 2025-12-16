@@ -149,7 +149,7 @@ Perform the following steps to use existing managed identities in an action grou
 2. Ensure required roles are assigned to the selected identity.
 3. Grant a managed identities access to a resource (action type) for the call to authenticate See [Use Azure portal to grant a managed identity access to a resource](/entra/identity/managed-identities-azure-resources/grant-managed-identity-resource-access-azure-portal).
 
-:::image type="content" source="./media/action-groups/action_group_managed_identity.png" lightbox="./media/action-groups/action_group_managed_identity.png" alt-text="Screenshot showing the identity setting for an action in an action group.":::
+:::image type="content" source="./media/action-groups/action-group-managed-identity.png" lightbox="./media/action-groups/action-group-managed-identity.png" alt-text="Screenshot showing the identity setting for an action in an action group.":::
 
 #### Supported Action Types
 
