@@ -54,9 +54,11 @@ Ensure that the user you're assigning has the appropriate **Role-Based Access Co
 
 **6. Update the email addresses** 
 
-To ensure that security notifications are received, verify that the email address associated with the user is current.<br> 
-    1. Navigate to Azure Active Directory.<br>
-    2. Select **Users**.<br>
-    3. Check the user’s profile for the correct email address.
+To ensure that security notifications are received, verify that the email address associated with the user is current follow these steps.<br> 
+    
+1. Navigate to Azure Active Directory.<br>
+2. Select **Users**.<br>
+3. Check the user’s profile for the correct email address.
+
 Make sure that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.
 For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
