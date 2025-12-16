@@ -50,7 +50,7 @@ For details about role requirements for accessing these resources, see [Viewing 
 
 Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
 
-For steps on how to configure subscription or tenant-based access to view Security advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscriptions.md).
+For steps on how to configure subscription or tenant-based access to view Security advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
 
 
 ### Access Service advisories through API endpoint

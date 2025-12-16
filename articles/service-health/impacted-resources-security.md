@@ -44,7 +44,7 @@ Users with the authorized roles shown here can view security impacted resource i
 
 For more information on Built-in roles, see [Azure Built-in roles](/azure/role-based-access-control/built-in-roles/privileged#contributor).
 
-For steps on how to configure subscription or tenant-based access to view Security advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscriptions.md).
+For steps on how to configure subscription or tenant-based access to view Security advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
 
 
 ## Viewing Impacted Resources for Security Incidents on the Service Health Portal
