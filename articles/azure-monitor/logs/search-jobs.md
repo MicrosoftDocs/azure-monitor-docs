@@ -94,10 +94,10 @@ To run a search job, in the Azure portal:
 
 ### [API](#tab/api-1)
 
-To run a search job, call the **Tables - Create or Update** API. The call includes the name of the results table to be created. The name of the results table must end with *_SRCH*.
+To run a search job, use the `Create` operation of the [Tables](/rest/api/loganalytics/tables) API. The call includes the name of the results table to be created. The name of the results table must end with *_SRCH*.
  
 ```http
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/<TableName>_SRCH?api-version=2021-12-01-preview
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tablename_SRCH}?api-version={api-version}
 ```
 
 **Request body**
@@ -118,7 +118,7 @@ This example creates a table called *Syslog_suspected_SRCH* with the results of 
 **Request**
 
 ```http
-PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/Microsoft.OperationalInsights/workspaces/testWS/tables/Syslog_suspected_SRCH?api-version=2021-12-01-preview
+PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/ContosoResourceGroup/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Syslog_suspected_SRCH?api-version={api-version}
 ```
 
 **Request body**
@@ -147,7 +147,7 @@ To run a search job, run the [az monitor log-analytics workspace table search-jo
 **Example**
 
 ```azurecli
-az monitor log-analytics workspace table search-job create --subscription ContosoSID --resource-group ContosoRG  --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --search-query 'Heartbeat | where ComputerIP has "00.000.00.000"' --limit 1500 --start-search-time "2022-01-01T00:00:00.000Z" --end-search-time "2022-01-08T00:00:00.000Z" --no-wait
+az monitor log-analytics workspace table search-job create --subscription aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e --resource-group ContosoResourceGroup --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --search-query 'Heartbeat | where ComputerIP has "198.51.100.101"' --limit 1500 --start-search-time "2022-01-01T00:00:00.000Z" --end-search-time "2022-01-08T00:00:00.000Z" --no-wait
 ```
 
 ### [PowerShell](#tab/powershell-1)
@@ -157,7 +157,7 @@ To run a search job, run the [New-AzOperationalInsightsSearchTable](/powershell/
 **Example**
 
 ```powershell
-New-AzOperationalInsightsSearchTable -ResourceGroupName ContosoRG -WorkspaceName ContosoWorkspace -TableName HeartbeatByIp_SRCH -SearchQuery "Heartbeat" -StartSearchTime "01-01-2022 00:00:00" -EndSearchTime "01-01-2022 00:00:00"
+New-AzOperationalInsightsSearchTable -ResourceGroupName ContosoResourceGroup -WorkspaceName ContosoWorkspace -TableName HeartbeatByIp_SRCH -SearchQuery "Heartbeat" -StartSearchTime "01-01-2022 00:00:00" -EndSearchTime "01-01-2022 00:00:00"
 ```
 
 ---
