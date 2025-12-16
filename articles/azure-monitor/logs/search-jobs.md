@@ -88,7 +88,7 @@ To run a search job, in the Azure portal:
 
     Search job results are available as they begin flowing into the newly created search job results table.
 
-    :::image type="content" source="media/search-job/search-job-processing.png" alt-text="Screenshot that shows search job results table with data." lightbox="media/search-job/search-job-processing.png":::
+    :::image type="content" source="media/search-job/run-as-search-job-processing.png" alt-text="Screenshot that shows search job results table with data." lightbox="media/search-job/run-as-search-job-processing.png":::
 
     Azure Monitor Logs shows a **Search job is done** message when it's completed. When you see that message or the progress shows 100%, the results table is now ready with all the records that match the search query.
 
@@ -172,7 +172,7 @@ New-AzOperationalInsightsSearchTable -ResourceGroupName ContosoRG -WorkspaceName
 
     The icon on the search job results table displays an update indicator icon until the search job is completed.  
     
-    :::image type="content" source="media/search-job/run-as-search-job-running.png" alt-text="Screenshot shows the status of the search table results." lightbox="media/search-job/run-as-search-job-running.png":::
+    :::image type="content" source="media/search-job/search-job-status-results.png" alt-text="Screenshot shows the status of the search table results." lightbox="media/search-job/search-job-status-results.png":::
 
 ### [API](#tab/api-2)
 
