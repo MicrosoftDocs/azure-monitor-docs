@@ -44,11 +44,13 @@ Because the information in this tab is sensitive, access to Security Advisories 
 - To view sensitive Security Advisory details, users must be assigned an elevated built‑in role such as Owner or Contributor, or a custom role that includes the required Security Advisory permissions. 
 - The **Summary** and **Issue Updates** tabs require elevated permissions for any advisory that contains *sensitive* security information.
 - The **Impacted Resources** tab always requires elevated permissions, because resource‑level details are classified as sensitive.
-- Users with only Reader or Monitoring Reader roles can't view sensitive fields. They’ll see an access‑required message unless they’re assigned a higher‑privilege built‑in role or a custom role that includes Security Advisory permissions.
+- Users with only Reader or Monitoring Reader roles can't view sensitive fields. They see an access‑required message unless they’re assigned to a higher‑privilege built‑in role or a custom role that includes Security Advisory permissions.
 
 For details about role requirements for accessing these resources, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
 
 Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
+
+For steps on how to configure subscription or tenant-based access to view Security advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
 
 
 ### Access Service advisories through API endpoint
