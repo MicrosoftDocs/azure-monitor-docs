@@ -68,7 +68,11 @@ To run a search job, in the Azure portal:
 
 1. Select the ellipsis menu on the right-hand side of the screen and select **Search job**. 
 
-    :::image type="content" source="media/search-job/search-job-menu-selection.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-menu-selection.png"::: 
+    :::image type="content" source="media/search-job/search-job-ellipses.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-ellipses.png"::: 
+
+1. Or use the **Run** pull-down menu and select **Run as Search job**.
+
+   :::image type="content" source="media/search-job/search-job-run-menu.png" alt-text="Screenshot of the Logs screen with the Run as Search job menu item highlighted." lightbox="media/search-job/search-job-run-menu.png":::
 
 1. Specify the search job date range using the time picker. Choose any period within the total retention period.
 
@@ -168,7 +172,7 @@ New-AzOperationalInsightsSearchTable -ResourceGroupName ContosoRG -WorkspaceName
 
     The icon on the search job results table displays an update indicator icon until the search job is completed.  
     
-    :::image type="content" source="media/search-job/search-job-status.png" alt-text="Screenshot that shows the Tables tab on Logs screen in the Azure portal with the search results tables listed under Search results." lightbox="media/search-job/search-job-status.png":::
+    :::image type="content" source="media/search-job/run-as-search-job-running.png" alt-text="Screenshot shows the status of the search table results." lightbox="media/search-job/run-as-search-job-running.png":::
 
 ### [API](#tab/api-2)
 
