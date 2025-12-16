@@ -44,6 +44,8 @@
       href: health-history-overview.md
     - name: How to report an issue
       href: report-issue.md
+    - name: Configure subscriptions for Security advisories
+      href: security-advisories-add-subscription.md
     - name: How to create alerts
       items:
       - name: Configure alerts for service health events in the Azure portal
