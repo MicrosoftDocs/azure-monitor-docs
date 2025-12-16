@@ -16,5 +16,5 @@ ms.date: 11/11/2025
 > | Virtual Machines | FS - Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual Machines | Fsv2 - Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual Machines | G - Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Virtual Machines | LGS - Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual Machines | GS - Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual Machines | LSv2 - Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

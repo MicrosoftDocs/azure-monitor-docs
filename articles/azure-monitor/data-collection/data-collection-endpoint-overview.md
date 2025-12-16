@@ -105,9 +105,15 @@ This table describes the components of a data collection endpoint, related regio
 
 1. Select **Review + create** to review the details of the DCE. Select **Create** to create it.
 
+# [CLI](#tab/cli)
+
+Create DCEs by using the [DCE commands](/cli/azure/monitor/data-collection/endpoint).
+
+Create associations between endpoints to your target machines or resources by using [az monitor data-collection rule association create](/cli/azure/monitor/data-collection/rule/association#az-monitor-data-collection-rule-association-create).
+
 # [REST API](#tab/restapi)
 
-Create DCEs by using the [DCE REST APIs](/cli/azure/monitor/data-collection/endpoint).
+Create DCEs by using the [DCE REST APIs](/rest/api/monitor/data-collection-endpoints).
 
 Create associations between endpoints to your target machines or resources by using the [DCRA REST APIs](/rest/api/monitor/datacollectionruleassociations/create#examples).
 
