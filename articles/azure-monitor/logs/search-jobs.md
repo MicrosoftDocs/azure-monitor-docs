@@ -68,7 +68,7 @@ To run a search job, in the Azure portal:
 
 1. Select the ellipsis menu on the right-hand side of the screen and select **Search job**. 
 
-    :::image type="content" source="media/search-job/search-job-ellipses.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-ellipses.png"::: 
+    :::image type="content" source="media/search-job/search-job-ellipses-menu.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-ellipses-menu.png"::: 
 
 1. Or use the **Run** pull-down menu and select **Run as Search job**.
 
