@@ -26,7 +26,7 @@ Choose the subscription that you want to manage for Security advisory access.
 
 Select **Access control (IAM)** to manage user roles.
 
-:::image type="content"source="./media/assign-roles/iam-screen.png"alt-text="A screenshot of the Iam screen panel."Lightbox="./media/assign-roles/iam-screen.png":::
+:::image type="content"source="./media/assign-roles/access-control-screen.png"alt-text="A screenshot of the Access control screen screen panel."Lightbox="./media/assign-roles/access-control-screen.png":::
 
 
 **4. Add the role assignment**
