@@ -32,7 +32,7 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure Machine Learning | Batch Endpoints Preview APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Workspace | Azure Machine Learning - Batch Endpoints Preview APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Kubernetes Service | AKS on VMware | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### March 29, 2026
