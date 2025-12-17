@@ -139,31 +139,34 @@ When you create or update an action group in the Azure portal, you can test the 
     
     When you run a test and select a notification type, you get a message with "Test" in the subject. The tests provide a way to check that your action group works as expected before you enable it in a production environment. All the details and links in test email notifications are from a sample reference set.
 
-### Use Managed Identity with Azure Action Groups (Preview)
+### Use Managed Identity with Azure Action Groups (preview)
 
 Azure Action Groups now support [Managed Identities](/azure/active-directory/managed-identities-azure-resources/overview) for secure, credential-free authentication when invoking downstream services. This feature is available now available in preview.
 
-Use existing managed identites in action groups by 
-1. Configuring the action group to use the preffered identity for each action within the action group.
-2. Ensure required roles are assigned to the selected identity
-3. Grant a managed identities access to a resource (action type) for the call to authenticate ([Learn more](/entra/identity/managed-identities-azure-resources/grant-managed-identity-resource-access-azure-portal)).
+Perform the following steps to use existing managed identities in an action group:
+
+1. Configure the action group to use the preferred identity for each action within the action group.
+2. Ensure required roles are assigned to the selected identity.
+3. Grant a managed identities access to a resource (action type) for the call to authenticate See [Use Azure portal to grant a managed identity access to a resource](/entra/identity/managed-identities-azure-resources/grant-managed-identity-resource-access-azure-portal).
+
+:::image type="content" source="./media/action-groups/action-group-managed-identity.png" lightbox="./media/action-groups/action-group-managed-identity.png" alt-text="Screenshot showing the identity setting for an action in an action group.":::
 
 #### Supported Action Types
 
-Today, the following action types are supported with managed identity:
+The following table lists the action types that are supported with managed identity:
 
 Action Type        | Managed Identity Support  | Role Assignment Name         | Role ID
 -------------------|---------------------------|------------------------------|-------------------------------------
 Automation Runbook |  Yes                      | Automation Contributor       | f353d9bd-d4a6-484e-a77a-8050b599b867
 Azure Function     |  No                       |                              |
-Event Hub*         |  Yes                      | Azure Event Hubs Data Sender | 2b629674-e913-4c01-ae53-ef4638d8f975
+Event Hub          |  Yes                      | Azure Event Hubs Data Sender | 2b629674-e913-4c01-ae53-ef4638d8f975
 ITSM               |  No                       |                              |
 Logic App          |  Yes                      | Logic App Contributor        | 87a39d53-fc1b-424a-814c-f7e04687dc9e
 Secure Webhook     |  No                       |                              |
 Webhook            |  No                       |                              |
 
 > [!NOTE]
-> If you configure managed identity through Azure Portal UX then role assignemetns will automatically be added to you identity. For PowerShell, CLI, or SDK configurations you must manually assign the roles. 
+> If you configure managed identity using the Azure portal, role assignments will automatically be added to your identity. For PowerShell, CLI, or SDK configurations you must manually assign the roles. 
 
 ### Role requirements for test action groups
 
