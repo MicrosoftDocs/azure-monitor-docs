@@ -138,13 +138,13 @@ Based on your need, use any of the listed ways to get the required information.
 
 #### Retiring August 2024
 
-[!INCLUDE [Table for retiring August 2024](./includes/retiring-feature/retirement-date-2024-08.md)]
+[!INCLUDE [Open Azure Advisor overview](./includes/retiring-feature/retirement-date-2024-08.md)]
 
 ### [Retiring in 2025](#tab/service-retire-2025)
 
 #### Retiring February 2025
 
-[!INCLUDE [Open Azure Advisor overview](./includes/retiring-feature/retirement-date-2025-02.md)]
+[!INCLUDE [Table for retiring February 2025](./includes/retiring-feature/retirement-date-2025-02.md)]
 
 #### Retiring March 2025
 
