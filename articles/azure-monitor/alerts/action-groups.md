@@ -159,7 +159,7 @@ Action Type        | Managed Identity Support  | Role Assignment Name         | 
 -------------------|---------------------------|------------------------------|-------------------------------------
 Automation Runbook |  Yes                      | Automation Contributor       | f353d9bd-d4a6-484e-a77a-8050b599b867
 Azure Function     |  No                       |                              |
-Event Hub*         |  Yes                      | Azure Event Hubs Data Sender | 2b629674-e913-4c01-ae53-ef4638d8f975
+Event Hub          |  Yes                      | Azure Event Hubs Data Sender | 2b629674-e913-4c01-ae53-ef4638d8f975
 ITSM               |  No                       |                              |
 Logic App          |  Yes                      | Logic App Contributor        | 87a39d53-fc1b-424a-814c-f7e04687dc9e
 Secure Webhook     |  No                       |                              |
