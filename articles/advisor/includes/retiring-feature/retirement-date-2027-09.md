@@ -11,6 +11,7 @@ ms.date: 09/03/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Azure Document Intelligence | Studio v2.1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | SQL virtual machine | Azure SQL - Automated patching for SQL VMs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 
 ##### September 17, 2027
 

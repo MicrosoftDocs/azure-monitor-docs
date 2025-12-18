@@ -10,7 +10,7 @@ ms.date: 09/03/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure Price Sheet | Download by Billing Account APIs prior to version 2023-09-01 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Price Sheet | Azure Price Sheet - Download by Billing Account APIs prior to version 2023-09-01 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 
 ##### June 30, 2026
 
