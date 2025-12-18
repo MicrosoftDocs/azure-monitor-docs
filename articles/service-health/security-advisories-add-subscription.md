@@ -74,7 +74,10 @@ For more information about assigning roles in Azure, see [Assign Azure roles usi
 
 ## Tenant-based access
 
-Tenant admin access in Azure refers to the permissions granted to roles that allow users to manage and view resources at the tenant level. These roles include Global Administrator, Application Administrator, and others. Tenant admin access enables users to manage users, groups, and permissions within the organization, and view tenant-level events in the Azure Service Health portal
+Tenant admin access in Azure refers to the permissions granted to roles that allow users to manage and view resources at the tenant level. These roles include Global Administrator, Application Administrator, and others. Tenant admin access enables users to manage users, groups, and permissions within the organization, and view tenant-level events in the Azure Service Health portal.
+
+>[!NOTE] 
+>Tenant-level alerts require tenant admin–level read access.
 
 **1. Identify who needs tenant-level access**
 
@@ -101,13 +104,13 @@ Select **+ New custom role** to add a new role.
 
 
 **Optional**
-You can configure Tenant-Level Service Health Alerts to proactively notify security or ops teams with these steps.
+You can configure Tenant-Level Service Health Alerts to proactively notify security or ops teams with these steps. For more information, see [Create tenant level alerts](/azure/azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts).
+
 1.	Go to Azure portal > Monitor > Service Health.
 2.	Select **Create service health alert**.
 3.	Set the Scope level = Directory (Tenant)
 4.	Select event types: Security advisories, Health advisories, Planned maintenance, Service issues
 5.	Save the alert rule.
 
->[!NOTE] 
->Tenant-level alerts require tenant admin–level read access. Users lacking access receive *Unauthorized* errors. For more information see [Create tenant level alerts](/azure/azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts).
+
 
