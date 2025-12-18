@@ -1023,6 +1023,9 @@ items:
       - name: Connect Grafana
         href: metrics/prometheus-grafana.md
         displayName: Prometheus Grafana
+      - name: Rule groups
+        href: metrics/prometheus-rule-groups.md
+        displayName: Prometheus
       - name: Self-hosted Prometheus
         items:
         - name: Integrate
@@ -1441,49 +1444,53 @@ items:
       href: alerts/alerts-types.md
     - name: Best practices
       href: alerts/best-practices-alerts.md
-    - name: Set up alerts
+    - name: Create alerts
       items:
-      - name: Set up alert rules
+      - name: Create alert rules
         items:
-        - name: Set up a metric alert
-          href: alerts/alerts-create-metric-alert-rule.md
-        - name: Query-based metric alerts
+        - name: Metric alert rules
           items:
-          - name: Overview
-            displayName: Query-based metric alerts
-            href: alerts/alerts-query-based-metric-alerts-overview.md
-          - name: Set up a query-based metric alert
-            href: alerts/alerts-create-query-based-metric-alerts.md
-        - name: Set up a log search alert
-          href: alerts/alerts-create-log-alert-rule.md
-        - name: Set up a simple log search alert
-          href: alerts/alerts-create-simple-alert.md
-        - name: Set up a tenant level alert
-          href: alerts/alerts-create-tenant-level-service-heath-alerts.md
-        - name: Set up an activity log, service health or resource health alert
+          - name: Metric alerts
+            href: alerts/alerts-create-metric-alert-rule.md
+          - name: Metric alert on Azure Monitor Logs
+            href: alerts/alerts-metric-logs.md
+          - name: Multiple time series
+            href: alerts/alerts-metric-multiple-time-series-single-rule.md
+          - name: Prometheus alerts
+            href: alerts/prometheus-alerts.md
+          - name: Query-based metric alerts
+            items:
+            - name: Overview
+              displayName: Query-based metric alerts
+              href: alerts/alerts-query-based-metric-alerts-overview.md
+            - name: Set up a query-based metric alert
+              href: alerts/alerts-create-query-based-metric-alerts.md
+        - name: Log search alerts
+          items:
+          - name: Simple log search alert
+            href: alerts/alerts-create-simple-alert.md
+          - name: Log search alert
+            href: alerts/alerts-create-log-alert-rule.md
+          - name: Optimize
+            href: alerts/alerts-log-query.md
+        - name: Activity log or health alerts
           href: alerts/alerts-create-activity-log-alert-rule.md
-        - name: Set up a Prometheus alert
-          href: alerts/prometheus-alerts.md
+        - name: Tenant service health alert
+          href: alerts/alerts-create-tenant-level-service-heath-alerts.md
         - name: Alert rules with dynamic thresholds overview
           href: alerts/alerts-dynamic-thresholds.md
-        - name: Set up a metric alert on Azure Monitor Logs
-          href: alerts/alerts-metric-logs.md
-        - name: Create one alert rule for multiple time series
-          href: alerts/alerts-metric-multiple-time-series-single-rule.md
         - name: Create alert rules using CLI, PowerShell, or ARM templates
           href: alerts/alerts-create-rule-cli-powershell-arm.md
-        - name: Optimize log search alert queries
-          href: alerts/alerts-log-query.md
-      - name: Set up action groups
+      - name: Action groups
         href: alerts/action-groups.md
-      - name: Set up alert processing rules
+      - name: Alert processing rules
         displayName: Azure CLI, az monitor action rule
         href: alerts/alerts-processing-rules.md
-      - name: Set up alert integrations
+      - name: Alert integrations
         items:
-        - name: The alerts common schema
+        - name: Common alert schema
           href: alerts/alerts-common-schema.md
-        - name: Non-common alerts schema
+        - name: Non-common alert schema
           href: alerts/alerts-non-common-schema-definitions.md
         - name: Integrate with Logic apps
           href: alerts/alerts-logic-apps.md
