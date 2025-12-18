@@ -109,5 +109,5 @@ You can configure Tenant-Level Service Health Alerts to proactively notify secur
 5.	Save the alert rule.
 
 >[!NOTE] 
->Tenant-level alerts require tenant admin–level read access. Users lacking access receive *Unauthorized* errors. For more information see [Create tenant level alerts](/azure/service-health/alerts-activity-log-service-notifications-portal#create-a-tenant-level-alert).
+>Tenant-level alerts require tenant admin–level read access. Users lacking access receive *Unauthorized* errors. For more information see [Create tenant level alerts](/azure/azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts).
 
