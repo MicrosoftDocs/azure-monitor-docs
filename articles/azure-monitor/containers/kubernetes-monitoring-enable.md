@@ -97,6 +97,9 @@ Each of the commands above allow the following optional parameters. The paramete
 | Label keys | `--ksm-metric-labels-allow-list`<br><br>Comma-separated list of more Kubernetes label keys that is used in the resource's kube_resource_labels metric kube_resource_labels metric. For example, kube_pod_labels is the labels metric for the pods resource. By default this metric contains only name and namespace labels. To include more labels, provide a list of resource names in their plural form and Kubernetes label keys that you want to allow for them A single `*` can be provided for each resource to allow any labels, but i this has severe performance implications. For example, `pods=[app],namespaces=[k8s-label-1,k8s-label-n,...],...`. |
 | Recording rules | `--enable-windows-recording-rules`<br><br>Lets you enable the recording rule groups required for proper functioning of the Windows dashboards. |
 
+> [!NOTE]
+> Note that the parameters set using - ksm-metric-annotations-allow-list and ksm-metric-labels-allow-list can be overridden or alternatively set using the [ama-metrics-settings-configmap](../containers/prometheus-metrics-scrape-configuration.md#kube-state-metrics)
+
 #### Container logs
 
 Use the `--addon monitoring` option with [az aks create](/cli/azure/aks#az-aks-create) for a new cluster or [az aks enable-addon](/cli/azure/aks#az-aks-enable-addons) to update an existing cluster to enable collection of container logs. See below to modify the log collection settings.
@@ -506,31 +509,17 @@ The **Collected data** option allows you to select the tables that are populated
 
 2. Create the policy definition using the following CLI command:
 
-      `az policy definition create --name "Prometheus Metrics addon" --display-name "Prometheus Metrics addon" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules AddonPolicyMetricsProfile.rules.json --params AddonPolicyMetricsProfile.parameters.json`
+    ```azurecli
+    az policy definition create --name "Prometheus Metrics addon" --display-name "Prometheus Metrics addon" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules AddonPolicyMetricsProfile.rules.json --params AddonPolicyMetricsProfile.parameters.json`
+    ```
 
-3. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
-4. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
-1. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
+4. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
+5. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
+6. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
 
 After the policy is assigned to the subscription, whenever you create a new cluster without Prometheus enabled, the policy will run and deploy to enable Prometheus monitoring.
 
-#### Azure portal
-
-1. From the **Definitions** tab of the **Policy** menu in the Azure portal, create a policy definition with the following details.
-
-    - **Definition location**: Azure subscription where the policy definition should be stored.
-    - **Name**: AKS-Monitoring-Addon
-    - **Description**: Azure custom policy to enable the Monitoring Add-on onto Azure Kubernetes clusters.
-    - **Category**: Select **Use existing** and then *Kubernetes* from the dropdown list.
-    - **Policy rule**: Replace the existing sample JSON with the contents of [https://aka.ms/aks-enable-monitoring-custom-policy](https://aka.ms/aks-enable-monitoring-custom-policy).
-
-1. Select the new policy definition **AKS Monitoring Addon**.
-1. Select **Assign** and specify a **Scope** of where the policy should be assigned.
-1. Select **Next** and provide the resource ID of the Log Analytics workspace.
-1. Create a remediation task if you want to apply the policy to existing AKS clusters in the selected scope.
-1. Select **Review + create** to create the policy assignment.
-
-#### Azure CLI
+#### Container logging
 
 1. Download Azure Policy template and parameter files.
 
@@ -543,14 +532,9 @@ After the policy is assigned to the subscription, whenever you create a new clus
     ```azurecli
     az policy definition create --name "AKS-Monitoring-Addon-MSI" --display-name "AKS-Monitoring-Addon-MSI" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules azure-policy.rules.json --params azure-policy.parameters.json
     ```
-
-3. Create the policy definition using the following CLI command:
-
-    ```azurecli
-    az policy assignment create --name aks-monitoring-addon --policy "AKS-Monitoring-Addon-MSI" --assign-identity --identity-scope /subscriptions/<subscriptionId> --role Contributor --scope /subscriptions/<subscriptionId> --location <location> -p "{ \"workspaceResourceId\": { \"value\": \"/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.operationalinsights/workspaces/<workspaceName>\" }, \"resourceTagValues\": { \"value\": {} }, \"workspaceRegion\": { \"value\": \"<location>\" }}"
-    ```
-
-After the policy is assigned to the subscription, whenever you create a new cluster without Container insights enabled, the policy will run and deploy to enable Container insights monitoring. 
+4. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
+5. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
+6. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
 
 ---
 
@@ -868,7 +852,7 @@ Windows metric collection is enabled for AKS clusters as of version 6.4.0-main-0
 
 Manually install windows-exporter on AKS nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors. For more collectors, see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
 
-   * `[defaults]`
+* `[defaults]`
    * `container`
    * `memory`
    * `process`
@@ -888,7 +872,7 @@ Set the `windowsexporter` and `windowskubeproxy` Booleans to `true` in your metr
 
 Enable the recording rules that are required for the out-of-the-box dashboards:
 
- * If onboarding using CLI, include the option `--enable-windows-recording-rules`.
+* If onboarding using CLI, include the option `--enable-windows-recording-rules`.
  * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
  * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
 

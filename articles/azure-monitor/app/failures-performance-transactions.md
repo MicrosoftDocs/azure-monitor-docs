@@ -9,11 +9,11 @@ ms.date: 05/30/2025
 
 [Application Insights](app-insights-overview.md) collects telemetry from your application to help diagnosing failures and investigating slow transactions. It includes four essential tools:
 
-* **Failures** - Tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
+* **Failures view** - Tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
 
-* **Performance** - Quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
+* **Performance view** - Quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
 
-* **Transaction search** - Enables users to locate and examine individual telemetry items such as page views, exceptions, and custom events.
+* **Search view** - Enables users to locate and examine individual telemetry items such as page views, exceptions, and custom events.
 
 * **Transaction diagnostics** - Helps to quickly identify issues in components through comprehensive insight into end-to-end transaction details.
 
@@ -35,11 +35,11 @@ To get to the **Performance** view in Application Insights, select either the **
 
 You can also get to the performance view from the [Application Map](app-map.md) by selecting a resource, then **Investigate performance** from the triage section.
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
-To get to the **Transaction search** view in Application Insights, select either **Search** from the command bar on the **Overview** pane, or **Transaction search** under the **Investigate** category in the resource menu.
+To get to the **Search** view in Application Insights, select either **Search** from the command bar on the **Overview** pane or under the **Investigate** category in the resource menu.
 
-:::image type="content" source="media/failures-performance-transactions/transaction-search-go-to.png" lightbox="media/failures-performance-transactions/transaction-search-go-to.png" alt-text="Screenshot showing how to reach the 'Transaction search' view in Application Insights.":::
+:::image type="content" source="media/failures-performance-transactions/search-go-to.png" lightbox="media/failures-performance-transactions/search-go-to.png" alt-text="Screenshot showing how to reach the 'Search' view in Application Insights.":::
 
 ---
 
@@ -60,11 +60,11 @@ The **Performance** view shows a list of all operations collected for your appli
 
 :::image type="content" source="media/failures-performance-transactions/performance-view.png" lightbox="media/failures-performance-transactions/performance-view.png" alt-text="Screenshot showing the 'Performance' view in Application Insights.":::
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
-**Transaction search** allows you to find and explore individual telemetry items.
+The **Search** view allows you to find and explore individual telemetry items.
 
-:::image type="content" source="media/failures-performance-transactions/transaction-search.png" lightbox="media/failures-performance-transactions/transaction-search.png" alt-text="Screenshot showing the 'Transaction search' view in Application Insights.":::
+:::image type="content" source="media/failures-performance-transactions/search-pane.png" lightbox="media/failures-performance-transactions/search-pane.png" alt-text="Screenshot showing the 'Search' view in Application Insights.":::
 
 ---
 
@@ -91,7 +91,7 @@ You can select which service (Cloud Role Name) or machine/container (Cloud Role 
 
 To learn how to set the *Cloud Role Name* and the *Cloud Role Instance*, see [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
 You can select which event types to view from the **Event types** dropdown menu, including:
 
@@ -117,7 +117,7 @@ If you want to restore the filters later, select **Reset** from the top navigati
 
 You can filter events on the values of their properties. The available properties depend on the event or telemetry types you selected. To add a filter:
 
-1. Select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: to add a filter.
+1. Select :::image type="content" source="media/failures-performance-transactions/search-filter-icon.png" alt-text="Filter icon" border="false"::: to add a filter.
 
     :::image type="content" source="media/failures-performance-transactions/filter-selection.png" alt-text="Filter pill" border="false":::
 
@@ -130,7 +130,7 @@ You can filter events on the values of their properties. The available propertie
     > [!NOTE]
     > Notice that the counts to the right of the filter values show how many occurrences there are in the current filtered set.
 
-1. To add another filter, select :::image type="content" source="media/failures-performance-transactions/transaction-search-filter-icon.png" alt-text="Filter icon" border="false"::: again.
+1. To add another filter, select :::image type="content" source="media/failures-performance-transactions/search-filter-icon.png" alt-text="Filter icon" border="false"::: again.
 
 ## Search telemetry
 
@@ -146,14 +146,14 @@ You can search for specific operations using the **Search to filter items...** f
 
 :::image type="content" source="media/failures-performance-transactions/performance-view-search.png" lightbox="media/failures-performance-transactions/performance-view-search.png" alt-text="Screenshot that shows the 'Search' field.":::
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
 You can search for terms in any of the property values. This capability is useful if you write [custom events](api-custom-events-metrics.md) with property values.
 
 > [!TIP]
 > You might want to set a time range because searches over a shorter range are faster.
 
-:::image type="content" source="media/failures-performance-transactions/transaction-search-property.png" lightbox="media/failures-performance-transactions/transaction-search-property.png" alt-text="Screenshot that shows opening a diagnostic search.":::
+:::image type="content" source="media/failures-performance-transactions/search-property.png" lightbox="media/failures-performance-transactions/search-property.png" alt-text="Screenshot that shows opening a diagnostic search.":::
 
 Search for complete words, not substrings. Use quotation marks to enclose special characters.
 
@@ -185,7 +185,7 @@ All data collected by Application Insights is stored in [Log Analytics](../logs/
 > [!TIP]
 > [Simple mode](../logs/log-analytics-simple-mode.md) in Log Analytics offers an intuitive point-and-click interface for analyzing and visualizing log data.
 
-1. On either the performance, failures, or transaction search view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
+1. On either the performance, failures, or search view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
 
     :::image type="content" source="media/failures-performance-transactions/logs-view-go-to.png" lightbox="media/failures-performance-transactions/logs-view-go-to.png" alt-text="Screenshot of the top action bar with the 'View in logs' button highlighted.":::
 
@@ -225,11 +225,11 @@ To investigate the root cause of a performance issue, you can drill into the pro
 	> [!NOTE]
 	> The **Suggested** samples contain related telemetry from all components, even if sampling is in effect in any of them.
 
-### [Transaction search](#tab/transaction-search)
+### [Search view](#tab/search-view)
 
 To investigate an event further, select any telemetry item to open the **End-to-end transaction details** view.
 
-:::image type="content" source="media/failures-performance-transactions/transaction-search-telemetry-item.png" lightbox="media/failures-performance-transactions/transaction-search-telemetry-item.png" alt-text="Screenshot that shows an individual dependency request.":::
+:::image type="content" source="media/failures-performance-transactions/search-telemetry-item.png" lightbox="media/failures-performance-transactions/search-telemetry-item.png" alt-text="Screenshot that shows an individual dependency request.":::
 
 ---
 
@@ -298,6 +298,9 @@ This collapsible pane shows the detail of any selected item from the transaction
 
 ---
 
+> [!NOTE]
+> The **Transaction diagnostics** experience now offers a simple view, which shows agent steps in a clear, story-like fashion. For more information, see [Monitor AI agents with Application Insights](agents-view.md#end-to-end-transaction-details-view).
+
 ## Release annotations
 
 Release annotations mark deployments and other significant events on Application Insights charts, allowing correlation of changes with performance, failures, and usage.
@@ -307,18 +310,18 @@ Release annotations mark deployments and other significant events on Application
 [Azure Pipelines](/azure/devops/pipelines) creates a release annotation during deployment when all the following conditions are true:
 
 > [!div class="checklist"]
-> - The target resource links to Application Insights through the `APPINSIGHTS_INSTRUMENTATIONKEY` app setting.
-> - The Application Insights resource is in the same subscription as the target resource.
-> - The deployment uses one of the following Azure Pipelines tasks:
+> * The target resource links to Application Insights through the `APPLICATIONINSIGHTS_CONNECTION_STRING` app setting.
+> * The Application Insights resource is in the same subscription as the target resource.
+> * The deployment uses one of the following Azure Pipelines tasks:
 
-  | Task code                 | Task name                     | Versions     |
-  |---------------------------|-------------------------------|--------------|
-  | AzureAppServiceSettings   | Azure App Service Settings    | Any          |
-  | AzureRmWebAppDeployment   | Azure App Service             | V3+          |
-  | AzureFunctionApp          | Azure Functions               | Any          |
-  | AzureFunctionAppContainer | Azure Functions for container | Any          |
-  | AzureWebAppContainer      | Azure Web App for Containers  | Any          |
-  | AzureWebApp               | Azure Web App                 | Any          |
+| Task code                 | Task name                     | Versions     |
+|---------------------------|-------------------------------|--------------|
+| AzureAppServiceSettings   | Azure App Service Settings    | Any          |
+| AzureRmWebAppDeployment   | Azure App Service             | V3+          |
+| AzureFunctionApp          | Azure Functions               | Any          |
+| AzureFunctionAppContainer | Azure Functions for container | Any          |
+| AzureWebAppContainer      | Azure Web App for Containers  | Any          |
+| AzureWebApp               | Azure Web App                 | Any          |
 
 > [!NOTE]
 > If you still use the older Application Insights annotation deployment task, delete it.
@@ -333,17 +336,17 @@ If you don't use the tasks in the previous section, add an inline script in the 
 1. Add the PowerShell script from step 2 in [Create release annotations with the Azure CLI](#create-release-annotations-with-the-azure-cli) to **Inline Script**.
 1. Add script arguments. Replace placeholders in angle brackets.
 
-   ```powershell
-   -aiResourceId "<aiResourceId>" `
-   -releaseName "<releaseName>" `
-   -releaseProperties @{"ReleaseDescription"="<a description>";
+    ```powershell
+    -aiResourceId "<aiResourceId>" `
+    -releaseName "<releaseName>" `
+    -releaseProperties @{"ReleaseDescription"="<a description>";
         "TriggerBy"="<Your name>" }
-   ```
-
-   The following example shows metadata you can set in the optional `releaseProperties` argument by using build and release variables. Select **Save**.
-
-   ```powershell
-   -releaseProperties @{
+    ```
+    
+    The following example shows metadata you can set in the optional `releaseProperties` argument by using build and release variables. Select **Save**.
+    
+    ```powershell
+    -releaseProperties @{
     "BuildNumber"="$(Build.BuildNumber)";
     "BuildRepositoryName"="$(Build.Repository.Name)";
     "BuildRepositoryProvider"="$(Build.Repository.Provider)";
@@ -356,7 +359,7 @@ If you don't use the tasks in the previous section, add an inline script in the 
     "ReleaseWebUrl"="$(Release.ReleaseWebUrl)";
     "SourceBranch"="$(Build.SourceBranch)";
     "TeamFoundationCollectionUri"="$(System.TeamFoundationCollectionUri)" }
-   ```
+    ```
 
 ### Create release annotations with the Azure CLI
 
@@ -365,67 +368,67 @@ Use the following PowerShell script to create a release annotation from any proc
 1. Sign in to the [Azure CLI](/cli/azure/authenticate-azure-cli).
 1. Save the following script as `CreateReleaseAnnotation.ps1`.
 
-   ```powershell
-   param(
-       [parameter(Mandatory = $true)][string]$aiResourceId,
-       [parameter(Mandatory = $true)][string]$releaseName,
-       [parameter(Mandatory = $false)]$releaseProperties = @()
-   )
-
-   # Function to ensure all Unicode characters in a JSON string are properly escaped
-   function Convert-UnicodeToEscapeHex {
-     param (
-       [parameter(Mandatory = $true)][string]$JsonString
-     )
-     $JsonObject = ConvertFrom-Json -InputObject $JsonString
-     foreach ($property in $JsonObject.PSObject.Properties) {
-       $name = $property.Name
-       $value = $property.Value
-       if ($value -is [string]) {
-         $value = [regex]::Unescape($value)
-         $OutputString = ""
-         foreach ($char in $value.ToCharArray()) {
-           $dec = [int]$char
-           if ($dec -gt 127) {
-             $hex = [convert]::ToString($dec, 16)
-             $hex = $hex.PadLeft(4, '0')
-             $OutputString += "\u$hex"
-           }
-           else {
-             $OutputString += $char
-           }
-         }
-         $JsonObject.$name = $OutputString
-       }
-     }
-     return ConvertTo-Json -InputObject $JsonObject -Compress
-   }
-   
-   $annotation = @{
-       Id = [GUID]::NewGuid();
-       AnnotationName = $releaseName;
-       EventTime = (Get-Date).ToUniversalTime().GetDateTimeFormats("s")[0];
-       Category = "Deployment"; #Application Insights only displays annotations from the "Deployment" Category
-       Properties = ConvertTo-Json $releaseProperties -Compress
-   }
-   
-   $annotation = ConvertTo-Json $annotation -Compress
-   $annotation = Convert-UnicodeToEscapeHex -JsonString $annotation  
- 
-   $accessToken = (az account get-access-token | ConvertFrom-Json).accessToken
-   $headers = @{
-       "Authorization" = "Bearer $accessToken"
-       "Accept"        = "application/json"
-       "Content-Type"  = "application/json"
-   }
-   $params = @{
-       Headers = $headers
-       Method  = "Put"
-       Uri     = "https://management.azure.com$($aiResourceId)/Annotations?api-version=2015-05-01"
-       Body    = $annotation
-   }
-   Invoke-RestMethod @params
-   ```
+    ```powershell
+    param(
+        [parameter(Mandatory = $true)][string]$aiResourceId,
+        [parameter(Mandatory = $true)][string]$releaseName,
+        [parameter(Mandatory = $false)]$releaseProperties = @()
+    )
+    
+    # Function to ensure all Unicode characters in a JSON string are properly escaped
+    function Convert-UnicodeToEscapeHex {
+      param (
+        [parameter(Mandatory = $true)][string]$JsonString
+      )
+      $JsonObject = ConvertFrom-Json -InputObject $JsonString
+      foreach ($property in $JsonObject.PSObject.Properties) {
+        $name = $property.Name
+        $value = $property.Value
+        if ($value -is [string]) {
+          $value = [regex]::Unescape($value)
+          $OutputString = ""
+          foreach ($char in $value.ToCharArray()) {
+            $dec = [int]$char
+            if ($dec -gt 127) {
+              $hex = [convert]::ToString($dec, 16)
+              $hex = $hex.PadLeft(4, '0')
+              $OutputString += "\u$hex"
+            }
+            else {
+              $OutputString += $char
+            }
+          }
+          $JsonObject.$name = $OutputString
+        }
+      }
+      return ConvertTo-Json -InputObject $JsonObject -Compress
+    }
+    
+    $annotation = @{
+        Id = [GUID]::NewGuid();
+        AnnotationName = $releaseName;
+        EventTime = (Get-Date).ToUniversalTime().GetDateTimeFormats("s")[0];
+        Category = "Deployment"; #Application Insights only displays annotations from the "Deployment" Category
+        Properties = ConvertTo-Json $releaseProperties -Compress
+    }
+    
+    $annotation = ConvertTo-Json $annotation -Compress
+    $annotation = Convert-UnicodeToEscapeHex -JsonString $annotation  
+    
+    $accessToken = (az account get-access-token | ConvertFrom-Json).accessToken
+    $headers = @{
+        "Authorization" = "Bearer $accessToken"
+        "Accept"        = "application/json"
+        "Content-Type"  = "application/json"
+    }
+    $params = @{
+        Headers = $headers
+        Method  = "Put"
+        Uri     = "https://management.azure.com$($aiResourceId)/Annotations?api-version=2015-05-01"
+        Body    = $annotation
+    }
+    Invoke-RestMethod @params
+    ```
 
 > [!NOTE]
 > Set **Category** to **Deployment** or annotations don't appear in the Azure portal.
@@ -440,11 +443,11 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
      "TriggerBy"="<Your name>" }
 ```
 
-| Argument            | Definition                                                   | Note |
-|---------------------|--------------------------------------------------------------|------|
-| `aiResourceId`      | Resource ID of the target Application Insights resource.     | Example: `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
-| `releaseName`       | Name of the new release annotation.                          |      |
-| `releaseProperties` | Custom metadata to attach to the annotation.                 | Optional |
+| Argument | Definition | Note |
+|----------|------------|------|
+| `aiResourceId` | Resource ID of the target Application Insights resource. | Example: `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
+| `releaseName` | Name of the new release annotation. | |
+| `releaseProperties` | Custom metadata to attach to the annotation. | Optional |
 
 ### View annotations
 
@@ -453,9 +456,9 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
 
 Application Insights displays release annotations in the following experiences:
 
-- [**Performance and Failures**](#investigate-failures-performance-and-transactions-with-application-insights)
-- [**Usage**](usage.md)
-- [**Workbooks**](../visualize/best-practices-visualize.md) (for any time-series visualization)
+* [**Performance and Failures**](#investigate-failures-performance-and-transactions-with-application-insights)
+* [**Usage**](usage.md)
+* [**Workbooks**](../visualize/best-practices-visualize.md) (for any time-series visualization)
 
 Annotations are visualized as markers at the top of charts.
 
@@ -467,7 +470,7 @@ To enable annotations in a workbook, open **Advanced Settings** and then select 
 
 This section provides answers to common questions.
 
-### Transaction search
+### Search view
 
 <details>
 <summary><b>What is a component?</b></summary>
@@ -476,7 +479,7 @@ Components are independently deployable parts of your distributed or microservic
 
 * Components are different from "observed" external dependencies, such as SQL and event hubs, which your team or organization might not have access to (code or telemetry).
 * Components run on any number of server, role, or container instances.
-* Components can be separate Application Insights instrumentation keys, even if subscriptions are different. Components also can be different roles that report to a single Application Insights instrumentation key. The new experience shows details across all components, regardless of how they were set up.
+* Components can be separate Application Insights connection strings, even if subscriptions are different. Components also can be different roles that report to a single Application Insights connection string. The new experience shows details across all components, regardless of how they were set up.
 </details>
 
 <br>
@@ -510,7 +513,7 @@ Components are independently deployable parts of your distributed or microservic
 
 * Components are different from "observed" external dependencies, such as SQL and event hubs, which your team or organization might not have access to (code or telemetry).
 * Components run on any number of server, role, or container instances.
-* Components can be separate Application Insights instrumentation keys, even if subscriptions are different. Components also can be different roles that report to a single Application Insights instrumentation key. The new experience shows details across all components, regardless of how they were set up.
+* Components can be separate Application Insights connection strings, even if subscriptions are different. Components also can be different roles that report to a single Application Insights connection string. The new experience shows details across all components, regardless of how they were set up.
 
 #### How much data is retained?
 

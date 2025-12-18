@@ -1,13 +1,12 @@
 ---
-title: View and access Security advisories
+title: Security advisories overview
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
-
-ms.topic: conceptual
-ms.date: 10/17/2025
+ms.topic: article
+ms.date: 12/16/2025
 ---
 
 
-# View and access Security advisories
+# Security advisories
 
 The Security advisories pane in Azure Service Health is a specialized dashboard designed to notify you about urgent security-related events that might affect your subscriptions.
 
@@ -36,24 +35,25 @@ Select the **Advisory name** link to open the tabs with the information you need
 >Security advisories are displayed in the pane for up to 28 days if they are still active and if the impact time is in the future. After that they are moved to the health history panel where they are displayed for 90 days.
 >
 >
->For more information about Sercurity advisories using ARG queries, see [Azure Resource Graph sample queries for Service health](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+>For more information about Security advisories using ARG queries, see [Azure Resource Graph sample queries for Service health](/azure/service-health/resource-graph-samples?branch=main&tabs=azure-cli#all-active-service-health-events). This resource provides guidance on how to utilize the available queries.
 
 ## Who can view Security advisories?
 
-Because the information in this tab is sensitive, specific Role-Based Access Control (RBAC) permissions are required to view security-impacted resources and sensitive details in the Azure portal or through APIs.
+Because the information in this tab is sensitive, access to Security Advisories requires specific **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
 
-- Users must have appropriate **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
-- Only users with elevated roles can access sensitive information on the **Summary**, **Issue Updates**, and **Impacted Resources** tabs.
-- Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions.
+- To view sensitive Security Advisory details, users must be assigned an elevated built‑in role such as Owner or Contributor, or a custom role that includes the required Security Advisory permissions. 
+- The **Summary** and **Issue Updates** tabs require elevated permissions for any advisory that contains *sensitive* security information.
+- The **Impacted Resources** tab always requires elevated permissions, because resource‑level details are classified as sensitive.
+- Users with only Reader or Monitoring Reader roles can't view sensitive fields. They see an access‑required message unless they’re assigned to a higher‑privilege built‑in role or a custom role that includes Security Advisory permissions.
 
 For details about role requirements for accessing these resources, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
 
 Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
 
+For steps on how to configure subscription or tenant-based access to view Security advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
 
 
-
-## Service Health API endpoint
+### Access Service advisories through API endpoint
 
 To access Security advisories through APIs, you must update your code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security advisories notification details. Users with the specified roles can view sensitive event details for a specific event with the new endpoint.
 

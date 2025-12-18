@@ -1319,6 +1319,8 @@ items:
             href: tables/microsoft-cache_redis.md
           - name: microsoft.cache/redisenterprise
             href: tables/microsoft-cache_redisenterprise.md
+          - name: microsoft.cdn/edgeactions
+            href: tables/microsoft-cdn_edgeactions.md
           - name: microsoft.cdn/profiles
             href: tables/microsoft-cdn_profiles.md
           - name: microsoft.chaos/experiments
@@ -1399,6 +1401,8 @@ items:
             href: tables/microsoft-documentdb_databaseaccounts.md
           - name: microsoft.documentdb/mongoclusters
             href: tables/microsoft-documentdb_mongoclusters.md
+          - name: microsoft.durabletask/schedulers
+            href: tables/microsoft-durabletask_schedulers.md
           - name: microsoft.edge/diagnostics
             href: tables/microsoft-edge_diagnostics.md
           - name: microsoft.eventgrid/domains
@@ -1607,6 +1611,8 @@ items:
             href: tables/microsoft-web_sites.md
           - name: microsoft.workloadmonitor/monitors
             href: tables/microsoft-workloadmonitor_monitors.md
+          - name: microsoft.zerotrustsegmentation/segmentationmanagers
+            href: tables/microsoft-zerotrustsegmentation_segmentationmanagers.md
           - name: nginx.nginxplus/nginxdeployments
             href: tables/nginx-nginxplus_nginxdeployments.md
           - name: oracle.database/cloudvmclusters
@@ -1924,12 +1930,18 @@ items:
             href: tables/avssyslog.md
           - name: AVSVcSyslog
             href: tables/avsvcsyslog.md
+          - name: AWSALBAccessLogs
+            href: tables/awsalbaccesslogs.md
           - name: AWSCloudTrail
             href: tables/awscloudtrail.md
           - name: AWSCloudWatch
             href: tables/awscloudwatch.md
+          - name: AWSELBFlowLogs
+            href: tables/awselbflowlogs.md
           - name: AWSGuardDuty
             href: tables/awsguardduty.md
+          - name: AWSNLBAccessLogs
+            href: tables/awsnlbaccesslogs.md
           - name: AWSNetworkFirewallAlert
             href: tables/awsnetworkfirewallalert.md
           - name: AWSNetworkFirewallFlow
@@ -1950,6 +1962,8 @@ items:
             href: tables/azfwapplicationrule.md
           - name: AZFWApplicationRuleAggregation
             href: tables/azfwapplicationruleaggregation.md
+          - name: AZFWDnsFlowTrace
+            href: tables/azfwdnsflowtrace.md
           - name: AZFWDnsQuery
             href: tables/azfwdnsquery.md
           - name: AZFWFatFlow
@@ -2262,6 +2276,8 @@ items:
             href: tables/containerlog.md
           - name: ContainerLogV2
             href: tables/containerlogv2.md
+          - name: ContainerNetworkLogs
+            href: tables/containernetworklogs.md
           - name: ContainerNodeInventory
             href: tables/containernodeinventory.md
           - name: ContainerRegistryLoginEvents
@@ -2506,6 +2522,8 @@ items:
             href: tables/dnsevents.md
           - name: DnsInventory
             href: tables/dnsinventory.md
+          - name: DurableTaskSchedulerLogs
+            href: tables/durabletaskschedulerlogs.md
           - name: DynamicEventCollection
             href: tables/dynamiceventcollection.md
           - name: DynamicSummary
@@ -2528,6 +2546,8 @@ items:
             href: tables/egnsuccessfulmqttconnections.md
           - name: ETWEvent
             href: tables/etwevent.md
+          - name: EdgeActionConsoleLog
+            href: tables/edgeactionconsolelog.md
           - name: EmailAttachmentInfo
             href: tables/emailattachmentinfo.md
           - name: EmailEvents
@@ -3274,6 +3294,8 @@ items:
             href: tables/workloaddiagnosticlogs.md
           - name: WorkloadMonitoringPerf
             href: tables/workloadmonitoringperf.md
+          - name: ZTSRequest
+            href: tables/ztsrequest.md
   - name: Log Analytics sample queries
     href: ./queries-by-table.md
     items:
@@ -3614,6 +3636,8 @@ items:
             href: queries/ContainerLog.md
           - name: ContainerLogV2
             href: queries/ContainerLogV2.md
+          - name: ContainerNetworkLogs
+            href: queries/ContainerNetworkLogs.md
           - name: ContainerNodeInventory
             href: queries/ContainerNodeInventory.md
           - name: ContainerRegistryLoginEvents
@@ -3670,6 +3694,8 @@ items:
             href: queries/DeviceTvmSoftwareVulnerabilities.md
           - name: DnsEvents
             href: queries/DnsEvents.md
+          - name: DurableTaskSchedulerLogs
+            href: queries/DurableTaskSchedulerLogs.md
           - name: EGNFailedHttpDataPlaneOperations
             href: queries/EGNFailedHttpDataPlaneOperations.md
           - name: EGNFailedMqttConnections
@@ -3680,6 +3706,8 @@ items:
             href: queries/EGNSuccessfulHttpDataPlaneOperations.md
           - name: EGNSuccessfulMqttConnections
             href: queries/EGNSuccessfulMqttConnections.md
+          - name: EdgeActionConsoleLog
+            href: queries/EdgeActionConsoleLog.md
           - name: EmailAttachmentInfo
             href: queries/EmailAttachmentInfo.md
           - name: EmailEvents
@@ -3922,3 +3950,5 @@ items:
             href: queries/WireData.md
           - name: WorkloadDiagnosticLogs
             href: queries/WorkloadDiagnosticLogs.md
+          - name: ZTSRequest
+            href: queries/ZTSRequest.md

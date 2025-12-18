@@ -7,22 +7,8 @@ items:
     href: fundamentals/overview.md
   - name: Insights and curated visualizations
     href: visualize/insights-overview.md
-  - name: Azure Monitor AIOPs
-    items:
-    - name: AIOps and machine learning
-      href: aiops/aiops-machine-learning.md
-    - name: Issues and investigations
-      items:
-      - name: Issues and investigations overview
-        href: aiops/aiops-issue-and-investigation-overview.md
-      - name: Use issues and investigations
-        href: aiops/aiops-issue-and-investigation-how-to.md
-      - name: Issues and investigations best practices guide
-        href: aiops/aiops-issue-and-investigation-best-practices.md
-      - name: Issues and investigations responsible use
-        href: aiops/aiops-issue-and-investigation-responsible-use.md
-      - name: Issues and investigations troubleshooting guide
-        href: aiops/aiops-issue-and-investigation-troubleshooting.md
+  - name: AIOps and machine learning
+    href: aiops/aiops-machine-learning.md
   - name: What's new?
     href: fundamentals/whats-new.md
 - name: Getting started
@@ -138,15 +124,12 @@ items:
         - name: ASP.NET on-premises agent
           href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)
-        items:
-        - name: .NET
-          displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp
-          href: app/dotnet.md
-        - name: Node.js
-          href: app/nodejs.md
-          displayName: SDK, Node.js, nodejs, JavaScript, js
+        displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
+        href: app/classic-api.md
     - name: Experiences
       items:
+      - name: Agent details
+        href: app/agents-view.md
       - name: Application dashboard
         displayName: dashboard, Application Insights dashboard
         href: app/overview-dashboard.md
@@ -166,6 +149,8 @@ items:
         href: app/usage.md
       - name: Work item integration
         href: app/work-item-integration.md
+      - name: Grafana dashboards
+        href: app/grafana-dashboards.md
     - name: Code analysis
       items:
       - name: Code Optimizations
@@ -318,36 +303,11 @@ items:
       - name: Create data collection rule
         displayName: Azure Monitor agent, AMA
         href: vm/data-collection.md
-      - name: Data sources
-        items:
-        - name: Windows events
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-windows-events.md
-        - name: Syslog events
-          href: vm/data-collection-syslog.md
-        - name: IIS logs
-          displayName: data collection rule,Azure Monitor Agent,IIS logs
-          href: vm/data-collection-iis.md
-        - name: Performance data
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-performance.md
-        - name: Text logs
-          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-          href: vm/data-collection-log-text.md
-        - name: JSON logs
-          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-          href: vm/data-collection-log-json.md
-        - name: SNMP traps
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-snmp-data.md
-        - name: Windows Firewall logs
-          displayName: data collection rule,Azure Monitor Agent,firewall logs
-          href: vm/data-collection-firewall-logs.md
       - name: Configure a syslog forwarder
         href: /azure/sentinel/forward-syslog-monitor-agent
         maintainContext: true
-      - name: Send data to Event Hubs and Storage
-        href: vm/send-event-hubs-storage.md
+      - name: Send data to Fabric and Azure Data Explorer
+        href: vm/send-fabric-destination.md
     - name: VM insights
       items:
       - name: Overview
@@ -733,12 +693,12 @@ items:
         href: scom-manage-instance/use-managed-identities-with-scom-mi.md
       - name: Encryption at rest
         href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
+  - name: Monitoring coverage
+    href: fundamentals/monitoring-coverage.md
   - name: Multicloud monitoring
     href: fundamentals/best-practices-multicloud.md
   - name: Enterprise architecture
     href: fundamentals/enterprise-monitoring-architecture.md
-  - name: Monitor Azure Monitor
-    href: fundamentals/monitor-azure-monitor.md
 - name: Data sources
   items:
   - name: List of data sources
@@ -846,6 +806,8 @@ items:
     - name: Install and configure
       displayName: Azure Monitor agent
       items:
+      - name: Configure agent settings
+        href: agents/agent-settings.md
       - name: Virtual machines
         href: agents/azure-monitor-agent-manage.md
       - name: Windows clients
@@ -859,6 +821,31 @@ items:
       - name: Private link
         displayName: Azure Monitor agent, AMA
         href: agents/azure-monitor-agent-private-link.md
+    - name: Agent data sources
+      items:
+      - name: Windows events
+        displayName: data collection rule,Azure Monitor agent
+        href: vm/data-collection-windows-events.md
+      - name: Syslog events
+        href: vm/data-collection-syslog.md
+      - name: IIS logs
+        displayName: data collection rule,Azure Monitor Agent,IIS logs
+        href: vm/data-collection-iis.md
+      - name: Performance data
+        displayName: data collection rule,Azure Monitor agent
+        href: vm/data-collection-performance.md
+      - name: Text logs
+        displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+        href: vm/data-collection-log-text.md
+      - name: JSON logs
+        displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+        href: vm/data-collection-log-json.md
+      - name: SNMP traps
+        displayName: data collection rule,Azure Monitor agent
+        href: vm/data-collection-snmp-data.md
+      - name: Windows Firewall logs
+        displayName: data collection rule,Azure Monitor Agent,firewall logs
+        href: vm/data-collection-firewall-logs.md
     - name: Monitor
       href: agents/azure-monitor-agent-health.md
     - name: Performance
@@ -878,6 +865,9 @@ items:
         href: agents/azure-monitor-agent-data-field-differences.md
       - name: Migration custom text log tables
         href: agents/azure-monitor-agent-custom-text-log-migration.md
+    - name: Migrate from Azure Diagnostic extensions
+      displayName: Migrate from Azure Diagnostic extensions (WAD,LAD)
+      href: agents/azure-monitor-agent-migration-wad-lad.md
     - name: Troubleshoot
       items:
       - name: Windows AMA Troubleshooter
@@ -983,6 +973,8 @@ items:
       href: platform/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline (preview)
     href: data-collection/edge-pipeline-configure.md
+  - name: Custom metrics in Azure Monitor (preview)
+    href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
     href: metrics/metrics-store-custom-rest-api.md
   - name: Troubleshoot
@@ -995,6 +987,31 @@ items:
     items:
     - name: Overview of Azure Monitor Metrics
       href: metrics/data-platform-metrics.md
+    - name: Azure Monitor workspace
+      items:
+      - name: Overview
+        href: metrics/azure-monitor-workspace-overview.md
+        displayName: Azure Monitor workspace
+      - name: Create an Azure Monitor workspace
+        href: metrics/azure-monitor-workspace-manage.md
+        displayName: Azure Monitor workspace
+      - name: Manage access
+        href: metrics/azure-monitor-workspace-manage-access.md
+        displayName: Azure Monitor workspace
+      - name: Monitor metrics ingestion limits
+        href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
+        displayName: Azure Monitor workspace
+      - name: Best practices for scaling
+        href: metrics/azure-monitor-workspace-scaling-best-practice.md
+        displayName: Azure Monitor workspace
+      - name: Monitor performance
+        items:
+          - name: Metrics usage insights
+            href: metrics/metrics-usage-insights.md
+            displayName: Azure Monitor workspace
+          - name: Monitor metrics ingestion errors
+            href: metrics/azure-monitor-workspace-monitor-health.md
+            displayName: Azure Monitor workspace
     - name: Prometheus metrics
       items:
       - name: Overview
@@ -1002,55 +1019,39 @@ items:
         displayName: Prometheus
       - name: Technical details
         href: metrics/prometheus-metrics-details.md
+        displayName: Prometheus
       - name: Connect Grafana
         href: metrics/prometheus-grafana.md
         displayName: Prometheus Grafana
+      - name: Rule groups
+        href: metrics/prometheus-rule-groups.md
+        displayName: Prometheus
       - name: Self-hosted Prometheus
         items:
         - name: Integrate
           href: metrics/prometheus-remote-write.md
-          displayName: remote write, Prometheus
         - name: Migrate
           href: metrics/prometheus-migrate.md
           displayName: remote write, Prometheus
-      - name: Azure Monitor workspace
-        items:
-          - name: Overview
-            href: metrics/azure-monitor-workspace-overview.md
-            displayName: Prometheus
-          - name: Create an Azure Monitor workspace
-            href: metrics/azure-monitor-workspace-manage.md
-          - name: Manage access
-            href: metrics/azure-monitor-workspace-manage-access.md
-            displayName: Prometheus
-          - name: Monitor metrics ingestion limits
-            href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
-            displayName: Prometheus Azure Monitor workspace
-          - name: Best practices for scaling
-            href: metrics/azure-monitor-workspace-scaling-best-practice.md
-          - name: Monitor Performance
-            items:
-              - name: Metrics usage insights
-                href: metrics/metrics-usage-insights.md
-                displayName: Azure Monitor workspace
-              - name: Monitor metrics ingestion errors
-                href: metrics/azure-monitor-workspace-monitor-health.md
-                displayName: Azure Monitor workspace
-      - name: Alerting and rule groups
-        href: metrics/prometheus-rule-groups.md
+    - name: Query Azure Monitor workspace metrics
+      items:
+      - name: Resource-scoped queries
+        href: metrics/prometheus-resource-scoped-queries.md
+        displayName: Azure Monitor workspace, PromQL
+      - name: PromQL for OpenTelemetry metrics
+        href: metrics/prometheus-opentelemetry-best-practices.md
+        displayName: OpenTelemetry, PromQL
+      - name: PromQL for OpenTelemetry system metrics
+        href: metrics/prometheus-system-metrics-best-practices.md
+        displayName: OpenTelemetry, PromQL, performance counters, Guest OS, virtual machines
+      - name: PromQL using Azure workbooks
+        href: metrics/prometheus-workbooks.md
         displayName: Prometheus
-      - name: Query Prometheus metrics
-        items:
-          - name: Query using Azure workbooks
-            href: metrics/prometheus-workbooks.md
-            displayName: Prometheus
-          - name: Query using the API and PromQL
-            href: metrics/prometheus-api-promql.md
-            displayName: Prometheus
-          - name: OpenTelemetry Guest OS metrics (preview)
-            href: metrics/metrics-opentelemetry-guest.md
-          - name: Custom metrics
-            href: metrics/metrics-custom-overview.md
+      - name: PromQL using Prometheus HTTP APIs
+        href: metrics/prometheus-api-promql.md
+        displayName: Prometheus
+    - name: OpenTelemetry Guest OS metrics (preview)
+      href: metrics/metrics-opentelemetry-guest.md
   - name: Logs
     items:
     - name: Overview
@@ -1313,8 +1314,10 @@ items:
       href: visualize/visualize-grafana-overview.md
     - name: Use Grafana dashboards
       href: visualize/visualize-use-grafana-dashboards.md
-    - name: Use managed Grafana
-      href: visualize/visualize-use-managed-grafana-how-to.md
+    - name: Azure Data Explorer
+      href: visualize/grafana-azure-data-explorer.md
+    - name: Kubernetes clusters
+      href: visualize/grafana-kubernetes.md
     - name: Call Grafana APIs programmatically
       href: visualize/visualize-call-grafana-api.md
   - name: Power BI
@@ -1431,66 +1434,60 @@ items:
           href: logs/api/migrate-batch-and-beta.md
   - name: Get the Activity log using the REST API
     href: platform/rest-activity-log.md
-  - name: Change Analysis (classic)
-    items:
-    - name: Overview
-      href: change/change-analysis.md
-    - name: Migrate Change Analysis
-      href: change/change-analysis-migration.md
-    - name: Enable
-      href: change/change-analysis-enable.md
-    - name: Visualizations
-      href: change/change-analysis-visualizations.md
-    - name: Track a web outage
-      href: change/change-analysis-track-outages.md
-    - name: Troubleshoot
-      href: change/change-analysis-troubleshoot.md
 - name: Respond
   items:
   - name: Alerts
     items:
     - name: Overview
       href: alerts/alerts-overview.md
-    - name: Choosing the type of alert rule
-      href: alerts/alerts-types.md
     - name: Best practices
       href: alerts/best-practices-alerts.md
-    - name: Set up alerts
+    - name: Types of alert rules
+      href: alerts/alerts-types.md
+    - name: Query-based metric alerts
+      href: alerts/alerts-query-based-metric-alerts-overview.md
+    - name: Dynamic thresholds
+      href: alerts/alerts-dynamic-thresholds.md
+    - name: Action groups
+      href: alerts/action-groups.md
+    - name: Alert processing rules
+      displayName: Azure CLI, az monitor action rule
+      href: alerts/alerts-processing-rules.md
+    - name: Create alerts
       items:
-      - name: Set up alert rules
+      - name: Create alert rules
         items:
-        - name: Set up a metric alert
-          href: alerts/alerts-create-metric-alert-rule.md
-        - name: Set up a log search alert
-          href: alerts/alerts-create-log-alert-rule.md
-        - name: Set up a simple log search alert
-          href: alerts/alerts-create-simple-alert.md
-        - name: Set up a tenant level alert
-          href: alerts/alerts-create-tenant-level-service-heath-alerts.md
-        - name: Set up an activity log, service health or resource health alert
+        - name: Metric alert rules
+          items:
+          - name: Metric alerts
+            href: alerts/alerts-create-metric-alert-rule.md
+          - name: Metric alert on Azure Monitor Logs
+            href: alerts/alerts-metric-logs.md
+          - name: Multiple time series
+            href: alerts/alerts-metric-multiple-time-series-single-rule.md
+          - name: Prometheus alerts
+            href: alerts/prometheus-alerts.md
+          - name: Query-based metric alerts
+            href: alerts/alerts-create-query-based-metric-alerts.md
+        - name: Log search alerts
+          items:
+          - name: Simple log search alert
+            href: alerts/alerts-create-simple-alert.md
+          - name: Log search alert
+            href: alerts/alerts-create-log-alert-rule.md
+          - name: Optimize
+            href: alerts/alerts-log-query.md
+        - name: Activity log or health alerts
           href: alerts/alerts-create-activity-log-alert-rule.md
-        - name: Set up a Prometheus alert
-          href: alerts/prometheus-alerts.md
-        - name: Set up a metric alert rule with dynamic thresholds
-          href: alerts/alerts-dynamic-thresholds.md
-        - name: Set up a metric alert on Azure Monitor Logs
-          href: alerts/alerts-metric-logs.md
-        - name: Create one alert rule for multiple time series
-          href: alerts/alerts-metric-multiple-time-series-single-rule.md
-        - name: Create alert rules using CLI, PowerShell, or ARM templates
+        - name: Tenant service health alert
+          href: alerts/alerts-create-tenant-level-service-heath-alerts.md
+        - name: CLI, PowerShell, or ARM templates
           href: alerts/alerts-create-rule-cli-powershell-arm.md
-        - name: Optimize log search alert queries
-          href: alerts/alerts-log-query.md
-      - name: Set up action groups
-        href: alerts/action-groups.md
-      - name: Set up alert processing rules
-        displayName: Azure CLI, az monitor action rule
-        href: alerts/alerts-processing-rules.md
-      - name: Set up alert integrations
+      - name: Alert integrations
         items:
-        - name: The alerts common schema
+        - name: Common alert schema
           href: alerts/alerts-common-schema.md
-        - name: Non-common alerts schema
+        - name: Non-common alert schema
           href: alerts/alerts-non-common-schema-definitions.md
         - name: Integrate with Logic apps
           href: alerts/alerts-logic-apps.md
@@ -1570,6 +1567,26 @@ items:
         href: alerts/alerts-log-api-switch.md
       - name: Edit log search alerts created in previous versions
         href: alerts/alerts-manage-alerts-previous-version.md
+  - name: Azure Copilot observability agent
+    items:
+    - name: Overview
+      displayName: Azure Copilot observability agent
+      href: aiops/observability-agent-overview.md
+    - name: Best practices
+      displayName: Azure Copilot observability agent
+      href: aiops/observability-agent-best-practices.md
+    - name: Troubleshooting
+      displayName: Azure Copilot observability agent
+      href: aiops/observability-agent-troubleshooting.md
+    - name: Responsible use
+      displayName: Azure Copilot observability agent
+      href: aiops/observability-agent-responsible-use.md
+  - name: Issues and investigations
+    items:
+    - name: Issues and investigations overview
+      href: aiops/aiops-issue-and-investigation-overview.md
+    - name: Use issues and investigations
+      href: aiops/aiops-issue-and-investigation-how-to.md
   - name: AutoScale
     items:
     - name: Overview
@@ -1721,6 +1738,14 @@ items:
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: fundamentals/policy-reference.md
+  - name: Limited previews
+    items:
+    - name: Collect and analyze OpenTelemetry data with Azure Monitor
+      href: fundamentals/collect-use-observability-data.md
+    - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
+      href: fundamentals/opentelemetry-protocol-ingestion.md
+    - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
+      href: app/kubernetes-open-protocol.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources

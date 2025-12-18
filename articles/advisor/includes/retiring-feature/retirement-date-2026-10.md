@@ -1,7 +1,7 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 09/03/2025
+ms.date: 11/11/2025
 
 ---
 
@@ -17,3 +17,4 @@ ms.date: 09/03/2025
 > | Cognitive Services Translator | S2 price instance | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Cognitive Services Translator | S3 price instance  | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Cognitive Services Translator | S4 price instance | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Databricks Workspaces | Azure Databricks - Standard Tier | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

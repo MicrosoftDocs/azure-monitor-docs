@@ -1,7 +1,7 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 09/03/2025
+ms.date: 11/11/2025
 
 ---
 
@@ -12,6 +12,13 @@ ms.date: 09/03/2025
 > |:--- |:--- |:--- |
 > | Azure Kubernetes Service | Deployments on Windows Server 2019 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Azure Kubernetes Service | Deployments on Windows Server 2022 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+
+##### March 27, 2028
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Kubernetes - Azure Arc | Windows Server 2019 and Windows Server 2022 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### March 31, 2028
 
@@ -31,4 +38,6 @@ ms.date: 09/03/2025
 > | Azure Virtual Machines | Dsv2 series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Azure Virtual Machines | Dv2 series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Azure Virtual Machines | Ls series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Log Analytics | batch API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Microsoft Entra ID | Manually registered Azure VPN clients | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Microsoft Entra ID | VPN Gateway with Third-party App | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -654,5 +654,41 @@ Subcategory: undefined
 
 <!--0e19257e-dcef-4d00-8de1-5fe1ae0fd948_end-->
 
+
+<!--96e232d0-9b01-4e96-8c24-f9160ba3535a_begin-->
+
+#### Standard and High-Performance VPN Gateway SKUs are being retired  
+  
+Basic SKU public IP addresses are retiring. The Standard and High-Performance SKUs that only accept Basic SKU public IP addresses are retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=standard-and-highperformance-vpn-gateway-skus-will-be-retired-on-30-september-2025)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: 96e232d0-9b01-4e96-8c24-f9160ba3535a  
+Subcategory: undefined
+
+<!--96e232d0-9b01-4e96-8c24-f9160ba3535a_end-->
+
+<!--830e326a-d280-4d4e-887a-884d7d8994ce_begin-->
+
+#### Monitor changes in Route Tables with Azure Monitor  
+  
+Create Alerts with Azure Monitor for operations like Create or Update Route Table to spot unauthorized and undesired changes in production resources. This setup aids in identifying improper routing changes, including efforts to evade firewalls or access resources from outside.  
+  
+**Potential benefits**: Enhanced security and change detection  
+
+**Impact:** Medium
+  
+For more information, see [Azure Monitor activity log - Azure Monitor](/azure/azure-monitor/essentials/activity-log)  
+
+ResourceType: microsoft.network/routetables  
+Recommendation ID: 830e326a-d280-4d4e-887a-884d7d8994ce  
+Subcategory: undefined
+
+<!--830e326a-d280-4d4e-887a-884d7d8994ce_end-->
 
 <!--articleBody-->

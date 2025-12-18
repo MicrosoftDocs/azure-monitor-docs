@@ -1,9 +1,16 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 09/03/2025
+ms.date: 11/11/2025
 
 ---
+
+##### March 8, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Playwright Testing | Playwright Testing | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 
 ##### March 13, 2026
 
@@ -25,7 +32,8 @@ ms.date: 09/03/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure Machine Learning | Batch Endpoints Preview APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Workspace | Azure Machine Learning - Batch Endpoints Preview APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Kubernetes Service | AKS on VMware | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### March 29, 2026
 
@@ -33,6 +41,13 @@ ms.date: 09/03/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Azure Site Recovery | Classic VMware protection | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+
+##### March 30, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Microsoft App Container App | Service Connector on ACA | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### March 31, 2026
 
@@ -49,3 +64,7 @@ ms.date: 09/03/2025
 > | Azure Log Analytics | Custom fields | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Monitor | Azure Diagnostic Extensions | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Intelligent Recommendations | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Microsoft Kubernetes Configuration Extension | Azure App Service on Arc-enabled Kubernetes | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Machine Learning | Azure Machine Learning - Preview Features | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Workspace | Azure Machine Learning - Low Priority Virtual Machine | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Kubernetes service | Windows Server 2019 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

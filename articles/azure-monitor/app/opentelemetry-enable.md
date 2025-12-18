@@ -22,7 +22,7 @@ This article describes how to enable and configure OpenTelemetry-based data coll
 
 For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](application-insights-faq.yml#why-should-i-use-the-azure-monitor-opentelemetry-distro).
 
-To learn more about collecting data using OpenTelemetry, check out [Data Collection Basics](opentelemetry-overview.md) or the [OpenTelemetry FAQ](.\opentelemetry-help-support-feedback.md).
+To learn more about collecting data using OpenTelemetry, check out [Data Collection Basics](opentelemetry-overview.md) or the [OpenTelemetry FAQ](.\application-insights-faq.yml#opentelemetry-support-and-feedback).
 
 ### OpenTelemetry release status
 

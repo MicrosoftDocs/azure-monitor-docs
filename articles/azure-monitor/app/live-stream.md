@@ -133,6 +133,6 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 ## Next steps
 
 * [Monitor usage with Application Insights](./usage.md)
-* [Use Diagnostic Search](./transaction-search-and-diagnostics.md?tabs=transaction-search)
+* [Use Diagnostic Search](./failures-performance-transactions.md?tabs=search-view)
 * [Application Insights Profiler for .NET](./profiler-overview.md)
 * [Snapshot Debugger](./snapshot-debugger.md)

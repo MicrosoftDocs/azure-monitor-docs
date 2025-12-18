@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 10/31/2025
+ms.date: 11/24/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -871,7 +871,7 @@ ms.reviewer: lualderm
 - [Request count trend](./queries/AppRequests.md#request-count-trend)
 - [Response time buckets](./queries/AppRequests.md#response-time-buckets)
 - [Operations performance](./queries/AppRequests.md#operations-performance)
-- [Top 10 countries/regions by traffic](./queries/AppRequests.md#top-10-countriesregions-by-traffic)
+- [Top 10 countries by traffic](./queries/AppRequests.md#top-10-countries-by-traffic)
 - [Failed requests – top 10](./queries/AppRequests.md#failed-requests--top-10)
 - [Failed operations](./queries/AppRequests.md#failed-operations)
 - [Exceptions causing request failures](./queries/AppRequests.md#exceptions-causing-request-failures)
@@ -1220,6 +1220,11 @@ ms.reviewer: lualderm
 
 - [Find In ContainerLogV2](./queries/ContainerLogV2.md#find-in-containerlogv2)
 
+## [ContainerNetworkLogs](./queries/ContainerNetworkLogs.md)
+
+- [Dropped network low Logs](./queries/ContainerNetworkLogs.md#dropped-network-low-logs)
+- [Top 10 network flow log metrics](./queries/ContainerNetworkLogs.md#top-10-network-flow-log-metrics)
+
 ## [ContainerNodeInventory](./queries/ContainerNodeInventory.md)
 
 - [Find In ContainerNodeInventory](./queries/ContainerNodeInventory.md#find-in-containernodeinventory)
@@ -1335,6 +1340,11 @@ ms.reviewer: lualderm
 
 - [Clients Resolving Malicious Domains](./queries/DnsEvents.md#clients-resolving-malicious-domains)
 
+## [DurableTaskSchedulerLogs](./queries/DurableTaskSchedulerLogs.md)
+
+- [Recent Errors](./queries/DurableTaskSchedulerLogs.md#recent-errors)
+- [Worker Connection Summary](./queries/DurableTaskSchedulerLogs.md#worker-connection-summary)
+
 ## [EGNFailedHttpDataPlaneOperations](./queries/EGNFailedHttpDataPlaneOperations.md)
 
 - [TLS 1.3 Lower query](./queries/EGNFailedHttpDataPlaneOperations.md#tls-13-lower-query)
@@ -1355,6 +1365,10 @@ ms.reviewer: lualderm
 ## [EGNSuccessfulMqttConnections](./queries/EGNSuccessfulMqttConnections.md)
 
 - [Session connections query](./queries/EGNSuccessfulMqttConnections.md#session-connections-query)
+
+## [EdgeActionConsoleLog](./queries/EdgeActionConsoleLog.md)
+
+- [Top 100 Log Messages by Edge Action Version](./queries/EdgeActionConsoleLog.md#top-100-log-messages-by-edge-action-version)
 
 ## [EmailAttachmentInfo](./queries/EmailAttachmentInfo.md)
 
@@ -2130,9 +2144,12 @@ ms.reviewer: lualderm
 
 - [Workload Monitoring Insights data collection warnings or errors](./queries/WorkloadDiagnosticLogs.md#workload-monitoring-insights-data-collection-warnings-or-errors)
 
+## [ZTSRequest](./queries/ZTSRequest.md)
+
+- [View failed requests](./queries/ZTSRequest.md#view-failed-requests)
+
 ## Next steps
 
 - [Analyze logs from Azure storage with Log Analytics](/azure/azure-monitor/essentials/resource-logs#send-to-log-analytics-workspace)
 - [Learn more about resource logs](/azure/azure-monitor/essentials/platform-logs-overview)
 - [Change resource log diagnostic settings using the Azure Monitor REST API](/rest/api/monitor/diagnosticsettings)
-

@@ -1,0 +1,23 @@
+items:
+- name: Operations center documentation
+  href: index.yml
+- name: What is operations center?
+  href: overview.md
+- name: Operations pillars
+  items:
+  - name: Observability
+    href: observability.md
+  - name: Security
+    href: security.md
+  - name: Resiliency
+    href: resiliency.md
+  - name: Configuration
+    items:
+    - name: Overview
+      href: configuration-overview.md
+    - name: Machine enrollment
+      href: configuration-enrollment.md
+    - name: Troubleshoot
+      href: configuration-enrollment-troubleshoot.md
+  - name: Optimization
+    href: optimization.md

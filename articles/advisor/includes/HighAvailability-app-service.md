@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -390,5 +390,59 @@ Recommendation ID: b5666e83-63e6-420d-acd2-c1924f1f060e
 Subcategory: undefined
 
 <!--b5666e83-63e6-420d-acd2-c1924f1f060e_end-->
+
+<!--6f2c6ba6-3fd4-4786-af01-d10b127ee031_begin-->
+
+#### Migrate to Flex Consumption  
+  
+Migrate all workloads from Linux Consumption to Flex Consumption to maintain access to new features and avoid service disruptions.  
+  
+**Potential benefits**: Avoid service disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499451)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 6f2c6ba6-3fd4-4786-af01-d10b127ee031  
+Subcategory: undefined
+
+<!--6f2c6ba6-3fd4-4786-af01-d10b127ee031_end-->
+
+<!--c1b2b1b3-bc15-4ed6-84dd-bb14e215c761_begin-->
+
+#### App Service web apps don't allow linked databases to be part of App Service custom backups  
+  
+Azure App Service custom backup feature don't back up linked databases configured as part of the Azure App Service custom backup feature. Transition to native backup and restore tools available with the respective databases.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485047)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: c1b2b1b3-bc15-4ed6-84dd-bb14e215c761  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--c1b2b1b3-bc15-4ed6-84dd-bb14e215c761_end-->
+
+<!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_begin-->
+
+#### Migrate away from Azure Static Web Apps database connection  
+  
+The database connections feature of Static Web Apps (currently in public preview), is getting deprecated. To avoid issues in deployments using the feature, refactor applications to a self-hosted instance of the Data API Builder and deploy it to Azure Container Apps.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500848)  
+
+ResourceType: microsoft.web/staticsites  
+Recommendation ID: 9545c3d7-f0cd-4e37-8b15-2d4bb89f9659  
+Subcategory: undefined
+
+<!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_end-->
 
 <!--articleBody-->

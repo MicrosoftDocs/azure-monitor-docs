@@ -12,7 +12,7 @@ ms.reviewer: aul
 Container Insights defaults to managed identity authentication, which has a monitoring agent that uses the [cluster's managed identity](/azure/aks/use-managed-identity) to send data to Azure Monitor. It replaced the legacy certificate-based local authentication and removed the requirement of adding a Monitoring Metrics Publisher role to the cluster.
 
 > [!IMPORTANT]
-> Legacy authentication for Container Insights will be retired on September 30, 2026. [Migrate to managed identity authentication](#migrate-to-managed-identity-authentication) by this date.
+> Legacy authentication for Container Insights has been retired. [Migrate to managed identity authentication](#migrate-to-managed-identity-authentication).
 
 This article describes how to migrate to managed identity authentication if you enabled Container insights using legacy authentication method, and also how to enable legacy authentication if you have that requirement.
 
@@ -61,16 +61,6 @@ KubernetesConfigurationResources
 ## Migrate to managed identity authentication
 
 If you enabled Container insights before managed identity authentication was available, you can use the following methods to migrate your clusters.
-
-## [Azure portal](#tab/portal-azure-monitor)
-
-You can migrate to Managed Identity authentication from the *Monitor settings* panel for your AKS cluster. From the **Monitoring** section, click on the **Insights** tab. In the Insights tab, click on the *Monitor Settings* option and check the box for *Use managed identity*
-
-:::image type="content" source="./media/container-insights-authentication/monitor-settings.png" alt-text="Screenshot that shows the settings panel." lightbox="media/container-insights-authentication/monitor-settings.png":::
-
-If you don't see the *Use managed identity* option, you are using an SPN cluster. In that case, you must use command line tools to migrate. See other tabs for migration instructions and templates.
-
-
 
 ## [Azure CLI](#tab/cli)
 
@@ -139,4 +129,5 @@ If you require legacy authentication, see [Enable Container insights](kubernetes
 
 ## Next steps
 If you experience issues when you upgrade the agent, review the [troubleshooting guide](container-insights-troubleshoot.md) for support.
+
 

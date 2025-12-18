@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -149,5 +149,23 @@ Recommendation ID: 863d09bd-e767-472b-9980-f32709414ade
 Subcategory: undefined
 
 <!--863d09bd-e767-472b-9980-f32709414ade_end-->
+
+<!--b005ecf0-23e2-4279-9ca2-718d1518c9fb_begin-->
+
+#### Migrate to Container insights managed identity authentication  
+  
+Migrate to Container insights managed identity authentication before the retirement date to maintain access and retain functionality.  
+  
+**Potential benefits**: Avoid service disruption and gain enhanced features  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500853)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: b005ecf0-23e2-4279-9ca2-718d1518c9fb  
+Subcategory: undefined
+
+<!--b005ecf0-23e2-4279-9ca2-718d1518c9fb_end-->
 
 <!--articleBody-->

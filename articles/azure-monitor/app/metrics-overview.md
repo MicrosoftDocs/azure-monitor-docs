@@ -2,7 +2,7 @@
 title: Metrics in Application Insights - Azure Monitor | Microsoft Docs
 description: This article explains the difference between log-based and standard/preaggregated metrics in Application Insights.
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/06/2025
 ---
 
 # Metrics in Application Insights
@@ -767,330 +767,50 @@ exceptions
 
 ### Performance counters
 
-Use metrics in the **Performance counters** category to access system performance counters collected by Application Insights.
+[Application Insights](./app-insights-overview.md) uses system and process metrics, called performance counters, to help diagnose performance issues and support built-in experiences.
 
-### [Standard](#tab/standard)
+The [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) exports these counters as custom metrics to the `performanceCounters` table, each identified by a unique metric name.
 
-#### Available memory (performanceCounters/availableMemory)
+#### Counter names and descriptions
 
-| Unit of measure                        | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
-|----------------------------------------|---------------|--------------------------------------|-----------------------------------|------------------:|
-| Megabytes / Gigabytes (data dependent) | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
+| Counter | Name | Description | Measure |
+|---|---|---|---|
+| Available Memory | `Available Bytes` | Physical memory available to running processes. | Bytes |
+| Exception Rate | `# of Exceps Thrown / sec` | Exceptions thrown by the application per second. | Exceptions per second |
+| Request Execution Time | `Request Execution Time` | Average time to complete a request. | Milliseconds |
+| Request Rate | `Requests/Sec` | Requests processed each second. | Requests per second |
+| Requests in Queue | `Requests In Application Queue` | Requests currently waiting in the application queue. | Count |
+| Process CPU % | `% Processor Time` | CPU utilization of the application process. | Percent |
+| Process CPU % Normalized | `% Processor Time Normalized` | Process CPU utilization divided by logical processor count. | Percent |
+| Process I/O Rate | `IO Data Bytes/sec` | I/O throughput for the application process. | Bytes per second |
+| Process Private Bytes | `Private Bytes` | Private memory used by the application process. | Bytes |
+| Processor Time %<br>**Category:** Processor | `% Processor Time` | Total machine CPU utilization. | Percent | 
+| Processor Time %<br>**Category:** Process | `% Processor Time` | Process CPU utilization. | Percent |
 
-#### Exception rate (performanceCounters/exceptionRate)
+#### Experiences enhanced by performance counters
 
-| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
-|-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
-| Count           | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
+* [**Performance view**](./failures-performance-transactions.md?tabs=performance-view): Available Memory, Process CPU %, Process I/O Rate.
+* [**Failures view**](./failures-performance-transactions.md?tabs=failures-view): Available Memory, Process CPU %, Process I/O Rate.
+* [**Smart Detection and Smart Alerts**](../alerts/proactive-diagnostics.md): Process Private Bytes.
+* [**Request count charts**](../visualize/workbooks-chart-visualizations.md): Charts display counts from the `requests` table.
 
-#### HTTP request execution time (performanceCounters/requestExecutionTime)
+#### List performance counter types
 
-| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
-|-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
-| Milliseconds    | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
+For a complete list of available performance counters, which varies depending on language-specific runtime and configuration:
 
-#### HTTP request rate (performanceCounters/requestsPerSecond)
+1. Open your [Application Insights resource](./create-workspace-resource.md) in the Azure portal.
+1. Under **Monitoring**, select **Logs**.
+1. From **Select a table** menu, choose `performanceCounters` and then **Run**.
 
-| Unit of measure     | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
-|---------------------|---------------|--------------------------------------|-----------------------------------|------------------:|
-| Requests per second | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
-
-#### HTTP requests in application queue (performanceCounters/requestsInQueue)
-
-| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
-|-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
-| Count           | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
-
-#### Process CPU (performanceCounters/processCpuPercentage)
-
-The monitored app's hosting process consumes a portion of the total processor capacity, and the metric shows how much it uses.
-
-| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
-|-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
-| Percentage      | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
-
-> [!NOTE]
-> The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of four CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs, which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
-
-#### Process IO rate (performanceCounters/processIOBytesPerSecond)
-
-| Unit of measure  | Aggregations      | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
-|------------------|-------------------|--------------------------------------|-----------------------------------|------------------:|
-| Bytes per second | Average, Min, Max | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
-
-#### Process private bytes (performanceCounters/processPrivateBytes)
-
-Amount of nonshared memory that the monitored process allocated for its data.
-
-| Unit of measure | Aggregations      | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
-|-----------------|-------------------|--------------------------------------|-----------------------------------|------------------:|
-| Bytes           | Average, Min, Max | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
-
-#### Processor time (performanceCounters/processorCpuPercentage)
-
-CPU consumption by *all* processes running on the monitored server instance.
-
-| Unit of measure | Aggregations      | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
-|-----------------|-------------------|--------------------------------------|-----------------------------------|------------------:|
-| Percentage      | Average, Min, Max | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
-
->[!NOTE]
-> The processor time metric isn't available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
-
-### [Log-based](#tab/log-based)
-
-#### ASP.NET request execution time (performanceCounters/requestExecutionTime)
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Milliseconds    | *Avg*, Min, Max        | All telemetry fields |
+Alternately run the following query.
 
 ```kusto
+// List distinct performance counter names with category and counter.
 performanceCounters
-| where ((category == "ASP.NET Applications" and counter == "Request Execution Time") or name == "requestExecutionTime")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/requestExecutionTime_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render barchart
+| where timestamp > ago(1d)
+| summarize by name, category, counter
+| order by name asc, category asc
 ```
-
-#### ASP.NET request rate (performanceCounters/requestsPerSecond)
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Count           | *Avg*, Min, Max        | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "ASP.NET Applications" and counter == "Requests/Sec") or name == "requestsPerSecond")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/requestsPerSecond_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render barchart
-```
-
-#### ASP.NET request in application queue (performanceCounters/requestsInQueue)
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Count           | *Avg*, Min, Max        | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "ASP.NET Applications" and counter == "Requests In Application Queue") or name == "requestsInQueue")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/requestsInQueue_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render barchart
-```
-
-#### Available memory (performanceCounters/availableMemory)
-
-| Unit of measure                        | Supported aggregations | Supported dimensions |
-|----------------------------------------|------------------------|----------------------|
-| Megabytes / Gigabytes (data dependent) | *Avg*, Min, Max        | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "Memory" and counter == "Available Bytes") or name == "memoryAvailableBytes")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/memoryAvailableBytes_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-#### Exception rate (performanceCounters/exceptionRate)
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Count           | *Avg*, Min, Max        | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == ".NET CLR Exceptions" and counter == "# of Exceps Thrown / sec") or name == "exceptionsPerSecond")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/exceptionsPerSecond_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-#### Garbage Collection (GC) GC Total Count (performanceCounters/GC Total Count)
-
-| Unit of measure | Supported aggregations  | Supported dimensions |
-|-----------------|-------------------------|----------------------|
-| Count           | *Avg*, Min, Max, Unique | All telemetry fields |
-
-```kusto
-performanceCounters
-| where name == "GC Total Count"
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/GC Total Count_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-#### GC Total Time (performanceCounters/GC Total Time)
-
-| Unit of measure | Supported aggregations  | Supported dimensions |
-|-----------------|-------------------------|----------------------|
-| Count           | *Avg*, Min, Max, Unique | All telemetry fields |
-
-```kusto
-performanceCounters
-| where name == "GC Total Time"
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/GC Total Time_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-#### Heap Memory Used (MB) (performanceCounters/Heap Memory Used (MB))
-
-| Unit of measure                        | Supported aggregations  | Supported dimensions |
-|----------------------------------------|-------------------------|----------------------|
-| Megabytes / Gigabytes (data dependent) | *Avg*, Min, Max, Unique | All telemetry fields |
-
-```kusto
-performanceCounters
-| where name == "Heap Memory Used (MB)"
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/Heap Memory Used (MB)_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-#### HTTP request execution time (performanceCounters/requestExecutionTime)
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Milliseconds    | Avg, Min, Max          | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "ASP.NET Applications" and counter == "Request Execution Time") or name == "requestExecutionTime")
-| extend performanceCounter_value = iif(itemType == "performanceCounter", value, todouble(''))
-| summarize sum(performanceCounter_value) / count() by bin(timestamp, 1m)
-| render timechart
-```
-
-#### HTTP request rate (performanceCounters/requestsPerSecond)
-
-| Unit of measure     | Supported aggregations | Supported dimensions |
-|---------------------|------------------------|----------------------|
-| Requests per second | Avg, Min, Max          | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "ASP.NET Applications" and counter == "Requests/Sec") or name == "requestsPerSecond")
-| extend performanceCounter_value = iif(itemType == "performanceCounter", value, todouble(''))
-| summarize sum(performanceCounter_value) / count() by bin(timestamp, 1m)
-| render timechart
-```
-
-#### HTTP requests in application queue (performanceCounters/requestsInQueue)
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Count           | Avg, Min, Max          | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "ASP.NET Applications" and counter == "Requests In Application Queue") or name == "requestsInQueue")
-| extend performanceCounter_value = iif(itemType == "performanceCounter", value, todouble(''))
-| summarize sum(performanceCounter_value) / count() by bin(timestamp, 1m)
-| render timechart
-```
-
-#### Process CPU (performanceCounters/processCpuPercentage)
-
-The metric shows how much processor capacity the hosting process of your app uses.
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Percentage      | *Avg*, Min, Max        | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "Process" and counter == "% Processor Time Normalized") or name == "processCpuPercentage")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/processCpuPercentage_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-> [!NOTE]
-> The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of four CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs, which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
-
-
-#### Process CPU (all cores) (performanceCounters/processCpuPercentageTotal)
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Percentage      | *Avg*, Min, Max        | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "Process" and counter == "% Processor Time") or name == "processCpuPercentageTotal")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/processCpuPercentageTotal_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-#### Process IO rate (performanceCounters/processIOBytesPerSecond)
-
-| Unit of measure  | Supported aggregations | Supported dimensions |
-|------------------|------------------------|----------------------|
-| Bytes per second | *Avg*, Min, Max        | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "Process" and counter == "IO Data Bytes/sec") or name == "processIOBytesPerSecond")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/processIOBytesPerSecond_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-#### Process private bytes (performanceCounters/processPrivateBytes)
-
-Amount of nonshared memory that the monitored process allocated for its data.
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Bytes           | *Avg*, Min, Max        | All telemetry fields |
-
-```kusto
-performanceCounters
-| where ((category == "Process" and counter == "Private Bytes") or name == "processPrivateBytes")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/processPrivateBytes_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-#### Processor time (performanceCounters/processorCpuPercentage)
-
-CPU consumption by *all* processes running on the monitored server instance.
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Percentage      | *Avg*, Min, Max        | All telemetry fields |
-
->[!NOTE]
-> The processor time metric isn't available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
-
-```kusto
-performanceCounters
-| where ((category == "Processor" and counter == "% Processor Time") or name == "processorCpuPercentage")
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/processorCpuPercentage_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
-### Suspected Deadlock Threads (performanceCounters/Suspected Deadlocked Threads)
-
-| Unit of measure | Supported aggregations  | Supported dimensions |
-|-----------------|-------------------------|----------------------|
-| Percentage      | *Avg*, Min, Max, Unique | All telemetry fields |
-
-```kusto
-performanceCounters
-| where name == "Suspected Deadlocked Threads"
-| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/Suspected Deadlocked Threads_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| render timechart
-```
-
----
 
 ### Server metrics
 

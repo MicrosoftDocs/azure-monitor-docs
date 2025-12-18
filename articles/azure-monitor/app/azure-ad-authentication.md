@@ -367,7 +367,7 @@ const { DefaultAzureCredential } = require("@azure/identity");
 // Create a new DefaultAzureCredential object to authenticate with Azure Active Directory.
 const credential = new DefaultAzureCredential();
 
-// Set up Application Insights with an instrumentation key and ingestion endpoint, then start the Application Insights client.
+// Set up Application Insights with a connection string, then start the Application Insights client.
 appInsights.setup("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/").start();
 
 // Assign the DefaultAzureCredential object to the aadTokenCredential property of the default Application Insights client configuration for authentication.
