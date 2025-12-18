@@ -60,7 +60,6 @@ Ensure that the user you're assigning has the appropriate **Role-Based Access Co
     - You or your subscription administrator define the permissions for this role.
 
 
-
 **6. Update the email addresses** 
 
 To ensure that security notifications are received, verify that the email address associated with the user is current follow these steps.<br> 
@@ -97,14 +96,16 @@ Select **Roles and administrators** from the side panel.
 
 :::image type="content"source="./media/assign-roles/roles-admin-sign-open.png"alt-text="A screenshot of the Roles and administrators panel."Lightbox="./media/assign-roles/roles-admin-sign-open.png":::
 
-**4. Add a role**<br> 
-Select **+ New custom role** to add a new role.
 
-:::image type="content"source="./media/assign-roles/microsoft-entra-assign-role.png"alt-text="A screenshot of the Roles and administrators panel and option to create new role."Lightbox="./media/assign-roles/microsoft-entra-assign-role.png":::
+**4. Select the role**<br> 
+Select **Select the role** that opens a new window.
 
+:::image type="content"source="./media/assign-roles/select-role-description.png"alt-text="A screenshot of the list of roles to choose from."Lightbox="./media/assign-roles/select-role-description.png":::
+
+- Select the role you want so 
 
 **Optional**
-You can configure Tenant-Level Service Health Alerts to proactively notify security or ops teams with these steps. For more information, see [Create tenant level alerts](/azure/azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts).
+You can configure Tenant-Level Service Health Alerts to proactively notify security or operations teams with these steps. For more information, see [Create tenant level alerts](/azure/azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts).
 
 1.	Go to Azure portal > Monitor > Service Health.
 2.	Select **Create service health alert**.
