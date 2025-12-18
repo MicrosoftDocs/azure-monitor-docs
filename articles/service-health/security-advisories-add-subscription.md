@@ -31,7 +31,7 @@ Choose the subscription that you want to manage for Security advisory access.
 :::image type="content"source="./media/assign-roles/subscription-screen.png"alt-text="A screenshot of subscription panel."Lightbox="./media/assign-roles/subscription-screen.png":::
 
 
-**3. Navigate to Access Control (IAM)** 
+**3. Navigate to Access control (IAM)** 
 
 Select **Access control (IAM)** to manage user roles.
 
@@ -79,7 +79,7 @@ Tenant admin access in Azure refers to the permissions granted to roles that all
 **1. Identify who needs tenant-level access**
 
 Determine which users or teams require visibility into:
-- Organization wide security advisories
+- Organization-wide security advisories
 - Sensitive advisory details (Summary, Issue Updates, Impacted Resources)
   NOTE: Only tenant admin level roles can view tenant scoped security advisories. For more information on who can access Security advisories, see [Who can view Security advisories](/azure/service-health/security-advisories-elevated-access#who-can-view-security-advisories).
 
@@ -101,7 +101,7 @@ Select **+ New custom role** to add a new role.
 
 
 **Optional**
-You can configure Tenant Level Service Health Alerts to proactively notify security or ops teams with these steps.
+You can configure Tenant-Level Service Health Alerts to proactively notify security or ops teams with these steps.
 1.	Go to Azure portal → Monitor → Service Health
 2.	Select Create service health alert
 3.	Set Scope = Directory (Tenant)
@@ -109,5 +109,5 @@ You can configure Tenant Level Service Health Alerts to proactively notify secur
 5.	Save the alert rule
 
 >[!NOTE] 
->Tenant level alerts require tenant admin–level read access. Users lacking access receives *Unauthorized* errors. For more information see [Create tenant level alerts](/azure/service-health/alerts-activity-log-service-notifications-portal#create-a-tenant-level-alert).
+>Tenant level alerts require tenant admin–level read access. Users lacking access receive *Unauthorized* errors. For more information see [Create tenant level alerts](/azure/service-health/alerts-activity-log-service-notifications-portal#create-a-tenant-level-alert).
 
