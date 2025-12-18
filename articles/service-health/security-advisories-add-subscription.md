@@ -2,12 +2,21 @@
 title: Configure subscriptions for Security advisories
 description: This article describes how to set up and define access to Security advisories through the Azure portal.
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 12/18/2025
 ---
 
 # Configure Subscription access to view Security advisories
 
 To access and view Security advisories, you must have the correct role access. This article describes the steps to create tenant or subscription - based access.
+
+Subscription‑based access means you can only see Security Advisories that apply to the specific Azure subscription you’re permitted to view.
+
+Tenant based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
+
+
+## Subscription-based access
+
+The following steps explain how to set up a subscription to view Security advisories.
 
 **1. Access the Azure portal**<br> 
 Log into the [Azure portal](https://ms.portal.azure.com/#home) and navigate to the **Subscriptions** section.
@@ -42,10 +51,10 @@ Ensure that the user you're assigning has the appropriate **Role-Based Access Co
 - The **Reader** role can only view. 
 - The **Contributor** role:
     - Can create, modify, and delete any Azure resource in the subscription.
-    - Can deploy and manage VMs, storage accounts, networks, and functions
-    - Can't Manage Access (IAM)
+    - Can deploy and manage Virtual Machines (VMs), storage accounts, networks, and functions
+    - Can't manage Access control Identity & Access Management (IAM)
 - The **Co-administrator** role:
-    - Can view, modify resources, Manage Access (IAM) with almost the same access as a full subscription.
+    - Can view, modify resources, Manage access control (IAM) with almost the same access as a full subscription.
     - Can't change the service administrator for a subscription.
 - The **Custom Role**:
     - You or your subscription administrator define the permissions for this role.
@@ -62,3 +71,43 @@ To ensure that security notifications are received, verify that the email addres
 
 Make sure that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.
 For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+
+## Tenant-based access
+
+Tenant admin access in Azure refers to the permissions granted to roles that allow users to manage and view resources at the tenant level. These roles include Global Administrator, Application Administrator, and others. Tenant admin access enables users to manage users, groups, and permissions within the organization, and view tenant-level events in the Azure Service Health portal
+
+**1. Identify who needs tenant-level access**
+
+Determine which users or teams require visibility into:
+- Organization wide security advisories
+- Sensitive advisory details (Summary, Issue Updates, Impacted Resources)
+  NOTE: Only tenant admin level roles can view tenant scoped security advisories. For more information on who can access Security advisories, see [Who can view Security advisories](/azure/service-health/security-advisories-elevated-access#who-can-view-security-advisories).
+
+**2. Access the Azure portal**<br> 
+Log into the [Azure portal](https://ms.portal.azure.com/#home) and navigate to the **Microsoft Entra ID** section.
+
+:::image type="content"source="./media/assign-roles/microsoft-entra-signin.png"alt-text="A screenshot of the portal with Microsoft Entra ID sign-in."Lightbox="./media/assign-roles/microsoft-entra-signin.png":::
+
+
+**3. Access Roles and administrators** panel<br> 
+Select **Roles and administrators** from the side panel.
+
+:::image type="content"source="./media/assign-roles/roles-admin-sign-open.png"alt-text="A screenshot of the Roles and administrators panel."Lightbox="./media/assign-roles/roles-admin-sign-open.png":::
+
+**4. Add a role**<br> 
+Select **+ New custom role** to add a new role.
+
+:::image type="content"source="./media/assign-roles/microsoft-entra-assign-role.png"alt-text="A screenshot of the Roles and administrators panel and option to create new role."Lightbox="./media/assign-roles/microsoft-entra-assign-role.png":::
+
+
+**Optional**
+You can configure Tenant Level Service Health Alerts to proactively notify security or ops teams with these steps.
+1.	Go to Azure portal → Monitor → Service Health
+2.	Select Create service health alert
+3.	Set Scope = Directory (Tenant)
+4.	Select event types: Security advisories, Health advisories, 
+5.	Save the alert rule
+
+>[!NOTE] 
+>Tenant level alerts require tenant admin–level read access. Users lacking access receives *“*Unauthorized* errors.
+
