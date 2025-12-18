@@ -1440,10 +1440,19 @@ items:
     items:
     - name: Overview
       href: alerts/alerts-overview.md
-    - name: Choosing the type of alert rule
-      href: alerts/alerts-types.md
     - name: Best practices
       href: alerts/best-practices-alerts.md
+    - name: Types of alert rules
+      href: alerts/alerts-types.md
+    - name: Query-based metric alerts
+      href: alerts/alerts-query-based-metric-alerts-overview.md
+    - name: Dynamic thresholds
+      href: alerts/alerts-dynamic-thresholds.md
+    - name: Action groups
+      href: alerts/action-groups.md
+    - name: Alert processing rules
+      displayName: Azure CLI, az monitor action rule
+      href: alerts/alerts-processing-rules.md
     - name: Create alerts
       items:
       - name: Create alert rules
@@ -1459,12 +1468,7 @@ items:
           - name: Prometheus alerts
             href: alerts/prometheus-alerts.md
           - name: Query-based metric alerts
-            items:
-            - name: Overview
-              displayName: Query-based metric alerts
-              href: alerts/alerts-query-based-metric-alerts-overview.md
-            - name: Set up a query-based metric alert
-              href: alerts/alerts-create-query-based-metric-alerts.md
+            href: alerts/alerts-create-query-based-metric-alerts.md
         - name: Log search alerts
           items:
           - name: Simple log search alert
@@ -1477,15 +1481,8 @@ items:
           href: alerts/alerts-create-activity-log-alert-rule.md
         - name: Tenant service health alert
           href: alerts/alerts-create-tenant-level-service-heath-alerts.md
-        - name: Alert rules with dynamic thresholds overview
-          href: alerts/alerts-dynamic-thresholds.md
-        - name: Create alert rules using CLI, PowerShell, or ARM templates
+        - name: CLI, PowerShell, or ARM templates
           href: alerts/alerts-create-rule-cli-powershell-arm.md
-      - name: Action groups
-        href: alerts/action-groups.md
-      - name: Alert processing rules
-        displayName: Azure CLI, az monitor action rule
-        href: alerts/alerts-processing-rules.md
       - name: Alert integrations
         items:
         - name: Common alert schema
