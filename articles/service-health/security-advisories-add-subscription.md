@@ -11,7 +11,7 @@ To access and view Security advisories, you must have the correct role access. T
 
 Subscription‑based access means you can only see Security Advisories that apply to the specific Azure subscription you’re permitted to view.
 
-Tenant based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
+Tenant-based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
 
 
 ## Subscription-based access
@@ -102,11 +102,11 @@ Select **+ New custom role** to add a new role.
 
 **Optional**
 You can configure Tenant-Level Service Health Alerts to proactively notify security or ops teams with these steps.
-1.	Go to Azure portal → Monitor → Service Health
-2.	Select Create service health alert
-3.	Set Scope = Directory (Tenant)
-4.	Select event types: Security advisories, Health advisories, 
-5.	Save the alert rule
+1.	Go to Azure portal > Monitor > Service Health.
+2.	Select **Create service health alert**.
+3.	Set the Scope level = Directory (Tenant)
+4.	Select event types: Security advisories, Health advisories, Planned maintenance, Service issues
+5.	Save the alert rule.
 
 >[!NOTE] 
 >Tenant level alerts require tenant admin–level read access. Users lacking access receive *Unauthorized* errors. For more information see [Create tenant level alerts](/azure/service-health/alerts-activity-log-service-notifications-portal#create-a-tenant-level-alert).
