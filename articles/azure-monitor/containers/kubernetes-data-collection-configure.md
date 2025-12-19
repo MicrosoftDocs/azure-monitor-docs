@@ -24,15 +24,15 @@ There are two methods to define the configuration the agent will use to collect 
 
 The following image illustrates how each of the configuration methods is used in the collection of data from your Kubernetes clusters. There is only one DCR used for logs collection. It's shown twice in the image to illustrate that some information in the DCR is used by the agent at the cluster level, while other information in the DCR is used by Azure Monitor after that data is delivered.
 
-:::image type="content" source="./media/kubernetes-data-collection-configure/data-configuration-options.png" lightbox="./media/kubernetes-data-collection-configure/data-configuration-options.png" alt-text="{alt-text}":::
+:::image type="content" source="./media/kubernetes-data-collection-configure/data-configuration-options.png" lightbox="./media/kubernetes-data-collection-configure/data-configuration-options.png" alt-text="Diagram showing collection of logs and metrics for Kubernetes cluster and role of DCR and ConfigMap." border="false":::
 
 The following table provides a comparison of the two configuration methods. Most settings are only available in one of the methods, so you don't have the option to choose which method to use. There are some [common settings](#common-settings) that can be configured with either method, but there are important differences in how they work. In those cases, you can select the method that best meets your requirements.
 
-| | ConfigMap | Data Collection Rule (DCR) |
+| Task | ConfigMap | Data Collection Rule (DCR) |
 |:---|:---|:---|
-| Logs | - Enable/disable container logs separately<br>- Namespace filtering for container logs<br>- Annotation filtering<br>- Collect environment variables | - Enable/disable all container logs<br>- Namespace filtering for other logs<br>- Specify collected tables<br>- Log Analytics workspace(s)<br>- Custom filtering with transformations |
-| Metrics | - Enable/disable targets<br>- Enable/disable specific metrics<br>- Annotation-based scraping  | - Azure Monitor workspace(s) |
-| Deployment | - Apply ConfigMap to each cluster.<br>- Requires redeployment for changes. | - Configure single DCR for multiple clusters<br>- Modify DCR with no restart required |
+| Logs collection | - Enable/disable container logs separately<br>- Namespace filtering for container logs<br>- Annotation filtering<br>- Collect environment variables | - Enable/disable all container logs<br>- Namespace filtering for other logs<br>- Specify collected tables<br>- Log Analytics workspace(s)<br>- Custom filtering with transformations |
+| Metrics collection | - Enable/disable targets<br>- Enable/disable specific metrics<br>- Annotation-based scraping  | - Azure Monitor workspace(s) |
+| Deployment | - Apply ConfigMap to each cluster.<br>- Requires redeployment for changes. | - Configure single DCR for multiple clusters.<br>- Modify DCR with no restart required. |
 
 
 ## Common settings
