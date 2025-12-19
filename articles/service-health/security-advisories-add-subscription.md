@@ -106,14 +106,16 @@ Select the role directly to open a new window.
 
 On this panel there are three tabs, *Eligible assignments*, *Active assignments* and *Expired assignments*. Select **+ Add assignments**. 
 
-:::image type="content"source="./media/assign-roles/add-assignment-1.png"alt-text="A screenshot of panel showing assignments for this role."Lightbox="./media/add-assignment-1.png":::
+:::image type="content"source="./media/assign-roles/add-assignment-1.png"alt-text="A screenshot of panel showing assignments for this role."Lightbox="./media/assign-roles/add-assignment-1.png":::
 
 1. A new pane appears where you choose who should receive this role. Use the search box to find:
 - A user account
 - A Microsoft 365 group
 - An application / service principal (if you're assigning to identity app)
 2. Select the correct identity from the results.
->[!TIP] Only groups and people who can be assigned appear on the list.
+
+>[!TIP] 
+>Only groups and people who can be assigned appear on the list.
 
 **6. Confirm the assignment**
 1. Select **Next** (if prompted). 
