@@ -305,7 +305,7 @@ If you installed the standalone version of PerfInsights, you can run on-demand d
 
 ### [Windows](#tab/windows)
 
-Open Windows command prompt as an administrator, and then run PerfInsights.exe to view the available commandline parameters.
+Open Windows command prompt as an administrator, and then run PerfInsights.exe to view the available commandline parameters and their descriptions.
 
 ```console
 cd <the path of PerfInsights folder>
@@ -364,7 +364,7 @@ When the traces or operations are completed, a new file appears in the same fold
 
 ### [Linux](#tab/linux)
 
-Navigate to the folder that contains `perfinsights.py` file, and then run `perfinsights.py` to view the available commandline parameters.
+Navigate to the folder that contains `perfinsights.py` file, and then run `perfinsights.py` to view the available commandline parameters and their descriptions.
 
 ```bash
 cd <the path of PerfInsights folder>
