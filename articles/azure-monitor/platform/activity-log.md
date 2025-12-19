@@ -194,7 +194,7 @@ Each event is stored in the PT1H.json file with the following format. This forma
 
 
 ## Export management group logs
-When you create a diagnostic setting to export the [activity log for a management group](/rest/api/monitor/management-group-diagnostic-settings), it will export any events for that management group in addition to all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you will receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
+When you create a [diagnostic setting log for a management group](/rest/api/monitor/management-group-diagnostic-settings), it will export any events for that management group in addition to all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you will receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
 
 The management group will also collect many of the same events as any subscriptions under it. If the subscription and management group both have diagnostic settings, you will receive duplicate events.
 
