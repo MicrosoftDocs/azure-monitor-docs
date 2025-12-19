@@ -18,7 +18,7 @@ This diagram shows you how alerts work.
 An **alert rule** monitors your data and captures a signal that indicates something is happening on the specified resource. The alert rule captures the signal and checks to see if the signal meets the criteria of the condition.
 
 An alert rule combines:
- - The resources to be monitored.
+- The resources to be monitored.
  - The signal or data from the resource.
  - Conditions.
 
@@ -51,6 +51,10 @@ This table provides a brief description of each alert type. For more information
 |[Activity log alerts](alerts-types.md#activity-log-alerts)|Activity log alerts are triggered when a new activity log event occurs that matches defined conditions. Resource Health alerts and Service Health alerts are activity log alerts that report on your service and resource health.|
 |[Smart detection alerts](alerts-types.md#smart-detection-alerts)|Smart detection on an Application Insights resource automatically warns you of potential performance problems and failure anomalies in your web application. You can migrate smart detection on your Application Insights resource to create alert rules for the different smart detection modules.|
 |[Prometheus alerts](alerts-types.md#prometheus-alerts)|Prometheus alerts are used for alerting on Prometheus metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). The alert rules are based on the PromQL open-source query language.|
+
+> [!NOTE] 
+> Query-based metric alerts are now in public preview for alerting based on Prometheus and OpenTelemetry metrics. See [Query-based metric alerts overview (preview)](./alerts/alerts-query-based-metric-alerts-overview.md)
+
 
 ## Alerts and state
 
@@ -142,12 +146,12 @@ Keep in mind that if you use policies to create alert rules, you may have the in
 You can only access, create, or manage alerts for resources for which you have permissions.
 
 To create an alert rule, you must have:
- - Read permission on the target resource of the alert rule.
+- Read permission on the target resource of the alert rule.
  - Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
  - Read permission on any action group associated with the alert rule, if applicable.
 
 These built-in Azure roles, supported at all Azure Resource Manager scopes, have permissions to and can access alerts information and create alert rules:
- - **Monitoring contributor**: A contributor can create alerts and use resources within their scope.
+- **Monitoring contributor**: A contributor can create alerts and use resources within their scope.
  - **Monitoring reader**: A reader can view alerts and read resources within their scope.
 
 If the target action group or rule location is in a different scope than the two built-in roles, create a user with the appropriate permissions.
