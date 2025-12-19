@@ -23,7 +23,7 @@ This article describes the Log Analytics user interface and its features. If you
 
 ## Open Log Analytics
 
-To open Log Analytics in the Azure portal, select **Logs** either in [**Azure Monitor**](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/logs), in a [**Log Analytics workspace**](https://portal.azure.com/#browse/Microsoft.OperationalInsights%2Fworkspaces), or from a specific resource. The tool is always the same, but where you start determines the data that's available.
+To open Log Analytics in the Azure portal, select **Logs** either in [**Azure Monitor**](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/%7E/logs), in a [**Log Analytics workspace**](https://portal.azure.com/#browse/Microsoft.OperationalInsights%2Fworkspaces), or from a specific resource. The tool is always the same, but where you start determines the data that's available.
 
 When you open **Logs** from **Azure Monitor** or a **Log Analytics workspaces**, you have access to all of the records in a workspace. When you select **Logs** from another type of resource, your data is limited to log data for that resource. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](./scope.md).
 
