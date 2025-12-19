@@ -91,7 +91,7 @@ Log into the [Azure portal](https://ms.portal.azure.com/#home) and navigate to t
 :::image type="content"source="./media/assign-roles/microsoft-entra-signin.png"alt-text="A screenshot of the portal with Microsoft Entra ID sign-in."Lightbox="./media/assign-roles/microsoft-entra-signin.png":::
 
 
-**3.** Open the **Roles and administrators** panel<br> 
+**3.** Add **Roles and administrators**<br> 
 Select **Roles and administrators** from the side panel.
 
 :::image type="content"source="./media/assign-roles/roles-admin-sign-open.png"alt-text="A screenshot of the Roles and administrators panel."Lightbox="./media/assign-roles/roles-admin-sign-open.png":::
