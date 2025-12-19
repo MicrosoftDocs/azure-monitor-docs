@@ -194,15 +194,16 @@ Each event is stored in the PT1H.json file with the following format. This forma
 
 
 ## Export management group logs
-When you create a diagnostic setting to export the activity log for a management group, it will export any manage group scoped events for that management group and all management groups and subscriptions under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you may receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
+When you create a diagnostic setting to export the [activity log for a management group](/rest/api/monitor/management-group-diagnostic-settings), it will export any events for that management group in addition to all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you will receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
 
-For example, if you have MG1 which contains MG2 which contains Subscription1, a diagnostic setting on MG1 will capture all activity log events for MG1, MG2, and Subscription1. If you also have a diagnostic setting on MG2, events for MG2 and Subscription1 will be duplicated in the export.
+The management group will also collect many of the same events as any subscriptions under it. If the subscription and management group both have diagnostic settings, you will receive duplicate events.
 
-If you have duplicate events, you can combine them using a query that uses a hash of all fields to identify unique records. The following example Kusto query shows how to do this for a Log Analytics workspace:
+For example, if you have MG1 which contains MG2 which contains Subscription1, a diagnostic setting on MG1 will capture all activity log events for MG1, MG2, and many of the events collected by a diagnostic setting on Subscription1. In this case, no diagnostic setting is need on MG2 since it would just collect duplicate events.
+
+If you have duplicate events, you can combine them using a query that uses a hash of all fields to identify unique records. The following example Kusto query shows a sample for logs collected in a Log Analytics workspace:
 
 ```kusto
 AzureActivity
-| where TimeGenerated between (datetime(2025-04-02 00:00:00) .. datetime(2025-04-03 00:00:00))
 | extend Hash = hash(dynamic_to_json(pack_all()))
 | summarize arg_max(TimeGenerated, *) by Hash
 ```
