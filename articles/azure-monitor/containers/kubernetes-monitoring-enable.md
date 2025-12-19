@@ -36,6 +36,11 @@ The following table describes the workspaces that are required to support the Az
 
 
 ## Enable Prometheus metrics and container logging
+
+> [!NOTE] 
+> Using Application insights to monitor the applications running on your AKS by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection is now in public preview. See [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Limited Preview](../app/kubernetes-open-protocol.md).
+
+
 When you enable Prometheus and container logging on a cluster, a containerized version of the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed in the cluster. You can configure these features at the same time on a new or existing cluster, or enable each feature separately. 
 
 Enable Managed Grafana for your cluster at the same time that you enable scraping of Prometheus metrics. See [Link a Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal) for options to connect your Azure Monitor workspace and Azure Managed Grafana workspace.
