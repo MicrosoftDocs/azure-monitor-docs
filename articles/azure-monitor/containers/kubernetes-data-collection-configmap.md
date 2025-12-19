@@ -1,12 +1,12 @@
 ---
-title: Filter container log collection with ConfigMap
-description: Options for filtering Container insights data that you don't require.
+title: Configure container log collection with ConfigMap
+description: Learn how to use a ConfigMap to configure and filter the collection of container logs and environment variables from your Kubernetes cluster.
 ms.topic: how-to
 ms.date: 09/22/2025
 ms.reviewer: aul
 ---
 
-# Filter container log collection with ConfigMap
+# Configure container log collection with ConfigMap
 
 Kubernetes clusters generate a large amount of data that's collected by Azure Monitor. Since you're charged for the ingestion and retention of this data, you can significantly reduce your monitoring costs by filtering out data that you don't need. This article describes how to use a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) to configure and filter the collection of container logs and environment variables from your cluster. You can also use a ConfigMap to enable collection of platform logs from system Kubernetes namespaces and to enable annotation-based filtering for workloads.
 

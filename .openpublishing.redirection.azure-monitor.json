@@ -8748,6 +8748,11 @@
    "source_path": "articles/azure-monitor/app/nodejs.md",
    "redirect_url": "/azure/azure-monitor/app/classic-api",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/container-insights-data-collection-filter.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-data-collection-configmap",
+   "redirect_document_id": false
   }
  ]
 }

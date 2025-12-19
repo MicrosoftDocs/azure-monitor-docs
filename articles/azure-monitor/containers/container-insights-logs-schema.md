@@ -41,7 +41,7 @@ The following table highlights the key differences between using ContainerLogV2 
 
 
 ## Enable the ContainerLogV2 schema
-Enable the **ContainerLogV2** schema for a cluster either using the cluster's [log profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) or [ConfigMap](./container-insights-data-collection-filter.md#configmap-settings). If both settings are enabled, the ConfigMap takes precedence. The `ContainerLog` table is used only when both are explicitly set to off.
+Enable the **ContainerLogV2** schema for a cluster either using the cluster's [log profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) or [ConfigMap](./kubernetes-data-collection-configmap.md#configmap-settings). If both settings are enabled, the ConfigMap takes precedence. The `ContainerLog` table is used only when both are explicitly set to off.
 
 Before you enable the **ContainerLogsV2** schema, you should assess whether you have any alert rules that rely on the **ContainerLog** table. Any such alerts need to be updated to use the new table. Run the following Azure Resource Graph query to scan for alert rules that reference the `ContainerLog` table.
 
@@ -72,7 +72,7 @@ Kubernetes metadata and logs filtering extends the ContainerLogsV2 schema with a
 - **Grafana dashboard for visualization**
     The Grafana dashboard provides a color-coded visualization of the **log level** and also provides insights into Log Volume, Log Rate, Log Records, Logs. You can get time-sensitive analysis, dynamic insights into log level trends over time, and crucial real-time monitoring. The dashboard also provides a detailed breakdown by computer, pod, and container, which empowers in-depth analysis and pinpointed troubleshooting. See below for details on installing the Grafana dashboard.
 - **Annotation based log filtering for workloads**
-    Efficient log filtering through pod annotations. This allows you to focus on relevant information without sifting through noise. Annotation-based filtering enables you to exclude log collection for certain pods and containers by annotating the pod, which would help reduce the log analytics cost significantly. See [Annotation-based log filtering](./container-insights-data-collection-filter.md#annotation-based-filtering-for-workloads) for details on configuring annotation based filtering.
+    Efficient log filtering through pod annotations. This allows you to focus on relevant information without sifting through noise. Annotation-based filtering enables you to exclude log collection for certain pods and containers by annotating the pod, which would help reduce the log analytics cost significantly. See [Annotation-based log filtering](./kubernetes-data-collection-configmap.md#annotation-based-filtering-for-workloads) for details on configuring annotation based filtering.
 - **ConfigMap based log filtering for platform logs (System Kubernetes Namespaces)**
     Platform logs are emitted by containers in the system (or similar restricted) namespaces. By default, all the container logs from the system namespace are excluded to minimize the cost of data in your Log Analytics workspace. In specific troubleshooting scenarios though, container logs of system container play a crucial role. One example is the `coredns` container in the `kube-system` namespace.
 
@@ -85,7 +85,7 @@ Kubernetes metadata and logs filtering extends the ContainerLogsV2 schema with a
 > Collection of Kubernetes metadata requires [managed identity authentication](./container-insights-authentication.md#migrate-to-managed-identity-authentication) and [ContainerLogsV2](./container-insights-logs-schema.md)
 
 
-Enable Kubernetes metadata using [ConfigMap](./container-insights-data-collection-filter.md#configmap-settings) with the following settings. All metadata fields are collected by default when the `metadata_collection` is enabled. Uncomment `include_fields` to specify individual fields to be collected.
+Enable Kubernetes metadata using [ConfigMap](./kubernetes-data-collection-configmap.md#configmap-settings) with the following settings. All metadata fields are collected by default when the `metadata_collection` is enabled. Uncomment `include_fields` to specify individual fields to be collected.
 
 ```yaml
 [log_collection_settings.metadata_collection]
