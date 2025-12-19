@@ -192,6 +192,23 @@ Each event is stored in the PT1H.json file with the following format. This forma
 ```
 ---
 
+
+## Export management group logs
+When you create a diagnostic setting to export the activity log for a management group, it will export any manage group scoped events for that management group and all management groups and subscriptions under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you may receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
+
+For example, if you have MG1 which contains MG2 which contains Subscription1, a diagnostic setting on MG1 will capture all activity log events for MG1, MG2, and Subscription1. If you also have a diagnostic setting on MG2, events for MG2 and Subscription1 will be duplicated in the export.
+
+If you have duplicate events, you can combine them using a query that uses a hash of all fields to identify unique records. The following example Kusto query shows how to do this for a Log Analytics workspace:
+
+```kusto
+AzureActivity
+| where TimeGenerated between (datetime(2025-04-02 00:00:00) .. datetime(2025-04-03 00:00:00))
+| extend Hash = hash(dynamic_to_json(pack_all()))
+| summarize arg_max(TimeGenerated, *) by Hash
+```
+
+
+
 ## Export to CSV
 Select **Download as CSV** to export the activity log to a CSV file using the Azure portal.
 

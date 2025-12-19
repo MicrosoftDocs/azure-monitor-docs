@@ -55,7 +55,8 @@ Any destinations used by the diagnostic setting must exist before the setting ca
 You can create a diagnostic setting using any of the following methods.
 
 > [!NOTE]
-> To create a diagnostic setting for the activity log, see [Export activity log](./activity-log.md#export-activity-log).
+> - To create a diagnostic setting for the activity log using the Azure portal, see [Export activity log](./activity-log.md#export-activity-log).
+> - To create a diagnostic setting for a management group, see [Management Group Diagnostic Settings](/rest/api/monitor/management-group-diagnostic-settings).
 
 ### [Azure portal](#tab/portal)
 Use the following steps to create a new diagnostic setting or edit an existing one in the Azure portal.
