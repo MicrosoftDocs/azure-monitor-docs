@@ -172,11 +172,7 @@ Stateful log search alerts have these limitations:
 
 You can use dimensions when you create log search alert rules to monitor the values of multiple instances of a resource with one rule. For example, you can monitor CPU usage on multiple instances running your website or app. Each instance is monitored individually. Notifications are sent for each instance.
 
-### Monitor the same condition on multiple resources using splitting by dimensions
-
-To monitor for the same condition on multiple Azure resources, you can use splitting by dimensions. When you use splitting by dimensions, you can create resource-centric alerts at scale for a subscription or resource group. Alerts are split into separate alerts by grouping combinations by using numerical or string columns. Splitting on the Azure resource ID column makes the specified resource into the alert target.
-
-You might also decide not to split when you want a condition applied to multiple resources in the scope. For example, you might want to fire an alert if at least five machines in the resource group scope have CPU usage over 80%.
+Use [splitting by dimensions](#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to monitor the same condition across multiple resources.
 
 ### Use the API for log search alert rules
 

@@ -7,7 +7,7 @@ ms.date: 12/09/2025
 
 # Collect data from virtual machine client with Azure Monitor
 
-Azure Monitor automatically collects host metrics and activity logs from your Azure and Arc-enabled virtual machines. To collect metrics and logs from the client operating system and its workloads though, you need to create [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) that specify what you want to collect and where to send it. This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients.
+Azure Monitor automatically collects host metrics and activity logs from your Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. To collect metrics and logs from the client operating system and its workloads though, you need to create [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) that specify what you want to collect and where to send it. This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients.
 
 > [!NOTE]
 >If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article and the related articles on each [data source](#add-data-sources). You can use the Azure portal to create and edit the DCR, and the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is automatically installed on each VM that doesn't already have it.
