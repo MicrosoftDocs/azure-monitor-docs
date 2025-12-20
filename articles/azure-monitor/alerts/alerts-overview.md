@@ -53,7 +53,7 @@ This table provides a brief description of each alert type. For more information
 |[Prometheus alerts](alerts-types.md#prometheus-alerts)|Prometheus alerts are used for alerting on Prometheus metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). The alert rules are based on the PromQL open-source query language.|
 
 > [!NOTE] 
-> Query-based metric alerts are now in public preview for alerting based on Prometheus and OpenTelemetry metrics. See [Query-based metric alerts overview (preview)](./alerts/alerts-query-based-metric-alerts-overview.md)
+> Query-based metric alerts are now in public preview for alerting based on Prometheus and OpenTelemetry metrics. See [Query-based metric alerts overview (preview)](./alerts-query-based-metric-alerts-overview.md)
 
 
 ## Alerts and state
