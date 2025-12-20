@@ -30,6 +30,9 @@ The types of alerts are:
 | Activity log alert | Activity logs provide auditing of all actions that occurred on resources. Use activity log alerts to be alerted when a specific event happens to a resource like a restart, a shutdown, or the creation or deletion of a resource. Service Health alerts and Resource Health alerts let you know when there's an issue with one of your services or resources. | For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/). |
 | Prometheus alerts | Prometheus alerts are used for alerting on Prometheus metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). The alert rules are based on the PromQL open-source query language. | Prometheus alert rules are only charged on the data queried by the rules. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/). |
 
+> [!NOTE] 
+> Query-based metric alerts are now in public preview for alerting based on Prometheus and OpenTelemetry metrics. See [Query-based metric alerts overview (preview)](./alerts-query-based-metric-alerts-overview.md)
+
 ## Metric alerts
 
 A metric alert rule monitors a resource by evaluating conditions on the resource metrics at regular intervals. If the conditions are met, an alert is fired. A metric time-series is a series of metric values captured over a period of time.
