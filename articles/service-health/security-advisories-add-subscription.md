@@ -2,7 +2,7 @@
 title: Configure subscriptions for Security advisories
 description: This article describes how to set up and define access to Security advisories through the Azure portal.
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 12/22/2025
 ---
 
 # Configure Subscription access to view Security advisories
@@ -125,17 +125,5 @@ On this panel there are three tabs, *Eligible assignments*, *Active assignments*
 **7. Verify the permissions** (Optional)
 1. Sign out and then sign in again.
 1. Confirm the access to the feature they need (for instance viewing tenant-level Security advisories in Service health).
-
-
-<!-->
-**Optional**
-You can configure Tenant-Level Service Health Alerts to proactively notify security or operations teams with these steps. For more information, see [Create tenant level alerts](/azure/azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts).
-
-1.	Go to Azure portal > Monitor > Service Health.
-2.	Select **Create service health alert**.
-3.	Set the Scope level = Directory (Tenant)
-4.	Select event types: Security advisories, Health advisories, Planned maintenance, Service issues
-5.	Save the alert rule.
--->
 
 
