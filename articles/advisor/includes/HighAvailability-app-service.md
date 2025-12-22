@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -444,5 +444,77 @@ Recommendation ID: 9545c3d7-f0cd-4e37-8b15-2d4bb89f9659
 Subcategory: undefined
 
 <!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_end-->
+
+<!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_begin-->
+
+#### Upgrade Node.js for Azure Functions apps to version 22 or later  
+  
+To avoid potential security vulnerabilities, reduce performance risks, and ensure Azure Functions apps take advantage of the newest features; upgrade Node.js to version 22 or later.  
+  
+**Potential benefits**: Avoid potential security vulnerabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=502957)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 81c8903e-2d50-4e57-9c3b-7049b5a9d0e8  
+Subcategory: undefined
+
+<!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_end-->
+
+<!--e990f401-84cc-4438-9c06-8bbf4e2611ec_begin-->
+
+#### Upgrade App Service apps to Node 20 LTS  
+  
+Extended support for Node 18 LTS is retiring. Upgrade apps to Node 20 LTS.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/action-required-upgrade-your-app-service-apps-to-node-20-lts-by-30-april-2025/)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: e990f401-84cc-4438-9c06-8bbf4e2611ec  
+Subcategory: undefined
+
+<!--e990f401-84cc-4438-9c06-8bbf4e2611ec_end-->
+
+<!--14f2b661-8b62-4e1e-9020-6ae63ce9e354_begin-->
+
+#### Upgrade apps to Python 3.10  
+  
+Extended support for Python 3.9 is retiring. Apps that are hosted on App Service will continue to run, but security updates and customer support will no longer be available  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/python-39-app-svc)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 14f2b661-8b62-4e1e-9020-6ae63ce9e354  
+Subcategory: undefined
+
+<!--14f2b661-8b62-4e1e-9020-6ae63ce9e354_end-->
+
+<!--3d5765c2-e25e-47ca-988a-cf11535a592d_begin-->
+
+#### Durable Functions support for Netherite is ending  
+  
+Opening new support cases that seek assistance for Netherite-enabled apps is blocked.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=489009)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 3d5765c2-e25e-47ca-988a-cf11535a592d  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--3d5765c2-e25e-47ca-988a-cf11535a592d_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -280,31 +280,33 @@ Profiles need more than one endpoint to ensure availability if one of the endpoi
 
 **Impact:** Medium
   
-For more information, see [Traffic Manager Endpoint Types ](https://aka.ms/AA1o0x4)  
+For more information, see [Traffic Manager Endpoint Types](https://aka.ms/AA1o0x4)  
 
 ResourceType: microsoft.network/trafficmanagerprofiles  
 Recommendation ID: 6cd70072-c45c-4716-bf7b-b35c18e46e72  
-Subcategory: BusinessContinuity
+Subcategory: undefined
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_end-->
 
+
 <!--0bbe0a49-3c63-49d3-ab4a-aa24198f03f7_begin-->
 
-#### Add an endpoint configured to "All (World)"  
+#### Add an endpoint configured to All (World)  
   
-For geographic routing, traffic is routed to endpoints in defined regions. When a region fails, there is no pre-defined failover. Having an endpoint where the Regional Grouping is configured to "All (World)" for geographic profiles avoids traffic black holing and guarantees service availability.  
+For geographic routing, traffic is routed to endpoints in defined regions. When a region fails, there is no pre-defined failover. Having an endpoint where the Regional Grouping is configured to All (World) for geographic profiles avoids traffic black holing and guarantees service availability.  
   
 **Potential benefits**: Improve resiliency by avoiding traffic black holes  
 
 **Impact:** High
   
-For more information, see [Manage endpoints in Azure Traffic Manager ](https://aka.ms/Rf7vc5)  
+For more information, see [Manage endpoints in Azure Traffic Manager](https://aka.ms/Rf7vc5)  
 
 ResourceType: microsoft.network/trafficmanagerprofiles  
 Recommendation ID: 0bbe0a49-3c63-49d3-ab4a-aa24198f03f7  
-Subcategory: BusinessContinuity
+Subcategory: undefined
 
 <!--0bbe0a49-3c63-49d3-ab4a-aa24198f03f7_end-->
+
 
 <!--0db76759-6d22-4262-93f0-2f989ba2b58e_begin-->
 
@@ -690,5 +692,41 @@ Recommendation ID: 830e326a-d280-4d4e-887a-884d7d8994ce
 Subcategory: undefined
 
 <!--830e326a-d280-4d4e-887a-884d7d8994ce_end-->
+
+<!--a7ecaaaa-dc86-444b-8aad-e0773d5c2324_begin-->
+
+#### Migrate to TLS 1.2 or above for Application Gateway  
+  
+Support for TLS 1.0 and 1.1 on Azure Application Gateway is retiring. Update the TLS policy for Application Gateway to the latest version.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-Application-Gateway-support-for-TLS-10-and-TLS-11-will-end-by-31-August-2025)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: a7ecaaaa-dc86-444b-8aad-e0773d5c2324  
+Subcategory: undefined
+
+<!--a7ecaaaa-dc86-444b-8aad-e0773d5c2324_end-->
+
+<!--954daefb-e247-4e27-85c6-a212f9df5a53_begin-->
+
+#### Migrate to virtual network flow logs  
+  
+Network security group (NSG) flow logs in Azure Network Watcher is retiring. As part of this retirement, customers will no longer be able to create new NSG flow logs. Migrate to virtual network flow logs in Network Watcher.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-NSG-flow-logs-Retirement)  
+
+ResourceType: microsoft.network/networkwatchers/flowlogs  
+Recommendation ID: 954daefb-e247-4e27-85c6-a212f9df5a53  
+Subcategory: undefined
+
+<!--954daefb-e247-4e27-85c6-a212f9df5a53_end-->
 
 <!--articleBody-->

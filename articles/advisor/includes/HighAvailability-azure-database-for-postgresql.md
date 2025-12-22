@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -122,5 +122,23 @@ Recommendation ID: 2de25da6-5d44-4c0d-8a37-b61f8a65babe
 Subcategory: null
 
 <!--2de25da6-5d44-4c0d-8a37-b61f8a65babe_end-->
+
+<!--73b5a830-9074-4206-8f21-0ca3285b9eee_begin-->
+
+#### Upgrade to higher PostgreSQL versions  
+  
+Upgrade to newer versions for improved performance and support  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Version Policy - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/concepts-version-policy#postgresql-11-support)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 73b5a830-9074-4206-8f21-0ca3285b9eee  
+Subcategory: undefined
+
+<!--73b5a830-9074-4206-8f21-0ca3285b9eee_end-->
 
 <!--articleBody-->
