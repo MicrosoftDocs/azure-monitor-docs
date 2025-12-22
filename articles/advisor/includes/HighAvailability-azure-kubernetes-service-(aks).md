@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -167,5 +167,79 @@ Recommendation ID: b005ecf0-23e2-4279-9ca2-718d1518c9fb
 Subcategory: undefined
 
 <!--b005ecf0-23e2-4279-9ca2-718d1518c9fb_end-->
+
+<!--8aad9adb-cb6a-4ddc-b659-12d1c6ca186a_begin-->
+
+#### Use Fleet Manager auto-upgrade profiles to regularly update clusters  
+  
+Use Azure Kubernetes Fleet Manager to safely update multiple clusters using update runs, auto-upgrade profiles and strategies.  
+  
+**Potential benefits**: Safe and predictable updates of multiple clusters  
+
+**Impact:** Medium
+  
+For more information, see [Automate upgrades of Kubernetes and node images across multiple clusters using Azure Kubernetes Fleet Manager](https://aka.ms/kubernetes-fleet/auto-upgrade)  
+
+ResourceType: microsoft.containerservice/fleets  
+Recommendation ID: 8aad9adb-cb6a-4ddc-b659-12d1c6ca186a  
+Subcategory: undefined
+
+<!--8aad9adb-cb6a-4ddc-b659-12d1c6ca186a_end-->
+
+<!--ec938125-62ef-4dc5-b7b1-257eb8d006d9_begin-->
+
+#### Migrate from NPM for Windows on AKS  
+  
+Customers should explore alternative options for restricting traffic access on Windows clusters, such as:
+Network Security Groups (NSGs) at the node level or Open-source tools like Project Calico.
+Microsoft encourages identifying the best approach for your environment before the retirement date.  
+  
+**Potential benefits**: Ensure secure traffic control on Windows-based AKS clusters  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500273)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: ec938125-62ef-4dc5-b7b1-257eb8d006d9  
+Subcategory: undefined
+
+<!--ec938125-62ef-4dc5-b7b1-257eb8d006d9_end-->
+
+<!--0e15044d-e326-4281-bbe1-1e35b32308ec_begin-->
+
+#### Migrate to Cilium Network Policy  
+  
+Azure Network Policy Manager for Azure Kubernetes Service clusters running Linux nodes is retiring. Migrate to Cilium Network Policy using Azure Container Networking Interface powered by Cilium before the retirement date.  
+  
+**Potential benefits**: Avoid service disruptions and unsupported configurations  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500268)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 0e15044d-e326-4281-bbe1-1e35b32308ec  
+Subcategory: undefined
+
+<!--0e15044d-e326-4281-bbe1-1e35b32308ec_end-->
+
+<!--cc59372b-bd3d-415f-91c1-6c596b5de2fc_begin-->
+
+#### Migrate to Azure Linux 3.0  
+  
+Transition to Azure Linux 3.0 before the retirement date to receive future kernel updates, receive future security improvements, and avoid scaling failures.  
+  
+**Potential benefits**: Avoid service disruptions and unsupported configurations  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500645)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: cc59372b-bd3d-415f-91c1-6c596b5de2fc  
+Subcategory: undefined
+
+<!--cc59372b-bd3d-415f-91c1-6c596b5de2fc_end-->
 
 <!--articleBody-->
