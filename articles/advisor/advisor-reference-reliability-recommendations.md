@@ -18,7 +18,7 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 1. On the **Advisor** dashboard, select the **Reliability** tab.
 
 
-[!INCLUDE [HighAvailability-.recommendationsservice.md](./includes/HighAvailability-.recommendationsservice.md)]
+[!INCLUDE [HighAvailability-recommendationsservice.md](./includes/HighAvailability-recommendationsservice.md)]
 
 [!INCLUDE [HighAvailability-agfood-platform.md](./includes/HighAvailability-agfood-platform.md)]
 
@@ -112,9 +112,9 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
 
-[!INCLUDE [HighAvailability-microsoft.bingsearch.md](./includes/HighAvailability-microsoft.bingsearch.md)]
+[!INCLUDE [HighAvailability-microsoft.bingsearch.md](./includes/HighAvailability-microsoft-bingsearch.md)]
 
-[!INCLUDE [HighAvailability-microsoft.iotsecurity.md](./includes/HighAvailability-microsoft.iotsecurity.md)]
+[!INCLUDE [HighAvailability-microsoft.iotsecurity.md](./includes/HighAvailability-microsoft-iotsecurity.md)]
 
 [!INCLUDE [HighAvailability-playwright-testing.md](./includes/HighAvailability-playwright-testing.md)]
 

@@ -4,13 +4,13 @@ ms.topic: include
 ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
-ms.custom: HighAvailability .RecommendationsService
+ms.custom: HighAvailability RecommendationsService
   
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
   
 ---
   
-## .RecommendationsService  
+## RecommendationsService  
   
 <!--aba0b711-0b25-40d8-9cad-ea3786245252_begin-->
 
