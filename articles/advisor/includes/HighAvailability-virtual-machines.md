@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/11/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -699,5 +699,59 @@ Recommendation ID: 779dbd8a-6102-47d0-b36c-75eb070b86d6
 Subcategory: undefined
 
 <!--779dbd8a-6102-47d0-b36c-75eb070b86d6_end-->
+
+<!--170cd0cd-95f5-4211-987c-9433f3ac0262_begin-->
+
+#### Migrate Standard HDD OS Disks to SSD  
+  
+To improve customer experience and align with current disk usage patterns, Standard HDD OS Disks are retiring. Customers should stop using Standard HDD OS Disks for new virtual machines and migrate existing OS disk workloads to Standard SSD or Premium SSD.  
+  
+**Potential benefits**: Avoid potential service disruption after retirement  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500157)  
+
+ResourceType: microsoft.compute/disks  
+Recommendation ID: 170cd0cd-95f5-4211-987c-9433f3ac0262  
+Subcategory: undefined
+
+<!--170cd0cd-95f5-4211-987c-9433f3ac0262_end-->
+
+<!--81076cd9-e656-4b1a-862b-63f2f40caa87_begin-->
+
+#### Migrate to the newer VM series in the same NC product line  
+  
+Standard_NC24rs_v3 virtual machine size in NCv3-series virtual machines is retiring. Upgrade to the newer VM series in the same NC product line.  
+  
+**Potential benefits**: Avoid service disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/standardnc24rsv3-virtual-machines-will-be-retired-on-march-31st-2025/)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 81076cd9-e656-4b1a-862b-63f2f40caa87  
+Subcategory: undefined
+
+<!--81076cd9-e656-4b1a-862b-63f2f40caa87_end-->
+
+<!--98680ff0-2723-4c8b-9af4-54ce8a3a82d1_begin-->
+
+#### Migrate to Windows Server 2022  
+  
+Kubernetes workloads will no longer be supported with Windows Server 2019 when Kubernetes version 1.32 reaches End of Life (EOL).  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/aks-will-stop-support-for-windows-server-2019-on-march-1-2026/)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 98680ff0-2723-4c8b-9af4-54ce8a3a82d1  
+Subcategory: undefined
+
+<!--98680ff0-2723-4c8b-9af4-54ce8a3a82d1_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Arc-enabled Kubernetes
@@ -65,5 +65,23 @@ Recommendation ID: 988cb7a5-1439-41f5-a07a-a71de67827b5
 Subcategory: undefined
 
 <!--988cb7a5-1439-41f5-a07a-a71de67827b5_end-->
+
+<!--ee99b379-18e9-467c-9b91-2bc8925fa45b_begin-->
+
+#### Migrate to Azure Kubernetes Service on Azure Local v23H2  
+  
+Azure Kubernetes Service's current architecture on Windows Server 2019 and Windows Server 2022 is retiring. Replace existing Azure Kubernetes Service clusters on Windows Server 2019, Windows Server 2022 or Azure Local, version 22H2 with Azure Kubernetes Service on Azure Local, version 23H2 or later.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485893)  
+
+ResourceType: microsoft.kubernetes/connectedclusters  
+Recommendation ID: ee99b379-18e9-467c-9b91-2bc8925fa45b  
+Subcategory: undefined
+
+<!--ee99b379-18e9-467c-9b91-2bc8925fa45b_end-->
 
 <!--articleBody-->

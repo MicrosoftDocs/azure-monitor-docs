@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Container Apps
@@ -119,5 +119,41 @@ Recommendation ID: ce97546e-2d8f-4534-99dd-c5bbb584d568
 Subcategory: undefined
 
 <!--ce97546e-2d8f-4534-99dd-c5bbb584d568_end-->
+
+<!--632a1d5b-bce5-46d7-a059-f4476b40f932_begin-->
+
+#### The public preview add-ons feature in Container Apps are being retired  
+  
+Container Apps running add-ons are going to be deleted along with associated application data. Transition to Azure-managed services, such as Azure Cache for Redis or Azure Database for PostgreSQL if you�re ready to use a production-level service.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485683)  
+
+ResourceType: microsoft.app/containerapps  
+Recommendation ID: 632a1d5b-bce5-46d7-a059-f4476b40f932  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--632a1d5b-bce5-46d7-a059-f4476b40f932_end-->
+
+<!--ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31_begin-->
+
+#### Transition to Azure managed services or open-source quick starts  
+  
+The public preview add-ons feature in Azure Container Apps is retiring. Move to Azure managed services (e.g., Azure Cache for Redis, Azure Database for PostgreSQL) or use open source quickstarts for dev/test purposes.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485683)  
+
+ResourceType: microsoft.app/containerapps  
+Recommendation ID: ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31  
+Subcategory: undefined
+
+<!--ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31_end-->
 
 <!--articleBody-->
