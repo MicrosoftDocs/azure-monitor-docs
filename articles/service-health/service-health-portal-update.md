@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of affected applications.
 ms.topic: overview
-ms.date: 12/11/2025
+ms.date: 12/22/2025
 ---
 
 # Azure Service Health portal
@@ -27,7 +27,7 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 ### The retention of Service Health events
 Azure Service Health retains all event types in the Health History section of the portal for up to 90 days after they become inactive. These events are archived in the Health History once they're resolved or inactive. You can filter and review them by type, date, and impact.
 > [!NOTE]
-> Service issues are displayed for 90 days in the Portal. They remain in the active tab if status is active or the issue is updated within 90 days and then  moved to the History pane once resolved.
+> The Service issue remains in the portal for 90 days, whether it's active or resolved. It appears in the Active tab while its status is active, and is also added to the History tab after three days. Once resolved, the issue is no longer available in the Active tab and stays in the History tab for the remainder of the 90‑day period.
 >
 > Issues older than 90 days aren't shown, but are stored for a year and can be accessed via an API query.
 
@@ -39,7 +39,7 @@ Azure Service Health retains all event types in the Health History section of th
 For more information, [Service Health notifications - data transitions](service-health-notification-transitions.md).
 
 > [!NOTE]
-> If you use Azure Resource Graph queries to retrieve Service Health events, you might notice a different count compared to the Service Health UI. This outcome is expected. Resource Graph returns one record per subscription ID and tracking ID combination. On the Azure portal, updates are grouped under each tracking ID, so you might see fewer rows.
+> If you use Azure Resource Graph queries to retrieve Service Health events, you might notice a different count compared to the Service Health portal. This outcome is expected. Resource Graph returns one record per subscription ID and tracking ID combination. On the Azure portal, updates are grouped under each tracking ID, so you might see fewer rows.
 >
 > However, all updates for each tracking ID are still available on the **Issue Updates** tab, and the number of unique tracking IDs is the same in both Resource Graph and the Service Health portal.
 
