@@ -24,6 +24,7 @@ A chaos experiment can target a resource in a different region than the experime
 | West US | Available  | Available |
 | North Central US | Available  | Available |
 | Central US | Available  | Available |
+| South Central US | Not Available | Available |
 | West US 2 | Not Available  | Available |
 | West US 3 | Not Available  | Available |
 | Canada Central | Not Available  | Available |
