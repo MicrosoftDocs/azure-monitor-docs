@@ -68,3 +68,4 @@ ms.date: 11/11/2025
 > | Azure Machine Learning | Azure Machine Learning - Preview Features | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Workspace | Azure Machine Learning - Low Priority Virtual Machine | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Kubernetes service | Windows Server 2019 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual machine | Unmanaged Disks | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
