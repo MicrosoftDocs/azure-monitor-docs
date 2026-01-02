@@ -848,7 +848,9 @@ To disable this feature, you should set `disableOfflineStorage = true`.
 
 By default, Azure Monitor exporters use the following path:
 
-`<tempfile.gettempdir()>/Microsoft/AzureMonitor/opentelemetry-python-<your-instrumentation-key>`
+`<tempfile.gettempdir()>/Microsoft-AzureMonitor-<unique-identifier>/opentelemetry-python-<your-instrumentation-key>`
+
+The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. By generating a unique directory for each user context, every user gets their own storage location with proper access permissions.
 
 To override the default directory, you should set `storage_directory` to the directory you want.
 
