@@ -2,7 +2,7 @@
 title: Upgrading from 2.x - Azure Monitor Application Insights Java
 description: Upgrading from Azure Monitor Application Insights Java 2.x
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 10/30/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
 ---
@@ -28,7 +28,7 @@ There are typically no code changes when upgrading to 3.x. The 3.x SDK dependenc
 Add the 3.x Java agent to your Java Virtual Machine (JVM) command-line args, for example:
 
 ```
--javaagent:path/to/applicationinsights-agent-3.7.5.jar
+-javaagent:path/to/applicationinsights-agent-3.7.6.jar
 ```
 
 If you're using the Application Insights 2.x Java agent, just replace your existing `-javaagent:...` with the previous example.
