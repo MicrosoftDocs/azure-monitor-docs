@@ -7,13 +7,13 @@ ms.date: 01/05/2026
 
 # Configure Subscription access to view Security advisories
 
-To access and view Security advisories, you must have the correct role access. This article describes the steps to create tenant or subscription - based access.
+To access and view Security advisories, you must have the correct role access. This article describes the steps to create tenant or subscription-based access.
 
 Subscription‑based access means you can only see Security Advisories that apply to the specific Azure subscription you’re permitted to view.
 
 Tenant-based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
 
-For more information about the roles required to view Security Advisories, including custom roles, refer to [Role Based Access (RBAC) for Sensitive Security](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details).
+
 
 ## Subscription-based access
 
@@ -41,9 +41,11 @@ Select **Access control (IAM)** to manage user roles.
 
 **4. Add the role assignment**
 
- Select **Add role assignment** to assign the necessary roles. <br>Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories. Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
-
 :::image type="content"source="./media/assign-roles/add-role.png"alt-text="A screenshot of menu to add a role."Lightbox="./media/assign-roles/add-role.png":::
+
+ Select **Add role assignment** to assign the necessary roles. <br>Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories.<br> Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
+
+
 
 
 **5. Verify the user roles** 
@@ -128,4 +130,6 @@ On this panel there are three tabs, *Eligible assignments*, *Active assignments*
 1. Sign out and then sign in again.
 1. Confirm the access to the feature they need (for instance viewing tenant-level Security advisories in Service health).
 
+### More information
+[Role Based Access (RBAC) for viewing Sensitive Security information](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details).
 
