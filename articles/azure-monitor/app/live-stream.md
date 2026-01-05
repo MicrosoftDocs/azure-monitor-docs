@@ -116,7 +116,7 @@ Secure the live metrics control channel by enabling [Microsoft Entra authenticat
 | Azure Functions v2               | Supported           | Supported           | Supported           | Supported           | **Not supported**    |
 | Java                             | Supported (V2.0.0+) | Supported (V2.0.0+) | **Not supported**   | Supported (V3.2.0+) | **Not supported**    |
 | Node.js                          | Supported (V1.3.0+) | Supported (V1.3.0+) | Supported (V1.3.0+) | Supported (V1.3.0+) | **Not supported**    |
-| Python                           | Supported (Distro Version 1.6.0+) | **Not supported**   | **Not supported**   | **Not supported**   | **Not supported**    |
+| Python | Supported (Distro Version 1.6.0+) | Supported (Distro version 1.8.2+) | Supported (Distro version 1.0.0+) | Supported (Distro version 1.5.0+) | **Not supported** |
 
 Basic metrics include request, dependency, and exception rate. Performance metrics (performance counters) include memory and CPU. Sample telemetry shows a stream of detailed information for failed requests and dependencies, exceptions, events, and traces.
 
