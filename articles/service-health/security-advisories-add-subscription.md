@@ -45,9 +45,8 @@ Select **Access control (IAM)** to manage user roles.
 
 :::image type="content"source="./media/assign-roles/add-role.png"alt-text="A screenshot of menu to add a role."Lightbox="./media/assign-roles/add-role.png":::
 
-Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories.<br> Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
-
-
+- Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories. 
+- Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
 
 
 **5. Verify the user roles** 
