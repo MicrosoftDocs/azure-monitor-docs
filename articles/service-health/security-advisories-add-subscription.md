@@ -2,7 +2,7 @@
 title: Configure subscriptions for Security advisories
 description: This article describes how to set up and define access to Security advisories through the Azure portal.
 ms.topic: how-to
-ms.date: 12/22/2025
+ms.date: 01/05/2026
 ---
 
 # Configure Subscription access to view Security advisories
@@ -83,7 +83,7 @@ Tenant admin access in Azure refers to the permissions granted to roles that all
 Determine which users or teams require visibility into:
 - Organization-wide security advisories
 - Sensitive advisory details (Summary, Issue Updates, Impacted Resources)
-  >[!NOTE:] Only tenant admin level roles can view tenant scoped security advisories. For more information on who can access Security advisories, see [Who can view Security advisories](/azure/service-health/security-advisories-elevated-access#who-can-view-security-advisories).
+  >[!NOTE] Only tenant admin level roles can view tenant scoped security advisories. For more information on who can access Security advisories, see [Who can view Security advisories](/azure/service-health/security-advisories-elevated-access#who-can-view-security-advisories).
 
 **2. Access the Azure portal**<br> 
 Log into the [Azure portal](https://ms.portal.azure.com/#home) and navigate to the **Microsoft Entra ID** section.
