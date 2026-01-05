@@ -7,14 +7,15 @@ ms.date: 01/05/2026
 
 # Configure Subscription access to view Security advisories
 
+Security incident impacted resources are considered sensitive when they include details that identify affected subscriptions, resources, or configurations. This information is sensitive because it reveals customer’s security posture, enable targeted exploitation, or enable targeted exploitation.<br>
+For these reasons, such details must be shared only with individuals who hold authorized roles. Access must also align with the elevated access requirements defined for Azure Security Advisories.
+
 To access and view Security advisories, you must have the correct role access. This article describes the steps to create tenant or subscription-based access.
 
 Subscription‑based access means you can only see Security Advisories that apply to the specific Azure subscription you’re permitted to view.
 
 Tenant-based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
 
-Security incident impacted resources are considered sensitive when they include details that identify affected subscriptions, resources, or configurations. This information is sensitive because it reveals customer’s security posture, enable targeted exploitation, or enable targeted exploitation.<br>
-For these reasons, such details must be shared only with individuals who hold authorized roles. Access must also align with the elevated access requirements defined for Azure Security Advisories.
 For more information about Role Based Access for sensitive information, see [Role Based Access (RBAC) for viewing Sensitive Security information](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details)
 
 >[!NOTE]
