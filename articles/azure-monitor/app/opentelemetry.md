@@ -78,3 +78,4 @@ The **Azure Container Apps** OpenTelemetry agent automatically collects and expo
 - [Application map in Azure Application Insights](./app-map.md)
 - [Investigate failures, performance, and transactions with Application Insights](./failures-performance-transactions.md)
 - [Live Metrics](./live-stream.md)
+
