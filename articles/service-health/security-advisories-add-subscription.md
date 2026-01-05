@@ -17,7 +17,7 @@ Security incident impacted resources are considered sensitive when they include 
 For these reasons, such details must be shared only with individuals who hold authorized roles. Access must also align with the elevated access requirements defined for Azure Security Advisories.
 For more information about Role Based Access for sensitive information, see [Role Based Access (RBAC) for viewing Sensitive Security information](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details)
 
->[NOTE]
+>[!NOTE]
 > Role Based Access Control (RBAC) access only applies to comms that are marked *Sensitive*, and to view any Impacted Resources for any Security comms.
 
 ## Subscription-based access
