@@ -332,7 +332,7 @@ If these requests are blocked, some Azure Monitor experiences in the portal (for
    **Settings** > **Privacy, search, and services** > **Site permissions** > **All permissions** > **Local network access**.
 
 3. **Enterprise-managed environments**  
-   Administrators can allowlist the Azure portal using the Edge policy [`LocalNetworkAccessAllowedForUrls`](http://deployedge/microsoft-edge-browser-policies/localnetworkaccessallowedforurls).
+   Administrators can allowlist the Azure portal using the Edge policy [`LocalNetworkAccessAllowedForUrls`](/deployedge/microsoft-edge-browser-policies/localnetworkaccessallowedforurls).
 
    Example value (public Azure):
    `https://portal.azure.com`
