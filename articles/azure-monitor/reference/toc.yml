@@ -1351,6 +1351,8 @@ items:
             href: tables/microsoft-containerservice_managedclusters.md
           - name: microsoft.d365customerinsights/instances
             href: tables/microsoft-d365customerinsights_instances.md
+          - name: microsoft.dashboard/dashboard
+            href: tables/microsoft-dashboard_dashboard.md
           - name: microsoft.dashboard/grafana
             href: tables/microsoft-dashboard_grafana.md
           - name: microsoft.databricks/workspaces
@@ -2102,6 +2104,8 @@ items:
             href: tables/apimanagementgatewayllmlog.md
           - name: ApiManagementGatewayLogs
             href: tables/apimanagementgatewaylogs.md
+          - name: ApiManagementGatewayMCPLog
+            href: tables/apimanagementgatewaymcplog.md
           - name: ApiManagementWebSocketConnectionLogs
             href: tables/apimanagementwebsocketconnectionlogs.md
           - name: AppAvailabilityResults
@@ -2958,6 +2962,8 @@ items:
             href: tables/pgsqlpgbouncer.md
           - name: PGSQLPgStatActivitySessions
             href: tables/pgsqlpgstatactivitysessions.md
+          - name: PGSQLQueryStoreQueryText
+            href: tables/pgsqlquerystorequerytext.md
           - name: PGSQLQueryStoreRuntime
             href: tables/pgsqlquerystoreruntime.md
           - name: PGSQLQueryStoreWaits
