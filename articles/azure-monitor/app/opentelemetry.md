@@ -58,7 +58,7 @@ The **.NET** OpenTelemetry implementation uses logging, metrics, and activity AP
 - [Azure Synapse Data Explorer](/azure/synapse-analytics/data-explorer/data-explorer-overview)
 - [Real-Time Intelligence](/fabric/real-time-intelligence/overview)
 
-**Azure Functions** allows exporting log and trace data in OTLP format. It supports telemetry from both the host process and the worker process. When enabled, the data can be sent to any OpenTelemetry-compliant endpoints.
+**Azure Functions** supports OTLP from both the host process and the worker process. When enabled, the data can be sent to any OpenTelemetry-compliant endpoints.
 
 - [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto)
 - [Monitor Azure Functions](/azure/azure-functions/monitor-functions)
