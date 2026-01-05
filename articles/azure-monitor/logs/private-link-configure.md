@@ -332,7 +332,7 @@ If these requests are blocked, some Azure Monitor experiences in the portal (for
    **Settings** > **Privacy, search, and services** > **Site permissions** > **All permissions** > **Local network access**.
 
 3. **Enterprise-managed environments**  
-   Administrators can allowlist the Azure portal using the Edge policy []`LocalNetworkAccessAllowedForUrls`](http://deployedge/microsoft-edge-browser-policies/localnetworkaccessallowedforurls).
+   Administrators can allowlist the Azure portal using the Edge policy [`LocalNetworkAccessAllowedForUrls`](http://deployedge/microsoft-edge-browser-policies/localnetworkaccessallowedforurls).
 
    Example value (public Azure):
    `https://portal.azure.com`
@@ -340,7 +340,7 @@ If these requests are blocked, some Azure Monitor experiences in the portal (for
    If you use a different Azure cloud, use the corresponding portal URL.
 
 > [!NOTE]
-> Azure Monitor Private Link Scope (AMPLS) resolves Azure Monitor endpoints to private IP addresses so portal data queries stay on your private network. Chromium-based browsers treat requests from a public website (the Azure portal) to private network addresses as a sensitive operation and can block them unless Local Network Access is allowed. Allowing this access restores full portal experiences such as Logs and Application Insights investigation views when they need to reach private endpoints.
+> Azure Monitor Private Link Scope (AMPLS) resolves Azure Monitor endpoints to private IP addresses so portal data queries stay on your private network. Chromium-based browsers treat requests from a public website (the Azure portal) to private network addresses as a sensitive operation and can block them unless Local Network Access is allowed. Allowing this access restores full portal experiences such as Logs and Application Insights investigation views when they need to reach private endpoints. For more information, see [New permission prompt for Local Network Access](https://developer.chrome.com/blog/local-network-access).
 
 ### Querying limitation: externaldata operator
 
