@@ -13,6 +13,7 @@ Subscription‑based access means you can only see Security Advisories that appl
 
 Tenant-based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
 
+The list of roles required to view Security Advisories, including custom roles, is described in [Role Based Access (RBAC) for Sensitive Security](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details).
 
 ## Subscription-based access
 
