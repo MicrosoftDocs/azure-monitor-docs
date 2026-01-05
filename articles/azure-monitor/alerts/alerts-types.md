@@ -231,7 +231,7 @@ Dynamic thresholds help you:
 See [dynamic thresholds](./alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
 
 ## Apply advanced machine learning with dynamic thresholds
-[Metric alerts](#metric-alerts) and [log search alerts](#log-search-alerts) can use dynamic thresholds. Dynamic thresholds use advanced machine learning to:
+[Metric alerts](#metric-alerts) and [log search alerts](#log-alerts) can use dynamic thresholds. Dynamic thresholds use advanced machine learning to:
 
 - Learn the historical behavior of log query results.
 - Analyze data over time and identify patterns such as hourly, daily, or weekly patterns.
