@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 11/24/2025
+ms.date: 01/05/2026
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -41,6 +41,7 @@ Microsoft.ApiManagement/service
 
 - [APIMDevPortalAuditDiagnosticLog](./tables/apimdevportalauditdiagnosticlog.md)
 - [ApiManagementGatewayLlmLog](./tables/apimanagementgatewayllmlog.md)
+- [ApiManagementGatewayMCPLog](./tables/apimanagementgatewaymcplog.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
@@ -63,6 +64,7 @@ Microsoft.Web/sites
 - [AppServiceHTTPLogs](./tables/appservicehttplogs.md)
 - [FunctionAppLogs](./tables/functionapplogs.md)
 - [AppServicePlatformLogs](./tables/appserviceplatformlogs.md)
+- [AppServiceAntivirusScanAuditLogs](./tables/appserviceantivirusscanauditlogs.md)
 - [AppServiceIPSecAuditLogs](./tables/appserviceipsecauditlogs.md)
 
 ### Application Gateway for Containers  
@@ -357,6 +359,7 @@ Microsoft.DBForPostgreSQL/flexibleServers
 - [PGSQLAutovacuumStats](./tables/pgsqlautovacuumstats.md)
 - [PGSQLServerLogs](./tables/pgsqlserverlogs.md)
 - [PGSQLPgBouncer](./tables/pgsqlpgbouncer.md)
+- [PGSQLQueryStoreQueryText](./tables/pgsqlquerystorequerytext.md)
 
 ### Azure Database for PostgreSQL Servers  
 
@@ -551,6 +554,12 @@ Microsoft.Insights/AutoscaleSettings
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AutoscaleEvaluationsLog](./tables/autoscaleevaluationslog.md)
 - [AutoscaleScaleActionsLog](./tables/autoscalescaleactionslog.md)
+
+### Azure Monitor Dashboard with Grafana  
+
+Microsoft.Dashboard/dashboard  
+
+- [AzureActivity](./tables/azureactivity.md)
 
 ### Azure Monitor Diagnostics Agents  
 
