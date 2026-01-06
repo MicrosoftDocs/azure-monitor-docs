@@ -48,7 +48,7 @@ Metric alert rules include these features:
 
 * You can use multiple conditions on an alert rule for a single resource.
 * You can add granularity by [monitoring multiple metric dimensions](#narrow-the-target-using-dimensions). 
-* You can use [dynamic thresholds](#apply-advanced-machine-learning-with-dynamic-thresholds), which are driven by machine learning.
+* You can use [dynamic thresholds](#dynamic-thresholds), which are driven by machine learning.
 * You can configure if metric alerts are [stateful or stateless](alerts-overview.md#alerts-and-state). Metric alerts are stateful by default.
 
 The target of the metric alert rule can be:
@@ -70,25 +70,6 @@ To monitor for the same condition on multiple Azure resources, you can use split
 
 You might also decide not to split when you want a condition applied to multiple resources in the scope. For example, you might want to fire an alert if at least five machines in the resource group scope have CPU usage over 80%.
 
-### Apply advanced machine learning with dynamic thresholds
-
-Dynamic thresholds use advanced machine learning to:
-
-- Learn the historical behavior of log query results.
-- Analyze data over time and identify patterns such as hourly, daily, or weekly patterns.
-- Recognize anomalies that indicate possible issues.
-- Calculate the most appropriate thresholds. 
-
-Machine learning continuously uses new data to learn more and make the threshold more accurate. Because the system adapts to the log query results behavior over time, and alerts based on deviations from its pattern, you don't have to know the "right" threshold for each rule.
-
-Dynamic thresholds help you:
-
-- Create scalable alert rules for hundreds of time series with one alert rule. If you have fewer alert rules, you spend less time creating and managing them. Scalable alert rules are especially useful for multiple dimensions or for multiple resources, such as all resources in a subscription.
-- Create rules without having to know what threshold to configure.
-- Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern.
-
-See [dynamic thresholds](./alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
- 
 ### Monitor multiple resources with one alert rule
 
 You can monitor at scale by applying the same metric alert rule to multiple resources of the same type for resources that exist in the same Azure region. Individual notifications are sent for each monitored resource.
@@ -124,27 +105,6 @@ You can specify the scope of monitoring with a single metric alert rule in one o
 * A list of VMs in one Azure region within a subscription.
 * All VMs in one Azure region in one or more resource groups in a subscription.
 * All VMs in one Azure region in a subscription.
-
-### Apply advanced machine learning with dynamic thresholds
-
-Dynamic thresholds use advanced machine learning to:
-
-* Learn the historical behavior of metrics.
-* Identify patterns and adapt to metric changes over time, such as hourly, daily, or weekly patterns.
-* Recognize anomalies that indicate possible service issues.
-* Calculate the most appropriate threshold for the metric.
-
-Machine learning continuously uses new data to learn more and make the threshold more accurate. Because the system adapts to the metrics' behavior over time, and alerts based on deviations from its pattern, you don't have to know the "right" threshold for each metric.
-
-Dynamic thresholds help you:
-
-* Create scalable alerts for hundreds of metric series with one alert rule. If you have fewer alert rules, you spend less time creating and managing alerts rules.
-* Create rules without having to know what threshold to configure.
-* Configure metric alerts by using high-level concepts without extensive domain knowledge about the metric.
-* Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern.
-* Handle noisy metrics (such as machine CPU or memory) and metrics with low dispersion (such as availability and error rate).
-
-See [dynamic thresholds](alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in metric alert rules.
 
 ## <a name="log-alerts"></a>Log search alerts
 
@@ -205,6 +165,10 @@ The target of the log search alert rule can be:
 * A Workspace.
 * A single container of resources, like a resource group or subscription.
 
+## Prometheus alerts
+
+Prometheus alerts are used to monitor metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). Prometheus alert rules are configured as part of [Prometheus rule groups](/azure/azure-monitor/essentials/prometheus-rule-groups). They fire when the result of a PromQL expression resolves to true. Fired Prometheus alerts are displayed and managed like other alert types.
+
 ## Activity log alerts
 
 An activity log alert monitors a resource by checking the activity logs for a new activity log event that matches the defined conditions.
@@ -251,9 +215,26 @@ Although metric alerts tell you there might be a problem, smart detection starts
 
 Smart detection works for web apps hosted in the cloud or on your own servers that generate application requests or dependency data.
 
-## Prometheus alerts
 
-Prometheus alerts are used to monitor metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). Prometheus alert rules are configured as part of [Prometheus rule groups](/azure/azure-monitor/essentials/prometheus-rule-groups). They fire when the result of a PromQL expression resolves to true. Fired Prometheus alerts are displayed and managed like other alert types.
+## Dynamic thresholds
+[Metric alerts](#metric-alerts) and [log search alerts](#log-alerts) can use dynamic thresholds. Dynamic thresholds use advanced machine learning to:
+
+- Learn the historical behavior of log query results.
+- Analyze data over time and identify patterns such as hourly, daily, or weekly patterns.
+- Recognize anomalies that indicate possible issues.
+- Calculate the most appropriate thresholds. 
+
+Machine learning continuously uses new data to learn more and make the threshold more accurate. Because the system adapts to the log query results behavior over time, and alerts based on deviations from its pattern, you don't have to know the "right" threshold for each rule.
+
+Dynamic thresholds help you:
+
+- Create scalable alert rules for hundreds of time series with one alert rule. If you have fewer alert rules, you spend less time creating and managing them. Scalable alert rules are especially useful for multiple dimensions or for multiple resources, such as all resources in a subscription.
+- Create rules without having to know what threshold to configure.
+- Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern.
+
+See [dynamic thresholds](./alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
+
+
 
 ## Next steps
 
