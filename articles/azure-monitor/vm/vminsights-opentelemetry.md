@@ -9,7 +9,7 @@ ms.date: 01/06/2026
 
 [VM insights](./vminsights-overview.md) in Azure Monitor currently stores performance data collected from the client in a Log Analytics workspace and uses this data to populate visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VM insights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
 
-OTel Guest OS metrics are system and process‑level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per‑process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
+OTel guest OS metrics are system and process‑level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per‑process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
 
 
 ## Benefits of OpenTelemetry for VM insights
@@ -27,7 +27,9 @@ Benefits of the new OTel-based collection pipeline include the following:
 
 
 ## When to enable OTel metrics
-Azure Monitor continues to support collection of guest OS metrics in a Log Analytics workspace. OTel‑based Guest OS metrics are an additional option that offers richer insights, faster query performance, and lower cost. It's the right solution when you want a modern, standards‑based pipeline with deeper system visibility.
+Azure Monitor continues to support collection of guest OS metrics in a Log Analytics workspace. OTel‑based guest OS metrics is an additional option that offers richer insights, faster query performance, and lower cost. It's the right solution when you want a modern, standards‑based pipeline with deeper system visibility.
+
+Evaluate your requirements to determine which configuration best fits your needs. Log Analytics workspace-based metrics remain the foundation for customers who need advanced analytics and correlation, while OTel-based metrics open new possibilities for modern VM observability.
 
 | Log Analytics workspace | OTel-based metrics (Preview) |
 |:---|:---|
@@ -35,7 +37,6 @@ Azure Monitor continues to support collection of guest OS metrics in a Log Analy
 | Advanced KQL analytics and log‑metric correlation | Easier onboarding and broader system and process coverage |
 | Mature, fully supported pipeline for operational analytics | Cost‑efficient metric storage with improved query performance |
 
-Evaluate your requirements to determine which configuration best fits your needs. Log Analytics workspace-based metrics remain the foundation for customers who need advanced analytics and correlation, while OTel-based metrics open new possibilities for modern VM observability.
 
 ## Prerequisites
 
@@ -176,7 +177,7 @@ The metrics in the following table are collected by default and at no additional
 | system.disk.operation_time        | Average disk operation time                      |
 
 ### Additional metrics
-The metrics in the following table can be collected by modifying the DCR for the VM as described in [Customize metric collection](#customize-metric-collection). There is an additional cost to collect these metrics. 
+The metrics in the following table can be collected by modifying the DCR for the VM as described in [Customize metric collection](#customize-metric-collection). There's an additional cost to collect these metrics. 
 
 | Metric Name                        | Description                                      |
 |------------------------------------|--------------------------------------------------|
