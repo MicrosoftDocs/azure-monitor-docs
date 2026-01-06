@@ -48,7 +48,7 @@ Metric alert rules include these features:
 
 * You can use multiple conditions on an alert rule for a single resource.
 * You can add granularity by [monitoring multiple metric dimensions](#narrow-the-target-using-dimensions). 
-* You can use [dynamic thresholds](#apply-advanced-machine-learning-with-dynamic-thresholds), which are driven by machine learning.
+* You can use [dynamic thresholds](#dynamic-thresholds), which are driven by machine learning.
 * You can configure if metric alerts are [stateful or stateless](alerts-overview.md#alerts-and-state). Metric alerts are stateful by default.
 
 The target of the metric alert rule can be:
