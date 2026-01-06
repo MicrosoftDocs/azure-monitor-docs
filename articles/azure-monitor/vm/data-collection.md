@@ -18,6 +18,7 @@ Azure Monitor automatically collects host metrics and activity logs from your Az
 
 * For Guest OS metrics, an Azure Monitor workspace where you have at least contributor rights to collect the data you configure. See [[Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md) where you have at least contributor rights to collect the data you configure. 
 * For Guest OS logs, a Log Analytics workspace where you have at least contributor rights to collect the data you configure. See [[Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md) if you don't already have a workspace you can use.
+* The Azure Monitoring Agent requires 700MB of disk space to install. Updating needs an extra 700MB, which is freed after the update completes.
 * [Permissions to create DCR objects](../data-collection/data-collection-rule-create-edit.md#permissions) in the workspace.
 * To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 * See the detailed article for each [data source](#add-data-sources) for any additional prerequisites.
