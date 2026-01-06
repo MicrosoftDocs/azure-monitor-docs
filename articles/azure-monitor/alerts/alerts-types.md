@@ -165,6 +165,10 @@ The target of the log search alert rule can be:
 * A Workspace.
 * A single container of resources, like a resource group or subscription.
 
+## Prometheus alerts
+
+Prometheus alerts are used to monitor metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). Prometheus alert rules are configured as part of [Prometheus rule groups](/azure/azure-monitor/essentials/prometheus-rule-groups). They fire when the result of a PromQL expression resolves to true. Fired Prometheus alerts are displayed and managed like other alert types.
+
 ## Activity log alerts
 
 An activity log alert monitors a resource by checking the activity logs for a new activity log event that matches the defined conditions.
@@ -230,7 +234,7 @@ Dynamic thresholds help you:
 
 See [dynamic thresholds](./alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
 
-## Apply advanced machine learning with dynamic thresholds
+## Dynamic thresholds
 [Metric alerts](#metric-alerts) and [log search alerts](#log-alerts) can use dynamic thresholds. Dynamic thresholds use advanced machine learning to:
 
 - Learn the historical behavior of log query results.
@@ -248,9 +252,7 @@ Dynamic thresholds help you:
 
 See [dynamic thresholds](./alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
 
-## Prometheus alerts
 
-Prometheus alerts are used to monitor metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). Prometheus alert rules are configured as part of [Prometheus rule groups](/azure/azure-monitor/essentials/prometheus-rule-groups). They fire when the result of a PromQL expression resolves to true. Fired Prometheus alerts are displayed and managed like other alert types.
 
 ## Next steps
 
