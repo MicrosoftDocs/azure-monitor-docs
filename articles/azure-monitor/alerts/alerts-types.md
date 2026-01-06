@@ -215,24 +215,6 @@ Although metric alerts tell you there might be a problem, smart detection starts
 
 Smart detection works for web apps hosted in the cloud or on your own servers that generate application requests or dependency data.
 
-### Apply advanced machine learning with dynamic thresholds
-
-Dynamic thresholds use advanced machine learning to:
-
-- Learn the historical behavior of log query results.
-- Analyze data over time and identify patterns such as hourly, daily, or weekly patterns.
-- Recognize anomalies that indicate possible issues.
-- Calculate the most appropriate thresholds. 
-
-Machine learning continuously uses new data to learn more and make the threshold more accurate. Because the system adapts to the log query results behavior over time, and alerts based on deviations from its pattern, you don't have to know the "right" threshold for each rule.
-
-Dynamic thresholds help you:
-
-- Create scalable alert rules for hundreds of time series with one alert rule. If you have fewer alert rules, you spend less time creating and managing them. Scalable alert rules are especially useful for multiple dimensions or for multiple resources, such as all resources in a subscription.
-- Create rules without having to know what threshold to configure.
-- Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern.
-
-See [dynamic thresholds](./alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
 
 ## Dynamic thresholds
 [Metric alerts](#metric-alerts) and [log search alerts](#log-alerts) can use dynamic thresholds. Dynamic thresholds use advanced machine learning to:
