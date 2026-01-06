@@ -61,6 +61,9 @@ For methods other than installing by using the Azure portal, you must have the f
 ## Disk space
 
 This table lists the Azure Monitor Agent disk space requirements. Azure Monitor Agent expects to cache and log data to a local filesystem.
+> [!NOTE]
+> During an Azure Monitor Agent (AMA) upgrade, two versions of the agent temporarily coexist on the system. Because of this, the disk space requirement effectively doubles during the upgrade process.
+> Once the upgrade is completed and the previous version is removed, the disk usage returns to the standard AMA disk requirement.
 
 | Purpose | Environment | Path | Suggested space |
 |:---|:---|:---|:---|
