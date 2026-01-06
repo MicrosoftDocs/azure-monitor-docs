@@ -2,21 +2,40 @@
 title: Migrate to VM insights OpenTelemetry
 description: Learn how to migrate to VM insights OpenTelemetry for enhanced monitoring and observability of your Azure virtual machines.
 ms.topic: concept-article
-ms.date: 01/15/2025
+ms.date: 01/06/2026
 ---
 
 # Migrate to VM insights OpenTelemetry (preview)
 
-[VM insights](./vminsights-overview.md) in Azure Monitor currently uses a Log Analytics workspace to collect client performance data from your virtual machines and to power visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VM insights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
+[VM insights](./vminsights-overview.md) in Azure Monitor currently stores performance data collected from the client in a Log Analytics workspace and uses this data to populate visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VM insights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
+
+OTel Guest OS metrics are system and process‑level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per‑process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
+
 
 ## Benefits of OpenTelemetry for VM insights
 
 Benefits of the new OTel-based collection pipeline include the following:
 
-- Standard system-level metrics such as CPU, memory, disk I/O, and network errors.
-- Per-process metrics such as process uptime, memory, and open file descriptors that weren't previously available in Azure Monitor.
-- Extensibility to non-OS workloads such as MongoDB, Cassandra, and Oracle.
-- Cross-platform consistency with a unified schema across Linux and Windows.
+| Benefit| Description |
+|:---|:---|
+| Unified data model | Consistent metric names and schema across Windows and Linux for easier, reusable queries and dashboards |
+| Richer, simplified counters | More system and process metrics, including per‑process CPU, memory, disk I/O, and consolidation of legacy counters into clearer OTel metrics.
+| Easy onboarding | Collect OTel metrics with minimal setup. |
+| Flexible visualization | Use the Azure portal, Metrics Explorer, or Azure Monitor Dashboards with Grafana. |
+| Cost‑efficient performance | Store metrics in Azure Monitor Workspace instead of Log Analytics ingestion for lower cost and faster queries. |
+
+
+
+## When to enable OTel metrics
+Azure Monitor continues to support collection of guest OS metrics in a Log Analytics workspace. OTel‑based Guest OS metrics are an additional option that offers richer insights, faster query performance, and lower cost. It's the right solution when you want a modern, standards‑based pipeline with deeper system visibility.
+
+| Log Analytics workspace | OTel-based metrics (Preview) |
+|:---|:---|
+| Custom performance counters or extended retention | Standards‑based, unified schema across platforms |
+| Advanced KQL analytics and log‑metric correlation | Easier onboarding and broader system and process coverage |
+| Mature, fully supported pipeline for operational analytics | Cost‑efficient metric storage with improved query performance |
+
+Evaluate your requirements to determine which configuration best fits your needs. Log Analytics workspace-based metrics remain the foundation for customers who need advanced analytics and correlation, while OTel-based metrics open new possibilities for modern VM observability.
 
 ## Prerequisites
 
