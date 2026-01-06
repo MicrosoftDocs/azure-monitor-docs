@@ -2,18 +2,24 @@
 title: Configure subscriptions for Security advisories
 description: This article describes how to set up and define access to Security advisories through the Azure portal.
 ms.topic: how-to
-ms.date: 12/22/2025
+ms.date: 01/06/2026
 ---
 
 # Configure Subscription access to view Security advisories
+<!--
+Security incident impacted resources are considered sensitive when they include details that identify affected subscriptions, resources, or configurations. This information is sensitive because it reveals customer’s security posture, enable targeted exploitation, or enable targeted exploitation.<br>
+For these reasons, such details must be shared only with individuals who hold authorized roles. Access must also align with the elevated access requirements defined for Azure Security Advisories.-->
 
-To access and view Security advisories, you must have the correct role access. This article describes the steps to create tenant or subscription - based access.
+To access and view Security advisories, you must have the correct role access. This article describes the steps to create tenant or subscription-based access.
 
-Subscription‑based access means you can only see Security Advisories that apply to the specific Azure subscription you’re permitted to view.
+- Subscription‑based access means you can only see Security Advisories that apply to the specific Azure subscription you’re permitted to view.
+- Tenant-based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
 
-Tenant-based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
+<!-- For more information about Role Based Access for sensitive information, see [Role Based Access (RBAC) for viewing Sensitive Security information](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details)
 
-
+>[!NOTE]
+> Role Based Access Control (RBAC) access only applies to comms that are marked *Sensitive*, and to view any Impacted Resources for any Security comms.
+-->
 ## Subscription-based access
 
 The following steps explain how to set up a subscription to view Security advisories.
@@ -40,9 +46,12 @@ Select **Access control (IAM)** to manage user roles.
 
 **4. Add the role assignment**
 
- Select **Add role assignment** to assign the necessary roles. <br>Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories. Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
+ Select **Add role assignment** to assign the necessary roles. 
 
 :::image type="content"source="./media/assign-roles/add-role.png"alt-text="A screenshot of menu to add a role."Lightbox="./media/assign-roles/add-role.png":::
+
+- Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories. 
+- Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
 
 
 **5. Verify the user roles** 
@@ -83,7 +92,8 @@ Tenant admin access in Azure refers to the permissions granted to roles that all
 Determine which users or teams require visibility into:
 - Organization-wide security advisories
 - Sensitive advisory details (Summary, Issue Updates, Impacted Resources)
-  >[!NOTE:] Only tenant admin level roles can view tenant scoped security advisories. For more information on who can access Security advisories, see [Who can view Security advisories](/azure/service-health/security-advisories-elevated-access#who-can-view-security-advisories).
+  >[!NOTE] 
+  > Only tenant admin level roles can view tenant scoped security advisories. For more information on who can access Security advisories, see [Who can view Security advisories](/azure/service-health/security-advisories-elevated-access#who-can-view-security-advisories).
 
 **2. Access the Azure portal**<br> 
 Log into the [Azure portal](https://ms.portal.azure.com/#home) and navigate to the **Microsoft Entra ID** section.
@@ -126,4 +136,6 @@ On this panel there are three tabs, *Eligible assignments*, *Active assignments*
 1. Sign out and then sign in again.
 1. Confirm the access to the feature they need (for instance viewing tenant-level Security advisories in Service health).
 
+### More information
+[Impacted resources from Azure Security incidents](impacted-resources-security.md).
 
