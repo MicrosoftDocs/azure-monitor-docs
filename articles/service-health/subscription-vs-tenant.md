@@ -10,7 +10,7 @@ In Azure Service Health, tenant-level and subscription-level access are differen
 
 ## Tenant admin account
 
-In the Azure Service Health portal, a tenant admin role refers to a dedicated instance of Azure Active Directory (Azure AD) that an organization receives when it signs up for a Microsoft cloud service. The tenant is used to manage users, groups, and permissions within the organization. Tenant-level events affect the entire organization, and users with tenant admin access can see them.
+In the Azure Service Health portal, a tenant admin role refers to a dedicated instance of Microsoft Entra ID that an organization receives when it signs up for a Microsoft cloud service. The tenant is used to manage users, groups, and permissions within the organization. Tenant-level events affect the entire organization, and users with tenant admin access can see them.
 
 Tenant admin access in Azure refers to the permissions granted to roles that allow users to manage and view resources at the tenant level. These roles include Global Administrator, Application Administrator, and others. Tenant admin access enables users to manage users, groups, and permissions within the organization, and view tenant-level events in the Azure Service Health portal. 
 

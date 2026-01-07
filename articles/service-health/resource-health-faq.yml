@@ -43,7 +43,7 @@ sections:
           The health status is set to unknown when Resource Health stops receiving information about a specific resource. While this status isn't a definitive indication of the state of the resource, in cases where you're experiencing problems, it might indicate there's an Azure problem.
 
       - question: |
-          How can I get help for a resource that is unavailable?
+          How can I get help for a resource that's unavailable?
         answer: |
           You can submit a support request from the Resource Health pane. You don't need a support agreement with Microsoft to open a request when the resource is unavailable because platform events.
 
@@ -128,7 +128,7 @@ sections:
           - List impacted resources by event ID and subscription or tenant scope.
           - Get details for a specific impacted resource.
           - Query by subscription or tenant depending on your access level.
-          For more information read [Impacted Resources](/rest/api/resourcehealth/impacted-resources/get?view=rest-resourcehealth).
+          For more information, read [Impacted Resources](/rest/api/resourcehealth/impacted-resources/get?view=rest-resourcehealth).
           
 additionalContent: |
 
