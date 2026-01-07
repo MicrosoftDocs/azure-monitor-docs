@@ -101,8 +101,8 @@ After you assign an initiative, you can review and manage compliance for the ini
 
 To see how many virtual machines exist in each of the management groups or subscriptions and their compliance status:
 
-1. Open **Azure Monitor** in the Azure portal.
-2. Select **Virtual machines** > **Overview** > **Other onboarding options**. Under **Enable using policy**, select **Enable**.
+1. Open **Monitor** in the Azure portal.
+2. Select **Insights** > **Virtual machines** > **Overview** > **Other onboarding options**. Under **Enable using policy**, select **Enable**.
 
     :::image type="content" source="media/vminsights-enable-policy/other-onboarding-options.png" lightbox="media/vminsights-enable-policy/other-onboarding-options.png" alt-text="Screenshot that shows other onboarding options page of VM insights with the Enable using policy option.":::
 
