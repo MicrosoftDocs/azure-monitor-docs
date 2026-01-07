@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of affected applications.
 ms.topic: overview
-ms.date: 12/11/2025
+ms.date: 01/07/2026
 ---
 
 # Azure Service Health portal
@@ -119,7 +119,7 @@ For more information, see [Subscription vs. tenant access](subscription-vs-tenan
 
 This distinction ensures that users can effectively manage and monitor Azure services based on their roles and the scope of their responsibilities.
 
-The **Service issues**, **Health advisories**, **Security advisories**, and **Health history** panes show events at both the **Tenant** and **Subscription** levels. For more information about roles, see [Role-Based Access Control (RBAC) for security incident resource impact](impacted-resources-security.md).  
+The **Service issues**, **Health advisories**, **Security advisories**, and **Health history** panes show events at both the **Tenant** and **Subscription** levels. For more information about roles, see [Role-Based Access Control (RBAC) for security advisory resource impact](impacted-resources-security.md).  
 
 :::image type="content" source="media/service-health-portal-update/service-issue-window-2.png" alt-text="A screenshot of the Service issues user interface that highlights Tenant and Subscription checkboxes." lightbox="media/service-health-portal-update/service-issue-window-2.png":::
 
