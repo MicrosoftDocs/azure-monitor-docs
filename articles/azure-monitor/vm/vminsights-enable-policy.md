@@ -80,7 +80,7 @@ The **Parameters** tab includes settings specific to the selected initiative. Th
 | **Optional: List of VM images that have supported Windows OS to add to scope** | Resource ID of Windows VM images to add to the scope. |
 
 ## [Remediation](#tab/remediation)
-The **Remediation** tab lets you create a remediation task to evaluate and enable existing virtual machines in the scope of the initiative assignment. Instead of creating a remediation task at this point, see [Review compliance for a VM insights policy initiative](#review-compliance-for-a-vm-insights-policy-initiative) to perform the remediation after the association has been created.
+The **Remediation** tab lets you create a remediation task to evaluate and enable existing virtual machines in the scope of the initiative assignment. Instead of creating a remediation task at this point, see [Review compliance for a VM insights policy initiative](#review-compliance) to perform the remediation after the association has been created.
 
 ## [Managed identity](#tab/managed-identity)
 The **Managed identity** tab allows you to specify the managed identity that the policies in the initiative will use to perform installation and configuration tasks on the virtual machine. This is different than the managed identity used by the agent installed on the virtual machine, which is specified in the **Parameters** tab.
