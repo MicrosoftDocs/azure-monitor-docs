@@ -20,8 +20,8 @@ This article explains what and where you can view information about your impacte
 ## Role Based Access (RBAC) For Sensitive Security advisory resource impact and sensitive details
 
 [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) helps you manage who has access to Azure resources, what they can do with those resources, and what areas they have access to.<br> 
-Given the sensitive nature of security advisories, role-based access is used to limit the audience of their impacted resource information. <!--
-Along with resource information, Service Health provides the information shown here to users whose resources are impacted from a security advisory: 
+Given the sensitive nature of security advisories, role-based access is used to limit the audience of their impacted resource information.
+Along with resource information, Service Health provides the information shown here to users whose resources are impacted from a security advisory:
 
 Users with the authorized roles shown here can view security impacted resource information and sensitive details such as description, summary, and updates:
 
