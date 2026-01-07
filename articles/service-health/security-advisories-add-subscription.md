@@ -15,7 +15,7 @@ To access and view Security advisories, you must have the correct role access. T
 - Subscription‑based access means you can only see Security Advisories that apply to the specific Azure subscription you’re permitted to view.
 - Tenant-based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
 
-For more information about Role Based Access for sensitive information, see [Role Based Access Control (RBAC) for viewing Sensitive Security information](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details)
+For more information, see [Role Based Access Control (RBAC) for viewing Sensitive Security information](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details).
 
 >[!NOTE]
 > Role Based Access Control (RBAC) access only applies to comms that are marked *Sensitive*, and to view any Impacted Resources for any Security comms.
@@ -55,7 +55,7 @@ Select **Access control (IAM)** to manage user roles.
 
 
 
-Confirm that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels. For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal?branch=main).
+Confirm that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.<br> For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal?branch=main).
 
 <!--
 **5. Verify the user roles** 
