@@ -27,8 +27,8 @@ VM insights policy initiatives install the Azure Monitor agent and configure dat
 
 The following VM insights initiatives are available, depending on the type of virtual machine you want to enable:
 
-- Enable Azure Monitor for VMs with Azure Monitoring Agent(AMA)
-- Enable Azure Monitor for VMSS with Azure Monitoring Agent(AMA)
+- Enable Azure Monitor for VMs with Azure Monitoring Agent (AMA)
+- Enable Azure Monitor for VMSS with Azure Monitoring Agent (AMA)
 - Enable Azure Monitor for Hybrid VMs with AMA
 
 
@@ -69,7 +69,7 @@ The **Parameters** tab includes settings specific to the selected initiative. Th
 |:---|:---|
 | **Enable Processes and Dependencies** | Specify whether to enable collection of process and dependency data supporting the [Map feature](/azure/azure-monitor/vm/vminsights-maps). This should typically be false since this feature is [being retired](./vminsights-maps-retirement.md). |
 | **Bring Your Own User-Assigned Managed Identity** | When enabled, the agent installed on the virtual machine uses a managed identity that you specify. When disabled, a managed identity is automatically created for the region. See [Use Azure Policy to assign managed identities](/entra/identity/managed-identities-azure-resources/how-to-assign-managed-identity-via-azure-policy). |
-| **Restrict Bring Your Own User-Assigned Identity to Subscription** | When enabled, the user assigned identity must exist in the same subscription as the virtual machine. In this case, you must provide *User-Assigned Managed Identity Name* and *User-Assigned Managed Identity Resource Group* parameters. When disabled, the parameter *User Assigned Managed Identity Resource Id* is used instead.|
+| **Restrict Bring Your Own User-Assigned Identity to Subscription** | When enabled, the user assigned identity must exist in the same subscription as the virtual machine. In this case, you must provide *User-Assigned Managed Identity Name* and *User-Assigned Managed Identity Resource Group* parameters. When disabled, the parameter *User Assigned Managed Identity Resource ID* is used instead.|
 | **User-Assigned Managed Identity Resource ID** | Resource ID of the user-assigned managed identity used by the agent installed on the virtual machine when *Restrict Bring Your Own User-Assigned Identity To Subscription* parameter is false. |
 | **User-Assigned Managed Identity Name** | Name of the user-assigned managed identity used by the agent when *Bring Your Own User-Assigned Managed Identity* is true. |
 | **User-Assigned Managed Identity Resource Group** | Resource group of the user-assigned managed identity used by the agent when *Bring Your Own User-Assigned Managed Identity* is true. |
@@ -110,18 +110,18 @@ To see how many virtual machines exist in each of the management groups or subsc
 
     :::image type="content" source="media/vminsights-enable-policy/image.png" lightbox="media/vminsights-enable-policy/image.png" alt-text="Screenshot that shows the VM insights Azure Monitor for VMs Policy Coverage page.":::
 
-The following table describes the compliance information presented on the **Azure Monitor for VMs Policy Coverage** page.
+    The following table describes the compliance information presented on the **Azure Monitor for VMs Policy Coverage** page.
  
-| Function | Description |
-|----------|-------------|
-| **Scope** | Management group or subscription to which the initiative applies. |
-| **My Role** | Your role in the scope. The role can be Reader, Owner, Contributor, or blank if you have access to the subscription but not to the management group to which it belongs. Your role determines which data you can see and whether you can assign policies or initiatives (owner), edit them, or view compliance. |
-| **Total VMs** | Total number of VMs in the scope, regardless of their status. For a management group, this number is the sum total of VMs in all related subscriptions or child management groups. |
-| **Assignment Coverage** | Percentage of VMs covered by the initiative. When you assign the initiative, the scope you select in the assignment could be the scope listed or a subset of it. For instance, if you create an assignment for a subscription (initiative scope) and not a management group (coverage scope), the value of **Assignment Coverage** indicates the VMs in the initiative scope divided by the VMs in coverage scope. In another case, you might exclude some VMs, resource groups, or a subscription from the policy scope. If the value is blank, it indicates that either the policy or initiative doesn't exist or you don't have permission. |
-| **Assignment Status** | **Success**: Azure Monitor Agent or the Log Analytics agent and Dependency agent deployed on all machines in scope.<br>**Warning**: The subscription isn't under a management group.<br>**Not Started**: A new assignment was added.<br>**Lock**: You don't have sufficient privileges to the management group.<br>**Blank**: No VMs exist or a policy isn't assigned. |
-| **Compliant VMs** | Number of VMs that have both Azure Monitor Agent or Log Analytics agent and Dependency agent installed. This field is blank if there are no assignments, no VMs in the scope, or if you don't have the relevant permissions. |
-| **Compliance** | The overall compliance number is the sum of distinct compliant resources divided by the sum of all distinct resources. |
-| **Compliance State** | **Compliant**: All VMs in the scope have Azure Monitor Agent or the Log Analytics agent and Dependency agent deployed to them, or any new VMs in the scope haven't yet been evaluated.<br>**Noncompliant**: There are VMs that aren't enabled and might need remediation.<br>**Not Started**: A new assignment was added.<br>**Lock**: You don't have sufficient privileges to the management group.<br>**Blank**: No policy assigned. |
+    | Function | Description |
+    |----------|-------------|
+    | **Scope** | Management group or subscription to which the initiative applies. |
+    | **My Role** | Your role in the scope. The role can be Reader, Owner, Contributor, or blank if you have access to the subscription but not to the management group to which it belongs. Your role determines which data you can see and whether you can assign policies or initiatives (owner), edit them, or view compliance. |
+    | **Total VMs** | Total number of VMs in the scope, regardless of their status. For a management group, this number is the sum total of VMs in all related subscriptions or child management groups. |
+    | **Assignment Coverage** | Percentage of VMs covered by the initiative. When you assign the initiative, the scope you select in the assignment could be the scope listed or a subset of it. For instance, if you create an assignment for a subscription (initiative scope) and not a management group (coverage scope), the value of **Assignment Coverage** indicates the VMs in the initiative scope divided by the VMs in coverage scope. In another case, you might exclude some VMs, resource groups, or a subscription from the policy scope. If the value is blank, it indicates that either the policy or initiative doesn't exist or you don't have permission. |
+    | **Assignment Status** | **Success**: Azure Monitor Agent or the Log Analytics agent and Dependency agent deployed on all machines in scope.<br>**Warning**: The subscription isn't under a management group.<br>**Not Started**: A new assignment was added.<br>**Lock**: You don't have sufficient privileges to the management group.<br>**Blank**: No VMs exist or a policy isn't assigned. |
+    | **Compliant VMs** | Number of VMs that have both Azure Monitor Agent or Log Analytics agent and Dependency agent installed. This field is blank if there are no assignments, no VMs in the scope, or if you don't have the relevant permissions. |
+    | **Compliance** | The overall compliance number is the sum of distinct compliant resources divided by the sum of all distinct resources. |
+    | **Compliance State** | **Compliant**: All VMs in the scope have Azure Monitor Agent or the Log Analytics agent and Dependency agent deployed to them, or any new VMs in the scope haven't yet been evaluated.<br>**Noncompliant**: There are VMs that aren't enabled and might need remediation.<br>**Not Started**: A new assignment was added.<br>**Lock**: You don't have sufficient privileges to the management group.<br>**Blank**: No policy assigned. |
 
 1. Select the ellipsis (**...**) > **View Compliance**.
 
