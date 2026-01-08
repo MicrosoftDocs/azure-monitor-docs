@@ -6,25 +6,21 @@ ms.date: 05/21/2025
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Azure Monitor pipeline pod placement guide
+# Azure Monitor pipeline pod placement
 
-Azure Monitor pipeline provides native controls for managing how your Azure Monitor pipeline instances are scheduled across Kubernetes cluster nodes. The executionPlacement configuration allows you to:
-
-- Target specific nodes based on their capabilities (e.g., high-resource nodes, specific zones)
-- Control instance distribution to prevent resource contention
-- Enforce isolation policies for high-scale deployments
+Pod placement allows you to manage how your Azure Monitor pipeline instances are scheduled across Kubernetes cluster nodes. This feature allows you to target specific nodes based on their capabilities, control instance distribution to prevent resource contention, and enforce isolation policies for high-scale deployments.
 
 This feature is designed to be platform-agnostic, meaning the configuration model remains consistent regardless of the underlying infrastructure (Kubernetes, VMs, etc.).
 
 ## When to Use Pod Placement 
 
-Consider using executionPlacement configuration if you need to:
+Consider using pod placement configuration for the following capabilities:
 
-- **Ensure performance isolation** in multi-tenant clusters where multiple teams share infrastructure
-- **Target high-capacity nodes** for resource-intensive telemetry workloads
-- **Prevent port exhaustion** by limiting the number of instances per node
-- **Enforce compliance requirements** such as data residency or security zones
-- **Optimize resource utilization** by distributing instances across availability zones
+- **Ensure performance isolation** in multi-tenant clusters where multiple teams share infrastructure.
+- **Target high-capacity nodes** for resource-intensive telemetry workloads.
+- **Prevent port exhaustion** by limiting the number of instances per node.
+- **Enforce compliance requirements** such as data residency or security zones.
+- **Optimize resource utilization** by distributing instances across availability zones.
 
 ## Configuration Model 
 
