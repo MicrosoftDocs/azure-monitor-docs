@@ -974,7 +974,17 @@ items:
     - name: Stream monitoring data to Event Hubs
       href: platform/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline (preview)
-    href: data-collection/edge-pipeline-configure.md
+    items:
+      - name: Overview
+        href: data-collection/pipeline-overview.md
+      - name: Configure
+        href: data-collection/pipeline-configure.md
+      - name: Transformations
+        href: data-collection/pipeline-transformations.md
+      - name: Pod placement
+        href: data-collection/pipeline-pod-placement.md
+      - name: TLS
+        href: data-collection/pipeline-tls.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
