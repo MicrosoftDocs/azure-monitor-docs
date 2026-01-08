@@ -4,7 +4,8 @@ description: Relevant to collecting perf counters in Azure Virtual Machines, VM 
 ms.topic: reference
 ms.date: 11/14/2024
 ms.reviewer: luki
-
+ms.custom:
+  - sfi-ropc-nochange
 ---
 
 # Windows Azure Diagnostics (WAD) extension configuration schema versions and history

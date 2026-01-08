@@ -4,7 +4,7 @@ description: Configuration schema reference for Windows diagnostics extension (W
 ms.topic: reference
 ms.date: 11/14/2024
 ms.reviewer: luki
-
+ms.custom: sfi-guid-flagged
 ---
 
 # Windows diagnostics extension schema
