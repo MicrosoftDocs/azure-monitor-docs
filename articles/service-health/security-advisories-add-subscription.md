@@ -2,12 +2,12 @@
 title: Configure subscriptions for Security advisories
 description: This article describes how to set up and define access to Security advisories through the Azure portal.
 ms.topic: how-to
-ms.date: 01/07/2026
+ms.date: 01/08/2026
 ---
 
 # Configure Subscription access to view Security advisories
 
-Security incident impacted resources are considered sensitive when they include details that identify affected subscriptions, resources, or configurations. This information is sensitive because it reveals customer’s security posture, enable targeted exploitation, or enable targeted exploitation.<br>
+Security advisory impacted resources are considered sensitive when they include details that identify affected subscriptions, resources, or configurations. This information is sensitive because it reveals customer’s security posture, enable targeted exploitation, or enable targeted exploitation.<br>
 For these reasons, such details must be shared only with individuals who hold authorized roles. Access must also align with the elevated access requirements defined for Azure Security Advisories.
 
 To access and view Security advisories, you must have the correct role access. For more information, see [Who can view Security Advisories](/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-3583#who-can-view-security-advisories).
