@@ -387,8 +387,8 @@ The script reports the total VM, VMSSs, or Arc enables servers seen in the subsc
 
 | Resource_ID | Name | Resource_Group | Resource_Type | Install_Type | Extension_Name | AMA_Extension_Installed |  
 |---|---|---|---|---|---|---|
-| 012cb5cf-e1a8-49ee-a484-d40673167c9c | Linux-ama-e2e-debian9  | Linux-AMA-E2E           | VM  | Extension | OmsAgentForLinux      | True  |
-| 8acae35a-454f-4869-bf4f-658189d98516 | test2012-r2-da         | test2012-r2-daAMA-ADMIN | VM  | Extension | MicrosoftMonitorAgent | False |
+| a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 | Linux-ama-e2e-debian9  | Linux-AMA-E2E           | VM  | Extension | OmsAgentForLinux      | True  |
+| b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2 | test2012-r2-da         | test2012-r2-daAMA-ADMIN | VM  | Extension | MicrosoftMonitorAgent | False |
 
 ## Step 4 Uninstalls the inventory
 This script iterates through the list of VM, Virtual Machine Scale Sets, and Arc enabled servers and uninstalls the legacy agent. You can't remove the agent if it isn't running. 
