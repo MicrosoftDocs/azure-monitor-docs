@@ -6,7 +6,7 @@ ms.date: 01/09/2026
 
 ---
 
-# Create Service Health alerts in the Azure portal
+# Create Service Health alerts
 
 
 This article provides a step-by-step guide on how to configure alerts for Azure Service Health notifications through the Azure portal.  
@@ -51,13 +51,17 @@ For information on how to configure service health notification alerts by using 
 
 :::image type="content"source="media/alerts-activity-log-service-notifications/home-service-health.png"alt-text="A screenshot of Azure portal with link to open Service Health."Lightbox="media/alerts-activity-log-service-notifications/home-service-health.png":::
 
-2. In the **Service Issues** panel, select **Create service health alert** to open a new window where you fill in the information required to create the alert. On this panel you set up:
+2. In the **Service Issues** panel, select **Create service health alert** to open a new window where you fill in the information required to create the alert. 
+
+:::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
+
+On this panel you set up:
     - **Scope** - select the scope level by *subscription*.
     - **Condition** - select the *Services*, *Regions* and *Event types* from the drop-down menus.
     - **Details** - select the *Resource group* and then create an *Alert rule name*.
     - **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
     
-:::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
+
 
 3. Select **Create** to finish the alert, or if you want to add more detailed information for the service health alert, select **Advanced Options** which opens the page **Create an alert rule** where you can start entering your data.
 
@@ -68,7 +72,50 @@ For information on how to configure service health notification alerts by using 
 
 ### Create Advanced options
 
+Advanced Options do not change what Service Health events exist, they only control which events you are notified about and how notifications are delivered.
+The Advanced Options section lets you control how your Service Health alert behaves. Use these settings to choose which events trigger alerts and how notifications are delivered. This section show all the options available.
 
+#### Scope
+When you select Advanced options the Scope tab opens first. 
+
+On this tab select the *Scope level* and *Subscription* from the drop-down menus to start.
+:::image type="content"source="media/create-alerts/service-health-alert-scope.png"alt-text="Screenshot of the Scope tab."Lightbox="media/create-alerts/service-health-alert-scope.png":::
+
+#### Condition
+On the Condition tab select the *Services* of service health event this alert rule will monitor.
+
+:::image type="content"source="media/create-alerts/service-health-alert-condition.png"alt-text="Screenshot of the Condition tab."Lightbox="media/create-alerts/service-health-alert-condition.png":::
+
+Select the *Regions* of the service health event you want to monitor from the drop-down menu.
+Select from the *Event types* drop-down menu the types of health events you want to monitor.
+
+#### Actions
+Use the Actions tab to select from existing groups, or create new action groups to set up the actions you want to happen with the alert triggers.
+
+:::image type="content"source="media/create-alerts/service-health-alert-actions.png"alt-text="Screenshot of the Actions tab."Lightbox="media/create-alerts/service-health-alert-actions.png":::
+
+The actions include;
+- email recipients
+- SMS notifications
+- Azure app push notifications
+- Webhook, Logic Apps, Functions or ITSM integrations
+
+:::image type="content"source="media/create-alerts/service-health-alert-actions-02.png"alt-text="Screenshot of the Create an action window."Lightbox="media/create-alerts/service-health-alert-actions-02.png":::
+
+
+#### Details
+
+:::image type="content"source="media/create-alerts/service-health-alert-details.png"alt-text="Screenshot of the Details tab."Lightbox="media/create-alerts/service-health-alert-details.png":::
+
+:::image type="content"source="media/create-alerts/service-health-alert-advanced.png"alt-text="Screenshot of the Advanced settings section."Lightbox="media/create-alerts/service-health-alert-advanced.png":::
+
+#### Tags
+
+:::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
+
+#### Review and create
+
+:::image type="content"source="media/create-alerts/service-health-alert-final.png"alt-text="Screenshot of the Review and create tab."Lightbox="media/create-alerts/service-health-alert-final.png":::
 
 
 
