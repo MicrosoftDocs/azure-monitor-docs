@@ -116,7 +116,7 @@ Select the **Advanced options** to set up your own custom properties to the Aler
 
 #### Tags
 
-This tab is used to select tags and assign the value for them. For more information, see [Learn about tags](./azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab) 
+This tab is used to select tags and assign the value for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab) 
 
 :::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
 
