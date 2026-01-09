@@ -15,7 +15,7 @@ Service Health notifications are stored in the [Azure activity log](../azure-mon
 
 When your alerts are created, you can view them on the Health alerts page. For more information, see [Health alerts](resource-health-alert-monitor-guide.md).
 
-## Key features of Service Health alerts
+## Service Health alerts overview
 
 Alerts are based on the type of notification, affected subscription, tenant directories, services, and regions. They're created using the Azure portal’s Service Health interface. <br>
 You can choose or create an "action group" to define who receives the alert. Alerts are only supported in public clouds within the global region.
@@ -51,17 +51,28 @@ For information on how to configure service health notification alerts by using 
 
 :::image type="content"source="media/alerts-activity-log-service-notifications/home-service-health.png"alt-text="A screenshot of Azure portal with link to open Service Health."Lightbox="media/alerts-activity-log-service-notifications/home-service-health.png":::
 
-2. In the **Service Issues** panel, select **Create service health alert** to open a new window where you fill in the information required to create the alert. Follow the steps in the [create a new alert rule wizard](/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log#create-or-edit-an-alert-rule-from-the-portal-home-page).
+2. In the **Service Issues** panel, select **Create service health alert** to open a new window where you fill in the information required to create the alert. On this panel you set up:
+    - **Scope** - select the scope level by *subscription*.
+    - **Condition** - select the *Services*, *Regions* and *Event types* from the drop-down menus.
+    - **Details** - select the *Resource group* and then create an *Alert rule name*.
+    - **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
     
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
 
-To add more detailed information for the service health alert, select **Advanced Options** which opens the page **Create an alert rule**. This page is where you can start entering your data.
+3. Select **Create** to finish the alert, or if you want to add more detailed information for the service health alert, select **Advanced Options** which opens the page **Create an alert rule** where you can start entering your data.
 
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png"alt-text="Screenshot of the Create service health alert command."Lightbox="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png":::
 
 > [!NOTE]
 > The option to create a Service Health alert is available on all the panels except Billing.
 
+### Create Advanced options
+
+
+
+
+
+<!--
 ### Create a tenant-level alert
 >[!IMPORTANT]
 >The option to select a tenant directory is currently in preview mode.
@@ -78,12 +89,12 @@ Under the **Details** tab, select the subscription and resource group where the 
 Learn how to [Configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md). 
 
 For information on the webhook schema for activity log alerts, see [Webhooks for Azure activity log alerts](../azure-monitor/alerts/activity-log-alerts-webhook.md).
-
+-->
 > [!NOTE] 
 > You can also create an alert at the tenant level. See [Create tenant level service health alerts (preview)](../azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts.md).
 
-## Next steps
-- Learn about [best practices for setting up Azure Service Health alerts](https://learn-video.azurefd.net/vod/player?id=771688cf-0348-44c4-ba48-f36bcd0aba3f).
+## More information
+- Watch a video about [best practices for setting up Azure Service Health alerts](https://learn-video.azurefd.net/vod/player?id=771688cf-0348-44c4-ba48-f36bcd0aba3f).
 - Learn how to [setup mobile push notifications for Azure Service Health](https://learn-video.azurefd.net/vod/player?id=4a3171ca-2104-4447-8f4b-c4d27f6dfe96).
 - Learn how to [configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md).
 - Learn about [service health notifications](service-notifications.md).
