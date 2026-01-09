@@ -12,7 +12,7 @@ Policies and policy initiatives provide a method to enable logging at scale with
 
 ## Use log category groups
 
-Log category groups group together similar types of logs. Category groups make it easy to refer to multiple logs in a single command.
+Log category groups contain similar types of logs. Category groups make it easy to refer to multiple logs in a single command.
 
 The `allLogs` category group contains all of the logs. The `audit` category group includes all audit logs.
 

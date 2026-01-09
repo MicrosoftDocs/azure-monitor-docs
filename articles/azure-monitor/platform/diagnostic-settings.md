@@ -189,7 +189,7 @@ To create or edit a diagnostic setting by using the Azure Monitor REST API, see 
 ---
 
 > [!WARNING]
-> When you create or update diagnostic settings for a storage account or an Event Hubs namespace, you can't select that account or namespace a destination for the resource logs or metrics data. This limitation is by design, because sending resource logs or metrics from a resource to the same resource would generate an infinite loop of generating and writing data.
+> When you create or update diagnostic settings for a storage account or an Event Hubs namespace, you can't select that account or namespace a destination for the resource logs or metrics data. This limitation is by design. Sending resource logs or metrics from a resource to the same resource would generate an infinite loop of generating and writing data.
 >
 > This design applies only to the Azure portal UX layer. If there's truly a need to write data to the same resource and you're willing to accept the associated risks, you can create the diagnostic setting by using Azure PowerShell, the Azure CLI, the REST API, a Resource Manager template, or a supported Microsoft SDK.
 
@@ -241,7 +241,7 @@ Consider the following information for diagnostic settings for Application Insig
 - The destination can't be the same Log Analytics workspace that your Application Insights resource is based on.
 - The Application Insights user can't have access to both workspaces. Set the Log Analytics [access control mode](/azure/azure-monitor/logs/log-analytics-workspace-overview) to **Requires workspace permissions**. Through [Azure RBAC](/azure/azure-monitor/app/resources-roles-access-control), ensure that the user has access to only the Log Analytics workspace that the Application Insights resource is based on.
 
-These steps are necessary because Application Insights accesses data across Application Insight resources, including Log Analytics workspaces, to provide complete end-to-end transaction operations and accurate application maps. Because diagnostic logs use the same table names, duplicate data can appear if the user has access to multiple resources that contain the same data.
+These steps are necessary because Application Insights accesses data across resources to provide complete end-to-end transaction operations and accurate application maps. These resources include Log Analytics workspaces. Because diagnostic logs use the same table names, duplicate data can appear if the user has access to multiple resources that contain the same data.
 
 ## Troubleshooting
 
