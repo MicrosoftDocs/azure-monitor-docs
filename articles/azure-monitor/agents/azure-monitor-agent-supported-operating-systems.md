@@ -71,7 +71,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | SUSE Linux Enterprise Server 15 SP2                         | ✓ |
 | SUSE Linux Enterprise Server 15 SP1                         | ✓ |
 | SUSE Linux Enterprise Server 15                             | ✓ |
-| SUSE Linux Enterprise Server 12                             | ✓ |
+| SUSE Linux Enterprise Server 12 SP5                         | ✓ |
 | Ubuntu 24.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 22.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 20.04 LTS                                            | ✓<sup>2</sup> |
