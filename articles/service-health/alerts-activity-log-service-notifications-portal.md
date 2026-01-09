@@ -56,10 +56,11 @@ For information on how to configure service health notification alerts by using 
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
 
 On this panel you set up:
-    - **Scope** - select the scope level by *subscription*.
-    - **Condition** - select the *Services*, *Regions* and *Event types* from the drop-down menus.
-    - **Details** - select the *Resource group* and then create an *Alert rule name*.
-    - **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
+
+- **Scope** - select the scope level by *subscription*.
+- **Condition** - select the *Services*, *Regions* and *Event types* from the drop-down menus.
+- **Details** - select the *Resource group* and then create an *Alert rule name*.
+- **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
     
 
 
@@ -73,7 +74,7 @@ On this panel you set up:
 ### Create Advanced options
 
 Advanced Options do not change what Service Health events exist, they only control which events you are notified about and how notifications are delivered.
-The Advanced Options section lets you control how your Service Health alert behaves. Use these settings to choose which events trigger alerts and how notifications are delivered. This section show all the options available.
+The Advanced Options section lets you control how your Service Health alert behaves. Use these settings to choose which events trigger alerts and how notifications are delivered. This section shows all the options available.
 
 #### Scope
 When you select Advanced options the Scope tab opens first. 
@@ -105,15 +106,22 @@ The actions include;
 
 #### Details
 
+On this tab you set up the **Project details** by *Subscription* and *Resource group*. 
+Then define the *Alert rule name* for the alert and add a description for more clarification if needed.
+
 :::image type="content"source="media/create-alerts/service-health-alert-details.png"alt-text="Screenshot of the Details tab."Lightbox="media/create-alerts/service-health-alert-details.png":::
 
+Select the **Advanced options** to set up your own custom properties to the Alert rule.
 :::image type="content"source="media/create-alerts/service-health-alert-advanced.png"alt-text="Screenshot of the Advanced settings section."Lightbox="media/create-alerts/service-health-alert-advanced.png":::
 
 #### Tags
 
+This tab is used to select tags and assign the value for them. For more information, see [Learn about tags](./azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab) 
+
 :::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
 
 #### Review and create
+When you have selected everthing this tab shows it all so you can see everything you selected. When everything is as you set it up select **Create** to finish.
 
 :::image type="content"source="media/create-alerts/service-health-alert-final.png"alt-text="Screenshot of the Review and create tab."Lightbox="media/create-alerts/service-health-alert-final.png":::
 
