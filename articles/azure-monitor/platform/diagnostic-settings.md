@@ -201,11 +201,11 @@ Not all Azure services use category groups. If category groups aren't available 
 
 If you do use category groups in a diagnostic setting, you can't select individual category types. Currently, there are two category groups:
 
-- **allLogs**: All categories for the resource.
-- **audit**: All resource logs that record customer interactions with data or the settings of the service. You don't need to select this category group if you select the **allLogs** category group.
+- `allLogs`: All categories for the resource.
+- `audit`: All resource logs that record customer interactions with data or the settings of the service. You don't need to select this category group if you select the `allLogs` category group.
 
 > [!NOTE]
-> Enabling the **audit** category in the diagnostic settings for Azure SQL Database does not activate auditing for the database. To enable database auditing, you have to enable it from the auditing pane for Azure SQL Database.
+> Enabling the `audit` category in the diagnostic settings for Azure SQL Database does not activate auditing for the database. To enable database auditing, you have to enable it from the auditing pane for Azure SQL Database.
 
 ## Metrics limitations
 
