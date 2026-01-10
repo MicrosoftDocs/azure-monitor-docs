@@ -48,7 +48,7 @@ Any destinations that a diagnostic setting uses must exist before you can create
 | [Azure Event Hubs](/azure/event-hubs/) | Stream data to external systems such as non-Microsoft security information and event management (SIEM) solutions and other Log Analytics solutions. | Event hubs must be in the same region as the resource that you're monitoring if the resource is regional. You can't use a [compacted event hub](/azure/event-hubs/log-compaction) because it requires the message to have a partition key, which Azure Monitor doesn't include.<br><br>Diagnostic settings can't access event hubs when virtual networks are enabled. You must enable **Allow trusted Microsoft services** to bypass this firewall setting in event hubs so that the Azure Monitor diagnostic settings service is granted access to your event hub resources.<br><br>The shared access policy for an Event Hubs namespace defines the permissions that the streaming mechanism has. Streaming to event hubs requires `Manage`, `Send`, and `Listen` permissions. To update the diagnostic setting to include streaming, you must have the `ListKey` permission on that Event Hubs authorization rule. |
 | [Azure Monitor partner solutions](/azure/partner-solutions/partners#observability) | Specialized integrations are possible between Azure Monitor and other non-Microsoft monitoring platforms. The solutions vary by partner. | For details, see [Azure Native ISV Services documentation](/azure/partner-solutions/overview). |
 
-## Create a diagnostic setting
+## Methods for creating a diagnostic setting
 
 You can create a diagnostic setting by using any of the following methods.
 
@@ -211,7 +211,7 @@ If you do use category groups in a diagnostic setting, you can't select individu
 
 Not all metrics can be sent to a Log Analytics workspace with diagnostic settings. See the **Exportable** column in the [list of supported metrics](./metrics-supported.md).
 
-Diagnostic settings don't currently support multidimensional metrics. Metrics with dimensions are exported as flattened single-dimensional metrics and aggregated across dimension values. For example, the **IOReadBytes** metric on a blockchain can be explored and charted on a per-node level. When the metric is exported with diagnostic settings, it shows all read bytes for all nodes.
+Diagnostic settings don't currently support multidimensional metrics. Metrics with dimensions are exported as flattened single-dimensional metrics and aggregated across dimension values. For example, the `IOReadBytes` metric on a blockchain can be explored and charted on a per-node level. When the metric is exported with diagnostic settings, it shows all read bytes for all nodes.
 
 To work around the limitations for specific metrics, you can manually extract them by using the [Metrics REST API](/rest/api/monitor/metrics/list). You can then import them into a Log Analytics workspace by using the [Logs Ingestion API](../logs/logs-ingestion-api-overview.md).
 
@@ -219,7 +219,7 @@ To work around the limitations for specific metrics, you can manually extract th
 
 There might be a cost for data that diagnostic settings collect. The cost depends on the destination that you choose and the volume of collected data. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
-Only collect the categories that you need for each service. You might also not want to collect platform metrics from Azure resources, because this data is already being collected in **Metrics**. Configure your diagnostic data to collect metrics only if you need metric data in the workspace for more complex analysis with log queries.
+Collect only the categories that you need for each service. You might also not want to collect platform metrics from Azure resources, because this data is already being collected in **Metrics**. Configure your diagnostic data to collect metrics only if you need metric data in the workspace for more complex analysis with log queries.
 
 Diagnostic settings don't allow granular filtering within a selected category. You can filter data for supported tables in a Log Analytics workspace by using transformations. For details, see [Transformations in Azure Monitor](../data-collection/data-collection-transformations.md).
 
@@ -261,5 +261,5 @@ When a resource is inactive for one hour, the export mechanism backs off to 15 m
 
 ## Related content
 
-- [Migrate diagnostic settings storage retention to Azure Storage lifecycle management](./migrate-to-azure-storage-lifecycle-policy.md)
+- [Migrate from diagnostic settings storage retention to Azure Storage lifecycle management](./migrate-to-azure-storage-lifecycle-policy.md)
 - [Azure Monitor data sources and data collection methods](./platform-logs-overview.md)

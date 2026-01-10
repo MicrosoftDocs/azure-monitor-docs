@@ -13,13 +13,11 @@ ms.reviewer: lualderm
 
 To create a custom policy definition for a resource type that doesn't have a built-in policy, see [Create diagnostic settings at scale by using custom Azure policies](./diagnostic-settings-policy.md).
 
-## Create and use initiatives
+## Assign an initiative or policy
 
 An [initiative](/azure/governance/policy/concepts/initiative-definition-structure) is a collection of policies. Rather than assigning multiple policies to a scope, you can assign a single initiative that includes the various policies you need. You can later add policies to this initiative without changing the assignment.
 
 A set of built-in initiatives is available to help you apply diagnostic settings for various destinations. Each destination type has a unique initiative for the `allLogs` and `audit` category groups. Each initiative contains the entire set of built-in policies for the supported resources.
-
-## Create an assignment
 
 Deploy a built-in initiative or policy for diagnostic settings by using one of the following methods.
 
@@ -279,7 +277,7 @@ The following table describes the parameters for each set of policies and initia
 
 ## Supported resources
 
-Built-in log policies for Log Analytics workspaces, event hubs, and storage accounts exist for the following resources:
+Built-in log policies for Log Analytics workspaces, event hubs, and storage accounts exist for the following resources.
 
 |Resource type|All logs|Audit logs|
 |---|---|---|

@@ -16,7 +16,7 @@ Log category groups contain similar types of logs. Category groups make it easy 
 
 The `allLogs` category group contains all of the logs. The `audit` category group includes all audit logs.
 
-By using a category group, you can define a policy that's dynamically updated as new log categories are added to group.
+By using a category group, you can define a policy that's dynamically updated as new log categories are added to the group.
 
 ## Create a custom policy definition
 
@@ -48,7 +48,7 @@ The script [`Create-AzDiagPolicy`](https://www.powershellgallery.com/packages/Cr
 
 1. The script creates separate folders for each policy definition. Each folder contains three files: `azurepolicy.json`, `azurepolicy.rules.json`, and `azurepolicy.parameters.json`. If you want to create the policy manually in the Azure portal, you can copy and paste the contents of `azurepolicy.json` because it includes the entire policy definition. Use the other two files with PowerShell or the Azure CLI to create the policy definition from a command line.
 
-    The following examples show how to install the policy definition from both PowerShell and the Azure CLI. Each example includes metadata to specify a category of **Monitoring** to group the new policy definition with the built-in policy definitions.
+    The following examples show how to install the policy definition from both PowerShell and the Azure CLI. Each example includes metadata to specify a category of `Monitoring` to group the new policy definition with the built-in policy definitions.
 
     ```azurepowershell
     New-AzPolicyDefinition -name "Deploy Diagnostic Settings for SQL Server database to Log Analytics workspace" -policy .\Apply-Diag-Settings-LA-Microsoft.Sql-servers-databases\azurepolicy.rules.json -parameter .\Apply-Diag-Settings-LA-Microsoft.Sql-servers-databases\azurepolicy.parameters.json -mode All -Metadata '{"category":"Monitoring"}'

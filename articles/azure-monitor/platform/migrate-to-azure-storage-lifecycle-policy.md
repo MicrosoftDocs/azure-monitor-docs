@@ -1,5 +1,5 @@
 ---
-title: Migrate Diagnostic Settings Storage Retention to Azure Storage Lifecycle Management
+title: Migrate from Diagnostic Settings Storage Retention to Azure Storage Lifecycle Management
 description: Learn how to migrate from diagnostic settings storage retention to Azure Storage lifecycle management.
 ms.topic: how-to
 ms.reviewer: lualderm
@@ -11,11 +11,11 @@ ms.date: 11/07/2024
 
 # Migrate from diagnostic settings storage retention to Azure Storage lifecycle management
 
-The *diagnostic settings storage retention* feature is deprecated. All retention functionality for this feature were disabled across all environments on September 30, 2025.
+The *diagnostic settings storage retention* feature is deprecated. All retention functionality for this feature was disabled across all environments on September 30, 2025.
 
 This article walks through migrating from using diagnostic settings storage retention to using [Azure Storage lifecycle management](/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal) for retention.
 
-For logs sent to a Log Analytics workspace, retention is set for each table on the **Tables** page of your workspace. For more information about retention in Log Analytics workspaces, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md).
+For logs sent to a Log Analytics workspace, retention is set for each table on the **Tables** page of your workspace. For more information, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md).
 
 ## Prerequisites
 
