@@ -48,7 +48,7 @@ Any destinations that a diagnostic setting uses must exist before you can create
 | [Azure Event Hubs](/azure/event-hubs/) | Stream data to external systems such as non-Microsoft security information and event management (SIEM) solutions and other Log Analytics solutions. | Event hubs must be in the same region as the resource that you're monitoring if the resource is regional. You can't use a [compacted event hub](/azure/event-hubs/log-compaction) because it requires the message to have a partition key, which Azure Monitor doesn't include.<br><br>Diagnostic settings can't access event hubs when virtual networks are enabled. You must enable **Allow trusted Microsoft services** to bypass this firewall setting in event hubs so that the Azure Monitor diagnostic settings service is granted access to your event hub resources.<br><br>The shared access policy for an Event Hubs namespace defines the permissions that the streaming mechanism has. Streaming to event hubs requires `Manage`, `Send`, and `Listen` permissions. To update the diagnostic setting to include streaming, you must have the `ListKey` permission on that Event Hubs authorization rule. |
 | [Azure Monitor partner solutions](/azure/partner-solutions/partners#observability) | Specialized integrations are possible between Azure Monitor and other non-Microsoft monitoring platforms. The solutions vary by partner. | For details, see [Azure Native ISV Services documentation](/azure/partner-solutions/overview). |
 
-## Methods for creating a diagnostic setting
+## <a name = "create-a-diagnostic-setting"></a>Methods for creating a diagnostic setting
 
 You can create a diagnostic setting by using any of the following methods.
 
