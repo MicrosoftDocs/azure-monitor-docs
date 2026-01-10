@@ -36,9 +36,6 @@ Data collection resumes at the reset time which is a different hour of the day f
 > [!NOTE]
 > The daily cap can't stop data collection at precisely the specified cap level and some excess data is expected. The data collection beyond the daily cap can be particularly large if the workspace is receiving high rates of data. If data is collected above the cap, it's still billed. See [View the effect of the Daily Cap](#view-the-effect-of-the-daily-cap) for a query that is helpful in studying the daily cap behavior.
 
-> [!IMPORTANT]
-> Since late 2024, there are issues with the daily cap being accurately applied during ingestion into Log Analytics workspaces. In some cases, the daily cap may not get triggered even if data is ingested well above the daily cap. Given this, it is recommended that you rely on the myriad other tools available to control and reduce data ingestion such as data filtering and data transformations in your Data Collection Rules. These and more best practices are outlined in [Cost optimization and Azure Monitor](../fundamentals/best-practices-cost.md).
-
 ## When to use a daily cap
 Daily caps are typically used by organizations that are particularly cost conscious. They shouldn't be used as a method to reduce costs, but rather as a preventative measure to ensure that you don't exceed a particular budget. 
 
