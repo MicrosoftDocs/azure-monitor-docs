@@ -6,24 +6,21 @@ ms.date: 05/21/2025
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Azure Monitor Ingress Setup and TLS Configuration
+# Azure Monitor ingress setup and TLS configuration (preview)
 
-## Introduction
-Azure Monitor Pipeline now supports Bring Your Own Certificates (BYOC) for transport security, available in Private Preview. This feature enables organisations to secure data ingestion from external endpoints into Azure Monitor in Kubernetes clusters, ensuring compliance with internal PKI policies and delivering end‑to‑end security for sensitive data.
+Azure Monitor pipeline supports Bring Your Own Certificates (BYOC) for transport security. This enables you to secure data ingestion from external endpoints into your Kubernetes clusters hosted in Azure Monitor, ensuring compliance with internal PKI policies and delivering end‑to‑end security for sensitive data.
 
-BYOC empowers enterprises to maintain control and flexibility over certificate management, meeting regulatory and security requirements while integrating with existing PKI infrastructure. With this release, Azure Monitor Pipeline supports both TLS and mutual TLS (mTLS) for TCP‑based receivers, allowing you to:
+BYOC empowers you to maintain control and flexibility over certificate management, meeting regulatory and security requirements while integrating with existing PKI infrastructure. Azure Monitor pipeline currently supports both TLS and mutual TLS (mTLS) for TCP‑based receivers. This allows you to:
 
 - Provide your own keys and certificates that the Azure Monitor receiver TLS endpoint should use.
 - Configure TLS with your own CA cert and PKI that Azure Monitor should provision certs from for its receiver TLS endpoint.
 
-## Use Case
-Organizations can securely transmit telemetry data from external sources to Azure Monitor, leveraging custom certificates to authenticate endpoints and clients. This approach protects data in transit, supports advanced compliance needs, and integrates seamlessly with enterprise security practices.
 This document provides step‑by‑step guidance for enabling secure communication between clients and Azure Monitor Pipeline in Private Preview.
 
 ## Prerequisites
 
 - Ensure you follow all the documented Azure Monitor Pipeline prerequisites and confirm the cluster meets each requirement.
-- Ensure you have kubectl and az access to the Arc‑enabled cluster context.
+- You must have `kubectl` and az access to the Arc‑enabled cluster context.
 
 ## Use Case: Secure Ingress to Azure Monitor from External Endpoints
 Enable secure data ingestion (e.g., telemetry) from external endpoints into your Kubernetes cluster using Azure Monitor.
@@ -60,54 +57,56 @@ Note: Both secrets must reside in the pipeline namespace for direct referencing 
 
 ## TLS Certificate Management Scenarios
 
-### Scenario 1: cert-manager with External PKI
+There are two methods to manage TLS certificates for Azure Monitor Pipeline:
 
-- Certificates are issued and managed by the customer’s external PKI.
-- cert‑manager automates certificate issuance and renewal via Issuer and Certificate resources.
 
-### Scenario 2: Azure Key Vault (AKV) + Secret Store Extension (SSE)
+- **cert-manager with External PKI**. Certificates are issued and managed by your external PKI, and [cert‑manager](https://cert-manager.io/) automates certificate issuance and renewal using issuer and certificate resources.
+- **Azure Key Vault AKV + Secret Store Extension (SSE)**. Certificates are issued by your external PKI, stored [Key Vault](/azure/key-vault/general/overview), and synchronized to [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) using [Secret Store Extension (SSE)](/azure/azure-arc/kubernetes/secret-store-extension). SSE automates secret population and lifecycle management.
 
-- Certificates are issued by the customer’s external PKI, stored in AKV, and synchronized to Kubernetes Secrets via SSE.
-- SSE automates secret population and lifecycle management.
+## Configure cert-manager with external PKI
 
-## Scenario 1: Setting Up cert-manager with External PKI
+> [!NOTE]
+> Alternatively, you can install the [open source cert‑manager](https://cert-manager.io/docs/installation/).
+> 
+> Supported Kubernetes distributions for cert‑manager extension on Arc-enabled Kubernetes include the following.
+>
+> - VMware Tanzu Kubernetes Grid Multi‑Cloud (TKGm) v1.28.11
+> - Suse Rancher K3s v1.33.3+k3s1
+> - AKS Arc v1.32.7
+ 
 
-You may also install the open‑source cert‑manager instead. See OSS documentation for more details.
+### 1. Install cert-manager for Arc-enabled Kubernetes (CME)
 
-### Step 1: Install cert-manager for Arc-enabled Kubernetes (CME)
+Installing CME will register the cert-manager and trust-manager services on your cluster. 
 
-#### Supported Kubernetes distributions:
+1. Remove any existing instances of cert‑manager and trust‑manager from the cluster. Any open source versions must be removed before installing the Microsoft version.
 
-- VMware Tanzu Kubernetes Grid Multi‑Cloud (TKGm) v1.28.11
-- Suse Rancher K3s v1.33.3+k3s1
-- AKS Arc v1.32.7
+    > [!WARNING]
+    > Between uninstalling the open source version and installing the Arc extension, certificate rotation will not occur, and trust bundles will not be distributed to the new namespaces. Ensure this period is as short as possible to minimize potential security risks. Uninstalling the open source cert-manager and trust-manager does not remove any existing certificates or related resources you created. These will remain usable once the Azure cert-manager is installed.
 
-**Installation Process**
-
-1. Remove prior versions of cert‑manager or trust‑manager:
+    The specific steps for removal will depend on your installation method. Refer to [Uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [Uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling) for detailed guidance. If you used Helm for installation, use the following command to check which namespace cert-manager and trust-manager installed using this command.
 
     `helm list -A | grep -E 'trust-manager|cert-manager'`
 
-2. Uninstall existing cert‑manager extension:
+2. If you have an existing cert-manager extension installed, uninstall it using the following commands:
 
     ```azurecli
-    export RESOURCE_GROUP="Your Resource Group"
-    export CLUSTER_NAME="Your Arc enabled Cluster Name"
-    export LOCATION="Your Arc enabled cluster location"
+    export RESOURCE_GROUP="<resource-group-name>"
+    export CLUSTER_NAME="<arc-enabled-cluster-name>"
+    export LOCATION="<arc-enabled-cluster-location"
     
     NAME_OF_OLD_EXTENSION=$(az k8s-extension list --resource-group ${RESOURCE_GROUP} --cluster-name ${CLUSTER_NAME})
     az k8s-extension delete --name ${NAME_OF_OLD_EXTENSION} --cluster-name ${CLUSTER_NAME} \
       --resource-group ${RESOURCE_GROUP} --cluster-type connectedClusters
     ```
 
-3. Ensure Arc connectivity and extension availability:
+3. If you haven't already connected your cluster to Arc, use the following commands :
 
     ```azurecli
-    az group create --name ${RESOURCE_GROUP} --location ${LOCATION}
-    az connectedk8s 
+    az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --location ${LOCATION}
     ```
 
-4. Install cert‑manager:
+4. Install the cert‑manager extension using the following command:
 
     ```azurecli
     az k8s-extension create \
@@ -119,73 +118,107 @@ You may also install the open‑source cert‑manager instead. See OSS documenta
       --release-train rc
     ```
 
-## Step 2: Create Issuer Resource for External PKI
+## 2. Create issuer resource for external PKI
 
-Example using Let’s Encrypt:
+The following example uses LetsEncrypt.
 
-```yml
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: external-pki-issuer
-  namespace: pipeline
-spec:
-  acme:
-    email: user@example.com
-    profile: tlsserver
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
-    privateKeySecretRef:
-      name: example-issuer-account-key
-    solvers:
-      - http01:
-          ingress:
-            ingressClassName: nginx
-```
+1. Save the following YAML to a file named `external-pki-issuer.yaml`.
+
+    ```yml
+    apiVersion: cert-manager.io/v1
+    kind: Issuer
+    metadata:
+      name: external-pki-issuer
+      namespace: pipeline
+    spec:
+      acme:
+        # You must replace this email address with your own.
+        # Let's Encrypt will use this to contact you about expiring
+        # certificates, and issues related to your account.
+        email: user@example.com
+        # If the ACME server supports profiles, you can specify the profile name here.
+        # See #acme-certificate-profiles below.
+        profile: tlsserver
+        server: https://acme-staging-v02.api.letsencrypt.org/directory
+        privateKeySecretRef:
+          # Secret resource that will be used to store the account's private key.
+          # This is your identity with your ACME provider. Any secret name may be
+          # chosen. It will be populated with data automatically, so generally
+          # nothing further needs to be done with the secret. If you lose this
+          # identity/secret, you will be able to generate a new one and generate
+          # certificates for any/all domains managed using your previous account,
+          # but you will be unable to revoke any certificates generated using that
+          # previous account.
+          name: example-issuer-account-key
+        # Add a single challenge solver, HTTP01 using nginx
+        solvers:
+        - http01:
+            ingress:
+              ingressClassName: nginx
+    ```
+
+2. Apply the YAML to your cluster using the following command.
+
+    ```bash
+    kubectl apply -f external-pki-issuer.yaml
+    ```
 
 ## Step 3: Create Certificate Resource
 
-```yml
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: azmonpipeline-server-cert
-  namespace: pipeline
-spec:
-  secretName: collector-server-tls
-  issuerRef:
-    name: external-pki-issuer
-  commonName: azmonpipeline-receiver.pipeline.svc.cluster.local
-  dnsNames:
-    - azmonpipeline-receiver.pipeline.svc.cluster.local
-```
+1. Save the following YAML to a file named `azmonpipeline-server-cert.yaml`.
 
-cert‑manager will populate the collector-server-tls secret with certificate and key.
+    ```yml
+    apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: azmonpipeline-server-cert
+      namespace: pipeline
+    spec:
+      secretName: collector-server-tls
+      issuerRef:
+        name: external-pki-issuer
+      commonName: azmonpipeline-receiver.pipeline.svc.cluster.local
+      dnsNames: azmonpipeline-receiver.pipeline.svc.cluster.local
+    ```
+
+2. Apply the YAML to your cluster using the following command. cert‑manager will populate the `collector-server-tls` secret with certificate and key.
+
+
+    ```bash
+    kubectl apply -f azmonpipeline-server-cert.yaml
+    ```
+
 
 ## Setup Azure Monitor TLS / mTLS with BYOC
 
 ### Manually set up Azure Monitor
 
-1. Create Kubernetes secrets:
-    - collector-server-tls: server cert + private key
-    - byoc-client-root-ca-secret: client CA cert
-2. (Optional) Use SSE to sync Key Vault certs.
-3. Deploy Azure Monitor Pipeline extension:
+1. In order to provide your own certificate and key for client or the pipeline, it must be stored in a Kubernetes secret. Ensure that the following secrets live in the pipeline namespace so the ARM template can reference them directly.
+  - Kubernetes TLS secret named `collector-server-tls` containing `tls.crt` and `tls.key` for the collector
+  - Opaque secret named `byoc-client-root-ca-secret` that stores `ca.crt`
 
-```azurecli
-az k8s-extension create \
-  --name "azure-monitor" \
-  --extension-type "microsoft.monitor.lab.pipelinecontroller" \
-  --scope cluster \
-  --cluster-type connectedClusters \
-  --cluster-name ${CLUSTER_NAME} \
-  --resource-group ${RESOURCE_GROUP} \
-  --release-train stable \
-  --release-namespace pipeline \
-  --version 0.154.0-25315.2-buddy \
-  --auto-upgrade false
-```
+2. Optionally, leverage the Secret Store Extension (SSE) to automatically synchronize certificates from Azure Key Vault to Kubernetes secrets. This provides a secure and automated way to manage certificate lifecycle without manual secret creation.
 
-ARM template example
+3. Deploy the Azure Monitor Pipeline extension using the following command:
+
+    ```azurecli
+    az k8s-extension create \
+      --name "azure-monitor" \
+      --extension-type "microsoft.monitor.lab.pipelinecontroller" \
+      --scope cluster \
+      --cluster-type connectedClusters \
+      --cluster-name ${CLUSTER_NAME} \
+      --resource-group ${RESOURCE_GROUP} \
+      --release-train stable \
+      --release-namespace pipeline \
+      --version 0.154.0-25315.2-buddy \
+      --auto-upgrade false
+    ```
+
+### Use template to set up Azure Monitor
+
+
+### [ARM](#tab/arm)
 
 ```json
 {
@@ -229,10 +262,9 @@ ARM template example
 }
 ```
 
-Bicep example
+### [Bicep](#tab/bicep)
 
 ```bicep
-
 param name string = 'byoc-sample'
 param location string = resourceGroup().location
 
@@ -277,17 +309,115 @@ resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
 }
 ```
 
-## TLS configuration scenarios
+#### tlsConfigurations
 
-| Scenario | TLS configuration | Status |
-|:---|:---|:---|
-| Default mTLS | – | Q1CY26 Public preview |
-| Default TLS |{name: default-server-tls, mode: serverOnly} | Q1CY26 Public preview |
-| BYOC mTLS | byoc-mtls | Private preview | 
-| BYOC TLS | byoc-server-tls | Private preview | 
-| Default + BYOC (server default, client BYOC) | default-server-byoc-client | Q1CY26 Public preview |
-| Default + BYOC (server BYOC, client default) | byoc-server-default-client | Q1CY26 Public preview |
-| Disable | TLStls-disabled | Private preview |
+- Each entry inside `tlsConfigurations` defines a named bundle of TLS material.
+- Set name to a friendly identifier, such as `byoc-mtls`, and reference that identifier from any receiver in the `tlsConfiguration` field.
+- If the receiver omits `tlsConfiguration`, it uses the platform’s default TLS chain created during bootstrap which covers server-side encryption only.
+- For BYOC, point `tlsCertificate` and `clientCa` to Kubernetes secrets or ConfigMaps and use `subLocation` to pick the correct key - `tls.crt`, `tls.key`, or `ca.crt`.
+- Receivers can share the same TLS configuration, or you can define multiple entries and map each receiver to the appropriate configuration.
+- Modes:
+  - `serverOnly`: encrypted transport only, no client authentication
+  - `mutualTls`: clients must present certificates
+  - `disabled`: TLS is not required and all TLS material is cleared
+
+
+**Default TLS**
+
+```json
+{			
+"name": "default-server-tls",			
+"mode": "serverOnly"			
+}	
+```
+
+**BYOCmTLS**
+
+```json
+{
+  "name": "byoc-mtls",
+  "mode": "mutualTls",
+  "tlsCertificate": {
+    "certificate": {
+      "type": "kubernetesSecret",
+      "location": "collector-server-tls",
+      "subLocation": "tls.crt"
+    },
+    "privateKey": {
+      "type": "kubernetesSecret",
+      "location": "collector-server-tls",
+      "subLocation": "tls.key"
+    }
+  },
+  "clientCA": {
+    "type": "kubernetesSecret",
+    "location": "byoc-client-root-ca-secret",
+    "subLocation": "ca.crt"
+  }
+}
+```
+
+**BYOC TLS**
+
+```json
+{
+  "name": "byoc-server-tls",
+  "mode": "serverOnly",
+  "tlsCertificate": {
+    "certificate": {
+      "type": "kubernetesSecret",
+      "location": "collector-server-tls",
+      "subLocation": "tls.crt"
+    },
+    "privateKey": {
+      "type": "kubernetesSecret",
+      "location": "collector-server-tls",
+      "subLocation": "tls.key"
+    }
+  }
+}
+```
+
+**Default + BYOC mTLS – server: default, clientCA: BYOC**
+
+```json
+{
+  "name": "default-server-byoc-client",
+  "clientCA": {
+    "type": "kubernetesSecret",
+    "location": "custom-client-root-ca",
+    "subLocation": "ca.crt"
+  }
+}
+```
+
+**Default + BYOC mTLS – server: BYOC, clientCA: default**
+
+```json
+{
+  "name": "byoc-server-default-client",
+  "tlsCertificate": {
+    "certificate": {
+      "type": "kubernetesSecret",
+      "location": "collector-server-tls",
+      "subLocation": "tls.crt"
+    },
+    "privateKey": {
+      "type": "kubernetesSecret",
+      "location": "collector-server-tls",
+      "subLocation": "tls.key"
+    }
+  }
+}
+```
+
+**Disable TLS**
+
+```json
+{
+  "name": "tls-disabled",
+  "mode": "disabled"
+}
 
 ## 6. Optional: Encrypt Secrets at Rest with KMS
 

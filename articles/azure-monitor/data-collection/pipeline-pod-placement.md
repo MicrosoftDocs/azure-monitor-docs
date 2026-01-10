@@ -22,18 +22,15 @@ Consider using pod placement configuration for the following capabilities:
 - **Enforce compliance requirements** such as data residency or security zones.
 - **Optimize resource utilization** by distributing instances across availability zones.
 
-## Configuration Model 
-
-## Top-Level Structure 
-
-Add the executionPlacement property to your PipelineGroup resource properties:
+## Configuration
+Pod placement can currently only be configured using ARM/Bicep templates, either when creating a new pipeline group or editing an existing one. Add the `executionPlacement` property to your `pipelineGroups` resource properties using the following structure. If the `executionPlacement` property is omitted from the configuration, then default Kubernetes scheduling behavior applies. The details for each field are described in the next section.
 
 ```json
 {
     "properties": {
     "executionPlacement": {
-        "constraints": \[**...**\],
-        "distribution": {**...**}
+        "constraints": [...],
+        "distribution": {...}
         }
     } 
 }
@@ -41,59 +38,25 @@ Add the executionPlacement property to your PipelineGroup resource properties:
 
 ## Field Definitions 
 
-### executionPlacement
-
-**Type:** Object (optional)
-
-Top-level configuration object for placement preferences. When omitted, default Kubernetes scheduling behavior applies.
-
 ### constraints
 
-**Type:** Array of PlacementConstraint objects (optional)
+The `constraints` field contains a list of `PlacementConstraint` objects that define where your pipeline instances should run. Instances will only be scheduled on nodes that satisfy all specified constraints. Each constraint consists of the properties in the following table.
 
-A list of placement constraints that define **where** your pipeline instances should run. All constraints are required - instances will only be scheduled on nodes that satisfy **all** specified constraints.
-
-**PlacementConstraint Properties:**
 
 | Property | Type | Required | Description |
 |:---|:---|:---|:---|
-| capability | string | Yes | The node attribute/label to match (e.g., zone, gpu, team, pipeline) |
-| operator | string | Yes | Matching logic: In, NotIn, Exists, DoesNotExist |
-| values | array of strings | Conditional | Values to match for the capability. Required for In and NotIn, not used for Exists and DoesNotExist. |
+| `capability` | string | Yes | The node attribute or label to match. Examples include `zone`, `gpu`, `team`, `pipeline`). |
+| `operator` | string | Yes | Matching logic with the following allowed values:<br><br>- `In`: Node must have the capability with one of the specified values.<br>- `NotIn`: Node must not have the capability with any of the specified values.<br>- `Exists`: Node must have any value in the capability. The `values` property isn't used.<br>- `DoesNotExist`: Node must not have the capability.  The `values` property isn't used.|
+| `values` | array of strings | Conditional | Values to match for the capability. Not used for `Exists` and `DoesNotExist`. |
 
- **Supported Operators:**
 
-- **In**: Node must have the capability with one of the specified values. **Requires** values array with at least one value.
-- **NotIn**: Node must not have the capability with any of the specified values. **Requires** values array with at least one value.
-- **Exists**: Node must have the capability (any value). **Does not use** values field - omit it or leave empty.
-- **DoesNotExist**: Node must not have the capability. **Does not use** values field - omit it or leave empty.
+**Examples**
 
-## Validation Rules 
-
-To ensure proper configuration, the following validation rules apply:
-
-## Constraint Validation 
-
-- **capability** field is required and must be a non-empty string
-- **operator** field is required and must be one of: In, NotIn, Exists, DoesNotExist 
-- **values** field requirements depend on the operator:
-    - **Required for In and NotIn**: Must provide a non-empty array of strings o **Not allowed for Exists and DoesNotExist**: Must be omitted or empty
-- Invalid operator/values combinations will result in configuration errors 
- 
-## Distribution Validation
-
-- **maxInstancesPerHost** must be a positive integer
-- Currently only 1 is supported for strict isolation
-- Other values will be rejected during configuration 
- 
-**Example Invalid Configurations:**
 
 ```json
-// INVALID: Using "Exists" with values
 {
     "capability": "gpu",
     "operator": "Exists",
-    "values": ["nvidia"] // ERROR: Exists operator does not accept values 
 }
 
 // INVALID: Using "In" without values 
@@ -105,62 +68,38 @@ To ensure proper configuration, the following validation rules apply:
 // INVALID: Unsupported maxInstancesPerHost value 
 { 
     "distribution": { 
-    "maxInstancesPerHost": 2  // ERROR: Currently only 1 is supported   } 
+    "maxInstancesPerHost": 1  // ERROR: Currently only 1 is supported   } 
 } 
 ```
 
+
+
 ### distribution
 
-**Type:** Object (optional)
-
-Distribution policy for controlling how many instances can run per node.
-
-**DistributionPolicy Properties:**
+The `distribution` field contains the distribution policy for controlling how many instances can run per node. The distribution consists of the properties in the following table.
 
 | Property | Type | Required | Description |
 |:---|:---|:---|:---|
-| maxInstancesPerHost | integer | No | Maximum instances per node for this specific pipelineGroup. Currently supports 1 (strict isolation) or unset (no limit). |
+| `maxInstancesPerHost` | integer | No | Maximum instances per node for this specific pipelineGroup. The only currently allowed value is `1` which indicates strict isolation. If no value is specified, then there is no limit per host. |
 
+The maximum instances per node applies only to replicas of the same pipeline group. Different pipelineGroups can share the same node.
 
-## Important Behaviors 
-
-### Per-PipelineGroup Scoping 
-
-The `maxInstancesPerHost` constraint applies only to replicas of the same pipelineGroup:
-
-- Different pipelineGroups **can** share the same node
-- Multiple replicas of the **same** pipelineGroup cannot share a node (when maxInstancesPerHost: 1) 
-
-**Example:**
-
-Node capacity: Can host multiple pods
-
-PipelineGroup A: maxInstancesPerHost: 1, replicas: 3
-PipelineGroup B: maxInstancesPerHost: 1, replicas: 3
-
-Valid placement:
-    Node 1: PipelineGroupA-replica1 + PipelineGroupB-replica1
-    Node 2: PipelineGroupA-replica2 + PipelineGroupB-replica2
-    Node 3: PipelineGroupA-replica3 + PipelineGroupB-replica3
-
-Invalid placement (violates constraint):
-    Node 1: PipelineGroupA-replica1 + PipelineGroupA-replica2 
     
-Scheduling Enforcement
+## Deployment
+Execution placement is enforced at deployment time. The rules apply immediately when you create or update your pipeline group resource. If placement requirements cannot be satisfied, for example due to a bad configuration, your pipeline group instances will not deploy and will remain in a pending state. Updates to execution placement settings will redeploy instances of your pipeline group with the new constraints.
 
-- **Placement constraints are enforced at deployment time** - rules apply when you create or update your PipelineGroup resource
-- **Constraint violations prevent successful deployment** - if placement requirements cannot be satisfied, your PipelineGroup instances will not deploy and will remain in a pending state
-- **Configuration changes trigger redeployment** - updates to executionPlacement settings in your PipelineGroup will redeploy instances with the new constraints
+## Automatic pod labeling 
 
-## Automatic Pod Labeling 
-
-The operator automatically applies a pipeline label to all pods with the value set to the pipelineGroup name. This label is used internally for anti-affinity enforcement when maxInstancesPerHost: 1 is configured. You don’t need to manually label pods - this is handled automatically.
+A pipeline label is automatically added to all pods with the value set to the pipelineGroup name. This label is used internally for anti-affinity enforcement when maxInstancesPerHost: 1 is configured. You don’t need to manually label pods - this is handled automatically.
 
 ## Configuration Examples 
 
-### Example 1: Default Scheduling 
+### Default Scheduling 
 
-No configuration needed - instances use default Kubernetes scheduling:
+No configuration required. Instances use default Kubernetes scheduling.
+
+- Scheduler uses default node selection
+- Multiple instances can be scheduled on the same node
 
 ```json
 {
@@ -170,14 +109,14 @@ No configuration needed - instances use default Kubernetes scheduling:
 }
 ```
 
-**Behavior:**
+### Node labeling for team isolation 
 
-- Scheduler uses default node selection
-- Multiple instances can be scheduled on the same node
+Target nodes dedicated to your observability team to avoid noisy neighbor issues.
 
-### Example 2: Node Labeling for Team Isolation 
-
-Target nodes dedicated to your observability team to avoid noisy neighbor issues:
+- Only nodes labeled team=observability-team are eligible.
+- Multiple instances can run on the same dedicated node.
+- Label your nodes with the following command:
+  - `kubectl label nodes <node-name> team=observability-team`
 
 ```json
 {
@@ -195,18 +134,15 @@ Target nodes dedicated to your observability team to avoid noisy neighbor issues
 }
 ```
 
-**Behavior:**
 
-- Only nodes labeled team=observability-team are eligible
-- Multiple instances can run on the same dedicated node **Kubernetes Requirement:**
 
-Label your nodes with:
 
-`kubectl label nodes <node-name> team=observability-team`
+### Zone-based placement 
 
-### Example 3: Zone-Based Placement 
+Ensure your pipeline runs only in specific availability zones.
 
-Ensure your pipeline runs only in specific availability zones:
+- Only nodes in zones `us-east-1a` or `us-east-1b` are eligible.
+- Helps meet data residency or compliance requirements.
 
 ```json
 {
@@ -222,15 +158,29 @@ Ensure your pipeline runs only in specific availability zones:
         }
     } 
 }
+```
 
-**Behavior:**
+### Strict isolation with node labeling
 
-- Only nodes in zones us-east-1a or us-east-1b are eligible
-- Helps meet data residency or compliance requirements
+Combine node targeting with strict isolation. Allows exactly one instance per node which is recommended for high scale environments.
 
-### Example 4: Strict Isolation with Node Labeling (Recommended for High-Scale) 
+- Only nodes labeled with `workload-type=telemetry-processing` are eligible.
+- Strict isolation, exactly one instance per eligible node.
+- Prevents port conflicts and ensures resource isolation.
+- Pods remain unscheduled if constraints cannot be satisfied.
+- Label your nodes with the following command:
+  - `kubectl label nodes \<node-name\> workload-type=telemetry-processing`
 
-Combine node targeting with strict isolation - exactly one instance per node:
+
+This strategy is recommended for the following use cases:
+
+- High-throughput environments requiring dedicated resources.
+- Preventing node port exhaustion.
+- Ensuring predictable performance per instance.
+
+> [!NOTE]
+> The pipeline label is automatically applied to pods for anti-affinity enforcement. You only need to label nodes with your custom constraint labels.
+
 
 ```json
 {
@@ -251,28 +201,13 @@ Combine node targeting with strict isolation - exactly one instance per node:
 }
 ```
 
-**Behavior:**
 
-- Only nodes labeled with workload-type=telemetry-processing are eligible
-- Exactly one instance per eligible node (strict isolation)
-- Prevents port conflicts and ensures resource isolation
-- Pods remain unscheduled if constraints cannot be satisfied **Kubernetes Requirement:**
+## High-resource node targeting 
 
-Label your nodes with: 
+Target nodes with high CPU and memory capacity for resource-intensive telemetry processing.
 
-`kubectl label nodes \<node-name\> workload-type=telemetry-processing`
-
-**Note:** The operator automatically applies the pipeline label to pods for anti-affinity enforcement - you only need to label nodes with your custom constraint labels.
-
-**Use Cases:**
-
-- High-throughput environments requiring dedicated resources
-- Preventing node port exhaustion
-- Ensuring predictable performance per instance
-
-## Example 5: High-Resource Node Targeting 
-
-Target nodes with high CPU and memory capacity for resource-intensive telemetry processing:
+- Only nodes with specified high-capacity instance types are eligible.
+- Ensures sufficient resources for high-throughput telemetry workloads.
 
 ```json
 {
@@ -290,14 +225,17 @@ Target nodes with high CPU and memory capacity for resource-intensive telemetry 
 }
 ```
 
+
+### Multiple constraints 
+
+Combine multiple constraints. All constraints must be satisfied for a node to be eligible.
+
 **Behavior:**
 
-- Only nodes with specified high-capacity instance types are eligible
-- Ensures sufficient resources for high-throughput telemetry workloads
-
-### Example 6: Multiple Constraints 
-
-Combine multiple constraints - all must be satisfied:
+- Nodes must be labeled for the observability team.
+- Nodes must be in specified zones.
+- Nodes must not have GPU accelerators.
+- Maximum one instance per eligible node.
 
 ```json
 {
@@ -328,75 +266,54 @@ Combine multiple constraints - all must be satisfied:
 ```
 
 
-**Behavior:**
-
-- Nodes must be labeled for the observability team **AND**
-- Nodes must be in specified zones **AND**
-- Nodes must not have GPU accelerators **AND**
-- Maximum one instance per eligible node
 
 ## Troubleshooting 
 
-### Pods Not Scheduling 
+Perform the following steps to identify and issues if your pipeline instances remain in a pending state.
 
-If your pipeline instances remain in a Pending state:
+1.  Check node availability with the command `kubectl get nodes --show-labels`. Verify that nodes exist with the required labels from your constraints configuration.
 
-1.  **Check node availability:** kubectl get nodes --show-labels
+2.  Check pod events with the command `kubectl describe pod <pod-name>`. Look for scheduling failure messages indicating unmet constraints.
 
-Verify that nodes exist with the required labels from your constraints configuration.
-
-2.  **Check pod events:** kubectl describe pod \<pod-name\>
-
-Look for scheduling failure messages indicating unmet constraints.
-
-3.  **Verify constraint configuration:**
+3.  Verify constraint configuration:
 
     - Ensure capability names match actual node labels.
     - Confirm operator and values are correct.
-    - Check for typos in label names or values
+    - Check for typos in label names or values.
 
-4.  **Check anti-affinity conflicts:**
+4.  If using `maxInstancesPerHost: 1`, ensure you have enough eligible nodes for all replicas. You need at least as many eligible nodes as your replica count. Use the following command kubectl get nodes -l <your-label-selector> to count eligible nodes:
 
-If using maxInstancesPerHost: 1, ensure you have enough eligible nodes for all replicas:
-
-```
-# Count eligible nodes
-kubectl get nodes -l \<your-label-selector\>
-```
-
-You need at least as many eligible nodes as your replica count.
 
 ## Common Issues 
 
-**Issue:** Pods stuck in Pending state with message “0/N nodes are available”
+**Pods stuck in Pending state with message "0/N nodes are available"**
+The cluster doesn’t have enough nodes matching your placement constraints. Correct with one of the following actions.
 
-**Solution:** The cluster doesn’t have enough nodes matching your placement constraints. Either:
+- Add more nodes with the required labels.
+- Adjust your constraints to be less restrictive.
+- Manually reduce the replicas count in your pipeline group configuration.
 
-- Add more nodes with the required labels
-- Adjust your constraints to be less restrictive
-- Manually reduce the replicas count in your PipelineGroup configuration
+**Configuration changes not applied**
 
-**Issue:** Configuration changes not applied
+Execution placement changes require a rolling restart. Check the following.
 
-**Solution:** executionPlacement changes require a rolling restart. Check that:
+- The pipeline group resource was successfully updated.
+- The operator is running and processing changes.
+- Review operator logs for any errors.
 
-- The PipelineGroup resource was successfully updated
-- The operator is running and processing changes
-- Review operator logs for any errors
+**Multiple replicas on same node despite `maxInstancesPerHost: 1`**
 
-**Issue:** Multiple replicas on same node despite maxInstancesPerHost: 1
+This setting only applies within a pipeline group. 
 
-**Solution:** This setting only applies **within a pipelineGroup**. If you see multiple pods:
-
-- Check if they belong to different pipelineGroups (this is expected behavior)
-- Verify the pipeline label is correctly applied to pods
-- Review pod anti-affinity rules in the StatefulSet spec
+- Check if the pods belong to different pipeline groups.
+- Verify the pipeline label is correctly applied to pods.
+- Review pod anti-affinity rules in the `StatefulSet` spec.
 
 ## Kubernetes Implementation Details 
 
-For advanced users and debugging, here’s how `executionPlacement` translates to Kubernetes:
+For advanced users and debugging, following is how `executionPlacement` translates to Kubernetes.
 
-### Node Affinity (constraints) 
+**Node Affinity (constraints) **
 
 ```yaml
 affinity:
@@ -409,7 +326,7 @@ affinity:
                     values: [<values>]
 ```
 
-## Pod Anti-Affinity (maxInstancesPerHost: 1) 
+**Pod Anti-Affinity (maxInstancesPerHost)**
 
 ```yaml
 affinity:
@@ -424,13 +341,7 @@ affinity:
           topologyKey: "kubernetes.io/hostname"
 ```
 
-This ensures pods with the same pipeline label value (i.e., replicas of the same pipelineGroup) cannot be scheduled on the same node.
-
-## Limitations 
-
-- **Binary distribution control:** maxInstancesPerHost currently supports only 1 (strict isolation) or unset (no limit)
-- **No automatic node provisioning:** The system doesn’t automatically add nodes if constraints cannot be satisfied
-- **Kubernetes-specific implementation:** While the API is platform-agnostic, current implementation is Kubernetes-only
+This ensures pods with the same pipeline label value, which are replicas of the same pipelineGroup, cannot be scheduled on the same node.
 
 
 
