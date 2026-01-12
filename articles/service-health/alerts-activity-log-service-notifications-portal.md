@@ -31,7 +31,7 @@ Advanced options allow for more detailed configurations, including webhook notif
 
 
 > [!NOTE]
-> Service Health notifications don't send alerts for resource health events. For more information, refer to [Create Resource Health alerts](resource-health-alert-arm-template-guide.md).
+> Service Health notifications don't send alerts for resource health events. For more information, see [Create Resource Health alerts](resource-health-alert-arm-template-guide.md).
 
 You also can configure who the alert should be sent to:
 
@@ -84,7 +84,7 @@ When you select Advanced options, the Scope tab opens first.
 On this tab, select the *Scope level* and *Subscription* from the drop-down menus to start.
 
 :::image type="content"source="media/create-alerts/service-health-alert-scope.png"alt-text="Screenshot of the Scope tab."Lightbox="media/create-alerts/service-health-alert-scope.png":::
-For more information, see [Create or edit a metric alert rule](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
+For more information, see [Create, or edit a metric alert rule](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
 #### Condition
 On the Condition tab, select the Azure Resource type of *Services* (for example, Action Groups or Activity Log) this alert rule monitors.
 
