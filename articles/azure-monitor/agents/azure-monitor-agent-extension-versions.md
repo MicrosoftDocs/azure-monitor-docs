@@ -19,7 +19,7 @@ We strongly recommend that you always update to the latest version, or opt in to
 
 - Agent versions release once each month. The latest version deploys over a fortnight, and you might see it in some regions before others. You can manually install the release once it is in a VMs region.
 - Automatic rollout follows Azure safe deployment practices and completes in a month and a half following the release month. Deployments are issued in batches, so you might see some of your virtual machines, scale-sets, or Arc-enabled servers on different release during the rollout.
-- Release notes are available during the lates version rollout. 
+- Release notes are available during the latest version rollout. 
 
 
 ## Version details
