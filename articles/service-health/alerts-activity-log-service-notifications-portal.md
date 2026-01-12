@@ -72,8 +72,11 @@ On this tab, select the *Scope level* and *Subscription* from the drop-down menu
 
 :::image type="content"source="media/create-alerts/service-health-alert-scope.png"alt-text="Screenshot of the Scope tab."Lightbox="media/create-alerts/service-health-alert-scope.png":::
 For more information, see [Create, or edit a metric alert rule](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
+
 #### Condition
-On the **Condition** tab, select the Azure Resource type of *Services* (for example, Action Groups or Activity Log) that this alert rule monitors.
+On the **Condition** tab, you configure when the alert rule should trigger by setting up the services, regions and event types.
+
+From the *Services* drop-down menu, select the Azure Resource types (for example, Action Groups or Activity Log) that you want this alert rule to monitor.
 
 :::image type="content"source="media/create-alerts/service-health-alert-condition.png"alt-text="Screenshot of the Condition tab."Lightbox="media/create-alerts/service-health-alert-condition.png":::
 
