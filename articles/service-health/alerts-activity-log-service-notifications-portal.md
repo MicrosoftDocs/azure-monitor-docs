@@ -33,16 +33,6 @@ Advanced options allow for more detailed configurations, including webhook notif
 > [!NOTE]
 > Service Health notifications don't send alerts for resource health events. For more information, see [Create Resource Health alerts](resource-health-alert-arm-template-guide.md).
 
-You also can configure who the alert should be sent to:
-
-- Select an existing action group.
-- Create a new action group that can be used for future alerts.
-> [!NOTE]
-> Service Health Alerts are only supported in public clouds within the global region.
-> 
->For Action Groups to properly function in response to a Service Health Alert, the region of the action group must be set as "Global."
-
-To learn more about action groups, see [Create and manage action groups](../azure-monitor/alerts/action-groups.md).
 
 For information on how to configure service health notification alerts by using Azure Resource Manager templates, see [Resource Manager templates](../azure-monitor/alerts/alerts-activity-log.md).
 
@@ -97,6 +87,7 @@ Use the Actions tab to select from existing groups, or create new action groups 
 
 :::image type="content"source="media/create-alerts/service-health-alert-actions.png"alt-text="Screenshot of the Actions tab."Lightbox="media/create-alerts/service-health-alert-actions.png":::
 
+
 The actions include:
 - email recipients
 - SMS notifications
@@ -105,6 +96,15 @@ The actions include:
 
 :::image type="content"source="media/create-alerts/service-health-alert-actions-02.png"alt-text="Screenshot of the Create an action window."Lightbox="media/create-alerts/service-health-alert-actions-02.png":::
 
+You also can configure who the alert should be sent to:
+
+- Select an existing action group.
+- Create a new action group that can be used for future alerts.
+- 
+> [!NOTE]
+> Service Health Alerts are only supported in public clouds within the global region.
+> 
+>For Action Groups to properly function in response to a Service Health Alert, the region of the action group must be set as "Global."
 
 #### Details
 
