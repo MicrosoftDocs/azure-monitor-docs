@@ -2,16 +2,16 @@
 title: Create Service Health alerts for Azure service notifications
 description: Learn how to use the Azure portal to set up Service Health alerts.
 ms.topic: quickstart
-ms.date: 01/09/2026
+ms.date: 01/12/2026
 
 ---
 
 # Create Service Health alerts
+  
 
+Azure stores Service Health notifications in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md), along with other types of events. To help you quickly find what matters, Azure provides a dedicated Service Health experience where you can easily view these notifications and set up alerts.
 
-This article provides a step-by-step guide on how to configure alerts for Azure Service Health notifications through the Azure portal.  
-
-Service Health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md). Given the large volume of information stored in the activity log, there's a separate user interface to make it easier to view and set up alerts on service health notifications. 
+This article provides a step-by-step guide on how to configure alerts for Azure Service Health notifications through the Azure portal.
 
 When your alerts are created, you can view them on the Health alerts page. For more information, see [Health alerts](resource-health-alert-monitor-guide.md).
 
