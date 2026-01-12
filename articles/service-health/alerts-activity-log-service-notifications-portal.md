@@ -68,14 +68,14 @@ These settings don't change the Service Health events that Microsoft publishes. 
 Use Advanced Options to choose the event types, services, regions, and notification actions for your alert. This section includes all the available settings you can use to customize alert behavior.
 
 #### Scope
-When you select Advanced options, the Scope tab opens first. 
+When you select **Advanced options**, the Scope tab opens first. 
 
 On this tab, select the *Scope level* and *Subscription* from the drop-down menus to start.
 
 :::image type="content"source="media/create-alerts/service-health-alert-scope.png"alt-text="Screenshot of the Scope tab."Lightbox="media/create-alerts/service-health-alert-scope.png":::
 For more information, see [Create, or edit a metric alert rule](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
 #### Condition
-On the Condition tab, select the Azure Resource type of *Services* (for example, Action Groups or Activity Log) this alert rule monitors.
+On the **Condition** tab, select the Azure Resource type of *Services* (for example, Action Groups or Activity Log) that this alert rule monitors.
 
 :::image type="content"source="media/create-alerts/service-health-alert-condition.png"alt-text="Screenshot of the Condition tab."Lightbox="media/create-alerts/service-health-alert-condition.png":::
 
@@ -83,7 +83,7 @@ Select the *Regions* of the service health event you want to monitor from the dr
 Select from the *Event types* drop-down menu the types of health events you want to monitor.
 
 #### Actions
-Use the Actions tab to select from existing groups, or create new action groups to set up the actions you want to happen with the alert triggers. For more information, see [Action groups](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
+Use the **Actions** tab to select from existing groups, or create new action groups to set up the actions you want to happen with the alert triggers. For more information, see [Action groups](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
 
 :::image type="content"source="media/create-alerts/service-health-alert-actions.png"alt-text="Screenshot of the Actions tab."Lightbox="media/create-alerts/service-health-alert-actions.png":::
 
@@ -108,7 +108,7 @@ You also can configure who the alert should be sent to:
 
 #### Details
 
-On this tab, you set up the **Project details** by *Subscription* and *Resource group*. 
+On the **Details** tab, you set up the details of the project by *Subscription* and *Resource group*. 
 Then define the *Alert rule name* for the alert and add a description for more clarification if needed.
 
 :::image type="content"source="media/create-alerts/service-health-alert-details.png"alt-text="Screenshot of the Details tab."Lightbox="media/create-alerts/service-health-alert-details.png":::
@@ -118,12 +118,12 @@ Select the **Advanced options** to set up your own custom properties to the Aler
 
 #### Tags
 
-This tab is used to select tags and assign the value for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
+On the **Tags** tab, select tags and then assign the value for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 
 :::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
 
-#### Review and create
-This pane lets you review everything you selected. When you’re done, choose *Create* to finish and create the alert.
+#### Review + create
+Th **Review + Create** pane lets you review everything you selected. When you’re done, choose *Create* to finish and create the alert.
 
 :::image type="content"source="media/create-alerts/service-health-alert-final.png"alt-text="Screenshot of the Review and create tab."Lightbox="media/create-alerts/service-health-alert-final.png":::
 
