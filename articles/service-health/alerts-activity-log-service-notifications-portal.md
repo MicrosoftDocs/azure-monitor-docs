@@ -82,10 +82,11 @@ Use Advanced Options to choose the event types, services, regions, and notificat
 When you select Advanced options, the Scope tab opens first. 
 
 On this tab, select the *Scope level* and *Subscription* from the drop-down menus to start.
-:::image type="content"source="media/create-alerts/service-health-alert-scope.png"alt-text="Screenshot of the Scope tab."Lightbox="media/create-alerts/service-health-alert-scope.png":::
 
+:::image type="content"source="media/create-alerts/service-health-alert-scope.png"alt-text="Screenshot of the Scope tab."Lightbox="media/create-alerts/service-health-alert-scope.png":::
+For more information, see [Create or edit a metric alert rule](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
 #### Condition
-On the Condition tab, select the *Services* of service health event this alert rule monitors.
+On the Condition tab, select the *Services* (Azure Resource types, for example, Action Groups or Activity Log) of service health event this alert rule monitors.
 
 :::image type="content"source="media/create-alerts/service-health-alert-condition.png"alt-text="Screenshot of the Condition tab."Lightbox="media/create-alerts/service-health-alert-condition.png":::
 
@@ -93,11 +94,11 @@ Select the *Regions* of the service health event you want to monitor from the dr
 Select from the *Event types* drop-down menu the types of health events you want to monitor.
 
 #### Actions
-Use the Actions tab to select from existing groups, or create new action groups to set up the actions you want to happen with the alert triggers.
+Use the Actions tab to select from existing groups, or create new action groups to set up the actions you want to happen with the alert triggers. For more information, see [Action groups](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
 
 :::image type="content"source="media/create-alerts/service-health-alert-actions.png"alt-text="Screenshot of the Actions tab."Lightbox="media/create-alerts/service-health-alert-actions.png":::
 
-The actions include;
+The actions include:
 - email recipients
 - SMS notifications
 - Azure app push notifications
@@ -118,7 +119,7 @@ Select the **Advanced options** to set up your own custom properties to the Aler
 
 #### Tags
 
-This tab is used to select tags and assign the value for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab) 
+This tab is used to select tags and assign the value for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 
 :::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
 
