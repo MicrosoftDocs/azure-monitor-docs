@@ -77,8 +77,8 @@ On the **Condition** tab, select the Azure Resource type of *Services* (for exam
 
 :::image type="content"source="media/create-alerts/service-health-alert-condition.png"alt-text="Screenshot of the Condition tab."Lightbox="media/create-alerts/service-health-alert-condition.png":::
 
-Select the *Regions* of the service health event you want to monitor from the drop-down menu.
-Select from the *Event types* drop-down menu the types of health events you want to monitor.
+From the *Regions* drop-down menu, select the location(s) of the service health event you want to monitor.
+From the *Event types* drop-down menu, select the types of health events you want to monitor.
 
 #### Actions
 Use the **Actions** tab to select from existing groups, or create new action groups to set up the actions you want to happen with the alert triggers. For more information, see [Action groups](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
