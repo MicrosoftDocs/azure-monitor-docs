@@ -24,8 +24,7 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 
 You don't need a detail understanding of the different steps performed by the Azure Monitor pipeline to configure it using the Azure portal. You may need a more detailed understanding of it though if you use another method of installation or if you need to perform more advanced configuration such as transforming the data before it's stored in its destination.
 
-The following tables and diagrams describe the detailed steps and components in the process for collecting data using the pipeline and passing it to the cloud for storage in Azure Monitor. Also included in the tables is the configuration required for each of those components.
-
+The following tables and diagrams describe the detailed steps and components in the process for collecting data using the pipeline and passing it to the cloud for storage in Azure Monitor. 
 | Step | Action | Supporting configuration |
 |:-----|:-------|:-------------------------|
 | 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the edge pipeline receiver and sends data in the expected format for the receiver type. |
