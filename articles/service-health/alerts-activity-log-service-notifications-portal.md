@@ -31,7 +31,7 @@ Advanced options allow for more detailed configurations, including webhook notif
 
 
 > [!NOTE]
-> Service Health notifications don't send alerts for resource health events.
+> Service Health notifications don't send alerts for resource health events. For more information, refer to [Create Resource Health alerts](resource-health-alert-arm-template-guide.md).
 
 You also can configure who the alert should be sent to:
 
