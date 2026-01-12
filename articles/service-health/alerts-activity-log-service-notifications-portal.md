@@ -13,15 +13,13 @@ Azure stores Service Health notifications in the [Azure activity log](../azure-m
 
 This article provides a step-by-step guide on how to configure alerts for Azure Service Health notifications through the Azure portal.
 
-When your alerts are created, you can view them on the Health alerts page. For more information, see [Health alerts](resource-health-alert-monitor-guide.md).
+When your alerts are created, you can view them on the Health alerts page. For more information, see [Resource Health alerts](resource-health-alert-monitor-guide.md). 
 
 ## Service Health alerts overview
 
 Alerts are based on the type of notification, affected subscription, tenant directories, services, and regions. They're created using the Azure portal’s Service Health interface. <br>
-You can choose or create an "action group" to define who receives the alert. Alerts are only supported in public clouds within the global region.
-Advanced options allow for more detailed configurations, including webhook notifications for integration with external systems.
 
- You receive an alert when Azure sends Service Health notifications to your Azure subscription or tenant directory. You can configure the alert based on:
+You receive an alert when Azure sends Service Health notifications to your Azure subscription or tenant directory. You can configure the alert based on:
 
 - The class of service health notification (Service issues, Planned maintenance, Health advisories, Security advisories)
 - The subscription that is affected
@@ -31,7 +29,7 @@ Advanced options allow for more detailed configurations, including webhook notif
 
 
 > [!NOTE]
-> Service Health notifications don't send alerts for resource health events. For more information, see [Create Resource Health alerts](resource-health-alert-arm-template-guide.md).
+> Service Health notifications don't send alerts for resource health events. For more information, see [Health alerts](resource-health-alert-monitor-guide.md).
 
 
 For information on how to configure service health notification alerts by using Azure Resource Manager templates, see [Resource Manager templates](../azure-monitor/alerts/alerts-activity-log.md).
@@ -113,17 +111,17 @@ Then define the *Alert rule name* for the alert and add a description for more c
 
 :::image type="content"source="media/create-alerts/service-health-alert-details.png"alt-text="Screenshot of the Details tab."Lightbox="media/create-alerts/service-health-alert-details.png":::
 
-Select the **Advanced options** to set up your own custom properties to the Alert rule.
+Here you can select **Advanced options** to set up your own *Custom properties* to the alert.
 :::image type="content"source="media/create-alerts/service-health-alert-advanced.png"alt-text="Screenshot of the Advanced settings section."Lightbox="media/create-alerts/service-health-alert-advanced.png":::
 
 #### Tags
 
-On the **Tags** tab, select tags and then assign the value for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
+On the **Tags** tab, you can select tags and then assign a value for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 
 :::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
 
 #### Review + create
-Th **Review + Create** pane lets you review everything you selected. When you’re done, choose *Create* to finish and create the alert.
+Th **Review + Create** tab lets you review everything you selected. When you’re done, select *Create* to finish and create the alert.
 
 :::image type="content"source="media/create-alerts/service-health-alert-final.png"alt-text="Screenshot of the Review and create tab."Lightbox="media/create-alerts/service-health-alert-final.png":::
 
@@ -157,5 +155,5 @@ For information on the webhook schema for activity log alerts, see [Webhooks for
 - Learn about [service health notifications](service-notifications.md).
 - Learn about [notification rate limiting](../azure-monitor/alerts/alerts-rate-limiting.md).
 - Review the [activity log alert webhook schema](../azure-monitor/alerts/activity-log-alerts-webhook.md).
-- Get an [overview of activity log alerts](../azure-monitor/alerts/alerts-overview.md), and learn how to receive alerts.
+- Get an [overview of activity log alerts](../azure-monitor/alerts/alerts-overview.md).
 - Learn more about [action groups](../azure-monitor/alerts/action-groups.md).
