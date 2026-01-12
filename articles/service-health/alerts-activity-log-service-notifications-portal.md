@@ -56,7 +56,7 @@ On this panel you set up:
 
 
 > [!NOTE]
-> The option to create a Service Health alert is not available on the Billing panel.
+> The option to create a Service Health alert isn't available on the Billing panel.
 
 ### Create Advanced options
 
@@ -74,13 +74,13 @@ On this tab, select the *Scope level* and *Subscription* from the drop-down menu
 For more information, see [Create, or edit a metric alert rule](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
 
 #### Condition
-On the **Condition** tab, you configure when the alert rule should trigger by setting up the services, regions and event types.
+On the **Condition** tab, you configure when the alert rule should trigger by setting up the services, regions, and event types.
 
 From the *Services* drop-down menu, select the Azure Resource types (for example, Action Groups or Activity Log) that you want this alert rule to monitor.
 
 :::image type="content"source="media/create-alerts/service-health-alert-condition.png"alt-text="Screenshot of the Condition tab."Lightbox="media/create-alerts/service-health-alert-condition.png":::
 
-From the *Regions* drop-down menu, select the location(s) of the service health event you want to monitor.
+From the *Regions* drop-down menu, select one or more locations of the service health event you want to monitor.
 From the *Event types* drop-down menu, select the types of health events you want to monitor.
 
 #### Actions
