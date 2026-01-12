@@ -58,7 +58,7 @@ For information on how to configure service health notification alerts by using 
 On this panel you set up:
 
 - **Scope** - select the scope level by *subscription*.
-- **Condition** - select the *Services*, *Regions* and *Event types* from the drop-down menus.
+- **Condition** - select the *Services*, *Regions, and *Event types* from the drop-down menus.
 - **Details** - select the *Resource group* and then create an *Alert rule name*.
 - **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
     
@@ -73,17 +73,19 @@ On this panel you set up:
 
 ### Create Advanced options
 
-Advanced Options do not change what Service Health events exist, they only control which events you are notified about and how notifications are delivered.
-The Advanced Options section lets you control how your Service Health alert behaves. Use these settings to choose which events trigger alerts and how notifications are delivered. This section shows all the options available.
+The *Advanced Options* section lets you add more details and adjust how a Service Health alert works.
+These settings don't change the Service Health events that Microsoft publishes. Instead, they control which events you're notified about and how you receive those notifications.
+
+Use Advanced Options to choose the event types, services, regions, and notification actions for your alert. This section includes all the available settings you can use to customize alert behavior.
 
 #### Scope
-When you select Advanced options the Scope tab opens first. 
+When you select Advanced options, the Scope tab opens first. 
 
-On this tab select the *Scope level* and *Subscription* from the drop-down menus to start.
+On this tab, select the *Scope level* and *Subscription* from the drop-down menus to start.
 :::image type="content"source="media/create-alerts/service-health-alert-scope.png"alt-text="Screenshot of the Scope tab."Lightbox="media/create-alerts/service-health-alert-scope.png":::
 
 #### Condition
-On the Condition tab select the *Services* of service health event this alert rule will monitor.
+On the Condition tab, select the *Services* of service health event this alert rule monitors.
 
 :::image type="content"source="media/create-alerts/service-health-alert-condition.png"alt-text="Screenshot of the Condition tab."Lightbox="media/create-alerts/service-health-alert-condition.png":::
 
@@ -99,14 +101,14 @@ The actions include;
 - email recipients
 - SMS notifications
 - Azure app push notifications
-- Webhook, Logic Apps, Functions or ITSM integrations
+- Webhook, Logic Apps, Functions, or ITSM integrations
 
 :::image type="content"source="media/create-alerts/service-health-alert-actions-02.png"alt-text="Screenshot of the Create an action window."Lightbox="media/create-alerts/service-health-alert-actions-02.png":::
 
 
 #### Details
 
-On this tab you set up the **Project details** by *Subscription* and *Resource group*. 
+On this tab, you set up the **Project details** by *Subscription* and *Resource group*. 
 Then define the *Alert rule name* for the alert and add a description for more clarification if needed.
 
 :::image type="content"source="media/create-alerts/service-health-alert-details.png"alt-text="Screenshot of the Details tab."Lightbox="media/create-alerts/service-health-alert-details.png":::
@@ -121,7 +123,7 @@ This tab is used to select tags and assign the value for them. For more informat
 :::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
 
 #### Review and create
-When you have selected everthing this tab shows it all so you can see everything you selected. When everything is as you set it up select **Create** to finish.
+This pane lets you review everything you selected. When you’re done, choose *Create* to finish and create the alert.
 
 :::image type="content"source="media/create-alerts/service-health-alert-final.png"alt-text="Screenshot of the Review and create tab."Lightbox="media/create-alerts/service-health-alert-final.png":::
 
