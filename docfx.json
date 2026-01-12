@@ -239,7 +239,6 @@
         "articles/azure-monitor/optimization-insights/**/*": "optimization-insights",
         "articles/azure-monitor/platform/**/*": "platform",
         "articles/azure-monitor/profiler/**/*": "profiler",
-        "articles/azure-monitor/reference/**/*": "reference",
         "articles/azure-monitor/snapshot-debugger/**/*": "snapshot-debugger",
         "articles/azure-monitor/visualize/**/*": "visualizations",
         "articles/azure-monitor/vm/**/*": "virtual-machines",
