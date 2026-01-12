@@ -56,7 +56,7 @@ On this panel you set up:
 
 
 > [!NOTE]
-> The option to create a Service Health alert is available on all the panels except Billing.
+> The option to create a Service Health alert is not available on the Billing panel.
 
 ### Create Advanced options
 
