@@ -48,7 +48,7 @@
       href: security-advisories-add-subscription.md
     - name: How to create alerts
       items:
-      - name: Create and configure alerts for service health events
+      - name: Create alerts for service health events
         href: ./alerts-activity-log-service-notifications-portal.md
       - name: Create activity log alerts using Bicep
         href: alerts-activity-log-service-notifications-bicep.md
