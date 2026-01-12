@@ -7,7 +7,7 @@ ms.custom: references_regions, devx-track-azurecli
 ---
 
 
-# Azure Monitor pipeline overview transformations
+# Azure Monitor pipeline transformations
 
 Azure Monitor Pipeline data transformations allow you to filter and manipulate log data before it's sent to Azure Monitor in the cloud. Use transformations to schematize, filter, and aggregate log events to get cleaner data, reduced costs, and lower network bandwidth requirements. Transformations enable you to structure incoming data according to your analytics needs, ensuring that only relevant information is ingested and processed.
 

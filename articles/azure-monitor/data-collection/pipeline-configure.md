@@ -10,6 +10,32 @@ ms.custom: references_regions, devx-track-azurecli
 
 The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline in your environment.
 
+## Supported configurations
+
+**Supported distros**
+
+Azure Monitor pipeline is supported on the following Kubernetes distributions:
+
+* Canonical
+* Cluster API Provider for Azure
+* K3
+* Rancher Kubernetes Engine
+* VMware Tanzu Kubernetes Grid
+
+**Supported locations**
+
+Azure Monitor pipeline is supported in the following Azure regions:
+
+* Canada Central
+* East US2
+* Italy North
+* West US2
+* West Europe
+
+For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table)
+
+> [!NOTE]
+> Private link is supported by Azure Monitor pipeline for the connection to the cloud.
 
 ## Prerequisites
 
@@ -19,6 +45,30 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 * The following resource providers must be registered in your Azure subscription. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
     * Microsoft.Insights
     * Microsoft.Monitor 
+
+
+## Components
+
+The following diagram shows the components of the pipeline. One or more data flows listen for incoming data from clients, and the pipeline extension forwards the data to the cloud, using the local cache if necessary.
+
+:::image type="content" source="media/edge-pipeline-configure/edge-pipeline-configuration.png" lightbox="media/edge-pipeline-configure/edge-pipeline-configuration.png" alt-text="Overview diagram of the dataflow for Azure Monitor pipeline." border="false"::: 
+
+The pipeline configuration file defines the data flows and cache properties for the pipeline. The [DCR](data-collection-rule-overview.md#using-a-dcr) defines the schema of the data being sent to the cloud, a transformation to filter or modify the data, and the destination where the data should be sent. Each data flow definition for the pipeline configuration specifies the DCR and stream within that DCR that will process that data in the cloud.
+
+The following components and configurations are required to enable the Azure Monitor pipeline. If you use the Azure portal to configure the pipeline, then each of these components is created for you. With other methods, you need to configure each one.
+
+| Component | Description |
+|:----------|:------------|
+| Edge pipeline controller extension | Extension added to your Arc-enabled Kubernetes cluster to support pipeline functionality - `microsoft.monitor.pipelinecontroller`. |
+| Edge pipeline controller instance | Instance of the pipeline running on your Arc-enabled Kubernetes cluster. |
+| Data flow | Combination of receivers and exporters that run on the pipeline controller instance. Receivers accept data from clients, and exporters to deliver that data to Azure Monitor. |
+| Pipeline configuration | Configuration file that defines the data flows for the pipeline instance. Each data flow includes a receiver and an exporter. The receiver listens for incoming data, and the exporter sends the data to the destination. |
+| Data collection endpoint (DCE) | Endpoint where the data is sent to Azure Monitor in the cloud. The pipeline configuration includes a property for the URL of the DCE so the pipeline instance knows where to send the data. |
+
+| Configuration | Description |
+|:--------------|:------------|
+| Data collection rule (DCR) | Configuration file that defines how the data is received by Azure Monitor and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
+| Pipeline configuration | Configuration that defines the data flows for the pipeline instance, including the data flows and cache. |
 
 ## Workflow
 
@@ -121,8 +171,13 @@ The settings in this tab are described in the following table.
 | Name | Name for the dataflow. Must be unique for this pipeline. |
 | Source type | The type of data being collected. The following source types are currently supported:<br>- Syslog<br>- OTLP |
 | Port | Port that the pipeline listens on for incoming data. If two dataflows use the same port, they both receive and process the data. |
+| Protocol | |
+| RFC | |
+| Collect messages with PRI header | |
 | Log Analytics Workspace | Log Analytics workspace to send the data to. |
+| Table | |
 | Table Name | The name of the table in the Log Analytics workspace to send the data to. |
+| Add Data Transformations | Enable to add a transformation to the dataflow. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 
 ### [CLI](#tab/CLI)
 
@@ -791,6 +846,25 @@ You can deploy all of the required components for the Azure Monitor pipeline usi
 ```
 
 ---
+
+## Segmented network
+
+To use Azure Monitor pipeline in a layered network configuration, you must add the following entries to the allowlist for the Arc-enabled Kubernetes cluster. See [Configure Azure IoT Layered Network Management Preview on level 4 cluster](/azure/iot-operations/manage-layered-network/howto-configure-l4-cluster-layered-network?tabs=k3s#configure-layered-network-management-preview-service).
+
+```yml
+- destinationUrl: "*.ingest.monitor.azure.com"
+  destinationType: external
+- destinationUrl: "login.windows.net"
+  destinationType: external
+```
+
+## Syslog notes
+
+The send data to either of the following two built-in tables, the Log Analytics workspace must be onboarded to Microsoft Sentinel. You can send data to custom tables without onboarding to Microsoft Sentinel.
+
+- [Syslog](/azure/azure-monitor/reference/tables/syslog)
+- [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
+
 
 ## Verify configuration
 
