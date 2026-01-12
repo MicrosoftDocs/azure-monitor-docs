@@ -64,9 +64,8 @@ On this panel you set up:
     
 
 
-3. Select **Create** to finish the alert, or if you want to add more detailed information for the service health alert, select **Advanced Options** which opens the page **Create an alert rule** where you can start entering your data.
+3. Select **Create** to finish the alert, or if you want to add more detailed information for the service health alert, select **Advanced Options** to add more information to your alert.
 
-:::image type="content"source="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png"alt-text="Screenshot of the Create service health alert command."Lightbox="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png":::
 
 > [!NOTE]
 > The option to create a Service Health alert is available on all the panels except Billing.
