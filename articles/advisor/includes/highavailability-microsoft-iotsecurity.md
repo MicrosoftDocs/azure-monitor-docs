@@ -10,7 +10,7 @@ ms.custom: HighAvailability MICROSOFT.IOTSECURITY
   
 ---
   
-## HighAvailability MICROSOFT.IOTSECURITY 
+## MICROSOFT.IOTSECURITY 
   
 <!--095f2f8a-1c1e-4b6c-a6d3-1dfccd08d474_begin-->
 
