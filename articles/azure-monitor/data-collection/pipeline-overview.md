@@ -19,20 +19,19 @@ Specific use cases for Azure Monitor pipeline are:
 * **Periodic connectivity**. Some environments may have unreliable connectivity to the cloud, or may have long unexpected periods without connection. The pipeline can cache data locally and sync with the cloud when connectivity is restored.
 * **Layered network**. In some environments, the network is segmented and data can't be sent directly to the cloud. The pipeline can be used to collect data from monitored resources without cloud access and manage the connection to Azure Monitor in the cloud.
 
-:::image type="content" source="media/data-collection-rule-overview/azure-monitor-pipeline-edge.png" lightbox="media/data-collection-rule-overview/azure-monitor-pipeline-edge.png" alt-text="Diagram that shows the data flow for Azure Monitor edge pipeline." border="false":::
-
-
-## Implementation
-
-The Azure Monitor pipeline is a containerized solution that is deployed on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) and leverages OpenTelemetry Collector as a foundation. 
+:::image type="content" source="./media/pipeline-overview/overview.png" lightbox="./media/pipeline-overview/overview.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
 
 
 ## Segmented network
 
 [Network segmentation](/azure/architecture/networking/guide/network-level-segmentation) is a model where you use software defined perimeters to create a different security posture for different parts of your network. In this model, you may have a network segment that can't connect to the internet or to other network segments. The Azure Monitor pipeline can be used to collect data from these network segments and send it to the cloud.
 
-:::image type="content" source="media/edge-pipeline-configure/layered-network.png" lightbox="media/edge-pipeline-configure/layered-network.png" alt-text="Diagram of a layered network for Azure Monitor pipeline." border="false":::
+:::image type="content" source="./media/pipeline-overview/segmented-network.png" lightbox="./media/pipeline-overview/segmented-network.png" alt-text="Diagram of a layered network for Azure Monitor pipeline." border="false":::
 
+
+## Implementation
+
+The Azure Monitor pipeline is a containerized solution that is deployed on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) and leverages OpenTelemetry Collector as a foundation. 
 
 
 ## Next steps
