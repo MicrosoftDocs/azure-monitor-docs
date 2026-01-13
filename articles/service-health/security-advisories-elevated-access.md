@@ -77,7 +77,7 @@ Users who have [roles with tenant admin access](admin-access-reference.md) can a
 
 -->
 
-### Access Service advisories through API endpoint
+## Access Service advisories through API endpoint
 
 To access Security advisories through APIs, you must update your code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security advisories notification details. Users with the specified roles can view sensitive event details for a specific event with the new endpoint.
 
