@@ -585,29 +585,16 @@ items:
     - name: Analyze
       displayName: health models
       href: health-models/analyze-health.md
-  - name: Azure Monitor SCOM Managed Instance
+  - name: Migrate from SCOM Managed Instance
     items:
     - name: Overview
-    - name: Quickstarts
-    - name: Tutorials
-    - name: Concepts
-    - name: How-to guides
-      items:
-      - name: Migrate from SCOM Managed Instance
-        items:
-        - name: Overview
-          href: scom-manage-instance/migration-overview.md
-        - name: Migrate to Azure Monitor
-          href: scom-manage-instance/migrate-to-azure-monitor.md
-        - name: Convert management packs into data collection rules
-          href: scom-manage-instance/convert-management-packs-into-data-collection-rules.md
-        - name: Migration FAQs
-          href: scom-manage-instance/migration-faq-scom-manage-instance.yml
-      - name: Create SCOM Managed Instance
-      - name: Post Deployment
-    - name: Logs
-    - name: Troubleshoot
-    - name: Security
+      href: scom-manage-instance/migration-overview.md
+    - name: Migrate to Azure Monitor
+      href: scom-manage-instance/migrate-to-azure-monitor.md
+    - name: Convert management packs into data collection rules
+      href: scom-manage-instance/convert-management-packs-into-data-collection-rules.md
+    - name: Migration FAQs
+      href: scom-manage-instance/migration-faq-scom-manage-instance.yml
   - name: Monitoring coverage
     href: fundamentals/monitoring-coverage.md
   - name: Multicloud monitoring
