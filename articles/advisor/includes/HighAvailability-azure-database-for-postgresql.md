@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -60,13 +60,14 @@ Create a cross region read replica to protect the database from regional failure
 
 **Impact:** High
   
-For more information, see [Geo-disaster recovery - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/concepts-geo-disaster-recovery)  
+For more information, see [Geo-disaster recovery](/azure/postgresql/flexible-server/concepts-geo-disaster-recovery)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 7d2149f5-94f7-458d-8171-92cf66832cb2  
 Subcategory: DisasterRecovery
 
 <!--7d2149f5-94f7-458d-8171-92cf66832cb2_end-->
+
 
 
 <!--80b4e93c-4500-4fbd-bd6f-3ec245f72be9_begin-->
@@ -123,22 +124,6 @@ Subcategory: null
 
 <!--2de25da6-5d44-4c0d-8a37-b61f8a65babe_end-->
 
-<!--73b5a830-9074-4206-8f21-0ca3285b9eee_begin-->
 
-#### Upgrade to higher PostgreSQL versions  
-  
-Upgrade to newer versions for improved performance and support  
-  
-**Potential benefits**: Avoid service disruption  
-
-**Impact:** High
-  
-For more information, see [Version Policy - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/concepts-version-policy#postgresql-11-support)  
-
-ResourceType: microsoft.dbforpostgresql/flexibleservers  
-Recommendation ID: 73b5a830-9074-4206-8f21-0ca3285b9eee  
-Subcategory: undefined
-
-<!--73b5a830-9074-4206-8f21-0ca3285b9eee_end-->
 
 <!--articleBody-->

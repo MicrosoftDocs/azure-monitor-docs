@@ -13,12 +13,12 @@ The Azure Monitor Agent supports connections by using direct proxies, a Log Anal
 
 ## Virtual network service tags
 
-[Azure Virtual Network service tags](/azure/virtual-network/service-tags-overview) must be enabled on the virtual network for the virtual machine (VM). Both *AzureMonitor* and *AzureResourceManager* tags are required. See AzureMonitor entry in [Available service tags](/azure/virtual-network/service-tags-overview#available-service-tags) for any additional requirements.
+[Azure Virtual Network service tags](/azure/virtual-network/service-tags-overview) must be enabled on the virtual network for the virtual machine (VM). Both `AzureMonitor` and `AzureResourceManager` tags are required. See the `AzureMonitor` entry in [Available service tags](/azure/virtual-network/service-tags-overview#available-service-tags) for any other requirements.
 
 You can use Azure Virtual Network service tags to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview#security-rules), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of specific IP addresses when you create security rules and routes. For scenarios where Azure Virtual Network service tags can't be used, the firewall requirements are described later in this article.
 
 > [!NOTE]
-> Data collection endpoint (DCE) public IP addresses aren't included in the network service tags you can use to define network access controls for Azure Monitor. If you have custom logs or Internet Information Services (IIS) log data collection rules (DCRs), consider allowing the DCE's public IP addresses for these scenarios to work until these scenarios are supported via network service tags.
+> Data collection endpoint (DCE) public IP addresses aren't included in the network service tags you can use to define network access controls for Azure Monitor. If you have custom logs or Internet Information Services (IIS) log data collection rules (DCRs), consider allowing the DCE's public IP addresses. Doing so ensures the scenarios work until these scenarios are supported via network service tags.
 
 ## Firewall endpoints
 
@@ -60,13 +60,13 @@ Replace the suffix in the endpoints with the suffix in the following table for r
 The Azure Monitor Agent extensions for Windows and Linux can communicate either through a proxy server or through a [Log Analytics gateway](gateway.md) to Azure Monitor by using the HTTPS protocol. Use it for Azure VMs, scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
 
 > [!IMPORTANT]
-> OMS Gateway is not supported with Azure Arc-enabled servers for proxy connectivity, private link connectivity, and public endpoint connectivity options.
+> OMS Gateway isn't supported with Azure Arc-enabled servers for proxy connectivity, private link connectivity, and public endpoint connectivity options.
 
 > [!IMPORTANT]
 > Proxy configuration isn't supported for [Azure Monitor Metrics (preview)](../metrics/metrics-custom-overview.md) as a destination. If you send metrics to this destination, it uses the public internet without any proxy.
 
 > [!NOTE]
-> Setting Linux system proxy via environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you configure a proxy, use the ARM template shown here as an example of how to declare the proxy settings inside the ARM template. Also, a user can set global environment variables that are picked up by all systemd services [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
+> Setting Linux system proxy via environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you configure a proxy, use the ARM template shown here as an example of how to declare the proxy settings inside the ARM template. Also, a user can set global environment variables that get picked up by all systemd services [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
 
 Use Azure PowerShell commands in the following examples based on your environment and configuration.
 
@@ -96,7 +96,7 @@ Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMo
 
 **Revert Proxy configuration to defaults**
 
-To restore proxy configuration to defaults you could define $settingsString = '{}'; as in the following example:
+To restore proxy configuration to defaults, you could define $settingsString = '{}'; as in the following example:
 ```azurepowershell
 $settingsString = '{}';
 Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName RESOURCE GROUP HERE -VMName VM NAME HERE -Location westeurope -> > SettingString $settingsString
@@ -152,7 +152,7 @@ New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType Az
 
 **Revert Proxy configuration to defaults**
 
-To restore proxy configuration to defaults you could define $settingsString = '{}'; as in the following example:
+To restore proxy configuration to defaults, you could define $settingsString = '{}'; as in the following example:
 ```azurepowershell
 $settings = '{}';
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings
@@ -182,7 +182,7 @@ $protectedSettings = @{"proxy" = @{username = "[username]"; password = "[passwor
 New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings -ProtectedSetting $protectedSettings
 ```
 
-# [ARM policy template example](#tab/ArmPolicy)
+# [Azure Resource Manager policy template example](#tab/ArmPolicy)
 
 ```json
 {
@@ -355,14 +355,14 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 
 1. Follow the preceding guidance to configure proxy settings on the agent and provide the IP address and port number that correspond to the gateway server. If you deployed multiple gateway servers behind a load balancer, for the agent proxy configuration, instead use the virtual IP address of the load balancer.
 
-1. Add the configuration endpoint URL to fetch DCRs to the allowlist for the gateway:
+1. Add the configuration endpoint URL to fetch DCRs to the allow list for the gateway:
 
     1. Run `Add-OMSGatewayAllowedHost -Host global.handler.control.monitor.azure.com`.
     1. Run `Add-OMSGatewayAllowedHost -Host <gateway-server-region-name>.handler.control.monitor.azure.com`.
 
     (If you use private links on the agent, you must also add the [DCEs](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce).)
 
-1. Add the data ingestion endpoint URL to the allowlist for the gateway:
+1. Add the data ingestion endpoint URL to the allow list for the gateway:
 
     * Run `Add-OMSGatewayAllowedHost -Host <log-analytics-workspace-id>.ods.opinsights.azure.com`.
 
