@@ -2,7 +2,7 @@
 title: Security advisories overview
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 ms.topic: article
-ms.date: 12/16/2025
+ms.date: 01/12/2026
 ---
 
 
@@ -39,6 +39,32 @@ Select the **Advisory name** link to open the tabs with the information you need
 
 ## Who can view Security advisories?
 
+Access to Security Advisories depends on the type of advisory and your assigned permissions. Informational advisories are broadly accessible, while advisories containing sensitive security details require specific Role-based Access Control (RBAC) roles.
+
+#### Informational Security advisories
+Informational Security Advisories share general, publicly available information, and don't include customer‑specific security details.
+
+- Users with standard Azure Service Health RBAC permissions can view Informational Security Advisories.
+- Users with the **Reader** or **Monitoring Reader** roles can access Informational Security Advisory content across the **Summary** and **Issue Updates** tabs.
+
+#### Sensitive Security Advisories
+
+Security Advisories are classified as sensitive when they include information that could reveal customer security posture. The information could enable targeted exploitation, or disclose remediation or mitigation status. These advisories could identify impacted subscriptions, affected resources, or specific configurations.
+
+Access to sensitive Security Advisories requires elevated permissions.
+- To view sensitive Security Advisory details, users must be assigned an elevated built‑in role such as **Owner** or **Contributor**, or a custom role that includes the required Security Advisory permissions.
+- Users assigned **Reader** or **Monitoring Reader** roles can’t view sensitive fields and see an access‑required message instead.
+- For advisories classified as sensitive:
+    - Access to the **Summary** and **Issue Updates** tabs require elevated permissions.
+    - Access to the Impacted Resources tab always requires elevated permissions, because resource‑level details are classified as sensitive.
+- Users assigned **tenant administrator** roles can access tenant‑level Security Advisory details on the **Summary** and **Issue Updates** tabs when advisories contain sensitive security information.
+
+**More information**
+For more information about role requirements to view impacted resources and sensitive details, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
+
+For guidance on configuring subscription‑ or tenant‑level access to Security Advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
+
+<!--
 Because the information in this tab is sensitive, access to Security Advisories requires specific **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
 
 - To view sensitive Security Advisory details, users must be assigned an elevated built‑in role such as Owner or Contributor, or a custom role that includes the required Security Advisory permissions. 
@@ -46,12 +72,10 @@ Because the information in this tab is sensitive, access to Security Advisories 
 - The **Impacted Resources** tab always requires elevated permissions, because resource‑level details are classified as sensitive.
 - Users with only Reader or Monitoring Reader roles can't view sensitive fields. They see an access‑required message unless they’re assigned to a higher‑privilege built‑in role or a custom role that includes Security Advisory permissions.
 
-For details about role requirements for accessing these resources, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
 
 Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
 
-For steps on how to configure subscription or tenant-based access to view Security advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
-
+-->
 
 ### Access Service advisories through API endpoint
 
