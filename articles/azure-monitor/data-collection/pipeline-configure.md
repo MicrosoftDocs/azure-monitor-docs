@@ -49,28 +49,21 @@ For more information, see [Product availability by region](https://azure.microso
 
 ## Components
 
-The following diagram shows the components of the pipeline. One or more data flows listen for incoming data from clients, and the pipeline extension forwards the data to the cloud, using the local cache if necessary.
+The following diagram shows the components of the Azure Monitor pipeline. The pipeline itself runs on an Arc-enabled Kubernetes cluster in your environment. One or more data flows running in the pipeline listen for incoming data from clients, and the pipeline extension forwards the data to the cloud, using the local cache if necessary.
 
-:::image type="content" source="./media/pipeline-configure/edge-pipeline-configuration.png" lightbox="./media/pipeline-configure/edge-pipeline-configuration.png" alt-text="Overview diagram of the dataflow for Azure Monitor pipeline." border="false"::: 
+:::image type="content" source="./media/pipeline-configure/pipeline-configuration.png" lightbox="./media/pipeline-configure/pipeline-configuration.png" alt-text="Overview diagram of the dataflow for Azure Monitor pipeline." border="false"::: 
 
-The pipeline configuration file defines the data flows and cache properties for the pipeline. The [DCR](data-collection-rule-overview.md#using-a-dcr) defines the schema of the data being sent to the cloud, a transformation to filter or modify the data, and the destination where the data should be sent. Each data flow definition for the pipeline configuration specifies the DCR and stream within that DCR that will process that data in the cloud.
-
-The following components are required to enable the Azure Monitor pipeline. If you use the Azure portal to configure the pipeline, then each of these components is created for you. With other methods, you need to configure each one.
+The following table identifies the components required to enable the Azure Monitor pipeline. If you use the Azure portal to configure the pipeline, then each of these components is created for you. With other methods, you need to configure each one.
 
 | Component | Description |
 |:----------|:------------|
-| Edge pipeline controller extension | Extension added to your Arc-enabled Kubernetes cluster to support pipeline functionality - `microsoft.monitor.pipelinecontroller`. |
-| Edge pipeline controller instance | Instance of the pipeline running on your Arc-enabled Kubernetes cluster. |
+| Pipeline controller extension | Extension added to your Arc-enabled Kubernetes cluster to support pipeline functionality - `microsoft.monitor.pipelinecontroller`. |
+| Pipeline controller instance | Instance of the pipeline running on your Arc-enabled Kubernetes cluster. |
 | Data flow | Combination of receivers and exporters that run on the pipeline controller instance. Receivers accept data from clients, and exporters to deliver that data to Azure Monitor. |
 | Pipeline configuration | Configuration file that defines the data flows for the pipeline instance. Each data flow includes a receiver and an exporter. The receiver listens for incoming data, and the exporter sends the data to the destination. |
 | Data collection endpoint (DCE) | Endpoint where the data is sent to Azure Monitor in the cloud. The pipeline configuration includes a property for the URL of the DCE so the pipeline instance knows where to send the data. |
-
-The following configuration files are used to define the data collection process.
-
-| Configuration | Description |
-|:--------------|:------------|
-| Data collection rule (DCR) | Configuration file that defines how the data is received by Azure Monitor and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
-| Pipeline configuration | Configuration that defines the data flows for the pipeline instance, including the data flows and cache. |
+| Pipeline configuration file | Used by the pipeline running in your data center. Defines the data flows for the pipeline instance, cache details, and pipeline transformation if included. |
+| Data collection rule (DCR) | [DCR](data-collection-rule-overview.md#using-a-dcr) used by Azure Monitor in the cloud to define how the data is received and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
 
 
 ## Enable and configure pipeline
@@ -81,7 +74,7 @@ The current options for enabling and configuration are detailed in the tabs belo
 
 ### Configure pipeline using Azure portal
 
-When you use the Azure portal to enable and configure the pipeline, all required components are created based on your selections. This saves you from the complexity of creating each component individually, but you made need to use other methods for 
+When you use the Azure portal to enable and configure the pipeline, all required components are created based on your selections. This saves you from the complexity of creating each component individually, but you made need to use other methods for more advanced functionality and configuration.
 
 Perform one of the following in the Azure portal to launch the installation process for the Azure Monitor pipeline:
 
@@ -113,12 +106,12 @@ The settings in this tab are described in the following table.
 | Name | Name for the dataflow. Must be unique for this pipeline. |
 | Source type | The type of data being collected. The following source types are currently supported:<br>- Syslog<br>- OTLP |
 | Port | Port that the pipeline listens on for incoming data. If two dataflows use the same port, they both receive and process the data. |
-| Protocol | |
-| RFC | |
-| Collect messages with PRI header | |
+| Protocol<br>(Syslog only) | Specify whether the dataflow should collect TCP or UDP traffic. |
+| RFC<br>(Syslog only) | Specify which Syslog message format the dataflow will collect. 5424 is the newer, more structured format. 3164 is the older, less structured format. |
+| Collect messages with PRI header<br>(Syslog only) | Select this checkbox to collect Syslog messages that don't include the PRI header. This is a calculated value detailing the message's severity level and facility based on a fixed formula. Some devices do not send this header attached to the message. |
 | Log Analytics Workspace | Log Analytics workspace to send the data to. |
-| Table | |
-| Table Name | The name of the table in the Log Analytics workspace to send the data to. |
+| Table<br>(Syslog only) | Specify whether data will be sent to the [Syslog]() table, the [CommonSecurityLog]() table, or a custom table. <sup>1</sup> |
+| Table Name | The name of the table in the Log Analytics workspace to send the data to. Must be the same as **Table** if `Syslog` or `CommonSecurityLog` <sup>1</sup> |
 | Add Data Transformations | Enable to add a transformation to the dataflow. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 
 ### [CLI](#tab/CLI)
@@ -128,9 +121,9 @@ The settings in this tab are described in the following table.
 Following are the steps required to create and configure the components required for the Azure Monitor pipeline using Azure CLI.
 
 
-### Edge pipeline extension
+### Pipeline extension
 
-The following command adds the edge pipeline extension to your Arc-enabled Kubernetes cluster. 
+The following command adds the pipeline extension to your Arc-enabled Kubernetes cluster. 
 
 ```azurecli
 az k8s-extension create --name <pipeline-extension-name> --extension-type microsoft.monitor.pipelinecontroller --scope cluster --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --release-train Preview
@@ -285,9 +278,9 @@ az role assignment create --assignee "<extension principal ID>" --role "Monitori
 az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --role "Monitoring Metrics Publisher" --scope "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
 ```
 
-### Edge pipeline configuration
+### Pipeline configuration
 
-The edge pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud.
+The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud.
 
 Replace the properties in the following table before deploying the template.
 
@@ -324,7 +317,7 @@ Replace the properties in the following table before deploying the template.
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "metadata": {
-        "description": "This template deploys an edge pipeline for azure monitor."
+        "description": "This template deploys a pipeline for azure monitor."
     },
     "resources": [
         {
@@ -456,9 +449,9 @@ You can deploy all of the required components for the Azure Monitor pipeline usi
 |:----------|:-----|:------------|
 | Log Analytics workspace | `Microsoft.OperationalInsights/workspaces` | Remove this section if you're using an existing Log Analytics workspace. The only parameter required is the workspace name. The immutable ID for the workspace, which is needed for other components, will be automatically created. |
 | Data collection endpoint (DCE) | `Microsoft.Insights/dataCollectionEndpoints` | Remove this section if you're using an existing DCE. The only parameter required is the DCE name. The logs ingestion URL for the DCE, which is needed for other components, will be automatically created. |
-| Edge pipeline extension | `Microsoft.KubernetesConfiguration/extensions` | The only parameter required is the pipeline extension name. |
+| Pipeline extension | `Microsoft.KubernetesConfiguration/extensions` | The only parameter required is the pipeline extension name. |
 | Custom location | `Microsoft.ExtendedLocation/customLocations` | Custom location of the Arc-enabled Kubernetes cluster to create the custom |
-| Edge pipeline instance | `Microsoft.monitor/pipelineGroups` | Edge pipeline instance that includes configuration of the listener, exporters, and data flows. You must modify the properties of the pipeline instance before deploying the template. |
+| Pipeline instance | `Microsoft.monitor/pipelineGroups` | Pipeline instance that includes configuration of the listener, exporters, and data flows. You must modify the properties of the pipeline instance before deploying the template. |
 | Data collection rule (DCR) | `Microsoft.Insights/dataCollectionRules` | The only parameter required is the DCR name, but you must modify the properties of the DCR before deploying the template. |
 
 ### Template file
@@ -819,14 +812,14 @@ The following tables and diagrams describe the detailed steps and components in 
 
 | Step | Action | Supporting configuration |
 |:-----|:-------|:-------------------------|
-| 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the edge pipeline receiver and sends data in the expected format for the receiver type. |
+| 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the pipeline receiver and sends data in the expected format for the receiver type. |
 | 2. | Receiver forwards data to the exporter. | Receiver and exporter are configured in the same pipeline. |
 | 3. | Optional transformation is applied to the data. | The data flow may include a transformation that filters or modifies the data before it's sent to Azure Monitor. The output of the transformation must match the schema expected by the DCR. |
 | 6. | Azure Monitor sends the data to the destination. | 
 | 4. | Exporter tries to send the data to the cloud. | Exporter in the pipeline configuration includes URL of the DCE, a unique identifier for the DCR, and the stream in the DCR that defines how the data will be processed. |
 | 4a. | Exporter stores data in the local cache if it can't connect to the DCE. | Persistent volume for the cache and configuration of the local cache is enabled in the pipeline configuration. |
 
-:::image type="content" source="./media/pipeline-configure/edge-pipeline-data-flow.png" lightbox="./media/pipeline-configure/edge-pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor pipeline." border="false":::
+:::image type="content" source="./media/pipeline-configure/pipeline-data-flow.png" lightbox="./media/pipeline-configure/pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor pipeline." border="false":::
 
 | Step | Action | Supporting configuration |
 |:-----|:-------|:-------------------------|
@@ -871,7 +864,7 @@ Edge devices in some environments may experience intermittent connectivity due t
 Once the volume is created in the appropriate namespace, configure it using parameters in the pipeline configuration file below.
 
 > [!CAUTION]
-> Each replica of the edge pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
+> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
 
 Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
 
@@ -885,7 +878,7 @@ In the Azure portal, navigate to the **Kubernetes services** menu and select you
 * \<pipeline name\>-external-service
 * \<pipeline name\>-service
 
-:::image type="content" source="./media/pipeline-configure/edge-pipeline-cluster-components.png" lightbox="./media/pipeline-configure/edge-pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline."::: 
+:::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline."::: 
 
 Click on the entry for **\<pipeline name\>-external-service** and note the IP address and port in the **Endpoints** column. This is the external IP address and port that your clients will send data to. See [Retrieve ingress endpoint](#retrieve-ingress-endpoint) for retrieving this address from the client.
 
@@ -899,7 +892,7 @@ Retrieve the heartbeat records using a log query as in the following example:
 
 ## Client configuration
 
-Once your edge pipeline extension and instance are installed, then you need to configure your clients to send data to the pipeline.
+Once your pipeline extension and instance are installed, then you need to configure your clients to send data to the pipeline.
 
 ### Retrieve ingress endpoint
 
@@ -918,7 +911,7 @@ kubectl get services -n <namespace where azure monitor pipeline was installed>
 | Client | Description |
 |:-------|:------------|
 | Syslog | Update Syslog clients to send data to the pipeline endpoint and the port of your Syslog dataflow. |
-| OTLP | The Azure Monitor edge pipeline exposes a gRPC-based OTLP endpoint on port 4317. Configuring your instrumentation to send to this OTLP endpoint will depend on the instrumentation library itself. See [OTLP endpoint or Collector](https://opentelemetry.io/docs/instrumentation/python/exporters/#otlp-endpoint-or-collector) for OpenTelemetry documentation. The environment variable method is documented at [OTLP Exporter Configuration](https://opentelemetry.io/docs/concepts/sdk-configuration/otlp-exporter-configuration/). |
+| OTLP | The Azure Monitor pipeline exposes a gRPC-based OTLP endpoint on port 4317. Configuring your instrumentation to send to this OTLP endpoint will depend on the instrumentation library itself. See [OTLP endpoint or Collector](https://opentelemetry.io/docs/instrumentation/python/exporters/#otlp-endpoint-or-collector) for OpenTelemetry documentation. The environment variable method is documented at [OTLP Exporter Configuration](https://opentelemetry.io/docs/concepts/sdk-configuration/otlp-exporter-configuration/). |
 
 ## Verify data
 

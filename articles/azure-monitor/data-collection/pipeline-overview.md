@@ -17,16 +17,9 @@ The [Azure Monitor pipeline](data-collection-rule-overview.md#azure-monitor-pipe
 
 Specific use cases for Azure Monitor pipeline are:
 
-* **Scalability**. The pipeline can handle large volumes of data from monitored resources that may be limited by other collection methods such as Azure Monitor agent.
-* **Periodic connectivity**. Some environments may have unreliable connectivity to the cloud, or may have long unexpected periods without connection. The pipeline can cache data locally and sync with the cloud when connectivity is restored.
-* **Layered network**. In some environments, the network is segmented and data can't be sent directly to the cloud. The pipeline can be used to collect data from monitored resources without cloud access and manage the connection to Azure Monitor in the cloud.
-
-
-## Segmented network
-
-[Network segmentation](/azure/architecture/networking/guide/network-level-segmentation) is a model where you use software defined perimeters to create a different security posture for different parts of your network. In this model, you may have a network segment that can't connect to the internet or to other network segments. The Azure Monitor pipeline can be used to collect data from these network segments and send it to the cloud.
-
-:::image type="content" source="./media/pipeline-overview/segmented-network.png" lightbox="./media/pipeline-overview/segmented-network.png" alt-text="Diagram of a layered network for Azure Monitor pipeline." border="false":::
+- **Scalability**. The pipeline can handle large volumes of data from monitored resources that may be limited by other collection methods such as Azure Monitor agent.
+- **Periodic connectivity**. Some environments may have unreliable connectivity to the cloud, or may have long unexpected periods without connection. The pipeline can cache data locally and sync with the cloud when connectivity is restored.
+- **Reduce network bandwidth**
 
 
 ## Implementation
