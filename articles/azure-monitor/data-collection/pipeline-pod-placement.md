@@ -8,9 +8,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor pipeline pod placement
 
-Pod placement allows you to manage how your Azure Monitor pipeline instances are scheduled across Kubernetes cluster nodes. This feature allows you to target specific nodes based on their capabilities, control instance distribution to prevent resource contention, and enforce isolation policies for high-scale deployments.
-
-This feature is designed to be platform-agnostic, meaning the configuration model remains consistent regardless of the underlying infrastructure (Kubernetes, VMs, etc.).
+Pod placement allows you to manage how your [Azure Monitor pipeline instances](./pipeline-overview.md) are scheduled across Kubernetes cluster nodes. This feature allows you to target specific nodes based on their capabilities, control instance distribution to prevent resource contention, and enforce isolation policies for high-scale deployments.
 
 ## When to Use Pod Placement 
 
@@ -36,42 +34,16 @@ Pod placement can currently only be configured using ARM/Bicep templates, either
 }
 ```
 
-## Field Definitions 
-
 ### constraints
 
-The `constraints` field contains a list of `PlacementConstraint` objects that define where your pipeline instances should run. Instances will only be scheduled on nodes that satisfy all specified constraints. Each constraint consists of the properties in the following table.
+The `constraints` field contains a list of objects that define where your pipeline instances should run. Instances will only be scheduled on nodes that satisfy all specified constraints. Each constraint consists of the properties in the following table.
 
 
 | Property | Type | Required | Description |
 |:---|:---|:---|:---|
-| `capability` | string | Yes | The node attribute or label to match. Examples include `zone`, `gpu`, `team`, `pipeline`). |
-| `operator` | string | Yes | Matching logic with the following allowed values:<br><br>- `In`: Node must have the capability with one of the specified values.<br>- `NotIn`: Node must not have the capability with any of the specified values.<br>- `Exists`: Node must have any value in the capability. The `values` property isn't used.<br>- `DoesNotExist`: Node must not have the capability.  The `values` property isn't used.|
+| `capability` | string | Yes | The node attribute or label to match. Examples include `zone`, `gpu`, `team`, `pipeline`. |
+| `operator` | string | Yes | Matching logic with the following allowed values:<br><br>- `In`:<br>Node must have the capability with one of the specified values.<br>- `NotIn`:<br>Node must not have the capability with any of the specified values.<br>- `Exists`:<br>Node must have any value in the capability. The `values` property isn't used.<br>- `DoesNotExist`:<br>Node must not have the capability. The `values` property isn't used.|
 | `values` | array of strings | Conditional | Values to match for the capability. Not used for `Exists` and `DoesNotExist`. |
-
-
-**Examples**
-
-
-```json
-{
-    "capability": "gpu",
-    "operator": "Exists",
-}
-
-// INVALID: Using "In" without values 
-{ 
-    "capability": "zone", 
-    "operator": "In"  // ERROR: In operator requires values array 
-} 
- 
-// INVALID: Unsupported maxInstancesPerHost value 
-{ 
-    "distribution": { 
-    "maxInstancesPerHost": 1  // ERROR: Currently only 1 is supported   } 
-} 
-```
-
 
 
 ### distribution
@@ -86,11 +58,11 @@ The maximum instances per node applies only to replicas of the same pipeline gro
 
     
 ## Deployment
-Execution placement is enforced at deployment time. The rules apply immediately when you create or update your pipeline group resource. If placement requirements cannot be satisfied, for example due to a bad configuration, your pipeline group instances will not deploy and will remain in a pending state. Updates to execution placement settings will redeploy instances of your pipeline group with the new constraints.
+Execution placement is enforced when the . The rules apply immediately when you create or update your pipeline group resource. If placement requirements cannot be satisfied, for example due to a bad configuration, your pipeline group instances will not deploy and will remain in a pending state. Updates to execution placement settings will redeploy instances of your pipeline group with the new constraints.
 
 ## Automatic pod labeling 
 
-A pipeline label is automatically added to all pods with the value set to the pipelineGroup name. This label is used internally for anti-affinity enforcement when maxInstancesPerHost: 1 is configured. You don’t need to manually label pods - this is handled automatically.
+A pipeline label is automatically added to all pods with the value set to the `pipelineGroup` name. This label is used internally for anti-affinity enforcement when `maxInstancesPerHost: 1` is configured. You don’t need to manually label pods since this is handled automatically.
 
 ## Configuration Examples 
 
@@ -113,7 +85,7 @@ No configuration required. Instances use default Kubernetes scheduling.
 
 Target nodes dedicated to your observability team to avoid noisy neighbor issues.
 
-- Only nodes labeled team=observability-team are eligible.
+- Only nodes labeled `team=observability-team` are eligible.
 - Multiple instances can run on the same dedicated node.
 - Label your nodes with the following command:
   - `kubectl label nodes <node-name> team=observability-team`
@@ -133,8 +105,6 @@ Target nodes dedicated to your observability team to avoid noisy neighbor issues
     } 
 }
 ```
-
-
 
 
 ### Zone-based placement 
@@ -202,7 +172,7 @@ This strategy is recommended for the following use cases:
 ```
 
 
-## High-resource node targeting 
+### High-resource node targeting 
 
 Target nodes with high CPU and memory capacity for resource-intensive telemetry processing.
 
@@ -229,8 +199,6 @@ Target nodes with high CPU and memory capacity for resource-intensive telemetry 
 ### Multiple constraints 
 
 Combine multiple constraints. All constraints must be satisfied for a node to be eligible.
-
-**Behavior:**
 
 - Nodes must be labeled for the observability team.
 - Nodes must be in specified zones.
@@ -311,9 +279,11 @@ This setting only applies within a pipeline group.
 
 ## Kubernetes Implementation Details 
 
-For advanced users and debugging, following is how `executionPlacement` translates to Kubernetes.
+For advanced users and debugging, following are the affinity and anti-affinity rules in the [pod spec](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) resulting from pod placement.
 
-**Node Affinity (constraints) **
+**Node Affinity (constraints)**
+
+Defined by `constraints`. Each constraint maps to a node affinity rule in the pod spec.
 
 ```yaml
 affinity:
@@ -326,7 +296,9 @@ affinity:
                     values: [<values>]
 ```
 
-**Pod Anti-Affinity (maxInstancesPerHost)**
+**Pod Anti-Affinity**
+
+Defined by `maxInstancesPerHost`. This ensures pods with the same pipeline label value, which are replicas of the same pipelineGroup, cannot be scheduled on the same node.
 
 ```yaml
 affinity:
@@ -341,7 +313,7 @@ affinity:
           topologyKey: "kubernetes.io/hostname"
 ```
 
-This ensures pods with the same pipeline label value, which are replicas of the same pipelineGroup, cannot be scheduled on the same node.
+
 
 
 
