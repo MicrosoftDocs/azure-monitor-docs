@@ -965,7 +965,6 @@ ms.date: 01/12/2026
 - [MDCDetectionK8SApiEvents](./tables/mdcdetectionk8sapievents.md)
 - [MDCDetectionProcessV2Events](./tables/mdcdetectionprocessv2events.md)
 - [MDCFileIntegrityMonitoringEvents](./tables/mdcfileintegritymonitoringevents.md)
-- [MDECustomCollectionDeviceFileEvents](./tables/mdecustomcollectiondevicefileevents.md)
 - [McasShadowItReporting](./tables/mcasshadowitreporting.md)
 - [MicrosoftGraphActivityLogs](./tables/microsoftgraphactivitylogs.md)
 - [MicrosoftPurviewInformationProtection](./tables/microsoftpurviewinformationprotection.md)
