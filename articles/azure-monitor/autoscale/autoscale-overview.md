@@ -1,7 +1,7 @@
 ---
 title: Autoscale in Azure Monitor
 description: This article describes the autoscale feature in Azure Monitor and its benefits.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 11/01/2024
 
 # customer intent: 'I want to learn about autoscale in Azure Monitor.'
