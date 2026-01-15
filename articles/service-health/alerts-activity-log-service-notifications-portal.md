@@ -40,10 +40,10 @@ You receive an alert when Azure sends Service Health notifications to your Azure
 
 
 > [!NOTE]
-> Service Health notifications don't send alerts for resource health events. For more information, see [Health alerts](resource-health-alert-monitor-guide.md).
+> Service Health notifications don't send alerts for Resource Health events. For more information, see [Health alerts](resource-health-alert-monitor-guide.md).
 
 
-For information on how to configure service health notification alerts by using Azure Resource Manager templates, see [Resource Manager templates](../azure-monitor/alerts/alerts-activity-log.md).
+For information on how to configure Service Health notification alerts by using Azure Resource Manager templates, see [Resource Manager templates](../azure-monitor/alerts/alerts-activity-log.md).
 
 ## Create a Service Health alert in the Azure portal
 1. In the [portal](https://portal.azure.com/), select **Service Health**.
