@@ -384,6 +384,16 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
     * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
+#### [Java native](#tab/java-native)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+
 #### [Node](#tab/nodejs)
 
 * **`OTEL_TRACES_SAMPLER`** — sampler type
