@@ -58,7 +58,7 @@ The **.NET** OpenTelemetry implementation uses logging, metrics, and activity AP
 - [Azure Synapse Data Explorer](/azure/synapse-analytics/data-explorer/data-explorer-overview)
 - [Real-Time Intelligence](/fabric/real-time-intelligence/overview)
 
-**Azure Functions** allows exporting log and trace data in OTLP format. It supports telemetry from both the host process and the worker process. When enabled, the data can be sent to any OpenTelemetry-compliant endpoints.
+**Azure Functions** supports OTLP from both the host process and the worker process. When enabled, the data can be sent to any OpenTelemetry-compliant endpoints.
 
 - [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto)
 - [Monitor Azure Functions](/azure/azure-functions/monitor-functions)
@@ -67,14 +67,14 @@ The **Azure Container Apps** OpenTelemetry agent automatically collects and expo
 
 ## Data platform and consumption
 
-**.NET Aspire** is an opinionated cloud-native stack that includes observability by default with OpenTelemetry. Part of it's a "Developer Dashboard" to observe OpenTelemetry signals in real-time during debugging. It collects logs, metrics, and traces using OTLP from applications of any OpenTelemetry-supported languages besides .NET.
+**Aspire** is an opinionated cloud-native stack that includes observability by default with OpenTelemetry. Part of it's a "Developer Dashboard" to observe OpenTelemetry signals in real-time during debugging. It collects logs, metrics, and traces using OTLP from applications of any OpenTelemetry-supported languages besides .NET.
 
-- [.NET Aspire: Simplifying Cloud-Native Development with .NET 8](https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8/)
-- [.NET Aspire dashboard overview](/dotnet/aspire/fundamentals/dashboard/overview)
+- [Aspire: Simplifying Cloud-Native Development with .NET 8](https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8/)
+- [Aspire dashboard overview](/dotnet/aspire/fundamentals/dashboard/overview)
 
-**Azure Monitor Application Insights** is Azure's APM that supports cloud-scale application monitoring and excels at observability for both cloud-native applications and VM-based applications. Application Insights provides experiences powered by OpenTelemetry to enhance the performance, reliability, and quality of your applications. For example, Application map is a visual overview of application architecture and components' interactions; Transaction search helps identify issues and optimize performance.
+**Azure Monitor Application Insights** is Azure's APM that supports cloud-scale application monitoring and excels at observability for both cloud-native applications and VM-based applications. Application Insights provides experiences powered by OpenTelemetry to enhance the performance, reliability, and quality of your applications. For example, Application map is a visual overview of application architecture and components' interactions; Search helps identify issues and optimize performance.
 
 - [Application Insights overview](./app-insights-overview.md)
 - [Application map in Azure Application Insights](./app-map.md)
-- [Transaction Search and Diagnostics](./transaction-search-and-diagnostics.md)
+- [Investigate failures, performance, and transactions with Application Insights](./failures-performance-transactions.md)
 - [Live Metrics](./live-stream.md)

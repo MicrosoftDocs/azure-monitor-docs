@@ -32,7 +32,7 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Azure Maps | Gen1 price tier | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Monitor | Legacy Azure Activity logs solution | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Monitor | Azure Monitor - Legacy Azure Activity logs solution | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 
 ##### September 17, 2026
 
@@ -66,10 +66,16 @@ ms.date: 11/11/2025
 > | Azure FXT Edge Filer | Entire service | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Maps | Web SDK v2 Subversion (v2.0 - v2.0.32) | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Monitor | Alerts - GetAlertSummary API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure Monitor | ContainerLog table | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Monitor | Azure Monitor - ContainerLog table | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Virtual Desktop | Classic | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Service Bus | com.microsoft.azure.servicebus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Service Bus | Outdated Azure SDK libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Virtual Machines | NVv3-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Virtual Machines | NVv4-series Azure Virtual Machines | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual Machine | NVv3-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual Machine | NVv4-series Azure Virtual Machines | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | VPN Gateway | Non-availability zones VPNs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Kubernetes service | Legacy authentication for Container Insights - Azure Monitor | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Monitor | Azure Monitor SCOM Managed Instance | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Storage Account | Azure Blob Storage - BlobFuse v1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Kubernetes service | Azure Network Policy Manager (NPM) For Windows | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Workspace | Azure Machine Learning - Data Labeling | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Service bus namespace | Legacy Service Bus SDK libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |

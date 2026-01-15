@@ -9,7 +9,7 @@ ms.reviewer: jeffwo
 
 # Resource Manager template samples for agents in Azure Monitor
 
-This article includes sample [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to deploy and configure the [Azure Monitor agent](./azure-monitor-agent-overview.md), the legacy [Log Analytics agent](./log-analytics-agent.md) and [diagnostic extension](./diagnostics-extension-overview.md) for virtual machines in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
+This article includes sample [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to deploy and configure the [Azure Monitor agent](./azure-monitor-agent-overview.md), the legacy [Log Analytics agent](./log-analytics-agent.md), and [diagnostic extension](./diagnostics-extension-overview.md) for virtual machines in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
 [!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
@@ -19,9 +19,9 @@ The samples in this section install the Azure Monitor agent on Windows and Linux
 
 ### Prerequisites
 
-To use the templates below, you'll need:
+To use the following templates, you need:
 
-* To [create a user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-arm#create-a-user-assigned-managed-identity-3) and [assign the user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#user-assigned-managed-identity), or [enable a system-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#system-assigned-managed-identity). A managed identity is required for Azure Monitor agent to collect and publish data. User-assigned managed identities are _strongly recommended_ over system-assigned managed identities due to their ease of management at scale.
+* To [create a user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-arm#create-a-user-assigned-managed-identity-3) and [assign the user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#user-assigned-managed-identity), or [enable a system-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#system-assigned-managed-identity). A managed identity is required for Azure Monitor agent to collect and publish data. _User-assigned managed identities are recommended_ over system-assigned managed identities due to their ease of management at scale.
 * To configure data collection for Azure Monitor Agent, you must also deploy [Resource Manager template data collection rules and associations](./resource-manager-data-collection-rules.md).
 
 ### Required permissions
@@ -30,7 +30,7 @@ For required permissions, see [Azure Monitor Agent requirements](azure-monitor-a
 
 ### Azure Windows virtual machine
 
-The following sample installs the Azure Monitor agent on an Azure Windows virtual machine. Use the appropriate template below based on your chosen authentication method.
+The following sample installs the Azure Monitor agent on an Azure Windows virtual machine. Use the appropriate following template based on your chosen authentication method.
 
 #### User-assigned managed identity (recommended)
 
@@ -203,7 +203,7 @@ resource windowsAgent 'Microsoft.Compute/virtualMachines/extensions@2021-11-01' 
 
 ### Azure Linux virtual machine
 
-The following sample installs the Azure Monitor agent on an Azure Linux virtual machine. Use the appropriate template below based on your chosen authentication method.
+The following sample installs the Azure Monitor agent on an Azure Linux virtual machine. Use the appropriate following template based on your chosen authentication method.
 
 #### User-assigned managed identity (recommended)
 
@@ -526,7 +526,7 @@ The samples in this section install the legacy Log Analytics agent on Windows an
 
 ###  Windows
 
-The following sample installs the Log Analytics agent on an Azure virtual machine. This is done by enabling the [Log Analytics virtual machine extension for Windows](/azure/virtual-machines/extensions/oms-windows).
+The following sample installs the Log Analytics agent on an Azure virtual machine. You can do it by enabling the [Log Analytics virtual machine extension for Windows](/azure/virtual-machines/extensions/oms-windows).
 
 #### Template file
 
@@ -663,7 +663,7 @@ resource logAnalyticsAgent 'Microsoft.Compute/virtualMachines/extensions@2021-11
 
 ### Linux
 
-The following sample installs the Log Analytics agent on a Linux Azure virtual machine. This is done by enabling the [Log Analytics virtual machine extension for Linux](/azure/virtual-machines/extensions/oms-linux).
+The following sample installs the Log Analytics agent on a Linux Azure virtual machine. You can do it by enabling the [Log Analytics virtual machine extension for Linux](/azure/virtual-machines/extensions/oms-linux).
 
 #### Template file
 

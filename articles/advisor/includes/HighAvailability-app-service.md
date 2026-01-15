@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -390,5 +390,133 @@ Recommendation ID: b5666e83-63e6-420d-acd2-c1924f1f060e
 Subcategory: undefined
 
 <!--b5666e83-63e6-420d-acd2-c1924f1f060e_end-->
+
+<!--6f2c6ba6-3fd4-4786-af01-d10b127ee031_begin-->
+
+#### Migrate to Flex Consumption  
+  
+Migrate all workloads from Linux Consumption to Flex Consumption to maintain access to new features and avoid service disruptions.  
+  
+**Potential benefits**: Avoid service disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499451)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 6f2c6ba6-3fd4-4786-af01-d10b127ee031  
+Subcategory: undefined
+
+<!--6f2c6ba6-3fd4-4786-af01-d10b127ee031_end-->
+
+<!--c1b2b1b3-bc15-4ed6-84dd-bb14e215c761_begin-->
+
+#### App Service web apps don't allow linked databases to be part of App Service custom backups  
+  
+Azure App Service custom backup feature don't back up linked databases configured as part of the Azure App Service custom backup feature. Transition to native backup and restore tools available with the respective databases.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485047)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: c1b2b1b3-bc15-4ed6-84dd-bb14e215c761  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--c1b2b1b3-bc15-4ed6-84dd-bb14e215c761_end-->
+
+<!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_begin-->
+
+#### Migrate away from Azure Static Web Apps database connection  
+  
+The database connections feature of Static Web Apps (currently in public preview), is getting deprecated. To avoid issues in deployments using the feature, refactor applications to a self-hosted instance of the Data API Builder and deploy it to Azure Container Apps.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500848)  
+
+ResourceType: microsoft.web/staticsites  
+Recommendation ID: 9545c3d7-f0cd-4e37-8b15-2d4bb89f9659  
+Subcategory: undefined
+
+<!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_end-->
+
+<!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_begin-->
+
+#### Upgrade Node.js for Azure Functions apps to version 22 or later  
+  
+To avoid potential security vulnerabilities, reduce performance risks, and ensure Azure Functions apps take advantage of the newest features; upgrade Node.js to version 22 or later.  
+  
+**Potential benefits**: Avoid potential security vulnerabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=502957)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 81c8903e-2d50-4e57-9c3b-7049b5a9d0e8  
+Subcategory: undefined
+
+<!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_end-->
+
+
+
+<!--14f2b661-8b62-4e1e-9020-6ae63ce9e354_begin-->
+
+#### Upgrade apps to Python 3.10  
+  
+Extended support for Python 3.9 is retiring. Apps that are hosted on App Service will continue to run, but security updates and customer support will no longer be available  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/python-39-app-svc)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 14f2b661-8b62-4e1e-9020-6ae63ce9e354  
+Subcategory: undefined
+
+<!--14f2b661-8b62-4e1e-9020-6ae63ce9e354_end-->
+
+<!--3d5765c2-e25e-47ca-988a-cf11535a592d_begin-->
+
+#### Durable Functions support for Netherite is ending  
+  
+Opening new support cases that seek assistance for Netherite-enabled apps is blocked.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=489009)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 3d5765c2-e25e-47ca-988a-cf11535a592d  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--3d5765c2-e25e-47ca-988a-cf11535a592d_end-->
+
+<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_begin-->
+
+#### Upgrade Python 3.9 app to newer version  
+  
+Extended support for Python 3.9 is ending. Apps hosted on App Service continue to run. Future security updates are no longer available. The platform no longer provides customer service for Python 3.9.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=python-39-app-svc)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 2350ea91-8dc1-4f7b-b85f-84990e9bfb5a  
+Subcategory: undefined
+
+<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_end-->
 
 <!--articleBody-->

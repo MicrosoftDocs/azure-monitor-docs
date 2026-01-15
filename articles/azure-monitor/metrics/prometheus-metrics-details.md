@@ -32,7 +32,8 @@ Data stored in the Azure Monitor workspace, including Prometheus data, is handle
 * Data is encrypted at rest using a Microsoft-managed key.
 * Data is retained for 18 months.
 
-For details about the Azure Monitor managed service for Prometheus' support of PII/EUII data, see [Azure Monitor and Prometheus](prometheus-metrics-overview.md).
+## Personal data
+The use of Azure Monitor to manage and host Prometheus is intended for storing information about the service health of customer machines and applications. It's not intended for storing any personal data. Ensure that you don't send any sensitive information, PII/EUII, such as usernames and credit card numbers, into Azure Monitor-hosted Prometheus fields like metric names, label names, or label values.
 
 ## Case sensitivity
 
@@ -63,10 +64,6 @@ Open-source Prometheus treats the preceding examples as two different time serie
 Prometheus [does not support duplicate time series](https://promlabs.com/blog/2022/12/15/understanding-duplicate-samples-and-out-of-order-timestamp-errors-in-prometheus). Azure Managed Prometheus surfaces these to users as 422 errors rather than silently drop duplicate time series. Users encountering these errors should take action to avoid duplication of time series. 
 
 For example, if a user uses the same "cluster" label value for two different clusters stored in different resource groups but ingesting to the same AMW, they should rename one of these labels for uniqueness. This error will only arise in edge-cases where the timestamp and values are identical across both clusters in this scenario.
-
-## Personal data
-The use of Azure Monitor to manage and host Prometheus is intended for storing information about the service health of customer machines and applications. It's not intended for storing any personal data. Ensure that you don't send any sensitive information, such as usernames and credit card numbers, into Azure Monitor-hosted Prometheus fields like metric names, label names, or label values.
-
 
 ## Metric names, label names & label values
 

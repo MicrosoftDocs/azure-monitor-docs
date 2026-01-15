@@ -2,8 +2,8 @@
 title: Azure Diagnostics extension overview
 description: Use Azure Diagnostics for debugging, measuring performance, monitoring, and performing traffic analysis in cloud services, virtual machines, and service fabric.
 ms.topic: concept-article
-ms.date: 06/30/2025
-ms.reviewer: luki
+ms.date: 11/17/2025
+ms.reviewer: shseth
 
 ---
 
@@ -14,12 +14,10 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > [!IMPORTANT]
 > ### Migrate from Azure Diagnostic extension
 > 
-> Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension. 
+> Azure Diagnostics extension will be deprecated on **March 31, 2026**. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension. 
 > 
-> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to [Azure Monitor Agent](./azure-monitor-agent-overview.md), which can collect the same data and send it to multiple destinations including Log Analytics workspaces, Azure Event Hubs, and Azure Storage. Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data. 
->
-> As an alternative to storage, you should send data to a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
->
+> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to alternative solutions following the [following migration guidance](#migration-guidance). Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data.
+> 
 > To check which extensions are installed on a single VM, select **Extensions + applications** under **Settings** on your VM. To review the extensions installed on all virtual machines in subscriptions where you have access, use the following query in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal):
 >
 > ``` kql
@@ -32,11 +30,19 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > | distinct id
 > ```
 >
-> This produces results similar to the following:
+> It produces results similar to the following example:
 > 
 > :::image type="content" source="media/diagnostics-extension-overview/query-results.png" lightbox="media/diagnostics-extension-overview/query-results.png" alt-text="Screenshot showing the results of a sample Azure Resource Graph Query.":::
 
+## Migration Guidance
 
+To ensure continued support after March 31, 2026 and access to new features, migrate using the following options based on the data destination: 
+ 
+| Destination | Migration Options |   
+|-------------|----------------------------------------------------------------------|
+| Azure Storage blobs | If you're using WAD/LAD agents to send data to storage for longer term storage and/or lower costs, migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md). Then you can send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) in your Log Analytics workspace, or to the other following destinations for cost-effective logging. | 
+| Azure Event Hubs | If you're using WAD/LAD agents to send data to Event Hubs as a way to land it in your final destination or third party products, consider the following methods now available natively using Azure Monitor: <ul><li> [Configure Event Hubs using VM watch](/azure/virtual-machines/configure-eventhub-vm-watch) A native offering for virtual machines (VMs) and scale sets that send data Azure, including Event Hubs. **Note**: VM Watch doesn't collect application logs </li><li> **Event Hub -> Azure Data Explorer**: If your final data destination is ADX, migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md) to send data [directly to ADX and Fabric eventhouses](../vm/send-fabric-destination.md) as a simpler, more reliable solution </li> <!--li> **Event Hub -> OTLP destinations**: Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) and [Azure Monitor pipeline](../data-collection/edge-pipeline-configure.md) to send data to OTLP compliant external destinations Splunk, Grafana, Datadog, etc. </li--><li> **Event Hub -> Other destination(s)**: [Contact Azure Monitor team](mailto:obs-agent-pms@microsoft.com) for quick assistance regarding other destinations not listed here </li></ul> |
+| Azure Monitor metrics | Migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md) to send data to Azure Monitor metrics databases. |
 
 ## Primary scenarios
 
@@ -49,18 +55,9 @@ Use Azure Diagnostics extension if you need to:
 
 Limitations of Azure Diagnostics extension:
 
+* It will be deprecated on March 31, 2026.
 * It can only be used with Azure resources.
 * It has limited ability to send data to Azure Monitor Logs.
-
-## Comparison to Log Analytics agent
-
-The Log Analytics agent in Azure Monitor can also be used to collect monitoring data from the guest operating system of virtual machines. You can choose to use either or both depending on your requirements. For a comparison of the Azure Monitor agents, see [Overview of the Azure Monitor agents](../agents/agents-overview.md).
-
-The key differences to consider are:
-
-* Azure Diagnostics Extension can be used only with Azure virtual machines. The Log Analytics agent can be used with virtual machines in Azure, other clouds, and on-premises.
-* Azure Diagnostics extension sends data to Azure Storage, [Azure Monitor Metrics](../essentials/data-platform-metrics.md) (Windows only) and Azure Event Hubs. The Log Analytics agent collects data to [Azure Monitor Logs](../logs/data-platform-logs.md).
-* The Log Analytics agent is required for retired [solutions](/previous-versions/azure/azure-monitor/insights/solutions), [VM insights](../vm/vminsights-overview.md), and other services such as [Microsoft Defender for Cloud](/azure/security-center/).
 
 ## Costs
 
@@ -68,7 +65,7 @@ There's no cost for Azure Diagnostics extension, but you might incur charges for
 
 ## Data collected
 
-The following tables list the data that can be collected by the Windows and Linux diagnostics extension.
+The following tables list the data that can get collected by the Windows and Linux diagnostics extension.
 
 ### Windows diagnostics extension (WAD)
 
@@ -105,7 +102,7 @@ Configure one or more *data sinks* to send data to other destinations. The follo
 | Azure Monitor Metrics | Collect performance data to Azure Monitor Metrics. See [Send Guest OS metrics to the Azure Monitor metric database](../essentials/collect-custom-metrics-guestos-resource-manager-vm.md).                                       |
 | Event hubs            | Use Azure Event Hubs to send data outside of Azure. See [Streaming Azure Diagnostics data to Azure Event Hubs](diagnostics-extension-stream-event-hubs.md).                                                                     |
 | Azure Storage blobs   | Write data to blobs in Azure Storage in addition to tables.                                                                                                                                                                     |
-| Application Insights  | Collect data from applications running in your VM to Application Insights to integrate with other application monitoring. See [Send diagnostic data to Application Insights](diagnostics-extension-to-application-insights.md). |
+| Application Insights  | To integrate with other application monitoring, collect data from applications running in your VM to Application Insights. See [Send diagnostic data to Application Insights](diagnostics-extension-to-application-insights.md). |
 
 You can also collect WAD data from storage into a Log Analytics workspace to analyze it with Azure Monitor Logs, although the Log Analytics agent is typically used for this functionality. It can send data directly to a Log Analytics workspace and supports solutions and insights that provide more functionality. See [Collect Azure diagnostic logs from Azure Storage](diagnostics-extension-logs.md).
 
@@ -132,7 +129,7 @@ See the following articles for information on installing and configuring the dia
 
 ## Supported operating systems
 
-The following tables list the operating systems that are supported by WAD and LAD. See the documentation for each agent for unique considerations and for the installation process. See Telegraf documentation for its supported operating systems. All operating systems are assumed to be x64. x86 is not supported for any operating system.
+The following tables list the operating systems supported by WAD and LAD. See the documentation for each agent for unique considerations and for the installation process. See Telegraf documentation for its supported operating systems. All operating systems are assumed to be x64. x86 isn't supported for any operating system.
 
 ### Windows
 
@@ -182,7 +179,7 @@ The following tables list the operating systems that are supported by WAD and LA
 
 ## Other documentation
 
-See the following articles for more information.
+For more information, see the following articles.
 
 ### Azure Cloud Services (classic) web and worker roles
 

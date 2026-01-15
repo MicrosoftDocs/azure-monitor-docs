@@ -34,7 +34,7 @@ Some considerations about components:
 
 The mapping experience starts with the progressive discovery of the components within the application and their dependencies. When you first load **Application map**, a query set triggers to discover the components related to the main component. As components are discovered, a status bar shows the current number of discovered components:
 
-:::image type="content" source="media/app-map/load-initial.png" alt-text="Screenshot that shows the initial load of an application map in the Azure portal." border="false" lightbox="media/app-map/load-initial.png":::
+:::image type="content" source="media/app-insights-overview/app-insights-overview.png" lightbox="media/app-insights-overview/app-insights-overview.png" alt-text="Screenshot that shows the initial load of an application map in the Azure portal." border="false" :::
 
 The following sections describe some of the actions available for working with **Application map** in the Azure portal.
 
@@ -136,7 +136,7 @@ The following example shows a map in **Hierarchical view** with five component n
 
 - Distant or unrelated component nodes are shown smaller in comparison to the other nodes. These items are dimmed in the view to highlight performance for the currently selected component.
 
-- In this example, each cloud role name also represents a different unique Application Insights resource with its own instrumentation keys. Because the owner of this application has access to each of those four disparate Application Insights resources, **Application map** can stitch together a map of the underlying relationships.
+- In this example, each cloud role name also represents a different unique Application Insights resource with its own connection string. Because the owner of this application has access to each of those four disparate Application Insights resources, **Application map** can stitch together a map of the underlying relationships.
 
 ### Investigate cloud role instances
 
@@ -156,7 +156,9 @@ To learn how to manually change the cloud role name and cloud role instance, see
 
 * OpenTelemetry Distro: [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
 * Client-side JavaScript SDK: [Configure JavaScript SDK](javascript-sdk-configuration.md#add-a-cloud-role-name-and-cloud-role-instance)
-* Application Insights SDK (Classic API): [.NET](dotnet.md#add-a-cloud-role-name-and-cloud-role-instance) and [Node.js](nodejs.md#add-a-cloud-role-name-and-cloud-role-instance)
+=======
+* Application Insights SDK (Classic API): [.NET](classic-api.md?tabs=dotnet#add-a-cloud-role-name-and-cloud-role-instance) and [Node.js](classic-api.md?tabs=nodejs#add-a-cloud-role-name-and-cloud-role-instance)
+>>>>>>> 97ad23c8af7f802867eff6f7e0345f5a51f508dc
 
 > [!NOTE]
 > The Application Insights SDK or Agent automatically adds the cloud role name property to the telemetry emitted by components in an Azure App Service environment.
@@ -357,5 +359,5 @@ When **Intelligent view** doesn't highlight any edges on the application map, th
 ## Next steps
 - To review our dedicated troubleshooting guide, see [Application map troubleshooting](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-application-map-issues).
 - Learn how correlation works in Application Insights with [Telemetry correlation](distributed-trace-data.md).
-- Explore the [end-to-end transaction diagnostic experience](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) that correlates server-side telemetry from across all your Application Insights-monitored components into a single view.
+- Explore the [end-to-end transaction diagnostic experience](./failures-performance-transactions.md#transaction-diagnostics-experience) that correlates server-side telemetry from across all your Application Insights-monitored components into a single view.
 - Support advanced correlation scenarios in ASP.NET Core and ASP.NET with [Track custom operations](custom-operations-tracking.md).

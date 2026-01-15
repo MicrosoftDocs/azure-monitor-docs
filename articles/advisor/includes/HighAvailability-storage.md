@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/11/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -122,5 +122,59 @@ Recommendation ID: 1d70919c-1a4a-4f79-8300-bb576c291e9d
 Subcategory: undefined
 
 <!--1d70919c-1a4a-4f79-8300-bb576c291e9d_end-->
+
+<!--42dbf883-9e4b-4f84-9da4-232b87c4b5e9_begin-->
+
+#### Enable Soft Delete to protect your blob data  
+  
+Soft Delete puts deleted data into a soft deleted state instead of permanently deleted. When data is overwritten, a soft deleted snapshot is generated to save the state of the overwritten data. You can configure the amount of time soft deleted data is recoverable before it permanently expires.  
+  
+**Potential benefits**: Restore blobs or snapshots after overwrite or deletion  
+
+**Impact:** Medium
+  
+For more information, see [Soft delete for blobs - Azure Storage](https://aka.ms/softdelete)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: 42dbf883-9e4b-4f84-9da4-232b87c4b5e9  
+Subcategory: undefined
+
+<!--42dbf883-9e4b-4f84-9da4-232b87c4b5e9_end-->
+
+<!--26cbb942-7c43-4f4b-af10-116f5b107acc_begin-->
+
+#### Migrate BlobFuse to version 2  
+  
+Migrate BlobFuse to BlobFuse2. All future enhancements and innovations related to Azure Blob Storage file system access exclusively focuses on BlobFuse2.  
+  
+**Potential benefits**: Enhancements to Azure Blob Storage file system access  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=498563)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: 26cbb942-7c43-4f4b-af10-116f5b107acc  
+Subcategory: undefined
+
+<!--26cbb942-7c43-4f4b-af10-116f5b107acc_end-->
+
+<!--ced5fa9f-b5bf-4982-9f25-8190fb36dfca_begin-->
+
+#### Support for TLS 1.0 and TLS 1.1 in Azure storage accounts is ending  
+  
+Upgrade TLS to latest version. Support for TLS 1.0 and TLS 1.1 in Azure storage accounts is ending.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [TLS 1.0 and 1.1 support will be removed for new & existing Azure storage accounts starting Feb 2026](https://techcommunity.microsoft.com/blog/azurestorageblog/tls-1-0-and-1-1-support-will-be-removed-for-new--existing-azure-storage-accounts/4026181)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: ced5fa9f-b5bf-4982-9f25-8190fb36dfca  
+Subcategory: undefined
+
+<!--ced5fa9f-b5bf-4982-9f25-8190fb36dfca_end-->
 
 <!--articleBody-->

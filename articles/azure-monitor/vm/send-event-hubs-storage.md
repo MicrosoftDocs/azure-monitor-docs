@@ -4,6 +4,7 @@ description: This article describes how to use Azure Monitor Agent to upload dat
 ms.topic: how-to
 ms.date: 04/03/2025
 ms.reviewer: luki
+ROBOTS: NOINDEX
 ---
 
 # Send virtual machine client data to Event Hubs and Storage (Preview)

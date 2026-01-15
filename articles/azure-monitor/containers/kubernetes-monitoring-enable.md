@@ -36,6 +36,11 @@ The following table describes the workspaces that are required to support the Az
 
 
 ## Enable Prometheus metrics and container logging
+
+> [!NOTE] 
+> Using Application insights to monitor the applications running on your AKS cluster by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection is now in public preview. See [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Limited Preview](../app/kubernetes-open-protocol.md).
+
+
 When you enable Prometheus and container logging on a cluster, a containerized version of the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed in the cluster. You can configure these features at the same time on a new or existing cluster, or enable each feature separately. 
 
 Enable Managed Grafana for your cluster at the same time that you enable scraping of Prometheus metrics. See [Link a Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal) for options to connect your Azure Monitor workspace and Azure Managed Grafana workspace.
@@ -148,11 +153,11 @@ Each of the settings in the configuration is described in the following table.
 | `namespaceFilteringMode` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collect data on all namespaces.<br><br>Default: Off |
 | `namespaces` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored.<br><br>None. |
 |  `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are ingested to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are ingested to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2.<br><br>Default: True |
-| `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>Default: ContainerLogV2, KubeEvents, KubePodInventory |
+| `streams` | An array of table streams to collect. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>Default: Microsoft-ContainerInsights-Group-Default |
 
 
 
-### [ARM](#tab/arm)
+### [BICEP/ARM](#tab/arm)
 
 ### Prerequisites
 
@@ -509,31 +514,17 @@ The **Collected data** option allows you to select the tables that are populated
 
 2. Create the policy definition using the following CLI command:
 
-      `az policy definition create --name "Prometheus Metrics addon" --display-name "Prometheus Metrics addon" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules AddonPolicyMetricsProfile.rules.json --params AddonPolicyMetricsProfile.parameters.json`
+    ```azurecli
+    az policy definition create --name "Prometheus Metrics addon" --display-name "Prometheus Metrics addon" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules AddonPolicyMetricsProfile.rules.json --params AddonPolicyMetricsProfile.parameters.json`
+    ```
 
-3. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
-4. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
-1. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
+4. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
+5. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
+6. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
 
 After the policy is assigned to the subscription, whenever you create a new cluster without Prometheus enabled, the policy will run and deploy to enable Prometheus monitoring.
 
-#### Azure portal
-
-1. From the **Definitions** tab of the **Policy** menu in the Azure portal, create a policy definition with the following details.
-
-    - **Definition location**: Azure subscription where the policy definition should be stored.
-    - **Name**: AKS-Monitoring-Addon
-    - **Description**: Azure custom policy to enable the Monitoring Add-on onto Azure Kubernetes clusters.
-    - **Category**: Select **Use existing** and then *Kubernetes* from the dropdown list.
-    - **Policy rule**: Replace the existing sample JSON with the contents of [https://aka.ms/aks-enable-monitoring-custom-policy](https://aka.ms/aks-enable-monitoring-custom-policy).
-
-1. Select the new policy definition **AKS Monitoring Addon**.
-1. Select **Assign** and specify a **Scope** of where the policy should be assigned.
-1. Select **Next** and provide the resource ID of the Log Analytics workspace.
-1. Create a remediation task if you want to apply the policy to existing AKS clusters in the selected scope.
-1. Select **Review + create** to create the policy assignment.
-
-#### Azure CLI
+#### Container logging
 
 1. Download Azure Policy template and parameter files.
 
@@ -546,41 +537,15 @@ After the policy is assigned to the subscription, whenever you create a new clus
     ```azurecli
     az policy definition create --name "AKS-Monitoring-Addon-MSI" --display-name "AKS-Monitoring-Addon-MSI" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules azure-policy.rules.json --params azure-policy.parameters.json
     ```
-
-3. Create the policy definition using the following CLI command:
-
-    ```azurecli
-    az policy assignment create --name aks-monitoring-addon --policy "AKS-Monitoring-Addon-MSI" --assign-identity --identity-scope /subscriptions/<subscriptionId> --role Contributor --scope /subscriptions/<subscriptionId> --location <location> -p "{ \"workspaceResourceId\": { \"value\": \"/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.operationalinsights/workspaces/<workspaceName>\" }, \"resourceTagValues\": { \"value\": {} }, \"workspaceRegion\": { \"value\": \"<location>\" }}"
-    ```
-
-After the policy is assigned to the subscription, whenever you create a new cluster without Container insights enabled, the policy will run and deploy to enable Container insights monitoring. 
+4. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
+5. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
+6. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
 
 ---
 
 ### Stream values
-When you specify the tables to collect using CLI or ARM, you specify a stream name that corresponds to a particular table in the Log Analytics workspace. The following table lists the stream name for each table.
 
-> [!NOTE]
-> If you're familiar with the [structure of a data collection rule](../essentials/data-collection-rule-structure.md), the stream names in this table are specified in the [Data flows](../essentials/data-collection-rule-structure.md#data-flows) section of the DCR.
-
-| Stream | Container insights table |
-| --- | --- |
-| Microsoft-ContainerInventory | ContainerInventory |
-| Microsoft-ContainerLog | ContainerLog |
-| Microsoft-ContainerLogV2 | ContainerLogV2 |
-| Microsoft-ContainerLogV2-HighScale | ContainerLogV2 (High scale mode)<sup>1</sup> |
-| Microsoft-ContainerNodeInventory | ContainerNodeInventory |
-| Microsoft-InsightsMetrics | InsightsMetrics |
-| Microsoft-KubeEvents | KubeEvents |
-| Microsoft-KubeMonAgentEvents | KubeMonAgentEvents |
-| Microsoft-KubeNodeInventory | KubeNodeInventory |
-| Microsoft-KubePodInventory | KubePodInventory |
-| Microsoft-KubePVInventory | KubePVInventory |
-| Microsoft-KubeServices | KubeServices |
-| Microsoft-Perf | Perf |
-| Microsoft-RetinaNetworkFlowLogs | RetinaNetworkFlowLogs |
-
-<sup>1</sup> Don't use both Microsoft-ContainerLogV2 and Microsoft-ContainerLogV2-HighScale together. This will result in duplicate data.
+[!INCLUDE [data-collection-rule-streams](./includes/data-collection-rule-streams.md)]
 
 ### Applicable tables and metrics
 The settings for **collection frequency** and **namespace filtering** don't apply to all log data. The following tables list the tables in the Log Analytics workspace along with the settings that apply to each. 
@@ -636,7 +601,7 @@ az monitor diagnostic-settings create \
 --export-to-resource-specific true
 ```
 
-### [ARM](#tab/arm)
+### [BICEP/ARM](#tab/arm)
 Following are sample template and parameter files to create a diagnostic setting for control plane logs. Modify the templates to collect different categories or to send the logs to a different destination.
 
 **Bicep**
@@ -871,7 +836,7 @@ Windows metric collection is enabled for AKS clusters as of version 6.4.0-main-0
 
 Manually install windows-exporter on AKS nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors. For more collectors, see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
 
-   * `[defaults]`
+* `[defaults]`
    * `container`
    * `memory`
    * `process`
@@ -891,7 +856,7 @@ Set the `windowsexporter` and `windowskubeproxy` Booleans to `true` in your metr
 
 Enable the recording rules that are required for the out-of-the-box dashboards:
 
- * If onboarding using CLI, include the option `--enable-windows-recording-rules`.
+* If onboarding using CLI, include the option `--enable-windows-recording-rules`.
  * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
  * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
 

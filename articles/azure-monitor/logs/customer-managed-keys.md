@@ -381,7 +381,7 @@ After the configuration, any new *saved search* query will be saved in your stor
 
 **Considerations before setting Customer-managed key for Saved log alert queries**
 * Alert queries are saved as blob in the Storage Account.
-* Triggered log search alerts don't contain search results or the alert query. Use [alert dimensions](../alerts/alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions-1) to get context for the fired alerts.
+* Triggered log search alerts don't contain search results or the alert query. Use [alert dimensions](../alerts/alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to get context for the fired alerts.
 * To keep queries and functions encrypted with your key, configure the linked Storage Account with Customer-managed key. This operation can be done as Storage Account creation, or later.
 
 Link a Storage Account for *Alerts* to keep *log search alert* queries in your Storage Account. 

@@ -34,7 +34,7 @@ A subset of OpenTelemetry Metrics are known as [system metrics](https://opentele
 ## Benefits of OpenTelemetry
 
 **Cross-OS observability**
-The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for users to manage their virtual machines / nodes across their fleet with a single set of queries used for either Windows or Linux OS images. The same configuration-as-code (ARM/Bicep templates, Terraform, etc) using the same PromQl queries can be used for any hosting resource that adopts OpenTelemetry system metrics. 
+The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for users to manage their virtual machines / nodes across their fleet with a single set of queries used for either Windows or Linux OS images. The same configuration-as-code (ARM/Bicep templates, Terraform, etc.) using the same PromQl queries can be used for any hosting resource that adopts OpenTelemetry system metrics. 
 
 **More performance counters**
 The OpenTelemetry Collector Host Metrics Receiver collects many more performance counters than Azure Monitor currently makes available for collection via DCR with Log Analytics workspace as a destination. For example, users can now monitor per-process CPU utilization, disk I/O, memory usage and more.
@@ -233,6 +233,8 @@ The following performance counters are collected by the Azure Monitor Agent for 
 | System(*)\\Unique Users | System |
 | System(*)\\CPUs | System |
 
+---
+
 > [!TIP]
 > Feel free to share your feedback on new performance counters or functionality you would like to see by posting to our [GitHub Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](/answers/questions/564554/where-can-i-submit-suggestions-for-azure).
 
@@ -241,7 +243,7 @@ The following performance counters are collected by the Azure Monitor Agent for 
 The OpenTelemetry [Resource semantic convention](https://opentelemetry.io/docs/specs/semconv/resource/) is still in development. We are actively engaging with the OSS community to improve and standardize this naming convention for a variety of scenarios - please share your feedback to help us continuously improve your experience.
 
 In general, OpenTelemetry metrics collected via Azure Monitor Agent + Data Collection Rules and sent to Azure Monitor workspaces have the following cloud resource attributes automatically added as dimensions to support resource-scoped querying:
- * Microsoft.resourceid
+* Microsoft.resourceid
  * Microsoft.subscriptionid
  * Microsoft.resourcegroupname
  * Microsoft.resourcetype
@@ -266,6 +268,6 @@ The process.command_line attribute can contain extremely long strings with thous
 
 Use custom metrics from various services:
 
- * [How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection](../vm/data-collection-performance.md)
+* [How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection](../vm/data-collection-performance.md)
  * [How to begin collecting OpenTelemetry Guest OS performance counters: VM Insights](../vm/vminsights-opentelemetry.md)
- * How to query OpenTelemetry Guest OS performance counters with PromQl
+ * [How to query OpenTelemetry Guest OS performance counters with PromQl](./prometheus-system-metrics-best-practices.md)

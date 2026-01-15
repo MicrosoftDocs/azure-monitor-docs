@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/11/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Machine Learning
@@ -12,22 +12,22 @@ ms.custom: HighAvailability Azure Machine Learning
   
 ## Azure Machine Learning  
   
-<!--262c35d4-83fe-457f-afa7-cac774c371d8_begin-->
+<!--08a4b7ad-b2b8-41b4-bc80-a733da095979_begin-->
 
-#### Migrate away from retiring Azure Machine Learning preview features  
+#### Transition from Batch Endpoints preview APIs  
   
-The preview features for Azure Machine Learning are retiring. Preview features include grouping multiple steps for better organization of complex pipeline jobs to debug failures or unexpected issues and so on. Create a plan for removing dependencies on the preview features.  
+Azure Machine Learning Batch Endpoints preview APIs will be retired. Customers should move to alternative solutions for batch inferencing to ensure continuity and leverage newer capabilities.  
   
-**Potential benefits**: Avoid service disruptions  
+**Potential benefits**: Ensure service continuity  
 
 **Impact:** High
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=501663)  
+For more information, see [What are batch endpoints? - Azure Machine Learning](/azure/machine-learning/concept-endpoints-batch?view=azureml-api-2)  
 
 ResourceType: microsoft.machinelearningservices/workspaces  
-Recommendation ID: 262c35d4-83fe-457f-afa7-cac774c371d8  
+Recommendation ID: 08a4b7ad-b2b8-41b4-bc80-a733da095979  
 Subcategory: undefined
 
-<!--262c35d4-83fe-457f-afa7-cac774c371d8_end-->
+<!--08a4b7ad-b2b8-41b4-bc80-a733da095979_end-->
 
 <!--articleBody-->

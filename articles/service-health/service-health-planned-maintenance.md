@@ -1,12 +1,11 @@
 ---
-title: Service Health Planned maintenance
-description: Overview of the features and information found on the pane. 
-ms.topic: reference
-ms.date: 11/11/2025
-
+title: Planned maintenance overview
+description: Overview of the features and information found on the Planned maintenance pane. 
+ms.topic: concept-article
+ms.date: 12/09/2025
 ---
 
-# Planned maintenance overview
+# Planned maintenance
 
 The Planned Maintenance pane in Azure Service Health is a dedicated section in the Azure portal that keeps you informed about upcoming maintenance activities. It highlights events that can affect your Azure resources, helping you prepare in advance.<br> Here's a breakdown of its purpose and the information it provides:
 
@@ -49,9 +48,13 @@ Select the **Issue name** link to open the tabs with the information you need.
 >[!Note]
 >Planned maintenance events are displayed in the panel for 90 days if they are still active and if the `impactMitigationTime/endtime` is set in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
 >
->For more information about Planned maintenance events using ARG queries, [Resource graph sample queries](resource-graph-health-samples.md), [Service Health graph sample queries](resource-graph-samples.md), and [Impacted resources graph sample queries](resource-graph-impacted-samples.md). These resources provide guidance on how to utilize the available queries.
+>For more information about Planned maintenance events using ARG queries, see:
+>- [Resource graph sample queries](resource-graph-health-samples.md) 
+>- [Service Health graph sample queries](resource-graph-samples.md)
+>- [Impacted resources graph sample queries](resource-graph-impacted-samples.md)<br>
+>These resources provide guidance on how to utilize the available queries.
 
-### Command bar
+### Filtering and sorting
 
 At the top of each tab, there's a command bar with several options of how to view the information displayed.
 
@@ -67,8 +70,7 @@ At the top of each tab, there's a command bar with several options of how to vie
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-summary.PNG" alt-text="Screenshot of Summary tab." lightbox="media/planned-maintenance/planned-maintenance-summary.png":::
 
-When you open the Planned maintenance event, it opens the Summary tab, which shows you a list of information about this event. 
-Each event includes:
+When you open the Planned maintenance event, it opens the Summary tab, which shows you a list of information about this event, which includes:
 
 |Field                  |Description  |
 |-----------------------|-------------|
@@ -78,10 +80,10 @@ Each event includes:
 |Impacted regions       | A list of all the regions impacted by this event and shown on the calendar. |
 |Impacted subscriptions | A list of any subscriptions impacted by this event.                         |
 |Status                 | The current status of this event.                                           |
-|Health event type      | The type of health event (Planned Maintence/Security)                       |
+|Health event type      | The type of health event (Planned maintence/Security advisory).             |
 |Event tags             | The information that explains or names the nature and status of this event. |
-|Start time             | The time the event started.                                                 |
-|End time               | The time the event ended.                                                   |
+|Start time             | The time the event started. <br> *All times displayed are in Coordinated Universal Time (UTC).* |
+|End time               | The time the event ended.<br> *All times displayed are in Coordinated Universal Time (UTC).* |
 |Last update            | The most current notification information about this event.                 |
 
 
@@ -144,7 +146,9 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
     - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
 5. How long is the maintenance history available?
 - Active view: up to 90 days
-- Health history: up to one year
+- Health history: 90 days from most recent published date
+
+For more information on event retention, see [Service Health notification transitions](service-health-notification-transitions.md).
 
 
 ## Next steps

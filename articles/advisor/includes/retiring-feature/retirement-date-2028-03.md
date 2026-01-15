@@ -13,6 +13,13 @@ ms.date: 11/11/2025
 > | Azure Kubernetes Service | Deployments on Windows Server 2019 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Azure Kubernetes Service | Deployments on Windows Server 2022 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
+##### March 27, 2028
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Kubernetes - Azure Arc | Windows Server 2019 and Windows Server 2022 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+
 ##### March 31, 2028
 
 > [!div class="mx-tdCol3BreakAll"]

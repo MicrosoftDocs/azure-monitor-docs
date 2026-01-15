@@ -22,7 +22,7 @@ The following video walks through routing resource platform logs with diagnostic
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=2e9e11cc-fc03-4caa-8fee-4386abf454bc]
 
 > [!WARNING] 
-> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. This would resume the collection of resource logs as defined in the diagnostic setting. 
+> Delete any diagnostic settings for a resource if you delete or rename that resource, or if you migrate it across resource groups or subscriptions. If the diagnostic setting isn't removed and this resource is recreated, any diagnostic settings for the deleted resource could be applied to the new one. For some resource types this would resume the collection of resource logs as defined in the diagnostic setting. 
 
 ## Sources
 
@@ -55,7 +55,8 @@ Any destinations used by the diagnostic setting must exist before the setting ca
 You can create a diagnostic setting using any of the following methods.
 
 > [!NOTE]
-> To create a diagnostic setting for the activity log, see [Export activity log](./activity-log.md#export-activity-log).
+> - To create a diagnostic setting for the activity log using the Azure portal, see [Export activity log](./activity-log.md#export-activity-log).
+> - To create a diagnostic setting for a management group, see [Management Group Diagnostic Settings](/rest/api/monitor/management-group-diagnostic-settings).
 
 ### [Azure portal](#tab/portal)
 Use the following steps to create a new diagnostic setting or edit an existing one in the Azure portal.
@@ -187,6 +188,11 @@ To create or edit a diagnostic setting with the Azure Monitor REST API, see [Dia
 
 ---
 
+> [!WARNING]
+> From Azure portal when creating or updating Diagnostic Settings for an Azure Storage account or Azure Event Hub namespace, you could be unable to select itself as a destination for the resource logs or metrics data.
+> This is by design as it is possible to get into a state where resource logs or metrics being sent from a resource to the same resource would generate an infinite loop of generating and writing data.  
+> This design is only applied at the Azure portal UX layer, if there is truly a need to write data to the same resource and you are willing to accept the associated risks, you can create the Diagnostic Setting using Azure PowerShell, Azure CLI, REST API, ARM Template or other supported Microsoft SDK.
+
 
    
 ## Category groups
@@ -201,8 +207,6 @@ If you do use category groups in a diagnostic setting, you can't select individu
 
 > [!NOTE]
 > Enabling the Audit category in the diagnostic settings for Azure SQL Database does not activate auditing for the database. To enable database auditing, you have to enable it from the auditing blade for Azure Database. 
-
-
 
 ## Metrics limitations
 
@@ -228,7 +232,14 @@ After you create a diagnostic setting, data should start flowing to your selecte
 
 If you're experiencing an issue, disable the configuration and then reenable it. Contact Azure support through the Azure portal if you continue to have issues.
 
+## Application Insights
 
+Consider the following for diagnostic settings for Application insights applications:
+
+- The destination can't be the same Log Analytics workspace that your Application Insights resource is based on.
+- The Application Insights user can't have access to both workspaces. Set the Log Analytics **[access control mode](/azure/azure-monitor/logs/log-analytics-workspace-overview)** to **Requires workspace permissions**. Through **[Azure role-based access control](/azure/azure-monitor/app/resources-roles-access-control)**, ensure the user only has access to the Log Analytics workspace the Application Insights resource is based on.
+
+These steps are necessary because Application Insights accesses telemetry across Application Insight resources, including Log Analytics workspaces, to provide complete end-to-end transaction operations and accurate application maps. Because diagnostic logs use the same table names, duplicate telemetry can be displayed if the user has access to multiple resources that contain the same data.
 
 ## Troubleshooting
 
@@ -243,8 +254,7 @@ When a resource is inactive and exporting zero-value metrics, the diagnostic set
 
 When a resource is inactive for one hour, the export mechanism backs off to 15 minutes. This means that there is a potential latency of up to 15 minutes for the next nonzero value to be exported. The maximum backoff time of two hours is reached after seven days of inactivity. Once the resource starts exporting nonzero values, the export mechanism reverts to the original export latency of three minutes. 
 
-**Duplicate data for Application Insights**<br>
-Diagnostic settings for workspace-based Application insights applications collect the same data as Application insights itself. This results in duplicate data being collected if the destination is the same Log Analytics workspace that the application is using. Create a diagnostic setting for Application insights to send data to a different Log Analytics workspace or another destination. 
+
 
 ## Next steps
 
