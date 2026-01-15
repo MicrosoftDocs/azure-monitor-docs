@@ -1824,6 +1824,8 @@ items:
             href: tables/agsgrafanaloginevents.md
           - name: AGSGrafanaUsageInsightsEvents
             href: tables/agsgrafanausageinsightsevents.md
+          - name: AGSUpdateEvents
+            href: tables/agsupdateevents.md
           - name: AGWAccessLogs
             href: tables/agwaccesslogs.md
           - name: AGWFirewallLogs
@@ -2812,8 +2814,6 @@ items:
             href: tables/mdcdetectionprocessv2events.md
           - name: MDCFileIntegrityMonitoringEvents
             href: tables/mdcfileintegritymonitoringevents.md
-          - name: MDECustomCollectionDeviceFileEvents
-            href: tables/mdecustomcollectiondevicefileevents.md
           - name: MDPResourceLog
             href: tables/mdpresourcelog.md
           - name: MNFDeviceUpdates
@@ -3438,6 +3438,8 @@ items:
             href: queries/AGCAccessLogs.md
           - name: AGSGrafanaLoginEvents
             href: queries/AGSGrafanaLoginEvents.md
+          - name: AGSUpdateEvents
+            href: queries/AGSUpdateEvents.md
           - name: AHCIDiagnosticLogs
             href: queries/AHCIDiagnosticLogs.md
           - name: AHDSDicomAuditLogs

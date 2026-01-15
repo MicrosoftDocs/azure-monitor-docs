@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 11/24/2025
+ms.date: 01/12/2026
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -464,6 +464,10 @@ ms.reviewer: lualderm
 ## [AGSGrafanaLoginEvents](./queries/AGSGrafanaLoginEvents.md)
 
 - [Show login error events](./queries/AGSGrafanaLoginEvents.md#show-login-error-events)
+
+## [AGSUpdateEvents](./queries/AGSUpdateEvents.md)
+
+- [View users who updated the dashboard](./queries/AGSUpdateEvents.md#view-users-who-updated-the-dashboard)
 
 ## [AHCIDiagnosticLogs](./queries/AHCIDiagnosticLogs.md)
 

@@ -8753,6 +8753,11 @@
    "source_path": "articles/azure-monitor/containers/container-insights-data-collection-filter.md",
    "redirect_url": "/azure/azure-monitor/containers/kubernetes-data-collection-configmap",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/mdecustomcollectiondevicefileevents.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables-index",
+   "redirect_document_id": false
   }
  ]
 }
