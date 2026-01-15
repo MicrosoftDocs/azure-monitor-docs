@@ -445,6 +445,8 @@ export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=1.5
 ```
 
+---
+
 ### Configure sampling in code
 
 > [!NOTE]
