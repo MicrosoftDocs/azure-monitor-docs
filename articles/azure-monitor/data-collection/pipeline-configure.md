@@ -1,8 +1,8 @@
 ---
 title: Configure Azure Monitor pipeline 
-description: Configuration of Azure Monitor pipeline for edge and multicloud scenarios
+description: Configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center 
 ms.topic: article
-ms.date: 05/21/2025
+ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -51,7 +51,7 @@ For more information, see [Product availability by region](https://azure.microso
 
 The following diagram shows the components of the Azure Monitor pipeline. The pipeline itself runs on an Arc-enabled Kubernetes cluster in your environment. One or more data flows running in the pipeline listen for incoming data from clients, and the pipeline extension forwards the data to the cloud, using the local cache if necessary.
 
-:::image type="content" source="./media/pipeline-configure/pipeline-configuration.png" lightbox="./media/pipeline-configure/pipeline-configuration.png" alt-text="Overview diagram of the dataflow for Azure Monitor pipeline." border="false"::: 
+:::image type="content" source="./media/pipeline-configure/components.png" lightbox="./media/pipeline-configure/components.png" alt-text="Overview diagram of the components making up Azure Monitor pipeline." border="false"::: 
 
 The following table identifies the components required to enable the Azure Monitor pipeline. If you use the Azure portal to configure the pipeline, then each of these components is created for you. With other methods, you need to configure each one.
 
@@ -65,6 +65,16 @@ The following table identifies the components required to enable the Azure Monit
 | Pipeline configuration file | Used by the pipeline running in your data center. Defines the data flows for the pipeline instance, cache details, and pipeline transformation if included. |
 | Data collection rule (DCR) | [DCR](data-collection-rule-overview.md#using-a-dcr) used by Azure Monitor in the cloud to define how the data is received and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
 
+
+## Create table in Log Analytics workspace
+
+Before you configure the data collection process for the pipeline, any destination tables in the Log Analytics workspace must already exist. If you're sending to a custom table, then you need to create that table before you can create any data flows that send to it. The schema of the table must match the data that it receives, but there are multiple steps in the collection process where you can modify the incoming data, so the table schema doesn't need to match the source data that you're collecting. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
+
+See [Add or delete tables and columns in Azure Monitor Logs](../logs/create-custom-table.md) for details on different methods for creating a table. For example, use the CLI command below to create a table with the three columns called `Body`, `TimeGenerated`, and `SeverityText`.
+
+```azurecli
+az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name my-table_CL --columns TimeGenerated=datetime Body=string SeverityText=string
+```
 
 ## Enable and configure pipeline
 
@@ -123,7 +133,7 @@ Following are the steps required to create and configure the components required
 
 ### Pipeline extension
 
-The following command adds the pipeline extension to your Arc-enabled Kubernetes cluster. 
+Use the following command to add the pipeline extension to your Arc-enabled Kubernetes cluster. 
 
 ```azurecli
 az k8s-extension create --name <pipeline-extension-name> --extension-type microsoft.monitor.pipelinecontroller --scope cluster --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --release-train Preview
@@ -133,7 +143,7 @@ az k8s-extension create --name my-pipe --extension-type microsoft.monitor.pipeli
 ```
 
 ### Custom location
-The following ARM template creates the custom location for to your Arc-enabled Kubernetes cluster.
+Use the following command to create the custom location for your Arc-enabled Kubernetes cluster.
 
 ```azurecli
 az customlocation create --name <custom-location-name> --resource-group <resource-group-name> --namespace <name of namespace> --host-resource-id <connectedClusterId> --cluster-extension-ids <extensionId>
@@ -144,13 +154,13 @@ az customlocation create --name my-cluster-custom-location --resource-group my-r
 
 ### DCE
 
-The following ARM template creates the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) required for the pipeline to connect to the cloud. You can use an existing DCE if you already have one in the same region. Replace the properties in the following table before deploying the template.
+Use the following command to create the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) required for the pipeline to connect to the cloud. You can use an existing DCE if you already have one in the same region.
 
 ```azurecli
-az monitor data-collection endpoint create -g "myResourceGroup" -l "eastus2euap" --name "myCollectionEndpoint" --public-network-access "Enabled"
+az monitor data-collection endpoint create --name <dce-name> --resource-group <resource-group-name> --location <location> --public-network-access "Enabled"
 
 ## Example
- az monitor data-collection endpoint create --name strato-06-dce --resource-group strato --public-network-access "Enabled"
+ az monitor data-collection endpoint create --name strato-06-dce --resource-group strato --location eastus --public-network-access "Enabled"
 ```
 
 ### DCR
@@ -251,7 +261,7 @@ Replace the properties in the following template and save them in a json file be
 Install the DCR using the following command:
 
 ```azurecli
-az monitor data-collection rule create --name 'myDCRName' --location <location> --resource-group <resource-group> --rule-file '<dcr-file-path.json>'
+az monitor data-collection rule create --name <dcr-name> --location <location> --resource-group <resource-group> --rule-file '<dcr-file-path.json>'
 
 ## Example
 az monitor data-collection rule create --name my-pipeline-dcr --location westus2 --resource-group 'my-resource-group' --rule-file 'C:\MyDCR.json'
@@ -782,17 +792,6 @@ You can deploy all of the required components for the Azure Monitor pipeline usi
 
 ---
 
-## Segmented network
-
-To use Azure Monitor pipeline in a layered network configuration, you must add the following entries to the allowlist for the Arc-enabled Kubernetes cluster. See [Configure Azure IoT Layered Network Management Preview on level 4 cluster](/azure/iot-operations/manage-layered-network/howto-configure-l4-cluster-layered-network?tabs=k3s#configure-layered-network-management-preview-service).
-
-```yml
-- destinationUrl: "*.ingest.monitor.azure.com"
-  destinationType: external
-- destinationUrl: "login.windows.net"
-  destinationType: external
-```
-
 ## Syslog notes
 
 The send data to either of the following two built-in tables, the Log Analytics workspace must be onboarded to Microsoft Sentinel. You can send data to custom tables without onboarding to Microsoft Sentinel.
@@ -804,55 +803,6 @@ The send data to either of the following two built-in tables, the Log Analytics 
 
 
 
-## Workflow
-
-You don't need a detail understanding of the different steps performed by the Azure Monitor pipeline to configure it using the Azure portal. You may need a more detailed understanding of it though if you use another method of installation or if you need to perform more advanced configuration such as transforming the data before it's stored in its destination.
-
-The following tables and diagrams describe the detailed steps and components in the process for collecting data using the pipeline and passing it to the cloud for storage in Azure Monitor. 
-
-| Step | Action | Supporting configuration |
-|:-----|:-------|:-------------------------|
-| 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the pipeline receiver and sends data in the expected format for the receiver type. |
-| 2. | Receiver forwards data to the exporter. | Receiver and exporter are configured in the same pipeline. |
-| 3. | Optional transformation is applied to the data. | The data flow may include a transformation that filters or modifies the data before it's sent to Azure Monitor. The output of the transformation must match the schema expected by the DCR. |
-| 6. | Azure Monitor sends the data to the destination. | 
-| 4. | Exporter tries to send the data to the cloud. | Exporter in the pipeline configuration includes URL of the DCE, a unique identifier for the DCR, and the stream in the DCR that defines how the data will be processed. |
-| 4a. | Exporter stores data in the local cache if it can't connect to the DCE. | Persistent volume for the cache and configuration of the local cache is enabled in the pipeline configuration. |
-
-:::image type="content" source="./media/pipeline-configure/pipeline-data-flow.png" lightbox="./media/pipeline-configure/pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor pipeline." border="false":::
-
-| Step | Action | Supporting configuration |
-|:-----|:-------|:-------------------------|
-| 4. | Azure Monitor accepts the incoming data. | The DCR includes a schema definition for the incoming stream that must match the schema of the data coming from the pipeline. |
-| 5. | Optional transformation applied to the data. | The DCR may include a transformation that filters or modifies the data before it's sent to the destination. The output of the transformation must match the schema of the destination table. |
-| 6. | Azure Monitor sends the data to the destination. | The DCR includes a destination that specifies the Log Analytics workspace and table where the data will be stored. |
-
-:::image type="content" source="./media/pipeline-configure/cloud-pipeline-data-flow.png" lightbox="./media/pipeline-configure/cloud-pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor." border="false":::
-
-## Segmented network
-
-[Network segmentation](/azure/architecture/networking/guide/network-level-segmentation) is a model where you use software defined perimeters to create a different security posture for different parts of your network. In this model, you may have a network segment that can't connect to the internet or to other network segments. The Azure Monitor pipeline can be used to collect data from these network segments and send it to the cloud.
-
-:::image type="content" source="./media/pipeline-configure/layered-network.png" lightbox="./media/pipeline-configure/layered-network.png" alt-text="Diagram of a layered network for Azure Monitor pipeline." border="false":::
-
-To use Azure Monitor pipeline in a layered network configuration, you must add the following entries to the allowlist for the Arc-enabled Kubernetes cluster. See [Configure Azure IoT Layered Network Management Preview on level 4 cluster](/azure/iot-operations/manage-layered-network/howto-configure-l4-cluster-layered-network?tabs=k3s#configure-layered-network-management-preview-service).
-
-```yml
-- destinationUrl: "*.ingest.monitor.azure.com"
-  destinationType: external
-- destinationUrl: "login.windows.net"
-  destinationType: external
-```
-
-## Create table in Log Analytics workspace
-
-Before you configure the data collection process for the pipeline, you need to create a table in the Log Analytics workspace to receive the data. This must be a custom table since built-in tables aren't currently supported. The schema of the table must match the data that it receives, but there are multiple steps in the collection process where you can modify the incoming data, so the table schema doesn't need to match the source data that you're collecting. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
-
-See [Add or delete tables and columns in Azure Monitor Logs](../logs/create-custom-table.md) for details on different methods for creating a table. For example, use the CLI command below to create a table with the three columns called `Body`, `TimeGenerated`, and `SeverityText`.
-
-```azurecli
-az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name my-table_CL --columns TimeGenerated=datetime Body=string SeverityText=string
-```
 
 ## Enable cache
 
@@ -918,6 +868,32 @@ kubectl get services -n <namespace where azure monitor pipeline was installed>
 The final step is to verify that the data is received in the Log Analytics workspace. You can perform this verification by running a query in the Log Analytics workspace to retrieve data from the table.
 
 :::image type="content" source="./media/pipeline-configure/log-results-syslog.png" lightbox="./media/pipeline-configure/log-results-syslog.png" alt-text="Screenshot of log query that returns of Syslog collection."::: 
+
+## Workflow
+
+While you don't need a detail understanding of the different steps performed by the Azure Monitor pipeline to configure it, such an understanding can help to perform more advanced configuration such as transforming the data before it's stored in its destination.
+
+The following tables and diagrams describe the detailed steps and components in the process for collecting data using the pipeline and passing it to the cloud for storage in Azure Monitor. 
+
+| Step | Action | Supporting configuration |
+|:-----|:-------|:-------------------------|
+| 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the pipeline receiver and sends data in the expected format for the receiver type. |
+| 2. | Receiver forwards data to the exporter. | Receiver and exporter are configured in the same pipeline. |
+| 3. | Optional transformation is applied to the data. | The data flow may include a transformation that filters or modifies the data before it's sent to Azure Monitor. The output of the transformation must match the schema expected by the DCR. |
+| 6. | Azure Monitor sends the data to the destination. | 
+| 4. | Exporter tries to send the data to the cloud. | Exporter in the pipeline configuration includes URL of the DCE, a unique identifier for the DCR, and the stream in the DCR that defines how the data will be processed. |
+| 4a. | Exporter stores data in the local cache if it can't connect to the DCE. | Persistent volume for the cache and configuration of the local cache is enabled in the pipeline configuration. |
+
+:::image type="content" source="./media/pipeline-configure/pipeline-data-flow.png" lightbox="./media/pipeline-configure/pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor pipeline." border="false":::
+
+| Step | Action | Supporting configuration |
+|:-----|:-------|:-------------------------|
+| 4. | Azure Monitor accepts the incoming data. | The DCR includes a schema definition for the incoming stream that must match the schema of the data coming from the pipeline. |
+| 5. | Optional transformation applied to the data. | The DCR may include a transformation that filters or modifies the data before it's sent to the destination. The output of the transformation must match the schema of the destination table. |
+| 6. | Azure Monitor sends the data to the destination. | The DCR includes a destination that specifies the Log Analytics workspace and table where the data will be stored. |
+
+:::image type="content" source="./media/pipeline-configure/cloud-pipeline-data-flow.png" lightbox="./media/pipeline-configure/cloud-pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor." border="false":::
+
 
 ## Next steps
 

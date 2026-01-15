@@ -1,32 +1,37 @@
 ---
-title: Configure Azure Monitor pipeline 
-description: Configuration of Azure Monitor pipeline for edge and multicloud scenarios
+title: Azure Monitor pipeline overview
+description: Overview of the Azure Monitor pipeline which extends Azure Monitor data collection into your own data center 
 ms.topic: article
-ms.date: 05/21/2025
+ms.date: 001/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
 
 # Azure Monitor pipeline overview
 
-The [Azure Monitor pipeline](data-collection-rule-overview.md#azure-monitor-pipeline) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. It enables at-scale collection, and routing of telemetry data before it's sent to the cloud. The pipeline can cache data locally and sync with the cloud when connectivity is restored and route telemetry to Azure Monitor in cases where the network is segmented and data can't be sent directly to the cloud.
+The [Azure Monitor pipeline](data-collection-rule-overview.md#azure-monitor-pipeline) extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. It enables at-scale collection, and routing of telemetry data before it's sent to the Azure Monitor in the cloud. The pipeline can cache data locally and sync with the cloud when connectivity is restored and route telemetry to Azure Monitor in cases where clients can't send data directly to the cloud.
 
 :::image type="content" source="./media/pipeline-overview/overview.png" lightbox="./media/pipeline-overview/overview.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
 
 ## Use cases
 
-Specific use cases for Azure Monitor pipeline are:
+Specific use cases for Azure Monitor pipeline include the following:
 
 - **Scalability**. The pipeline can handle large volumes of data from monitored resources that may be limited by other collection methods such as Azure Monitor agent.
 - **Periodic connectivity**. Some environments may have unreliable connectivity to the cloud, or may have long unexpected periods without connection. The pipeline can cache data locally and sync with the cloud when connectivity is restored.
-- **Reduce network bandwidth**
+- **Reduce network bandwidth**. Transformations in Azure Monitor pipeline can filter and aggregate data before it's sent to the cloud, reducing the amount of data transmitted over the network.
 
 
 ## Implementation
 
-The Azure Monitor pipeline is a containerized solution that is deployed on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) and leverages OpenTelemetry Collector as a foundation. 
+The Azure Monitor pipeline is a containerized solution that is deployed on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) located in your local data center or another cloud provider. It leverages OpenTelemetry Collector as a foundation and consists of multiple components that work together to collect, process, and transmit telemetry data to Azure Monitor in the cloud. Configuration in the pipeline determines the data collected from the local clients and how it's processed before being sent to Azure Monitor. Configuration in Azure Monitor understands the data being delivered from the pipeline and how it's processed and stored in a Log Analytics workspace.
+
+
 
 
 ## Next steps
 
-* [Read more about data collection rules (DCRs) in Azure Monitor](data-collection-rule-overview.md).
+* [Configure Azure Monitor pipeline](./pipeline-configure.md).
+* Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).
+* Use [pod placement](./pipeline-pod-placement.md) to manage resource utilization on your Kubernetes cluster.
+* Secure the connection from your pipeline to Azure Monitor by [configuring TLS](./pipeline-tls.md).

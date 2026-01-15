@@ -1,8 +1,8 @@
 ---
 title: Azure Monitor pipeline pod placement
-description: Configuration of Azure Monitor pipeline for edge and multicloud scenarios
+description: Manage how Azure Monitor pipeline instances are scheduled across Kubernetes cluster nodes by configuring pod placement.
 ms.topic: article
-ms.date: 05/21/2025
+ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 

@@ -1,8 +1,8 @@
 ---
-title: Azure Monitor Ingress Setup and TLS Configuration
-description: Configuration of Azure Monitor pipeline for edge and multicloud scenarios
+title: Azure Monitor ingress setup and TLS configuration
+description: Secure the connection from your Azure Monitor pipeline to Azure Monitor by configuring TLS.
 ms.topic: article
-ms.date: 05/21/2025
+ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 

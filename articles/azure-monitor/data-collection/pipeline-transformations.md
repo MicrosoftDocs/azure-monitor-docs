@@ -1,8 +1,8 @@
 ---
 title: Configure Azure Monitor pipeline transformations
-description: Configuration of Azure Monitor pipeline for edge and multicloud scenarios
+description: Configure Azure Monitor pipeline transformations to filter and manipulate log data before it's sent to Azure Monitor in the cloud.
 ms.topic: article
-ms.date: 05/21/2025
+ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -54,7 +54,25 @@ Once you have the query defined, click **Check KQL syntax**.
 
 ### [ARM](#tab/arm)
 
+The transformation is defined in the `processors` section of the data flow in the ARM template. 
 
+```json
+"processors": [
+        {
+            "type": "MicrosoftSyslog",
+            "name": "ms-syslog-processor"
+        },
+        {
+            "type": "TransformLanguage",
+            "name": "facility-filter",
+            "transformLanguage": {
+                "transformStatement": "source | where Facility != 'auth'"
+            }
+        }
+    ],
+```
+
+---
 
 ## Aggregations
 An aggregation in KQL summarizes data from multiple records into a single record based on specified criteria. For example, you can aggregate log entries to calculate the average value of numeric property or count the number of occurrences of specific events over a defined time period. Aggregations help reduce data volume and provide insights by condensing large datasets into meaningful summaries.
