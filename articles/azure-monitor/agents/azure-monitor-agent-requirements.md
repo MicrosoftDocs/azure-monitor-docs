@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor Agent Requirements
 description: Learn the requirements for the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers and prerequisites for installation.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 01/08/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo

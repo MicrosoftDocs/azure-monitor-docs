@@ -3,7 +3,7 @@ title: Reliability recommendations
 description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
-ms.topic: article
+ms.topic: concept-article
 ms.date: 12/22/2025
 ---
 
