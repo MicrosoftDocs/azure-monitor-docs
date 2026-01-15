@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -700,23 +700,7 @@ Subcategory: undefined
 
 <!--779dbd8a-6102-47d0-b36c-75eb070b86d6_end-->
 
-<!--170cd0cd-95f5-4211-987c-9433f3ac0262_begin-->
 
-#### Migrate Standard HDD OS Disks to SSD  
-  
-To improve customer experience and align with current disk usage patterns, Standard HDD OS Disks are retiring. Customers should stop using Standard HDD OS Disks for new virtual machines and migrate existing OS disk workloads to Standard SSD or Premium SSD.  
-  
-**Potential benefits**: Avoid potential service disruption after retirement  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500157)  
-
-ResourceType: microsoft.compute/disks  
-Recommendation ID: 170cd0cd-95f5-4211-987c-9433f3ac0262  
-Subcategory: undefined
-
-<!--170cd0cd-95f5-4211-987c-9433f3ac0262_end-->
 
 <!--81076cd9-e656-4b1a-862b-63f2f40caa87_begin-->
 
@@ -753,5 +737,23 @@ Recommendation ID: 98680ff0-2723-4c8b-9af4-54ce8a3a82d1
 Subcategory: undefined
 
 <!--98680ff0-2723-4c8b-9af4-54ce8a3a82d1_end-->
+
+<!--5e2403d5-c39a-4701-a4d5-2181b0d3e426_begin-->
+
+#### Desired State Configuration Extension for Azure Virtual Machines is retiring  
+  
+Migrate Desired State Configuration Extension for Azure Virtual Machines to Azure Machine Configuration in Azure Resource Manager. Desired State Configuration Extension for Azure Virtual Machines is retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485828)  
+
+ResourceType: microsoft.compute/virtualmachines/extensions  
+Recommendation ID: 5e2403d5-c39a-4701-a4d5-2181b0d3e426  
+Subcategory: undefined
+
+<!--5e2403d5-c39a-4701-a4d5-2181b0d3e426_end-->
 
 <!--articleBody-->
