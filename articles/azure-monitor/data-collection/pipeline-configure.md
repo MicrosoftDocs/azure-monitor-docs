@@ -879,8 +879,7 @@ The following tables and diagrams describe the detailed steps and components in 
 |:-----|:-------|:-------------------------|
 | 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the pipeline receiver and sends data in the expected format for the receiver type. |
 | 2. | Receiver forwards data to the exporter. | Receiver and exporter are configured in the same pipeline. |
-| 3. | Optional transformation is applied to the data. | The data flow may include a transformation that filters or modifies the data before it's sent to Azure Monitor. The output of the transformation must match the schema expected by the DCR. |
-| 6. | Azure Monitor sends the data to the destination. | 
+| 3. | Optional pipeline transformation is applied to the data. | The data flow may include a transformation that filters or modifies the data before it's sent to Azure Monitor. The output of the transformation must match the schema expected by the DCR. |
 | 4. | Exporter tries to send the data to the cloud. | Exporter in the pipeline configuration includes URL of the DCE, a unique identifier for the DCR, and the stream in the DCR that defines how the data will be processed. |
 | 4a. | Exporter stores data in the local cache if it can't connect to the DCE. | Persistent volume for the cache and configuration of the local cache is enabled in the pipeline configuration. |
 
@@ -888,13 +887,13 @@ The following tables and diagrams describe the detailed steps and components in 
 
 | Step | Action | Supporting configuration |
 |:-----|:-------|:-------------------------|
-| 4. | Azure Monitor accepts the incoming data. | The DCR includes a schema definition for the incoming stream that must match the schema of the data coming from the pipeline. |
-| 5. | Optional transformation applied to the data. | The DCR may include a transformation that filters or modifies the data before it's sent to the destination. The output of the transformation must match the schema of the destination table. |
-| 6. | Azure Monitor sends the data to the destination. | The DCR includes a destination that specifies the Log Analytics workspace and table where the data will be stored. |
+| 5. | Azure Monitor accepts the incoming data. | The DCR includes a schema definition for the incoming stream that must match the schema of the data coming from the pipeline. |
+| 6. | Optional transformation applied to the data. | The DCR may include a transformation that filters or modifies the data before it's sent to the destination. The output of the transformation must match the schema of the destination table. |
+| 7. | Azure Monitor sends the data to the destination. | The DCR includes a destination that specifies the Log Analytics workspace and table where the data will be stored. |
 
-:::image type="content" source="./media/pipeline-configure/cloud-pipeline-data-flow.png" lightbox="./media/pipeline-configure/cloud-pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor." border="false":::
+:::image type="content" source="./media/pipeline-configure/cloud-data-flow.png" lightbox="./media/pipeline-configure/cloud-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor." border="false":::
 
 
 ## Next steps
 
-* [Read more about data collection rules (DCRs) in Azure Monitor](data-collection-rule-overview.md).
+* Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).

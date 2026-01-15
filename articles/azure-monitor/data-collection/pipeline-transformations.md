@@ -34,7 +34,9 @@ The following table summarizes the key differences between Azure Monitor pipelin
 | Aggregations supported? | Yes | No |
 | Template supported? | Yes | No |
 
-The data that's ingested into Azure Monitor is a combination of the pipeline transformation and any subsequent Azure Monitor transformations. The only requirement is that the output schema of the pipeline transformation must match the input schema expected by the Azure Monitor transformation. While you can filter data in either transformation, it's generally more efficient to filter data in the pipeline transformations since this reduces the amount of data sent over the network.
+The data that's ingested into Azure Monitor is a combination of the pipeline transformation and any subsequent Azure Monitor transformations. The only requirement is that the output schema of the pipeline transformation must match the input schema expected by the Azure Monitor transformation. While you can filter data in either transformation, it's generally more efficient to filter data in the pipeline transformations since this reduces the amount of data sent over the network. The schema of the data output by the Azure Monitor transformation must match the schema of the destination table in the Log Analytics workspace.
+
+:::image type="content" source="./media/pipeline-transformations/workflow.png" lightbox="./media/pipeline-transformations/workflow.png" alt-text="Diagram showing the flow of data from pipeline transformation to Azure Monitor transformation to Log Analytics workspace.":::
 
 ## Basic query structure
 Like Azure Monitor transformations, all pipeline transformation queries start with `source`, which is a virtual table that represents the input stream. You can then use any supported KQL operators to filter, modify, or add columns to the data as you would with any other table. The query is applied individually to each entry sent by the data source.
@@ -46,7 +48,7 @@ Pipeline transformations are defined as part of a dataflow. You can configure th
 
 ### [Azure portal](#tab/portal)
 
-To define a transformation in the Azure portal, select **Add Data Transformations**, which opens the transformation editor. You can either create a custom transformation by writing your own KQL query or select from a list of predefined templates for common scenarios. Use the template as a starting point and modify the KQL query as needed to fit your requirements.
+To define a transformation in the Azure portal, select **Add Data Transformations**, which opens the transformation editor. Select a template which provides predefined queries for common scenarios. Use the template as a starting point and modify the KQL query as needed to fit your requirements. Use the **Custom** template to start with a blank query.
 
 :::image type="content" source="./media/pipeline-transformations/template.png" lightbox="./media/pipeline-transformations/template.png" alt-text="Screenshot of template selection for a transformation.":::
 
@@ -80,21 +82,31 @@ An aggregation in KQL summarizes data from multiple records into a single record
 > [!NOTE]
 > Aggregations are not supported in Azure Monitor transformations; they are only available in pipeline transformations.
 
-Aggregations are defined using the [summarize](/kusto/query/summarize-operator) operator in KQL. You specify the aggregation functions and the grouping criteria. To perform time-based aggregations, you typically use the `bin()` function to group data into fixed time intervals.
+Aggregations are defined using the [summarize](/kusto/query/summarize-operator) operator in KQL. You specify the aggregation functions and the grouping criteria. The default time interval for aggregations is one minute, meaning that all records within each one-minute window are grouped together for aggregation when you use the `summarize` operator. This is the only time interval supported in the Azure portal. To specify different time intervals, you must use ARM templates to define the transformation.
 
-For example, the 
+For example, the following query counts the number of events collected over the past minute grouped by `DestinationIP` and `DestinationPort`:
 
 ```kusto
 source 
-| summarize EventCount=count() by TimeGenerated=bin(TimeGenerated, 1m), DestinationIP, DestinationPort
+| summarize EventCount=count() by DestinationIP, DestinationPort
+```
+
+The following example extracts CPU usage values from syslog messages, then calculates the average and maximum CPU usage over one-minute intervals:
+
+```kusto
+source
+| where Facility == "daemon"
+| where SyslogMessage has "CPU="
+| parse SyslogMessage with * "CPU=" CPUValue:int * 
+| summarize AvgCPU = avg(CPUValue), MaxCPU = max(CPUValue)
 ```
 
 
-The default time interval for aggregations is 1 minute, meaning that all records within each one-minute window are grouped together for aggregation. This is the only time interval supported in the Azure portal. To specify different time intervals, you must use ARM templates.
 
 ## Supported KQL
+The following KQL functions and operators are supported in Azure Monitor pipeline transformations:
 
-### Aggregations
+**Aggregations**
 
 - `sum()`
 - `max()`
@@ -103,7 +115,7 @@ The default time interval for aggregations is 1 minute, meaning that all records
 - `count()`
 - `bin()`
 
-### Filtering
+**Filtering**
 
 - `where`
 - `contains`
@@ -118,7 +130,7 @@ The default time interval for aggregations is 1 minute, meaning that all records
 - `<`
 - `<=`
 
-### Schematization
+**Schematization**
 
 - `extend`
 - `project`
@@ -130,11 +142,11 @@ The default time interval for aggregations is 1 minute, meaning that all records
 - `coalesce`
 - `parse_json`
 
-### Functions
+**Functions**
 
 - `let`
 
-### String functions
+**String functions**
 
 - `strlen`
 - `replace_string`
@@ -143,7 +155,7 @@ The default time interval for aggregations is 1 minute, meaning that all records
 - `strcat_delim`
 - `extract`
 
-### Conversion
+**Conversion**
 
 - `tostring`
 - `toint`
