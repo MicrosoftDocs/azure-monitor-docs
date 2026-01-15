@@ -418,6 +418,7 @@ resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
   "name": "tls-disabled",
   "mode": "disabled"
 }
+```
 
 ## 6. Optional: Encrypt Secrets at Rest with KMS
 

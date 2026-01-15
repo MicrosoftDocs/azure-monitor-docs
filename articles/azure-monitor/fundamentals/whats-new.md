@@ -439,7 +439,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Containers|[Elasticsearch](../containers/prometheus-elasticsearch-integration.md)|Elastic search Prometheus integration|
 |Containers|[Apache Kafka](../containers/prometheus-kafka-integration.md)|Kafka Prometheus integration|
 |Essentials|[Data collection rules in Azure Monitor](../data-collection/data-collection-rule-overview.md)|Rewritten for consistency with new Azure Monitor pipeline content.|
-|Essentials|[Configuration of Azure Monitor edge pipeline](../data-collection/edge-pipeline-configure.md)|New article for edge pipeline.|
+|Essentials|[Configuration of Azure Monitor edge pipeline](../data-collection/pipeline-configure.md)|New article for edge pipeline.|
 |Essentials|[Overview of Azure Monitor pipeline](../data-collection/data-collection-rule-overview.md)|New article to introduce Azure Monitor pipeline, which includes edge pipeline and cloud pipeline.|
 |Essentials|[Azure Monitor metrics explorer with PromQL (Preview)](../metrics/metrics-explorer.md)|New metrics explorer with PromQL support for Azure Monitor workspaces.|
 |Essentials|[Send Prometheus metrics from Virtual Machines to an Azure Monitor workspace](../metrics/prometheus-remote-write-virtual-machines.md)|How to send prometheus metrics from a Virtual machine or Virtual Machine Scale Set.|

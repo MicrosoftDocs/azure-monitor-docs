@@ -249,7 +249,7 @@ Perform the following steps to identify and issues if your pipeline instances re
     - Confirm operator and values are correct.
     - Check for typos in label names or values.
 
-4.  If using `maxInstancesPerHost: 1`, ensure you have enough eligible nodes for all replicas. You need at least as many eligible nodes as your replica count. Use the following command kubectl get nodes -l <your-label-selector> to count eligible nodes:
+4.  If using `maxInstancesPerHost: 1`, ensure you have enough eligible nodes for all replicas. You need at least as many eligible nodes as your replica count. Use the command `kubectl get nodes -l <your-label-selector>` to count eligible nodes:
 
 
 ## Common Issues 

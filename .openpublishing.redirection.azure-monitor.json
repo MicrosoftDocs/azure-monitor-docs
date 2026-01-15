@@ -8753,6 +8753,12 @@
    "source_path": "articles/azure-monitor/containers/container-insights-data-collection-filter.md",
    "redirect_url": "/azure/azure-monitor/containers/kubernetes-data-collection-configmap",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/data-collection/edge-pipeline-configure.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-configure",
+   "redirect_document_id": false
   }
+ ]
  ]
 }
