@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -110,23 +110,7 @@ Subcategory: undefined
 
 <!--cdbef351-5bba-4639-abcd-34b594310b97_end-->
 
-<!--0a49088e-4887-4248-a76c-4192f33ad198_begin-->
 
-#### Support for TLS 1.0 and TLS 1.1 in Azure SQL Database is ending  
-  
-Upgrade TLS to latest version. Support for TLS 1.0 and TLS 1.1 in Azure SQL Database is ending.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [Connectivity Settings - Azure SQL Database and SQL database in Fabric](/azure/azure-sql/database/connectivity-settings?view=azuresql&tabs=azure-portal&WT.mc_id=Portal-AppInsightsExtension#upcoming-tls-10-and-11-retirement-changes-faq)  
-
-ResourceType: microsoft.sql/servers  
-Recommendation ID: 0a49088e-4887-4248-a76c-4192f33ad198  
-Subcategory: undefined
-
-<!--0a49088e-4887-4248-a76c-4192f33ad198_end-->
 
 <!--8eff5550-a532-452b-88dd-f4032156da2f_begin-->
 

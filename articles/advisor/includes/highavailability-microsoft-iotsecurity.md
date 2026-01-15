@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability MICROSOFT.IOTSECURITY
@@ -10,7 +10,7 @@ ms.custom: HighAvailability MICROSOFT.IOTSECURITY
   
 ---
   
-## MICROSOFT.IOTSECURITY  
+## MICROSOFT.IOTSECURITY 
   
 <!--095f2f8a-1c1e-4b6c-a6d3-1dfccd08d474_begin-->
 
