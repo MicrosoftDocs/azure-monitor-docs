@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor health model concepts
 description: Description of the core concepts required for building and using health models in Azure Monitor.
-ms.topic: conceptual
+ms.topic: concept-article
 author: bwren
 ms.author: bwren
 ms.date: 05/22/2025
