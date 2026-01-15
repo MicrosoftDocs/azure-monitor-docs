@@ -438,6 +438,7 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
     * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
     * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
 
+---
 
 The following examples show how to configure sampling using environment variables.
 
@@ -454,8 +455,6 @@ export OTEL_TRACES_SAMPLER_ARG=0.1
 export OTEL_TRACES_SAMPLER="microsoft.rate_limited"
 export OTEL_TRACES_SAMPLER_ARG=1.5
 ```
-
----
 
 ### Configure sampling in code
 
