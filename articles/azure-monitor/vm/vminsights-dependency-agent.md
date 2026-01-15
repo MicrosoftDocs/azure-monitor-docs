@@ -1,7 +1,7 @@
 ---
 title: Dependency Agent in Azure Monitor VM insights
 description: This article describes how to upgrade the VM Insights Dependency Agent using command-line, setup wizard, and other methods.
-ms.topic: article
+ms.topic: concept-article
 ms.custom: linux-related-content
 ms.date: 01/29/2025
 ---
