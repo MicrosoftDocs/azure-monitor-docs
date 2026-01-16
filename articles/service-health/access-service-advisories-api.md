@@ -16,6 +16,7 @@ To access Security advisories through APIs, you must update your code to use the
 The existing endpoint **(/events)** which returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details.
 
 For more information, see [Event- fetch Details by Tenant ID and Tracking ID](/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id).
+
 For information about Security advisories, refer to [Security advisories overview](security-advisories-elevated-access.md).
 
 The endpoints listed here return the security notification details for a specific event.
