@@ -115,10 +115,10 @@ For more information about role requirements to view impacted resources and sens
 
 For guidance on configuring subscription‑ or tenant‑level access to Security Advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
 
+For information on how to access Security advisories through API endpoint, see [Access Security advisories through API endpoint](access-service-advisories-api.md).
 
 
 ## More information
-
 * Read [Keep informed about Azure security events](stay-informed-security.md)
 * Read [Resource impact from Azure security incidents](impacted-resources-security.md)
 * Read [Resource Health frequently asked questions](resource-health-faq.yml)
