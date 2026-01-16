@@ -46,10 +46,10 @@ Security Advisory data falls into two categories: non‑sensitive fields and sen
 ### Non‑sensitive (informational) fields
 
 **What's included**
-- Advisory title and description
+- Advisory title 
 - High‑level issue summary
 - General guidance that is publicly available
-- Status updates that don’t expose customer‑specific security posture
+- Status updates and description that don’t expose customer‑specific security posture
 
 **Who can access**
 - Users with standard Azure Service Health RBAC permissions.
