@@ -81,21 +81,21 @@ Security Advisories are classified as sensitive when they include information th
 **Access to sensitive fields**
 
 To view sensitive Security Advisory fields, users must have:
-- Owner or Contributor role
+- **Owner** or **Contributor** role
 - A custom role that includes the required Security Advisory permissions
 
-Users assigned only Reader or Monitoring Reader roles:
+Users assigned only **Reader** or **Monitoring Reader** roles:
 - Can't view sensitive fields
 - See an access-required message in place of any restricted data 
 
-### Access field by type and scope
+### Access fields by type and scope
 
 **Summary and Issue Updates tabs**
 - **Non-sensitive** fields are accessible with Standard Service Health RBAC permissions.
 - **Sensitive** fields require elevated permissions
 
 **Tenant-level access**
-- Users assigned tenant administrator roles can view tenant‑level sensitive Security Advisory details in the Summary and Issue Updates tabs when advisories contain sensitive information.
+- Users assigned **Tenant Administrator** roles can view tenant‑level sensitive Security Advisory details in the Summary and Issue Updates tabs when advisories contain sensitive information.
 
 **Impacted Resources tab**
 - Always treated as sensitive
