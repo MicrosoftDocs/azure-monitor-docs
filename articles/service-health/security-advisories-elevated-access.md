@@ -106,7 +106,7 @@ Users assigned only **Reader** or **Monitoring Reader** roles:
 |Field Type                  |Examples                                    |Required Roles                    |
 |----------------------------|--------------------------------------------|----------------------------------|
 |Non-sensitive               |Summary text, general guidance              |Reader, Monitoring Reader         |
-|Sensitive                   |Impacted subscriptions, resources, configs  |Owner, Contributor, or custom role|
+|Sensitive                   |Impacted resources, configs                 |Owner, Contributor, or custom role|
 |Impacted Resources          |Resource‑level details                      |Elevated roles only               |
 |Tenant‑level sensitive data |Tenant exposure views                       |Tenant administrator roles        |
 
