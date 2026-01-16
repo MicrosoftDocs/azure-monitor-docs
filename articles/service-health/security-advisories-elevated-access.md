@@ -2,7 +2,7 @@
 title: Security advisories overview
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 ms.topic: article
-ms.date: 01/12/2026
+ms.date: 01/16/2026
 ---
 
 
@@ -64,6 +64,8 @@ For more information about role requirements to view impacted resources and sens
 
 For guidance on configuring subscription‑ or tenant‑level access to Security Advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
 
+
+
 <!--
 Because the information in this tab is sensitive, access to Security Advisories requires specific **Role-Based Access Control (RBAC)** permissions at the subscription or tenant level.
 
@@ -75,7 +77,7 @@ Because the information in this tab is sensitive, access to Security Advisories 
 
 Users who have [roles with tenant admin access](admin-access-reference.md) can also access tenant-level security advisory details on the **Summary** and **Issue Updates** tabs.
 
--->
+
 
 ## Access Service advisories through API endpoint
 
@@ -94,7 +96,7 @@ This endpoint returns the event object with all available properties for a speci
 
 <!--- Available since API version 2022-10-01-->
 
-
+<!--
 **Example**
 
 ```HTTP
@@ -107,7 +109,7 @@ Operation: POST
 Customers authorized with the authorized roles, can use the following endpoints to access the list of resources impacted by a Security Incident.
 <!--- Available since API version 2022-05-01-->
 
- 
+ <!--
 **Subscription**
 
 ```HTTP
@@ -132,7 +134,7 @@ For more information, see [Security Advisories Impacted Resources](/rest/api/res
 
 The current Events API, which lists all events, including sensitive security ones, stops including certain sensitive details for security-related events (events marked as `eventType`: `Security` and `isEventSensitive` = true).
 <!--With API version 2023-10-01-preview (and future API versions), The existing Events API endpoint which returns the list of events (including sensitive security events with property 'eventType' : `Security` and property 'isEventSensitive' = true) will be restricted to not pass sensitive properties listed below for security events.-->
-
+<!--
 ```HTTP
 https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/microsoft.ResourceHealth/events?api-version=2023-10-01-preview&$filter= "eventType eq SecurityAdvisory"
 ```
@@ -144,7 +146,7 @@ The following properties in the events object response aren't populated for sens
 * Description
 * Updates
 
-
+-->
 ## More information
 
 * Read [Keep informed about Azure security events](stay-informed-security.md)
