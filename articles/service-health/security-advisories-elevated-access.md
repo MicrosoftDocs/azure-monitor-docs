@@ -100,7 +100,7 @@ Users assigned only Reader or Monitoring Reader roles:
 **Impacted Resources tab**
 - Always treated as sensitive
 - Requires elevated permissions for all advisories regardless of classification
-- Enforced at **Resource**, **Subscription, and **Tenant Scope**
+- Enforced at **Resource**, **Subscription**, and **Tenant Scope**
 
 
 |Field Type                  |Examples                                    |Required Roles                    |
