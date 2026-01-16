@@ -2,7 +2,7 @@
 title: How to access Security advisories through API endpoint
 description: This article describes how to access Security advisories using API endpoint.
 ms.topic: quickstart
-ms.date: 01/13/2026
+ms.date: 01/16/2026
 ---
 
 # How to access Service advisories through API endpoint

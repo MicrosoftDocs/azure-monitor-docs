@@ -30,8 +30,6 @@
       href: service-health-event-tags.md  
     - name: Security notifications overview
       href: stay-informed-security.md
-    - name: How to access Security advisories through API endpoint
-      href: access-service-advisories-api.md
     - name: Service issues overview
       href: service-issues-blade.md
     - name: Planned maintenance overview
@@ -106,6 +104,8 @@
       href: azure-resource-graph-overview.md
   - name: REST API
     items:   
+    - name: How to access Security advisories through API endpoint
+      href: access-service-advisories-api.md
     - name: Azure Resource health REST API queries
       href: /rest/api/resourcehealth/
     - name: Service Health REST API
