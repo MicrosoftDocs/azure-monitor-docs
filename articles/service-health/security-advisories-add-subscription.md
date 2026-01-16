@@ -2,7 +2,7 @@
 title: Configure subscriptions for Security advisories
 description: This article describes how to set up and define access to Security advisories through the Azure portal.
 ms.topic: how-to
-ms.date: 01/13/2026
+ms.date: 01/16/2026
 ---
 
 # Configure Subscription access to view Security advisories
