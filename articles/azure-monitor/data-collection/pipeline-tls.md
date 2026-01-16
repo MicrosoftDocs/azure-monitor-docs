@@ -215,7 +215,7 @@ The following example uses LetsEncrypt.
       --auto-upgrade false
     ```
 
-### Use template to set up Azure Monitor
+### Configure pipeline using ARM template
 
 
 ### [ARM](#tab/arm)
@@ -424,7 +424,7 @@ resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
 
 - Use KMS to encrypt Kubernetes Secrets at rest.
 - Azure Key Vault may be used as a KMS provider.
-- More information: https://learn.microsoft.com/en-us/azure/aks/kms-azure-key-vault
+- More information: [Update the key vault mode for an Azure Kubernetes Service (AKS) cluster](/azure/aks/update-kms-key-vault)
 
 ## Next steps
 

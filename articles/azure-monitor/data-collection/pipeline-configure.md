@@ -304,7 +304,11 @@ Replace the properties in the following table before deploying the template.
 | `type` | Type of data received. Current options are `OTLP` and `Syslog`. |
 | `name` | Name for the receiver referenced in the `service` section. Must be unique for the pipeline instance. |
 | `endpoint` | Address and port the receiver listens on. Use `0.0.0.0` for al addresses. |
-| **Processors** | Reserved for future use. |
+| **Processors** | One entry for each transformation. Empty f no processors are used. |
+| `type` | Supported values are `MicrosoftSyslog` and `TransformLanguages` |
+| `name` | Name for the processor referenced in the `service` section. Must be unique for the pipeline instance. |
+| `transformLanguage` | |
+| - `transformStatement` | KQL transformation statement to modify the data. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 | **Exporters** | One entry for each destination. |
 | `type` | Only currently supported type is `AzureMonitorWorkspaceLogs`. |
 | `name` | Must be unique for the pipeline instance. The name is used in the `pipelines` section of the configuration. |
@@ -315,7 +319,7 @@ Replace the properties in the following table before deploying the template.
 | - `retentionPeriod` | Retention period in minutes. Data is pruned after this amount of time. |
 | - `schema` | Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
 | **Service** | One entry for each pipeline instance. Only one instance for each pipeline extension is recommended. |
-| **Pipelines** | One entry for each data flow. Each entry matches a `receiver` with an `exporter`. |
+| **Pipelines** | One entry for each data flow. Each entry matches a `receiver` with an `exporter`, including an optional `processor` if a [transformation](./pipeline-transformations.md) is used. |
 | `name` | Unique name of the pipeline. |
 | `receivers` | One or more receivers to listen for data to receive. |
 | `processors` | Reserved for future use. |
@@ -356,7 +360,15 @@ Replace the properties in the following table before deploying the template.
                         }
                     }
                 ],
-                "processors": [],
+                "processors": [
+                    {
+                        "type": "TransformLanguage",
+                        "name": "facility-filter",
+                        "transformLanguage": {
+                            "transformStatement": "source | where Facility != 'auth'"
+                        }
+                    }
+                ],
                 "exporters": [
                     {
                         "type": "AzureMonitorWorkspaceLogs",
@@ -408,7 +420,9 @@ Replace the properties in the following table before deploying the template.
                             "receivers": [
                                 "receiver-Syslog"
                             ],
-                            "processors": [],
+                            "processors": [
+                                "facility-filter"
+                            ],
                             "exporters": [
                                 "exporter-log-analytics-workspace"
                             ],

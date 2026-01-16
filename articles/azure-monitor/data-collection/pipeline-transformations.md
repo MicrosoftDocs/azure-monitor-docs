@@ -56,23 +56,45 @@ Once you have the query defined, click **Check KQL syntax**.
 
 ### [ARM](#tab/arm)
 
-The transformation is defined in the `processors` section of the data flow in the ARM template. 
+The transformation is defined in the `processors` section of the data flow in the ARM template. The `type` of the processor must be set to `TransformLanguage`, and the KQL query is specified in the `transformLanguage/transformStatement` property. The processor is then referenced in the `service/pipelines` section of the data flow configuration.
+
+The following example shows a transformation that filters out syslog records with a `Facility` of `auth`. 
 
 ```json
 "processors": [
-        {
-            "type": "MicrosoftSyslog",
-            "name": "ms-syslog-processor"
-        },
-        {
-            "type": "TransformLanguage",
-            "name": "facility-filter",
-            "transformLanguage": {
-                "transformStatement": "source | where Facility != 'auth'"
-            }
+    {
+        "type": "TransformLanguage",
+        "name": "facility-filter",
+        "transformLanguage": {
+            "transformStatement": "source | where Facility != 'auth'"
         }
-    ],
+    }
+]
 ```
+
+This processor would then be referenced in the `service/pipelines` section similar to the following:
+
+```json
+    "service": {
+        "pipelines": [
+            {
+                "name": "FilteredSyslogs",
+                "receivers": [
+                    "receiver-Syslog"
+                ],
+                "processors": [
+                    "facility-filter"
+                ],
+                "exporters": [
+                    "exporter-log-analytics-workspace"
+                ],
+                "type": "logs"
+            }
+        ]
+    }
+```
+
+See [Configure Azure Monitor pipeline](./pipeline-configure.md) for more details and examples of the processor configuration file.
 
 ---
 
