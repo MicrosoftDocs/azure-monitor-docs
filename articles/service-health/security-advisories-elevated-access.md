@@ -94,14 +94,13 @@ Users assigned only **Reader** or **Monitoring Reader** roles:
 - **Non-sensitive** fields are accessible with Standard Service Health RBAC permissions.
 - **Sensitive** fields require elevated permissions
 
-**Tenant-level access**
-- Users assigned **Tenant Administrator** roles can view tenant‑level sensitive Security Advisory details in the Summary and Issue Updates tabs when advisories contain sensitive information.
-
 **Impacted Resources tab**
 - Always treated as sensitive
 - Requires elevated permissions for all advisories regardless of classification
 - Enforced at **Resource**, **Subscription**, and **Tenant Scope**
 
+**Tenant-level access**
+- Users assigned **Tenant Administrator** roles can view tenant‑level sensitive Security Advisory details in the Summary and Issue Updates tabs when advisories contain sensitive information.
 
 |Field Type                  |Examples                                    |Required Roles                    |
 |----------------------------|--------------------------------------------|----------------------------------|
