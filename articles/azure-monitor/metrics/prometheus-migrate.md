@@ -1,7 +1,7 @@
 ---
 title: Migrate from Self-Hosted Prometheus to Azure Monitor Managed Service for Prometheus
 description: Guidance for organizations that are planning to migrate from self-managed Prometheus to Azure Monitor managed service for Prometheus.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 06/13/2025
 ---
 
