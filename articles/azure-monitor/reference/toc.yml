@@ -2814,6 +2814,8 @@ items:
             href: tables/mdcdetectionprocessv2events.md
           - name: MDCFileIntegrityMonitoringEvents
             href: tables/mdcfileintegritymonitoringevents.md
+          - name: MDECustomCollectionDeviceFileEvents
+            href: tables/mdecustomcollectiondevicefileevents.md
           - name: MDPResourceLog
             href: tables/mdpresourcelog.md
           - name: MNFDeviceUpdates
