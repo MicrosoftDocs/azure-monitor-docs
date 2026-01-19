@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Entra Domain Services
@@ -12,24 +12,6 @@ ms.custom: HighAvailability Entra Domain Services
   
 ## Entra Domain Services  
   
-<!--e756137a-ce78-4586-a777-1059cb9d14c5_begin-->
-
-#### Migrate to TLS 1.2 or above for Entra domain services  
-  
-Support for TLS 1.0 and 1.1 on Entra domain services is retiring. Update the TLS policy to the latest version.  
-  
-**Potential benefits**: Avoid service disruptions  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=487247)  
-
-ResourceType: microsoft.aad/domainservices  
-Recommendation ID: e756137a-ce78-4586-a777-1059cb9d14c5  
-Subcategory: undefined
-
-<!--e756137a-ce78-4586-a777-1059cb9d14c5_end-->
-
 <!--54594c92-883e-4256-a6b5-e43a70fcac2b_begin-->
 
 #### Transition to Azure RBAC roles  

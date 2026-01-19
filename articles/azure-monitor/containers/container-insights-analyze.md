@@ -1,7 +1,7 @@
 ---
 title: Analyze the health and status of your Kubernetes cluster with Azure Monitor
 description: This article describes how you can view and analyze the performance of a Kubernetes cluster with Azure Monitor in the Azure portal.
-ms.topic: how-to
+ms.topic: concept-article
 ms.date: 08/25/2025
 ms.reviewer: viviandiec
 ---
