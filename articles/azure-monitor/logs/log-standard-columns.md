@@ -7,12 +7,12 @@ ms.date: 05/26/2024
 ---
 
 # Standard columns in Azure Monitor Logs
-Data in Azure Monitor Logs is [stored as a set of records in either a Log Analytics workspace or Application Insights application](../logs/data-platform-logs.md), each with a particular data type that has a unique set of columns. Many data types will have standard columns that are common across multiple types. This article describes these columns and provides examples of how you can use them in queries.
+Data in Azure Monitor Logs is [stored as a set of records in either a Log Analytics workspace or Application Insights application](../logs/data-platform-logs.md), each with a particular data type that has a unique set of columns. Many data types have standard columns that are common across multiple types. This article describes these columns and provides examples of how you can use them in queries.
 
 Workspace-based applications in Application Insights store their data in a Log Analytics workspace and use the same standard columns as other tables in the workspace. Classic applications store their data separately and have different standard columns as specified in this article.
 
 > [!NOTE]
-> Some of the standard columns will not show in the schema view or intellisense in Log Analytics, and they won't show in query results unless you explicitly specify the column in the output.
+> Some of the standard columns won't show in the schema view or intellisense in Log Analytics, and they won't show in query results unless you explicitly specify the column in the output.
 > 
 
 ## TenantId
@@ -44,7 +44,7 @@ Event
 The **\_TimeReceived** column contains the date and time that the record was received by the Azure Monitor ingestion point in the Azure cloud. This can be useful for identifying latency issues between the data source and the cloud. An example would be a networking issue causing a delay with data being sent from an agent. See [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md) for more details.
 
 > [!NOTE]
-> The **\_TimeReceived** column is calculate each time it is used. This process is resource intensive. Refrain from using it to filter large number of records. Using this function recurrently can lead to increased query execution duration.
+> The **\_TimeReceived** column is calculated each time it is used. This process is resource intensive. Refrain from using it to filter large number of records. Using this function recurrently can lead to increased query execution duration.
 
 
 The following query gives the average latency by hour for event records from an agent. This includes the time from the agent to the cloud and the total time for the record to be available for log queries.
@@ -83,7 +83,7 @@ The **\_ResourceId** column holds a unique identifier for the resource that the 
 For Azure resources, the value of **_ResourceId** is the [Azure resource ID URL](/azure/azure-resource-manager/templates/template-functions-resource). The column is limited to Azure resources, including [Azure Arc](/azure/azure-arc/overview) resources, or to custom logs that indicated the Resource ID during ingestion.
 
 > [!NOTE]
-> Some data types already have fields that contain Azure resource ID or at least parts of it like subscription ID. While these fields are kept for backward compatibility, it is recommended to use the _ResourceId to perform cross correlation since it will be more consistent.
+> Some data types already have fields that contain Azure resource ID or at least parts of it like subscription ID. While these fields are kept for backward compatibility, it's recommended to use the _ResourceId to perform cross correlation since it's more consistent.
 
 ### Examples
 The following query joins performance and event data for each computer. It shows all events with an ID of _101_ and processor utilization over 50%.
@@ -131,7 +131,7 @@ The **\_SubscriptionId** column holds the subscription ID of the resource that t
 For Azure resources, the value of **__SubscriptionId** is the subscription part of the [Azure resource ID URL](/azure/azure-resource-manager/templates/template-functions-resource). The column is limited to Azure resources, including [Azure Arc](/azure/azure-arc/overview) resources, or to custom logs that indicated the Subscription ID during ingestion.
 
 > [!NOTE]
-> Some data types already have fields that contain Azure subscription ID . While these fields are kept for backward compatibility, it is recommended to use the \_SubscriptionId column to perform cross correlation since it will be more consistent.
+> Some data types already have fields that contain Azure subscription ID . While these fields are kept for backward compatibility, it's recommended to use the \_SubscriptionId column to perform cross correlation since it's more consistent.
 ### Examples
 The following query examines performance data for computers of a specific subscription. 
 
@@ -181,11 +181,11 @@ union withsource = tt *
 ```
 
 ## \_BilledSize
-The **\_BilledSize** column specifies the size in bytes of data that will be billed to your Azure account if **\_IsBillable** is true. See [Data size calculation](cost-logs.md#data-size-calculation) to learn more about the details of how the billed size is calculated. 
+The **\_BilledSize** column specifies the size in bytes of data that's billed to your Azure account if **\_IsBillable** is true. See [Data size calculation](cost-logs.md#data-size-calculation) to learn more about the details of how the billed size is calculated. 
 
 
 ### Examples
-To see the size of billable events ingested per computer, use the `_BilledSize` column which provides the size in bytes:
+To see the size of billable events ingested per computer, use the `_BilledSize` column, which provides the size in bytes:
 
 ```Kusto
 union withsource = tt * 
