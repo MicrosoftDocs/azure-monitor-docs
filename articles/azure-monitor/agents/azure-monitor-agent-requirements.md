@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.date: 01/08/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
-
+# customer intent: As a cloud administrator, I want to know the requirements for the Azure Monitor Agent so that I can ensure proper installation and operation on my Azure virtual machines and Azure Arc-enabled servers.
 ---
 
 # Azure Monitor Agent requirements
