@@ -877,8 +877,10 @@ items:
     items:
       - name: Overview
         href: data-collection/pipeline-overview.md
-      - name: Configure
-        href: data-collection/pipeline-configure.md
+      - name: Configure using portal
+        href: data-collection/pipeline-configure-portal.md
+      - name: Configure using CLI and ARM templates
+        href: data-collection/pipeline-configure-template.md
       - name: Transformations
         href: data-collection/pipeline-transformations.md
       - name: Pod placement

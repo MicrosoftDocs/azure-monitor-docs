@@ -12,27 +12,11 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 
 ## Supported configurations
 
-**Supported distros**
+| Supported distros | Supported locations |
+|:---|:---|
+| Azure Monitor pipeline is supported on the following Kubernetes distributions:<br><br>- Canonical<br>- Cluster API Provider for Azure<br>- K3<br>- Rancher Kubernetes Engine<br>- VMware Tanzu Kubernetes Grid | Azure Monitor pipeline is supported in the following Azure regions:<br><br>- Canada Central<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br><br>For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) |
 
-Azure Monitor pipeline is supported on the following Kubernetes distributions:
 
-* Canonical
-* Cluster API Provider for Azure
-* K3
-* Rancher Kubernetes Engine
-* VMware Tanzu Kubernetes Grid
-
-**Supported locations**
-
-Azure Monitor pipeline is supported in the following Azure regions:
-
-* Canada Central
-* East US2
-* Italy North
-* West US2
-* West Europe
-
-For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table)
 
 > [!NOTE]
 > Private link is supported by Azure Monitor pipeline for the connection to the cloud.
@@ -76,64 +60,11 @@ See [Add or delete tables and columns in Azure Monitor Logs](../logs/create-cust
 az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name my-table_CL --columns TimeGenerated=datetime Body=string SeverityText=string
 ```
 
-## Enable and configure pipeline
-
-The current options for enabling and configuration are detailed in the tabs below.
-
-### [Portal](#tab/Portal)
-
-### Configure pipeline using Azure portal
-
-When you use the Azure portal to enable and configure the pipeline, all required components are created based on your selections. This saves you from the complexity of creating each component individually, but you made need to use other methods for more advanced functionality and configuration.
-
-Perform one of the following in the Azure portal to launch the installation process for the Azure Monitor pipeline:
-
-* From the **Azure Monitor pipelines (preview)** menu, click **Create**. 
-* From the menu for your Arc-enabled Kubernetes cluster, select **Extensions** and then add the **Azure Monitor pipeline extension (preview)** extension.
-
-The **Basic** tab prompts you for the following information to deploy the extension and pipeline instance on your cluster.
-
-:::image type="content" source="./media/pipeline-configure/create-pipeline.png" lightbox="./media/pipeline-configure/create-pipeline.png" alt-text="Screenshot of Create Azure Monitor pipeline screen.":::
-
-The settings in this tab are described in the following table.
-
-| Property | Description |
-|:---------|:------------|
-| Instance name | Name for the Azure Monitor pipeline instance. Must be unique for the subscription. |
-| Subscription | Azure subscription to create the pipeline instance. |
-| Resource group | Resource group to create the pipeline instance. |
-| Cluster name | Select your Arc-enabled Kubernetes cluster that the pipeline will be installed on. |
-| Custom Location | Custom location for your Arc-enabled Kubernetes cluster. This will be automatically populated with the name of a custom location that will be created for your cluster or you can select another custom location in the cluster. |
-
-The **Dataflow** tab allows you to create and edit dataflows for the pipeline instance. Each dataflow includes the following details:
-
-:::image type="content" source="./media/pipeline-configure/create-dataflow.png" lightbox="./media/pipeline-configure/create-dataflow.png" alt-text="Screenshot of Create add dataflow screen.":::
-
-The settings in this tab are described in the following table.
-
-| Property | Description |
-|:---------|:------------|
-| Name | Name for the dataflow. Must be unique for this pipeline. |
-| Source type | The type of data being collected. The following source types are currently supported:<br>- Syslog<br>- OTLP |
-| Port | Port that the pipeline listens on for incoming data. If two dataflows use the same port, they both receive and process the data. |
-| Protocol<br>(Syslog only) | Specify whether the dataflow should collect TCP or UDP traffic. |
-| RFC<br>(Syslog only) | Specify which Syslog message format the dataflow will collect. 5424 is the newer, more structured format. 3164 is the older, less structured format. |
-| Collect messages with PRI header<br>(Syslog only) | Select this checkbox to collect Syslog messages that don't include the PRI header. This is a calculated value detailing the message's severity level and facility based on a fixed formula. Some devices do not send this header attached to the message. |
-| Log Analytics Workspace | Log Analytics workspace to send the data to. |
-| Table<br>(Syslog only) | Specify whether data will be sent to the [Syslog]() table, the [CommonSecurityLog]() table, or a custom table. <sup>1</sup> |
-| Table Name | The name of the table in the Log Analytics workspace to send the data to. Must be the same as **Table** if `Syslog` or `CommonSecurityLog` <sup>1</sup> |
-| Add Data Transformations | Enable to add a transformation to the dataflow. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
-
-### [CLI](#tab/CLI)
-
-### Configure pipeline using Azure CLI
-
-Following are the steps required to create and configure the components required for the Azure Monitor pipeline using Azure CLI.
-
-
-### Pipeline extension
+## Add pipeline extension
 
 Use the following command to add the pipeline extension to your Arc-enabled Kubernetes cluster. 
+
+### [CLI](#tab/CLI)
 
 ```azurecli
 az k8s-extension create --name <pipeline-extension-name> --extension-type microsoft.monitor.pipelinecontroller --scope cluster --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --release-train Preview
@@ -152,9 +83,56 @@ az customlocation create --name <custom-location-name> --resource-group <resourc
 az customlocation create --name my-cluster-custom-location --resource-group my-resource-group --namespace my-cluster-custom-location --host-resource-id /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster --cluster-extension-ids /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/providers/Microsoft.KubernetesConfiguration/extensions/my-cluster
 ```
 
-### DCE
+### [ARM](#tab/ARM)
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "clusterId": {
+            "type": "string"
+        },
+        "pipelineExtensionName": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.KubernetesConfiguration/extensions",
+            "apiVersion": "2022-11-01",
+            "name": "[parameters('pipelineExtensionName')]",
+            "scope": "[parameters('clusterId')]",
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "aksAssignedIdentity": {
+                    "type": "SystemAssigned"
+                },
+                "autoUpgradeMinorVersion": false,
+                "extensionType": "microsoft.monitor.pipelinecontroller",
+                "releaseTrain": "preview",
+                "scope": {
+                    "cluster": {
+                        "releaseNamespace": "my-strato-ns"
+                    }
+                },
+                "version": "0.37.3-privatepreview"
+            }
+        }
+    ],
+    "outputs": {}
+}
+```
+
+---
+
+## DCE
 
 Use the following command to create the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) required for the pipeline to connect to the cloud. You can use an existing DCE if you already have one in the same region.
+
+### [CLI](#tab/cli)
 
 ```azurecli
 az monitor data-collection endpoint create --name <dce-name> --resource-group <resource-group-name> --location <location> --public-network-access "Enabled"
@@ -163,7 +141,42 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
  az monitor data-collection endpoint create --name strato-06-dce --resource-group strato --location eastus --public-network-access "Enabled"
 ```
 
-### DCR
+### [ARM](#tab/arm)
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "dceName": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Insights/dataCollectionEndpoints",
+            "name": "[parameters('dceName')]",
+            "location": "[parameters('location')]",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "configurationAccess": {},
+                "logsIngestion": {},
+                "networkAcls": {
+                    "publicNetworkAccess": "Enabled"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
+```
+
+---
+
+## DCR
 
 The DCR is stored in Azure Monitor and defines how the data will be processed when it's received from the pipeline. The pipeline configuration specifies the `immutable ID` of the DCR and the `stream` in the DCR that will process the data. The `immutable ID` is automatically generated when the DCR is created.
 
@@ -180,10 +193,10 @@ Replace the properties in the following template and save them in a json file be
 | - `workspaceResourceId` | Resource ID of the Log Analytics workspace. |
 | - `workspaceId` | Workspace ID of the Log Analytics workspace. |
 | `dataFlows` | Matches streams and destinations. One entry for each stream/destination combination. |
-| - `streams` | One or more streams (defined in `streamDeclarations`). You can include multiple stream if they're being sent to the same destination. |
+| - `streams` | One or more streams (defined in `streamDeclarations`). You can include multiple streams if they're being sent to the same destination. |
 | - `destinations` | One or more destinations (defined in `destinations`). You can include multiple destinations if they're being sent to the same destination. |
 | - `transformKql` | Transformation to apply to the data before sending it to the destination. Use `source` to send the data without any changes. The output of the transformation must match the schema of the destination table. See [Data collection transformations in Azure Monitor](data-collection-transformations.md) for details on transformations. |
-| - `outputStream` | Specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. Built-in tables aren't currently supported with Azure Monitor pipeline. |
+| - `outputStream` | Specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. For builtin tables, prefix the table name with *Microsoft-*. |
 
 ```json
 {
@@ -258,6 +271,8 @@ Replace the properties in the following template and save them in a json file be
 }
 ```
 
+### [CLI](#tab/cli)
+
 Install the DCR using the following command:
 
 ```azurecli
@@ -268,9 +283,20 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 
 ```
 
+### [ARM](#tab/arm)
+
+
+
+
+---
+
 ### DCR access
 
 The Arc-enabled Kubernetes cluster must have access to the DCR to send data to the cloud. Use the following command to retrieve the object ID of the System Assigned Identity for your cluster.
+
+
+::: image type="content" source="./media/pipeline-configure/extension-object-id.png" lightbox="./media/pipeline-configure/extension-object-id.png" alt-text="Screenshot showing the object ID of the pipeline extension on the Arc-enabled cluster." border="false":::
+
 
 ```azurecli
 az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --query "identity.principalId" -o tsv 
@@ -278,6 +304,10 @@ az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --re
 ## Example:
 az k8s-extension show --name my-pipeline-extension --cluster-name my-cluster --resource-group my-resource-group --cluster-type connectedClusters --query "identity.principalId" -o tsv 
 ```
+
+### [CLI](#tab/cli)
+
+
 
 Use the output from this command as input to the following command to give Azure Monitor pipeline the authority to send its telemetry to the DCR.
 
@@ -287,6 +317,41 @@ az role assignment create --assignee "<extension principal ID>" --role "Monitori
 ## Example:
 az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --role "Monitoring Metrics Publisher" --scope "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
 ```
+
+### [ARM](#tab/arm)
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "assigneeObjectId": {
+            "type": "String"
+        },
+        "dcrResourceId": {
+           "type": "String"
+        }
+    },
+    "variables": {
+        "monitoringMetricsPublisherRoleId": "3913510d-42f4-4e42-8a64-420c390055eb"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Authorization/roleAssignments",
+            "apiVersion": "2022-04-01",
+            "name": "[guid(parameters('assigneeObjectId'), variables('monitoringMetricsPublisherRoleId'), parameters('dcrResourceId'))]",
+            "properties": {
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('monitoringMetricsPublisherRoleId'))]",
+                "principalId": "[parameters('assigneeObjectId')]",
+                "principalType": "ServicePrincipal"
+            },
+            "scope": "[parameters('dcrResourceId')]"
+        }
+    ]
+}
+```
+
+---
 
 ### Pipeline configuration
 
@@ -307,8 +372,7 @@ Replace the properties in the following table before deploying the template.
 | **Processors** | One entry for each transformation. Empty f no processors are used. |
 | `type` | Supported values are `MicrosoftSyslog` and `TransformLanguages` |
 | `name` | Name for the processor referenced in the `service` section. Must be unique for the pipeline instance. |
-| `transformLanguage` | |
-| - `transformStatement` | KQL transformation statement to modify the data. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
+| `transformLanguage`<br>- `transformStatement` | KQL transformation statement to modify the data. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 | **Exporters** | One entry for each destination. |
 | `type` | Only currently supported type is `AzureMonitorWorkspaceLogs`. |
 | `name` | Must be unique for the pipeline instance. The name is used in the `pipelines` section of the configuration. |
@@ -806,14 +870,11 @@ You can deploy all of the required components for the Azure Monitor pipeline usi
 
 ---
 
-## Syslog notes
-
-The send data to either of the following two built-in tables, the Log Analytics workspace must be onboarded to Microsoft Sentinel. You can send data to custom tables without onboarding to Microsoft Sentinel.
+> [!IMPORTANT]
+> The send data to either of the following two built-in tables, the Log Analytics workspace must be onboarded to Microsoft Sentinel. You can send data to custom tables without onboarding to Microsoft Sentinel.
 
 - [Syslog](/azure/azure-monitor/reference/tables/syslog)
 - [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
-
-
 
 
 

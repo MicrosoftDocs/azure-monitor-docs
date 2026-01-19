@@ -42,7 +42,7 @@ The `constraints` field contains a list of objects that define where your pipeli
 | Property | Type | Required | Description |
 |:---|:---|:---|:---|
 | `capability` | string | Yes | The node attribute or label to match. Examples include `zone`, `gpu`, `team`, `pipeline`. |
-| `operator` | string | Yes | Matching logic with the following allowed values:<br><br>- `In`:<br>Node must have the capability with one of the specified values.<br>- `NotIn`:<br>Node must not have the capability with any of the specified values.<br>- `Exists`:<br>Node must have any value in the capability. The `values` property isn't used.<br>- `DoesNotExist`:<br>Node must not have the capability. The `values` property isn't used.|
+| `operator` | string | Yes | Matching logic with the following allowed values:<br><br>- `In`:<br>Node must have the capability with one of the specified values.<br>- `NotIn`:<br>Node must not have the capability with any of the specified values.<br>- `ExiFsts`:<br>Node must have any value in the capability. The `values` property isn't used.<br>- `DoesNotExist`:<br>Node must not have the capability. The `values` property isn't used.|
 | `values` | array of strings | Conditional | Values to match for the capability. Not used for `Exists` and `DoesNotExist`. |
 
 
@@ -52,13 +52,13 @@ The `distribution` field contains the distribution policy for controlling how ma
 
 | Property | Type | Required | Description |
 |:---|:---|:---|:---|
-| `maxInstancesPerHost` | integer | No | Maximum instances per node for this specific pipelineGroup. The only currently allowed value is `1` which indicates strict isolation. If no value is specified, then there is no limit per host. |
+| `maxInstancesPerHost` | integer | No | Maximum instances per node for this specific pipelineGroup. The only currently allowed value is `1` which indicates strict isolation. If no value is specified, then there's no limit per host. |
 
 The maximum instances per node applies only to replicas of the same pipeline group. Different pipelineGroups can share the same node.
 
     
 ## Deployment
-Execution placement is enforced when the . The rules apply immediately when you create or update your pipeline group resource. If placement requirements cannot be satisfied, for example due to a bad configuration, your pipeline group instances will not deploy and will remain in a pending state. Updates to execution placement settings will redeploy instances of your pipeline group with the new constraints.
+Execution placement rules are applied immediately when you create or update your pipeline group resource. If placement requirements cannot be satisfied, for example due to a bad configuration, your pipeline group instances will not deploy and will remain in a pending state. Updates to execution placement settings will redeploy instances of your pipeline group with the new constraints.
 
 ## Automatic pod labeling 
 
