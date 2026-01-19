@@ -1,7 +1,7 @@
 ---
 title: Configure Azure Monitor pipeline using the Azure portal
 description: Use the Azure portal to configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center 
-ms.topic: article
+ms.topic: how-to
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
