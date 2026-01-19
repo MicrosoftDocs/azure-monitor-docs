@@ -57,6 +57,87 @@ Use the following steps to troubleshoot the latest version of the Azure Monitor 
 
     1. Check if you see the latest DCR downloaded at this location `/etc/opt/microsoft/azuremonitoragent/config-cache/configchunks/`
 
+1. **If the directory or files are missing:**
+
+    1. The Azure Monitor Agent was unable to download the Data Collection Rule (DCR) from the Azure Monitor Configuration Service (AMCS).
+    1. This usually indicates one of the following:
+    1. The virtual machine isn’t associated with any DCR.
+    1. The virtual machine can’t reach AMCS due to network or DNS restrictions.
+    1. The Azure Monitor Agent service isn’t running or failed during startup.
+
+1. **Take these actions:**
+
+    1. Confirm the DCR is associated with the VM:
+       - Azure portal → **Data collection rules** → Select your DCR → **Resources**
+       - Ensure the virtual machine appears in the list.
+
+    1. Check outbound connectivity from the VM:
+
+        ```bash
+        curl -v https://global.handler.control.monitor.azure.com
+        ```
+
+    1. A successful TLS connection confirms the VM can reach AMCS.
+
+    1. Restart the agent:
+
+        ```bash
+        sudo systemctl restart azuremonitoragent
+        sudo systemctl status azuremonitoragent
+        ```
+
+    1. Check agent error logs:
+
+        ```bash
+        sudo tail -f /var/opt/microsoft/azuremonitoragent/log/mdsd.err
+        ```
+
+1. **What a valid configuration file looks like:**
+
+    1. Each file under `/etc/opt/microsoft/azuremonitoragent/config-cache/configchunks/`represents a parsed Data Collection Rule downloaded from Azure.
+
+    1. Example:
+
+        ```bash
+        ls /etc/opt/microsoft/azuremonitoragent/config-cache/configchunks/
+        ```
+
+    1. Output:
+
+        ```text
+        dcr_1a2b3c4d.json
+        dcr_5e6f7g8h.json
+        ```
+
+    1. Inspect a file:
+
+        ```bash
+        cat /etc/opt/microsoft/azuremonitoragent/config-cache/configchunks/dcr_1a2b3c4d.json
+        ```
+
+    1. Typical contents include:
+
+        ```json
+        {
+        "dataSources": {
+        "syslog": [
+        {
+        "facilityNames": ["daemon"],
+        "logLevels": ["Info", "Warning", "Error"]
+        }
+        ]
+        },
+        "destinations": {
+        "logAnalytics": [
+        {
+        "workspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.OperationalInsights/workspaces/<workspace-name>"
+        }
+        ]
+        }
+        }
+        ```
+
+If these files are empty, missing, or malformed, the agent won’t collect or upload data.
 
 ## Issues collecting Syslog
 
