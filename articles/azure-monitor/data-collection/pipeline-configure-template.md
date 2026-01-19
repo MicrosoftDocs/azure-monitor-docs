@@ -9,24 +9,9 @@ ms.date: 01/15/2026
 
 The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline in your environment.
 
-## Supported configurations
+[!INCLUDE [pipeline-supported-configurations](includes/pipeline-supported-configurations.md)]
 
-| Supported distros | Supported locations |
-|:---|:---|
-| - Canonical<br>- Cluster API Provider for Azure<br>- K3<br>- Rancher Kubernetes Engine<br>- VMware Tanzu Kubernetes Grid | - Canada Central<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br><br>For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) |
-
-
-> [!NOTE]
-> Private link is supported by Azure Monitor pipeline for the connection to the cloud.
-
-## Prerequisites
-
-* [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your own environment with an external IP address. See [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster) for details on enabling Arc for a cluster.
-* The Arc-enabled Kubernetes cluster must have the custom locations features enabled. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
-* Log Analytics workspace in Azure Monitor to receive the data from the pipeline. See [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md) for details on creating a workspace.
-* The following resource providers must be registered in your Azure subscription. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
-    * Microsoft.Insights
-    * Microsoft.Monitor 
+[!INCLUDE [pipeline-prerequisites](includes/pipeline-prerequisites.md)]
 
 
 ## Components
@@ -48,19 +33,11 @@ The following table identifies the components required to enable the Azure Monit
 | Data collection rule (DCR) | [DCR](data-collection-rule-overview.md#using-a-dcr) used by Azure Monitor in the cloud to define how the data is received and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
 
 
-## Create table in Log Analytics workspace
-
-Before you configure the data collection process for the pipeline, any destination tables in the Log Analytics workspace must already exist. If you're sending to a custom table, then you need to create that table before you can create any data flows that send to it. The schema of the table must match the data that it receives, but there are multiple steps in the collection process where you can modify the incoming data, so the table schema doesn't need to match the source data that you're collecting. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
-
-See [Add or delete tables and columns in Azure Monitor Logs](../logs/create-custom-table.md) for details on different methods for creating a table. For example, use the CLI command below to create a table with the three columns called `Body`, `TimeGenerated`, and `SeverityText`.
-
-```azurecli
-az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name my-table_CL --columns TimeGenerated=datetime Body=string SeverityText=string
-```
+[!INCLUDE [pipeline-create-table](includes/pipeline-create-table.md)]
 
 ## Add pipeline extension to cluster
 
-Use the following command to add the pipeline extension to your Arc-enabled Kubernetes cluster. 
+Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster using either CLI commands or an ARM template.
 
 ### [CLI](#tab/CLI)
 
@@ -117,6 +94,7 @@ az k8s-extension create --name my-pipe --extension-type microsoft.monitor.pipeli
 ---
 
 ## Create custom location
+An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations-overview) is required to deploy the pipeline instance on your Arc-enabled Kubernetes cluster.
 Use the following command to create the custom location for your Arc-enabled Kubernetes cluster.
 
 ### [CLI](#tab/cli)
@@ -935,56 +913,8 @@ Once the volume is created in the appropriate namespace, configure it using para
 
 Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
 
+[!INCLUDE [pipeline-verify-configuration](includes/pipeline-verify-configuration.md)]
 
-## Verify configuration
-
-### Verify pipeline components running in the cluster
-
-In the Azure portal, navigate to the **Kubernetes services** menu and select your Arc-enabled Kubernetes cluster. Select **Services and ingresses** and ensure that you see the following services:
-
-* \<pipeline name\>-external-service
-* \<pipeline name\>-service
-
-:::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline."::: 
-
-Click on the entry for **\<pipeline name\>-external-service** and note the IP address and port in the **Endpoints** column. This is the external IP address and port that your clients will send data to. See [Retrieve ingress endpoint](#retrieve-ingress-endpoint) for retrieving this address from the client.
-
-### Verify heartbeat
-
-Each pipeline configured in your pipeline instance will send a heartbeat record to the `Heartbeat` table in your Log Analytics workspace every minute. The contents of the `OSMajorVersion` column should match the name your pipeline instance. If there are multiple workspaces in the pipeline instance, then the first one configured will be used.
-
-Retrieve the heartbeat records using a log query as in the following example:
-
-:::image type="content" source="./media/pipeline-configure/heartbeat-records.png" lightbox="./media/pipeline-configure/heartbeat-records.png" alt-text="Screenshot of log query that returns heartbeat records for Azure Monitor pipeline.":::
-
-## Client configuration
-
-Once your pipeline extension and instance are installed, then you need to configure your clients to send data to the pipeline.
-
-### Retrieve ingress endpoint
-
-Each client requires the external IP address of the Azure Monitor pipeline service. Use the following command to retrieve this address:
-
-```azurecli
-kubectl get services -n <namespace where azure monitor pipeline was installed>
-```
-
-* If the application producing logs is external to the cluster, copy the *external-ip* value of the service *\<pipeline name\>-service* or *\<pipeline name\>-external-service* with the load balancer type.
-* If the application is on a pod within the cluster, copy the *cluster-ip* value. 
-
-> [!NOTE]
-> If the external-ip field is set to *pending*, you need to configure an external IP for this ingress manually according to your cluster configuration.
-
-| Client | Description |
-|:-------|:------------|
-| Syslog | Update Syslog clients to send data to the pipeline endpoint and the port of your Syslog dataflow. |
-| OTLP | The Azure Monitor pipeline exposes a gRPC-based OTLP endpoint on port 4317. Configuring your instrumentation to send to this OTLP endpoint will depend on the instrumentation library itself. See [OTLP endpoint or Collector](https://opentelemetry.io/docs/instrumentation/python/exporters/#otlp-endpoint-or-collector) for OpenTelemetry documentation. The environment variable method is documented at [OTLP Exporter Configuration](https://opentelemetry.io/docs/concepts/sdk-configuration/otlp-exporter-configuration/). |
-
-## Verify data
-
-The final step is to verify that the data is received in the Log Analytics workspace. You can perform this verification by running a query in the Log Analytics workspace to retrieve data from the table.
-
-:::image type="content" source="./media/pipeline-configure/log-results-syslog.png" lightbox="./media/pipeline-configure/log-results-syslog.png" alt-text="Screenshot of log query that returns of Syslog collection."::: 
 
 ## Workflow
 
