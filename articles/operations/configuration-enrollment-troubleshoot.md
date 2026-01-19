@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot machine enrollment in operations center (preview)
 description: Describes how to troubleshoot machine enrollment in the Configuration pillar of operations center to automatically configure management for VMs in your subscription.
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 11/14/2025
 ---
 

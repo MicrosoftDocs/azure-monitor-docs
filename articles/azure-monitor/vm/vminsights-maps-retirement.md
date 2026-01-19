@@ -1,7 +1,7 @@
 ---
 title: VM Insights Map and Dependency Agent retirement guidance
 description: This article provides guidance to customers about the retirement of the Virtual Machine (VM) Insights Map feature and the associated Dependency Agent. 
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: linux-related-content
 ms.date: 05/05/2025
 ---

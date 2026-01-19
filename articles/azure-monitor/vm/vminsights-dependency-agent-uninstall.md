@@ -1,7 +1,7 @@
 ---
 title:  Remove Dependency Agent from Azure Virtual Machines and Virtual Machine Scale Sets
 description: Detailed process for safely uninstalling the Dependency Agent from both Windows and Linux-based Azure virtual machines and virtual machine scale set instances.
-ms.topic: article
+ms.topic: how-to
 ms.date: 02/26/2025
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Log data ingestion time in Azure Monitor | Microsoft Docs
 description: This article explains the different factors that affect latency in collecting log data in Azure Monitor.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.reviewer: ivkhrul
 ms.date: 10/15/2025
 

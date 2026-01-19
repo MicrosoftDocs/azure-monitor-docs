@@ -2,7 +2,7 @@
 title: Design Azure Monitor Private Link configuration
 description: This article shows how to design your Azure Private Link setup
 ms.reviewer: noakuper
-ms.topic: article
+ms.topic: concept-article
 ms.date: 10/23/2024
 ---
 

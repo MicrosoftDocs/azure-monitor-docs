@@ -1,7 +1,7 @@
 ---
 title: Monitor and analyze runtime behavior with Code Optimizations
 description: Identify and remove CPU and memory bottlenecks using Azure Monitor's Code Optimizations feature
-ms.topic: article
+ms.topic: concept-article
 ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms

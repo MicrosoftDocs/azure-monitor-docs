@@ -1,7 +1,7 @@
 ---
 title: PromQL best practices for OpenTelemetry metrics
 description: Learn best practices for querying OpenTelemetry metrics using PromQL in Azure Monitor, including UTF-8 character handling and temporality considerations.
-ms.topic: article
+ms.topic: best-practice
 ms.date: 11/26/2025
 author: tylerkight
 ms.author: tylerkight
