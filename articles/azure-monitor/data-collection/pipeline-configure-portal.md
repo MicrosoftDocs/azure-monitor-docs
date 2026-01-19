@@ -1,12 +1,12 @@
 ---
-title: Configure Azure Monitor pipeline 
-description: Configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center 
+title: Configure Azure Monitor pipeline using the Azure portal
+description: Use the Azure portal to configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center 
 ms.topic: article
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline
+# Configure Azure Monitor pipeline using the Azure portal
 
 The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline in your environment.
 
@@ -14,7 +14,7 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 
 | Supported distros | Supported locations |
 |:---|:---|
-| Azure Monitor pipeline is supported on the following Kubernetes distributions:<br><br>- Canonical<br>- Cluster API Provider for Azure<br>- K3<br>- Rancher Kubernetes Engine<br>- VMware Tanzu Kubernetes Grid | Azure Monitor pipeline is supported in the following Azure regions:<br><br>- Canada Central<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br><br>For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) |
+| - Canonical<br>- Cluster API Provider for Azure<br>- K3<br>- Rancher Kubernetes Engine<br>- VMware Tanzu Kubernetes Grid | - Canada Central<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br><br>For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) |
 
 
 
@@ -41,7 +41,7 @@ See [Add or delete tables and columns in Azure Monitor Logs](../logs/create-cust
 az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name my-table_CL --columns TimeGenerated=datetime Body=string SeverityText=string
 ```
 
-## Configure pipeline using Azure portal
+## Create pipeline and data flows
 
 When you use the Azure portal to enable and configure the pipeline, all required components are created based on your selections. This saves you from the complexity of creating each component individually, but you made need to use other methods for more advanced functionality and configuration.
 
@@ -49,6 +49,8 @@ Perform one of the following in the Azure portal to launch the installation proc
 
 * From the **Azure Monitor pipelines (preview)** menu, click **Create**. 
 * From the menu for your Arc-enabled Kubernetes cluster, select **Extensions** and then add the **Azure Monitor pipeline extension (preview)** extension.
+
+### Basics tab
 
 The **Basic** tab prompts you for the following information to deploy the extension and pipeline instance on your cluster.
 
@@ -63,6 +65,8 @@ The settings in this tab are described in the following table.
 | Resource group | Resource group to create the pipeline instance. |
 | Cluster name | Select your Arc-enabled Kubernetes cluster that the pipeline will be installed on. |
 | Custom Location | Custom location for your Arc-enabled Kubernetes cluster. This will be automatically populated with the name of a custom location that will be created for your cluster or you can select another custom location in the cluster. |
+
+### Dataflow tab
 
 The **Dataflow** tab allows you to create and edit dataflows for the pipeline instance. Each dataflow includes the following details:
 
@@ -86,10 +90,9 @@ The settings in this tab are described in the following table.
 
 > [!IMPORTANT]
 > The send data to either of the following two built-in tables, the Log Analytics workspace must be onboarded to Microsoft Sentinel. You can send data to custom tables without onboarding to Microsoft Sentinel.
-
-- [Syslog](/azure/azure-monitor/reference/tables/syslog)
-- [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
-
+> 
+> - [Syslog](/azure/azure-monitor/reference/tables/syslog)
+> - [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
 
 
 

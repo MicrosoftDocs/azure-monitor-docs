@@ -877,10 +877,14 @@ items:
     items:
       - name: Overview
         href: data-collection/pipeline-overview.md
-      - name: Configure using portal
-        href: data-collection/pipeline-configure-portal.md
-      - name: Configure using CLI and ARM templates
-        href: data-collection/pipeline-configure-template.md
+      - name: Configure pipeline
+        items:
+        - name: Azure portal
+          href: data-collection/pipeline-configure-portal.md
+        - name: CLI or ARM templates
+          href: data-collection/pipeline-configure-template.md
+      - name: Configure clients
+        href: data-collection/pipeline-configure-clients.md
       - name: Transformations
         href: data-collection/pipeline-transformations.md
       - name: Pod placement

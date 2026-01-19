@@ -1,12 +1,12 @@
 ---
-title: Configure Azure Monitor pipeline 
-description: Configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center 
+title: Configure Azure Monitor pipeline using CLI or ARM templates
+description: Use CLI or ARM templates to configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center. 
 ms.topic: article
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline
+# Configure Azure Monitor pipeline using CLI or ARM templates
 
 The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline in your environment.
 
@@ -14,8 +14,7 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 
 | Supported distros | Supported locations |
 |:---|:---|
-| Azure Monitor pipeline is supported on the following Kubernetes distributions:<br><br>- Canonical<br>- Cluster API Provider for Azure<br>- K3<br>- Rancher Kubernetes Engine<br>- VMware Tanzu Kubernetes Grid | Azure Monitor pipeline is supported in the following Azure regions:<br><br>- Canada Central<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br><br>For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) |
-
+| - Canonical<br>- Cluster API Provider for Azure<br>- K3<br>- Rancher Kubernetes Engine<br>- VMware Tanzu Kubernetes Grid | - Canada Central<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br><br>For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) |
 
 
 > [!NOTE]
@@ -60,7 +59,7 @@ See [Add or delete tables and columns in Azure Monitor Logs](../logs/create-cust
 az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name my-table_CL --columns TimeGenerated=datetime Body=string SeverityText=string
 ```
 
-## Add pipeline extension
+## Add pipeline extension to cluster
 
 Use the following command to add the pipeline extension to your Arc-enabled Kubernetes cluster. 
 
@@ -71,16 +70,6 @@ az k8s-extension create --name <pipeline-extension-name> --extension-type micros
 
 ## Example
 az k8s-extension create --name my-pipe --extension-type microsoft.monitor.pipelinecontroller --scope cluster --cluster-name my-cluster --resource-group my-resource-group --cluster-type connectedClusters --release-train Preview
-```
-
-### Custom location
-Use the following command to create the custom location for your Arc-enabled Kubernetes cluster.
-
-```azurecli
-az customlocation create --name <custom-location-name> --resource-group <resource-group-name> --namespace <name of namespace> --host-resource-id <connectedClusterId> --cluster-extension-ids <extensionId>
-
-## Example
-az customlocation create --name my-cluster-custom-location --resource-group my-resource-group --namespace my-cluster-custom-location --host-resource-id /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster --cluster-extension-ids /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/providers/Microsoft.KubernetesConfiguration/extensions/my-cluster
 ```
 
 ### [ARM](#tab/ARM)
@@ -128,7 +117,61 @@ az customlocation create --name my-cluster-custom-location --resource-group my-r
 
 ---
 
-## DCE
+## Create custom location
+Use the following command to create the custom location for your Arc-enabled Kubernetes cluster.
+
+### [CLI](#tab/cli)
+
+```azurecli
+az customlocation create --name <custom-location-name> --resource-group <resource-group-name> --namespace <name of namespace> --host-resource-id <connectedClusterId> --cluster-extension-ids <extensionId>
+
+## Example
+az customlocation create --name my-cluster-custom-location --resource-group my-resource-group --namespace my-cluster-custom-location --host-resource-id /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster --cluster-extension-ids /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/providers/Microsoft.KubernetesConfiguration/extensions/my-cluster
+```
+
+### [ARM](#tab/arm)
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "clusterId": {
+            "type": "string"
+        },
+        "clusterExtensionIds": {
+            "type": "array"
+        },
+        "customLocationName": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.ExtendedLocation/customLocations",
+            "apiVersion": "2021-08-15",
+            "name": "[parameters('customLocationName')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[parameters('pipelineExtensionName')]"
+            ],
+            "properties": {
+                "hostResourceId": "[parameters('clusterId')]",
+                "namespace": "[toLower(parameters('customLocationName'))]",
+                "clusterExtensionIds": "[parameters('clusterExtensionIds')]",
+                "hostType": "Kubernetes"
+            }
+        }
+    ],
+    "outputs": {}
+}
+```
+
+
+## Create data collection endpoint (DCE)
 
 Use the following command to create the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) required for the pipeline to connect to the cloud. You can use an existing DCE if you already have one in the same region.
 
@@ -176,7 +219,7 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
 
 ---
 
-## DCR
+## Create data collection rule (DCR)
 
 The DCR is stored in Azure Monitor and defines how the data will be processed when it's received from the pipeline. The pipeline configuration specifies the `immutable ID` of the DCR and the `stream` in the DCR that will process the data. The `immutable ID` is automatically generated when the DCR is created.
 
@@ -290,7 +333,7 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 
 ---
 
-### DCR access
+### Give DCR access to pipeline extension
 
 The Arc-enabled Kubernetes cluster must have access to the DCR to send data to the cloud. Use the following command to retrieve the object ID of the System Assigned Identity for your cluster.
 
@@ -353,7 +396,7 @@ az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --ro
 
 ---
 
-### Pipeline configuration
+### Create pipeline configuration
 
 The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud.
 
