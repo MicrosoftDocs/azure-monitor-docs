@@ -1,7 +1,7 @@
 ---
 title: Estimate Azure Monitor costs
 description: Guidance on using the Azure Monitor pricing calculator to estimate Azure Monitor billable usage.
-ms.topic: how-to
+ms.topic: concept-article
 ms.reviewer: Dale.Koetke
 ms.date: 05/21/2025
 ---
