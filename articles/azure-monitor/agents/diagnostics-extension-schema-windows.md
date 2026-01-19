@@ -4,7 +4,7 @@ description: Configuration schema reference for Windows diagnostics extension (W
 ms.topic: reference
 ms.date: 11/14/2024
 ms.reviewer: luki
-
+ms.custom: sfi-guid-flagged
 ---
 
 # Windows diagnostics extension schema
@@ -12,7 +12,7 @@ ms.reviewer: luki
 Azure Diagnostics extension is an agent in Azure Monitor that collects monitoring data from the guest operating system and workloads of Azure compute resources. This article details the schema used for configuration of the diagnostics extension on Windows virtual machines and other compute resources.
 
 > [!NOTE]
-> The schema in this article is valid for versions 1.3 and newer (Azure SDK 2.4 and newer). Newer configuration sections are commented to show in what version they were added. Version 1.0 and 1.2 of the schema have been archived and no longer available. 
+> The schema in this article is valid for versions 1.3 and newer (Azure SDK 2.4 and newer). Newer configuration sections are commented to show in what version they were added. Version 1.0 and 1.2 of the schema were archived and are no longer available.
 
 ## Public configuration file schema
 
@@ -24,7 +24,7 @@ Download the public configuration file schema definition by executing the follow
 
 ## Common Attribute Types
 
-**scheduledTransferPeriod** attribute appears in several elements. It is the interval between scheduled transfers to storage rounded up to the nearest minute. The value is an [XML Duration Data Type.](https://www.w3schools.com/xml/schema_dtypes_date.asp)
+**scheduledTransferPeriod** attribute appears in several elements. It's the interval between scheduled transfers to storage rounded up to the nearest minute. The value is an [XML Duration Data Type.](https://www.w3schools.com/xml/schema_dtypes_date.asp)
 
 ## DiagnosticsConfiguration Element
 
@@ -53,8 +53,8 @@ The top-level element of the diagnostics configuration file.
 | Child Elements | Description |
 |----------------|-------------|
 | **WadCfg** | Required. See description elsewhere on this page. |
-| **StorageAccount** | The name of the Azure Storage account to store the data in. May also be specified as a parameter when executing the Set-AzureServiceDiagnosticsExtension cmdlet. |
-| **StorageType** | Can be *Table*, *Blob*, or *TableAndBlob*. Table is default. When TableAndBlob is chosen, diagnostic data is written twice -- once to each type. |
+| **StorageAccount** | The name of the Azure Storage account to store the data in. Can also be specified as a parameter when executing the Set-AzureServiceDiagnosticsExtension cmdlet. |
+| **StorageType** | Can be *Table*, *Blob*, or *TableAndBlob*. Table is default. When TableAndBlob is chosen, diagnostic data is written twice--once to each type. |
 | **LocalResourceDirectory** | The directory on the virtual machine where the Monitoring Agent stores event data. If not, set, the default directory is used:<br><br> For a Worker/web role: `C:\Resources\<guid>\directory\<guid>.<RoleName.DiagnosticStore\`<br><br> For a Virtual Machine: `C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<WADVersion>\WAD<WADVersion>`<br><br> Required attributes are:<br><br> - **path** - The directory on the system to be used by Azure Diagnostics.<br><br> - **expandEnvironment** - Controls whether environment variables are expanded in the path name. |
 
 ## WadCFG Element
@@ -71,7 +71,7 @@ Required
 
 | Attributes | Description |
 |------------|-------------|
-| **overallQuotaInMB** | The maximum amount of local disk space that may be consumed by the various types of diagnostic data collected by Azure Diagnostics. The default setting is 4096 MB. |
+| **overallQuotaInMB** | The maximum amount of local disk space that can get consumed by the various types of diagnostic data collected by Azure Diagnostics. The default setting is 4,096 MB. |
 | **useProxyServer** | Configure Azure Diagnostics to use the proxy server settings as set in Internet Explorer settings. |
 | **sinks** | Added in 1.5. Optional. Points to a sink location to also send diagnostic data for all child elements that support sinks. Sink example is Application Insights or Event Hubs. Note you need to add the *resourceId* property under the *Metrics* element if you want events uploaded to Event Hubs to have a resource ID. |
 
@@ -86,7 +86,6 @@ Required
 | **WindowsEventLog** | See description elsewhere on this page. |
 | **DockerSources** | See description elsewhere on this page. |
 
-
 ## CrashDumps Element
 
 *Tree: Root - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - CrashDumps*
@@ -97,7 +96,7 @@ Enable the collection of crash dumps.
 |------------|-------------|
 | **containerName** | Optional. The name of the blob container in your Azure Storage account to be used to store crash dumps. |
 | **crashDumpType** | Optional. Configures Azure Diagnostics to collect mini or full crash dumps. |
-| **directoryQuotaPercentage** | Optional. Configures the percentage of **overallQuotaInMB** to be reserved for crash dumps on the VM. |
+| **directoryQuotaPercentage** | Optional. Configures the percentage of **overallQuotaInMB** to be reserved for crash dumps on the virtual machine (VM). |
 
 | Child Elements | Description |
 |----------------|-------------|
@@ -131,7 +130,7 @@ A list of directories to monitor.
 
 *Tree: Root - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - Directories - DataSources - DirectoryConfiguration*
 
- May include either the **Absolute** or **LocalResource** element but not both.
+ Can include either the **Absolute** or **LocalResource** element but not both.
 
 | Child Elements | Description |
 |----------------|-------------|
@@ -172,9 +171,9 @@ Configures collection of events generated from [EventSource Class](/dotnet/api/s
 
 *Tree: Root - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - Metrics*
 
-Enables you to generate a performance counter table that is optimized for fast queries. Each performance counter that is defined in the **PerformanceCounters** element is stored in the Metrics table in addition to the Performance Counter table.
+Enables you to generate a performance counter table that's optimized for fast queries. Each performance counter that is defined in the **PerformanceCounters** element is stored in the Metrics table in addition to the Performance Counter table.
 
-The **resourceId** attribute is required. The resource ID of the Virtual Machine or Virtual Machine Scale Set you are deploying Azure Diagnostics to. Get the **resourceID** from the [Azure portal](https://portal.azure.com). Select **Browse** -> **Resource Groups** -> **<Name\>**. Click the **Properties** tile and copy the value from the **ID** field. This resourceID property is used for both sending custom metrics and for adding a resourceID property to data sent to Event Hubs. Note you need to add the *resourceId* property under the *Metrics* element if you want events uploaded to Event Hubs to have a resource ID.
+The **resourceId** attribute is required. The resource ID of the Virtual Machine or Virtual Machine Scale Set you're deploying Azure Diagnostics to. Get the **resourceID** from the [Azure portal](https://portal.azure.com). Select **Browse** -> **Resource Groups** -> **<Name\>**. Select the **Properties** tile and copy the value from the **ID** field. This resourceID property is used for both sending custom metrics and for adding a resourceID property to data sent to Event Hubs. Note you need to add the *resourceId* property under the *Metrics* element if you want events uploaded to Event Hubs to have a resource ID.
 
 | Child Elements | Description |
 |----------------|-------------|
@@ -218,7 +217,7 @@ Defines the buffer configuration for basic Azure logs.
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **bufferQuotaInMB** | **unsignedInt** | Optional. Specifies the maximum amount of file system storage that is available for the specified data.<br><br> The default is 0.|
+| **bufferQuotaInMB** | **unsignedInt** | Optional. Specifies the maximum amount of file system storage that's available for the specified data.<br><br> The default is 0.|
 | **scheduledTransferLogLevelFilter** | **string** | Optional. Specifies the minimum severity level for log entries that are transferred. The default value is **Undefined**, which transfers all logs. Other possible values (in order of most to least information) are **Verbose**, **Information**, **Warning**, **Error**, and **Critical**. |
 | **scheduledTransferPeriod** | **duration** | Optional. Specifies the interval between scheduled transfers of data, rounded up to the nearest minute.<br><br> The default is PT0S. |
 | **sinks** | **string** | Added in 1.5. Optional. Points to a sink location to also send diagnostic data. For example, Application Insights or Event Hubs. Note you need to add the *resourceId* property under the *Metrics* element if you want events uploaded to Event Hubs to have a resource ID. |
@@ -253,12 +252,12 @@ Defines locations to send diagnostic data to. For example, the Application Insig
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **name** | string | A string identifying the sinkname. |
+| **name** | string | A string identifying the sink name. |
 
 | Element | Type | Description |
 |---------|------|-------------|
 | **Application Insights** | string | Used only when sending data to Application Insights. Contains the connection string for an active Application Insights account that you have access to. |
-| **Channels** | string | One for each additional filtering that stream that you |
+| **Channels** | string | One for each stream of log data passing through a sink. More filtering can be applied to each stream. |
 
 ## Channels Element
 
@@ -293,7 +292,7 @@ Added in version 1.3.
 
 Optional
 
-Stores the private details of the storage account (name, key, and endpoint). This information is sent to the virtual machine, but cannot be retrieved from it.
+Stores the private details of the storage account (name, key, and endpoint). This information is sent to the virtual machine, but can't be retrieved from it.
 
 | Child Elements | Description |
 |----------------|-------------|
@@ -311,10 +310,10 @@ Following is a complete sample configuration for Windows diagnostics extension s
 
 ### JSON
 
-The *PublicConfig* and *PrivateConfig* are separated because in most JSON usage cases, they are passed as different variables. These cases include Resource Manager templates, PowerShell, and Visual Studio.
+The *PublicConfig* and *PrivateConfig* are separated because in most JSON usage cases, they're passed as different variables. These cases include Resource Manager templates, PowerShell, and Visual Studio.
 
 > [!NOTE]
-> The public config Azure Monitor sink definition has two properties, *resourceId* and *region*. These are only required for Classic VMs and Classic Cloud services. The *region* property should not be used for other resources, the *resourceId* property is used on ARM VMs to populate the resourceID field in logs uploaded to Event Hubs.
+> The public config Azure Monitor sink definition has two properties, *resourceId* and *region*. These properties are only required for Classic VMs and Classic Cloud services. The *region* property shouldn't be used for other resources. The *resourceId* property is used on Azure Resource Manager VMs to populate the resourceID field in logs uploaded to Event Hubs.
 
 ```json
 "PublicConfig" {
@@ -492,8 +491,7 @@ The *PublicConfig* and *PrivateConfig* are separated because in most JSON usage 
 ```
 
 > [!NOTE]
-> The private config Azure Monitor sink definition has two properties, *PrincipalId* and *Secret*. These are only required for Classic VMs and Classic Cloud services. These properties should not be used for other resources.
-
+> The private config Azure Monitor sink definition has two properties, *PrincipalId* and *Secret*. These properties are only required for Classic VMs and Classic Cloud services. These properties shouldn't be used for other resources.
 
 ```json
 "PrivateConfig" {
@@ -659,5 +657,5 @@ The *PublicConfig* and *PrivateConfig* are separated because in most JSON usage 
 ```
 
 > [!NOTE]
-> The public config Azure Monitor sink definition has two properties, resourceId and region. These are only required for Classic VMs and Classic Cloud services. These properties should not be used for Resource Manager Virtual Machines or Virtual Machine Scale sets.
-> There is also an additional Private Config element for the Azure Monitor sink that passes in a Principal Id and Secret. This is only required for Classic VMs and Classic Cloud Services. For Resource Manager VMs and VMSS the Azure Monitor definition in the private config element can be excluded.
+> The public config Azure Monitor sink definition has two properties, *resourceId* and *region*. These properties are only required for Classic VMs and Classic Cloud services. These properties shouldn't be used for Resource Manager Virtual Machines or Virtual Machine Scale sets.
+> There's also an extra Private Config element for the Azure Monitor sink that passes in a *Principal ID* and *Secret*. These properties are only required for Classic VMs and Classic Cloud Services. For Resource Manager VMs and Virtual Machine Scale sets, the Azure Monitor definition in the private config element can be excluded.

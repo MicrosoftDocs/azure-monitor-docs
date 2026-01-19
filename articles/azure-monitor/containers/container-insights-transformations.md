@@ -1,7 +1,7 @@
 ---
 title: Advanced filtering and transformations for Kubernetes logs in Azure Monitor
 description: Describes how to transform data using a DCR transformation with container logs from your Kubernetes cluster using Azure Monitor.
-ms.topic: article
+ms.topic: how-to
 ms.date: 09/14/2025
 ms.reviewer: aul
 ---

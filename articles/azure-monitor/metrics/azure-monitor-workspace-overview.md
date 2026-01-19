@@ -78,7 +78,7 @@ Data stored in the Azure Monitor workspace is handled in accordance with all sta
 * Data is encrypted at rest using a Microsoft-managed key
 * Data is retained for 18 months
 
-For details about the Azure Monitor managed service for Prometheus' support of PII/EUII data, see [Azure Monitor and Prometheus](prometheus-metrics-overview.md).
+The use of Azure Monitor to manage and host Prometheus is intended for storing information about the service health of customer machines and applications. It's not intended for storing any personal data. Ensure that you don't send any sensitive information, PII/EUII, such as usernames and credit card numbers, into Azure Monitor-hosted Prometheus fields like metric names, label names, or label values.
 
 ## Regional availability
 

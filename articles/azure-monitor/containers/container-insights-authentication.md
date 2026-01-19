@@ -1,7 +1,7 @@
 ---
 title: Legacy authentication for Container Insights 
 description: This article describes how to configure authentication for the containerized agent used by Container insights.
-ms.topic: article
+ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.date: 04/23/2025
 ms.reviewer: aul

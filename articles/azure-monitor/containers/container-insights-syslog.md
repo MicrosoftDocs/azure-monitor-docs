@@ -1,7 +1,7 @@
 ---
 title: Analyze Syslog data from Kubernetes cluster in Azure Monitor
 description: Describes how to access Syslog data collected from AKS nodes using Container insights.
-ms.topic: article
+ms.topic: how-to
 ms.date: 08/19/2025
 ms.reviewer: damendo
 ---

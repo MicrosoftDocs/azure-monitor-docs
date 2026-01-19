@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -463,23 +463,7 @@ Subcategory: undefined
 
 <!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_end-->
 
-<!--e990f401-84cc-4438-9c06-8bbf4e2611ec_begin-->
 
-#### Upgrade App Service apps to Node 20 LTS  
-  
-Extended support for Node 18 LTS is retiring. Upgrade apps to Node 20 LTS.  
-  
-**Potential benefits**: Avoid service disruption  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/action-required-upgrade-your-app-service-apps-to-node-20-lts-by-30-april-2025/)  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: e990f401-84cc-4438-9c06-8bbf4e2611ec  
-Subcategory: undefined
-
-<!--e990f401-84cc-4438-9c06-8bbf4e2611ec_end-->
 
 <!--14f2b661-8b62-4e1e-9020-6ae63ce9e354_begin-->
 
@@ -516,5 +500,23 @@ Recommendation ID: 3d5765c2-e25e-47ca-988a-cf11535a592d
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--3d5765c2-e25e-47ca-988a-cf11535a592d_end-->
+
+<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_begin-->
+
+#### Upgrade Python 3.9 app to newer version  
+  
+Extended support for Python 3.9 is ending. Apps hosted on App Service continue to run. Future security updates are no longer available. The platform no longer provides customer service for Python 3.9.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=python-39-app-svc)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 2350ea91-8dc1-4f7b-b85f-84990e9bfb5a  
+Subcategory: undefined
+
+<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_end-->
 
 <!--articleBody-->

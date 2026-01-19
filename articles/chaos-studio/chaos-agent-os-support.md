@@ -3,7 +3,7 @@ title: Chaos Agent Version Compatibility
 description: Compatibility reference for the Azure Chaos Studio Agent across operating systems, fault differences, and package dependencies.
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: article
+ms.topic: reference
 ms.date: 03/03/2025
 ms.reviewer: nikhilkaul
 ---
