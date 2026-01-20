@@ -9,13 +9,8 @@ ms.date: 01/15/2026
 
 The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline in your environment.
 
-[!INCLUDE [pipeline-supported-configurations](includes/pipeline-supported-configurations.md)]
-
-[!INCLUDE [pipeline-prerequisites](includes/pipeline-prerequisites.md)]
-
-[!INCLUDE [pipeline-components](includes/pipeline-components.md)]
-
-[!INCLUDE [pipeline-create-table](includes/pipeline-create-table.md)]
+## Prerequisites
+See the prerequisites and other in the [Azure Monitor pipeline overview](./pipeline-overview.md) article.
 
 ## ARM template
 The following ARM template can be used to create the required components for the Azure Monitor pipeline. This template creates a data collection endpoint (DCE), data collection rule (DCR), pipeline controller extension, custom location, and pipeline instance with data flows for Syslog and OTLP.
@@ -26,16 +21,22 @@ The following ARM template can be used to create the required components for the
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "type": "String"
+            "type": "string"
         },
         "clusterId": {
-            "type": "String"
-        },
-        "clusterExtensionIds": {
-            "type": "Array"
+            "type": "string"
         },
         "customLocationName": {
-            "type": "String"
+            "type": "string"
+        },
+        "cachePersistentVolume": {
+            "type": "string"
+        },
+        "cacheMaxStorageUsage": {
+            "type": "int"
+        },
+        "cacheRetentionPeriod": {
+            "type": "int"
         },
         "dceName": {
             "type": "string"
@@ -43,42 +44,38 @@ The following ARM template can be used to create the required components for the
         "dcrName": {
             "type": "string"
         },
-        "logAnalyticsWorkspaceId": {
+        "logAnalyticsWorkspaceName": {
             "type": "string"
         },
         "pipelineExtensionName": {
-            "type": "String"
+            "type": "string"
         },
         "pipelineGroupName": {
-            "type": "String"
+            "type": "string"
         },
         "tagsByResource": {
-            "defaultValue": {},
-            "type": "Object"
-        },
-        "tableInfo": {
-            "defaultValue": [],
-            "type": "Array"
-        },
-        "isAdminRole": {
-            "defaultValue": "false",
-            "type": "String"
-        },
-        "extnLocRegistered": {
-            "defaultValue": "false",
-            "type": "String"
-        },
-        "unsupportedRegion": {
-            "defaultValue": "false",
-            "type": "String"
+            "type": "object",
+            "defaultValue": {}
         }
     },
     "resources": [
         {
+            "type": "Microsoft.OperationalInsights/workspaces",
+            "name": "[parameters('logAnalyticsWorkspaceName')]",
+            "location": "[parameters('location')]",
+            "apiVersion": "2017-03-15-preview",
+            "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.OperationalInsights/workspaces'), parameters('tagsByResource')['Microsoft.OperationalInsights/workspaces'], json('{}')) ]",
+            "properties": {
+                "sku": {
+                    "name": "pergb2018"
+                }
+            }
+        },
+        {
             "type": "Microsoft.Insights/dataCollectionEndpoints",
-            "apiVersion": "2021-04-01",
             "name": "[parameters('dceName')]",
             "location": "[parameters('location')]",
+            "apiVersion": "2021-04-01",
             "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Insights/dataCollectionEndpoints'), parameters('tagsByResource')['Microsoft.Insights/dataCollectionEndpoints'], json('{}')) ]",
             "properties": {
                 "configurationAccess": {},
@@ -90,10 +87,11 @@ The following ARM template can be used to create the required components for the
         },
         {
             "type": "Microsoft.Insights/dataCollectionRules",
-            "apiVersion": "2021-09-01-preview",
             "name": "[parameters('dcrName')]",
             "location": "[parameters('location')]",
+            "apiVersion": "2021-09-01-preview",
             "dependsOn": [
+                "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsWorkspaceName'))]",
                 "[resourceId('Microsoft.Insights/dataCollectionEndpoints', parameters('dceName'))]"
             ],
             "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Insights/dataCollectionRules'), parameters('tagsByResource')['Microsoft.Insights/dataCollectionRules'], json('{}')) ]",
@@ -137,8 +135,9 @@ The following ARM template can be used to create the required components for the
                 "destinations": {
                     "logAnalytics": [
                         {
-                            "workspaceResourceId": "[parameters('logAnalyticsWorkspaceId')]",
-                            "name": "workspaceDest"
+                            "name": "DefaultWorkspace",
+                            "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsWorkspaceName'))]",
+                            "workspaceId": "[reference(resourceId('Microsoft.OperationalInsights/workspaces', parameters('dcrName')))].customerId"
                         }
                     ]
                 },
@@ -148,7 +147,7 @@ The following ARM template can be used to create the required components for the
                             "Custom-OTLP"
                         ],
                         "destinations": [
-                            "workspaceDest"
+                            "DefaultWorkspace"
                         ],
                         "transformKql": "source",
                         "outputStream": "Custom-OTelLogs_CL"
@@ -158,7 +157,7 @@ The following ARM template can be used to create the required components for the
                             "Custom-Syslog"
                         ],
                         "destinations": [
-                            "workspaceDest"
+                            "DefaultWorkspace"
                         ],
                         "transformKql": "source",
                         "outputStream": "Custom-Syslog_CL"
@@ -170,6 +169,7 @@ The following ARM template can be used to create the required components for the
             "type": "Microsoft.KubernetesConfiguration/extensions",
             "apiVersion": "2022-11-01",
             "name": "[parameters('pipelineExtensionName')]",
+            "scope": "[parameters('clusterId')]",
             "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.KubernetesConfiguration/extensions'), parameters('tagsByResource')['Microsoft.KubernetesConfiguration/extensions'], json('{}')) ]",
             "identity": {
                 "type": "SystemAssigned"
@@ -183,74 +183,67 @@ The following ARM template can be used to create the required components for the
                 "releaseTrain": "preview",
                 "scope": {
                     "cluster": {
-                        "releaseNamespace": "azure-monitor-ns"
+                        "releaseNamespace": "my-strato-ns"
                     }
                 }
-            },
-            "scope": "[parameters('clusterId')]"
+            }
         },
         {
-            "type": "Microsoft.Insights/dataCollectionRules/providers/roleAssignments",
-            "apiVersion": "2022-04-01",
-            "name": "Aep-pipeline03-Qyewobghij/Microsoft.Authorization/f20314e7-f6c1-b24b-54eb-7e8f90afd02d",
-            "dependsOn": [
-                "[parameters('pipelineExtensionName')]",
-                "Aep-pipeline03-Qyewobghij"
-            ],
-            "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Authorization/roleAssignments'), parameters('tagsByResource')['Microsoft.Authorization/roleAssignments'], json('{}')) ]",
-            "properties": {
-                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions/', '3913510d-42f4-4e42-8a64-420c390055eb')]",
-                "principalId": "[reference(parameters('pipelineExtensionName'),'2022-11-01','Full').identity.principalId]",
-                "scope": "[concat(resourceGroup().id, '/providers/Microsoft.Insights/dataCollectionRules/' ,'Aep-pipeline03-Qyewobghij')]"
-            }
+        "type": "Microsoft.Insights/dataCollectionRules/providers/roleAssignments",
+        "apiVersion": "2022-04-01",
+        "name": "[concat(parameters('dcrName'),'/Microsoft.Authorization/',guid(parameters('dcrName'),parameters('pipelineExtensionName'),'pipeline-role'))]",
+        "dependsOn": [
+            "[extensionResourceId(parameters('clusterId'),'Microsoft.KubernetesConfiguration/extensions',parameters('pipelineExtensionName'))]",
+            "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dcrName'))]"],
+        "properties": {
+            "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions','3913510d-42f4-4e42-8a64-420c390055eb')]",
+            "principalId": "[reference(extensionResourceId(parameters('clusterId'),'Microsoft.KubernetesConfiguration/extensions',parameters('pipelineExtensionName')),'2022-11-01','Full').identity.principalId]","scope": "[resourceId('Microsoft.Insights/dataCollectionRules',parameters('dcrName'))]"
+        }
         },
         {
             "type": "Microsoft.ExtendedLocation/customLocations",
             "apiVersion": "2021-08-15",
             "name": "[parameters('customLocationName')]",
             "location": "[parameters('location')]",
+            "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.ExtendedLocation/customLocations'), parameters('tagsByResource')['Microsoft.ExtendedLocation/customLocations'], json('{}')) ]",
             "dependsOn": [
                 "[parameters('pipelineExtensionName')]"
             ],
-            "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.ExtendedLocation/customLocations'), parameters('tagsByResource')['Microsoft.ExtendedLocation/customLocations'], json('{}')) ]",
             "properties": {
                 "hostResourceId": "[parameters('clusterId')]",
-                "namespace": "azure-monitor-ns",
-                "clusterExtensionIds": "[parameters('clusterExtensionIds')]",
+                "namespace": "[toLower(parameters('customLocationName'))]",
+                "clusterExtensionIds": ["[extensionResourceId(parameters('clusterId'), 'Microsoft.KubernetesConfiguration/extensions', parameters('pipelineExtensionName'))]"],
                 "hostType": "Kubernetes"
             }
         },
         {
             "type": "Microsoft.monitor/pipelineGroups",
-            "apiVersion": "2025-03-01-preview",
-            "name": "[parameters('pipelineGroupName')]",
             "location": "[parameters('location')]",
+            "apiVersion": "2023-10-01-preview",
+            "name": "[parameters('pipelineGroupName')]",
+            "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.monitor/pipelineGroups'), parameters('tagsByResource')['Microsoft.monitor/pipelineGroups'], json('{}')) ]",
+            "dependsOn": [
+                "[parameters('customLocationName')]",
+                "[resourceId('Microsoft.Insights/dataCollectionRules',parameters('dcrName'))]"
+            ],
             "extendedLocation": {
                 "name": "[resourceId('Microsoft.ExtendedLocation/customLocations', parameters('customLocationName'))]",
                 "type": "CustomLocation"
             },
-            "dependsOn": [
-                "[parameters('customLocationName')]",
-                "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dcrName'))]"
-            ],
-            "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.monitor/pipelineGroups'), parameters('tagsByResource')['Microsoft.monitor/pipelineGroups'], json('{}')) ]",
             "properties": {
                 "receivers": [
                     {
                         "type": "OTLP",
-                        "name": "receiver-OTLP-3jSgef",
+                        "name": "receiver-OTLP-4317",
                         "otlp": {
                             "endpoint": "0.0.0.0:4317"
                         }
                     },
                     {
                         "type": "Syslog",
-                        "name": "receiver-Syslog-0Ondef",
+                        "name": "receiver-Syslog-514",
                         "syslog": {
-                            "endpoint": "0.0.0.0:514",
-                            "protocol": "rfc3164",
-                            "transportProtocol": "tcp",
-                            "allowSkipPriHeader": false
+                            "endpoint": "0.0.0.0:514"
                         }
                     }
                 ],
@@ -258,11 +251,11 @@ The following ARM template can be used to create the required components for the
                 "exporters": [
                     {
                         "type": "AzureMonitorWorkspaceLogs",
-                        "name": "exporter-mklszppv",
+                        "name": "exporter1",
                         "azureMonitorWorkspaceLogs": {
                             "api": {
                                 "dataCollectionEndpointUrl": "[reference(resourceId('Microsoft.Insights/dataCollectionEndpoints',parameters('dceName'))).logsIngestion.endpoint]",
-                                "stream": "Custom-DefaultAEPOTelLogs_CL-16X1kbghij",
+                                "stream": "Custom-DefaultAEPOTelLogs_CL-FqXSu6GfRF",
                                 "dataCollectionRule": "[reference(resourceId('Microsoft.Insights/dataCollectionRules', parameters('dcrName'))).immutableId]",
                                 "schema": {
                                     "recordMap": [
@@ -280,33 +273,10 @@ The following ARM template can be used to create the required components for the
                                         }
                                     ]
                                 }
-                            }
-                        }
-                    },
-                    {
-                        "type": "AzureMonitorWorkspaceLogs",
-                        "name": "exporter-mklszppv1",
-                        "azureMonitorWorkspaceLogs": {
-                            "api": {
-                                "dataCollectionEndpointUrl": "[reference(resourceId('Microsoft.Insights/dataCollectionEndpoints',parameters('dceName'))).logsIngestion.endpoint]",
-                                "stream": "Custom-DefaultAEPSyslogLogs_CL-16X1kbghij",
-                                "dataCollectionRule": "[reference(resourceId('Microsoft.Insights/dataCollectionRules', parameters('dcrName'))).immutableId]",
-                                "schema": {
-                                    "recordMap": [
-                                        {
-                                            "from": "body",
-                                            "to": "Body"
-                                        },
-                                        {
-                                            "from": "severity_text",
-                                            "to": "SeverityText"
-                                        },
-                                        {
-                                            "from": "time_unix_nano",
-                                            "to": "TimeGenerated"
-                                        }
-                                    ]
-                                }
+                            },
+                            "cache": {
+                                "maxStorageUsage": "[parameters('cacheMaxStorageUsage')]",
+                                "retentionPeriod": "[parameters('cacheRetentionPeriod')]"
                             }
                         }
                     }
@@ -314,34 +284,27 @@ The following ARM template can be used to create the required components for the
                 "service": {
                     "pipelines": [
                         {
-                            "name": "Default-OTLPLogs",
-                            "type": "Logs",
+                            "name": "DefaultOTLPLogs",
+                            "type": "logs",
                             "receivers": [
-                                "receiver-OTLP-3jSgef"
+                                "receiver-OTLP"
                             ],
                             "processors": [],
                             "exporters": [
-                                "exporter-mklszppv"
-                            ]
-                        },
-                        {
-                            "name": "Default-Syslog",
-                            "type": "Logs",
-                            "receivers": [
-                                "receiver-Syslog-0Ondef"
-                            ],
-                            "processors": [],
-                            "exporters": [
-                                "exporter-mklszppv1"
+                                "exporter1"
                             ]
                         }
-                    ]
+                    ],
+                    "persistence": {
+                        "persistentVolumeName": "[parameters('cachePersistentVolume')]"
+                    }
                 }
             }
         }
     ],
     "outputs": {}
 }
+
 ```
 
 ## Sample parameters file
@@ -352,16 +315,22 @@ The following ARM template can be used to create the required components for the
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-        "value": "eastus"
+        "value": "eastus2"
         },
         "clusterId": {
-            "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-arc-cluster"
-        },
-        "clusterExtensionIds": {
-            "value": ["/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/my-pipeline-extension"]
+            "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/aks/providers/Microsoft.Kubernetes/connectedClusters/my-cluster"
         },
         "customLocationName": {
-            "value": "my-custom-location"
+            "value": "pipeline03-custom-location"
+        },
+        "cachePersistentVolume": {
+            "value": "my-disk-pvc"
+        },
+        "cacheMaxStorageUsage": {
+            "value": 10
+        },
+        "cacheRetentionPeriod": {
+            "value": 100
         },
         "dceName": {
             "value": "my-dce"
@@ -373,10 +342,10 @@ The following ARM template can be used to create the required components for the
             "value": "my-workspace"
         },
         "pipelineExtensionName": {
-            "value": "my-pipeline-extension"
+            "value": "my-extension"
         },
         "pipelineGroupName": {
-            "value": "my-pipeline-group"
+            "value": "my-pipeline"
         },
         "tagsByResource": {
             "value": {}

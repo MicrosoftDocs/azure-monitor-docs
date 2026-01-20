@@ -9,14 +9,6 @@ ms.date: 01/15/2026
 
 The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline in your environment using CLI.
 
-[!INCLUDE [pipeline-supported-configurations](includes/pipeline-supported-configurations.md)]
-
-[!INCLUDE [pipeline-prerequisites](includes/pipeline-prerequisites.md)]
-
-[!INCLUDE [pipeline-components](includes/pipeline-components.md)]
-
-[!INCLUDE [pipeline-create-table](includes/pipeline-create-table.md)]
-
 ## Add pipeline extension to cluster
 
 Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster with the following command.
@@ -366,32 +358,6 @@ Once the volume is created in the appropriate namespace, configure it using para
 
 Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
 
-[!INCLUDE [pipeline-verify-configuration](includes/pipeline-verify-configuration.md)]
-
-
-## Workflow
-
-While you don't need a detail understanding of the different steps performed by the Azure Monitor pipeline to configure it, such an understanding can help to perform more advanced configuration such as transforming the data before it's stored in its destination.
-
-The following tables and diagrams describe the detailed steps and components in the process for collecting data using the pipeline and passing it to the cloud for storage in Azure Monitor. 
-
-| Step | Action | Supporting configuration |
-|:-----|:-------|:-------------------------|
-| 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the pipeline receiver and sends data in the expected format for the receiver type. |
-| 2. | Receiver forwards data to the exporter. | Receiver and exporter are configured in the same pipeline. |
-| 3. | Optional pipeline transformation is applied to the data. | The data flow may include a transformation that filters or modifies the data before it's sent to Azure Monitor. The output of the transformation must match the schema expected by the DCR. |
-| 4. | Exporter tries to send the data to the cloud. | Exporter in the pipeline configuration includes URL of the DCE, a unique identifier for the DCR, and the stream in the DCR that defines how the data will be processed. |
-| 4a. | Exporter stores data in the local cache if it can't connect to the DCE. | Persistent volume for the cache and configuration of the local cache is enabled in the pipeline configuration. |
-
-:::image type="content" source="./media/pipeline-configure/pipeline-data-flow.png" lightbox="./media/pipeline-configure/pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor pipeline." border="false":::
-
-| Step | Action | Supporting configuration |
-|:-----|:-------|:-------------------------|
-| 5. | Azure Monitor accepts the incoming data. | The DCR includes a schema definition for the incoming stream that must match the schema of the data coming from the pipeline. |
-| 6. | Optional transformation applied to the data. | The DCR may include a transformation that filters or modifies the data before it's sent to the destination. The output of the transformation must match the schema of the destination table. |
-| 7. | Azure Monitor sends the data to the destination. | The DCR includes a destination that specifies the Log Analytics workspace and table where the data will be stored. |
-
-:::image type="content" source="./media/pipeline-configure/cloud-data-flow.png" lightbox="./media/pipeline-configure/cloud-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor." border="false":::
 
 
 ## Next steps
