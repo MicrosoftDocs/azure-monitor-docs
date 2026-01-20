@@ -140,8 +140,9 @@ resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
   }
 }
 ```
+---
 
-### Example configurations
+## Example configurations
 
 
 **Default TLS**
