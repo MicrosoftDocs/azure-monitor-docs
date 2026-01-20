@@ -21,7 +21,7 @@ az k8s-extension create --name my-pipeline --extension-type microsoft.monitor.pi
 ```
 
 ## Create custom location
-An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations-overview) lets Azure treat the Arc–enabled Kubernetes clusters as targetable locations for Azure resources. Create the custom location using the following command.
+An [Azure custom location](/azure-arc/kubernetes/custom-locations) lets Azure treat the Arc–enabled Kubernetes clusters as targetable locations for Azure resources. Create the custom location using the following command.
 
 ```azurecli
 az customlocation create --name <custom-location-name> --resource-group <resource-group-name> --namespace <name of namespace> --host-resource-id <connectedClusterId> --cluster-extension-ids <extensionId>
