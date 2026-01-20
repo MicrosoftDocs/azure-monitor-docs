@@ -7,10 +7,11 @@ ms.date: 01/15/2026
 
 # Configure Azure Monitor pipeline using CLI or ARM templates
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline in your environment.
+The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline using an ARM template.
 
 ## Prerequisites
-See the prerequisites and other in the [Azure Monitor pipeline overview](./pipeline-overview.md) article.
+
+For prerequisites and an overview of the pipeline and its components, see [Azure Monitor pipeline overview](./pipeline-overview.md).
 
 ## ARM template
 The following ARM template can be used to create the required components for the Azure Monitor pipeline. This template creates a data collection endpoint (DCE), data collection rule (DCR), pipeline controller extension, custom location, and pipeline instance with data flows for Syslog and OTLP.

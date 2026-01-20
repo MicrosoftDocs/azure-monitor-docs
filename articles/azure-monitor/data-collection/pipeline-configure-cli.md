@@ -9,6 +9,10 @@ ms.date: 01/15/2026
 
 The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline in your environment using CLI.
 
+## Prerequisites
+
+For prerequisites and an overview of the pipeline and its components, see [Azure Monitor pipeline overview](./pipeline-overview.md).
+
 ## Add pipeline extension to cluster
 
 Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster with the following command.

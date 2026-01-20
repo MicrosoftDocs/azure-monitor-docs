@@ -878,9 +878,9 @@ items:
       - name: Overview
         href: data-collection/pipeline-overview.md
       - name: Configure pipeline
+        href: data-collection/pipeline-configure.md
+      - name: Configuration methods
         items:
-        - name: Overview
-          href: data-collection/pipeline-configure.md
         - name: Azure portal
           href: data-collection/pipeline-configure-portal.md
         - name: CLI
