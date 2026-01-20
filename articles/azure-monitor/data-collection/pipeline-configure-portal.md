@@ -83,9 +83,6 @@ Once the volume is created in the appropriate namespace, configure it using para
 
 Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
 
-[!INCLUDE [pipeline-verify-configuration](includes/pipeline-verify-configuration.md)]
-
-
 
 ## Next steps
 
