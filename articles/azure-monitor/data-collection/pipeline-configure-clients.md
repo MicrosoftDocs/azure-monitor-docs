@@ -1,6 +1,6 @@
 ---
 title: Configure clients to use Azure Monitor pipeline
-description: Use CLI or ARM templates to configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center. 
+description: Configure clients to use the Azure Monitor pipeline which extends Azure Monitor data collection into your data center. 
 ms.topic: how-to
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli

@@ -15,6 +15,6 @@ az monitor log-analytics workspace table create --workspace-name my-workspace --
 
 > [!IMPORTANT]
 > The send data to either of the following two built-in tables, the Log Analytics workspace must be onboarded to Microsoft Sentinel. You can send data to custom tables without onboarding to Microsoft Sentinel.
-
-- [Syslog](/azure/azure-monitor/reference/tables/syslog)
-- [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
+> 
+> - [Syslog](/azure/azure-monitor/reference/tables/syslog)
+> - [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)

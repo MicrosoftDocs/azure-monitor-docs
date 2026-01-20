@@ -1,6 +1,6 @@
 ---
-title: Configure Azure Monitor pipeline using CLI or ARM templates
-description: Use CLI or ARM templates to configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center. 
+title: Configure Azure Monitor pipeline using CLI
+description: Use CLI to configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center. 
 ms.topic: how-to
 ms.date: 01/15/2026
 ---
@@ -13,25 +13,7 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 
 [!INCLUDE [pipeline-prerequisites](includes/pipeline-prerequisites.md)]
 
-
-## Components
-
-The following diagram shows the components of the Azure Monitor pipeline. The pipeline itself runs on an Arc-enabled Kubernetes cluster in your environment. One or more data flows running in the pipeline listen for incoming data from clients, and the pipeline extension forwards the data to the cloud, using the local cache if necessary.
-
-:::image type="content" source="./media/pipeline-configure/components.png" lightbox="./media/pipeline-configure/components.png" alt-text="Overview diagram of the components making up Azure Monitor pipeline." border="false"::: 
-
-The following table identifies the components required to enable the Azure Monitor pipeline. If you use the Azure portal to configure the pipeline, then each of these components is created for you. With other methods, you need to configure each one.
-
-| Component | Description |
-|:----------|:------------|
-| Pipeline controller extension | Extension added to your Arc-enabled Kubernetes cluster to support pipeline functionality - `microsoft.monitor.pipelinecontroller`. |
-| Pipeline controller instance | Instance of the pipeline running on your Arc-enabled Kubernetes cluster. |
-| Data flow | Combination of receivers and exporters that run on the pipeline controller instance. Receivers accept data from clients, and exporters to deliver that data to Azure Monitor. |
-| Pipeline configuration | Configuration file that defines the data flows for the pipeline instance. Each data flow includes a receiver and an exporter. The receiver listens for incoming data, and the exporter sends the data to the destination. |
-| Data collection endpoint (DCE) | Endpoint where the data is sent to Azure Monitor in the cloud. The pipeline configuration includes a property for the URL of the DCE so the pipeline instance knows where to send the data. |
-| Pipeline configuration file | Used by the pipeline running in your data center. Defines the data flows for the pipeline instance, cache details, and pipeline transformation if included. |
-| Data collection rule (DCR) | [DCR](data-collection-rule-overview.md#using-a-dcr) used by Azure Monitor in the cloud to define how the data is received and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
-
+[!INCLUDE [pipeline-components](includes/pipeline-components.md)]
 
 [!INCLUDE [pipeline-create-table](includes/pipeline-create-table.md)]
 
@@ -59,8 +41,6 @@ az customlocation create --name my-cluster-custom-location --resource-group my-r
 ## Create data collection endpoint (DCE)
 
 Use the following command to create the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) required for the pipeline to connect to the cloud. You can use an existing DCE if you already have one in the same region.
-
-### [CLI](#tab/cli)
 
 ```azurecli
 az monitor data-collection endpoint create --name <dce-name> --resource-group <resource-group-name> --location <location> --public-network-access "Enabled"
@@ -416,4 +396,5 @@ The following tables and diagrams describe the detailed steps and components in 
 
 ## Next steps
 
+* [Configure clients](./pipeline-configure-clients.md) to use the pipeline.
 * Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).

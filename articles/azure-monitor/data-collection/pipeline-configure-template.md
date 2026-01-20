@@ -1,6 +1,6 @@
 ---
-title: Configure Azure Monitor pipeline using CLI or ARM templates
-description: Use CLI or ARM templates to configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center. 
+title: Configure Azure Monitor pipeline using ARM templates
+description: Use ARM templates to configure Azure Monitor pipeline which extends Azure Monitor data collection into your own data center. 
 ms.topic: how-to
 ms.date: 01/15/2026
 ---
@@ -13,9 +13,12 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 
 [!INCLUDE [pipeline-prerequisites](includes/pipeline-prerequisites.md)]
 
+[!INCLUDE [pipeline-components](includes/pipeline-components.md)]
+
 [!INCLUDE [pipeline-create-table](includes/pipeline-create-table.md)]
 
-
+## ARM template
+The following ARM template can be used to create the required components for the Azure Monitor pipeline. This template creates a data collection endpoint (DCE), data collection rule (DCR), pipeline controller extension, custom location, and pipeline instance with data flows for Syslog and OTLP.
 
 ```json
 {
@@ -341,7 +344,50 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 }
 ```
 
+## Sample parameters file
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+        "value": "eastus"
+        },
+        "clusterId": {
+            "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-arc-cluster"
+        },
+        "clusterExtensionIds": {
+            "value": ["/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/my-pipeline-extension"]
+        },
+        "customLocationName": {
+            "value": "my-custom-location"
+        },
+        "dceName": {
+            "value": "my-dce"
+        },
+        "dcrName": {
+            "value": "my-dcr"
+        },
+        "logAnalyticsWorkspaceName": {
+            "value": "my-workspace"
+        },
+        "pipelineExtensionName": {
+            "value": "my-pipeline-extension"
+        },
+        "pipelineGroupName": {
+            "value": "my-pipeline-group"
+        },
+        "tagsByResource": {
+            "value": {}
+        }
+    }
+}
+```
+
+
 
 ## Next steps
 
+* [Configure clients](./pipeline-configure-clients.md) to use the pipeline.
 * Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).

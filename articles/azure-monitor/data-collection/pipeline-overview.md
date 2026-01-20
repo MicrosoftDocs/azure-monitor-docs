@@ -29,7 +29,7 @@ The Azure Monitor pipeline is a containerized solution that is deployed on an [A
 
 ## Next steps
 
-* [Configure Azure Monitor pipeline](./pipeline-configure.md).
+* Configure Azure Monitor pipeline using [Azure portal](./pipeline-configure-portal.md), [CLI](./pipeline-configure-cli.md), or [ARM template](./pipeline-configure-template.md).
 * Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).
 * Use [pod placement](./pipeline-pod-placement.md) to manage resource utilization on your Kubernetes cluster.
 * Secure the connection from your pipeline to Azure Monitor by [configuring TLS](./pipeline-tls.md).
