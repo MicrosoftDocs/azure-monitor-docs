@@ -8,7 +8,10 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure Azure Monitor pipeline
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article provides details on enabling and configuring the Azure Monitor pipeline in your environment. Depending on the method you use, you may not require all the details in this article. Choose one of the following methods to configure the Azure Monitor pipeline:
+The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article provides details on enabling and configuring the Azure Monitor pipeline in your environment. Depending on the method you use, you may not require all the details in this article. 
+
+## Configuration methods
+The actual configuration steps vary depending on the method you use to configure the Azure Monitor pipeline. See the following articles for detailed steps to configure the Azure Monitor pipeline for each available method:
 
 - [Azure portal](./pipeline-configure-portal.md)
 - [CLI](./pipeline-configure-cli.md)
@@ -65,6 +68,20 @@ az monitor log-analytics workspace table create --workspace-name my-workspace --
 > 
 > - [Syslog](/azure/azure-monitor/reference/tables/syslog)
 > - [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
+
+## Enable cache
+
+Edge devices in some environments may experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to cache data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this will vary based on your particular environment, but the configuration must meet the following requirements:
+
+* Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
+* Access mode must support `ReadWriteMany`.
+
+Once the volume is created in the appropriate namespace, configure it using parameters in the pipeline configuration file. Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
+
+> [!CAUTION]
+> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
+
+
 
 ## Workflow
 

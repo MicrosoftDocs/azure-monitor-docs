@@ -8,7 +8,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure clients to use Azure Monitor pipeline
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline in your environment.Once your pipeline extension and instance are installed, then you need to configure your clients to send data to the pipeline.
+The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to configure your clients to send data to the pipeline after it's been deployed.
 
 ### Retrieve ingress endpoint
 

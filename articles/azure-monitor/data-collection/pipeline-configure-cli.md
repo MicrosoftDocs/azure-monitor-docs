@@ -174,7 +174,7 @@ az role assignment create --assignee "<extension principal ID>" --role "Monitori
 az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --role "Monitoring Metrics Publisher" --scope "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
 ```
 
-### Create pipeline configuration
+## Create pipeline configuration
 
 The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud.
 
@@ -348,23 +348,10 @@ az deployment group create --resource-group my-resource-group --template-file C:
 ```
 
 
-## Enable cache
-
-Edge devices in some environments may experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to cache data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this will vary based on your particular environment, but the configuration must meet the following requirements:
-
-* Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
-* Access mode must support `ReadWriteMany`.
-
-Once the volume is created in the appropriate namespace, configure it using parameters in the pipeline configuration file below.
-
-> [!CAUTION]
-> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
-
-Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
-
 
 
 ## Next steps
 
+* [Verify the pipeline configuration](./pipeline-configure.md#verify-configuration).
 * [Configure clients](./pipeline-configure-clients.md) to use the pipeline.
 * Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).

@@ -13,8 +13,10 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 
 For prerequisites and an overview of the pipeline and its components, see [Azure Monitor pipeline overview](./pipeline-overview.md).
 
-## ARM template
-The following ARM template can be used to create the required components for the Azure Monitor pipeline. This template creates a data collection endpoint (DCE), data collection rule (DCR), pipeline controller extension, custom location, and pipeline instance with data flows for Syslog and OTLP.
+## Sample template
+The following ARM template can be used to create the required components for the Azure Monitor pipeline. This template creates all of the required resources described in the [Azure Monitor pipeline overview](./pipeline-overview.md) article.
+
+Before you use this template, update the contents of the DCR and the pipeline configuration according to your requirements. See [Create data collection rule (DCR)](./pipeline-configure-cli.md#create-data-collection-rule-dcr) and [Create pipeline configuration](./pipeline-configure-cli.md#create-pipeline-configuration) for details on how to customize these sections.
 
 ```json
 {
@@ -359,5 +361,6 @@ The following ARM template can be used to create the required components for the
 
 ## Next steps
 
+* [Verify the pipeline configuration](./pipeline-configure.md#verify-configuration).
 * [Configure clients](./pipeline-configure-clients.md) to use the pipeline.
 * Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).
