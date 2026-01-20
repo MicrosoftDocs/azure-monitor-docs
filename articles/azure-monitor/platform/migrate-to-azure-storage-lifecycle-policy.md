@@ -134,7 +134,7 @@ The following template sets the retention for storage account `azmonstorageaccou
                     "rules": [
                         {
                             "enabled": true,
-                            "name": "Susbcription level lifecycle rule",
+                            "name": "Subscription level lifecycle rule",
                             "type": "Lifecycle",
                             "definition": {
                                 "actions": {
