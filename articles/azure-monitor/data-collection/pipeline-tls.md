@@ -34,6 +34,8 @@ kubectl create secret tls my-tls-secret --cert=tls.crt --key=tls.key -n <namespa
 
 You can optionally leverage the [Secret Store Extension (SSE)](/azure/azure-arc/kubernetes/secret-store-extension) to automatically synchronize certificates from Azure Key Vault to Kubernetes secrets. This provides a secure and automated way to manage certificate lifecycle without manually creating secrets.
 
+To encrypt Secrets at rest, see [Update the key vault mode for an Azure Kubernetes Service (AKS) cluster](/azure/aks/update-kms-key-vault).
+
 
 ### Configure pipeline 
 
@@ -243,11 +245,6 @@ resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
 }
 ```
 
-## 6. Optional: Encrypt Secrets at Rest with KMS
-
-- Use KMS to encrypt Kubernetes Secrets at rest.
-- Azure Key Vault may be used as a KMS provider.
-- More information: [Update the key vault mode for an Azure Kubernetes Service (AKS) cluster](/azure/aks/update-kms-key-vault)
 
 ## Next steps
 
