@@ -91,17 +91,22 @@ When you create a new Azure Monitor workspace, you provide a region which sets t
 | Australia     | Australia Central, Australia East, Australia Southeast, Australia Central 2                      |
 | Brazil        | Brazil South, Brazil Southeast                                                                   |
 | Canada        | Canada Central, Canada East                                                                      |
+| Chile         | Chile Central                                                                                    |
 | China         | China North 3 (Preview)<sup>1</sup>, China East 3 (Preview)<sup>1</sup>                          |
 | Europe        | North Europe, West Europe                                                                        |
 | France        | France Central, France South                                                                     |
 | Germany       | Germany West Central                                                                             |
 | India         | Central India, South India                                                                       |
+| Indonesia     | Indonesia Central                                                                                |
 | Israel        | Israel Central                                                                                   |
 | Italy         | Italy North                                                                                      |
 | Japan         | Japan East, Japan West                                                                           |
 | Korea         | Korea Central, Korea South                                                                       |
+| Malaysia      | Malaysia West                                                                                    |
 | Mexico        | Mexico Central                                                                                   |
+| New Zealand   | New Zealand North                                                                                |
 | Norway        | Norway East, Norway West                                                                         |
+| Poland        | Poland Central                                                                                   |
 | Spain         | Spain Central                                                                                    |
 | Sweden        | Sweden South, Sweden Central                                                                     |
 | Switzerland   | Switzerland North, Switzerland West                                                              |

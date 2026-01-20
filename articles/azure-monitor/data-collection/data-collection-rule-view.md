@@ -1,7 +1,7 @@
 ---
 title: Viewing data collection rules (DCRs) in Azure Monitor
 description: Options for viewing data collection rules (DCRs) and their definitions in Azure Monitor.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 10/14/2025
 ms.reviewer: nikeist
 ms.custom: references_regions

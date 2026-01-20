@@ -2,7 +2,7 @@
 title: Create a Log Search alert rule with dynamic threshold
 description: Get information about creating metric alerts with dynamic thresholds that are based on machine learning.
 ms.reviewer: harelbr
-ms.topic: article
+ms.topic: concept-article
 ms.date: 11/18/2025
 ---
 
