@@ -881,7 +881,9 @@ items:
         items:
         - name: Azure portal
           href: data-collection/pipeline-configure-portal.md
-        - name: CLI or ARM templates
+        - name: CLI
+          href: data-collection/pipeline-configure-cli.md
+        - name: ARM
           href: data-collection/pipeline-configure-template.md
       - name: Configure clients
         href: data-collection/pipeline-configure-clients.md
