@@ -85,7 +85,7 @@ Use the [New-AzPolicyAssignment](/powershell/module/az.resources/new-azpolicyass
     $definition = Get-AzPolicyDefinition | Where-Object {$_.DisplayName -eq 'Enable logging by category group for Key vaults (microsoft.keyvault/vaults) to Log Analytics'}
     ```
 
-1. Set an assignment name and configure parameters. For this example, the parameters include the Log Analytics workspace ID. For information on the parameters for other destination types, See [Parameters](#parameters) later in this article.
+1. Set an assignment name and configure parameters. For this example, the parameters include the Log Analytics workspace ID. For information on the parameters for other destination types, see [Parameters](#parameters) later in this article.
 
     ```azurepowershell
     $assignmentName = <your assignment name>;
