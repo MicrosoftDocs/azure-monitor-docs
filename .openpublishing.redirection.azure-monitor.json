@@ -5180,7 +5180,7 @@
    "redirect_url": "/azure/monitoring/monitoring-container-insights-overview",
    "redirect_document_id": false
   },
-    {
+  {
    "source_path_from_root": "/articles/monitoring/monitoring-container-insights-overview.md",
    "redirect_url": "/azure/azure-monitor/containers/container-insights-overview",
    "redirect_document_id": false
@@ -8757,6 +8757,31 @@
   {
    "source_path": "articles/azure-monitor/reference/tables/mdecustomcollectiondevicefileevents.md",
    "redirect_url": "/azure/azure-monitor/reference/tables-index",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-communication-communicationservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-mixedreality-remoterenderingaccounts-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-mixedreality-spatialanchorsaccounts-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-communication-communicationservices-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-fileshares-fileshares-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   }
  ]
