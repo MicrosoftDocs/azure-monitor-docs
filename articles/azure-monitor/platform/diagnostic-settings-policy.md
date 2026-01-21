@@ -94,4 +94,4 @@ When you create the assignment by using the Azure portal, you have the option of
 
 * [Azure Monitor data sources and data collection methods](../fundamentals/data-sources.md)
 * [Diagnostic settings in Azure Monitor](diagnostic-settings.md)
-* [Metrics export through data collection rules](../data-collection/data-collection-metrics.md)
+* [Metrics export using data collection rules](../data-collection/metrics-export-create.md)

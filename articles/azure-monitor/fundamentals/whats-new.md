@@ -316,7 +316,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Statsbeat in Application Insights](/azure/azure-monitor/app/statsbeat?tabs=dotnet)|We revamped Statsbeat documentation to include OpenTelemetry scenarios.|
 |Essentials|[Create and edit data collection rules (DCRs) and associations in Azure Monitor](../data-collection/data-collection-rule-create-edit.md)|Added DCRs for metrics|
 |Essentials|[Data plane metrics batch API query versus metrics export](/azure/azure-monitor/data-collection/data-plane-versus-metrics-export)|New article: Comparison of metrics retrieval methods|
-|Essentials|[Metrics export through data collection rules (Preview)](../data-collection/data-collection-metrics.md)|New feature - DCRs for Metrics|
+|Essentials|[Metrics export through data collection rules (Preview)](../data-collection/metrics-export-create.md)|New feature - DCRs for Metrics|
 |General|[Operational excellence best practices in Azure Monitor](/azure/azure-monitor/best-practices-operation)|New best practice articles|
 |General|[Performance efficiency in Azure Monitor](/azure/azure-monitor/best-practices-performance)|New best practice articles|
 |General|[Reliability best practices in Azure Monitor](/azure/azure-monitor/best-practices-reliability)|New best practice articles|
