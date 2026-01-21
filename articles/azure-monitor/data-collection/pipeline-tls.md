@@ -8,19 +8,23 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor ingress setup and TLS configuration (preview)
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. This article describes how to secure the connection between your pipeline and Azure Monitor using custom certificates to authenticate endpoints and clients.
-
-With support for Bring Your Own Certificates (BYOC), you can meet your security requirements while integrating with your existing PKI infrastructure. Azure Monitor pipeline currently supports both TLS and mutual TLS (mTLS) for TCP‑based receivers, allowing you to:
+The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. With support for Bring Your Own Certificates (BYOC), you can meet your security requirements while integrating with your existing PKI infrastructure. Azure Monitor pipeline currently supports both TLS and mutual TLS (mTLS) for TCP‑based receivers, allowing you to:
 
 - Provide your own keys and certificates that the Azure Monitor receiver TLS endpoint should use.
 - Configure TLS with your own CA cert and PKI that Azure Monitor should provision certs from for its receiver TLS endpoint.
 
+This article describes how to secure the connection between your pipeline and Azure Monitor using custom certificates to authenticate endpoints and clients. Use your existing PKI to issue and manage certificates and [cert-manager](https://cert-manager.io/docs/) to automate certificate issuance and renewal.
+
 ## Prerequisites
 
 - Arc-enabled Kubernetes cluster with Azure Monitor pipeline installed.
-- `kubectl` and az access to the Arc‑enabled cluster context.
+- `kubectl` and `az access` to the Arc‑enabled cluster context.
 
-## 1. Install cert-manager for Arc-enabled Kubernetes (CME)
+
+## Configure cert-manager with external PKI
+This section describes how to install cert-manager as an Azure Arc extension. Alernatively, you can install the open source version of cert-manager using the guidance at [Deploy cert-manager on Azure Kubernetes Service (AKS) and use Let's Encrypt to sign a certificate for an HTTPS website](https://cert-manager.io/docs/tutorials/getting-started-aks-letsencrypt/).
+
+### Install cert-manager for Arc-enabled Kubernetes
 
 > [!NOTE]
 > Supported Kubernetes distributions for cert‑manager extension on Arc-enabled Kubernetes include the following.
@@ -29,9 +33,9 @@ With support for Bring Your Own Certificates (BYOC), you can meet your security 
 > - Suse Rancher K3s v1.33.3+k3s1
 > - AKS Arc v1.32.7
 
-Installing CME will register the cert-manager and trust-manager services on your cluster. 
+Installing cert-manager as a cluster managed extension (CME) will register the `cert-manager` and `trust-manager` services on your cluster. 
 
-1. Remove any existing instances of cert‑manager and trust‑manager from the cluster. Any open source versions must be removed before installing the Microsoft version.
+1. Remove any existing instances of `cert‑manager` and `trust‑manager` from the cluster. Any open source versions must be removed before installing the Microsoft version.
 
     > [!WARNING]
     > Between uninstalling the open source version and installing the Arc extension, certificate rotation will not occur, and trust bundles will not be distributed to the new namespaces. Ensure this period is as short as possible to minimize potential security risks. Uninstalling the open source cert-manager and trust-manager does not remove any existing certificates or related resources you created. These will remain usable once the Azure cert-manager is installed.
@@ -70,7 +74,7 @@ Installing CME will register the cert-manager and trust-manager services on your
       --release-train rc
     ```
 
-## 2. Create issuer resource for external PKI
+### Create issuer resource for external PKI
 
 The following example uses LetsEncrypt, but you can use any supported external PKI.
 
@@ -140,10 +144,7 @@ The following example uses LetsEncrypt, but you can use any supported external P
     kubectl apply -f azmonpipeline-server-cert.yaml
     ```
 
-
-
-
-## 3. Configure TLS or mTLS for Azure Monitor pipeline with BYOC
+## Configure TLS or mTLS for Azure Monitor pipeline with BYOC
 
 ### Create Kubernetes secrets
 
