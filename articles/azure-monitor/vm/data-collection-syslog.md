@@ -151,29 +151,31 @@ The following facilities are supported with the Syslog collector:
 
 | Pri index | Pri Name |
 |:---|:---|
-| 0 | None |
-| 1	| Kern |
-| 2	| user |
-| 3 | mail |
-| 4	| daemon |
+| 0	| Kern |
+| 1	| user |
+| 2 | mail |
+| 3	| daemon |
 | 4	| auth |
 | 5	| syslog |
 | 6	| lpr |
 | 7	| news |
 | 8	| uucp |
-| 9	| ftp |
-| 10 | ntp |
-| 11 | audit |
-| 12 | alert |
-| 13 | mark	 |
-| 14 | local0 |
-| 15 | local1 |
-| 16 | local2 |
-| 17 | local3 |
-| 18 | local4 |
-| 19 | local5 |
-| 20 | local6 |
-| 21 | local7 |
+| 9	| cron |
+| 10 | authpriv |
+| 11 | ftp |
+| 12 | ntp |
+| 13 | audit |
+| 14 | alert |
+| 15 | clock |
+| 16 | local0 |
+| 17 | local1 |
+| 18 | local2 |
+| 19 | local3 |
+| 20 | local4 |
+| 21 | local5 |
+| 22 | local6 |
+| 23 | local7 |
+| 24 | {no piority} |
 
 ## Semicolons get removed from Syslog messages
 
