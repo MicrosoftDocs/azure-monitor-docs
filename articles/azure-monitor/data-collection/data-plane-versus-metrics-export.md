@@ -14,13 +14,13 @@ Azure Monitor provides two ways to access metrics data at scale: [Azure Monitor 
 
 ## Data plane metrics batch query
 
-The data plane API or Metrics Batch query allows you to query historical metrics data for up to 50 resources in a single API call. The query supports filtering based on subscription, metric, time and other dimensions, and provides aggregation such as sum, average, minimum, and maximum.
+The data plane API, or Metrics Batch query, allows you to query historical metrics data for up to 50 resources in a single API call. The query supports filtering based on subscription, metric, time and other dimensions, and provides aggregation such as sum, average, minimum, and maximum.
 
 The batch query can significantly improve query throughput and reduce the risk of throttling. This feature is ideal for scenarios where you want to query metrics data across time, and multiple resources in a single subscription and region.
 
 ## Metrics export
 
-The Metrics Export uses data collection rules (DCRs) to stream platform metrics in near real-time to different Azure destinations such as Storage Accounts, Event Hubs, and Log Analytics Workspaces for persistent storage. While you can filter which metrics are exported, historical data is only available from the destination the metrics were sent to. This feature is ideal for scenarios where you want to continuously export metrics data in real time across subscriptions and resources.
+The metrics export uses [data collection rules (DCRs)](./data-collection-rule-overview.md) to stream platform metrics in near real-time to different Azure destinations such as Storage Accounts, Event Hubs, and Log Analytics Workspaces for persistent storage. While you can filter which metrics are exported, historical data is only available from the destination the metrics were sent to. This feature is ideal for scenarios where you want to continuously export metrics data in real time across subscriptions and resources.
 
 ## Comparison and recommendations 
 

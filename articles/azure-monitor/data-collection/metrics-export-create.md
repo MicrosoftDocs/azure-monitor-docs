@@ -16,9 +16,9 @@ Platform metrics measure the performance of different aspects of your Azure reso
 Using DCRs to export metrics provides the following advantages over diagnostic settings:
 
 * DCR configuration enables exporting metrics with dimensions.
-* DCR configuration enables filtering based on metric name - so that you can export only the metrics that you need.
-* DCRs are more flexible and scalable compared to Diagnostic Settings.
-* End to end latency for DCRs is within 3 minutes. This is a major improvement over Diagnostic Settings where metrics export latency is 6-10 minutes.
+* DCR configuration enables filtering based on metric name so you can export only the metrics that you need.
+* DCRs are more flexible and scalable compared to diagnostic settings.
+* End to end latency for DCRs is within 3 minutes, while diagnostic settings export latency is 6-10 minutes.
 
 
 > [!NOTE]
@@ -224,6 +224,8 @@ az monitor data-collection rule association create --name "keyValut-001" \
 
 ### [PowerShell](#tab/powershell)
 
+### Create a data collection rule using PowerShell
+
 Create a JSON file containing the collection rule specification. For more information, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample JSON files, see [Sample Metrics Export JSON objects](metrics-export-structure.md#sample-metrics-export-json-objects).
 
 Use the `New-AzDataCollectionRule` command to create a data collection rule for metrics using PowerShell. For more information, see [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule).
@@ -382,6 +384,9 @@ https://management.azure.com//subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
 
 ### [ARM template](#tab/arm)
 
+### Create a data collection rule using ARM templates
+
+
 Use the following template to create a DCR. For more information, see [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleresourceidentity-1).
 
 ### Template file
@@ -534,7 +539,7 @@ Use the following template to create a DCR. For more information, see [Microsoft
 
 
 
-After creating the DCR and DCRA, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account, or Event Hubs is approximately 3 minutes, depending on the resource type.
+After creating the DCR, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account, or Event Hubs is approximately 3 minutes, depending on the resource type.
 
 ## Exported data
 

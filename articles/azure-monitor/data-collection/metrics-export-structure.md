@@ -10,7 +10,7 @@ ms.custom: references_regions
 # Data collection rule (DCR) structure for metrics export
 [Metrics export](./metrics-export-create.md) in Azure Monitor uses [data collection rules (DCRs)](./data-collection-rule-overview.md) to define which metrics to collect from which resources and where to send them. When you use the Azure portal to configure this feature, you don't need to understand the structure of DCR. Using other methods though, you may need to understand the structure so you can modify it for your requirements. This article describes the details of DCRs used for metrics export.
 
-### DCR properties 
+## DCR properties 
 
 | Property | Description |
 |----------|-------------|
@@ -26,7 +26,7 @@ ms.custom: references_regions
 > [!NOTE] 
 > Only one destination type can be specified per DCR. 
 
-### JSON structure
+## JSON structure
 
 Use the format in the following generic JSON object to create a DCR for metrics export. Remove the unwanted destinations when copying the example. 
 
@@ -95,7 +95,7 @@ Use the format in the following generic JSON object to create a DCR for metrics 
 > [!NOTE]
 > When creating a DCR for metrics export using the CLI, `kind`, `location`, and `identity` are passed as arguments and must be removed from the JSON object.
 
-#### User and system assigned identities 
+## User and system assigned identities 
 
 Both user and system assigned identities are supported when creating DCRs. An identity is required for Storage Account and Event Hubs destinations. You can use a system assigned or user assigned identity. For more information, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity).
 
@@ -121,7 +121,7 @@ To use a user assigned identity, add the `identity` object as follows:
     }
 ```
 
-### Filtering metrics
+## Filtering metrics
 
 When specifying the metrics to export, you can filter the metrics by name or request all metrics by using `Metrics-Group-All`. For a list of supported metrics, see [Supported metrics and log categories by resource type](/azure/azure-monitor/reference/supported-metrics/metrics-index#supported-metrics-and-log-categories-by-resource-type).
 
@@ -174,7 +174,7 @@ The following example shows how to filter metrics by name.
 }
 ```
 
-## Sample metrics export JSON objects
+## Metrics export samples
 
 The following examples show sample DCR JSON objects for metrics export to each destination type.
 
