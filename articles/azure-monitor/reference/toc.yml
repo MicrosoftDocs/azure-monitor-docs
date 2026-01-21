@@ -85,8 +85,6 @@ items:
             href: supported-metrics/microsoft-cognitiveservices-accounts-metrics.md
           - name: Microsoft.CognitiveServices/accounts/projects
             href: supported-metrics/microsoft-cognitiveservices-accounts-projects-metrics.md
-          - name: Microsoft.Communication/CommunicationServices
-            href: supported-metrics/microsoft-communication-communicationservices-metrics.md
           - name: Microsoft.Compute/cloudservices
             href: supported-metrics/microsoft-compute-cloudservices-metrics.md
           - name: Microsoft.Compute/cloudServices/roles
@@ -259,10 +257,6 @@ items:
             href: supported-metrics/microsoft-maps-accounts-metrics.md
           - name: Microsoft.MessagingConnectors/connectors
             href: supported-metrics/microsoft-messagingconnectors-connectors-metrics.md
-          - name: Microsoft.MixedReality/remoteRenderingAccounts
-            href: supported-metrics/microsoft-mixedreality-remoterenderingaccounts-metrics.md
-          - name: Microsoft.MixedReality/spatialAnchorsAccounts
-            href: supported-metrics/microsoft-mixedreality-spatialanchorsaccounts-metrics.md
           - name: Microsoft.MobileNetwork/mobilenetworks/sites
             href: supported-metrics/microsoft-mobilenetwork-mobilenetworks-sites-metrics.md
           - name: Microsoft.MobileNetwork/packetcorecontrolplanes
@@ -377,6 +371,8 @@ items:
             href: supported-metrics/microsoft-orbital-spacecrafts-metrics.md
           - name: Microsoft.Orbital/terminals
             href: supported-metrics/microsoft-orbital-terminals-metrics.md
+          - name: Microsoft.OrionDB/clusters
+            href: supported-metrics/microsoft-oriondb-clusters-metrics.md
           - name: Microsoft.Peering/peerings
             href: supported-metrics/microsoft-peering-peerings-metrics.md
           - name: Microsoft.Peering/peeringServices
@@ -581,7 +577,7 @@ items:
             displayName: Web Appliation Firewall Logs
           - name: Microsoft.Cdn/edgeactions
             href: supported-logs/microsoft-cdn-edgeactions-logs.md
-            displayName: Console Logs
+            displayName: Service Logs,Console Logs
           - name: Microsoft.Cdn/profiles
             href: supported-logs/microsoft-cdn-profiles-logs.md
             displayName: Azure Cdn Access Log,FrontDoor Access Log,FrontDoor Health Probe
@@ -602,21 +598,9 @@ items:
             href: supported-logs/microsoft-cognitiveservices-accounts-logs.md
             displayName: Audit Logs,Azure OpenAI Request Usage,Request and Response
               Logs,Trace Logs
-          - name: Microsoft.Communication/CommunicationServices
-            href: supported-logs/microsoft-communication-communicationservices-logs.md
-            displayName: Advanced Messaging Logs,Operational Authentication Logs,Call
-              Automation Events Summary Logs,Operational Call Automation
-              Logs,Call Automation Media Streaming features usage information
-              Logs,Call Client Media Stats Time Series Compressed Logs,Call
-              Client Media Stats Time Series Logs,Call Client Operations
-              Logs,Service Side Request and Outcome Logs,Call Closed Captions
-              Logs,Call Diagnostics Logs,Call Diagnostics Logs with
-              versioning,Calling Metrics Logs,Operational Call Recording
-              Logs,Call Recording Summary Logs,Call Summary Logs,Call Summary
-              Logs with versioning,Call Survey Logs,Operational Chat Logs,Email
-              Service Send Mail Logs,Email Service Delivery Status Update
-              Logs,Email Service User Engagement Logs,Operational Job Router
-              Logs,Operational Rooms Logs,Operational SMS Logs,Usage Records
+          - name: Microsoft.CognitiveServices/accounts/projects
+            href: supported-logs/microsoft-cognitiveservices-accounts-projects-logs.md
+            displayName: Audit Logs,Trace Logs
           - name: microsoft.community/communityTrainings
             href: supported-logs/microsoft-community-communitytrainings-logs.md
             displayName: Application Data Plane Exceptions and Errors,Application Data Plane
@@ -671,6 +655,9 @@ items:
           - name: Microsoft.D365CustomerInsights/instances
             href: supported-logs/microsoft-d365customerinsights-instances-logs.md
             displayName: Audit events,Operational events
+          - name: Microsoft.Dashboard/dashboards
+            href: supported-logs/microsoft-dashboard-dashboards-logs.md
+            displayName: Update Events
           - name: Microsoft.Dashboard/grafana
             href: supported-logs/microsoft-dashboard-grafana-logs.md
             displayName: Grafana Login Events,Grafana Usage Insights Events
@@ -764,8 +751,9 @@ items:
             href: supported-logs/microsoft-desktopvirtualization-hostpools-logs.md
             displayName: AgentHealthStatus,Autoscale logs for pooled host
               pools,Checkpoint,Connection,Connection Graphics Data Logs
-              Preview,Error,HostRegistration,Management,Network Data
-              Logs,Session Host Management Activity Logs
+              Preview,Error,HostRegistration,Management,Network links logs for
+              AVD connections,Network Data Logs,Session Host Management Activity
+              Logs
           - name: Microsoft.DesktopVirtualization/repositoryfolders
             href: supported-logs/microsoft-desktopvirtualization-repositoryfolders-logs.md
             displayName: Management
@@ -806,6 +794,9 @@ items:
           - name: Microsoft.DocumentDB/mongoClusters
             href: supported-logs/microsoft-documentdb-mongoclusters-logs.md
             displayName: vCoreMongoRequests
+          - name: Microsoft.DurableTask/schedulers
+            href: supported-logs/microsoft-durabletask-schedulers-logs.md
+            displayName: Durable Task Scheduler Logs
           - name: Microsoft.Edge/diagnostics
             href: supported-logs/microsoft-edge-diagnostics-logs.md
             displayName: Audit Logs,Diagnostic Logs
@@ -838,9 +829,6 @@ items:
               Managed Key Logs,DataDR Logs,Diagnostic Error Logs,VNet/IP
               Filtering Connection Logs,Kafka Coordinator Logs,Kafka User Error
               Logs,Operational Logs,Runtime Audit Logs
-          - name: Microsoft.FileShares/fileShares
-            href: supported-logs/microsoft-fileshares-fileshares-logs.md
-            displayName: StorageDelete,StorageRead,StorageWrite
           - name: Microsoft.HardwareSecurityModules/cloudHsmClusters
             href: supported-logs/microsoft-hardwaresecuritymodules-cloudhsmclusters-logs.md
             displayName: Hsm Service Operations
@@ -923,6 +911,9 @@ items:
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-logs.md
             displayName: Capacity Pool Autoscaled
+          - name: Microsoft.NetApp/netAppAccounts/capacityPools/caches
+            href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-caches-logs.md
+            displayName: ANF Cache Volumes File Access Logs
           - name: Microsoft.Network/applicationgateways
             href: supported-logs/microsoft-network-applicationgateways-logs.md
             displayName: Application Gateway Access Log,Application Gateway Firewall
@@ -1052,21 +1043,22 @@ items:
           - name: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
             href: supported-logs/microsoft-openenergyplatform-energyservices-logs.md
             displayName: Air Flow Task Logs,Audit Event,CRS Catalog Service Logs,CRS
-              Conversion Service Logs,Dataset Service Logs,Elastic Operator
-              Logs,Elasticsearch Logs,Entitlements Service Logs,File Service
-              Logs,Indexer Service Logs,Legal Service Logs,Notification Service
-              Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend
-              Service Logs,Rock and Fluid Sample DDMS Logs,Register Service
-              Logs,Reservoir DDMS Server Logs,Schema Service Logs,Search
-              Extensions Service Logs,Search Service Logs,Storage Service
-              Logs,Unit Service Logs,Wellbore Service Logs,WellDelivery Service
-              Logs,Workflow Service Logs
+              Conversion Service Logs,Dataset Service Logs,EDS DMS Logs,Elastic
+              Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File
+              Service Logs,Indexer Service Logs,Legal Service Logs,Notification
+              Service Logs,Partition Service Logs,PDSBackend Service
+              Logs,PDSFrontend Service Logs,Rafs DDMS Logs,Register Service
+              Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Schema
+              Service Logs,Search Extensions Service Logs,Search Service
+              Logs,EDS Secret Logs,Storage Service Logs,Unit Service
+              Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow
+              Service Logs
           - name: Microsoft.OpenLogisticsPlatform/Workspaces
             href: supported-logs/microsoft-openlogisticsplatform-workspaces-logs.md
             displayName: Supply Chain Entity Operations,Supply Chain Event logs
           - name: Microsoft.OperationalInsights/workspaces
             href: supported-logs/microsoft-operationalinsights-workspaces-logs.md
-            displayName: Audit,Job Logs,Summary Logs
+            displayName: Audit,Jobs,Summary Logs
           - name: Microsoft.Orbital/geocatalogs
             href: supported-logs/microsoft-orbital-geocatalogs-logs.md
             displayName: Audit Logs,Ingestion Logs
@@ -1107,6 +1099,12 @@ items:
           - name: Microsoft.Relay/namespaces
             href: supported-logs/microsoft-relay-namespaces-logs.md
             displayName: HybridConnections Events,VNet/IP Filtering Connection Logs
+          - name: Microsoft.ResourceBuilder/workspaces/pipelines
+            href: supported-logs/microsoft-resourcebuilder-workspaces-pipelines-logs.md
+            displayName: Diagnostic Logs
+          - name: Microsoft.ResourceBuilder/workspaces/pipelines/jobs
+            href: supported-logs/microsoft-resourcebuilder-workspaces-pipelines-jobs-logs.md
+            displayName: Diagnostic Logs
           - name: Microsoft.Search/searchServices
             href: supported-logs/microsoft-search-searchservices-logs.md
             displayName: Operation Logs
@@ -1245,6 +1243,9 @@ items:
           - name: microsoft.workloads/sapvirtualinstances
             href: supported-logs/microsoft-workloads-sapvirtualinstances-logs.md
             displayName: Change Detection
+          - name: Microsoft.ZeroTrustSegmentation/segmentationManagers
+            href: supported-logs/microsoft-zerotrustsegmentation-segmentationmanagers-logs.md
+            displayName: Segmentation Manager Request Log
           - name: NGINX.NGINXPLUS/nginxDeployments
             href: supported-logs/nginx-nginxplus-nginxdeployments-logs.md
             displayName: NGINX Logs,NGINX Security Logs,NGINX Upstream Update Logs
@@ -1824,6 +1825,8 @@ items:
             href: tables/agsgrafanaloginevents.md
           - name: AGSGrafanaUsageInsightsEvents
             href: tables/agsgrafanausageinsightsevents.md
+          - name: AGSUpdateEvents
+            href: tables/agsupdateevents.md
           - name: AGWAccessLogs
             href: tables/agwaccesslogs.md
           - name: AGWFirewallLogs
@@ -3438,6 +3441,8 @@ items:
             href: queries/AGCAccessLogs.md
           - name: AGSGrafanaLoginEvents
             href: queries/AGSGrafanaLoginEvents.md
+          - name: AGSUpdateEvents
+            href: queries/AGSUpdateEvents.md
           - name: AHCIDiagnosticLogs
             href: queries/AHCIDiagnosticLogs.md
           - name: AHDSDicomAuditLogs

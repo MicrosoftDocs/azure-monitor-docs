@@ -57,6 +57,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Oracle Linux 9                                              | ✓ |
 | Oracle Linux 8                                              | ✓ |
 | Oracle Linux 7                                              | ✓ |
+| Red Hat Enterprise Linux Server 10                          | ✓ |
 | Red Hat Enterprise Linux Server 9+                          | ✓ |
 | Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ |

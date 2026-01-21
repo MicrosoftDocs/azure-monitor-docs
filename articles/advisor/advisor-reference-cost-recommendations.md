@@ -1,7 +1,7 @@
 ---
 title: Cost recommendations
 description: Full list of available cost recommendations in Advisor.
-ms.topic: article
+ms.topic: concept-article
 author: kanika1894
 ms.author: kapasrij
 ms.date: 06/24/2025
