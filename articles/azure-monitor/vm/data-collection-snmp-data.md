@@ -2,7 +2,7 @@
 title: Collect SNMP trap data with Azure Monitor Agent
 description: Learn how to collect SNMP trap data and send the data to Azure Monitor Logs using Azure Monitor Agent.  
 ms.topic: how-to
-ms.date: 11/14/2024
+ms.date: 01/21/2026
 ms.reviewer: jeffwo
 
 ---
