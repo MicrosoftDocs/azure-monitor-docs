@@ -2,7 +2,7 @@
 title: Create Service Health alerts for Azure service notifications
 description: Learn how to use the Azure portal to set up Service Health alerts.
 ms.topic: quickstart
-ms.date: 01/15/2026
+ms.date: 01/21/2026
 
 ---
 
@@ -57,7 +57,7 @@ For information on how to configure Service Health notification alerts by using 
 On this panel you set up:
 
 - **Scope** - select the scope level by *subscription*.
-- **Condition** - select the *Services*, *Regions, and *Event types* from the drop-down menus.
+- **Condition** - select the *Services*, *Regions*, and *Event types* from the drop-down menus.
 - **Details** - select the *Resource group* and then create an *Alert rule name*.
 - **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
     
@@ -88,12 +88,12 @@ For more information, see [Create, or edit a metric alert rule](/azure/azure-mon
 #### Condition
 On the **Condition** tab, you configure when the alert rule should trigger by setting up the services, regions, and event types.
 
-From the *Services* drop-down menu, select the Azure Resource types (for example, Action Groups or Activity Log) that you want this alert rule to monitor.
+- From the *Services* drop-down menu, select the Azure Resource types (for example, Action Groups or Activity Log) that you want this alert rule to monitor.
 
 :::image type="content"source="media/create-alerts/service-health-alert-condition.png"alt-text="Screenshot of the Condition tab."Lightbox="media/create-alerts/service-health-alert-condition.png":::
 
-From the *Regions* drop-down menu, select one or more locations of the service health event you want to monitor.
-From the *Event types* drop-down menu, select the types of health events you want to monitor.
+- From the *Regions* drop-down menu, select one or more locations of the service health event you want to monitor.
+- From the *Event types* drop-down menu, select the types of health events you want to monitor.
 
 #### Actions
 Use the **Actions** tab to select from existing groups, or create new action groups to set up the actions you want to happen with the alert triggers. For more information, see [Action groups](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule?tabs=metric).
@@ -102,10 +102,10 @@ Use the **Actions** tab to select from existing groups, or create new action gro
 
 
 The actions include:
-- email recipients
-- SMS notifications
+- Email recipients
+- Short Message Service (SMS) notifications
 - Azure app push notifications
-- Webhook, Logic Apps, Functions, or ITSM integrations
+- Webhook, Logic Apps, or Information Technology Service Management (ITSM) integrations
 
 :::image type="content"source="media/create-alerts/service-health-alert-actions-02.png"alt-text="Screenshot of the Create an action window."Lightbox="media/create-alerts/service-health-alert-actions-02.png":::
 
@@ -113,7 +113,7 @@ You also can configure who the alert should be sent to:
 
 - Select an existing action group.
 - Create a new action group that can be used for future alerts.
-- 
+
 > [!NOTE]
 > Service Health Alerts are only supported in public clouds within the global region.
 > 
@@ -142,24 +142,6 @@ The **Review + Create** tab lets you review everything you selected. When you’
 
 
 
-<!--
-### Create a tenant-level alert
->[!IMPORTANT]
->The option to select a tenant directory is currently in preview mode.
-To set your alert for a tenant directory select **Directory (preview)** from the scope drop-down menu.
-
-:::image type="content"source="./media/alerts-activity-log-service-notifications/service-health-blades-1.png"alt-text="A screenshot of the Health alerts tab for tenant-level alerts."Lightbox="./media/alerts-activity-log-service-notifications/service-health-blades-1.png":::
-
-To add more detailed information for the service health alert, select **Advanced Options** which opens the page **Create an alert rule**, where you can start entering your data.
-
-Under the **Details** tab, select the subscription and resource group where the alert group is to be saved.
-
-:::image type="content"source="./media/alerts-activity-log-service-notifications/service-health-details.png"alt-text="Screenshot of the Details tab in Create service health alert command."Lightbox="./media/alerts-activity-log-service-notifications/service-health-details.png":::
-
-Learn how to [Configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md). 
-
-For information on the webhook schema for activity log alerts, see [Webhooks for Azure activity log alerts](../azure-monitor/alerts/activity-log-alerts-webhook.md).
--->
 > [!NOTE] 
 > You can also create an alert at the tenant level. See [Create tenant level service health alerts (preview)](../azure-monitor/alerts/alerts-create-tenant-level-service-heath-alerts.md).
 
