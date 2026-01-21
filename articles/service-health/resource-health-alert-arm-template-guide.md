@@ -2,7 +2,7 @@
 title: How to create Resource Health alerts
 description: Create Resource alerts in Azure Service Health.
 ms.topic: article
-ms.date: 01/12/2025 
+ms.date: 01/21/2025 
 
 ---
 
@@ -32,7 +32,7 @@ To create or edit an alert rule, you must have the following permissions:
 
 For more information about Roles and access permissions, read [Roles, permissions and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
 
-## Create a Resource Health alert rule
+## How to create a Resource Health alert rule
 
 1. In the Service Health portal, select **Resource Health**.
 
