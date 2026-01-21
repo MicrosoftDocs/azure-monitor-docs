@@ -7,7 +7,7 @@ ms.reviewer: nikeist
 ms.custom: references_regions
 ---
 
-# Data collection rule (DCR) structure for metrics export 
+# Data collection rule (DCR) structure for metrics export
 [Metrics export](./metrics-export-create.md) in Azure Monitor uses [data collection rules (DCRs)](./data-collection-rule-overview.md) to define which metrics to collect from which resources and where to send them. When you use the Azure portal to configure this feature, you don't need to understand the structure of DCR. Using other methods though, you may need to understand the structure so you can modify it for your requirements. This article describes the details of DCRs used for metrics export.
 
 ### DCR properties 
