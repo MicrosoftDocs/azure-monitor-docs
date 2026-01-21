@@ -45,7 +45,7 @@ You receive an alert when Azure sends Service Health notifications to your Azure
 
 For information on how to configure Service Health notification alerts by using Azure Resource Manager templates, see [Resource Manager templates](../azure-monitor/alerts/alerts-activity-log.md).
 
-## Create a Service Health alert in the Azure portal
+## How to create a Service Health alert
 1. In the [portal](https://portal.azure.com/), select **Service Health**.
 
 :::image type="content"source="media/alerts-activity-log-service-notifications/home-service-health.png"alt-text="A screenshot of Azure portal with link to open Service Health."Lightbox="media/alerts-activity-log-service-notifications/home-service-health.png":::
