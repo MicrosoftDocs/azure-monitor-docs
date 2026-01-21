@@ -652,11 +652,11 @@ items:
       items:
       - name: Metrics export using DCRs
         displayName: data collection rules, metrics
-        href: data-collection/data-collection-metrics.md
-      - name: Create metrics export DCR
-        displayName: metrics export
         href: data-collection/metrics-export-create.md
-      - name: Data plane batch query versus Metrics export
+      - name: Metrics export DCR structure
+        displayName: metrics export
+        href: data-collection/metrics-export-structure.md
+      - name: Compare metrics strategies
         href: data-collection/data-plane-versus-metrics-export.md
     - name: Monitor DCRs
       displayName: Data collection rules

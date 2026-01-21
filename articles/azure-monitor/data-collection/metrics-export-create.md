@@ -536,7 +536,71 @@ Use the following template to create a DCR. For more information, see [Microsoft
 
 After creating the DCR and DCRA, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account, or Event Hubs is approximately 3 minutes, depending on the resource type.
 
+## Exported data
 
+The following examples show the data exported to each destination.
+
+### Log analytics workspaces
+
+Data exported to a Log Analytics workspace is stored in the `AzureMetricsV2` table in the Log Analytics workspace in the following format:
+
+[!INCLUDE [Log Analytics data format](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azuremetricsv2-include.md)]
+
+For example:
+
+:::image type="content" source="media/data-collection-metrics/export-to-workspace.png" lightbox="media/data-collection-metrics/export-to-workspace.png" alt-text="A screenshot of a log analytics query of the AzureMetricsV2 table.":::
+
+### Storage accounts
+
+The following example shows data exported to a storage account:
+
+```JSON
+{
+    "Average": "31.5",
+    "Count": "2",
+    "Maximum": "52",
+    "Minimum": "11",
+    "Total": "63",
+    "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-dcrs/providers/microsoft.keyvault/vaults/dcr-vault",
+    "time": "2024-08-20T14:13:00.0000000Z",
+    "unit": "MilliSeconds",
+    "metricName": "ServiceApiLatency",
+    "timeGrain": "PT1M",
+    "dimension": {
+        "ActivityName": "vaultget",
+        "ActivityType": "vault",
+        "StatusCode": "200",
+        "StatusCodeClass": "2xx"
+    }
+}
+```
+
+### Event Hubs
+
+The following example shows a metric exported to Event Hubs.
+
+```json
+    {
+      "Average": "1",
+      "Count": "1",
+      "Maximum": "1",
+      "Minimum": "1",
+      "Total": "1",
+      "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-dcrs/providers/microsoft.keyvault/vaults/dcr-vault",
+      "time": "2024-08-22T13:43:00.0000000Z",
+      "unit": "Count",
+      "metricName": "ServiceApiHit",
+      "timeGrain": "PT1M",
+      "dimension": {
+        "ActivityName": "keycreate",
+        "ActivityType": "key"
+      },
+      "EventProcessedUtcTime": "2024-08-22T13:49:17.1233030Z",
+      "PartitionId": 0,
+      "EventEnqueuedUtcTime": "2024-08-22T13:46:04.5570000Z"
+    }
+
+```
 
 
 
