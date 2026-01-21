@@ -4,6 +4,7 @@ description: Create Resource alerts in Azure Service Health.
 ms.topic: article
 ms.date: 01/21/2025 
 
+
 ---
 
 # Create Resource Health alerts 

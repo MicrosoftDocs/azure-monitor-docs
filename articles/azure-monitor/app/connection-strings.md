@@ -1,8 +1,12 @@
 ---
 title: Connection strings in Application Insights
-description: This article explains the components of connection strings and how to use them.
+description: Learn how to configure connection strings in Application Insights to send telemetry data reliably and securely. Discover key-value pairs, schema, and examples.
+#customer intent: As a developer, I want to understand how to configure connection strings in Application Insights so that I can send telemetry data to the correct resource.
 ms.topic: how-to
-ms.date: 10/10/2024
+ms.date: 02/19/2026
+author: AarDavMax
+ms.author: aaronmax
+ms.reviewer: aaronmax
 ---
 
 # Connection strings in Application Insights

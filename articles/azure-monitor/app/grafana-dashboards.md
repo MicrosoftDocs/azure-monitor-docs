@@ -1,7 +1,7 @@
 ---
 title: Dashboards with Grafana in Application Insights
 description: Create, customize, and share Grafana dashboards for Application Insights directly in the Azure portal.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/07/2025
 ---
 

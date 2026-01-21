@@ -86,7 +86,7 @@
         href: impacted-resources-outage.md
       - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
-      - name: Impacted Resources from Azure security incidents
+      - name: Impacted Resources from Azure security advisories
         href: impacted-resources-security.md
       - name: Impacted Resources from Azure retirements
         href: impacted-resources-retirements.md   
@@ -104,6 +104,8 @@
       href: azure-resource-graph-overview.md
   - name: REST API
     items:   
+    - name: How to access Security advisories through API endpoint
+      href: access-service-advisories-api.md
     - name: Azure Resource health REST API queries
       href: /rest/api/resourcehealth/
     - name: Service Health REST API

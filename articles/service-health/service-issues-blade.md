@@ -111,7 +111,7 @@ This tab shows a list of your specific resources that are or might be affected, 
 For more information about Impacted resources, see: 
 - [Impacted Resources from Outages](impacted-resources-outage.md)
 - [Impacted Resources from planned maintenance events](impacted-resources-planned-maintenance.md)
-- [Impacted Resources from Azure security incidents](impacted-resources-security.md)
+- [Impacted Resources from Azure security advisories](impacted-resources-security.md)
 - [Impacted Resources from Azure retirements](impacted-resources-retirements.md)
 
 

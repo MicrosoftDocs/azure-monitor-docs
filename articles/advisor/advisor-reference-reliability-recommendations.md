@@ -3,8 +3,8 @@ title: Reliability recommendations
 description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
-ms.topic: article
-ms.date: 12/22/2025
+ms.topic: concept-article
+ms.date: 01/13/2026
 ---
 
 # Reliability recommendations
@@ -17,8 +17,6 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 1. On the **Advisor** dashboard, select the **Reliability** tab.
 
-
-[!INCLUDE [HighAvailability-recommendationsservice.md](./includes/HighAvailability-recommendationsservice.md)]
 
 [!INCLUDE [HighAvailability-agfood-platform.md](./includes/HighAvailability-agfood-platform.md)]
 
@@ -117,6 +115,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-microsoft.iotsecurity.md](./includes/HighAvailability-microsoft-iotsecurity.md)]
 
 [!INCLUDE [HighAvailability-playwright-testing.md](./includes/HighAvailability-playwright-testing.md)]
+
+[!INCLUDE [HighAvailability-recommendationsservice.md](./includes/HighAvailability-recommendationsservice.md)]
 
 [!INCLUDE [HighAvailability-service-bus.md](./includes/HighAvailability-service-bus.md)]
 

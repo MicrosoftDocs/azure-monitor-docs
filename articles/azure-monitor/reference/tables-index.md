@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 01/05/2026
+ms.date: 01/12/2026
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -560,6 +560,7 @@ Microsoft.Insights/AutoscaleSettings
 Microsoft.Dashboard/dashboard  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [AGSUpdateEvents](./tables/agsupdateevents.md)
 
 ### Azure Monitor Diagnostics Agents  
 

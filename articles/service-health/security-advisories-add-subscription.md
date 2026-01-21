@@ -2,24 +2,26 @@
 title: Configure subscriptions for Security advisories
 description: This article describes how to set up and define access to Security advisories through the Azure portal.
 ms.topic: how-to
-ms.date: 01/06/2026
+ms.date: 01/16/2026
 ---
 
 # Configure Subscription access to view Security advisories
-<!--
-Security incident impacted resources are considered sensitive when they include details that identify affected subscriptions, resources, or configurations. This information is sensitive because it reveals customer’s security posture, enable targeted exploitation, or enable targeted exploitation.<br>
-For these reasons, such details must be shared only with individuals who hold authorized roles. Access must also align with the elevated access requirements defined for Azure Security Advisories.-->
 
-To access and view Security advisories, you must have the correct role access. This article describes the steps to create tenant or subscription-based access.
+Security advisory impacted resources are considered sensitive when they include details that identify affected subscriptions, resources, or configurations. This information is sensitive because it reveals customer’s security posture, enable targeted exploitation, or enable targeted exploitation.<br>
+
+For these reasons, such details must be shared only with individuals who hold authorized roles. Access must also align with the elevated access requirements defined for Azure Security Advisories.
+
+To access and view Security advisories, you must have the correct role access. For more information, see [Who can view Security Advisories](/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-3583#who-can-view-security-advisories).
+
+This article describes the steps to create tenant or subscription-based access.
 
 - Subscription‑based access means you can only see Security Advisories that apply to the specific Azure subscription you’re permitted to view.
 - Tenant-based access applies to the entire Microsoft Entra ID tenant, meaning it covers all subscriptions in that organization.
 
-<!-- For more information about Role Based Access for sensitive information, see [Role Based Access (RBAC) for viewing Sensitive Security information](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details)
+For more information, see [Role Based Access Control (RBAC) for viewing Sensitive Security information](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details).
 
 >[!NOTE]
 > Role Based Access Control (RBAC) access only applies to comms that are marked *Sensitive*, and to view any Impacted Resources for any Security comms.
--->
 ## Subscription-based access
 
 The following steps explain how to set up a subscription to view Security advisories.
@@ -50,10 +52,14 @@ Select **Access control (IAM)** to manage user roles.
 
 :::image type="content"source="./media/assign-roles/add-role.png"alt-text="A screenshot of menu to add a role."Lightbox="./media/assign-roles/add-role.png":::
 
-- Users must have elevated roles such as *Owner* or *Contributor* to view sensitive information in Security advisories. 
-- Only users with elevated roles can access sensitive information on the Summary, Issue updates, and Impacted resources tabs.
+- Users must have [elevated roles](/azure/service-health/impacted-resources-security#role-based-access-rbac-for-sensitive-security-incident-resource-impact-and-sensitive-details) to view sensitive information in Security advisories. 
+- Only users with elevated roles can access sensitive information, [see details](/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-3583#who-can-view-security-advisories).
 
 
+
+Confirm that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.<br> For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal?branch=main).
+
+<!--
 **5. Verify the user roles** 
 
 Ensure that the user you're assigning has the appropriate **Role-Based Access Control (RBAC)** permissions. <br>Users with only reader access can't view sensitive details unless they're assigned the appropriate elevated permissions. 
@@ -79,7 +85,7 @@ To ensure that security notifications are received, verify that the email addres
 
 Make sure that the Subscription Administrator and Tenant Global Admin roles have the right contact information to receive notifications for security issues impacting at the subscription and tenant levels.
 For more information about assigning roles in Azure, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
-
+-->
 ## Tenant-based access
 
 Tenant admin access in Azure refers to the permissions granted to roles that allow users to manage and view resources at the tenant level.<br> These roles include Global Administrator, Application Administrator, and others. Tenant admin access enables users to manage users, groups, and permissions within the organization, and view tenant-level events in the Azure Service Health portal.
