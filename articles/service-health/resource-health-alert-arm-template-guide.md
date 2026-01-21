@@ -33,7 +33,7 @@ To create or edit an alert rule, you must have the following permissions:
 
 For more information about Roles and access permissions, read [Roles, permissions and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
 
-## How to create a Resource Health alert rule
+## How to create a Resource Health alert
 
 1. In the Service Health portal, select **Resource Health**.
 
