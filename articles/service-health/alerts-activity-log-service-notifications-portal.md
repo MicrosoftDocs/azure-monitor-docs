@@ -70,7 +70,7 @@ On this panel you set up:
 > [!NOTE]
 > The option to create a Service Health alert isn't available on the Billing panel.
 
-### Create Advanced options
+### Advanced options
 
 The *Advanced Options* section lets you add more details and adjust how a Service Health alert works.
 These settings don't change the Service Health events that Microsoft publishes. Instead, they control which events you're notified about and how you receive those notifications.
