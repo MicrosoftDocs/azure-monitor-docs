@@ -119,7 +119,7 @@ The following example uses LetsEncrypt, but you can use any supported external P
     kubectl apply -f external-pki-issuer.yaml
     ```
 
-## Step 3: Create Certificate Resource
+### Create Certificate Resource
 
 1. Save the following YAML to a file named `azmonpipeline-server-cert.yaml`.
 
@@ -144,7 +144,7 @@ The following example uses LetsEncrypt, but you can use any supported external P
     kubectl apply -f azmonpipeline-server-cert.yaml
     ```
 
-## Configure TLS or mTLS for Azure Monitor pipeline with BYOC
+## Configure TLS or mTLS
 
 ### Create Kubernetes secrets
 
