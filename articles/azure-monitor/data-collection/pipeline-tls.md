@@ -20,8 +20,132 @@ With support for Bring Your Own Certificates (BYOC), you can meet your security 
 - Arc-enabled Kubernetes cluster with Azure Monitor pipeline installed.
 - `kubectl` and az access to the Arc‑enabled cluster context.
 
+## 1. Install cert-manager for Arc-enabled Kubernetes (CME)
 
-## Create Kubernetes secrets
+> [!NOTE]
+> Supported Kubernetes distributions for cert‑manager extension on Arc-enabled Kubernetes include the following.
+>
+> - VMware Tanzu Kubernetes Grid Multi‑Cloud (TKGm) v1.28.11
+> - Suse Rancher K3s v1.33.3+k3s1
+> - AKS Arc v1.32.7
+
+Installing CME will register the cert-manager and trust-manager services on your cluster. 
+
+1. Remove any existing instances of cert‑manager and trust‑manager from the cluster. Any open source versions must be removed before installing the Microsoft version.
+
+    > [!WARNING]
+    > Between uninstalling the open source version and installing the Arc extension, certificate rotation will not occur, and trust bundles will not be distributed to the new namespaces. Ensure this period is as short as possible to minimize potential security risks. Uninstalling the open source cert-manager and trust-manager does not remove any existing certificates or related resources you created. These will remain usable once the Azure cert-manager is installed.
+
+    The specific steps for removal will depend on your installation method. See [Uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [Uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling) for detailed guidance. If you used Helm for installation, use the following command to check which namespace cert-manager and trust-manager installed using this command.
+
+    `helm list -A | grep -E 'trust-manager|cert-manager'`
+
+    If you have an existing cert-manager extension installed, uninstall it using the following commands:
+
+    ```azurecli
+    export RESOURCE_GROUP="<resource-group-name>"
+    export CLUSTER_NAME="<arc-enabled-cluster-name>"
+    export LOCATION="<arc-enabled-cluster-location"
+    
+    NAME_OF_OLD_EXTENSION=$(az k8s-extension list --resource-group ${RESOURCE_GROUP} --cluster-name ${CLUSTER_NAME})
+    az k8s-extension delete --name ${NAME_OF_OLD_EXTENSION} --cluster-name ${CLUSTER_NAME} \
+      --resource-group ${RESOURCE_GROUP} --cluster-type connectedClusters
+    ```
+
+1. Use the following command to connect your cluster to Arc if it wasn't already connected. 
+
+    ```azurecli
+    az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --location ${LOCATION}
+    ```
+
+2. Install the cert‑manager extension using the following command:
+
+    ```azurecli
+    az k8s-extension create \
+      --resource-group ${RESOURCE_GROUP} \
+      --cluster-name ${CLUSTER_NAME} \
+      --cluster-type connectedClusters \
+      --name "azure-cert-management" \
+      --extension-type "microsoft.certmanagement" \
+      --release-train rc
+    ```
+
+## 2. Create issuer resource for external PKI
+
+The following example uses LetsEncrypt, but you can use any supported external PKI.
+
+1. Save the following YAML to a file named `external-pki-issuer.yaml`.
+
+    ```yml
+    apiVersion: cert-manager.io/v1
+    kind: Issuer
+    metadata:
+      name: external-pki-issuer
+      namespace: pipeline
+    spec:
+      acme:
+        # You must replace this email address with your own.
+        # Let's Encrypt will use this to contact you about expiring
+        # certificates, and issues related to your account.
+        email: user@example.com
+        # If the ACME server supports profiles, you can specify the profile name here.
+        # See #acme-certificate-profiles below.
+        profile: tlsserver
+        server: https://acme-staging-v02.api.letsencrypt.org/directory
+        privateKeySecretRef:
+          # Secret resource that will be used to store the account's private key.
+          # This is your identity with your ACME provider. Any secret name may be
+          # chosen. It will be populated with data automatically, so generally
+          # nothing further needs to be done with the secret. If you lose this
+          # identity/secret, you will be able to generate a new one and generate
+          # certificates for any/all domains managed using your previous account,
+          # but you will be unable to revoke any certificates generated using that
+          # previous account.
+          name: example-issuer-account-key
+        # Add a single challenge solver, HTTP01 using nginx
+        solvers:
+        - http01:
+            ingress:
+              ingressClassName: nginx
+    ```
+
+2. Apply the YAML to your cluster using the following command.
+
+    ```bash
+    kubectl apply -f external-pki-issuer.yaml
+    ```
+
+## Step 3: Create Certificate Resource
+
+1. Save the following YAML to a file named `azmonpipeline-server-cert.yaml`.
+
+    ```yml
+    apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: azmonpipeline-server-cert
+      namespace: pipeline
+    spec:
+      secretName: collector-server-tls
+      issuerRef:
+        name: external-pki-issuer
+      commonName: azmonpipeline-receiver.pipeline.svc.cluster.local
+      dnsNames: azmonpipeline-receiver.pipeline.svc.cluster.local
+    ```
+
+2. Apply the YAML to your cluster using the following command. cert‑manager will populate the `collector-server-tls` secret with certificate and key.
+
+
+    ```bash
+    kubectl apply -f azmonpipeline-server-cert.yaml
+    ```
+
+
+
+
+## 3. Configure TLS or mTLS for Azure Monitor pipeline with BYOC
+
+### Create Kubernetes secrets
 
 In order to provide your own certificate and key for client or the pipeline, it must be stored in a Kubernetes secret. Ensure that the following secrets exist in the pipeline namespace so the ARM template can reference them directly.
 
