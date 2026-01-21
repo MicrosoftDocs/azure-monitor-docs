@@ -177,6 +177,8 @@ You can create up to five different diagnostic settings to send the logs to inde
 
 1. For **Diagnostic setting name**, enter a unique name.
 
+   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-configuration.png" alt-text="Screenshot of the Azure platform. Diagnostic settings configuration.":::
+
 1. Under **Logs**, select **allLogs** from among the following options:
    - **audit** streams all audit logs (Update events are audit logs, and they are currently the only logs available, so this is the same as choosing all logs.)
    | Logs categories | Description |
