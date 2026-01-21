@@ -1,17 +1,14 @@
 ---
-title: Create and edit data collection rules (DCRs) in Azure Monitor
-description: Details on creating and editing data collection rules (DCRs) in Azure Monitor.
+title: Data collection rule (DCR) structure for metrics export 
+description: Details on DCR structure for metrics export in Azure Monitor.
 ms.topic: how-to
-ms.date: 09/15/2024
+ms.date: 01/20/2026
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
 
-# Create a data collection rule (DCR) for metrics export 
-
-## DCR structure
-
-Data collection rules are defined in a JSON object. When you use the Azure portal to create and edit the DCR, you don't need to understand the structure of this object. Using other methods though, you should understand the structure so you can modify it for your requirements.
+# Data collection rule (DCR) structure for metrics export 
+[Metrics export](./metrics-export-create.md) in Azure Monitor uses [data collection rules (DCRs)](./data-collection-rule-overview.md) to define which metrics to collect from which resources and where to send them. When you use the Azure portal to configure this feature, you don't need to understand the structure of DCR. Using other methods though, you may need to understand the structure so you can modify it for your requirements. This article describes the details of DCRs used for metrics export.
 
 ### DCR properties 
 

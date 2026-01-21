@@ -2,7 +2,7 @@
 title: Metrics export using data collection rules (Preview)
 description: Learn how to create data collection rules for metrics.
 ms.topic: concept-article
-ms.date: 09/15/2024
+ms.date: 01/20/2026
 ms.custom: references_regions
 ---
 
@@ -130,7 +130,7 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 
 ### Create a data collection rule using Azure CLI
 
-Create a JSON file containing the collection rule specification. For more information, see [DCR specifications](data-collection-metrics.md#dcr-specifications). For sample JSON files, see [Sample Metrics Export JSON objects](data-collection-metrics.md#sample-metrics-export-json-objects).
+Create a JSON file containing the collection rule specification. For more information, see [DCR specifications](metrics-export-structure.md#dcr-specifications). For sample JSON files, see [Sample Metrics Export JSON objects](metrics-export-structure.md#sample-metrics-export-json-objects).
 
 > [!IMPORTANT] 
 > The rule file has the same format as used for PowerShell and the REST API, however the file must not contain `identity`, the `location`, or `kind`. These parameters are specified in the `az monitor data-collection rule create` command.
@@ -224,7 +224,7 @@ az monitor data-collection rule association create --name "keyValut-001" \
 
 ### [PowerShell](#tab/powershell)
 
-Create a JSON file containing the collection rule specification. For more information, see [DCR specifications](data-collection-metrics.md#dcr-specifications). For sample JSON files, see [Sample Metrics Export JSON objects](data-collection-metrics.md#sample-metrics-export-json-objects).
+Create a JSON file containing the collection rule specification. For more information, see [DCR specifications](metrics-export-structure.md#dcr-specifications). For sample JSON files, see [Sample Metrics Export JSON objects](metrics-export-structure.md#sample-metrics-export-json-objects).
 
 Use the `New-AzDataCollectionRule` command to create a data collection rule for metrics using PowerShell. For more information, see [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule).
  
@@ -322,7 +322,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/dcr-001?api-version=2023-03-11
 ```
 
-The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [DCR specifications](data-collection-metrics.md#dcr-specifications). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](data-collection-metrics.md#sample-metrics-export-json-objects).
+The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [DCR specifications](metrics-export-structure.md#dcr-specifications). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](metrics-export-structure.md#sample-metrics-export-json-objects).
 
 ### Grant write permissions to the managed entity
 
