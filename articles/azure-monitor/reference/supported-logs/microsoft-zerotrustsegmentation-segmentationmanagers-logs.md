@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.Communication/CommunicationServices
-description: Reference for Microsoft.Communication/CommunicationServices in Azure Monitor Logs.
+title: Supported log categories - Microsoft.ZeroTrustSegmentation/segmentationManagers
+description: Reference for Microsoft.ZeroTrustSegmentation/segmentationManagers in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.Communication/CommunicationServices, naam
+ms.date: 01/20/2026
+ms.custom: Microsoft.ZeroTrustSegmentation/segmentationManagers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,16 +12,12 @@ ms.custom: Microsoft.Communication/CommunicationServices, naam
 
 
 
-# Supported logs for Microsoft.Communication/CommunicationServices  
-The following table lists the types of logs available for the Microsoft.Communication/CommunicationServices resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Communication/CommunicationServices](../supported-metrics/microsoft-communication-communicationservices-metrics.md)  
+# Supported logs for Microsoft.ZeroTrustSegmentation/segmentationManagers  
+The following table lists the types of logs available for the Microsoft.ZeroTrustSegmentation/segmentationManagers resource type.
   
 
   
-[!INCLUDE [Microsoft.Communication/CommunicationServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-communication-communicationservices-logs-include.md)]  
+[!INCLUDE [Microsoft.ZeroTrustSegmentation/segmentationManagers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-zerotrustsegmentation-segmentationmanagers-logs-include.md)]  
   
 
 ## Next Steps
