@@ -38,6 +38,8 @@ landingContent:
     linkLists:
       - linkListType: get-started 
         links:
+          - text: Learn how to create Service health alerts
+            url: alerts-activity-log-service-notifications-portal.md
           - text: Learn about Service issues
             url: service-issues-blade.md
           - text: Learn about Planned maintenance
@@ -65,11 +67,11 @@ landingContent:
           - text: Resource Graph tables overview
             url: azure-resource-graph-overview.md
           - text: See sample queries to use for Resource health
-            url: resource-graph-health-samples?tabs=azure-cli.md
+            url: ./resource-graph-health-samples.md
           - text: Learn about Resource health REST API
             url: /rest/api/resourcehealth/
           - text: Resource health Frequently asked questions
-            url: resource-health-faq.md
+            url: resource-health-faq.yml
 
   # Card 
   - title: Get notified
