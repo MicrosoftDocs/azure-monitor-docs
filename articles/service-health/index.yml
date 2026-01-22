@@ -38,14 +38,14 @@ landingContent:
     linkLists:
       - linkListType: get-started 
         links:
-          - text: View and manage Service Health notifications
-            url: service-notifications.md
-          - text: View and manage Security Advisories
+          - text: Learn about Service issues
+            url: service-issues-blade.md
+          - text: Learn about Planned maintenance
+            url: service-health-planned-maintenance.md
+          - text: Learn how to configure subscription access to view security advisories
+            url: security-advisories-add-subscription.md
+          - text: Read an overview about Security advisories
             url: security-advisories-elevated-access.md
-          - text: View Service Health notifications by event level
-            url: metadata-filter.md
-          - text: Configure alerts for service health alerts
-            url: ./alerts-activity-log-service-notifications-portal.md
           - text: Learn about subscription and tenant accounts
             url: subscription-vs-tenant.md
       - linkListType: video
@@ -58,18 +58,18 @@ landingContent:
     linkLists:
       - linkListType: get-started 
         links:
-          - text: Resource Health types
-            url: resource-health-checks-resource-types.md
-          - text: How to configure Resource Health alerts
-            url: resource-health-alert-monitor-guide.md
-          - text: The impact on resources due to Outages
-            url: impacted-resources-outage.md
-          - text: The impact on resources from planned maintenance events
-            url: impacted-resources-planned-maintenance.md
-          - text: The impact on resources from Azure security incidents
-            url: impacted-resources-security.md
-          - text: Learn about the Azure Resource Graph (ARG) table and queries
+          - text: See how to create Resource health alerts
+            url: resource-health-alert-arm-template-guide.md
+          - text: Learn how to use API endpoint to view security advisories
+            url: access-service-advisories-api.md
+          - text: Resource Graph tables overview
             url: azure-resource-graph-overview.md
+          - text: See sample queries to use for Resource health
+            url: resource-graph-health-samples?tabs=azure-cli.md
+          - text: Learn about Resource health REST API
+            url: /rest/api/resourcehealth/
+          - text: Resource health Frequently asked questions
+            url: resource-health-faq.md
 
   # Card 
   - title: Get notified
