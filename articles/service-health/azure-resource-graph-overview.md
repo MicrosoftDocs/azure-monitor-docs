@@ -2,7 +2,7 @@
 title: Azure Resource Graph Overview
 description: Learn about the Azure Resource Graph table properties.
 ms.topic: concept-article
-ms.date: 09/17/2025
+ms.date: 01/22/2026
 
 ---
 # Azure Resource Graph tables overview
@@ -20,10 +20,10 @@ For more information on the HealthResources table, see [VM availability informat
  
 
 
-| Query       |Tables                                                  |Value type                  | Information |
-|---------|------------------------------------------------------------|----------------------------|-------------|
-| Service Health Event<br>Service Health Impacted Resources | ServiceHealthResources<br>ServiceHealthResources  | microsoft.resourcehealth/events<br>microsoft.resourcehealth/events/impactedresources  | Service Health events such as outages, planned maintenance, or other incidents.<br>The specific Azure resources affected by those events.|
-| Resource Health (only virtual machines)        | HealthResources        | microsoft.resourcehealth/availabilitystatuses, microsoft.resourcehealth/resourceannotations  | VM health monitoring, diagnostics|
+| Query       |Tables                                       |Value type                                         | Information |
+|-------------|---------------------------------------------|---------------------------------------------------|-------------|
+| Service Health Event<br>Service Health Impacted Resources | ServiceHealthResources<br>ServiceHealthResources  | microsoft.resourcehealth/events<br>microsoft.resourcehealth/events/impactedresources                     | Service Health events such as outages, planned maintenance, or other incidents.<br>The specific Azure resources affected by those events.|
+| Resource Health (only virtual machines)                   | HealthResources                                   | microsoft.resourcehealth/availabilitystatuses, microsoft.resourcehealth/resourceannotations  | VM health monitoring, diagnostics|
 
 
 This table shows the core fields in the ARG table for the Service Health, Impacted Resources, and Resource Health queries that represent the metadata about Azure resources.
@@ -34,7 +34,7 @@ This table shows the core fields in the ARG table for the Service Health, Impact
 |name            | Name of the resource                                                       |
 |type            | Resource type (for example, Microsoft.Compute/virtualMachines)             |
 |tenantId        | ID of tenant the resource belongs to                                       |
-|location        | Azure region where the resource is deployed (default is Global)                             |
+|location        | Azure region where the resource is deployed (default is Global)            |
 |subscriptionId  | ID of the subscription the resource belongs to                             |
 |resourceGroup   | Name of the resource group                                                 |
 |tags            | Key-value pairs assigned to the resource                                   |
@@ -72,7 +72,7 @@ This table lists all the properties you can use in your Service Health and Impac
 
 
 |Property                         |Description                                                                   |
-|---------------------------------|------------------------------------------------------------------------------------------|
+|---------------------------------|------------------------------------------------------------------------------|
 |`EventType`                      | High-level classification: ServiceIssue, PlannedMaintenance, HealthAdvisory, Billing, SecurityAdvisory, EmergingIssues, and Post Incident Review (PIR)       |
 |`EventSubType`                   | Specific subtype: Retirement, TaxChanges, PriceChanges, MeterIDChanges, ForeignExchangeRateChange, UnauthorizedPartyAbuse, Underbilling, and Overbilling        |
 |`Status`                         | Current status of the event: Active or Resolved                              |
@@ -81,7 +81,7 @@ This table lists all the properties you can use in your Service Health and Impac
 |`EventSource`                    | Indicates the source system that generated the event as ServiceHealthResources or HealthResources |
 |`TrackingId`                     | Unique identifier for the event                                              |
 |`Title`                          | Title of the event                                                           |
-|`Summary`                        | Description of the event                                                     |
+|`Summary`                        | Description of the event <br>*At this time to get full text of the description, you can use either Service Health API (description property) or the Activity Log (communication property)*.         |
 |`Priority`                       | Priority level assigned to the event                                         |
 |`ImpactStartTime`                | When the event causing the impact began                                      |
 |`ImpactMitigationTime`           | When mitigation is expected or completed                                     |
@@ -92,11 +92,11 @@ This table lists all the properties you can use in your Service Health and Impac
 |`PlatformInitiated`              | Indicates if the Azure platform triggers the event (for example, an automated mitigation or system-triggered maintenance)|     
 |`SubscriptionId`                 | The unique identifier of the Azure subscription affected by the event        |
 |`LastUpdateTime`                 | Timestamp of the most recent update to the event                             |     
-|`CurrencyType`                   | The currency used in billing-related events (for example, USD, EUR)           |
+|`CurrencyType`                   | The currency used in billing-related events (for example, USD, EUR)          |
 |`impactType`                     | The nature of the impact (for example, SubscriptionList, ServicesForSubTenants)|     
 |`BillingId`                      | Identifier used to associate the event with a billing account or transaction |
 |`EventTags`                      | Metadata tags used to categorize or filter events (for example, Security, Maintenance, Outage)  |     
-|`duration`                       | Descriptive label or title for the event                                      |
+|`duration`                       | Descriptive label or title for the event                                     |
 
 
 
