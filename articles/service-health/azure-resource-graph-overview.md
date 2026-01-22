@@ -81,7 +81,7 @@ This table lists all the properties you can use in your Service Health and Impac
 |`EventSource`                    | Indicates the source system that generated the event as ServiceHealthResources or HealthResources |
 |`TrackingId`                     | Unique identifier for the event                                              |
 |`Title`                          | Title of the event                                                           |
-|`Summary`                        | Description of the event <br>*The full description of the event is available through alternative sources such as the Service Health API or the Activity Log*.         |
+|`Summary`                        | Description of the event <br>*At this time to get full text of the description, you can use either Service Health API (description property) or the Activity Log (communication property)*.         |
 |`Priority`                       | Priority level assigned to the event                                         |
 |`ImpactStartTime`                | When the event causing the impact began                                      |
 |`ImpactMitigationTime`           | When mitigation is expected or completed                                     |
