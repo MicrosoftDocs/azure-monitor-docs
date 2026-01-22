@@ -163,6 +163,47 @@ You can export a dashboard as an ARM template that contains the JSON for the das
 1. In the dashboard screen, select **Export** then **Export as ARM template**.
 1. Select **Download** and save the file.
 
+## Add diagnostic settings
+
+You can configure diagnostic settings for your Azure Monitor dashboard to track when it was updated to a new version or restored to a previous one.
+
+You can create up to five different diagnostic settings to send the logs to independent destinations.
+
+1. From the dashboard screen, in the left menu, select **Monitoring** > **Diagnostic settings**.
+
+   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-menu.png" alt-text="Screenshot of the Azure platform. Diagnostic settings.":::
+
+1. In the Diagnostic settings page, select **+ Add diagnostic setting**.
+
+1. For **Diagnostic setting name**, enter a unique name.
+
+   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-configuration.png" alt-text="Screenshot of the Azure platform. Diagnostic settings configuration.":::
+
+1. Under **Logs**, select **allLogs** from among the following options:
+   - **audit** streams all audit logs (Update events are audit logs, and they are currently the only logs available, so this is the same as choosing all logs.)
+   | Logs categories | Description |
+   | ----------------- | ------------- |
+   | **audit**           | Streams all audit logs. Selecting this option is the same as choosing _allLogs_, since _Update Events_ are audit logs, and are currently the only logs available. 
+   - **allLogs** streams all logs
+   | **allLogs** | Streams all logs. |
+   - **Update Events** streams all update events
+   | **Update Events** | Streams all update events. |
+   - **AllMetrics** streams all metrics (Currently not supported.)
+   | **AllMetrics** | Streams all metrics. **Currently not supported.** |
+
+1. Under **Destination details**, select one or more destinations, fill out details, and select **Save**.
+
+   | Destination             | Description                            | Settings                                                                                                                                                                         |
+   |-------------------------|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   | Log Analytics workspace | Send data to a Log Analytics workspace | Select the **subscription** containing an existing Log Analytics workspace, then select the **Log Analytics workspace**                                                          |
+   | Storage account         | Archive data to a storage account      | Select the **subscription** containing an existing storage account, then select the **storage account**. Only storage accounts in the same region as the Grafana dashboard are displayed in the dropdown menu.                                                                          |
+   | Event hub               | Stream to an event hub                 | Select a **subscription** and an existing Azure Event Hubs **namespace**. Optionally also choose an existing **event hub**. Lastly, choose an **event hub policy** from the list. Only event hubs in the same region as the Grafana dashboard are displayed in the dropdown menu. |
+   | Partner solution        | Send to a partner solution             | Select a **subscription** and a **destination**. For more information about available destinations, go to [partner destinations](/azure/azure-monitor/partners).                 |
+
+   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-configuration.png" alt-text="Screenshot of the Azure platform. Diagnostic settings configuration.":::
+   
+After you create a diagnostic setting, data should start flowing to your selected destinations within 90 minutes.
+
 ## Related content
 
 - [Azure Monitor Grafana overview](visualize-grafana-overview.md)
