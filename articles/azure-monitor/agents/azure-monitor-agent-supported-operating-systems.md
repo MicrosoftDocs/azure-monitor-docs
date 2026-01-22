@@ -5,9 +5,7 @@ ms.topic: concept-article
 ms.date: 03/07/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
-
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
-
 ---
 
 # Azure Monitor Agent supported operating systems and environments
