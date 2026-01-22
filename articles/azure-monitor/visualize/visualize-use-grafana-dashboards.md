@@ -171,13 +171,13 @@ You can create up to five different diagnostic settings to send the logs to inde
 
 1. From the dashboard screen, in the left menu, select **Monitoring** > **Diagnostic settings**.
 
-   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-menu.png" alt-text="Screenshot of the Azure platform. Diagnostic settings.":::
+   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-menu.png" lightbox="media/visualizations-grafana/diagnostic-settings-menu.png" alt-text="Screenshot of the Azure platform. Diagnostic settings.":::
 
 1. In the Diagnostic settings page, select **+ Add diagnostic setting**.
 
 1. For **Diagnostic setting name**, enter a unique name.
 
-   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-configuration.png" alt-text="Screenshot of the Azure platform. Diagnostic settings configuration.":::
+   :::image type="content" source="media/visualizations-grafana/diagnostic-settings-configuration.png" lightbox="media/visualizations-grafana/diagnostic-settings-configuration.png" alt-text="Screenshot of the Azure platform. Diagnostic settings configuration.":::
 
 1. Under **Logs**, select **allLogs** from among the following options:
    - **audit** streams all audit logs (Update events are audit logs, and they are currently the only logs available, so this is the same as choosing all logs.)
