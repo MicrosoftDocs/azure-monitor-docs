@@ -371,28 +371,32 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
     * `microsoft.rate_limited` — cap traces per second.
 
 * **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
-    * `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
 #### [Java](#tab/java)
 
-* **`OTEL_TRACES_SAMPLER`** — sampler type
-    * `microsoft.fixed_percentage` — sample a fraction of traces.
-    * `microsoft.rate_limited` — cap traces per second.
+* **`APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE`**: A value between 0-100
 
-* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
-    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+* **`APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`**: Max traces per second
 
 #### [Java native](#tab/java-native)
 
 * **`OTEL_TRACES_SAMPLER`** — sampler type
-    * `microsoft.fixed_percentage` — sample a fraction of traces.
-    * `microsoft.rate_limited` — cap traces per second.
+    * `always_on`: AlwaysOnSampler
+    * `always_off`: AlwaysOffSampler
+    * `trace_id_ratio`: TraceIdRatioBased
+    * `parentbased_always_on`: ParentBased(root=AlwaysOnSampler)
+    * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
+    * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
 
 * **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
-    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+    * For `always_on`: the default value is **1.0**. No need to set the argument.
+    * For `always_off`: the default value is **0.0**. No need to set the argument.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
+    * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
 
 #### [Node](#tab/nodejs)
 
