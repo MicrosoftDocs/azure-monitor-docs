@@ -48,7 +48,7 @@
       href: security-advisories-add-subscription.md
     - name: How to create alerts
       items:
-      - name: Configure alerts for service health events in the Azure portal
+      - name: Create Service Health alerts
         href: ./alerts-activity-log-service-notifications-portal.md
       - name: Create activity log alerts using Bicep
         href: alerts-activity-log-service-notifications-bicep.md
