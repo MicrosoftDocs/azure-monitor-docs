@@ -507,7 +507,7 @@ The following sample DCR performs the following actions:
                 "EventBlob",
                 "EventTable"
                 ]
-            },
+            }
         ]
     }
 }
