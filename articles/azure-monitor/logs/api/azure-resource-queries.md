@@ -19,19 +19,11 @@ Consider an Azure resource with a fully qualified identifier:
 /subscriptions/<sid>/resourceGroups/<rg>/providers/<providerName>/<resourceType>/<resourceName>
 ```
 
-A query for this resource's logs against the direct API endpoint would go to the following URL:
+A query for this resource's logs against the direct API endpoint has the following format:
 
 ```
 https://api.loganalytics.azure.com/v1/subscriptions/<sid>/resourceGroups/<rg>/providers/<providerName>/<resourceType>/<resourceName>/query
 ```
-
-A query to the same resource via ARM would use the following URL:
-
-```
-https://management.azure.com/subscriptions/<sid>/resourceGroups/<rg>/providers/<providerName>/<resourceType>/<resourceName>/providers/microsoft.insights/logs?api-version=2018-03-01-preview
-```
-
-Essentially, this URL is the fully qualified Azure resource plus the extension provider: `/providers/microsoft.insights/logs`.
 
 ### Response format
 
