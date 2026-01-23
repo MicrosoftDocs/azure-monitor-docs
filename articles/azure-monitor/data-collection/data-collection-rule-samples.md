@@ -464,24 +464,24 @@ The following sample DCR performs the following actions:
             ],
             "storageBlobsDirect": [
                 {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "myperfblob",
                 "name": "PerfBlob"
                 },
                 {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "myeventblob",
                 "name": "EventBlob"
                 }
             ],
             "storageTablesDirect": [
                 {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "myperftable",
                 "name": "PerfTable"
                 },
                 {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "mymyeventtable",
                 "name": "EventTable"
                 }
