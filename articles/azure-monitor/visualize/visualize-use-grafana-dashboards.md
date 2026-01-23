@@ -182,7 +182,7 @@ You can create up to five different diagnostic settings to send the logs to inde
 1. Under **Logs**, select **allLogs** from among the following options:
    | Logs categories | Description |
    | ----------------- | ------------- |
-   | **audit**           | Streams all audit logs. Selecting this option is the same as choosing _allLogs_, since _Update Events_ are audit logs, and are currently the only logs available. 
+   | **audit**           | Streams all audit logs. Selecting this option is the same as choosing _allLogs_, since _Update Events_ are audit logs, and are currently the only logs available. |
    | **allLogs** | Streams all logs. |
    | **Update Events** | Streams all update events. |
    | **AllMetrics** | Streams all metrics. **Currently not supported.** |
