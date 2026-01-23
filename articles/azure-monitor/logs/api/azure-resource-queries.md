@@ -7,13 +7,11 @@ ms.topic: concept-article
 
 # Querying logs for Azure resources
 
-In Azure Monitor Log Analytics, queries typically execute in the context of a workspace. A workspace may contain data for many resources, making it difficult to isolate data for a particular resource. Resources may additionally send data to multiple workspaces. To simplify this experience, the REST API permits querying Azure resources directly for their logs.
+In Azure Monitor Log Analytics, queries typically execute in the context of a workspace. A workspace may contain data for many resources, making it difficult to isolate data for a particular resource. Resources might additionally send data to multiple workspaces. To simplify this experience, the REST API permits querying Azure resources directly for their logs.
 
-## Response format
+## URL formats
 
-Azure resource queries produce the [same response shape](response-format.md) as queries targeting a Log Analytics workspace.
-
-## URL format
+### Request format
 
 Consider an Azure resource with a fully qualified identifier:
 
@@ -35,27 +33,19 @@ https://management.azure.com/subscriptions/<sid>/resourceGroups/<rg>/providers/<
 
 Essentially, this URL is the fully qualified Azure resource plus the extension provider: `/providers/microsoft.insights/logs`.
 
+### Response format
+
+Azure resource queries produce the [same response shape](response-format.md) as queries targeting a Log Analytics workspace.
+
 ## Table access and RBAC
 
-The `microsoft.insights` resource provider exposes a new set of operations for controlling access to logs at the table level. These operations have the following format for a table named `tableName`.
-
-```
-microsoft.insights/logs/<tableName>/read 
-```
-
-This permission can be added to roles using the `actions` property to allow specified tables and the `notActions` property to disallow specified tables.
+The best way to control access at the table level is to implement [Granular RBAC](manage-table-access.md#configure-granular-rbac-for-table-level-access).
 
 ## Workspace access control
 
-Azure resource queries look over Log Analytics workspaces as possible data sources. However, administrators can lock access to the workspace via RBAC roles. By default, the API only returns results from workspaces the user has permissions to access.
+Azure resource queries examine Log Analytics workspaces as possible data sources. However, administrators can restrict access to the workspace via roles and restrict access to the tables with granular RBAC. By default, the API only returns results from workspaces and tables the user has permissions to access.
 
-Workspace administrators can use Azure resource queries without breaking existing RBAC. A boolean property on the workspace lets users with read permissions view logs for a specific Azure resource but not query the workspace which contains those logs.
-
-This is the action for scoping access to Tables at the workspace level:
-
-```
-microsoft.operationalinsights/workspaces/query/<tableName>/read
-```
+However, to see ensure adherence to RBAC at these levels, see the details outlined in the [granular RBAC FAQ](granular-rbac-log-analytics.md#frequently-asked-questions)
 
 ## Error responses
 
