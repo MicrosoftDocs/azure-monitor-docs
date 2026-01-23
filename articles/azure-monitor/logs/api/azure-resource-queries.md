@@ -146,5 +146,5 @@ The `dataSources` payload filters the results further by describing which worksp
 
 To clearly state what data such a query would return:
 
-* Logs for VM1 in WS1, excluding Tables. Custom from the workspace.
-* Logs for VM2, excluding SecurityEvent and SecurityBaseline, in WS2.
+* Logs for VM1 in WS1, excluding `Tables.Custom` from the workspace.
+* Logs for VM2, excluding `SecurityEvent` and `SecurityBaseline`, in WS2.
