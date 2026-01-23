@@ -25,9 +25,7 @@ The configuration requirements for remote-write depend on the authentication typ
 | System-assigned managed identity | Azure Kubernetes service (AKS)<br>Azure VM/VMSS |
 | User-assigned managed identity | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes<br>Azure VM/VMSS |
 | Microsoft Entra ID | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes cluster<br>Cluster running in another cloud or on-premises<br>Azure VM/VMSS<br>Arc-enabled servers<br>VM running in another cloud or on-premises|
-
-> [!NOTE]
->  You can also use authentication with Microsoft Entra ID Workload Identity, but you must use a [side car container](/azure/architecture/patterns/sidecar) to provide an abstraction for ingesting Prometheus remote write metrics and helps in authenticating packets. See [Send Prometheus data to Azure Monitor using Microsoft Entra Workload ID authentication](../containers/prometheus-remote-write-azure-workload-identity.md) for configuration. |
+| Microsoft Entra workload identity | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes cluster|
 
 ## Azure Monitor workspace
 
