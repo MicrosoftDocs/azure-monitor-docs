@@ -72,7 +72,7 @@ Provide this payload as the body of your request. Update the table name and adju
 ```
 
 > [!NOTE]
-> * The `TimeGenerated` column only supports the ISO 8601 format with 6 decimal places for precision (nanoseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
+> * The `TimeGenerated` column only supports the ISO 8601 format with 6 decimal places for precision (microseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
 > * Tables with the Auxiliary plan don't support columns with dynamic data.
 
 ## Send data to a table with the Auxiliary plan
