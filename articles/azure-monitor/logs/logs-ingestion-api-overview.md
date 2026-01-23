@@ -120,7 +120,7 @@ In addition to making a REST API call, you can use the following client librarie
 
 ## REST API call
 
-To send data to Azure Monitor with a REST API call, make a POST call over HTTP. Details required for this call are described in this section.
+To send data to Azure Monitor with a REST API call, make a POST call over HTTPS. Details required for this call are described in this section.
 
 ### URI
 
