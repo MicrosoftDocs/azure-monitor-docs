@@ -190,7 +190,7 @@ Replace the properties in the following table before deploying the template.
 | `type` | Type of data received. Current options are `OTLP` and `Syslog`. |
 | `name` | Name for the receiver referenced in the `service` section. Must be unique for the pipeline instance. |
 | `endpoint` | Address and port the receiver listens on. Use `0.0.0.0` for al addresses. |
-| **Processors** | One entry for each transformation. Empty f no processors are used. |
+| **Processors** | One entry for each transformation. Empty if no processors are used. |
 | `type` | Supported values are `MicrosoftSyslog` and `TransformLanguages` |
 | `name` | Name for the processor referenced in the `service` section. Must be unique for the pipeline instance. |
 | `transformLanguage`<br>- `transformStatement` | KQL transformation statement to modify the data. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
