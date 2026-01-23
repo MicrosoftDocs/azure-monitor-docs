@@ -4,7 +4,7 @@ description: Create a custom table with the Auxiliary table plan in your Log Ana
 ms.reviewer: adi.biran
 ms.custom: references_regions
 ms.topic: how-to 
-ms.date: 06/16/2025
+ms.date: 01/23/2026
 # Customer intent: As a Log Analytics workspace administrator, I want to create a custom table with the Auxiliary table plan, so that I can ingest and retain data at a low cost for auditing and compliance.
 ---
 
@@ -128,7 +128,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                     "kind": "Direct",
                     "properties": {
                         "streamDeclarations": {
-                            "Custom-tablename_CL": {
+                            "Custom-tablename": {
                                 "columns": [
                                     {"name": "TimeGenerated",
                                      "type": "datetime"},
@@ -155,10 +155,10 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                         },
                         "dataFlows": [
                             {
-                                "streams": ["Custom-table_name"],
+                                "streams": ["Custom-tablename"],
                                 "transformKql": "source",
                                 "destinations": ["myworkspace"],
-                                "outputStream": "Custom-tablename-CL"
+                                "outputStream": "Custom-tablename_CL"
                             }]
                     }
                 }],
