@@ -8754,23 +8754,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/app/opentelemetry-dotnet-migrate.md",
-   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
-   "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/app/opentelemetry-nodejs-migrate.md",
-   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
-   "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/app/opentelemetry-python-opencensus-migrate.md",
-   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
-   "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/app/java-standalone-upgrade-from-2x.md",
-   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
    "source_path": "articles/azure-monitor/reference/tables/mdecustomcollectiondevicefileevents.md",
    "redirect_url": "/azure/azure-monitor/reference/tables-index",
    "redirect_document_id": false
@@ -8803,6 +8786,26 @@
   {
    "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-fileshares-fileshares-logs.md",
    "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-dotnet-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-nodejs-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-python-opencensus-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-upgrade-from-2x.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
    "redirect_document_id": false
   }
  ]
