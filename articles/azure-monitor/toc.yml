@@ -55,12 +55,10 @@ items:
           href: app/opentelemetry-add-modify.md
         - name: Filter OpenTelemetry
           href: app/opentelemetry-filter.md
+        - name: Migrate to OpenTelemetry
+          href: app/migrate-to-opentelemetry.md
         - name: Help, support, and feedback
           href: app/opentelemetry-help-support-feedback.md
-        - name: .NET (supplemental)
-          items:
-          - name: Migrate from Application Insights .NET SDKs to OpenTelemetry
-            href: app/opentelemetry-dotnet-migrate.md
         - name: Java (supplemental)
           items:
           - name: Spring Boot
@@ -83,16 +81,6 @@ items:
                 href: app/java-standalone-telemetry-processors.md
               - name: Examples
                 href: app/java-standalone-telemetry-processors-examples.md
-          - name: Upgrade from 2.x
-            href: app/java-standalone-upgrade-from-2x.md
-        - name: Node.js (supplemental)
-          items:
-          - name: Upgrade from SDK 2.X
-            href: app/opentelemetry-nodejs-migrate.md
-        - name: Python (supplemental)
-          items:
-          - name: Migrate from Opencensus
-            href: app/opentelemetry-python-opencensus-migrate.md
       - name: Client-side JavaScript SDK
         items:
         - name: Get Started with JavaScript SDK

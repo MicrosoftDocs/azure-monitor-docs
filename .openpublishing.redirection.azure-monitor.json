@@ -8753,6 +8753,26 @@
    "source_path": "articles/azure-monitor/containers/container-insights-data-collection-filter.md",
    "redirect_url": "/azure/azure-monitor/containers/kubernetes-data-collection-configmap",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-dotnet-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-nodejs-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-python-opencensus-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-upgrade-from-2x.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
   }
  ]
 }
