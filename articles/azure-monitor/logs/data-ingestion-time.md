@@ -1,7 +1,7 @@
 ---
 title: Log data ingestion time in Azure Monitor | Microsoft Docs
 description: This article explains the different factors that affect latency in collecting log data in Azure Monitor.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.reviewer: ivkhrul
 ms.date: 10/15/2025
 
@@ -58,7 +58,7 @@ Network conditions might negatively affect the latency of this data to reach a d
 Azure data adds more time to become available at a data collection endpoint for processing:
 
 * **Azure platform metrics** are available in under a minute in the metrics database, but they take another 3 minutes to be exported to the data collection endpoint.
-* **Resource logs** typically add 30 to 90 seconds, depending on the Azure service. Some Azure services (specifically, Azure SQL Database and Azure Virtual Network) currently report their logs at 5-minute intervals. Work is in progress to improve this time further. To examine this latency in your environment, see the [query that follows](#check-ingestion-time).
+* **Resource logs** typically add 3 to 10 minutes, depending on the Azure service. Some Azure services (specifically, Azure SQL Database and Azure Virtual Network) currently report their logs at 5-minute intervals. To examine this latency in your environment, see the [query that follows](#check-ingestion-time).
 * **Activity logs** are available for analysis and alerting in 3 to 20 minutes.
 
 ### Management solutions collection

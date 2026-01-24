@@ -1,8 +1,8 @@
 ---
 title: Data collection rules in Azure Monitor
 description: Overview of data collection rules (DCRs) in Azure Monitor including their contents and structure and how you can create and work with them.
-ms.topic: article
-ms.date: 11/19/2024
+ms.topic: concept-article
+ms.date: 01/20/2026
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
@@ -35,7 +35,7 @@ The DCR collection process has either replaced or is in the process of replacing
 | Legacy method | DCR method | Description |
 |:--------------|:-----------|:------------|
 | [Log Analytics agent](../agents/log-analytics-agent.md) | [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) | The Azure Monitor agent is now used to monitor virtual machines (VMs) and Kubernetes clusters supporting [VM insights](../vm/vminsights-overview.md) and [Container insights](../containers/kubernetes-monitoring-overview.md). |
-| [Diagnostic settings](../platform/diagnostic-settings.md)<br>(metrics only) | [Metrics export](data-collection-metrics.md) | Diagnostic settings are still currently used to collect resource logs from Azure resources. Platform metrics can now be collected using Metrics export. |
+| [Diagnostic settings](../platform/diagnostic-settings.md)<br>(metrics only) | [Metrics export](./metrics-export-create.md) | Diagnostic settings are still currently used to collect resource logs from Azure resources. Platform metrics can now be collected using Metrics export. |
 | [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | The Logs ingestion API is used to send data to a Log Analytics workspace from any REST client. It replaces the Data Collector API which was less secure and less functional. |
 
 ## Data collection process
@@ -87,7 +87,7 @@ Platform metrics are automatically collected from Azure resources and sent to [A
 
 When the DCR is created, it specifies the workspace and table where the data should be sent. The DCR also includes a transformation that ensures the data is in the correct format for the target table. The DCR is then associated with the resource from which the platform metrics are collected.
 
-See [Metrics export through data collection rules](./data-collection-metrics.md) for details.
+See [Metrics export using data collection rules](./metrics-export-create.md) for details.
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-platform-metrics.png" lightbox="media/data-collection-rule-overview/data-collection-platform-metrics.png" alt-text="Diagram that shows basic operation for DCR collecting platform metrics." border="false":::
 

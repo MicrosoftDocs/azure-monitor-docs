@@ -1,7 +1,7 @@
 ---
 title: Machine enrollment in operations center (preview)
 description: Describes how to enable machine enrollment in the Configuration pillar of operations center to automatically configure management for VMs in your subscription.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/14/2025
 ---
 

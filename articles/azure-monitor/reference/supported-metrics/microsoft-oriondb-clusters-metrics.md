@@ -1,25 +1,25 @@
 ---
-title: Supported metrics - Microsoft.MixedReality/remoteRenderingAccounts
-description: Reference for Microsoft.MixedReality/remoteRenderingAccounts metrics in Azure Monitor.
+title: Supported metrics - Microsoft.OrionDB/clusters
+description: Reference for Microsoft.OrionDB/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.MixedReality/remoteRenderingAccounts, arm
+ms.date: 01/20/2026
+ms.custom: Microsoft.OrionDB/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Microsoft.MixedReality/remoteRenderingAccounts
+# Supported metrics for Microsoft.OrionDB/clusters
   
-The following table lists the metrics available for the Microsoft.MixedReality/remoteRenderingAccounts resource type.  
+The following table lists the metrics available for the Microsoft.OrionDB/clusters resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
  
 
-[!INCLUDE [Microsoft.MixedReality/remoteRenderingAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-mixedreality-remoterenderingaccounts-metrics-include.md)]  
+[!INCLUDE [Microsoft.OrionDB/clusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-oriondb-clusters-metrics-include.md)]  
 
 
 

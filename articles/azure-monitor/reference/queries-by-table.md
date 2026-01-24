@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 01/12/2026
+ms.date: 01/19/2026
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1941,7 +1941,7 @@ ms.reviewer: lualderm
 
 ## [StorageMalwareScanningResults](./queries/StorageMalwareScanningResults.md)
 
-- [Malicious blobs per storage account](./queries/StorageMalwareScanningResults.md#malicious-blobs-per-storage-account)
+- [Malicious scan objects per storage account](./queries/StorageMalwareScanningResults.md#malicious-scan-objects-per-storage-account)
 - [Unsuccessful Scans](./queries/StorageMalwareScanningResults.md#unsuccessful-scans)
 
 ## [SucceededIngestion](./queries/SucceededIngestion.md)

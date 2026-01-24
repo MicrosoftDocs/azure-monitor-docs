@@ -1,7 +1,7 @@
 ---
 title: Overview of Operations center (preview)
 description: Provides an overview of Operations center, a unified operations management platform in the Azure portal for monitoring, troubleshooting, and automation across cloud and hybrid environments.
-ms.topic: conceptual
+ms.topic: overview
 ms.date: 09/24/2025
 ---
 

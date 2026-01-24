@@ -1,7 +1,7 @@
 ---
 title: Reliability workbook
 description: Use Azure Advisor to evaluate the reliability posture of your business-critical applications, assess risks and plan improvements.
-ms.topic: article
+ms.topic: how-to
 ms.date: 10/28/2024
 
 ---

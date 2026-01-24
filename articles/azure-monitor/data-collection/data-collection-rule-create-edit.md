@@ -2,7 +2,7 @@
 title: Create data collection rules (DCRs) in Azure Monitor
 description: Details on creating data collection rules (DCRs) in Azure Monitor.
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 01/20/2026
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
