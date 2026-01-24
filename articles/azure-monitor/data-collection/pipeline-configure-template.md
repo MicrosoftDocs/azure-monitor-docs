@@ -192,16 +192,17 @@ Before you use this template, update the contents of the DCR and the pipeline co
             }
         },
         {
-        "type": "Microsoft.Insights/dataCollectionRules/providers/roleAssignments",
-        "apiVersion": "2022-04-01",
-        "name": "[concat(parameters('dcrName'),'/Microsoft.Authorization/',guid(parameters('dcrName'),parameters('pipelineExtensionName'),'pipeline-role'))]",
-        "dependsOn": [
-            "[extensionResourceId(parameters('clusterId'),'Microsoft.KubernetesConfiguration/extensions',parameters('pipelineExtensionName'))]",
-            "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dcrName'))]"],
-        "properties": {
-            "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions','3913510d-42f4-4e42-8a64-420c390055eb')]",
-            "principalId": "[reference(extensionResourceId(parameters('clusterId'),'Microsoft.KubernetesConfiguration/extensions',parameters('pipelineExtensionName')),'2022-11-01','Full').identity.principalId]","scope": "[resourceId('Microsoft.Insights/dataCollectionRules',parameters('dcrName'))]"
-        }
+            "type": "Microsoft.Insights/dataCollectionRules/providers/roleAssignments",
+            "apiVersion": "2022-04-01",
+            "name": "[concat(parameters('dcrName'),'/Microsoft.Authorization/',guid(parameters('dcrName'),parameters('pipelineExtensionName'),'pipeline-role'))]",
+            "dependsOn": [
+                "[extensionResourceId(parameters('clusterId'),'Microsoft.KubernetesConfiguration/extensions',parameters('pipelineExtensionName'))]",
+                "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dcrName'))]"],
+            "properties": {
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions','3913510d-42f4-4e42-8a64-420c390055eb')]",
+                "principalId": "[reference(extensionResourceId(parameters('clusterId'),'Microsoft.KubernetesConfiguration/extensions',parameters('pipelineExtensionName')),'2022-11-01','Full').identity.principalId]",
+                "scope": "[resourceId('Microsoft.Insights/dataCollectionRules',parameters('dcrName'))]"
+            }
         },
         {
             "type": "Microsoft.ExtendedLocation/customLocations",

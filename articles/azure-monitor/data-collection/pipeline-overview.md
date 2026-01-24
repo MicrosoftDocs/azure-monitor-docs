@@ -9,7 +9,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor pipeline overview
 
-The Azure Monitor pipeline extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. It enables at-scale collection, and routing of telemetry data before it's sent to the Azure Monitor in the cloud. The pipeline can cache data locally and sync with the cloud when connectivity is restored and route telemetry to Azure Monitor in cases where clients can't send data directly to the cloud.
+The Azure Monitor pipeline extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. It enables at-scale collection, transformation, and routing of telemetry data before it's sent to the Azure Monitor in the cloud. The pipeline can cache data locally and sync with the cloud when connectivity is restored and route telemetry to Azure Monitor in cases where clients can't send data directly to the cloud.
 
 :::image type="content" source="./media/pipeline-overview/overview.png" lightbox="./media/pipeline-overview/overview.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
 
@@ -18,7 +18,7 @@ The Azure Monitor pipeline extends the data collection capabilities of Azure Mon
 Specific use cases for Azure Monitor pipeline include the following:
 
 - **Scalability**. The pipeline can handle large volumes of data from monitored resources that may be limited by other collection methods such as Azure Monitor agent.
-- **Periodic connectivity**. Some environments may have unreliable connectivity to the cloud, or may have long unexpected periods without connection. The pipeline can cache data locally and sync with the cloud when connectivity is restored.
+- **Periodic connectivity**. Some environments may have unreliable connectivity to the cloud or long unexpected periods without connection. There may also be periods of planned maintenance or need to temporarily disconnect from internet for security reasons. The pipeline can cache data locally and sync with the cloud when connectivity is restored.
 - **Reduce network bandwidth**. Transformations in Azure Monitor pipeline can filter and aggregate data before it's sent to the cloud, reducing the amount of data transmitted over the network.
 
 
