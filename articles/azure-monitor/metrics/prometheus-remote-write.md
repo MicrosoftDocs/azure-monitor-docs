@@ -27,6 +27,14 @@ The configuration requirements for remote-write depend on the authentication typ
 | Microsoft Entra ID | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes cluster<br>Cluster running in another cloud or on-premises<br>Azure VM/VMSS<br>Arc-enabled servers<br>VM running in another cloud or on-premises|
 | Microsoft Entra workload identity | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes cluster|
 
+## Prerequisites
+
+### Supported versions
+Prometheus version 2.45 or greater is required for user-assigned managed identity authentication.
+Prometheus version 2.48 or greater is required for Microsoft Entra application authentication.
+Prometheus version 3.50 or greater is required for system-assigned managed identity authentication.
+Prometheus version 3.60 or greater is required for Microsoft Entra workload identity authentication.
+
 ## Azure Monitor workspace
 
 Your Azure Monitor workspace must be created before you can configure remote-write. This automatically enables Managed prometheus. If you don't already have one, see [Manage an Azure Monitor workspace](azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace). 
