@@ -202,13 +202,15 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
 
 ---
 
-## Create data collection rule (DCR)
+## Data collection rule (DCR)
+
+### Create DCR
 
 The DCR is stored in Azure Monitor and defines how the data will be processed when it's received from the pipeline. The pipeline configuration specifies the `immutable ID` of the DCR and the `stream` in the DCR that will process the data. The `immutable ID` is automatically generated when the DCR is created.
 
 Replace the properties in the following template and save them in a json file before running the CLI command to create the DCR. See [Structure of a data collection rule in Azure Monitor](data-collection-rule-overview.md) for details on the structure of a DCR.
 
-**Header**
+##### General properties
 
 | Parameter | Description |
 |:----------|:------------|
@@ -226,9 +228,11 @@ One or more destinations where the data will be sent.
 | `workspaceResourceId` | Resource ID of the Log Analytics workspace. |
 | `workspaceId` | Workspace ID of the Log Analytics workspace. |
 
-**Data flows**
+**Data flows**<br>
 Matches streams and destinations. One entry for each stream/destination combination. 
 
+| Parameter | Description |
+|:----------|:------------|
 | - `streams` | One or more streams (defined in `streamDeclarations`). You can include multiple streams if they're being sent to the same destination. |
 | - `destinations` | One or more destinations (defined in `destinations`). You can include multiple destinations if they're being sent to the same destination. |
 | - `transformKql` | Transformation to apply to the data before sending it to the destination. Use `source` to send the data without any changes. The output of the transformation must match the schema of the destination table. See [Data collection transformations in Azure Monitor](data-collection-transformations.md) for details on transformations. |
@@ -360,37 +364,86 @@ az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --ro
 
 ## Create pipeline configuration
 
-The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud.
+The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON similar to the structure of a DCR.
 
 Replace the properties in the following table before deploying the template.
 
-**General**
+#### General properties
 
 | Property | Description |
 |:---------|:------------|
 | `name` | Name of the pipeline instance. Must be unique in the subscription. |
 | `location` | Location of the pipeline instance. |
-| `extendedLocation` | |
+| `extendedLocation` | The `name` property includes the resource ID of the custom location created above. The `type` property is always `CustomLocation`.  |
 
-
-**Receivers**<br>One entry for each receiver. Each entry specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
+#### Receivers property
+One entry for each receiver in the pipeline. Each entry specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
 
 | Property | Description |
 |:---------|:------------|
 | `type` | Type of data received. Current options are `OTLP` and `Syslog`. |
 | `name` | Name for the receiver referenced in the `service` section. Must be unique for the pipeline instance. |
-| `endpoint` | Address and port the receiver listens on. Use `0.0.0.0` for al addresses. |
+| `endpoint` | Address and port the receiver listens on. Use `0.0.0.0` for all addresses. |
 
 
-**Processors**<br>One entry for each transformation. Empty if no processors are used.
+#### Processors property
+Processors modify the data in some way before it's sent to the cloud. This could be converting data to a known format such as Syslog, or applying a [transformation](./pipeline-transformations.md) to filter or modify the data. This section should be empty if no processors are used.
+
+##### Syslog processor
+The Syslog processor converts incoming data to the Syslog format used by many systems.
+
+``` json
+{
+    "type": "MicrosoftSyslog",
+    "name": "ms-syslog-processor"
+}
+```
+
+##### CEF processor
+The CEF processor converts incoming data to the Common Event Format (CEF) used by many security information and event management (SIEM) systems.
+
+``` json
+{
+    "type": "MicrosoftCommonSecurityLog",
+    "name": "ms-cef-processor"
+}
+```
+
+
+##### Batch processor
+The batch processor collects data for a specified milliseconds before sending it to the cloud. If this processor is not included, the batch time is set to the default of one minutes (60000 milliseconds).
+
+``` json
+{
+    "type": "Batch",
+    "name": "batch-processor",
+    "batch": {
+        "timeout": 60000
+    }
+}
+```
+
+##### Transformation processor
+The transformation processor applies a [transformation](./pipeline-transformations.md) to modify the data before it's sent to the cloud.
+
+``` json
+{
+    "type": "TransformLanguage",
+    "name": "my-transform",
+    "transformLanguage": {
+        "transformStatement": "source"
+    }
+}
+```
 
 | Property | Description |
 |:---------|:------------|
-| `type` | Supported values are `MicrosoftSyslog` and `TransformLanguages` |
+| `type` | Supported values are:<br>`Batch` - Defines the time for that each batch of data is collected and sent to the cloud<br>`MicrosoftSyslog` - Converts incoming data to Syslog<br>`MicrosoftCommonSecurityLog` - Converts incoming data to CEF<br>`TransformLanguages` - Applies a transformation |
 | `name` | Name for the processor referenced in the `service` section. Must be unique for the pipeline instance. |
 | `transformLanguage`<br>- `transformStatement` | KQL transformation statement to modify the data. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 
-**Exporters**<br>One entry for each destination.
+##### Exporters property
+One entry for each exporter in the pipeline. Each entry specifies the type of exporter, the D
 
 | Property | Description |
 |:---------|:------------|
