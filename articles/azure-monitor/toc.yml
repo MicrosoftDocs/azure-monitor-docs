@@ -877,12 +877,12 @@ items:
     items:
       - name: Overview
         href: data-collection/pipeline-overview.md
-      - name: Configure pipeline
-        href: data-collection/pipeline-configure.md
+      - name: Configure pipeline with Azure portal
+        href: data-collection/pipeline-configure-portal.md
+      - name: Configure pipeline with Azure portal
+        href: data-collection/pipeline-configure-portal.md
       - name: Configuration methods
         items:
-        - name: Azure portal
-          href: data-collection/pipeline-configure-portal.md
         - name: CLI
           href: data-collection/pipeline-configure-cli.md
         - name: ARM
