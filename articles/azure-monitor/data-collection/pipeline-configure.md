@@ -37,7 +37,7 @@ For more information, see [Product availability by region](https://azure.microso
 
 ## Components
 
-The following diagram shows the components of the Azure Monitor pipeline. The pipeline itself runs on an Arc-enabled Kubernetes cluster in your environment. One or more data flows running in the pipeline listen for incoming data from clients, and the pipeline extension forwards the data to the cloud, using the local cache if necessary.
+The following diagram shows the components of the Azure Monitor pipeline. The pipeline itself runs on an Arc-enabled Kubernetes cluster in your environment. One or more data flows running in the pipeline listen for incoming data from clients, and the pipeline extension forwards the data to the cloud.
 
 :::image type="content" source="./media/pipeline-configure/components.png" lightbox="./media/pipeline-configure/components.png" alt-text="Overview diagram of the components making up Azure Monitor pipeline." border="false"::: 
 
@@ -48,24 +48,17 @@ The following table identifies the components required to enable the Azure Monit
 | Pipeline controller extension | Extension added to your Arc-enabled Kubernetes cluster to support pipeline functionality - `microsoft.monitor.pipelinecontroller`. |
 | Pipeline controller instance | Instance of the pipeline running on your Arc-enabled Kubernetes cluster. |
 | Data flow | Combination of receivers and exporters that run on the pipeline controller instance. Receivers accept data from clients, and exporters to deliver that data to Azure Monitor. |
-| Pipeline configuration | Configuration file that defines the data flows for the pipeline instance. Each data flow includes a receiver and an exporter. The receiver listens for incoming data, and the exporter sends the data to the destination. |
+| Pipeline configuration | Configuration file that defines the data flows for the pipeline instance. Each data flow includes a receiver, processors, and an exporter. The receiver listens for incoming data, and the exporter sends the data to the destination. Processors can convert the data structure and apply a transformation. |
 | Data collection endpoint (DCE) | Endpoint where the data is sent to Azure Monitor in the cloud. The pipeline configuration includes a property for the URL of the DCE so the pipeline instance knows where to send the data. |
-| Pipeline configuration file | Used by the pipeline running in your data center. Defines the data flows for the pipeline instance, cache details, and pipeline transformation if included. |
 | Data collection rule (DCR) | [DCR](./data-collection-rule-overview.md#using-a-dcr) used by Azure Monitor in the cloud to define how the data is received and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
 
 ## Log Analytics workspace tables
 
-Before you configure the data collection process for the pipeline, any destination tables in the Log Analytics workspace must already exist. 
+Before you configure the data collection process for the pipeline, any destination tables in the Log Analytics workspace must already exist. The Azure Monitor pipeline can send data to the following tables.
 
-### Standard tables
-Azure Monitor pipeline can send data to the following built-in tables in a Log Analytics workspace:
-
-> [!IMPORTANT]
-> The send data to either of the following two built-in tables, the Log Analytics workspace must be onboarded to Microsoft Sentinel. You can send data to custom tables without onboarding to Microsoft Sentinel.
-> 
-> - [Syslog](/azure/azure-monitor/reference/tables/syslog)
-> - [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
-
+- [Syslog](/azure/azure-monitor/reference/tables/syslog)
+- [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
+- Any custom table created in the Log Analytics workspace
 
 
 If you're sending data to a custom table, then you need to create that table before you can create any data flows that send to it. The schema of the table must match the data that it receives. There are multiple steps in the collection process where you can modify the incoming data, so the table schema doesn't need to match the source data that you're collecting. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
@@ -216,28 +209,14 @@ Replace the properties in the following template and save them in a json file be
 |:----------|:------------|
 | `name` | Name of the DCR. Must be unique for the subscription. |
 | `location` | Location of the DCR. Must match the location of the DCE. |
-| `dataCollectionEndpointId` | Resource ID of the DCE. |
+| `dataCollectionEndpointId` | Resource ID of the DCE that you previously created. |
 | `streamDeclarations` | Schema of the data being received. One stream is required for each dataflow in the pipeline configuration. The name must be unique in the DCR and must begin with *Custom-*. The `column` sections in the samples below should be used for the OLTP and Syslog data flows. If the schema for your destination table is different, then you can modify it using a transformation defined in the `transformKql` parameter. |
+| `destinations` | Details of one or more Log Analytics workspaces where the data will be sent.
+| `dataFlows` | One or more data flows that each match a set of streams and destinations. The data flow can include an optional transformation to modify the data before it's sent to the destination. The output stream specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. For builtin tables, prefix the table name with *Microsoft-*.  |
 
-**Destinations**
-One or more destinations where the data will be sent.
 
-| Parameter | Description |
-|:----------|:------------|
-| `name` | Name for the destination to reference in the `dataFlows` section. Must be unique for the DCR. |
-| `workspaceResourceId` | Resource ID of the Log Analytics workspace. |
-| `workspaceId` | Workspace ID of the Log Analytics workspace. |
-
-**Data flows**<br>
-Matches streams and destinations. One entry for each stream/destination combination. 
-
-| Parameter | Description |
-|:----------|:------------|
-| - `streams` | One or more streams (defined in `streamDeclarations`). You can include multiple streams if they're being sent to the same destination. |
-| - `destinations` | One or more destinations (defined in `destinations`). You can include multiple destinations if they're being sent to the same destination. |
-| - `transformKql` | Transformation to apply to the data before sending it to the destination. Use `source` to send the data without any changes. The output of the transformation must match the schema of the destination table. See [Data collection transformations in Azure Monitor](data-collection-transformations.md) for details on transformations. |
-| - `outputStream` | Specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. For builtin tables, prefix the table name with *Microsoft-*. |
-
+<details>
+<summary><b>DCR sample</b></summary>
 
 ```json
 {
@@ -312,12 +291,15 @@ Matches streams and destinations. One entry for each stream/destination combinat
 }
 ```
 
+</details>
+
+
 
 ### Give DCR access to pipeline extension
 
-The Arc-enabled Kubernetes cluster must have access to the DCR to send data to the cloud. Use the following command to retrieve the object ID of the System Assigned Identity for your cluster.
+The Arc-enabled Kubernetes cluster must have access to the DCR to send data to the cloud. Provide this access by assigning the **Monitoring Metrics Publisher** role to the System Assigned Identity of the pipeline extension on your cluster.
 
-::: image type="content" source="./media/pipeline-configure/extension-object-id.png" lightbox="./media/pipeline-configure/extension-object-id.png" alt-text="Screenshot showing the object ID of the pipeline extension on the Arc-enabled cluster." border="false":::
+You'll require the object ID of your cluster's System Assigned Identity. Retrieve the Azure portal or using the following CLI command:
 
 ```azurecli
 az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --query "identity.principalId" -o tsv 
@@ -325,6 +307,8 @@ az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --re
 ## Example:
 az k8s-extension show --name my-pipeline-extension --cluster-name my-cluster --resource-group my-resource-group --cluster-type connectedClusters --query "identity.principalId" -o tsv 
 ```
+
+:::image type="content" source="./media/pipeline-configure/extension-object-id.png" lightbox="./media/pipeline-configure/extension-object-id.png" alt-text="Screenshot showing the object ID of the pipeline extension on the Arc-enabled cluster." border="false":::
 
 
 ### [CLI](#tab/cli)
@@ -364,9 +348,7 @@ az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --ro
 
 ## Create pipeline configuration
 
-The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON similar to the structure of a DCR.
-
-Replace the properties in the following table before deploying the template.
+The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON, similar to the structure of a DCR.
 
 #### General properties
 
@@ -375,21 +357,17 @@ Replace the properties in the following table before deploying the template.
 | `name` | Name of the pipeline instance. Must be unique in the subscription. |
 | `location` | Location of the pipeline instance. |
 | `extendedLocation` | The `name` property includes the resource ID of the custom location created above. The `type` property is always `CustomLocation`.  |
-
-#### Receivers property
-One entry for each receiver in the pipeline. Each entry specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
-
-| Property | Description |
-|:---------|:------------|
-| `type` | Type of data received. Current options are `OTLP` and `Syslog`. |
-| `name` | Name for the receiver referenced in the `service` section. Must be unique for the pipeline instance. |
-| `endpoint` | Address and port the receiver listens on. Use `0.0.0.0` for all addresses. |
+| `receivers` | One entry for each receiver in the pipeline. Each receiver specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
+| `processors` | Processors modify the data in some way before it's sent to the cloud. This could be converting data to a known format such as Syslog, or applying a [transformation](./pipeline-transformations.md) to filter or modify the data. This section should be empty if no processors are used.
+| `exporters` | Includes the details of the DCR that the pipeline will send data to.<br>- `dataCollectionEndpointUrl`:  Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br>- `dataCollectionRule`: Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br>- `stream`: Name of the stream in your DCR that will accept the data.<br> - `maxStorageUsage`: Capacity of the cache. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br>- `retentionPeriod`: Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
+| `service` | - `pipelines`: Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br>- `persistence`: Specifies the name of the persistent volume if caching is enabled. |
 
 
-#### Processors property
-Processors modify the data in some way before it's sent to the cloud. This could be converting data to a known format such as Syslog, or applying a [transformation](./pipeline-transformations.md) to filter or modify the data. This section should be empty if no processors are used.
 
-##### Syslog processor
+
+
+<details>
+<summary>Syslog processor</summary>
 The Syslog processor converts incoming data to the Syslog format used by many systems.
 
 ``` json
@@ -398,8 +376,11 @@ The Syslog processor converts incoming data to the Syslog format used by many sy
     "name": "ms-syslog-processor"
 }
 ```
+</details>
 
-##### CEF processor
+<details>
+<summary>CEF processor</summary>
+
 The CEF processor converts incoming data to the Common Event Format (CEF) used by many security information and event management (SIEM) systems.
 
 ``` json
@@ -408,9 +389,11 @@ The CEF processor converts incoming data to the Common Event Format (CEF) used b
     "name": "ms-cef-processor"
 }
 ```
+</details>
 
+<details>
+<summary>Batch processor</summary>
 
-##### Batch processor
 The batch processor collects data for a specified milliseconds before sending it to the cloud. If this processor is not included, the batch time is set to the default of one minutes (60000 milliseconds).
 
 ``` json
@@ -423,7 +406,11 @@ The batch processor collects data for a specified milliseconds before sending it
 }
 ```
 
-##### Transformation processor
+</details>
+
+<details>
+<summary>Transformation processor</summary>
+
 The transformation processor applies a [transformation](./pipeline-transformations.md) to modify the data before it's sent to the cloud.
 
 ``` json
@@ -435,38 +422,7 @@ The transformation processor applies a [transformation](./pipeline-transformatio
     }
 }
 ```
-
-| Property | Description |
-|:---------|:------------|
-| `type` | Supported values are:<br>`Batch` - Defines the time for that each batch of data is collected and sent to the cloud<br>`MicrosoftSyslog` - Converts incoming data to Syslog<br>`MicrosoftCommonSecurityLog` - Converts incoming data to CEF<br>`TransformLanguages` - Applies a transformation |
-| `name` | Name for the processor referenced in the `service` section. Must be unique for the pipeline instance. |
-| `transformLanguage`<br>- `transformStatement` | KQL transformation statement to modify the data. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
-
-##### Exporters property
-One entry for each exporter in the pipeline. Each entry specifies the type of exporter, the D
-
-| Property | Description |
-|:---------|:------------|
-| `type` | Only currently supported type is `AzureMonitorWorkspaceLogs`. |
-| `name` | Must be unique for the pipeline instance. The name is used in the `pipelines` section of the configuration. |
-| `dataCollectionEndpointUrl` | URL of the DCE where the pipeline will send the data. You can locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value. |
-| `dataCollectionRule` | Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section. |
-| - `stream` | Name of the stream in your DCR that will accept the data. |
-| - `maxStorageUsage` | Capacity of the cache. When 80% of this capacity is reached, the oldest data is pruned to make room for more data. |
-| - `retentionPeriod` | Retention period in minutes. Data is pruned after this amount of time. |
-| - `schema` | Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
-
-**Service**<br>One entry for each pipeline instance. Only one instance for each pipeline extension is recommended.
-**Pipelines**<br>One entry for each data flow. Each entry matches a `receiver` with an `exporter`, including an optional 
-`processor` if a [transformation](./pipeline-transformations.md) is used. 
-
-| Property | Description |
-|:---------|:------------|
-| `name` | Unique name of the pipeline. |
-| `receivers` | One or more receivers to listen for data to receive. |
-| `processors` | Reserved for future use. |
-| `exporters` | One or more exporters to send the data to the cloud. |
-| `persistence` | Name of the persistent volume used for the cache. Remove this parameter if you don't want to enable the cache. |
+</details>
 
 
 ```json
