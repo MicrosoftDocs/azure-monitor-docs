@@ -65,10 +65,10 @@ If you're getting started with Application Insights and don't need to migrate fr
 
 1. Remove Initialization Code and customizations
 
-    * Remove any references to Application Insights types in your codebase.
+    Remove any references to Application Insights types in your codebase.
 
-        > [!TIP]
-        > After removing the Application Insights package, you can re-build your application to get a list of references that need to be removed.
+    > [!TIP]
+    > After removing the Application Insights package, you can re-build your application to get a list of references that need to be removed.
 
     * Remove Application Insights from your `ServiceCollection` by deleting the following line:
 
@@ -139,11 +139,11 @@ If you're getting started with Application Insights and don't need to migrate fr
 
     * Remove references to `TelemetryConfiguration` or `TelemetryClient`. It's a part of your application startup to initialize the Application Insights SDK.
 
-    The following scenarios are optional and apply to advanced users.
+    * The following scenarios are optional and apply to advanced users.
 
-    * If you have any more references to the `TelemetryClient`, which are used to [manually record telemetry](./api-custom-events-metrics.md), they should be removed.
-    * If you added any [custom filtering or enrichment](./api-filtering-sampling.md) in the form of a custom `TelemetryProcessor` or `TelemetryInitializer`, they should be removed. You can find them referenced in your configuration.
-    * If your project has a `FilterConfig.cs` in the `App_Start` directory, check for any custom exception handlers that reference Application Insights and remove.
+        * If you have any more references to the `TelemetryClient`, which are used to [manually record telemetry](./api-custom-events-metrics.md), they should be removed.
+        * If you added any [custom filtering or enrichment](./api-filtering-sampling.md) in the form of a custom `TelemetryProcessor` or `TelemetryInitializer`, they should be removed. You can find them referenced in your configuration.
+        * If your project has a `FilterConfig.cs` in the `App_Start` directory, check for any custom exception handlers that reference Application Insights and remove.
 
 1. Remove JavaScript Snippet
 
@@ -189,7 +189,7 @@ If you're getting started with Application Insights and don't need to migrate fr
     > [!TIP]
     > After removing the Application Insights package, you can re-build your application to get a list of references that need to be removed.
 
-    Remove references to `TelemetryConfiguration` or `TelemetryClient`. It should be part of your application startup to initialize the Application Insights SDK.
+    * Remove references to `TelemetryConfiguration` or `TelemetryClient`. It should be part of your application startup to initialize the Application Insights SDK.
 
         ```csharp
         var config = TelemetryConfiguration.CreateDefault();
@@ -1236,8 +1236,8 @@ This guide provides two options to upgrade from the Application Insights Node.js
 
 #### Azure Monitor OpenTelemetry Distro changes and limitations
 
-   * The APIs from the Application Insights SDK 2.X aren't available in the Azure Monitor OpenTelemetry Distro. While Application Insights SDK 3.X provides a nonbreaking upgrade path for telemetry ingestion (such as custom events and metrics), most SDK 2.X APIs are not supported and require code changes to OpenTelemetry-based APIs.
-   * Filtering dependencies, logs, and exceptions by operation name is not yet supported.
+* The APIs from the Application Insights SDK 2.X aren't available in the Azure Monitor OpenTelemetry Distro. While Application Insights SDK 3.X provides a nonbreaking upgrade path for telemetry ingestion (such as custom events and metrics), most SDK 2.X APIs aren't supported and require code changes to OpenTelemetry-based APIs.
+* Filtering dependencies, logs, and exceptions by operation name isn't supported yet.
 
 ## Upgrade
 
@@ -1261,7 +1261,7 @@ The following changes and limitations apply to both upgrade paths.
 
 ##### Node.js version support
 
-For a version of Node.js to be supported by the ApplicationInsights 3.X SDK, it must have overlapping support from both the Azure SDK and OpenTelemetry. Check the [OpenTelemetry supported runtimes](https://github.com/open-telemetry/opentelemetry-js#supported-runtimes) for the latest updates. Users on older versions like Node 8, previously supported by the ApplicationInsights SDK, can still use OpenTelemetry solutions but can experience unexpected or breaking behavior. The ApplicationInsights SDK also depends on the Azure SDK for JS which does not guarantee support for any Node.js versions that have reached end-of-life. See [the Azure SDK for JS support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md). For a version of Node.js to be supported by the ApplicationInsights 3.X SDK, it must have overlapping support from both the Azure SDK and OpenTelemetry.
+For a version of Node.js to be supported by the ApplicationInsights 3.X SDK, it must have overlapping support from both the Azure SDK and OpenTelemetry. Check the [OpenTelemetry supported runtimes](https://github.com/open-telemetry/opentelemetry-js#supported-runtimes) for the latest updates. Users on older versions like Node 8, previously supported by the ApplicationInsights SDK, can still use OpenTelemetry solutions but can experience unexpected or breaking behavior. The ApplicationInsights SDK also depends on the Azure SDK for JS which doesn't guarantee support for any Node.js versions that have reached end-of-life. See [the Azure SDK for JS support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md). For a version of Node.js to be supported by the ApplicationInsights 3.X SDK, it must have overlapping support from both the Azure SDK and OpenTelemetry.
 
 ##### Configuration options
 
@@ -1332,8 +1332,8 @@ useAzureMonitor(options);
 Follow these steps to migrate Python applications to the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python).
 
 > [!WARNING]
-> * The [OpenCensus "How to Migrate to OpenTelemetry" blog](https://opentelemetry.io/blog/2023/sunsetting-opencensus/#how-to-migrate-to-opentelemetry) is not applicable to Azure Monitor users.
-> * The [OpenTelemetry OpenCensus shim](https://pypi.org/project/opentelemetry-opencensus-shim/) is not recommended or supported by Microsoft.
+> * The [OpenCensus "How to Migrate to OpenTelemetry" blog](https://opentelemetry.io/blog/2023/sunsetting-opencensus/#how-to-migrate-to-opentelemetry) isn't applicable to Azure Monitor users.
+> * The [OpenTelemetry OpenCensus shim](https://pypi.org/project/opentelemetry-opencensus-shim/) isn't recommended or supported by Microsoft.
 > * The following outlines the only migration plan for Azure Monitor customers.
 
 ## Step 1: Uninstall OpenCensus libraries
