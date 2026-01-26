@@ -30,7 +30,7 @@ The best way to control access at the table level is to implement [Granular RBAC
 
 ## Workspace access control
 
-Azure resource queries examine Log Analytics workspaces as possible data sources. However, administrators can restrict access to the workspace via roles and restrict access to the tables with granular RBAC. By default, the API only returns results from workspaces and tables the user has permissions to access. To see ensure resource queries adhere to workspace and table RBAC, see the details outlined in the [granular RBAC FAQ](../granular-rbac-log-analytics.md#frequently-asked-questions).
+Azure resource queries examine Log Analytics workspaces as possible data sources. However, administrators can restrict access to the workspace via roles and restrict access to the tables with granular RBAC. By default, the API only returns results from workspaces and tables the user has permissions to access. To ensure resource queries adhere to workspace and table RBAC, see the details outlined in the [granular RBAC FAQ](../granular-rbac-log-analytics.md#frequently-asked-questions).
 
 ## Troubleshooting
 
