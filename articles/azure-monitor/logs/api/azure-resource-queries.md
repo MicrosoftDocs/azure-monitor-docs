@@ -15,7 +15,7 @@ In Azure Monitor Log Analytics, queries typically execute in the context of a wo
 
 Consider the following example to understand the request format:
 
-| Azure resource with a fully qualified identifier |  |
+| Request portion | Syntax  |
 |----|----|
 | Azure resource with a fully qualified identifier | `/subscriptions/<sid>/resourceGroups/<rg>/providers/<providerName>/<resourceType>/<resourceName>` |
 | Request format for this resource's logs against the direct API endpoint | `https://api.loganalytics.azure.com/v1/subscriptions/<sid>/resourceGroups/<rg>/providers/<providerName>/<resourceType>/<resourceName>/query` |
@@ -26,11 +26,11 @@ Azure resource queries produce the [same response shape](response-format.md) as 
 
 ## Table access and RBAC
 
-The best way to control access at the table level is to implement [Granular RBAC](manage-table-access.md#configure-granular-rbac-for-table-level-access).
+The best way to control access at the table level is to implement [Granular RBAC](../manage-table-access.md#configure-granular-rbac-for-table-level-access).
 
 ## Workspace access control
 
-Azure resource queries examine Log Analytics workspaces as possible data sources. However, administrators can restrict access to the workspace via roles and restrict access to the tables with granular RBAC. By default, the API only returns results from workspaces and tables the user has permissions to access. To see ensure resource queries adhere to workspace and table RBAC, see the details outlined in the [granular RBAC FAQ](granular-rbac-log-analytics.md#frequently-asked-questions).
+Azure resource queries examine Log Analytics workspaces as possible data sources. However, administrators can restrict access to the workspace via roles and restrict access to the tables with granular RBAC. By default, the API only returns results from workspaces and tables the user has permissions to access. To see ensure resource queries adhere to workspace and table RBAC, see the details outlined in the [granular RBAC FAQ](../granular-rbac-log-analytics.md#frequently-asked-questions).
 
 ## Troubleshooting
 
