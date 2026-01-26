@@ -82,7 +82,7 @@ To get information about the query data sources like regions, workspaces, cluste
 
 ## `Prefer:include-permissions` - List permissions
 
-To query logs for Azure resources, users must have appropriate permissions to access both the resource and the Log Analytics workspace containing the logs. If a user lacks the necessary permissions, different error responses may be returned depending on the specific permission that is missing. A good permissions troubleshooting step is to include the following header in the request:
+To query logs for Azure resources, users must have appropriate permissions to access both the resource and the Log Analytics workspace containing the logs. If a user lacks the necessary permissions, different error responses might be returned depending on the specific permission that's missing. A good permissions troubleshooting step is to include the following header in the request:
 
 ```
     Prefer: include-permissions=true
