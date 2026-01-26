@@ -70,9 +70,10 @@ The default query timeout is 3 minutes (180 seconds). To adjust the query timeou
     Prefer: wait=300
 ```
 
-For more informationn, see [Logs query API server timeouts](timeouts.md). 
+For more information, see [Logs query API server timeouts](timeouts.md). 
 
 ## `Prefer:include-dataSources` - Query data sources
+
 To get information about the query data sources - regions, workspaces, clusters and tables, include this header:
 
 ```
