@@ -22,7 +22,7 @@ Benefits of using pipeline transformations include:
 - Aggregate data to summarize high-volume logs into actionable insights 
 - Modify schema of incoming data to match required format for ingestion
 
-Azure Monitor Pipeline solves the challenges of high ingestion costs and complex analytics by enabling transformations before ingestion, so your data is clean, structured, and optimized before it even hits your Log Analytics Workspace. 
+Azure Monitor pipeline solves the challenges of high ingestion costs and complex analytics by enabling transformations before ingestion, so your data is clean, structured, and optimized before it even hits your Log Analytics Workspace. 
 
 
 ## Basic query structure
@@ -108,32 +108,9 @@ source
 | summarize AvgCPU = avg(CPUValue), MaxCPU = max(CPUValue)
 ```
 
-### Time interval
-The default time interval for aggregations is one minute, meaning that all records within each one-minute window are grouped together for aggregation when you use the `summarize` operator. This is the only time interval supported in the Azure portal. To specify different time intervals, you must use ARM templates to define the transformation as shown in the following example. The value for `timeout` is specified in milliseconds.
+Data in Azure Monitor pipeline is retrieved and processed in batches of one minute intervals by default. Aggregations in a pipeline transformation are performed over each batch of data meaning that a query using the `summarize` operator will create an aggregated record each minute.
 
-```json
-{
-    "type": "Batch",
-    "name": "batch-processor",
-    "batch": {
-        "timeout": 60000
-    }
-}
-```
-
-### Binning by time
-Aggregations can use the `bin()` operator to group data into fixed time intervals or *bins*. Since pipeline transformations with aggregations have a separate time interval, 
-
-When aggregating with summarize and binning by time, you may receive multiple records for the same time interval. This occurs because of batching and the streaming nature of data ingestion.
-
-
-
-
-
-// Aggregate events by DestinationIP and DestinationPort by grouping into 1 min time intervals 
-source | summarize EventCount=count() by TimeGenerated=bin(TimeGenerated, 1m), DestinationIP, DestinationPort
-
-
+To change this time window, you can configure the `Batch` processor in the pipeline configuration as described in [Pipeline configuration](./pipeline-configure.md#pipeline-configuration). You can't change the time interval using the Azure portal.
 
 ## Supported KQL
 The following KQL functions and operators are supported in Azure Monitor pipeline transformations:

@@ -22,7 +22,7 @@ This article describes how to secure the connection between your pipeline and Az
 
 
 ## Configure cert-manager with external PKI
-This section describes how to install cert-manager as an Azure Arc extension. Alternatively, you can install the open source version of cert-manager using the guidance at [Deploy cert-manager on Azure Kubernetes Service (AKS) and use Let's Encrypt to sign a certificate for an HTTPS website](https://cert-manager.io/docs/tutorials/getting-started-aks-letsencrypt/).
+This section describes how to install cert-manager as an Azure Arc extension.
 
 ### Install cert-manager for Arc-enabled Kubernetes
 

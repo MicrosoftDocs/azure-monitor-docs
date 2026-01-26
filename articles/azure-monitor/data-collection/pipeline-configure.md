@@ -374,11 +374,11 @@ az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --ro
 
 ---
 
-## Create pipeline configuration
+## Pipeline configuration
 
 The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON, similar to the structure of a DCR. It can only be installed using an ARM template.
 
-#### General properties
+The following table describes the sections of the pipeline configuration and critical properties. See the sample configuration files below the table for the structure of each section.
 
 | Property | Description |
 |:---------|:------------|

@@ -8,7 +8,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor pipeline pod placement
 
-Pod placement allows you to manage how your [Azure Monitor pipeline instances](./pipeline-overview.md) are scheduled across Kubernetes cluster nodes. This feature allows you to target specific nodes based on their capabilities, control instance distribution to prevent resource contention, and enforce isolation policies for high-scale deployments.
+As Azure Monitor pipeline scales, default scheduling behavior in your Kubernetes environment may not meet your performance, isolation, or compliance needs. Pod placement allows you to manage how your [Azure Monitor pipeline instances](./pipeline-overview.md) are scheduled across Kubernetes cluster nodes. This feature allows you to target specific nodes based on their capabilities, control instance distribution to prevent resource contention, and enforce isolation policies for high-scale deployments.
 
 ## When to Use Pod Placement 
 
