@@ -358,72 +358,15 @@ The pipeline configuration defines the details of the pipeline instance and depl
 | `location` | Location of the pipeline instance. |
 | `extendedLocation` | The `name` property includes the resource ID of the custom location created above. The `type` property is always `CustomLocation`.  |
 | `receivers` | One entry for each receiver in the pipeline. Each receiver specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
-| `processors` | Processors modify the data in some way before it's sent to the cloud. This could be converting data to a known format such as Syslog, or applying a [transformation](./pipeline-transformations.md) to filter or modify the data. This section should be empty if no processors are used.
-| `exporters` | Includes the details of the DCR that the pipeline will send data to.<br>- `dataCollectionEndpointUrl`:  Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in your DCR that will accept the data.<br><br>`maxStorageUsage`<br> Capacity of the cache. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br><br>`retentionPeriod`<br> Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
-| `service` | - `pipelines`: Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br>- `persistence`: Specifies the name of the persistent volume if caching is enabled. |
+| `processors` | Processors modify the data in some way before it's sent to the cloud. This section should be empty if no processors are used. Valid processors include the following:<br><br>`MicrosoftSyslog`<br>Converts data to Syslog format.<br><br>`MicrosoftCommonSecurityLog`<br>Converts data to CEF format.<br><br>`Batch`<br>Species the batch time in milliseconds. Default is one minute if this processor isn't specified.<br><br>`TransformLanguage`<br>Specifies a transformation applied to the data before it's sent to the cloud. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
+| `exporters` | Includes the details of the DCR that the pipeline will send data to. Includes the following proprties.<br><br>`dataCollectionEndpointUrl`<br>Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in your DCR that will accept the data.<br><br>`maxStorageUsage`<br> Capacity of the cache. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br><br>`retentionPeriod`<br> Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
+| `service` | `pipelines`<br>Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br><br>`persistence`<br>Specifies the name of the persistent volume if caching is enabled. |
 
 
-
-
-
-<details>
-<summary>Syslog processor</summary>
-The Syslog processor converts incoming data to the Syslog format used by many systems.
-
-``` json
-{
-    "type": "MicrosoftSyslog",
-    "name": "ms-syslog-processor"
-}
-```
-</details>
+<br>
 
 <details>
-<summary>CEF processor</summary>
-
-The CEF processor converts incoming data to the Common Event Format (CEF) used by many security information and event management (SIEM) systems.
-
-``` json
-{
-    "type": "MicrosoftCommonSecurityLog",
-    "name": "ms-cef-processor"
-}
-```
-</details>
-
-<details>
-<summary>Batch processor</summary>
-
-The batch processor collects data for a specified milliseconds before sending it to the cloud. If this processor is not included, the batch time is set to the default of one minutes (60000 milliseconds).
-
-``` json
-{
-    "type": "Batch",
-    "name": "batch-processor",
-    "batch": {
-        "timeout": 60000
-    }
-}
-```
-
-</details>
-
-<details>
-<summary>Transformation processor</summary>
-
-The transformation processor applies a [transformation](./pipeline-transformations.md) to modify the data before it's sent to the cloud.
-
-``` json
-{
-    "type": "TransformLanguage",
-    "name": "my-transform",
-    "transformLanguage": {
-        "transformStatement": "source"
-    }
-}
-```
-</details>
-
+<summary><b>Sample</b></summary>
 
 ```json
 {
@@ -550,72 +493,7 @@ The transformation processor applies a [transformation](./pipeline-transformatio
     ]
 }
 ```
-
-
-
-## Enable cache
-
-Edge devices in some environments may experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to cache data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this will vary based on your particular environment, but the configuration must meet the following requirements:
-
-* Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
-* Access mode must support `ReadWriteMany`.
-
-Once the volume is created in the appropriate namespace, configure it using parameters in the pipeline configuration file. Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
-
-> [!CAUTION]
-> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
-
-
-
-## Workflow
-
-While you don't need a detail understanding of the different steps performed by the Azure Monitor pipeline to configure it, such an understanding can help to perform more advanced configuration such as transforming the data before it's stored in its destination.
-
-The following tables and diagrams describe the detailed steps and components in the process for collecting data using the pipeline and passing it to the cloud for storage in Azure Monitor. 
-
-| Step | Action | Supporting configuration |
-|:-----|:-------|:-------------------------|
-| 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the pipeline receiver and sends data in the expected format for the receiver type. |
-| 2. | Receiver forwards data to the exporter. | Receiver and exporter are configured in the same pipeline. |
-| 3. | Optional pipeline transformation is applied to the data. | The data flow may include a transformation that filters or modifies the data before it's sent to Azure Monitor. The output of the transformation must match the schema expected by the DCR. |
-| 4. | Exporter tries to send the data to the cloud. | Exporter in the pipeline configuration includes URL of the DCE, a unique identifier for the DCR, and the stream in the DCR that defines how the data will be processed. |
-| 4a. | Exporter stores data in the local cache if it can't connect to the DCE. | Persistent volume for the cache and configuration of the local cache is enabled in the pipeline configuration. |
-
-:::image type="content" source="./media/pipeline-configure/pipeline-data-flow.png" lightbox="./media/pipeline-configure/pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor pipeline." border="false":::
-
-| Step | Action | Supporting configuration |
-|:-----|:-------|:-------------------------|
-| 5. | Azure Monitor accepts the incoming data. | The DCR includes a schema definition for the incoming stream that must match the schema of the data coming from the pipeline. |
-| 6. | Optional transformation applied to the data. | The DCR may include a transformation that filters or modifies the data before it's sent to the destination. The output of the transformation must match the schema of the destination table. |
-| 7. | Azure Monitor sends the data to the destination. | The DCR includes a destination that specifies the Log Analytics workspace and table where the data will be stored. |
-
-:::image type="content" source="./media/pipeline-configure/cloud-data-flow.png" lightbox="./media/pipeline-configure/cloud-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor." border="false":::
-
-
-## Verify configuration
-Once you've complete the configuration using your chosen method, use the following steps verify that the pipeline is running correctly in your environment.
-
-### Verify pipeline components running in the cluster
-
-In the Azure portal, navigate to the **Kubernetes services** menu and select your Arc-enabled Kubernetes cluster. Select **Services and ingresses** and ensure that you see the following services:
-
-* \<pipeline name\>-external-service
-* \<pipeline name\>-service
-
-:::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline."::: 
-
-Click on the entry for **\<pipeline name\>-external-service** and note the IP address and port in the **Endpoints** column. This is the external IP address and port that your clients will send data to. See [Retrieve ingress endpoint](./pipeline-configure-clients.md#retrieve-ingress-endpoint) for retrieving this address from the client.
-
-### Verify heartbeat
-
-Each pipeline configured in your pipeline instance will send a heartbeat record to the `Heartbeat` table in your Log Analytics workspace every minute. The contents of the `OSMajorVersion` column should match the name your pipeline instance. If there are multiple workspaces in the pipeline instance, then the first one configured will be used.
-
-Retrieve the heartbeat records using a log query as in the following example:
-
-:::image type="content" source="./media/pipeline-configure/heartbeat-records.png" lightbox="./media/pipeline-configure/heartbeat-records.png" alt-text="Screenshot of log query that returns heartbeat records for Azure Monitor pipeline.":::
-
-
-
+</details>
 
 <details>
 <summary><b>Syslog</b></summary>
@@ -1436,6 +1314,72 @@ Retrieve the heartbeat records using a log query as in the following example:
 ```
 
 </details>
+
+
+## Enable cache
+
+Edge devices in some environments may experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to cache data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this will vary based on your particular environment, but the configuration must meet the following requirements:
+
+* Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
+* Access mode must support `ReadWriteMany`.
+
+Once the volume is created in the appropriate namespace, configure it using parameters in the pipeline configuration file. Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
+
+> [!CAUTION]
+> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
+
+
+
+## Workflow
+
+While you don't need a detail understanding of the different steps performed by the Azure Monitor pipeline to configure it, such an understanding can help to perform more advanced configuration such as transforming the data before it's stored in its destination.
+
+The following tables and diagrams describe the detailed steps and components in the process for collecting data using the pipeline and passing it to the cloud for storage in Azure Monitor. 
+
+| Step | Action | Supporting configuration |
+|:-----|:-------|:-------------------------|
+| 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the pipeline receiver and sends data in the expected format for the receiver type. |
+| 2. | Receiver forwards data to the exporter. | Receiver and exporter are configured in the same pipeline. |
+| 3. | Optional pipeline transformation is applied to the data. | The data flow may include a transformation that filters or modifies the data before it's sent to Azure Monitor. The output of the transformation must match the schema expected by the DCR. |
+| 4. | Exporter tries to send the data to the cloud. | Exporter in the pipeline configuration includes URL of the DCE, a unique identifier for the DCR, and the stream in the DCR that defines how the data will be processed. |
+| 4a. | Exporter stores data in the local cache if it can't connect to the DCE. | Persistent volume for the cache and configuration of the local cache is enabled in the pipeline configuration. |
+
+:::image type="content" source="./media/pipeline-configure/pipeline-data-flow.png" lightbox="./media/pipeline-configure/pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor pipeline." border="false":::
+
+| Step | Action | Supporting configuration |
+|:-----|:-------|:-------------------------|
+| 5. | Azure Monitor accepts the incoming data. | The DCR includes a schema definition for the incoming stream that must match the schema of the data coming from the pipeline. |
+| 6. | Optional transformation applied to the data. | The DCR may include a transformation that filters or modifies the data before it's sent to the destination. The output of the transformation must match the schema of the destination table. |
+| 7. | Azure Monitor sends the data to the destination. | The DCR includes a destination that specifies the Log Analytics workspace and table where the data will be stored. |
+
+:::image type="content" source="./media/pipeline-configure/cloud-data-flow.png" lightbox="./media/pipeline-configure/cloud-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor." border="false":::
+
+
+## Verify configuration
+Once you've complete the configuration using your chosen method, use the following steps verify that the pipeline is running correctly in your environment.
+
+### Verify pipeline components running in the cluster
+
+In the Azure portal, navigate to the **Kubernetes services** menu and select your Arc-enabled Kubernetes cluster. Select **Services and ingresses** and ensure that you see the following services:
+
+* \<pipeline name\>-external-service
+* \<pipeline name\>-service
+
+:::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline."::: 
+
+Click on the entry for **\<pipeline name\>-external-service** and note the IP address and port in the **Endpoints** column. This is the external IP address and port that your clients will send data to. See [Retrieve ingress endpoint](./pipeline-configure-clients.md#retrieve-ingress-endpoint) for retrieving this address from the client.
+
+### Verify heartbeat
+
+Each pipeline configured in your pipeline instance will send a heartbeat record to the `Heartbeat` table in your Log Analytics workspace every minute. The contents of the `OSMajorVersion` column should match the name your pipeline instance. If there are multiple workspaces in the pipeline instance, then the first one configured will be used.
+
+Retrieve the heartbeat records using a log query as in the following example:
+
+:::image type="content" source="./media/pipeline-configure/heartbeat-records.png" lightbox="./media/pipeline-configure/heartbeat-records.png" alt-text="Screenshot of log query that returns heartbeat records for Azure Monitor pipeline.":::
+
+
+
+
 
 ## Next steps
 
