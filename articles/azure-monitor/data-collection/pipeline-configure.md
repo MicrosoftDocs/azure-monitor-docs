@@ -213,7 +213,6 @@ DCRs are formatted as JSON with the sections described in the following table. T
 
 Replace the properties in the sample template and save them in a json file before running the CLI command to create the DCR. See [Structure of a data collection rule in Azure Monitor](data-collection-rule-overview.md) for further details on the structure of a DCR.
 
-##### General properties
 
 | Parameter | Description |
 |:----------|:------------|
@@ -223,6 +222,22 @@ Replace the properties in the sample template and save them in a json file befor
 | `streamDeclarations` | Schema of the data being received. One stream is required for each dataflow in the pipeline configuration. The name must be unique in the DCR and must begin with *Custom-*. The `column` sections in the samples below should be used for the OLTP and Syslog data flows. If the schema for your destination table is different, then you can modify it using a transformation defined in the `transformKql` parameter. |
 | `destinations` | Details of one or more Log Analytics workspaces where the data will be sent.
 | `dataFlows` | One or more data flows that each match a set of streams and destinations. The data flow can include an optional transformation to modify the data before it's sent to the destination. The output stream specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. For Azure tables, prefix the table name with *Microsoft-*.  |
+
+### [CLI](#tab/cli)
+
+```azurecli
+az monitor data-collection rule create --name 'myDCRName' --location <location> --resource-group <resource-group> --rule-file '<dcr-file-path.json>'
+
+## Example
+az monitor data-collection rule create --name my-pipeline-dcr --location westus2 --resource-group 'my-resource-group' --rule-file 'C:\MyDCR.json'
+```
+
+### [ARM](#tab/arm)
+
+```json
+```
+
+---
 
 <br>
 
@@ -306,21 +321,7 @@ Replace the properties in the sample template and save them in a json file befor
 
 
 
-### [CLI](#tab/cli)
 
-```azurecli
-az monitor data-collection rule create --name 'myDCRName' --location <location> --resource-group <resource-group> --rule-file '<dcr-file-path.json>'
-
-## Example
-az monitor data-collection rule create --name my-pipeline-dcr --location westus2 --resource-group 'my-resource-group' --rule-file 'C:\MyDCR.json'
-```
-
-### [ARM](#tab/arm)
-
-```json
-```
-
----
 
 ### Give DCR access to pipeline extension
 

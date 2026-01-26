@@ -884,7 +884,7 @@ items:
           href: data-collection/pipeline-configure-portal.md
         - name: CLI and templates
           displayName: Azure Monitor pipeline
-        href: data-collection/pipeline-configure.md
+          href: data-collection/pipeline-configure.md
       - name: Configure clients
         href: data-collection/pipeline-configure-clients.md
       - name: Transformations

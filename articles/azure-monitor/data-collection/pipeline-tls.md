@@ -22,15 +22,15 @@ This article describes how to secure the connection between your pipeline and Az
 
 
 ## Configure cert-manager with external PKI
-This section describes how to install cert-manager as an Azure Arc extension. Alernatively, you can install the open source version of cert-manager using the guidance at [Deploy cert-manager on Azure Kubernetes Service (AKS) and use Let's Encrypt to sign a certificate for an HTTPS website](https://cert-manager.io/docs/tutorials/getting-started-aks-letsencrypt/).
+This section describes how to install cert-manager as an Azure Arc extension. Alternatively, you can install the open source version of cert-manager using the guidance at [Deploy cert-manager on Azure Kubernetes Service (AKS) and use Let's Encrypt to sign a certificate for an HTTPS website](https://cert-manager.io/docs/tutorials/getting-started-aks-letsencrypt/).
 
 ### Install cert-manager for Arc-enabled Kubernetes
 
 > [!NOTE]
 > Supported Kubernetes distributions for cert‑manager extension on Arc-enabled Kubernetes include the following.
 >
-> - VMware Tanzu Kubernetes Grid Multi‑Cloud (TKGm) v1.28.11
-> - Suse Rancher K3s v1.33.3+k3s1
+> - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11
+> - SUSE Rancher K3s v1.33.3+k3s1
 > - AKS Arc v1.32.7
 
 Installing cert-manager as a cluster managed extension (CME) will register the `cert-manager` and `trust-manager` services on your cluster. 
@@ -38,7 +38,7 @@ Installing cert-manager as a cluster managed extension (CME) will register the `
 1. Remove any existing instances of `cert‑manager` and `trust‑manager` from the cluster. Any open source versions must be removed before installing the Microsoft version.
 
     > [!WARNING]
-    > Between uninstalling the open source version and installing the Arc extension, certificate rotation will not occur, and trust bundles will not be distributed to the new namespaces. Ensure this period is as short as possible to minimize potential security risks. Uninstalling the open source cert-manager and trust-manager does not remove any existing certificates or related resources you created. These will remain usable once the Azure cert-manager is installed.
+    > Between uninstalling the open source version and installing the Arc extension, certificate rotation won't occur, and trust bundles won't be distributed to the new namespaces. Ensure this period is as short as possible to minimize potential security risks. Uninstalling the open source cert-manager and trust-manager doesn't remove any existing certificates or related resources you created. These will remain usable once the Azure cert-manager is installed.
 
     The specific steps for removal will depend on your installation method. See [Uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [Uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling) for detailed guidance. If you used Helm for installation, use the following command to check which namespace cert-manager and trust-manager installed using this command.
 
