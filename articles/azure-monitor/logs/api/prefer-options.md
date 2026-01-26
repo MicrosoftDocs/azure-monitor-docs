@@ -64,7 +64,7 @@ The header includes a `statistics` property in the response that describes vario
 
 ## `Prefer:wait` - Query timeout
 
-The default query timeout is 3 minutes (180 seconds). To adjust the query timeout set the `wait` header request value in seconds.
+The default query timeout is 3 minutes (180 seconds). To adjust the query timeout, set the `wait` header request value in seconds.
 
 ```
     Prefer: wait=300
@@ -74,7 +74,7 @@ For more information, see [Logs query API server timeouts](timeouts.md).
 
 ## `Prefer:include-dataSources` - Query data sources
 
-To get information about the query data sources - regions, workspaces, clusters and tables, include this header:
+To get information about the query data sources like regions, workspaces, clusters, and tables, include this header:
 
 ```
     Prefer: include-dataSources=true
@@ -82,7 +82,7 @@ To get information about the query data sources - regions, workspaces, clusters 
 
 ## `Prefer:include-permissions` - List permissions
 
-When querying logs for Azure resources, users must have appropriate permissions to access both the resource and the Log Analytics workspace containing the logs. If a user lacks the necessary permissions, different error responses may be returned depending on the specific permission that is missing.
+To query logs for Azure resources, users must have appropriate permissions to access both the resource and the Log Analytics workspace containing the logs. If a user lacks the necessary permissions, different error responses may be returned depending on the specific permission that is missing. A good permissions troubleshooting step is to include the following header in the request:
 
 ```
     Prefer: include-permissions=true
