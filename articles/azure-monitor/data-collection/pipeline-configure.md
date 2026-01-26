@@ -320,6 +320,7 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 ```json
 ```
 
+---
 
 ### Give DCR access to pipeline extension
 
