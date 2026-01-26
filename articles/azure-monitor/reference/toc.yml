@@ -1889,6 +1889,8 @@ items:
             href: tables/asrv2replicationpolicies.md
           - name: ASRv2ReplicationVaults
             href: tables/asrv2replicationvaults.md
+          - name: ASimAlertEventLogs
+            href: tables/asimalerteventlogs.md
           - name: ASimAuditEventLogs
             href: tables/asimauditeventlogs.md
           - name: ASimAuthenticationEventLogs
@@ -2293,6 +2295,8 @@ items:
             href: tables/containerregistryrepositoryevents.md
           - name: ContainerServiceLog
             href: tables/containerservicelog.md
+          - name: CopilotActivity
+            href: tables/copilotactivity.md
           - name: CrowdStrikeAlerts
             href: tables/crowdstrikealerts.md
           - name: CrowdStrikeDetections
@@ -2739,8 +2743,6 @@ items:
             href: tables/lasummarylogs.md
           - name: LIATrackingEvents
             href: tables/liatrackingevents.md
-          - name: LLMActivity
-            href: tables/llmactivity.md
           - name: LogicAppWorkflowRuntime
             href: tables/logicappworkflowruntime.md
           - name: MAApplication
@@ -2815,8 +2817,6 @@ items:
             href: tables/mdcdetectionprocessv2events.md
           - name: MDCFileIntegrityMonitoringEvents
             href: tables/mdcfileintegritymonitoringevents.md
-          - name: MDECustomCollectionDeviceFileEvents
-            href: tables/mdecustomcollectiondevicefileevents.md
           - name: MDPResourceLog
             href: tables/mdpresourcelog.md
           - name: MNFDeviceUpdates
@@ -3007,6 +3007,8 @@ items:
             href: tables/purviewscanstatuslogs.md
           - name: PurviewSecurityLogs
             href: tables/purviewsecuritylogs.md
+          - name: QualysKnowledgeBase
+            href: tables/qualysknowledgebase.md
           - name: REDConnectionEvents
             href: tables/redconnectionevents.md
           - name: RemoteNetworkHealthLogs
@@ -3271,6 +3273,8 @@ items:
             href: tables/wvdhostregistrations.md
           - name: WVDManagement
             href: tables/wvdmanagement.md
+          - name: WVDMultiLinkAdd
+            href: tables/wvdmultilinkadd.md
           - name: WVDSessionHostManagement
             href: tables/wvdsessionhostmanagement.md
           - name: WaaSDeploymentStatus
@@ -3763,8 +3767,6 @@ items:
             href: queries/LAQueryLogs.md
           - name: LASummaryLogs
             href: queries/LASummaryLogs.md
-          - name: LLMActivity
-            href: queries/LLMActivity.md
           - name: LogicAppWorkflowRuntime
             href: queries/LogicAppWorkflowRuntime.md
           - name: MDCDetectionDNSEvents
@@ -3865,6 +3867,8 @@ items:
             href: queries/ProtectionStatus.md
           - name: PurviewSecurityLogs
             href: queries/PurviewSecurityLogs.md
+          - name: QualysKnowledgeBase
+            href: queries/QualysKnowledgeBase.md
           - name: REDConnectionEvents
             href: queries/REDConnectionEvents.md
           - name: ResourceManagementPublicAccessLogs
