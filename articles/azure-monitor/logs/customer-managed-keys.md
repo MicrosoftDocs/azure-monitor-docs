@@ -197,7 +197,7 @@ az resource wait --created --ids $clusterResourceId --include-response-body true
 ```
 # [PowerShell](#tab/powershell)
 
-When you enter a "''" value for ```KeyVersion```, the cluster always uses the last key version in Key Vault and there's no need to update the cluster post key rotation. 
+When you enter a `''` value for ```keyVersion```, the cluster always uses the last key version in Key Vault and there's no need to update the cluster post key rotation. 
 
 ```powershell
 Select-AzSubscription "cluster-subscription-id"
@@ -307,8 +307,8 @@ The cluster's storage always respects changes in key permissions and becomes una
 
 Key rotation has two modes: 
 
-- Autorotation—update ```"keyVaultProperties"``` properties in cluster and omit ```"keyVersion"``` property, or set it to ```""```. Storage automatically uses the latest key version.
-- Explicit key version update—update ```"keyVaultProperties"``` properties and update the key version in ```"keyVersion"``` property. Key rotation requires explicit update of ```"keyVersion"``` property in cluster. For more information, see [Update cluster with Key identifier details](#update-cluster-with-key-identifier-details). If you generate a new key version in Key Vault but don't update the key in the cluster, the cluster storage keeps using your previous key. If you disable or delete the old key before updating a new one in the cluster, you get into [key revocation](#key-revocation) state.
+- Autorotation - update ```"keyVaultProperties"``` in cluster and omit ```"keyVersion"``` property, or set it to `''`. Storage automatically uses the latest key version.
+- Explicit key version update - update ```"keyVaultProperties"``` properties and update the key version in ```"keyVersion"``` property. Key rotation requires explicit update of ```"keyVersion"``` property in cluster. For more information, see [Update cluster with Key identifier details](#update-cluster-with-key-identifier-details). If you generate a new key version in Key Vault but don't update the key in the cluster, the cluster storage keeps using your previous key. If you disable or delete the old key before updating a new one in the cluster, you get into [key revocation](#key-revocation) state.
 
 All your data remains accessible during and after the key rotation operation. Data always encrypted with the Account Encryption Key (AEK), which is encrypted with your new Key Encryption Key (KEK) version in Key Vault.
 
