@@ -37,7 +37,7 @@ ms.date: 09/18/2022
                         {
                             "name": "KubeContainerOOMKilledCount",
                             "query": "sum by (cluster,container,controller,namespace)(kube_pod_container_status_last_terminated_reason{reason=\"OOMKilled\"} * on(cluster,namespace,pod) group_left(controller) label_replace(kube_pod_owner, \"controller\", \"$1\", \"owner_name\", \"(.*)\")) > 0",
-                            "criterionType": "StaticThresholdCriterion",
+                            "criterionType": "StaticThresholdCriterion"
                         }
                     ],
                     "odata.type": "Microsoft.Azure.Monitor.PromQLCriteria",
