@@ -66,9 +66,9 @@ Use the following general guidance if you’re unsure where to start.
 
 - **Metrics:** [Metrics](metrics-overview.md) aren’t sampled. Use them to reliably [alert](../alerts/alerts-overview.md) on key signals for your services and dependencies.
 
-- **Logs:** Configure app logging to export only ERROR logs. Add WARN only when actionable. If you export high-volume INFO/WARN logs, enable [trace-based sampling for logs](opentelemetry-configuration.md#configure-tracebased-sampling-for-logs).
+- **Logs:** Configure app logging to export only ERROR logs. Add WARN only when actionable.
 
-- **Traces:** Sample traces at [5% fixed-percentage](opentelemetry-configuration.md#fixed-percentage-sampling). If [Failures and Performance experiences](failures-performance-transactions.md) look incomplete, increase the rate.
+- **Traces:** Sample traces as shown in our [default samples](opentelemetry-configuration.md#fixed-percentage-sampling). If [Failures and Performance experiences](failures-performance-transactions.md) look incomplete, increase the rate.
 
 ## Ingestion sampling (not recommended)
 
