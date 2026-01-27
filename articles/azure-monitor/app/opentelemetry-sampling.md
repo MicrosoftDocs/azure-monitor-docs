@@ -49,7 +49,7 @@ Application Insights supports two sampling strategies:
 
     Example: `0.5` ≈ one trace every two seconds; `5.0` = five traces per second.
 
-An optional **trace-based log sampling** feature is available for supported languages which drops logs tied to unsampled traces.
+An optional **trace-based log sampling** feature is available for supported languages, which drops logs tied to unsampled traces.
 
 To configure sampling, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
 
