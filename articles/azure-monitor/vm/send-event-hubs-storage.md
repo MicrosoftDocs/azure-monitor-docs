@@ -11,10 +11,46 @@ ROBOTS: NOINDEX
 
 [Collect data from virtual machine client with Azure Monitor](./data-collection.md) describes how to collect data from virtual machines (VMs) with Azure Monitor. This article describes how to send that data described to Azure Storage and Event Hubs. This feature is currently in public preview.
 
-> [!TIP]
-> As an alternative to storage, you should create a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
+> [!IMPORTANT]
+> ## Feature Deprecation
+> You can no longer create new data collection rules using this feature. **This preview feature will be deprecated on July 31, 2026**. After this date, existing configurations using this capability will stop sending data and Microsoft will no longer support the same.
+>
+> To ensure continued support, you will need to update to alternatives belowAto continue using AMA or other Azure solutions that provide a more reliable, scalable and performant solution to send data to respective destinations.
+>
+> ## Identify impacted resources
+> Run the following queries in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal) to:
+>
+> **List data collection rules using this feature**
+> 
+> ``` kql
+> resources
+> | where type == "microsoft.insights/datacollectionrules"
+> | where kind == "AgentDirectToStore"
+> ```
+>
+> **List VMs associated with the data collection rules using this feature**
+>
+>  ``` kql
+> resources
+> | where type == "microsoft.insights/datacollectionrules"
+> | where kind == "AgentDirectToStore"
+> | project dcrId = id, dcrName = name, dcrLocation = location
+> | join kind=inner (
+>     insightsresources
+>     | where type == "microsoft.insights/datacollectionruleassociations"
+>     | extend dcrId = tostring(properties.dataCollectionRuleId)
+>     | extend parentResourceId = tolower(tostring(split(id, "/providers/microsoft.insights/datacollectionruleassociations")[0]))
+>     | project dcraId = id, dcraName = name, dcrId, parentResourceId,
+>               description = tostring(properties.description)
+> ) on dcrId
+> | project dcraId, dcraName, dcrId, dcrName, dcrLocation, parentResourceId, description
+> ```
+>  
+> It produces results similar to the following example:
+>
+> ## Update to alternatives
+> 
 
-The following table lists the data sources that are supported by this feature.
 
 ## Supported data types
 
