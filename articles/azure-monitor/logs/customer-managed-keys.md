@@ -164,14 +164,14 @@ There are two permission models in Key Vault to grant access to your dedicated c
 
 ### Update dedicated cluster with key identifier details
 
-All operations on the cluster require the `Microsoft.OperationalInsights/clusters/write` action permission. It's permission could be granted via the Owner or Contributor that contains the `*/write` action, or via the Log Analytics Contributor role that contains the `Microsoft.OperationalInsights/*` action.
+All operations on the cluster require the `Microsoft.OperationalInsights/clusters/write` action permission. Its permission could be granted via the Owner or Contributor that contains the `*/write` action, or via the Log Analytics Contributor role that contains the `Microsoft.OperationalInsights/*` action.
 
 This step updates dedicated cluster storage with the key and version to use for **AEK** `wrap` and `unwrap`.
 
 >[!IMPORTANT]
->- Key rotation can be automatic or per explicit key version, see [Key rotation](#key-rotation) to determine suitable approach before updating the key identifier details in cluster.
->- Cluster update should not include both identity and key identifier details in the same operation. If you need to update both, the update should be in two consecutive operations.
->- If you're only enabling or changing CMK, use the REST API instead of the CLI. The cluster update CLI sends an update to capacity even when that property isn't used in the command, triggering thresholds for 30 day change or 500GB minimum.
+>- Key rotation can be automatic or per explicit key version, see [Key rotation](#key-rotation) to determine suitable approach before updating the key identifier details in dedicated cluster.
+>- Dedicated cluster updates must not include both identity and key identifier details in the same operation. If you need to update both, the update must be in two consecutive operations.
+>- If you're only enabling or changing CMK, use the REST API instead of the CLI. The dedicated cluster update CLI sends an update to capacity even when that property isn't used in the command, which triggers the 30 day change threshold or the 500GB commitment tier minimum check.
 
 :::image type="content" source="media/customer-managed-keys/key-identifier-8bit.png" lightbox="media/customer-managed-keys/key-identifier-8bit.png" alt-text="Screenshot of Grant Key Vault permissions.":::
 
@@ -342,7 +342,7 @@ When linking your Storage Account for saved queries, the service stores saved qu
 Link a Storage Account for saved queries and functions to keep the saved queries in your Storage Account. 
 
 > [!NOTE]
-> The operation removes saved queries and functions from your workspace to a table in your Storage Account. You can unlink the Storage Account for saved queries, to move saved queries and functions back to your workspace. Refresh the browser if you don't saved queries or functions don't show up in the Azure Portal after the operation.
+> The operation removes saved queries and functions from your workspace to a table in your Storage Account. You can unlink the Storage Account for saved queries, to move saved queries and functions back to your workspace. Refresh the browser if you don't saved queries or functions don't show up in the Azure portal after the operation.
 
 
 # [Azure portal](#tab/portal)
@@ -489,13 +489,13 @@ Learn more about [Customer Lockbox for Microsoft Azure](/azure/security/fundamen
 - Behavior per Key Vault availability:
   - During normal ingestion operation, the dedicated cluster storage caches **AEK** for short periods of time and goes back to Key Vault to `unwrap` periodically.
     
-  - During Key Vault connection errors, the dedicated cluster storage handles transient errors (time-outs, connection failures, DNS failures) by allowing keys to stay in cache during the issue to overcome blips and intermittent availability. The query and ingestion capabilities continue without interruption.
+  - During Key Vault connection errors, the dedicated cluster storage handles transient errors (timeouts, connection failures, DNS failures) by allowing keys to stay in cache during the issue to overcome blips and intermittent availability. The query and ingestion capabilities continue without interruption.
     
 - Key Vault access rate - the frequency with which the cluster storage accesses Key Vault for `wrap` and `unwrap` operations is between 6 to 60 seconds.
 
 - If you update your cluster while it's at the provisioning state, or updating state, the update fails.
 
-- If you get conflict error when creating a cluster, a cluster with the same name may have been deleted in the last 14 days and its name reserved. Deleted cluster names become available 14 days after deletion.
+- If you get conflict error when creating a cluster, a cluster with the same name might have been deleted in the last 14 days and its name reserved. Deleted cluster names become available 14 days after deletion.
 
 - Linking a workspace to a cluster fails if the workspace is linked to another cluster.
 
@@ -505,7 +505,7 @@ Learn more about [Customer Lockbox for Microsoft Azure](/azure/security/fundamen
 
 - If you fail to deploy your cluster, verify that your Azure Key Vault, cluster and linked workspaces are in the same region. The can be in different subscriptions.
 
-- If you rotate your key in Key Vault and don't update the new key identifier details in the cluster, the cluster keep using the previous key and your data becomes inaccessible. Update new key identifier details in the cluster to resume data ingestion and query functionality. Update the key version with `''` notation to ensure the dedicated cluster storage always use the latest key version automatically.
+- If you rotate your key in Key Vault and don't update the new key identifier details in the cluster, the cluster keeps using the previous key and your data becomes inaccessible. Update new key identifier details in the cluster to resume data ingestion and query functionality. Update the key version with `''` notation to ensure the dedicated cluster storage always use the latest key version automatically.
 
 - Some operations are long running and can take a while to complete, include cluster create, cluster key update and cluster delete. You can check the operation status by sending a `GET` request to cluster or workspace and observe the response. For example, an unlinked workspace doesn't have the `clusterResourceId` under `features`.
 
