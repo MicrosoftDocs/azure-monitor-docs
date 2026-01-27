@@ -89,6 +89,29 @@ There are fundamentally two scenarios for implementing the Azure Monitor pipelin
 ### Send Syslog and CEF to standard tables
 With this scenario, you send Syslog and CEF data directly to the existing `Syslog` and `CommonSecurityLog` tables in a Log Analytics workspace. Data is converted to the appropriate format automatically, 
 
+## Verify configuration
+Once you've complete the configuration using your chosen method, use the following steps verify that the pipeline is running correctly in your environment.
+
+### Verify pipeline components running in the cluster
+
+In the Azure portal, navigate to the **Kubernetes services** menu and select your Arc-enabled Kubernetes cluster. Select **Services and ingresses** and ensure that you see the following services:
+
+* \<pipeline name\>-external-service
+* \<pipeline name\>-service
+
+:::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline."::: 
+
+Click on the entry for **\<pipeline name\>-external-service** and note the IP address and port in the **Endpoints** column. This is the external IP address and port that your clients will send data to. See [Retrieve ingress endpoint](./pipeline-configure-clients.md#retrieve-ingress-endpoint) for retrieving this address from the client.
+
+### Verify heartbeat
+
+Each pipeline configured in your pipeline instance will send a heartbeat record to the `Heartbeat` table in your Log Analytics workspace every minute. The contents of the `OSMajorVersion` column should match the name your pipeline instance. If there are multiple workspaces in the pipeline instance, then the first one configured will be used.
+
+Retrieve the heartbeat records using a log query as in the following example:
+
+:::image type="content" source="./media/pipeline-configure/heartbeat-records.png" lightbox="./media/pipeline-configure/heartbeat-records.png" alt-text="Screenshot of log query that returns heartbeat records for Azure Monitor pipeline.":::
+
+
 
 ## Next steps
 
