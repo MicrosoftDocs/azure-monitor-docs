@@ -56,9 +56,20 @@ To configure sampling, refer to [Enable Sampling in Application Insights with Op
 ### Custom sampler benefits
 
 * Consistent sampling decisions during interoperability with applications using the Application Insights Classic API Software Development Kits (SDKs).
+* Helps preserve trace completeness (reduces broken traces) by making deterministic sampling decisions based on Trace ID, but it can still produce incomplete distributed traces if services use different samplers or sampling rates.
 * Full compatibility with [Live Metrics](./live-stream.md) because the sampler is aware of Live Metrics requirements.
 
 For more detailed information and sampling edge cases, see [Frequently Asked Questions](application-insights-faq.yml#opentelemetry-sampling).
+
+## General Sampling Guidance
+
+Use the following general guidance if you’re unsure where to start.
+
+[Metrics](metrics-overview.md) aren’t sampled. Use them to reliably [alert](../alerts/alerts-overview.md) on key signals for your services and dependencies.
+
+Configure your application logging to export only ERROR logs. Add WARN selectively when actionable. If you export high-volume INFO/WARN logs, enable [trace‑based sampling for logs](opentelemetry-configuration.md#configure-tracebased-sampling-for-logs) to align with trace sampling.
+
+Sample traces at [5% fixed-percentage](opentelemetry-configuration.md#fixed-percentage-sampling). Increase the rate until the [Failures and Performance experiences](failures-performance-transactions.md) are representative of important operations.
 
 ## Ingestion sampling (not recommended)
 
