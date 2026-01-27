@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/13/2026
+ms.date: 01/27/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -437,13 +437,14 @@ The database connections feature of Static Web Apps (currently in public preview
 
 **Impact:** High
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500848)  
+  
 
 ResourceType: microsoft.web/staticsites  
 Recommendation ID: 9545c3d7-f0cd-4e37-8b15-2d4bb89f9659  
 Subcategory: undefined
 
 <!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_end-->
+
 
 <!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_begin-->
 
