@@ -180,11 +180,16 @@ Once the identity that you're going to use is created, it needs to be given acce
 
 
 ## Configure remote-write in configuration file
-The final step is to add remote write to the [configuration file](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) for your self-managed Prometheus server. In addition to details for the identity that you created, you'll also need the metrics ingestion endpoint for the Azure Monitor workspace. Get this value from the **Overview** page for your Azure Monitor workspace in the Azure portal.
+Remote write is configured in the Prometheus configuration file `prometheus.yml` or in Prometheus Operator. The final step is to add remote write to the [configuration file](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) for your self-managed Prometheus server. In addition to details for the identity that you created, you'll also need the metrics ingestion endpoint (URL) for the Azure Monitor workspace. Get this value from the **Overview** page for your Azure Monitor workspace in the Azure portal, and make a note of it.
 
 :::image type="content" source="media/prometheus-remote-write/metrics-ingestion-endpoint.png" lightbox="media/prometheus-remote-write/metrics-ingestion-endpoint.png" alt-text="Screenshot that shows the metrics ingestion endpoint for an Azure Monitor workspace.":::
 
-The `remote-write` section of the Prometheus configuration file will look similar to the following example, depending on the authentication type that you're using.
+### [Configure remote write with Prometheus config file](#tab/prom-vm)
+
+To send data to your Azure Monitor workspace, add the following section to the configuration file (`prometheus.yml`) of your self-managed Prometheus instance. 
+
+> [!NOTE]
+> For system-assigned managed identity, leave the client ID field blank (client_id: "").
 
 ### Managed identity
 
@@ -210,13 +215,13 @@ remote_write:
         tenant_id: "<Azure subscription tenant Id>"
 ```
 
-## Apply configuration file updates
+Apply the configuration file updates:
 
 ### Virtual Machine
 For a virtual machine, the configuration file will be `promtheus.yml` unless you specify a different one using `prometheus --config.file <path-to-config-file>` when starting the Prometheus server.
 
 ### Kubernetes cluster
-For a Kubernetes cluster, the configuration file is typically stored in a ConfigMap. Following is a sample ConfigMap that includes a remote-write configuration using managed identity  for self-managed Prometheus running in a Kubernetes cluster. 
+For a Kubernetes cluster, the configuration file is typically stored in a ConfigMap. Following is a sample ConfigMap that includes a remote-write configuration using managed identity for self-managed Prometheus running in a Kubernetes cluster. 
 
 ```yml
   GNU nano 6.4
@@ -258,9 +263,80 @@ Restart Prometheus to pick up the new configuration. If you are using a deployme
 kubectl -n monitoring rollout restart deploy <prometheus-deployment-name>
 ```
 
-## Release notes
+> [!NOTE]
+> After you edit the configuration file, restart Prometheus to apply the changes.
 
-For detailed release notes on the remote write side car image, please refer to the [remote write release notes](https://github.com/Azure/prometheus-collector/blob/main/REMOTE-WRITE-RELEASENOTES.md).
+
+### [Configure remote write with Prometheus Operator](#tab/prom-operator)
+
+### Prometheus Operator
+
+If you're on a Kubernetes cluster that's running Prometheus Operator, use the following steps to send data to your Azure Monitor workspace:
+
+1. If you're using Microsoft Entra ID authentication, convert the secret by using Base64 encoding, and then apply the secret in your Kubernetes cluster. Save the following code into a YAML file. Skip this step if you're using managed identity or workload identity authentication.
+
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: remote-write-secret
+     namespace: monitoring # Replace with the namespace where Prometheus Operator is deployed.
+   type: Opaque
+   data:
+     password: <base64-encoded-secret>
+
+   ```
+
+   Apply the secret:
+
+   ```azurecli
+   # Set context to your cluster 
+   az aks get-credentials -g <aks-rg-name> -n <aks-cluster-name> 
+
+   kubectl apply -f <remote-write-secret.yaml>
+   ```
+
+1. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more information on the Azure Monitor workspace specification for remote write in Prometheus Operator, see the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md). Use either `managedIdentity` or `oauth` or `workloadIdentity` authentication, depending on your setup. Remove the section that you're not using.
+
+> [!NOTE]
+> For system-assigned managed identity, leave the client ID field blank (clientId: "").
+
+
+   ```yaml
+   prometheus:
+     prometheusSpec:
+       podMetadata:
+         labels:
+           azure.workload.identity/use: "true" # Use this ONLY for workload identity authentication. Skip if using other authentication.
+       remoteWrite:
+       - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
+         azureAd:
+   # Microsoft Entra ID configuration.
+   # The Azure cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
+           cloud: 'AzurePublic'
+           managedIdentity:
+             clientId: "<clientId of the managed identity>"
+           oauth:
+             clientId: "<clientId of the Entra app>"
+             clientSecret:
+               name: remote-write-secret
+               key: password
+             tenantId: "<Azure subscription tenant Id>"
+           workloadIdentity:
+             clientId: "<clientId of the user-assigned managed identity or the Entra ID application>"
+             tenantId: "<Azure subscription tenant Id>"
+   ```
+
+1. Use Helm to update your remote write configuration by using the preceding YAML file:
+
+   ```azurecli
+   helm upgrade -f <YAML-FILENAME>.yml prometheus prometheus-community/kube-prometheus-stack --namespace <namespace where Prometheus Operator is deployed>
+   ```
+
+---
+
+For information on tuning the remote write configuration, see [Remote write tuning](https://prometheus.io/docs/practices/remote_write/#remote-write-tuning).
+
 
 ## Troubleshoot
 
@@ -276,7 +352,6 @@ If data isn't being collected in Managed Prometheus, run the following command t
 ```azurecli
 kubectl --namespace <Namespace> describe pod <Prometheus-Pod-Name>
 ```
-
 
 **Container restarts repeatedly**
 
