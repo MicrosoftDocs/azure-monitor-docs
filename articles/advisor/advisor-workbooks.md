@@ -1,7 +1,7 @@
 ---
 title: Azure Advisor workbooks
 description: Use the workbooks available in Azure Advisor.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 10/28/2024
 
 ---

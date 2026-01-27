@@ -22,7 +22,7 @@ Exploring metrics requires *Microsoft.Insights* resource provider registered in 
 
 ### You don't have sufficient access rights to your resource
 
-In Azure, [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) controls access to metrics. You must be a member of [monitoring reader](/azure/role-based-access-control/built-in-roles#monitoring-reader), [monitoring contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor), or [contributor](/azure/role-based-access-control/built-in-roles#contributor) to explore metrics for any resource.
+In Azure, [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) controls access to metrics. You must be a member of [monitoring reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) or [monitoring contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) to explore metrics for any resource.
 
 **Solution:** Ensure that you have sufficient permissions for the resource from which you're exploring metrics.
 
@@ -56,7 +56,7 @@ Some resources don't constantly emit their metrics. For example, Azure doesn't c
 
 [Most metrics in Azure are stored for 93 days](data-platform-metrics.md#retention-of-metrics) so you can't query more than 93 days back. 
 
-**Solution:** Export your metrics data to a [Log Analytics workspace](/azure/azure-monitor/logs/log-analytics-workspace-overview) and query from there. You can [manage data retention](/azure/azure-monitor/logs/data-retention-configure) in your Log analytics workspace. For more information on metrics export, see [Diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md) and [Metrics export through data collection rules (Preview)](../data-collection/data-collection-metrics.md) .
+**Solution:** Export your metrics data to a [Log Analytics workspace](/azure/azure-monitor/logs/log-analytics-workspace-overview) and query from there. You can [manage data retention](/azure/azure-monitor/logs/data-retention-configure) in your Log analytics workspace. For more information on metrics export, see [Diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md) and [Metrics export using data collection rules (Preview)](../data-collection/metrics-export-create.md) .
 
 ### All metric values were outside of the locked y-axis range
 

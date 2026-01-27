@@ -2,9 +2,7 @@
 title: PromQL for system metrics and Guest OS performance counters
 description: Learn how to query OpenTelemetry system metrics and Guest OS performance counters using PromQL in Azure Monitor.
 ms.topic: how-to
-ms.date: 11/07/2025
-ms.reviewer: yagil
-author: tylerkight
+ms.date: 12/15/2025
 ms.author: tylerkight
 ---
 
@@ -12,11 +10,15 @@ ms.author: tylerkight
 
 This article provides guidance for querying OpenTelemetry system metrics and Guest OS performance counters using PromQL in Azure Monitor. This covers scenarios where Azure Monitor Agent or OpenTelemetry Collector gathers system-level telemetry data.
 
+> [!TIP]
+> System metrics queries work in both workspace-scoped and resource-scoped modes. When using [resource-scoped queries](prometheus-resource-scoped-queries.md), filter and group by `"Microsoft.resourceid"` instead of generic identifiers like `instance` or `host.name` to ensure accurate scoping to your resources.
+
 ## Prerequisites
 
-- Azure Monitor Agent configured with OpenTelemetry metrics collection
-- Azure Monitor workspace receiving system metrics
+- [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) configured with OpenTelemetry metrics collection
+- [Azure Monitor workspace](azure-monitor-workspace-overview.md) receiving [OpenTelemetry Guest OS metrics](metrics-opentelemetry-guest.md)
 - Understanding of [PromQL best practices for OpenTelemetry metrics](prometheus-opentelemetry-best-practices.md)
+- Familiarity with [PromQL basics](prometheus-api-promql.md)
 - Knowledge of system performance monitoring concepts
 
 ## System metrics overview
@@ -33,325 +35,223 @@ OpenTelemetry system metrics provide comprehensive visibility into Guest OS perf
 | **Network** | `system.network.io.bytes`, `system.network.packets` | Network Bytes/sec, Packets/sec |
 | **Process** | `process.cpu.utilization`, `process.memory.usage` | Process-specific counters |
 
-## CPU metrics and queries
+## Recommended PromQL queries for system metrics
 
-### System-wide CPU utilization
+### CPU
 
 ```promql
-# Overall CPU utilization across all cores
-avg("system.cpu.utilization") by (instance)
+# Dashboarding CPU utilization when query is scoped to a single VM resource
+100 * (1 - avg ({"system.cpu.utilization", state="idle"}))
 
-# CPU utilization by state (user, system, idle, etc.)
-"system.cpu.utilization" by (instance, state)
+# Dashboarding to identify CPU hotspots across a fleet of VMs, scoped to an AMW, subscription or resource group
+topk (5, 100 * (1 - avg by ("Microsoft.resourceid") ({"system.cpu.utilization", state="idle"})))
 
-# High CPU utilization detection
-avg_over_time("system.cpu.utilization"[5m]) > 0.8
+# Alerting on high CPU utilization, scoped to a single VM
+avg_over_time({"system.cpu.utilization"}[5m]) > 0.8
+
+# Dashboarding to identify top 5 CPU-consuming processes by command, scoped to a single VM.
+topk(5, sum by ("process.command") ({"process.cpu.utilization"}))
+
+# Identify CPU-bound processes, scoped to a single VM
+{"process.cpu.utilization"} > 0.5
 ```
 
-### Per-core CPU analysis
+### Memory
 
 ```promql
-# CPU utilization per core
-"system.cpu.utilization" by (instance, cpu)
+# Dashboarding available MB, scoped to a single VM
+(sum ({"system.memory.limit"}) - sum ({"system.memory.usage", state="used"})) / (1024 * 1024)
 
-# Identify CPU hotspots
-topk(5, 
-  avg_over_time("system.cpu.utilization"[5m]) by (cpu)
+# Alerting on high memory utilization
+{"system.memory.utilization", state="used"} > 0.9
+```
+
+
+### Disk I/O 
+
+```promql
+# Dashboarding disk total throughput (Bytes/sec), scoped to a single VM. Can be filtered to Read or Write.
+sum by (device, direction) rate({"system.disk.io"}[5m]) 
+
+# Dashboarding disk total operations per second, scoped to a single VM. Can be filtered to Read or Write.
+sum by (device, direction) rate({"system.disk.operations"}[5m]) 
+
+# Dashboarding top 5 processes by disk operations (read and write), scoped to an AMW, subscription or resource group.
+topk(5, sum by ("process.command", direction) (rate({"process.disk.operations"}[5m])))
+
+# Alerting on high disk activity detection, scoped to a single VM.
+rate({"system.disk.operations"}[5m]) > 1000
+
+```
+
+## Migrating from KQL to PromQL
+
+This section provides side-by-side comparisons of common KQL queries for system performance counters and their PromQL equivalents. Each example includes both a like-for-like migration and a recommended approach optimized for Prometheus.
+
+> [!IMPORTANT]
+> All PromQL queries use UTF-8 escaping syntax introduced in Prometheus 3.0. Label names containing dots (like `Microsoft.resourceid`) and metric names must be quoted and moved into braces, as documented in [Prometheus 3.0 release](https://prometheus.io/docs/guides/utf8/#querying).
+
+### KQL: Average CPU percentage per 15 minute interval
+
+```kusto
+Perf 
+| where CounterName == "% Processor Time"
+| where ObjectName == "Processor"
+| summarize avg(CounterValue) by bin(TimeGenerated, 15m), Computer, _ResourceId
+```
+
+#### PromQL: Like-for-like migration
+
+This query replicates the KQL behavior by calculating CPU utilization from `system.cpu.time`:
+
+```promql
+100 * (
+  1 -
+  (
+    sum by ("Microsoft.resourceid") (rate({"system.cpu.time", state="idle"}[15m])) /
+    sum by ("Microsoft.resourceid") (rate({"system.cpu.time"}[15m]))
+  )
 )
-
-# CPU load distribution
-histogram_quantile(0.95,
-  rate("system.cpu.load_average"[5m])
-) by (instance)
 ```
 
-### Process-level CPU monitoring
+**Query parameters:**
+- Step: `15m` (matches KQL bin size)
+
+**Rationale:** Replicates Windows' calculation of `100 - % Idle Time` with identical time bin size for direct comparison.
+
+#### PromQL: Recommended approach
 
 ```promql
-# Top CPU-consuming processes
-topk(10,
-  "process.cpu.utilization" by (instance, process_name)
+100 * (1 - avg by ("Microsoft.resourceid") ({"system.cpu.utilization", state="idle"})) 
+```
+
+**Query parameters:**
+- Step: `1m`
+
+**Rationale:** Uses the cleaner `system.cpu.utilization` metric if emitted by your collector. The 1-minute step provides higher resolution dashboards and more responsive alerting.
+
+### KQL: Disk reads per second over 5 minutes
+
+```kusto
+Perf
+| where ObjectName == "LogicalDisk" and CounterName == "Disk Reads/sec"
+| summarize avg(CounterValue) by bin(TimeGenerated, 5m), Computer, _ResourceId
+```
+
+#### PromQL: Like-for-like migration
+
+```promql
+sum by ("Microsoft.resourceid", device) (
+  rate({"system.disk.operations", direction="read"}[5m])
 )
-
-# Process CPU time accumulation (for cumulative metrics)
-rate("process.cpu.time"[5m]) by (instance, process_name)
-
-# Identify CPU-bound processes
-"process.cpu.utilization" > 0.5
 ```
 
-## Memory metrics and queries
+**Query parameters:**
+- Step: `5m`
 
-### System memory analysis
+**Rationale:** Matches KQL `bin(TimeGenerated, 5m)` exactly, aggregated by resource and device.
 
-```promql
-# Memory utilization percentage
-("system.memory.usage" / "system.memory.limit") * 100
-
-# Available memory
-"system.memory.usage"{state="available"}
-
-# Memory pressure indicators
-"system.memory.utilization" > 0.9
-```
-
-### Memory usage by type
+#### PromQL: Recommended approach
 
 ```promql
-# Memory usage breakdown
-"system.memory.usage" by (instance, state)
-
-# Swap usage monitoring
-"system.memory.usage"{state="swap_used"} / 
-"system.memory.usage"{state="swap_total"}
-
-# Cache and buffer utilization
-"system.memory.usage"{state=~"cache|buffers"}
-```
-
-### Process memory monitoring
-
-```promql
-# Top memory-consuming processes
-topk(10,
-  "process.memory.usage" by (instance, process_name)
+sum by ("Microsoft.resourceid", device) (
+  rate({"system.disk.operations", direction="read"}[1m])
 )
-
-# Process memory growth rate (for delta metrics)
-increase("process.memory.usage"[10m]) by (process_name)
-
-# Memory leak detection (for cumulative metrics)
-rate("process.memory.usage"[10m]) > 1000000  # 1MB/sec growth
 ```
 
-## Disk I/O metrics and queries
+**Query parameters:**
+- Step: `1m`
 
-### Disk performance monitoring
+**Rationale:** More responsive metric for dashboards while maintaining accuracy. The 1-minute rate calculation provides smoother visualization.
+
+### KQL: Available memory over time
+
+```kusto
+// Virtual Machine available memory 
+// Chart the VM's available memory over time. 
+Perf
+| where ObjectName == "Memory" and
+    (CounterName == "Available MBytes Memory" or  // Linux records
+     CounterName == "Available MBytes")            // Windows records
+| summarize avg(CounterValue) by bin(TimeGenerated, 15m), Computer, _ResourceId
+| render timechart
+```
+
+#### PromQL: Like-for-like migration
+
+This query aggregates multiple memory states to calculate available memory across Linux and Windows:
 
 ```promql
-# Disk I/O rate (bytes per second)
-rate("system.disk.io.bytes"[5m]) by (instance, device, direction)
-
-# Disk operations per second
-rate("system.disk.operations"[5m]) by (instance, device, direction)
-
-# Disk utilization percentage
-"system.disk.utilization" by (instance, device)
+# Available MB, scoped to a single VM
+(sum ({"system.memory.limit"}) - sum ({"system.memory.usage", state="used"})) / (1024 * 1024)
 ```
 
-### Disk throughput analysis
+**Query parameters:**
+- Step: `15m`
+
+**Rationale:** Aggregates memory states representing available memory across operating systems. Converts bytes to megabytes to match KQL counter output. Uses 15-minute step to match the bin size.
+
+#### PromQL: Recommended approach (alerting + autoscaling scenarios)
 
 ```promql
-# Read vs write throughput
-sum(rate("system.disk.io.bytes"{direction="read"}[5m])) by (instance) /
-sum(rate("system.disk.io.bytes"[5m])) by (instance)
-
-# High disk activity detection
-rate("system.disk.operations"[5m]) > 1000
-
-# Disk queue length monitoring
-"system.disk.pending_operations" by (instance, device)
+avg by ("Microsoft.resourceid") ({"system.memory.utilization"})
 ```
 
-### Storage capacity monitoring
+**Query parameters:**
+- Step: `5m`
+
+**Rationale:** Alerting and autoscale scenarios benefit from utilization metrics which don't need expensive regex filters or unit conversions.
+
+### KQL: Bottom 10 free disk space percentage
+
+```kusto
+// Bottom 10 Free disk space % 
+// Bottom 10 Free disk space % by computer, for the last 7 days. 
+Perf
+| where TimeGenerated > ago(7d)
+| where (ObjectName == "Logical Disk" or ObjectName == "LogicalDisk") 
+    and CounterName contains "%" 
+    and InstanceName != "_Total" 
+    and InstanceName != "HarddiskVolume1"
+| project TimeGenerated, Computer, ObjectName, CounterName, InstanceName, CounterValue 
+| summarize arg_max(TimeGenerated, *) by Computer
+| top 10 by CounterValue desc
+```
+
+#### PromQL: Like-for-like migration
 
 ```promql
-# Disk space utilization
-("system.filesystem.usage" / "system.filesystem.limit") * 100 by (device, mountpoint)
-
-# Available disk space
-"system.filesystem.usage"{state="available"} by (device, mountpoint)
-
-# Low disk space alerts
-("system.filesystem.usage" / "system.filesystem.limit") > 0.9
+sum by ("Microsoft.resourceid", device, mountpoint, type) (
+  {"system.filesystem.usage", state="free", type=~"ext4|xfs|btrfs|ntfs|vfat"}
+) / (1024 * 1024)
 ```
 
-## Network metrics and queries
+**Query parameters:**
+- Time range: `7d`
 
-### Network throughput monitoring
+**Rationale:** Converts bytes to megabytes to match Windows counter output. Filters common filesystem types and excludes system volumes using regex pattern matching.
 
-```promql
-# Network I/O bytes per second
-rate("system.network.io.bytes"[5m]) by (instance, device, direction)
+### KQL vs PromQL syntax comparison
 
-# Network packets per second  
-rate("system.network.packets"[5m]) by (instance, device, direction)
+The following table highlights key syntax differences when migrating from KQL to PromQL:
 
-# Network utilization by interface
-"system.network.io.bytes" by (instance, device)
-```
+| Concept | KQL Syntax | PromQL Syntax |
+|---------|-----------|---------------|
+| **Time binning** | `bin(TimeGenerated, 15m)` | Use `step` parameter in query API (e.g., `step=15m`) |
+| **Rate calculation** | `CounterValue` (already rate) | `rate(metric[5m])` for counter metrics |
+| **Aggregation** | `summarize avg(CounterValue) by Computer` | `avg(metric) by ("Microsoft.resourceid")` |
+| **Resource filtering** | `where _ResourceId == "..."` | `{metric, "Microsoft.resourceid"="..."}` |
+| **String matching** | `where Name contains "pattern"` | `{metric, name=~".*pattern.*"}` |
+| **Label with dots** | `_ResourceId` (underscore prefix) | `"Microsoft.resourceid"` (quoted) |
+| **Metric name with dots** | N/A - uses table.column | `{"system.cpu.utilization"}` (quoted) |
+| **Time range** | `where TimeGenerated > ago(7d)` | API parameter: `start` and `end` |
+| **Top N results** | `top 10 by CounterValue desc` | `topk(10, metric)` |
 
-### Network performance analysis
-
-```promql
-# Network error rates
-rate("system.network.errors"[5m]) by (instance, device, direction)
-
-# Dropped packet detection
-rate("system.network.dropped"[5m]) by (instance, device, direction)
-
-# Network saturation indicators
-rate("system.network.io.bytes"[5m]) / "system.network.bandwidth" > 0.8
-```
-
-## System health dashboards
-
-### Golden signals for infrastructure
-
-**Latency (Disk I/O latency):**
-```promql
-# Average disk operation time
-"system.disk.operation.time" / "system.disk.operations"
-
-# 95th percentile disk latency
-histogram_quantile(0.95,
-  rate("system.disk.operation.time_bucket"[5m])
-) by (device)
-```
-
-**Traffic (System throughput):**
-```promql
-# Combined network and disk throughput
-sum(rate("system.network.io.bytes"[5m])) by (instance) +
-sum(rate("system.disk.io.bytes"[5m])) by (instance)
-```
-
-**Errors (System errors):**
-```promql
-# System error rate
-sum(rate("system.network.errors"[5m])) by (instance) +
-sum(rate("system.disk.errors"[5m])) by (instance)
-```
-
-**Saturation (Resource utilization):**
-```promql
-# Overall system saturation score
-(
-  avg("system.cpu.utilization") +
-  avg("system.memory.utilization") +
-  avg("system.disk.utilization")
-) / 3 by (instance)
-```
-
-## Performance counter mapping
-
-### Windows Performance Counters to OpenTelemetry
-
-| Windows Counter | OpenTelemetry Equivalent | PromQL Query |
-|----------------|-------------------------|--------------|
-| `\Processor(_Total)\% Processor Time` | `system.cpu.utilization` | `avg("system.cpu.utilization") by (instance)` |
-| `\Memory\Available Bytes` | `system.memory.usage{state="available"}` | `"system.memory.usage"{state="available"}` |
-| `\PhysicalDisk(_Total)\Disk Bytes/sec` | `system.disk.io.bytes` | `rate("system.disk.io.bytes"[5m])` |
-| `\Network Interface(*)\Bytes Total/sec` | `system.network.io.bytes` | `rate("system.network.io.bytes"[5m])` |
-
-### Linux metrics to OpenTelemetry
-
-| Linux Source | OpenTelemetry Equivalent | PromQL Query |
-|-------------|-------------------------|--------------|
-| `/proc/stat` (CPU) | `system.cpu.utilization` | `"system.cpu.utilization" by (state)` |
-| `/proc/meminfo` | `system.memory.usage` | `"system.memory.usage" by (state)` |
-| `/proc/diskstats` | `system.disk.operations` | `rate("system.disk.operations"[5m])` |
-| `/proc/net/dev` | `system.network.io.bytes` | `rate("system.network.io.bytes"[5m])` |
-
-## Data Collection Rule (DCR) integration
-
-### Configuring system metrics collection
-
-When using Azure Monitor Agent with DCRs for OpenTelemetry metrics:
-
-```promql
-# Verify data collection is working
-up{job="azure-monitor-agent"}
-
-# Check metric collection frequency
-rate("system.cpu.utilization"[1m]) != 0
-```
-
-### Troubleshooting collection issues
-
-```promql
-# Missing metrics detection
-absent("system.cpu.utilization" offset 5m)
-
-# Data freshness check
-(time() - timestamp("system.cpu.utilization")) > 300  # 5 minutes old
-```
-
-## Alerting patterns for system metrics
-
-### Critical system alerts
-
-**High CPU usage:**
-```promql
-avg_over_time("system.cpu.utilization"[10m]) > 0.9
-```
-
-**Memory exhaustion:**
-```promql
-"system.memory.utilization" > 0.95
-```
-
-**Disk space critically low:**
-```promql
-("system.filesystem.usage" / "system.filesystem.limit") > 0.95
-```
-
-**High disk I/O latency:**
-```promql
-histogram_quantile(0.95,
-  rate("system.disk.operation.time_bucket"[5m])
-) > 0.1  # 100ms
-```
-
-### Predictive alerts
-
-**Memory leak detection:**
-```promql
-# Memory usage growing over 1 hour
-(
-  "system.memory.utilization" - 
-  "system.memory.utilization" offset 1h
-) > 0.1  # 10% increase
-```
-
-**Disk space trending:**
-```promql
-# Predict disk full in 24 hours
-predict_linear("system.filesystem.usage"[2h], 24*3600) > 
-"system.filesystem.limit" * 0.95
-```
-
-## Best practices for system metrics
-
-1. **Set appropriate time windows** - Use longer ranges (5-15m) for system metrics to avoid noise
-2. **Monitor both utilization and saturation** - Track percentage and absolute values
-3. **Use resource-aware aggregation** - Group by logical units (instance, device, mountpoint)
-4. **Implement tiered alerting** - Warning at 80%, critical at 95% utilization
-5. **Consider seasonality** - System usage patterns may vary by time of day/week
-
-## Troubleshooting system metrics queries
-
-### Common issues
-
-**Metrics not appearing:**
-- Verify Azure Monitor Agent is configured for OpenTelemetry metrics
-- Check that DCR includes system metrics collection
-- Ensure proper UTF-8 quoting for metric names with dots
-
-**Inconsistent values:**
-- Verify metric temporality (cumulative vs delta)
-- Use appropriate aggregation functions
-- Check collection intervals and query time ranges
-
-**High cardinality warnings:**
-- Limit queries by instance or device first
-- Use recording rules for expensive aggregations
-- Avoid querying all dimensions simultaneously
+> [!TIP]
+> When working with PromQL in Azure Monitor, always quote label names that contain dots (like `"Microsoft.resourceid"`) and metric names with dots (like `{"system.cpu.utilization"}`). This UTF-8 escaping syntax is required in Prometheus 3.0+ and prevents common parsing errors.
 
 ## Related content
 
 - [PromQL best practices for OpenTelemetry metrics](prometheus-opentelemetry-best-practices.md)
 - [Azure Monitor Agent data collection configuration](../data-collection/data-collection-rule-overview.md)
 - [VM insights OpenTelemetry metrics](../vm/vminsights-opentelemetry.md)
-- [PromQL for Application Insights scenarios](prometheus-application-insights-best-practices.md)
-- [Cross-platform PromQL queries](prometheus-cross-platform-best-practices.md)

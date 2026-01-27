@@ -1,7 +1,7 @@
 ---
 title: Smart detection in Application Insights | Microsoft Docs
 description: Application Insights performs automatic deep analysis of your app telemetry and warns you about potential problems.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 07/09/2025
 ms.reviewer: yagil
 ---
@@ -56,7 +56,7 @@ Alternatively, you can change the configuration by using Azure Resource Manager 
 These diagnostic tools help you inspect the telemetry from your app:
 
 * [Metric explorer](../essentials/metrics-charts.md)
-* [Search explorer](../app/transaction-search-and-diagnostics.md?tabs=transaction-search)
+* [Search explorer](../app/failures-performance-transactions.md?tabs=search-view)
 * [Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)
 
 Smart detection is automatic, but if you want to set up more alerts, see:

@@ -12,7 +12,7 @@ ms.date: 11/14/2025
 
 Azure Monitor Application Insights is an OpenTelemetry feature of [Azure Monitor](..\overview.md) that offers application performance monitoring (APM) for live web applications. Integrating with OpenTelemetry (OTel) provides a vendor-neutral approach to collecting and analyzing telemetry data, enabling comprehensive observability of your applications.
 
-:::image type="content" source="media/app-insights-overview/app-insights-overview-screenshot.png" alt-text="A screenshot of the Azure Monitor Application Insights user interface displaying an application map." lightbox="media/app-insights-overview/app-insights-overview-screenshot.png":::
+:::image type="content" source="media/app-insights-overview/app-insights-overview.png" lightbox="media/app-insights-overview/app-insights-overview.png" alt-text="A screenshot of the Azure Monitor Application Insights user interface displaying an application map.":::
 
 ---------------------------
 
@@ -25,10 +25,10 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 * [Application dashboard](overview-dashboard.md): An at-a-glance assessment of your application's health and performance.
 * [Application map](app-map.md): A visual overview of application architecture and components' interactions.
 * [Live metrics](live-stream.md): A real-time analytics dashboard for insight into application activity and performance.
-* [Transaction search](transaction-search-and-diagnostics.md?tabs=transaction-search): Trace and diagnose transactions to identify issues and optimize performance.
+* [Search view](failures-performance-transactions.md?tabs=search-view): Trace and diagnose transactions to identify issues and optimize performance.
 * [Availability view](availability-overview.md): Proactively monitor and test the availability and responsiveness of application endpoints.
-* [Failures view](failures-and-performance-views.md?tabs=failures-view): Identify and analyze failures in your application to minimize downtime.
-* [Performance view](failures-and-performance-views.md?tabs=performance-view): Review application performance metrics and potential bottlenecks.
+* [Failures view](failures-performance-transactions.md?tabs=failures-view): Identify and analyze failures in your application to minimize downtime.
+* [Performance view](failures-performance-transactions.md?tabs=performance-view): Review application performance metrics and potential bottlenecks.
 * [Agents details](agents-view.md): A unified view for monitoring AI agents across Azure AI Foundry, Copilot Studio, and third-party agents.
 
 ### Monitoring
@@ -85,19 +85,18 @@ For more information about instrumenting applications to enable Application Insi
 
 #### Client-side JavaScript SDK
 
-* [JavaScript](./javascript.md)
-  * [React](./javascript-framework-extensions.md)
-  * [React Native](./javascript-framework-extensions.md)
-  * [Angular](./javascript-framework-extensions.md)
+* [JavaScript](javascript.md)
+  * [React](javascript-framework-extensions.md)
+  * [React Native](javascript-framework-extensions.md)
+  * [Angular](javascript-framework-extensions.md)
 
 #### Application Insights SDK (Classic API)
 
 > [!NOTE]
 > Review [Should I use OpenTelemetry or the Application Insights SDK](application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-sdk) before considering instrumentation with the Classic API.
 
-* [ASP.NET Core](./asp-net-core.md)
-* [ASP.NET](./asp-net.md)
-* [Node.js](./nodejs.md)
+* [.NET](classic-api.md?tabs=dotnet)
+* [Node.js](classic-api.md?tabs=nodejs)
 
 ### Automatic instrumentation (enable without code changes)
 

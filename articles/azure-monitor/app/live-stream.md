@@ -1,8 +1,12 @@
 ---
-title: Diagnose with live metrics - Application Insights - Azure Monitor
-description: Monitor your web app in real time with custom metrics, and diagnose issues with a live feed of failures, traces, and events.
+title: "Live Metrics: Real-Time Monitoring in Application Insights"
+description: Monitor your web app in real time with Azure Application Insights. Diagnose issues instantly using live metrics, custom filters, and failure traces.
+#customer intent: As a developer, I want to monitor my web application's performance in real time so that I can quickly identify and resolve issues.
 ms.topic: how-to
-ms.date: 10/30/2024
+ms.date: 02/19/2026
+author: AarDavMax
+ms.author: aaronmax
+ms.reviewer: aaronmax
 ms.devlang: csharp
 ---
 
@@ -108,15 +112,15 @@ Secure the live metrics control channel by enabling [Microsoft Entra authenticat
 
 ## Supported features table
 
-| Language                         | Basic metrics       | Performance metrics | Custom filtering    | Sample telemetry    | CPU split by process |
-|----------------------------------|:--------------------|:--------------------|:--------------------|:--------------------|:---------------------|
-| .NET Framework                   | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core))  |
-| .NET Core (target=.NET Framework)| Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core))  |
-| .NET Core (target=.NET Core)     | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported*          | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | **Not supported**    |
-| Azure Functions v2               | Supported           | Supported           | Supported           | Supported           | **Not supported**    |
-| Java                             | Supported (V2.0.0+) | Supported (V2.0.0+) | **Not supported**   | Supported (V3.2.0+) | **Not supported**    |
-| Node.js                          | Supported (V1.3.0+) | Supported (V1.3.0+) | **Not supported**   | Supported (V1.3.0+) | **Not supported**    |
-| Python                           | Supported (Distro Version 1.6.0+) | **Not supported**   | **Not supported**   | **Not supported**   | **Not supported**    |
+| Language                          | Basic metrics                                                                       | Performance metrics                                                                 | Custom filtering                                                                    | Sample telemetry                                                                    | CPU split by process                                                                |
+| --------------------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
+| .NET Framework                    | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) |
+| .NET Core (target=.NET Framework) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) |
+| .NET Core (target=.NET Core)      | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported*                                                                          | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | **Not supported**                                                                   |
+| Azure Functions v2                | Supported                                                                           | Supported                                                                           | Supported                                                                           | Supported                                                                           | **Not supported**                                                                   |
+| Java                              | Supported (V2.0.0+)                                                                 | Supported (V2.0.0+)                                                                 | **Not supported**                                                                   | Supported (V3.2.0+)                                                                 | **Not supported**                                                                   |
+| Node.js                           | Supported (V1.3.0+)                                                                 | Supported (V1.3.0+)                                                                 | Supported (V1.3.0+)                                                                 | Supported (V1.3.0+)                                                                 | **Not supported**                                                                   |
+| Python                            | Supported (Distro Version 1.6.0+)                                                   | Supported (Distro version 1.8.2+)                                                   | Supported (Distro version 1.0.0+)                                                   | Supported (Distro version 1.5.0+)                                                   | **Not supported**                                                                   |
 
 Basic metrics include request, dependency, and exception rate. Performance metrics (performance counters) include memory and CPU. Sample telemetry shows a stream of detailed information for failed requests and dependencies, exceptions, events, and traces.
 
@@ -133,6 +137,6 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 ## Next steps
 
 * [Monitor usage with Application Insights](./usage.md)
-* [Use Diagnostic Search](./transaction-search-and-diagnostics.md?tabs=transaction-search)
+* [Use Diagnostic Search](./failures-performance-transactions.md?tabs=search-view)
 * [Application Insights Profiler for .NET](./profiler-overview.md)
 * [Snapshot Debugger](./snapshot-debugger.md)

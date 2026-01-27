@@ -271,7 +271,7 @@ This zone also covers the resource-specific endpoints for the following DCEs:
 
 Log Analytics uses the following four DNS zones:
 
-* `privatelink-oms-opinsights-azure-com`: Covers workspace-specific mapping to OMS endpoints. You should see an entry for each workspace linked to the AMPLS connected with this private endpoint.
+* `privatelink-oms-opinsights-azure-com`: Covers workspace-specific mapping to AMA endpoints. You should see an entry for each workspace linked to the AMPLS connected with this private endpoint.
 * `privatelink-ods-opinsights-azure-com`: Covers workspace-specific mapping to ODS endpoints, which are the ingestion endpoints of Log Analytics. You should see an entry for each workspace linked to the AMPLS connected with this private endpoint.
 * `privatelink-agentsvc-azure-automation-net*`: Covers workspace-specific mapping to the agent service automation endpoints. You should see an entry for each workspace linked to the AMPLS connected with this private endpoint.
 * `privatelink-blob-core-windows-net`: Configures connectivity to the global agents' solution packs storage account. Through it, agents can download new or updated solution packs, which are also known as management packs. Only one entry is required to handle all Log Analytics agents, no matter how many workspaces are used. This entry is only added to private link setups created at or after April 19, 2021 (or starting June 2021 on Azure sovereign clouds).
@@ -315,6 +315,32 @@ To use the REST API, the Azure [CLI](/cli/azure/monitor), or PowerShell with Azu
 ### Browser DNS settings
 
 If you're connecting to your Azure Monitor resources over a private link, traffic to these resources must go through the private endpoint that's configured on your network. To enable the private endpoint, update your DNS settings as described in [Connect to a private endpoint](#connect-ampls-to-a-private-endpoint). Some browsers use their own DNS settings instead of the ones you set. The browser might attempt to connect to Azure Monitor public endpoints and bypass the private link entirely. Verify that your browser settings don't override or cache old DNS settings.
+
+### Browser local network access settings
+
+When you access Azure Monitor resources in the Azure portal through an Azure Monitor Private Link Scope (AMPLS), the portal may need to send requests to private IP addresses. Chromium-based browsers (including Microsoft Edge and Google Chrome) can block these requests unless the user or organization allows local network access.
+
+If these requests are blocked, some Azure Monitor experiences in the portal (for example, Logs and Application Insights investigation views) can show “Unable to connect” or similar errors.
+
+#### Allow local network access
+
+1. **If you see a browser prompt**  
+   When the browser shows a prompt requesting permission to connect to your local network, select **Allow**. The browser typically remembers this choice for the site.
+
+2. **If you do not see a prompt (Microsoft Edge)**  
+   In Edge, you can allow the Azure portal in site permissions:  
+   **Settings** > **Privacy, search, and services** > **Site permissions** > **All permissions** > **Local network access**.
+
+3. **Enterprise-managed environments**  
+   Administrators can allowlist the Azure portal using the Edge policy [`LocalNetworkAccessAllowedForUrls`](/deployedge/microsoft-edge-browser-policies/localnetworkaccessallowedforurls).
+
+   Example value (public Azure):
+   `https://portal.azure.com`
+
+   If you use a different Azure cloud, use the corresponding portal URL.
+
+> [!NOTE]
+> Azure Monitor Private Link Scope (AMPLS) resolves Azure Monitor endpoints to private IP addresses so portal data queries stay on your private network. Chromium-based browsers treat requests from a public website (the Azure portal) to private network addresses as a sensitive operation and can block them unless Local Network Access is allowed. Allowing this access restores full portal experiences such as Logs and Application Insights investigation views when they need to reach private endpoints. For more information, see [New permission prompt for Local Network Access](https://developer.chrome.com/blog/local-network-access).
 
 ### Querying limitation: externaldata operator
 

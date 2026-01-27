@@ -1,7 +1,7 @@
 ---
 title: Quickstart monitoring a Kubernetes cluster in Azure Monitor
 description: Quickly enable monitoring and for your Kubernetes cluster with Azure Monitor using the Azure portal.
-ms.topic: article
+ms.topic: quickstart
 ms.custom: references_regions
 ms.date: 08/26/2025
 ms.reviewer: viviandiec

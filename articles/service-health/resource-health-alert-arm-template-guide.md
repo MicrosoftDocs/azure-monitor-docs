@@ -1,14 +1,15 @@
 ---
 title: How to create Resource Health alerts
-description: Create alerts in Azure Service Health, or programmatically to notify you when your Azure resources become unavailable.
+description: Create Resource alerts in Azure Service Health.
 ms.topic: article
-ms.date: 11/25/2025 
+ms.date: 01/21/2025 
+
 
 ---
 
 # Create Resource Health alerts 
 
-A Resource Health alert is a proactive notification that tells you when the health status of an individual Azure resource changes. 
+A Resource Health alert is a proactive notification that tells you when the health status of an individual Azure resource changes. You can view your Resource Health alerts in the **Health alerts** pane. For more information, see [Resource Health alerts](resource-health-alert-monitor-guide.md).
 
 Unlike Service Health alerts that cover platform-wide issues, Resource Health alerts are resource-specific and can detect problems even if there’s no broader Azure outage. 
 
@@ -32,7 +33,7 @@ To create or edit an alert rule, you must have the following permissions:
 
 For more information about Roles and access permissions, read [Roles, permissions and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
 
-## Create a Resource Health alert rule
+## How to create a Resource Health alert
 
 1. In the Service Health portal, select **Resource Health**.
 
@@ -62,7 +63,7 @@ By choosing the right scope, you ensure alerts are relevant and actionable, help
 
 :::image type="content" source="./media/resource-health/resource-health-create-scope.PNG" alt-text="Screenshot of Resource Health scope tab." lightbox="./media/resource-health/resource-health-create-scope.PNG":::
 
-On this panel you can select any or all of the following from the drop-down menus: 
+On this panel you can select any or all of the following options from the drop-down menus: 
 - Subscription
 - Resource Group 
 - Resource type 
@@ -89,42 +90,55 @@ This tab is where you select from the health-related conditions you want for ale
 
 To set up your alert for the following information, select from each of the following drop-down menu options.
 
-### Event status
+**Event status**
+
 - Active – The health event is ongoing.
 - Resolved – The event ended.
 - In Progress – Azure is working on mitigation.
 - Updated - The event associated with a resource changes state or receives new information.
+
+:::image type="content" source="./media/resource-health/resource-health-event-status.PNG" alt-text="Screenshot of event status drop-down menu." lightbox="./media/resource-health/resource-health-event-status.PNG":::
 
 >[!Tip] 
 >- Use **Active** to get notified immediately when an issue starts.<br>
 >- Use **Resolved** for post-incident reviews
 >- If status is **Updated** you should review the latest details to confirm if the issue can still affect your resource or if corrective action is needed.
 
-### Current resource status
+**Current resource status**
+
 You can select **All** or:<br>
 - Available - Healthy
 - Degraded - Performance issues
 - Unavailable - Down
 
-### Previous resource status
+:::image type="content" source="./media/resource-health/resource-health-current-resource-status.PNG" alt-text="Screenshot of current status drop-down menu." lightbox="./media/resource-health/resource-health-current-resource-status.PNG":::
+
+**Previous resource status**
+
 You can select **All** or:<br>
 - Available - Healthy
 - Degraded - Performance issues
 - Unavailable - Down
 - Unknown - health information is missing
 
+:::image type="content" source="./media/resource-health/resource-health-previous-resource-status.PNG" alt-text="Screenshot of previous status drop-down menu." lightbox="./media/resource-health/resource-health-previous-resource-status.PNG":::
+
 >[!Note]
 > You can set alerts based on status transitions for example:<br> `Previous` = Unavailable and `Current` = Available.<br> This would show the resource is recovered and it's helpful for tracking recovery or SLA compliance.
 
-### Reason type
+**Reason type**
+
 - Platform Initiated – Azure maintenance or incident.
 - User Initiated – Manual stop/deallocate. (*This setting helps distinguish between Azure issues and user actions*.)
 - Unknown
+
+:::image type="content" source="./media/resource-health/resource-health-reason-type-status.PNG" alt-text="Screenshot of reason type status drop-down menu." lightbox="./media/resource-health/resource-health-reason-type-status.PNG":::
 
 ## Actions
 On this tab, you decide how you're notified. Action Groups let you send alerts by email, Short Message Service (SMS), push notifications, or even trigger automation through webhooks, Logic Apps, or Functions.<br> Use multiple channels to make sure all the right people respond quickly.
 
 :::image type="content" source="./media/resource-health/resource-health-create-actions.PNG" alt-text="Screenshot of Resource Health actions tab." lightbox="./media/resource-health/resource-health-create-actions.PNG":::
+
 
 
 Based on your subscription, there's  a list of all available action groups you can choose. 
@@ -146,7 +160,7 @@ A clear name and description help you manage multiple alerts, avoid confusion, a
 
 :::image type="content" source="./media/resource-health/resource-health-create-details.PNG" alt-text="Screenshot of Resource Health Details tab." lightbox="./media/resource-health/resource-health-create-details.PNG"::: 
 
-On this tab, you can give your alert a clear name and description so it’s easy to recognize later. Use names that explain the purpose, like *Critical VM* or *Health Alert.*<br> Choose how to set up your details with the following fields. 
+On this tab, you can give your alert a clear name and description so it’s easy to recognize later. Use names that explain the purpose, like *Critical Virtual Machine (VM)* or *Health Alert.*<br> Choose how to set up your details with the following fields. 
 
 **Project details**
 - Resource group

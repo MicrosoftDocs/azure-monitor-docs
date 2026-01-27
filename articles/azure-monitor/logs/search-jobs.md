@@ -2,7 +2,7 @@
 title: Run search jobs in Azure Monitor
 description: Search jobs are asynchronous log queries in Azure Monitor that make results available as a table for further analytics.
 ms.topic: how-to
-ms.date: 10/14/2025
+ms.date: 12/16/2025
 ms.custom: references_regions
 ms.reviewer: adi.biran
 # Customer intent: As a data scientist or workspace administrator, I want an efficient way to search through large volumes of data in a table, including data in long-term retention.
@@ -68,7 +68,11 @@ To run a search job, in the Azure portal:
 
 1. Select the ellipsis menu on the right-hand side of the screen and select **Search job**. 
 
-    :::image type="content" source="media/search-job/search-job-menu-selection.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-menu-selection.png"::: 
+    :::image type="content" source="media/search-job/search-job-ellipses-menu.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-ellipses-menu.png"::: 
+
+1. Or use the **Run** pull-down menu and select **Run as Search job**.
+
+   :::image type="content" source="media/search-job/search-job-run-menu.png" alt-text="Screenshot of the Logs screen with the Run as Search job menu item highlighted." lightbox="media/search-job/search-job-run-menu.png":::
 
 1. Specify the search job date range using the time picker. Choose any period within the total retention period.
 
@@ -84,16 +88,16 @@ To run a search job, in the Azure portal:
 
     Search job results are available as they begin flowing into the newly created search job results table.
 
-    :::image type="content" source="media/search-job/search-job-running.png" alt-text="Screenshot that shows search job results table with data." lightbox="media/search-job/search-job-running.png":::
+    :::image type="content" source="media/search-job/run-as-search-job-processing.png" alt-text="Screenshot that shows search job results table with data." lightbox="media/search-job/run-as-search-job-processing.png":::
 
     Azure Monitor Logs shows a **Search job is done** message when it's completed. When you see that message or the progress shows 100%, the results table is now ready with all the records that match the search query.
 
 ### [API](#tab/api-1)
 
-To run a search job, call the **Tables - Create or Update** API. The call includes the name of the results table to be created. The name of the results table must end with *_SRCH*.
+To run a search job, use the `Create` operation of the [Tables](/rest/api/loganalytics/tables) API. The call includes the name of the results table to be created. The name of the results table must end with *_SRCH*.
  
 ```http
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/<TableName>_SRCH?api-version=2021-12-01-preview
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tablename_SRCH}?api-version={api-version}
 ```
 
 **Request body**
@@ -114,7 +118,7 @@ This example creates a table called *Syslog_suspected_SRCH* with the results of 
 **Request**
 
 ```http
-PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/Microsoft.OperationalInsights/workspaces/testWS/tables/Syslog_suspected_SRCH?api-version=2021-12-01-preview
+PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/ContosoResourceGroup/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Syslog_suspected_SRCH?api-version={api-version}
 ```
 
 **Request body**
@@ -125,8 +129,8 @@ PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000
         "searchResults": {
                 "query": "Syslog | where * has 'suspected.exe'",
                 "limit": 1000,
-                "startSearchTime": "2020-01-01T00:00:00Z",
-                "endSearchTime": "2020-01-31T00:00:00Z"
+                "startSearchTime": "2025-01-01T00:00:00Z",
+                "endSearchTime": "2025-11-30T00:00:00Z"
             }
     }
 }
@@ -143,7 +147,7 @@ To run a search job, run the [az monitor log-analytics workspace table search-jo
 **Example**
 
 ```azurecli
-az monitor log-analytics workspace table search-job create --subscription ContosoSID --resource-group ContosoRG  --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --search-query 'Heartbeat | where ComputerIP has "00.000.00.000"' --limit 1500 --start-search-time "2022-01-01T00:00:00.000Z" --end-search-time "2022-01-08T00:00:00.000Z" --no-wait
+az monitor log-analytics workspace table search-job create --subscription aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e --resource-group ContosoResourceGroup --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --search-query 'Heartbeat | where ComputerIP has "198.51.100.101"' --limit 1500 --start-search-time "2022-01-01T00:00:00.000Z" --end-search-time "2022-01-08T00:00:00.000Z" --no-wait
 ```
 
 ### [PowerShell](#tab/powershell-1)
@@ -153,7 +157,7 @@ To run a search job, run the [New-AzOperationalInsightsSearchTable](/powershell/
 **Example**
 
 ```powershell
-New-AzOperationalInsightsSearchTable -ResourceGroupName ContosoRG -WorkspaceName ContosoWorkspace -TableName HeartbeatByIp_SRCH -SearchQuery "Heartbeat" -StartSearchTime "01-01-2022 00:00:00" -EndSearchTime "01-01-2022 00:00:00"
+New-AzOperationalInsightsSearchTable -ResourceGroupName ContosoResourceGroup -WorkspaceName ContosoWorkspace -TableName HeartbeatByIp_SRCH -SearchQuery "Heartbeat" -StartSearchTime "01-01-2022 00:00:00" -EndSearchTime "01-01-2022 00:00:00"
 ```
 
 ---
@@ -168,13 +172,14 @@ New-AzOperationalInsightsSearchTable -ResourceGroupName ContosoRG -WorkspaceName
 
     The icon on the search job results table displays an update indicator icon until the search job is completed.  
     
-    :::image type="content" source="media/search-job/search-job-status.png" alt-text="Screenshot that shows the Tables tab on Logs screen in the Azure portal with the search results tables listed under Search results." lightbox="media/search-job/search-job-status.png":::
+    :::image type="content" source="media/search-job/search-job-status-results.png" alt-text="Screenshot shows the status of the search table results." lightbox="media/search-job/search-job-status-results.png":::
 
 ### [API](#tab/api-2)
 
-Call the **Tables - Get** API to get the status and details of a search job:
+Use the `Get` operation of the [Tables](/rest/api/loganalytics/tables) API to check the status and details of a search job.
+
 ```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/<TableName>_SRCH?api-version=2021-12-01-preview
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_SRCH}?api-version={api-version}
 ```
 
 **Table status**
@@ -195,7 +200,7 @@ This example retrieves the table status for the search job in the previous examp
 **Request**
 
 ```http
-GET https://management.azure.com/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/Microsoft.OperationalInsights/workspaces/testWS/tables/Syslog_SRCH?api-version=2021-12-01-preview
+GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/ContosoResourceGroup/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Syslog_SRCH?api-version={api-version}
 ```
 
 **Response**
@@ -227,7 +232,7 @@ GET https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000
         },
         "provisioningState": "Succeeded"
     },
-    "id": "subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/Microsoft.OperationalInsights/workspaces/testWS/tables/Syslog_SRCH",
+    "id": "subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/ContosoResourceGroup/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Syslog_SRCH",
     "name": "Syslog_SRCH"
 }
 ```
@@ -239,7 +244,7 @@ To check the status and details of a search job table, run the [az monitor log-a
 **Example**
 
 ```azurecli
-az monitor log-analytics workspace table show --subscription ContosoSID --resource-group ContosoRG --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --output table \
+az monitor log-analytics workspace table show --subscription aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e --resource-group ContosoResourceGroup --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --output table \
 ```
 
 ### [PowerShell](#tab/powershell-2)
@@ -249,7 +254,7 @@ To check the status and details of a search job table, run the [Get-AzOperationa
 **Example**
 
 ```powershell
-Get-AzOperationalInsightsTable -ResourceGroupName "ContosoRG" -WorkspaceName "ContosoWorkspace" -tableName "HeartbeatByIp_SRCH"
+Get-AzOperationalInsightsTable -ResourceGroupName "ContosoResourceGroup" -WorkspaceName "ContosoWorkspace" -tableName "HeartbeatByIp_SRCH"
 ```
 
 > [!NOTE]

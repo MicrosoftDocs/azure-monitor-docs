@@ -1,7 +1,7 @@
 ---
 title: Default Prometheus metrics configuration in Azure Monitor
 description: This article lists the default targets, dashboards, and recording rules for Prometheus metrics in Azure Monitor.
-ms.topic: article
+ms.topic: reference
 ms.date: 09/10/2025
 ms.reviewer: aul
 ---
@@ -26,7 +26,7 @@ You may choose to use the default configuration or customize collection for your
 
 
 ## Targets scraped by default
-Following are the targets that the Azure Monitor metrics add-on can scrape by default and the conditions under which they are enabled. See [Enable and disable default targets](./prometheus-metrics-scrape-configuration.md#enable-and-disable-default-targets) to enable/disable default targets.
+Following are the targets that the Azure Monitor metrics add-on can scrape by default and the conditions under which they're enabled. See [Enable and disable default targets](./prometheus-metrics-scrape-configuration.md#enable-and-disable-default-targets) to enable/disable default targets.
 
 The following targets are enabled by default.
 
@@ -41,7 +41,7 @@ Th following targets are enabled when [control plane metrics (preview)](/azure/a
 - `controlplane-apiserver`
 - `controlplane-etcd` 
 
-The following targets are enable when [Container Network Observability](/azure/aks/advanced-network-observability-concepts) is enabled.
+The following targets are enabled when [Container Network Observability](/azure/aks/advanced-network-observability-concepts) is enabled.
 
 - `networkobservabilityHubble`
 - `networkobservabilityCilium` 
@@ -298,7 +298,7 @@ The following metrics are collected by default from each default target. All oth
 - `apiserver_current_inflight_requests`
 
 > [!NOTE]
-> `apiserver_request_duration_seconds` and `apiserver_request_sli_duration_seconds` are histogram metrics which have high cardinality and all series are not collected by default. Only the sum and count are used for gathering the average latencies.
+> `apiserver_request_duration_seconds` and `apiserver_request_sli_duration_seconds` are histogram metrics, which have high cardinality and all series aren't collected by default. Only the sum and count are used for gathering the average latencies.
 
 #### controlplane-cluster-autoscaler
 
@@ -359,7 +359,7 @@ The following metrics are collected by default from each default target. All oth
 
 ## Dashboards
 
-The following default dashboards are automatically provisioned and configured by Azure Monitor managed service for Prometheus when you [link your Azure Monitor workspace to an Azure Managed Grafana instance](../essentials/azure-monitor-workspace-manage.md#link-a-grafana-workspace). They are provisioned in the specified Azure Grafana instance under the `Managed Prometheus` folder. These are the standard open source community dashboards for monitoring Kubernetes clusters with Prometheus and Grafana. 
+The following default dashboards are automatically provisioned and configured by Azure Monitor managed service for Prometheus when you [link your Azure Monitor workspace to an Azure Managed Grafana instance](../essentials/azure-monitor-workspace-manage.md#link-a-grafana-workspace). They're provisioned in the specified Azure Grafana instance under the `Managed Prometheus` folder. These dashboards are the standard open source community dashboards for monitoring Kubernetes clusters with Prometheus and Grafana. 
 
 - `Kubernetes / Compute Resources / Cluster`
 - `Kubernetes / Compute Resources / Namespace (Pods)`
@@ -378,7 +378,7 @@ The following default dashboards are automatically provisioned and configured by
 
 ## Recording rules
 
-The following default recording rules are automatically configured by Azure Monitor managed service for Prometheus when you [configure Prometheus metrics to be scraped from an Azure Kubernetes Service (AKS) cluster](kubernetes-monitoring-enable.md). Source code for these recording rules can be found in [this GitHub repository](https://aka.ms/azureprometheus-mixins). These are the standard open source recording rules used in the dashboards above.
+The following default recording rules are automatically configured by Azure Monitor managed service for Prometheus when you [configure Prometheus metrics to be scraped from an Azure Kubernetes Service (AKS) cluster](kubernetes-monitoring-enable.md). Source code for these recording rules can be found in [this GitHub repository](https://aka.ms/azureprometheus-mixins). These recording rules are the standard open source recording rules used in the dashboards in the previous section.
 
 - `cluster:node_cpu:ratio_rate5m`
 - `namespace_cpu:kube_pod_container_resource_requests:sum`

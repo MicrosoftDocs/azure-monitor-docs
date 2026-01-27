@@ -1,7 +1,7 @@
 ---
 title: Network firewall requirements for monitoring Kubernetes cluster
 description: Proxy and firewall configuration information required for the containerized agent to communicate with Managed Prometheus and Container insights.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/25/2025
 ms.reviewer: aul
 ---
@@ -30,8 +30,15 @@ The following table lists the proxy and firewall configuration information requi
 > [!NOTE]
 > When using AMA with AMPLS, all of your Data Collection Rules must use Data Collection Endpoints. Those DCEs must be added to the AMPLS configuration using [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls)
 
-> [!IMPORTANT]
-> Using the `NO_PROXY` environment variable to bypass proxy settings is **not supported** when your cluster uses an HTTPS proxy **and** is configured as a private cluster. In this scenario, you must ensure that the required endpoints listed in the tables above are allowed through your proxy as well.
+> [!IMPORTANT]  
+> HTTPS Proxy and Private cluster combination is **not supported** currently.  
+> A preview feature is in development that **does** support this scenario.  
+>  
+> To enable it, apply the preview ConfigMap found at:  
+> https://github.com/Azure/prometheus-collector/blob/main/otelcollector/configmaps/ama-metrics-settings-configmap-otel.yaml#L14  
+>  
+> Then set:  
+> `opentelemetry-metrics: true`
 
 ## Microsoft Azure operated by 21Vianet cloud
 

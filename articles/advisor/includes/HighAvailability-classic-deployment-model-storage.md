@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/12/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Classic deployment model storage
@@ -30,5 +30,23 @@ Subcategory: undefined
 
 <!--fd04ff97-d3b3-470a-9544-dfea3a5708db_end-->
 
+
+<!--3b56a230-55c4-410f-89e6-d8d596f78593_begin-->
+
+#### The legacy version of the Azure Storage Data Movement Library (v2) is retiring  
+  
+The modern version of the Azure Storage Data Movement Library offers important upgrades including checkpointing, shared infrastructure with Azure Storage v12 client libraries, and provides improved performance and reliability.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485106)  
+
+ResourceType: microsoft.classicstorage/storageaccounts  
+Recommendation ID: 3b56a230-55c4-410f-89e6-d8d596f78593  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--3b56a230-55c4-410f-89e6-d8d596f78593_end-->
 
 <!--articleBody-->

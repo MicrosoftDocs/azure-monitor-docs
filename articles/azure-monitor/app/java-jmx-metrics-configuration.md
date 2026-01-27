@@ -85,6 +85,6 @@ Other configuration examples for Java 17:
 
 ## Where do I find the JMX Metrics in application insights?
 
-You can view the JMX metrics collected while your application is running by navigating to your application insights resource in the Azure portal. Under Metrics tab, select the dropdown as shown to view the metrics.
+You can view the JMX metrics collected while your application is running by navigating to your Application Insights resource in the Azure portal. On the **Metrics** pane, select the dropdown as shown to view the metrics.
 
-> :::image type="content" source="media/java-ipa/jmx/jmx-portal.png" lightbox="media/java-ipa/jmx/jmx-portal.png" alt-text="Screenshot of metrics in portal":::
+:::image type="content" source="media/java-ipa/jmx/jmx-portal.png" lightbox="media/java-ipa/jmx/jmx-portal.png" alt-text="Screenshot of the Metrics pane in the Azure portal.":::

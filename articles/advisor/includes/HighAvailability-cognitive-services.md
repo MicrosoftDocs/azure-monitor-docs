@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -119,5 +119,77 @@ Recommendation ID: 85c750a4-a0cb-4610-a2df-074a5e775ddc
 Subcategory: undefined
 
 <!--85c750a4-a0cb-4610-a2df-074a5e775ddc_end-->
+
+<!--35c12ad3-0e52-45cd-bf53-16777b0f6a34_begin-->
+
+#### Migrate away from Azure AI Health Insights service  
+  
+Azure AI Health Insights, Clinical Trials Matcher model, and Radiology Insights model are retiring. Azure AI Health Insights, Clinical Trials Matcher model, and Radiology Insights model are no longer available for use or integration.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=502049)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 35c12ad3-0e52-45cd-bf53-16777b0f6a34  
+Subcategory: undefined
+
+<!--35c12ad3-0e52-45cd-bf53-16777b0f6a34_end-->
+
+<!--2b8347d8-bd08-4046-892d-8844f741b8b2_begin-->
+
+#### Migrate to conversational language understanding  
+  
+Language Understanding (LUIS) is retiring. Migrate to conversational language understanding, a capability of Azure AI Service for Language.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/language-understanding-retirement/)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 2b8347d8-bd08-4046-892d-8844f741b8b2  
+Subcategory: undefined
+
+<!--2b8347d8-bd08-4046-892d-8844f741b8b2_end-->
+
+<!--d0f31a4b-60c1-4e61-b095-2d14504a9675_begin-->
+
+#### Support for Video Retrieval in Azure AI Content Understanding is ending  
+  
+Support for Video Retrieval in Azure AI Content Understanding is ending  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure Content Understanding in Foundry Tools video overview - Foundry Tools](/azure/ai-services/content-understanding/video/overview?WT.mc_id=Portal-AppInsightsExtension)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: d0f31a4b-60c1-4e61-b095-2d14504a9675  
+Subcategory: undefined
+
+<!--d0f31a4b-60c1-4e61-b095-2d14504a9675_end-->
+
+<!--8523d119-bfd8-4f91-b17d-13d6b34338c4_begin-->
+
+#### Migrate from Custom Commands to new Speech Services  
+  
+Cognitive Services Custom Commands feature is being retired. Azure Cognitive Services is restructuring Speech Services to leverage next-generation dialog orchestration models for improved performance and accuracy.  
+  
+**Potential benefits**: Ensure continuity and improved accuracy  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=retirement-notice-custom-commands-will-retire-on-30-april-2026)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 8523d119-bfd8-4f91-b17d-13d6b34338c4  
+Subcategory: undefined
+
+<!--8523d119-bfd8-4f91-b17d-13d6b34338c4_end-->
 
 <!--articleBody-->

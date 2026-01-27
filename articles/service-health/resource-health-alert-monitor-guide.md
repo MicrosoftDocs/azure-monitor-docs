@@ -1,8 +1,8 @@
 ---
 title: Resource Health Alerts in Azure portal
 description: Resource health alerts notify you when your Azure resources become unavailable.
-ms.topic: conceptual
-ms.date: 11/12/2025
+ms.topic: concept-article
+ms.date: 12/22/2025
 ---
 
 # Resource Health alerts 
@@ -32,7 +32,7 @@ Here's a quick reference table for Resource Health alert conditions:
 |------------------|-----------------|------------|
 |Event status      |Active, Resolved, In progress |**Active**: Get notified when an issue starts.<br> **Resolved**: Track the recovery.<br> **In progress**: Monitor any ongoing corrections and repairs.        |
 |Resource status   |Available, Unavailable, Degraded, Unknown |**Unavailable**: Respond to outages. <br> **Degraded**: Address any performance issues.<br>**Unknown**: Investigate any missing health information.         |
-|Status transition |Previous to Current |**Example**: A resource that was unavailable now is available.<br> *Use this option for SLA tracking or recovery alerts.*         |
+|Status transition |Previous to Current |**Example**: A resource that was unavailable now is available.<br> *Use this option for Service Level Agreement (SLA) tracking or recovery alerts.*         |
 |Reason type       |Platform initiated or User initiated |**Platform initiated**: This setting would be an Azure maintenance or incident. <br>**User initiated**: a user stops or deallocates a resource.          |
 
 

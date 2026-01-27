@@ -28,23 +28,27 @@
       href: service-health-notification-transitions.md
     - name: Service Health event tags
       href: service-health-event-tags.md  
-    - name: View and access Security advisories
-      href: security-advisories-elevated-access.md
-    - name: Manage Azure security notifications
+    - name: Security notifications overview
       href: stay-informed-security.md
-    - name: Health advisories overview
-      href: Service-health-advisories.md
-    - name: Health history overview
-      href: health-history-overview.md
+    - name: Service issues overview
+      href: service-issues-blade.md
     - name: Planned maintenance overview
       href: service-health-planned-maintenance.md
+    - name: Health advisories overview
+      href: Service-health-advisories.md
+    - name: Security advisories overview
+      href: security-advisories-elevated-access.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
+    - name: Health history overview
+      href: health-history-overview.md
     - name: How to report an issue
       href: report-issue.md
+    - name: Configure subscriptions for Security advisories
+      href: security-advisories-add-subscription.md
     - name: How to create alerts
       items:
-      - name: Configure alerts for service health events in the Azure portal
+      - name: Create Service Health alerts
         href: ./alerts-activity-log-service-notifications-portal.md
       - name: Create activity log alerts using Bicep
         href: alerts-activity-log-service-notifications-bicep.md
@@ -72,7 +76,7 @@
       items:
       - name: Resource health alerts overview
         href: resource-health-alert-monitor-guide.md
-      - name: Create Resource Health alerts in the Service Health portal
+      - name: Create Resource Health alerts
         href: resource-health-alert-arm-template-guide.md
       - name: Create Resource Health alerts with PowerShell and ARM templates
         href: resource-health-alert-powershell-template.md
@@ -82,7 +86,7 @@
         href: impacted-resources-outage.md
       - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
-      - name: Impacted Resources from Azure security incidents
+      - name: Impacted Resources from Azure security advisories
         href: impacted-resources-security.md
       - name: Impacted Resources from Azure retirements
         href: impacted-resources-retirements.md   
@@ -100,6 +104,8 @@
       href: azure-resource-graph-overview.md
   - name: REST API
     items:   
+    - name: How to access Security advisories through API endpoint
+      href: access-service-advisories-api.md
     - name: Azure Resource health REST API queries
       href: /rest/api/resourcehealth/
     - name: Service Health REST API

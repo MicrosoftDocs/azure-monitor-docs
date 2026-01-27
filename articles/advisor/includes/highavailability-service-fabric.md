@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Service Fabric
@@ -12,22 +12,22 @@ ms.custom: HighAvailability Service Fabric
   
 ## Service Fabric  
   
-<!--c26fdcea-6dc5-4d41-874b-5bc2462834a7_begin-->
+<!--0523982f-9aef-4211-8466-3330121f34c8_begin-->
 
-#### Distribute node types across zones to maintain quorum during faults  
+#### Migrate to the Semantic Python SDK  
   
-Create node types with placement across multiple zones. Ensure durability level is set to Silver or Gold for quorum-based fault tolerance across zones.  
+The Spark native connector for Semantic Link is retiring. The Semantic Python SDK offers comparable functionality and enhanced support.  
   
-**Potential benefits**: Maintains quorum across zone failures  
+**Potential benefits**: Ensure continued support and improved security  
 
-**Impact:** High
+**Impact:** Medium
   
-For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=502602)  
 
 ResourceType: microsoft.servicefabric/clusters  
-Recommendation ID: c26fdcea-6dc5-4d41-874b-5bc2462834a7  
+Recommendation ID: 0523982f-9aef-4211-8466-3330121f34c8  
 Subcategory: undefined
 
-<!--c26fdcea-6dc5-4d41-874b-5bc2462834a7_end-->
+<!--0523982f-9aef-4211-8466-3330121f34c8_end-->
 
 <!--articleBody-->

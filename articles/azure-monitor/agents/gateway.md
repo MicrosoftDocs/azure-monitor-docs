@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.date: 11/14/2024
 ms.reviewer: luki
 ms.custom:
-  - sfi-ropc-flagged
+  - sfi-ropc-nochange
 ---
 
 # Connect computers without internet access by using the Log Analytics gateway in Azure Monitor

@@ -1,7 +1,7 @@
 ---
 title: Resiliency in Operations center (preview)
 description: Describes the Resiliency pillar in Operations center, which provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/14/2025
 ---
 

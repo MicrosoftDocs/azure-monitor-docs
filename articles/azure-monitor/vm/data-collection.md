@@ -1,13 +1,13 @@
 ---
 title: Collect data from virtual machine client with Azure Monitor
 description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
-ms.topic: article
-ms.date: 10/28/2025
+ms.topic: how-to
+ms.date: 12/09/2025
 ---
 
 # Collect data from virtual machine client with Azure Monitor
 
-Azure Monitor automatically collects host metrics and activity logs from your Azure and Arc-enabled virtual machines. To collect metrics and logs from the client operating system and its workloads though, you need to create [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) that specify what you want to collect and where to send it. This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients.
+Azure Monitor automatically collects host metrics and activity logs from your Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. To collect metrics and logs from the client operating system and its workloads though, you need to create [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) that specify what you want to collect and where to send it. This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients.
 
 > [!NOTE]
 >If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article and the related articles on each [data source](#add-data-sources). You can use the Azure portal to create and edit the DCR, and the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is automatically installed on each VM that doesn't already have it.
@@ -18,6 +18,7 @@ Azure Monitor automatically collects host metrics and activity logs from your Az
 
 * For Guest OS metrics, an Azure Monitor workspace where you have at least contributor rights to collect the data you configure. See [[Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md) where you have at least contributor rights to collect the data you configure. 
 * For Guest OS logs, a Log Analytics workspace where you have at least contributor rights to collect the data you configure. See [[Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md) if you don't already have a workspace you can use.
+* The Azure Monitoring Agent requires 700MB of disk space to install. Updating needs an extra 700MB, which is freed after the update completes.
 * [Permissions to create DCR objects](../data-collection/data-collection-rule-create-edit.md#permissions) in the workspace.
 * To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 * See the detailed article for each [data source](#add-data-sources) for any additional prerequisites.
@@ -28,6 +29,9 @@ Azure Monitor automatically collects host metrics and activity logs from your Az
 
 
 ## Create a data collection rule
+
+[!INCLUDE [data-collection-rule-edit-warning](../data-collection/includes/data-collection-rule-edit-warning.md)]
+
 
 In the Azure portal, on the **Monitor** menu, select **Data Collection Rules** > **Create** to open the DCR creation pane.
 
@@ -85,6 +89,8 @@ The following table lists the types of data you can collect from a VM client wit
 | [Text log](data-collection-log-text.md) | Information sent to a text log file on a local disk | Windows<br>Linux | Log Analytics workspace |
 | [JSON log](data-collection-log-json.md) | Information sent to a JSON log file on a local disk | Windows<br>Linux | Log Analytics workspace |
 | [IIS logs](data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
+| [SNMP traps](data-collection-snmp-data.md) | SNMP poll and trap data sent to the Syslog data table or custom text table | Linux | Log Analytics workspace |
+| [Windows Firewall logs](data-collection-firewall-logs.md) |  Windows client and server firewall log data collected by DCR and the Security and Audit solution from Marketplace in the Azure portal|  Windows | Log Analytics workspace |
 
 ### [Preview experience](#tab/preview)
 
@@ -102,7 +108,7 @@ The **Basics** tab includes basic information about the DCR.
 | **Subscription** | The subscription to store the DCR. The subscription doesn't need to be the same subscription as the virtual machines. |
 | **Resource group** | A resource group to store the DCR. The resource group doesn't need to be the same resource group as the virtual machines. |
 | **Region** | The Azure region to store the DCR. The region must be the *same* region as any Log Analytics workspace or Azure Monitor workspace that's used in a destination of the DCR. If you have workspaces in different regions, create multiple DCRs to associate with the same set of machines. |
-| **Type of telemetry** | Specifies the type of telemetry the DCR will collect. This selection will affect the resources that you can select and the data flows that you can create for the DCR. Select the drop down to get a short description of each option. Select **Help me choose** to get further details including the types of data source and destination you can select for each option and whether they require a DCE or a managed entity.<sup>1</sup><br><br>For **Platform Telemetry**, see [Create a data collection rule (DCR) for metrics export](../data-collection/metrics-export-create.md). |
+| **Type of telemetry** | Specifies the type of telemetry the DCR will collect. This selection will affect the resources that you can select and the data flows that you can create for the DCR. Select the drop-down to get a short description of each option. Select **Help me choose** to get further details including the types of data source and destination you can select for each option and whether they require a DCE or a managed entity.<sup>1</sup><br><br>For **Platform Telemetry**, see [Create a data collection rule (DCR) for metrics export](../data-collection/metrics-export-create.md). |
 | **Data Collection Endpoint** | Specifies the [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md) that's used to collect data. A DCE is required only if you're using a data source that requires one. Select **Help me choose** next to **Type of telemetry** to identify the data sources that require a DCE. For most implementations, you can use a single DCE for each Log Analytics workspace. See [Create a data collection rule (DCR) for metrics export](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) for details on how to create a DCE. |
 | Enable Managed Identity | Specifies whether to enable managed identity for the DCR. Select **Help me choose** next to **Type of telemetry** to identify the data sources that require a managed identity. |
 

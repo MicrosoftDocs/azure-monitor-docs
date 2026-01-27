@@ -68,7 +68,7 @@ The following tables identify the different environments and features that are c
 | **Data sent to** |  |  |  |
 |  | Azure Monitor logs | ✓ | ✓ |
 | **Supported services and features** |  |  |  |
-|  | Microsoft Sentinel  | ✓ ([Scope](./azure-monitor-agent-migration.md#understand-additional-dependencies-and-services)) | ✓ |
+|  | Microsoft Sentinel  | ✓ ([Scope](./azure-monitor-agent-migration.md#understand-other-dependencies-and-services)) | ✓ |
 |  | VM insights | ✓ | ✓ |
 |  | Microsoft Defender for Cloud (uses only the Microsoft Defender for Endpoint agent) |  |  |
 |  | Automation Update Management (moved to Azure Update Manager) | ✓ | ✓ |
@@ -92,7 +92,7 @@ The following tables identify the different environments and features that are c
 | **Data sent to** |  |  |  |
 |  | Azure Monitor logs | ✓ | ✓ |
 | **Supported services and features** |  |  |  |
-|  | Microsoft Sentinel  | ✓ ([Scope](./azure-monitor-agent-migration.md#understand-additional-dependencies-and-services)) | ✓ |
+|  | Microsoft Sentinel  | ✓ ([Scope](./azure-monitor-agent-migration.md#understand-other-dependencies-and-services)) | ✓ |
 |  | VM insights | ✓ | ✓ |
 |  | Microsoft Defender for Cloud (uses only the Microsoft Defender for Endpoint agent) | | |
 |  | Automation Update Management (moved to Azure Update Manager) | ✓ | ✓ |

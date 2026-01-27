@@ -5180,7 +5180,7 @@
    "redirect_url": "/azure/monitoring/monitoring-container-insights-overview",
    "redirect_document_id": false
   },
-    {
+  {
    "source_path_from_root": "/articles/monitoring/monitoring-container-insights-overview.md",
    "redirect_url": "/azure/azure-monitor/containers/container-insights-overview",
    "redirect_document_id": false
@@ -8747,6 +8747,76 @@
   {
    "source_path": "articles/azure-monitor/app/nodejs.md",
    "redirect_url": "/azure/azure-monitor/app/classic-api",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/container-insights-data-collection-filter.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-data-collection-configmap",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/mdecustomcollectiondevicefileevents.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables-index",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/data-collection/data-collection-metrics.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/metrics-export-create.md",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-communication-communicationservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-mixedreality-remoterenderingaccounts-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-mixedreality-spatialanchorsaccounts-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-communication-communicationservices-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-fileshares-fileshares-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/queries/llmactivity.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/llmactivity.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+      "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-dotnet-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-nodejs-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-python-opencensus-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-upgrade-from-2x.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
    "redirect_document_id": false
   }
  ]

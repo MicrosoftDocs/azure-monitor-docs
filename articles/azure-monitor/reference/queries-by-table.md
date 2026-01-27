@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 11/24/2025
+ms.date: 01/26/2026
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -464,6 +464,10 @@ ms.reviewer: lualderm
 ## [AGSGrafanaLoginEvents](./queries/AGSGrafanaLoginEvents.md)
 
 - [Show login error events](./queries/AGSGrafanaLoginEvents.md#show-login-error-events)
+
+## [AGSUpdateEvents](./queries/AGSUpdateEvents.md)
+
+- [View users who updated the dashboard](./queries/AGSUpdateEvents.md#view-users-who-updated-the-dashboard)
 
 ## [AHCIDiagnosticLogs](./queries/AHCIDiagnosticLogs.md)
 
@@ -1523,15 +1527,6 @@ ms.reviewer: lualderm
 
 - [Bin Rules Query Duration](./queries/LASummaryLogs.md#bin-rules-query-duration)
 
-## [LLMActivity](./queries/LLMActivity.md)
-
-- [Copilot Interactions by User](./queries/LLMActivity.md#copilot-interactions-by-user)
-- [Copilot Plugin Management Activity](./queries/LLMActivity.md#copilot-plugin-management-activity)
-- [Copilot PromptBook Management](./queries/LLMActivity.md#copilot-promptbook-management)
-- [Copilot Security and Compliance Events](./queries/LLMActivity.md#copilot-security-and-compliance-events)
-- [AI Model Usage Statistics](./queries/LLMActivity.md#ai-model-usage-statistics)
-- [Resources Accessed by Copilot](./queries/LLMActivity.md#resources-accessed-by-copilot)
-
 ## [LogicAppWorkflowRuntime](./queries/LogicAppWorkflowRuntime.md)
 
 - [Count of failed workflow operations from Logic App Workflow Runtime](./queries/LogicAppWorkflowRuntime.md#count-of-failed-workflow-operations-from-logic-app-workflow-runtime)
@@ -1797,6 +1792,11 @@ ms.reviewer: lualderm
 
 - [Audit collection delete events](./queries/PurviewSecurityLogs.md#audit-collection-delete-events)
 
+## [QualysKnowledgeBase](./queries/QualysKnowledgeBase.md)
+
+- [Qualys vulnerability summary by severity](./queries/QualysKnowledgeBase.md#qualys-vulnerability-summary-by-severity)
+- [Qualys vulnerabilities with Threat Intelligence](./queries/QualysKnowledgeBase.md#qualys-vulnerabilities-with-threat-intelligence)
+
 ## [REDConnectionEvents](./queries/REDConnectionEvents.md)
 
 - [Unique authenticated Redis client IP addresses](./queries/REDConnectionEvents.md#unique-authenticated-redis-client-ip-addresses)
@@ -1937,7 +1937,7 @@ ms.reviewer: lualderm
 
 ## [StorageMalwareScanningResults](./queries/StorageMalwareScanningResults.md)
 
-- [Malicious blobs per storage account](./queries/StorageMalwareScanningResults.md#malicious-blobs-per-storage-account)
+- [Malicious scan objects per storage account](./queries/StorageMalwareScanningResults.md#malicious-scan-objects-per-storage-account)
 - [Unsuccessful Scans](./queries/StorageMalwareScanningResults.md#unsuccessful-scans)
 
 ## [SucceededIngestion](./queries/SucceededIngestion.md)
