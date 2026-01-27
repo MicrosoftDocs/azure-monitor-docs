@@ -61,15 +61,21 @@ To configure sampling, refer to [Enable Sampling in Application Insights with Op
 
 For more detailed information and sampling edge cases, see [Frequently Asked Questions](application-insights-faq.yml#opentelemetry-sampling).
 
-## General Sampling Guidance
+## General sampling guidance
 
 Use the following general guidance if you’re unsure where to start.
 
+### Metrics
+
 [Metrics](metrics-overview.md) aren’t sampled. Use them to reliably [alert](../alerts/alerts-overview.md) on key signals for your services and dependencies.
 
-Configure your application logging to export only ERROR logs. Add WARN selectively when actionable. If you export high-volume INFO/WARN logs, enable [trace‑based sampling for logs](opentelemetry-configuration.md#configure-tracebased-sampling-for-logs) to align with trace sampling.
+### Logs
 
-Sample traces at [5% fixed-percentage](opentelemetry-configuration.md#fixed-percentage-sampling). Increase the rate until the [Failures and Performance experiences](failures-performance-transactions.md) are representative of important operations.
+Configure app logging to export only ERROR logs. Add WARN only when actionable. If you export high-volume INFO/WARN logs, enable [trace‑based sampling for logs](opentelemetry-configuration.md#configure-tracebased-sampling-for-logs).
+
+### Traces
+
+Sample traces at [5% fixed-percentage](opentelemetry-configuration.md#fixed-percentage-sampling). If [Failures and Performance experiences](failures-performance-transactions.md) look incomplete, increase the rate.
 
 ## Ingestion sampling (not recommended)
 
