@@ -66,11 +66,12 @@ The following rules apply:
 
 ### Customer-Managed key provisioning steps
 
-1. Creating Azure Key Vault and storing key
-1. Creating a dedicated cluster
-1. Granting permissions to your Key Vault
-2. Updating a dedicated cluster with key identifier details
-3. Linking workspaces
+1. [Create or assign the Azure Key Vault KEK (storing key)](#create-or-assign-the-azure-key-vault-kek-storing-key)
+1. [Match managed identity types of dedicated cluster to Key Vault access](#match-managed-identity-types-of-dedicated-cluster-to-key-vault-access)
+1. [Grant Key Vault permissions to the managed identity](#grant-key-vault-permissions-to-the-managed-identity)
+1. [Update dedicated cluster with key identifier details](#update-dedicated-cluster-with-key-identifier-details)
+1. [Verify dedicated cluster provisioning](#verify-dedicated-cluster-provisioning) 
+1. [Link workspaces to the dedicated cluster](#link-workspaces-to-the-dedicated-cluster)
 
 A customer-managed key configuration doesn't support setting up identity and key identifier details. Perform these operation via [PowerShell](/powershell/module/az.operationalinsights/), [CLI](/cli/azure/monitor/log-analytics), or [REST](/rest/api/loganalytics/) requests.
 
@@ -80,7 +81,7 @@ To perform cluster-related actions, you need these permissions:
 
 | Action | Permissions or role needed |
 |-|-|
-| Create a dedicated cluster |`Microsoft.Resources/deployments/*`and `Microsoft.OperationalInsights/clusters/write` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example | 
+| Create a dedicated cluster |`Microsoft.Resources/deployments/*`and `Microsoft.OperationalInsights/clusters/write` permissions<br> For example, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor) | 
 | Change cluster properties |`Microsoft.OperationalInsights/clusters/write` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example | 
 | Link workspaces to a cluster | `Microsoft.OperationalInsights/clusters/write`, `Microsoft.OperationalInsights/workspaces/write`, and `Microsoft.OperationalInsights/workspaces/linkedservices/write` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example | 
 | Check workspace link status | `Microsoft.OperationalInsights/workspaces/read` permissions to the workspace, as provided by the [Log Analytics Reader built-in role](./manage-access.md#log-analytics-reader), for example |
@@ -90,7 +91,7 @@ To perform cluster-related actions, you need these permissions:
 | Unlink a workspace from cluster | `Microsoft.OperationalInsights/workspaces/linkedServices/delete` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 | Delete a dedicated cluster | `Microsoft.OperationalInsights/clusters/delete` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 
-## Storing encryption key ("KEK")
+## Create or assign the Azure Key Vault KEK (storing key)
 
 A [portfolio of Azure Key Management products](/azure/key-vault/managed-hsm/mhsm-control-data#portfolio-of-azure-key-management-products) lists the vaults and managed HSMs that can be used. 
 
@@ -110,7 +111,7 @@ These settings can be updated in Key Vault via CLI and PowerShell:
 - [Soft Delete](/azure/key-vault/general/soft-delete-overview)
 - [Purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) guards against force deletion of the secret and the vault even after soft delete
 
-## Create cluster
+## Match managed identity types of dedicated cluster to Key Vault access
 
 Clusters use managed identity for data encryption with your Key Vault. Configure `identity` `type` property to `SystemAssigned` or `UserAssigned` when [creating your cluster](./logs-dedicated-clusters.md#create-a-dedicated-cluster) to allow access to your Key Vault for data encryption and decryption operations. 
   
@@ -131,7 +132,7 @@ Clusters use managed identity for data encryption with your Key Vault. Configure
 
 Follow the procedure illustrated in [dedicated cluster article](./logs-dedicated-clusters.md#create-a-dedicated-cluster). 
 
-## Grant Key Vault permissions
+## Grant Key Vault permissions to the managed identity
 
 There are two permission models in Key Vault to grant access to your cluster and underlay storage—Azure role-based access control (Azure RBAC), and Vault access policies (legacy).
 
@@ -158,9 +159,9 @@ There are two permission models in Key Vault to grant access to your cluster and
 
     The **Get** permission is required to verify that your Key Vault is configured as recoverable to protect your key and the access to your Azure Monitor data.
 
-## Update cluster with key identifier details
+## Update dedicated cluster with key identifier details
 
-All operations on the cluster require the `Microsoft.OperationalInsights/clusters/write` action permission. It permission could be granted via the Owner or Contributor that contains the `*/write` action, or via the Log Analytics Contributor role that contains the `Microsoft.OperationalInsights/*` action.
+All operations on the cluster require the `Microsoft.OperationalInsights/clusters/write` action permission. It's permission could be granted via the Owner or Contributor that contains the `*/write` action, or via the Log Analytics Contributor role that contains the `Microsoft.OperationalInsights/*` action.
 
 This step updates dedicated cluster storage with the key and version to use for **AEK** `wrap` and `unwrap`.
 
@@ -266,7 +267,9 @@ Response to `GET` request when key update is completed:
 
 ---
 
-## Link workspace to cluster
+## Verify dedicated cluster provisioning
+
+## Link workspaces to the dedicated cluster
 
 > [!IMPORTANT]
 > This step should be performed only after the cluster provisioning. If you link workspaces and ingest data before provisioning, ingested data is dropped and can't be recovered.
@@ -324,7 +327,7 @@ When linking your Storage Account for saved queries, the service stores saved qu
 Link a Storage Account for saved queries and functions to keep the saved queries in your Storage Account. 
 
 > [!NOTE]
-> The operation removes saved queries and functions from your workspace to a table in your Storage Account. You can unlink the Storage Account for saved queries, to move saved queries and functions back to your workspace. Refresh the browser if you don't saved queries or functions don’t show up in the Azure Portal after the operation.
+> The operation removes saved queries and functions from your workspace to a table in your Storage Account. You can unlink the Storage Account for saved queries, to move saved queries and functions back to your workspace. Refresh the browser if you don't saved queries or functions don't show up in the Azure Portal after the operation.
 
 
 # [Azure portal](#tab/portal)
