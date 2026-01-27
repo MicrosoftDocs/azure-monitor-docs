@@ -45,11 +45,12 @@ ROBOTS: NOINDEX
 > ) on dcrId
 > | project dcraId, dcraName, dcrId, dcrName, dcrLocation, parentResourceId, description
 > ```
->  
-> It produces results similar to the following example:
 >
 > ## Update to alternatives
-> 
+> | Destination | Alternatives |   
+> |-------------|----------------------------------------------------------------------|
+> | Azure Storage blobs | If you're using AMA to send data to storage for longer term storage and/or lower costs, update existing configurations to send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) for cost-effective logging and added benefits of Log Analytics. | 
+> | Azure Event Hubs | If you're using AMA to send data to Event Hubs as a way to land it in your final destination or third party products, consider the following methods now available natively using Azure Monitor: <ul><li> [Configure Event Hubs using VM watch](/azure/virtual-machines/configure-eventhub-vm-watch) A native offering for virtual machines (VMs) and scale sets that send data Azure, including Event Hubs. **Note**: VM Watch doesn't collect application logs </li><li> **Event Hub -> Azure Data Explorer**: If your final data destination is ADX, update existing configurations to send data [directly to ADX and Fabric eventhouses](../vm/send-fabric-destination.md) as a simpler, more reliable solution </li> <!--li> **Event Hub -> OTLP destinations**: Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) and [Azure Monitor pipeline](../data-collection/edge-pipeline-configure.md) to send data to OTLP > compliant external destinations Splunk, Grafana, Datadog, etc. </li--><li> **Event Hub -> Other destination(s)**: [Contact Azure Monitor team](mailto:obs-agent-pms@microsoft.com) for quick assistance regarding other destinations not listed here </li></ul> | 
 
 
 ## Supported data types
@@ -67,7 +68,7 @@ The data types in the following table are supported by this feature. Each has a 
 The following logs are not supported:
 
 - ETW Logs. This is planned for later release.
-- Windows Crash Dumps. The Azure Monitoring Agent is meant for telemetry logs and not large file types.
+- Windows Crash Dumps. The Azure Monitor Agent is meant for telemetry logs and not large file types.
 - Application Logs. These are collected by Application insights, which doesn't use DCRs.
 - .NET event source logs
 
