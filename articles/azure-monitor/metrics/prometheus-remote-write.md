@@ -194,25 +194,46 @@ To send data to your Azure Monitor workspace, add the following section to the c
 ### Managed identity
 
 ```azurecli
-remote_write:   
-  - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
-    azuread:
-      cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
-      managed_identity:  
-        client_id: "<client-id of the managed identity>"
+prometheus:
+  prometheusSpec:
+    remote_write:   
+    - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
+      azuread:
+        cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
+        managed_identity:  
+          client_id: "<client-id of the managed identity>"
 ```
 
 ### Entra ID
 
 ```azurecli
-remote_write:   
-  - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
-    azuread:
-      cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
-      oauth:  
-        client_id: "<client-id from the Entra app>"
-        client_secret: "<client secret from the Entra app>"
-        tenant_id: "<Azure subscription tenant Id>"
+prometheus:
+  prometheusSpec:
+    remote_write:   
+    - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
+      azuread:
+        cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
+        oauth:  
+          client_id: "<client-id from the Entra app>"
+          client_secret: "<client secret from the Entra app>"
+          tenant_id: "<Azure subscription tenant Id>"
+```
+
+### Workload identity
+
+```azurecli
+prometheus:
+  prometheusSpec:
+    podMetadata:
+      labels:
+        azure.workload.identity/use: "true"
+    remote_write:   
+    - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
+      azuread:
+        cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
+        workload_identity:  
+          client_id: "<client-id from the Entra app>"
+          tenant_id: "<Azure subscription tenant Id>"
 ```
 
 Apply the configuration file updates:
