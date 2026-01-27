@@ -8,7 +8,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure Azure Monitor pipeline using the Azure portal
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline using the Azure portal. 
+The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline using the Azure portal. Using this method, you don't need to understand the individual components that make up the pipeline, but you may need to use other methods for more advanced functionality such as enabling the cache. To use CLI or ARM templates to configure the pipeline, see [Configure Azure Monitor](./pipeline-configure.md).
 
 ## Prerequisites
 
@@ -46,11 +46,27 @@ The settings in this tab are described in the following table.
 
 ### Dataflow tab
 
-The **Dataflow** tab allows you to create and edit dataflows for the pipeline instance. Each dataflow includes the following details:
+The **Dataflow** tab allows you to create and edit dataflows for the pipeline instance. 
 
 :::image type="content" source="./media/pipeline-configure/create-dataflow.png" lightbox="./media/pipeline-configure/create-dataflow.png" alt-text="Screenshot of Create add dataflow screen.":::
 
-The settings in this tab are described in the following table.
+#### Standard tables
+To send Syslog and CEF data to the standard Azure tables, select `Syslog` as the **Source type** and either `Syslog` or `CommonSecurityLog` as the **Table**. The incoming data is automatically converted to the appropriate format. If you want to filter data or perform any other data processing, select **Add Data Transformations**, and select an appropriate template. 
+
+#### Custom tables  
+To send data to a custom table, select `Syslog` or `OTLP` as the **Source type** and then specify a custom table name in the **Table Name** field. Select **Add Data Transformations**, and then add a transformation to convert the data to the desired format. See [Azure Monitor pipeline transformations](./pipeline-transformations.md) for details on creating transformations. 
+
+#### Transformations
+If you specify a transformation, click **Check KQL syntax** to validate the query before saving the dataflow. If the transformation includes unsupported schema changes, you will be prompted to either remove those transformations or send the data to a custom table instead.
+
+For `Syslog` and `CommonSecurityLog` tables, all appropriate columns will be available for the transformation. For custom tables, only `TimeGenerated`, `SeverityText`, `Body` columns are available. For other columns, you need to use an ARM template for the pipeline configuration. See [Pipeline configuration](./pipeline-configure.md#pipeline-configuration) for details.
+ 
+> [!NOTE]
+> See [Azure Monitor pipeline transformations](./pipeline-transformations.md) for details on creating transformations.
+
+#### Dataflow settings
+
+The settings in the **Dataflow** tab are described in the following table.
 
 | Property | Description |
 |:---------|:------------|
@@ -66,27 +82,12 @@ The settings in this tab are described in the following table.
 | Add Data Transformations | Enable to add a transformation to the dataflow. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 
 
-> [!IMPORTANT]
-> The send data to either of the following two built-in tables, the Log Analytics workspace must be onboarded to Microsoft Sentinel. You can send data to custom tables without onboarding to Microsoft Sentinel.
-> 
-> - [Syslog](/azure/azure-monitor/reference/tables/syslog)
-> - [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
+## Implementation scenarios
 
+There are fundamentally two scenarios for implementing the Azure Monitor pipeline depending on your requirements.
 
-
-## Enable cache
-
-Edge devices in some environments may experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to cache data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this will vary based on your particular environment, but the configuration must meet the following requirements:
-
-* Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
-* Access mode must support `ReadWriteMany`.
-
-Once the volume is created in the appropriate namespace, configure it using parameters in the pipeline configuration file below.
-
-> [!CAUTION]
-> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
-
-Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
+### Send Syslog and CEF to standard tables
+With this scenario, you send Syslog and CEF data directly to the existing `Syslog` and `CommonSecurityLog` tables in a Log Analytics workspace. Data is converted to the appropriate format automatically, 
 
 
 ## Next steps

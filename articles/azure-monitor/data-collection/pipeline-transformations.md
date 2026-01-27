@@ -17,11 +17,6 @@ Benefits of using pipeline transformations include:
 - **Better analytics:** Standardized schemas for faster queries and cleaner dashboards.
 - **Future proof:** Built-in schema validation prevents surprises during deployment.
 
-
-- Filter records and columns to drop noise and reduce size of data sent to Azure Monitor
-- Aggregate data to summarize high-volume logs into actionable insights 
-- Modify schema of incoming data to match required format for ingestion
-
 Azure Monitor pipeline solves the challenges of high ingestion costs and complex analytics by enabling transformations before ingestion, so your data is clean, structured, and optimized before it even hits your Log Analytics Workspace. 
 
 
@@ -88,8 +83,13 @@ See [Configure Azure Monitor pipeline](./pipeline-configure.md) for more details
 ## Aggregations
 An aggregation in KQL summarizes data from multiple records into a single record based on specified criteria. For example, you can aggregate log entries to calculate the average value of numeric property or count the number of occurrences of specific events over a defined time period. Aggregations help reduce data volume and provide insights by condensing large datasets into meaningful summaries.
 
+Data in Azure Monitor pipeline is retrieved and processed in batches of one minute intervals by default. Aggregations in a pipeline transformation are performed over each batch of data meaning that an aggregated record will be created each minute. To change this time window, you can configure the `Batch` processor in the pipeline configuration as described in [Pipeline configuration](./pipeline-configure.md#pipeline-configuration). You can't change the time interval using the Azure portal.
+
 > [!NOTE]
-> Aggregations in a pipeline transformation an automatic latency of up to 5 minutes may be introduced due to batching in the UI. 
+> When using the `summarize` operator for aggregation, an automatic latency of up to 5 minutes may be introduced due to batching in the UI.
+>
+> If an aggregation includes bin(), you may receive multiple records for the same time interval. This occurs because of batching and the streaming nature of data ingestion.
+
 
 Aggregations are defined using the [summarize](/kusto/query/summarize-operator) operator in KQL. You specify the aggregation functions and the grouping criteria. For example, the following query counts the number of events collected over the past minute grouped by `DestinationIP` and `DestinationPort`:
 
@@ -108,14 +108,11 @@ source
 | summarize AvgCPU = avg(CPUValue), MaxCPU = max(CPUValue)
 ```
 
-Data in Azure Monitor pipeline is retrieved and processed in batches of one minute intervals by default. Aggregations in a pipeline transformation are performed over each batch of data meaning that a query using the `summarize` operator will create an aggregated record each minute.
-
-To change this time window, you can configure the `Batch` processor in the pipeline configuration as described in [Pipeline configuration](./pipeline-configure.md#pipeline-configuration). You can't change the time interval using the Azure portal.
-
 ## Supported KQL
-The following KQL functions and operators are supported in Azure Monitor pipeline transformations:
+Expand the following sections for KQL functions and operators are supported in Azure Monitor pipeline transformations:
 
-**Aggregations**
+<details>
+<summary><b>Aggregations</b></summary>
 
 - `sum()`
 - `max()`
@@ -124,7 +121,10 @@ The following KQL functions and operators are supported in Azure Monitor pipelin
 - `count()`
 - `bin()`
 
-**Filtering**
+</details>
+
+<details>
+<summary><b>Filtering</b></summary>
 
 - `where`
 - `contains`
@@ -139,7 +139,10 @@ The following KQL functions and operators are supported in Azure Monitor pipelin
 - `<`
 - `<=`
 
-**Schematization**
+</details>
+
+<details>
+<summary><b>Schematization</b></summary>
 
 - `extend`
 - `project`
@@ -151,11 +154,17 @@ The following KQL functions and operators are supported in Azure Monitor pipelin
 - `coalesce`
 - `parse_json`
 
-**Functions**
+</details>
+
+<details>
+<summary><b>Functions</b></summary>
 
 - `let`
 
-**String functions**
+</details>
+
+<details>
+<summary><b>String functions</b></summary>
 
 - `strlen`
 - `replace_string`
@@ -164,7 +173,10 @@ The following KQL functions and operators are supported in Azure Monitor pipelin
 - `strcat_delim`
 - `extract`
 
-**Conversion**
+</details>
+
+<details>
+<summary><b>Conversion</b></summary>
 
 - `tostring`
 - `toint`
@@ -175,6 +187,9 @@ The following KQL functions and operators are supported in Azure Monitor pipelin
 - `todouble`
 - `todatetime`
 - `totimespan`
+
+</details>
+
 
 ## Next steps
 

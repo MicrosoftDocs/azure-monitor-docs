@@ -36,29 +36,6 @@ The following table identifies the components required to enable the Azure Monit
 | Data collection endpoint (DCE) | Endpoint where the data is sent to Azure Monitor in the cloud. The pipeline configuration includes a property for the URL of the DCE so the pipeline instance knows where to send the data. |
 | Data collection rule (DCR) | [DCR](./data-collection-rule-overview.md#using-a-dcr) used by Azure Monitor in the cloud to define how the data is received and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
 
-## Workflow
-
-While you don't need a detail understanding of the different steps performed by the Azure Monitor pipeline to configure it, such an understanding can help to perform more advanced configuration such as transforming the data before it's stored in its destination.
-
-The following tables and diagrams describe the detailed steps and components in the process for collecting data using the pipeline and passing it to the cloud for storage in Azure Monitor. 
-
-| Step | Action | Supporting configuration |
-|:-----|:-------|:-------------------------|
-| 1. | Client sends data to the pipeline receiver. | Client is configured with IP and port of the pipeline receiver and sends data in the expected format for the receiver type. |
-| 2. | Receiver forwards data to the exporter. | Receiver and exporter are configured in the same pipeline. |
-| 3. | Optional pipeline transformation is applied to the data. | The data flow may include a transformation that filters or modifies the data before it's sent to Azure Monitor. The output of the transformation must match the schema expected by the DCR. |
-| 4. | Exporter tries to send the data to the cloud. | Exporter in the pipeline configuration includes URL of the DCE, a unique identifier for the DCR, and the stream in the DCR that defines how the data will be processed. |
-| 4a. | Exporter stores data in the local cache if it can't connect to the DCE. | Persistent volume for the cache and configuration of the local cache is enabled in the pipeline configuration. |
-
-:::image type="content" source="./media/pipeline-configure/pipeline-data-flow.png" lightbox="./media/pipeline-configure/pipeline-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor pipeline." border="false":::
-
-| Step | Action | Supporting configuration |
-|:-----|:-------|:-------------------------|
-| 5. | Azure Monitor accepts the incoming data. | The DCR includes a schema definition for the incoming stream that must match the schema of the data coming from the pipeline. |
-| 6. | Optional transformation applied to the data. | The DCR may include a transformation that filters or modifies the data before it's sent to the destination. The output of the transformation must match the schema of the destination table. |
-| 7. | Azure Monitor sends the data to the destination. | The DCR includes a destination that specifies the Log Analytics workspace and table where the data will be stored. |
-
-:::image type="content" source="./media/pipeline-configure/cloud-data-flow.png" lightbox="./media/pipeline-configure/cloud-data-flow.png" alt-text="Detailed diagram of the steps and components for data collection using Azure Monitor." border="false":::
 
 ## Log Analytics workspace tables
 
@@ -237,6 +214,8 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 ```json
 ```
 
+
+
 ---
 
 <br>
@@ -377,6 +356,41 @@ az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --ro
 ## Pipeline configuration
 
 The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON, similar to the structure of a DCR. It can only be installed using an ARM template.
+
+#### Data sources
+To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSecurityLog` processors shown below. The incoming data is automatically converted to the appropriate format. 
+
+<br>
+
+<details>
+<summary><b>Expand for Syslog processor sample</b></summary>
+
+``` json
+"processors": [
+    {
+    "type": "MicrosoftSyslog",
+    "name": "ms-syslog-processor"
+    }
+]
+```
+</details>
+
+<details>
+<summary><b>Expand for CEF processor sample</b></summary>
+
+``` json
+"processors": [
+    {
+    "type": "MicrosoftCommonSecurityLog",
+    "name": "ms-cef-processor"
+    }
+]
+```
+</details>
+
+#### Destinations
+The send data to the Azure `Syslog` and `CommonSecurityLog` tables, use either `Microsoft-Syslog-FullyFormed` or `Microsoft-CommonSecurityLog-FullyFormed` for the `stream`. This will output all columns for the table without requiring any record mapping. The samples below include complete record mappings for sample purposes, but these can be omitted if you're sending to the Azure tables.
+
 
 The following table describes the sections of the pipeline configuration and critical properties. See the sample configuration files below the table for the structure of each section.
 
@@ -1212,6 +1226,58 @@ The following table describes the sections of the pipeline configuration and cri
 ```
 
 </details>
+
+<details>
+<summary>Expand for OTel sample</summary>
+
+``` json
+{
+    "properties": {
+        "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
+        "streamDeclarations": {
+            "Custom-OTLP": {
+                "columns": [
+                    {
+                        "name": "Body",
+                        "type": "string"
+                    },
+                    {
+                        "name": "TimeGenerated",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "SeverityText",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "dataSources": {},
+        "destinations": {
+            "logAnalytics": [
+                {
+                    "name": "LogAnayticsWorkspace01",
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+                }
+            ]
+        },
+        "dataFlows": [
+            {
+                "streams": [
+                    "Custom-OTLP"
+                ],
+                "destinations": [
+                    "LogAnayticsWorkspace01"
+                ],
+                "transformKql": "source",
+                "outputStream": "Custom-OTelLogs_CL"
+            }
+        ]
+    }
+}
+```
+
+</details>>
 
 
 ## Enable cache
