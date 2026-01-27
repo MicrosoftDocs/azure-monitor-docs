@@ -12,7 +12,7 @@ resource Sample_query_based_alert_rule 'Microsoft.Insights/metricAlerts@2024-03-
     identity: {
         type: 'UserAssigned'
         userAssignedIdentities: {
-            '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>>/providers/ Microsoft.ManagedIdentity/userAssignedIdentities/<user-assigned-mi-name>': {}
+            '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user-assigned-mi-name>': {}
         }
     }
     properties: {

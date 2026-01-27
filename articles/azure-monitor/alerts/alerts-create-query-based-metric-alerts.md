@@ -12,12 +12,13 @@ This article explains how to create query-based metric alert rules in Azure Moni
 
 ## Prerequisites
 
-* Read the [query based metric alerts overview](alerts-query-based-metric-alerts-overview.md).
-* A system-assigned or user-assigned managed identity. To use a user-assigned managed identity with your query-based metric alert rules, create the managed identity in advance and configure it with *Monitoring Reader* role (or equivalent permissions) on the rule scope. For more information about creating and using managed identities, see [Azure managed identities](/entra/identity/managed-identities-azure-resources/overview).
-* A resource emitting Prometheus or OTel-based metrics to an Azure Monitor Workspace (AMW). The resources currently supported are Azure Kubernetes Service (AKS), Azure virtual machines, ARC servers or ARC-enabled clusters. Custom OTel metrics emitted directly to AMW by your workload are also supported.
-    * See [Enable Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#enable-azure-monitor-managed-service-for-prometheus).
-    * See [Enable Prometheus and Grafana](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana) for details.
-* To create resource-centric alert rules, your Azure Monitor Workspace must be [enabled for resource-centric stamping and access](#enable-workspace-resource-centric-stamping-and-access).
+> [!div class="checklist"]
+> * Read the [query based metric alerts overview](alerts-query-based-metric-alerts-overview.md).
+> * A system-assigned or user-assigned managed identity. To use a user-assigned managed identity with your query-based metric alert rules, create the managed identity in advance and configure it with *Monitoring Reader* role (or equivalent permissions) on the rule scope. For more information about creating and using managed identities, see [Azure managed identities](/entra/identity/managed-identities-azure-resources/overview).
+> * A resource emitting Prometheus or OTel-based metrics to an Azure Monitor Workspace (AMW). The resources currently supported are Azure Kubernetes Service (AKS), Azure virtual machines, ARC servers or ARC-enabled clusters. Custom OTel metrics emitted directly to AMW by your workload are also supported.
+>     * See [Enable Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#enable-azure-monitor-managed-service-for-prometheus).
+>     * See [Enable Prometheus and Grafana](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana) for details.
+> * To create resource-centric alert rules, your Azure Monitor Workspace must be [enabled for resource-centric stamping and access](#enable-workspace-resource-centric-stamping-and-access).
 
 ## Enable workspace resource-centric stamping and access
 
@@ -28,7 +29,7 @@ You can enable resource-centric stamping and access for a Workspace in one of tw
 Use a PUT request.
 
 ```
-PUT https://management.azure.com/subscriptions/{{subscription}}/resourcegroups/{{resource_name}}/providers/microsoft.monitor/accounts/{{account_name}}}?api-version=2025-05-03-preview
+PUT https://management.azure.com/subscriptions/{{subscription}}/resourcegroups/{{resource_name}}/providers/microsoft.monitor/accounts/{{account_name}}?api-version=2025-05-03-preview
 Authorization: Bearer {{token}}
 Content-Type: application/json
 {
@@ -104,25 +105,40 @@ To edit a query-based metric alert rule in the Azure portal:
 
 ## [ARM template](#tab/arm)
 
-You can use an ARM template to create and configure query-based metric alert rules. Here are the steps:
+You can use an ARM (JSON) or Bicep template to create and configure query-based metric alert rules. Here are the steps:
 
-1. Use a JSON template. Add environment-specific parameters as needed.
+1. Add environment-specific parameters to the template as needed.
 1. Deploy the template using any deployment method, such as Azure CLI, Azure PowerShell, or Azure Resource Manager Rest APIs.
 
 Some of the required parameters are discussed in the following sections, and there's a template example you can start with.
 
 ### User-assigned managed identity
 
-Create and configure the user-assigned managed identity with permissions before including it in the rule configuration. Set identity->type to UserAssigned and include the MI resource ID in identity->userAssignedIdentities, as in the following example:
+Create and configure the user-assigned managed identity with permissions before including it in the rule configuration. Set `identity` -> `type` to `UserAssigned` and include the MI resource ID in `identity` -> `userAssignedIdentities`, as in the following example:
 
-```
+**ARM (JSON)**
+
+```json
 {
-"identity": {
-    "type": "UserAssigned",
-    "userAssignedIdentities": {
-        "/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourcegroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/my-ua-mi":{}
+    "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+            "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user-assigned-mi-name>": {}
+        }
+    },
+}
+```
+
+**Bicep**
+
+```bicep
+{
+    identity: {
+        type: 'UserAssigned'
+        userAssignedIdentities: {
+            '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user-assigned-mi-name>': {}
+        }
     }
-  }
 }
 ```
 
@@ -135,7 +151,7 @@ Metric alert rules support automatic role assignment for system-assigned managed
 
 This feature simplifies the process of granting permissions to your managed identities and allows your alert rule to be operational immediately after being created.
 
-For automatic role assignment to succeed, you must have one of the following roles on the rule scope: 
+For automatic role assignment to succeed, you must have one of the following roles on the rule scope:
 
 * *Owner* 
 * *User Access Administrator* 
@@ -145,13 +161,25 @@ For automatic role assignment to succeed, you must have one of the following rol
 > [!NOTE]
 > If you try to create a rule using system-assigned AI and you don’t have permissions for automatic role assignment, the rule creation fails.
 
-Set the identity->type property to SystemAssigned as in the following example:
+Set the `identity` -> `type` property to `SystemAssigned` as in the following example:
 
-```
+**ARM (JSON)**
+
+```json
 {
-"identity": {
-    "type": "SystemAssigned"
-  }
+    "identity": {
+        "type": "SystemAssigned"
+      }
+}
+```
+
+**Bicep**
+
+```bicep
+{
+    identity: {
+        type: 'SystemAssigned'
+      }
 }
 ```
 
@@ -184,15 +212,18 @@ For resource-centric rules, the following scope options are supported:
 
 * A single resource - include a single Azure Resource Manager resource ID in the Scopes[] list. Example: 
 
-    `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>"]`
+    * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>"]`
+    * Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>']`
 
 * A resource group - include the resource group ID in the Scopes[] list. Example: 
 
-    `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>”]`
+    * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>"]`
+    * Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>']`
 
 * A subscription - include the subscription ID in the Scopes[] list. Example: 
 
-    `"scopes": ["/subscriptions/<subscription-id>”]`
+    * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>"]`
+    * Bicep: `scopes: ['/subscriptions/<subscription-id>']`
 
 The system locates the Workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
 
@@ -202,7 +233,8 @@ You can query metrics emitted to a specific Azure Monitor Workspace, regardless 
 
 For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list. Example: 
 
-`"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>"]`
+* ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>"]`
+* Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>']`
 
 The rule query can refer to any metrics stored in the Azure Monitor Workspace.
 

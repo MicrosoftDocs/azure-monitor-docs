@@ -20,7 +20,7 @@ ms.date: 09/18/2022
             "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
-                    "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>>/providers/ Microsoft.ManagedIdentity/userAssignedIdentities/<user-assigned-mi-name>": {}
+                    "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user-assigned-mi-name>": {}
                 }
             },
             "properties": {
