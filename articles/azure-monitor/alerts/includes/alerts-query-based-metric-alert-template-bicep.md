@@ -50,7 +50,7 @@ resource Sample_query_based_alert_rule 'Microsoft.Insights/metricAlerts@2024-03-
             'Email.Subject': 'Prometheus alert - Container killed due to OOM in cluster: \${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: \${data.alertContext.condition.allOf[0].dimensions.pod} container: \${data.alertContext.condition.allOf[0].dimensions.container}'
         }
         customProperties: {
-            'Alert Summary': '“Prometheus alert - Container killed due to OOM in cluster: \${.alertContext.condition.allOf[0].dimensions.cluster} in pod: $(data.alertContext data.condition.allOf[0].dimensions.pod) container: \${data.alertContext.condition.allOf[0].dimensions.container}'
+            'Alert Summary': 'Prometheus alert - Container killed due to OOM in cluster: \${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: \${data.alertContext.condition.allOf[0].dimensions.pod} container: \${data.alertContext.condition.allOf[0].dimensions.container}'
         }
     }
 }

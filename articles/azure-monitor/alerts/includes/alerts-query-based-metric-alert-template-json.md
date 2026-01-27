@@ -58,7 +58,7 @@ ms.date: 09/18/2022
                     "Email.Subject": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
                 },
                 "customProperties": {
-                    "Alert Summary": "“Prometheus alert - Container killed due to OOM in cluster: ${.alertContext.condition.allOf[0].dimensions.cluster} in pod: $(data.alertContext data.condition.allOf[0].dimensions.pod) container: ${data.alertContext.condition.allOf[0].dimensions.container}"
+                    "Alert Summary": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
                 }
             }
         }
