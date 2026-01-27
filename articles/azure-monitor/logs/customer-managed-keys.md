@@ -101,7 +101,7 @@ Create or use an existing Azure Key Vault in the region that the dedicated clust
 > It's recommended to set up notification via [Azure Event Grid](/azure/key-vault/general/event-grid-logicapps) to effectively respond to Azure Key Vault events such as a key nearing expiry. When the key expires, ingestion and queries aren't affected, but you can't update the key in the cluster. Follow these steps to resolve it
 > 1. Identify the key used in cluster's overview page in Azure portal, under **JSON View**
 > 1. Extend the key expiration date in Azure Key Vault
-> 1. [Update the cluster](#update-cluster-with-key-identifier-details) with the active key, preferably with version value "", to always use the latest version automatically 
+> 1. [Update the cluster](#update-dedicated-cluster-with-key-identifier-details) with the active key, preferably with version value "", to always use the latest version automatically 
 
 <!-- convertborder later -->
 :::image type="content" source="media/customer-managed-keys/soft-purge-protection.png" lightbox="media/customer-managed-keys/soft-purge-protection.png" alt-text="Screenshot of soft delete and purge protection settings." border="false":::
@@ -308,7 +308,7 @@ The cluster's storage always respects changes in key permissions and becomes una
 Key rotation has two modes: 
 
 - Autorotation - update ```"keyVaultProperties"``` in cluster and omit ```"keyVersion"``` property, or set it to `''`. Storage automatically uses the latest key version.
-- Explicit key version update - update ```"keyVaultProperties"``` properties and update the key version in ```"keyVersion"``` property. Key rotation requires explicit update of ```"keyVersion"``` property in cluster. For more information, see [Update cluster with Key identifier details](#update-cluster-with-key-identifier-details). If you generate a new key version in Key Vault but don't update the key in the cluster, the cluster storage keeps using your previous key. If you disable or delete the old key before updating a new one in the cluster, you get into [key revocation](#key-revocation) state.
+- Explicit key version update - update ```"keyVaultProperties"``` properties and update the key version in ```"keyVersion"``` property. Key rotation requires explicit update of ```"keyVersion"``` property in cluster. For more information, see [Update cluster with Key identifier details](#update-dedicated-cluster-with-key-identifier-details). If you generate a new key version in Key Vault but don't update the key in the cluster, the cluster storage keeps using your previous key. If you disable or delete the old key before updating a new one in the cluster, you get into [key revocation](#key-revocation) state.
 
 All your data remains accessible during and after the key rotation operation. Data always encrypted with the Account Encryption Key (AEK), which is encrypted with your new Key Encryption Key (KEK) version in Key Vault.
 
@@ -513,8 +513,8 @@ Learn more about [Customer Lockbox for Microsoft Azure](/azure/security/fundamen
   
   **Cluster Update**
   -  400 - Cluster is in deleting state. Async operation is in progress. Cluster must complete its operation before any update operation is performed.
-  -  400 - KeyVaultProperties isn't empty but has a bad format. See [key identifier update](#update-cluster-with-key-identifier-details).
-  -  400 - Failed to validate key in Key Vault. Could be due to lack of permissions or when key doesn't exist. Verify that you [set key and Access Policy](#grant-key-vault-permissions) in Key Vault.
+  -  400 - KeyVaultProperties isn't empty but has a bad format. See [key identifier update](#update-dedicated-cluster-with-key-identifier-details).
+  -  400 - Failed to validate key in Key Vault. Could be due to lack of permissions or when key doesn't exist. Verify that you [set key and Access Policy](#grant-key-vault-permissions-to-the-managed-identity) in Key Vault.
   -  400 - Key isn't recoverable. Key Vault must be set to Soft-delete and Purge-protection. See [Key Vault documentation](/azure/key-vault/general/soft-delete-overview)
   -  400 - Operation can't be executed now. Wait for the Async operation to complete and try again.
   -  400 - Cluster is in deleting state. Wait for the Async operation to complete and try again.
