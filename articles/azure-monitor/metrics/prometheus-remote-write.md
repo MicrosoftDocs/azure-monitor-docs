@@ -78,7 +78,7 @@ Follow the guidance at [Option 3: Create a new client secret](/entra/identity-pl
 
 ### [Workload identity](#tab/workload-identity)
 
-The process to set up Prometheus remote write by using Microsoft Entra Workload ID authentication involves completing the following tasks:
+The process to set up Prometheus remote write by using Microsoft Entra Workload ID authentication involves completing the following tasks (The tasks are described in the following sections):
 
 1. Enable OpenID Connect and note the issuer URL.
 1. Set up mutating admission webhook.
@@ -89,8 +89,6 @@ The process to set up Prometheus remote write by using Microsoft Entra Workload 
 1. Establish federated identity credentials between the identity and the service account issuer and subject.
 1. Deploy a sidecar container to set up remote write.
 
-The tasks are described in the following sections.
-
 ### Enable OpenID Connect and query the Issuer
 
 To enable OpenID Connect (OIDC) on an AKS cluster, follow the instructions in [Create an OpenID Connect provider on AKS](/azure/aks/use-oidc-issuer). 
@@ -100,7 +98,6 @@ Once enabled, make a note of the SERVICE_ACCOUNT_ISSUER which is essentially the
 ```azurecli-interactive
 az aks show --name myAKScluster --resource-group myResourceGroup --query "oidcIssuerProfile.issuerUrl" -o tsv
 ```
-
 By default, the issuer is set to use the base URL `https://{region}.oic.prod-aks.azure.com`, where the value for `{region}` matches the location the AKS cluster is deployed in.
 
 For other managed clusters (Amazon Elastic Kubernetes Service, and Google Kubernetes Engine), see [Managed Clusters - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/managed-clusters.html).
@@ -108,7 +105,7 @@ For self-managed clusters, see [Self-Managed Clusters - Microsoft Entra Workload
 
 ### Set up mutating admission webhook
 
-Set up mutating admission webhook to keep federated credentials up to date. See [Mutating Admission Webhook - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/mutating-admission-webhook.html) to set up.
+When you enable Microsoft Entra Workload Identity on an AKS cluster, AKS automatically installs and manages the mutating admission webhook. But if you are not using AKS or if workload identity is not enabled on the cluster, set up mutating admission webhook to keep federated credentials up to date. See [Mutating Admission Webhook - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/mutating-admission-webhook.html) to set up.
 
 ### Set up the workload identity
 
@@ -135,9 +132,9 @@ kubectl get pods/<Promethuespodname> -o yaml
 
 If `serviceaccountName` and `serviceAccount` don't exist, enter the name of the service account you want to associate with your Prometheus pod.
 
-### Create a Microsoft Entra application or user-assigned managed identity and grant permissions
+### Create a Microsoft Entra application or user-assigned managed identity
 
-Create a Microsoft Entra application or a user-assigned managed identity and grant permission to publish metrics to Azure Monitor workspace:
+Create a Microsoft Entra application or a user-assigned managed identity and make a note of the client id of the same.
 
 ```azurecli
 # create a Microsoft Entra application
