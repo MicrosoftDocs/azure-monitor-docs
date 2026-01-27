@@ -1,12 +1,12 @@
 ---
-title: Azure Monitor ingress setup and TLS configuration
+title: Azure Monitor  TLS configuration
 description: Secure the connection from your Azure Monitor pipeline to Azure Monitor by configuring TLS.
 ms.topic: article
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Azure Monitor ingress setup and TLS configuration (preview)
+# Azure Monitor TLS configuration (preview)
 
 The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. With support for Bring Your Own Certificates (BYOC), you can meet your security requirements while integrating with your existing PKI infrastructure. Azure Monitor pipeline currently supports both TLS and mutual TLS (mTLS) for TCP‑based receivers, allowing you to:
 

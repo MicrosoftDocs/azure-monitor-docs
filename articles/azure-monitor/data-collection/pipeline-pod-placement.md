@@ -42,7 +42,7 @@ The `constraints` field contains a list of objects that define where your pipeli
 | Property | Type | Required | Description |
 |:---|:---|:---|:---|
 | `capability` | string | Yes | The node attribute or label to match. Examples include `zone`, `gpu`, `team`, `pipeline`. |
-| `operator` | string | Yes | Matching logic with the following allowed values:<br><br>- `In`:<br>Node must have the capability with one of the specified values.<br>- `NotIn`:<br>Node must not have the capability with any of the specified values.<br>- `ExiFsts`:<br>Node must have any value in the capability. The `values` property isn't used.<br>- `DoesNotExist`:<br>Node must not have the capability. The `values` property isn't used.|
+| `operator` | string | Yes | Matching logic with the following allowed values:<br><br>- `In`:<br>Node must have the capability with one of the specified values.<br>- `NotIn`:<br>Node must not have the capability with any of the specified values.<br>- `Exists`:<br>Node must have any value in the capability. The `values` property isn't used.<br>- `DoesNotExist`:<br>Node must not have the capability. The `values` property isn't used.|
 | `values` | array of strings | Conditional | Values to match for the capability. Not used for `Exists` and `DoesNotExist`. |
 
 
@@ -83,12 +83,11 @@ No configuration required. Instances use default Kubernetes scheduling.
 
 ### Node labeling for team isolation 
 
-Target nodes dedicated to your observability team to avoid noisy neighbor issues.
+Target nodes dedicated to your observability team to avoid noisy neighbor issues. Multiple instances can run on the same dedicated node. In the example below, only nodes labeled `team=observability-team` are eligible. Set the label of your choice on  your nodes with the following command:
 
-- Only nodes labeled `team=observability-team` are eligible.
-- Multiple instances can run on the same dedicated node.
-- Label your nodes with the following command:
-  - `kubectl label nodes <node-name> team=observability-team`
+``` azurecli
+`kubectl label nodes <node-name> <key>=<value>`
+```
 
 ```json
 {
@@ -109,10 +108,8 @@ Target nodes dedicated to your observability team to avoid noisy neighbor issues
 
 ### Zone-based placement 
 
-Ensure your pipeline runs only in specific availability zones.
-
-- Only nodes in zones `us-east-1a` or `us-east-1b` are eligible.
-- Helps meet data residency or compliance requirements.
+Ensure your pipeline runs only in specific availability zones, which helps meet data residency or compliance requirements. In the following example, only nodes in zones `us-east-1a` or `us-east-1b` are eligible.
+- 
 
 ```json
 {
@@ -132,14 +129,11 @@ Ensure your pipeline runs only in specific availability zones.
 
 ### Strict isolation with node labeling
 
-Combine node targeting with strict isolation. Allows exactly one instance per node which is recommended for high scale environments.
+Combine node targeting with strict isolation. Allows exactly one instance per node which is recommended for high scale environments. This prevents port conflicts and ensures resource isolation. In the example below, only nodes labeled `workload-type=telemetry-processing` are eligible. Set the label of your choice on  your nodes with the following command:
 
-- Only nodes labeled with `workload-type=telemetry-processing` are eligible.
-- Strict isolation, exactly one instance per eligible node.
-- Prevents port conflicts and ensures resource isolation.
-- Pods remain unscheduled if constraints cannot be satisfied.
-- Label your nodes with the following command:
-  - `kubectl label nodes \<node-name\> workload-type=telemetry-processing`
+```json
+kubectl label nodes <node-name> <key>=<value>
+```
 
 
 This strategy is recommended for the following use cases:
