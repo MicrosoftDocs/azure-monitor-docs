@@ -63,6 +63,22 @@ Note the **Client ID** of the user-assigned managed identity. You'll need this v
 
 :::image type="content" source="media/prometheus-remote-write/user-assigned-managed-identity.png" lightbox="media/prometheus-remote-write/user-assigned-managed-identity.png" alt-text="Screenshot that shows the details of a user-assigned managed identity.":::
 
+#### For VM/VMSS: Assign the managed identity to a virtual machine or a virtual machine scale set
+
+> [!IMPORTANT]
+> To complete the steps in this section, you must have Owner or User Access Administrator permissions for the virtual machine or the virtual machine scale set.
+
+1. In the Azure portal, go to the page for the cluster, virtual machine, or virtual machine scale set.
+1. Select **Identity**.
+1. Select **User assigned**.
+1. Select **Add**.
+1. Select the user-assigned managed identity that you created, and then select **Add**.
+
+    :::image type="content" source="media/prometheus-remote-write-virtual-machines/assign-user-identity.png" lightbox="media/prometheus-remote-write-virtual-machines/assign-user-identity.png" alt-text="Screenshot that shows the pane for adding a user-assigned managed identity.":::
+
+#### For AKS: Assign the managed identity to the Azure Kubernetes Service cluster
+
+For Azure Kubernetes Service, the managed identity must be assigned to virtual machine scale sets. AKS creates a resource group that contains the virtual machine scale sets. The resource group name is in the format `MC_<resource group name>_<AKS cluster name>_<region>`. For each virtual machine scale set in the resource group, assign the managed identity according to the steps in the previous section, [Assign the managed identity to a virtual machine or a virtual machine scale set](#assign-the-managed-identity-to-a-virtual-machine-or-a-virtual-machine-scale-set).
 
 ### [Entra ID](#tab/entra-id)
 
