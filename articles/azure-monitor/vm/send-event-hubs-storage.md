@@ -12,10 +12,10 @@ ROBOTS: NOINDEX
 [Collect data from virtual machine client with Azure Monitor](./data-collection.md) describes how to collect data from virtual machines (VMs) with Azure Monitor. This article describes how to send that data described to Azure Storage and Event Hubs. This feature is currently in public preview.
 
 > [!IMPORTANT]
-> ## Feature Deprecation
-> You can no longer create new data collection rules using this feature. **This preview feature will be deprecated on July 31, 2026**. After this date, existing configurations using this capability will stop sending data and Microsoft will no longer support the same.
+> ## Feature Retirement
+> You can no longer create new data collection rules using this feature. **This preview feature will be retired on July 31, 2026**. After this date, existing configurations using this capability will stop sending data and Microsoft will no longer support the same.
 >
-> To ensure continued support, you will need to update to alternatives belowAto continue using AMA or other Azure solutions that provide a more reliable, scalable and performant solution to send data to respective destinations.
+> To ensure continued support, you will need to update to alternatives below to continue using AMA or other Azure solutions that provide a more reliable, scalable and performant solution to send data to respective destinations.
 >
 > ## Identify impacted resources
 > Run the following queries in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal) to:
