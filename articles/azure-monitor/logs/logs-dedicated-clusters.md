@@ -981,12 +981,15 @@ N/A
 
 ### Unlink a workspace from cluster
 
-You can unlink a workspace from a cluster at any time. The workspace pricing tier is changed to per-GB, data ingested to the cluster before the unlink operation remains in the cluster, and new data sent to the workspace gets ingested to Log Analytics cluster.
-
 > [!WARNING]
-> Unlinking a workspace does not move workspace data out of the cluster. Any data collected for workspace while linked to cluster, remains in cluster for the retention period defined in workspace, and accessible as long as cluster isn't deleted.
+> Unlinking a workspace does not move workspace data out of the cluster. Any data collected for a workspace while linked to a dedicated cluster, remains in the cluster for the retention period defined by the workspace, and accessible as long as the cluster isn't deleted.
 
-Queries aren't affected when workspace is unlinked and service performs cross-cluster queries seamlessly. If cluster was configured with Customer-managed key (CMK), data ingested to workspace while was linked, remains encrypted with your key and accessible, while your key and permissions to Key Vault remain.
+You can unlink a workspace from a cluster at any time. Here's what happens when a workspace is unlinked
+- The workspace pricing tier is changed to per-GB
+- Data ingested to the cluster before the unlink operation remains in the cluster
+- New data sent to the workspace gets ingested to the workspace, not the dedicated cluster
+- Queries aren't affected when a workspace is unlinked - the Log Analytics service performs cross-cluster queries seamlessly
+- If the dedicated cluster was configured with a customer-managed key (CMK), data ingested to the workspace while it was linked remains encrypted with your key in the dedicated cluster and accessible as long as your key and permissions to Key Vault remain
 
 > [!NOTE] 
 > - There is a limit of two link operations for a specific workspace within a month to prevent data distribution across clusters. Contact support if you reach the limit.
