@@ -516,6 +516,7 @@ items:
             href: supported-logs/microsoft-apimanagement-service-logs.md
             displayName: Logs related to Developer Portal usage,Logs related to generative
               AI gateway,Logs related to ApiManagement Gateway,Logs related to
+              Model Context Protocol (MCP) servers usage,Logs related to
               Websocket Connections
           - name: Microsoft.ApiManagement/service/workspaces
             href: supported-logs/microsoft-apimanagement-service-workspaces-logs.md
