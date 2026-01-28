@@ -1,12 +1,12 @@
 ---
-title: Network Firewall Requirements for Monitoring Kubernetes Cluster
+title: Network Firewall Requirements for Monitoring Kubernetes Clusters
 description: This article shows proxy and firewall configuration information required for the containerized agent to communicate with Managed Prometheus and Container insights.
 ms.topic: concept-article
 ms.date: 08/25/2025
 ms.reviewer: aul
 ---
 
-# Network firewall requirements for monitoring Kubernetes cluster
+# Network firewall requirements for monitoring Kubernetes clusters
 
 The tables in the following sections specify proxy and firewall configuration information for the Azure public cloud, Azure operated by 21Vianet cloud, and Azure Government cloud. This information is required for the containerized agent to communicate with managed service for Prometheus and Container insights. All network traffic from the agent is outbound to Azure Monitor.
 
