@@ -12,10 +12,10 @@ ms.reviewer: rapadman
 > [!IMPORTANT]
 > You can use remote write with workload identity by configuring Prometheus using the guidance at [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md). 
 
-This article describes how to set up [remote write](../metrics/prometheus-metrics-overview.md) to send data from your Azure Monitor managed Prometheus cluster using Microsoft Entra Workload ID authentication using the Azure Monitor side car container.
+This article describes how to set up [remote write](../metrics/prometheus-metrics-overview.md) to send data from your Azure Monitor managed Prometheus cluster using Microsoft Entra Workload ID authentication using the Azure Monitor sidecar container.
 
 > [!NOTE]
-> If you are using the workload identity, we recommend that you directly configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. See [Send Prometheus data to Azure Monitor using user-workload identity](../metrics/prometheus-remote-write.md) to learn more. The steps below use the Azure Monitor side car container, which is not needed if you directly configure Prometheus remote-write.
+> If you are using the workload identity, we recommend that you directly configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. See [Send Prometheus data to Azure Monitor using user-workload identity](../metrics/prometheus-remote-write.md) to learn more. The steps below use the Azure Monitor sidecar container, which is not needed if you directly configure Prometheus remote-write.
 
 ## Prerequisites
 
