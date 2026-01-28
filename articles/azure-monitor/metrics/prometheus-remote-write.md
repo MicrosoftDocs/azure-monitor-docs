@@ -253,7 +253,7 @@ prometheus:
 Apply the configuration file updates:
 
 ### Virtual Machine
-For a virtual machine, the configuration file will be `promtheus.yml` unless you specify a different one using `prometheus --config.file <path-to-config-file>` when starting the Prometheus server.
+For a virtual machine, the configuration file will be `prometheus.yml` unless you specify a different one using `prometheus --config.file <path-to-config-file>` when starting the Prometheus server.
 
 ### Kubernetes cluster
 For a Kubernetes cluster, the configuration file is typically stored in a ConfigMap. Following is a sample ConfigMap that includes a remote-write configuration using managed identity for self-managed Prometheus running in a Kubernetes cluster. 
