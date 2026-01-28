@@ -1,11 +1,8 @@
 ---
 title: Azure Monitor data reference
 description: Reference details about data collected by Azure Monitor from different sources.
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
-ms.topic: reference
-ms.date: 01/29/2025
+ms.topic: generated-reference
+ms.date: 01/28/2026
 ---
 # Azure Monitor data reference
 
