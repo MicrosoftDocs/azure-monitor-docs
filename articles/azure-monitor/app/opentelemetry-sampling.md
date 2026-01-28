@@ -56,7 +56,7 @@ To configure sampling, refer to [Enable Sampling in Application Insights with Op
 ### Custom sampler benefits
 
 * Reduces broken traces and helps provide consistent sampling decisions
-* Maintains compatibility with [Live Metrics](./live-stream.md) and may be used alongside classic SDKs
+* Maintains compatibility with [Live Metrics](./live-stream.md) and can be used alongside classic SDKs
 
 For more detailed information and sampling edge cases, see [Frequently Asked Questions](application-insights-faq.yml#opentelemetry-sampling).
 
