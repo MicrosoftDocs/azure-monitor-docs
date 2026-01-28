@@ -694,16 +694,6 @@ Use the process above or any other valid method to deploy this template. It incl
 ```
 ---
    
-
-
-## Migration from Azure Diagnostic Extensions for Linux and Windows (LAD/WAD)
-
-[Azure Diagnostics extension](../agents/diagnostics-extension-overview.md) currently sends data to Event Hubs and storage but will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.  Only security patches are being provided. Azure Monitor Agent (AMA) provides a more efficient and flexible way to collect client data from VMs.
-
-- To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
-- Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
-
-
 ## Troubleshoot
 
 If data isn't being sent to Event Hubs or storage, check the following:
