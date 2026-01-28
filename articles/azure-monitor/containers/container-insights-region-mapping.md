@@ -48,8 +48,9 @@ The Log Analytics workspace that supports Container insights must be in the same
 |WestCentralUS|EastUS |
 
 ## Azure Monitor workspace regions
-To see the list of regions where Azure Monitor workspace is available, see [Region availability of Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md#regional-availability).
+
+For a list of regions where Azure Monitor workspace is available, see [Region availability of Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md#regional-availability).
 
 ## Related content
 
-To begin monitoring your cluster, see [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md) to understand the requirements and available methods to enable monitoring.  
+- To understand the requirements and available methods for monitoring your cluster, see [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md).
