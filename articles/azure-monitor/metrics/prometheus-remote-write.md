@@ -63,10 +63,12 @@ Note the **Client ID** of the user-assigned managed identity. You'll need this v
 
 :::image type="content" source="media/prometheus-remote-write/user-assigned-managed-identity.png" lightbox="media/prometheus-remote-write/user-assigned-managed-identity.png" alt-text="Screenshot that shows the details of a user-assigned managed identity.":::
 
-#### For VM/VMSS: Assign the managed identity to a virtual machine or a virtual machine scale set
+#### Assign the managed identity to the VM/VMSS or to the VMSS of the AKS cluster
 
 > [!IMPORTANT]
 > To complete the steps in this section, you must have Owner or User Access Administrator permissions for the virtual machine or the virtual machine scale set.
+
+To enable remote-write authentication with the user-assigned managed identity created, assign that identity to the Azure resournce. For VM/VMSS, assign the identity as per the steps below. For an **AKS cluster**, the managed identity must be assigned to the underlying virtual machine scale sets. AKS creates a resource group that contains the virtual machine scale sets. The resource group name is in the format `MC_<resource group name>_<AKS cluster name>_<region>`. For each virtual machine scale set in that resource group, assign the managed identity according to the steps below:
 
 1. In the Azure portal, go to the page for the cluster, virtual machine, or virtual machine scale set.
 1. Select **Identity**.
@@ -74,11 +76,7 @@ Note the **Client ID** of the user-assigned managed identity. You'll need this v
 1. Select **Add**.
 1. Select the user-assigned managed identity that you created, and then select **Add**.
 
-    :::image type="content" source="media/prometheus-remote-write-virtual-machines/assign-user-identity.png" lightbox="media/prometheus-remote-write-virtual-machines/assign-user-identity.png" alt-text="Screenshot that shows the pane for adding a user-assigned managed identity.":::
-
-#### For AKS: Assign the managed identity to the Azure Kubernetes Service cluster
-
-For Azure Kubernetes Service, the managed identity must be assigned to virtual machine scale sets. AKS creates a resource group that contains the virtual machine scale sets. The resource group name is in the format `MC_<resource group name>_<AKS cluster name>_<region>`. For each virtual machine scale set in the resource group, assign the managed identity according to the steps in the previous section, [Assign the managed identity to a virtual machine or a virtual machine scale set](#assign-the-managed-identity-to-a-virtual-machine-or-a-virtual-machine-scale-set).
+    :::image type="content" source="media/prometheus-remote-write/assign-user-identity.png" lightbox="media/prometheus-remote-write/assign-user-identity.png" alt-text="Screenshot that shows the pane for adding a user-assigned managed identity.":::
 
 ### [Entra ID](#tab/entra-id)
 
@@ -143,7 +141,7 @@ export SERVICE_ACCOUNT_ISSUER="<your service account (or OIDC) issuer URL>"
 For `SERVICE_ACCOUNT_NAME`, check to see whether a service account (separate from the *default* service account) is already associated with the Prometheus pod. Look for the value of `serviceaccountName` or `serviceAccount` (deprecated) in the `spec` of your Prometheus pod. Use this value if it exists. To find the service account associated with the Prometheus pod, run the below kubectl command:
 
 ```bash
-kubectl get pods/<Promethuespodname> -o yaml
+kubectl get pods/<Prometheus pod> -o yaml
 ```
 
 If `serviceaccountName` and `serviceAccount` don't exist, enter the name of the service account you want to associate with your Prometheus pod.
