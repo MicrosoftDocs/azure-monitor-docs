@@ -49,7 +49,7 @@ Application Insights supports two sampling strategies:
 
     Example: `0.5` ≈ one trace every two seconds; `5.0` = five traces per second.
 
-An optional **trace-based log sampling** feature is available for supported languages, which drops logs tied to unsampled traces.
+An optional [trace‑based sampling for logs](opentelemetry-configuration.md#configure-tracebased-sampling-for-logs) feature is available for supported languages, which drops logs tied to unsampled traces. This feature is on by default if sampling is enabled.
 
 To configure sampling, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
 
@@ -66,7 +66,7 @@ Use the following general guidance if you’re unsure where to start.
 
 - **Metrics:** [Metrics](metrics-overview.md) aren’t sampled. Use them to reliably [alert](../alerts/alerts-overview.md) on key signals for your services and dependencies.
 
-- **Logs:** Configure app logging to export only ERROR logs. Add WARN only when actionable.
+- **Logs:** Configure app logging to export only ERROR logs. Add WARN only when actionable. [Trace‑based sampling for logs](opentelemetry-configuration.md#configure-tracebased-sampling-for-logs) is on by default and drops logs tied to unsampled traces.
 
 - **Traces:** Sample traces as shown in our [default samples](opentelemetry-configuration.md#enable-sampling). If [Failures and Performance experiences](failures-performance-transactions.md) look incomplete, increase the rate.
 

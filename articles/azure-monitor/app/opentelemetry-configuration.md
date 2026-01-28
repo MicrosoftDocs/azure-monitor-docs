@@ -344,8 +344,8 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 
 > [!IMPORTANT]
 > * Sampling decisions apply to **traces** (spans).
+> * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
 > * **Metrics** are never sampled.
-> * **Logs** aren't sampled by default. You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped. For more details, [Configure trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
 
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
@@ -515,9 +515,9 @@ When enabled, log records that belong to **unsampled traces** are dropped so tha
 * A log record is considered part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
 * Log records **without** any trace context **aren't** affected.
-* The feature is **disabled by default**. Enablement is language, see the following tabs.
+* The feature is **enabled by default**.
 
-Use the following setting in your configuration to enable trace-based log sampling:
+Use the following settings to configure trace-based log sampling:
 
 # [ASP.NET Core](#tab/aspnetcore)
 
