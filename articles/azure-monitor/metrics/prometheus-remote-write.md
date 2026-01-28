@@ -101,7 +101,7 @@ The process to set up Prometheus remote write by using Microsoft Entra Workload 
 1. Assign the Monitoring Metrics Publisher role on the workspace data collection rule to the application.
 1. Create or update your Kubernetes service account Prometheus pod.
 1. Establish federated identity credentials between the identity and the service account issuer and subject.
-1. Deploy a sidecar container to set up remote write.
+1. Configure remote-write in Prometheus.
 
 ### Enable OpenID Connect and query the Issuer
 
