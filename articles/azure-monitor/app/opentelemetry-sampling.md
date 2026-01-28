@@ -68,7 +68,7 @@ Use the following general guidance if you’re unsure where to start.
 
 - **Logs:** Configure app logging to export only ERROR logs. Add WARN only when actionable.
 
-- **Traces:** Sample traces as shown in our [default samples](opentelemetry-configuration.md#fixed-percentage-sampling). If [Failures and Performance experiences](failures-performance-transactions.md) look incomplete, increase the rate.
+- **Traces:** Sample traces as shown in our [default samples](opentelemetry-configuration.md#enable-sampling). If [Failures and Performance experiences](failures-performance-transactions.md) look incomplete, increase the rate.
 
 ## Ingestion sampling (not recommended)
 
