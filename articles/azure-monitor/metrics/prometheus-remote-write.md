@@ -68,7 +68,7 @@ Note the **Client ID** of the user-assigned managed identity. You'll need this v
 > [!IMPORTANT]
 > To complete the steps in this section, you must have Owner or User Access Administrator permissions for the virtual machine or the virtual machine scale set.
 
-To enable remote-write authentication with the user-assigned managed identity created, assign that identity to the Azure resournce. For VM/VMSS, assign the identity as per the steps below. For an **AKS cluster**, the managed identity must be assigned to the underlying virtual machine scale sets. AKS creates a resource group that contains the virtual machine scale sets. The resource group name is in the format `MC_<resource group name>_<AKS cluster name>_<region>`. For each virtual machine scale set in that resource group, assign the managed identity according to the steps below:
+To enable remote-write authentication with the user-assigned managed identity created, assign that identity to the Azure resource. For VM/VMSS, assign the identity as per the steps below. For an **AKS cluster**, the managed identity must be assigned to the underlying virtual machine scale sets. AKS creates a resource group that contains the virtual machine scale sets. The resource group name is in the format `MC_<resource group name>_<AKS cluster name>_<region>`. For each virtual machine scale set in that resource group, assign the managed identity according to the steps below:
 
 1. In the Azure portal, go to the page for the cluster, virtual machine, or virtual machine scale set.
 1. Select **Identity**.
@@ -148,7 +148,7 @@ If `serviceaccountName` and `serviceAccount` don't exist, enter the name of the 
 
 ### Create a Microsoft Entra application or user-assigned managed identity
 
-Create a Microsoft Entra application or a user-assigned managed identity and make a note of the client id of the same.
+Create a Microsoft Entra application or a user-assigned managed identity and make a note of the client ID of the same.
 
 ```azurecli
 # create a Microsoft Entra application
@@ -331,7 +331,7 @@ If you're on a Kubernetes cluster that's running Prometheus Operator, use the fo
    kubectl apply -f <remote-write-secret.yaml>
    ```
 
-1. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more information on the Azure Monitor workspace specification for remote write in Prometheus Operator, see the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md). Use either `managedIdentity` or `oauth` or `workloadIdentity` authentication, depending on your setup. Remove the section that you're not using.
+2. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more information on the Azure Monitor workspace specification for remote write in Prometheus Operator, see the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md). Use either `managedIdentity` or `oauth` or `workloadIdentity` authentication, depending on your setup. Remove the section that you're not using.
 
 > [!NOTE]
 > For system-assigned managed identity, leave the client ID field blank (clientId: "").
@@ -362,7 +362,7 @@ If you're on a Kubernetes cluster that's running Prometheus Operator, use the fo
              tenantId: "<Azure subscription tenant Id>"
    ```
 
-1. Use Helm to update your remote write configuration by using the preceding YAML file:
+3. Use Helm to update your remote write configuration by using the preceding YAML file:
 
    ```azurecli
    helm upgrade -f <YAML-FILENAME>.yml prometheus prometheus-community/kube-prometheus-stack --namespace <namespace where Prometheus Operator is deployed>
