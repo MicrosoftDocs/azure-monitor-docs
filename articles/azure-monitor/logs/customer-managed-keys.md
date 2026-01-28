@@ -283,8 +283,6 @@ Verify the provisioning state via CLI, PowerShell, or REST API as detailed in th
 
 To link a workspace, follow the procedure in [Create and manage a dedicated cluster](./logs-dedicated-clusters.md#link-a-workspace-to-a-cluster).
 
-To unlink a workspace, follow the procedure in [Create and manage a dedicated cluster](./logs-dedicated-clusters.md#unlink-a-workspace-from-cluster).
-
 ## Manage customer-managed key related operations
 
 - [Key revocation](#key-revocation)
