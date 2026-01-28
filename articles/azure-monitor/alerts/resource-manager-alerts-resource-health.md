@@ -365,3 +365,4 @@ Learn more about Resource Health:
 * [Azure Resource Health overview](../../service-health/resource-health-overview.md)
 * [Resource types and health checks available through Azure Resource Health](../../service-health/resource-health-checks-resource-types.md)
 * [Configure Alerts for Service Health](../../service-health/alerts-activity-log-service-notifications-arm.md)
+
