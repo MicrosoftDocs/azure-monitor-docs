@@ -16,6 +16,8 @@ The following diagram illustrates this configuration. A [data collection rule (D
 
 :::image type="content" source="../metrics/media/prometheus-remote-write/overview.png" alt-text="Diagram showing use of remote-write to send metrics from local Prometheus to Managed Prometheus." lightbox="../metrics/media/prometheus-remote-write/overview.png"  border="false":::
 
+> [!IMPORTANT]
+> Review key concepts about Azure Monitor managed service for Prometheus when you remote-write from self-hosted Prometheus: [Migrate to Azure Monitor managed service for Prometheus](./prometheus-migrate.md). 
 
 ## Authentication types
 The configuration requirements for remote-write depend on the authentication type used to connect to the Azure Monitor workspace. The following table describes the supported authentication types. The details for each configuration are described in the following sections.
