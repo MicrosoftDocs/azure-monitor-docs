@@ -352,6 +352,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 
 ### Configure sampling using environment variables
 
+
 Use standard OpenTelemetry environment variables to select the sampler and provide its argument:
 
 #### [ASP.NET Core](#tab/aspnetcore)
