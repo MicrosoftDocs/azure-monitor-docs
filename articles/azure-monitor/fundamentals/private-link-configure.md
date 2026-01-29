@@ -23,12 +23,20 @@ Configuring an instance of Azure Private Link requires the following steps. Each
 ## Access modes
 The access modes for an AMPLS control access from public networks not connected to the included scopes. This includes access to logs, metrics, and the live metrics stream. It also includes experiences built on top of this data such as workbooks, dashboards, query API-based client experiences, and insights in the Azure portal. Experiences running outside the Azure portal and that query data from Log Analytics workspaces and Azure Monitor workspaces also have to be running within the private-linked virtual network.
 
-Each AMPLS has two access mode settings: one for data ingestion and one for queries. 
+Each AMPLS has two access mode settings: one for data ingestion and one for queries. In addition to the global settings for the AMPLS, you can set different access modes for each private endpoint connection.
 
 - **Open**: Allows resources in the connected VNet to reach both private link resources and resources not in the AMPLS. Traffic to private pink resources is validated and sent through private endpoints, but data exfiltration can’t be prevented because traffic can reach resources outside of the AMPLS. This mode allows for a gradual onboarding process, combining private link access to some resources and public access to others.
 - **Private Only**: Allows resources in the connected VNet to reach only Azure Monitor resources in the AMPLS. This is the most secure mode, but you should only select it after all Azure Monitor resources have been added to the AMPLS. Traffic to other resources will be blocked across networks, subscriptions, and tenants.
 
-In addition to the global settings for the AMPLS, you can set different access modes for each private endpoint connection.
+## Azure Monitor resources
+
+You can add the following resources to an AMPLS:
+
+| Resource | Description |
+|:---|:---|
+| Log Analytics workspaces | You must create a DCE for any Log Analytics workspaces that will be added to the AMPLS, but only the Log Analytics workspace itself is added as a resource. You must ensure that any DCRs used by clients are configured to use the DCE. |
+| Data collection endpoints (DCEs) | Instead of adding Azure Monitor workspaces as a resource to the AMPLS, you add the DCE for each DCR.  |
+- Application Insights
 
 
 
