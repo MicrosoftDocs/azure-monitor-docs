@@ -2,7 +2,7 @@
 title: Application Insights availability tests 
 description: Set up recurring web tests to monitor availability and responsiveness of your app or website.
 ms.topic: how-to
-ms.date: 04/01/2025
+ms.date: 02/27/2026
 ---
 
 # Application Insights availability tests
