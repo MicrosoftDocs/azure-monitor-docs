@@ -12,7 +12,9 @@ Azure Monitor is Microsoft’s unified observability platform for collecting, an
 ## Monitor your cloud resources
 
 Azure Monitor collects logs and metrics from all the resources across the different Azure services that you use. Activity logs and platform metrics are collected automatically. Create a diagnostic setting to collect resource logs which describe detailed operations conducted by each Azure resource.
-Most Azure services integrate Azure Monitor into their portal experience. The Overview page will include a Monitoring tab with prebuilt performance charts for common measurements. A Monitor section in each menu provides access to valuable insights based on more detailed analysis of the metrics and logs collected for the resource.
+
+Most Azure services integrate Azure Monitor into their portal experience. The Overview page will include a Monitoring tab with prebuilt performance charts for common measurements. A Monitor section in each menu provides access to valuable insights based on more detailed analysis of the metrics and logs collected for the resource. Some services also provide dedicated monitoring experiences called Azure Monitor Insights that deliver deep visibility into the performance and operation of your cloud resources.
+
 
 ## Monitor your Infrastructure
 Azure Monitor provides complete monitoring of your virtual machines and Kubernetes clusters that make up the infrastructure of many environments.  Install the Azure Monitor agent on your machines and clusters to collect logs and metrics from their client operating systems and internal workloads. Built in portal experiences allow you to drill down on different components to view their configuration, operation, and performance details. 
@@ -53,43 +55,21 @@ Azure Monitor embraces open source standards allowing you to leverage your inves
 Azure Monitor isn’t only designed to monitor Azure environments but can act as a centralized monitoring solution for your hybrid environments. Use Azure Arc to include your resources from other clouds and on-premises. Or send data to the Azure Monitor data platform from custom applications using log and metric APIs. You can also choose to centralize your monitoring on another platform and rely on Azure Monitor to provide telemetry for your Azure resources and applications. 
 
 ## Visualization
-There are multiple options to analyze data collected by Azure Monitor
-•	Portal
-•	Insights
-•	**Azure Monitor dashboards with Grafana** 
-•	Managed Grafana
-•	Workbooks
-•	Ad hoc
+In addition to integrating monitoring data into the Azure portal experience for different services, there are multiple options to visualize your Azure Monitor data.
 
-## Grafana
-Grafana is an open source web application that provides rich visualizations on your observability data. Libraries of prebuilt Grafana dashboards are publicly available for monitoring various common cloud resources such as Kubernetes clusters and virtual machines.
-Azure Monitor dashboards with Grafana integrates Grafana dashboard into the Azure portal for no additional cost. It includes prebuilt dashboards for various Azure services, and you can build your own dashboards or install others that use data stored in Azure Monitor.
-If you have an existing investment in a Grafana environment or if you want to use Grafana dashboards to access data outside of Azure Monitor, then use Azure Managed Grafana which provides a fully managed version of Grafana hosted in Azure.
+- **Azure Monitor dashboards with Grafana** are automatically available in the Azure portal at no cost. Use them to create rich visualizations using prebuilt Grafana dashboards or build your own custom dashboards.
+- **Managed Grafana** is a fully managed Grafana service hosted in Azure. Use it to create Grafana dashboards that integrate data from Azure Monitor and other data sources.
+- **Workbooks** - Interactive reports that combine text, analytics queries, and visualizations into rich interactive experiences. Use built-in templates or create your own custom workbooks to monitor your resources.
+- **Ad hoc** - Use KQL and PromQL queries to analyze your data directly in the Azure portal or export the results to other tools such as Power BI for further analysis.
 
 ## Alerting
-Alerts in Azure Monitor proactively notify you when issues occur so that you can respond to them before they affect your customers. An alert can be a simple as a metric value crossing a particular threshold or can be based on a complex log query written in KQL. For Prometheus and OpenTelemetry metrics, you can leverage alerts based on PromQL.
-Some services will provide recommended alerts that you can quickly enable, or you can customize your own alert rules to meet your particular requirements.
-Data Analysis
+Alerts in Azure Monitor proactively notify you when issues occur so that you can respond to them before they affect your customers. An alert can be a simple as a metric value crossing a particular threshold or can be based on a complex log query written in KQL. For Prometheus and OpenTelemetry metrics, you can leverage alerts based on PromQL. Some services will provide recommended alerts that you can quickly enable, or you can customize your own alert rules to meet your particular requirements.
 
- 
+## Leverage Copilot
+The Observability agent in Azure Monitor uses AI to automatically identify and surface important issues in your applications and infrastructure. By analyzing telemetry data, the agent can detect anomalies, performance bottlenecks, and potential failures before they impact your users. This proactive approach helps you maintain high availability and reliability for your services.
 
-Features of Azure Monitor
-1. Data Collection
-Azure Monitor collects telemetry data from a wide range of sources, including Azure resources, virtual machines, containers, and applications. Data types collected include metrics (numerical values over time), logs (structured and unstructured events), traces (distributed transaction data), and changes (resource configuration history). Data collection is agent-based or agentless, and integrates natively with Azure services to ensure comprehensive coverage.
-2. Data Platform
-All collected telemetry is ingested into a scalable data platform. Azure Monitor leverages Azure Log Analytics Workspace as its main repository, offering powerful indexing, querying, and retention capabilities. The platform supports high-volume ingestion, secure storage, and data management, enabling organizations to retain historical data for compliance and trend analysis. It also enables data enrichment and correlation across multiple sources.
-3. Ad Hoc Analysis
-Azure Monitor provides robust tools for ad hoc analysis of collected data. Users can query logs and metrics using Kusto Query Language (KQL) within the Azure portal or via APIs. These capabilities enable deep investigation into incidents, performance bottlenecks, and security events. Advanced analytics features, such as anomaly detection and machine learning integration, empower users to proactively identify issues and uncover patterns.
-4. Visualization of Data
-Data visualization is core to Azure Monitor's value proposition. Users can create interactive dashboards using Azure Workbooks, which allow for custom charts, tables, and narrative text. The platform also provides built-in views for common scenarios, such as application performance, infrastructure health, and security monitoring. Alerts and notifications can be configured based on thresholds or query results, ensuring timely response to critical events.
-Support for Open Source Standards
-Azure Monitor is committed to interoperability with open source observability standards and tools:
-•	OpenTelemetry: Azure Monitor supports OpenTelemetry, enabling users to instrument their applications with standardized APIs and SDKs for metrics, logs, and traces. This facilitates seamless integration with multi-cloud and hybrid environments.
-•	Prometheus: Native integration with Prometheus allows users to collect and query metrics from Kubernetes clusters and other workloads. Azure Monitor can scrape Prometheus endpoints and store metrics for analysis and alerting.
-•	Grafana: Azure Monitor offers a dedicated data source plugin for Grafana, enabling users to visualize Azure telemetry data in Grafana dashboards. This supports organizations leveraging Grafana for unified monitoring across cloud and on-premises resources.
-Reference: Azure Cloud Adoption Framework
-The Azure Cloud Adoption Framework provides best practices for monitoring and observability in the cloud. It emphasizes establishing a monitoring strategy aligned with business objectives, selecting appropriate tools (such as Azure Monitor), and leveraging automation for alerting and remediation. For more details, refer to the official Cloud Adoption Framework monitoring documentation.
 
+- 
 
 
 ## Next steps
