@@ -84,12 +84,6 @@ The settings in the **Dataflow** tab are described in the following table.
 | Add Data Transformations | Enable to add a transformation to the dataflow. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 
 
-## Implementation scenarios
-
-There are fundamentally two scenarios for implementing the Azure Monitor pipeline depending on your requirements.
-
-### Send Syslog and CEF to standard tables
-With this scenario, you send Syslog and CEF data directly to the existing `Syslog` and `CommonSecurityLog` tables in a Log Analytics workspace. Data is converted to the appropriate format automatically, 
 
 ## Verify configuration
 Once you've complete the configuration using your chosen method, use the following steps verify that the pipeline is running correctly in your environment.
