@@ -57,7 +57,9 @@ To send Syslog and CEF data to the standard Azure tables, select `Syslog` as the
 To send data to a custom table, select `Syslog` or `OTLP` as the **Source type** and then specify a custom table name in the **Table Name** field. Select **Add Data Transformations**, and then add a transformation to convert the data to the desired format. See [Azure Monitor pipeline transformations](./pipeline-transformations.md) for details on creating transformations. 
 
 #### Transformations
-If you specify a transformation, click **Check KQL syntax** to validate the query before saving the dataflow. If the transformation includes unsupported schema changes, you will be prompted to either remove those transformations or send the data to a custom table instead.
+If you specify a transformation, click **Check KQL syntax** to validate the syntax of the query before saving the dataflow. For Syslog and CEF data, the checker will also verify that the data resulting from the transformation matches the schema of the data type. If the transformation renames or adds columns as part of an aggregation for example, you will be prompted to either remove those transformations or send the data to a custom table instead. An example is shown in the following image.
+
+:::image type="content" source="./media/pipeline-configure/check-syntax.png" lightbox="./media/pipeline-configure/check-syntax.png" alt-text="Screenshot of KQL syntax checker and typical error message.":::
 
 For `Syslog` and `CommonSecurityLog` tables, all appropriate columns will be available for the transformation. For custom tables, only `TimeGenerated`, `SeverityText`, `Body` columns are available. For other columns, you need to use an ARM template for the pipeline configuration. See [Pipeline configuration](./pipeline-configure.md#pipeline-configuration) for details.
  

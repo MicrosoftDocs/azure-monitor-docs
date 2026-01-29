@@ -1228,7 +1228,7 @@ The following table describes the sections of the pipeline configuration and cri
 </details>
 
 <details>
-<summary>**Expand for OpenTelemetry sample**</summary>
+<summary><b>Expand for OpenTelemetry sample</b></summary>
 
 ``` json
 {
