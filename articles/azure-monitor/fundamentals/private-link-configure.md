@@ -12,10 +12,24 @@ This article provides step by step details for creating and configuring an [Azur
 
 Configuring an instance of Azure Private Link requires the following steps. Each of these steps is detailed in the sections below.
 
+
+
 1. [Create an Azure Monitor Private Link Scope (AMPLS)](#create-azure-monitor-private-link-scope-ampls).
-2. [Connect resources to the AMPLS](#connect-resources-to-the-ampls).
-3. [Connect AMPLS to a private endpoint](#connect-ampls-to-a-private-endpoint).
+2. [Connect Azure Monitor resources to the AMPLS](#connect-resources-to-the-ampls). These resources are available to any resources in the connected virtual networks.
+3. [Connect AMPLS to a private endpoint](#connect-ampls-to-a-private-endpoint). This connects your virtual network to the AMPLS. Any Azure Monitor resources connected to the AMPLS are then reachable from this virtual network.
 4. [Configure access to AMPLS resources](#configure-access-to-ampls-resources).
+
+
+## Access modes
+The access modes for an AMPLS control access from public networks not connected to the included scopes. This includes access to logs, metrics, and the live metrics stream. It also includes experiences built on top of this data such as workbooks, dashboards, query API-based client experiences, and insights in the Azure portal. Experiences running outside the Azure portal and that query data from Log Analytics workspaces and Azure Monitor workspaces also have to be running within the private-linked virtual network.
+
+Each AMPLS has two access mode settings: one for data ingestion and one for queries. 
+
+- **Open**: Allows resources in the connected VNet to reach both private link resources and resources not in the AMPLS. Traffic to private pink resources is validated and sent through private endpoints, but data exfiltration can’t be prevented because traffic can reach resources outside of the AMPLS. This mode allows for a gradual onboarding process, combining private link access to some resources and public access to others.
+- **Private Only**: Allows resources in the connected VNet to reach only Azure Monitor resources in the AMPLS. This is the most secure mode, but you should only select it after all Azure Monitor resources have been added to the AMPLS. Traffic to other resources will be blocked across networks, subscriptions, and tenants.
+
+In addition to the global settings for the AMPLS, you can set different access modes for each private endpoint connection.
+
 
 
 ## Create Azure Monitor Private Link Scope (AMPLS)

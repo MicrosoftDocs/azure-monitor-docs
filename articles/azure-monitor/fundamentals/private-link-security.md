@@ -40,8 +40,8 @@ Because Azure Monitor uses some shared endpoints, configuring a private link eve
 
 When you configure private link even for a single resource, traffic to the following endpoints will be sent through the allocated private IPs:
 
-* Query endpoints for Log Analytics workspaces and Azure Monitor workspaces
-* Application Insights ingestion endpoints
+* **Query endpoints.** The endpoint handling queries to Application Insights, Log Analytics workspaces, and Azure Monitor workspaces is global.
+* **Application Insights ingestion endpoints.** Endpoints handling ingestion for Application Insights are global.
 
 ## Resource-specific endpoints
 
