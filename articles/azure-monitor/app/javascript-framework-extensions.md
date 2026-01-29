@@ -3,7 +3,7 @@ title: Enable a framework extension for Application Insights JavaScript SDK
 description: Learn how to install and use JavaScript framework extensions for the Application Insights JavaScript SDK. 
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 02/27/2026
 ms.devlang: javascript
 ms.custom: devx-track-js
 ---
