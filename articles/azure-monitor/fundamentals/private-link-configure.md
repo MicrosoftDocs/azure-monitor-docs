@@ -35,8 +35,14 @@ You can add the following resources to an AMPLS:
 | Resource | Description |
 |:---|:---|
 | Log Analytics workspaces | You must create a DCE for any Log Analytics workspaces that will be added to the AMPLS, but only the Log Analytics workspace itself is added as a resource. You must ensure that any DCRs used by clients are configured to use the DCE. |
-| Data collection endpoints (DCEs) | Instead of adding Azure Monitor workspaces as a resource to the AMPLS, you add the DCE for each DCR.  |
+| Data collection endpoints (DCEs) | Instead of adding Azure Monitor workspaces as a resource to the AMPLS, you add the DCE for the workspace.  |
 - Application Insights
+
+
+## Data collection endpoints (DCEs)
+
+When you add a Log Analytics workspace to an AMPLS, you must first create a [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md) for the workspace. The DCE is the resource that actually connects to the AMPLS. You must also ensure that any data collection rules (DCRs) used by clients are configured to use the DCE.
+
 
 
 
@@ -381,3 +387,44 @@ If these requests are blocked, some Azure Monitor experiences in the portal (for
 * Learn about the new [data collection endpoints](../data-collection/data-collection-endpoint-overview.md).
 
 To create and manage Private Link Scopes, use the [REST API](/rest/api/monitor/privatelinkscopes(preview)/private%20link%20scoped%20resources%20(preview)) or the [Azure CLI (az monitor private-link-scope)](/cli/azure/monitor/private-link-scope).
+
+
+
+## Kubernetes cluster
+
+AKS and Arc-enabled clusters may connect to Azure Monitor workspace for Prometheus metrics collection and Log Analytics workspace for log collection. 
+
+### Prometheus metrics collection
+
+- Only need to create an additional DCE if the cluster is in a different region than the workspace.
+    - If not, use the existing DCE created by the workspace.
+- Create association between cluster and Prom DCR.
+- Create association between cluster and DCE.
+- Add DCE to AMPLS.
+- Create private endpoint for Microsoft.Monitor/accounts to support queries.
+ 
+
+### Log collection
+
+- DCE
+    - If also enabling Prometheus metrics collection, use the same DCE.
+    - If not, create a new DCE in the same region as the cluster (if one doesn't already exist).
+- Create association between cluster and Logs DCR.
+- Create association between cluster and DCE. 
+
+
+## VM / VM insights
+
+### Log and perf data collection
+
+- Create new DCE in the same region as the VM (if one doesn't already exist).
+- Create association between VM and Logs DCR.
+- Create association between VM and DCE. 
+- Add Log Analytics workspace to AMPLS. 
+
+### OTel collection
+
+- Create new DCE in the same region as the VM (if one doesn't already exist).
+- Create association between VM and OTel DCR.
+- Create association between VM and DCE. 
+- Add DCE to AMPLS.
