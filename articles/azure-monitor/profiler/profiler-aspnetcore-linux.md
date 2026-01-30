@@ -6,7 +6,7 @@ ms.devlang: csharp
 ms.custom: devx-track-csharp, linux-related-content
 ms.date: 01/30/2026
 ms.reviewer: charles.weininger
-zone_pivot_groups: telemetry-types
+zone_pivot_groups: telemetry-type
 # Customer Intent: As a .NET developer, I'd like to enable Application Insights Profiler for my .NET web application hosted in Linux
 ---
 
