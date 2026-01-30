@@ -18,7 +18,7 @@ Use Application Insights .NET software development kit (SDK) 3.x to upgrade from
 
 If you build a new application or you already use the Azure Monitor OpenTelemetry Distro, use the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md?tabs=aspnetcore) instead. Don't use Application Insights .NET SDK 3.x and the Azure Monitor OpenTelemetry Distro in the same application.
 
-## Understand Application Insights .NET SDK 3.x
+## Application Insights .NET SDK 3.x overview
 
 Application Insights .NET SDK 3.x provides these NuGet packages:
 
@@ -84,12 +84,12 @@ Application Insights .NET SDK 2.x provides Application Insights-specific extensi
 
 SDK 3.x keeps only a subset of `TelemetryContext` properties. You can set these properties on individual telemetry items:
 
-| Context | Properties |
-|---------|------------|
-| `User` | `Id`, `AuthenticatedUserId`, `UserAgent` |
-| `Operation` | `Name` |
-| `Location` | `Ip` |
-| `GlobalProperties` | (dictionary) |
+| Context            | Properties                               |
+| ------------------ | ---------------------------------------- |
+| `User`             | `Id`, `AuthenticatedUserId`, `UserAgent` |
+| `Operation`        | `Name`                                   |
+| `Location`         | `Ip`                                     |
+| `GlobalProperties` | (dictionary)                             |
 
 ## Configure sampling
 
@@ -106,8 +106,18 @@ You can set `SamplingRatio`, `TracesPerSecond`, and `EnableTraceBasedLogsSampler
 
 ## Troubleshoot an upgrade
 
-- Collect self-diagnostics logs.
-- Add the OpenTelemetry console exporter while you validate processors and filtering.
+Use these steps to validate telemetry during an upgrade to SDK 3.x:
+
+- Collect Application Insights self-diagnostics logs to identify configuration errors and exporter failures.
+- Add the OpenTelemetry console exporter to verify that traces, metrics, and logs emit as expected before you rely on Azure Monitor ingestion.
+- Confirm that sampling settings behave as expected by validating parent-child trace decisions.
+- Validate resource attributes such as service name, role name, and environment to ensure correct attribution in Application Insights.
+
+For detailed troubleshooting guidance and examples, use the following resources:
+
+- [Application Insights .NET SDK troubleshooting](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/docs/troubleshooting.md)
+- [Azure Monitor OpenTelemetry troubleshooting](https://learn.microsoft.com/azure/azure-monitor/opentelemetry/troubleshoot)
+- [OpenTelemetry .NET troubleshooting](https://opentelemetry.io/docs/instrumentation/net/troubleshooting/)
 
 # [Java](#tab/java)
 
