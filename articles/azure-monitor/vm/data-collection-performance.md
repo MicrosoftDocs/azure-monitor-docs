@@ -91,7 +91,7 @@ To verify the legacy Performance Counter data source is being collected in Azure
 
 The following performance counters are available to be collected by the Azure Monitor Agent for Windows and Linux virtual machines. The sample frequency can be changed when creating or updating the data collection rule.
 
-### [OpenTelemetry](#tab/OpenTelemetry)
+### [OpenTelemetry](#tab/opentelemetry)
 
 | OTel Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
