@@ -296,7 +296,7 @@
         "articles/operations/**/*": "Azure Operations Center"
       },
       "zone_pivot_groups_path": {
-        "articles/azure-monitor/**/*": "azure-monitor/zone-pivot-groups.json"
+        "articles/azure-monitor/**/*": "/articles/azure-monitor/zone-pivot-groups.json"
       }
     },
     "overwrite": [],
