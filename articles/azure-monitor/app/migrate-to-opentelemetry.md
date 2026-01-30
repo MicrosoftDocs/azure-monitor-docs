@@ -51,7 +51,7 @@ Remove these packages because they aren't compatible with SDK 3.x:
 - `Microsoft.ApplicationInsights.EtwCollector`
 - `Microsoft.ApplicationInsights.EventSourceListener`
 
-SDK 3.x doesn't publish 3.x versions of these packages. Use the supported 3.x packages listed in [Understand Application Insights .NET SDK 3.x](#understand-application-insights-net-sdk-3x) instead.
+SDK 3.x doesn't publish 3.x versions of these packages. Use the supported 3.x packages listed in [Application Insights .NET SDK 3.x overview](#application-insights-net-sdk-3x-overview) instead.
 
 ### Step 2: Upgrade package versions to 3.x
 
@@ -116,7 +116,8 @@ Use these steps to validate telemetry during an upgrade to SDK 3.x:
 For detailed troubleshooting guidance and examples, use the following resources:
 
 - [Application Insights .NET SDK troubleshooting](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/docs/troubleshooting.md)
-- [Azure Monitor OpenTelemetry troubleshooting](https://learn.microsoft.com/azure/azure-monitor/opentelemetry/troubleshoot)
+- [Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry)
+- [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion)
 - [OpenTelemetry .NET troubleshooting](https://opentelemetry.io/docs/instrumentation/net/troubleshooting/)
 
 # [Java](#tab/java)
