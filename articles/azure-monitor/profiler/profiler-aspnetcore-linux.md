@@ -4,7 +4,7 @@ description: Learn how to enable the Profiler on your ASP.NET Core web applicati
 ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp, linux-related-content
-ms.date: 03/25/2025
+ms.date: 01/30/2026
 ms.reviewer: charles.weininger
 zone_pivot_groups: telemetry-types
 # Customer Intent: As a .NET developer, I'd like to enable Application Insights Profiler for my .NET web application hosted in Linux
@@ -14,9 +14,9 @@ zone_pivot_groups: telemetry-types
 
 ::: zone pivot="app-insights-sdk"  
 
-[!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
+[!INCLUDE [application-insights-sdk-support-policy](../app/includes/application-insights-sdk-support-policy.md)]
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../app/includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ::: zone-end 
 
