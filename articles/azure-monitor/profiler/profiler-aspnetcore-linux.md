@@ -6,19 +6,30 @@ ms.devlang: csharp
 ms.custom: devx-track-csharp, linux-related-content
 ms.date: 03/25/2025
 ms.reviewer: charles.weininger
+zone_pivot_groups: telemetry-types
 # Customer Intent: As a .NET developer, I'd like to enable Application Insights Profiler for my .NET web application hosted in Linux
 ---
 
 # Enable the .NET Profiler for Azure App Service apps in Linux
+
+::: zone pivot="app-insights-sdk"  
+
+[!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
+
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
+
+::: zone-end 
 
 Using Application Insights Profiler for .NET, you can track how much time is spent in each method of your live ASP.NET Core web apps that are hosted in Linux on Azure App Service. This article focuses on web apps hosted in Linux. You can also experiment by using Linux, Windows, and Mac development environments.
 
 In this article, you:
 > [!div class="checklist"]
 > - Set up and deploy an ASP.NET Core web application hosted on Linux.
-> - Add Application Insights Profiler to the ASP.NET Core web application.
+> - Add the Profiler to the ASP.NET Core web application.
 
 ## Prerequisites
+
+::: zone pivot="app-insights-sdk"  
 
 - Install the [latest .NET Core SDK](https://dotnet.microsoft.com/download/dotnet).
 - Install Git by following the instructions at [Getting started: Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
@@ -26,7 +37,20 @@ In this article, you:
   - [Enable Service Profiler for containerized ASP.NET Core Application (.NET 6)](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/tree/main/examples/EnableServiceProfilerForContainerAppNet6)
   - [Application Insights Profiler for Worker Service example](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/tree/main/examples/ServiceProfilerInWorkerNet6)
 
+::: zone-end 
+
+::: zone pivot="otel"  
+
+- Install the [latest .NET Core SDK](https://dotnet.microsoft.com/download/dotnet).
+- Install Git by following the instructions at [Getting started: Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+- Review the [Enable Azure Monitor Profiler for an ASP.NET Core Web API](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/tree/main/examples/aspnetcore-webapi) sample for context.
+
+::: zone-end 
+
+
 ## Set up the project locally
+
+::: zone pivot="app-insights-sdk"  
 
 1. Open a command prompt window on your machine.
 
@@ -43,6 +67,33 @@ In this article, you:
    ```console
    dotnet add package Microsoft.ApplicationInsights.Profiler.AspNetCore
    ```
+
+::: zone-end 
+
+::: zone pivot="otel"  
+
+1. Open a command prompt window on your machine.
+
+1. Create an ASP.NET Core MVC web application:
+
+   ```console
+   dotnet new mvc -n LinuxProfilerTest
+   ```
+
+1. Change the working directory to the root folder for the project.
+
+1. Add the NuGet packages to collect the Profiler traces:
+
+   ```console
+   dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore --prerelease
+   dotnet add package Azure.Monitor.OpenTelemetry.Profiler --prerelease
+   ```
+
+::: zone-end 
+
+### Enable the .NET Profiler
+
+::: zone pivot="app-insights-sdk"  
 
 1. In your preferred code editor, enable Application Insights and the .NET Profiler in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
 
@@ -78,6 +129,44 @@ In this article, you:
     git add .
     git commit -m "first commit"
     ```
+
+::: zone-end 
+
+::: zone pivot="otel"  
+
+1. In your preferred code editor, enable the Azure Monitor OpenTelemetry Profiler for .NET in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/blob/main/docs/Configurations.md).
+
+   In your project's `.csproj` file:
+
+    ```csharp
+    <ItemGroup>
+        <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="[1.*-*, 2.0.0)" />
+        <PackageReference Include="Azure.Monitor.OpenTelemetry.Profiler" Version="[1.*-*, 2.0.0)" />
+    </ItemGroup>
+    ```
+
+   In your `Program.cs` file:
+
+    ```csharp
+    using Azure.Monitor.OpenTelemetry.AspNetCore;
+    using Azure.Monitor.OpenTelemetry.Profiler;
+
+    ///
+
+    builder.Services.AddOpenTelemetry()
+        .UseAzureMonitor()          // Enable Azure Monitor OpenTelemetry distro for ASP.NET Core
+        .AddAzureMonitorProfiler(); // Add Azure Monitor Profiler    
+    ```
+
+1. Save and commit your changes to the local repository:
+
+    ```console
+    git init
+    git add .
+    git commit -m "first commit"
+    ```
+
+::: zone-end 
 
 ## Create the Linux web app to host your project
 
@@ -118,29 +207,9 @@ In this article, you:
     git push azure main
     ```
 
-    You should see output similar to the following example:
-
-    ```output
-    Counting objects: 9, done.
-    Delta compression using up to 8 threads.
-    Compressing objects: 100% (8/8), done.
-    Writing objects: 100% (9/9), 1.78 KiB | 911.00 KiB/s, done.
-    Total 9 (delta 3), reused 0 (delta 0)
-    remote: Updating branch 'main'.
-    remote: Updating submodules.
-    remote: Preparing deployment for commit id 'd7369a99d7'.
-    remote: Generating deployment script.
-    remote: Running deployment command...
-    remote: Handling ASP.NET Core Web Application deployment.
-    remote: ......
-    remote:   Restoring packages for /home/site/repository/EventPipeExampleLinux.csproj...
-    remote: .
-    remote:   Installing Newtonsoft.Json 10.0.3.
-    remote:   Installing Microsoft.ApplicationInsights.Profiler.Core 1.1.0-LKG
-    ...
-    ```
-
 ## Add Application Insights to monitor your web app
+
+::: zone pivot="app-insights-sdk"  
 
 You have three options to add Application Insights to your web app:
 
@@ -207,9 +276,30 @@ You have three options to add Application Insights to your web app:
 
 ---
 
+::: zone-end 
+
+::: zone pivot="otel"  
+
+Copy and paste your connection string from your Application Insights resource to monitor your web app.
+
+1. [Copy the connection string.](../app/opentelemetry-enable.md#copy-the-connection-string-from-your-application-insights-resource)
+1. [Paste the connection string into your environment.](../app/opentelemetry-enable.md#paste-the-connection-string-in-your-environment)
+
+::: zone-end 
+
 ## Troubleshooting
 
+::: zone pivot="app-insights-sdk"  
+
 If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
+
+::: zone-end 
+
+::: zone pivot="otel"  
+
+If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](../app/opentelemetry-help-support-feedback.md).
+
+::: zone-end 
 
 ## Next steps
 

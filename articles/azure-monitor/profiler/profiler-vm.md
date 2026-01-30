@@ -8,8 +8,6 @@ ms.reviewer: charles.weininger
 
 # Enable the .NET Profiler for web apps on an Azure virtual machine
 
-[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
-
 In this article, you learn how to run Application Insights Profiler for .NET on your Azure virtual machine (VM) or Azure virtual machine scale set via three different methods:
 
 - Visual Studio and Azure Resource Manager
@@ -36,7 +34,7 @@ In this guide, you learn how to:
   - [VM](https://github.com/Azure/azure-docs-json-samples/blob/master/application-insights/WindowsVirtualMachine.json)
   - [Virtual machine scale set](https://github.com/Azure/azure-docs-json-samples/blob/master/application-insights/WindowsVirtualMachineScaleSet.json)
 
-## Add the Application Insights SDK to your application
+## Enable App Insights in your project.
 
 1. Open your ASP.NET core project in Visual Studio.
 
