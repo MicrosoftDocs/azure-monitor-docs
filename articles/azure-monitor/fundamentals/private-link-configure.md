@@ -379,11 +379,11 @@ If these requests are blocked, some Azure Monitor experiences in the portal (for
 ### Querying limitation: externaldata operator
 
 * The [externaldata](/azure/data-explorer/kusto/query/externaldata-operator?pivots=azuremonitor) operator isn't supported over a private link because it reads data from storage accounts but doesn't guarantee the storage is accessed privately.
-* The [Azure Data Explorer proxy (ADX proxy)](azure-monitor-data-explorer-proxy.md) allows log queries to query Azure Data Explorer. The ADX proxy isn't supported over a private link because it doesn't guarantee the targeted resource is accessed privately. 
+* The [Azure Data Explorer proxy (ADX proxy)](../logs/azure-monitor-data-explorer-proxy.md) allows log queries to query Azure Data Explorer. The ADX proxy isn't supported over a private link because it doesn't guarantee the targeted resource is accessed privately. 
 
 ## Next steps
 
-* Learn about [private storage](private-storage.md) for custom logs and customer-managed keys.
+* Learn about [private storage](../logs/private-storage.md) for custom logs and customer-managed keys.
 * Learn about the new [data collection endpoints](../data-collection/data-collection-endpoint-overview.md).
 
 To create and manage Private Link Scopes, use the [REST API](/rest/api/monitor/privatelinkscopes(preview)/private%20link%20scoped%20resources%20(preview)) or the [Azure CLI (az monitor private-link-scope)](/cli/azure/monitor/private-link-scope).

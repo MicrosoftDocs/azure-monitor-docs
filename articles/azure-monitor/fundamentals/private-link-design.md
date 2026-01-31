@@ -118,10 +118,10 @@ Following are exceptions to this network access:
 * Private Link ingestion settings are made using AMPLS and settings on the Data Collection Endpoints (DCEs) that reference the Azure Monitor workspace used to store Prometheus metrics.
 * Private Link query settings are made directly on the Azure Monitor workspace used to store Prometheus metrics and aren't handled with AMPLS.
 
-To set up ingestion of Managed Prometheus metrics using AMPLS, see [Enable ingestion of metrics from AKS with AMPLS](../containers/kubernetes-monitoring-private-link.md).
+To set up ingestion of Managed Prometheus metrics using AMPLS, see [Enable ingestion of metrics from AKS with AMPLS](../fundamentals/private-link-kubernetes.md).
 
 ## Next steps
 
-- Learn how to [configure your private link](private-link-configure.md).
-- Learn about [private storage](private-storage.md) for custom logs and customer-managed keys.
+- Learn how to [configure your private link](../logs/private-link-configure.md).
+- Learn about [private storage](../logs/private-storage.md) for custom logs and customer-managed keys.
 - Learn about [Private Link for Automation](/azure/automation/how-to/private-link-security).
