@@ -13,7 +13,7 @@ ms.reviewer: aul
 
 ## Prerequisites
 
-- Configure monitoring of Prometheus metrics and container logs for your AKS cluster by following the steps in [Enable Prometheus metrics and container logging](./containers/kubernetes-monitoring-enable.md).
+- Configure monitoring of Prometheus metrics and container logs for your AKS cluster by following the steps in [Enable Prometheus metrics and container logging](../containers/kubernetes-monitoring-enable.md).
 - Create an AMPLS and connect it to your VNet using the process described in [Configure private link for Azure Monitor](./private-link-configure.md).
 
 ## Conceptual overview
@@ -37,7 +37,7 @@ Instead of adding the Azure Monitor workspace directly to the AMPLS, Data Collec
 
 
 ### Create configuration DCEs for clusters in different regions
-A DCE is automatically created for each Azure Monitor workspace with the same name as the workspace. This DCE can be used for any clusters in the same region as the workspace to retrieve their configuration. If you have clusters in regions different from your workspace, then you need to create new DCEs for those regions. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in each region where you have clusters.
+A DCE is automatically created for each Azure Monitor workspace with the same name as the workspace. This DCE can be used for any clusters in the same region as the workspace to retrieve their configuration. If you have clusters in regions different from your workspace, then you need to create new DCEs for those regions. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in each region where you have clusters.
 
 ### Associate cluster with configuration DCE
 Create an association between each cluster and the configuration DCE in its region.
