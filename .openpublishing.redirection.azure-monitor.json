@@ -8840,11 +8840,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/logs/private-link-design.md",
-   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-design",
-   "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/agents/azure-monitor-agent-private-link.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/private-link-vm",
    "redirect_document_id": false
