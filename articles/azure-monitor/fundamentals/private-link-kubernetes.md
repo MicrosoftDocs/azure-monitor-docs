@@ -13,7 +13,7 @@ ms.reviewer: aul
 
 ## Prerequisites
 
-- Configure monitoring of Prometheus metrics and container logs for your AKS cluster by following the steps in [Enable Prometheus metrics and container logging](./kubernetes-monitoring-enable.md).
+- Configure monitoring of Prometheus metrics and container logs for your AKS cluster by following the steps in [Enable Prometheus metrics and container logging](./containers/kubernetes-monitoring-enable.md).
 - Create an AMPLS and connect it to your VNet using the process described in [Configure private link for Azure Monitor](./private-link-configure.md).
 
 ## Conceptual overview
