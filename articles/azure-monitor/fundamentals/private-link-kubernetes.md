@@ -17,30 +17,32 @@ ms.reviewer: aul
 - Create an AMPLS and connect it to your VNet using the process described in [Configure private link for Azure Monitor](./private-link-configure.md).
 
 ## Conceptual overview
-Kubernetes clusters send Prometheus metrics to an Azure Monitor workspace and logs to a Log Analytics workspace. When using private link, separate data collection endpoints (DCE) are required for clusters to retrieve configuration and to send data to the workspaces. To configure private link for Kubernetes clusters, you need to perform different steps in the following sections for the Azure Monitor workspace and Log Analytics workspace. 
+Kubernetes clusters send Prometheus metrics to an Azure Monitor workspace and logs to a Log Analytics workspace. When using private link, separate data collection endpoints (DCE) are required for clusters to retrieve configuration from the workspaces and to send data. 
 
-:::image type="content" source="media/kubernetes-monitoring-private-link/amp-private-ingestion-overview.png" lightbox="media/kubernetes-monitoring-private-link/amp-private-ingestion-overview.png" alt-text="Diagram that shows overview of ingestion through private link.":::
+Full configuration of private link for monitoring of your Kubernetes clusters requires configuration of existing DCEs and creation of new DCEs to support clusters in different regions. The sections below detail the steps required to configure private link for both the Azure Monitor workspace and the Log Analytics workspace.
+
+:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-private-ingestion-overview.png" lightbox="media/kubernetes-monitoring-private-link/ampls-private-ingestion-overview.png" alt-text="Diagram that shows overview of ingestion through private link.":::
 
 
 ## Configure Azure Monitor workspace
-Instead of adding the Azure Monitor workspace directly to the AMPLS, Data Collection Endpoints (DCEs) are added to the AMPLS that are able to access the workspace. A DCE is created automatically for each Azure Monitor workspace and can be used for any clusters in the same region as the workspace. For any clusters in a different region, create a new DCE in the same region as the cluster as described below.
+Instead of adding the Azure Monitor workspace directly to the AMPLS, Data Collection Endpoints (DCEs) are added to the AMPLS that are able to access the workspace. Two separate DCEs are required to support configuration retrieval and data ingestion.
 
-**Configuration**<br>
-- DCE automatically created for each Azure Monitor workspace. Use for all clusters in the same region as the workspace.
+**Configuration DCE**<br>
+- A DCE is automatically created for each Azure Monitor workspace. Use this DCE for all clusters in the same region as the workspace.
 - Create a new DCE for each region where clusters are located.
 - Associate each cluster with the DCE in the same region.
-- Add the DCE to the AMPLS.
+- Add the DCE for each region to the AMPLS.
 
- **Ingestion**<br>
-- DCE created automatically for each cluster when enabling Prometheus metrics.
-- Add the DCE to the AMPLS.
+ **Ingestion DCE**<br>
+- A DCE is created automatically for each cluster when enable Prometheus metrics.
+- Add the DCE for each cluster to the AMPLS.
 
 
 ### Create configuration DCEs for clusters in different regions
-A DCE is automatically created for each Azure Monitor workspace with the same name as the workspace. This DCE can be used for any clusters in the same region as the workspace to retrieve their configuration. If you have clusters in regions different from your workspace, then you need to create new DCEs for those regions. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in each region where you have clusters.
+A DCE is automatically created for each Azure Monitor workspace with the same name as the workspace. This DCE can be used for any clusters in the same region as the workspace to retrieve their configuration. If you have clusters in regions different from your workspace, then you need to create a new DCE for each region. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in each region where you have clusters.
 
 ### Associate cluster with configuration DCE
-Create an association between each cluster and the configuration DCE in its region.
+For the cluster to use the DCE in its region to retrieve configuration, you need to create an association between the cluster and the DCE.
 
 ### [Azure portal](#tab/portal)
 
@@ -80,10 +82,7 @@ New-AzDataCollectionRuleAssociation   -resourceuri /subscriptions/71b36fb6-4fe4-
 
 
 ### Add DCEs to AMPLS
-The following DCEs need to be added to the AMPLS:
-
-- DCE created by the Azure Monitor workspace
-- DCEs that you created for clusters in different regions
+Each of the DCEs created for configuration access need to be added to the AMPLS. This includes the DCE created by the Azure Monitor workspace and any new DCEs created for clusters in different regions. 
 
 ### [Azure portal](#tab/portal)
 
@@ -119,17 +118,16 @@ Add a DCE to the AMPLS using the following command:
 
 
 ### Create private endpoint for queries
-The final step for enabling private link for Prometheus metrics is to create a private endpoint to support queries to the Azure Monitor workspace. [Connect AMPLS to a private endpoint](./private-link-configure.md#connect-ampls-to-a-private-endpoint) describes how to create a private endpoint to support data ingestion. And additional private endpoint is required to support queries to the workspace.
+One final step for enabling private link for Prometheus metrics is to create a private endpoint to support queries to the Azure Monitor workspace. This is in addition to the private to connect the private scope to the VNet described in [Connect AMPLS to a private endpoint](./private-link-configure.md#connect-ampls-to-a-private-endpoint).
 
 ### [Azure portal](#tab/portal)
-
-Follow the guidance in [Connect AMPLS to a private endpoint](./private-link-configure.md#connect-ampls-to-a-private-endpoint) to create a new private endpoint. One the **Resources** tab select the following settings:
+Follow the guidance in [Connect AMPLS to a private endpoint](./private-link-configure.md#connect-ampls-to-a-private-endpoint) to create a new private endpoint for your AMPLS. One the **Resources** tab, select the following settings:
 
 - **Resource type**: `Microsoft.Monitor/accounts`
 - **Resource**: Your Azure Monitor workspace
 - **Target sub-resource**: `prometheusMetrics`
 
-:::image type="content" source="media/kubernetes-monitoring-private-link/amp-private-ingestion-private-endpoint-config.png" lightbox="media/kubernetes-monitoring-private-link/amp-private-ingestion-private-endpoint-config.png" alt-text="A screenshot show the private endpoint config":::
+:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-private-ingestion-private-endpoint-config.png" lightbox="media/kubernetes-monitoring-private-link/ampls-private-ingestion-private-endpoint-config.png" alt-text="A screenshot show the private endpoint config":::
 
 ### [CLI](#tab/cli)
 
@@ -154,20 +152,12 @@ Create the query private link endpoint using the following command:
 ---
 
 
-## Log Analytics workspace for log collection
-
-
-**Configuration**<br>
-- Create a new DCE for each region where clusters are located.
-- Associate each cluster with the DCE in the same region.
-
- **Ingestion**<br>
-- Add the Log Analytics workspace to the AMPLS.
-- DCE not required.
+## Configure Log Analytics workspace
+Clusters only require a DCE to retrieve configuration from the Log Analytics workspace. The workspace itself is added to the AMPLS to support data ingestion. No DCEs are created by default for Log Analytics workspaces, so you need to create a new DCE for each region where clusters are located. These DCEs are then associated with the clusters in the same region and added to the AMPLS.
 
 
 ### Add Log Analytics workspace to AMPLS
-Add the Log Analytics workspace to the AMPLS to enable ingestion from all clusters connected to the AMPLS.
+Add the Log Analytics workspace to the AMPLS to enable ingestion from all clusters.
 
 ### [Azure portal](#tab/portal)
 
@@ -206,10 +196,83 @@ Add a Log Analytics workspace to the AMPLS using the following command:
 No DCEs are created by default for Log Analytics workspaces. Create a new DCE for each region where you have clusters following the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview?tabs=portal#create-a-data-collection-endpoint).
 
 
+### Associate cluster with configuration DCE
+For the cluster to use the DCE in its region to retrieve configuration, you need to create an association between the cluster and the DCE.
+
+### [Azure portal](#tab/portal)
+
+Identify the DCE created by the Azure Monitor workspace from its **Overview** page in the Azure portal.
+
+:::image type="content" source="media/kubernetes-monitoring-private-link/amw-dce.png" lightbox="media/kubernetes-monitoring-private-link/amw-dce.png" alt-text="Screenshot showing the DCE for an Azure Monitor workspace.":::
+
+From the **Monitor** menu in the Azure portal, select **Data Collection Endpoints**. Select the DCE and then 
+the **Resources** tab. Click **Add** and select the cluster to create the association.
+
+:::image type="content" source="media/kubernetes-monitoring-private-link/dce-resources.png" lightbox="media/kubernetes-monitoring-private-link/dce-resources.png" alt-text="Screenshot showing the Resources for a DCE.":::
 
 
+### [CLI](#tab/cli)
 
-## Verify metrics are ingested into Azure Monitor Workspace
+Create association between the cluster and the DCE using the following command:
+
+```azurecli
+az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id <dce-resource-id> --resource-uri <cluster-resource-id>
+
+#Example
+az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce --resource-uri /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/aks/providers/Microsoft.ContainerService/managedClusters/aks06
+```
+
+### [PowerShell](#tab/powershell)
+
+Create association between the cluster and the DCE using the following command:
+
+```powershell
+New-AzDataCollectionRuleAssociation -associationname configurationAccessEndpoint -DataCollectionEndpointId <dce-resource-id> -resourceuri <cluster-resource-id>  
+
+# Example
+New-AzDataCollectionRuleAssociation   -resourceuri /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/vm/providers/Microsoft.Compute/virtualMachines/win03 -associationname configurationAccessEndpoint -DataCollectionEndpointId /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/bwlab/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce
+```
+
+---
+
+
+### Add DCEs to AMPLS
+Each of the DCEs created for configuration access need to be added to the AMPLS. This includes the DCE created by the Azure Monitor workspace and any new DCEs created for clusters in different regions. 
+
+### [Azure portal](#tab/portal)
+
+From the **Monitor** menu in the Azure portal, select **Azure Monitor Private Link Scopes**. Select your AMPLS and then the **Azure Monitor Resources** tab. Click **Add** and select the DCE to add it to the AMPLS.
+
+:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-resources-dce.png" lightbox="media/kubernetes-monitoring-private-link/ampls-resources-dce.png" alt-text="Screenshot showing how to add a DCE to an AMPLS.":::
+
+### [CLI](#tab/cli)
+
+Add a DCE to the AMPLS using the following command:
+
+```azurecli
+az monitor private-link-scope scoped-resource create --resource-group <resource-group> --scope-name <ampls-name> --name <dce-name> --linked-resource <dce-resource-id>
+
+#Example
+az monitor private-link-scope scoped-resource create --resource-group my-resource-group --scope-name my-ampls --name aks-amw  --linked-resource /subscriptions/71b36fb6-
+4fe4-4664-9a7b-245dc62f2930/resourceGroups/MA_aks-amw_eastus_managed/providers/Microsoft.Insights/dataCollectionEndpoints/aks-amw
+```
+
+### [PowerShell](#tab/powershell)
+
+Add a DCE to the AMPLS using the following command:
+
+```powershell
+ New-AzInsightsPrivateLinkScopedResource -ResourceGroupName <resource-group> -ScopeName <ampls-name> -Name <dce-name> -LinkedResourceId <dce-resource-id>
+
+# Example
+ New-AzInsightsPrivateLinkScopedResource -ResourceGroupName my-resource-group -ScopeName my-ampls -Name aks-amw-LinkedResourceId /subscriptions/71b36fb6-
+4fe4-4664-9a7b-245dc62f2930/resourceGroups/MA_aks-amw_eastus_managed/providers/Microsoft.Insights/dataCollectionEndpoints/aks-amw
+```
+
+---
+
+
+## Verify data ingestion
 
 Verify if Prometheus metrics from your private AKS cluster are ingested into Azure Monitor Workspace:
 
@@ -231,16 +294,13 @@ If you choose to use an Azure Firewall to limit the egress from your cluster, yo
 
 ### Private link ingestion for remote write
 
-Use the following steps to set up remote write for a Kubernetes cluster over a private link virtual network and an Azure Monitor Private Link scope.
+Use the following steps to set up remote write for Prometheus metrics for a Kubernetes cluster over a private link virtual network and an AMPLS.
 
-1. Create your Azure virtual network.
 1. Configure the on-premises cluster to connect to an Azure VNET using a VPN gateway or ExpressRoutes with private-peering.
-1. Create an Azure Monitor Private Link scope.
-1. Connect the Azure Monitor Private Link scope to a private endpoint in the virtual network used by the on-premises cluster. This private endpoint is used to access your DCEs.
-1. From your Azure Monitor workspace in the portal, select **Data Collection Endpoints** from the Azure Monitor workspace menu.
-1. You have at least one DCE which has the same name as your workspace. Click on the DCE to open its details.
+1. Connect the AMPLS to a private endpoint in the virtual network used by the on-premises cluster. This private endpoint is used to access your DCEs.
+1. From the **Overview** page for your Azure Monitor workspace in the Azure portal, click on the **Data collection endpoint**.
 1. Select the **Network Isolation** page for the DCE. 
-1. Click **Add** and select your Azure Monitor Private Link scope. It takes a few minutes for the settings to propagate. Once completed, data from your private AKS cluster is ingested into your Azure Monitor workspace over the private link.
+1. Click **Add** and select your AMPLS. Wait a few minutes for the settings to propagate, and data from your on-premises AKS cluster should ingested into your Azure Monitor workspace over the private link.
 
 
 
