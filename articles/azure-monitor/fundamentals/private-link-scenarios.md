@@ -11,7 +11,7 @@ ms.reviewer: aul
 
 [Azure Private Link](/azure/private-link/private-link-overview) enables you to access Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. An [Azure Monitor Private Link Scope (AMPLS)](../logs/private-link-security.md) connects a private endpoint to a set of Azure Monitor resources to define the boundaries of your monitoring network. Using private endpoints for Managed Prometheus/Container Insights and Azure Monitor workspace/Log Analytics Workspace you can allow clients on a virtual network (VNet) to securely ingest data over a Private Link.
 
-This article describes how to connect your cluster to an existing Azure Monitor Private Link Scope (AMPLS). If you don't yet have an AMPLS, create one using the guidance at [Configure private link for Azure Monitor](../logs/private-link-configure.md).
+This article describes how to connect your cluster to an existing Azure Monitor Private Link Scope (AMPLS). If you don't yet have an AMPLS, create one using the guidance at [Configure private link for Azure Monitor](../fundamentals/private-link-configure.md).
 
 
 ## Managed Prometheus (Azure Monitor workspace)
@@ -142,7 +142,7 @@ Data for Container insights, is stored in a [Log Analytics workspace](../logs/lo
 
 ### Prerequisites
 
-* This article describes how to connect your cluster to an existing Azure Monitor Private Link Scope (AMPLS). Create an AMPLS following the guidance in [Configure your private link](../logs/private-link-configure.md).
+* This article describes how to connect your cluster to an existing Azure Monitor Private Link Scope (AMPLS). Create an AMPLS following the guidance in [Configure your private link](../fundamentals/private-link-configure.md).
 * Azure CLI version 2.61.0 or higher.
 
 ### Cluster using managed identity authentication
@@ -203,7 +203,7 @@ Use the following procedures to enable network isolation by connecting your clus
     az monitor log-analytics workspace create --resource-group <azureLogAnalyticsWorkspaceResourceGroup> --workspace-name <azureLogAnalyticsWorkspaceName> --ingestion-access Disabled
     ```
 
-1. Configure private link by following the instructions at [Configure your private link](../logs/private-link-configure.md). Set ingestion access to public and then set to private after the private endpoint is created but before monitoring is enabled. The private link resource region must be same as AKS cluster region. 
+1. Configure private link by following the instructions at [Configure your private link](../fundamentals/private-link-configure.md). Set ingestion access to public and then set to private after the private endpoint is created but before monitoring is enabled. The private link resource region must be same as AKS cluster region. 
 
 1. Enable monitoring for the AKS cluster.
 

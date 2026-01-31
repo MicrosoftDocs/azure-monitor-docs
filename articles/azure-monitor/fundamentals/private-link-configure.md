@@ -95,31 +95,31 @@ From the menu for your AMPLS, select **Private Endpoint connections** and then *
 
 **Resource tab**
 
-    1. Select the *Subscription* that contains your Azure Monitor Private Link Scope resource.
-    1. For **Resource type**, select *Microsoft.insights/privateLinkScopes*.
-    1. From the **Resource** dropdown, select the Private Link Scope you created.
+1. Select the *Subscription* that contains your Azure Monitor Private Link Scope resource.
+1. For **Resource type**, select *Microsoft.insights/privateLinkScopes*.
+1. From the **Resource** dropdown, select the Private Link Scope you created.
 
-    :::image type="content" source="media/private-link-security/create-private-endpoint-resource.png" lightbox="media/private-link-security/create-private-endpoint-resource.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Resource tab selected.":::
+:::image type="content" source="media/private-link-security/create-private-endpoint-resource.png" lightbox="media/private-link-security/create-private-endpoint-resource.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Resource tab selected.":::
 
 **Virtual Network tab**
 
-    1. Select the **Virtual network** and **Subnet** that you want to connect to your Azure Monitor resources.
-    1. For **Network policy for private endpoints**, select **edit** if you want to apply network security groups or route tables to the subnet that contains the private endpoint. See [Manage network policies for private endpoints](/azure/private-link/disable-private-endpoint-network-policy) for further details.
-    1. For **Private IP configuration**, by default, **Dynamically allocate IP address** is selected. If you want to assign a static IP address, select **Statically allocate IP address**, then enter a name and private IP.
-    1. Optionally, select or create an **Application security group**. You can use application security groups to group virtual machines and define network security policies based on those groups.
+1. Select the **Virtual network** and **Subnet** that you want to connect to your Azure Monitor resources.
+1. For **Network policy for private endpoints**, select **edit** if you want to apply network security groups or route tables to the subnet that contains the private endpoint. See [Manage network policies for private endpoints](/azure/private-link/disable-private-endpoint-network-policy) for further details.
+1. For **Private IP configuration**, by default, **Dynamically allocate IP address** is selected. If you want to assign a static IP address, select **Statically allocate IP address**, then enter a name and private IP.
+1. Optionally, select or create an **Application security group**. You can use application security groups to group virtual machines and define network security policies based on those groups.
 
-    :::image type="content" source="media/private-link-security/create-private-endpoint-virtual-network.png" lightbox="media/private-link-security/create-private-endpoint-virtual-network.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Virtual Network tab selected.":::
+:::image type="content" source="media/private-link-security/create-private-endpoint-virtual-network.png" lightbox="media/private-link-security/create-private-endpoint-virtual-network.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Virtual Network tab selected.":::
 
 1. **DNS** tab
 
-    1. Select **Yes** for **Integrate with private DNS zone**, which will automatically create a new private DNS zone. The actual DNS zones might be different from what's shown in the following screenshot.
+1. Select **Yes** for **Integrate with private DNS zone**, which will automatically create a new private DNS zone. The actual DNS zones might be different from what's shown in the following screenshot.
 
-    > [!NOTE]
-    > If you select **No** and prefer to manage DNS records manually, first finish setting up your private link. Include this private endpoint and the AMPLS configuration then configure your DNS according to the instructions in [Azure private endpoint DNS configuration](/azure/private-link/private-endpoint-dns). Make sure not to create empty records as preparation for your private link setup. The DNS records you create can override existing settings and affect your connectivity with Azure Monitor.
-    >
-    > Whether you select **Yes** or **No** and you're using your own custom DNS servers, you need to set up conditional forwarders for the Public DNS zone forwarders mentioned in [Azure private endpoint DNS configuration](/azure/private-link/private-endpoint-dns). The conditional forwarders need to forward the DNS queries to [Azure DNS](/azure/virtual-network/what-is-ip-address-168-63-129-16).
+> [!NOTE]
+> If you select **No** and prefer to manage DNS records manually, first finish setting up your private link. Include this private endpoint and the AMPLS configuration then configure your DNS according to the instructions in [Azure private endpoint DNS configuration](/azure/private-link/private-endpoint-dns). Make sure not to create empty records as preparation for your private link setup. The DNS records you create can override existing settings and affect your connectivity with Azure Monitor.
+>
+> Whether you select **Yes** or **No** and you're using your own custom DNS servers, you need to set up conditional forwarders for the Public DNS zone forwarders mentioned in [Azure private endpoint DNS configuration](/azure/private-link/private-endpoint-dns). The conditional forwarders need to forward the DNS queries to [Azure DNS](/azure/virtual-network/what-is-ip-address-168-63-129-16).
 
-    :::image type="content" source="media/private-link-security/create-private-endpoint-dns.png" lightbox="media/private-link-security/create-private-endpoint-dns.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the DNS tab selected.":::
+:::image type="content" source="media/private-link-security/create-private-endpoint-dns.png" lightbox="media/private-link-security/create-private-endpoint-dns.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the DNS tab selected.":::
 
 1. **Review + create** tab
 

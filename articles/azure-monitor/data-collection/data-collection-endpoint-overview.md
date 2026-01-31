@@ -165,4 +165,4 @@ Data collection endpoints only support Log Analytics workspaces and Azure Monito
 
 ## Next steps
 
-* [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-resources-to-the-ampls)
+* [Add an endpoint to an Azure Monitor Private Link Scope resource](../fundamentals/private-link-configure.md#connect-resources-to-the-ampls)
