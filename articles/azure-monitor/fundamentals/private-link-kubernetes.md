@@ -1,5 +1,5 @@
 ---
-title: Enable private link with Container insights and Managed Prometheus
+title: Enable private link for Kubernetes monitoring in Azure Monitor
 description: Learn how to enable private link on an Azure Kubernetes Service (AKS) cluster.
 ms.topic: how-to
 ms.date: 08/25/2025
