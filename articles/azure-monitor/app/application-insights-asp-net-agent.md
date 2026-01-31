@@ -114,8 +114,6 @@ This tab describes how to onboard to the PowerShell Gallery and download the App
 
 To get started, you need a connection string. For more information, see [Connection strings](connection-strings.md).
 
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
-
 ### Run PowerShell as Admin with an elevated execution policy
 
 #### Run as Admin
@@ -335,8 +333,6 @@ This tab describes the following cmdlets, which are members of the [Az.Applicati
 > [!NOTE]
 > * To get started, you need a connection string. For more information, see [Create a resource](create-workspace-resource.md).
 > * This cmdlet requires that you review and accept our license and privacy statement.
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 > [!IMPORTANT]
 > This cmdlet requires a PowerShell session with Admin permissions and an elevated execution policy. For more information, see [Run PowerShell as administrator with an elevated execution policy](?tabs=detailed-instructions#run-powershell-as-admin-with-an-elevated-execution-policy).

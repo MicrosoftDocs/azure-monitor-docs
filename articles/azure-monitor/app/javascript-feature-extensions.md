@@ -52,8 +52,6 @@ The following key properties are captured by default when the plug-in is enabled
 
 Users can set up the Click Analytics Auto-Collection plug-in via JavaScript (Web) SDK Loader Script or npm and then optionally add a framework extension.
 
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
-
 ### Add the code
 
 #### [JavaScript (Web) SDK Loader Script](#tab/javascriptwebsdkloaderscript)
