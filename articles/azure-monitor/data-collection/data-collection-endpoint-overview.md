@@ -20,10 +20,10 @@ A DCE isn't always required for data collection since the data source may use a 
 
 ### Azure Monitor agent (AMA) 
 
-[AMA](../agents/azure-monitor-agent-overview.md) will use a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if you're using [private link](../logs/private-link-security.md). 
+[AMA](../agents/azure-monitor-agent-overview.md) will use a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if you're using [private link](../fundamentals/private-link-security.md). 
 
 > [!IMPORTANT]
-> Since Azure Monitor Private Link Scope (AMPLS) is dependent on DNS private link zones, any AMA installation connected to a network that shares DNS with AMPLS resources will require a DCE. Get more details at [Enable network isolation for Azure Monitor Agent by using Private Link](../logs/private-link-security.md).
+> Since Azure Monitor Private Link Scope (AMPLS) is dependent on DNS private link zones, any AMA installation connected to a network that shares DNS with AMPLS resources will require a DCE. Get more details at [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-security.md).
 
 You can view the agents associated with a DCE from its **Resources** page. Click **Add** to add additional agents. To remove them, select one or more agents and click **Disassociate** .
 

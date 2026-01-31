@@ -22,7 +22,7 @@ By default, when you use Application Insights Profiler for .NET or Snapshot Debu
 **Bring Your Own Storage (BYOS)** is a configuration option that gives you more control over where these artifacts are stored and how they're accessed. When you configure BYOS, you control and cover the cost for encryption-at-rest policies, lifetime management policies, and network access.
 
 BYOS is **required** in these scenarios:
-- You're using [Azure Private Link](../logs/private-link-security.md) with Application Insights
+- You're using [Azure Private Link](../fundamentals/private-link-security.md) with Application Insights
 - You're using [customer-managed keys](../logs/customer-managed-keys.md) for encryption
 
 BYOS is **optional** but recommended when you want to:

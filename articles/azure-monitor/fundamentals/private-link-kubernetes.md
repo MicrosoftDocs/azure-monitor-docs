@@ -9,7 +9,7 @@ ms.reviewer: aul
 
 # Enable private link for Kubernetes monitoring in Azure Monitor
 
-[Azure Private Link](/azure/private-link/private-link-overview) enables you to access Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. An [Azure Monitor Private Link Scope (AMPLS)](../logs/private-link-security.md) connects a private endpoint to a set of Azure Monitor resources to define the boundaries of your monitoring network. This article describes how to connect your Kubernetes cluster to an existing Azure Monitor Private Link Scope (AMPLS).
+[Azure Private Link](/azure/private-link/private-link-overview) enables you to access Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. An [Azure Monitor Private Link Scope (AMPLS)](../fundamentals/private-link-security.md) connects a private endpoint to a set of Azure Monitor resources to define the boundaries of your monitoring network. This article describes how to connect your Kubernetes cluster to an existing Azure Monitor Private Link Scope (AMPLS).
 
 ## Prerequisites
 
