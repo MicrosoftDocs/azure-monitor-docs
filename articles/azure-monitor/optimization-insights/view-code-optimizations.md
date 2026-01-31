@@ -1,7 +1,7 @@
 ---
 title: View Code Optimizations Results
 description: Learn how to access the results provided by Azure Monitor's Code Optimizations feature.
-ms.topic: article
+ms.topic: how-to
 ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms

@@ -5,9 +5,7 @@ ms.topic: concept-article
 ms.date: 03/07/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
-
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
-
 ---
 
 # Azure Monitor Agent supported operating systems and environments
@@ -57,6 +55,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Oracle Linux 9                                              | ✓ |
 | Oracle Linux 8                                              | ✓ |
 | Oracle Linux 7                                              | ✓ |
+| Red Hat Enterprise Linux Server 10                          | ✓ |
 | Red Hat Enterprise Linux Server 9+                          | ✓ |
 | Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ |
@@ -97,7 +96,7 @@ The Azure Monitor Agent supports all standard Windows hardening standards, inclu
 ### Linux hardening
 
 > [!NOTE]
-> Only the Azure Monitor Agent for Linux supports the hardening standards described in this section. The standards aren't supported by the [Dependency Agent](../vm/vminsights-dependency-agent-maintenance.md) or by the [Azure Diagnostics extension](./diagnostics-extension-overview.md).
+> Only the Azure Monitor Agent for Linux supports the hardening standards described in this section. The standards aren't supported by the [Dependency Agent](../vm/vminsights-dependency-agent.md) or by the [Azure Diagnostics extension](./diagnostics-extension-overview.md).
 
 The Azure Monitor Agent for Linux supports various hardening standards for Linux operating systems and distributions. Every release of the agent is tested and certified against the supported hardening standards by using images that are publicly available in Azure Marketplace, including images published by [Center for Internet Security (CIS)](/compliance/regulatory/offering-cis-benchmark). Only settings and hardening that apply to those images are supported. CIS-published images that have more customizations and images customized with settings and hardening that differs from official CIS benchmarks aren't supported.
 

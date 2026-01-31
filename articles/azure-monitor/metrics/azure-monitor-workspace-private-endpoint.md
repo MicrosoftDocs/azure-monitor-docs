@@ -1,7 +1,7 @@
 ---
 title: Use private endpoints for Managed Prometheus and Azure Monitor workspaces
 description: Overview of private endpoints for secure query access to Azure Monitor workspace from virtual networks.
-ms.topic: article
+ms.topic: how-to
 ms.date: 08/28/2025
 ---
 

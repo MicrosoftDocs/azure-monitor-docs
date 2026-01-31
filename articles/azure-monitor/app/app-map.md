@@ -1,8 +1,11 @@
 ---
 title: Application map in Azure Application Insights
-description: Monitor complex application topologies with Application map and Intelligent view by using Application Insights in Azure Monitor.
+description: Discover how to monitor distributed systems with Application map in Azure Application Insights. Gain insights into dependencies, failures, and performance.
 ms.topic: how-to
-ms.date: 10/09/2024
+ms.date: 02/19/2026
+author: AarDavMax
+ms.author: aaronmax
+ms.reviewer: aaronmax
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: devx-track-csharp

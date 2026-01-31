@@ -1,7 +1,7 @@
 ---
 title: Optimization in operations center (preview)
 description: Describes the Optimization pillar in operations center, which includes cost and carbon optimization features and the Optimize agent.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/14/2025
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Logs Ingestion API in Azure Monitor
 description: Send data to a Log Analytics workspace using REST API or client libraries.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 06/16/2025
 ---
 
@@ -120,7 +120,7 @@ In addition to making a REST API call, you can use the following client librarie
 
 ## REST API call
 
-To send data to Azure Monitor with a REST API call, make a POST call over HTTP. Details required for this call are described in this section.
+To send data to Azure Monitor with a REST API call, make a POST call over HTTPS. Details required for this call are described in this section.
 
 ### URI
 
@@ -243,7 +243,7 @@ Data sent to the ingestion API can be sent to the following tables:
 * [WindowsServerAssessmentRecommendation](/azure/azure-monitor/reference/tables/windowsserverassessmentrecommendation)<br>
 
 > [!NOTE]
-> Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. Custom columns you add to an Azure table must have the suffix `_CF`.
+> Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. Custom columns you add to an Azure table must have the suffix `_CF`.
 
 ## Limits and restrictions
 
