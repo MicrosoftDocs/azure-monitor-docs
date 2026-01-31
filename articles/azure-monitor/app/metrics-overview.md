@@ -48,7 +48,7 @@ For more information, see [Custom metrics in Azure Monitor (preview)](../essenti
 
 ## Metrics preaggregation
 
-OpenTelemetry SDKs and some Application Insights SDKs (Classic API) preaggregate metrics during collection to reduce the volume of data sent from the SDK to the telemetry channel endpoint. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent using the [OpenTelemetry API](./opentelemetry-add-modify.md#add-custom-metrics) or [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), which results in less data ingestion and lower cost. If your version of the Application Insights SDK supports GetMetric and TrackValue, it's the preferred method of sending custom metrics.
+OpenTelemetry SDKs preaggregate metrics during collection to reduce the volume of data sent from the SDK to the telemetry channel endpoint. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent using the [OpenTelemetry API](./opentelemetry-add-modify.md#add-custom-metrics) or [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), which results in less data ingestion and lower cost. If your version of the Application Insights SDK supports GetMetric and TrackValue, it's the preferred method of sending custom metrics.
 
 Some SDKs don't implement preaggregation. Examples include older versions of the Application Insights SDK and browser-based instrumentation. In these cases, the back end creates the new metrics by aggregating the events received through the telemetry channel.
 
@@ -70,20 +70,6 @@ The following tables list where preaggregation are preaggregated.
 | Java native | SDK | SDK via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java-native#add-custom-metrics) |
 | Node.js | SDK | SDK via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=nodejs#add-custom-metrics) |
 | Python | SDK | SDK via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=python#add-custom-metrics) |
-
-### Metrics preaggregation with Application Insights SDK (Classic API)
-
-| Current production SDK | Standard metrics preaggregation | Custom metrics preaggregation |
-|------------------------|---------------------------------|-------------------------------|
-| .NET Core and .NET Framework | SDK (V2.13.1+) | SDK (V2.7.2+) via [GetMetric](get-metric.md)<br>Telemetry channel endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
-| Java (2.x) | Telemetry channel endpoint | Telemetry channel endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
-| JavaScript (Browser) | Telemetry channel endpoint | Telemetry channel endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
-| Node.js | Telemetry channel endpoint | Telemetry channel endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
-
-> [!CAUTION]
-> * The Application Insights Java 2.x SDK is no longer recommended. Use the [OpenTelemetry-based Java offering](./opentelemetry-enable.md?tabs=java) instead.
-> 
-> * The [OpenCensus Python SDK is retired](https://opentelemetry.io/blog/2023/sunsetting-opencensus/). We recommend the [OpenTelemetry-based Python offering](./opentelemetry-enable.md?tabs=python) and provide [migration guidance](./opentelemetry-python-opencensus-migrate.md?tabs=python).
 
 ### Metrics preaggregation with autoinstrumentation
 
