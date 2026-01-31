@@ -8,52 +8,39 @@ ms.devlang: csharp
 
 # Live metrics: Monitor and diagnose with 1-second latency
 
-Use live metrics from [Application Insights](./app-insights-overview.md) to monitor web applications. Select and filter metrics and performance counters to watch in real time and inspect stack traces from sample failed requests and exceptions. The live metrics experience is a powerful diagnostic tool when combined with [.NET Profiler](./profiler-overview.md) and [Snapshot Debugger](./snapshot-debugger.md).
+Use live metrics from [Application Insights](./app-insights-overview.md) to monitor web applications. Select and filter metrics and performance counters to watch in real time and inspect stack traces from sample failed requests and exceptions.
 
 With live metrics, you can:
 
 > [!div class="checklist"]
-> - Validate a fix while it's released by watching performance and failure counts.
-> - Watch the effect of test loads and diagnose issues live.
-> - Focus on particular test sessions or filter out known issues by selecting and filtering the metrics you want to watch.
-> - Get exception traces as they happen.
-> - Experiment with filters to find the most relevant KPIs.
-> - Monitor any Windows performance counter live.
-> - Easily identify a server that's having issues and filter all the KPI/live feed to just that server.
+> * Validate a fix while it's released by watching performance and failure counts.
+> * Watch the effect of test loads and diagnose issues live.
+> * Focus on particular test sessions or filter out known issues by selecting and filtering the metrics you want to watch.
+> * Get exception traces as they happen.
+> * Experiment with filters to find the most relevant KPIs.
+> * Monitor any Windows performance counter live.
+> * Easily identify a server that's having issues and filter all the KPI/live feed to just that server.
 
 :::image type="content" source="./media/live-stream/live-metric.png" lightbox="./media/live-stream/live-metric.png" alt-text="Screenshot that shows the live metrics tab.":::
 
 ## Get started
 
-1. Enable live metrics by following language-specific guidelines:
+1. Enable live metrics with Azure Monitor OpenTelemetry by following language-specific guidelines:
 
-  # [OpenTelemetry (Recommended)](#tab/otel)
+* [ASP.NET](opentelemetry-enable.md?tabs=net): *Not supported*.
+* [ASP.NET Core](opentelemetry-enable.md?tabs=aspnetcore): Enabled by default.
+* [Java](./opentelemetry-enable.md?tabs=java): Enabled by default.
+* [Node.js](opentelemetry-enable.md?tabs=nodejs): Enabled by default.
+* [Python](opentelemetry-enable.md?tabs=python): Pass `enable_live_metrics=True` into `configure_azure_monitor`. See the [Azure Monitor OpenTelemetry Distro](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry#usage) documentation for more information.
 
-   * [ASP.NET](opentelemetry-enable.md?tabs=net): *Not supported*.
-   * [ASP.NET Core](opentelemetry-enable.md?tabs=aspnetcore): Enabled by default.
-   * [Java](./opentelemetry-enable.md?tabs=java): Enabled by default.
-   * [Node.js](opentelemetry-enable.md?tabs=nodejs): Enabled by default.
-   * [Python](opentelemetry-enable.md?tabs=python): Pass `enable_live_metrics=True` into `configure_azure_monitor`. See the [Azure Monitor OpenTelemetry Distro](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry#usage) documentation for more information.
-  
-  # [Classic API](#tab/classic)
-  
-   * [ASP.NET](./asp-net.md): Enabled by default but can also be [enabled manually using code](asp-net.md#enable-live-metrics-by-using-code-for-any-net-application).
-   * [ASP.NET Core](./asp-net-core.md): Enabled by default but can also be [enabled manually using code](asp-net-core.md#enable-live-metrics-by-using-code-for-any-net-application).
-   * [.NET/.NET Core Console/Worker](./worker-service.md): Enabled by default.
-   * [Node.js](./nodejs.md#live-metrics): *Not enabled by default*.
+1. Open the Application Insights resource for your application in the [Azure portal](https://portal.azure.com). Select **Live metrics**, which is listed under **Investigate** in the left hand menu.
 
----
-
-2. Open the Application Insights resource for your application in the [Azure portal](https://portal.azure.com). Select **Live metrics**, which is listed under **Investigate** in the left hand menu.
-
-3. [Secure the control channel](#secure-the-control-channel) by enabling [Microsoft Entra authentication](./azure-ad-authentication.md#configure-and-enable-azure-ad-based-authentication) if you use custom filters.
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
+1. [Secure the control channel](#secure-the-control-channel) by enabling [Microsoft Entra authentication](./azure-ad-authentication.md#configure-and-enable-azure-ad-based-authentication) if you use custom filters.
 
 ## How do live metrics differ from metrics explorer and Log Analytics?
 
-| Capabilities |Live Stream | Metrics explorer and Log Analytics |
-|---|---|---|
+| Capabilities | Live Stream | Metrics explorer and Log Analytics |
+|--------------|-------------|------------------------------------|
 |Latency|Data displayed within one second.|Aggregated over minutes.|
 |No retention|Data persists while it's on the chart and is then discarded.|[Data retained for 90 days.](/previous-versions/azure/azure-monitor/app/data-retention-privacy#how-long-is-the-data-kept)|
 |On demand|Data is only streamed while the live metrics pane is open. |Data is sent whenever the SDK is installed and enabled.|
@@ -78,6 +65,7 @@ Along with Application Insights telemetry, you can also monitor any Windows perf
 Live metrics are aggregated at two points: locally on each server and then across all servers. You can change the default at either one by selecting other options in the respective dropdown lists.
 
 ## Sample telemetry: custom live diagnostic events
+
 By default, the live feed of events shows samples of failed requests and dependency calls, exceptions, events, and traces. Select the filter icon to see the applied criteria at any point in time.
 
 :::image type="content" source="./media/live-stream/filter.png" lightbox="./media/live-stream/filter.png" alt-text="Screenshot that shows the Filter button.":::
@@ -108,23 +96,21 @@ Secure the live metrics control channel by enabling [Microsoft Entra authenticat
 
 ## Supported features table
 
-| Language                          | Basic metrics                                                                       | Performance metrics                                                                 | Custom filtering                                                                    | Sample telemetry                                                                    | CPU split by process                                                                |
-| --------------------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
-| .NET Framework                    | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) |
-| .NET Core (target=.NET Framework) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) |
-| .NET Core (target=.NET Core)      | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported*                                                                          | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | **Not supported**                                                                   |
-| Azure Functions v2                | Supported                                                                           | Supported                                                                           | Supported                                                                           | Supported                                                                           | **Not supported**                                                                   |
-| Java                              | Supported (V2.0.0+)                                                                 | Supported (V2.0.0+)                                                                 | **Not supported**                                                                   | Supported (V3.2.0+)                                                                 | **Not supported**                                                                   |
-| Node.js                           | Supported (V1.3.0+)                                                                 | Supported (V1.3.0+)                                                                 | Supported (V1.3.0+)                                                                 | Supported (V1.3.0+)                                                                 | **Not supported**                                                                   |
-| Python                            | Supported (Distro Version 1.6.0+)                                                   | Supported (Distro version 1.8.2+)                                                   | Supported (Distro version 1.0.0+)                                                   | Supported (Distro version 1.5.0+)                                                   | **Not supported**                                                                   |
+| Language           | Basic metrics                    | Performance metrics               | Custom filtering                  | Sample telemetry                  |
+|--------------------|:---------------------------------|:----------------------------------|:----------------------------------|:----------------------------------|
+| .NET               | Supported                        | Supported                         | Supported                         | Supported                         |
+| Azure Functions v2 | Supported                        | Supported                         | Supported                         | Supported                         |
+| Java               | Supported                        | Supported                         | **Not supported**                 | Supported (V3.2.0+)               |
+| Node.js            | Supported (V1.3.0+)              | Supported (V1.3.0+)               | Supported (V1.3.0+)               | Supported (V1.3.0+)               |
+| Python             | Supported (Distro version 1.6.0) | Supported (Distro version 1.8.2+) | Supported (Distro version 1.0.0+) | Supported (Distro version 1.5.0+) |
 
 Basic metrics include request, dependency, and exception rate. Performance metrics (performance counters) include memory and CPU. Sample telemetry shows a stream of detailed information for failed requests and dependencies, exceptions, events, and traces.
 
- PerfCounters support varies slightly across versions of .NET Core that don't target the .NET Framework:
+PerfCounters support varies slightly across versions of .NET Core that don't target the .NET Framework:
 
-- PerfCounters metrics are supported when running in Azure App Service for Windows (ASP.NET Core SDK version 2.4.1 or higher).
-- PerfCounters are supported when the app is running on *any* Windows machine for apps that target .NET Core [LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) or higher.
-- PerfCounters are supported when the app is running *anywhere* (such as Linux, Windows, app service for Linux, or containers) in the latest versions, but only for apps that target .NET Core [LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) or higher.
+* PerfCounters metrics are supported when running in Azure App Service for Windows (ASP.NET Core SDK version 2.4.1 or higher).
+* PerfCounters are supported when the app is running on *any* Windows machine for apps that target .NET Core [LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) or higher.
+* PerfCounters are supported when the app is running *anywhere* (such as Linux, Windows, app service for Linux, or containers) in the latest versions, but only for apps that target .NET Core [LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) or higher.
 
 ## Troubleshooting
 
@@ -134,5 +120,3 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 
 * [Monitor usage with Application Insights](./usage.md)
 * [Use Diagnostic Search](./failures-performance-transactions.md?tabs=search-view)
-* [Application Insights Profiler for .NET](./profiler-overview.md)
-* [Snapshot Debugger](./snapshot-debugger.md)
