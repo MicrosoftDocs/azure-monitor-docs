@@ -21,8 +21,6 @@ Kubernetes clusters send Prometheus metrics to an Azure Monitor workspace and lo
 
 Full configuration of private link for monitoring of your Kubernetes clusters requires configuration of existing DCEs and creation of new DCEs to support clusters in different regions. The sections below detail the steps required to configure private link for both the Azure Monitor workspace and the Log Analytics workspace.
 
-:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-private-ingestion-overview.png" lightbox="media/kubernetes-monitoring-private-link/ampls-private-ingestion-overview.png" alt-text="Diagram that shows overview of ingestion through private link.":::
-
 
 ## Configure Azure Monitor workspace
 Instead of adding the Azure Monitor workspace directly to the AMPLS, Data Collection Endpoints (DCEs) are added to the AMPLS that are able to access the workspace. Two separate DCEs are required to support configuration retrieval and data ingestion.
@@ -134,11 +132,24 @@ Follow the guidance in [Connect AMPLS to a private endpoint](./private-link-conf
 Create the query private link endpoint using the following command:
 
 ```azurecli
-az network private-endpoint create --resource-group <resource-group>  --name <private-endpoint-name> --location <region> --subnet <subnet-id>     -
--private-connection-resource-id <workspade-resource-id> --group-ids prometheusMetrics --connection-name <connection-name>
+az network private-endpoint create \
+    --resource-group <resource-group>  \
+    --name <private-endpoint-name> \
+    --location <region> \
+    --subnet <subnet-id> \
+    --private-connection-resource-id <workspade-resource-id> \
+    --group-ids prometheusMetrics \
+    --connection-name <connection-name>
 
 # Example
-az network private-endpoint create --resource-group my-resource-group --name AzMon-QueryPrivateEndpoint  --location eastus  --subnet /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/vm/providers/Microsoft.Network/virtualNetworks/vnet-eastus/subnets/snet-eastus-1  --private-connection-resource-id "/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/aks/providers/microsoft.monitor/accounts/aks-amw"  --group-ids prometheusMetrics  --connection-name AzMon-QueryPrivateEndpoint-conn
+az network private-endpoint create \
+    --resource-group my-resource-group  \
+    --name AzMon-QueryPrivateEndpoint \
+    --location eastus \
+    --subnet /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/vm/providers/Microsoft.Network/virtualNetworks/vnet-eastus/subnets/snet-eastus-1  \
+    --private-connection-resource-id /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/aks/providers/microsoft.monitor/accounts/aks-amw \
+    --group-ids prometheusMetrics \
+    --connection-name AzMon-QueryPrivateEndpoint-conn
 ```
 
 
@@ -148,6 +159,21 @@ az network private-endpoint create --resource-group my-resource-group --name AzM
 Create the query private link endpoint using the following command:
 
 ```powershell
+$pec = @{
+    Name = 'AzMon-QueryPrivateEndpoint-conn'
+    PrivateLinkServiceId = $webapp.ID
+    GroupID = 'prometheusMetrics'
+}
+$privateEndpointConnection = New-AzPrivateLinkServiceConnection @pec
+
+$pe = @{
+    ResourceGroupName = 'my-resource-group'
+    Name = 'AzMon-QueryPrivateEndpoint'
+    Location = 'eastus2'
+    Subnet = '/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/vm/providers/Microsoft.Network/virtualNetworks/vnet-eastus/subnets/snet-eastus-1'
+    PrivateLinkServiceConnection = $privateEndpointConnection
+}
+New-AzPrivateEndpoint @pe
 ```
 ---
 
@@ -201,10 +227,6 @@ For the cluster to use the DCE in its region to retrieve configuration, you need
 
 ### [Azure portal](#tab/portal)
 
-Identify the DCE created by the Azure Monitor workspace from its **Overview** page in the Azure portal.
-
-:::image type="content" source="media/kubernetes-monitoring-private-link/amw-dce.png" lightbox="media/kubernetes-monitoring-private-link/amw-dce.png" alt-text="Screenshot showing the DCE for an Azure Monitor workspace.":::
-
 From the **Monitor** menu in the Azure portal, select **Data Collection Endpoints**. Select the DCE and then 
 the **Resources** tab. Click **Add** and select the cluster to create the association.
 
@@ -237,7 +259,7 @@ New-AzDataCollectionRuleAssociation   -resourceuri /subscriptions/71b36fb6-4fe4-
 
 
 ### Add DCEs to AMPLS
-Each of the DCEs created for configuration access need to be added to the AMPLS. This includes the DCE created by the Azure Monitor workspace and any new DCEs created for clusters in different regions. 
+Each of the DCEs created for configuration access need to be added to the AMPLS.
 
 ### [Azure portal](#tab/portal)
 
@@ -271,18 +293,6 @@ Add a DCE to the AMPLS using the following command:
 
 ---
 
-
-## Verify data ingestion
-
-Verify if Prometheus metrics from your private AKS cluster are ingested into Azure Monitor Workspace:
-
-1. In the Azure portal, search for the Azure Monitor Workspace, and go to **Monitoring** -> **Metrics**.
-1. In the Metrics Explorer, query for metrics and verify that you're able to query.
-
-> [!NOTE]
-> * See [Connect to a data source privately](/azure/managed-grafana/how-to-connect-to-data-source-privately) for details on how to configure private link to query data from your Azure Monitor workspace using Grafana.
-> * See [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../metrics/azure-monitor-workspace-private-endpoint.md) for details on how to configure private link to query data from your Azure Monitor workspace using workbooks.
-
 ### Ingestion from a private AKS cluster
 
 If you choose to use an Azure Firewall to limit the egress from your cluster, you can implement one of the following:
@@ -303,13 +313,15 @@ Use the following steps to set up remote write for Prometheus metrics for a Kube
 1. Click **Add** and select your AMPLS. Wait a few minutes for the settings to propagate, and data from your on-premises AKS cluster should ingested into your Azure Monitor workspace over the private link.
 
 
+## Verify data ingestion
+
+There are multiple methods to verify that data is being ingested from your cluster over the private link. One method is to check the **Monitor** menu for one of your clusters. You should see metrics and events being collected. 
+
+:::image type="content" source="media/kubernetes-monitoring-private-link/cluster-monitoring.png" lightbox="media/kubernetes-monitoring-private-link/cluster-monitoring.png" alt-text="Screenshot showing monitoring of a cluster to verify data collection.":::
 
 
 ## Next steps
 
-* If you experience issues while you attempt to onboard the solution, review the [Troubleshooting guide](container-insights-troubleshoot.md).
-* With monitoring enabled to collect health and resource utilization of your AKS cluster and workloads running on them, learn [how to use](container-insights-analyze.md) Container insights.
-* [Query data from Azure Managed Grafana using Managed Private Endpoint](/azure/managed-grafana/how-to-connect-to-data-source-privately).
-* [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../metrics/azure-monitor-workspace-private-endpoint.md) for details on how to configure private link to query data from your Azure Monitor workspace using workbooks.
-* [Azure Private Endpoint DNS configuration](/azure/private-link/private-endpoint-dns)
+* See [Connect to a data source privately](/azure/managed-grafana/how-to-connect-to-data-source-privately) for details on how to configure private link to query data from your Azure Monitor workspace using Grafana.
+* See [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../metrics/azure-monitor-workspace-private-endpoint.md) for details on how to configure private link to query data from your Azure Monitor workspace using workbooks.
 

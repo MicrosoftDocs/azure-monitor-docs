@@ -8838,6 +8838,26 @@
    "source_path": "articles/azure-monitor/logs/private-link-security.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/private-link-security",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/logs/private-link-configure.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-configure",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/logs/private-link-design.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-design",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-private-link.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-vm",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/kubernetes-monitoring-private-link.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-kubernetes",
+   "redirect_document_id": false
   }
  ]
 }
