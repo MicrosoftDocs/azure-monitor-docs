@@ -1085,7 +1085,7 @@ items:
         href: fundamentals/private-link-configure.md
       - name: Kubernetes
         displayName: Private link
-        href: fundamentals/kubernetes-monitoring-private-link.md
+        href: fundamentals/private-link-kubernetes.md
       - name: Virtual machines
         displayName: Private link
         href: fundamentals/azure-monitor-agent-private-link.md

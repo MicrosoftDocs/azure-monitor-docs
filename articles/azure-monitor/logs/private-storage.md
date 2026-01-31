@@ -44,7 +44,7 @@ When you connect to Azure Monitor over a private link, Azure Monitor Agent can o
 * Connect it to your workspaces.
 * Connect the AMPLS to your network over a private link.
 
-For more information on the AMPLS configuration procedure, see [Use Azure Private Link to securely connect networks to Azure Monitor](./private-link-security.md).
+For more information on the AMPLS configuration procedure, see [Use Azure Private Link to securely connect networks to Azure Monitor](../fundamentals/private-link-security.md).
 
 ### Storage account requirements for private link
 When you connect to Azure Monitor over a private link, the storage account must be accessible over a private link. This requirement means you should:
