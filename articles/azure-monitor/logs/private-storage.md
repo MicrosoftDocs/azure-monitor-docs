@@ -184,5 +184,5 @@ You're charged for storage accounts based on the volume of stored data, the type
 
 ## Next steps
 
-- Learn about [using Private Link to securely connect networks to Azure Monitor](private-link-security.md).
+- Learn about [using Private Link to securely connect networks to Azure Monitor](../fundamentals/azure-monitor-agent-private-link.mdprivate-link-security.md).
 - Learn about [Azure Monitor customer-managed keys](../logs/customer-managed-keys.md).

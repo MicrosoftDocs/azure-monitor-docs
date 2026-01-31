@@ -58,7 +58,7 @@ The **Basics** tab includes basic information about the DCR.
 
 ## Add resources
 
-On the **Resources** pane, select **Add resources** to add VMs that will use the DCR. You don't need to add any VMs yet since you can update the DCR after creation and add/remove any resources. If you select **Enable Data Collection Endpoints** on the **Resources** tab, you can select a DCE for each VM. This is only required if you're using [Azure Monitor Private Links](../agents/azure-monitor-agent-private-link.md). Otherwise, don't select this option.
+On the **Resources** pane, select **Add resources** to add VMs that will use the DCR. You don't need to add any VMs yet since you can update the DCR after creation and add/remove any resources. If you select **Enable Data Collection Endpoints** on the **Resources** tab, you can select a DCE for each VM. This is only required if you're using [Azure Monitor Private Links](../fundamentals/azure-monitor-agent-private-link.md). Otherwise, don't select this option.
 
 > [!NOTE]
 > You can't add a virtual machine scale set with flexible orchestration as a resource for a DCR. Instead, add each VM included in the virtual machine scale set.
