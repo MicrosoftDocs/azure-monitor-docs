@@ -1636,6 +1636,8 @@ items:
       href: fundamentals/opentelemetry-protocol-ingestion.md
     - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
       href: app/kubernetes-open-protocol.md
+  - name: Migrate from App Center
+    href: /app/app-center-migration.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources

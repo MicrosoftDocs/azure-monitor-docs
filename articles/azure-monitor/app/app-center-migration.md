@@ -43,6 +43,7 @@ Review these resources to understand Azure Monitor basics:
 - [Azure Monitor documentation](/azure/azure-monitor/)
 - [Application Insights overview](/azure/azure-monitor/app/app-insights-overview)
 - [Telemetry Data Model](/azure/azure-monitor/app/data-model-complete)
+- [Azure Monitor endpoint access and firewall configuration](/azure/azure-monitor/fundamentals/azure-monitor-network-access)
 - [Log Analytics Workspaces](/azure/azure-monitor/app/create-workspace-resource?tabs=portal)
 - [Connection Strings](/azure/azure-monitor/app/connection-strings)
 
