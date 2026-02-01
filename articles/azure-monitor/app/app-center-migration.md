@@ -2,6 +2,7 @@
 title: Migrate App Center Analytics & Diagnostics to Azure Monitor
 description: Migrate Visual Studio App Center Analytics & Diagnostics telemetry to Azure Monitor by using community OpenTelemetry (OTel) SDKs and an OpenTelemetry Collector.
 ms.service: vs-appcenter
+ms.subservice:
 ms.topic: how-to
 ms.date: 02/02/2026
 ---
@@ -37,7 +38,7 @@ Complete these tasks in order:
 
 Identify the Azure Monitor resources that you use for analysis, such as an Application Insights resource and a Log Analytics workspace.
 
-Use these resources to orient your work:
+Review these resources to understand Azure Monitor basics:
 
 - [Azure Monitor documentation](/azure/azure-monitor/)
 - [Application Insights overview](/azure/azure-monitor/app/app-insights-overview)
@@ -70,7 +71,22 @@ Use these resources to find exporter options and configuration guidance:
 
 ### Remove the App Center SDK from your apps
 
-Remove the App Center SDK packages and startup initialization from your apps. Confirm that apps no longer send telemetry by using the App Center SDK.
+Complete these tasks:
+
+- Identify App Center dependencies and build integrations in your codebase.
+- Remove App Center packages from your dependency manager.
+- Remove App Center initialization code and service-specific API calls.
+- Remove App Center configuration values and any symbol or mapping upload steps from your build or continuous integration (CI) pipeline.
+- Validate that the apps no longer send telemetry to App Center.
+
+Use these resources to locate the relevant SDK and its configuration entry points:
+
+- [App Center SDK for Android (GitHub)](https://github.com/microsoft/appcenter-sdk-android)
+- [App Center SDK for Apple platforms (GitHub)](https://github.com/microsoft/appcenter-sdk-apple)
+- [App Center SDK for React Native (GitHub)](https://github.com/microsoft/appcenter-sdk-react-native)
+- [App Center SDK for Unity (GitHub)](https://github.com/microsoft/appcenter-sdk-unity)
+
+If you need help with these tasks, review [Support boundaries and support options](#support-boundaries-and-support-options).
 
 ### Instrument apps with a community OpenTelemetry SDK
 
