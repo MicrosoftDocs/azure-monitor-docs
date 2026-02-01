@@ -71,7 +71,7 @@ The most common changes include:
 - Remove `TrackPageView` calls.
 - Update `Track*` calls to remove the custom metrics parameter.
 - Replace instrumentation key configuration with a full connection string by using `TelemetryConfiguration.ConnectionString`.
-- Replace `TelemetryModule`, `TelemetryInitializer`, and `TelemetryProcessor` customizations with OpenTelemetry processors, instrumentation libraries, and resource detectors.
+- Replace `TelemetryModule`, `TelemetryInitializer`, and `TelemetryProcessor` customizations with OpenTelemetry processors, instrumentation libraries, and resource detectors. The `ApplicationInsightsServiceOptions` class includes `EnableQuickPulseMetricStream`, `EnablePerformanceCounterCollectionModule`, `EnableDependencyTrackingTelemetryModule`, and `EnableRequestTrackingTelemetryModule`. These `ApplicationInsightsServiceOptions` settings configure exporter behavior and don't use `TelemetryModule` implementations.
 - Replace adaptive sampling (`EnableAdaptiveSampling`) with `TracesPerSecond` or `SamplingRatio`.
 - Target .NET Framework 4.6.2 or later for ASP.NET apps that use `Microsoft.ApplicationInsights.Web`.
 
