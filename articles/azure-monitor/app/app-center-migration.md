@@ -155,6 +155,22 @@ Common differences include:
 
 Use the links in this section to route issues to the right support channel.
 
+### Use community support for App Center SDK removal
+
+Microsoft doesn't provide product support for App Center SDKs. Microsoft doesn't troubleshoot App Center SDK removal, build errors, or runtime behavior related to App Center.
+
+Use these community resources to remove App Center SDKs:
+
+- [App Center SDK for Android (GitHub)](https://github.com/microsoft/appcenter-sdk-android)
+- [App Center SDK for Apple platforms (GitHub)](https://github.com/microsoft/appcenter-sdk-apple)
+- [App Center SDK for React Native (GitHub)](https://github.com/microsoft/appcenter-sdk-react-native)
+- [App Center SDK for Unity (GitHub)](https://github.com/microsoft/appcenter-sdk-unity)
+
+For general community support, use these resources:
+
+- [GitHub Issues](https://docs.github.com/issues/tracking-your-work-with-issues/about-issues)
+- [Stack Overflow App Center tag](https://stackoverflow.com/questions/tagged/appcenter)
+
 ### Use community support for OpenTelemetry instrumentation and collection
 
 Community support covers the steps that you complete before telemetry reaches Azure Monitor, including:
@@ -181,6 +197,11 @@ Microsoft support covers Azure Monitor functionality after telemetry reaches Azu
 - **Ingestion** into Azure Monitor when requests reach the Azure Monitor ingestion endpoint.
 - **Storage and query** in Azure Monitor Logs and Application Insights.
 - **Azure Monitor experiences** such as Logs, Workbooks, and Alerts.
+
+Use these Microsoft resources:
+
+- [Microsoft Azure Monitor Forum](/answers/tags/20/azure-monitor)
+- [Create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request)
 
 Use these support resources:
 
