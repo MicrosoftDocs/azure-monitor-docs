@@ -1,12 +1,12 @@
 ---
-title: Azure Monitor  TLS configuration
+title: Azure Monitor pipeline TLS configuration
 description: Secure the connection from your Azure Monitor pipeline to Azure Monitor by configuring TLS.
 ms.topic: article
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Azure Monitor TLS configuration (preview)
+# Azure Monitor pipeline TLS configuration (preview)
 
 The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. With support for Bring Your Own Certificates (BYOC), you can meet your security requirements while integrating with your existing PKI infrastructure. Azure Monitor pipeline currently supports both TLS and mutual TLS (mTLS) for TCP‑based receivers, allowing you to:
 
@@ -20,9 +20,8 @@ This article describes how to secure the connection between your pipeline and Az
 - Arc-enabled Kubernetes cluster with Azure Monitor pipeline installed.
 - `kubectl` and `az access` to the Arc‑enabled cluster context.
 
-
-## Configure cert-manager with external PKI
-This section describes how to install cert-manager as an Azure Arc extension.
+## Configure the Arc-enabled cluster
+Start by configuring your Arc-enabled cluster. This involves installing the Microsoft version of cert-manager as an Azure Arc extension and using YAML files to create issuer and certificate resources.
 
 ### Install cert-manager for Arc-enabled Kubernetes
 
@@ -144,7 +143,8 @@ The following example uses LetsEncrypt, but you can use any supported external P
     kubectl apply -f azmonpipeline-server-cert.yaml
     ```
 
-## Configure TLS or mTLS
+## Configure pipeline
+Once your Arc-enabled cluster is configured, then update the pipeline to use your custom TLS settings. This involves modifying the JSON of the configuration to define your required TLS settings and then applying it to your pipeline instance.
 
 ### Create Kubernetes secrets
 
@@ -270,7 +270,7 @@ resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
 ---
 
 ## Example configurations
-
+The following section provide different configurations to include in the `tlsCertificate` section of the pipeline configuration shown above. Plug in the appropriate JSON snippet based on your desired configuration before applying to the configuration to the pipeline.
 
 **Default TLS**
 

@@ -127,12 +127,12 @@ az customlocation create --name my-cluster-custom-location --resource-group my-r
         {
             "type": "Microsoft.ExtendedLocation/customLocations",
             "apiVersion": "2021-08-15",
-            "name": "my-pipeline-custom-location",
+            "name": "my-customlocation-eastus2",
             "location": "eastus",
             "properties": {
                 "hostResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster",
-                "namespace": "my-pipeline-custom-location",
-                "clusterExtensionIds": ["/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/Providers/Microsoft.KubernetesConfiguration/extensions/my-pipeline"],
+                "namespace": "my-customlocation-eastus2",
+                "clusterExtensionIds": ["/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/Providers/Microsoft.KubernetesConfiguration/extensions/my-pipeline"],
                 "hostType": "Kubernetes"
             }
         }
@@ -400,7 +400,7 @@ The following table describes the sections of the pipeline configuration and cri
 | `location` | Location of the pipeline instance. |
 | `extendedLocation` | The `name` property includes the resource ID of the custom location created above. The `type` property is always `CustomLocation`.  |
 | `receivers` | One entry for each receiver in the pipeline. Each receiver specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
-| `processors` | Processors modify the data in some way before it's sent to the cloud. This section should be empty if no processors are used. Valid processors include the following:<br><br>`MicrosoftSyslog`<br>Converts data to Syslog format.<br><br>`MicrosoftCommonSecurityLog`<br>Converts data to CEF format.<br><br>`Batch`<br>Species the batch time in milliseconds. Default is one minute if this processor isn't specified.<br><br>`TransformLanguage`<br>Specifies a transformation applied to the data before it's sent to the cloud. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
+| `processors` | Processors modify the data in some way before it's sent to the cloud. This section should be empty if no processors are used. Valid processors include the following:<br><br>`MicrosoftSyslog`<br>Converts data to Syslog format.<br><br>`MicrosoftCommonSecurityLog`<br>Converts data to CEF format.<br><br>`Batch`<br>Species the batch time in milliseconds. Default is one minute if this processor isn't specified. A batch processor is required to perform aggregation, and you can customize the aggregation interval using the batch processor.  Avoid using batch processor in all other scenarios if you want to send data with minimum latency, .<br><br>`TransformLanguage`<br>Specifies a transformation applied to the data before it's sent to the cloud. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 | `exporters` | Includes the details of the DCR that the pipeline will send data to. Includes the following proprties.<br><br>`dataCollectionEndpointUrl`<br>Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in your DCR that will accept the data.<br><br>`maxStorageUsage`<br> Capacity of the cache. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br><br>`retentionPeriod`<br> Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
 | `service` | `pipelines`<br>Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br><br>`persistence`<br>Specifies the name of the persistent volume if caching is enabled. |
 
@@ -423,10 +423,10 @@ The following table describes the sections of the pipeline configuration and cri
             "location": "eastus2euap",
             "apiVersion": "2025-03-01-preview",
             "extendedLocation": {
-                "name": "/subscriptions/215b5735-fa8b-4dd4-86dc-997320c68c2d/resourceGroups/rg-drewrelmas/providers/Microsoft.ExtendedLocation/customLocations/drewrelmas-customlocation-eastus2",
+                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resouce-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
             },
-            "name": "drewrelmas-aep-eastus2euap",
+            "name": "my-pipeline-eastus2euap",
             "properties": {
                 "receivers": [
                     {
@@ -463,8 +463,8 @@ The following table describes the sections of the pipeline configuration and cri
                         "name": "syslog-eus2",
                         "azureMonitorWorkspaceLogs": {
                             "api": {
-                                "dataCollectionEndpointUrl": "https://drewrelmas-dce-eastus2-t9si.eastus2-1.ingest.monitor.azure.com",
-                                "dataCollectionRule": "dcr-9f8a459b3c224fddb626170fc08d66f9",
+                                "dataCollectionEndpointUrl": "https://my-dce-eastus2-t9si.eastus2-1.ingest.monitor.azure.com",
+                                "dataCollectionRule": "dcr-00000000000000000000000000000000",
                                 "stream": "Microsoft-Syslog-FullyFormed",
                                 "schema": {
                                     "recordMap": [
@@ -562,13 +562,13 @@ The following table describes the sections of the pipeline configuration and cri
     "resources": [
         {
             "type": "Microsoft.monitor/pipelineGroups",
-            "location": "eastus2euap",
+            "location": "eastus2",
             "apiVersion": "2025-03-01-preview",
             "extendedLocation": {
-                "name": "/subscriptions/215b5735-fa8b-4dd4-86dc-997320c68c2d/resourceGroups/rg-drewrelmas/providers/Microsoft.ExtendedLocation/customLocations/drewrelmas-customlocation-eastus2",
+                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
             },
-            "name": "drewrelmas-aep-eastus2euap",
+            "name": "my-pipeline-eastus2",
             "properties": {
                 "receivers": [
                     {
@@ -605,7 +605,7 @@ The following table describes the sections of the pipeline configuration and cri
                         "name": "cef-eus2",
                         "azureMonitorWorkspaceLogs": {
                             "api": {
-                                "dataCollectionEndpointUrl": "https://drewrelmas-dce-eastus2-t9si.eastus2-1.ingest.monitor.azure.com",
+                                "dataCollectionEndpointUrl": "https://my-dce-eastus2-t9si.eastus2-1.ingest.monitor.azure.com",
                                 "dataCollectionRule": "dcr-9f8a459b3c224fddb626170fc08d66f9",
                                 "stream": "Microsoft-CommonSecurityLog-FullyFormed",
                                 "schema": {
