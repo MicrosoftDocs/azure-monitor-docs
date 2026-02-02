@@ -210,7 +210,20 @@ Use these support resources:
 
 ## Next steps
 
-- Review the [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial).
-- Review [OTelSpans sample queries](/azure/azure-monitor/reference/queries/otelspans).
-- Review the [OpenTelemetry Collector quick start](https://opentelemetry.io/docs/collector/quick-start/).
-- Review [OpenTelemetry guidance for Android client apps](https://opentelemetry.io/docs/platforms/client-apps/android/) or [OpenTelemetry guidance for iOS client apps](https://opentelemetry.io/docs/platforms/client-apps/ios/).
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Learn Log Analytics basics](/azure/azure-monitor/logs/log-analytics-tutorial)
+
+> [!div class="nextstepaction"]
+> [Run sample queries for OTelSpans](/azure/azure-monitor/reference/queries/otelspans)
+
+> [!div class="nextstepaction"]
+> [Get started with the OpenTelemetry Collector](https://opentelemetry.io/docs/collector/quick-start/)
+
+> [!div class="nextstepaction"]
+> [Review OpenTelemetry guidance for Android client apps](https://opentelemetry.io/docs/platforms/client-apps/android/)
+
+> [!div class="nextstepaction"]
+> [Review OpenTelemetry guidance for iOS client apps](https://opentelemetry.io/docs/platforms/client-apps/ios/)
+
