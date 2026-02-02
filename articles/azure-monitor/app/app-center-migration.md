@@ -16,7 +16,7 @@ This article provides high-level linked guidance for sending mobile app telemetr
 > - Analyze telemetry in Azure Monitor and [Application Insights](app-insights-overview.md).
 
 > [!WARNING]
-> Microsoft supports Azure Monitor ingestion and Azure Monitor experiences **after telemetry reaches Azure Monitor**. Microsoft doesn't support community OpenTelemetry mobile SDKs or the OpenTelemetry Collector. For details and support links, review [Support boundaries and support options](#support-boundaries-and-support-options).
+> Microsoft supports analysis and portal experiences **after mobile telemetry reaches Azure Monitor**. Microsoft doesn't support community OpenTelemetry mobile SDKs or the OpenTelemetry Collector. For details and support links, review [Support boundaries and support options](#support-boundaries-and-support-options).
 
 ## App Center retirement timeline
 
