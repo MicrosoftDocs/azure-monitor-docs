@@ -210,8 +210,6 @@ Use these support resources:
 
 ## Next steps
 
-## Next steps
-
 > [!div class="nextstepaction"]
 > [Learn Log Analytics basics](/azure/azure-monitor/logs/log-analytics-tutorial)
 
