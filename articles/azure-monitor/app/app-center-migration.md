@@ -9,10 +9,13 @@ ms.date: 02/02/2026
 
 # Migrate App Center Analytics & Diagnostics to Azure Monitor by using OpenTelemetry
 
-This article provides high-level guidance for sending mobile app telemetry to Azure Monitor by using:
+This article provides high-level guidance for sending mobile app telemetry to Azure Monitor.
 
-- An OpenTelemetry Collector gateway that you run
-- Community OpenTelemetry (OTel) mobile software development kits (SDKs)
+> [!div class="checklist"]
+> - Deploy an OpenTelemetry Collector gateway that you run.
+> - Instrument mobile apps with community OpenTelemetry (OTel) software development kits (SDKs).
+> - Use linked guidance to set up Azure Monitor resources for ingestion.
+> - Use linked guidance to analyze telemetry in Azure Monitor and Application Insights after ingestion starts.
 
 > [!WARNING]
 > Microsoft supports Azure Monitor ingestion and Azure Monitor experiences after telemetry reaches Azure Monitor. Microsoft doesn't support community OpenTelemetry mobile SDKs or the OpenTelemetry Collector. For details and support links, review [Support boundaries and support options](#support-boundaries-and-support-options).
@@ -197,11 +200,6 @@ Microsoft support covers Azure Monitor functionality after telemetry reaches Azu
 - **Ingestion** into Azure Monitor when requests reach the Azure Monitor ingestion endpoint.
 - **Storage and query** in Azure Monitor Logs and Application Insights.
 - **Azure Monitor experiences** such as Logs, Workbooks, and Alerts.
-
-Use these Microsoft resources:
-
-- [Microsoft Azure Monitor Forum](/answers/tags/20/azure-monitor)
-- [Create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request)
 
 Use these support resources:
 
