@@ -40,5 +40,3 @@ For more information, see [Product availability by region](https://azure.microso
 
 * [Configure Azure Monitor pipeline](./pipeline-configure.md) on your Arc-enabled cluster.
 * Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).
-* Use [pod placement](./pipeline-pod-placement.md) to optimize scheduling behavior on your Kubernetes cluster.
-* Secure ingestion from your clients to Azure Monitor pipeline by [configuring TLS](./pipeline-tls.md). This makes it easier to securely ingest data from network devices, appliances, and on‑premises workloads without relying on external proxies or custom gateways.
