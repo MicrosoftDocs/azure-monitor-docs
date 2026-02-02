@@ -115,10 +115,9 @@ Use these steps to validate telemetry during an upgrade to SDK 3.x:
 
 For detailed troubleshooting guidance and examples, use the following resources:
 
-- [Application Insights .NET SDK troubleshooting](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/docs/troubleshooting.md)
+- [Application Insights .NET SDK troubleshooting](https://github.com/microsoft/ApplicationInsights-dotnet/tree/main/troubleshooting)
 - [Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry)
 - [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion)
-- [OpenTelemetry .NET troubleshooting](https://opentelemetry.io/docs/instrumentation/net/troubleshooting/)
 
 # [Java](#tab/java)
 
