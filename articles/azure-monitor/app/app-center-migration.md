@@ -111,7 +111,22 @@ Use these OpenTelemetry resources:
 
 ### Validate ingestion and update analysis
 
-Validate that telemetry arrives in Azure Monitor. Then update dashboards, queries, and alerts based on the tables and fields that you ingest.
+Complete these tasks:
+
+- Validate that telemetry arrives in your Log Analytics workspace by using Azure Monitor Logs.
+- Identify the tables that contain your OpenTelemetry data, then update saved queries to use those tables and fields.
+- Update workbooks and dashboards to match the data shape that you ingest.
+- Update alert rules to use the updated queries and thresholds.
+
+Use these resources:
+
+- [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial)
+- [OTelSpans table reference](/azure/azure-monitor/reference/tables/otelspans)
+- [OTelLogs table reference](/azure/azure-monitor/reference/tables/otellogs)
+- [OTelEvents table reference](/azure/azure-monitor/reference/tables/otelevents)
+- [Sample queries for OTelSpans](/azure/azure-monitor/reference/queries/otelspans)
+- [Workbooks overview](/azure/azure-monitor/visualize/workbooks-overview)
+- [Alerts overview](/azure/azure-monitor/alerts/alerts-overview)
 
 ## Use OpenTelemetry data in Azure Monitor
 
