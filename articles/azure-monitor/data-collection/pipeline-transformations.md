@@ -34,7 +34,7 @@ To define a transformation in the Azure portal, select **Add Data Transformation
 
 :::image type="content" source="./media/pipeline-transformations/template.png" lightbox="./media/pipeline-transformations/template.png" alt-text="Screenshot of template selection for a transformation.":::
 
-Once you have the query defined, click **Check KQL syntax** to validate the syntax of the query before saving the dataflow. For Syslog and CEF data, the checker will also verify that the data resulting from the transformation matches the schema of the data type. If the transformation renames or adds columns as part of an aggregation for example, you will be prompted to either remove those transformations or send the data to a custom table instead. An example is shown in the following image.
+Once you have the query defined, click **Check KQL syntax** to validate the syntax of the query before saving the dataflow. For Syslog and CEF data, the checker will also verify that the data resulting from the transformation matches the schema of the data type. If the transformation renames or adds columns as part of an aggregation for example, you'll be prompted to either remove those transformations or send the data to a custom table instead. An example is shown in the following image.
 
 :::image type="content" source="./media/pipeline-configure/check-syntax.gif" lightbox="./media/pipeline-configure/check-syntax.gif" alt-text="Screenshot of KQL syntax checker and typical error message.":::
 
@@ -87,7 +87,7 @@ An aggregation in KQL summarizes data from multiple records into a single record
 
 Data in Azure Monitor pipeline is retrieved and processed in batches of one minute intervals by default. Aggregations in a pipeline transformation are performed over each batch of data meaning that an aggregated record will be created each minute. To change this time window, you can configure the `Batch` processor in the pipeline configuration as described in [Pipeline configuration](./pipeline-configure.md#pipeline-configuration). You can't change the time interval using the Azure portal.
 
-Aggregations are defined using the [summarize](/kusto/query/summarize-operator) operator in KQL. You specify the aggregation functions and the grouping criteria. For example, the following query counts the number of events collected over the past minute grouped by `DestinationIP` and `DestinationPort`:
+Aggregations are defined using the [`summarize`](/kusto/query/summarize-operator) operator in KQL. You specify the aggregation functions and the grouping criteria. For example, the following query counts the number of events collected over the past minute grouped by `DestinationIP` and `DestinationPort`:
 
 ```kusto
 source 
@@ -109,7 +109,7 @@ source
 - When using the `summarize` operator for aggregation, an automatic latency of up to 5 minutes may be introduced due to batching in the UI.
 - A [batch processor](./pipeline-configure.md#pipeline-configuration) is always required to perform aggregations. Modify the batch processor to change the aggregation interval. Avoid using batch processor to send data with minimum latency. 
 - If an aggregation includes bin(), you may receive multiple records for the same time interval. This occurs because of batching and the streaming nature of data ingestion.
-- Transformations are performed on fully formed Cyslog or CEF data. If the transformation alters the schema, then you should send the data to a custom table. When creating the transformation using the Azure portal, the only columns exposed are `SeverityText`, `Body`, and `TimeGenerated`.
+- Transformations are performed on fully formed Syslog or CEF data. If the transformation alters the schema, then you should send the data to a custom table. When creating the transformation using the Azure portal, the only columns exposed are `SeverityText`, `Body`, and `TimeGenerated`.
 
 
 
