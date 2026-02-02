@@ -353,8 +353,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 ### Configure sampling using environment variables
 
 
-Use standard OpenTelemetry environment variables to select the sampler and provide its argument:
-
+Use standard OpenTelemetry environment variables to select the sampler and provide its argument. For more information about OpenTelemetry sampler types, see [OTEL_TRACES_SAMPLER](https://opentelemetry.io/docs/languages/sdk-configuration/general/#otel_traces_sampler).
 #### [ASP.NET Core](#tab/aspnetcore)
 
 * **`OTEL_TRACES_SAMPLER`** — sampler type
