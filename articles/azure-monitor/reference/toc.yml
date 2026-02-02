@@ -319,6 +319,8 @@ items:
             href: supported-metrics/microsoft-network-networkinterfaces-metrics.md
           - name: Microsoft.Network/networkManagers/ipamPools
             href: supported-metrics/microsoft-network-networkmanagers-ipampools-metrics.md
+          - name: Microsoft.Network/networkSecurityPerimeters
+            href: supported-metrics/microsoft-network-networksecurityperimeters-metrics.md
           - name: Microsoft.Network/NetworkVirtualAppliances
             href: supported-metrics/microsoft-network-networkvirtualappliances-metrics.md
           - name: Microsoft.Network/networkWatchers/connectionMonitors
