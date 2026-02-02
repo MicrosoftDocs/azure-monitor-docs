@@ -65,7 +65,7 @@ To learn more about action groups, see [Azure Monitor action groups](../azure-mo
 
 Learn more about Resource Health:
 
-* [Resource Health Frequently asked questions](resource-health-faq)
+* [Resource Health Frequently asked questions](resource-health-faq.yml)
 * [Azure Resource Health overview](Resource-health-overview.md)
 * [Resource types and health checks available through Azure Resource Health](resource-health-checks-resource-types.md)
 
