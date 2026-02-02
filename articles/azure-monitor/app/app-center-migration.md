@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.date: 02/02/2026
 ---
 
-# Migrate App Center Analytics & Diagnostics to Azure Monitor by using OpenTelemetry
+# Migrate App Center Analytics & Diagnostics to Azure Monitor
 
 This article provides high-level guidance for sending mobile app telemetry to [Azure Monitor](../fundamentals/overview.md).
 
@@ -220,4 +220,3 @@ Use these support resources:
 
 > [!div class="nextstepaction"]
 > [Review OpenTelemetry guidance for iOS client apps](https://opentelemetry.io/docs/platforms/client-apps/ios/)
-
