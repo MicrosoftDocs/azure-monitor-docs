@@ -1,7 +1,7 @@
 ---
 title: Receive Service health alerts on Azure service notifications using Resource Manager template
 description: Get notified via SMS, email, or webhook when Azure service occurs using a Resource Manager template.
-ms.date: 05/27/2025
+ms.date: 02/03/2026
 ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-arm-template
 ---
@@ -18,7 +18,7 @@ Service health notifications are stored in the [Azure activity log](../azure-mon
 
 You can receive an alert when Azure sends service health notifications to your Azure subscription. You can configure the alert based on:
 
-- The class of service health notification (Service issues, Planned maintenance, Health advisories).
+- The class of service health notification (Service issues, Planned maintenance, Health advisories, and Security advisories).
 - The subscription affected.
 - The services affected.
 - The regions affected.
