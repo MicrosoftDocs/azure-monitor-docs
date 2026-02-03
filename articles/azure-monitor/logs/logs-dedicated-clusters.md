@@ -24,7 +24,7 @@ Azure Monitor Logs is a fully managed, cloud‑scale service designed to automat
 - **[Ingest from Azure Event Hubs](../logs/ingest-logs-event-hub.md)** - Lets you ingest data directly from Event Hubs into a Log Analytics workspace.  
 
 > [!NOTE]
-> Dedicated clusters aren't a general way to make all queries faster. For better query performance, optimize your queries and consider using [summary rules](summary-rules.md) to pre-aggregate data. This strategy is especially effective with large datasets or when querying over long time ranges as described in this article, [Optimize log queries in Azure Monitor](query-optimization.md).
+> Dedicated clusters aren't a general way to make all queries faster. As with any large analytical system, running queries across very large datasets requires extra compute resources and might impact query performance. For better query performance beyond the cross-workspace optimization of dedicated clusters, [optimize your queries](query-optimization.md) and consider using [summary rules](summary-rules.md) to pre-aggregate data. This strategy is especially effective with large datasets and when querying over long time ranges.
 
 ## Cluster pricing model
 Log Analytics dedicated clusters use a commitment tier pricing model starting at 100 GB per day. Ingestion that exceeds the commitment tier level is charged based on the per-GB rate. You can increase a commitment tier at any time, but it has a 31-day commitment period before it can be reduced. See [Azure Monitor Logs pricing details](cost-logs.md#dedicated-clusters) for details on commitment tiers.
