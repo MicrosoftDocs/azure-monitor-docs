@@ -58,7 +58,7 @@ Network conditions might negatively affect the latency of this data to reach a d
 Azure data adds more time to become available at a data collection endpoint for processing:
 
 * **Azure platform metrics** are available in under a minute in the metrics database, but they take another 3 minutes to be exported to the data collection endpoint.
-* **Resource logs** typically add 3 to 10 minutes, depending on the Azure service. Some Azure services (specifically, Azure SQL Database and Azure Virtual Network) currently report their logs at 5-minute intervals. To examine this latency in your environment, see the [query that follows](#check-ingestion-time).
+* **Resource logs** are usually available within 3 to 10 minutes end-to-end, depending on the complexity of the service and the Azure services involved. For example, Azure SQL Database and Azure Virtual Network currently provide their logs every 5 minutes. To examine this latency in your environment, see the [query that follows](#check-ingestion-time).
 * **Activity logs** are available for analysis and alerting in 3 to 20 minutes.
 
 ### Management solutions collection

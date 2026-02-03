@@ -16,6 +16,8 @@ The following diagram illustrates this configuration. A [data collection rule (D
 
 :::image type="content" source="../metrics/media/prometheus-remote-write/overview.png" alt-text="Diagram showing use of remote-write to send metrics from local Prometheus to Managed Prometheus." lightbox="../metrics/media/prometheus-remote-write/overview.png"  border="false":::
 
+> [!IMPORTANT]
+> Review key concepts about Azure Monitor managed service for Prometheus when you remote-write from self-hosted Prometheus: [Migrate to Azure Monitor managed service for Prometheus](./prometheus-migrate.md). 
 
 ## Authentication types
 The configuration requirements for remote-write depend on the authentication type used to connect to the Azure Monitor workspace. The following table describes the supported authentication types. The details for each configuration are described in the following sections.
@@ -25,9 +27,16 @@ The configuration requirements for remote-write depend on the authentication typ
 | System-assigned managed identity | Azure Kubernetes service (AKS)<br>Azure VM/VMSS |
 | User-assigned managed identity | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes<br>Azure VM/VMSS |
 | Microsoft Entra ID | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes cluster<br>Cluster running in another cloud or on-premises<br>Azure VM/VMSS<br>Arc-enabled servers<br>VM running in another cloud or on-premises|
+| Microsoft Entra workload identity | Azure Kubernetes service (AKS)<br>Arc-enabled Kubernetes cluster|
 
-> [!NOTE]
->  You can also use authentication with Microsoft Entra ID Workload Identity, but you must use a [side car container](/azure/architecture/patterns/sidecar) to provide an abstraction for ingesting Prometheus remote write metrics and helps in authenticating packets. See [Send Prometheus data to Azure Monitor using Microsoft Entra Workload ID authentication](../containers/prometheus-remote-write-azure-workload-identity.md) for configuration. |
+## Prerequisites
+
+### Supported versions
+
+- Prometheus version 2.45 or greater is required for user-assigned managed identity authentication.
+- Prometheus version 2.48 or greater is required for Microsoft Entra application authentication.
+- Prometheus version 3.50 or greater is required for system-assigned managed identity authentication.
+- Prometheus version 3.60 or greater is required for Microsoft Entra workload identity authentication.
 
 ## Azure Monitor workspace
 
@@ -56,6 +65,20 @@ Note the **Client ID** of the user-assigned managed identity. You'll need this v
 
 :::image type="content" source="media/prometheus-remote-write/user-assigned-managed-identity.png" lightbox="media/prometheus-remote-write/user-assigned-managed-identity.png" alt-text="Screenshot that shows the details of a user-assigned managed identity.":::
 
+#### Assign the managed identity to the VM/VMSS or to the VMSS of the AKS cluster
+
+> [!IMPORTANT]
+> To complete the steps in this section, you must have Owner or User Access Administrator permissions for the virtual machine or the virtual machine scale set.
+
+To enable remote-write authentication with the user-assigned managed identity created, assign that identity to the Azure resource. For VM/VMSS, assign the identity as per the steps below. For an **AKS cluster**, the managed identity must be assigned to the underlying virtual machine scale sets. AKS creates a resource group that contains the virtual machine scale sets. The resource group name is in the format `MC_<resource group name>_<AKS cluster name>_<region>`. For each virtual machine scale set in that resource group, assign the managed identity according to the steps below:
+
+1. In the Azure portal, go to the page for the cluster, virtual machine, or virtual machine scale set.
+1. Select **Identity**.
+1. Select **User assigned**.
+1. Select **Add**.
+1. Select the user-assigned managed identity that you created, and then select **Add**.
+
+    :::image type="content" source="media/prometheus-remote-write/assign-user-identity.png" lightbox="media/prometheus-remote-write/assign-user-identity.png" alt-text="Screenshot that shows the pane for adding a user-assigned managed identity.":::
 
 ### [Entra ID](#tab/entra-id)
 
@@ -68,6 +91,74 @@ Note the **Application (client) ID** and **Directory (tenant) ID** of the Entra 
 Follow the guidance at [Option 3: Create a new client secret](/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) to create a client secret for the Entra ID application. Note the **Value** of the client secret. You'll need this value later to configure remote-write.
 
 :::image type="content" source="media/prometheus-remote-write/client-secret.png" lightbox="media/prometheus-remote-write/client-secret.png" alt-text="Screenshot that shows the client secret for an Entra ID.":::
+
+### [Workload identity](#tab/workload-identity)
+
+The process to set up Prometheus remote write by using Microsoft Entra Workload ID authentication involves completing the following tasks (The tasks are described in the following sections):
+
+1. Enable OpenID Connect and note the issuer URL.
+1. Set up mutating admission webhook.
+1. Set up the workload identity.
+1. Create a Microsoft Entra application or user-assigned managed identity and grant permissions.
+1. Assign the Monitoring Metrics Publisher role on the workspace data collection rule to the application.
+1. Create or update your Kubernetes service account Prometheus pod.
+1. Establish federated identity credentials between the identity and the service account issuer and subject.
+1. Configure remote-write in Prometheus.
+
+### Enable OpenID Connect and query the Issuer
+
+To enable OpenID Connect (OIDC) on an AKS cluster, follow the instructions in [Create an OpenID Connect provider on AKS](/azure/aks/use-oidc-issuer). 
+
+Once enabled, make a note of the SERVICE_ACCOUNT_ISSUER which is essentially the OIDC issuer URL. To get the OIDC issuer URL, run the *az aks show* command. Replace the default values for the cluster name and the resource group name.
+
+```azurecli-interactive
+az aks show --name myAKScluster --resource-group myResourceGroup --query "oidcIssuerProfile.issuerUrl" -o tsv
+```
+By default, the issuer is set to use the base URL `https://{region}.oic.prod-aks.azure.com`, where the value for `{region}` matches the location the AKS cluster is deployed in.
+
+For other managed clusters (Amazon Elastic Kubernetes Service, and Google Kubernetes Engine), see [Managed Clusters - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/managed-clusters.html).
+For self-managed clusters, see [Self-Managed Clusters - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/self-managed-clusters.html).
+
+### Set up mutating admission webhook
+
+When you enable Microsoft Entra Workload Identity on an AKS cluster, AKS automatically installs and manages the mutating admission webhook. But if you are not using AKS or if workload identity is not enabled on the cluster, set up mutating admission webhook to keep federated credentials up to date. See [Mutating Admission Webhook - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/mutating-admission-webhook.html) to set up.
+
+### Set up the workload identity
+
+To set up the workload identity, export the following environment variables:  
+
+```bash
+# [OPTIONAL] Set this if you're using a Microsoft Entra application
+export APPLICATION_NAME="<your application name>"
+    
+# [OPTIONAL] Set this only if you're using a user-assigned managed identity
+export USER_ASSIGNED_IDENTITY_NAME="<your user-assigned managed identity name>"
+    
+# Environment variables for the Kubernetes service account and federated identity credential
+export SERVICE_ACCOUNT_NAMESPACE="<namespace where Prometheus pod is running>"
+export SERVICE_ACCOUNT_NAME="<name of service account associated with Prometheus pod. See below for more details>"
+export SERVICE_ACCOUNT_ISSUER="<your service account (or OIDC) issuer URL>"
+```  
+
+For `SERVICE_ACCOUNT_NAME`, check to see whether a service account (separate from the *default* service account) is already associated with the Prometheus pod. Look for the value of `serviceaccountName` or `serviceAccount` (deprecated) in the `spec` of your Prometheus pod. Use this value if it exists. To find the service account associated with the Prometheus pod, run the below kubectl command:
+
+```bash
+kubectl get pods/<Prometheus pod> -o yaml
+```
+
+If `serviceaccountName` and `serviceAccount` don't exist, enter the name of the service account you want to associate with your Prometheus pod.
+
+### Create a Microsoft Entra application or user-assigned managed identity
+
+Create a Microsoft Entra application or a user-assigned managed identity and make a note of the client ID of the same.
+
+```azurecli
+# create a Microsoft Entra application
+az ad sp create-for-rbac --name "${APPLICATION_NAME}"
+
+# create a user-assigned managed identity if you use a user-assigned managed identity for this article
+az identity create --name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}"
+```
 
 ---
 
@@ -105,43 +196,69 @@ Once the identity that you're going to use is created, it needs to be given acce
 
 
 ## Configure remote-write in configuration file
-The final step is to add remote write to the [configuration file](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) for your self-managed Prometheus server. In addition to details for the identity that you created, you'll also need the metrics ingestion endpoint for the Azure Monitor workspace. Get this value from the **Overview** page for your Azure Monitor workspace in the Azure portal.
+Remote write is configured in the Prometheus configuration file `prometheus.yml` or in Prometheus Operator. The final step is to add remote write to the [configuration file](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) for your self-managed Prometheus server. In addition to details for the identity that you created, you'll also need the metrics ingestion endpoint (URL) for the Azure Monitor workspace. Get this value from the **Overview** page for your Azure Monitor workspace in the Azure portal, and make a note of it.
 
 :::image type="content" source="media/prometheus-remote-write/metrics-ingestion-endpoint.png" lightbox="media/prometheus-remote-write/metrics-ingestion-endpoint.png" alt-text="Screenshot that shows the metrics ingestion endpoint for an Azure Monitor workspace.":::
 
-The `remote-write` section of the Prometheus configuration file will look similar to the following example, depending on the authentication type that you're using.
+### [Configure remote write with Prometheus config file](#tab/prom-vm)
+
+To send data to your Azure Monitor workspace, add the following section to the configuration file (`prometheus.yml`) of your self-managed Prometheus instance. 
+
+> [!NOTE]
+> For system-assigned managed identity, leave the client ID field blank (client_id: "").
 
 ### Managed identity
 
 ```azurecli
-remote_write:   
-  - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
-    azuread:
-      cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
-      managed_identity:  
-        client_id: "<client-id of the managed identity>"
+prometheus:
+  prometheusSpec:
+    remote_write:   
+    - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
+      azuread:
+        cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
+        managed_identity:  
+          client_id: "<client-id of the managed identity>"
 ```
 
 ### Entra ID
 
 ```azurecli
-remote_write:   
-  - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
-    azuread:
-      cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
-      oauth:  
-        client_id: "<client-id from the Entra app>"
-        client_secret: "<client secret from the Entra app>"
-        tenant_id: "<Azure subscription tenant Id>"
+prometheus:
+  prometheusSpec:
+    remote_write:   
+    - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
+      azuread:
+        cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
+        oauth:  
+          client_id: "<client-id from the Entra app>"
+          client_secret: "<client secret from the Entra app>"
+          tenant_id: "<Azure subscription tenant Id>"
 ```
 
-## Apply configuration file updates
+### Workload identity
+
+```azurecli
+prometheus:
+  prometheusSpec:
+    podMetadata:
+      labels:
+        azure.workload.identity/use: "true"
+    remote_write:   
+    - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
+      azuread:
+        cloud: 'AzurePublic'  # Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
+        workload_identity:  
+          client_id: "<client-id from the Entra app>"
+          tenant_id: "<Azure subscription tenant Id>"
+```
+
+Apply the configuration file updates:
 
 ### Virtual Machine
-For a virtual machine, the configuration file will be `promtheus.yml` unless you specify a different one using `prometheus --config.file <path-to-config-file>` when starting the Prometheus server.
+For a virtual machine, the configuration file will be `prometheus.yml` unless you specify a different one using `prometheus --config.file <path-to-config-file>` when starting the Prometheus server.
 
 ### Kubernetes cluster
-For a Kubernetes cluster, the configuration file is typically stored in a ConfigMap. Following is a sample ConfigMap that includes a remote-write configuration using managed identity  for self-managed Prometheus running in a Kubernetes cluster. 
+For a Kubernetes cluster, the configuration file is typically stored in a ConfigMap. Following is a sample ConfigMap that includes a remote-write configuration using managed identity for self-managed Prometheus running in a Kubernetes cluster. 
 
 ```yml
   GNU nano 6.4
@@ -183,9 +300,80 @@ Restart Prometheus to pick up the new configuration. If you are using a deployme
 kubectl -n monitoring rollout restart deploy <prometheus-deployment-name>
 ```
 
-## Release notes
+> [!NOTE]
+> After you edit the configuration file, restart Prometheus to apply the changes.
 
-For detailed release notes on the remote write side car image, please refer to the [remote write release notes](https://github.com/Azure/prometheus-collector/blob/main/REMOTE-WRITE-RELEASENOTES.md).
+
+### [Configure remote write with Prometheus Operator](#tab/prom-operator)
+
+### Prometheus Operator
+
+If you're on a Kubernetes cluster that's running Prometheus Operator, use the following steps to send data to your Azure Monitor workspace:
+
+1. If you're using Microsoft Entra ID authentication, convert the secret by using Base64 encoding, and then apply the secret in your Kubernetes cluster. Save the following code into a YAML file. Skip this step if you're using managed identity or workload identity authentication.
+
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: remote-write-secret
+     namespace: monitoring # Replace with the namespace where Prometheus Operator is deployed.
+   type: Opaque
+   data:
+     password: <base64-encoded-secret>
+
+   ```
+
+   Apply the secret:
+
+   ```azurecli
+   # Set context to your cluster 
+   az aks get-credentials -g <aks-rg-name> -n <aks-cluster-name> 
+
+   kubectl apply -f <remote-write-secret.yaml>
+   ```
+
+2. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more information on the Azure Monitor workspace specification for remote write in Prometheus Operator, see the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md). Use either `managedIdentity` or `oauth` or `workloadIdentity` authentication, depending on your setup. Remove the section that you're not using.
+
+> [!NOTE]
+> For system-assigned managed identity, leave the client ID field blank (clientId: "").
+
+
+   ```yaml
+   prometheus:
+     prometheusSpec:
+       podMetadata:
+         labels:
+           azure.workload.identity/use: "true" # Use this ONLY for workload identity authentication. Skip if using other authentication.
+       remoteWrite:
+       - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
+         azureAd:
+   # Microsoft Entra ID configuration.
+   # The Azure cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
+           cloud: 'AzurePublic'
+           managedIdentity:
+             clientId: "<clientId of the managed identity>"
+           oauth:
+             clientId: "<clientId of the Entra app>"
+             clientSecret:
+               name: remote-write-secret
+               key: password
+             tenantId: "<Azure subscription tenant Id>"
+           workloadIdentity:
+             clientId: "<clientId of the user-assigned managed identity or the Entra ID application>"
+             tenantId: "<Azure subscription tenant Id>"
+   ```
+
+3. Use Helm to update your remote write configuration by using the preceding YAML file:
+
+   ```azurecli
+   helm upgrade -f <YAML-FILENAME>.yml prometheus prometheus-community/kube-prometheus-stack --namespace <namespace where Prometheus Operator is deployed>
+   ```
+
+---
+
+For information on tuning the remote write configuration, see [Remote write tuning](https://prometheus.io/docs/practices/remote_write/#remote-write-tuning).
+
 
 ## Troubleshoot
 
@@ -201,7 +389,6 @@ If data isn't being collected in Managed Prometheus, run the following command t
 ```azurecli
 kubectl --namespace <Namespace> describe pod <Prometheus-Pod-Name>
 ```
-
 
 **Container restarts repeatedly**
 

@@ -17,7 +17,8 @@ A new data source has been added for OpenTelemetry performance counters, support
 > [!NOTE]
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#collect-vm-client-data).
 
-## Configure OpenTelemetry performance counters data source (Preview)
+## Configure data source
+### [OpenTelemetry performance counters](#tab/oteldatasource)
 Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **OpenTelemetry Performance Counters** from the **Data source type** dropdown. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
     
 :::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-1.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-1.png" alt-text="Screenshot that shows the Azure portal form to select basic OpenTelemetry performance counters in a data collection rule." :::
@@ -26,7 +27,7 @@ Select **Custom** for a more granular selection of OpenTelemetry performance cou
 
 :::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-2.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-2.png" alt-text="Screenshot that shows the Azure portal form to select custom OpenTelemetry performance counters in a data collection rule." border="false":::
 
-## Configure performance counters data source
+### [Performance counters](#tab/perfdatasource)
 Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Performance Counters** from the **Data source type** dropdown. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
     
 :::image type="content" source="media/data-collection-performance/data-source-performance.png" lightbox="media/data-collection-performance/data-source-performance.png" alt-text="Screenshot that shows the Azure portal form to select basic performance counters in a data collection rule." :::
@@ -45,17 +46,22 @@ Select **Custom** to specify an [XPath](https://www.w3schools.com/xml/xpath_synt
 
 > [!NOTE] 
 > Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API (Metric Namespaces - List, Metric Definitions - List, and Metrics - List).
+---
 
 ## Add destinations
+### [OpenTelemetry performance counters](#tab/oteldestination)
 OpenTelemetry Performance Counters can be sent to an Azure Monitor Workspace where it can be queried via PromQl. This is the recommended data destination for all users, as Container Insights, Application Insights, and VM Insights are all moving to use Azure Monitor Workspace as their source for metrics instead of Log Analytics workspaces.
 
 :::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-3-destinations.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-3-destinations.png" alt-text="Screenshot that shows configuration of an Azure Monitor Workspace destination in a data collection rule.":::
 
+### [Performance counters](#tab/perfdestination)
 Performance counters can still be sent to a Log Analytics workspace where it's stored in the [Perf](/azure/azure-monitor/reference/tables/event) table and/or Azure Monitor Metrics (preview) where it's available in [Metrics explorer](../essentials/metrics-explorer.md). Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. While you can add multiple workspaces, be aware that this will send duplicate data to each which will result in additional cost. No further details are required for **Azure Monitor Metrics (preview)** since this is stored at the subscription level for the monitored resource.
 
 :::image type="content" source="media/data-collection-performance/destination-metrics.png" lightbox="media/data-collection-performance/destination-metrics.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule.":::
+---
 
 ## Verify data collection
+### [OpenTelemetry performance counters](#tab/otelquerying)
 To verify OpenTelemetry performance counters are being collected in the Azure Monitor workspace, you can start by scoping a query to the AMW chosen as destination for the DCR, and check for any of the **System.** metrics flowing as expected.
 
 :::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-4-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-4-query.png" alt-text="Screenshot that shows records returned from an AMW." :::
@@ -70,6 +76,7 @@ Both entry points should result in a PromQl editor with a query scoped to the VM
 
 :::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-7-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-7-query.png" alt-text="Screenshot that shows query scoped to VM rather than AMW." :::
 
+### [Performance counters](#tab/perfquerying)
 To verify the legacy Performance Counter data source is being collected in the Log Analytics workspace, check for records in the **Perf** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Perf**. 
 
 :::image type="content" source="media/data-collection-performance/verify-performance-counter.png" lightbox="media/data-collection-performance/verify-performance-counter.png" alt-text="Screenshot that shows records returned from Perf table." :::
@@ -78,11 +85,13 @@ To verify the legacy Performance Counter data source is being collected in Azure
 
 :::image type="content" source="media/data-collection-performance/verify-metrics.png" lightbox="media/data-collection-performance/verify-metrics.png" alt-text="Screenshot that shows client metrics in Metrics explorer." :::
 
+---
+
 ## Performance counters
 
 The following performance counters are available to be collected by the Azure Monitor Agent for Windows and Linux virtual machines. The sample frequency can be changed when creating or updating the data collection rule.
 
-### [OpenTelemetry](#tab/OpenTelemetry)
+### [OpenTelemetry](#tab/opentelemetry)
 
 | OTel Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -141,8 +150,6 @@ The following performance counters are available to be collected by the Azure Mo
 
 ### [Windows](#tab/windows)
 
-###   Windows performance counters
-
 | Performance Counter | Category | Default sample frequency |
 |---------|----------|--------------------------|
 | \\Processor Information(_Total)\\% Processor Time | CPU | 60 |
@@ -192,10 +199,7 @@ The following performance counters are available to be collected by the Azure Mo
 | \\Network Interface(*) \\Packets Outbound Errors  | Network  | 60 |
 | \\Network Interface(*) \\Packets Received Errors  | Network  | 60 |
 
-
 ### [Linux](#tab/linux)
-
-### Linux performance counters
 
 | Performance counter | Category | Default sample frequency |
 |---------------------|----------|--------------------------|

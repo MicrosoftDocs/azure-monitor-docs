@@ -52,8 +52,6 @@ With live metrics, you can:
 
 3. [Secure the control channel](#secure-the-control-channel) by enabling [Microsoft Entra authentication](./azure-ad-authentication.md#configure-and-enable-azure-ad-based-authentication) if you use custom filters.
 
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
-
 ## How do live metrics differ from metrics explorer and Log Analytics?
 
 | Capabilities |Live Stream | Metrics explorer and Log Analytics |

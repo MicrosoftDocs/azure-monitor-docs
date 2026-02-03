@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 01/27/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Subscriptions
@@ -67,5 +67,23 @@ Recommendation ID: badb6a09-d33e-4e2a-82d8-8ed668db0aad
 Subcategory: undefined
 
 <!--badb6a09-d33e-4e2a-82d8-8ed668db0aad_end-->
+
+<!--d63e646e-752a-40c0-aa76-b744a6b6949a_begin-->
+
+#### Best Practices (Azure Automanage) are being retired  
+  
+Best Practices (Azure Automanage) are being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-Automanage-Best-Practices-Retirement-Migrate-to-Azure-Policy)  
+
+ResourceType: microsoft.subscriptions/subscriptions  
+Recommendation ID: d63e646e-752a-40c0-aa76-b744a6b6949a  
+Subcategory: undefined
+
+<!--d63e646e-752a-40c0-aa76-b744a6b6949a_end-->
 
 <!--articleBody-->

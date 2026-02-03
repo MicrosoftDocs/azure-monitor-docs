@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/13/2026
+ms.date: 01/27/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -755,5 +755,23 @@ Recommendation ID: 5e2403d5-c39a-4701-a4d5-2181b0d3e426
 Subcategory: undefined
 
 <!--5e2403d5-c39a-4701-a4d5-2181b0d3e426_end-->
+
+<!--6885dc91-c4d1-4695-be6f-f64be575769f_begin-->
+
+#### Migrate Standard HDD OS Disks to SSD  
+  
+To improve customer experience and align with current disk usage patterns, Standard HDD OS Disks are retiring. Customers should stop using Standard HDD OS Disks for new virtual machines and migrate existing OS disk workloads to Standard SSD or Premium SSD.  
+  
+**Potential benefits**: Avoid potential service disruption after retirement  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500157)  
+
+ResourceType: microsoft.compute/disks  
+Recommendation ID: 6885dc91-c4d1-4695-be6f-f64be575769f  
+Subcategory: undefined
+
+<!--6885dc91-c4d1-4695-be6f-f64be575769f_end-->
 
 <!--articleBody-->

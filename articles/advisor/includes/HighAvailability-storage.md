@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/13/2026
+ms.date: 01/27/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -169,12 +169,13 @@ Upgrade TLS to latest version. Support for TLS 1.0 and TLS 1.1 in Azure storage 
 
 **Impact:** High
   
-For more information, see [TLS 1.0 and 1.1 support will be removed for new & existing Azure storage accounts starting Feb 2026](https://techcommunity.microsoft.com/blog/azurestorageblog/tls-1-0-and-1-1-support-will-be-removed-for-new--existing-azure-storage-accounts/4026181)  
+  
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: ced5fa9f-b5bf-4982-9f25-8190fb36dfca  
 Subcategory: undefined
 
 <!--ced5fa9f-b5bf-4982-9f25-8190fb36dfca_end-->
+
 
 <!--articleBody-->

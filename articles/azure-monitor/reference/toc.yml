@@ -319,6 +319,8 @@ items:
             href: supported-metrics/microsoft-network-networkinterfaces-metrics.md
           - name: Microsoft.Network/networkManagers/ipamPools
             href: supported-metrics/microsoft-network-networkmanagers-ipampools-metrics.md
+          - name: Microsoft.Network/networkSecurityPerimeters
+            href: supported-metrics/microsoft-network-networksecurityperimeters-metrics.md
           - name: Microsoft.Network/NetworkVirtualAppliances
             href: supported-metrics/microsoft-network-networkvirtualappliances-metrics.md
           - name: Microsoft.Network/networkWatchers/connectionMonitors
@@ -516,6 +518,7 @@ items:
             href: supported-logs/microsoft-apimanagement-service-logs.md
             displayName: Logs related to Developer Portal usage,Logs related to generative
               AI gateway,Logs related to ApiManagement Gateway,Logs related to
+              Model Context Protocol (MCP) servers usage,Logs related to
               Websocket Connections
           - name: Microsoft.ApiManagement/service/workspaces
             href: supported-logs/microsoft-apimanagement-service-workspaces-logs.md
