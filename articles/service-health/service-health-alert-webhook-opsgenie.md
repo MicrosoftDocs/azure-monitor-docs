@@ -32,7 +32,7 @@ This article shows you how to set up Azure service health alerts with OpsGenie u
 
 ## Create an alert using OpsGenie in the Azure portal
 ### For a new action group:
-1. Follow steps 1 through 8 in [Action Groups](./azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal).
+1. Follow steps 1 through 8 in [Action Groups](/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal).
 
 1. Define this data in the list of **Actions**:
 
