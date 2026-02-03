@@ -376,9 +376,7 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 
 #### [Java](#tab/java)
 
-* **`APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE`**: A value between 0-100
-
-* **`APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`**: Max traces per second
+For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
 
 #### [Java native](#tab/java-native)
 
