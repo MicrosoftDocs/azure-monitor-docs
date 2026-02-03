@@ -34,7 +34,7 @@ This article shows you how to set up Azure service health notifications through 
 
 ## Create an alert using PagerDuty in the Azure portal
 ### For a new action group:
-1. Follow steps 1 through 8 in [Action Groups](/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal)
+1. Follow steps 1 through 8 in [Action Groups](/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal).
 1. Define in the list of **Actions**:
 
     a. **Action Type:** *Webhook*
