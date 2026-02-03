@@ -34,7 +34,7 @@ To define a transformation in the Azure portal, select **Add Data Transformation
 
 :::image type="content" source="./media/pipeline-transformations/template.png" lightbox="./media/pipeline-transformations/template.png" alt-text="Screenshot of template selection for a transformation.":::
 
-Once you have the query defined, click **Check KQL syntax** to validate the syntax of the query before saving the dataflow. For Syslog and CEF data, the checker will also verify that the data resulting from the transformation matches the schema of the data type. If the transformation renames or adds columns as part of an aggregation for example, you'll be prompted to either remove those transformations or send the data to a custom table instead. An example is shown in the following image.
+Once you have the query defined, click **Check KQL syntax** to validate the syntax of the query before saving the dataflow. For syslog and CEF data, the checker will also verify the data resulting from the transformation matches the schema of the table the data is sent to. If the transformation renames or adds columns as part of an aggregation for example, you'll be prompted to either remove those transformations or send the data to a custom table instead. An example is shown in the following image.
 
 :::image type="content" source="./media/pipeline-configure/check-syntax.gif" lightbox="./media/pipeline-configure/check-syntax.gif" alt-text="Screenshot of KQL syntax checker and typical error message.":::
 
