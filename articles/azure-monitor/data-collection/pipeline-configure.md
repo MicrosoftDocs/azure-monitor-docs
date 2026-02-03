@@ -1277,7 +1277,7 @@ The following table describes the sections of the pipeline configuration and cri
 }
 ```
 
-</details>>
+</details>
 
 
 ## Enable cache
