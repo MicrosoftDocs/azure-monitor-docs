@@ -3,9 +3,9 @@ ms.topic: include
 ms.date: 02/03/2026
 ---
 
-### Azure Monitor Logs strategies for optimizing performance
+### Optimizing performance starts with queries
 
-Azure Monitor Logs is a fully managed, cloud‑scale service designed to automatically handle ingestion, indexing, and querying across large and fluctuating workloads. Its underlying engine employs built‑in mechanisms that optimize query execution, distribute processing, and automatically scale resources seamlessly without user intervention. As with any large analytical system, running queries across very large datasets requires extra compute resources and might impact query performance. Use the following strategies to optimize performance, especially with large datasets and when querying over long time ranges. 
+Azure Monitor Logs is a fully managed, cloud‑scale service designed to automatically handle ingestion, indexing, and querying across large and fluctuating workloads. Its underlying engine employs built‑in mechanisms that optimize query execution, distribute processing, and automatically scale resources seamlessly without user intervention. As with any large analytical system, running queries across very large datasets requires extra compute resources and might impact query performance. Use the following strategies to optimize performance, especially with large datasets and querying over long time ranges. 
 
 ### Design checklist
 
