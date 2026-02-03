@@ -9,11 +9,11 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 # Create and manage a dedicated cluster in Azure Monitor Logs 
 
-A dedicated cluster in Azure Monitor provides advanced security and control capabilities, and cost optimization. You can link new or existing workspaces to the cluster without interrupting ingestion and query operations.
+A dedicated cluster in Azure Monitor provides advanced security and control capabilities, and cost optimization. You can link new or existing workspaces to a dedicated cluster without interrupting ingestion and query operations.
 
 ## Advanced capabilities
 
-Azure Monitor Logs is a fully managed, cloud‑scale service designed to automatically handle ingestion, indexing, and querying across large and fluctuating workloads. Its underlying engine employs built‑in mechanisms that optimize query execution, distribute processing, and automatically scale resources seamlessly without user intervention. This high performing service is the framework default Log Analytics workspace are built on and is considered a *shared cluster*. The following capabilities are unlocked when you configure a dedicated cluster:
+Azure Monitor Logs is a fully managed, cloud‑scale service designed to automatically handle ingestion, indexing, and querying across large and fluctuating workloads. Its underlying engine employs built‑in mechanisms that optimize query execution, distribute processing, and automatically scale resources seamlessly without user intervention. This high performing service is the framework default Log Analytics workspaces are built on as a *shared cluster*. The following capabilities are unlocked when you create a *dedicated cluster*:
 
 - **[Customer-managed keys](../logs/customer-managed-keys.md)** - Encrypt data by using a key that you provide and control.
 - **[Lockbox](../logs/customer-managed-keys.md#customer-lockbox)** - Control Microsoft support engineer access to your data.
