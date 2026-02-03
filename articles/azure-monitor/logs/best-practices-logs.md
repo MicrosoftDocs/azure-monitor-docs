@@ -9,14 +9,11 @@ ms.date: 02/03/2026
 
 This article provides architectural best practices for Azure Monitor Logs. The guidance is based on the five pillars of architecture excellence described in [Azure Well-Architected Framework](/azure/architecture/framework/).
 
-| Pillar | 
-|--------|
-| [**Reliability**](#reliability) | 
-| [**Security**](#security) |
-| [**Cost Optimization**](#cost-optimization) | 
-| [**Operational Excellence**](#operational-excellence) | 
-| [**Performance Efficiency**](#performance-efficiency) | 
-
+- [**Reliability**](#reliability)
+- [**Security**](#security) 
+- [**Cost Optimization**](#cost-optimization) 
+- [**Operational Excellence**](#operational-excellence) 
+- [**Performance Efficiency**](#performance-efficiency)
 
 ## Reliability
 
