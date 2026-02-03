@@ -1,7 +1,7 @@
 ---
 title: Receive activity log alerts on Azure service notifications using Bicep
 description: Get notified via SMS, email, or webhook when Azure service occurs using a Bicep file.
-ms.date: 05/27/2025
+ms.date: 02/03/2026
 ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-bicep
 ---
@@ -16,11 +16,11 @@ This article provides a step-by-step guide on how to use a Bicep file to create 
 
 [!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 
-Service health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md). Given the possibly large volume of information stored in the activity log, there's a separate user interface to make it easier to view and set up alerts on service health notifications.
+Service health notifications are stored in the [Azure activity log](./azure-monitor/platform/activity-log?tabs=log-analytics.md). Given the possibly large volume of information stored in the activity log, there's a separate user interface to make it easier to view and set up alerts on service health notifications.
 
 You can receive an alert when Azure sends service health notifications to your Azure subscription. You can configure the alert based on:
 
-- The class of service health notification (Service issues, Planned maintenance, Health advisories).
+- The class of service health notification (Service issues, Planned maintenance, Health advisories, and Security advisories).
 - The subscription affected.
 - The services affected.
 - The regions affected.
@@ -149,7 +149,7 @@ Get-AzActivityLogAlert -ResourceGroupName my-resource-group -Name ServiceHealthA
 
 **4. Clean up the resources**
 
-If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When no longer needed, delete the resource group, which deletes the alert rule and the related resources. If you need to delete the resource group by using Azure CLI or Azure PowerShell use the following commands:
+If you plan to continue working with subsequent quickstarts and tutorials, you might want to leave these resources in place. When the resources are no longer needed, delete the resource group, which deletes the alert rule and the related resources. If at some point, you need to delete the resource group by using Azure CLI or Azure PowerShell use the following commands:
 
 # [CLI](#tab/CLI)
 
