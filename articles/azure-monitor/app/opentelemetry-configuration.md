@@ -447,6 +447,8 @@ For Quarkus native applications, configure sampling using the [Quarkus OpenTelem
 
 # [Node.js](#tab/nodejs)
 
+Starting from 1.16.0, **rate‑limited sampling is the default**.
+
 #### Fixed percentage sampling
 
 ```typescript
@@ -474,9 +476,11 @@ const monitor = useAzureMonitor({
 ```
 
 > [!NOTE]
-> If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
+> If you don't set a sampler in code or through environment variables, Azure Monitor uses **RateLimitedSampler** by default.
 
 # [Python](#tab/python)
+
+Starting from 1.8.6, **rate‑limited sampling is the default**.
 
 #### Fixed percentage sampling
 
@@ -501,7 +505,7 @@ configure_azure_monitor(
 ```
 
 > [!NOTE]
-> If you don't set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
+> If you don't set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **RateLimitedSampler** by default.
 
 ---
 
