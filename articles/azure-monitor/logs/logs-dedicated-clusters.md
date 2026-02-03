@@ -13,7 +13,7 @@ A dedicated cluster in Azure Monitor provides advanced security and control capa
 
 ## Advanced capabilities
 
-Log Analytics is a fully managed, cloud‑scale service designed to automatically handle ingestion, indexing, and querying across large and fluctuating workloads. Its underlying engine employs built‑in mechanisms that optimize query execution, distribute processing, and automatically scale resources seamlessly without user intervention. This high performing service is the framework default Log Analytics workspace are built on and is considered a *shared cluster*. The following capabilities are unlocked when you configure a dedicated cluster:
+Azure Monitor Logs is a fully managed, cloud‑scale service designed to automatically handle ingestion, indexing, and querying across large and fluctuating workloads. Its underlying engine employs built‑in mechanisms that optimize query execution, distribute processing, and automatically scale resources seamlessly without user intervention. This high performing service is the framework default Log Analytics workspace are built on and is considered a *shared cluster*. The following capabilities are unlocked when you configure a dedicated cluster:
 
 - **[Customer-managed keys](../logs/customer-managed-keys.md)** - Encrypt data by using a key that you provide and control.
 - **[Lockbox](../logs/customer-managed-keys.md#customer-lockbox)** - Control Microsoft support engineer access to your data.
