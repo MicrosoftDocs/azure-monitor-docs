@@ -1,6 +1,6 @@
 ---
 title: Optimization in operations center (preview)
-description: Describes the Optimization pillar in operations center, which includes cost and carbon optimization features and the Optimize agent.
+description: Describes the Optimization menu in operations center, which includes cost and carbon optimization features and the Optimize agent.
 ms.topic: concept-article
 ms.date: 11/14/2025
 ---
@@ -10,15 +10,15 @@ ms.date: 11/14/2025
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Optimization** pillar in [operations center](./overview.md) helps you identify opportunities to improve the cost efficiency and carbon emissions of your Azure resources. It provides insights and recommendations based on best practices and usage patterns and leverages the Optimize agent to provide proactive recommendations and guided assistance.
+The **Optimization** menu in [operations center](./overview.md) helps you identify opportunities to improve the cost efficiency and carbon emissions of your Azure resources. It provides insights and recommendations based on best practices and usage patterns and leverages the Optimize agent to provide proactive recommendations and guided assistance.
 
-The Optimization pillar uses the following Azure services:
+The Optimization menu uses the following Azure services:
 - [Cost management](/azure/cost-management-billing/costs/overview-cost-management)
 - [Carbon optimization](/azure/carbon-optimization/overview)
 - [Azure Advisor](/azure/advisor/advisor-overview)
 
 ## Menu items
-The Optimization pillar includes the following menu items:
+The Optimization menu includes the following menu items:
 
 | Menu | Description |
 |:---|:---|
@@ -30,14 +30,14 @@ The Optimization pillar includes the following menu items:
 ## Optimization overview
 The optimization overview page provides a single-pane snapshot of cost, carbon, and optimization metrics across your subscriptions to drive your optimization efforts. It summarizes key information such as total cost, carbon emissions, active recommendations, and potential savings. 
 
-:::image type="content" source="./media/optimization/optimization-pillar.png" lightbox="./media/optimization/optimization-pillar.png" alt-text="Screenshot of Optimization menu in the Azure portal":::
+:::image type="content" source="./media/optimization/optimization-menu.png" lightbox="./media/optimization/optimization-menu.png" alt-text="Screenshot of Optimization menu in the Azure portal":::
 
 The Optimization overview page includes the following sections. Modify the scope of tiles by selecting the **Subscription** filter at the top of the page.
 
 | Section | Description |
 |:---|:---|
 | Top actions | Surfaces the most impactful and actionable recommendations to maximize cost and carbon savings. This is a unified and prioritized list across Cost recommendations and Cost alerts so you can immediately identify where to focus your attention. Some of these actions may open the [Optimize agent](#optimization-agent) which allows you to interact with Azure Copilot to act on the recommendation. |
-| Cost and carbon emissions summary | Summarizes the data from the previous month and forecasts the next month for all selected subscriptions and the top contributing subscriptions. Drill into any of these views to open other pages in the Optimization pillar for additional details. |
+| Cost and carbon emissions summary | Summarizes the data from the previous month and forecasts the next month for all selected subscriptions and the top contributing subscriptions. Drill into any of these views to open other pages in the Optimization menu for additional details. |
 | Optimization recommendations | Azure Advisor recommendations related to optimization. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details.  |
 
 
