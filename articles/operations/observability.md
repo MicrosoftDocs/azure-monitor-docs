@@ -1,7 +1,7 @@
 ---
 title: Observability in operations center (preview)
 description: Describes the Observability pillar in operations center, which helps you monitor the health and performance of your cloud applications and resources.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/14/2025
 ---
 

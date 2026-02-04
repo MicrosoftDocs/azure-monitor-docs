@@ -2,7 +2,7 @@
 title: Sample data collection rules (DCRs) in Azure Monitor
 description: Sample data collection rule for different Azure Monitor data collection scenarios.
 ms.topic: sample
-ms.date: 12/04/2024
+ms.date: 01/20/2026
 ms.custom: references_region
 ms.reviewer: jeffwo
 
@@ -81,7 +81,7 @@ The following sample DCR performs the following actions:
 
 DCRs for Syslog events use the `syslog` data source with the incoming `Microsoft-Syslog` stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](data-collection-rule-view.md#view-dcr-definition).
 
-You can add a transformation to the `dataFlows` property for additional functionality and to further filter data, but you should use `facilityNames` and `logLevels` for filtering as much as possible for efficiency at to avoid potential ingestion charges.
+You can add a transformation to the `dataFlows` property for additional functionality and to further filter data, but you should use `facilityNames` and `logLevels` for filtering as much as possible for efficiency to avoid potential ingestion charges.
 
 The following sample DCR performs the following actions:
 
@@ -164,7 +164,7 @@ DCRs for performance data use the `performanceCounters` data source with the inc
  
 The performance counters to collect are specified in the `counterSpecifiers` property. See [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](data-collection-rule-view.md#view-dcr-definition).
 
-You can add a transformation to the `dataFlows` property for `Microsoft-Perf` for additional functionality and to further filter data, but you should select only the counters you require in `counterSpecifiers` for efficiency at to avoid potential ingestion charges.
+You can add a transformation to the `dataFlows` property for `Microsoft-Perf` for additional functionality and to further filter data, but you should select only the counters you require in `counterSpecifiers` for efficiency to avoid potential ingestion charges.
 
 The following sample DCR performs the following actions:
 
@@ -464,24 +464,24 @@ The following sample DCR performs the following actions:
             ],
             "storageBlobsDirect": [
                 {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "myperfblob",
                 "name": "PerfBlob"
                 },
                 {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "myeventblob",
                 "name": "EventBlob"
                 }
             ],
             "storageTablesDirect": [
                 {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "myperftable",
                 "name": "PerfTable"
                 },
                 {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "mymyeventtable",
                 "name": "EventTable"
                 }
@@ -507,7 +507,7 @@ The following sample DCR performs the following actions:
                 "EventBlob",
                 "EventTable"
                 ]
-            },
+            }
         ]
     }
 }

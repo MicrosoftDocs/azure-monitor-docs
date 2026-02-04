@@ -1,7 +1,7 @@
 ---
 title: Custom metrics in Azure Monitor (preview)
 description: Learn about custom metrics in Azure Monitor and how they're modeled.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 11/07/2024
 ms.reviewer: priyamishra
 ---
@@ -10,10 +10,8 @@ ms.reviewer: priyamishra
 
 Azure makes some metrics available to you out of the box. These metrics are called [standard or platform](../reference/supported-metrics/metrics-index.md). Custom metrics are performance indicators or business-specific metrics. You can collect them through your application's telemetry. You can also use the Azure Monitor Agent, a diagnostics extension on your Azure resources, or an external monitoring system. Once custom metrics are published to Azure Monitor, you can browse, query, and alert on them along side the standard Azure metrics.
 
-Azure Monitor custom metrics are currently in public preview.
-
-> [!TIP]
-> See [Metrics in Application Insights](../app/metrics-overview.md) for a detailed comparison between standard metrics, log-based metrics, and custom metrics.
+> [!NOTE]
+> Azure Monitor custom metrics are currently in public preview. This feature will not be made Generally Available, as we are now offering an improved GA feature that achieves the same functionality and more: [Custom Metrics in Azure Monitor Workspaces](../app/opentelemetry.md). In addition to custom metrics, [OpenTelemetry performance counters](../metrics/metrics-opentelemetry-guest.md) from the Guest OS of VMs are supported as well.
 
 ## Methods to send custom metrics
 

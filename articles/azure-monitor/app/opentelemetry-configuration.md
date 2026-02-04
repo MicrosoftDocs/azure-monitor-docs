@@ -344,8 +344,8 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 
 > [!IMPORTANT]
 > * Sampling decisions apply to **traces** (spans).
+> * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
 > * **Metrics** are never sampled.
-> * **Logs** aren't sampled by default. You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped. For more details, [Configure trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
 
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
@@ -354,11 +354,11 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 
 Use standard OpenTelemetry environment variables to select the sampler and provide its argument:
 
-* **`OTEL_TRACES_SAMPLER`** — sampler type
-    * `microsoft.fixed.percentage` — sample a fraction of traces.
-    * `microsoft.rate_limited` — cap traces per second.
+* **`OTEL_TRACES_SAMPLER`** - sampler type
+    * `microsoft.fixed.percentage` - sample a fraction of traces.
+    * `microsoft.rate_limited` - cap traces per second.
 
-* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+* **`OTEL_TRACES_SAMPLER_ARG`** - sampler argument
     * For `microsoft.fixed.percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
@@ -381,7 +381,7 @@ export OTEL_TRACES_SAMPLER_ARG=1.5
 ### Configure sampling in code
 
 > [!NOTE]
-> When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language, see the following tabs.
+> When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -515,9 +515,9 @@ When enabled, log records that belong to **unsampled traces** are dropped so tha
 * A log record is considered part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
 * Log records **without** any trace context **aren't** affected.
-* The feature is **disabled by default**. Enablement is language, see the following tabs.
+* The feature is **enabled by default**.
 
-Use the following setting in your configuration to enable trace-based log sampling:
+Use the following settings to configure trace-based log sampling:
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -818,7 +818,7 @@ By default, the AzureMonitorExporter uses one of the following locations for off
   - %TMPDIR%/Microsoft/Microsoft-AzureMonitor-`<unique-identifier>`/opentelemetry-nodejs-`<your-instrumentation-key>`
   - /var/tmp/Microsoft/Microsoft-AzureMonitor-`<unique-identifier>`/opentelemetry-nodejs-`<your-instrumentation-key>`
 
-The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. By generating a unique directory for each user context, every user gets their own storage location with proper access permissions.
+The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. A unique directory for each user context ensures every user gets their own storage location with proper access permissions.
 
 To override the default directory, you should set `storageDirectory`.
 
@@ -850,7 +850,7 @@ By default, Azure Monitor exporters use the following path:
 
 `<tempfile.gettempdir()>/Microsoft-AzureMonitor-<unique-identifier>/opentelemetry-python-<your-instrumentation-key>`
 
-The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. By generating a unique directory for each user context, every user gets their own storage location with proper access permissions.
+The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. A unique directory for each user context ensures every user gets their own storage location with proper access permissions.
 
 To override the default directory, you should set `storage_directory` to the directory you want.
 

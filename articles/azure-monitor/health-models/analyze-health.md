@@ -1,7 +1,7 @@
 ---
 title: Analyze health state of Azure Monitor health models (Preview)
 description: Describes the different views available to view the health state of your Azure Monitor health models and their included entities.
-ms.topic: conceptual
+ms.topic: concept-article
 author: bwren
 ms.author: bwren
 ms.date: 06/27/2025
