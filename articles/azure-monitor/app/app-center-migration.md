@@ -1,22 +1,35 @@
 ---
-title: Migrate App Center Analytics & Diagnostics to Azure Monitor
-description: Migrate Visual Studio App Center Analytics & Diagnostics telemetry to Azure Monitor by using community OpenTelemetry (OTel) software development kits (SDKs) and an OpenTelemetry Collector.
+title: Migrate App Center telemetry to Azure Monitor
+description: Migrate Visual Studio App Center telemetry to Azure Monitor by using community OpenTelemetry (OTel) software development kits (SDKs) and a telemetry gateway.
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 02/04/2026
 ---
 
-# Migrate App Center Analytics & Diagnostics to Azure Monitor
+# Migrate App Center telemetry to Azure Monitor
 
-This article provides high-level linked guidance for sending mobile app telemetry to [Azure Monitor](../fundamentals/overview.md).
+This article provides high-level linked guidance for sending mobile app telemetry to [Azure Monitor](../fundamentals/overview.md) using OpenTelemetry (OTel).
+
+OTel is a vendor-neutral, open-source standard for collecting and exporting telemetry across languages and platforms, including mobile apps.
+
+## Choose a telemetry gateway option
+
+Mobile apps can't safely store Azure Monitor ingestion credentials. Use a gateway that you manage to receive OpenTelemetry Protocol (OTLP) telemetry from your apps and forward it to Azure Monitor.
+
+You can use one of these gateway options:
+
+- **OpenTelemetry Collector gateway (recommended for high-volume apps)**. Choose this option if you have a large app with lots of users, want control over telemetry before it reaches Azure Monitor (for example, sampling, filtering, enrichment, or redaction), and can operate the gateway.
+- **Azure API Management (APIM) proxy (recommended for small-volume apps)**. Choose this option if you have a small app with few users and you prefer not to deploy and operate an OpenTelemetry Collector. Review [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
+
+For configuration details about Azure Monitor native OTLP ingestion endpoints (Limited Preview), review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
 
 > [!div class="checklist"]
-> - Deploy an OpenTelemetry Collector gateway that you run.
+> - Choose and deploy a telemetry gateway (OpenTelemetry Collector or Azure API Management).
 > - Instrument mobile apps with community OpenTelemetry (OTel) SDKs.
 > - Set up Azure Monitor resources for ingestion.
 > - Analyze telemetry in Azure Monitor and [Application Insights](app-insights-overview.md).
 
 > [!IMPORTANT]
-> Microsoft supports analysis and portal experiences **after mobile telemetry reaches Azure Monitor**. Microsoft doesn't support community OpenTelemetry mobile SDKs or the OpenTelemetry Collector. For details and support links, review [Support boundaries and support options](#support-boundaries-and-support-options).
+> Microsoft supports Azure Monitor experiences **after telemetry reaches Azure Monitor**. Microsoft doesn’t provide product support through Azure support requests for community OpenTelemetry mobile SDKs or for configuring, operating, or troubleshooting the OpenTelemetry Collector. For details and support links, review [Support boundaries and support options](#support-boundaries-and-support-options).
 
 ## App Center retirement timeline
 
@@ -28,48 +41,73 @@ This article provides high-level linked guidance for sending mobile app telemetr
 Complete these tasks in order:
 
 1. **[Prepare](#prepare-your-azure-monitor-destination)** your Azure Monitor destination.
-2. **[Deploy](#deploy-an-opentelemetry-collector-gateway)** an OpenTelemetry Collector gateway.
-3. **[Configure](#configure-the-collector-to-export-telemetry-to-azure-monitor)** the Collector to export telemetry to Azure Monitor.
+2. **[Deploy](#deploy-a-telemetry-gateway)** a telemetry gateway.
+3. **[Configure](#configure-the-gateway-to-export-telemetry-to-azure-monitor)** the gateway to export telemetry to Azure Monitor.
 4. **[Remove](#remove-the-app-center-sdk-from-your-apps)** the App Center SDK from your apps.
 5. **[Instrument](#instrument-apps-with-a-community-opentelemetry-sdk)** the apps with a community OpenTelemetry SDK.
-6. **[Configure](#configure-apps-to-send-telemetry-to-your-collector-endpoint)** the apps to send telemetry to your Collector endpoint.
+6. **[Configure](#configure-apps-to-send-telemetry-to-your-gateway-endpoint)** the apps to send telemetry to your gateway endpoint.
 7. **[Validate](#validate-ingestion-and-update-analysis)** ingestion and update queries, dashboards, and alerts.
 
 ### Prepare your Azure Monitor destination
 
-Identify the Azure Monitor resources that you use for analysis, such as an Application Insights resource and a Log Analytics workspace.
+Before you deploy a gateway or change your apps, decide where you want to store and analyze the telemetry that your gateway exports.
 
-Review these resources to understand Azure Monitor basics:
+For this migration, you'll typically use:
 
-- [Azure Monitor documentation](/azure/azure-monitor/)
+- A **workspace-based Application Insights resource**, which receives telemetry and provides the connection string that identifies the destination resource and ingestion endpoints.
+- The **Log Analytics workspace linked to the Application Insights resource**, which stores telemetry for Azure Monitor Logs, Kusto Query Language (KQL) queries, workbooks, and alerts.
+
+If you export OTLP signals by using Azure Monitor native OTLP ingestion endpoints (Limited Preview), your destination setup also includes OTLP connection information such as endpoint URLs and a Data Collection Rule (DCR). For details, review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
+
+If you already have a workspace-based Application Insights resource and a linked Log Analytics workspace, reuse those resources for this migration.
+
+#### Learn the Azure Monitor resources you'll use
+
+Use these resources to become familiar with Azure Monitor concepts and terminology:
+
+- [Azure Monitor overview](/azure/azure-monitor/fundamentals/overview)
 - [Application Insights overview](/azure/azure-monitor/app/app-insights-overview)
-- [Telemetry Data Model](/azure/azure-monitor/app/data-model-complete)
-- [Azure Monitor endpoint access and firewall configuration](/azure/azure-monitor/fundamentals/azure-monitor-network-access)
-- [Log Analytics Workspaces](/azure/azure-monitor/app/create-workspace-resource?tabs=portal)
-- [Connection Strings](/azure/azure-monitor/app/connection-strings)
+- [Azure Monitor Logs overview](/azure/azure-monitor/logs/data-platform-logs)
+- [Overview of Log Analytics](/azure/azure-monitor/logs/log-analytics-overview)
+- [Connection strings in Application Insights](/azure/azure-monitor/app/connection-strings)
+- [Managed workspaces in Application Insights](/azure/azure-monitor/app/managed-workspaces)
 
-### Deploy an OpenTelemetry Collector gateway
+#### Create and configure the destination resources
 
-Deploy an OpenTelemetry Collector gateway in your cloud or network environment. Use this gateway as the mobile app telemetry endpoint.
+Use this checklist to set up the Azure Monitor side of the migration:
 
-Use these OpenTelemetry resources:
+> [!div class="checklist"]
+> - **Create or select a Log Analytics workspace** for storage and queries. For step-by-step guidance, review [Create a Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace).
+> - **Create or select a workspace-based Application Insights resource** and link it to the workspace. For step-by-step guidance, review [Create and configure Application Insights resources](/azure/azure-monitor/app/create-workspace-resource).
+> - **Record the Application Insights connection string**. You can use it when you configure gateway export to Azure Monitor. Review [Connection strings in Application Insights](/azure/azure-monitor/app/connection-strings).
+> - **Choose an ingestion authentication model**:
+>   - Use the **connection string** while you validate ingestion and queries. Review [Connection strings in Application Insights](/azure/azure-monitor/app/connection-strings).
+>   - If you need to require Microsoft Entra authenticated ingestion, configure **Microsoft Entra authentication** for Application Insights and opt out of local authentication. Review [Microsoft Entra authentication for Application Insights](/azure/azure-monitor/app/azure-ad-authentication).
+> - **Confirm outbound network access** from your gateway environment to Azure Monitor endpoints and Microsoft Entra ID endpoints. Review [Azure Monitor endpoint access and firewall configuration](/azure/azure-monitor/fundamentals/azure-monitor-network-access).
 
-- [OpenTelemetry Collector overview](https://opentelemetry.io/docs/collector/)
-- [OpenTelemetry Collector deployment guidance](https://opentelemetry.io/docs/collector/deployment/)
-- [OpenTelemetry Collector security hosting guidance](https://opentelemetry.io/docs/security/hosting-best-practices/)
+### Deploy a telemetry gateway
 
-### Configure the Collector to export telemetry to Azure Monitor
+Deploy a gateway in your cloud or network environment. Use this gateway as the mobile app telemetry endpoint so you can keep ingestion credentials out of mobile apps.
 
-Configure an authenticated export from the Collector to Azure Monitor.
+Choose one of these gateway options:
 
-Use these resources to find exporter options and configuration guidance:
+- **OpenTelemetry Collector gateway (community supported)**. Review the [OpenTelemetry Collector documentation](https://opentelemetry.io/docs/collector/), including [deployment guidance](https://opentelemetry.io/docs/collector/deployment/) and [security hosting guidance](https://opentelemetry.io/docs/security/hosting-best-practices/).
+- **Azure API Management proxy**. Use Azure API Management as a telemetry proxy when you want a managed gateway to authenticate and forward telemetry to Azure Monitor. Review [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
+
+### Configure the gateway to export telemetry to Azure Monitor
+
+Configure an authenticated export from the gateway to Azure Monitor.
+
+For Azure Monitor native OTLP ingestion endpoints (Limited Preview), including endpoint URL patterns and authentication requirements, review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
+
+If you use an OpenTelemetry Collector gateway, you can start with these community resources:
 
 - [Azure Monitor exporter for the OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/azuremonitorexporter/README.md)
 - [Azure Monitor exporter authentication guidance](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/azuremonitorexporter/AUTHENTICATION.md)
-- [Microsoft Entra authentication for Application Insights](/azure/azure-monitor/app/azure-ad-authentication)
 
-> [!NOTE]
-> Use a Collector gateway so you can keep ingestion credentials out of mobile apps.
+If you use Microsoft Entra authentication for ingestion, review [Microsoft Entra authentication for Application Insights](/azure/azure-monitor/app/azure-ad-authentication).
+
+If you use Azure API Management as a proxy, review [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
 
 ### Remove the App Center SDK from your apps
 
@@ -100,14 +138,14 @@ Start with these OpenTelemetry resources:
 - [OpenTelemetry guidance for iOS client apps](https://opentelemetry.io/docs/platforms/client-apps/ios/)
 - [OpenTelemetry ecosystem registry](https://opentelemetry.io/ecosystem/registry/)
 
-### Configure apps to send telemetry to your Collector endpoint
+### Configure apps to send telemetry to your gateway endpoint
 
-Send telemetry to the Collector endpoint that you deployed by configuring OpenTelemetry Protocol (OTLP) export in your apps.
+Send telemetry to the gateway endpoint that you deployed by configuring OpenTelemetry Protocol (OTLP) export in your apps.
 
 Use these OpenTelemetry resources:
 
 - [OTLP exporter configuration](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#otlp-exporter)
-- [OpenTelemetry Collector configuration](https://opentelemetry.io/docs/collector/configuration/)
+- [OpenTelemetry Collector configuration](https://opentelemetry.io/docs/collector/configuration/) (if you use an OpenTelemetry Collector gateway)
 
 ### Validate ingestion and update analysis
 
