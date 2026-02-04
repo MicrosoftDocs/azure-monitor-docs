@@ -5,7 +5,6 @@ ms.topic: troubleshooting-general
 ms.date: 11/14/2024
 ms.custom: references_region
 ms.reviewer: jeffwo
-
 ---
 
 # Troubleshooting guidance for the Azure Monitor agent on Windows Arc-enabled server
@@ -14,7 +13,7 @@ ms.reviewer: jeffwo
 
 ## Basic troubleshooting steps (installation, agent not running, configuration issues)
 
-Follow the steps below to troubleshoot the latest version of the Azure Monitor agent running on your Windows Arc-enabled server:
+Use the following steps to troubleshoot the latest version of the Azure Monitor agent running on your Windows Arc-enabled server:
 
 1. **Carefully review the [prerequisites here](./azure-monitor-agent-manage.md#prerequisites).**
 
@@ -22,12 +21,12 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 
     1. Open Azure portal > select your Arc-enabled server > Open **Settings** : **Extensions** from the pane on the left > 'AzureMonitorWindowsAgent'should show up with Status: 'Succeeded'
 
-    1. If not, check if the Arc agent (Connected Machine Agent) is able to connect to Azure and the extension service is running.
+    1. If not, check if the Arc agent (Connected Machine Agent) is able to connect to Azure, and the extension service is running.
 
         ```azurecli
         azcmagent show
         ```
-        You should see the below output:
+        You should see the following output:
         ```
         Resource Name                           : <server name>
         [...]
@@ -43,7 +42,7 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 
 1. **Verify that the agent is running**:
 
-    1. Check if the agent is emitting heartbeat logs to Log Analytics workspace using the query below. Skip if 'Custom Metrics' is the only destination in the DCR:
+    1. Check if the agent is emitting heartbeat logs to Log Analytics workspace using the following query. Skip if 'Custom Metrics' is the only destination in the data collection rule (DCR):
 
         ```Kusto
         Heartbeat | where Category == "Azure Monitor Agent" and Computer == "<computer-name>" | take 10
@@ -56,9 +55,9 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 1. **Verify that the DCR exists and is associated with the Arc-enabled server:**
 
     1. If using Log Analytics workspace as destination, verify that DCR exists in the same physical region as the Log Analytics workspace.
-    1. On your Arc-enabled server, verify the existence of the file `C:\Resources\Directory\AMADataStore\mcs\mcsconfig.latest.xml`. If this file doesn't exist, the Arc-enabled server may not be associated with a DCR. 
+    1. On your Arc-enabled server, verify the existence of the file `C:\Resources\Directory\AMADataStore\mcs\mcsconfig.latest.xml`. If this file doesn't exist, the Arc-enabled server might not be associated with a DCR. 
     1. Open Azure portal > select your data collection rule > Open **Configuration** : **Resources** from the pane on the left > You should see the Arc-enabled server listed here.
-    1. If not listed, click 'Add' and select your Arc-enabled server from the resource picker. Repeat across all DCRs.
+    1. If not listed, select **Add** and select your Arc-enabled server from the resource picker. Repeat across all DCRs.
 
 1. **Verify that agent was able to download the associated DCR(s) from AMCS service:**
 
@@ -66,11 +65,11 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 
 ## Issues collecting Performance counters
 
-1. Check that your DCR JSON contains a section for 'performanceCounters'. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
+1. Check that your DCR JSON contains a section for `performanceCounters`. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
 
 1. Check that the file `C:\Resources\Directory\AMADataStore\mcs\mcsconfig.lkg.xml` exists.
 
-1. Open the file and check if it contains `CounterSet` nodes as shown in the example below:
+1. Open the file and check if it contains `CounterSet` nodes as shown in the following example:
 
     ```xml
     <CounterSet storeType="Local" duration="PT1M" 
@@ -103,7 +102,7 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
     Get-WmiObject Win32_Process -Filter "name = 'MetricsExtension.Native.exe'" | select Name,ExecutablePath,CommandLine | Format-List
     ```
     
-    Verify that the *CommandLine* parameter in the output contains the argument "-TokenSource MSI"
+    Verify that the *CommandLine* parameter in the output contains the argument `-TokenSource MSI`
 
 1. Verify `C:\Resources\Directory\AMADataStore\mcs\AuthToken-MSI.json` file is present.
 
@@ -111,16 +110,16 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 
 1. Collect logs by running the command `C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\<version-number>\Monitoring\Agent\table2csv.exe C:\Resources\Directory\AMADataStore\Tables\MaMetricsExtensionEtw.tsf`
 
-    1. The command will generate the file 'MaMetricsExtensionEtw.csv'
+    1. The command generates the file 'MaMetricsExtensionEtw.csv'
     1. Open it and look for any Level 2 errors and try to fix them.
 
 ## Issues collecting Windows event logs
 
-1. Check that your DCR JSON contains a section for 'windowsEventLogs'. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
+1. Check that your DCR JSON contains a section for `windowsEventLogs`. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
 
 1. Check that the file `C:\Resources\Directory\AMADataStore\mcs\mcsconfig.lkg.xml` exists.
 
-1. Open the file and check if it contains `Subscription` nodes as shown in the example below:
+1. Open the file and check if it contains `Subscription` nodes as shown in the following example:
 
     ```xml
     <Subscription eventName="c9302257006473204344_14882095577508259570" 

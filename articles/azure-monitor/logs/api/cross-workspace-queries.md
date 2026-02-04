@@ -14,7 +14,7 @@ The maximum number of resources in any cross-resource query is limited to 10.
 
 For either implicit or explicit cross-workspace queries, you need to specify the resources you will be accessing. There are four types of identifiers:
 
- - Name - human-readable string \<workspaceName\> of the OMS workspace
+ - Name - human-readable string \<workspaceName\> of the Log Analytics workspace
  - Qualified Name - string with format \<subscriptionName\>/\<resourceGroup\>/\<workspaceName\>
  - Workspace ID - GUID string
  - Azure Resource ID - string with format /subscriptions/\<subscriptionId\>/resourceGroups/\<resourceGroup\>/providers/  microsoft.operationalinsights/workspaces/\<workspaceName\>

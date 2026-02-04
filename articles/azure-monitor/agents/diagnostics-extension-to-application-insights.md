@@ -21,7 +21,7 @@ Example configuration of a sink for Application Insights:
 ```xml
 <SinksConfig>
     <Sink name="ApplicationInsights">
-      <ApplicationInsights>{Insert InstrumentationKey}</ApplicationInsights>
+      <ApplicationInsights>{Insert ConnectionString}</ApplicationInsights>
       <Channels>
         <Channel logLevel="Error" name="MyTopDiagData"  />
         <Channel logLevel="Verbose" name="MyLogData"  />
@@ -34,7 +34,7 @@ Example configuration of a sink for Application Insights:
     "Sink": [
         {
             "name": "ApplicationInsights",
-            "ApplicationInsights": "{Insert InstrumentationKey}",
+            "ApplicationInsights": "{Insert ConnectionString}",
             "Channels": {
                 "Channel": [
                     {
@@ -54,9 +54,9 @@ Example configuration of a sink for Application Insights:
 
 * The **Sink** *name* attribute is a string value that uniquely identifies the sink.
 
-* The **ApplicationInsights** element specifies instrumentation key of the Application insights resource where the Azure diagnostics data is sent.
+* The **ApplicationInsights** element specifies the connection string of the Application insights resource where the Azure diagnostics data is sent.
     * If you don't have an existing Application Insights resource, see [Create a new Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource).
-    * If you're developing a Cloud Service with Azure SDK 2.8 and later, this instrumentation key is automatically populated. The value is based on the **APPINSIGHTS_INSTRUMENTATIONKEY** service configuration setting when packaging the Cloud Service project, see [Use Application Insights with Cloud Services](../app/azure-web-apps-net-core.md).
+    * If you're developing a Cloud Service with Azure SDK 2.8 and later, the connection string is automatically populated. The value is based on the **APPLICATIONINSIGHTS_CONNECTION_STRING** service configuration setting when packaging the Cloud Service project, see [Use Application Insights with Cloud Services](../app/azure-web-apps-net-core.md).
 
 * The **Channels** element contains one or more **Channel** elements.
     * The *name* attribute uniquely refers to that channel.
@@ -102,7 +102,7 @@ Here's a complete example of the public configuration file that:
 
 <SinksConfig>
     <Sink name="ApplicationInsights">
-      <ApplicationInsights>{Insert InstrumentationKey}</ApplicationInsights>
+      <ApplicationInsights>{Insert ConnectionString}</ApplicationInsights>
       <Channels>
         <Channel logLevel="Error" name="MyTopDiagData"  />
         <Channel logLevel="Verbose" name="MyLogData"  />
@@ -149,7 +149,7 @@ Here's a complete example of the public configuration file that:
         "Sink": [
             {
                 "name": "ApplicationInsights",
-                "ApplicationInsights": "{Insert InstrumentationKey}",
+                "ApplicationInsights": "{Insert ConnectionString}",
                 "Channels": {
                     "Channel": [
                         {

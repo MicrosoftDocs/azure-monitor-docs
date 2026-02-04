@@ -10,12 +10,13 @@ ms.date: 09/03/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure Application Gateway | v1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Application gateway | Application Gateway V1 is being retired | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### April 30, 2026
 
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure AI Speech | Custom Commands | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure App Service | Support for Node 20 LTS | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Cognitive Service | Azure AI Speech - Custom Commands | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | App service | Support for Node 20 LTS | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | App service | Azure Functions - Node.js 20 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

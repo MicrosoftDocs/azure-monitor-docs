@@ -1,6 +1,201 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-monitor/scom-manage-instance/configure-log-analytics-for-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/configure-log-analytics-for-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/configure-network-firewall.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/configure-network-firewall",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/connect-managed-instance-ops-console.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/connect-managed-instance-ops-console",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/create-group-managed-service-account.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/create-group-managed-service-account",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/create-key-vault.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/create-key-vault",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/create-operations-manager-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/create-operations-manager-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/create-reports-power-bi.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/create-reports-power-bi",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/create-separate-subnet-in-vnet.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/create-separate-subnet-in-vnet",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/create-sql-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/create-sql-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/create-static-ip.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/create-static-ip",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/create-user-assigned-identity.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/create-user-assigned-identity",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/customizations-on-scom-managed-instance-management-servers.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/customizations-on-scom-managed-instance-management-servers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/dashboards-on-azure-managed-grafana.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/dashboards-on-azure-managed-grafana",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/disaster-recovery-guidance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/disaster-recovery-guidance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/index.yml",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/migrate-to-operations-manager-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/migrate-to-operations-manager-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/migrate-to-operations-manager.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/migrate-to-operations-manager",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/monitor-azure-off-azure-vm-with-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/monitor-azure-off-azure-vm-with-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/monitor-health-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/monitor-health-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/monitor-linux-machines.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/monitor-linux-machines",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/monitor-off-azure-vm-with-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/monitor-off-azure-vm-with-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/overview.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/patch-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/patch-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/query-scom-managed-instance-data-on-grafana.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/query-scom-managed-instance-data-on-grafana",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/register-scom-managed-instance-resource-provider.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/register-scom-managed-instance-resource-provider",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/scale-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/scale-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/scom-assessment.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/scom-assessment",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/scom-managed-instance-faq.yml",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/scom-managed-instance-faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/scom-mi-activity-log.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/scom-mi-activity-log",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/scom-mi-data-encryption-at-rest.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/scom-mi-data-encryption-at-rest",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/self-verification-steps.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/self-verification-steps",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/store-domain-credentials-key-vault.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/store-domain-credentials-key-vault",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/troubleshoot-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/troubleshoot-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/troubleshooting-input-parameters-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/troubleshooting-input-parameters-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/tutorial-create-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/tutorial-create-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/use-managed-identities-with-scom-mi.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/use-managed-identities-with-scom-mi",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/verify-azure-internal-group-policy-object-policies.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/verify-azure-internal-group-policy-object-policies",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/view-operations-manager-alerts-azure-monitor.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/view-operations-manager-alerts-azure-monitor",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/whats-new-scom-managed-instance.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/whats-new-scom-managed-instance",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-monitor/agents/log-analytics-agent.md",
       "redirect_url": "/previous-versions/azure/azure-monitor/agents/log-analytics-agent",
       "redirect_document_id": false

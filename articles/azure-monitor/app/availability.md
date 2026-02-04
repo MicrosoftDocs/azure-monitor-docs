@@ -26,14 +26,8 @@ There are four types of availability tests:
 
     [Learn how to create a custom TrackAvailability test](/azure/azure-monitor/app/availability?tabs=track#create-an-availability-test).
 
-* **[(Deprecated) Multi-step web test](availability-multistep.md):** You can play back this recording of a sequence of web requests to test more complex scenarios. Multi-step web tests are created in Visual Studio Enterprise and uploaded to the portal, where you can run them.
-
-* **[(Deprecated) URL ping test](monitor-web-app-availability.md):** You can create this test through the Azure portal to validate whether an endpoint is responding and measure performance associated with that response. You can also set custom success criteria coupled with more advanced features, like parsing dependent requests and allowing for retries.
-
 > [!IMPORTANT]
-> There are two upcoming availability tests retirements:
-> - **Multi-step web tests:** Application Insights retires multi-step web tests on August 31, 2024. To maintain availability monitoring, switch to alternative availability tests before this date. After the retirement, the platform removes the underlying infrastructure, which causes remaining multi-step tests to fail.
-> - **URL ping tests:** On September 30, 2026, URL ping tests in Application Insights will be retired. Existing URL ping tests are removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
+> - **URL ping tests are deprecated:** On September 30, 2026, [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) in Application Insights will be retired. Existing URL ping tests are removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
 
 ## Create an availability test
 
@@ -374,7 +368,7 @@ Here you can:
 * Track the problem by logging an issue or work item in Git or Azure Boards. The bug contains a link to the event in the Azure portal.
 * Open the web test result in Visual Studio.
 
-To learn more about the end-to-end transaction diagnostics experience, see the [transaction diagnostics documentation](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics).
+To learn more about the end-to-end transaction diagnostics experience, see the [transaction diagnostics documentation](./failures-performance-transactions.md#transaction-diagnostics-experience).
 
 Select the exception row to see the details of the server-side exception that caused the synthetic availability test to fail. You can also get the [debug snapshot](./snapshot-debugger.md) for richer code-level diagnostics.
 

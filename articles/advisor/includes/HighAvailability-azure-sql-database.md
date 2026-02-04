@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 01/13/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -91,5 +91,61 @@ Recommendation ID: 9b7e559c-2f7a-41ea-9b8f-43a53a12c273
 Subcategory: HighAvailability
 
 <!--9b7e559c-2f7a-41ea-9b8f-43a53a12c273_end-->
+
+<!--cdbef351-5bba-4639-abcd-34b594310b97_begin-->
+
+#### Migrate Azure Monitor SCOM Managed Instance to System Center Operations Manager or Azure Monitor  
+  
+Migrate monitoring workloads using Azure Monitor SCOM Managed Instance to supported alternatives based on environment type.  
+  
+**Potential benefits**: Avoid loss of access and service disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=501673)  
+
+ResourceType: microsoft.sql/managedinstances  
+Recommendation ID: cdbef351-5bba-4639-abcd-34b594310b97  
+Subcategory: undefined
+
+<!--cdbef351-5bba-4639-abcd-34b594310b97_end-->
+
+
+
+<!--8eff5550-a532-452b-88dd-f4032156da2f_begin-->
+
+#### Migrate to TLS 1.2 or above for SQL databases  
+  
+Support for TLS 1.0 and 1.1 on Azure SQL db is retiring. Update the TLS policy to the latest version  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Connectivity Settings - Azure SQL Database and SQL database in Fabric](/azure/azure-sql/database/connectivity-settings?view=azuresql&tabs=azure-portal#upcoming-retirement-changes)  
+
+ResourceType: microsoft.sql/servers  
+Recommendation ID: 8eff5550-a532-452b-88dd-f4032156da2f  
+Subcategory: undefined
+
+<!--8eff5550-a532-452b-88dd-f4032156da2f_end-->
+
+<!--8f7b7aa9-aec7-4f36-a2fe-50a16e30bfd7_begin-->
+
+#### Fsv2-series hardware configuration are being retired.  
+  
+Azure SQL Databases running on FSV2-series hardware aren't supported. Remaining databases running on FSV2-series HW are migrated to General-purpose or Hyperscale tier with similar configurations.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485030)  
+
+ResourceType: microsoft.sql/servers/databases  
+Recommendation ID: 8f7b7aa9-aec7-4f36-a2fe-50a16e30bfd7  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--8f7b7aa9-aec7-4f36-a2fe-50a16e30bfd7_end-->
 
 <!--articleBody-->

@@ -81,7 +81,7 @@ Follow the two steps in the following sections to enable high scale mode for you
 
 The first step is to update configmap for the cluster to instruct the Container Insights ama-logs deamonset pods to run in high scale mode. 
 
-1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-filter.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
+1. Follow the guidance in [Configure and deploy ConfigMap](./kubernetes-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
 
 1. Enable high scale mode with the following setting under `agent-settings`.
 
@@ -153,6 +153,3 @@ If Container Insights is already enabled for your cluster, then you need to disa
 
 When the volume of logs generated is substantial, it can lead to throttling and log loss. See the *[Configure throttling for Container Insights](/azure/azure-monitor/containers/container-insights-throttling)* article for guidance on configuring throttling parameters and monitoring for log loss. 
 
-## Next steps
-
-* Share any feedback or issues with High Scale mode at [https://aka.ms/cihsfeedback](https://aka.ms/cihsfeedback).

@@ -48,7 +48,7 @@ This guide provides two options to upgrade from the Azure Monitor Application In
 
 #### Azure Monitor OpenTelemetry Distro changes and limitations
 
-   * The APIs from the Application Insights SDK 2.X aren't available in the Azure Monitor OpenTelemetry Distro. You can access these APIs through a nonbreaking upgrade path in the Application Insights SDK 3.X.
+   * The APIs from the Application Insights SDK 2.X aren't available in the Azure Monitor OpenTelemetry Distro. While Application Insights SDK 3.X provides a nonbreaking upgrade path for telemetry ingestion (such as custom events and metrics), most SDK 2.X APIs are not supported and require code changes to OpenTelemetry-based APIs.
    * Filtering dependencies, logs, and exceptions by operation name is not yet supported.
 
 ## [Upgrade](#tab/upgrade)

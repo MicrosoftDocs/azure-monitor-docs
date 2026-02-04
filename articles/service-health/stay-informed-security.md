@@ -1,14 +1,14 @@
 ---
-title: Manage Azure security notifications with Service Health
-description: This article shows you where Azure customers receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
-ms.topic: article
-ms.date: 10/17/2025
+title: Security notifications overview
+description: This article shows where you can receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
+ms.topic: concept-article
+ms.date: 12/10/2025
 ---
 
-# Manage Azure security notifications with Service Health
+# Security notifications
 Security advisories and Security issues are two types of notifications that Azure provides to help you stay informed about security-related matters. 
 
-**Security advisories** address broad threats across the environment, while **Security issues** focus on particular assets needing attention. By staying informed about both types of notifications, you can better protect your Azure environment.
+**Security advisories** address broad threats across the environment, while **Security issues** focus on particular assets needing attention. By staying informed about both types of notifications, you have better protection over your Azure environment.
 
 This article explains how you receive Azure security notifications, and the three steps you can follow to ensure the security alerts reach the right people in your organization.
 
@@ -30,10 +30,10 @@ The **Security advisory** pane in [Azure Service Health](https://ms.portal.azure
 
 :::image type="content"source="./media/security-notifications/security-advisories-pane.png"alt-text="Screenshot that shows the Security advisories pane."Lightbox="./media/security-notifications/security-advisories-pane.png":::
 
-Azure publishes Service Health notifications, which contain information about the resources under your subscription. 
-- You can review these security advisories in the Service Health experience in the Azure portal and get notified about security advisories through your preferred channel by setting up Service Health alerts for this type of notification. 
-- You can create [Service Health alerts](../service-health/alerts-activity-log-service-notifications-portal.md) on Service Health notifications in the portal.
-- Depending on your requirements, you can use the same [action group](../azure-monitor/alerts/action-groups.md) or use different ones. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
+Azure publishes Service Health notifications, which contain information about the resources under your subscription so you can:
+- Review these security advisories in the Service Health experience in the Azure portal and get notified about security advisories through your preferred channel by setting up Service Health alerts for this type of notification. 
+- Create [Service Health alerts](../service-health/alerts-activity-log-service-notifications-portal.md) on Service Health notifications in the portal.
+- Use the same [action group](../azure-monitor/alerts/action-groups.md) or use different ones depending on your requirements. Action group types include sending a voice call, SMS, or email. You can also trigger various types of automated actions.
 
 
 **Email notifications**

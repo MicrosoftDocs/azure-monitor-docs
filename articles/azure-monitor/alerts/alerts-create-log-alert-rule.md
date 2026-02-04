@@ -92,7 +92,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     |-------|-------------|
     | **Measure** | Log search alerts can measure two things that you can use for various monitoring scenarios:<br> **Table rows**: You can use the number of returned rows to work with events such as Windows event logs, Syslog, and application exceptions.<br>**Calculation of a numeric column**: You can use calculations based on any numeric column to include any number of resources. An example is CPU percentage. |
     | **Aggregation type** | The calculation performed on multiple records to aggregate them to one numeric value by using the aggregation granularity. Examples are **Total**, **Average**, **Minimum**, and **Maximum**. |
-    | **Aggregation granularity** | The interval for aggregating multiple records to one numeric value. |
+    | **Aggregation granularity** (Window size) | The interval for aggregating multiple records to one numeric value. |
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-log-measurements.png" alt-text="Screenshot that shows the measurement options during the creation of a new log search alert rule.":::
 
@@ -129,8 +129,10 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     | Field | Description |
     |-------|-------------|
-    | **Operator** | The query results are transformed into a number. In this field, select the operator to use for comparing the number against the threshold. |
-    | **Threshold value** | A number value for the threshold. |
+    | **Threshold** | Select if the threshold should be evaluated based on a static value or a dynamic value.<br>A **static threshold** evaluates the rule by using the threshold value that you configure.<br>**Dynamic thresholds** use machine learning algorithms to continuously learn the query result behavior patterns and calculate the appropriate thresholds for unexpected behavior. Learn more about using [dynamic thresholds](./alerts-dynamic-thresholds.md). |
+    | **Operator** | Select the operator for comparing the query result value against the threshold.<br>If you're using dynamic thresholds, alert rules can use tailored thresholds based on data behavior for both upper and lower bounds in the same alert rule. Select one of these operators:<br>• Greater than the upper threshold or lower than the lower threshold (default)<br>• Greater than the upper threshold<br>• Lower than the lower threshold |
+    | **Threshold value** | If you selected a **static** threshold, enter the threshold value for the condition logic. |
+    | **Threshold sensitivity** | If you selected a **dynamic** threshold, enter the sensitivity level. The sensitivity level affects the amount of deviation from the query results pattern that's required to trigger an alert.<br>• **High**: Thresholds are tight and close to the query result series pattern. An alert rule is triggered on the smallest deviation, resulting in more alerts.<br>• **Medium**: Thresholds are less tight and more balanced. There are fewer alerts than with high sensitivity (default).<br>• **Low**: Thresholds are loose, allowing greater deviation from the query results pattern. Alert rules are only triggered on large deviations, resulting in fewer alerts. |
     | **Frequency of evaluation** | How often the query is run. You can set it anywhere from one minute to one day (24 hours). |
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-create-log-rule-logic.png" alt-text="Screenshot that shows the section for alert logic in a new log search alert rule.":::
@@ -191,12 +193,24 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     * A managed identity is required if you're sending a query to Azure Data Explorer or Resource Graph.
     * Use a managed identity if you want to be able to view or edit the permissions associated with the alert rule.
-    * If you don't use a managed identity, the alert rule permissions are based on the permissions of the last user to edit the rule, at the time that the rule was last edited.
+    * If you don't use a managed identity, the alert rule will inherit the permissions of the last user or service principal who edited it, based on their permissions at the time of that edit.
     * Use a managed identity to help you avoid a case where the rule doesn't work as expected because the user who last edited the rule didn't have permissions for all the resources added to the scope of the rule.
 
     The identity associated with the rule must have these roles:
 
-    * If the query is accessing a Log Analytics workspace, the identity must be assigned a *reader* role for all workspaces that the query accesses. If you're creating resource-centric log search alerts, the alert rule might access multiple workspaces, and the identity must have a reader role on all of them.
+    * If the query is accessing a Log Analytics workspace, the identity must be assigned a *reader* role for all workspaces that the query accesses. If you're creating resource-centric log search alerts (scoped to a subscription or resource group), if the alert rule is scoped to a subscription for example, the identity must have reader access to all Log Analytics workspaces containing data for any resource within that subscription, even if those workspaces are in different subscriptions. This requirement also applies when a managed identity is not used and the alert is relying on the permissions of the user or service principal that last edited it.
+      
+        **Example:**
+        
+        Suppose you have a subscription called *Subscription-A*. Within *Subscription-A*, there are resources (such as virtual machines) that send their logs to different Log Analytics workspaces:
+        
+        * Workspace-1 (located in Subscription-A)
+        * Workspace-2 (located in Subscription-B)
+        * Workspace-3 (located in Subscription-C)
+        
+        You create a resource-centric log search alert rule scoped to *Subscription-A* that is designed to monitor all resources within that subscription. The identity assigned to the alert must have Reader access to *Workspace-1*, *Workspace-2*, and *Workspace-3*, even though *Workspace-2* and *Workspace-3* are in different subscriptions. This is because the alert may need to query logs for any resource in Subscription-A, and those logs could be stored in any of these workspaces.
+        
+        If the identity doesn't have Reader access to any one of these workspaces, the alert may not be able to query logs for the corresponding resources, and as a result, the alert may not fire as expected.
     * If you're querying an Azure Data Explorer or Resource Graph cluster, you must add the *reader* role for all data sources that the query accesses. For example, if the query is resource centric, it needs a reader role on that resource.
     * If the query is [accessing a remote Azure Data Explorer cluster](../logs/azure-monitor-data-explorer-proxy.md), the identity must be assigned:
         * A *reader* role for all data sources that the query accesses. For example, if the query is calling a remote Azure Data Explorer cluster by using the `adx()` function, it needs a reader role on that Azure Data Explorer cluster.
@@ -219,7 +233,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     | Field | Description |
     |-------|-------------|
     | **Enable upon creation** | Select this option to make the alert rule start running as soon as you finish creating it. |
-    | **Automatically resolve alerts** | Select this option to make the alert stateful. When an alert is stateful, the alert is resolved when the condition is no longer met for a specific time range. The time range differs based on the frequency of the alert:<br>**1 minute**: The alert condition isn't met for 10 minutes.<br>**5 to 15 minutes**: The alert condition isn't met for three frequency periods.<br>**15 minutes to 11 hours**: The alert condition isn't met for two frequency periods.<br>**11 to 12 hours**: The alert condition isn't met for one frequency period.<br><br>Note that stateful log search alerts have [these limitations](/azure/azure-monitor/service-limits#alerts). |
+    | **Automatically resolve alerts** | Select this option to make the alert stateful. When an alert is stateful, the alert is resolved when the condition is no longer met for a specific time range. The time range differs based on the frequency of the alert:<br>**1 minute**: The alert condition isn't met for 10 minutes.<br>**5 to 15 minutes**: The alert condition isn't met for three frequency periods.<br>**15 minutes to 11 hours**: The alert condition isn't met for two frequency periods.<br>**11 to 12 hours**: The alert condition isn't met for one frequency period.<br>Stateful alert rules with a frequency of more than 12 hours are not supported.<br><br>Note that stateful log search alerts have [these limitations](/azure/azure-monitor/service-limits#alerts). |
     | **Mute actions** | Select this option to set a period of time to wait before alert actions are triggered again. In the **Mute actions for** field that appears, select the amount of time to wait after an alert is fired before triggering actions again. |
     | **Check workspace linked storage** | Select this option if workspace linked storage for alerts is configured. If no linked storage is configured, the rule isn't created. |
 

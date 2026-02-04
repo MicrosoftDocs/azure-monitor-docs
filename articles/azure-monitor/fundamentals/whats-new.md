@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 10/31/2025
+ms.date: 01/31/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +10,41 @@ ms.date: 10/31/2025
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
+
+### December 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Agents|[Configure agent settings](../agents/agent-settings.md?tabs=azure-resource-manager)|Published a new article explaining how to configure Azure Monitor Agent (AMA) using the Agent Settings data collection rule (DCR).|
+|Agents|[AMA overview updates](../agents/azure-monitor-agent-overview.md)|Updated the Agents overview and related guidance to remove Microsoft Monitoring Agent (MMA) content, reflecting the August 2024 deprecation and the move to AMA. Additional cleanup for the Log Analytics Agent and OMS Agent is forthcoming.|
+|Alerts|[Action group test-notification troubleshooting](../alerts/test-action-group-errors.md)|Strengthened the action group test-notification troubleshooting guide with clearer, step-by-step remediation for common delivery failures across key action types, including guidance on schema, authentication, and network access constraints (for example, Private Link and firewall rules).|
+|Application-Insights|[Agent details view](../app/agents-view.md)|Published documentation for the Agent details view, providing a unified monitoring experience for AI agents across Azure AI Foundry, Copilot Studio, and third-party agent frameworks, with extensibility through Grafana dashboards.|
+|Application-Insights|[AKS autoinstrumentation guidance](../app/kubernetes-codeless.md?tabs=portal)|Published updated AKS autoinstrumentation guidance and portal workflow to enable OpenTelemetry-based monitoring with a guided portal experience, plus an equivalent Azure CLI path for at-scale rollout.|
+|Application-Insights|[Availability docs cleanup](../app/availability.md?tabs=standard#types-of-availability-tests)|Removed deprecated and retired experiences from the Availability documentation.|
+|Application-Insights|[Classic API consolidated](../app/classic-api.md?tabs=dotnet)|Further consolidated Classic API SDK documentation (superseded by OpenTelemetry) to reduce duplication and improve discoverability.|
+|Application-Insights|[Connection strings guidance](../app/connection-strings.md)|Updated multiple articles to use connection strings and remove outdated instrumentation key references.|
+|Application-Insights|[Dashboards with Grafana](../app/grafana-dashboards.md)|Published documentation for Dashboards with Grafana in the Azure portal, enabling Azure-managed dashboards that can be customized, saved/shared as Azure resources, and used with built-in Explore and community imports.|
+|Application-Insights|[Add investigation filters](../app/failures-performance-transactions.md?tabs=failures-view%2Cresults-list#add-filters)|Expanded the Azure Monitor OpenTelemetry semantic model and Distro documentation with additional investigation-ready fields (including synthetic source and device context) to improve filtering, segmentation, and root-cause analysis.|
+|Application-Insights|[Portal rebrand: Transaction search to Search](../app/failures-performance-transactions.md?tabs=search-view%2Cresults-list)|Updated text and images across the investigation experience documentation to reflect the Azure portal rebranding of "Transaction search" to "Search."|
+|Application-Insights|[OpenTelemetry sampling updates](../app/opentelemetry-configuration.md?tabs=aspnetcore#enable-sampling)|Updated sampling guidance to cover rate-limited sampling for traces and an optional trace-based approach for logs to help control ingestion volume and cost while preserving diagnostic value.|
+|Application-Insights|[SQL client filtering limitation](../app/opentelemetry-filter.md?tabs=aspnetcore#filter-opentelemetry-using-instrumentation-libraries)|Clarified OpenTelemetry filtering guidance for SQL client scenarios by documenting a current limitation: the Azure Monitor OpenTelemetry Distro embeds SqlClient instrumentation for stability while upstream remains experimental, limiting certain customization options until upstream reaches a stable release.|
+|Application-Insights|[SDK Stats (preview)](../app/sdk-stats.md)|Published public preview documentation for SDK Stats, which provides lightweight, aggregated metrics and reason codes to help diagnose missing or unexpected telemetry, surfaced through a built-in workbook.|
+|Application-Insights|[Performance counters collection](../app/metrics-overview.md?tabs=standard#performance-counters)|Updated documentation to reflect automatic collection of core system and process performance counters by the OpenTelemetry Distro (for example, CPU, memory, and I/O), which power built-in experiences.|
+|Application-Insights|[OpenTelemetry with Azure Functions GA](/azure/azure-functions/opentelemetry-howto?tabs=app-insights%2Cihostapplicationbuilder%2Cmaven&pivots=programming-language-csharp)|Clarified how Azure Functions produces OpenTelemetry across host and language worker processes and how to export telemetry to Azure Monitor and other endpoints, with consolidated guidance on resource detectors, semantic conventions, and expanded troubleshooting.|
+|Application-Insights|[Work item integration troubleshooting](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-work-item-integration)|Published a new troubleshooting article for work item integration issues in Application Insights.|
+|Containers|[Kubernetes data collection updates](../containers/kubernetes-data-collection-configure.md)|Updated Kubernetes data collection documentation to clearly distinguish between ConfigMap-based configuration and DCR-based configuration.|
+|Data Collection|[DCR docs updates](../vm/data-collection.md?tabs=preview)|Updated data collection rule (DCR) documentation, including Visualizer, Coverage, and the new creation experience.|
+|Fundamentals|[Audit for outdated TLS](best-practices-security.md#recommended-action)|Added a self-service audit to help identify virtual machines that still use outdated TLS configurations, with remediation guidance.|
+|Logs|[Granular RBAC GA](../logs/granular-rbac-log-analytics.md)|Granular RBAC for Log Analytics reached general availability (GA). The documentation explains how to use Azure RBAC for more granular access control scenarios.|
+|Logs|[Log Analytics REST API docs](/rest/api/loganalytics/)|Published and reorganized the Log Analytics REST API reference, including the Log Ingestion APIs, to provide a clearer entry point for Logs-related APIs.|
+|Logs|[Search jobs updates](../logs/search-jobs.md?tabs=portal-1%2Cportal-2#run-a-search-job)|Updated search jobs documentation with refreshed guidance and portal workflow details.|
+|Operations|[Azure Operations Center (gated preview)](/azure/operations/)|Published documentation for the Azure Operations Center gated public preview.|
+|Virtual Machines|[Fabric/ADX AMA destination (preview)](../vm/send-fabric-destination.md)|Published public preview documentation for sending AMA-collected data to a Fabric/ADX destination using data collection rules (DCRs).|
+|Virtual Machines|[VM insights onboarding via Azure Policy](../vm/vminsights-enable-policy.md?tabs=basics)|Updated VM insights onboarding guidance using Azure Policy to reflect new initiatives and the latest enablement experience.|
+|Virtual Machines|[VM OpenTelemetry metrics (preview)](../vm/vminsights-opentelemetry.md)|Released preview documentation for OpenTelemetry-based metrics collection for virtual machines.|
+|Visualize|[Azure Monitor dashboards for Grafana GA](../visualize/visualize-grafana-overview.md)|Published documentation for Azure Monitor dashboards for Grafana reaching general availability (GA).|
+
+### October 2025
 
 |Subservice | Article | Description |
 |---|---|---|
@@ -30,11 +65,11 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Rate-limited sampling](../app/opentelemetry-configuration.md?tabs=nodejs#enable-sampling)|OpenTelemetry rate-limited sampling is now available for both Node.js and Python.|
 |Application-Insights|[.NET Classic API](../app/dotnet.md)|Classic API SDK information for .NET has been consolidated into a single article. Try the "Ask Learn" for AI assistance.|
 |Application-Insights|[Node.js Classic API](../app/nodejs.md)|Classic API SDK information for Node.js has been consolidated into a single article. Try the "Ask Learn" for AI assistance.|
-|Application-Insights|[Data collection, retention, storage, and privacy](../app/application-insights-faq.yml#how-does-application-insights-handle-data-collection--retention--storage--and-privacy)|Data collection, retention, storage, and privacy has been consolidated in the FAQ with additional granularity.|
+|Application-Insights|[Data collection, retention, storage, and privacy](../app/application-insights-faq.yml#how-does-application-insights-handle-data-collection--retention--storage--and-privacy)|Data collection, retention, storage, and privacy have been consolidated in the FAQ with additional granularity.|
 |Application-Insights|[Quarkus support](../app/opentelemetry-enable.md?tabs=java-native#install-the-client-library)|We've clarified Quarkus support across OpenTelemetry documentation and provided a link to get community assistance.|
 | Data Collection | [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md) | Added content for preview DCR experience. |
 | Kubernetes | [Analyze the health and status of your Kubernetes cluster with Azure Monitor](../containers/container-insights-analyze.md) | Rewrite to support latest portal experience. |
-| Kubernetes | [Filter container log collection with ConfigMap](../containers/container-insights-data-collection-filter.md) | Rewrite to improve clarity. |
+| Kubernetes | [Filter container log collection with ConfigMap](../containers/kubernetes-data-collection-configure.md) | Rewrite to improve clarity. |
 | Kubernetes | [View live data with Container insights](../containers/container-insights-livedata-overview.md) | Rewrite to support latest portal experience. |
 | Kubernetes | [Analyze Syslog data from Kubernetes cluster in Azure Monitor](../containers/container-insights-syslog.md) | Rewrite to improve clarity. |
 | Kubernetes | [Filter and transform Kubernetes container logs using data transformations in Azure Monitor](../containers/container-insights-transformations.md) | Rewrite to improve clarity. |
@@ -118,7 +153,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Log Analytics workspace data export in Azure Monitor](../logs/logs-data-export.md)|Clarified data export considerations.|
 |Logs|[Granular RBAC (Preview) in Azure Monitor](../logs/granular-rbac-log-analytics.md)|New article for granular RBAC|
 |Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|Significant refresh of search job article updated with new UI.|
-|Virtual-Machines|[Send virtual machine client data to Event Hubs and Storage (Preview)](../vm/send-event-hubs-storage.md)|General rewrite of article.|
 
 ### April 2025
 
@@ -145,7 +179,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Migrate from using batch and beta queries to the standard Log Analytics query API](../logs/api/migrate-batch-and-beta.md)|Announcement of deprecation for Beta and Batch APIs|
 |Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace](../logs/create-custom-table-auxiliary.md)|Auxiliary logs now GA|
 |Logs|[Delete data from a Log Analytics workspace by using the Delete Data API](../logs/delete-log-data.md)|New Delete data API to make async requests to remove sensitive, personal or corrupt log entries from LA tables.|
-|Logs|[Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)|Our tutorial page title are now consistent, making it easier to find what you're looking for.|
+|Logs|[Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)|Our tutorial page titles are now consistent, making it easier to find what you're looking for.|
 |Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](../logs/workspace-replication.md)|Log Analytics workspace replication now GA with additional regions added.|
 |Logs|[Log Analytics workspace data export in Azure Monitor](../logs/logs-data-export.md)|Added permissions prerequisite and updated API version for data export calls.|
 |Virtual-Machines|[Collect IIS logs from virtual machine with Azure Monitor](../vm/data-collection-iis.md)|Rewritten for clarity and simplicity.|
@@ -178,7 +212,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Containers|[Recommended alert rules for Kubernetes clusters](../containers/kubernetes-metric-alerts.md)|Added table mapping legacy Container insights metrics to Prometheus metrics.|
 |Containers|[Troubleshoot Container insights](../containers/container-insights-troubleshoot.md)|General cleanup of article and added troubleshooting for additional error conditions.|
 |Essentials|[Virtual machine guest performance counters](../vm/virtual-machine-guest-metrics.md)|A new article listing guest performance counters for Windows and Linux VMs.|
-|Essentials|[Connect Grafana to Azure Monitor Prometheus metrics](../metrics/prometheus-grafana.md)|All Grafana configuration for Prometheus are now in a single article|
+|Essentials|[Connect Grafana to Azure Monitor Prometheus metrics](../metrics/prometheus-grafana.md)|All Grafana configurations for Prometheus are now in a single article|
 |Logs|[Get started with log queries in Azure Monitor](../logs/get-started-queries.md)|Added examples of how to query data in your Log Analytics workspace using simple mode, alongside Kusto Query Language (KQL) examples.|
 |Visualizations|[Azure Monitor Logs overview](../logs/data-platform-logs.md)|We now recommend using summary rules for custom dashboards, workbooks, and reports to improve query performance and reduce query errors and timeouts.|
 
@@ -302,7 +336,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Microsoft Entra authentication for Application Insights](../app/azure-ad-authentication.md)|Options to enable Microsoft Entra authentication for .NET and Node.js autoinstrumentation are documented.|
 |Application-Insights|[Application Insights availability tests](../app/availability.md)|We clarified information about using an "availability test string identifier", which previously caused some confusion when referred to as a "GUID".|
 |Containers|[Optimize monitoring costs for Container insights](../containers/container-insights-cost.md)|Rewritten to consolidate cost saving options and analysis.|
-|Containers|[Filter log collection in Container insights](../containers/container-insights-data-collection-filter.md)|New article to describe all options to filter container logs.|
+|Containers|[Filter log collection in Container insights](../containers/kubernetes-data-collection-configure.md)|New article to describe all options to filter container logs.|
 |Containers|[Container insights log schema](../containers/container-insights-logs-schema.md)|Rewritten to focus on definition and configuration of log schema, including metadata option.|
 |Containers|[Access Syslog data in Container Insights](../containers/container-insights-syslog.md)|Removed duplicate information on configuration.|
 |Containers|[Data transformations in Container insights](../containers/container-insights-transformations.md)|Added details to filtering example and added a new example to send data to multiple tables.|
@@ -489,7 +523,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Subservice | Article | Description |
 |---|---|---|
 |Agents|[MMA Discovery and Removal Utility](../agents/azure-monitor-agent-mma-removal-tool.md)|Added a PowerShell script that discovers and removes the Log Analytics agent from machines as part of the migration to Azure Monitor Agent.|
-|Agents|[Send data to Event Hubs and Storage (Preview)](../agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md)|Update azure-monitor-agent-send-data-to-event-hubs-and-storage.md|
 |Alerts|[Resource Manager template samples for metric alert rules in Azure Monitor](../alerts/resource-manager-alerts-metric.md)|We added a clarification about the parameters used when creating metric alert rules programatically.|
 |Alerts|[Manage your alert instances](../alerts/alerts-manage-alert-instances.md)|We've added documentation about the new alerts timeline view.|
 |Alerts|[Create or edit a log search alert rule](../alerts/alerts-create-log-alert-rule.md)|Added limitations to log search alert queries.|
@@ -608,7 +641,7 @@ General|[Azure Monitor cost and usage](cost-usage.md)|Added section detailing bi
 Application-Insights|[Add, modify, and filter OpenTelemetry](../app/opentelemetry-add-modify.md)|A caution has been added about using community libraries with additional information on how to request we include them in our distro.|
 Application-Insights|[Add, modify, and filter OpenTelemetry](../app/opentelemetry-add-modify.md)|Support and feedback options are now available across all of our OpenTelemetry pages.|
 Application-Insights|[How many Application Insights resources should I deploy?](../app/create-workspace-resource.md#how-many-application-insights-resources-should-i-deploy)|We added an important warning about additional network costs when monitoring across regions.|
-Application-Insights|[Use Search in Application Insights](../app/transaction-search-and-diagnostics.md?tabs=transaction-search)|We clarified that URL query strings aren't logged by Azure Functions and that URL query strings won't show up in searches.|
+Application-Insights|[Use Search in Application Insights](../app/failures-performance-transactions.md?tabs=search-view)|We clarified that URL query strings aren't logged by Azure Functions and that URL query strings won't show up in searches.|
 Application-Insights|[Migrating from OpenCensus Python SDK and Azure Monitor OpenCensus exporter for Python to Azure Monitor OpenTelemetry Python Distro](../app/opentelemetry-python-opencensus-migrate.md)|Migrate from OpenCensus to OpenTelemetry with this step-by-step guidance.|
 Application-Insights|[Application Insights overview](../app/app-insights-overview.md)|We've added an illustration to convey how Azure Monitor Application Insights works at a high level.|
 Containers|[Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot.md)|Added the *Troubleshoot using PowerShell script* section.|
@@ -996,7 +1029,7 @@ Visualizations|[Azure Workbooks](../visualize/workbooks-overview.md)|New video t
 |[Java Profiler for Azure Monitor Application Insights](../app/java-standalone-profiler.md)|Announced the new Java Profiler at Ignite. Read all about it.|
 |[Release notes for Azure Web App extension for Application Insights](../app/web-app-extension-release-notes.md)|Added release notes for 2.8.44 and 2.8.43.|
 |[Resource Manager template samples for creating Application Insights resources](../app/create-workspace-resource.md)|Fixed inaccurate tagging of workspace-based resources as still in preview.|
-|[Unified cross-component transaction diagnostics](../app/transaction-search-and-diagnostics.md?tabs=transaction-diagnostics)|Added a FAQ section to help troubleshoot Azure portal errors like "error retrieving data."|
+|[Unified cross-component transaction diagnostics](../app/failures-performance-transactions.md#transaction-diagnostics-experience)|Added a FAQ section to help troubleshoot Azure portal errors like "error retrieving data."|
 |[Upgrading from Application Insights Java 2.x SDK](../app/java-standalone-upgrade-from-2x.md)|Added more upgrade guidance. Java 2.x is deprecated.|
 |[Using Azure Monitor Application Insights with Spring Boot](../app/java-spring-boot.md)|Updated configuration options.|
 

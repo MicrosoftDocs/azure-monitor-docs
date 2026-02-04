@@ -21,6 +21,8 @@ Visualization is provided in the [SDK stats workbook](#open-the-sdk-stats-workbo
 
 > [!div class="checklist"]
 > - An application [instrumented](opentelemetry-enable.md) with one of the following:
+>   - .NET / .NET Core: `Azure.Monitor.OpenTelemetry.AspNetCore` version `1.4.0-beta.1` or later.
+>   - .NET / .NET Core (exporter only): `Azure.Monitor.OpenTelemetry.Exporter` version `1.5.0-beta.1` or later.
 >   - Python OpenTelemetry Distro 1.8.0+ and azure-monitor-opentelemetry-exporter 1.0.0b42+
 >   - Node.js OpenTelemetry Distro 1.13.0+ and @azure/monitor-opentelemetry-exporter 1.0.0-beta.34+
 >   - Node.js Application Insights Classic API SDK 3.10.0+
@@ -57,12 +59,6 @@ These metrics include dimensions in `customDimensions` and standard Application 
 Each metric row represents an **aggregated count** for the export interval. Total **attempted** in a time slice equals `success + dropped` for that slice.
 
 ## Enable and configure SDK stats
-
-Current coverage requires **opt in** and is limited to the following SDKs:
-
-> [!div class="checklist"]
-> - **Node.js**
-> - **Python**
 
 Enable by setting the environment variable `APPLICATIONINSIGHTS_SDKSTATS_ENABLED_PREVIEW=true` in the application process environment and restarting the application.
 

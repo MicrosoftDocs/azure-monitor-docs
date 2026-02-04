@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence API Management
@@ -104,20 +104,21 @@ Recommendation ID: 580a50ee-8300-4678-9a16-a946c948778b
 
 <!--d6c54614-97fe-4f55-85cf-adb49ca7ccd3_begin-->
 
-#### Use private networking options for requests to Azure API Management endpoints for Azure backend APIs  
+#### Disable trusted service connectivity in API Management  
   
-The Azure API Management service sends requests over a public network to one or more backends hosted on Azure. The platform recommends using a virtual network or Private Link to improve the security of Azure backend APIs.  
+Your API Management service may rely on trusted service connectivity to access other Azure services. To prevent service disruption following the retirement of this feature in March 2026, update your networking configuration and disable trusted connectivity in API Management.  
   
-**Potential benefits**: Improve service stability and network security  
+**Potential benefits**: Prevent runtime outage of APIs in API Management  
 
-**Impact:** Medium
+**Impact:** High
   
-For more information, see [Azure API Management with an Azure virtual network](/azure/api-management/virtual-network-concepts)  
+For more information, see [Azure API Management - Trusted service connectivity retirement (March 2026)](https://aka.ms/apimdocs/change/trusted-service)  
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: d6c54614-97fe-4f55-85cf-adb49ca7ccd3  
 
 
 <!--d6c54614-97fe-4f55-85cf-adb49ca7ccd3_end-->
+
 
 <!--articleBody-->
