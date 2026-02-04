@@ -262,5 +262,5 @@ There are multiple methods to verify that data is being ingested from your clust
 ## Next steps
 
 * See [Connect to a data source privately](/azure/managed-grafana/how-to-connect-to-data-source-privately) for details on how to configure private link to query data from your Azure Monitor workspace using Grafana.
-* See [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../metrics/azure-monitor-workspace-private-endpoint.md) for details on how to configure private link to query data from your Azure Monitor workspace using workbooks.
+* See [Enable query from Azure Monitor workspace using private link](../fundamentals/private-link-azure-monitor-workspace.md) for details on how to configure private link to query data from your Azure Monitor workspace using workbooks.
 
