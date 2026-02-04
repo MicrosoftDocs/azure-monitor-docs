@@ -1,6 +1,6 @@
 ---
 title: Observability in operations center (preview)
-description: Describes the Observability pillar in operations center, which helps you monitor the health and performance of your cloud applications and resources.
+description: Describes the Observability menu in operations center, which helps you monitor the health and performance of your cloud applications and resources.
 ms.topic: concept-article
 ms.date: 11/14/2025
 ---
@@ -10,18 +10,18 @@ ms.date: 11/14/2025
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Observability** pillar of [operations center](./overview.md) helps you monitor the health and performance of your cloud applications and resources. It consolidates multiple Azure services to assess the current health of your environment, identify issues, and provide recommendations for maintaining optimal performance and availability.
+The **Observability** menu of [operations center](./overview.md) helps you monitor the health and performance of your cloud applications and resources. It consolidates multiple Azure services to assess the current health of your environment, identify issues, and provide recommendations for maintaining optimal performance and availability.
 
 
-The Observability pillar uses the following Azure services:
+The Observability menu uses the following Azure services:
 
 - [Azure Monitor](/azure/azure-monitor/)
 - [Azure Service Health](/azure/service-health/overview)
 - [Change analysis](/azure/governance/resource-graph/changes/view-resource-changes)
 - [Azure Advisor](/azure/advisor/advisor-overview)
 
-## Observability pillar
-The Observability pillar includes the following menu items:
+## Observability menu
+The Observability menu includes the following menu items:
 
 | Menu | Description |
 |:---|:---|
@@ -40,14 +40,14 @@ The Observability pillar includes the following menu items:
 
 
 ## Monitor overview
-The **Monitor** overview page provides a consolidated view of the key information from the other pages in the Observability pillar. It surfaces important information and identify top actions that you can take to improve the monitoring and health of your Azure resources. Start here to identify any critical issues or other matters that require your attention before drilling down into specific areas.
+The **Monitor** overview page provides a consolidated view of the key information from the other pages in the Observability menu. It surfaces important information and identify top actions that you can take to improve the monitoring and health of your Azure resources. Start here to identify any critical issues or other matters that require your attention before drilling down into specific areas.
 
-:::image type="content" source="./media/observability/observability-pillar.png" lightbox="./media/observability/observability-pillar.png" alt-text="Screenshot of Monitor menu in the Azure portal":::
+:::image type="content" source="./media/observability/observability-menu.png" lightbox="./media/observability/observability-menu.png" alt-text="Screenshot of Monitor menu in the Azure portal":::
 
 
 | Section | Description |
 |:---|:---|
-| Top actions | Top recommended actions based on Azure Advisor recommendations to ensure that your resources are being appropriately monitored. Click on any of these actions to open the relevant page in the Observability pillar. |
+| Top actions | Top recommended actions based on Azure Advisor recommendations to ensure that your resources are being appropriately monitored. Click on any of these actions to open the relevant page in the Observability menu. |
 | Health and Issues Summary | Identifies any recent service incidents from **Azure service health** and a summary of [issues](/azure/azure-monitor/aiops/aiops-issue-and-investigation-overview) created over the previous 24 hours.  |
 | Recommendations and maintenance | Summary of open Azure Advisor recommendations separated by relative impact and any upcoming planned maintenance events from **Azure service health**. |
 

@@ -1,6 +1,6 @@
 ---
 title: Security in operations center (preview)
-description: Describes the Security pillar in operations center, which helps you manage the security of your your Azure resources and any non-Azure resources you've connected.
+description: Describes the Security menu in operations center, which helps you manage the security of your your Azure resources and any non-Azure resources you've connected.
 ms.topic: concept-article
 ms.date: 11/14/2025
 ---
@@ -10,9 +10,9 @@ ms.date: 11/14/2025
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Security** pillar of [operations center](./overview.md) helps you manage the security of your your Azure resources and any non-Azure resources you've connected. It consolidates security information and recommendations from [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) into a unified view to help you improve your security posture and respond to threats.
+The **Security** menu of [operations center](./overview.md) helps you manage the security of your your Azure resources and any non-Azure resources you've connected. It consolidates security information and recommendations from [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) into a unified view to help you improve your security posture and respond to threats.
 
-The Security pillar uses the following Azure services:
+The Security menu uses the following Azure services:
 
 - [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction)
 - [Azure Advisor](/azure/advisor/advisor-overview)
@@ -20,7 +20,7 @@ The Security pillar uses the following Azure services:
 
 ## Menu items
 
-:::image type="content" source="./media/security/security-pillar.png" lightbox="./media/security/security-pillar.png" alt-text="Screenshot of Security menu in the Azure portal":::
+:::image type="content" source="./media/security/security-menu.png" lightbox="./media/security/security-menu.png" alt-text="Screenshot of Security menu in the Azure portal":::
 
 | Menu | Description |
 |:---|:---|
