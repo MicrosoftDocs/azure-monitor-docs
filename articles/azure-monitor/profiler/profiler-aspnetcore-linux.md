@@ -18,27 +18,35 @@ In this article, you:
 > - Set up and deploy an ASP.NET Core web application hosted on Linux.
 > - Add the Profiler to the ASP.NET Core web application.
 
-# [OpenTelemetry Profiler](#tab/otel)
+<details>
+<summary><b>OpenTelemetry Profiler</b></summary>
 
 Setting up the .NET Profiler using the [OpenTelemetry Distro](../app/opentelemetry.md) is the recommended method.
 
-# [Application Insights SDK](#tab/app-insights-sdk)
+</details>
+
+<details>
+<summary><b>Application Insights SDK</b></summary>
 
 [!INCLUDE [application-insights-sdk-support-policy](../app/includes/application-insights-sdk-support-policy.md)]
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](../app/includes/azure-monitor-app-insights-otel-available-notification.md)]
 
----
+</details>
 
 ## Prerequisites
 
-# [OpenTelemetry Profiler](#tab/otel)
+<details>
+<summary><b>OpenTelemetry Profiler</b></summary>
 
 - Install the [latest .NET Core SDK](https://dotnet.microsoft.com/download/dotnet).
 - Install Git by following the instructions at [Getting started: Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 - Review the [Enable Azure Monitor Profiler for an ASP.NET Core Web API](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/tree/main/examples/aspnetcore-webapi) sample for context.
 
-# [Application Insights SDK](#tab/app-insights-sdk)
+</details>
+
+<details>
+<summary><b>Application Insights SDK</b></summary>
 
 - Install the [latest .NET Core SDK](https://dotnet.microsoft.com/download/dotnet).
 - Install Git by following the instructions at [Getting started: Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
@@ -46,12 +54,13 @@ Setting up the .NET Profiler using the [OpenTelemetry Distro](../app/opentelemet
   - [Enable Service Profiler for containerized ASP.NET Core Application (.NET 6)](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/tree/main/examples/EnableServiceProfilerForContainerAppNet6)
   - [Application Insights Profiler for Worker Service example](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/tree/main/examples/ServiceProfilerInWorkerNet6)
 
---- 
+</details>
 
 
 ## Set up the project locally
 
-# [OpenTelemetry Profiler](#tab/otel)
+<details>
+<summary><b>OpenTelemetry Profiler</b></summary>
 
 1. Open a command prompt window on your machine.
 
@@ -70,7 +79,10 @@ Setting up the .NET Profiler using the [OpenTelemetry Distro](../app/opentelemet
    dotnet add package Azure.Monitor.OpenTelemetry.Profiler --prerelease
    ```
 
-# [Application Insights SDK](#tab/app-insights-sdk)
+</details>
+
+<details>
+<summary><b>Application Insights SDK</b></summary>
 
 1. Open a command prompt window on your machine.
 
@@ -88,11 +100,12 @@ Setting up the .NET Profiler using the [OpenTelemetry Distro](../app/opentelemet
    dotnet add package Microsoft.ApplicationInsights.Profiler.AspNetCore
    ```
 
---- 
+</details>
 
 ### Enable the .NET Profiler
 
-# [OpenTelemetry Profiler](#tab/otel)
+<details>
+<summary><b>OpenTelemetry Profiler</b></summary>
 
 1. In your preferred code editor, enable the Azure Monitor OpenTelemetry Profiler for .NET in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/blob/main/docs/Configurations.md).
 
@@ -126,7 +139,10 @@ Setting up the .NET Profiler using the [OpenTelemetry Distro](../app/opentelemet
     git commit -m "first commit"
     ```
 
-# [Application Insights SDK](#tab/app-insights-sdk)
+</details>
+
+<details>
+<summary><b>Application Insights SDK</b></summary>
 
 1. In your preferred code editor, enable Application Insights and the .NET Profiler in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
 
@@ -163,7 +179,7 @@ Setting up the .NET Profiler using the [OpenTelemetry Distro](../app/opentelemet
     git commit -m "first commit"
     ```
 
---- 
+</details>
 
 ## Create the Linux web app to host your project
 
@@ -206,14 +222,18 @@ Setting up the .NET Profiler using the [OpenTelemetry Distro](../app/opentelemet
 
 ## Add Application Insights to monitor your web app
 
-# [OpenTelemetry Profiler](#tab/otel)
+<details>
+<summary><b>OpenTelemetry Profiler</b></summary>
 
 Copy and paste your connection string from your Application Insights resource to monitor your web app.
 
 1. [Copy the connection string.](../app/opentelemetry-enable.md#copy-the-connection-string-from-your-application-insights-resource)
 1. [Paste the connection string into your environment.](../app/opentelemetry-enable.md#paste-the-connection-string-in-your-environment)
 
-# [Application Insights SDK](#tab/app-insights-sdk)
+</details>
+
+<details>
+<summary><b>Application Insights SDK</b></summary>
 
 You have three options to add Application Insights to your web app:
 
@@ -221,9 +241,8 @@ You have three options to add Application Insights to your web app:
 - By using the **Environment variables** pane in the Azure portal.
 - By manually adding to your web app settings.
 
-<details>
-<summary><b>Application Insights pane</b></summary>
- 
+# [Application Insights pane](#tab/enablement)
+
 1. In your web app on the Azure portal, select **Application Insights** on the left pane. 
 1. Select **Turn on Application Insights**.
 
@@ -239,11 +258,8 @@ You have three options to add Application Insights to your web app:
 
 1. Select **Apply** > **Yes** to apply and confirm.
 
-</details>
+# [Environment variables pane](#tab/config)
 
-<details>
-<summary><b>Environment variables pane</b></summary>
- 
 1. [Create an Application Insights resource](../app/create-workspace-resource.md) in the same Azure subscription as your App Service instance.
 1. Go to the Application Insights resource.
 1. Copy the **Connection String**.
@@ -265,11 +281,8 @@ You have three options to add Application Insights to your web app:
 
 1. Select **Save**.
 
-</details>
+# [Web app settings](#tab/appsettings)
 
-<details>
-<summary><b>Web app settings</b></summary>
- 
 1. [Create an Application Insights resource](../app/create-workspace-resource.md) in the same Azure subscription as your App Service instance.
 1. Go to the Application Insights resource.
 1. Copy the **Connection String**.
@@ -285,21 +298,25 @@ You have three options to add Application Insights to your web app:
 
 1. Save `appsettings.json` to apply the settings change.
 
-</details>
-
 ---
+
+</details>
 
 ## Troubleshooting
 
-# [OpenTelemetry Profiler](#tab/otel)
+<details>
+<summary><b>OpenTelemetry Profiler</b></summary>
 
 If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](../app/opentelemetry-help-support-feedback.md).
 
-# [Application Insights SDK](#tab/app-insights-sdk)
+</details>
+
+<details>
+<summary><b>Application Insights SDK</b></summary>
 
 If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
 
----
+</details>
 
 ## Next steps
 
