@@ -20,7 +20,7 @@ The following Azure Advisor recommendation **features aren't currently available
 - (Preview) Consider Azure Synapse Analytics (formerly SQL DW) reserved capacity to save over your pay-as-you-go costs.
 - (Preview) Consider Blob storage reserved capacity to save on Blob v2 and Data Lake Storage Gen2 costs.
 - (Preview) Consider Blob storage reserved instance to save on Blob v2 and Data Lake Storage Gen2 costs.
-- (Preview) Consider Cache for Redis reserved capacity to save over your pay-as-you-go costs.
+- (Preview) Consider Azure Managed Redis reserved capacity to save over your pay-as-you-go costs.
 - (Preview) Consider Azure Cosmos DB reserved capacity to save over your pay-as-you-go costs.
 - (Preview) Consider Database for MariaDB reserved capacity to save over your pay-as-you-go costs.
 - (Preview) Consider Database for MySQL reserved capacity to save over your pay-as-you-go costs.
@@ -29,7 +29,7 @@ The following Azure Advisor recommendation **features aren't currently available
 - (Preview) Consider SQL PaaS DB reserved capacity to save over your pay-as-you-go costs.
 - Consider App Service stamp fee reserved instance to save over your on-demand costs.
 - Consider Azure Synapse Analytics (formerly SQL DW) reserved instance to save over your pay-as-you-go costs.
-- Consider Cache for Redis reserved instance to save over your pay-as-you-go costs.
+- Consider Azure Managed Redis reserved instance to save over your pay-as-you-go costs.
 - Consider Azure Cosmos DB reserved instance to save over your pay-as-you-go costs.
 - Consider Database for MariaDB reserved instance to save over your pay-as-you-go costs.
 - Consider Database for MySQL reserved instance to save over your pay-as-you-go costs.
