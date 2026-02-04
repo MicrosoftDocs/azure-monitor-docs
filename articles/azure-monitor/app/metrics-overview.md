@@ -25,7 +25,7 @@ However, telemetry volume reduction techniques affect log-based metrics. Techniq
 
 Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that isn't covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance.
 
-For more information, see [Custom metrics in Azure Monitor (preview)](../essentials/metrics-custom-overview.md).
+For more information, see [Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md).
 
 > [!NOTE]
 > Application Insights also provides a feature called [Live Metrics stream](./live-stream.md), which allows for near real-time monitoring of your web applications and doesn't store any telemetry data.
@@ -48,15 +48,9 @@ For more information, see [Custom metrics in Azure Monitor (preview)](../essenti
 
 ## Metrics preaggregation
 
-OpenTelemetry SDKs preaggregate metrics during collection to reduce the volume of data sent from the SDK to the telemetry channel endpoint. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent using the [OpenTelemetry API](./opentelemetry-add-modify.md#add-custom-metrics) or [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), which results in less data ingestion and lower cost. If your version of the Application Insights SDK supports GetMetric and TrackValue, it's the preferred method of sending custom metrics.
+OpenTelemetry SDKs preaggregate metrics during collection to reduce the volume of data sent from the SDK to the telemetry channel endpoint. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent using the [OpenTelemetry API](./opentelemetry-add-modify.md#add-custom-metrics), which results in less data ingestion and lower cost.
 
-Some SDKs don't implement preaggregation. Examples include older versions of the Application Insights SDK and browser-based instrumentation. In these cases, the back end creates the new metrics by aggregating the events received through the telemetry channel.
-
-To send custom metrics, use the [trackMetric](./api-custom-events-metrics.md#trackmetric) method.
-
-These SDKs don't reduce the volume of data sent. However, you can still use the preaggregated metrics they produce. This setup gives you better performance and supports near real-time dimensional alerting, even without preaggregation during collection.
-
-The telemetry channel endpoint preaggregates events before ingestion sampling. For this reason, ingestion sampling never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
+The Application Insights JavaScript SDK (browser-based) doesn't implement preaggregation. Instead, the back end creates the new metrics by aggregating the events received through the telemetry channel. This doesn't reduce the volume of data sent from the browser. However, you can still use the preaggregated metrics the back end produces. This setup gives you better performance and supports near real-time dimensional alerting, even without preaggregation during collection. The telemetry channel endpoint preaggregates events before ingestion sampling. For this reason, ingestion sampling never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
 
 The following tables list where preaggregation are preaggregated.
 
