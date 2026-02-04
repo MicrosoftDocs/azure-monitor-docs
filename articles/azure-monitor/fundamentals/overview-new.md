@@ -44,11 +44,11 @@ For particularly large data volumes and to support environments with intermitten
 ## Standards
 Azure Monitor embraces open source standards allowing you to leverage your investment in different technologies and skills sets and also to integrate Azure Monitor into your existing hybrid environments. 
 
-- OpenTelemetry is an open‑source observability framework for instrumenting and collecting telemetry data. Microsoft has embraced OpenTelemetry for monitoring applications and infrastructure, allowing you to standardize on a common, vendor‑neutral instrumentation and data model across Azure Monitor and other monitoring platforms.
-- Prometheus is a popular open-source monitoring and alerting solution widely used in the cloud-native ecosystem. Use Azure Monitor managed service for Prometheus to monitor your Kubernetes clusters or integrate with your own self-managed Prometheus environment.
-- Prometheus Query Language (PromQL) is a functional query language used to retrieve and aggregate time‑series metrics. Azure Monitor supports PromQL to query and analyze metrics from Prometheus‑based sources and OpenTelemetry‑collected metrics.
-- Grafana is an open‑source visualization and analytics platform commonly used for observability dashboards. Azure Monitor dashboards with Grafana allow you to work with any Grafana dashboards  with Azure Monitor data in the Azure portal. Use Azure Managed Grafana to access other data sources and integrate with your existing environment.
-- Kusto Query Language (KQL) is the primary query language used across Azure Monitor, Microsoft Sentinel, Azure Resource Graph and other Azure services. While not an open standard, KQL provides a consistent and powerful query experience across Microsoft observability and security services.
+- **OpenTelemetry** is an open‑source observability framework for instrumenting and collecting telemetry data. Microsoft has embraced OpenTelemetry for monitoring applications and infrastructure, allowing you to standardize on a common, vendor‑neutral instrumentation and data model across Azure Monitor and other monitoring platforms.
+- **Prometheus** is a popular open-source monitoring and alerting solution widely used in the cloud-native ecosystem. Use Azure Monitor managed service for Prometheus to monitor your Kubernetes clusters or integrate with your own self-managed Prometheus environment.
+- **Prometheus Query Language (PromQL)** is a functional query language used to retrieve and aggregate time‑series metrics. Azure Monitor supports PromQL to query and analyze metrics from Prometheus‑based sources and OpenTelemetry‑collected metrics.
+- **Grafana** is an open‑source visualization and analytics platform commonly used for observability dashboards. Azure Monitor dashboards with Grafana allow you to work with any Grafana dashboards  with Azure Monitor data in the Azure portal. Use Azure Managed Grafana to access other data sources and integrate with your existing environment.
+- **Kusto Query Language (KQL)** is the primary query language used across Azure Monitor, Microsoft Sentinel, Azure Resource Graph and other Azure services. While not an open standard, KQL provides a consistent and powerful query experience across Microsoft observability and security services.
 
 ## Hybrid environments
 
