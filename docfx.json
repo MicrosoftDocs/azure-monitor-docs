@@ -294,9 +294,6 @@
         "articles/chaos-studio/**/*": "Azure Chaos Studio",
         "articles/service-health/**/*": "Azure Service Health",
         "articles/operations/**/*": "Azure Operations Center"
-      },
-      "zone_pivot_groups_path": {
-        "articles/azure-monitor/**/*": "/articles/azure-monitor/zone-pivot-groups.yml"
       }
     },
     "overwrite": [],
