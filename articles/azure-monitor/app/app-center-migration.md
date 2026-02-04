@@ -20,6 +20,16 @@ You can use one of these gateway options:
 - **OpenTelemetry Collector gateway (recommended for high-volume apps)**. Choose this option if you have a large app with lots of users, want control over telemetry before it reaches Azure Monitor (for example, sampling, filtering, enrichment, or redaction), and can operate the gateway.
 - **Azure API Management (APIM) proxy (recommended for small-volume apps)**. Choose this option if you have a small app with few users and you prefer not to deploy and operate an OpenTelemetry Collector. Review [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
 
+:::image type="content" source="media/app-center-migration/gateway-options.svg" alt-text="A diagram showing OpenTelemetry gateway options for mobile telemetry ingestion into Azure Monitor.":::
+
+**Key points**
+
+- Mobile apps export OTLP telemetry to a gateway endpoint and should not contain Azure Monitor credentials.
+- Choose one gateway you manage (OpenTelemetry Collector or API Management). The gateway holds credentials and forwards telemetry to Azure Monitor ingestion endpoints.
+- Use an OpenTelemetry Collector gateway when you need telemetry-pipeline capabilities such as batching, retries/queueing, sampling, enrichment, filtering/redaction, or routing.
+- Use an APIM proxy when you want a simpler operational model and centralized policy enforcement (for example, routing, throttling, header injection), with more limited telemetry-specific processing.
+- After ingestion, use Azure Monitor experiences such as Logs, Application Insights, Workbooks, and Alerts to analyze and act on telemetry.
+
 For configuration details about Azure Monitor native OTLP ingestion endpoints (Limited Preview), review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
 
 > [!div class="checklist"]
