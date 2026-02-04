@@ -33,7 +33,6 @@ Sampling is **not enabled by default** in Application Insights OpenTelemetry dis
 
 The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
 
-* The sampler is disabled by default. You must explicitly enable and configure sampling to use the sampler.
 * Application Insights relies on this sampler to show you complete traces and avoid broken ones.
 * Live Metrics and the Application Insights classic API SDKs require this sampler for compatibility.
 
