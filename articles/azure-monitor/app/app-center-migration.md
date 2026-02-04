@@ -11,27 +11,6 @@ This article provides high-level linked guidance for sending mobile app telemetr
 
 OTel is a vendor-neutral, open-source standard for collecting and exporting telemetry across languages and platforms, including mobile apps.
 
-## Choose a telemetry gateway option
-
-Mobile apps can't safely store Azure Monitor ingestion credentials. Use a gateway that you manage to receive OpenTelemetry Protocol (OTLP) telemetry from your apps and forward it to Azure Monitor.
-
-You can use one of these gateway options:
-
-- **OpenTelemetry Collector gateway (recommended for high-volume apps)**. Choose this option if you have a large app with lots of users, want control over telemetry before it reaches Azure Monitor (for example, sampling, filtering, enrichment, or redaction), and can operate the gateway.
-- **Azure API Management (APIM) proxy (recommended for small-volume apps)**. Choose this option if you have a small app with few users and you prefer not to deploy and operate an OpenTelemetry Collector. Review [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
-
-:::image type="content" source="media/app-center-migration/gateway-options.svg" alt-text="A diagram showing OpenTelemetry gateway options for mobile telemetry ingestion into Azure Monitor.":::
-
-**Key points**
-
-- Mobile apps export OTLP telemetry to a gateway endpoint and should not contain Azure Monitor credentials.
-- Choose one gateway you manage (OpenTelemetry Collector or API Management). The gateway holds credentials and forwards telemetry to Azure Monitor ingestion endpoints.
-- Use an OpenTelemetry Collector gateway when you need telemetry-pipeline capabilities such as batching, retries/queueing, sampling, enrichment, filtering/redaction, or routing.
-- Use an APIM proxy when you want a simpler operational model and centralized policy enforcement (for example, routing, throttling, header injection), with more limited telemetry-specific processing.
-- After ingestion, use Azure Monitor experiences such as Logs, Application Insights, Workbooks, and Alerts to analyze and act on telemetry.
-
-For configuration details about Azure Monitor native OTLP ingestion endpoints (Limited Preview), review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
-
 > [!div class="checklist"]
 > - Choose and deploy a telemetry gateway (OpenTelemetry Collector or Azure API Management).
 > - Instrument mobile apps with community OpenTelemetry (OTel) SDKs.
@@ -62,8 +41,6 @@ Complete these tasks in order:
 
 Before you deploy a gateway or change your apps, decide where you want to store and analyze the telemetry that your gateway exports.
 
-For this migration, you'll typically use:
-
 - A **workspace-based Application Insights resource**, which receives telemetry and provides the connection string that identifies the destination resource and ingestion endpoints.
 - The **Log Analytics workspace linked to the Application Insights resource**, which stores telemetry for Azure Monitor Logs, Kusto Query Language (KQL) queries, workbooks, and alerts.
 
@@ -71,7 +48,7 @@ If you export OTLP signals by using Azure Monitor native OTLP ingestion endpoint
 
 If you already have a workspace-based Application Insights resource and a linked Log Analytics workspace, reuse those resources for this migration.
 
-#### Learn the Azure Monitor resources you'll use
+#### Learn Azure Monitor
 
 Use these resources to become familiar with Azure Monitor concepts and terminology:
 
@@ -97,12 +74,31 @@ Use this checklist to set up the Azure Monitor side of the migration:
 
 ### Deploy a telemetry gateway
 
-Deploy a gateway in your cloud or network environment. Use this gateway as the mobile app telemetry endpoint so you can keep ingestion credentials out of mobile apps.
+Mobile apps can't safely store Azure Monitor ingestion credentials. Deploy a gateway that you manage in your cloud or network environment to receive OpenTelemetry Protocol (OTLP) telemetry from your apps and forward it to Azure Monitor.
 
 Choose one of these gateway options:
 
-- **OpenTelemetry Collector gateway (community supported)**. Review the [OpenTelemetry Collector documentation](https://opentelemetry.io/docs/collector/), including [deployment guidance](https://opentelemetry.io/docs/collector/deployment/) and [security hosting guidance](https://opentelemetry.io/docs/security/hosting-best-practices/).
-- **Azure API Management proxy**. Use Azure API Management as a telemetry proxy when you want a managed gateway to authenticate and forward telemetry to Azure Monitor. Review [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
+- **OpenTelemetry Collector gateway (community supported; recommended for high-volume apps)**. Choose this option for large apps with many users. It gives you control over telemetry before it reaches Azure Monitor. You can use sampling, filtering, enrichment, or redaction. You must be able to operate the gateway.
+
+  Review these OpenTelemetry resources:
+
+  - [OpenTelemetry Collector documentation](https://opentelemetry.io/docs/collector/)
+  - [OpenTelemetry Collector deployment guidance](https://opentelemetry.io/docs/collector/deployment/)
+  - [OpenTelemetry Collector security hosting guidance](https://opentelemetry.io/docs/security/hosting-best-practices/)
+
+- **Azure API Management (APIM) proxy (recommended for small-volume apps)**. Choose this option if you have a small app with few users and you prefer not to deploy and operate an OpenTelemetry Collector. Review [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
+
+:::image type="content" source="media/app-center-migration/gateway-options.svg" alt-text="Diagram showing mobile apps sending OTLP telemetry to a customer-managed gateway (OpenTelemetry Collector or API Management proxy) that holds Azure Monitor credentials and forwards telemetry to Azure Monitor ingestion." lightbox="media/app-center-migration/gateway-options.svg":::
+
+**Key points**
+
+- Mobile apps export OTLP telemetry to a gateway endpoint and shouldn't contain Azure Monitor credentials.
+- Choose one gateway you manage (OpenTelemetry Collector or API Management). The gateway holds credentials and forwards telemetry to Azure Monitor ingestion endpoints.
+- Use an OpenTelemetry Collector gateway when you need telemetry-pipeline capabilities such as batching, retries/queueing, sampling, enrichment, filtering/redaction, or routing.
+- Use an Azure API Management (APIM) proxy when you want a simpler operational model and centralized policy enforcement (for example, routing, throttling, header injection), with more limited telemetry-specific processing.
+- After ingestion, use Azure Monitor experiences such as Logs, Application Insights, Workbooks, and Alerts to analyze and act on telemetry.
+
+For configuration details about Azure Monitor native OTLP ingestion endpoints (Limited Preview), review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
 
 ### Configure the gateway to export telemetry to Azure Monitor
 
