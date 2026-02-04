@@ -12,9 +12,9 @@ This article provides high-level linked guidance for sending mobile app telemetr
 OTel is a vendor-neutral, open-source standard for collecting and exporting telemetry across languages and platforms, including mobile apps.
 
 > [!div class="checklist"]
+> - Set up Azure Monitor resources for ingestion.
 > - Choose and deploy a telemetry gateway (OpenTelemetry Collector or Azure API Management).
 > - Instrument mobile apps with community OpenTelemetry (OTel) SDKs.
-> - Set up Azure Monitor resources for ingestion.
 > - Analyze telemetry in Azure Monitor and [Application Insights](app-insights-overview.md).
 
 > [!IMPORTANT]
@@ -41,12 +41,16 @@ Complete these tasks in order:
 
 Before you deploy a gateway or change your apps, decide where you want to store and analyze the telemetry that your gateway exports.
 
-- A **workspace-based Application Insights resource**, which receives telemetry and provides the connection string that identifies the destination resource and ingestion endpoints.
-- The **Log Analytics workspace linked to the Application Insights resource**, which stores telemetry for Azure Monitor Logs, Kusto Query Language (KQL) queries, workbooks, and alerts.
+For this migration, you typically use:
 
-If you export OTLP signals by using Azure Monitor native OTLP ingestion endpoints (Limited Preview), your destination setup also includes OTLP connection information such as endpoint URLs and a Data Collection Rule (DCR). For details, review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
+- A **workspace-based Application Insights resource** to receive telemetry and provide a connection string for ingestion.
+- The **Log Analytics workspace linked to the Application Insights resource** to store telemetry for Azure Monitor Logs (KQL), Workbooks, and Alerts.
 
-If you already have a workspace-based Application Insights resource and a linked Log Analytics workspace, reuse those resources for this migration.
+> [!NOTE]
+> If you already have a workspace-based Application Insights resource and a linked Log Analytics workspace, reuse those resources for this migration.
+
+> [!IMPORTANT]
+> If you plan to ingest OpenTelemetry Protocol (OTLP) signals by using Azure Monitor native OTLP ingestion endpoints (Limited Preview), follow the setup requirements in that guidance. The destination setup can include OTLP endpoint URLs and a Data Collection Rule (DCR), and it can differ from the workspace-based Application Insights and connection string approach previously described. For details, review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
 
 #### Learn Azure Monitor
 
