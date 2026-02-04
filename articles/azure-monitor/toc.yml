@@ -1083,12 +1083,17 @@ items:
       - name: Configuration
         displayName: Private Link
         href: fundamentals/private-link-configure.md
-      - name: Kubernetes
-        displayName: Private link
-        href: fundamentals/private-link-kubernetes.md
-      - name: Virtual machines
-        displayName: Private link
-        href: fundamentals/azure-monitor-agent-private-link.md
+      - name: Azure Monitor workspace query
+        displayName: Private Link
+        href: fundamentals/azure-monitor-workspace-private-endpoint.md
+      - name: Scenarios
+        items:
+        - name: Kubernetes
+          displayName: Private link
+          href: fundamentals/private-link-kubernetes.md
+        - name: Virtual machines
+          displayName: Private link
+          href: fundamentals/azure-monitor-agent-private-link.md
     - name: Network security perimeter
       items:
       - name: Configuration

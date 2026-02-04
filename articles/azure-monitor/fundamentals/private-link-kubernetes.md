@@ -15,6 +15,7 @@ ms.reviewer: aul
 
 - Configure monitoring of Prometheus metrics and container logs for your AKS cluster by following the steps in [Enable Prometheus metrics and container logging](../containers/kubernetes-monitoring-enable.md).
 - Create an AMPLS and connect it to your VNet using the process described in [Configure private link for Azure Monitor](./private-link-configure.md).
+- Create a private endpoint to support querying data from your Azure Monitor workspace by following the steps in [Enable query from Azure Monitor workspace using private link](./private-link-azure-monitor-workspace.md).
 
 ## Conceptual overview
 Kubernetes clusters send Prometheus metrics to an Azure Monitor workspace and logs to a Log Analytics workspace. When using private link, separate data collection endpoints (DCE) are required for clusters to retrieve configuration from the workspaces and to send data. 
@@ -114,68 +115,6 @@ Add a DCE to the AMPLS using the following command:
 
 ---
 
-
-### Create private endpoint for queries
-One final step for enabling private link for Prometheus metrics is to create a private endpoint to support queries to the Azure Monitor workspace. This is in addition to the private to connect the private scope to the VNet described in [Connect AMPLS to a private endpoint](./private-link-configure.md#connect-ampls-to-a-private-endpoint).
-
-### [Azure portal](#tab/portal)
-Follow the guidance in [Connect AMPLS to a private endpoint](./private-link-configure.md#connect-ampls-to-a-private-endpoint) to create a new private endpoint for your AMPLS. One the **Resources** tab, select the following settings:
-
-- **Resource type**: `Microsoft.Monitor/accounts`
-- **Resource**: Your Azure Monitor workspace
-- **Target sub-resource**: `prometheusMetrics`
-
-:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-private-ingestion-private-endpoint-config.png" lightbox="media/kubernetes-monitoring-private-link/ampls-private-ingestion-private-endpoint-config.png" alt-text="A screenshot show the private endpoint config":::
-
-### [CLI](#tab/cli)
-
-Create the query private link endpoint using the following command:
-
-```azurecli
-az network private-endpoint create \
-    --resource-group <resource-group>  \
-    --name <private-endpoint-name> \
-    --location <region> \
-    --subnet <subnet-id> \
-    --private-connection-resource-id <workspade-resource-id> \
-    --group-ids prometheusMetrics \
-    --connection-name <connection-name>
-
-# Example
-az network private-endpoint create \
-    --resource-group my-resource-group  \
-    --name AzMon-QueryPrivateEndpoint \
-    --location eastus \
-    --subnet /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/vm/providers/Microsoft.Network/virtualNetworks/vnet-eastus/subnets/snet-eastus-1  \
-    --private-connection-resource-id /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/aks/providers/microsoft.monitor/accounts/aks-amw \
-    --group-ids prometheusMetrics \
-    --connection-name AzMon-QueryPrivateEndpoint-conn
-```
-
-
-
-### [PowerShell](#tab/powershell)
-
-Create the query private link endpoint using the following command:
-
-```powershell
-$pec = @{
-    Name = 'AzMon-QueryPrivateEndpoint-conn'
-    PrivateLinkServiceId = $webapp.ID
-    GroupID = 'prometheusMetrics'
-}
-$privateEndpointConnection = New-AzPrivateLinkServiceConnection @pec
-
-$pe = @{
-    ResourceGroupName = 'my-resource-group'
-    Name = 'AzMon-QueryPrivateEndpoint'
-    Location = 'eastus2'
-    Subnet = '/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/vm/providers/Microsoft.Network/virtualNetworks/vnet-eastus/subnets/snet-eastus-1'
-    PrivateLinkServiceConnection = $privateEndpointConnection
-}
-New-AzPrivateEndpoint @pe
-```
----
 
 
 ## Configure Log Analytics workspace

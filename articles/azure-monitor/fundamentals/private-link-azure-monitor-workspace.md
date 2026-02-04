@@ -1,11 +1,11 @@
 ---
-title: Use private endpoints for Managed Prometheus and Azure Monitor workspaces
+title: Enable query from Azure Monitor workspace using private link
 description: Overview of private endpoints for secure query access to Azure Monitor workspace from virtual networks.
 ms.topic: how-to
 ms.date: 08/28/2025
 ---
 
-# Use private endpoints for Managed Prometheus and Azure Monitor workspace
+# Enable query from Azure Monitor workspace using private link
 
 Use [private endpoints](/azure/private-link/private-endpoint-overview) for Managed Prometheus and your Azure Monitor workspace to allow clients on a virtual network (VNet) to securely query data over a [Private Link](/azure/private-link/private-link-overview). The private endpoint uses a separate IP address within the VNet address space of your Azure Monitor workspace resource. Network traffic between the clients on the VNet and the workspace resource traverses the VNet and a private link on the Microsoft backbone network, eliminating exposure from the public internet.
 
@@ -41,8 +41,12 @@ To create a private endpoint by using the Azure portal, PowerShell, or the Azure
 
 When you create a private endpoint, make the following selections from the dropdown lists on the basic tab:
 
-* **Resource type** - Select `Microsoft.Monitor/accounts`. Specify the Azure Monitor workspace to which it connects.
-* **Target sub-resource** - Select `prometheusMetrics` .
+- **Resource type**: `Microsoft.Monitor/accounts`
+- **Resource**: Your Azure Monitor workspace
+- **Target sub-resource**: `prometheusMetrics`
+
+:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-private-ingestion-private-endpoint-config.png" lightbox="media/kubernetes-monitoring-private-link/ampls-private-ingestion-private-endpoint-config.png" alt-text="A screenshot show the private endpoint config":::
+
 
 Create a private endpoint using the following articles:
 
