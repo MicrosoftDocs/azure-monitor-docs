@@ -52,10 +52,12 @@ Azure Monitor embraces open source standards allowing you to leverage your inves
 
 ## Hybrid environments
 
-Azure Monitor isn’t only designed to monitor Azure environments but can act as a centralized monitoring solution for your hybrid environments. Use Azure Arc to include your resources from other clouds and on-premises. Or send data to the Azure Monitor data platform from custom applications using log and metric APIs. You can also choose to centralize your monitoring on another platform and rely on Azure Monitor to provide telemetry for your Azure resources and applications. 
+Azure Monitor isn’t only designed to monitor Azure environments but can act as a centralized monitoring solution for your hybrid environments. Use Azure Arc to connect your resources in other clouds and on-premises to monitor them alongside your Azure resources.  Or send data to the Azure Monitor data platform from custom applications using log and metric APIs. For particularly large environments, Azure Monitor pipeline can assist in data collection from particularly large or disconnected environments.
+
+You can also choose to centralize your monitoring on another platform and rely on Azure Monitor to provide telemetry for your Azure resources and applications. Use Azure Event Hubs to stream your data outside of Azure Monitor or integrate with observability partners such as Datadog and Dynatrace.
 
 ## Visualization
-In addition to integrating monitoring data into the Azure portal experience for different services, there are multiple options to visualize your Azure Monitor data.
+In addition to integrating monitoring data into the Azure portal experience for different services, there are multiple options to visualize your Azure Monitor data for analysis.
 
 - **Azure Monitor dashboards with Grafana** are automatically available in the Azure portal at no cost. Use them to create rich visualizations using prebuilt Grafana dashboards or build your own custom dashboards.
 - **Managed Grafana** is a fully managed Grafana service hosted in Azure. Use it to create Grafana dashboards that integrate data from Azure Monitor and other data sources.
@@ -63,13 +65,13 @@ In addition to integrating monitoring data into the Azure portal experience for 
 - **Ad hoc** - Use KQL and PromQL queries to analyze your data directly in the Azure portal or export the results to other tools such as Power BI for further analysis.
 
 ## Alerting
-Alerts in Azure Monitor proactively notify you when issues occur so that you can respond to them before they affect your customers. An alert can be a simple as a metric value crossing a particular threshold or can be based on a complex log query written in KQL. For Prometheus and OpenTelemetry metrics, you can leverage alerts based on PromQL. Some services will provide recommended alerts that you can quickly enable, or you can customize your own alert rules to meet your particular requirements.
+Alerts in Azure Monitor proactively notify you when issues occur so that you can respond to them before they affect your customers. Notify different teams using a variety of methods including email, SMS, push notifications, or integration with IT service management and incident management tools such as ServiceNow and PagerDuty.
 
-## Leverage Copilot
-The Observability agent in Azure Monitor uses AI to automatically identify and surface important issues in your applications and infrastructure. By analyzing telemetry data, the agent can detect anomalies, performance bottlenecks, and potential failures before they impact your users. This proactive approach helps you maintain high availability and reliability for your services.
+An alert can be as simple as a metric value crossing a particular threshold or can be based on a complex log query written in KQL. For Prometheus and OpenTelemetry metrics, you can leverage alerts based on PromQL. Some services will provide recommended alerts that you can quickly enable, or you can customize your own alert rules to meet your particular requirements. 
+
+Leverage AIOps capabilities to assist in alert configuration and response. Dynamic alert thresholds detect anomalous behavior of metrics, PromQL queries, or log query results with and automatically fine tune thresholds. Smart alerts for Application insights use machine learning to detect common application failures, response times, and dependency duration. Use the observability agent to leverage AI in the investigation of issues by automatically analyzing related telemetry and suggesting potential root causes.
 
 
-- 
 
 
 ## Next steps
