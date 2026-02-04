@@ -34,7 +34,7 @@ In this guide, you learn how to:
   - [VM](https://github.com/Azure/azure-docs-json-samples/blob/master/application-insights/WindowsVirtualMachine.json)
   - [Virtual machine scale set](https://github.com/Azure/azure-docs-json-samples/blob/master/application-insights/WindowsVirtualMachineScaleSet.json)
 
-## Enable App Insights in your project.
+## Add the Application Insights SDK to your application
 
 1. Open your ASP.NET core project in Visual Studio.
 
