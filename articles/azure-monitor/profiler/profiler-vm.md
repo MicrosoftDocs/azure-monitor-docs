@@ -4,8 +4,6 @@ description: Profile web apps running on an Azure virtual machine or a virtual m
 ms.topic: how-to
 ms.date: 03/25/2025
 ms.reviewer: charles.weininger
-zone_pivot_groups: azure-monitor-pivot
-zone_pivot_groups_path: /articles/azure-monitor/zone-pivot-groups.yml
 ---
 
 # Enable the .NET Profiler for web apps on an Azure virtual machine
