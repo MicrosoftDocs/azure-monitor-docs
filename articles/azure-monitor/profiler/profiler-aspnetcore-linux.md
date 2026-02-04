@@ -18,7 +18,9 @@ In this article, you:
 > - Set up and deploy an ASP.NET Core web application hosted on Linux.
 > - Add the Profiler to the ASP.NET Core web application.
 
-Setting up the .NET Profiler using the [OpenTelemetry Distro](../app/opentelemetry.md) is the recommended method.
+[!INCLUDE [application-insights-sdk-support-policy](../app/includes/application-insights-sdk-support-policy.md)]
+
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../app/includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ## OpenTelemetry Profiler (recommended)
 
@@ -154,10 +156,6 @@ If you are unable to find traces from your app, consider following the steps in 
 
 
 ## Application Insights SDK
-
-[!INCLUDE [application-insights-sdk-support-policy](../app/includes/application-insights-sdk-support-policy.md)]
-
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../app/includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 <details>
 <summary><b>Prerequisites</b></summary>
