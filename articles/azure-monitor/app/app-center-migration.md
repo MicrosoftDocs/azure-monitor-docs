@@ -78,7 +78,7 @@ Use this checklist to set up the Azure Monitor side of the migration:
 
 ### Deploy a telemetry gateway
 
-Mobile apps can't safely store Azure Monitor ingestion credentials. Deploy a gateway that you manage in your cloud or network environment to receive OpenTelemetry Protocol (OTLP) telemetry from your apps and forward it to Azure Monitor.
+Deploy a gateway that you manage in your cloud or network environment to receive OpenTelemetry Protocol (OTLP) telemetry from your apps and forward it to Azure Monitor.
 
 Choose one of these gateway options:
 
@@ -96,7 +96,7 @@ Choose one of these gateway options:
 
 **Key points**
 
-- Mobile apps export OTLP telemetry to a gateway endpoint and shouldn't contain Azure Monitor credentials.
+- Mobile apps export OTLP telemetry to a gateway endpoint.
 - Choose one gateway you manage (OpenTelemetry Collector or API Management). The gateway holds credentials and forwards telemetry to Azure Monitor ingestion endpoints.
 - Use an OpenTelemetry Collector gateway when you need telemetry-pipeline capabilities such as batching, retries/queueing, sampling, enrichment, filtering/redaction, or routing.
 - Use an Azure API Management (APIM) proxy when you want a simpler operational model and centralized policy enforcement (for example, routing, throttling, header injection), with more limited telemetry-specific processing.
